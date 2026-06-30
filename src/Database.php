@@ -44,10 +44,9 @@ class Database
             created_at TEXT DEFAULT (datetime('now'))
         )");
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL,
+            name TEXT PRIMARY KEY,
             source TEXT DEFAULT 'base',
-            invented_at TEXT DEFAULT (datetime('now'))
+            created_at TEXT DEFAULT (datetime('now'))
         )");
         $db->exec("CREATE TABLE IF NOT EXISTS state (
             key TEXT PRIMARY KEY,

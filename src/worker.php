@@ -178,6 +178,18 @@ while (true) {
                 'breakdown' => $optimal['all_categories'] ?? [],
             ];
         }
+        elseif ($path === '/hypotheses') {
+            $generator = new \BeeSwarm\HypothesisGenerator();
+            $data = $generator->generate();
+        }
+        elseif ($path === '/test-hypotheses') {
+            $tester = new \BeeSwarm\HypothesisTester();
+            $data = $tester->testAll();
+        }
+        elseif ($path === '/request-data') {
+            $requestor = new \BeeSwarm\DataRequestor();
+            $data = $requestor->request();
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

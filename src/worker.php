@@ -211,6 +211,17 @@ while (true) {
             $gen = new \BeeSwarm\ParadigmHypothesis();
             $data = $gen->generate();
         }
+        elseif ($path === '/validate') {
+            $validator = new \BeeSwarm\ParadigmValidator();
+            $data = $validator->validate();
+        }
+        elseif ($path === '/watchdog') {
+            $wd = new \BeeSwarm\LawWatchdog();
+            $data = $wd->check(
+                $body['law'] ?? 'StressEnergy',
+                $body['new_data'] ?? []
+            );
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

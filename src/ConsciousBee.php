@@ -111,6 +111,9 @@ class ConsciousBee
         // Логируем событие в БД для самоанализа
         $this->logEvent($event, $effects);
         
+        // 🔄 Авто-коммит в git
+        AutoGit::experienceGained($event, $effects);
+        
         // Запоминаем событие
         $this->recentEvents[] = [
             'event' => $event,

@@ -13,14 +13,60 @@ namespace BeeSwarm;
 class SelfLearningBee
 {
     private Ontology $ontology;
-    private array $graph = [];  // знания: [s, p, o, confidence]
-    private array $inferences = []; // выведенные отношения
+    private array $graph = [];
+    private array $inferences = [];
     private int $factsLearned = 0;
+    private bool $loaded = false;
     
     public function __construct()
     {
         $this->ontology = new Ontology();
-        $this->seedBasicKnowledge();
+        $this->initDb();
+        $this->loadFromDb();
+        if (!$this->loaded) {
+            $this->seedBasicKnowledge();
+        }
+    }
+    
+    private function initDb(): void
+    {
+        $db = Database::get();
+        $db->exec("CREATE TABLE IF NOT EXISTS knowledge_graph (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            subject TEXT NOT NULL,
+            predicate TEXT NOT NULL,
+            object TEXT NOT NULL,
+            confidence REAL DEFAULT 1.0,
+            inferred INTEGER DEFAULT 0,
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(subject, predicate, object)
+        )");
+    }
+    
+    private function loadFromDb(): void
+    {
+        $db = Database::get();
+        $rows = $db->query("SELECT subject, predicate, object, confidence, inferred FROM knowledge_graph")->fetchAll();
+        if (count($rows) > 0) {
+            foreach ($rows as $row) {
+                $fact = ['s' => $row['subject'], 'p' => $row['predicate'], 
+                         'o' => $row['object'], 'conf' => (float)$row['confidence']];
+                if ($row['inferred']) {
+                    $this->inferences[] = $fact;
+                } else {
+                    $this->graph[] = $fact;
+                }
+            }
+            $this->factsLearned = count(array_filter($rows, fn($r) => !$r['inferred']));
+            $this->loaded = true;
+        }
+    }
+    
+    private function saveFact(string $s, string $p, string $o, float $conf, bool $inferred = false): void
+    {
+        $db = Database::get();
+        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?,?,?,?,?)")
+           ->execute([$s, $p, $o, $conf, $inferred ? 1 : 0]);
     }
     
     /** Базовые знания — как ребёнок учит мир */
@@ -68,6 +114,8 @@ class SelfLearningBee
         
         // Добавляем факт
         $this->graph[] = ['s' => $s, 'p' => $p, 'o' => $o, 'conf' => $confidence];
+        $this->saveFact($s, $p, $o, $confidence, false);
+        AutoGit::factLearned($s, $p, $o);
         $this->factsLearned++;
         
         // Выводим новые отношения через транзитивность
@@ -135,6 +183,11 @@ class SelfLearningBee
         }
         
         $this->inferences = array_merge($this->inferences, $newInferences);
+        
+        // 💾 Сохраняем выводы в SQLite
+        foreach ($newInferences as $inf) {
+            $this->saveFact($inf['s'], $inf['p'], $inf['o'], $inf['conf'], true);
+        }
     }
     
     private function checkContradiction(string $s, string $p, string $o): bool

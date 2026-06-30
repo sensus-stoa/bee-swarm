@@ -207,6 +207,10 @@ while (true) {
             $optimizer = new \BeeSwarm\AutonomousOptimizer();
             $data = $optimizer->step();
         }
+        elseif ($path === '/paradigm') {
+            $gen = new \BeeSwarm\ParadigmHypothesis();
+            $data = $gen->generate();
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

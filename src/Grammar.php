@@ -130,4 +130,10 @@ class Grammar
         }
         $this->ops = $filtered;
     }
+    
+    /** Полностью очистить грамматику */
+    public function clearAll(): void
+    {
+        $this->ops = [];
+    }
 }

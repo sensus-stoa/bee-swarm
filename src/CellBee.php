@@ -27,50 +27,59 @@ class CellBee
     }
     
     /**
-     * Поиск CV→0. С grammar этой пчелы.
+     * Поиск CV→0. С СОБСТВЕННОЙ grammar пчелы (in-memory, без БД).
      */
     public function search(array $X, array $y): array
     {
-        // Используем существующий Search но с отношениями из grammar
+        // Строим временный Grammar из отношений пчелы — БЕЗ записи в БД
         $g = new Grammar();
-        $g->restrictTo($this->grammar->all());
+        $g->clearAll();
+        // Обходим add() и пишем напрямую в ops (in-memory only)
+        $refl = new \ReflectionClass($g);
+        $prop = $refl->getProperty('ops');
+        $prop->setAccessible(true);
+        $ops = [];
+        foreach ($this->grammar->all() as $rel) {
+            $ops[$rel] = ['fn' => 'custom_' . $rel, 'symbol' => $rel];
+        }
+        $prop->setValue($g, $ops);
         
         return Search::find($X, $y, $g, 2);
     }
     
     /**
-     * Прожить один цикл: задача → поиск → результат → обновление.
+     * Обновлённый live: grammar — своя (не из БД).
+     * Штраф за тривиальные законы.
      */
     public function live(array $X, array $y): array
     {
         [$ok, $cv, $formula] = $this->search($X, $y);
         
         if ($ok) {
-            $this->energy = min(1.5, $this->energy + 0.15);
+            // ШТРАФ ЗА ТРИВИАЛЬНОСТЬ: константа или просто x0
+            $isTrivial = str_starts_with($formula, 'K') || $formula === 'x0';
+            $gain = $isTrivial ? 0.03 : 0.15;
+            $this->energy = min(1.5, $this->energy + $gain);
             $this->successes++;
         } else {
             $this->energy -= 0.1;
             $this->failures++;
             
-            // ПРОВАЛ → МУТАЦИЯ
+            // ПРОВАЛ → МУТАЦИЯ (своя grammar, не БД)
             if ($this->failures % 3 === 0) {
                 $mutated = $this->grammar->mutate();
                 if (!empty($mutated)) {
-                    $this->history[] = ['event' => 'mutate', 'added' => $mutated, 'cv_before' => $cv];
+                    $this->history[] = ['event' => 'mutate', 'added' => $mutated];
                 }
             }
         }
         
         return [
-            'bee' => $this->id,
-            'domain' => $this->domain,
-            'ok' => $ok,
-            'cv' => $cv,
-            'formula' => $formula,
+            'bee' => $this->id, 'domain' => $this->domain,
+            'ok' => $ok, 'cv' => $cv, 'formula' => $formula,
             'energy' => $this->energy,
             'grammar_size' => $this->grammar->count(),
-            'successes' => $this->successes,
-            'failures' => $this->failures,
+            'trivial' => $ok && ($formula === 'x0' || str_starts_with($formula, 'K')),
         ];
     }
     

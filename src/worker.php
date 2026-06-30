@@ -220,9 +220,15 @@ while (true) {
             $which = $body['hive'] ?? 'a';
             $data = $eco->tick($which);
         }
-        elseif ($path === '/eco-state') {
-            $eco = new \BeeSwarm\EcoHive();
-            $data = $eco->state();
+        elseif ($path === '/density') {
+            static $dhive = null;
+            if ($dhive === null) $dhive = new \BeeSwarm\DensityHive(5);
+            $data = $dhive->tick();
+        }
+        elseif ($path === '/density-state') {
+            static $dhive2 = null;
+            if ($dhive2 === null) $dhive2 = new \BeeSwarm\DensityHive(5);
+            $data = $dhive2->state();
         }
         elseif ($method === 'POST' && $path === '/eco-query') {
             $eco = new \BeeSwarm\EcoHive();

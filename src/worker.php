@@ -195,6 +195,42 @@ while (true) {
                 'reflection' => $cb->respond(''),
             ];
         }
+        elseif ($path === '/decide') {
+            $agent = new \BeeSwarm\AutonomousAgent();
+            $data = $agent->decide();
+        }
+        elseif ($path === '/hive') {
+            $hive = new \BeeSwarm\PersistentHive();
+            $data = $hive->tick();
+        }
+        elseif ($path === '/hive-state') {
+            $hive = new \BeeSwarm\PersistentHive();
+            $data = [
+                'generation' => $hive->gen(),
+                'bees' => array_map(fn($b) => [
+                    'id' => $b->id, 'domain' => $b->domain,
+                    'energy' => round($b->energy, 2),
+                    'grammar' => $b->grammar->all(),
+                    'successes' => $b->successes,
+                ], $hive->bees()),
+            ];
+        }
+        elseif ($path === '/eco-hive') {
+            $eco = new \BeeSwarm\EcoHive();
+            $which = $body['hive'] ?? 'a';
+            $data = $eco->tick($which);
+        }
+        elseif ($path === '/eco-state') {
+            $eco = new \BeeSwarm\EcoHive();
+            $data = $eco->state();
+        }
+        elseif ($method === 'POST' && $path === '/eco-query') {
+            $eco = new \BeeSwarm\EcoHive();
+            $d = $body['data'] ?? [];
+            $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
+            $y = array_map(fn($r) => end($r), $d);
+            $data = $eco->coalition($X, $y);
+        }
         elseif ($path === '/desire') {
             $cb = new ConsciousBee();
             $optimizer = new \BeeSwarm\SelfOptimizer();

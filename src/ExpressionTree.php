@@ -37,6 +37,24 @@ class ExpressionTree
         
         $op = $node['op'] ?? '?';
         
+        // 🔥 NATIVE: динамический вызов PHP-функций без хардкода
+        if ($op === 'native') {
+            $fn = $node['fn'] ?? '';
+            $arg = $this->evalNode($node['arg'] ?? $node['left'] ?? 0, $a, $b);
+            // Whitelist математических функций
+            return match ($fn) {
+                'sqrt' => sqrt(max($arg, 0)),
+                'abs' => abs($arg),
+                'sin' => sin($arg),
+                'cos' => cos($arg),
+                'exp' => exp($arg),
+                'log' => log(max($arg, 1e-8)),
+                'min' => min($arg, $this->evalNode($node['right'] ?? 0, $a, $b)),
+                'max' => max($arg, $this->evalNode($node['right'] ?? 0, $a, $b)),
+                default => 0.0,
+            };
+        }
+        
         return match ($op) {
             '+' => $this->evalNode($node['left'], $a, $b) + $this->evalNode($node['right'], $a, $b),
             '−' => $this->evalNode($node['left'], $a, $b) - $this->evalNode($node['right'], $a, $b),

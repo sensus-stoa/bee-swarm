@@ -164,7 +164,7 @@ class MetaInventor
             
             if ($isSqrt && !in_array('sqrt', $grammar->all())) {
                 $grammar->add('sqrt', 'auto-sqrt', json_encode([
-                    'op' => 'sqrt', 'arg' => 'a'
+                    'op' => 'native', 'fn' => 'sqrt', 'arg' => 'a'
                 ]));
                 return 'sqrt';
             }

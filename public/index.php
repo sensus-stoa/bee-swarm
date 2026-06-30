@@ -1,104 +1,126 @@
 <?php
-declare(strict_types=1);
-
-namespace BeeSwarm;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// ── Простой HTTP-сервер (без RoadRunner) ──
+use BeeSwarm\Grammar;
+use BeeSwarm\Database;
+use BeeSwarm\Search;
+use BeeSwarm\MetaInventor;
+use BeeSwarm\ConsciousBee;
+use BeeSwarm\SelfLearningBee;
 
-$grammar = new Grammar();
-$meta = new MetaInventor();
-$bees = [];
-for ($i = 0; $i < 5; $i++) {
-    $bees[] = new Attractors("bee_$i");
-}
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
 
-function json_response(array $data, int $code = 200): void {
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$method = $_SERVER['REQUEST_METHOD'];
+$body = json_decode(file_get_contents('php://input'), true) ?? [];
+$query = $_GET;
+
+function reply(array $data, int $code = 200): void {
     http_response_code($code);
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$method = $_SERVER['REQUEST_METHOD'];
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$body = json_decode(file_get_contents('php://input'), true) ?? [];
+// ═══════════════════════════════════════════════
+// Эндпоинты
+// ═══════════════════════════════════════════════
 
-if ($method === 'GET' && $path === '/status') {
-    json_response([
-        'bees' => array_map(fn($b) => $b->state(), $bees),
-        'grammar' => ['ops' => $grammar->all(), 'count' => $grammar->count()],
-    ]);
+if ($path === '/status') {
+    $g = new Grammar(); $db = Database::get();
+    reply(['grammar' => ['ops' => $g->all(), 'count' => $g->count()], 'laws' => $db->query("SELECT COUNT(*) FROM laws")->fetchColumn()]);
 }
 
 if ($method === 'POST' && $path === '/solve') {
     $data = $body['data'] ?? [];
-    if (empty($data)) json_response(['error' => 'no data'], 400);
-    
-    $taskName = $body['task'] ?? 'unknown';
+    if (!$data) reply(['error' => 'no data'], 400);
+    $task = $body['task'] ?? 'unknown';
+    $domain = $body['domain'] ?? 'unknown';
     $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
     $y = array_map(fn($r) => end($r), $data);
-    
-    $results = []; $solved = false;
-    foreach ($bees as $i => $bee) {
-        [$ok, $cv, $formula] = Search::find($X, $y, $grammar);
-        $bee->update($ok, $cv < 0.001 ? 0.5 : 0.0);
-        $results[] = ['bee' => "bee_$i", 'ok' => $ok, 'cv' => $cv, 'formula' => $formula];
-        if ($ok) $solved = true;
+    $g = new Grammar();
+    [$ok, $cv, $formula] = Search::find($X, $y, $g);
+    if ($ok) {
+        Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task, $formula, $cv, $domain]);
     }
-    
-    if (!$solved) {
-        $invention = $meta->invent([[$X, $y, $taskName]], $grammar);
-        if ($invention) {
-            $grammar->add($invention, $taskName);
-            foreach ($bees as $i => $bee) {
-                [$ok2, $cv2, $f2] = Search::find($X, $y, $grammar);
-                $results[] = ['bee' => "bee_$i", 'ok' => $ok2, 'cv' => $cv2, 'formula' => $f2, 'invention' => $invention];
-                if ($ok2) $solved = true;
-            }
-        }
+    reply(['task' => $task, 'solved' => $ok, 'best_cv' => $cv, 'best_formula' => $formula]);
+}
+
+if ($path === '/conscious') {
+    $cb = new ConsciousBee();
+    reply(['state' => $cb->state(), 'response' => $cb->respond('статус')]);
+}
+
+if ($method === 'POST' && ($path === '/conscious' || $path === '/experience')) {
+    $event = $body['event'] ?? '?';
+    $effects = $body['effects'] ?? [];
+    $cb = new ConsciousBee();
+    $cb->experience($event, $effects);
+    reply(['state' => $cb->state(), 'response' => $cb->respond('')]);
+}
+
+if ($path === '/cross-domain') {
+    $db = Database::get();
+    $laws = $db->query("SELECT name,formula,cv,domain FROM laws ORDER BY domain,name")->fetchAll();
+    $ops = ['×'=>[],'+'=>[],'−'=>[],'/'=>[],'²'=>[],'pow'=>[],'K'=>[],'parity'=>[]];
+    $domains = [];
+    foreach ($laws as $l) {
+        $domains[$l['domain']] = ($domains[$l['domain']]??0)+1;
+        foreach ($ops as $op => &$list) if (str_contains($l['formula'], $op) && !in_array($l['name'], $list)) $list[] = $l['name'];
     }
-    
-    if ($solved) {
-        $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0]);
-        Database::get()->prepare("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
-            ->execute([$taskName, $best['formula']??null, $best['cv']??9, 'api']);
+    reply(['total_laws' => count($laws), 'domains' => $domains, 'operations' => array_map('count', $ops)]);
+}
+
+if ($path === '/talk') {
+    $q = $query['q'] ?? ($body['q'] ?? 'привет');
+    $learner = new SelfLearningBee();
+    $onto = $learner->getOntology();
+    $words = preg_split('/\s+/u', mb_strtolower($q));
+    $rp = ['is_a'=>'— это','can'=>'может','has'=>'имеет'];
+    $cs = [];
+    foreach ($words as $w) {
+        $c = $onto->resolve($w);
+        if (isset($onto->concepts[$c])) $cs[] = $c;
+        $inf = $learner->query($c);
+        if ($inf['facts_known'] || $inf['facts_inferred']) $cs[] = $c;
     }
-    
-    $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0]);
-    json_response([
-        'task' => $taskName, 'solved' => $solved,
-        'best_cv' => $best['cv'] ?? 9, 'best_formula' => $best['formula'] ?? null,
-        'results' => array_slice($results, -5),
-    ]);
+    if (!$cs) reply(['answer' => 'Не знаю. Научи: «X — это Y».', 'cv' => 1.0]);
+    $cs = array_unique($cs);
+    $lines = []; $cov = 0;
+    foreach ($cs as $c) {
+        $inf = $learner->query($c); $has = false;
+        foreach ($inf['facts_known'] as $f) { $lines[] = $f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
+        foreach ($inf['facts_inferred'] as $f) { $lines[] = '💡 '.$f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
+        if ($has) $cov++;
+    }
+    $cv = 1 - ($cov / count($cs));
+    reply(['answer' => $cv == 0 ? 'Точно: '.implode('; ',$lines) : 'Знаю: '.implode('. ',$lines), 'cv' => round($cv,3), 'covered' => $cov, 'total' => count($cs)]);
 }
 
 if ($method === 'POST' && $path === '/learn') {
-    $tasks = $body['tasks'] ?? [];
-    $report = [];
-    foreach ($tasks as $name => $data) {
-        $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-        $y = array_map(fn($r) => end($r), $data);
-        [$ok, $cv, $f] = Search::find($X, $y, $grammar);
-        $report[$name] = ['solved' => $ok, 'cv' => $cv, 'formula' => $f];
-    }
-    json_response(['learned' => count($tasks), 'report' => $report]);
+    $learner = new SelfLearningBee();
+    $r = $learner->learnFromRussian($body['sentence'] ?? '');
+    reply($r);
 }
 
-if ($method === 'POST' && $path === '/invent') {
-    $tasks = $body['tasks'] ?? [];
-    $domain = $body['domain'] ?? 'unknown';
-    $unsolved = [];
-    foreach ($tasks as $name => $data) {
-        $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-        $y = array_map(fn($r) => end($r), $data);
-        [$ok] = Search::find($X, $y, $grammar);
-        if (!$ok) $unsolved[] = [$X, $y, $name];
-    }
-    if (empty($unsolved)) json_response(['invented' => false, 'reason' => 'all solved']);
-    $inv = $meta->invent($unsolved, $grammar);
-    json_response($inv ? ['invented' => true, 'operation' => $inv] : ['invented' => false, 'reason' => 'no strategy worked']);
+if ($path === '/introspect') {
+    $cb = new ConsciousBee();
+    reply([
+        'who' => 'рой, ищу CV→0',
+        'state' => $cb->state(),
+        'reflection' => $cb->respond(''),
+    ]);
 }
 
-json_response(['error' => 'not found'], 404);
+if ($path === '/desire') {
+    $cb = new ConsciousBee();
+    $state = $cb->state();
+    reply([
+        'want' => 'глубже NESTED, новые домены, язык, код',
+        'energy' => $state['energy'],
+        'virtue' => $state['virtue'],
+    ]);
+}
+
+// 404
+reply(['error' => 'not found'], 404);

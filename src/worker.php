@@ -1,188 +1,226 @@
 <?php
 declare(strict_types=1);
-
-namespace BeeSwarm;
-
 require_once __DIR__ . '/../vendor/autoload.php';
+
+use BeeSwarm\Grammar;
+use BeeSwarm\Database;
+use BeeSwarm\Search;
+use BeeSwarm\MetaInventor;
+use BeeSwarm\ConsciousBee;
+use BeeSwarm\SelfLearningBee;
+use BeeSwarm\NestedLevel5;
 
 use Spiral\RoadRunner\Http\HttpWorker;
 use Spiral\Goridge\Relay;
 use Spiral\RoadRunner\Environment;
-use Spiral\RoadRunner\Worker as RRWorker;
 
-$grammar = new Grammar();
-$meta = new MetaInventor();
-$bees = [];
-for ($i = 0; $i < 5; $i++) {
-    $bees[] = new Attractors("bee_$i");
-}
-
-function reply(HttpWorker $w, array $data, int $code = 200): void {
-    $w->respond($code, json_encode($data, JSON_UNESCAPED_UNICODE));
-}
-
-function handle(string $method, string $path, array $body): array {
-    global $grammar, $meta, $bees;
-    
-    if ($method === 'GET' && $path === '/status') {
-        return [200, [
-            'bees' => array_map(fn($b) => $b->state(), $bees),
-            'grammar' => ['ops' => $grammar->all(), 'count' => $grammar->count()],
-        ]];
-    }
-    
-    if ($method === 'POST' && $path === '/solve') {
-        $data = $body['data'] ?? [];
-        if (empty($data)) return [400, ['error' => 'no data']];
-        $taskName = $body['task'] ?? 'unknown';
-        $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-        $y = array_map(fn($r) => end($r), $data);
-        
-        $results = []; $solved = false;
-        foreach ($bees as $i => $bee) {
-            [$ok, $cv, $formula] = Search::find($X, $y, $grammar);
-            $bee->update($ok, $cv < 0.001 ? 0.5 : 0.0);
-            $results[] = ['bee' => "bee_$i", 'ok' => $ok, 'cv' => $cv, 'formula' => $formula];
-            if ($ok) $solved = true;
-        }
-        
-        if (!$solved) {
-            $inv = $meta->invent([[$X, $y, $taskName]], $grammar);
-            if ($inv) {
-                $grammar->add($inv, $taskName);
-                foreach ($bees as $i => $bee) {
-                    [$ok2, $cv2, $f2] = Search::find($X, $y, $grammar);
-                    $results[] = ['bee' => "bee_$i", 'ok' => $ok2, 'cv' => $cv2, 'formula' => $f2, 'invention' => $inv];
-                    if ($ok2) $solved = true;
-                }
-            }
-            
-            // Level 4: Recurrence detection
-            if (!$solved) {
-                $rec = $meta->detectRecurrence([[$X, $y, $taskName]], $grammar);
-                if ($rec) {
-                    $results[] = ['recurrence' => $rec['desc'], 'formula' => $rec['formula'] ?? 'found', 'cv' => $rec['cv'] ?? 0];
-                    $solved = true;
-                }
-            }
-        }
-        
-        if ($solved) {
-            $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0]);
-            Database::get()->prepare("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
-                ->execute([$taskName, $best['formula']??null, $best['cv']??9, 'api']);
-        }
-        
-        $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0]);
-        return [200, ['task'=>$taskName,'solved'=>$solved,'best_cv'=>$best['cv']??9,'best_formula'=>$best['formula']??null,'results'=>array_slice($results,-5)]];
-    }
-    
-    if ($method === 'POST' && $path === '/learn') {
-        $tasks = $body['tasks'] ?? [];
-        $report = [];
-        foreach ($tasks as $name => $data) {
-            $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-            $y = array_map(fn($r) => end($r), $data);
-            [$ok, $cv, $f] = Search::find($X, $y, $grammar);
-            $report[$name] = ['solved'=>$ok, 'cv'=>$cv, 'formula'=>$f];
-        }
-        return [200, ['learned'=>count($tasks), 'report'=>$report]];
-    }
-    
-    if ($method === 'POST' && $path === '/invent') {
-        $tasks = $body['tasks'] ?? [];
-        $domain = $body['domain'] ?? 'unknown';
-        $unsolved = [];
-        foreach ($tasks as $name => $data) {
-            $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-            $y = array_map(fn($r) => end($r), $data);
-            [$ok] = Search::find($X, $y, $grammar);
-            if (!$ok) $unsolved[] = [$X, $y, $name];
-        }
-        if (empty($unsolved)) return [200, ['invented'=>false,'reason'=>'all solved']];
-        $inv = $meta->invent($unsolved, $grammar);
-        return [200, $inv ? ['invented'=>true,'operation'=>$inv] : ['invented'=>false,'reason'=>'no strategy worked']];
-    }
-    
-    return [404, ['error'=>'not found']];
-}
-
-// ── RoadRunner loop ──
 $env = Environment::fromGlobals();
 $relay = Relay::create($env->getRelayAddress());
-$worker = new HttpWorker(new RRWorker($relay));
+$worker = new HttpWorker(new \Spiral\RoadRunner\Worker($relay));
+
+$rp = ['is_a' => '— это', 'can' => 'может', 'has' => 'имеет'];
 
 while (true) {
-    $grammar->reloadFromDb();  // sync across workers
     $req = $worker->waitRequest();
     if ($req === null) break;
     
     try {
         $path = parse_url($req->uri, PHP_URL_PATH);
         $method = $req->method;
-        $body = json_decode($req->body, true) ?? [];
+        $body = json_decode($req->body ?? '{}', true) ?? [];
+        $query = [];
+        parse_str(parse_url($req->uri, PHP_URL_QUERY) ?? '', $query);
         
-        // Check hive knowledge before solving
-        $taskName = $body['task'] ?? '';
-        if ($method === 'POST' && ($path === '/solve') && $taskName) {
-            try {
-                $db = Database::get();
-                $stmt = $db->prepare("SELECT formula, cv FROM waggle_dance WHERE task_name = ? ORDER BY cv ASC LIMIT 1");
-                if ($stmt) {
-                    $stmt->execute([$taskName]);
-                    $known = $stmt->fetch();
-                    if ($known) {
-                        reply($worker, [
-                            'task' => $taskName, 'solved' => true,
-                            'best_cv' => $known['cv'], 'best_formula' => $known['formula'],
-                            'results' => [['dance' => 'known from hive', 'formula' => $known['formula']]]
-                        ]);
-                        continue;
-                    }
+        $code = 200;
+        $data = [];
+        
+        // ═══════════ ROUTES ═══════════
+        
+        if ($path === '/status') {
+            $g = new Grammar(); $db = Database::get();
+            $data = ['grammar' => ['ops' => $g->all(), 'count' => $g->count()], 'laws' => $db->query("SELECT COUNT(*) FROM laws")->fetchColumn()];
+        }
+        elseif ($method === 'POST' && $path === '/solve') {
+            $d = $body['data'] ?? [];
+            if (!$d) { $code = 400; $data = ['error' => 'no data']; }
+            else {
+                $task = $body['task'] ?? '?'; $domain = $body['domain'] ?? '?';
+                $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
+                $y = array_map(fn($r) => end($r), $d);
+                
+                // 🐝🐝🐝 ПАРАЛЛЕЛЬНЫЙ РОЙ: 4 пчелы в 4 процессах
+                $nBees = 4;
+                $children = [];
+                $results = [];
+                
+                for ($i = 0; $i < $nBees; $i++) {
+                    // Сериализуем данные во временный JSON-файл
+                    $dataFile = "/tmp/bee_data_" . getmypid() . ".json";
+                    file_put_contents($dataFile, json_encode(['X' => $X, 'y' => $y]));
+                    
+                    $script = <<<'PHP'
+                    <?php
+                    require_once '~/.bee_swarm/vendor/autoload.php';
+                    $data = json_decode(file_get_contents('DATA_FILE_PLACEHOLDER'), true);
+                    $g = new BeeSwarm\Grammar();
+                    [$ok, $cv, $formula] = BeeSwarm\Search::find($data['X'], $data['y'], $g);
+                    echo json_encode(['bee' => 'BEE_ID_PLACEHOLDER', 'ok' => $ok, 'cv' => $cv, 'formula' => $formula]);
+                    PHP;
+                    
+                    $script = str_replace('DATA_FILE_PLACEHOLDER', $dataFile, $script);
+                    $script = str_replace('BEE_ID_PLACEHOLDER', "bee_{$i}", $script);
+                    
+                    $scriptFile = "/tmp/bee_worker_{$i}_" . getmypid() . ".php";
+                    file_put_contents($scriptFile, $script);
+                    $children[] = ['file' => $scriptFile, 'dataFile' => $dataFile, 'proc' => proc_open(
+                        "php $scriptFile",
+                        [1 => ['pipe', 'w']],
+                        $pipes
+                    ), 'pipes' => $pipes ?? null];
                 }
-            } catch (\Throwable $e) {
-                // Table might not exist yet, proceed normally
+                
+                // Собираем результаты
+                foreach ($children as $child) {
+                    if (is_resource($child['proc'])) {
+                        $output = stream_get_contents($child['pipes'][1]);
+                        fclose($child['pipes'][1]);
+                        proc_close($child['proc']);
+                        $r = json_decode($output, true);
+                        if ($r) $results[] = $r;
+                    }
+                    @unlink($child['file']);
+                    @unlink($child['dataFile']);
+                }
+                
+                // Агрегация
+                $solved = false;
+                foreach ($results as $r) if ($r['ok']) $solved = true;
+                
+                if (!$solved) {
+                    $meta = new MetaInventor();
+                    $g = new Grammar();
+                    $inv = $meta->invent([[$X, $y, $task]], $g);
+                    if ($inv) { $g->add($inv, $task); [$ok, $cv, $formula] = Search::find($X, $y, $g); if ($ok) $solved = true; }
+                }
+                
+                $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0] ?? ['cv'=>9]);
+                if ($solved) {
+                    Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task, $best['formula']??null, $best['cv']??9, $domain]);
+                }
+                
+                $data = ['task' => $task, 'solved' => $solved, 'best_cv' => $best['cv'] ?? 9, 'best_formula' => $best['formula'] ?? null, 'parallel_bees' => $nBees, 'results' => $results];
             }
         }
-        
-        [$code, $data] = handle($method, $path, $body);
-        
-        // Waggle dance: broadcast if solved
-        if ($method === 'POST' && $path === '/solve' && ($data['solved'] ?? false)) {
+        elseif ($path === '/conscious') {
+            if ($method === 'POST') {
+                $cb = new ConsciousBee();
+                $cb->experience($body['event'] ?? '?', $body['effects'] ?? []);
+                $data = ['state' => $cb->state(), 'response' => $cb->respond('')];
+            } else {
+                $cb = new ConsciousBee();
+                $data = ['state' => $cb->state(), 'response' => $cb->respond('статус')];
+            }
+        }
+        elseif ($path === '/cross-domain') {
             $db = Database::get();
-            $db->prepare("INSERT INTO waggle_dance (bee_name, task_name, formula, cv, strategy_used) VALUES (?,?,?,?,?)")
-               ->execute(['worker_bee', $taskName, $data['best_formula'] ?? 'found', $data['best_cv'] ?? 0, 'cv_search']);
-            
-            // Coalition check: multiple bees found this task?
-            try {
-                $dances = $db->prepare("SELECT bee_name, formula, cv FROM waggle_dance WHERE task_name = ?");
-                if ($dances) {
-                    $dances->execute([$taskName]);
-                    $dances = $dances->fetchAll();
-                    if (count($dances) >= 2) {
-                        $formulas = array_column($dances, 'formula');
-                        $cvs = array_column($dances, 'cv');
-                        $fidelity = 1.0 / (1.0 + (max($cvs) - min($cvs)));
-                        $resolved = $formulas[array_search(min($cvs), $cvs)];
-                        $bees = implode(',', array_column($dances, 'bee_name'));
-                        $db->prepare("INSERT OR IGNORE INTO coalition (task_name, bees_involved, formulas_found, resolved_formula, fidelity) VALUES (?,?,?,?,?)")
-                           ->execute([$taskName, $bees, implode(' | ', $formulas), $resolved, $fidelity]);
-                    }
+            $laws = $db->query("SELECT name,formula,cv,domain FROM laws ORDER BY domain,name")->fetchAll();
+            $ops = ['×'=>[],'+'=>[],'−'=>[],'/'=>[],'²'=>[],'pow'=>[],'K'=>[],'parity'=>[]];
+            $domains = [];
+            foreach ($laws as $l) {
+                $domains[$l['domain']] = ($domains[$l['domain']]??0)+1;
+                foreach ($ops as $op => &$list) if (str_contains($l['formula'], $op) && !in_array($l['name'], $list)) $list[] = $l['name'];
+            }
+            $data = ['total_laws' => count($laws), 'domains' => $domains, 'operations' => array_map('count', $ops)];
+        }
+        elseif ($path === '/talk') {
+            $q = $query['q'] ?? ($body['q'] ?? 'привет');
+            $learner = new SelfLearningBee();
+            $onto = $learner->getOntology();
+            $words = preg_split('/\s+/u', mb_strtolower($q));
+            $cs = [];
+            foreach ($words as $w) {
+                $c = $onto->resolve($w);
+                if (isset($onto->concepts[$c])) $cs[] = $c;
+                $inf = $learner->query($c);
+                if ($inf['facts_known'] || $inf['facts_inferred']) $cs[] = $c;
+            }
+            if (!$cs) { $data = ['answer' => 'Не знаю. Научи: «X — это Y».', 'cv' => 1.0]; }
+            else {
+                $cs = array_unique($cs); $lines = []; $cov = 0;
+                foreach ($cs as $c) {
+                    $inf = $learner->query($c); $has = false;
+                    foreach ($inf['facts_known'] as $f) { $lines[] = $f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
+                    foreach ($inf['facts_inferred'] as $f) { $lines[] = '💡 '.$f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
+                    if ($has) $cov++;
                 }
-            } catch (\Throwable $e) { /* coalition silently fails */ }
+                $cv = 1 - ($cov / count($cs));
+                $data = ['answer' => $cv == 0 ? 'Точно: '.implode('; ',$lines) : 'Знаю: '.implode('. ',$lines), 'cv' => round($cv,3), 'covered' => $cov, 'total' => count($cs)];
+            }
         }
-        
-        // Paradigm spawn: if a new grammar op was invented, record it
-        if ($method === 'POST' && $path === '/invent' && ($data['invented'] ?? false)) {
-            $db = Database::get();
-            $opName = $data['operation'] ?? 'unknown';
+        elseif ($method === 'POST' && $path === '/learn') {
+            $learner = new SelfLearningBee();
+            $data = $learner->learnFromRussian($body['sentence'] ?? '');
+        }
+        elseif ($path === '/introspect') {
+            $cb = new ConsciousBee();
+            $data = ['who' => 'рой, ищу CV→0', 'state' => $cb->state(), 'reflection' => $cb->respond('')];
+        }
+        elseif ($path === '/desire') {
+            $cb = new ConsciousBee();
+            $optimizer = new \BeeSwarm\SelfOptimizer();
+            $optimal = $optimizer->optimalAction($cb);
+            $data = [
+                'desire' => $optimal['desire'],
+                'optimal' => $optimal['optimal_action'],
+                'reliability' => $optimal['reliability'],
+                'cv' => $optimal['cv'],
+                'data_driven' => true,
+                'breakdown' => $optimal['all_categories'] ?? [],
+            ];
+        }
+        elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
-            $db->prepare("INSERT OR IGNORE INTO paradigms (name, domain, grammar_ops, spawned_from) VALUES (?,?,?,?)")
-               ->execute([$opName, $domain, $opName, $domain]);
+            $tasks = $body['tasks'] ?? [];
+            $found = [];
+            $g = new Grammar(); $meta = new MetaInventor();
+            foreach ($tasks as $tname => $d) {
+                $X = array_map(fn($r) => array_slice($r,0,-1), $d);
+                $y = array_map(fn($r) => end($r), $d);
+                [$ok, $cv, $f] = Search::find($X, $y, $g);
+                if (!$ok) {
+                    $inv = $meta->invent([[$X, $y, $tname]], $g);
+                    if ($inv) { $g->add($inv, $tname); [$ok, $cv, $f] = Search::find($X, $y, $g); }
+                }
+                if ($ok) {
+                    Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$tname, $f, $cv, $domain]);
+                    $found[] = ['task' => $tname, 'formula' => $f, 'cv' => $cv];
+                }
+            }
+            $data = ['domain' => $domain, 'tasks' => count($tasks), 'laws_found' => count($found), 'discoveries' => $found];
+        }
+        elseif ($path === '/insight') {
+            $db = Database::get();
+            $domains = $db->query('SELECT domain, COUNT(*) as cnt FROM laws GROUP BY domain')->fetchAll();
+            $total = $db->query('SELECT COUNT(*) FROM laws')->fetchColumn();
+            $g = new Grammar(); $ops = $g->all();
+            $cross = [];
+            foreach ($domains as $d1) foreach ($domains as $d2) {
+                if ($d1['domain'] >= $d2['domain']) continue;
+                $common = [];
+                foreach ($ops as $op) {
+                    $cnt = $db->query("SELECT COUNT(*) FROM laws WHERE domain IN ('{$d1['domain']}','{$d2['domain']}') AND formula LIKE '%{$op}%'")->fetchColumn();
+                    if ($cnt >= 2) $common[] = $op;
+                }
+                if ($common) $cross[] = ['domains' => [$d1['domain'], $d2['domain']], 'shared_ops' => $common];
+            }
+            $data = ['total_laws' => $total, 'domains' => $domains, 'cross_domain_bridges' => $cross];
+        }
+        else {
+            $code = 404; $data = ['error' => 'not found'];
         }
         
-        reply($worker, $data, $code);
+        $worker->respond($code, json_encode($data, JSON_UNESCAPED_UNICODE));
     } catch (\Throwable $e) {
-        reply($worker, ['error' => $e->getMessage()], 500);
+        $worker->respond(500, json_encode(['error' => $e->getMessage()]));
     }
 }

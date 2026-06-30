@@ -200,6 +200,18 @@ class ConsciousBee
     public function analyzeVirtue(): array
     {
         $db = Database::get();
+        $db->exec("CREATE TABLE IF NOT EXISTS conscious_events (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            event TEXT,
+            d_energy REAL DEFAULT 0,
+            d_curiosity REAL DEFAULT 0,
+            d_virtue REAL DEFAULT 0,
+            d_focus REAL DEFAULT 0,
+            energy_after REAL,
+            virtue_after REAL,
+            mood TEXT,
+            created_at TEXT DEFAULT (datetime('now'))
+        )");
         $events = $db->query("SELECT event, d_virtue, virtue_after, mood FROM conscious_events ORDER BY id DESC LIMIT 50")->fetchAll();
         
         if (empty($events)) return ['message' => 'Нет истории для анализа'];

@@ -26,12 +26,12 @@ class Grammar
                 $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
             }
         }
-    }
-    
     public function add(string $name, string $source = 'invented'): bool
     {
         if (isset($this->ops[$name])) return false;
-        // Save to DB
+        
+        $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+        
         $db = Database::get();
         $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?,?)")
            ->execute([$name, $source]);
@@ -68,6 +68,8 @@ class Grammar
     
     private function applyCustom(float $a, float $b, string $op): ?float
     {
+        if ($op === 'MIN') return min($a, $b);
+        if ($op === 'MAX') return max($a, $b);
         // powN: a^b (e.g. pow2 means 2^x)
         if (str_starts_with($op, 'pow') && strlen($op) > 3) {
             $base = (float)substr($op, 3);

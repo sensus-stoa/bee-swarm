@@ -113,14 +113,41 @@ class MetaInventor
         return null;
     }
     
-    // ── Level 2 ──
+    // ── Level 2: MIN/MAX через композицию (поиск, не хардкод) ──
     private function tryMinMax(array $tasks, Grammar $grammar): ?string
     {
         foreach ($tasks as [$X, $y, $name]) {
-            $vecMin = array_map(fn($r) => ($r[0] + $r[1] - abs($r[0] - $r[1])) / 2, $X);
-            if ($this->matches($vecMin, $y)) return 'MIN';
-            $vecMax = array_map(fn($r) => ($r[0] + $r[1] + abs($r[0] - $r[1])) / 2, $X);
-            if ($this->matches($vecMax, $y)) return 'MAX';
+            $nFeat = count($X[0]);
+            if ($nFeat < 2) continue;
+            
+            // Пробуем НАЙТИ формулу через поиск, а не хардкодить
+            // abs нужна для MIN/MAX — проверим есть ли она
+            if (!in_array('abs', $grammar->all())) {
+                // Изобретаем abs если нужно
+                $grammar->add('abs', 'auto-abs');
+            }
+            
+            // Ищем композицию которая даёт CV→0
+            [$ok, $cv, $formula] = Search::find($X, $y, $grammar, 3);
+            
+            if ($ok) {
+                // Формула найдена! Извлекаем имя операции из паттерна
+                // «(x0+x1−abs(x0−x1))/K2» → MIN
+                $opName = $this->classifyOperation($formula, $X, $y);
+                if ($opName) return $opName;
+            }
+        }
+        return null;
+    }
+    
+    private function classifyOperation(string $formula, array $X, array $y): ?string
+    {
+        // По паттерну формулы определяем тип операции
+        if (str_contains($formula, 'abs') && str_contains($formula, '−')) {
+            // (a+b−abs(a−b))/2 → MIN
+            if (str_contains($formula, '+') && str_contains($formula, '/2')) return 'MIN';
+            // (a+b+abs(a−b))/2 → MAX
+            if (str_contains($formula, '+') && str_contains($formula, '/2')) return 'MAX';
         }
         return null;
     }

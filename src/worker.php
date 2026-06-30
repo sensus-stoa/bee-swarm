@@ -96,11 +96,11 @@ while (true) {
                 $solved = false;
                 foreach ($results as $r) if ($r['ok']) $solved = true;
                 
-                if (!$solved) {
+                if (!$ok) {
                     $meta = new MetaInventor();
                     $g = new Grammar();
-                    $inv = $meta->invent([[$X, $y, $task]], $g);
-                    if ($inv) { $g->add($inv, $task); [$ok, $cv, $formula] = Search::find($X, $y, $g); if ($ok) $solved = true; }
+                    $inv = $meta->invent([[$X, $y, $tname]], $g);
+                    if ($inv) { $g->add($inv, $tname); [$ok, $cv, $f] = Search::find($X, $y, $g, 3); if ($ok) $solved = true; }
                 }
                 
                 $best = array_reduce($results, fn($a,$b) => ($b['cv']??9) < ($a['cv']??9) ? $b : $a, $results[0] ?? ['cv'=>9]);

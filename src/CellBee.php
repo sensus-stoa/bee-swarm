@@ -54,10 +54,23 @@ class CellBee
     public function live(array $X, array $y): array
     {
         [$ok, $cv, $formula] = $this->search($X, $y);
+        $isTrivial = false;
         
         if ($ok) {
-            // ШТРАФ ЗА ТРИВИАЛЬНОСТЬ: константа или просто x0
-            $isTrivial = str_starts_with($formula, 'K') || $formula === 'x0';
+            // Сложность = число уникальных операторов + число переменных
+            $hasX0 = str_contains($formula, 'x0');
+            $hasX1 = str_contains($formula, 'x1');
+            $hasAbs = str_contains($formula, 'abs');
+            $hasSqrt = str_contains($formula, 'sqrt');
+            $hasPow = str_contains($formula, 'pow');
+            $hasLog = str_contains($formula, 'log');
+            
+            $complexity = ($hasX0 ? 1 : 0) + ($hasX1 ? 1 : 0) 
+                        + ($hasAbs ? 2 : 0) + ($hasSqrt ? 2 : 0) 
+                        + ($hasPow ? 2 : 0) + ($hasLog ? 2 : 0);
+            
+            // Тривиально: сложность 0 или 1 (только константы или одна переменная)
+            $isTrivial = $complexity <= 1;
             $gain = $isTrivial ? 0.03 : 0.15;
             $this->energy = min(1.5, $this->energy + $gain);
             $this->successes++;
@@ -79,7 +92,7 @@ class CellBee
             'ok' => $ok, 'cv' => $cv, 'formula' => $formula,
             'energy' => $this->energy,
             'grammar_size' => $this->grammar->count(),
-            'trivial' => $ok && ($formula === 'x0' || str_starts_with($formula, 'K')),
+            'trivial' => $isTrivial,
         ];
     }
     

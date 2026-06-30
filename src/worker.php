@@ -230,6 +230,14 @@ while (true) {
             if ($dhive2 === null) $dhive2 = new \BeeSwarm\DensityHive(5);
             $data = $dhive2->state();
         }
+        elseif ($path === '/generate-data') {
+            $gen = new \BeeSwarm\DataSelfGenerator();
+            $data = [
+                'from_metrics' => count($gen->fromMetrics()),
+                'from_laws' => count($gen->fromLaws()),
+                'sample_metrics' => array_slice($gen->fromMetrics(), 0, 3),
+            ];
+        }
         elseif ($method === 'POST' && $path === '/eco-query') {
             $eco = new \BeeSwarm\EcoHive();
             $d = $body['data'] ?? [];

@@ -84,10 +84,22 @@ class SwarmSpawner
         // Запускаем дочерний рой
         $cmd = "cd $path && php -S 127.0.0.1:$port -t public/ > /dev/null 2>&1 & echo $!";
         $pid = (int)shell_exec($cmd);
-        usleep(500000); // ждём 0.5с
+        usleep(800000); // ждём 0.8с
         
-        if (!$pid || !$this->isAlive($port)) {
-            return ['status' => 'failed', 'reason' => 'child did not start'];
+        if (!$pid) {
+            return ['status' => 'failed', 'reason' => 'could not start process'];
+        }
+        
+        // Ждём готовности (до 3 секунд)
+        $ready = false;
+        for ($t = 0; $t < 30; $t++) {
+            if ($this->isAlive($port)) { $ready = true; break; }
+            usleep(100000);
+        }
+        
+        if (!$ready) {
+            exec("kill $pid 2>/dev/null");
+            return ['status' => 'failed', 'reason' => "child not ready on port $port after 3s"];
         }
         
         // Замеряем память до тестов
@@ -98,9 +110,9 @@ class SwarmSpawner
         // Прогоняем тестовые задачи
         foreach ($testTasks as $task) {
             $json = json_encode($task);
-            $curlCmd = "curl -s -X POST http://127.0.0.1:$port/solve -H 'Content-Type: application/json' -d '$json' 2>/dev/null";
+            $curlCmd = "curl -s --max-time 5 -X POST http://127.0.0.1:$port/solve -H 'Content-Type: application/json' -d '$json' 2>/dev/null";
             $output = shell_exec($curlCmd);
-            $result = json_decode($output, true);
+            $result = json_decode($output ?: '{}', true) ?: [];
             $results[] = [
                 'task' => $task['task'] ?? '?',
                 'solved' => $result['solved'] ?? false,

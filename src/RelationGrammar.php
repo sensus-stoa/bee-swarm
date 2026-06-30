@@ -75,4 +75,10 @@ class RelationGrammar
     
     public function all(): array { return array_keys($this->relations); }
     public function count(): int { return count($this->relations); }
+    
+    /** Задать отношения напрямую */
+    public function setRelations(array $rels): void {
+        $this->relations = [];
+        foreach ($rels as $r) $this->relations[$r] = ['arity'=>2, 'source'=>'manual'];
+    }
 }

@@ -241,8 +241,8 @@ class SelfLearningBee
     {
         $s = trim($sentence);
         
-        // «X — это Y» или «X — Y»
-        if (preg_match('/^(.+?)\s*(?:—|–|—|это)\s*(.+)$/u', $s, $m)) {
+        // «X — это Y» или «X — Y» или «X это Y»
+        if (preg_match('/^(.+?)\s*(?:—\s*(?:это\s*)?|–|—|это\s+)(.+)$/u', $s, $m)) {
             $subj = trim($m[1]);
             $obj = trim($m[2]);
             $pred = 'is_a';
@@ -259,8 +259,8 @@ class SelfLearningBee
             return ['parsed' => [$subj, $pred, $obj], 'status' => 'learned'];
         }
         
-        // «X может Y» / «X умеет Y»
-        if (preg_match('/^(.+?)\s+(?:может|умеет)\s+(.+)$/u', $s, $m)) {
+        // «X может Y» / «X умеет Y» / «X измеряет Y»
+        if (preg_match('/^(.+?)\s+(?:может|умеет|измеряет|делает)\s+(.+)$/u', $s, $m)) {
             $subj = trim($m[1]);
             $obj = trim($m[2]);
             $pred = 'can';

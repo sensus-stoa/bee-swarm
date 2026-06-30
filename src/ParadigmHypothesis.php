@@ -80,7 +80,61 @@ class ParadigmHypothesis
             }
         }
         
-        // 3. СТРУКТУРНЫЕ ИЗОМОРФИЗМЫ: одинаковый паттерн в разных доменах
+        // 4. СЕМАНТИЧЕСКИЕ КЛАСТЕРЫ: концепты одного поля в разных доменах
+        // Ищем: какие концепты связаны с «compression» → образуют ли они мост?
+        $semanticClusters = [];
+        foreach ($facts as $f) {
+            $obj = $f['object'];
+            if (!isset($semanticClusters[$obj])) $semanticClusters[$obj] = [];
+            $semanticClusters[$obj][] = $f['subject'];
+        }
+        
+        // «compression» и «dissipation» — центральные концепты
+        foreach (['сжатие', 'рассеивание', 'compression', 'dissipation', 'fidelity'] as $hub) {
+            if (isset($semanticClusters[$hub])) {
+                $members = $semanticClusters[$hub];
+                if (count($members) >= 2) {
+                    $hypotheses[] = [
+                        'type' => 'semantic_cluster',
+                        'hypothesis' => "Концепты [" . implode(', ', $members) . 
+                                       "] связаны через '$hub'. " .
+                                       "Это образует семантическое поле — кандидат на парадигму.",
+                        'hub' => $hub,
+                        'members' => $members,
+                        'confidence' => min(0.95, count($members) / 3),
+                        'paradigm_level' => 'высокий',
+                    ];
+                }
+            }
+        }
+        
+        // 5. КРОСС-ПОЛЕВЫЕ МОСТЫ: концепт связывает два семантических поля
+        foreach ($facts as $a) {
+            foreach ($facts as $b) {
+                if ($a['subject'] === $b['subject'] && 
+                    $a['predicate'] !== $b['predicate'] &&
+                    $a['object'] !== $b['object']) {
+                    // compression — это сжатие И compression-dissipation — универсальный принцип
+                    // → compression соединяет «сжатие» и «универсальный принцип»
+                    $fields = [
+                        $this->getField($a['object'], $facts),
+                        $this->getField($b['object'], $facts),
+                    ];
+                    if ($fields[0] !== $fields[1]) {
+                        $hypotheses[] = [
+                            'type' => 'cross_field_bridge',
+                            'hypothesis' => "{$a['subject']} — мост между '{$a['object']}' " .
+                                           "({$fields[0]}) и '{$b['object']}' ({$fields[1]})",
+                            'concept' => $a['subject'],
+                            'fields' => $fields,
+                            'confidence' => 0.75,
+                            'paradigm_level' => 'высокий',
+                        ];
+                        break 2;
+                    }
+                }
+            }
+        }
         $patterns = [];
         foreach ($facts as $f) {
             $key = $f['predicate'];
@@ -128,5 +182,16 @@ class ParadigmHypothesis
             }
         }
         return array_unique($domains);
+    }
+    
+    private function getField(string $concept, array $facts): string
+    {
+        // Определяем семантическое поле концепта по его связям
+        foreach ($facts as $f) {
+            if ($f['object'] === $concept && $f['predicate'] === 'is_a') {
+                return (string)$f['subject']; // родительское понятие
+            }
+        }
+        return 'общее';
     }
 }

@@ -18,6 +18,8 @@ class SelfLearningBee
     private int $factsLearned = 0;
     private bool $loaded = false;
     
+    public function getOntology(): Ontology { return $this->ontology; }
+    
     public function __construct()
     {
         $this->ontology = new Ontology();

@@ -15,6 +15,10 @@ class MetaInventor
         $l2 = $this->tryMinMax($unsolved, $grammar);
         if ($l2 !== null) return $l2;
         
+        // Level 2.5: sqrt
+        $l2sqrt = $this->trySqrt($unsolved, $grammar);
+        if ($l2sqrt !== null) return $l2sqrt;
+        
         // Level 3: data analysis → new operation classes
         $l3 = $this->tryLevel3($unsolved, $grammar);
         if ($l3 !== null) return $l3;
@@ -135,6 +139,50 @@ class MetaInventor
                 // «(x0+x1−abs(x0−x1))/K2» → MIN
                 $opName = $this->classifyOperation($formula, $X, $y);
                 if ($opName) return $opName;
+            }
+        }
+        return null;
+    }
+    
+    // ── Level 2.5: SQRT — обратная к квадрату ──
+    private function trySqrt(array $tasks, Grammar $grammar): ?string
+    {
+        foreach ($tasks as [$X, $y, $name]) {
+            $nFeat = count($X[0]);
+            if ($nFeat < 1) continue;
+            
+            // Проверяем: y² ≈ x? (y = √x)
+            $isSqrt = true;
+            for ($i = 0; $i < count($y); $i++) {
+                $xVal = $X[$i][0];
+                if ($xVal < 0) { $isSqrt = false; break; }
+                $expected = sqrt($xVal);
+                if (abs($expected - $y[$i]) > 0.001 * max(1, abs($y[$i]))) {
+                    $isSqrt = false; break;
+                }
+            }
+            
+            if ($isSqrt && !in_array('sqrt', $grammar->all())) {
+                $grammar->add('sqrt', 'auto-sqrt', json_encode([
+                    'op' => 'sqrt', 'arg' => 'a'
+                ]));
+                return 'sqrt';
+            }
+            
+            // Проверяем: 1/√(x) ≈ y?
+            $isInvSqrt = true;
+            for ($i = 0; $i < count($y); $i++) {
+                $xVal = $X[$i][0];
+                if ($xVal <= 0) { $isInvSqrt = false; break; }
+                $expected = 1.0 / sqrt($xVal);
+                if (abs($expected - $y[$i]) > 0.01 * max(1, abs($y[$i]))) {
+                    $isInvSqrt = false; break;
+                }
+            }
+            
+            if ($isInvSqrt && !in_array('sqrt', $grammar->all())) {
+                $grammar->add('sqrt', 'auto-invsqrt');
+                return 'sqrt';
             }
         }
         return null;

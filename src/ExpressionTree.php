@@ -47,6 +47,7 @@ class ExpressionTree
             'pow' => $this->evalNode($node['left'] ?? $node['arg'], $a, $b) ** $this->evalNode($node['right'] ?? 2.0, $a, $b),
             'min' => min($this->evalNode($node['left'], $a, $b), $this->evalNode($node['right'], $a, $b)),
             'max' => max($this->evalNode($node['left'], $a, $b), $this->evalNode($node['right'], $a, $b)),
+            'sqrt' => sqrt(max($this->evalNode($node['arg'], $a, $b), 0)),
             default => 0.0,
         };
     }

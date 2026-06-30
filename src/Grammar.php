@@ -17,26 +17,28 @@ class Grammar
     public function __construct()
     {
         $db = Database::get();
-        $rows = $db->query("SELECT name FROM grammar_ops")->fetchAll();
+        $rows = $db->query("SELECT name, definition FROM grammar_ops")->fetchAll();
         foreach ($rows as $row) {
             $name = $row['name'];
             if (isset(self::BASE_OPS[$name])) {
                 $this->ops[$name] = self::BASE_OPS[$name];
             } else {
                 $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+                if ($row['definition']) $this->ops[$name]['definition'] = $row['definition'];
             }
         }
     }
     
-    public function add(string $name, string $source = 'invented'): bool
+    public function add(string $name, string $source = 'invented', ?string $definition = null): bool
     {
         if (isset($this->ops[$name])) return false;
         
         $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+        if ($definition) $this->ops[$name]['definition'] = $definition;
         
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?,?)")
-           ->execute([$name, $source]);
+        $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?,?,?)")
+           ->execute([$name, $source, $definition]);
         
         AutoGit::operationInvented($name);
         return true;
@@ -45,7 +47,7 @@ class Grammar
     public function reloadFromDb(): void
     {
         $db = Database::get();
-        $rows = $db->query("SELECT name FROM grammar_ops")->fetchAll();
+        $rows = $db->query("SELECT name, definition FROM grammar_ops")->fetchAll();
         $this->ops = [];
         foreach ($rows as $row) {
             $name = $row['name'];
@@ -53,6 +55,7 @@ class Grammar
                 $this->ops[$name] = self::BASE_OPS[$name];
             } else {
                 $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+                if ($row['definition']) $this->ops[$name]['definition'] = $row['definition'];
             }
         }
     }
@@ -81,6 +84,7 @@ class Grammar
         if ($op === 'MIN') return min($a, $b);
         if ($op === 'MAX') return max($a, $b);
         if ($op === 'abs') return abs($a);
+        if ($op === 'sqrt') return sqrt(max($a, 0));
         // powN: a^b (e.g. pow2 means 2^x)
         if (str_starts_with($op, 'pow') && strlen($op) > 3) {
             $base = (float)substr($op, 3);
@@ -111,7 +115,7 @@ class Grammar
         $unary = [];
         foreach ($this->ops as $name => $info) {
             // Custom ops that are unary: log2, inverse, parity, powN
-            if (in_array($name, ['log2', 'inverse', 'parity', 'abs']) || str_starts_with($name, 'pow')) {
+            if (in_array($name, ['log2', 'inverse', 'parity', 'abs', 'sqrt']) || str_starts_with($name, 'pow')) {
                 $unary[] = $name;
             }
         }

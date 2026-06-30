@@ -1,0 +1,18 @@
+version: "3"
+server:
+  command: "php src/worker.php"
+  relay: pipes
+
+http:
+  address: "127.0.0.1:8765"
+  max_request_size: 32
+  middleware: []
+  pool:
+    num_workers: 4
+    max_jobs: 500
+    allocate_timeout: 60s
+    destroy_timeout: 60s
+
+logs:
+  mode: production
+  level: error

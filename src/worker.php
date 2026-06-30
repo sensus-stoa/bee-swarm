@@ -222,6 +222,10 @@ while (true) {
                 $body['new_data'] ?? []
             );
         }
+        elseif ($path === '/generation') {
+            $darwin = new \BeeSwarm\DarwinLoop();
+            $data = $darwin->generation();
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

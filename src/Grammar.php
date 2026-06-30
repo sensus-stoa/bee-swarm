@@ -84,7 +84,6 @@ class Grammar
         if ($op === 'MIN') return min($a, $b);
         if ($op === 'MAX') return max($a, $b);
         if ($op === 'abs') return abs($a);
-        if ($op === 'sqrt') return sqrt(max($a, 0));
         // powN: a^b (e.g. pow2 means 2^x)
         if (str_starts_with($op, 'pow') && strlen($op) > 3) {
             $base = (float)substr($op, 3);

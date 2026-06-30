@@ -203,6 +203,10 @@ while (true) {
             $rewriter = new \BeeSwarm\SelfRewriter();
             $data = $rewriter->optimizeSearch();
         }
+        elseif ($path === '/optimize') {
+            $optimizer = new \BeeSwarm\AutonomousOptimizer();
+            $data = $optimizer->step();
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

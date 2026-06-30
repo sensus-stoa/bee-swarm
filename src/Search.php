@@ -108,8 +108,9 @@ class Search
                 array_slice($l1Unary, 0, 30)
             );
             for ($a = 0; $a < count($pool); $a++) {
+                $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
-                    $va = $exprs[$pool[$a]]; $vb = $exprs[$pool[$b]];
+                    $vb = $exprs[$pool[$b]];
                     foreach ($ops as $op) {
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {

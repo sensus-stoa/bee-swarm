@@ -127,7 +127,7 @@ class Search
         // L3: L2 / constant (для MIN = (...)/2)
         if ($depth >= 3) {
             $constKeys = array_filter($featKeys, fn($k) => str_starts_with($k, 'K'));
-            foreach (array_slice($l2Keys, 0, 100) as $l2name) {
+            foreach ($l2Keys as $l2name) {
                 foreach ($constKeys as $ck) {
                     $vec = [];
                     $cvec = $feats[$ck];

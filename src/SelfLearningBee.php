@@ -130,77 +130,163 @@ class SelfLearningBee
      */
     private function infer(): void
     {
-        $newInferences = [];
+        // Iterative transitive closure: повторяем пока есть новые выводы
+        $allFacts = array_merge($this->graph, $this->inferences);
+        $changed = true;
+        $maxIterations = 5;
+        $iter = 0;
         
-        // Транзитивность is_a: компьютер is_a машина + машина is_a объект → компьютер is_a объект
-        for ($i = 0; $i < count($this->graph); $i++) {
-            for ($j = 0; $j < count($this->graph); $j++) {
-                if ($i === $j) continue;
-                
-                $a = $this->graph[$i];
-                $b = $this->graph[$j];
-                
-                // A → B → C: если A.pred = B.pred и A.obj = B.subj
-                if ($a['p'] === $b['p'] && $a['o'] === $b['s']) {
-                    $inferred = ['s' => $a['s'], 'p' => $a['p'], 'o' => $b['o'],
-                                'conf' => min($a['conf'], $b['conf']) * 0.9,
-                                'from' => [$a, $b]];
+        while ($changed && $iter < $maxIterations) {
+            $changed = false;
+            $iter++;
+            $newInferences = [];
+            
+            for ($i = 0; $i < count($allFacts); $i++) {
+                for ($j = 0; $j < count($allFacts); $j++) {
+                    if ($i === $j) continue;
+                    $a = $allFacts[$i]; $b = $allFacts[$j];
                     
-                    // Проверяем что такого вывода ещё нет
-                    $exists = false;
-                    foreach ($this->graph as $existing) {
-                        if ($existing['s'] === $inferred['s'] && 
-                            $existing['p'] === $inferred['p'] && 
-                            $existing['o'] === $inferred['o']) {
-                            $exists = true; break;
+                    // Транзитивность: A→B→C → A→C
+                    if ($a['p'] === $b['p'] && $a['o'] === $b['s']) {
+                        $inferred = ['s'=>$a['s'],'p'=>$a['p'],'o'=>$b['o'],
+                                    'conf'=>min($a['conf'],$b['conf'])*0.9,'from'=>[$a,$b]];
+                        $exists = false;
+                        foreach ($allFacts as $f) {
+                            if ($f['s']===$inferred['s']&&$f['p']===$inferred['p']&&$f['o']===$inferred['o'])
+                                {$exists=true;break;}
                         }
-                    }
-                    foreach ($this->inferences as $existing) {
-                        if ($existing['s'] === $inferred['s'] && 
-                            $existing['p'] === $inferred['p'] && 
-                            $existing['o'] === $inferred['o']) {
-                            $exists = true; break;
+                        if (!$exists) {
+                            $newInferences[] = $inferred;
+                            $changed = true;
                         }
                     }
                     
-                    if (!$exists) {
-                        $newInferences[] = $inferred;
-                    }
-                }
-                
-                // A has B + B can C → A can C через B
-                if ($a['p'] === 'has' && $b['s'] === $a['o'] && $b['p'] === 'can') {
-                    $inferred = ['s' => $a['s'], 'p' => 'can', 'o' => $b['o'],
-                                'conf' => min($a['conf'], $b['conf']) * 0.7,
-                                'from' => [$a, $b]];
-                    $exists = false;
-                    foreach (array_merge($this->graph, $this->inferences) as $e) {
-                        if ($e['s'] === $inferred['s'] && $e['p'] === $inferred['p'] && $e['o'] === $inferred['o']) {
-                            $exists = true; break;
+                    // is_a + can → can (свойства наследуются через классификацию)
+                    if ($a['p']==='is_a' && $b['s']===$a['o'] && $b['p']==='can') {
+                        $inferred = ['s'=>$a['s'],'p'=>'can','o'=>$b['o'],
+                                    'conf'=>min($a['conf'],$b['conf'])*0.8,'from'=>[$a,$b]];
+                        $exists = false;
+                        foreach ($allFacts as $f) {
+                            if ($f['s']===$inferred['s']&&$f['p']===$inferred['p']&&$f['o']===$inferred['o'])
+                                {$exists=true;break;}
+                        }
+                        if (!$exists) {
+                            $newInferences[] = $inferred;
+                            $changed = true;
                         }
                     }
-                    if (!$exists) $newInferences[] = $inferred;
+                    // has+can → can
+                    if ($a['p']==='has' && $b['s']===$a['o'] && $b['p']==='can') {
+                        $inferred = ['s'=>$a['s'],'p'=>'can','o'=>$b['o'],
+                                    'conf'=>min($a['conf'],$b['conf'])*0.7,'from'=>[$a,$b]];
+                        $exists = false;
+                        foreach ($allFacts as $f) {
+                            if ($f['s']===$inferred['s']&&$f['p']===$inferred['p']&&$f['o']===$inferred['o'])
+                                {$exists=true;break;}
+                        }
+                        if (!$exists) {
+                            $newInferences[] = $inferred;
+                            $changed = true;
+                        }
+                    }
                 }
             }
-        }
-        
-        $this->inferences = array_merge($this->inferences, $newInferences);
-        
-        // 💾 Сохраняем выводы в SQLite
-        foreach ($newInferences as $inf) {
-            $this->saveFact($inf['s'], $inf['p'], $inf['o'], $inf['conf'], true);
+            
+            $this->inferences = array_merge($this->inferences, $newInferences);
+            $allFacts = array_merge($allFacts, $newInferences);
+            
+            // 💾 Сохраняем выводы в SQLite на каждой итерации
+            foreach ($newInferences as $inf) {
+                $this->saveFact($inf['s'], $inf['p'], $inf['o'], $inf['conf'], true);
+            }
         }
     }
     
     private function checkContradiction(string $s, string $p, string $o): bool
     {
+        // Прямое противоречие: (s,p,o1) и (s,p,o2) где o1 ≠ o2
         foreach ($this->graph as $fact) {
-            // Противоречие: уже есть факт с теми же s,p но другим o
             if ($fact['s'] === $s && $fact['p'] === $p && $fact['o'] !== $o) {
-                return true; // CV>0 в графе!
+                return true;
+            }
+        }
+        // Транзитивное противоречие: s→A→o1 уже выведено, а новый s→A→o2
+        foreach ($this->inferences as $inf) {
+            if ($inf['s'] === $s && $inf['p'] === $p && $inf['o'] !== $o) {
+                return true;
             }
         }
         return false;
+    }
+    
+    /**
+     * CV→0 в графе знаний: насколько когерентен граф.
+     * CV = доля противоречий среди всех фактов.
+     * CV=0 — граф идеально когерентен. CV>0.3 — есть проблемы.
+     */
+    public function knowledgeCV(): array
+    {
+        $contradictions = 0;
+        $total = count($this->graph);
+        if ($total < 2) return ['cv' => 0, 'contradictions' => 0, 'total' => $total];
+        
+        $checked = [];
+        foreach ($this->graph as $a) {
+            foreach ($this->graph as $b) {
+                if ($a === $b) continue;
+                $key = $a['s'].'|'.$a['p'].'|'.$b['s'].'|'.$b['p'];
+                if (isset($checked[$key])) continue;
+                $checked[$key] = true;
+                
+                if ($a['s'] === $b['s'] && $a['p'] === $b['p'] && $a['o'] !== $b['o']) {
+                    $contradictions++;
+                }
+            }
+        }
+        
+        $cv = $total > 0 ? $contradictions / $total : 0;
+        
+        return [
+            'cv' => round($cv, 3),
+            'contradictions' => $contradictions,
+            'total_facts' => $total,
+            'coherent' => $cv < 0.1,
+            'status' => $cv < 0.05 ? 'когерентен' : ($cv < 0.2 ? 'есть вопросы' : 'противоречив'),
+        ];
+    }
+    
+    /**
+     * Учит факт с проверкой на противоречия.
+     * Если противоречит → понижает confidence, логирует.
+     */
+    public function learnFactWithValidation(string $s, string $p, string $o, float $confidence = 1.0): array
+    {
+        $contradiction = $this->checkContradiction($s, $p, $o);
+        
+        if ($contradiction) {
+            // Факт противоречит графу — понижаем confidence, но НЕ отвергаем
+            $confidence *= 0.3;
+            $this->learnFact($s, $p, $o, $confidence);
+            return [
+                'status' => 'contradiction',
+                'confidence_reduced' => $confidence,
+                'message' => "{$s} {$p} {$o} — противоречит существующим знаниям. Confidence снижена до {$confidence}.",
+            ];
+        }
+        
+        // CV до и после
+        $cvBefore = $this->knowledgeCV()['cv'];
+        $this->learnFact($s, $p, $o, $confidence);
+        $cvAfter = $this->knowledgeCV()['cv'];
+        
+        return [
+            'status' => $cvAfter > $cvBefore ? 'needs_review' : 'learned',
+            'cv_before' => $cvBefore,
+            'cv_after' => $cvAfter,
+            'message' => $cvAfter > $cvBefore 
+                ? "CV графа выросло с {$cvBefore} до {$cvAfter}. Факт требует проверки."
+                : "Факт усвоен. CV графа стабильно ({$cvAfter}).",
+        ];
     }
     
     /**

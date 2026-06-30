@@ -226,6 +226,40 @@ while (true) {
             $darwin = new \BeeSwarm\DarwinLoop();
             $data = $darwin->generation();
         }
+        elseif ($method === 'POST' && $path === '/propose') {
+            $proxy = new \BeeSwarm\ArchitectProxy();
+            $data = $proxy->propose(
+                $body['file'] ?? 'src/Search.php',
+                $body['old'] ?? '',
+                $body['new'] ?? '',
+                $body['description'] ?? 'no description'
+            );
+        }
+        elseif ($method === 'POST' && $path === '/concept') {
+            $patcher = new \BeeSwarm\ConceptualPatcher();
+            $data = $patcher->apply(
+                $body['file'] ?? 'src/Search.php',
+                $body['concept'] ?? 'fast_path'
+            );
+        }
+        elseif ($path === '/paradigms') {
+            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $data = $swarm->listParadigms();
+        }
+        elseif ($method === 'POST' && $path === '/route') {
+            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $d = $body['data'] ?? [];
+            $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
+            $y = array_map(fn($r) => end($r), $d);
+            $data = $swarm->route($X, $y);
+        }
+        elseif ($method === 'POST' && $path === '/coalition') {
+            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $d = $body['data'] ?? [];
+            $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
+            $y = array_map(fn($r) => end($r), $d);
+            $data = $swarm->coalition($X, $y, $body['p1'] ?? 'compression', $body['p2'] ?? 'dissipation');
+        }
         elseif ($method === 'POST' && $path === '/validate-fact') {
             $learner = new \BeeSwarm\SelfLearningBee();
             $data = $learner->learnFactWithValidation(

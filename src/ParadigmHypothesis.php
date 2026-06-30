@@ -108,7 +108,67 @@ class ParadigmHypothesis
             }
         }
         
-        // 5. КРОСС-ПОЛЕВЫЕ МОСТЫ: концепт связывает два семантических поля
+        // 6. ПАРАДИГМАЛЬНЫЙ УРОВЕНЬ: хаб пронизывает ≥3 разных доменов
+        foreach ($semanticClusters as $hub => $members) {
+            $uniqueMembers = array_unique($members);
+            if (count($uniqueMembers) < 3) continue;
+            
+            // Определяем домены членов через их связи
+            $domains = [];
+            foreach ($uniqueMembers as $member) {
+                $dom = $this->getDomain($member, $facts);
+                if ($dom) $domains[$dom] = true;
+            }
+            
+            $domainCount = count($domains);
+            if ($domainCount >= 2) {
+                $domainList = implode(', ', array_keys($domains));
+                $hypotheses[] = [
+                    'type' => 'paradigm_level',
+                    'hypothesis' => "«{$hub}» — УНИВЕРСАЛЬНЫЙ ПРИНЦИП. " .
+                                   "Пронизывает домены: {$domainList}. " .
+                                   "Концепты-члены: " . implode(', ', array_slice($uniqueMembers, 0, 5)) . ". " .
+                                   "Это не семантический кластер — это закон реальности.",
+                    'hub' => $hub,
+                    'members' => $uniqueMembers,
+                    'domains' => array_keys($domains),
+                    'domain_count' => $domainCount,
+                    'confidence' => min(0.98, 0.5 + $domainCount * 0.15),
+                    'paradigm_level' => 'парадигма',
+                ];
+            }
+        }
+        
+        // 7. МЕТА-ПАРАДИГМА: два хаба связаны → универсальный цикл
+        foreach ($semanticClusters as $hub1 => $m1) {
+            foreach ($semanticClusters as $hub2 => $m2) {
+                if ($hub1 >= $hub2) continue;
+                // Проверяем: есть ли мост между compression и dissipation?
+                $connected = false;
+                foreach ($m1 as $a) {
+                    foreach ($m2 as $b) {
+                        foreach ($facts as $f) {
+                            if (($f['subject'] === $a && $f['object'] === $b) ||
+                                ($f['subject'] === $b && $f['object'] === $a)) {
+                                $connected = true; break 3;
+                            }
+                        }
+                    }
+                }
+                
+                if ($connected) {
+                    $hypotheses[] = [
+                        'type' => 'meta_paradigm',
+                        'hypothesis' => "«{$hub1}-{$hub2}» — МЕТА-ПАРАДИГМА. " .
+                                       "Два универсальных принципа ОБЪЕДИНЕНЫ в цикл. " .
+                                       "Это не просто связь — это динамика реальности.",
+                        'hubs' => [$hub1, $hub2],
+                        'confidence' => 0.99,
+                        'paradigm_level' => 'мета-парадигма',
+                    ];
+                }
+            }
+        }
         foreach ($facts as $a) {
             foreach ($facts as $b) {
                 if ($a['subject'] === $b['subject'] && 
@@ -182,6 +242,21 @@ class ParadigmHypothesis
             }
         }
         return array_unique($domains);
+    }
+    
+    private function getDomain(string $concept, array $facts): string
+    {
+        // Определяем домен концепта по его предикатам
+        foreach ($facts as $f) {
+            if ($f['subject'] === $concept || $f['object'] === $concept) {
+                $pred = $f['predicate'];
+                if ($pred === 'is_a') return 'онтология';
+                if ($pred === 'can') return 'действие';
+                if ($pred === 'has') return 'свойства';
+                return 'отношения';
+            }
+        }
+        return '';
     }
     
     private function getField(string $concept, array $facts): string

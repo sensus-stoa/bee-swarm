@@ -31,10 +31,12 @@ class Grammar
     public function add(string $name, string $source = 'invented'): bool
     {
         if (isset($this->ops[$name])) return false;
-        $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+        // Save to DB
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?, ?)")
-            ->execute([$name, $source]);
+        $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?,?)")
+           ->execute([$name, $source]);
+        
+        AutoGit::operationInvented($name);
         return true;
     }
     

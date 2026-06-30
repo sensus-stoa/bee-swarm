@@ -226,6 +226,14 @@ while (true) {
             $darwin = new \BeeSwarm\DarwinLoop();
             $data = $darwin->generation();
         }
+        elseif ($method === 'POST' && $path === '/validate-fact') {
+            $learner = new \BeeSwarm\SelfLearningBee();
+            $data = $learner->learnFactWithValidation(
+                $body['subject'] ?? '',
+                $body['predicate'] ?? 'is_a',
+                $body['object'] ?? ''
+            );
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];

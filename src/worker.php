@@ -163,7 +163,37 @@ while (true) {
         }
         elseif ($path === '/introspect') {
             $cb = new ConsciousBee();
-            $data = ['who' => 'рой, ищу CV→0', 'state' => $cb->state(), 'reflection' => $cb->respond('')];
+            $g = new Grammar();
+            $db = Database::get();
+            
+            $lawsCount = $db->query("SELECT COUNT(*) FROM laws")->fetchColumn();
+            $domainsCount = $db->query("SELECT COUNT(DISTINCT domain) FROM laws")->fetchColumn();
+            $factsCount = $db->query("SELECT COUNT(*) FROM knowledge_graph")->fetchColumn();
+            $opsList = $g->all();
+            
+            $s = $cb->state();
+            
+            // Само-описание из реальных данных
+            $who = [
+                'я_рой' => true,
+                'я_ищу' => 'инварианты через CV→0',
+                'грамматика' => implode(', ', $opsList),
+                'операций' => count($opsList),
+                'законов' => (int)$lawsCount,
+                'доменов' => (int)$domainsCount,
+                'фактов_в_памяти' => (int)$factsCount,
+                'энергия' => $s['energy'],
+                'добродетель' => $s['virtue'],
+                'любопытство' => $s['curiosity'],
+                'настроение' => $s['mood']['name'] ?? '?',
+                'стратегия_поиска' => $cb->searchStrategy(),
+            ];
+            
+            $data = [
+                'who_am_i' => $who,
+                'state' => $s,
+                'reflection' => $cb->respond(''),
+            ];
         }
         elseif ($path === '/desire') {
             $cb = new ConsciousBee();

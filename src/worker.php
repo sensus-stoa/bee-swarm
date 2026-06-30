@@ -190,6 +190,19 @@ while (true) {
             $requestor = new \BeeSwarm\DataRequestor();
             $data = $requestor->request();
         }
+        elseif ($path === '/evolve') {
+            $spawner = new \BeeSwarm\SwarmSpawner();
+            $testTasks = [
+                ['task' => 'AND', 'domain' => 'logic', 'data' => [[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
+                ['task' => 'OR',  'domain' => 'logic', 'data' => [[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
+                ['task' => 'Add', 'domain' => 'arithmetic', 'data' => [[1,2,3],[3,4,7],[5,6,11],[2,2,4]]],
+            ];
+            $data = $spawner->evolve(3, $testTasks);
+        }
+        elseif ($path === '/rewrite') {
+            $rewriter = new \BeeSwarm\SelfRewriter();
+            $data = $rewriter->optimizeSearch();
+        }
         elseif ($method === 'POST' && $path === '/domain') {
             $domain = $body['domain'] ?? 'unknown';
             $tasks = $body['tasks'] ?? [];
@@ -198,10 +211,10 @@ while (true) {
             foreach ($tasks as $tname => $d) {
                 $X = array_map(fn($r) => array_slice($r,0,-1), $d);
                 $y = array_map(fn($r) => end($r), $d);
-                [$ok, $cv, $f] = Search::find($X, $y, $g);
+                [$ok, $cv, $f] = Search::find($X, $y, $g, 3);
                 if (!$ok) {
                     $inv = $meta->invent([[$X, $y, $tname]], $g);
-                    if ($inv) { $g->add($inv, $tname); [$ok, $cv, $f] = Search::find($X, $y, $g); }
+                    if ($inv) { $g->add($inv, $tname); [$ok, $cv, $f] = Search::find($X, $y, $g, 3); }
                 }
                 if ($ok) {
                     Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$tname, $f, $cv, $domain]);

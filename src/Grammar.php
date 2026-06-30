@@ -109,15 +109,25 @@ class Grammar
     public function count(): int { return count($this->ops); }
     
     /** Unary operations: those that only need one argument */
+    /** Унарные операции */
     public function getUnaryOps(): array
     {
         $unary = [];
         foreach ($this->ops as $name => $info) {
-            // Custom ops that are unary: log2, inverse, parity, powN
             if (in_array($name, ['log2', 'inverse', 'parity', 'abs', 'sqrt']) || str_starts_with($name, 'pow')) {
                 $unary[] = $name;
             }
         }
         return $unary;
+    }
+    
+    /** Ограничить грамматику конкретными операциями (для изоляции парадигм) */
+    public function restrictTo(array $allowedOps): void
+    {
+        $filtered = [];
+        foreach ($allowedOps as $op) {
+            if (isset($this->ops[$op])) $filtered[$op] = $this->ops[$op];
+        }
+        $this->ops = $filtered;
     }
 }

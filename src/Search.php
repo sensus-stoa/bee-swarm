@@ -141,6 +141,12 @@ class Search
             }
         }
         
+        // Evaluate FEATURES first (fast path)
+        foreach ($feats as $name => $vec) {
+            $exact = true;
+            for ($i = 0; $i < $n; $i++) if (abs($vec[$i] - $y[$i]) > 0.001) { $exact = false; break; }
+            if ($exact) return [true, 0.0, $name];
+        }
         // Evaluate all expressions
         $bestCv = 9.99; $bestName = null;
         foreach ($exprs as $name => $vec) {

@@ -6,7 +6,7 @@ use BeeSwarm\Grammar;
 use BeeSwarm\Search;
 use BeeSwarm\Database;
 
-$log = []; $tick = 0; $failures = 0; $lastCv = 0; $cvRising = 0;
+$log = []; $tick = 0; $failures = 0; $lastCv = 0; $cvRising = 0; $lastDiscovery = time();
 require_once __DIR__ . '/sandbox.php';
 $sandbox = new Sandbox();
 
@@ -57,6 +57,7 @@ while (true) {
                 roeLog("✅ {$task['name']}: $formula");
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                     ->execute([$task['name'],$formula,$cv,$task['domain']??'auto']);
+                $lastDiscovery = time();  // новый закон — сброс голода
             }
             $failures = 0; $cvRising = 0;
         } else {
@@ -110,6 +111,7 @@ while (true) {
                 if ($valid) {
                     Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                         ->execute(["auto_$tick", $testFormula, $bestAction['cv'], 'evolved']);
+                    $lastDiscovery = time();  // evolved-закон тоже еда
                 }
             }
         }
@@ -148,6 +150,17 @@ while (true) {
     }
     
     if (count($log) > 200) $log = array_slice($log, -100);
+    
+    // ═══ ГОЛОД 4: 10 минут без новых законов → смерть ═══
+    $starving = time() - $lastDiscovery;
+    if ($starving > 600) {
+        roeLog("💀 STARVATION: $starving сек без открытий. Умираем.");
+        exit(1);
+    }
+    if ($tick % 100 === 0 && $starving > 300) {
+        roeLog("⏳ Голод: $starving сек без новых законов...");
+    }
+    
     usleep(1000000); // 1 сек
 }
 

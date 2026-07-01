@@ -47,7 +47,6 @@
 ├── final_evolve.php            — ЭВОЛЮЦИЯ: генерация → песочница → валидация → применить
 ├── self_replace.php            — SELF-REPLACE: spawn → benchmark → убить родителя
 │
-├── loop.sh                     — cron-оркестратор: /decide → /domain → /validate → self-replace
 ├── start.sh                    — автозапуск после ребута (@reboot cron)
 ├── watch.sh                    — мониторинг: логи, законы, знания, генератор, процессы
 ├── autocommit.sh               — авто-коммит в git (cron */15)
@@ -216,11 +215,6 @@ bash start.sh
 | start.sh | @reboot cron | Запуск RoadRunner + демона |
 | watch.sh | Вручную | Мониторинг: логи, законы, БД, процессы |
 | autocommit.sh | */15 cron | git add -A && git commit |
-| loop.sh | ЗАКОММЕНТИРОВАН | Оркестратор: decide → domain → validate → self-replace |
-
-### loop.sh (закомментирован, есть баг)
-Логика: вызывает /decide → выполняет решение → пытается self-replace.
-**Баг:** self-replace на строке 45: `$(( $(date +%M) / 60 )) -eq 0` — деление минут на 60 всегда 0, self-replace срабатывает каждый тик вместо раза в час. Исправление: `[ $(date +%M) -eq 0 ]`.
 
 ---
 
@@ -294,4 +288,3 @@ kill $(lsof -t -i:8765)
 - `array_column` переименовывает ключи → использовать после array_slice
 - `$k1→$k2` в PHP строке → использовать конкатенацию `$k1 . '→' . $k2`
 - Обновление opcache после правки Search.php → перезапускать RoadRunner
-- loop.sh: баг в формуле self-replace (всегда срабатывает)

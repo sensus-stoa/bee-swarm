@@ -87,7 +87,12 @@ class SelfFeedingGenerator {
         $hash = md5($code);
         
         // Проверить, есть ли уже такой код (по хешу)
-        $row = $db->prepare("SELECT id, success_count FROM action_pool WHERE code_hash = ?")->execute([$hash])->fetch();
+        $stmt = $db->prepare("SELECT id, success_count FROM action_pool WHERE code_hash = ?");
+        $row = false;
+        if ($stmt) {
+            $stmt->execute([$hash]);
+            $row = $stmt->fetch();
+        }
         
         if ($row) {
             $newCount = $row['success_count'] + 1;
@@ -131,7 +136,12 @@ class SelfFeedingGenerator {
         
         if ($weakest['id']) {
             // Захватить хеш до удаления
-            $deadHash = $db->prepare("SELECT code_hash FROM action_pool WHERE id = ?")->execute([$weakest['id']])->fetchColumn();
+            $stmt = $db->prepare("SELECT code_hash FROM action_pool WHERE id = ?");
+            $deadHash = false;
+            if ($stmt) {
+                $stmt->execute([$weakest['id']]);
+                $deadHash = $stmt->fetchColumn();
+            }
             $db->prepare("DELETE FROM action_pool WHERE id = ?")->execute([$weakest['id']]);
             // Удалить из in-memory пула
             if ($deadHash) {

@@ -27,8 +27,11 @@ class SelfFeedingGenerator {
             success_count INTEGER DEFAULT 1,
             avg_cv REAL DEFAULT 9.99,
             source TEXT DEFAULT 'seed',
-            created_at TEXT DEFAULT (datetime('now'))
+            created_at TEXT DEFAULT (datetime('now')),
+            last_success_at TEXT
         )");
+        // Миграция: добавить колонку если её нет
+        try { $db->exec("ALTER TABLE action_pool ADD COLUMN last_success_at TEXT"); } catch (\Throwable $e) {}
         
         $rows = $db->query("SELECT code, success_count FROM action_pool ORDER BY success_count DESC, avg_cv ASC LIMIT 50")->fetchAll();
         
@@ -84,17 +87,11 @@ class SelfFeedingGenerator {
         $hash = md5($code);
         
         // Проверить, есть ли уже такой код (по хешу)
-        $existing = $db->prepare("SELECT id, success_count FROM action_pool WHERE code_hash = ?");
-        if ($existing) {
-            $existing->execute([$hash]);
-            $row = $existing->fetch();
-        } else {
-            $row = false;
-        }
+        $row = $db->prepare("SELECT id, success_count FROM action_pool WHERE code_hash = ?")->execute([$hash])->fetch();
         
         if ($row) {
             $newCount = $row['success_count'] + 1;
-            $db->prepare("UPDATE action_pool SET success_count = ?, avg_cv = (avg_cv + ?) / 2 WHERE id = ?")
+            $db->prepare("UPDATE action_pool SET success_count = ?, avg_cv = (avg_cv + ?) / 2, last_success_at = datetime('now') WHERE id = ?")
                ->execute([$newCount, $cv, $row['id']]);
             
             // ПОВЫШЕНИЕ: 3+ успеха → доступ к сети
@@ -103,10 +100,43 @@ class SelfFeedingGenerator {
                    ->execute([$row['id']]);
             }
         } else {
-            $db->prepare("INSERT INTO action_pool (code, code_hash, success_count, avg_cv, source) VALUES (?, ?, 1, ?, 'evolved')")
+            $db->prepare("INSERT INTO action_pool (code, code_hash, success_count, avg_cv, source, last_success_at) VALUES (?, ?, 1, ?, 'evolved', datetime('now'))")
                ->execute([$code, $hash, $cv]);
             $this->pool[] = $code;
             $this->bornFromSuccess++;
+            
+            // ОГРАНИЧЕНИЕ ПУЛА: макс 100, удаляем слабейшего
+            $this->evictWeakest($db);
+        }
+    }
+    
+    /** Удалить запись с наименьшим score = success_count / (часы_с_последнего_успеха + 1) */
+    private function evictWeakest(\PDO $db): void {
+        $total = $db->query("SELECT COUNT(*) FROM action_pool")->fetchColumn();
+        if ($total <= 100) return;
+        
+        // Найти слабейшего
+        $rows = $db->query("SELECT id, success_count, COALESCE(last_success_at, created_at) as last_ts FROM action_pool")->fetchAll();
+        $weakest = ['id' => null, 'score' => PHP_FLOAT_MAX];
+        
+        $now = time();
+        foreach ($rows as $r) {
+            $lastTime = strtotime($r['last_ts']);
+            $hoursSince = max(0, ($now - $lastTime) / 3600);
+            $score = $r['success_count'] / ($hoursSince + 1);  // +1 чтобы новички не обнулялись мгновенно
+            if ($score < $weakest['score']) {
+                $weakest = ['id' => $r['id'], 'score' => $score];
+            }
+        }
+        
+        if ($weakest['id']) {
+            // Захватить хеш до удаления
+            $deadHash = $db->prepare("SELECT code_hash FROM action_pool WHERE id = ?")->execute([$weakest['id']])->fetchColumn();
+            $db->prepare("DELETE FROM action_pool WHERE id = ?")->execute([$weakest['id']]);
+            // Удалить из in-memory пула
+            if ($deadHash) {
+                $this->pool = array_values(array_filter($this->pool, fn($c) => md5($c) !== $deadHash));
+            }
         }
     }
     

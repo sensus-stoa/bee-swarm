@@ -131,8 +131,15 @@ while (true) {
     if ($tick % 50 === 0) {
         $db = Database::get();
         $facts = $db->query("SELECT COUNT(*) FROM knowledge_graph")->fetchColumn();
+        // ИСТИННЫЕ противоречия: is_a с разными объектами, НЕ в цепочке иерархии
+        // can/has могут иметь много объектов — не противоречие (SPECS pitfall #8)
         $contradictions = $db->query(
-            "SELECT COUNT(*) FROM knowledge_graph k1 JOIN knowledge_graph k2 ON k1.subject=k2.subject AND k1.predicate=k2.predicate WHERE k1.object!=k2.object"
+            "SELECT COUNT(*) FROM knowledge_graph k1 
+             JOIN knowledge_graph k2 ON k1.subject = k2.subject AND k1.predicate = k2.predicate 
+             WHERE k1.object != k2.object 
+               AND k1.predicate = 'is_a'
+               AND NOT EXISTS (SELECT 1 FROM knowledge_graph k3 WHERE k3.subject = k1.object AND k3.object = k2.object AND k3.predicate = 'is_a')
+               AND NOT EXISTS (SELECT 1 FROM knowledge_graph k3 WHERE k3.subject = k2.object AND k3.object = k1.object AND k3.predicate = 'is_a')"
         )->fetchColumn();
         $knowledgeCv = $facts > 0 ? $contradictions / $facts : 0;
         if ($knowledgeCv > 0.1) {

@@ -35,75 +35,17 @@ class Database
             domain TEXT DEFAULT 'unknown',
             found_at TEXT DEFAULT (datetime('now'))
         )");
-        $db->exec("CREATE TABLE IF NOT EXISTS tasks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL,
-            data_json TEXT NOT NULL,
-            domain TEXT DEFAULT 'unknown',
-            solved INTEGER DEFAULT 0,
-            created_at TEXT DEFAULT (datetime('now'))
-        )");
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             name TEXT PRIMARY KEY,
             source TEXT DEFAULT 'base',
             created_at TEXT DEFAULT (datetime('now'))
         )");
-        $db->exec("CREATE TABLE IF NOT EXISTS state (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )");
-        $db->exec("CREATE TABLE IF NOT EXISTS bee_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            bee_name TEXT,
-            energy REAL DEFAULT 1.0,
-            curiosity REAL DEFAULT 0.8,
-            virtue REAL DEFAULT 1.0,
-            event TEXT,
-            created_at TEXT DEFAULT (datetime('now'))
-        )");
-        $db->exec("CREATE TABLE IF NOT EXISTS waggle_dance (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            bee_name TEXT NOT NULL,
-            task_name TEXT NOT NULL,
-            formula TEXT,
-            cv REAL,
-            strategy_used TEXT,
-            timestamp TEXT DEFAULT (datetime('now'))
-        )");
-        $db->exec("CREATE TABLE IF NOT EXISTS hive_knowledge (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            type TEXT NOT NULL,
-            content TEXT NOT NULL,
-            source_bee TEXT,
-            confirmed_by TEXT DEFAULT '',
-            confidence REAL DEFAULT 1.0,
-            created_at TEXT DEFAULT (datetime('now'))
-        )");
-        $db->exec("CREATE TABLE IF NOT EXISTS coalition (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            task_name TEXT NOT NULL,
-            bees_involved TEXT NOT NULL,
-            formulas_found TEXT,
-            resolved_formula TEXT,
-            fidelity REAL,
-            created_at TEXT DEFAULT (datetime('now'))
-        )");
-        $db->exec("CREATE TABLE IF NOT EXISTS paradigms (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL,
-            domain TEXT,
-            grammar_ops TEXT,
-            spawned_from TEXT,
-            first_seen TEXT DEFAULT (datetime('now'))
-        )");
-        
-        // Seed base grammar
-        $count = $db->query("SELECT COUNT(*) FROM grammar_ops")->fetchColumn();
-        if ($count == 0) {
-            foreach (Grammar::BASE_OPS as $name => $fn) {
-                $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?, 'base')")
-                   ->execute([$name]);
-            }
-        }
+        // All other tables created by their respective modules:
+        // knowledge_graph → SelfLearningBee
+        // hive_state → PersistentHive
+        // action_pool → SelfFeedingGenerator
+        // conscious_state/events → ConsciousBee
+        // data_requests → agenda.php
+        // coalitions → ParadigmSwarm
     }
 }

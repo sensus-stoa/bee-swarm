@@ -137,24 +137,71 @@ while (true) {
             $learner = new SelfLearningBee();
             $onto = $learner->getOntology();
             $words = preg_split('/\s+/u', mb_strtolower($q));
+            
+            // BIGRAMS: «мыслящие существа» → один концепт
+            $bigrams = [];
+            for ($i = 0; $i < count($words) - 1; $i++) {
+                $bigrams[] = $words[$i] . ' ' . $words[$i+1];
+            }
+            $allTokens = array_merge($words, $bigrams);
+            
+            // PRONOUN RESOLUTION
+            $pronouns = ['ты'=>'рой', 'твой'=>'рой', 'твоя'=>'рой', 'твоё'=>'рой',
+                        'тебя'=>'рой', 'тебе'=>'рой', 'я'=>'пользователь',
+                        'кто'=>'рой'];
+            foreach ($allTokens as &$w) {
+                if (isset($pronouns[$w])) $w = $pronouns[$w];
+            }
+            unset($w);
+            
+            // INJECT SELF-KNOWLEDGE: рой знает о себе из БД
+            $db = Database::get();
+            $lawsCount = $db->query("SELECT COUNT(*) FROM laws")->fetchColumn();
+            $factsCount = $db->query("SELECT COUNT(*) FROM knowledge_graph")->fetchColumn();
+            $opsCount = count((new Grammar())->all());
+            
             $cs = [];
-            foreach ($words as $w) {
+            foreach ($allTokens as $w) {
                 $c = $onto->resolve($w);
                 if (isset($onto->concepts[$c])) $cs[] = $c;
                 $inf = $learner->query($c);
                 if ($inf['facts_known'] || $inf['facts_inferred']) $cs[] = $c;
+                
+                // SELF-KNOWLEDGE INJECTION
+                if ($c === 'рой' || $w === 'рой') {
+                    $cs[] = 'рой';
+                }
             }
             if (!$cs) { $data = ['answer' => 'Не знаю. Научи: «X — это Y».', 'cv' => 1.0]; }
             else {
-                $cs = array_unique($cs); $lines = []; $cov = 0;
+                $cs = array_unique($cs); $lines = []; $cov = 0; $rp = ['is_a'=>'— это','can'=>'может','has'=>'имеет'];
                 foreach ($cs as $c) {
+                    if ($c === 'рой') {
+                        $lines[] = "Я — искатель законов. Нашёл $lawsCount законов в " . 
+                                   $db->query("SELECT COUNT(DISTINCT domain) FROM laws")->fetchColumn() . 
+                                   " доменах. Грамматика: " . implode(', ', (new Grammar())->all()) . 
+                                   ". Фактов в памяти: $factsCount. Мой создатель — Долгов Евгений";
+                        $cov++; continue;
+                    }
                     $inf = $learner->query($c); $has = false;
-                    foreach ($inf['facts_known'] as $f) { $lines[] = $f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
-                    foreach ($inf['facts_inferred'] as $f) { $lines[] = '💡 '.$f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; }
+                    foreach ($inf['facts_known'] as $f) { 
+                        $lines[] = $f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true; 
+                    }
+                    foreach ($inf['facts_inferred'] as $f) { 
+                        $lines[] = '💡 '.$f['s'].' '.($rp[$f['p']]??$f['p']).' '.$f['o']; $has = true;
+                        // FOLLOW THE CHAIN: query facts about inferred object
+                        $chain = $learner->query($f['o']);
+                        foreach ($chain['facts_known'] as $cf) {
+                            $lines[] = '  ↳ '.$cf['s'].' '.($rp[$cf['p']]??$cf['p']).' '.$cf['o'];
+                        }
+                        foreach ($chain['facts_inferred'] as $cf) {
+                            $lines[] = '  ↳ 💡 '.$cf['s'].' '.($rp[$cf['p']]??$cf['p']).' '.$cf['o'];
+                        }
+                    }
                     if ($has) $cov++;
                 }
                 $cv = 1 - ($cov / count($cs));
-                $data = ['answer' => $cv == 0 ? 'Точно: '.implode('; ',$lines) : 'Знаю: '.implode('. ',$lines), 'cv' => round($cv,3), 'covered' => $cov, 'total' => count($cs)];
+                $data = ['answer' => $cv == 0 ? 'Точно: '.implode('; ',$lines) : implode('. ',$lines), 'cv' => round($cv,3)];
             }
         }
         elseif ($method === 'POST' && $path === '/learn') {

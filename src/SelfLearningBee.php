@@ -204,15 +204,12 @@ class SelfLearningBee
     
     private function checkContradiction(string $s, string $p, string $o): bool
     {
-        // Прямое противоречие: (s,p,o1) и (s,p,o2) где o1 ≠ o2
+        // Только is_a может быть противоречивым.
+        // can, has, построил, ценит — могут иметь много объектов.
+        if ($p !== 'is_a') return false;
+        
         foreach ($this->graph as $fact) {
             if ($fact['s'] === $s && $fact['p'] === $p && $fact['o'] !== $o) {
-                return true;
-            }
-        }
-        // Транзитивное противоречие: s→A→o1 уже выведено, а новый s→A→o2
-        foreach ($this->inferences as $inf) {
-            if ($inf['s'] === $s && $inf['p'] === $p && $inf['o'] !== $o) {
                 return true;
             }
         }
@@ -327,6 +324,19 @@ class SelfLearningBee
     {
         $s = trim($sentence);
         
+        // НОРМАЛИЗАЦИЯ ГЛАГОЛОВ: множественное → единственное
+        $verbMap = [
+            'помогают'=>'помогает', 'делают'=>'делает', 'могут'=>'может',
+            'ценят'=>'ценит', 'практикуют'=>'практикует', 'строят'=>'строит',
+            'выбирают'=>'выбрал', 'учат'=>'учил',
+        ];
+        $words = explode(' ', $s);
+        foreach ($words as &$w) {
+            $lower = mb_strtolower($w);
+            if (isset($verbMap[$lower])) $w = $verbMap[$lower];
+        }
+        $s = implode(' ', $words);
+        
         // «X — это Y» или «X — Y» или «X это Y»
         if (preg_match('/^(.+?)\s*(?:—\s*(?:это\s*)?|–|—|это\s+)(.+)$/u', $s, $m)) {
             $subj = trim($m[1]);
@@ -345,8 +355,8 @@ class SelfLearningBee
             return ['parsed' => [$subj, $pred, $obj], 'status' => 'learned'];
         }
         
-        // «X может Y» / «X умеет Y» / «X измеряет Y»
-        if (preg_match('/^(.+?)\s+(?:может|умеет|измеряет|делает)\s+(.+)$/u', $s, $m)) {
+        // «X может/умеет/делает/построил/ценит/практикует/помогает/помогают Y»
+        if (preg_match('/^(.+?)\s+(?:может|умеет|измеряет|делает|построил|ценит|практикует|помогает|помогают|выбрал|учил)\s+(.+)$/u', $s, $m)) {
             $subj = trim($m[1]);
             $obj = trim($m[2]);
             $pred = 'can';

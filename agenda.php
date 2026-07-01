@@ -1,6 +1,7 @@
 <?php
 // ~/.bee_swarm/agenda.php v2
 // ДЕМОН AGI: CV→0 как голод. Без таймеров.
+date_default_timezone_set('Europe/Moscow');
 require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\Grammar;
 use BeeSwarm\Search;
@@ -151,10 +152,14 @@ while (true) {
     
     if (count($log) > 200) $log = array_slice($log, -100);
     
-    // ═══ ГОЛОД 4: 10 минут без новых законов → смерть ═══
+    // ═══ ГОЛОД 4: 10 минут без новых законов → смерть души и тела ═══
     $starving = time() - $lastDiscovery;
     if ($starving > 600) {
-        roeLog("💀 STARVATION: $starving сек без открытий. Умираем.");
+        roeLog("💀 STARVATION: $starving сек без открытий.");
+        // Стереть накопленный опыт — остаются только seed-шаблоны
+        $db = Database::get();
+        $erased = $db->exec("DELETE FROM action_pool WHERE source != 'seed'");
+        roeLog("💀 Душа стёрта: $erased шаблонов удалено. Перерождение.");
         exit(1);
     }
     if ($tick % 100 === 0 && $starving > 300) {

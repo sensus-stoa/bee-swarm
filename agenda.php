@@ -59,6 +59,17 @@ while (true) {
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                     ->execute([$task['name'],$formula,$cv,$task['domain']??'auto']);
                 $lastDiscovery = time();  // новый закон — сброс голода
+                
+                // Закон → факт в графе знаний
+                $conf = max(0.01, 1.0 - $cv);
+                if (str_contains($task['name'], '→')) {
+                    [$subj, $obj] = explode('→', $task['name'], 2);
+                    Database::get()->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?, 'relates_to', ?, ?, 0)")
+                        ->execute([trim($subj), trim($obj), $conf]);
+                } elseif (!str_starts_with($task['name'], 'auto_')) {
+                    Database::get()->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?, 'is_a', 'law', ?, 0)")
+                        ->execute([$task['name'], $conf]);
+                }
             }
             $failures = 0; $cvRising = 0;
         } else {

@@ -39,8 +39,6 @@ class Grammar
         $db = Database::get();
         $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?,?,?)")
            ->execute([$name, $source, $definition]);
-        
-        AutoGit::operationInvented($name);
         return true;
     }
     

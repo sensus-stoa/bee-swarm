@@ -117,7 +117,6 @@ class SelfLearningBee
         // Добавляем факт
         $this->graph[] = ['s' => $s, 'p' => $p, 'o' => $o, 'conf' => $confidence];
         $this->saveFact($s, $p, $o, $confidence, false);
-        AutoGit::factLearned($s, $p, $o);
         $this->factsLearned++;
         
         // Выводим новые отношения через транзитивность

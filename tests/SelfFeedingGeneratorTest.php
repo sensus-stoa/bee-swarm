@@ -100,25 +100,18 @@ class SelfFeedingGeneratorTest extends TestCase
     {
         $db = \BeeSwarm\Database::get();
 
+        // Чистим ВЕСЬ пул кроме seed-шаблонов
+        $db->exec("DELETE FROM action_pool WHERE source != 'seed'");
+        $initial = $db->query("SELECT COUNT(*) FROM action_pool")->fetchColumn();
+        $this->assertLessThan(100, $initial, 'Seed pool should be small');
+
         // Заполняем пул до 100+ уникальными записями
-        $inserted = 0;
-        for ($i = 0; $i < 110; $i++) {
-            $code = '$cv = 0.0; $formula = "test_' . $i . '";';
-            $hash = md5($code);
-            $stmt = $db->prepare("SELECT id FROM action_pool WHERE code_hash = ?");
-            $exists = false;
-            if ($stmt) {
-                $stmt->execute([$hash]);
-                $exists = $stmt->fetch();
-            }
-            if (!$exists) {
-                $this->gen->feedSuccess($code, 0.01);
-                $inserted++;
-            }
-            if ($inserted >= 105) break;
+        for ($i = 0; $i < 200; $i++) {
+            $code = '$cv = 0.0; $formula = "evict_' . $i . '_' . uniqid() . '";';
+            $this->gen->feedSuccess($code, 0.01);
         }
 
         $count = $db->query("SELECT COUNT(*) FROM action_pool")->fetchColumn();
-        $this->assertLessThanOrEqual(100, $count, 'Pool should not exceed 100 after eviction');
+        $this->assertLessThanOrEqual(100, $count, "Pool should not exceed 100. Initial: $initial, Final: $count");
     }
 }

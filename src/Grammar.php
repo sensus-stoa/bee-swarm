@@ -16,13 +16,15 @@ class Grammar
     
     public function __construct()
     {
+        // Базовые операции всегда доступны
+        $this->ops = self::BASE_OPS;
+        
         $db = Database::get();
         $rows = $db->query("SELECT name, definition FROM grammar_ops")->fetchAll();
         foreach ($rows as $row) {
             $name = $row['name'];
-            if (isset(self::BASE_OPS[$name])) {
-                $this->ops[$name] = self::BASE_OPS[$name];
-            } else {
+            // Не перезаписываем базовые — дополняем
+            if (!isset($this->ops[$name])) {
                 $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
                 if ($row['definition']) $this->ops[$name]['definition'] = $row['definition'];
             }

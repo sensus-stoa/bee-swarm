@@ -8,7 +8,6 @@ use BeeSwarm\Search;
 use BeeSwarm\MetaInventor;
 use BeeSwarm\ConsciousBee;
 use BeeSwarm\SelfLearningBee;
-use BeeSwarm\NestedLevel5;
 
 use Spiral\RoadRunner\Http\HttpWorker;
 use Spiral\Goridge\Relay;

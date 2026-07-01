@@ -66,7 +66,10 @@ while (true) {
         
         for ($a = 0; $a < 5; $a++) {
             $code = $gen->generate();
-            $r = $sandbox->run($code, $task['data'] ?? [[1,2,3]]);
+            // TRUST CHECK: если рой доказал себя (есть trusted в пуле) — сеть для всех
+            $tr = Database::get()->query("SELECT COUNT(*) FROM action_pool WHERE source = 'trusted'")->fetchColumn();
+            $trusted = $tr > 0;
+            $r = $sandbox->run($code, $task['data'] ?? [[1,2,3]], $trusted);
             if ($r['cv'] < $bestCv) { $bestCv = $r['cv']; $bestAction = $r; $bestCode = $code; }
         }
         

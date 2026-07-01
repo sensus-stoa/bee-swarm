@@ -32,8 +32,14 @@ while (true) {
     $tasks = getTasks();
     if (!empty($tasks)) {
         $task = $tasks[array_rand($tasks)];
-        $X = array_map(fn($r) => array_slice($r, 0, -1), $task['data']);
-        $y = array_column($task['data'], count($task['data'][0]) - 1);
+        // Сэмплирование: максимум 30 точек чтобы Search::find не упал по памяти
+        $data = $task['data'];
+        if (count($data) > 30) {
+            $keys = array_rand($data, 30);
+            $data = array_map(fn($k) => $data[$k], $keys);
+        }
+        $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
+        $y = array_column($data, count($data[0]) - 1);
         $g = new Grammar();
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
         

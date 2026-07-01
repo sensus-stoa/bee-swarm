@@ -41,8 +41,12 @@ while (true) {
         
         if ($ok) {
             // DEDUP: не логируем если закон уже есть с такой же формулой
-            $exists = Database::get()->prepare("SELECT COUNT(*) FROM laws WHERE formula = ? AND domain = ?")
-                        ->execute([$formula, $task['domain'] ?? 'auto'])->fetchColumn();
+            $stmt = Database::get()->prepare("SELECT COUNT(*) FROM laws WHERE formula = ? AND domain = ?");
+            $exists = false;
+            if ($stmt) {
+                $stmt->execute([$formula, $task['domain'] ?? 'auto']);
+                $exists = $stmt->fetchColumn() > 0;
+            }
             if (!$exists) {
                 roeLog("✅ {$task['name']}: $formula");
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")

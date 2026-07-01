@@ -25,6 +25,7 @@ class Search
     public static function find(array $X, array $y, Grammar $grammar, int $depth = 2): array
     {
         $n = count($y);
+        if ($n === 0 || empty($X) || empty($X[0])) return [false, 9.99, 'none'];
         $nFeat = count($X[0]);
         
         // L0: Features

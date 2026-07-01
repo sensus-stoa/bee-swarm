@@ -25,13 +25,11 @@ class Sandbox {
         @mkdir($this->tmpDir, 0700, true);
         
         $codeFile = $this->tmpDir . '/code.php';
-        $dataFile = $this->tmpDir . '/data.json';
         $outFile  = $this->tmpDir . '/output.json';
         
-        // Оборачиваем код в безопасный контекст
-        $wrapped = $this->wrap($phpCode);
+        // Оборачиваем код — данные встроены в PHP, без file_get_contents
+        $wrapped = $this->wrap($phpCode, $data);
         file_put_contents($codeFile, $wrapped);
-        file_put_contents($dataFile, json_encode($data));
         
         // Загрузка данных для НЕЗАВИСИМОЙ валидации
         $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
@@ -53,12 +51,15 @@ class Sandbox {
         
         // Запускаем PHP с ограничениями
         $bin = 'php';
-        $cmd = "timeout 5 $bin -d memory_limit=50M -d disable_functions=\"{$disabled}\" -d open_basedir={$basedir} {$codeFile} {$dataFile} {$outFile} 2>&1";
+        $cmd = "timeout 5 $bin -d memory_limit=50M -d disable_functions=\"{$disabled}\" -d open_basedir={$basedir} {$codeFile} 2>&1";
         
         $output = shell_exec($cmd);
         $elapsed = round((microtime(true) - $start) * 1000, 2);
         
-        $result = file_exists($outFile) ? json_decode(file_get_contents($outFile), true) : null;
+        // Результат — последняя строка stdout (JSON)
+        $lines = array_filter(explode("\n", trim($output ?? '')));
+        $lastLine = end($lines);
+        $result = json_decode($lastLine, true);
         
         $ok = $result['ok'] ?? false;
         $cv  = $result['cv'] ?? 9.99;
@@ -89,15 +90,13 @@ class Sandbox {
         ];
     }
     
-    private function wrap(string $userCode): string {
+    private function wrap(string $userCode, array $data): string {
         $code = <<<'PHP'
 <?php
 // Sandbox wrapper — безопасное окружение
 declare(strict_types=1);
 
-$dataFile = $argv[1] ?? '';
-$outFile  = $argv[2] ?? '';
-$data = $dataFile && file_exists($dataFile) ? json_decode(file_get_contents($dataFile), true) : [];
+$data = DATA_PLACEHOLDER;
 
 $result = ['ok' => false, 'cv' => 9.99, 'formula' => null, 'error' => null];
 
@@ -115,9 +114,10 @@ PHP;
     $result = ['ok' => false, 'cv' => 9.99, 'formula' => null, 'error' => $e->getMessage()];
 }
 
-file_put_contents($outFile, json_encode($result));
+echo json_encode($result);
 PHP;
-        return $code;
+        // Встраиваем данные прямо в код — без file_get_contents
+        return str_replace('DATA_PLACEHOLDER', var_export($data, true), $code);
     }
     
     private function cleanup(): void {

@@ -9,11 +9,16 @@ namespace BeeSwarm;
  */
 class ExpressionTree
 {
-    private array $tree;
+    private array|string|float|null $tree = [];
     
-    public function __construct(array|string $tree)
+    public function __construct(array|string|float $tree)
     {
-        $this->tree = is_string($tree) ? json_decode($tree, true) : $tree;
+        if (is_string($tree)) {
+            $decoded = json_decode($tree, true);
+            $this->tree = $decoded !== null ? $decoded : $tree;
+        } else {
+            $this->tree = $tree;
+        }
     }
     
     /**
@@ -86,10 +91,12 @@ class ExpressionTree
     {
         // Упрощённый парсер для формул Search
         $tree = self::parseFormula($formula);
-        return $tree ? new self($tree) : null;
+        if ($tree === null) return null;
+        // Примитивные значения (строка/число) evalNode обрабатывает нативно
+        return new self(is_array($tree) ? $tree : $tree);
     }
     
-    private static function parseFormula(string $f): ?array
+    private static function parseFormula(string $f): array|string|float|null
     {
         // Простые случаи
         if ($f === 'x0') return 'a';

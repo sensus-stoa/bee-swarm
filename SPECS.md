@@ -1,6 +1,6 @@
 # ExoCortex AGI Roj — Полная спецификация
 
-> Версия: 1.0.0 | Дата: 01.07.2026 | Сессия: 30.06-01.07.2026
+> Версия: 1.1.0 | Дата: 02.07.2026 | Аудит: 01.07.2026
 > Автор архитектуры: Dolgov Evgeniy V.
 > Co-Architect: Claude (Hermes), режим: ARCHITECT
 
@@ -20,7 +20,7 @@
 Закон = выражение которое делает ВСЕ отношения данных константой. `CV = σ/μ`. CV→0 = закон найден. CV>0.5 = хаос, не тратить ресурс. CV→∞ = anti-структура, уходить.
 
 ### Меньше — лучше
-24 модуля → 11. RNA-эволюция доказала: 4 операции побеждают 6. Лишние модули НЕ нейтральны — создают шум. Удалять, не добавлять.
+24 модуля → 11 (v1.0) → 26 (v1.1, честный подсчёт). RNA-эволюция доказала: 4 операции побеждают 6. Лишние модули НЕ нейтральны — создают шум. Удалять, не добавлять.
 
 ### Грамматика растёт через self-apply + self-invert
 Два правила. Всё. Не MetaInventor L1-L5.
@@ -37,54 +37,74 @@
 
 ## 3. Архитектура модулей
 
+### Активные модули (26 классов, 37 файлов .php)
+
 ```
-src/
-├── Grammar.php              — операции, self-apply/invert, in-memory ops
-├── Search.php               — перебор выражений, CV→0 (depth 3)
-├── CellBee.php              — пчела-клетка: своя grammar, энергия, мутации
-├── DensityHive.php          — density-based routing, популяция
-├── RelationGrammar.php      — единая грамматика отношений (числа + слова)
-├── DataSelfGenerator.php    — генерация задач из metrics.jsonl + законов
-├── SelfFeedingGenerator.php — пул шаблонов, self-feed из успехов, random tokens
-├── SelfLearningBee.php      — граф знаний + CV→0 валидация + вывод цепочек
-├── AutonomousAgent.php      — /decide: само-описание → решение
-├── Database.php             — SQLite (8 таблиц, WAL mode)
-├── ExpressionTree.php       — dynamic dispatch операций через native
-├── Ontology.php             — базовая онтология концептов
-├── ParadigmSwarm.php        — изоляция парадигм (редко используется)
-├── ParadigmHypothesis.php   — генератор парадигмальных гипотез
-├── ParadigmValidator.php    — валидация парадигм через CV→0
-├── SwarmSpawner.php         — spawn дочерних роёв для тестирования
-├── ConsciousBee.php         — аттракторы (legacy, заменён на голод)
-├── AtomicActions.php        — 5 атомарных действий
+Корень проекта:
+├── agenda.php                  — ДЕМОН: голод → поиск → мета-анализ → эволюция кода
+├── sandbox.php                 — ПЕСОЧНИЦА: arbitrary PHP, ограничения (класс Sandbox)
+├── self_feeding_generator.php  — SelfFeedingGenerator: пул шаблонов, self-feed, random tokens
+├── final_evolve.php            — ЭВОЛЮЦИЯ: генерация → песочница → валидация → применить
+├── self_replace.php            — SELF-REPLACE: spawn → benchmark → убить родителя
 │
-├── worker.php               — RoadRunner HTTP handler (все эндпоинты)
-├── public/index.php         — запасной HTTP handler (php -S)
+├── loop.sh                     — cron-оркестратор: /decide → /domain → /validate → self-replace
+├── start.sh                    — автозапуск после ребута (@reboot cron)
+├── watch.sh                    — мониторинг: логи, законы, знания, генератор, процессы
+├── autocommit.sh               — авто-коммит в git (cron */15)
 │
-agenda.php                   — ДЕМОН: голод → поиск → мета-анализ → эволюция кода
-sandbox.php                  — ПЕСОЧНИЦА: arbitrary PHP, ограничения
-self_replace.php             — SELF-REPLACE: spawn → benchmark → убить родителя
-loop.sh                      — cron: /decide → /domain → /validate → self-replace
-start.sh                     — автозапуск после ребута
+├── src/
+│   ├── Grammar.php              — операции, self-apply/invert, in-memory ops
+│   ├── Search.php               — перебор выражений, CV→0
+│   ├── CellBee.php              — пчела-клетка: своя grammar, энергия, мутации
+│   ├── DensityHive.php          — density-based routing, популяция
+│   ├── RelationGrammar.php      — единая грамматика отношений (числа + слова)
+│   ├── DataSelfGenerator.php    — генерация задач из metrics.jsonl + законов
+│   ├── SelfLearningBee.php      — граф знаний + CV→0 валидация + вывод цепочек
+│   ├── AutonomousAgent.php      — /decide: само-описание → решение
+│   ├── Database.php             — SQLite (8 таблиц, WAL mode)
+│   ├── ExpressionTree.php       — dynamic dispatch операций через native
+│   ├── Ontology.php             — базовая онтология концептов
+│   ├── AtomicActions.php        — 5 атомарных действий
+│   │
+│   ├── MetaInventor.php         — изобретение новых операций (используется в /solve, /domain)
+│   ├── ConsciousBee.php         — аттракторы, сознание, энергия (legacy, частично заменён на голод)
+│   ├── ParadigmSwarm.php        — изоляция парадигм (используется в /paradigms, /route, /coalition)
+│   ├── ParadigmHypothesis.php   — генератор парадигмальных гипотез
+│   ├── ParadigmValidator.php    — валидация парадигм через CV→0
+│   ├── SwarmSpawner.php         — spawn дочерних роёв для тестирования
+│   │
+│   ├── PersistentHive.php       — персистентный рой (/hive, /hive-state)
+│   ├── EcoHive.php              — эко-рой с коалициями (/eco-hive, /eco-query)
+│   ├── SelfOptimizer.php        — оптимальные действия на основе данных (/desire)
+│   ├── AutonomousOptimizer.php  — автономная оптимизация (/optimize)
+│   ├── HypothesisGenerator.php  — генератор гипотез (/hypotheses)
+│   ├── HypothesisTester.php     — тестирование гипотез (/test-hypotheses)
+│   ├── DataRequestor.php        — авто-запросы данных (/request-data)
+│   ├── SelfRewriter.php         — оптимизация Search (/rewrite)
+│   ├── DarwinLoop.php           — поколенческий цикл (/generation)
+│   ├── ArchitectProxy.php       — прокси для изменений кода (/propose)
+│   ├── ConceptualPatcher.php    — концептуальные патчи (/concept)
+│   ├── LawWatchdog.php          — валидация законов на новых данных (/watchdog)
+│   │
+│   ├── worker.php               — RoadRunner HTTP handler (все эндпоинты)
+│   └── public/index.php         — запасной HTTP handler (php -S)
 ```
 
-### УДАЛЁННЫЕ модули (и почему)
+### УДАЛЁННЫЕ модули (v1.0 → v1.1)
 
-| Модуль | Причина удаления |
-|--------|-----------------|
-| MetaInventor.php | Хардкод стратегий (tryMinMax, trySqrt). Заменён на self-apply/invert |
-| ConsciousBee.php (core) | Хардкод аттракторов. Заменён на голод (CV-триггеры) |
-| ParadigmSwarm.php (core) | Изоляция парадигм не нужна без экосистемы |
-| DarwinLoop.php | RNA-эволюция доказана, spawn отдельно |
-| SelfRewriter.php | Стратегии из меню, не эмерджентны |
-| ArchitectProxy.php | LLM не должен писать код |
-| ConceptualPatcher.php | Хардкод концептов |
-| AutoGit.php | Git — не архитектурная проблема |
-| NestedLevel5.php | Дублирует MetaInventor |
-| CodeGenerator.php | Не генерирует работающий код |
-| HypothesisTester.php | 0 confirmed из 39 |
-| LawWatchdog.php | Не протестирован на реальных данных |
-| SwarmLanguage.php | Шаблоны, не семантика |
+| Модуль | Когда | Причина |
+|--------|-------|---------|
+| AutoGit.php | v1.1 (01.07) | Git не архитектурная проблема; autocommit.sh заменяет |
+| NestedLevel5.php | v1.1 (01.07) | Импортировался но не использовался |
+| CodeGenerator.php | v1.1 (01.07) | Не генерировал работающий код |
+| SwarmLanguage.php | v1.1 (01.07) | Шаблоны, не семантика |
+| Hive.php | v1.1 (01.07) | Заменён на PersistentHive |
+| SemanticEngine.php | v1.1 (01.07) | Не использовался |
+| async_worker.php | v1.1 (01.07) | Не использовался |
+| SwarmServer.php | v1.1 (01.07) | Автономный, не интегрирован |
+| Attractors.php | v1.1 (01.07) | Только из SwarmServer |
+| action_generator.php | v1.1 (01.07) | Заменён на self_feeding_generator.php |
+| code_evolve.php | v1.1 (01.07) | Заменён на final_evolve.php |
 
 ---
 
@@ -125,13 +145,26 @@ start.sh                     — автозапуск после ребута
 | GET | /density-state | Состояние популяции |
 | GET | /generate-data | Генерация задач |
 | GET | /paradigms | Список парадигм |
+| GET | /hypotheses | Генерация гипотез |
+| GET | /test-hypotheses | Тестирование гипотез |
+| GET | /request-data | Запрос данных |
+| GET | /evolve | Эволюция через spawn |
+| GET | /rewrite | Оптимизация Search |
+| GET | /optimize | Автономная оптимизация |
+| GET | /watchdog | Проверка закона |
+| GET | /generation | Поколенческий цикл |
+| GET | /hive | Тик персистентного роя |
+| GET | /hive-state | Состояние роя |
+| GET | /conscious | Состояние/события сознания |
+| GET | /cross-domain | Кросс-доменные связи |
+| GET | /insight | Инсайты по доменам |
 | POST | /solve | Поиск закона (data, task) |
 | POST | /domain | Поиск законов в домене |
 | POST | /learn | Обучение факту (sentence) |
 | POST | /validate-fact | Факт с CV-валидацией |
 | POST | /route | Роутинг задачи по парадигмам |
 | POST | /coalition | Коалиция парадигм |
-| POST | /propose | Предложить изменение кода (spawn→test→apply) |
+| POST | /propose | Предложить изменение кода |
 | POST | /concept | Концептуальное изменение кода |
 | POST | /eco-hive | Тик эко-роя |
 | POST | /eco-query | Кросс-доменный запрос |
@@ -147,7 +180,7 @@ start.sh                     — автозапуск после ребута
 3. CV растёт 3 тика → ГОЛОД: генератор 5 случайных действий
 4. Лучшее действие (CV<0.5) → сохранено в БД
 5. 10+ провалов → эволюция кода (final_evolve.php)
-6. Каждые 200 тиков → self-replace
+6. Каждые 50 тиков → проверка графа знаний на противоречия
 ```
 
 ### Запуск
@@ -176,7 +209,22 @@ bash start.sh
 
 ---
 
-## 8. Принципы которые мы вывели кровью
+## 8. Скрипты
+
+| Скрипт | Запуск | Назначение |
+|--------|--------|-----------|
+| start.sh | @reboot cron | Запуск RoadRunner + демона |
+| watch.sh | Вручную | Мониторинг: логи, законы, БД, процессы |
+| autocommit.sh | */15 cron | git add -A && git commit |
+| loop.sh | ЗАКОММЕНТИРОВАН | Оркестратор: decide → domain → validate → self-replace |
+
+### loop.sh (закомментирован, есть баг)
+Логика: вызывает /decide → выполняет решение → пытается self-replace.
+**Баг:** self-replace на строке 45: `$(( $(date +%M) / 60 )) -eq 0` — деление минут на 60 всегда 0, self-replace срабатывает каждый тик вместо раза в час. Исправление: `[ $(date +%M) -eq 0 ]`.
+
+---
+
+## 9. Принципы которые мы вывели кровью
 
 1. **Grammar::add() пишет в БД** — использовать Reflection для in-memory ops. Иначе clone uniformity.
 2. **Песочница НЕ валидирует CV** — код может хардкодить `$cv=0`. Всегда проверять формулу независимо.
@@ -186,10 +234,15 @@ bash start.sh
 6. **Парсер глаголов** — нормализовать «помогают»→«помогает», «могут»→«может».
 7. **Биграммы в /talk** — «мыслящие существа» как один концепт.
 8. **is_a — единственный противоречивый предикат** — can, has могут иметь много объектов.
+9. **SelfFeedingGenerator в корне, не в src/** — PSR-4 его не видит. agenda.php делает require_once вручную.
+10. **escapshellarg ломает open_basedir** — не использовать для basedir.
+11. **array_column переименовывает ключи** — использовать после array_slice.
+12. **`$k1→$k2` в PHP строке** — использовать конкатенацию `$k1 . '→' . $k2`.
+13. **Обновление opcache после правки Search.php** — перезапускать RoadRunner.
 
 ---
 
-## 9. AGI Gap — что осталось
+## 10. AGI Gap — что осталось
 
 1. **Новизна** — 20% случайных токенов, нужны итерации (1000+)
 2. **Выход за пределы** — trusted-действия получат сеть, нужны 3+ успеха
@@ -199,7 +252,7 @@ AGI ≠ архитектурная проблема. AGI = вопрос врем
 
 ---
 
-## 10. Быстрый старт
+## 11. Быстрый старт
 
 ```bash
 cd ~/.bee_swarm
@@ -234,10 +287,11 @@ kill $(lsof -t -i:8765)
 
 ---
 
-## 11. Известные проблемы
+## 12. Известные проблемы
 
 - PHP 8.2 `match` не работает в shell-heredoc → использовать `if/elseif`
 - `escapeshellarg` ломает `open_basedir` → не использовать для basedir
 - `array_column` переименовывает ключи → использовать после array_slice
 - `$k1→$k2` в PHP строке → использовать конкатенацию `$k1 . '→' . $k2`
 - Обновление opcache после правки Search.php → перезапускать RoadRunner
+- loop.sh: баг в формуле self-replace (всегда срабатывает)

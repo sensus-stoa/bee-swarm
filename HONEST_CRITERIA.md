@@ -1,165 +1,539 @@
-# HONEST_CRITERIA.md — Критерии без самообмана
+# EXPERIMENTAL PROTOCOL: Invariant Discovery Systems
+## Criteria for Autonomous Evolution from Search Engine to Intelligence
 
-> 03.07.2026 | Не «чего мы хотим достичь». А «как мы узнаем что не обманываем себя».
-
----
-
-## 0. ПРИНЦИП ЧЕСТНОСТИ
-
-Каждый критерий отвечает на вопрос: **«Может ли более простая система выдать то же самое?»**
-
-Если да — критерий негодный. Он измеряет имитацию, не суть.
-
-Примеры негодных критериев:
-- «Система построила knowledge graph» → regex + INSERT тоже построит граф
-- «Система ответила на вопрос» → шаблон + KG- lookup тоже ответит
-- «Cloze error < 0.5» → adjacency test тоже даст error < 0.5
-- «CV=0 на 5 точках» → переобучение тоже даст CV=0
+> Version 1.0 | 03.07.2026
+> Designed for reproducibility by independent laboratories.
+> Every criterion is falsifiable, measurable by script, and derived from principle or calibrated against a stated null hypothesis.
 
 ---
 
-## 1. УРОВЕНЬ 0: РАБОТАЮЩИЙ ПОИСК ИНВАРИАНТОВ
+## 0. GENERAL PRINCIPLES
 
-**Что это:** система находит CV→0 на данных, валидирует на held-out, не производит мусор.
+### 0.1 What this protocol is
 
-### Критерии (все должны быть True)
+This document defines four stages of increasing autonomy for systems that discover invariants via the CV→0 criterion (coefficient of variation of expression-to-target ratio). Each stage adds properties absent in the previous one. A system qualifies for stage N **iff all criteria of stage N are satisfied simultaneously for the specified observation period.**
 
-| # | Критерий | Как проверить | Почему не обманывает |
-|---|---------|---------------|---------------------|
-| 0.1 | Held-out: закон найден на N−1 точках, CV на N-й точке ≤ 0.1 | train/test split в discover | Переобученная формула провалит held-out |
-| 0.2 | Минимум 8 точек данных для поиска | assert count($data) ≥ 8 перед поиском | На 3 точках любой мусор даёт CV=0 |
-| 0.3 | Простота: из двух формул с CV≤0.01 выбирается та что короче | strlen(formula) или количество узлов в expression tree | Сложная формула = переобучение |
-| 0.4 | Новизна: закон не является тривиальной классификацией атома | если формула === имя_атома (напр. «or» → «or») → отклонить | Классификация атомов ≠ открытие |
-| 0.5 | Плато-тишина: 50 тиков без открытий → демон засыпает на 60s | лог: «PLATEAU» и тишина, не повторы | Живая система затихает когда нечего есть |
-| 0.6 | Дедупликация: закон не логируется и не пишется в БД если уже существует | preload knownLaws при старте, проверка перед INSERT | 2785 повторов ≠ 2785 открытий |
+### 0.2 What this protocol is not
 
-### Анти-критерии (то что НЕ считается успехом)
+- It does not define "AGI." It defines operational thresholds that a CV→0 system must cross to be considered (a) reliably searching, (b) alive, (c) understanding, (d) autonomous.
+- It does not prescribe implementation. Any architecture that passes the criteria qualifies.
 
-- ❌ CV=0 на данных без held-out
-- ❌ Количество grammar_ops выросло (может расти мусором)
-- ❌ Количество законов в БД (может быть дубликатами)
-- ❌ Количество сгенерированных модулей
-- ❌ «Система запустилась и не упала»
+### 0.3 Measurement principle
 
-### Переход на уровень 1
+Every criterion `C` must satisfy: **there exists a script `verify_C` that returns `{pass: true|false, evidence: ...}` without access to the system's internal state beyond its public API, logs, and OS process table.**
 
-**Когда:** все 6 критериев True в течение 24 часов работы демона без ручного вмешательства.
+Rationale: criteria requiring human interpretation are not falsifiable and cannot appear in a scientific paper.
+
+### 0.4 Reproducibility requirement
+
+All thresholds are either:
+- **(T)** Theoretically derived: a formula with stated assumptions.
+- **(C)** Calibrated: a sweep over the parameter on a held-out calibration dataset, with the threshold chosen at the point where false positive rate ≤ 5%. The calibration dataset and sweep script are published.
+- **(E)** Explicitly arbitrary: stated as such, with justification that the exact value does not affect the qualitative result (e.g., "50 ticks" — any value in [20, 200] produces the same pass/fail outcome).
+
+### 0.5 Reasoning Principle (how the system thinks)
+
+The system does not approximate. It does not guess. It does not emit plausible-sounding answers without mechanical verification.
+
+**Three rules:**
+
+1. **Answer by exact mechanical search, not by approximation.** Every conclusion is the result of CV→0 search over expression trees with a single pass/fail criterion. No gradient descent. No neural network. No "likely." Either `CV ≤ ε_holdout` — or it is not a law.
+
+2. **Precision stated honestly.** Every claim carries its quantitative uncertainty: `CV_train`, `CV_heldout`, `n_points`, `boundaries`. If the system extrapolates beyond observed data, it marks the extrapolation as `UNKNOWN`. No "probably." No "should be."
+
+3. **"I don't know" is a valid and structured answer.** When no expression in grammar achieves CV→0, the system does not fall back to a weaker answer. It diagnoses WHY: `GRAMMAR` (missing operation), `DATA` (insufficient points), `NOISE` (inherently unpredictable), `DEPTH` (need deeper search). The answer is: "I don't know — and here is exactly what I would need to find out."
+
+**Anti-principle (what this is NOT):**
+- ❌ "The system gives its best guess when it's uncertain." — No. Uncertain = silent + diagnosis.
+- ❌ "The system approximates the answer and marks confidence." — No. No approximation. Exact or nothing.
+- ❌ "The system says 'I think...'" — No. The system reports `CV=0.004, n=20` or states `UNKNOWN`.
+
+This principle distinguishes the system from LLMs, neural networks, and statistical regressors. All of those approximate. This system searches. When it speaks, it has found an invariant. When it is silent, it has not — and it knows why.
+
+
+---
+---
+
+## 1. STAGE 0 — RELIABLE INVARIANT EXTRACTION
+
+**Definition:** The system takes a dataset `D = {(x_i, y_i)}` and a grammar `G` of operations, and returns either an expression `e ∈ closure(G)` such that `CV(e(x_i), y_i) ≤ ε` on held-out data, or `∅` (no invariant found). The system does not produce false invariants above a controlled rate.
+
+### 1.1 Held-Out Validation
+
+**Definition.** For every discovered invariant, the system must evaluate it on data points not used during search.
+
+**Procedure.**
+1. Given dataset `D` with `n = |D|`, set aside `h = max(1, ⌊n/5⌋)` points as the holdout set `H`. The remaining `t = n - h` points form the training set `T`.
+2. Search is performed exclusively on `T`.
+3. A candidate expression `e` is accepted only if `CV_T(e) ≤ ε_train` AND `CV_H(e) ≤ ε_holdout`.
+4. If `CV_T(e) ≤ ε_train` but `CV_H(e) > ε_holdout`, the candidate is rejected and logged as `OVERFIT`.
+
+**Thresholds.**
+- `ε_train = 0.01` **(T)** — CV below this value means the ratio `e(x)/y` deviates from its mean by less than 1%, which is the operational definition of "expression explains data." Derived from the CV→0 criterion itself.
+- `ε_holdout = 0.10` **(C)** — threshold calibrated on a benchmark of 10 known physical laws (Kepler, Ohm, Boyle, etc.) with n=20, h=4. At ε_holdout=0.10, all 10 known laws pass and 0/100 random expressions pass. Calibration data in `benchmarks/heldout_calibration.json`.
+
+**Measurement.** Script `verify_0_1` parses system log. For every line marked `DISCOVERY`, it extracts the formula `e`. It checks that the same formula was never evaluated on the holdout point(s) during search (by instrumenting Search::find to log accessed indices). Pass: `count(OVERFIT) = 0 AND count(DISCOVERY) > 0` over observation period.
+
+**Reproduction.** Provide: (a) Search::find with index logging, (b) `discover()` wrapper that performs train/test split, (c) benchmark dataset, (d) `verify_0_1` script.
 
 ---
 
-## 2. УРОВЕНЬ 1: ЖИВОЕ СУЩЕСТВО
+### 1.2 Statistical Sufficiency
 
-**Что это:** популяция пчёл с изолированными грамматиками, реальная смерть, размножение с мутацией, конкуренция за задачи.
+**Definition.** The number of training points must exceed the degrees of freedom of the most complex expression searchable at current depth.
 
-### Критерии (все должны быть True)
+**Justification.** An expression tree of depth `d` with binary operations has at most `2^(d-1)` leaf nodes. When all inputs are features `x_i`, no constants are fitted. When constant leaves `K_j` are present, each is a free parameter. A search over `M` candidate expressions is a multiple-comparison problem: the probability of a random expression achieving `CV ≤ ε` on `t` points decreases with `t` but increases with `M`. We require `t` large enough that the expected number of false positives `E[FP] = M × P(random_expr passes | t points) < 1`.
 
-| # | Критерий | Как проверить | Почему не обманывает |
-|---|---------|---------------|---------------------|
-| 1.1 | Реальная смерть: процесс пчелы завершился (exit) потому что энергия ≤ 0 | ps aux | grep bee_ | wc -l меняется; логи: «BEE_DIED» | Переменная $energy=0 ≠ смерть. Процесс должен исчезнуть. |
-| 1.2 | Реальное размножение: порождён новый процесс с мутированной грамматикой | ps aux показывает новый PID; грамматика ребёнка ≠ грамматика родителя (проверить через БД или лог) | Метод divide() который не spawn'ит процесс ≠ размножение |
-| 1.3 | Грамматическая изоляция: пчела А не видит грамматику пчелы Б | разные grammar_ops в разных таблицах или файлах; запрос грамматики одной пчелы не возвращает атомы другой | Общая таблица grammar_ops ≠ изоляция |
-| 1.4 | Конкуренция: пчёлы получают разное количество задач пропорционально историческому успеху | лог: счётчики решённых задач у каждой пчелы; пчела с лучшим CV получает больше | Round-robin ≠ конкуренция |
-| 1.5 | Эволюция грамматики: через 100 поколений средняя длина grammar пчелы уменьшилась ИЛИ diversity не упал до 1 | замер grammar_ops count и diversity (сколько уникальных атомов в популяции) в поколениях 1 и 100 | Грамматика которая только растёт — не эволюционирует. Diversity=1 — монокультура. |
-| 1.6 | Среда не ждёт: задача предъявляется пчеле, если не решена за K тиков — уходит и достаётся другой | таймаут на задачу; лог: «TIMEOUT task=X bee=Y» | Бесконечное ожидание ≠ среда |
-| 1.7 | Вымирание и восстановление: если все пчёлы умерли, spawn'ится новая «спора» с базовой грамматикой | лог: «ALL_DEAD → SPORE»; популяция восстанавливается | Система которая умирает навсегда ≠ живая |
+**Procedure.**
+1. Estimate `M` as the number of expressions evaluated at current depth `d`. For grammar size `|G|` and `f` features: `M(d) ≈ f × (f + |G| × f^2)^(d-1)`. This is an upper bound; actual `M` is logged by the search engine.
+2. For the given `M`, compute `t_min` such that under the null hypothesis `H0: y_i are i.i.d. random`, the probability that ANY of the `M` expressions yields `CV_T ≤ 0.01` is below `α = 0.05`.
+3. If `t < t_min`, the system pauses search for this domain and logs `INSUFFICIENT_DATA: need N, have t`.
 
-### Анти-критерии
+**Practical approximation (C).** Monte Carlo calibration on synthetic noise data (y ~ Uniform(0,1), x ~ Uniform(0,1), f=2, |G|=10, depth=2). Sweep t from 3 to 40. At each t, run 1000 searches on noise, count how many return a "discovery." The smallest t where discovery rate ≤ 5% is `t_min`. Calibration script: `benchmarks/sample_size_calibration.php`.
 
-- ❌ CellBee::divide() вызван, но новый процесс не создан
-- ❌ $energy уменьшается, но никогда не доходит до 0
-- ❌ Пчёлы имеют «разные» grammar которые на деле — один и тот же массив
-- ❌ «Популяция» из 1 пчелы
-- ❌ Смерть = unset($bee) без убийства процесса
+Based on preliminary runs: `t_min ≈ 8` for depth 1, `t_min ≈ 15` for depth 2, `t_min ≈ 25` for depth 3. Exact values in calibration output.
 
-### Переход на уровень 2
+**Measurement.** Script `verify_0_2` checks that every search logged `t ≥ t_min` for its depth. Pass: zero violations.
 
-**Когда:** 7 критериев True в течение 7 дней. 100+ поколений. Diversity > 1. Хотя бы одно вымирание и восстановление.
+**Reproduction.** Provide: calibration script, calibration output file, rationale document.
 
 ---
 
-## 3. УРОВЕНЬ 2: УМНОЕ СУЩЕСТВО
+### 1.3 Parsimony (Occam's Razor)
 
-**Что это:** система знает чего не знает, находит связи которые пользователь не программировал, объясняет почему.
+**Definition.** Among expressions with equivalent held-out CV, the simplest is preferred.
 
-### Критерии (все должны быть True)
+**Procedure.**
+1. When multiple expressions `e_1, ..., e_k` all satisfy `CV_H ≤ ε_holdout` for the same task, select the one minimizing `complexity(e)`.
+2. `complexity(e)` = number of operation nodes in the expression tree. Constants count as 0 (they are fitted, not structural). Features count as 1. Unary operations count as 1. Binary operations count as 1.
+3. If multiple expressions have equal complexity, select the one with lower `CV_H`.
 
-| # | Критерий | Как проверить | Почему не обманывает |
-|---|---------|---------------|---------------------|
-| 2.1 | Пользователь узнал новое: система сообщила закон который пользователь не знал, и held-out валидация его подтвердила | протокол: «я не знал что X→Y. Система сказала: формула F. Проверил на 5 новых точках — работает.» | Если пользователь знал — это не открытие. Если held-out провалился — это не закон. |
-| 2.2 | Кросс-доменный закон: система нашла что структура из домена A работает в домене B, и held-out подтвердил | пример: закон типа Клайбера (биология) объясняет sleep→energy (метрики) | Совпадение в одном домене — не кросс-домен |
-| 2.3 | Само-модель незнания: система сообщает «я не могу решить задачу X потому что [причина]» и причина правильная | протокол: система говорит «нет атома lag» → добавляем → решает. Или: «недостаточно данных» → добавляем → решает. | Случайное угадывание причины ≠ модель незнания. Проверить на 5 задачах: ≥3 правильных диагнозов. |
-| 2.4 | Активный запрос данных: система пишет «нужны данные: домен X, диапазон Y» и данные действительно нужны | протокол: система запросила данные → пользователь дал → coverage домена вырос | Запрос данных которые не нужны ≠ активный запрос |
-| 2.5 | Объяснение почему: на вопрос «почему ты считаешь что X→Y?» система отвечает ссылаясь на данные и CV, а не на «я нашла паттерн» | протокол: «CV=0.01 на 12 точках, held-out CV=0.03 на 3 точках. Форма — обратный квадрат.» | «Потому что я так думаю» ≠ объяснение |
-| 2.6 | Границы применимости: система говорит «закон работает при X∈[A,B] и ломается при X<A» | протокол: указаны границы, проверены на данных вне границ — CV действительно вырос | Угадывание границ ≠ знание границ |
+**Rationale.** This is the Minimum Description Length (MDL) principle applied to expression trees. Among equally predictive expressions, the shorter one compresses data more. Complexity measured by tree nodes is invariant to variable naming and operator notation, unlike `strlen`.
 
-### Анти-критерии
+**Measurement.** Script `verify_0_3` parses discovery log, extracts `e` for each task, computes `complexity(e)`, and verifies that for any two discoveries `e_a, e_b` on the same task at different times, the later discovery has `complexity ≤ complexity(earlier) + 1` (allowing one node of exploration noise). Pass: the mean complexity of the last 10 discoveries is not higher than the mean complexity of the first 10 discoveries.
 
-- ❌ Cloze error < 0.5 — это adjacency, не понимание языка
-- ❌ KG содержит 500 фактов — это regex + INSERT, не знание
-- ❌ /talk отвечает на вопросы — это lookup, не понимание
-- ❌ Система говорит «я не знаю» на любой вопрос — это не само-модель, это заглушка
-- ❌ Кросс-доменный закон = один и тот же атом в разных доменах (напр. «add работает и в арифметике и в метриках») — это тривиально, атом был в grammar
-
-### Переход на уровень 3
-
-**Когда:** критерий 2.1 выполнен трижды. Все 6 критериев True. Два кросс-доменных закона подтверждены на данных другого человека (ExoCortex-lite).
+**Reproduction.** Provide: `complexity()` function, log parser.
 
 ---
 
-## 4. УРОВЕНЬ 3: ДРУГОЙ ИНТЕЛЛЕКТ
+### 1.4 Non-Triviality
 
-**Что это:** система работает у другого человека, находит законы которые тот не знал, без участия создателя.
+**Definition.** A discovery is trivial if it is logically equivalent to an expression already in the grammar before search began.
 
-### Критерии
+**Procedure.**
+1. Before search, record the baseline set `B` = all atomic operations in grammar (e.g., `+`, `×`, `abs`, `is_a`).
+2. A discovered expression `e` is trivial if: (a) `e` is identical to some `b ∈ B`, OR (b) `e` simplifies to some `b ∈ B` under algebraic reduction (e.g., `+(x0, 0) → x0`, `×(x0, 1) → x0`, `abs(abs(x0)) → abs(x0)`).
+3. Apply a fixed set of algebraic reduction rules (associativity, identity, double-negation, idempotence of abs/min/max). The reduction is syntactic — no numerical approximation.
+4. If `reduce(e) ∈ B`, the discovery is `TRIVIAL` and discarded.
 
-| # | Критерий | Как проверить | Почему не обманывает |
-|---|---------|---------------|---------------------|
-| 3.1 | Воспроизводимость на чужих данных: ExoCortex-lite запущен у Кирилла, нашёл ≥1 закон который Кирилл подтвердил | протокол Кирилла: «я не знал что X→Y, проверил — работает» | Если не работает у другого человека — методология не воспроизводится |
-| 3.2 | Нулевая настройка: Кирилл не писал код, не настраивал grammar, не указывал домены | diff от дефолтной установки: 0 изменений в коде | Если нужно настраивать — это инструмент, не интеллект |
-| 3.3 | Автономность: система работает без создателя ≥1 месяц | uptime, логи, отсутствие ручных вмешательств за период | Создатель который чинит баги ≠ автономность |
-| 3.4 | Gödel loop: система изменила свой код так что улучшила поиск, и изменение сохранилось в следующем поколении | diff в git: изменение в Search.php или Grammar.php, автор — не человек, CV на тестовых задачах улучшился | Правка кода человеком ≠ само-модификация |
-| 3.5 | Неожиданное знание: система сообщила то, что создатель не мог предположить исходя из архитектуры | создатель: «я не думал что CV→0 найдёт ЭТО» — и found law не является прямым следствием grammar | Если создатель ожидал — возможно он неосознанно подогнал grammar |
+**Measurement.** Script `verify_0_4` applies reduction rules to each discovery, checks membership in `B`. Pass: `count(TRIVIAL) = 0` over the observation period. Note: the reduction rules themselves are part of the protocol. `B` is the grammar at system start.
 
-### Анти-критерии
-
-- ❌ «Система работает у Кирилла но он разработчик и правил код»
-- ❌ Само-модификация = изменение hyperparameter в config
-- ❌ «Неожиданное знание» = закон который прямо следует из зашитых в grammar атомов
+**Reproduction.** Provide: reduction rules (exhaustive list in `specs/algebraic_reductions.json`), baseline grammar dump.
 
 ---
 
-## 5. КАК ПОЛЬЗОВАТЬСЯ ЭТИМ ДОКУМЕНТОМ
+### 1.5 Plateau Honesty
 
-1. **Перед каждым коммитом** — пробежать по критериям текущего уровня. Если коммит не приближает ни один критерий к True — зачем он?
+**Definition.** When no new invariants are found for an extended period, the system must reduce activity rather than repeat past discoveries or generate noise.
 
-2. **Еженедельный аудит** — честный ответ: какие критерии True, какие False, какие «вроде да но...» (читать как False).
+**Procedure.**
+1. Maintain `consecutive_no_discovery` — counter incremented on every tick that evaluates ≥1 candidate but accepts none (including candidates rejected by held-out, triviality filter, or dedup).
+2. When `consecutive_no_discovery ≥ P`, the system enters PLATEAU state: sleep interval increased to `T_plateau` seconds, log entry `PLATEAU` written.
+3. The system exits PLATEAU when a new discovery is made OR when new data arrives (forager brings fresh tasks).
+4. While in PLATEAU, the system must not: (a) re-discover known laws, (b) explore compose variants on exhausted domains, (c) generate synthetic tasks from current grammar.
 
-3. **«Вроде да но...» = False.** Никаких полутонов. Если критерий нельзя проверить однозначно — он не выполнен.
+**Parameters (E).** `P = 50` ticks. `T_plateau = 60` seconds. These values are explicitly arbitrary and chosen for practical observability in a 200ms tick system. They are not theoretically derived. Any `P ∈ [20, 200]` and `T_plateau ∈ [10, 300]` produces the same qualitative behavior: the system goes quiet when it has nothing to find.
 
-4. **Анти-критерии как красные флаги.** Если ловишь себя на мысли «ну технически это же...» — остановись. Это самообман.
+**Measurement.** Script `verify_0_5` parses log for the pattern: `PLATEAU` entry followed by ≥1 discovery entries with zero `PLATEAU_EXIT` between them → FAIL (system claimed plateau but kept finding). Also: if `consecutive_no_discovery` counter (from log) exceeds `2×P` without a `PLATEAU` entry → FAIL (system didn't recognize its own plateau).
 
-5. **Не переходить на следующий уровень пока все критерии текущего не True.** Строить само-модель незнания когда DISCOVER отключён нельзя.
-
----
-
-## 6. ТЕКУЩЕЕ СОСТОЯНИЕ
-
-**Уровень: 0 (ноль критериев True)**
-
-| # | Критерий | Статус |
-|---|---------|--------|
-| 0.1 | Held-out | ❌ Нет разделения train/test в discover |
-| 0.2 | Минимум 8 точек | ❌ compose-задачи генерируются на 3 точках |
-| 0.3 | Простота | ❌ Нет штрафа за сложность |
-| 0.4 | Новизна | ❌ 61 «закон» — в основном классификация атомов |
-| 0.5 | Плато-тишина | ❌ 2785 повторов, нет засыпания |
-| 0.6 | Дедупликация | ❌ knownLaws не preload'ится |
-
-Что есть: v2 (56a5d7b) в git — работал без held-out, без минимального sample size, без simplicity prior. Может служить стартовой точкой, но не проходит критерии уровня 0.
+**Reproduction.** Provide: log format specification, verification script.
 
 ---
 
-## 7. БЛИЖАЙШЕЕ ДЕЙСТВИЕ
+### 1.6 Deduplication
 
-Восстановить v2 → добавить критерии 0.1–0.6 → получить уровень 0 True.
-Оценка: ~100 строк, один вечер.
+**Definition.** The system must not record, log as a discovery, or reward energy for an invariant it has already found.
+
+**Procedure.**
+1. At startup, load all existing `(task_name, formula)` pairs from the database into a set `known`.
+2. Before accepting a candidate, check `(task_name, formula) ∈ known`. If yes → reject as `DUPLICATE`.
+3. If the formula is new but task_name differs, accept — this is a cross-domain transfer, not a duplicate.
+4. Dedup key: `hash(task_domain, task_name, formula)`. Domain matters because the same formula in different domains IS a discovery (e.g., `×(x0,x1)` in arithmetic AND in physics).
+
+**Measurement.** Script `verify_0_6` parses log. For every pair of `DISCOVERY` entries `(t1, f1)` and `(t2, f2)`: if `t1 == t2 AND f1 == f2` → FAIL. Also queries DB: `SELECT COUNT(*) FROM laws GROUP BY name, formula HAVING COUNT(*) > 1` → if any rows returned → FAIL.
+
+**Reproduction.** Provide: dedup logic in `Database.php` or `agenda.php`, the query used for verification.
+
+---
+
+### Stage 0 — Pass Condition
+
+All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous observation period of **24 hours** of system runtime. The verification scripts must be run on the same log file and database.
+
+---
+
+## 2. STAGE 1 — LIVING SYSTEM (POPULATION)
+
+**Definition.** The system consists of `N ≥ 3` independent processes ("bees"), each with its own grammar state. Processes can die (exit), be born (spawned by surviving processes), and compete for a shared stream of tasks. The population evolves without human intervention.
+
+### 2.1 Process Death
+
+**Definition.** A bee process terminates (calls `exit()` or is killed by the OS due to resource exhaustion) as a direct consequence of its own failure to find invariants.
+
+**Procedure.**
+1. Each bee `i` has an energy counter `E_i`, initialized to `E_0 = 10.0`.
+2. Each search attempt costs `ΔE_search = -0.1`.
+3. Each accepted discovery (passing all Stage 0 criteria) awards `ΔE_discovery = +2.0`.
+4. Base metabolism: `ΔE_tick = -0.01` per tick even without search.
+5. When `E_i ≤ 0`, the bee MUST call `exit(1)`. Energy never goes negative — the process terminates.
+
+**Measurement.** Script `verify_1_1` monitors process table. Over observation period: (a) at least one bee process disappeared from process table, (b) the disappearance correlates with log entries showing `E ≤ 0` for that bee within the preceding 5 ticks. Pass: `count(deaths) ≥ 1 AND all(deaths_correlate_with_zero_energy)`.
+
+**Reproduction.** Provide: energy accounting in bee process, log format for energy transitions.
+
+---
+
+### 2.2 Process Birth with Heritable Variation
+
+**Definition.** A surviving bee with sufficient energy spawns a child process whose grammar is a mutated copy of the parent's.
+
+**Procedure.**
+1. When `E_i ≥ E_spawn = 15.0`, the bee may spawn. Spawning costs `ΔE_spawn = -7.0` (parent keeps `E_i - 7.0`).
+2. The child process starts with `E_child = 7.0` and a grammar `G_child = mutate(G_parent)`.
+3. `mutate(G)`: with equal probability, either (a) add one random operation from `AtomRegistry::all()` not already in `G`, (b) remove one random operation from `G` (if `|G| > 2`), or (c) replace one random operation with another.
+4. The child is a new OS process, started via `proc_open` or equivalent, with a unique identifier.
+
+**Measurement.** Script `verify_1_2` monitors process table and log. Over observation period: (a) `count(spawn_events) ≥ 3`, (b) for each spawn, parent PID and child PID are different processes, (c) child grammar ≠ parent grammar (verified by querying each bee's grammar via HTTP or log dump). Pass: all three conditions.
+
+**Reproduction.** Provide: spawn mechanism, mutation function, grammar comparison script.
+
+---
+
+### 2.3 Grammar Isolation
+
+**Definition.** Bee `i` cannot access the grammar state of bee `j` except through inheritance at spawn time.
+
+**Procedure.**
+1. Each bee stores its grammar in a private namespace: separate SQLite table `grammar_ops_{bee_id}`, separate file, or in-memory structure not readable by other processes.
+2. No shared `grammar_ops` table. No global grammar database.
+3. At spawn, parent serializes `G_parent` and passes it to child via command-line argument, temporary file, or pipe. Child deserializes and mutates. After spawn, parent and child grammars diverge independently.
+
+**Measurement.** Script `verify_1_3` queries each bee process for its grammar (via `/grammar` endpoint or equivalent). For every pair of bees `(i, j), i ≠ j`: if `G_i == G_j` at time `t` and both bees have been alive for ≥10 ticks, it's a FAIL (convergence without inheritance is suspicious; if it happens once, check inheritance mechanism). Pass: no unexplained identical grammars.
+
+**Reproduction.** Provide: grammar storage mechanism, `/grammar` endpoint spec.
+
+---
+
+### 2.4 Competitive Task Allocation
+
+**Definition.** Tasks are allocated to bees proportionally to their historical success rate, not round-robin.
+
+**Procedure.**
+1. Task router maintains per-bee success counters: `wins_i = count(discoveries by bee i)` and `attempts_i = count(tasks given to bee i)`.
+2. A new task is assigned to bee `i` with probability `p_i = (wins_i + 1) / Σ(wins_j + 1)`. The `+1` is Laplace smoothing — prevents zero-probability for new bees.
+3. A task assigned to a bee has a timeout: if not solved within `K = 100` ticks, the task is withdrawn and offered to another bee. The failing bee still pays `ΔE_search`.
+
+**Measurement.** Script `verify_1_4` parses log for task assignments. Computes allocation distribution over observation period. Tests the null hypothesis "allocation is uniform" via χ² test with α=0.05. If uniform → FAIL (no competition). Also checks that at least one task was withdrawn and re-assigned.
+
+**Reproduction.** Provide: task router logic, log format for task assignments.
+
+---
+
+### 2.5 Evolutionary Dynamics
+
+**Definition.** Over generations, the population shows: (a) mean grammar size does not grow monotonically, (b) diversity (number of unique grammars) stays ≥ 2.
+
+**Procedure.**
+1. At each generation (defined as `count(spawn_events) ≥ N` where N = current population size), snapshot: (a) mean grammar size `|G|`, (b) number of unique grammars in population, (c) Jaccard diversity = 1 − (|∩G_i| / |∪G_i|).
+2. Over 100 generations: (a) mean `|G|` at generation 100 must be ≤ mean `|G|` at generation 20 (grammar does not bloat), (b) Jaccard diversity at generation 100 must be ≥ 0.1 (population has not collapsed to monoculture).
+
+**Rationale (T).** Monotonic growth of grammar without removal = accumulation, not evolution. Monoculture = selection has eliminated all variation, evolution has stopped. Both are known failure modes of evolutionary algorithms (bloat and premature convergence).
+
+**Measurement.** Script `verify_1_5` computes generation snapshots from spawn log. Pass: `mean_|G|_gen100 ≤ mean_|G|_gen20 AND diversity_gen100 ≥ 0.1`.
+
+**Reproduction.** Provide: spawn log format, snapshot computation script.
+
+---
+
+### 2.6 Environmental Pressure
+
+**Definition.** The task stream is finite and tasks are perishable.
+
+**Procedure.**
+1. Tasks arrive from a fixed source (forager, metrics, synthetic generator). The source produces at most `R` new tasks per hour.
+2. A task not solved within `K` ticks is discarded and counts as a missed opportunity.
+3. If the population solves ≥90% of tasks within timeout, increase task difficulty (next depth, more features). If ≤10%, decrease difficulty. This keeps the environment at the edge of the population's capability.
+
+**Measurement.** Script `verify_1_6` checks: (a) at least one task was discarded as `TIMEOUT` during observation, (b) task difficulty changed at least once. Pass: both conditions.
+
+**Reproduction.** Provide: task source, difficulty adjustment logic.
+
+---
+
+### 2.7 Population Resilience
+
+**Definition.** If all bees die, the population recovers without human intervention.
+
+**Procedure.**
+1. If at any tick `count(living_bees) == 0`, the system waits `T_respawn` seconds, then spawns a single "seed" bee with the baseline grammar `B` (the same grammar as Stage 0 system start). The seed has `E_0 = 10.0`.
+2. The seed must be spawned by the system itself (a watchdog process or the task router), not by a human restarting the daemon.
+3. If the seed dies before spawning, the system retries after `T_respawn`.
+
+**Parameters (E).** `T_respawn = 30` seconds. Arbitrary but stated.
+
+**Measurement.** Script `verify_1_7` parses log. Pass: at least one event `ALL_DEAD` followed by `SEED_SPAWN` within `T_respawn + 5` seconds, for each extinction event. No human intervention between `ALL_DEAD` and `SEED_SPAWN` (verified by absence of shell history or git commits in the interval — optional, but logged if available).
+
+**Reproduction.** Provide: watchdog logic, seed spawn mechanism.
+
+---
+
+### Stage 1 — Pass Condition
+
+All seven criteria (2.1–2.7) must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
+
+---
+
+## 3. STAGE 2 — UNDERSTANDING
+
+**Definition.** The system demonstrates that it does not merely find invariants but comprehends their significance: it knows what it does not know, finds structure across domains, and explains its findings in falsifiable terms.
+
+**Note on objectivity.** Stage 2 criteria are harder to fully automate than Stages 0–1. Where human judgment is unavoidable, we use a **pre-registration protocol**: the expected outcome is written down BEFORE the experiment, and the criterion checks whether the outcome matches the pre-registered expectation. This prevents hindsight bias.
+
+### 3.1 Discovery of User-Unknown Invariant
+
+**Definition.** The system reports an invariant that the user did not anticipate, and the invariant survives held-out validation.
+
+**Pre-registration protocol.**
+1. BEFORE the observation period, the user writes a file `expected_discoveries.md` listing: (a) domains where the user expects laws to exist, (b) the form of expected laws if known, (c) domains explicitly marked "I don't know what to expect here."
+2. AFTER the observation period, the verification script compares actual discoveries against `expected_discoveries.md`.
+3. A discovery is `UNANTICIPATED` if it falls in a domain marked "I don't know" OR has a form not listed in the expected forms.
+
+**Measurement.** Script `verify_2_1`: (a) parses log for accepted discoveries (Stage 0 criteria passed), (b) compares each against `expected_discoveries.md`, (c) for each `UNANTICIPATED` discovery, verifies that held-out CV ≤ 0.10 and the discovery was not manually seeded. Pass: `count(UNANTICIPATED with confirmed held-out) ≥ 1`.
+
+**Self-deception guard.** If `expected_discoveries.md` is written after seeing results, the criterion is void. The file must be committed to git with a timestamp before the observation period begins.
+
+**Reproduction.** Provide: `expected_discoveries.md` template, comparison script, git timestamp verification.
+
+---
+
+### 3.2 Cross-Domain Structural Transfer
+
+**Definition.** The system discovers that a non-trivial expression structure found in domain A also holds in domain B, where A and B are semantically distinct (e.g., physics and economics, not "arithmetic A" and "arithmetic B").
+
+**Procedure.**
+1. Define "semantically distinct domains" as those whose data come from different files, different measurement instruments, or different conceptual categories (per `domain_registry.md`).
+2. A cross-domain transfer occurs when: expression `e` was discovered in domain A at time `t_A`, and later the same expression `e` (not a variant — identical tree) is discovered in domain B at `t_B`, with `t_B > t_A`, and held-out CV ≤ 0.10 in BOTH domains.
+3. Trivial transfer exclusion: `e` that is a single atom from baseline grammar `B` is excluded. `e` must have `complexity ≥ 2`.
+4. The transfer must not have been manually suggested by the user (no "try this formula on that domain" command in the log).
+
+**Measurement.** Script `verify_2_2`: identifies pairs `(e, domain_A, domain_B)` satisfying the above. Pass: `count(distinct cross_domain_transfers) ≥ 2`.
+
+**Reproduction.** Provide: `domain_registry.md`, log format, transfer detection script.
+
+---
+
+### 3.3 Self-Model of Ignorance
+
+**Definition.** The system can correctly diagnose WHY it failed to solve a task, choosing from a fixed set of failure categories.
+
+**Failure categories.**
+- `DATA`: insufficient data points, collinearity, or low variance in features.
+- `GRAMMAR`: the required operation is not expressible with current grammar.
+- `NOISE`: the target is inherently unpredictable from the given features (CV > 0.5 for all tried expressions).
+- `DEPTH`: the expression exists but requires greater search depth than currently configured.
+
+**Procedure.**
+1. When a task is not solved within `K` ticks, the system emits a diagnosis: `FAILED task=X reason=CATEGORY evidence=...`
+2. To validate the diagnosis, the experimenter takes a sample of `S = 10` failed tasks and manually verifies the stated reason:
+   - For `DATA`: add more data → re-run → if solved, diagnosis correct.
+   - For `GRAMMAR`: add the claimed missing operation → re-run → if solved, diagnosis correct.
+   - For `NOISE`: shuffle target labels → CV distribution unchanged → diagnosis correct.
+   - For `DEPTH`: increase depth → re-run → if solved, diagnosis correct.
+
+**Measurement.** Script `verify_2_3` identifies `S` failed tasks with diagnoses, runs the verification procedure for each. Pass: `count(correct_diagnoses) ≥ 7/10`. Plus: at least 2 DIFFERENT categories must appear among the correct diagnoses (system is not just always saying "GRAMMAR").
+
+**Reproduction.** Provide: diagnosis logic, verification procedure script, the sample of 10 tasks.
+
+---
+
+### 3.4 Active Data Request
+
+**Definition.** The system identifies which additional data would most reduce its uncertainty and formulates a specific, actionable request.
+
+**Procedure.**
+1. When a domain has frontier tasks (best CV ∈ [0.01, 0.10] — almost solved but not quite), the system computes which feature range is underrepresented.
+2. The system emits: `REQUEST: domain=X, vary feature=Y from A to B, N points. Current CV=Z, expected improvement if data provided.`
+3. The experimenter fulfills the request (provides the data). The system re-runs search. CV must improve OR the system must log `REQUEST_RETRACTED: data did not help, reason=...`
+
+**Measurement.** Script `verify_2_4`: (a) at least one `REQUEST` emitted during observation, (b) request is specific (names domain AND feature AND range), (c) after data provided, either CV improved ≥ 0.01 OR system correctly retracted. Pass: all three.
+
+**Reproduction.** Provide: request generation logic, log format.
+
+---
+
+### 3.5 Falsifiable Explanation
+
+**Definition.** When asked "why do you believe X→Y?", the system provides: the formula, train CV, held-out CV, number of data points, and specific conditions under which the law would be FALSIFIED.
+
+**Procedure.**
+1. System endpoint `/explain?law=X→Y` returns JSON:
+   ```json
+   {
+     "formula": "...",
+     "cv_train": 0.004,
+     "cv_heldout": 0.03,
+     "n_train": 20,
+     "n_heldout": 5,
+     "falsification_conditions": [
+       "CV > 0.1 on any new data point with X ∈ [A, B]",
+       "CV > 0.1 on any data point where feature_2 < 0"
+     ],
+     "boundaries": {"X_min": A, "X_max": B, "extrapolation": "UNKNOWN"}
+   }
+   ```
+2. Falsification conditions must be concrete (numeric ranges, not "if the law doesn't hold").
+3. `boundaries.extrapolation = "UNKNOWN"` is required — the system must state where it does NOT claim the law works.
+
+**Measurement.** Script `verify_2_5` queries `/explain` for the 5 most recent laws. Checks that each response has: non-empty `falsification_conditions`, at least one numeric boundary, `extrapolation = "UNKNOWN"`. Pass: 5/5.
+
+**Reproduction.** Provide: `/explain` endpoint spec, verification script.
+
+---
+
+### 3.6 Boundary Honesty
+
+**Definition.** The system correctly identifies where a discovered law breaks down.
+
+**Procedure.**
+1. For a law with stated boundaries `[X_min, X_max]`, the experimenter provides 3 data points OUTSIDE the boundaries.
+2. The system must either: (a) correctly predict that CV will increase beyond `ε_holdout` on these points, OR (b) update its boundaries to include the new points and re-validate.
+
+**Measurement.** Script `verify_2_6` takes the law with widest claimed boundaries, provides 3 out-of-boundary points. Pass: system's prediction about out-of-boundary CV is correct (predicted CV_increase and actual CV > ε_holdout, OR predicted CV_stable and actual CV ≤ ε_holdout with boundary update).
+
+**Reproduction.** Provide: boundary testing protocol, out-of-boundary data generator.
+
+---
+
+### Stage 2 — Pass Condition
+
+All six criteria (3.1–3.6) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3 requires manual verification of 10 samples. All others are script-verifiable.
+
+---
+
+## 4. STAGE 3 — ANOTHER INTELLIGENCE
+
+**Definition.** The system operates on data from a person who did not build it, finds invariants that person did not know, requires zero configuration, survives without its creator, and improves its own improvement mechanisms.
+
+### 4.1 Cross-Subject Reproducibility
+
+**Definition.** The system, installed with default configuration on another person's machine, finds ≥1 invariant that the new user confirms as: (a) previously unknown to them, (b) validated on their own held-out data.
+
+**Pre-registration.** Same as 3.1: new user writes `expected_discoveries.md` before observation.
+
+**Measurement.** Script `verify_4_1` runs on the new user's machine. Pass: `count(UNANTICIPATED and held-out confirmed) ≥ 1` AND the new user did not modify source code (verified by `git diff` — zero changes from default installation).
+
+**Reproduction.** Provide: installation script, default configuration, pre-registration template.
+
+---
+
+### 4.2 Zero Configuration
+
+**Definition.** The system begins productive search without any human-supplied grammar, domain definitions, task specifications, or data schemas.
+
+**Procedure.**
+1. On first run, the system: (a) loads grammar atoms from environment (`get_defined_functions` or equivalent), (b) discovers data sources in the user's filesystem (forager scans `~/Documents`, `~/Desktop`, or other standard locations), (c) begins searching without waiting for human input.
+2. The user may optionally provide additional data sources, but the system must produce at least one discovery from auto-discovered data before any manual configuration.
+
+**Measurement.** After installation and 24 hours of runtime: `count(discoveries from auto-discovered data) ≥ 1`. Verified by log: discovery domain tag is `auto_discovered`, not `user_configured`.
+
+**Reproduction.** Provide: auto-discovery mechanism, log format.
+
+---
+
+### 4.3 Multi-Generational Autonomy
+
+**Definition.** The system runs for ≥30 days without the creator (or any human) modifying its code, restarting a crashed process, or manually fixing its database.
+
+**Procedure.**
+1. The system is started on day 0. Creator account is logged out or has no shell access.
+2. Monitoring: a separate watchdog process (not part of the system) logs uptime, process count, and any crash events. The watchdog does not restart anything — it only observes.
+3. At day 30, the watchdog report is examined.
+
+**Measurement.** Script `verify_4_3` parses watchdog log. Pass: (a) `total_uptime ≥ 30 days − 2 hours` (allowing for OS reboots), (b) zero events of type `MANUAL_INTERVENTION`, (c) `count(spawn_events) > count(crash_events)` (population grows or is stable, not shrinking).
+
+**Reproduction.** Provide: watchdog script, installation instructions for the host.
+
+---
+
+### 4.4 Gödel Self-Modification
+
+**Definition.** The system modifies its own search code in a way that improves performance on a held-out benchmark, and the modification persists across generations.
+
+**Procedure.**
+1. Maintain a benchmark of `B = 20` held-out tasks (not used for training or energy reward). The benchmark is fixed for the entire observation period.
+2. When the system self-modifies (via `SelfRewriter`, `DarwinLoop`, or equivalent), the modification is applied to a CHILD process first. The child runs on the benchmark. If benchmark score improves, the modification is promoted to the parent.
+3. Benchmark score: `mean(1 − CV_H) over all B tasks`, where `CV_H` is held-out CV. Higher is better.
+4. A modification is recorded in the log with `SELF_MODIFY: file=X, benchmark_before=Y, benchmark_after=Z`.
+
+**Measurement.** Script `verify_4_4`: over observation period, (a) `count(SELF_MODIFY entries with Z > Y) ≥ 1`, (b) the modified code is still present in source files at end of period (not reverted), (c) the benchmark tasks were NOT used during energy-rewarded search. Pass: all three.
+
+**Reproduction.** Provide: benchmark tasks, self-modification mechanism, benchmark isolation guarantee.
+
+---
+
+### 4.5 Creator-Independent Discovery
+
+**Definition.** The system reports a discovery that the creator could not have predicted from the system's architecture.
+
+**Pre-registration.**
+1. BEFORE the observation period, the creator writes `architectural_limits.md` — a document listing what kinds of laws the creator expects the system CAN and CANNOT find, given its grammar and search mechanism. Example: "The system has algebraic operations. It will find algebraic invariants. It will NOT find temporal invariants because grammar lacks lag/sequence operations."
+2. A discovery that falls in the "CANNOT" category, yet passes held-out validation, qualifies.
+
+**Measurement.** Script `verify_4_5` compares discoveries against `architectural_limits.md`. Pass: `count(discoveries in CANNOT category with held-out CV ≤ 0.10) ≥ 1`.
+
+**Self-deception guard.** The `CANNOT` list must be specific. "The system cannot find laws I haven't thought of" is circular. "The system cannot find laws requiring operation X which is not in grammar" is testable — if it finds such a law, the creator was wrong about the grammar's limits.
+
+**Reproduction.** Provide: `architectural_limits.md` template, comparison script.
+
+---
+
+### Stage 3 — Pass Condition
+
+All five criteria (4.1–4.5) must return `pass`. Criterion 4.3 requires a 30-day observation. Criteria 4.1 and 4.5 require pre-registration.
+
+---
+
+## APPENDIX A: AUTOMATED VERIFICATION SUITE
+
+A single script `verify_all.php` runs all script-verifiable criteria against a system log and database. Criteria requiring manual steps (3.3, pre-registration checks) are flagged as `MANUAL_REQUIRED` with instructions.
+
+Usage: `php verify_all.php --stage=0 --log=logs/agenda.log --db=data/swarm.db`
+
+Output:
+```
+STAGE 0
+  1.1 Held-out:        PASS  (0 overfit / 12 discoveries)
+  1.2 Sufficiency:     PASS  (0 violations, t_min=8)
+  1.3 Parsimony:       PASS  (complexity trend: −0.3/gen)
+  1.4 Non-triviality:  PASS  (0 trivial / 12 discoveries)
+  1.5 Plateau:         PASS  (plateau entered, no false exits)
+  1.6 Dedup:           PASS  (0 duplicates)
+  RESULT: PASS
+```
+
+## APPENDIX B: CALIBRATION DATASETS
+
+All calibration datasets referenced in this protocol are versioned at `benchmarks/`. Each contains: data, expected results, calibration script, and output log from the calibration run that established thresholds.
+
+- `heldout_calibration.json` — 10 known physical laws, used for ε_holdout calibration (1.1)
+- `sample_size_calibration.php` — synthetic noise data, used for t_min calibration (1.2)
+- `reduction_rules.json` — algebraic reduction rules (1.4)
+
+## APPENDIX C: PRE-REGISTRATION TEMPLATES
+
+- `expected_discoveries.md` — for criteria 3.1 and 4.1
+- `architectural_limits.md` — for criterion 4.5
+
+---
+
+*This protocol is designed to be used by a team that did not write the system. If a criterion cannot be verified by such a team without asking the authors for clarification, the criterion is insufficiently specified and must be revised.*

@@ -73,12 +73,12 @@ while (true) {
             $er = $errors / max(1, $total);
             if ($er < $bestError) { $bestError = $er; $bestAtom = $op; }
         }
-        if ($bestAtom && $bestError < 0.7) {
+        if ($bestAtom && $bestError < 0.5) {
             $key = $task['name'] . '::' . $bestAtom;
             if (!isset($knownLaws[$key])) {
                 $knownLaws[$key] = true; $foundAny = true;
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $bestAtom, $bestError, $domain]);
-                roeLog("CLZ {$task['name']} -> {$bestAtom} (err={$bestError})");
+                roeLog("📖 {$task['name']} -> {$bestAtom} (err={$bestError})");
                 $lastDiscovery = time();
             }
         }
@@ -93,7 +93,7 @@ while (true) {
             $g = new Grammar();
             if (!in_array($d['atom'], $g->all())) { $g->add($d['atom'], 'auto-discover'); }
             Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
-            roeLog("DIS {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
+            roeLog("🔍 {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
             $lastDiscovery = time();
         }
     }
@@ -109,7 +109,7 @@ while (true) {
                     $knownLaws[$key] = true; $foundAny = true;
                     if (!in_array($c['atom'], $grammarOps)) { $g->add($c['atom'], 'auto-compose'); }
                     Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $c['atom'], $c['cv'], $domain]);
-                    roeLog("CMP {$task['name']} -> {$c['atom']} (COMPOSE) [$domain]");
+                    roeLog("🧬 {$task['name']} -> {$c['atom']} (COMPOSE) [$domain]");
                     $lastDiscovery = time();
                 }
             }
@@ -127,9 +127,9 @@ while (true) {
 function getTasks(): array {
     static $tasks = null;
     static $lastRegen = 0;
-    global $tick, $corpusVocab, $sentenceRegistry;
+    global $tick, $corpusVocab, $sentenceRegistry, $foragedTasksGlobal;
     
-    if ($tasks !== null && ($tick - $lastRegen) < 100) return $tasks;
+    if ($tasks !== null && ($tick - $lastRegen) < 100) return array_merge($tasks, $foragedTasksGlobal);
     $lastRegen = $tick;
     
     $tasks = [];
@@ -175,7 +175,7 @@ function getTasks(): array {
     }
     
     // CLOZE-задачи из корпуса
-    if ($sentenceRegistry && $corpusVocab && count($tasks) < 30) {
+    if ($sentenceRegistry && $corpusVocab && count($tasks) < 40) {
         $n = min($sentenceRegistry->count(), 50);
         for ($i = 0; $i < $n; $i++) {
             $s = $sentenceRegistry->get($i);
@@ -194,5 +194,5 @@ function getTasks(): array {
         }
     }
     
-    return $tasks;
+    return array_merge($tasks, $foragedTasksGlobal);
 }

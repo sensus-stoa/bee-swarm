@@ -109,8 +109,8 @@ while (true) {
     }
     }
     
-    // ═══ 2. COMPOSE ═══
-    if (!$foundAny && $domain !== 'cloze') {
+    // ═══ 2. COMPOSE (disabled) ═══
+    if (false && $foundAny && $domain !== 'cloze') {
         $g = new Grammar(); $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {
             foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps) as $c) {
@@ -131,7 +131,12 @@ while (true) {
     }
     
     if (count($log) > 200) $log = array_slice($log, -100);
-    usleep(200000); // base tick: 200ms
+    if ( > 50) {
+        if ( === 51) roeLog("🏔️ PLATEAU");
+        usleep(10000000);
+    } else {
+        usleep(200000);
+    }
 }
 
 function getTasks(): array {

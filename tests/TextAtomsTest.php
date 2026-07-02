@@ -87,6 +87,7 @@ class TextAtomsTest extends TestCase
         
         // Буцефал не в окне "Сократ является человеком" → match=0
         $anotherS = $this->registry->get(3);
+        if (!$anotherS) { $this->markTestSkipped("Need 4+ sentences"); }
         if ($anotherS) {
             $otherIds = $anotherS['token_ids'];
             $this->assertEquals(0.0, 

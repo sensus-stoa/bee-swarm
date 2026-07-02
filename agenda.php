@@ -55,31 +55,41 @@ while (true) {
     
     $foundAny = false;
     
-    // ═══ CLOZE: error-rate CV ═══
+    // ═══ CLOZE: error-rate CV с context/match атомами ═══
     if ($domain === 'cloze' && $sentenceRegistry) {
         $g = new Grammar(); $grammarOps = $g->all();
         $bestAtom = null; $bestError = 1.0;
+        $opIndex = 0;
         foreach ($grammarOps as $op) {
             $errors = 0; $total = count($data);
+            $radius = 1 + ($opIndex % 3); // радиус 1, 2, или 3
             foreach ($data as $row) {
                 [$sId, $maskPos, $targetId, $expected] = $row;
                 $sentence = $sentenceRegistry->get((int)$sId);
                 if (!$sentence) { $errors++; continue; }
                 $ids = $sentence['token_ids'];
-                $predId = $maskPos > 0 ? ($ids[$maskPos - 1] ?? 0) : 0;
-                $pred = ($predId === (int)$targetId) ? 1.0 : 0.0;
+                
+                // context(maskPos, radius) → окно вокруг маски
+                $window = [];
+                for ($i = max(0, $maskPos - $radius); $i <= min(count($ids) - 1, $maskPos + $radius); $i++) {
+                    if ($i !== $maskPos) $window[] = $ids[$i];
+                }
+                
+                // match(window, targetId) → 1 если target в окне
+                $pred = in_array((int)$targetId, $window) ? 1.0 : 0.0;
                 if (abs($pred - $expected) > 0.01) $errors++;
             }
             $er = $errors / max(1, $total);
             if ($er < $bestError) { $bestError = $er; $bestAtom = $op; }
+            $opIndex++;
         }
         if ($bestAtom && $bestError < 0.5) {
             $key = $task['name'] . '::' . $bestAtom;
             if (!isset($knownLaws[$key])) {
                 $knownLaws[$key] = true; $foundAny = true;
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $bestAtom, $bestError, $domain]);
-                roeLog("📖 {$task['name']} -> {$bestAtom} (err={$bestError})");
-                $lastDiscovery = time();
+                roeLog("📖 {$task['name']} -> {$bestAtom} (err=" . round($bestError, 3) . ")");
+                $lastDiscovery = time(); $consecutiveNoDiscovery = 0;
             }
         }
     }
@@ -129,7 +139,7 @@ function getTasks(): array {
     static $lastRegen = 0;
     global $tick, $corpusVocab, $sentenceRegistry, $foragedTasksGlobal;
     
-    if ($tasks !== null && ($tick - $lastRegen) < 100) return array_merge($tasks, $foragedTasksGlobal);
+    if ($tasks !== null && ($tick - $lastRegen) < 100) return array_merge($tasks, $foragedTasksGlobal ?? []);
     $lastRegen = $tick;
     
     $tasks = [];
@@ -194,5 +204,5 @@ function getTasks(): array {
         }
     }
     
-    return array_merge($tasks, $foragedTasksGlobal);
+    return array_merge($tasks, $foragedTasksGlobal ?? []);
 }

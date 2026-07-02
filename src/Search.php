@@ -79,15 +79,15 @@ class Search
         
         // L1 squared
         $l1Sq = [];
-        foreach (array_slice($l1Keys, 0, 80) as $name) {
+        foreach (array_slice($l1Keys, 0, 200) as $name) {
             $vec = $exprs[$name];
             $exprs["($name)²"] = array_map(fn($v) => $v * $v, $vec);
             $l1Sq[] = "($name)²";
         }
         
-        // 🔥 Unary on L1 results (ключ для MIN: abs(x0−x1))
+        // 🔥 Unary on L1 results
         $l1Unary = [];
-        foreach (array_slice($l1Keys, 0, 60) as $name) {
+        foreach (array_slice($l1Keys, 0, 200) as $name) {
             foreach ($unaryOps as $uname) {
                 $vec = [];
                 $baseVec = $exprs[$name];

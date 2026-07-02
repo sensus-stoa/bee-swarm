@@ -12,5 +12,6 @@
     <php>
         <ini name="error_reporting" value="E_ALL"/>
         <ini name="display_errors" value="1"/>
+        <env name="SWARM_DB_PATH" value="data/test_swarm.db"/>
     </php>
 </phpunit>

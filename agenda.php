@@ -27,6 +27,15 @@ function roeLog(string $msg): void {
 
 echo "[AGI v3] AtomRegistry-driven daemon. Log: $logFile\n";
 
+// CLOZE: словарь корпуса
+$lairDir = getenv("HOME") . "/Documents/the_lair";
+$corpusVocab = null; $sentenceRegistry = null;
+if (is_dir($lairDir)) {
+    $corpusVocab = new \BeeSwarm\CorpusVocabulary([$lairDir]);
+    $sentenceRegistry = new \BeeSwarm\SentenceRegistry([$lairDir], $corpusVocab);
+    roeLog("Corpus: {$corpusVocab->size()} words, {$sentenceRegistry->count()} sentences");
+}
+
 while (true) {
     $tick++;
     
@@ -239,6 +248,27 @@ function getTasks(): array {
                     $tasks[] = ['name' => "GEN_{$outer}_{$inner}", 'data' => $data, 'domain' => 'generated'];
                     $composeCount++;
                 }
+            }
+        }
+    }
+    
+    // CLOZE-задачи
+    global $corpusVocab, $sentenceRegistry;
+    if ($sentenceRegistry && $corpusVocab) {
+        $n = min($sentenceRegistry->count(), 50);
+        for ($i = 0; $i < $n && count($tasks) < 30; $i++) {
+            $s = $sentenceRegistry->get($i);
+            if (!$s || count($s["token_ids"]) < 3) continue;
+            foreach ($s["token_ids"] as $pos => $tid) {
+                $w = $corpusVocab->word($tid);
+                if (!$w || in_array($w, ["i","v","na","s","ne","ili","no","a"])) continue;
+                $data = [[$i, $pos, $tid, 1.0]];
+                for ($j = 0; $j < 3; $j++) {
+                    $r = mt_rand(1, $corpusVocab->size());
+                    if ($r !== $tid) $data[] = [$i, $pos, $r, 0.0];
+                }
+                $tasks[] = ["name"=>"cloze_{$i}_{$pos}", "data"=>$data, "domain"=>"cloze"];
+                break;
             }
         }
     }

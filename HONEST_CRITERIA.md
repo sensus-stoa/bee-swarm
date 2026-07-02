@@ -255,6 +255,23 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ---
 
+### 2.5-bis Generational Capability Growth
+
+**Definition.** A bee of generation N+1 must be stronger than a bee of generation N — solving tasks that were not solvable before. This is not "diversity is maintained" but "capabilities grow." Per Logos Spec §7.1: the strongest creation becomes the creator. Creates itself or something else.
+
+**Procedure.**
+1. A fixed benchmark of `B = 20` tasks of increasing difficulty (depth 1 → 3, features 1 → 5). The benchmark is NOT used for energy reward.
+2. At generation 1 (after 10 spawn events), the best bee in the population (by total accepted discoveries) is run on the benchmark. Result: number of solved tasks `S_1` and mean difficulty of solved `C_1`.
+3. At generation 10 (after 100 spawn events), the best bee is run again. Result: `S_10`, `C_10`.
+
+**Measurement.** Script `verify_1_5b`: `S_10 ≥ S_1 + 1` AND `C_10 > C_1`. Pass: both conditions.
+
+**Rationale (Spec).** Logos Spec §7.1: "The strongest creation becomes the creator. Master → Student → Master." In bee terms: parent bee spawns child bee. If the child does not solve tasks harder than the parent — the creation did not become the creator. Evolution runs, but not upward. Spec is not confirmed.
+
+**Reproduction.** Provide: benchmark tasks, `verify_1_5b` script, best bee selection protocol.
+
+---
+
 ### 2.6 Environmental Pressure
 
 **Definition.** The task stream is finite and tasks are perishable.
@@ -289,7 +306,7 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ### Stage 1 — Pass Condition
 
-All seven criteria (2.1–2.7) must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
+All seven criteria (2.1–2.7) plus 2.5-bis must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
 
 ---
 

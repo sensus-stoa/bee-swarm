@@ -73,7 +73,7 @@ while (true) {
             $er = $errors / max(1, $total);
             if ($er < $bestError) { $bestError = $er; $bestAtom = $op; }
         }
-        if ($bestAtom && $bestError < 0.5) {
+        if ($bestAtom && $bestError < 0.7) {
             $key = $task['name'] . '::' . $bestAtom;
             if (!isset($knownLaws[$key])) {
                 $knownLaws[$key] = true; $foundAny = true;

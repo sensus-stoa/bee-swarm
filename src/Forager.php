@@ -56,15 +56,23 @@ class Forager
             },
             'preg_match_is_a' => function(string $c): array {
                 $facts = [];
+                $stopWords = ['и','в','на','с','не','то','же','как','так','он','она','оно','они','мы','вы','ты','это','этот','эта','эти','там','тут','ещё','уже','для','что','нет','или','да','но','а','за','из','от','до','при','под','над','об','во','со','ко','по','же','бы','ли','ль','б'];
+                
+                $addFact = function(string $s, string $o) use (&$facts, $stopWords) {
+                    $s = trim($s); $o = trim($o);
+                    // Фильтр: ≥3 символа, не стоп-слово, не начинается с цифры
+                    if (mb_strlen($s) < 3 || mb_strlen($o) < 3) return;
+                    if (in_array(mb_strtolower($s), $stopWords)) return;
+                    if (in_array(mb_strtolower($o), $stopWords)) return;
+                    if (preg_match('/^\d/u', $s) || preg_match('/^\d/u', $o)) return;
+                    $facts[] = ['semantic' => true, 's' => $s, 'p' => 'is_a', 'o' => $o];
+                };
+                
                 if (preg_match_all('/([А-Яа-яA-Za-z_]+)\s*[—–-]\s*это\s+([А-Яа-яA-Za-z_]+)/u', $c, $mm)) {
-                    for ($i = 0; $i < count($mm[0]); $i++) {
-                        $facts[] = ['semantic' => true, 's' => trim($mm[1][$i]), 'p' => 'is_a', 'o' => trim($mm[2][$i])];
-                    }
+                    for ($i = 0; $i < count($mm[0]); $i++) $addFact($mm[1][$i], $mm[2][$i]);
                 }
                 if (preg_match_all('/([А-Яа-яA-Za-z_]+)\s+является\s+([А-Яа-яA-Za-z_]+)/u', $c, $mm)) {
-                    for ($i = 0; $i < count($mm[0]); $i++) {
-                        $facts[] = ['semantic' => true, 's' => trim($mm[1][$i]), 'p' => 'is_a', 'o' => trim($mm[2][$i])];
-                    }
+                    for ($i = 0; $i < count($mm[0]); $i++) $addFact($mm[1][$i], $mm[2][$i]);
                 }
                 return $facts;
             },

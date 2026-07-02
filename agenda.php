@@ -77,8 +77,8 @@ while (true) {
         }
     }
     
-    // ═══ 2. COMPOSE: пары grammar-атомов ═══
-    if (!$foundAny && $failures >= 2) {
+    // ═══ 2. COMPOSE: при любом провале простых атомов ═══
+    if (!$foundAny) {
         $g = new Grammar();
         $grammarOps = $g->all();
         

@@ -16,6 +16,8 @@ class AtomRegistry
         'add','sub','mul','div','mod',
         'min','max','hypot','pow','fmod',
         'gt','lt','eq','neq','and','or',
+        // Grammar-compatible aliases
+        '+' => 'add', '−' => 'sub', '×' => 'mul', '/' => 'div',
     ];
 
     private static array $fnCache = [];
@@ -24,7 +26,8 @@ class AtomRegistry
 
     public static function all(): array
     {
-        return array_merge(self::$unary, self::$binary);
+        $all = array_merge(self::$unary, array_keys(self::$binary));
+        return array_unique($all);
     }
 
     public static function isUnary(string $name): bool
@@ -34,13 +37,25 @@ class AtomRegistry
 
     public static function isBinary(string $name): bool
     {
+        // Resolve alias first
+        if (isset(self::$binary[$name]) && is_string(self::$binary[$name])) {
+            return true;
+        }
         return in_array($name, self::$binary, true);
+    }
+
+    // ═══ RESOLVE ═══
+    private static function resolve(string $name): string
+    {
+        return (isset(self::$binary[$name]) && is_string(self::$binary[$name]))
+            ? self::$binary[$name] : $name;
     }
 
     // ═══ ПРИМЕНЕНИЕ ═══
 
     public static function apply(string $name, float $a, ?float $b = null): ?float
     {
+        $name = self::resolve($name);
         $isBinary = self::isBinary($name);
         
         if ($isBinary && $b === null) {

@@ -2983,3 +2983,96 @@
 [23:40:14] ✅ stress→intact: ((x0+K1)/(x0+K2))
 [23:40:14] ✅ stress→intact: ((x0+K1)/(x0+K2))
 [14:00:01] ✅ criticality(I-083-matrix-recalculated-last-action): K1 (Search::find)
+[14:00:02] ✅ criticality(I-080-progress-variable-switch-adaptation): (K1/K2) (Search::find)
+[14:00:08] ✅ energy→intact: (((x0+K1))²/((x0−K1)abs)) (Search::find)
+[14:00:41] ✅ dq→intact: (((x0−x0²))²/((x0plus_aliasx0²))²) (Search::find)
+[14:00:48] ✅ criticality(I-039-deep-encoding-stress-resistant-retrieval): x0 (Search::find)
+[14:00:54] 🔍 AND → mul (CV=0, +1 energy) [logic]
+[14:00:54] 🔍 AND → min (CV=0, +1 energy) [logic]
+[14:00:54] 🔍 AND → and (CV=0, +1 energy) [logic]
+[14:00:55] ✅ criticality(I-051-lm-benchmarks-vs-social): (x0/x0²) (Search::find)
+[14:00:59] 🔍 MUL → mul (CV=0, +1 energy) [arithmetic]
+[14:01:07] ✅ criticality(I-038-dual-assume-breach): (x0/K2) (Search::find)
+[14:01:15] ✅ energy→dq: ((x0−K1)/(x0plus_aliasK1)) (Search::find)
+[14:01:20] ✅ energy→intact: (((x0+K1))²/((x0−K1)abs)) (Search::find)
+[14:01:24] ✅ sleep→intact: ((x0−x0²)/((x0−K1))²) (Search::find)
+[14:01:30] ✅ sleep→energy: (((x0+K1))²/((x0−K1)abs)) (Search::find)
+[14:01:53] 🔍 ADD → add (CV=0, +1 energy) [arithmetic]
+[14:01:54] 🔍 XOR → neq (CV=0, +1 energy) [logic]
+[14:02:16] ✅ ABS_DIFF: ((x0−x1)abs) (Search::find)
+[14:02:36] ✅ gi→intact: (((x0absx0²))²/((x0−K1))²) (Search::find)
+[14:02:51] 🔍 OR → max (CV=0, +1 energy) [logic]
+[14:02:51] 🔍 OR → or (CV=0, +1 energy) [logic]
+[14:03:01] ✅ POW2: (x0²+K1) (Search::find)
+[14:03:19] ✅ energy→intact: (((x0+K1))²/((x0−K1)abs)) (Search::find)
+[14:03:28] 🔍 MIN → min (CV=0, +1 energy) [arithmetic]
+[14:03:34] ✅ XOR: ((x0−x1))² (Search::find)
+[14:03:39] 🔍 SQUARE → sq (CV=0, +1 energy) [arithmetic]
+[14:03:40] ✅ energy→dq: (((x0absx0²))²/((x0−K1))²) (Search::find)
+[14:03:46] 🔍 ADD → add (CV=0, +1 energy) [arithmetic]
+[14:03:48] ✅ MIN_MUL: (x1+x2) (Search::find)
+[14:03:50] ✅ energy→intact: (((x0+K1))²/((x0−K1)abs)) (Search::find)
+[14:04:14] 🔍 AND → mul (CV=0, +1 energy) [logic]
+[14:04:14] 🔍 AND → min (CV=0, +1 energy) [logic]
+[14:04:14] 🔍 AND → and (CV=0, +1 energy) [logic]
+[14:04:19] 🧬 ADD → abs(add) (COMPOSE, +1.5 energy) [arithmetic]
+[14:04:19] 🧬 ADD → add(abs) (COMPOSE, +1.5 energy) [arithmetic]
+[14:04:19] 🧬 ADD → add(min) (COMPOSE, +1.5 energy) [arithmetic]
+[14:04:19] 🧬 ADD → max(add) (COMPOSE, +1.5 energy) [arithmetic]
+[14:04:32] ✅ sleep→intact: ((x0absx0²)/(x0−K1)) (Search::find)
+[14:04:54] 🔍 SQRT → sqrt (CV=0, +1 energy) [arithmetic]
+[14:05:23] 🧬 AND → abs(mul) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → abs(min) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → abs(and) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sq(mul) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sq(min) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sq(and) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → mul(abs) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → mul(sq) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → mul(min) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → mul(and) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → mul(sqrt) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → min(abs) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → min(sq) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → min(mul) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → min(and) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → min(sqrt) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → and(abs) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → and(sq) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → and(mul) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → and(min) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → and(sqrt) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sqrt(mul) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sqrt(min) (COMPOSE, +1.5 energy) [logic]
+[14:05:23] 🧬 AND → sqrt(and) (COMPOSE, +1.5 energy) [logic]
+[14:06:00] 🔍 OR → max (CV=0, +1 energy) [logic]
+[14:06:00] 🔍 OR → or (CV=0, +1 energy) [logic]
+[14:06:07] ✅ energy→intact: ((x0−x0²)/(x0plus_aliasx0²)) (Search::find)
+[14:06:32] ✅ energy→intact: ((x0−x0²)/(x0plus_aliasx0²)) (Search::find)
+[14:06:35] ✅ discipline→intact: ((x0−x0²)/(x0plus_aliasx0²)) (Search::find)
+[14:07:23] ✅ sleep→intact: (((x0absx0²))²/((x0−x0²)abs)) (Search::find)
+[14:07:29] ✅ energy→intact: ((x0−x0²)/(x0plus_aliasx0²)) (Search::find)
+[14:07:32] 🧬 OR → abs(max) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → abs(or) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → sq(max) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → sq(or) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → max(abs) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → max(sq) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → max(neq) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → max(or) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → max(sqrt) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(abs) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(sq) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(add) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(neq) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(max) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → or(sqrt) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → sqrt(max) (COMPOSE, +1.5 energy) [logic]
+[14:07:32] 🧬 OR → sqrt(or) (COMPOSE, +1.5 energy) [logic]
+[14:07:41] 🧬 MIN_MUL → mul(min) (COMPOSE, +7.5 energy) [cross]
+[14:07:44] ✅ sleep→intact: (((x0absx0²))²/((x0−x0²)abs)) (Search::find)
+[14:08:14] 🧬 SQRT → abs(sqrt) (COMPOSE, +1.5 energy) [arithmetic]
+[14:08:14] 🧬 SQRT → sqrt(abs) (COMPOSE, +1.5 energy) [arithmetic]
+[14:08:20] ✅ energy→discipline: ((x0−x0²)/(x0plus_aliasx0²)) (Search::find)
+[14:08:38] 🔍 MAX → max (CV=0, +1 energy) [arithmetic]
+[14:08:40] 🔍 XOR → neq (CV=0, +1 energy) [logic]

@@ -155,7 +155,12 @@ while (true) {
 
 function getTasks(): array {
     static $tasks = null;
-    if ($tasks !== null) return $tasks;
+    static $lastRegen = 0;
+    
+    // Перегенерируем если прошло 100 тиков или первый запуск
+    global $tick;
+    if ($tasks !== null && ($tick - $lastRegen) < 100) return $tasks;
+    $lastRegen = $tick;
     
     $tasks = [];
     
@@ -201,6 +206,39 @@ function getTasks(): array {
                     'domain' => 'semantic',
                     'data' => [[(float)abs(crc32($name) % 10), $val]],
                 ];
+            }
+        }
+    }
+    
+    // Самогенерирующиеся compose-задачи из grammar_ops
+    $g = new Grammar();
+    $grammarOps = $g->all();
+    if (count($grammarOps) >= 2) {
+        $composeCount = 0;
+        foreach ($grammarOps as $outer) {
+            foreach ($grammarOps as $inner) {
+                if ($outer === $inner) continue;
+                if ($composeCount >= 10) break 2;
+                
+                // Только унарный outer + любой inner
+                if (!AtomRegistry::isUnary($outer)) continue;
+                
+                $data = [];
+                for ($i = 0; $i < 6; $i++) {
+                    $x = mt_rand(-10, 10);
+                    $y = mt_rand(-10, 10);
+                    $v1 = AtomRegistry::isBinary($inner)
+                        ? AtomRegistry::apply($inner, (float)$x, (float)$y)
+                        : AtomRegistry::apply($inner, (float)$x);
+                    if ($v1 === null || is_nan($v1) || is_infinite($v1)) continue;
+                    $v2 = AtomRegistry::apply($outer, $v1);
+                    if ($v2 === null || is_nan($v2) || is_infinite($v2)) continue;
+                    $data[] = [(float)$x, (float)$y, $v2];
+                }
+                if (count($data) >= 3) {
+                    $tasks[] = ['name' => "GEN_{$outer}_{$inner}", 'data' => $data, 'domain' => 'generated'];
+                    $composeCount++;
+                }
             }
         }
     }

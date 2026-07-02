@@ -26,8 +26,12 @@ class AtomRegistry
 
     public static function all(): array
     {
-        $all = array_merge(self::$unary, array_keys(self::$binary));
-        return array_unique($all);
+        // Собираем унарные + бинарные (без alias-ключей)
+        $binaryNames = [];
+        foreach (self::$binary as $k => $v) {
+            $binaryNames[] = is_string($k) ? $k : $v;
+        }
+        return array_values(array_unique(array_merge(self::$unary, $binaryNames)));
     }
 
     public static function isUnary(string $name): bool

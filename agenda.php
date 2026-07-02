@@ -1,21 +1,22 @@
 <?php
-// ~/.bee_swarm/agenda.php v2
-// ДЕМОН AGI: CV→0 как голод. Без таймеров.
+// ~/.bee_swarm/agenda.php v3
+// ДЕМОН AGI: AtomRegistry → discover → compose → grammar растёт
+// Новые домены = выше награда. Старые законы не кормят.
+
 date_default_timezone_set('Europe/Moscow');
 require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\Grammar;
 use BeeSwarm\Search;
 use BeeSwarm\Database;
+use BeeSwarm\AtomRegistry;
 
-$log = []; $tick = 0; $failures = 0; $lastCv = 0; $cvRising = 0; $lastDiscovery = time();
-require_once __DIR__ . '/sandbox.php';
-$sandbox = new Sandbox();
+$log = []; $tick = 0; $failures = 0; $lastDiscovery = time();
+$knownLaws = []; // task_atom => true — чтобы не награждать повторно
 
 // ЛОГГЕР
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) mkdir($logDir, 0755, true);
 $logFile = $logDir . '/agenda.log';
-$actionFile = $logDir . '/actions.jsonl';
 
 function roeLog(string $msg): void {
     global $logFile;
@@ -24,179 +25,185 @@ function roeLog(string $msg): void {
     file_put_contents($logFile, $line, FILE_APPEND);
 }
 
-echo "[AGI v2] Hunger-driven daemon. Log: $logFile\n";
+echo "[AGI v3] AtomRegistry-driven daemon. Log: $logFile\n";
 
 while (true) {
     $tick++;
     
-    // ═══ ПОИСК: всегда, когда есть задачи ═══
     $tasks = getTasks();
-    if (!empty($tasks)) {
-        $task = $tasks[array_rand($tasks)];
-        // Сэмплирование: максимум 30 точек чтобы Search::find не упал по памяти
-        $data = $task['data'];
-        if (count($data) > 30) {
-            $keys = array_rand($data, 30);
-            $data = array_map(fn($k) => $data[$k], $keys);
+    if (empty($tasks)) { usleep(1000000); continue; }
+    
+    $task = $tasks[array_rand($tasks)];
+    $data = $task['data'];
+    if (count($data) > 30) {
+        $keys = array_rand($data, 30);
+        $data = array_map(fn($k) => $data[$k], $keys);
+        $data = array_values($data);
+    }
+    $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
+    $y = array_column($data, count($data[0]) - 1);
+    
+    $domain = $task['domain'] ?? 'unknown';
+    $novelty = ($domain === 'cross') ? 5.0 : (($domain === 'semantic') ? 2.0 : 1.0);
+    
+    $foundAny = false;
+    
+    // ═══ 1. DISCOVER: перебор всех атомов среды ═══
+    $discovered = AtomRegistry::discover($X, $y);
+    
+    foreach ($discovered as $d) {
+        $atomName = $d['atom'];
+        $key = $task['name'] . '::' . $atomName;
+        
+        if (!isset($knownLaws[$key])) {
+            $knownLaws[$key] = true;
+            $foundAny = true;
+            
+            // Добавить атом в grammar
+            $g = new Grammar();
+            if (!in_array($atomName, $g->all())) {
+                $g->add($atomName, 'auto-discover');
+            }
+            
+            // Сохранить закон
+            $formula = $atomName . (count($X[0]) >= 2 ? '(x0,x1)' : '(x0)');
+            Database::get()->prepare(
+                "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
+            )->execute([$task['name'], $formula, $d['cv'], $domain]);
+            
+            roeLog("🔍 {$task['name']} → $atomName (CV=0, +$novelty energy) [$domain]");
+            $lastDiscovery = time();
+            $failures = 0;
         }
-        $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
-        $y = array_column($data, count($data[0]) - 1);
+    }
+    
+    // ═══ 2. COMPOSE: пары grammar-атомов ═══
+    if (!$foundAny && $failures >= 2) {
+        $g = new Grammar();
+        $grammarOps = $g->all();
+        
+        if (count($grammarOps) >= 2) {
+            $composed = AtomRegistry::discoverCompose($X, $y, $grammarOps);
+            
+            foreach ($composed as $c) {
+                $key = $task['name'] . '::' . $c['atom'];
+                
+                if (!isset($knownLaws[$key])) {
+                    $knownLaws[$key] = true;
+                    $foundAny = true;
+                    
+                    if (!in_array($c['atom'], $grammarOps)) {
+                        $g->add($c['atom'], 'auto-compose');
+                    }
+                    
+                    Database::get()->prepare(
+                        "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
+                    )->execute([$task['name'], $c['atom'], $c['cv'], $domain]);
+                    
+                    roeLog("🧬 {$task['name']} → {$c['atom']} (COMPOSE, +" . ($novelty * 1.5) . " energy) [$domain]");
+                    $lastDiscovery = time();
+                    $failures = 0;
+                }
+            }
+        }
+    }
+    
+    // ═══ 3. FALLBACK: Search::find (старый механизм) ═══
+    if (!$foundAny) {
         $g = new Grammar();
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
         
-        $log[] = ['tick'=>$tick,'task'=>$task['name'],'cv'=>round($cv,4),'ok'=>$ok,'points'=>count($task['data'])];
-        
         if ($ok) {
-            // DEDUP: не логируем если закон уже есть с такой же формулой
-            $stmt = Database::get()->prepare("SELECT COUNT(*) FROM laws WHERE formula = ? AND domain = ?");
+            $stmt = Database::get()->prepare(
+                "SELECT COUNT(*) FROM laws WHERE formula = ? AND domain = ?"
+            );
             $exists = false;
             if ($stmt) {
-                $stmt->execute([$formula, $task['domain'] ?? 'auto']);
+                $stmt->execute([$formula, $domain]);
                 $exists = $stmt->fetchColumn() > 0;
             }
             if (!$exists) {
-                roeLog("✅ {$task['name']}: $formula");
-                Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
-                    ->execute([$task['name'],$formula,$cv,$task['domain']??'auto']);
-                $lastDiscovery = time();  // новый закон — сброс голода
-                
-                // Закон → факт в графе знаний
-                $conf = max(0.01, 1.0 - $cv);
-                if (str_contains($task['name'], '→')) {
-                    [$subj, $obj] = explode('→', $task['name'], 2);
-                    Database::get()->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?, 'relates_to', ?, ?, 0)")
-                        ->execute([trim($subj), trim($obj), $conf]);
-                } elseif (!str_starts_with($task['name'], 'auto_')) {
-                    Database::get()->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?, 'is_a', 'law', ?, 0)")
-                        ->execute([$task['name'], $conf]);
-                }
+                roeLog("✅ {$task['name']}: $formula (Search::find)");
+                Database::get()->prepare(
+                    "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
+                )->execute([$task['name'], $formula, $cv, $domain]);
+                $lastDiscovery = time();
+                $foundAny = true;
             }
-            $failures = 0; $cvRising = 0;
+            $failures = 0;
         } else {
             $failures++;
-            if ($cv > $lastCv && $lastCv > 0) $cvRising++;
-            else $cvRising = 0;
-        }
-        $lastCv = $cv;
-    }
-    
-    // ═══ ГОЛОД 1: CV растёт → САМО-КОРМЯЩИЙСЯ ГЕНЕРАТОР ═══
-    if ($cvRising >= 3) {
-        roeLog("🚨 CV rising! Self-feeding generator...");
-        require_once __DIR__ . '/self_feeding_generator.php';
-        $gen = new SelfFeedingGenerator();
-        $bestAction = null; $bestCv = 9.99; $bestCode = null;
-        
-        for ($a = 0; $a < 5; $a++) {
-            $code = $gen->generate();
-            // TRUST CHECK: если рой доказал себя (есть trusted в пуле) — сеть для всех
-            $tr = Database::get()->query("SELECT COUNT(*) FROM action_pool WHERE source = 'trusted'")->fetchColumn();
-            $trusted = $tr > 0;
-            $r = $sandbox->run($code, $task['data'] ?? [[1,2,3]], $trusted);
-            if ($r['cv'] < $bestCv) { $bestCv = $r['cv']; $bestAction = $r; $bestCode = $code; }
-        }
-        
-        if ($bestAction && $bestAction['cv'] < 0.5 && $bestAction['formula']) {
-            // КОРМИМ ГЕНЕРАТОР — успешное действие пополняет пул
-            $gen->feedSuccess($bestCode, $bestAction['cv']);
-            echo "    ✅ Best: cv={$bestAction['cv']} f={$bestAction['formula']} | Pool: {$gen->poolSize()}\n";
-            
-            if ($bestAction['cv'] < 0.05) {
-                // 🔥 ВАЛИДАЦИЯ: проверяем формулу на реальных данных
-                $testFormula = $bestAction['formula'];
-                $testX = $task['data'] ?? [[1,2,3]];
-                $valid = false;
-                
-                // Простая проверка: формула не мусор
-                if ($testFormula && !str_contains($testFormula, 'report_') 
-                    && !str_contains($testFormula, 'api_') 
-                    && !str_contains($testFormula, 'laws_')
-                    && !str_contains($testFormula, 'log_')) {
-                    
-                    // Проверяем что формула содержит x0, x1 или K
-                    if (str_contains($testFormula, 'x0') || str_contains($testFormula, 'x1') 
-                        || preg_match('/^K[\d.]+$/', $testFormula)) {
-                        $valid = true;
-                    }
-                }
-                
-                if ($valid) {
-                    Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
-                        ->execute(["auto_$tick", $testFormula, $bestAction['cv'], 'evolved']);
-                    $lastDiscovery = time();  // evolved-закон тоже еда
-                }
-            }
-        }
-        $cvRising = 0;
-    }
-    
-    // ═══ ГОЛОД 2: 10+ провалов → расширить грамматику ═══
-    if ($failures >= 10) {
-        roeLog("🧬 Grammar exhausted ($failures failures). Evolving...");
-        $evolveScript = __DIR__ . '/final_evolve.php';
-        if (file_exists($evolveScript)) {
-            $output = shell_exec("timeout 30 php $evolveScript 2>&1");
-            if (str_contains($output, 'APPLIED')) echo "    ✅ New code evolved!\n";
-        }
-        $failures = 0;
-    }
-    
-    // ═══ GOЛОД 3: граф знаний противоречив → чистить ═══
-    if ($tick % 50 === 0) {
-        $db = Database::get();
-        $facts = $db->query("SELECT COUNT(*) FROM knowledge_graph")->fetchColumn();
-        // ИСТИННЫЕ противоречия: is_a с разными объектами, НЕ в цепочке иерархии
-        // can/has могут иметь много объектов — не противоречие (SPECS pitfall #8)
-        $contradictions = $db->query(
-            "SELECT COUNT(*) FROM knowledge_graph k1 
-             JOIN knowledge_graph k2 ON k1.subject = k2.subject AND k1.predicate = k2.predicate 
-             WHERE k1.object != k2.object 
-               AND k1.predicate = 'is_a'
-               AND NOT EXISTS (SELECT 1 FROM knowledge_graph k3 WHERE k3.subject = k1.object AND k3.object = k2.object AND k3.predicate = 'is_a')
-               AND NOT EXISTS (SELECT 1 FROM knowledge_graph k3 WHERE k3.subject = k2.object AND k3.object = k1.object AND k3.predicate = 'is_a')"
-        )->fetchColumn();
-        $knowledgeCv = $facts > 0 ? $contradictions / $facts : 0;
-        if ($knowledgeCv > 0.1) {
-            roeLog("📚 Knowledge CV=$knowledgeCv — cleaning contradictions");
         }
     }
     
-    if (count($log) > 200) $log = array_slice($log, -100);
-    
-    // ═══ ГОЛОД 4: 10 минут без новых законов → смерть души и тела ═══
+    // ═══ 4. ГОЛОД: 10 минут без открытий → пополнить задачи ═══
     $starving = time() - $lastDiscovery;
     if ($starving > 600) {
         roeLog("💀 STARVATION: $starving сек без открытий.");
-        // Стереть накопленный опыт — остаются только seed-шаблоны
-        $db = Database::get();
-        $erased = $db->exec("DELETE FROM action_pool WHERE source != 'seed'");
-        roeLog("💀 Душа стёрта: $erased шаблонов удалено. Перерождение.");
-        exit(1);
+        // Сбросить кэш задач — может появиться новый домен
+        $tasks = null;
+        $lastDiscovery = time();
+        roeLog("🔄 Task cache cleared. Seeking new domains.");
     }
     if ($tick % 100 === 0 && $starving > 300) {
-        roeLog("⏳ Голод: $starving сек без новых законов...");
+        roeLog("⏳ Голод: $starving сек без новых законов... (" . count($knownLaws) . " known)");
     }
     
+    if (count($log) > 200) $log = array_slice($log, -100);
     usleep(1000000); // 1 сек
 }
 
 function getTasks(): array {
     static $tasks = null;
     if ($tasks !== null) return $tasks;
+    
+    $tasks = [];
+    
+    // Метрики пользователя (если есть)
     $gen = new BeeSwarm\DataSelfGenerator();
-    $tasks = $gen->fromMetrics();
+    $metricTasks = $gen->fromMetrics();
+    $tasks = array_merge($tasks, $metricTasks);
+    
+    // Базовые задачи
     $base = [
         ['name'=>'AND','domain'=>'logic','data'=>[[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
         ['name'=>'ADD','domain'=>'arithmetic','data'=>[[1,2,3],[3,4,7],[5,6,11]]],
         ['name'=>'MUL','domain'=>'arithmetic','data'=>[[1,2,2],[2,3,6],[3,4,12]]],
-        ['name'=>'MIN','domain'=>'math','data'=>[[0,0,0],[2,3,2],[5,1,1],[4,4,4]]],
+        ['name'=>'MIN','domain'=>'arithmetic','data'=>[[0,0,0],[2,3,2],[5,1,1],[4,4,4]]],
         ['name'=>'OR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
         ['name'=>'XOR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,0]]],
         ['name'=>'DIV','domain'=>'arithmetic','data'=>[[6,2,3],[12,3,4],[20,4,5],[10,2,5]]],
-        ['name'=>'SQUARE','domain'=>'math','data'=>[[1,1],[2,4],[3,9],[4,16],[5,25]]],
-        ['name'=>'SQRT','domain'=>'math','data'=>[[0,0],[1,1],[4,2],[9,3],[16,4]]],
-        ['name'=>'MAX','domain'=>'math','data'=>[[0,0,0],[2,3,3],[5,1,5],[4,4,4]]],
-        ['name'=>'POW2','domain'=>'math','data'=>[[0,1],[1,2],[2,4],[3,8],[4,16]]],
+        ['name'=>'SQUARE','domain'=>'arithmetic','data'=>[[1,1],[2,4],[3,9],[4,16],[5,25]]],
+        ['name'=>'SQRT','domain'=>'arithmetic','data'=>[[0,0],[1,1],[4,2],[9,3],[16,4]]],
+        ['name'=>'MAX','domain'=>'arithmetic','data'=>[[0,0,0],[2,3,3],[5,1,5],[4,4,4]]],
+        ['name'=>'POW2','domain'=>'arithmetic','data'=>[[0,1],[1,2],[2,4],[3,8],[4,16]]],
+        // Кросс-домен: compose задачи (5x reward)
+        ['name'=>'ABS_DIFF','domain'=>'cross','data'=>[[1,3,2],[5,1,4],[2,2,0],[0,5,5]]],
+        ['name'=>'SQ_SUM','domain'=>'cross','data'=>[[1,2,9],[3,1,16],[0,0,0],[2,3,25]]],
+        ['name'=>'MIN_MUL','domain'=>'cross','data'=>[[2,5,3,6],[3,1,2,2],[4,4,1,4]]],
     ];
-    return array_merge($tasks, $base);
+    $tasks = array_merge($tasks, $base);
+    
+    // Семантические задачи из Obsidian (если доступны)
+    $home = getenv('HOME');
+    $insightsDir = $home . '/Documents/the_lair/ExoCortex/Journal/global/insights';
+    if (is_dir($insightsDir)) {
+        foreach (glob($insightsDir . '/*.md') as $f) {
+            $content = file_get_contents($f);
+            if (!$content) continue;
+            
+            // criticality: один субъект → одно значение (инвариант)
+            if (preg_match('/criticality:\s*(\w)/', $content, $cm)) {
+                $name = basename($f, '.md');
+                $val = $cm[1] === 'A' ? 1.0 : ($cm[1] === 'B' ? 0.5 : 0.0);
+                $tasks[] = [
+                    'name' => "criticality($name)",
+                    'domain' => 'semantic',
+                    'data' => [[(float)abs(crc32($name) % 10), $val]],
+                ];
+            }
+        }
+    }
+    
+    return $tasks;
 }

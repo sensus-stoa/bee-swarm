@@ -21,17 +21,71 @@ class AtomRegistry
     ];
 
     private static array $fnCache = [];
+    private static ?array $envAtoms = null;
+
+    // ═══ АЛФАВИТ ИЗ СРЕДЫ ═══
+
+    /** Загрузить все числовые PHP-функции (один раз, кэшируется) */
+    public static function loadEnvironment(): array
+    {
+        if (self::$envAtoms !== null) return self::$envAtoms;
+
+        $all = get_defined_functions()['internal'];
+        $unary = []; $binary = [];
+        
+        $skip = ['set_','ini_','header','session','ob_','error_report','trigger_error',
+                 'define','class_','function_','method_','trait_','interface_',
+                 'stream','socket','curl','exec','proc_','pcntl','posix',
+                 'mysql','pg_','oci_','odbc','sqlite','pdo','mongo',
+                 'image','gd_','exif','openssl','hash','password','crypt',
+                 'xml_encode','xml_decode','simplexml','dom_',
+                 'mb_','iconv','locale','date_default','timezone',
+                 'apache','fastcgi','php_ini','zend_','opcache','xdebug',
+                 'readline','ncurses','newt',
+                 'print','echo','printf','sprintf','vprintf','vsprintf',
+                 'var_dump','var_export','print_r','debug_','highlight_',
+                 'json_encode','json_decode'];
+        
+        foreach ($all as $fn) {
+            $skipIt = false;
+            foreach ($skip as $p) if (str_starts_with($fn, $p)) { $skipIt = true; break; }
+            if ($skipIt) continue;
+            
+            // Унарный тест (in-process)
+            ob_start();
+            try { $r = @$fn(-5.0); } catch (\Throwable $e) { $r = null; }
+            $out = ob_get_clean();
+            if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
+                $rf = (float)$r;
+                if (!is_nan($rf) && !is_infinite($rf)) { $unary[] = $fn; continue; }
+            }
+            
+            // Бинарный тест
+            ob_start();
+            try { $r = @$fn(1.0, 2.0); } catch (\Throwable $e) { $r = null; }
+            ob_get_clean();
+            if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
+                $rf = (float)$r;
+                if (!is_nan($rf) && !is_infinite($rf)) $binary[] = $fn;
+            }
+        }
+        
+        self::$envAtoms = array_values(array_unique(array_merge($unary, $binary)));
+        return self::$envAtoms;
+    }
+
+    public static function isEnvironmentLoaded(): bool
+    {
+        return self::$envAtoms !== null;
+    }
 
     // ═══ РЕЕСТР ═══
 
     public static function all(): array
     {
-        // Собираем унарные + бинарные (без alias-ключей)
-        $binaryNames = [];
-        foreach (self::$binary as $k => $v) {
-            $binaryNames[] = is_string($k) ? $k : $v;
-        }
-        return array_values(array_unique(array_merge(self::$unary, $binaryNames)));
+        $curated = array_merge(self::$unary, self::$binary);
+        $env = self::$envAtoms ?? [];
+        return array_values(array_unique(array_merge($curated, $env)));
     }
 
     public static function isUnary(string $name): bool

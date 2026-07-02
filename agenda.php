@@ -1,7 +1,6 @@
 <?php
-// ~/.bee_swarm/agenda.php v3
-// ДЕМОН AGI: AtomRegistry → discover → compose → grammar растёт
-// Новые домены = выше награда. Старые законы не кормят.
+// ~/.bee_swarm/agenda.php v4-cloze
+// ДЕМОН: AtomRegistry + cloze-задачи из корпуса
 
 date_default_timezone_set('Europe/Moscow');
 require_once __DIR__ . '/vendor/autoload.php';
@@ -10,10 +9,9 @@ use BeeSwarm\Search;
 use BeeSwarm\Database;
 use BeeSwarm\AtomRegistry;
 
-$log = []; $tick = 0; $failures = 0; $lastDiscovery = time();
-$knownLaws = []; // task_atom => true — чтобы не награждать повторно
+$log = []; $tick = 0; $lastDiscovery = time();
+$knownLaws = [];
 
-// ЛОГГЕР
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) mkdir($logDir, 0755, true);
 $logFile = $logDir . '/agenda.log';
@@ -25,11 +23,12 @@ function roeLog(string $msg): void {
     file_put_contents($logFile, $line, FILE_APPEND);
 }
 
-echo "[AGI v3] AtomRegistry-driven daemon. Log: $logFile\n";
+echo "[AGI v4-cloze] Daemon. Log: $logFile\n";
 
-// CLOZE: словарь корпуса
-$lairDir = getenv("HOME") . "/Documents/the_lair";
-$corpusVocab = null; $sentenceRegistry = null;
+// CLOZE: словарь корпуса + реестр предложений
+$lairDir = getenv('HOME') . '/Documents/the_lair';
+$corpusVocab = null;
+$sentenceRegistry = null;
 if (is_dir($lairDir)) {
     $corpusVocab = new \BeeSwarm\CorpusVocabulary([$lairDir]);
     $sentenceRegistry = new \BeeSwarm\SentenceRegistry([$lairDir], $corpusVocab);
@@ -39,235 +38,157 @@ if (is_dir($lairDir)) {
 while (true) {
     $tick++;
     
+    // Process CPU guard (simple)
+    $load = sys_getloadavg();
+    $cpu = $load[0] / max(1, (int)shell_exec('nproc 2>/dev/null') ?: 1);
+    if ($cpu > 0.7) { usleep(2000000); continue; }
+    
     $tasks = getTasks();
     if (empty($tasks)) { usleep(1000000); continue; }
     
     $task = $tasks[array_rand($tasks)];
     $data = $task['data'];
-    if (count($data) > 30) {
-        $keys = array_rand($data, 30);
-        $data = array_map(fn($k) => $data[$k], $keys);
-        $data = array_values($data);
-    }
+    if (count($data) > 30) { $keys = array_rand($data, 30); $data = array_map(fn($k) => $data[$k], $keys); $data = array_values($data); }
     $X = array_map(fn($r) => array_slice($r, 0, -1), $data);
     $y = array_column($data, count($data[0]) - 1);
-    
     $domain = $task['domain'] ?? 'unknown';
-    $novelty = ($domain === 'cross') ? 5.0 : (($domain === 'semantic') ? 2.0 : 1.0);
     
     $foundAny = false;
     
-    // ═══ 1. DISCOVER: перебор всех атомов среды ═══
-    $discovered = AtomRegistry::discover($X, $y);
-    
-    foreach ($discovered as $d) {
-        $atomName = $d['atom'];
-        $key = $task['name'] . '::' . $atomName;
-        
-        if (!isset($knownLaws[$key])) {
-            $knownLaws[$key] = true;
-            $foundAny = true;
-            
-            // Добавить атом в grammar
-            $g = new Grammar();
-            if (!in_array($atomName, $g->all())) {
-                $g->add($atomName, 'auto-discover');
+    // ═══ CLOZE: error-rate CV ═══
+    if ($domain === 'cloze' && $sentenceRegistry) {
+        $g = new Grammar(); $grammarOps = $g->all();
+        $bestAtom = null; $bestError = 1.0;
+        foreach ($grammarOps as $op) {
+            $errors = 0; $total = count($data);
+            foreach ($data as $row) {
+                [$sId, $maskPos, $targetId, $expected] = $row;
+                $sentence = $sentenceRegistry->get((int)$sId);
+                if (!$sentence) { $errors++; continue; }
+                $ids = $sentence['token_ids'];
+                $predId = $maskPos > 0 ? ($ids[$maskPos - 1] ?? 0) : 0;
+                $pred = ($predId === (int)$targetId) ? 1.0 : 0.0;
+                if (abs($pred - $expected) > 0.01) $errors++;
             }
-            
-            // Сохранить закон
-            $formula = $atomName . (count($X[0]) >= 2 ? '(x0,x1)' : '(x0)');
-            Database::get()->prepare(
-                "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
-            )->execute([$task['name'], $formula, $d['cv'], $domain]);
-            
-            roeLog("🔍 {$task['name']} → $atomName (CV=0, +$novelty energy) [$domain]");
-            $lastDiscovery = time();
-            $failures = 0;
+            $er = $errors / max(1, $total);
+            if ($er < $bestError) { $bestError = $er; $bestAtom = $op; }
+        }
+        if ($bestAtom && $bestError < 0.5) {
+            $key = $task['name'] . '::' . $bestAtom;
+            if (!isset($knownLaws[$key])) {
+                $knownLaws[$key] = true; $foundAny = true;
+                Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $bestAtom, $bestError, $domain]);
+                roeLog("CLZ {$task['name']} -> {$bestAtom} (err={$bestError})");
+                $lastDiscovery = time();
+            }
         }
     }
     
-    // ═══ 2. COMPOSE: при любом провале простых атомов ═══
-    if (!$foundAny) {
-        $g = new Grammar();
-        $grammarOps = $g->all();
-        
+    // ═══ 1. DISCOVER ═══
+    if (!$foundAny && $domain !== 'cloze') {
+    foreach (AtomRegistry::discover($X, $y) as $d) {
+        $key = $task['name'] . '::' . $d['atom'];
+        if (!isset($knownLaws[$key])) {
+            $knownLaws[$key] = true; $foundAny = true;
+            $g = new Grammar();
+            if (!in_array($d['atom'], $g->all())) { $g->add($d['atom'], 'auto-discover'); }
+            Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
+            roeLog("DIS {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
+            $lastDiscovery = time();
+        }
+    }
+    }
+    
+    // ═══ 2. COMPOSE ═══
+    if (!$foundAny && $domain !== 'cloze') {
+        $g = new Grammar(); $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {
-            $composed = AtomRegistry::discoverCompose($X, $y, $grammarOps);
-            
-            foreach ($composed as $c) {
+            foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps) as $c) {
                 $key = $task['name'] . '::' . $c['atom'];
-                
                 if (!isset($knownLaws[$key])) {
-                    $knownLaws[$key] = true;
-                    $foundAny = true;
-                    
-                    if (!in_array($c['atom'], $grammarOps)) {
-                        $g->add($c['atom'], 'auto-compose');
-                    }
-                    
-                    Database::get()->prepare(
-                        "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
-                    )->execute([$task['name'], $c['atom'], $c['cv'], $domain]);
-                    
-                    roeLog("🧬 {$task['name']} → {$c['atom']} (COMPOSE, +" . ($novelty * 1.5) . " energy) [$domain]");
+                    $knownLaws[$key] = true; $foundAny = true;
+                    if (!in_array($c['atom'], $grammarOps)) { $g->add($c['atom'], 'auto-compose'); }
+                    Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $c['atom'], $c['cv'], $domain]);
+                    roeLog("CMP {$task['name']} -> {$c['atom']} (COMPOSE) [$domain]");
                     $lastDiscovery = time();
-                    $failures = 0;
                 }
             }
         }
     }
     
-    // ═══ 3. FALLBACK: Search::find (старый механизм) ═══
     if (!$foundAny) {
-        $g = new Grammar();
-        [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
-        
-        if ($ok) {
-            $stmt = Database::get()->prepare(
-                "SELECT COUNT(*) FROM laws WHERE formula = ? AND domain = ?"
-            );
-            $exists = false;
-            if ($stmt) {
-                $stmt->execute([$formula, $domain]);
-                $exists = $stmt->fetchColumn() > 0;
-            }
-            if (!$exists) {
-                roeLog("✅ {$task['name']}: $formula (Search::find)");
-                Database::get()->prepare(
-                    "INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)"
-                )->execute([$task['name'], $formula, $cv, $domain]);
-                $lastDiscovery = time();
-                $foundAny = true;
-            }
-            $failures = 0;
-        } else {
-            $failures++;
-        }
-    }
-    
-    // ═══ 4. ГОЛОД: 10 минут без открытий → пополнить задачи ═══
-    $starving = time() - $lastDiscovery;
-    if ($starving > 600) {
-        roeLog("💀 STARVATION: $starving сек без открытий.");
-        // Сбросить кэш задач — может появиться новый домен
-        $tasks = null;
-        $lastDiscovery = time();
-        roeLog("🔄 Task cache cleared. Seeking new domains.");
-    }
-    if ($tick % 100 === 0 && $starving > 300) {
-        roeLog("⏳ Голод: $starving сек без новых законов... (" . count($knownLaws) . " known)");
+        usleep(500000); // 500ms sleep when nothing found
     }
     
     if (count($log) > 200) $log = array_slice($log, -100);
-    usleep(1000000); // 1 сек
+    usleep(200000); // base tick: 200ms
 }
 
 function getTasks(): array {
     static $tasks = null;
     static $lastRegen = 0;
+    global $tick, $corpusVocab, $sentenceRegistry;
     
-    // Перегенерируем если прошло 100 тиков или первый запуск
-    global $tick;
     if ($tasks !== null && ($tick - $lastRegen) < 100) return $tasks;
     $lastRegen = $tick;
     
     $tasks = [];
     
-    // Метрики пользователя (если есть)
+    // Метрики
     $gen = new BeeSwarm\DataSelfGenerator();
-    $metricTasks = $gen->fromMetrics();
-    $tasks = array_merge($tasks, $metricTasks);
+    $tasks = array_merge($tasks, $gen->fromMetrics());
     
     // Базовые задачи
     $base = [
         ['name'=>'AND','domain'=>'logic','data'=>[[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
         ['name'=>'ADD','domain'=>'arithmetic','data'=>[[1,2,3],[3,4,7],[5,6,11]]],
         ['name'=>'MUL','domain'=>'arithmetic','data'=>[[1,2,2],[2,3,6],[3,4,12]]],
-        ['name'=>'MIN','domain'=>'arithmetic','data'=>[[0,0,0],[2,3,2],[5,1,1],[4,4,4]]],
         ['name'=>'OR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
         ['name'=>'XOR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,0]]],
-        ['name'=>'DIV','domain'=>'arithmetic','data'=>[[6,2,3],[12,3,4],[20,4,5],[10,2,5]]],
-        ['name'=>'SQUARE','domain'=>'arithmetic','data'=>[[1,1],[2,4],[3,9],[4,16],[5,25]]],
+        ['name'=>'SQUARE','domain'=>'arithmetic','data'=>[[1,1],[2,4],[3,9],[4,16]]],
         ['name'=>'SQRT','domain'=>'arithmetic','data'=>[[0,0],[1,1],[4,2],[9,3],[16,4]]],
         ['name'=>'MAX','domain'=>'arithmetic','data'=>[[0,0,0],[2,3,3],[5,1,5],[4,4,4]]],
-        ['name'=>'POW2','domain'=>'arithmetic','data'=>[[0,1],[1,2],[2,4],[3,8],[4,16]]],
-        // Кросс-домен: compose задачи (5x reward)
-        ['name'=>'ABS_DIFF','domain'=>'cross','data'=>[[1,3,2],[5,1,4],[2,2,0],[0,5,5]]],
-        ['name'=>'SQ_SUM','domain'=>'cross','data'=>[[1,2,9],[3,1,16],[0,0,0],[2,3,25]]],
-        ['name'=>'MIN_MUL','domain'=>'cross','data'=>[[2,5,3,6],[3,1,2,2],[4,4,1,4]]],
+        ['name'=>'DIV','domain'=>'arithmetic','data'=>[[6,2,3],[12,3,4],[20,4,5],[10,2,5]]],
     ];
     $tasks = array_merge($tasks, $base);
     
-    // Семантические задачи из Obsidian (если доступны)
-    $home = getenv('HOME');
-    $insightsDir = $home . '/Documents/the_lair/ExoCortex/Journal/global/insights';
-    if (is_dir($insightsDir)) {
-        foreach (glob($insightsDir . '/*.md') as $f) {
-            $content = file_get_contents($f);
-            if (!$content) continue;
-            
-            // criticality: один субъект → одно значение (инвариант)
-            if (preg_match('/criticality:\s*(\w)/', $content, $cm)) {
-                $name = basename($f, '.md');
-                $val = $cm[1] === 'A' ? 1.0 : ($cm[1] === 'B' ? 0.5 : 0.0);
-                $tasks[] = [
-                    'name' => "criticality($name)",
-                    'domain' => 'semantic',
-                    'data' => [[(float)abs(crc32($name) % 10), $val]],
-                ];
-            }
-        }
-    }
-    
-    // Самогенерирующиеся compose-задачи из grammar_ops
-    $g = new Grammar();
-    $grammarOps = $g->all();
+    // Self-generating compose tasks
+    $g = new Grammar(); $grammarOps = $g->all();
     if (count($grammarOps) >= 2) {
-        $composeCount = 0;
+        $count = 0;
         foreach ($grammarOps as $outer) {
             foreach ($grammarOps as $inner) {
-                if ($outer === $inner) continue;
-                if ($composeCount >= 10) break 2;
-                
-                // Только унарный outer + любой inner
+                if ($outer===$inner || $count>=10) break 2;
                 if (!AtomRegistry::isUnary($outer)) continue;
-                
                 $data = [];
-                for ($i = 0; $i < 6; $i++) {
-                    $x = mt_rand(-10, 10);
-                    $y = mt_rand(-10, 10);
-                    $v1 = AtomRegistry::isBinary($inner)
-                        ? AtomRegistry::apply($inner, (float)$x, (float)$y)
-                        : AtomRegistry::apply($inner, (float)$x);
-                    if ($v1 === null || is_nan($v1) || is_infinite($v1)) continue;
-                    $v2 = AtomRegistry::apply($outer, $v1);
-                    if ($v2 === null || is_nan($v2) || is_infinite($v2)) continue;
-                    $data[] = [(float)$x, (float)$y, $v2];
+                for ($i=0;$i<6;$i++) {
+                    $x=mt_rand(-10,10); $y=mt_rand(-10,10);
+                    $v1 = AtomRegistry::isBinary($inner) ? AtomRegistry::apply($inner,(float)$x,(float)$y) : AtomRegistry::apply($inner,(float)$x);
+                    if ($v1===null||is_nan($v1)||is_infinite($v1)) continue;
+                    $v2 = AtomRegistry::apply($outer,$v1);
+                    if ($v2===null||is_nan($v2)||is_infinite($v2)) continue;
+                    $data[] = [(float)$x,(float)$y,$v2];
                 }
-                if (count($data) >= 3) {
-                    $tasks[] = ['name' => "GEN_{$outer}_{$inner}", 'data' => $data, 'domain' => 'generated'];
-                    $composeCount++;
-                }
+                if (count($data)>=3) { $tasks[] = ['name'=>"GEN_{$outer}_{$inner}",'data'=>$data,'domain'=>'generated']; $count++; }
             }
         }
     }
     
-    // CLOZE-задачи
-    global $corpusVocab, $sentenceRegistry;
-    if ($sentenceRegistry && $corpusVocab) {
+    // CLOZE-задачи из корпуса
+    if ($sentenceRegistry && $corpusVocab && count($tasks) < 30) {
         $n = min($sentenceRegistry->count(), 50);
-        for ($i = 0; $i < $n && count($tasks) < 30; $i++) {
+        for ($i = 0; $i < $n; $i++) {
             $s = $sentenceRegistry->get($i);
-            if (!$s || count($s["token_ids"]) < 3) continue;
-            foreach ($s["token_ids"] as $pos => $tid) {
+            if (!$s || count($s['token_ids']) < 3) continue;
+            foreach ($s['token_ids'] as $pos => $tid) {
                 $w = $corpusVocab->word($tid);
-                if (!$w || in_array($w, ["i","v","na","s","ne","ili","no","a"])) continue;
-                $data = [[$i, $pos, $tid, 1.0]];
+                if (!$w || in_array($w, ['i','v','na','s','ne','ili','no','a'])) continue;
+                $d = [[$i, $pos, $tid, 1.0]];
                 for ($j = 0; $j < 3; $j++) {
                     $r = mt_rand(1, $corpusVocab->size());
-                    if ($r !== $tid) $data[] = [$i, $pos, $r, 0.0];
+                    if ($r !== $tid) $d[] = [$i, $pos, $r, 0.0];
                 }
-                $tasks[] = ["name"=>"cloze_{$i}_{$pos}", "data"=>$data, "domain"=>"cloze"];
+                $tasks[] = ['name'=>"cloze_{$i}_{$pos}", 'data'=>$d, 'domain'=>'cloze'];
                 break;
             }
         }

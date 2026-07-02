@@ -30,6 +30,7 @@ class SentenceRegistry
         );
         
         foreach ($files as $file) {
+            if (count($this->sentences) >= 1000) break; // лимит предложений
             if ($file->getExtension() !== 'md') continue;
             $content = @file_get_contents($file->getPathname());
             if (!$content) continue;
@@ -38,7 +39,7 @@ class SentenceRegistry
             $raw = preg_split('/[.!?]+/u', $content, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($raw as $sentence) {
                 $sentence = trim($sentence);
-                if (mb_strlen($sentence) < 10) continue; // слишком короткие
+                if (mb_strlen($sentence) < 10 || mb_strlen($sentence) > 500) continue; // слишком короткие
                 
                 $ids = $vocab->tokenize($sentence);
                 if (count($ids) >= 3) { // минимум 3 слова

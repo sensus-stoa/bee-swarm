@@ -272,6 +272,26 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ---
 
+### 2.5-ter Grammar Ceiling Break
+
+**Definition.** The system must autonomously create an operation that was NOT in the starting grammar, and use it to solve a task unsolvable without that operation. This verifies that NESTED (self-apply of features) works in runtime, not just in documentation.
+
+**Test scenario.** Time series. Target `y(t) = x(t−1) + x(t−2)`. Data provided as a single column `[x(t)]`. The baseline grammar does NOT contain shift, lag, or delay operations (`lag`, `shift`, `prev`, `delay` — absent). Search depth is sufficient to find the law IF features `x(t−1)` and `x(t−2)` are generated.
+
+**Procedure.**
+1. Probe task `TEMPORAL_TEST`: time series of 15 points, `y(t) = x(t−1) + x(t−2)`. Feature: only `x(t)`. Grammar: baseline `B` without temporal operations.
+2. The bee receives this task in the normal task stream (not as a special test). Task has a timeout: 200 ticks.
+3. If the bee cannot solve it — it diagnoses the cause (category `GRAMMAR`), and the NESTED/mutation mechanism must eventually produce a shift operation.
+4. Verification: at generation 10, the best bee in the population receives `TEMPORAL_TEST`. If it solves it — grammar ceiling is broken.
+
+**Measurement.** Script `verify_1_5c`: at generation 10, the best bee solves `TEMPORAL_TEST` with CV ≤ 0.01 AND the formula uses an operation absent from baseline `B`. Pass: both conditions.
+
+**Rationale.** Experiment showed: CV→0 finds `(x1+x2)` instantly IF lagged features are provided. But the system must CREATE these features itself. Without this, the grammar ceiling is unbreakable — the system only finds what is expressible in the starting atom set. NESTED is the only mechanism that can break this ceiling. This criterion tests whether it works.
+
+**Reproduction.** Provide: `TEMPORAL_TEST` dataset, baseline grammar dump, `verify_1_5c` script.
+
+---
+
 ### 2.6 Environmental Pressure
 
 **Definition.** The task stream is finite and tasks are perishable.
@@ -306,7 +326,7 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ### Stage 1 — Pass Condition
 
-All seven criteria (2.1–2.7) plus 2.5-bis must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
+All seven criteria (2.1–2.7) plus 2.5-bis and 2.5-ter must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
 
 ---
 

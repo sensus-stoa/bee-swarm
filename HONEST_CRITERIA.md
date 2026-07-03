@@ -72,7 +72,9 @@ This principle distinguishes the system from LLMs, neural networks, and statisti
 - `ε_train = 0.01` **(T)** — CV below this value means the ratio `e(x)/y` deviates from its mean by less than 1%, which is the operational definition of "expression explains data." Derived from the CV→0 criterion itself.
 - `ε_holdout = 0.10` **(C)** — threshold calibrated on a benchmark of 10 known physical laws (Kepler, Ohm, Boyle, etc.) with n=20, h=4. At ε_holdout=0.10, all 10 known laws pass and 0/100 random expressions pass. Calibration data in `benchmarks/heldout_calibration.json`.
 
-**Measurement.** Script `verify_0_1` parses system log. For every line marked `DISCOVERY`, it extracts the formula `e`. It checks that the same formula was never evaluated on the holdout point(s) during search (by instrumenting Search::find to log accessed indices). Pass: `count(OVERFIT) = 0 AND count(DISCOVERY) > 0` over observation period.
+**Measurement.** Script `verify_0_1` parses system log. For every `DISCOVERY` line, extracts formula `e`. Verifies that the same formula was never evaluated on holdout points during search (by instrumenting Search::find to log accessed indices). Pass: `count(OVERFIT) = 0 AND count(DISCOVERY) > 0` over observation period.
+
+**Retrospective check.** All laws discovered BEFORE held-out activation and stored in the `laws` table must undergo retrospective validation. For each law: load the original data, set aside the last point (or `h` points per rule `max(1, ⌊n/5⌋)`), recompute CV on held-out points. Laws with `CV_H > ε_holdout` are deleted from DB and logged as `RETRO_OVERFIT`. The system cannot proceed to Stage 1 until `count(RETRO_OVERFIT) = 0` is confirmed (all old laws are either confirmed or removed).
 
 **Reproduction.** Provide: (a) Search::find with index logging, (b) `discover()` wrapper that performs train/test split, (c) benchmark dataset, (d) `verify_0_1` script.
 
@@ -245,11 +247,11 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 **Procedure.**
 1. At each generation (defined as `count(spawn_events) ≥ N` where N = current population size), snapshot: (a) mean grammar size `|G|`, (b) number of unique grammars in population, (c) Jaccard diversity = 1 − (|∩G_i| / |∪G_i|).
-2. Over 100 generations: (a) mean `|G|` at generation 100 must be ≤ mean `|G|` at generation 20 (grammar does not bloat), (b) Jaccard diversity at generation 100 must be ≥ 0.1 (population has not collapsed to monoculture).
+2. Over 100 generations: (a) mean `|G|` at generation 100 must be STRICTLY LESS than mean `|G|` at generation 20 (grammar compresses, not just fails to grow), (b) Jaccard diversity at generation 100 must be ≥ 0.1 (population has not collapsed to monoculture).
 
 **Rationale (T).** Monotonic growth of grammar without removal = accumulation, not evolution. Monoculture = selection has eliminated all variation, evolution has stopped. Both are known failure modes of evolutionary algorithms (bloat and premature convergence).
 
-**Measurement.** Script `verify_1_5` computes generation snapshots from spawn log. Pass: `mean_|G|_gen100 ≤ mean_|G|_gen20 AND diversity_gen100 ≥ 0.1`.
+**Measurement.** Script `verify_1_5` computes generation snapshots from spawn log. Pass: `mean_|G|_gen100 < mean_|G|_gen20 AND diversity_gen100 ≥ 0.1`.
 
 **Reproduction.** Provide: spawn log format, snapshot computation script.
 
@@ -635,6 +637,8 @@ All eight criteria (4.1–4.8) must return `pass`. Criterion 4.3 requires a 30-d
 ## APPENDIX A: AUTOMATED VERIFICATION SUITE
 
 A single script `verify_all.php` runs all script-verifiable criteria against a system log and database. Criteria requiring manual steps (3.3, pre-registration checks) are flagged as `MANUAL_REQUIRED` with instructions.
+
+**Stage Gate rule.** The script refuses to test criteria of stage N+1 if any criterion of stage N returned `FAIL`. Result for a blocked stage: `BLOCKED: stage N not passed (X criteria failed)`. This prevents vacuous passes: Stage 2 criteria cannot be meaningfully tested before Stage 1 passes; Stage 3 — before Stage 2 passes. The rule is cascading.
 
 Usage: `php verify_all.php --stage=0 --log=logs/agenda.log --db=data/swarm.db`
 

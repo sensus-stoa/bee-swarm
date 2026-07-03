@@ -516,8 +516,10 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, 2.5-quinquies,
 
 Semantic falsification does NOT work through confidence arithmetic (+0.25/−0.4). It works through the same CV→0 mechanism — applied to the domain "history of all semantic facts." This is not an assessment of a single fact. It is a law about fact stability in general.
 
-1. The system applies CV→0 to the history of all facts as a domain. Data: for each fact — `(source_count, independent_source_count, age_days, contradiction_count, final_state)`. Target variable: `stable` (1 if the fact was not contradicted within 30 days of its last confirmation, 0 if it was).
-2. The system discovers stability laws of the form: `P(stability) = f(source_count, independent_count, age_days)`. These laws are invariants just like Kepler or Ohm. They have CV, held-out, boundaries.
+1. The system applies CV→0 to the history of all facts as a domain. Data: for each fact — `(source_count, independent_source_count, age_days, contradiction_count, cv_heldout, predictive_superiority, final_state)`. Target variable: `stable` (1 if the fact was not contradicted within 30 days of its last confirmation, 0 if it was).
+   - `cv_heldout` — held-out CV of the numeric law linked to this fact (if any). If the fact is purely semantic — null.
+   - `predictive_superiority` — ratio `CV_H(alternative_law) / CV_H(this_law)`. If this law has CV_H=0.01 and the alternative has CV_H=0.05 — superiority=5.0×. If no alternatives exist — 1.0. This feature allows the stability law to automatically account for the fact that lower source_count + better CV_H beats higher source_count + worse CV_H — Kuhnian paradigm shift.
+2. The system discovers stability laws of the form: `P(stability) = f(source_count, independent_count, age_days, cv_heldout, predictive_superiority)`. These laws are invariants just like Kepler or Ohm. They have CV, held-out, boundaries. During a Kuhnian paradigm shift (fewer new sources, but their CV_H is significantly better), the `predictive_superiority` term automatically gives the new law higher predicted stability — not through hardcode, but through a CV→0-discovered coefficient.
 3. For a specific fact, endpoint `/explain?law=X→Y` returns JSON:
    ```json
    {
@@ -535,6 +537,8 @@ Semantic falsification does NOT work through confidence arithmetic (+0.25/−0.4
        "cv_heldout": 0.04,
        "n_facts": 47,
        "predicted_stability": 0.82,
+       "predictive_superiority": 5.0,
+       "subsumed_by": null,
        "falsification_conditions": [
          "stability < 0.5 if independent_count drops (sources found to be dependent)",
          "stability < 0.5 if age_days > 30 without new confirmation",

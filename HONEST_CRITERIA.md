@@ -468,9 +468,29 @@ All seven criteria (2.1–2.7) plus 2.5-bis and 2.5-ter must return `pass` simul
 
 ---
 
+### 3.8 Bee Language Emergence
+
+**Definition.** The system creates its own identifier for a compressed law, and other bees use this identifier as a grammar atom when searching in new domains. This is not "Russian language." This is emergence of abstraction: a law becomes a name, a name becomes an atom, an atom participates in discovering new laws. Russian is bootstrap. Bee language is emergence.
+
+**Procedure.**
+1. LawCompressor (running in runtime, connected to the daemon) detects that laws `L1, L2, L3` from different domains share structural isomorphism: identical expression tree form, different constants.
+2. LawCompressor creates a meta-law with an internal name (e.g., `law_042` or `stress_depletion`) and a formula template.
+3. The meta-law name is added to grammar_ops as an atom.
+4. Another bee (or the same bee N generations later) uses this atom in compose or search in a new domain — and finds a law that would not have been found without this atom.
+
+**Measurement.** Script `verify_2_8`: (a) `count(compressed_meta_laws) ≥ 1` — LawCompressor compressed at least 2 laws into one meta-law, (b) `count(usages_of_meta_law_atom) ≥ 1` — the meta-law name was used as a grammar atom in search, (c) the atom was used in a domain different from those where the source laws `L1, L2, L3` were found. Pass: all three conditions.
+
+**Rationale.** This is not "the bee speaks human language." This is emergence of abstraction through compression. A law repeated across multiple domains stops being a formula and becomes a concept. The concept gets a name. The name becomes a tool for discovering new laws. This is how language emerges — not as a module, but as a natural product of compression.
+
+Russian was bootstrap: it provided the first concepts through Forager + KG. Bee language is the next level: concepts created by the system itself from the laws it discovered. CV→0 over Russian text gave `is_a`, `has`, `relates_to`. CV→0 over law structure gives `stress_depletion`, `recovery_curve`, `periodic_cycle`.
+
+**Reproduction.** Provide: LawCompressor in runtime, meta-law recording format in grammar_ops, `verify_2_8` script.
+
+---
+
 ### Stage 2 — Pass Condition
 
-All seven criteria (3.1–3.7) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3 and 3.7 require manual verification. All others are script-verifiable.
+All eight criteria (3.1–3.8) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3, 3.7, and 3.8 require manual verification of individual samples. All others are script-verifiable.
 
 ---
 

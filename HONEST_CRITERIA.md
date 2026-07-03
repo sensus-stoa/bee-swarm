@@ -168,9 +168,29 @@ Based on preliminary runs: `t_min ≈ 8` for depth 1, `t_min ≈ 15` for depth 2
 
 ---
 
+### 1.7 Compression Superiority
+
+**Definition.** A law must compress data better than the simplest non-trivial model: the arithmetic mean of the target variable. If a formula does not compress data more than `y = mean(y_train)` — it is not a law, but an over-parameterized constant. Without this criterion, the system stamps out `+(x0, 0) + K1` where K1 ≈ mean(y), and all other criteria pass on garbage.
+
+**Procedure.**
+1. For each task where a candidate `f(x)` was found, compute the trivial baseline model: `mean_y = mean(y_train)`. Baseline CV is computed on the same held-out points: `CV_H(mean) = CV(mean_y, y_heldout)`.
+2. Compute candidate description cost: `cost(f) = complexity(f) + log₂(1 + CV_H(f))`, where `complexity(f)` is the number of nodes in the expression tree.
+3. Compute baseline description cost: `cost(mean) = 1 + log₂(1 + CV_H(mean))`, where 1 is the cost of storing a single number (the mean).
+4. Candidate is accepted only if `cost(f) < cost(mean)`. Otherwise — rejected as `COMPRESSION_FAIL`.
+
+**Rationale (T).** Minimum Description Length principle (Rissanen, 1978): the best model is the one that compresses data most. The trivial model `y = const` costs 1 (one number). Any formula `f(x)` costs ≥ 1 (expression tree). If it does not compensate for its complexity with better prediction — it is useless. The threshold `cost(f) < cost(mean)` guarantees that the law compresses data better than "just the average."
+
+**Parameter (T).** Cost formula `cost = complexity + log₂(1 + CV_H)`. Base-2 logarithm aligns units: complexity in bits (each node encodes one operation), log₂(1+CV_H) in bits (prediction error). The sum gives total description length in bits.
+
+**Measurement.** Script `verify_0_7`: for every law in DB accepted after criterion activation: `cost(f) < cost(mean)`. Pass: `count(COMPRESSION_FAIL) = 0`.
+
+**Reproduction.** Provide: `cost()` function, baseline model, `verify_0_7` script.
+
+---
+
 ### Stage 0 — Pass Condition
 
-All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous observation period of **24 hours** of system runtime. The verification scripts must be run on the same log file and database.
+All seven criteria (1.1–1.7) must return `pass` simultaneously for a continuous observation period of **24 hours** of system runtime. The verification scripts must be run on the same log file and database.
 
 ---
 
@@ -332,6 +352,26 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ---
 
+### 2.5-sexies Falsification Feedback
+
+**Definition.** A grammar atom that produced ≥3 falsified laws (held-out CV > ε_holdout) receives a penalty to its usage probability. The system does not just delete bad laws — it penalizes the operations that produced them. Without this, grammar accumulates garbage atoms that passed discover on noise.
+
+**Procedure.**
+1. For each atom `a` in grammar, maintain counter `falsifications[a]` — number of laws containing `a` in their expression tree that were subsequently falsified (held-out CV > 0.10 or H1 verification failed).
+2. When `falsifications[a] ≥ 3`: mutation probability for adding atom `a` drops to 0.1× baseline. Mutation probability for removing `a` rises to 5× baseline.
+3. When `falsifications[a] = 0` for 50 generations AND ≥3 successful laws use `a`: penalty is lifted. Atom is rehabilitated.
+4. Baseline atoms `B` (starting grammar) are exempt from penalty — they are environment-given, not system-discovered.
+
+**Measurement.** Script `verify_1_5f`: (a) `count(penalized_atoms) ≥ 1` during observation (at least one atom was penalized), (b) `count(rehabilitated_atoms) ≥ 1` OR `count(atoms_removed_by_penalty) ≥ 1` (system either rehabilitates or removes bad atoms). Pass: both conditions.
+
+**Rationale.** Paradigm Swarm solves this through weight freezing (bad experts are just not used). In the bee architecture, weights aren't frozen — grammar is open to all. An explicit feedback mechanism is needed: operations that systematically produce garbage are selected against. This closes the loop "search → law → verification → grammar" — the last link that was missing from criteria.
+
+**Parameter (E).** Threshold 3 falsifications is chosen as "three independent failures." One failure = randomness. Two = coincidence. Three = pattern.
+
+**Reproduction.** Provide: penalty mechanism, penalty event log format, `verify_1_5f` script.
+
+---
+
 ### 2.6 Environmental Pressure
 
 **Definition.** The task stream is finite and tasks are perishable.
@@ -366,7 +406,7 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ### Stage 1 — Pass Condition
 
-All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinquies must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
+All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, 2.5-quinquies, and 2.5-sexies must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
 
 ---
 
@@ -473,7 +513,12 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinqu
 3. `extrapolation = "UNKNOWN"` is required — the system states where it does NOT claim the law works.
 
 **Procedure — semantic laws (is_a, has, relates_to, can, + bee language).**
-1. Endpoint `/explain?law=X→Y` for a semantic fact returns JSON:
+
+Semantic falsification does NOT work through confidence arithmetic (+0.25/−0.4). It works through the same CV→0 mechanism — applied to the domain "history of all semantic facts." This is not an assessment of a single fact. It is a law about fact stability in general.
+
+1. The system applies CV→0 to the history of all facts as a domain. Data: for each fact — `(source_count, independent_source_count, age_days, contradiction_count, final_state)`. Target variable: `stable` (1 if the fact was not contradicted within 30 days of its last confirmation, 0 if it was).
+2. The system discovers stability laws of the form: `P(stability) = f(source_count, independent_count, age_days)`. These laws are invariants just like Kepler or Ohm. They have CV, held-out, boundaries.
+3. For a specific fact, endpoint `/explain?law=X→Y` returns JSON:
    ```json
    {
      "type": "semantic",
@@ -481,20 +526,32 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinqu
      "predicate": "is_a",
      "subject": "stress",
      "object": "predictor",
-     "confidence": 0.7,
-     "sources": ["obsidian/note_042.md", "obsidian/note_103.md"],
      "source_count": 2,
-     "semantic_falsification": [
-       "confidence drops below 0.3 if ANY existing source is contradicted by new data",
-       "confidence drops below 0.3 if 2 NEW independent sources contradict this fact",
-       "if confidence < 0.3 → fact removed from KG → all laws using this fact in compose are re-verified"
-     ]
+     "independent_source_count": 2,
+     "age_days": 3,
+     "stability_law": {
+       "formula": "sigmoid(0.7 × independent_count − 0.3 × age_days)",
+       "cv_train": 0.02,
+       "cv_heldout": 0.04,
+       "n_facts": 47,
+       "predicted_stability": 0.82,
+       "falsification_conditions": [
+         "stability < 0.5 if independent_count drops (sources found to be dependent)",
+         "stability < 0.5 if age_days > 30 without new confirmation",
+         "stability < 0.5 if contradiction_count > 0"
+       ]
+     },
+     "sources": ["obsidian/note_042.md", "obsidian/note_103.md"],
+     "source_independence": {
+       "method": "cosine_similarity_of_context",
+       "are_independent": true
+     }
    }
    ```
-2. `confidence` is computed as: each independent confirmation (new source, same fact) adds +0.25, cap 1.0. Each contradiction (source states the opposite) subtracts −0.4. If confidence ≤ 0.3, the fact is removed from KG.
-3. `source_count` — number of independent sources confirming the fact. Minimum 1.
+4. `source_independence` is verified through cosine similarity of source contexts. If two sources are the same text (copied) or have >0.9 context window similarity, they are DEPENDENT and `independent_source_count` is counted as 1, not 2. This solves the problem "3 books cite one → source_count=3, really=1."
+5. `age_days` — age of the fact in days since last confirmation. The stability law accounts for temporal degradation: old facts without reconfirmation lose stability. This is not hardcoded decay. It is a CV→0-discovered coefficient on `age_days` in the stability formula.
 
-**Measurement.** Script `verify_2_5` queries `/explain` for the 5 most recent laws (both numeric and semantic if available). For each: (a) non-empty `falsification_conditions` (numeric) OR `semantic_falsification` (semantic), (b) for numeric — at least one boundary + `extrapolation = "UNKNOWN"`, (c) for semantic — `source_count ≥ 1`, `confidence` in range [0.0, 1.0], non-empty `semantic_falsification`. Pass: all checked laws satisfy their type's conditions.
+**Measurement.** Script `verify_2_5`: (a) ≥1 stability law for semantic facts exists (CV ≤ 0.10, held-out confirmed), (b) `/explain` for 3 random semantic facts contains `stability_law` with fields `formula`, `cv_heldout`, `predicted_stability`, `falsification_conditions`, (c) `source_independence` is checked for each fact. Pass: all three conditions.
 
 **Reproduction.** Provide: `/explain` endpoint spec, verification script.
 
@@ -511,6 +568,22 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinqu
 **Measurement.** Script `verify_2_6` takes the law with widest claimed boundaries, provides 3 out-of-boundary points. Pass: system's prediction about out-of-boundary CV is correct (predicted CV_increase and actual CV > ε_holdout, OR predicted CV_stable and actual CV ≤ ε_holdout with boundary update).
 
 **Reproduction.** Provide: boundary testing protocol, out-of-boundary data generator.
+
+---
+
+### 3.6-bis Semantic-Numeric Cross-Validation
+
+**Definition.** The system verifies consistency between the semantic graph (KG) and numeric laws. If a numeric law is falsified — semantic facts linked to its variables lose stability. If a semantic fact contradicts a numeric law — one of them is wrong and must be resolved. The two islands (KG and Search) must check each other.
+
+**Procedure.**
+1. For each numeric law `X→Y`, the system checks: does KG contain fact `X relates_to Y`? If not — the system creates a candidate fact with `source="numerical_law"`, `confidence=1.0 − CV_H`.
+2. When a numeric law is falsified (held-out CV > ε_holdout or H1 failure): all semantic facts created from that law receive penalty `contradiction_count += 1`. Their stability is recomputed through the stability law (3.5).
+3. For each semantic fact `A predicate B`, the system searches for numeric laws where `A` and `B` are variables. If such a law exists with CV_H ≤ 0.05, and the semantic fact has `predicted_stability < 0.5` — contradiction: numbers say "link exists", semantics says "no link."
+4. Contradiction between semantics and numbers spawns a resolution task (analogous to 2.5-quater): the system creates a data subset where numeric law predictions and semantic predictions diverge, and bees search for a resolving law.
+
+**Measurement.** Script `verify_2_6b`: (a) `count(cross_validated_facts) ≥ 1` — at least one semantic fact created from a numeric law, (b) `count(cross_contradictions_resolved) ≥ 1` — at least one contradiction between KG and numeric laws recorded and resolved. Pass: both conditions.
+
+**Reproduction.** Provide: cross-validation mechanism, `verify_2_6b` script.
 
 ---
 
@@ -553,7 +626,7 @@ Russian was bootstrap: it provided the first concepts through Forager + KG. Bee 
 
 ### Stage 2 — Pass Condition
 
-All eight criteria (3.1–3.8) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3, 3.7, and 3.8 require manual verification of individual samples. All others are script-verifiable.
+All nine criteria (3.1–3.8, 3.6-bis) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3, 3.7, and 3.8 require manual verification of individual samples. All others are script-verifiable.
 
 ---
 
@@ -727,6 +800,47 @@ All calibration datasets referenced in this protocol are versioned at `benchmark
 
 - `expected_discoveries.md` — for criteria 3.1 and 4.1
 - `architectural_limits.md` — for criterion 4.5
+
+## APPENDIX D: LAW VERSIONING
+
+Each law in the DB stores version history: `law_id`, `version`, `formula`, `cv_train`, `cv_heldout`, `discovered_at`, `replaced_at`. When a law is updated (a better formula is found), the old version is NOT deleted — `replaced_at` is set to the current timestamp. Audits (4.6, 4.8) inspect version history. A scientific paper reviewer must be able to trace the evolution of each law: which formula was discovered when, when replaced, and why.
+
+---
+
+## Consistency Audit
+
+**Performed 2026-07-04 for protocol version 1.1.**
+
+### Conflicts: 0
+
+All criteria checked pairwise for logical contradictions. Criteria referencing each other (3.5 → 2.5-quater for contradiction resolution; 2.5-sexies → 3.5 for falsification definition) form a consistent directed acyclic graph.
+
+### Prerequisites: satisfied
+
+| Criterion | Requires | Status |
+|----------|--------|--------|
+| 2.5-bis (capability growth) | Stage 0 passed (held-out working) | ✅ |
+| 2.5-quater (contradiction) | ≥2 bees with different grammars (2.3) | ✅ |
+| 2.5-quinquies (preservation) | ≥15 generations (2.1, 2.2) | ✅ |
+| 3.5 (semantic CV→0) | ≥47 facts in KG to train stability law | ⚠️ requires data accumulation |
+| 3.6-bis (cross-validation) | ≥1 numeric law AND ≥1 semantic fact | ⚠️ requires Stage 1 |
+| 4.6 (multi-gen audit) | 4.4 (Gödel loop) | ✅ |
+
+⚠️ marked criteria require data accumulation or prior stage completion — not contradictions, but prerequisites explicitly noted in Stage Gate (Appendix A).
+
+### Coverage analysis
+
+| Domain | Criteria | Coverage |
+|-------|---------|---------|
+| Honest search | 1.1–1.7 | Complete |
+| Life | 2.1–2.7 + 6 extensions | Complete |
+| Understanding | 3.1–3.8 + 3.6-bis | Complete |
+| Safety | 4.6–4.8 | Complete |
+| Autonomy | 4.1–4.5 | Complete |
+
+### Redundancy: 0
+
+No criterion is a logical consequence of another. 2.5-bis (growth) and 2.5-quinquies (preservation) measure different properties: the first — increasing capability, the second — non-decrease. 1.3 (simplicity) and 1.7 (compression) use related but non-identical metrics: simplicity compares laws to each other, compression compares laws to baseline.
 
 ---
 

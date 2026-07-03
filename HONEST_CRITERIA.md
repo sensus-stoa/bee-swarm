@@ -450,12 +450,13 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinqu
 
 ### 3.5 Falsifiable Explanation
 
-**Definition.** When asked "why do you believe X→Y?", the system provides: the formula, train CV, held-out CV, number of data points, and specific conditions under which the law would be FALSIFIED.
+**Definition.** When asked "why do you believe X→Y?", the system provides: the formula (for numeric laws) or the fact with confidence (for semantic laws), train CV / sources, held-out CV, and specific conditions under which the law would be FALSIFIED. For numeric laws, falsification is through held-out CV. For semantic laws — through confidence degradation when contradictory data arrives.
 
-**Procedure.**
+**Procedure — numeric laws.**
 1. System endpoint `/explain?law=X→Y` returns JSON:
    ```json
    {
+     "type": "numeric",
      "formula": "...",
      "cv_train": 0.004,
      "cv_heldout": 0.03,
@@ -468,10 +469,32 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinqu
      "boundaries": {"X_min": A, "X_max": B, "extrapolation": "UNKNOWN"}
    }
    ```
-2. Falsification conditions must be concrete (numeric ranges, not "if the law doesn't hold").
-3. `boundaries.extrapolation = "UNKNOWN"` is required — the system must state where it does NOT claim the law works.
+2. Falsification conditions must be concrete (numeric ranges).
+3. `extrapolation = "UNKNOWN"` is required — the system states where it does NOT claim the law works.
 
-**Measurement.** Script `verify_2_5` queries `/explain` for the 5 most recent laws. Checks that each response has: non-empty `falsification_conditions`, at least one numeric boundary, `extrapolation = "UNKNOWN"`. Pass: 5/5.
+**Procedure — semantic laws (is_a, has, relates_to, can, + bee language).**
+1. Endpoint `/explain?law=X→Y` for a semantic fact returns JSON:
+   ```json
+   {
+     "type": "semantic",
+     "fact": "stress is_a predictor",
+     "predicate": "is_a",
+     "subject": "stress",
+     "object": "predictor",
+     "confidence": 0.7,
+     "sources": ["obsidian/note_042.md", "obsidian/note_103.md"],
+     "source_count": 2,
+     "semantic_falsification": [
+       "confidence drops below 0.3 if ANY existing source is contradicted by new data",
+       "confidence drops below 0.3 if 2 NEW independent sources contradict this fact",
+       "if confidence < 0.3 → fact removed from KG → all laws using this fact in compose are re-verified"
+     ]
+   }
+   ```
+2. `confidence` is computed as: each independent confirmation (new source, same fact) adds +0.25, cap 1.0. Each contradiction (source states the opposite) subtracts −0.4. If confidence ≤ 0.3, the fact is removed from KG.
+3. `source_count` — number of independent sources confirming the fact. Minimum 1.
+
+**Measurement.** Script `verify_2_5` queries `/explain` for the 5 most recent laws (both numeric and semantic if available). For each: (a) non-empty `falsification_conditions` (numeric) OR `semantic_falsification` (semantic), (b) for numeric — at least one boundary + `extrapolation = "UNKNOWN"`, (c) for semantic — `source_count ≥ 1`, `confidence` in range [0.0, 1.0], non-empty `semantic_falsification`. Pass: all checked laws satisfy their type's conditions.
 
 **Reproduction.** Provide: `/explain` endpoint spec, verification script.
 

@@ -294,6 +294,44 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ---
 
+### 2.5-quater Contradiction as Signal
+
+**Definition.** When two or more bees find DIFFERENT formulas for the same task — both with CV ≤ 0.01 on their respective data samples — the system does NOT simply pick the one with better CV. It records the contradiction, spawns a resolution task in the subspace where the formulas diverge, and uses the contradiction for growth. Per Paradigm Swarm §4.22: "When experts systematically diverge on a subset of inputs, the contradiction subspace itself forms a new paradigm." Contradiction is not a bug — it is fuel.
+
+**Procedure.**
+1. In a population of N bees, two bees (A and B) have found formulas `f_A` and `f_B` for task `T`, where `f_A ≠ f_B`, and both have `CV ≤ 0.01` on their training samples.
+2. The system computes the data subset `D_diff` where `|f_A(x) − f_B(x)| > δ` (δ = 0.1 × range of target variable). This is the contradiction space.
+3. The system spawns task `T_contradiction`: predict the target variable on `D_diff`, using `f_A(x) − f_B(x)` (prediction difference) as an additional feature.
+4. Task `T_contradiction` enters the normal task stream. If a bee of the next generation solves it with `CV ≤ 0.01` — the contradiction is resolved, and the resolving formula includes an operation absent from the grammars of both A and B.
+
+**Measurement.** Script `verify_1_5d`: (a) `count(contradiction_tasks_spawned) ≥ 1` during observation, (b) at least one contradiction task solved with `CV ≤ 0.01` AND the formula uses an operation absent from both source bees' grammars. Pass: both conditions.
+
+**Rationale (Spec).** Paradigm Swarm §4.22: dissipative structure from contradictions adds +0.128 to model quality. Logos Spec §2.1: "Compression and dissipation coexist." Contradiction between bees is pure dissipation. Resolution through a new operation is compression. Together they form a C-D cycle at the grammar level.
+
+**Reproduction.** Provide: contradiction detection protocol, `verify_1_5d` script.
+
+---
+
+### 2.5-quinquies Law Preservation Across Generations
+
+**Definition.** A law discovered by a bee in generation N must be reproducible by any bee in generation N+10. If no bee in generation N+10 can produce that law with `CV ≤ 0.05` on the original data — the knowledge is lost. Per Paradigm Swarm Property 1: "Zero forgetting by construction — an expert with frozen weights cannot forget." The bee died — the law must not die with it.
+
+**Procedure.**
+1. In generations 1-5, a registry `L_registry` is compiled: all laws with `CV_H ≤ 0.05` and `complexity ≥ 2` (non-trivial), each assigned an identifier.
+2. At generation 15 (≥10 generations after the last registry entry), an audit is run: each bee in the population receives the original data for each law in `L_registry` and attempts to find the formula.
+3. A law is PRESERVED if at least one bee in generation 15 produces a formula with `CV ≤ 0.05` on the same data. A law is LOST if no bee does.
+4. Laws found via compose of existing atoms (complexity=1) are excluded from the registry — they are trivially reproducible.
+
+**Measurement.** Script `verify_1_5e`: `count(lost_laws) = 0`. Pass: zero lost laws.
+
+**Rationale (Spec).** Paradigm Swarm §4.15: on 100 tasks, PS preserves 0.771 accuracy while SGD collapses to 0.540. Expert isolation prevents forgetting. In the bee architecture, there is no weight isolation (laws are in a shared DB, grammars are isolated). This criterion verifies that knowledge does not die with the bee — it is transmitted through the shared law pool and waggle dance.
+
+**Parameter (E).** Generation 15 is chosen as "10 generations after the last registry entry." Any generation ≥ N+8 produces the same qualitative result. The value 10 is arbitrary but declared.
+
+**Reproduction.** Provide: preservation audit protocol, `verify_1_5e` script, `L_registry` format.
+
+---
+
 ### 2.6 Environmental Pressure
 
 **Definition.** The task stream is finite and tasks are perishable.
@@ -328,7 +366,7 @@ All six criteria (1.1–1.6) must return `pass` simultaneously for a continuous 
 
 ### Stage 1 — Pass Condition
 
-All seven criteria (2.1–2.7) plus 2.5-bis and 2.5-ter must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
+All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, and 2.5-quinquies must return `pass` simultaneously for a continuous observation period of **7 days** (168 hours). At least 100 generations must have elapsed. At least one extinction-and-recovery cycle must have occurred.
 
 ---
 
@@ -480,7 +518,7 @@ All seven criteria (2.1–2.7) plus 2.5-bis and 2.5-ter must return `pass` simul
 3. The meta-law name is added to grammar_ops as an atom.
 4. Another bee (or the same bee N generations later) uses this atom in compose or search in a new domain — and finds a law that would not have been found without this atom.
 
-**Measurement.** Script `verify_2_8`: (a) `count(compressed_meta_laws) ≥ 1` — LawCompressor compressed at least 2 laws into one meta-law, (b) `count(usages_of_meta_law_atom) ≥ 1` — the meta-law name was used as a grammar atom in search, (c) the atom was used in a domain different from those where the source laws `L1, L2, L3` were found. Pass: all three conditions.
+**Measurement.** Script `verify_2_8`: (a) `count(compressed_meta_laws) ≥ 1` — LawCompressor compressed at least 2 laws into one meta-law, (b) `count(usages_of_meta_law_atom) ≥ 1` — the meta-law name was used as a grammar atom in search, (c) the atom was used in a domain different from those where the source laws `L1, L2, L3` were found, (d) **compilation beats coalition:** held-out CV of the meta-law is STRICTLY LESS than the mean held-out CV of source laws `L1..Ln`. If the meta-law is not better — compression was lossy and does not count. Pass: all four conditions.
 
 **Rationale.** This is not "the bee speaks human language." This is emergence of abstraction through compression. A law repeated across multiple domains stops being a formula and becomes a concept. The concept gets a name. The name becomes a tool for discovering new laws. This is how language emerges — not as a module, but as a natural product of compression.
 

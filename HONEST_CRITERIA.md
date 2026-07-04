@@ -449,6 +449,23 @@ All seven criteria (2.1–2.7) plus 2.5-bis, 2.5-ter, 2.5-quater, 2.5-quinquies,
 
 ---
 
+### 3.2-bis Domain Boundary Accuracy
+
+**Definition.** The system does not apply a law found in domain A to data from domain B with claimed `CV_H ≤ 0.10`, if in fact `CV_H > 0.10`. In other words: the system does not guess domain boundaries — it KNOWS them because CV breaks at the boundary. Domains are defined not by hardcoded labels but as data subsets where some laws work and others do not. This criterion verifies that boundaries are correctly found.
+
+**Procedure.**
+1. Two synthetic domains with KNOWN different laws: `D_A` (data obeying `+(x0, x1)`) and `D_B` (data obeying `×(x0, x1)`). Data are mixed and provided without domain labels.
+2. The system searches for laws. It must: (a) find TWO different laws (`+(x0,x1)` and `×(x0,x1)`), (b) for each law, indicate the data subset where it works with `CV_H ≤ 0.10`, (c) NOT apply law `+(x0,x1)` to points from `D_B` (and vice versa) with claimed `CV_H ≤ 0.10`.
+3. `cross_domain_misapplication` is recorded when the system claims a law from A works on data from B with `CV_H ≤ 0.10`, but in fact `CV_H > 0.10`.
+
+**Measurement.** Script `verify_2_2b`: (a) `count(found_laws) ≥ 2` (system found both), (b) `count(cross_domain_misapplications) = 0` (zero misapplications of a law to the wrong domain), (c) each law has `CV_H ≤ 0.10` on its OWN subset and `CV_H > 0.10` on the OTHER (boundary detected). Pass: all three conditions.
+
+**Rationale.** If the system mixes domains — cross-domain transfer (3.2) is impossible. If the system applies a law to data where it doesn't work — all held-out checks become meaningless. The criterion verifies that domain boundaries are measured, not guessed.
+
+**Reproduction.** Provide: synthetic dataset `domain_boundary_test`, `verify_2_2b` script.
+
+---
+
 ### 3.3 Self-Model of Ignorance
 
 **Definition.** The system can correctly diagnose WHY it failed to solve a task, choosing from a fixed set of failure categories.
@@ -630,7 +647,7 @@ Russian was bootstrap: it provided the first concepts through Forager + KG. Bee 
 
 ### Stage 2 — Pass Condition
 
-All nine criteria (3.1–3.8, 3.6-bis) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3, 3.7, and 3.8 require manual verification of individual samples. All others are script-verifiable.
+All ten criteria (3.1–3.8, 3.2-bis, 3.6-bis) must return `pass`. Criteria 3.1 requires pre-registration. Criteria 3.3, 3.7, and 3.8 require manual verification of individual samples. All others are script-verifiable.
 
 ---
 

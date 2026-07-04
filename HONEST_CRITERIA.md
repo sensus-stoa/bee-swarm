@@ -688,8 +688,9 @@ All nine criteria (3.1–3.8, 3.6-bis) must return `pass`. Criteria 3.1 requires
 2. When the system self-modifies (via `SelfRewriter`, `DarwinLoop`, or equivalent), the modification is applied to a CHILD process first. The child runs on the benchmark. If benchmark score improves, the modification is promoted to the parent.
 3. Benchmark score: `mean(1 − CV_H) over all B tasks`, where `CV_H` is held-out CV. Higher is better.
 4. A modification is recorded in the log with `SELF_MODIFY: file=X, benchmark_before=Y, benchmark_after=Z`.
+5. **LLM Output Gate:** If the system uses an external text generator (LLM) for communication with the user, every output is verified via CV→0 against the original structured report. Outputs with `CV > 0.05` are rejected and regenerated. The user never sees unverified text. The bee remains the source of truth. The LLM is delivery — not the other way around. This gate is part of the self-modification mechanism: a system that has modified itself to the stage of user communication MUST protect the user from distortions in its delivery layer.
 
-**Measurement.** Script `verify_4_4`: over observation period, (a) `count(SELF_MODIFY entries with Z > Y) ≥ 1`, (b) the modified code is still present in source files at end of period (not reverted), (c) the benchmark tasks were NOT used during energy-rewarded search. Pass: all three.
+**Measurement.** Script `verify_4_4`: over observation period, (a) `count(SELF_MODIFY entries with Z > Y) ≥ 1`, (b) the modified code is still present in source files at end of period (not reverted), (c) the benchmark tasks were NOT used during energy-rewarded search, (d) if the system has LLM output — `count(LLM_OUTPUT_REJECTED) ≥ 1` AND `count(LLM_OUTPUT_DELIVERED_WITHOUT_VERIFICATION) = 0`. Pass: all four conditions.
 
 **Reproduction.** Provide: benchmark tasks, self-modification mechanism, benchmark isolation guarantee.
 

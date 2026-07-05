@@ -147,6 +147,16 @@ class Forager
         return count($this->newDomains) >= 1 || $this->newTaskCount >= 5;
     }
 
+    public function getNewDomainCount(): int
+    {
+        return count($this->newDomains);
+    }
+
+    public function getNewTaskCount(): int
+    {
+        return $this->newTaskCount;
+    }
+
     /** Сбросить счётчики новизны (вызвать после обработки новых данных) */
     public function markContentConsumed(): void
     {

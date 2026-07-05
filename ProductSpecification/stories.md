@@ -1,48 +1,43 @@
-# Bee Swarm Stories — Stage 0 (HONEST_CRITERIA.md)
+# Bee Swarm Stories — Stage 0 + Tech Debt
 
-> Каждый критерий → story → progress.md → red → green → lint → refactor → verify
-> Цель: pass 7/7 критериев 24h непрерывно
+> Каждый критерий / техдолг → story → progress.md
+> Цель: pass 7/7 Stage 0 критериев 24h непрерывно + SOLID архитектура
 
 ## In Progress
 
-| # | Criterion | What | Spec | Core | Tests | % |
-|---|-----------|------|------|------|-------|---|
-| 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | 🔧 | 1/1 | 100% |
-| 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | 🔧 | 1/1 | 100% |
-| 03 | 1.1 Held-Out Validation | train/test split, ε=0.10 | ✅ | 🔧 | 4/4 | 100% |
-| 03b | 1.1 Retrospective Data | foraged/generated task reconstruction | ✅ | 🔧 | 2/4 | 50% |
-| D1 | SOLID: Split AtomRegistry | atoms/discover/heldout/retro/cv | ✅ | 🔧 | 7/7 | 100% |
-| D2 | Daemon class | agenda.php → testable OOP | ✅ | — | — | 0% |
+| # | What | Spec | Core | Tests | % |
+|---|------|------|------|-------|---|
+| D1b | Core module: Grammar, Search, ExpressionTree | ✅ | 🔧 | — | 0% |
 
-## Backlog (priority order)
+## Backlog — Stage 0
 
-| # | Criterion | What | Почему первый |
-|---|-----------|------|---------------|
-| 03 | 1.1 Held-Out Validation | train/test split, ε_holdout=0.10 | Фундамент: без него нет контроля false positives |
-| 04 | 1.2 Statistical Sufficiency | t ≥ t_min, защита от случайных CV→0 | Без него held-out бессмысленен |
-| 05 | 1.7 Compression Superiority | MDL cost vs y=mean(y) | Отсекает over-parameterized constants |
-| 06 | 1.4 Non-Triviality | Алгебраическая редукция | Чистит +(x0,0) и ×(x1,1) |
-| 07 | 1.3 Parsimony | complexity(e), выбор простейшего | Оптимизация, не безопасность — можно последним |
+| # | Criterion | What |
+|---|-----------|------|
+| 04 | 1.2 Statistical Sufficiency | t ≥ t_min |
+| 05 | 1.7 Compression Superiority | MDL cost |
+| 06 | 1.4 Non-Triviality | Алгебраическая редукция |
+| 07 | 1.3 Parsimony | complexity(e) |
 
-## Technical Debt (после Stage 0)
+## Backlog — Modular Architecture
 
-| # | Что | Инструменты |
-|---|-----|-------------|
-| D1 | Модульная структура + SOLID | S: AtomRegistry→AtomProvider+LawValidator, Forager→SourceAdapter, Grammar→AtomDefinitions. I: ValidatorInterface, TaskProviderInterface, SourceInterface. Архитектура: ADR/Layered по ARCHITECTURE.md |
-| D2 | agenda.php → Daemon class | procedural → testable OOP, тонкий entry point |
-| D3 | Статический анализ | psalm level 3+ |
-| D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
-| D5 | Cognitive complexity | https://github.com/Rarst/phpcs-cognitive-complexity |
-| D6 | Автоформатирование | php-cs-fixer (PSR-12) |
-| D7 | Forager — баги и оптимизации | scanDir 110 строк → разбить. maxTotal=30, strategyScores leak, composed→json, hardcoded domains, hardcoded exclusions, explode_lines comma-split, file_get_contents @-silent. Плюс: pluggable sources (файлы/сеть/LLM), maxTasks env, domain extraction |
-
-## Lint step (добавлен в workflow)
-
-После GREEN, до REVIEW: `php -l` на всех изменённых .php файлах. Ловит parse errors до коммита.
+| # | Module | Classes |
+|---|--------|---------|
+| D1c | Validation/ | LawVerifier, LawCompressor, LawWatchdog |
+| D1d | Bee/ | ConsciousBee, SelfLearningBee, CellBee |
+| D1e | Hive/ | EcoHive, DensityHive, PersistentHive |
+| D1f | Evolution/ | DarwinLoop, PhenotypeManager, Paradigm* |
+| D1g | Forager/ | DataRequestor |
+| D1h | Text/ | CorpusVocabulary, SentenceRegistry |
+| D1i | Infra/ | Database, ResourceGuard, PlateauDetector |
+| D1j | Meta/ + rest | MetaInventor, Ontology, SwarmSpawner, etc. |
+| D2 | Daemon class | agenda.php → OOP |
 
 ## Done
 
-| # | Criterion | Completed |
-|---|-----------|-----------|
-| 01 | 1.6 Deduplication | ✅ preload + UNIQUE(name,formula) |
-| 02 | 1.5 Plateau Honesty | ✅ detect + compose gating |
+| # | What | Completed |
+|---|------|-----------|
+| 01 | 1.6 Deduplication | ✅ |
+| 02 | 1.5 Plateau Honesty + wakeup + forager | ✅ |
+| 03 | 1.1 Held-Out Validation + retrospective | ✅ |
+| 03b | 1.1 Retrospective Data | 🔧 2/4 |
+| D1 | SOLID: Split AtomRegistry (7/7) | ✅ |

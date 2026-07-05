@@ -15,10 +15,13 @@ $log = []; $tick = 0; $lastDiscovery = time();
 $knownLaws = [];
 $plateauDetector = new PlateauDetector(50);
 $forager = new Forager();
-$foragerScanInterval = 100; // тиков между сканами
+$foragerScanInterval = 100;
 $foragerSources = getenv('FORAGER_SOURCES')
     ? array_fill_keys(explode(':', getenv('FORAGER_SOURCES')), 1)
     : [];
+
+// Enable held-out validation (HONEST_CRITERIA §1.1)
+AtomRegistry::setHeldoutEnabled(true);
 
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) mkdir($logDir, 0755, true);
@@ -133,7 +136,8 @@ while (true) {
     
     // ═══ 1. DISCOVER ═══
     if (!$foundAny && $domain !== 'cloze') {
-    foreach (AtomRegistry::discover($X, $y) as $d) {
+    $discoverFn = AtomRegistry::isHeldoutEnabled() ? 'discoverHeldout' : 'discover';
+    foreach ([AtomRegistry::class, $discoverFn]($X, $y) as $d) {
         $key = $task['name'] . '::' . $d['atom'];
         if (!isset($knownLaws[$key])) {
             $knownLaws[$key] = true; $foundAny = true;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Validation;
 
 use BeeSwarm\AtomRegistry;
+use BeeSwarm\Math\CvCalculator;
 
 /**
  * LawValidator — held-out validation (HONEST_CRITERIA §1.1).
@@ -73,7 +74,7 @@ class LawValidator
         if (count($vecTrain) !== count($y_train)) return null;
         $cvTrain = count($y_train) < 2
             ? (abs($vecTrain[0] - $y_train[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
-            : AtomRegistry::cv($vecTrain, $y_train);
+            : CvCalculator::compute($vecTrain, $y_train);
 
         $vecHoldout = [];
         foreach ($X_holdout as $row) {
@@ -84,7 +85,7 @@ class LawValidator
         if (count($vecHoldout) !== count($y_holdout)) return null;
         $cvHoldout = count($y_holdout) < 2
             ? (abs($vecHoldout[0] - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
-            : AtomRegistry::cv($vecHoldout, $y_holdout);
+            : CvCalculator::compute($vecHoldout, $y_holdout);
 
         return ['cv_train' => $cvTrain, 'cv_holdout' => $cvHoldout];
     }

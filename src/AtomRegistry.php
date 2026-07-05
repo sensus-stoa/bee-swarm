@@ -12,6 +12,8 @@ class AtomRegistry
     private const CV_HOLDOUT_MAX = 0.10;    // max CV on held-out data
     private const CV_EXACT_TOLERANCE = 0.0001; // tolerance for exact match
 
+    private static bool $heldoutEnabled = true;
+
     private static array $unary = [
         'abs','sqrt','sin','cos','tan','asin','acos','atan',
         'sinh','cosh','tanh','exp','log','log10','log1p',
@@ -479,6 +481,16 @@ class AtomRegistry
     }
 
     // ═══ CV ═══
+
+    public static function isHeldoutEnabled(): bool
+    {
+        return self::$heldoutEnabled;
+    }
+
+    public static function setHeldoutEnabled(bool $enabled): void
+    {
+        self::$heldoutEnabled = $enabled;
+    }
 
     public static function cv(array $vec, array $y): float
     {

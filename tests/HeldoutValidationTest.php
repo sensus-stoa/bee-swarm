@@ -11,8 +11,6 @@ use BeeSwarm\Database;
  *
  * discoverHeldout() — как discover(), но с train/test split.
  * retrospectiveValidate() — проверка существующих законов.
- *
- * @group disabled
  */
 class HeldoutValidationTest extends TestCase
 {

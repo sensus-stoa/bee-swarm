@@ -30,7 +30,7 @@
 | D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
 | D5 | Cognitive complexity | https://github.com/Rarst/phpcs-cognitive-complexity |
 | D6 | Автоформатирование | php-cs-fixer (PSR-12) |
-| D7 | Forager — множественные источники | файлы + сеть + LLM, pluggable sources |
+| D7 | Forager — баги и оптимизации | issues: maxTotal=30, strategyScores leak, composed→json, hardcoded domains, hardcoded exclusions, explode_lines comma-split, file_get_contents @-silent. Плюс: pluggable sources (файлы/сеть/LLM), maxTasks env, domain extraction |
 
 ## Lint step (добавлен в workflow)
 

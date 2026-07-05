@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\ExpressionTree;
+
 /**
  * LawWatchdog: следит за CV законов на новых данных.
  * Если CV выросло → закон нужно пересмотреть → запускает перепоиск.

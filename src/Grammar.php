@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm;
 
+use BeeSwarm\Core\ExpressionTree;
+
 class Grammar
 {
     public const BASE_OPS = [

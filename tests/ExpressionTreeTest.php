@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\ExpressionTree;
+use BeeSwarm\Core\ExpressionTree;
 
 class ExpressionTreeTest extends TestCase
 {

@@ -5,6 +5,13 @@ namespace BeeSwarm;
 
 class AtomRegistry
 {
+    // Held-out validation (HONEST_CRITERIA §1.1)
+    private const HO_MIN_POINTS = 3;       // minimum total points for held-out
+    private const HO_SPLIT_RATIO = 5;       // 1/holdout ratio: h = n / ratio
+    private const CV_TRAIN_MAX = 0.01;      // max CV on training data
+    private const CV_HOLDOUT_MAX = 0.10;    // max CV on held-out data
+    private const CV_EXACT_TOLERANCE = 0.0001; // tolerance for exact match
+
     private static array $unary = [
         'abs','sqrt','sin','cos','tan','asin','acos','atan',
         'sinh','cosh','tanh','exp','log','log10','log1p',
@@ -222,6 +229,48 @@ class AtomRegistry
     }
 
     /**
+     * Приватный helper: проверяет CV формулы на held-out данных.
+     */
+    private static function evaluateHeldout(string $formula, array $X, array $y): ?array
+    {
+        $n = count($y);
+        $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
+        if ($n - $h < 2) return null;
+
+        $X_train = array_slice($X, 0, $n - $h);
+        $y_train = array_slice($y, 0, $n - $h);
+        $X_holdout = array_slice($X, $n - $h);
+        $y_holdout = array_slice($y, $n - $h);
+        $nFeat = count($X[0] ?? []);
+
+        // CV на train
+        $vecTrain = [];
+        foreach ($X_train as $row) {
+            $v = self::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
+            if ($v === null || is_nan($v) || is_infinite($v)) { $vecTrain = []; break; }
+            $vecTrain[] = $v;
+        }
+        if (count($vecTrain) !== count($y_train)) return null;
+        $cvTrain = count($y_train) < 2
+            ? (abs($vecTrain[0] - $y_train[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
+            : self::cv($vecTrain, $y_train);
+
+        // CV на holdout
+        $vecHoldout = [];
+        foreach ($X_holdout as $row) {
+            $v = self::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
+            if ($v === null || is_nan($v) || is_infinite($v)) { $vecHoldout = []; break; }
+            $vecHoldout[] = $v;
+        }
+        if (count($vecHoldout) !== count($y_holdout)) return null;
+        $cvHoldout = count($y_holdout) < 2
+            ? (abs($vecHoldout[0] - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
+            : self::cv($vecHoldout, $y_holdout);
+
+        return ['cv_train' => $cvTrain, 'cv_holdout' => $cvHoldout];
+    }
+
+    /**
      * discover с held-out validation (HONEST_CRITERIA §1.1).
      * h = max(1, floor(n/5)) точек откладываются.
      * Поиск на train, приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10.
@@ -229,52 +278,25 @@ class AtomRegistry
     public static function discoverHeldout(array $X, array $y): array
     {
         $n = count($y);
-        $h = max(1, (int)floor($n / 5));
-        if ($n - $h < 2) return []; // недостаточно данных
+        $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
+        if ($n - $h < 2) return [];
 
-        // Split: последние h точек = holdout
         $X_train = array_slice($X, 0, $n - $h);
         $y_train = array_slice($y, 0, $n - $h);
-        $X_holdout = array_slice($X, $n - $h);
-        $y_holdout = array_slice($y, $n - $h);
 
-        // Шаг 1: discover на train (CV_train ≤ 0.01)
         $candidates = self::discover($X_train, $y_train);
         if (empty($candidates)) return [];
 
-        // Шаг 2: валидация на holdout
         $found = [];
         foreach ($candidates as $c) {
-            $atom = $c['atom'];
-            $vec = [];
-            $nFeat = count($X_holdout[0] ?? []);
-
-            foreach ($X_holdout as $row) {
-                if (self::isBinary($atom) && $nFeat >= 2) {
-                    $v = self::apply($atom, (float)$row[0], (float)$row[1]);
-                } elseif (self::isUnary($atom)) {
-                    $v = self::apply($atom, (float)$row[0]);
-                } else {
-                    $v = null;
-                }
-                if ($v === null || is_nan($v) || is_infinite($v)) {
-                    $vec = [];
-                    break;
-                }
-                $vec[] = $v;
-            }
-
-            if (count($vec) !== count($y_holdout)) continue;
-
-            $cvHoldout = count($y_holdout) < 2
-                ? (abs($vec[0] - $y_holdout[0]) > 0.0001 ? 9.99 : 0.0)
-                : self::cv($vec, $y_holdout);
-            if ($cvHoldout <= 0.10) {
+            $result = self::evaluateHeldout($c['atom'], $X, $y);
+            if ($result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX
+                && $result['cv_holdout'] <= self::CV_HOLDOUT_MAX) {
                 $found[] = [
-                    'atom' => $atom,
+                    'atom' => $c['atom'],
                     'cv' => $c['cv'],
-                    'cv_train' => $c['cv'],
-                    'cv_holdout' => $cvHoldout,
+                    'cv_train' => $result['cv_train'],
+                    'cv_holdout' => $result['cv_holdout'],
                     'mode' => $c['mode'],
                 ];
             }
@@ -397,6 +419,63 @@ class AtomRegistry
             'domains' => count($domains),
             'by_domain' => $domains,
         ];
+    }
+
+    // ═══ CV ═══
+
+    /**
+     * Ретроспективная валидация всех законов (HONEST_CRITERIA §1.1).
+     * Принимает массив tasks с данными, проверяет каждый закон через held-out.
+     * Возвращает ['passed' => [...], 'overfit' => [...]].
+     */
+    public static function retrospectiveValidate(array $tasks): array
+    {
+        $db = Database::get();
+        $laws = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        if (empty($laws)) return ['passed' => [], 'overfit' => []];
+
+        // Индекс задач по имени
+        $taskIndex = [];
+        foreach ($tasks as $t) {
+            $taskIndex[$t['name']] = $t;
+        }
+
+        $passed = [];
+        $overfit = [];
+
+        foreach ($laws as $law) {
+            $name = $law['name'];
+            $formula = $law['formula'];
+            $key = $name . '::' . $formula;
+
+            if (!isset($taskIndex[$name])) continue; // нет данных для проверки
+
+            $task = $taskIndex[$name];
+            $data = $task['data'];
+            $n = count($data);
+            if ($n < 3) continue; // недостаточно данных
+
+            // Извлекаем X и y
+            $nFeat = count($data[0]) - 1;
+            $X = array_map(fn($r) => array_slice($r, 0, $nFeat), $data);
+            $y = array_column($data, $nFeat);
+
+            // Проверяем формулу через held-out
+            $result = self::evaluateHeldout($formula, $X, $y);
+            if ($result === null) continue;
+            if ($result['cv_train'] > self::CV_TRAIN_MAX) continue;
+
+            $key = $name . '::' . $formula;
+            if ($result['cv_holdout'] <= self::CV_HOLDOUT_MAX) {
+                $passed[] = $key;
+            } else {
+                $overfit[] = $key;
+                $db->prepare("DELETE FROM laws WHERE name=? AND formula=?")
+                   ->execute([$name, $formula]);
+            }
+        }
+
+        return ['passed' => $passed, 'overfit' => $overfit];
     }
 
     // ═══ CV ═══

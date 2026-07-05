@@ -11,6 +11,7 @@
 4. Overfit rejection: CV_T ≤ 0.01 но CV_H > 0.10 → OVERFIT в лог, закон НЕ принимается
 5. Retrospective: все существующие законы провалидировать, OVERFIT удалить из БД
 6. verify_0_1 script: count(OVERFIT) = 0 за 24h
+7. [deferred] shuffle перед split — сейчас split берёт последние h точек, данные могут быть не i.i.d.
 
 ## Core
 

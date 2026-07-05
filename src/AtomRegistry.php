@@ -221,6 +221,68 @@ class AtomRegistry
         return $found;
     }
 
+    /**
+     * discover с held-out validation (HONEST_CRITERIA §1.1).
+     * h = max(1, floor(n/5)) точек откладываются.
+     * Поиск на train, приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10.
+     */
+    public static function discoverHeldout(array $X, array $y): array
+    {
+        $n = count($y);
+        $h = max(1, (int)floor($n / 5));
+        if ($n - $h < 2) return []; // недостаточно данных
+
+        // Split: последние h точек = holdout
+        $X_train = array_slice($X, 0, $n - $h);
+        $y_train = array_slice($y, 0, $n - $h);
+        $X_holdout = array_slice($X, $n - $h);
+        $y_holdout = array_slice($y, $n - $h);
+
+        // Шаг 1: discover на train (CV_train ≤ 0.01)
+        $candidates = self::discover($X_train, $y_train);
+        if (empty($candidates)) return [];
+
+        // Шаг 2: валидация на holdout
+        $found = [];
+        foreach ($candidates as $c) {
+            $atom = $c['atom'];
+            $vec = [];
+            $nFeat = count($X_holdout[0] ?? []);
+
+            foreach ($X_holdout as $row) {
+                if (self::isBinary($atom) && $nFeat >= 2) {
+                    $v = self::apply($atom, (float)$row[0], (float)$row[1]);
+                } elseif (self::isUnary($atom)) {
+                    $v = self::apply($atom, (float)$row[0]);
+                } else {
+                    $v = null;
+                }
+                if ($v === null || is_nan($v) || is_infinite($v)) {
+                    $vec = [];
+                    break;
+                }
+                $vec[] = $v;
+            }
+
+            if (count($vec) !== count($y_holdout)) continue;
+
+            $cvHoldout = count($y_holdout) < 2
+                ? (abs($vec[0] - $y_holdout[0]) > 0.0001 ? 9.99 : 0.0)
+                : self::cv($vec, $y_holdout);
+            if ($cvHoldout <= 0.10) {
+                $found[] = [
+                    'atom' => $atom,
+                    'cv' => $c['cv'],
+                    'cv_train' => $c['cv'],
+                    'cv_holdout' => $cvHoldout,
+                    'mode' => $c['mode'],
+                ];
+            }
+        }
+
+        return $found;
+    }
+
     // ═══ COMPOSE: пары grammar-атомов ═══
 
     /**

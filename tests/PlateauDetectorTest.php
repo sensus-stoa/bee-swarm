@@ -11,8 +11,6 @@ use BeeSwarm\PlateauDetector;
  * PlateauDetector — счётчик тиков без открытий.
  * T тиков без открытий → PLATEAU (sleep 10s, compose off).
  * Новое открытие → выход из PLATEAU, сброс счётчика.
- *
- * @group disabled
  */
 class PlateauDetectorTest extends TestCase
 {

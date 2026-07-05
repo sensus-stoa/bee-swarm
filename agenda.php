@@ -54,6 +54,14 @@ while (true) {
     
     $tasks = getTasks();
     if (empty($tasks)) { usleep(1000000); continue; }
+
+    // Wakeup: новые задачи → выход из PLATEAU
+    static $lastTaskCount = 0;
+    $currentTaskCount = count($tasks);
+    if ($currentTaskCount !== $lastTaskCount) {
+        $plateauDetector->wakeup();
+        $lastTaskCount = $currentTaskCount;
+    }
     
     $task = $tasks[array_rand($tasks)];
     $data = $task['data'];

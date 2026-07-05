@@ -11,8 +11,6 @@ use BeeSwarm\PlateauDetector;
  * PlateauDetector — счётчик тиков без открытий.
  * 50 тиков без открытий → PLATEAU (sleep 10s, compose off).
  * Новое открытие → выход из PLATEAU, сброс счётчика.
- *
- * @group disabled
  */
 class PlateauDetectorTest extends TestCase
 {
@@ -79,17 +77,22 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
     }
 
-    /** Несколько открытий подряд — счётчик на 0 */
+    /** Несколько открытий подряд — счётчик на 0, потом растёт */
     public function test_multiple_discoveries_keep_counter_zero(): void
     {
         $d = new PlateauDetector(self::THRESHOLD);
 
         $d->tick(true);
-        $d->tick(true);
-        $d->tick(false);
-        $d->tick(true);
+        $this->assertSame(0, $d->getConsecutiveNoDiscovery());
 
+        $d->tick(true);
+        $this->assertSame(0, $d->getConsecutiveNoDiscovery());
+
+        $d->tick(false);
         $this->assertSame(1, $d->getConsecutiveNoDiscovery());
+
+        $d->tick(false);
+        $this->assertSame(2, $d->getConsecutiveNoDiscovery());
     }
 
     /** PLATEAU_ONLY при 51-м тике — ровно один раз */

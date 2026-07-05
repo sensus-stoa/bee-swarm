@@ -11,19 +11,16 @@
 4. Новое открытие → выход из PLATEAU, сброс счётчика
 5. Новые данные (forager) → выход из PLATEAU
 
-Parameters (E): P=50 ticks, T_plateau=60s. Arbitrary but declared.
-
 ## Core
 
-[~] red: test_plateau_detect — 50 ticks no discovery → PLATEAU log + sleep
-    [ ] test written, RED confirmed
+[x] red: test_plateau_detect (944660c)
+[x] green: PlateauDetector class (2661775) — 6/6 tests
+[~] green: wire PlateauDetector into agenda.php
+    [ ] replace manual $consecutiveNoDiscovery with detector
+    [ ] full suite GREEN
     [ ] review
     [ ] approve
-[ ] green: plateau detector implementation
-    [ ] implementation done, full suite GREEN
-    [ ] review
-    [ ] approve
-[ ] red: test_compose_suppress — compose=0 at plateau
+[ ] red: test_compose_suppress
     [ ] test written, RED confirmed
     [ ] review
     [ ] approve
@@ -32,11 +29,9 @@ Parameters (E): P=50 ticks, T_plateau=60s. Arbitrary but declared.
     [ ] review
     [ ] approve
 [ ] refactor
-    [ ] structural improvements, full suite GREEN
-    [ ] review
-    [ ] approve
-[ ] verify: daemon restart → pgrep check → plateau log appears after idle
+[ ] verify
 
 ## Status
 
-- Next: `red: test_plateau_detect`
+- 2/5 work units done
+- Next: `green: wire PlateauDetector into agenda.php`

@@ -8,9 +8,11 @@ use BeeSwarm\Grammar;
 use BeeSwarm\Search;
 use BeeSwarm\Database;
 use BeeSwarm\AtomRegistry;
+use BeeSwarm\PlateauDetector;
 
 $log = []; $tick = 0; $lastDiscovery = time();
 $knownLaws = [];
+$plateauDetector = new PlateauDetector(50);
 
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) mkdir($logDir, 0755, true);
@@ -96,7 +98,7 @@ while (true) {
                 $knownLaws[$key] = true; $foundAny = true;
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $bestAtom, $bestError, $domain]);
                 roeLog("📖 {$task['name']} -> {$bestAtom} (err=" . round($bestError, 3) . ")");
-                $lastDiscovery = time(); $consecutiveNoDiscovery = 0;
+                $lastDiscovery = time(); $plateauDetector->tick(true);
             }
         }
     }
@@ -111,7 +113,7 @@ while (true) {
             if (!in_array($d['atom'], $g->all())) { $g->add($d['atom'], 'auto-discover'); }
             Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
             roeLog("🔍 {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
-            $lastDiscovery = time();
+            $lastDiscovery = time(); $plateauDetector->tick(true);
         }
     }
     }
@@ -136,15 +138,11 @@ while (true) {
     if (!$foundAny) {
         usleep(500000); // 500ms sleep when nothing found
     }
-    
+
     if (count($log) > 200) $log = array_slice($log, -100);
-    if (!isset($consecutiveNoDiscovery)) $consecutiveNoDiscovery = 0;
-    if ($consecutiveNoDiscovery > 50) {
-        if ($consecutiveNoDiscovery === 51) roeLog("🏔️ PLATEAU");
-        usleep(10000000);
-    } else {
-        usleep(200000);
-    }
+    $plateauDetector->tick($foundAny);
+    if ($plateauDetector->justEnteredPlateau()) roeLog("🏔️ PLATEAU");
+    usleep($plateauDetector->getSleepUs());
 }
 
 function getTasks(): array {

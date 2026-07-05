@@ -11,8 +11,6 @@ use BeeSwarm\Forager;
  * Forager должен доставлять ≥1 новый домен ИЛИ ≥5 новых задач.
  * Источники данных (sources): файлы, сеть, LLM — может быть несколько.
  * Тесты изолированы от реальных путей.
- *
- * @group disabled
  */
 class ForagerWakeupTest extends TestCase
 {

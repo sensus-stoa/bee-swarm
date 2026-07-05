@@ -68,4 +68,11 @@ class PlateauDetector
     {
         return !$this->isPlateau();
     }
+
+    /** Внешнее событие (forager, новые данные) — выход из плато */
+    public function wakeup(): void
+    {
+        $this->consecutiveNoDiscovery = 0;
+        $this->justEntered = false;
+    }
 }

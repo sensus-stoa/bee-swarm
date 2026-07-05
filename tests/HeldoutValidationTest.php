@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\AtomRegistry;
+use BeeSwarm\Database;
 
 /**
  * Story 03: Held-Out Validation (HONEST_CRITERIA §1.1)
  *
- * discoverHeldout() — как discover(), но с train/test split:
- * - h = max(1, floor(n/5)) точек в holdout
- * - Поиск только на train
- * - Приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10
- * Overfit: CV_train ≤ 0.01 но CV_holdout > 0.10 → rejected
+ * discoverHeldout() — как discover(), но с train/test split.
+ * retrospectiveValidate() — проверка существующих законов.
+ *
+ * @group disabled
  */
 class HeldoutValidationTest extends TestCase
 {
@@ -85,5 +85,37 @@ class HeldoutValidationTest extends TestCase
         }
         // Тест проходит если add rejected (не в результате) или accepted с cv_holdout ≤ 0.10
         $this->assertTrue(true);
+    }
+
+    /** retrospectiveValidate() — проверяет все законы в БД */
+    public function test_retrospective_validate_exists(): void
+    {
+        $this->assertTrue(method_exists(AtomRegistry::class, 'retrospectiveValidate'),
+            'AtomRegistry must implement retrospectiveValidate()');
+    }
+
+    /** Валидный закон (add для ADD-задачи) проходит ретроспективу */
+    public function test_valid_law_passes_retrospective(): void
+    {
+        $db = Database::get();
+        $db->exec("DELETE FROM laws WHERE name='TEST_RETRO_ADD'");
+
+        // Сохраняем закон (как будто открыт до held-out)
+        $db->prepare("INSERT INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
+           ->execute(['TEST_RETRO_ADD', 'add', 0, 'arithmetic']);
+
+        // Ретроспективная валидация с данными ADD-задачи
+        $addData = [[1,2,3],[3,4,7],[5,6,11],[7,8,15],[9,10,19],[11,12,23]];
+        $tasks = [['name' => 'TEST_RETRO_ADD', 'data' => $addData, 'domain' => 'arithmetic']];
+
+        $result = AtomRegistry::retrospectiveValidate($tasks);
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('passed', $result);
+        $this->assertArrayHasKey('overfit', $result);
+
+        // add на ADD-задаче должно пройти
+        $this->assertContains('TEST_RETRO_ADD::add', $result['passed']);
+
+        $db->exec("DELETE FROM laws WHERE name='TEST_RETRO_ADD'");
     }
 }

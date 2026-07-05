@@ -76,3 +76,9 @@ Tests run on SEPARATE database. Never use `--no-configuration` flag — it bypas
 - ≤ 40 строк — комфортный предел для чтения за один экран
 - Если метод > 40 строк и не состоит из простых объявлений — extract
 - Исключение: declared arrays/configuration (атомы, стратегии)
+
+## Directory Size
+
+- ≤ 7 файлов в одной директории src/
+- Если > 7 — разбить на поддиректории по подобластям
+- tests/ — зеркалит структуру src/

@@ -342,7 +342,7 @@ while (true) {
             $data = $validator->validate();
         }
         elseif ($path === '/watchdog') {
-            $wd = new \BeeSwarm\LawWatchdog();
+            $wd = new \BeeSwarm\Validation\LawWatchdog();
             $data = $wd->check(
                 $body['law'] ?? 'StressEnergy',
                 $body['new_data'] ?? []

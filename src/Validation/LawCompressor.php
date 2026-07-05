@@ -1,7 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Validation;
+
+use BeeSwarm\Database;
+
 
 // ~/.bee_swarm/src/LawCompressor.php
 // Сжатие кластеров законов: N compose-законов → 1 meta-law

@@ -3,32 +3,18 @@ declare(strict_types=1);
 
 namespace BeeSwarm;
 
+use BeeSwarm\Core\AtomDefinitions;
+
 class AtomRegistry
 {
     // Held-out validation (HONEST_CRITERIA §1.1)
-    private const HO_MIN_POINTS = 3;       // minimum total points for held-out
-    private const HO_SPLIT_RATIO = 5;       // 1/holdout ratio: h = n / ratio
-    private const CV_TRAIN_MAX = 0.01;      // max CV on training data
-    private const CV_HOLDOUT_MAX = 0.10;    // max CV on held-out data
-    private const CV_EXACT_TOLERANCE = 0.0001; // tolerance for exact match
+    private const HO_MIN_POINTS = 3;
+    private const HO_SPLIT_RATIO = 5;
+    private const CV_TRAIN_MAX = 0.01;
+    private const CV_HOLDOUT_MAX = 0.10;
+    private const CV_EXACT_TOLERANCE = 0.0001;
 
     private static bool $heldoutEnabled = true;
-
-    private static array $unary = [
-        'abs','sqrt','sin','cos','tan','asin','acos','atan',
-        'sinh','cosh','tanh','exp','log','log10','log1p',
-        'floor','ceil','round','deg2rad','rad2deg',
-        'sq','cube','inv','neg','sign','relu','not',
-    ];
-
-    private static array $binary = [
-        'add','sub','mul','div','mod',
-        'min','max','hypot','pow','fmod',
-        'gt','lt','eq','neq','and','or',
-        // Grammar-compatible aliases
-        '+' => 'add', '−' => 'sub', '×' => 'mul', '/' => 'div',
-    ];
-
     private static array $fnCache = [];
     private static ?array $envAtoms = null;
 
@@ -42,18 +28,7 @@ class AtomRegistry
         $all = get_defined_functions()['internal'];
         $unary = []; $binary = [];
         
-        $skip = ['set_','ini_','header','session','ob_','error_report','trigger_error',
-                 'define','class_','function_','method_','trait_','interface_',
-                 'stream','socket','curl','exec','proc_','pcntl','posix',
-                 'mysql','pg_','oci_','odbc','sqlite','pdo','mongo',
-                 'image','gd_','exif','openssl','hash','password','crypt',
-                 'xml_encode','xml_decode','simplexml','dom_',
-                 'mb_','iconv','locale','date_default','timezone',
-                 'apache','fastcgi','php_ini','zend_','opcache','xdebug',
-                 'readline','ncurses','newt',
-                 'print','echo','printf','sprintf','vprintf','vsprintf',
-                 'var_dump','var_export','print_r','debug_','highlight_',
-                 'json_encode','json_decode'];
+        $skip = AtomDefinitions::ENV_SKIP_PREFIXES;
         
         foreach ($all as $fn) {
             $skipIt = false;
@@ -92,30 +67,30 @@ class AtomRegistry
 
     public static function all(): array
     {
-        $curated = array_merge(self::$unary, self::$binary);
+        $curated = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY);
         $env = self::$envAtoms ?? [];
         return array_values(array_unique(array_merge($curated, $env)));
     }
 
     public static function isUnary(string $name): bool
     {
-        return in_array($name, self::$unary, true);
+        return in_array($name, AtomDefinitions::UNARY, true);
     }
 
     public static function isBinary(string $name): bool
     {
         // Resolve alias first
-        if (isset(self::$binary[$name]) && is_string(self::$binary[$name])) {
+        if (isset(AtomDefinitions::BINARY[$name]) && is_string(AtomDefinitions::BINARY[$name])) {
             return true;
         }
-        return in_array($name, self::$binary, true);
+        return in_array($name, AtomDefinitions::BINARY, true);
     }
 
     // ═══ RESOLVE ═══
     private static function resolve(string $name): string
     {
-        return (isset(self::$binary[$name]) && is_string(self::$binary[$name]))
-            ? self::$binary[$name] : $name;
+        return (isset(AtomDefinitions::BINARY[$name]) && is_string(AtomDefinitions::BINARY[$name]))
+            ? AtomDefinitions::BINARY[$name] : $name;
     }
 
     // ═══ ПРИМЕНЕНИЕ ═══

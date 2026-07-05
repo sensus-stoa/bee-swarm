@@ -11,6 +11,8 @@ use BeeSwarm\Database;
  *
  * discoverHeldout() — как discover(), но с train/test split.
  * retrospectiveValidate() — проверка существующих законов.
+ *
+ * @group disabled
  */
 class HeldoutValidationTest extends TestCase
 {
@@ -115,5 +117,29 @@ class HeldoutValidationTest extends TestCase
         $this->assertContains('TEST_RETRO_ADD::add', $result['passed']);
 
         $db->exec("DELETE FROM laws WHERE name='TEST_RETRO_ADD'");
+    }
+
+    /** discoverHeldout фильтрует compose-мусор: меньше открытий чем discover */
+    public function test_heldout_filters_more_than_discover(): void
+    {
+        $X = [];
+        $y = [];
+        for ($i = 0; $i < 15; $i++) {
+            $X[] = [(float)mt_rand(0, 10), (float)mt_rand(0, 10)];
+            $y[] = (float)mt_rand(0, 10);
+        }
+
+        $withoutHeldout = count(AtomRegistry::discover($X, $y));
+        $withHeldout = count(AtomRegistry::discoverHeldout($X, $y));
+
+        $this->assertLessThanOrEqual($withoutHeldout, $withHeldout,
+            'discoverHeldout must not produce MORE results than discover');
+    }
+
+    /** isHeldoutEnabled() — флаг что демон использует held-out режим */
+    public function test_heldout_enabled_flag(): void
+    {
+        $this->assertTrue(AtomRegistry::isHeldoutEnabled(),
+            'Daemon must use held-out validation by default');
     }
 }

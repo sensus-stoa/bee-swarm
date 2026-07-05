@@ -64,8 +64,8 @@ while (true) {
         if (!empty($foragedTasks)) {
             $foragedTasksGlobal = array_merge($foragedTasksGlobal ?? [], $foragedTasks);
             if ($forager->hasNewContent()) {
-                $newDomains = count(array_filter($foragedTasks, fn($t) => ($t['domain'] ?? '') !== ''));
-                roeLog("FORAGER_NEW_TASK: " . count($foragedTasks) . " tasks, $newDomains domains");
+                roeLog("FORAGER_NEW_TASK: " . $forager->getNewTaskCount()
+                    . " tasks, " . $forager->getNewDomainCount() . " domains");
                 $plateauDetector->wakeup();
                 $forager->markContentConsumed();
             }

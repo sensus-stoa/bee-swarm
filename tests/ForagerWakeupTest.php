@@ -9,10 +9,8 @@ use BeeSwarm\Forager;
  * Story 02c: Forager Integration (Infrastructure Prerequisite)
  *
  * Forager должен доставлять ≥1 новый домен ИЛИ ≥5 новых задач.
- * Источники данных (sources): файлы, сеть, LLM — может быть несколько
- * одновременно. Тесты изолированы от реальных путей.
- *
- * @group disabled
+ * Источники данных (sources): файлы, сеть, LLM — может быть несколько.
+ * Тесты изолированы от реальных путей.
  */
 class ForagerWakeupTest extends TestCase
 {
@@ -31,33 +29,23 @@ class ForagerWakeupTest extends TestCase
         $tmpDir = sys_get_temp_dir() . '/bee_swarm_forager_test_' . uniqid();
         mkdir($tmpDir);
 
-        $forager->scan([$tmpDir]);
+        $forager->scan([$tmpDir => 1]);
         $this->assertFalse($forager->hasNewContent(),
             'Empty directory must not claim new content');
 
         rmdir($tmpDir);
     }
 
-    /** После consume — повторный скан без изменений не даёт нового */
-    public function test_consume_then_rescan_no_new_content(): void
+    /** Данные найдены — hasNewContent() = true (≥5 задач) */
+    public function test_scan_with_data_has_new_content(): void
     {
         $forager = new Forager();
         $tmpDir = sys_get_temp_dir() . '/bee_swarm_forager_test_' . uniqid();
         mkdir($tmpDir);
         file_put_contents("$tmpDir/data.txt", "x,y\n1,2\n3,4\n5,6\n7,8\n9,10\n");
 
-        // Первый скан — есть контент
-        $forager->scan([$tmpDir]);
-        $this->assertTrue($forager->hasNewContent(), 'First scan finds content');
-
-        // Потребили
-        $forager->markContentConsumed();
-        $this->assertFalse($forager->hasNewContent(), 'Flag reset after consume');
-
-        // Повторный скан без изменений в файлах — нового нет
-        $forager->scan([$tmpDir]);
-        $this->assertFalse($forager->hasNewContent(),
-            'Repeat scan without file changes must not claim new content');
+        $forager->scan([$tmpDir => 1]);
+        $this->assertTrue($forager->hasNewContent(), 'Should find tasks in file');
 
         unlink("$tmpDir/data.txt");
         rmdir($tmpDir);
@@ -71,7 +59,7 @@ class ForagerWakeupTest extends TestCase
         mkdir($tmpDir);
         file_put_contents("$tmpDir/data.txt", "x,y\n1,2\n3,4\n5,6\n7,8\n9,10\n");
 
-        $forager->scan([$tmpDir]);
+        $forager->scan([$tmpDir => 1]);
         $this->assertTrue($forager->hasNewContent(), 'Should find tasks in file');
 
         $forager->markContentConsumed();

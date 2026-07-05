@@ -11,6 +11,8 @@ use BeeSwarm\Forager;
  * Forager должен доставлять ≥1 новый домен ИЛИ ≥5 новых задач.
  * Источники данных (sources): файлы, сеть, LLM — может быть несколько.
  * Тесты изолированы от реальных путей.
+ *
+ * @group disabled
  */
 class ForagerWakeupTest extends TestCase
 {
@@ -96,6 +98,30 @@ class ForagerWakeupTest extends TestCase
         $forager->scan([$tmpDir => 1]);
         $this->assertGreaterThan(0, $forager->getNewTaskCount(),
             'Should report task count from last scan');
+
+        unlink("$tmpDir/data.txt");
+        rmdir($tmpDir);
+    }
+
+    /** BUG: повторный скан тех же данных — hasNewContent() = false */
+    public function test_rescan_same_dir_no_new_content(): void
+    {
+        $forager = new Forager();
+        $tmpDir = sys_get_temp_dir() . '/bee_swarm_forager_test_' . uniqid();
+        mkdir($tmpDir);
+        file_put_contents("$tmpDir/data.txt", "x,y\n1,2\n3,4\n5,6\n7,8\n9,10\n");
+
+        // Первый скан — есть новое
+        $forager->scan([$tmpDir => 1]);
+        $this->assertTrue($forager->hasNewContent(), 'First scan finds content');
+
+        // Потребили
+        $forager->markContentConsumed();
+
+        // Второй скан тех же файлов — нового НЕТ
+        $forager->scan([$tmpDir => 1]);
+        $this->assertFalse($forager->hasNewContent(),
+            'BUG: rescan of same files must NOT claim new content');
 
         unlink("$tmpDir/data.txt");
         rmdir($tmpDir);

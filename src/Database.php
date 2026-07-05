@@ -9,6 +9,16 @@ class Database
 {
     private static ?PDO $instance = null;
     private static ?string $forcedPath = null;
+
+    private const LAWS_DDL = "CREATE TABLE IF NOT EXISTS %s (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        formula TEXT,
+        cv REAL,
+        domain TEXT DEFAULT 'unknown',
+        found_at TEXT DEFAULT (datetime('now')),
+        UNIQUE(name, formula)
+    )";
     
     public static function setPath(string $path): void
     {
@@ -41,15 +51,7 @@ class Database
     private static function migrate(): void
     {
         $db = self::$instance;
-        $db->exec("CREATE TABLE IF NOT EXISTS laws (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            formula TEXT,
-            cv REAL,
-            domain TEXT DEFAULT 'unknown',
-            found_at TEXT DEFAULT (datetime('now')),
-            UNIQUE(name, formula)
-        )");
+        $db->exec(sprintf(self::LAWS_DDL, 'laws'));
         // Migration: remove old name-only UNIQUE if exists (SQLite 3.35+)
         try {
             $cols = $db->query("PRAGMA index_list(laws)")->fetchAll(\PDO::FETCH_ASSOC);
@@ -66,15 +68,7 @@ class Database
             }
             if ($hasOldUnique) {
                 // Recreate without old unique, with new composite unique
-                $db->exec("CREATE TABLE IF NOT EXISTS laws_migrated (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
-                    formula TEXT,
-                    cv REAL,
-                    domain TEXT DEFAULT 'unknown',
-                    found_at TEXT DEFAULT (datetime('now')),
-                    UNIQUE(name, formula)
-                )");
+                $db->exec(sprintf(self::LAWS_DDL, 'laws_migrated'));
                 $db->exec("INSERT OR IGNORE INTO laws_migrated SELECT * FROM laws");
                 $db->exec("DROP TABLE laws");
                 $db->exec("ALTER TABLE laws_migrated RENAME TO laws");

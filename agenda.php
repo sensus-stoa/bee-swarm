@@ -43,6 +43,17 @@ foreach ($preloadRows as $row) {
 }
 roeLog("Preloaded " . count($knownLaws) . " known laws from DB");
 
+// Retrospective validation: удалить overfit законы при старте (HONEST_CRITERIA §1.1)
+$allTasks = getTasks();
+if (!empty($allTasks)) {
+    $retro = AtomRegistry::retrospectiveValidate($allTasks);
+    if (count($retro['overfit']) > 0) {
+        roeLog("RETRO_OVERFIT: removed " . count($retro['overfit']) . " laws");
+    }
+    roeLog("Retrospective: " . count($retro['passed']) . " passed, "
+        . count($retro['overfit']) . " overfit removed");
+}
+
 // CLOZE: словарь корпуса + реестр предложений
 $lairDir = getenv('HOME') . '/Documents/the_lair';
 $corpusVocab = null;

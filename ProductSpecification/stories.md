@@ -9,7 +9,8 @@
 |---|-----------|------|------|------|-------|---|
 | 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | 🔧 | 1/1 | 100% |
 | 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | 🔧 | 1/1 | 100% |
-| 03 | 1.1 Held-Out Validation | train/test split, ε=0.10 | ✅ | — | — | 0% |
+| 03 | 1.1 Held-Out Validation | train/test split, ε=0.10 | ✅ | 🔧 | 4/4 | 100% |
+| 03b | 1.1 Retrospective Data | foraged/generated task reconstruction | ✅ | — | — | 0% |
 
 ## Backlog (priority order)
 

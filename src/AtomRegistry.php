@@ -254,52 +254,7 @@ class AtomRegistry
      */
     public static function retrospectiveValidate(array $tasks): array
     {
-        $db = Database::get();
-        $laws = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
-        if (empty($laws)) return ['passed' => [], 'overfit' => []];
-
-        // Индекс задач по имени
-        $taskIndex = [];
-        foreach ($tasks as $t) {
-            $taskIndex[$t['name']] = $t;
-        }
-
-        $passed = [];
-        $overfit = [];
-
-        foreach ($laws as $law) {
-            $name = $law['name'];
-            $formula = $law['formula'];
-            $key = $name . '::' . $formula;
-
-            if (!isset($taskIndex[$name])) continue; // нет данных для проверки
-
-            $task = $taskIndex[$name];
-            $data = $task['data'];
-            $n = count($data);
-            if ($n < 3) continue; // недостаточно данных
-
-            // Извлекаем X и y
-            $nFeat = count($data[0]) - 1;
-            $X = array_map(fn($r) => array_slice($r, 0, $nFeat), $data);
-            $y = array_column($data, $nFeat);
-
-            // Проверяем формулу через held-out
-            $result = self::evaluateHeldout($formula, $X, $y);
-            if ($result === null) continue;
-            if ($result['cv_train'] > self::CV_TRAIN_MAX) continue;
-
-            $key = $name . '::' . $formula;
-            if ($result['cv_holdout'] <= self::CV_HOLDOUT_MAX) {
-                $passed[] = $key;
-            } else {
-                $overfit[] = $key;
-                $db->prepare("DELETE FROM laws WHERE name=? AND formula=?")
-                   ->execute([$name, $formula]);
-            }
-        }
-
-        return ['passed' => $passed, 'overfit' => $overfit];
+        return Validation\RetrospectiveValidator::validate($tasks);
     }
 
     // ═══ CV ═══

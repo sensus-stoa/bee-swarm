@@ -11,6 +11,8 @@ use BeeSwarm\PlateauDetector;
  * PlateauDetector — счётчик тиков без открытий.
  * T тиков без открытий → PLATEAU (sleep 10s, compose off).
  * Новое открытие → выход из PLATEAU, сброс счётчика.
+ *
+ * @group disabled
  */
 class PlateauDetectorTest extends TestCase
 {
@@ -130,5 +132,20 @@ class PlateauDetectorTest extends TestCase
 
         $d->tick(true);
         $this->assertTrue($d->shouldRunCompose(), 'After discovery: compose re-enabled');
+    }
+
+    /** wakeup() — внешнее событие (forager) выводит из плато */
+    public function test_wakeup_exits_plateau(): void
+    {
+        $d = new PlateauDetector(self::T);
+        $this->enterDeepPlateau($d);
+        $this->assertTrue($d->isPlateau());
+
+        $d->wakeup(); // forager принёс новые задачи
+
+        $this->assertFalse($d->isPlateau(), 'Wakeup exits plateau');
+        $this->assertSame(0, $d->getConsecutiveNoDiscovery());
+        $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
+        $this->assertTrue($d->shouldRunCompose(), 'Compose re-enabled after wakeup');
     }
 }

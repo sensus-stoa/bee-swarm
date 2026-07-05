@@ -1,0 +1,65 @@
+<?php
+declare(strict_types=1);
+
+namespace BeeSwarm;
+
+/**
+ * PlateauDetector — счётчик тиков без открытий.
+ *
+ * HONEST_CRITERIA §1.5: когда consecutive_no_discovery >= P, система
+ * входит в PLATEAU: sleep увеличивается, compose отключается.
+ * Открытие или новые данные — выход из PLATEAU.
+ *
+ * P = 50 ticks (E), T_plateau = 10s sleep.
+ */
+class PlateauDetector
+{
+    private int $threshold;
+    private int $consecutiveNoDiscovery = 0;
+    private bool $justEntered = false;
+
+    private const BASE_SLEEP_US = 200_000;
+    private const PLATEAU_SLEEP_US = 10_000_000;
+
+    public function __construct(int $threshold = 50)
+    {
+        $this->threshold = $threshold;
+    }
+
+    /** Один тик демона. $foundDiscovery = true если было открытие. */
+    public function tick(bool $foundDiscovery): void
+    {
+        $wasPlateau = $this->isPlateau();
+
+        if ($foundDiscovery) {
+            $this->consecutiveNoDiscovery = 0;
+            $this->justEntered = false;
+        } else {
+            $this->consecutiveNoDiscovery++;
+        }
+
+        // justEntered: ровно на переходе через порог
+        $this->justEntered = !$wasPlateau && $this->isPlateau();
+    }
+
+    public function isPlateau(): bool
+    {
+        return $this->consecutiveNoDiscovery > $this->threshold;
+    }
+
+    public function getSleepUs(): int
+    {
+        return $this->isPlateau() ? self::PLATEAU_SLEEP_US : self::BASE_SLEEP_US;
+    }
+
+    public function getConsecutiveNoDiscovery(): int
+    {
+        return $this->consecutiveNoDiscovery;
+    }
+
+    /** true только на первом тике после входа в плато (для однократного лога) */
+    public function justEnteredPlateau(): bool
+    {
+        return $this->justEntered;
+    }
+}

@@ -138,8 +138,9 @@ while (true) {
     }
     
     if (count($log) > 200) $log = array_slice($log, -100);
-    if ( > 50) {
-        if ( === 51) roeLog("🏔️ PLATEAU");
+    if (!isset($consecutiveNoDiscovery)) $consecutiveNoDiscovery = 0;
+    if ($consecutiveNoDiscovery > 50) {
+        if ($consecutiveNoDiscovery === 51) roeLog("🏔️ PLATEAU");
         usleep(10000000);
     } else {
         usleep(200000);

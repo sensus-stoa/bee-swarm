@@ -10,7 +10,8 @@
 | 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | 🔧 | 1/1 | 100% |
 | 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | 🔧 | 1/1 | 100% |
 | 03 | 1.1 Held-Out Validation | train/test split, ε=0.10 | ✅ | 🔧 | 4/4 | 100% |
-| 03b | 1.1 Retrospective Data | foraged/generated task reconstruction | ✅ | — | — | 0% |
+| 03b | 1.1 Retrospective Data | foraged/generated task reconstruction | ✅ | 🔧 | 2/4 | 50% |
+| D1 | SOLID: Split AtomRegistry | atoms/discover/heldout/retro/cv | ✅ | — | — | 0% |
 
 ## Backlog (priority order)
 
@@ -26,7 +27,7 @@
 
 | # | Что | Инструменты |
 |---|-----|-------------|
-| D1 | Модульная структура src/ и tests/ | ADR/Layered по ARCHITECTURE.md |
+| D1 | Модульная структура + SOLID | S: AtomRegistry→AtomProvider+LawValidator, Forager→SourceAdapter, Grammar→AtomDefinitions. I: ValidatorInterface, TaskProviderInterface, SourceInterface. Архитектура: ADR/Layered по ARCHITECTURE.md |
 | D2 | agenda.php → Daemon class | procedural → testable OOP, тонкий entry point |
 | D3 | Статический анализ | psalm level 3+ |
 | D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |

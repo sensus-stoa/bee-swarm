@@ -1,31 +1,24 @@
 # Story 03b: Retrospective Data
 
-> 190/202 законов не проверены — нет исходных данных.
-> Foraged/generated законы теряют связь с источником.
+> 181/193 законов не проверены — generated-таски не матчатся по именам.
+> 12 passed, 9 overfit removed. Нужно покрыть generated и cloze.
 
 ## Spec
 
-1. Для foraged-законов: матчить имя задачи (foraged_*.md_c0c1) → пересканировать файл
-2. Для generated-законов: перегенерировать таск по имени (GEN_sq_abs → sq(abs))
-3. retrospectiveValidate() получает полный набор задач
+1. ✅ Foraged-законы: forager scan при старте → 9 overfit удалено
+2. [ ] Generated-законы: GEN_+_× → матчить с getTasks()
+3. [ ] Cloze-законы: cloze_{i}_{pos} → реконструировать из SentenceRegistry
 4. Цель: ≥ 90% законов проверены ретроспективно
 
 ## Core
 
-[~] red: test_retro_data_foraged — foraged-закон матчится с исходным файлом
+[x] red: test_retro_data_foraged
+[x] green: foraged task reconstruction + daemon startup
+[~] red: test_retro_data_generated — generated-таски матчатся
     [ ] test written, RED confirmed
     [ ] review
     [ ] approve
-[ ] green: foraged task reconstruction
-    [ ] implementation done, full suite GREEN
-    [ ] lint
-    [ ] review
-    [ ] approve
-[ ] red: test_retro_data_generated — generated-закон реконструируется
-    [ ] test written, RED confirmed
-    [ ] review
-    [ ] approve
-[ ] green: generated task reconstruction
+[ ] green: generated task matching
     [ ] implementation done, full suite GREEN
     [ ] lint
     [ ] review
@@ -35,4 +28,5 @@
 
 ## Status
 
-- Next: `red: test_retro_data_foraged`
+- 2/4 work units done
+- Next: `red: test_retro_data_generated`

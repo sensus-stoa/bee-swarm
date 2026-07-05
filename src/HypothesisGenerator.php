@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Infra\Database;
+
 use BeeSwarm\Core\Grammar;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Bee;
 
 /**
  * Spawner: рой порождает новый рой.

@@ -19,7 +19,7 @@ class SelfFeedingGenerator {
     }
     
     private function loadPool(): void {
-        $db = BeeSwarm\Database::get();
+        $db = BeeSwarm\Infra\Database::get();
         $db->exec("CREATE TABLE IF NOT EXISTS action_pool (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             code TEXT NOT NULL,
@@ -83,7 +83,7 @@ class SelfFeedingGenerator {
     
     /** Сохранить успешное действие — оно ПОПОЛНЯЕТ пул */
     public function feedSuccess(string $code, float $cv): void {
-        $db = BeeSwarm\Database::get();
+        $db = BeeSwarm\Infra\Database::get();
         $hash = md5($code);
         
         // Проверить, есть ли уже такой код (по хешу)
@@ -272,3 +272,5 @@ if (PHP_SAPI === 'cli' && basename($_SERVER['SCRIPT_FILENAME'] ?? '') === basena
     echo "Self-sustaining: " . ($gen->stats()['self_sustaining'] ? 'YES' : 'NO') . "\n";
     echo "Evolved actions: {$gen->stats()['born_from_success']}\n";
 }
+
+use BeeSwarm\Infra\Database;

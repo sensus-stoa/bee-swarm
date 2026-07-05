@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\CorpusVocabulary;
-use BeeSwarm\SentenceRegistry;
-use BeeSwarm\Database;
+use BeeSwarm\Text\CorpusVocabulary;
+use BeeSwarm\Text\SentenceRegistry;
+use BeeSwarm\Infra\Database;
 
 /**
  * Шаги 2-5: Cloze-генератор + SentenceRegistry + error-rate CV.

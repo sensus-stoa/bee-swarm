@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Infra\Database;
+
 class SelfFeedingGeneratorTest extends TestCase
 {
     private \SelfFeedingGenerator $gen;
@@ -70,7 +72,7 @@ class SelfFeedingGeneratorTest extends TestCase
         $this->gen->feedSuccess($code, 0.3);
 
         // Проверяем через БД
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
         $stmt = $db->prepare("SELECT source FROM action_pool WHERE code_hash = ?");
         $source = false;
         if ($stmt) {
@@ -98,7 +100,7 @@ class SelfFeedingGeneratorTest extends TestCase
     /** evictWeakest: при превышении 100 удаляет слабейшего */
     public function test_eviction_on_overflow(): void
     {
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
 
         // Чистим ВЕСЬ пул кроме seed-шаблонов
         $db->exec("DELETE FROM action_pool WHERE source != 'seed'");

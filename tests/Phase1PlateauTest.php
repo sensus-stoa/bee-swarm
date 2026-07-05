@@ -5,7 +5,7 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\Search;
 
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 /**
  * Тесты preload knownLaws из БД.

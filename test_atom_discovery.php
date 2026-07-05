@@ -7,7 +7,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\Grammar;
 use BeeSwarm\Search;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 date_default_timezone_set('Europe/Moscow');
 

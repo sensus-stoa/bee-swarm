@@ -5,7 +5,7 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\AtomRegistry;
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 class SemanticLayerTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Hive;
 
 use BeeSwarm\Core\Search;
 

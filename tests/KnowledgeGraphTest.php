@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Infra\Database;
+
 class KnowledgeGraphTest extends TestCase
 {
     /** Каждый метрический закон (sleep→energy) создаёт факт в графе */
     public function test_metric_law_creates_fact(): void
     {
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
         $name = 'test_metric→test_target';
         $formula = '(x0+K1)';
         $cv = 0.05;
@@ -28,7 +30,7 @@ class KnowledgeGraphTest extends TestCase
 
     public function test_synthetic_law_creates_is_a_law_fact(): void
     {
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
         $name = 'TEST_OP_' . uniqid();
         $conf = 1.0;
         $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence, inferred) VALUES (?, 'is_a', 'law', ?, 0)")
@@ -42,7 +44,7 @@ class KnowledgeGraphTest extends TestCase
 
     public function test_graph_has_relates_to_facts(): void
     {
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
         $count = $db->query("SELECT COUNT(*) FROM knowledge_graph WHERE predicate = 'relates_to'")->fetchColumn();
         $this->assertGreaterThanOrEqual(0, $count);
     }
@@ -50,7 +52,7 @@ class KnowledgeGraphTest extends TestCase
     /** Противоречия с учётом иерархии операций */
     public function test_contradiction_detector_ignores_hierarchy(): void
     {
-        $db = \BeeSwarm\Database::get();
+        $db = \BeeSwarm\Infra\Database::get();
         
         // Чистим тестовые факты перед проверкой
         $db->exec("DELETE FROM knowledge_graph WHERE subject IN ('discovered_atom','arithmetic_operation','compose_operation') AND predicate='is_a'");

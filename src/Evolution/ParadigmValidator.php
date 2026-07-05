@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm
+
+use BeeSwarm\Infra\Database;\volution;
 
 /**
  * ParadigmValidator: замыкает цикл парадигма → CV→0 → подтверждение.

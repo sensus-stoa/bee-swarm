@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 abstract class TestCase extends BaseTestCase
 {

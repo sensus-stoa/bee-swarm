@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\ResourceGuard;
+use BeeSwarm\Infra\ResourceGuard;
 
 class ResourceGuardTest extends TestCase
 {

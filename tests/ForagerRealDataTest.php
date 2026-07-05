@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Forager;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 /**
  * Тесты Forager на РЕАЛЬНЫХ данных ExoCortex.

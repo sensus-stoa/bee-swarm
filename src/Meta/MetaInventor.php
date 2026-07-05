@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Meta;
 
 use BeeSwarm\Core\Search;
 

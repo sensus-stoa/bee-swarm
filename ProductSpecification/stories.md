@@ -30,6 +30,7 @@
 | D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
 | D5 | Cognitive complexity | https://github.com/Rarst/phpcs-cognitive-complexity |
 | D6 | Автоформатирование | php-cs-fixer (PSR-12) |
+| D7 | Forager — множественные источники | файлы + сеть + LLM, pluggable sources |
 
 ## Lint step (добавлен в workflow)
 

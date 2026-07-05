@@ -1,7 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Validation;
+
+use BeeSwarm\AtomRegistry;
+use BeeSwarm\Database;
+
 
 // ~/.bee_swarm/src/LawVerifier.php
 // H1: Верификация старых законов на новых данных → сжатие grammar

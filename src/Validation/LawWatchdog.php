@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Validation;
+
+use BeeSwarm\Database;
+use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
+
 
 use BeeSwarm\Core\Search;
 

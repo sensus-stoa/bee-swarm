@@ -7,7 +7,8 @@
 
 | # | What | Spec | Core | Tests | % |
 |---|------|------|------|-------|---|
-| D1b | Core module: Grammar, Search, ExpressionTree | ✅ | 🔧 | — | 0% |
+| D1b | Core: Grammar, Search, ExpressionTree | ✅ | ✅ | 3/3 | 100% |
+| D1c | Validation: LawVerifier, LawCompressor, LawWatchdog | ✅ | 🔧 | — | 0% |
 
 ## Backlog — Stage 0
 

@@ -24,9 +24,11 @@
 | # | Что | Инструменты |
 |---|-----|-------------|
 | D1 | Модульная структура src/ и tests/ | ADR/Layered по ARCHITECTURE.md |
-| D2 | Статический анализ | psalm level 3+ |
-| D3 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
-| D4 | Автоформатирование | php-cs-fixer (PSR-12) |
+| D2 | agenda.php → Daemon class | procedural → testable OOP, тонкий entry point |
+| D3 | Статический анализ | psalm level 3+ |
+| D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
+| D5 | Cognitive complexity | https://github.com/Rarst/phpcs-cognitive-complexity |
+| D6 | Автоформатирование | php-cs-fixer (PSR-12) |
 
 ## Lint step (добавлен в workflow)
 

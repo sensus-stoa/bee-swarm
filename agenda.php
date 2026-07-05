@@ -118,8 +118,8 @@ while (true) {
     }
     }
     
-    // ═══ 2. COMPOSE (disabled) ═══
-    if (false && $foundAny && $domain !== 'cloze') {
+    // ═══ 2. COMPOSE ═══
+    if ($plateauDetector->shouldRunCompose() && $foundAny && $domain !== 'cloze') {
         $g = new Grammar(); $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {
             foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps) as $c) {

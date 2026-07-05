@@ -7,7 +7,8 @@
 
 | # | Criterion | What | Spec | Core | Tests | % |
 |---|-----------|------|------|------|-------|---|
-| 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | — | — | 0% |
+| 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | 🔧 | 1/1 | 100% |
+| 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | — | — | 0% |
 
 ## Backlog (priority order)
 

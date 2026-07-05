@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Database;
+use BeeSwarm\AtomRegistry;
 
 /**
  * Тест: preload knownLaws из БД при старте демона.
@@ -74,5 +75,60 @@ class KnownLawsPreloadTest extends TestCase
         $this->assertArrayHasKey('TEST_PRELOAD2::dup_atom', $knownLaws2);
         
         $db->exec("DELETE FROM laws WHERE name = 'TEST_PRELOAD2'");
+    }
+
+    /**
+     * Все форматы ключей preload (name::formula) матчат ключи открытия (name::atom).
+     *
+     * BUG: AtomRegistry::discover() возвращает несколько атомов для одной задачи
+     * (например, abs, floor, ceil, round, relu для y=x), но DB имеет name UNIQUE —
+     * только первый атом сохраняется. После рестарта preload загружает только
+     * сохранённый атом, а остальные переоткрываются заново.
+     *
+     * @group disabled
+     */
+    public function test_preload_key_matches_all_discovered_atom_keys(): void
+    {
+        $db = Database::get();
+        $db->exec("DELETE FROM laws WHERE name LIKE 'TEST_PRELOAD_%'");
+
+        $taskName = 'TEST_PRELOAD_FORMAT';
+
+        // Данные где discover() находит 5 атомов с CV=0:
+        // abs, floor, ceil, round, relu — все дают точное совпадение
+        $X = [[0.0], [1.0], [2.0]];
+        $y = [0.0, 1.0, 2.0];
+
+        // === Шаг 1: Симулируем открытие (как daemon) ===
+        $discovered = AtomRegistry::discover($X, $y);
+        $this->assertNotEmpty($discovered, 'Should discover atoms for identity-like task');
+        $this->assertGreaterThan(1, count($discovered),
+            'Need multiple atoms to demonstrate dedup bug');
+
+        // Симулируем сохранение ВСЕХ открытых атомов в БД (как daemon)
+        // НО: name UNIQUE → только первый атом реально сохраняется
+        foreach ($discovered as $d) {
+            $db->prepare("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
+               ->execute([$taskName, $d['atom'], $d['cv'], 'test']);
+        }
+
+        // === Шаг 2: Симулируем preload после рестарта ===
+        $knownLaws = [];
+        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($rows as $row) {
+            $knownLaws[$row['name'] . '::' . $row['formula']] = true;
+        }
+
+        // === Шаг 3: Проверяем что ВСЕ открытые атомы есть в knownLaws ===
+        // BUG: только первый атом (abs) в БД, остальные — нет
+        foreach ($discovered as $d) {
+            $discoveryKey = $taskName . '::' . $d['atom'];
+            $this->assertArrayHasKey($discoveryKey, $knownLaws,
+                "Atom '{$d['atom']}' discovered but missing from preload"
+                . " — will be re-discovered after restart");
+        }
+
+        // Cleanup
+        $db->exec("DELETE FROM laws WHERE name LIKE 'TEST_PRELOAD_%'");
     }
 }

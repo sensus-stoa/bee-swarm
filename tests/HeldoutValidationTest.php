@@ -12,9 +12,7 @@ use BeeSwarm\AtomRegistry;
  * - h = max(1, floor(n/5)) точек в holdout
  * - Поиск только на train
  * - Приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10
- * - Overfit: CV_train ≤ 0.01 но CV_holdout > 0.10 → rejected
- *
- * @group disabled
+ * Overfit: CV_train ≤ 0.01 но CV_holdout > 0.10 → rejected
  */
 class HeldoutValidationTest extends TestCase
 {

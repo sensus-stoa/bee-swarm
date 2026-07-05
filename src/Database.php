@@ -43,12 +43,45 @@ class Database
         $db = self::$instance;
         $db->exec("CREATE TABLE IF NOT EXISTS laws (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL,
+            name TEXT NOT NULL,
             formula TEXT,
             cv REAL,
             domain TEXT DEFAULT 'unknown',
-            found_at TEXT DEFAULT (datetime('now'))
+            found_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(name, formula)
         )");
+        // Migration: remove old name-only UNIQUE if exists (SQLite 3.35+)
+        try {
+            $cols = $db->query("PRAGMA index_list(laws)")->fetchAll(\PDO::FETCH_ASSOC);
+            $hasOldUnique = false;
+            foreach ($cols as $col) {
+                if (str_contains($col['name'] ?? '', 'sqlite_autoindex_laws') && ($col['unique'] ?? 0)) {
+                    $info = $db->query("PRAGMA index_info({$col['name']})")->fetchAll(\PDO::FETCH_ASSOC);
+                    $indexedCols = array_column($info, 'name');
+                    if ($indexedCols === ['name']) {
+                        $hasOldUnique = true;
+                        break;
+                    }
+                }
+            }
+            if ($hasOldUnique) {
+                // Recreate without old unique, with new composite unique
+                $db->exec("CREATE TABLE IF NOT EXISTS laws_migrated (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    formula TEXT,
+                    cv REAL,
+                    domain TEXT DEFAULT 'unknown',
+                    found_at TEXT DEFAULT (datetime('now')),
+                    UNIQUE(name, formula)
+                )");
+                $db->exec("INSERT OR IGNORE INTO laws_migrated SELECT * FROM laws");
+                $db->exec("DROP TABLE laws");
+                $db->exec("ALTER TABLE laws_migrated RENAME TO laws");
+            }
+        } catch (\PDOException $e) {
+            // Migration already done or table doesn't exist — ok
+        }
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,

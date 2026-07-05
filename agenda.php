@@ -25,6 +25,13 @@ function roeLog(string $msg): void {
 
 echo "[AGI v4-cloze] Daemon. Log: $logFile\n";
 
+// Preload known laws from DB (prevents re-discovery after restart)
+$preloadRows = Database::get()->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+foreach ($preloadRows as $row) {
+    $knownLaws[$row['name'] . '::' . $row['formula']] = true;
+}
+roeLog("Preloaded " . count($knownLaws) . " known laws from DB");
+
 // CLOZE: словарь корпуса + реестр предложений
 $lairDir = getenv('HOME') . '/Documents/the_lair';
 $corpusVocab = null;

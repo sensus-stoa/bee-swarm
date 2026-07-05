@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Forager;
+
+use BeeSwarm\Infra\Database;
 
 /**
  * DataRequestor: рой ЗАПРАШИВАЕТ данные для проверки гипотез.

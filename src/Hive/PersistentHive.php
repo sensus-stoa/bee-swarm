@@ -1,6 +1,9 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Hive;
+
+use BeeSwarm\Infra\Database;
+use BeeSwarm\Bee\CellBee;
 
 /**
  * PersistentHive: популяция с состоянием в SQLite.

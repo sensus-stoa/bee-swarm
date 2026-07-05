@@ -2,11 +2,11 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use BeeSwarm\Grammar;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 use BeeSwarm\Search;
-use BeeSwarm\MetaInventor;
-use BeeSwarm\ConsciousBee;
-use BeeSwarm\SelfLearningBee;
+use BeeSwarm\Meta\MetaInventor;
+use BeeSwarm\Bee\ConsciousBee;
+use BeeSwarm\Bee\SelfLearningBee;
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');

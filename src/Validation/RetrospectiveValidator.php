@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Validation;
 
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 /**
  * RetrospectiveValidator — ретроспективная проверка законов.

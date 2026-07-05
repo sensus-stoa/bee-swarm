@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 /**
  * Story 03b: Retrospective Data

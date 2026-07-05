@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 class LawCompressionTest extends TestCase
 {

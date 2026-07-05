@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace BeeSwarm\Core;
 
 use BeeSwarm\Core\ExpressionTree;
-use BeeSwarm\Database;
-use BeeSwarm\ConceptRegistry;
+use BeeSwarm\Infra\Database;
+use BeeSwarm\Knowledge\ConceptRegistry;
 
 class Grammar
 {

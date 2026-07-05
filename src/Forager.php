@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace BeeSwarm;
 
+use BeeSwarm\Infra\Database;
+use BeeSwarm\Knowledge\ConceptRegistry;
+
 class Forager
 {
     private array $priorities = [];

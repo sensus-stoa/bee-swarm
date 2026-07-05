@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Infra\Database;
+
 /**
  * SelfOptimizer: CV→0 на собственный опыт.
  * «Какое действие максимально увеличит virtue при текущей энергии?»

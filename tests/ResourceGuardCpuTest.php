@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\ResourceGuard;
+use BeeSwarm\Infra\ResourceGuard;
 
 /**
  * Тесты ДО фикса: доказывают, что текущий ResourceGuard НЕ ловит процессный CPU.

@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Bee;
+
+use BeeSwarm\Infra\Database;
 
 /**
  * ConsciousBee: пчела с внутренним состоянием, привязанным к семантике.

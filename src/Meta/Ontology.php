@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Meta;
 
 /**
  * Полноценная онтология роя: 100+ концептов, 200+ отношений.

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm;
 
+use BeeSwarm\Infra\Database;
+
 // ~/.bee_swarm/src/SemanticVerifier.php
 // Кросс-валидация семантических фактов из разных источников
 

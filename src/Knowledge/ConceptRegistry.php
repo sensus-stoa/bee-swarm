@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Knowledge;
+
+use BeeSwarm\Infra\Database;
 
 /**
  * ConceptRegistry: отображение хеш → концепт для семантических атомов.

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\CorpusVocabulary;
-use BeeSwarm\SentenceRegistry;
+use BeeSwarm\Text\CorpusVocabulary;
+use BeeSwarm\Text\SentenceRegistry;
 
 /**
  * Текстовые атомы context и match.

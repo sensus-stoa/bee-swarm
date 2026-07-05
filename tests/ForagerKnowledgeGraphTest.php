@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Forager;
-use BeeSwarm\Database;
-use BeeSwarm\ConceptRegistry;
+use BeeSwarm\Infra\Database;
+use BeeSwarm\Knowledge\ConceptRegistry;
 
 /**
  * Forager → knowledge_graph петля.

@@ -3,11 +3,11 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 use BeeSwarm\Core\Search;
-use BeeSwarm\MetaInventor;
-use BeeSwarm\ConsciousBee;
-use BeeSwarm\SelfLearningBee;
+use BeeSwarm\Meta\MetaInventor;
+use BeeSwarm\Bee\ConsciousBee;
+use BeeSwarm\Bee\SelfLearningBee;
 
 use Spiral\RoadRunner\Http\HttpWorker;
 use Spiral\Goridge\Relay;
@@ -246,11 +246,11 @@ while (true) {
             $data = $agent->decide();
         }
         elseif ($path === '/hive') {
-            $hive = new \BeeSwarm\PersistentHive();
+            $hive = new \BeeSwarm\Hive\PersistentHive();
             $data = $hive->tick();
         }
         elseif ($path === '/hive-state') {
-            $hive = new \BeeSwarm\PersistentHive();
+            $hive = new \BeeSwarm\Hive\PersistentHive();
             $data = [
                 'generation' => $hive->gen(),
                 'bees' => array_map(fn($b) => [
@@ -262,7 +262,7 @@ while (true) {
             ];
         }
         elseif ($path === '/eco-hive') {
-            $eco = new \BeeSwarm\EcoHive();
+            $eco = new \BeeSwarm\Hive\EcoHive();
             $which = $body['hive'] ?? 'a';
             $data = $eco->tick($which);
         }
@@ -285,7 +285,7 @@ while (true) {
             ];
         }
         elseif ($method === 'POST' && $path === '/eco-query') {
-            $eco = new \BeeSwarm\EcoHive();
+            $eco = new \BeeSwarm\Hive\EcoHive();
             $d = $body['data'] ?? [];
             $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
             $y = array_map(fn($r) => end($r), $d);
@@ -313,11 +313,11 @@ while (true) {
             $data = $tester->testAll();
         }
         elseif ($path === '/request-data') {
-            $requestor = new \BeeSwarm\DataRequestor();
+            $requestor = new \BeeSwarm\Forager\DataRequestor();
             $data = $requestor->request();
         }
         elseif ($path === '/evolve') {
-            $spawner = new \BeeSwarm\SwarmSpawner();
+            $spawner = new \BeeSwarm\Bee\SwarmSpawner();
             $testTasks = [
                 ['task' => 'AND', 'domain' => 'logic', 'data' => [[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
                 ['task' => 'OR',  'domain' => 'logic', 'data' => [[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
@@ -334,11 +334,11 @@ while (true) {
             $data = $optimizer->step();
         }
         elseif ($path === '/paradigm') {
-            $gen = new \BeeSwarm\ParadigmHypothesis();
+            $gen = new \BeeSwarm\Evolution\ParadigmHypothesis();
             $data = $gen->generate();
         }
         elseif ($path === '/validate') {
-            $validator = new \BeeSwarm\ParadigmValidator();
+            $validator = new \BeeSwarm\Evolution\ParadigmValidator();
             $data = $validator->validate();
         }
         elseif ($path === '/watchdog') {
@@ -349,7 +349,7 @@ while (true) {
             );
         }
         elseif ($path === '/generation') {
-            $darwin = new \BeeSwarm\DarwinLoop();
+            $darwin = new \BeeSwarm\Evolution\DarwinLoop();
             $data = $darwin->generation();
         }
         elseif ($method === 'POST' && $path === '/propose') {
@@ -369,25 +369,25 @@ while (true) {
             );
         }
         elseif ($path === '/paradigms') {
-            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $swarm = new \BeeSwarm\Evolution\ParadigmSwarm();
             $data = $swarm->listParadigms();
         }
         elseif ($method === 'POST' && $path === '/route') {
-            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $swarm = new \BeeSwarm\Evolution\ParadigmSwarm();
             $d = $body['data'] ?? [];
             $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
             $y = array_map(fn($r) => end($r), $d);
             $data = $swarm->route($X, $y);
         }
         elseif ($method === 'POST' && $path === '/coalition') {
-            $swarm = new \BeeSwarm\ParadigmSwarm();
+            $swarm = new \BeeSwarm\Evolution\ParadigmSwarm();
             $d = $body['data'] ?? [];
             $X = array_map(fn($r) => array_slice($r, 0, -1), $d);
             $y = array_map(fn($r) => end($r), $d);
             $data = $swarm->coalition($X, $y, $body['p1'] ?? 'compression', $body['p2'] ?? 'dissipation');
         }
         elseif ($method === 'POST' && $path === '/validate-fact') {
-            $learner = new \BeeSwarm\SelfLearningBee();
+            $learner = new \BeeSwarm\Bee\SelfLearningBee();
             $data = $learner->learnFactWithValidation(
                 $body['subject'] ?? '',
                 $body['predicate'] ?? 'is_a',

@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Infra\Database;
+
 /**
  * HypothesisTester: проверяет гипотезы через CV→0.
  * Если данные есть → поиск. Если нет → запрос данных.

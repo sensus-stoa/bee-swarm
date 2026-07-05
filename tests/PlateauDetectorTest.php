@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\PlateauDetector;
+use BeeSwarm\Infra\PlateauDetector;
 
 /**
  * Story 02: Plateau Honesty (HONEST_CRITERIA §1.5)

@@ -5,7 +5,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\AtomRegistry;
 use BeeSwarm\Grammar;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 echo "══════════════════════════════════════\n";
 echo "  SEMANTIC EVOLUTION\n";

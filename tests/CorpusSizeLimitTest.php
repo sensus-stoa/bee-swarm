@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\CorpusVocabulary;
+use BeeSwarm\Text\CorpusVocabulary;
 
 /**
  * Корпус НЕ должен подвешивать систему.

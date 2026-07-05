@@ -6,9 +6,9 @@ date_default_timezone_set('Europe/Moscow');
 require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\PlateauDetector;
+use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Forager;
 
 $log = []; $tick = 0; $lastDiscovery = time();

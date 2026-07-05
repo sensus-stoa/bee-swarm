@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace BeeSwarm;
+namespace BeeSwarm\Hive;
+
+use BeeSwarm\Bee\CellBee;
 
 /**
  * DensityHive: density-based routing. Никаких меток доменов.

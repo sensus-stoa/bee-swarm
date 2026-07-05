@@ -169,3 +169,5 @@ if ($bestOverall['code'] && $bestOverall['cv'] < 0.1) {
 }
 
 echo "[DONE] Generations: $generation\n";
+
+use BeeSwarm\Infra\Database;

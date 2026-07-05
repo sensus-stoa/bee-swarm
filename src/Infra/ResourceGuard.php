@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Infra;
 
 /**
  * ResourceGuard v2: измеряет ПРОЦЕССНЫЙ CPU через /proc/self/stat.

@@ -5,10 +5,10 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\Search;
 
-use BeeSwarm\ResourceGuard;
+use BeeSwarm\Infra\ResourceGuard;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Database;
+use BeeSwarm\Infra\Database;
 
 /**
  * Тесты для daemon efficiency:

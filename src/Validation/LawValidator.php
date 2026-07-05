@@ -10,7 +10,7 @@ use BeeSwarm\Math\CvCalculator;
  * LawValidator — held-out validation (HONEST_CRITERIA §1.1).
  * Вынесено из AtomRegistry (SOLID S).
  */
-class LawValidator
+class LawValidator implements ValidatorInterface
 {
     private const HO_SPLIT_RATIO = 5;
     private const CV_TRAIN_MAX = 0.01;
@@ -19,8 +19,6 @@ class LawValidator
 
     /**
      * discover с held-out validation.
-     * h = max(1, floor(n/5)) точек откладываются.
-     * Поиск на train, приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10.
      */
     public static function discoverHeldout(array $X, array $y): array
     {
@@ -32,8 +30,12 @@ class LawValidator
         $y_train = array_slice($y, 0, $n - $h);
 
         $candidates = AtomRegistry::discover($X_train, $y_train);
-        if (empty($candidates)) return [];
+        return self::validate($candidates, $X, $y);
+    }
 
+    /** ValidatorInterface: фильтрует кандидатов через held-out */
+    public static function validate(array $candidates, array $X, array $y): array
+    {
         $found = [];
         foreach ($candidates as $c) {
             $result = self::evaluateHeldout($c['atom'], $X, $y);
@@ -48,7 +50,6 @@ class LawValidator
                 ];
             }
         }
-
         return $found;
     }
 

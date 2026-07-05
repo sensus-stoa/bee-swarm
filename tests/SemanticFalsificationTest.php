@@ -5,7 +5,7 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Forager;
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 
 /**
  * Путь A: отрицательные примеры в семантических задачах.

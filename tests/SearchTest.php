@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Search;
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
 
 class SearchTest extends TestCase
 {

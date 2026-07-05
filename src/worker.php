@@ -2,9 +2,9 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 use BeeSwarm\Database;
-use BeeSwarm\Search;
+use BeeSwarm\Core\Search;
 use BeeSwarm\MetaInventor;
 use BeeSwarm\ConsciousBee;
 use BeeSwarm\SelfLearningBee;
@@ -61,7 +61,7 @@ while (true) {
                     <?php
                     require_once '~/.bee_swarm/vendor/autoload.php';
                     $data = json_decode(file_get_contents('DATA_FILE_PLACEHOLDER'), true);
-                    $g = new BeeSwarm\Grammar();
+                    $g = new BeeSwarm\Core\Grammar();
                     [$ok, $cv, $formula] = BeeSwarm\Search::find($data['X'], $data['y'], $g);
                     echo json_encode(['bee' => 'BEE_ID_PLACEHOLDER', 'ok' => $ok, 'cv' => $cv, 'formula' => $formula]);
                     PHP;

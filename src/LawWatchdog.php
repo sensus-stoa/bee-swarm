@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
 use BeeSwarm\Core\ExpressionTree;
 
 /**

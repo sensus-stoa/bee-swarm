@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
+
 /**
  * EcoHive: экосистема из двух роёв с общей грамматикой.
  * Рой A (арифметика) и Рой B (язык/этика).

@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
+
 /**
  * Инструкция (inspired by @ctx/self-replace + atomic-actions)
  *

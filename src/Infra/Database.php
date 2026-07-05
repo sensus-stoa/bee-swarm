@@ -36,7 +36,7 @@ class Database
         if (self::$instance === null) {
             $path = self::$forcedPath
                 ?? getenv('SWARM_DB_PATH')
-                ?: __DIR__ . '/../data/swarm.db';
+                ?: __DIR__ . '/../../data/swarm.db';
             self::$instance = new PDO("sqlite:$path", null, null, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

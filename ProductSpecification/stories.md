@@ -7,7 +7,7 @@
 
 | # | Criterion | What | Spec | Core | Tests | % |
 |---|-----------|------|------|------|-------|---|
-| 02 | 1.5 Plateau Honesty | PLATEAU detect + compose off | ✅ | 🔧 | 9/12 | 50% |
+| 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | — | — | 0% |
 
 ## Backlog (priority order)
 
@@ -39,3 +39,4 @@
 | # | Criterion | Completed |
 |---|-----------|-----------|
 | 01 | 1.6 Deduplication | ✅ preload + UNIQUE(name,formula) |
+| 02 | 1.5 Plateau Honesty | ✅ detect + compose gating |

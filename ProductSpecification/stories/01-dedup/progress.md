@@ -7,27 +7,28 @@
 ## Spec
 
 При старте `agenda.php` загружает `knownLaws` из БД. 
-Сейчас: preload матчит НЕ все форматы ключей (атомы + Search::find).
-После фикса: 0 повторов после рестарта.
+BUG: `AtomRegistry::discover()` возвращает 5 атомов для y=x (abs, floor, ceil, round, relu),
+но `laws.name UNIQUE` — только первый пишется в БД. После рестарта 4 атома теряются.
 
-Measurement: `verify_0_6` — в логе нет пар DISCOVERY с одинаковыми (task_name, formula). 
-DB: `SELECT COUNT(*) FROM laws GROUP BY name, formula HAVING COUNT(*) > 1` → 0 rows.
+Measurement: `verify_0_6` — в логе нет пар DISCOVERY с одинаковыми (task_name, formula).
 
 ## Core
 
-[~] red: test_knownlaws_preload — все форматы ключей матчатся после рестарта
-    [ ] test written, RED confirmed
-    [ ] review passed
-    [ ] approve (user reviews diff)
-[ ] green: knownLaws preload fix
+[x] red: test_knownlaws_preload — все форматы ключей матчатся после рестарта
+    [x] test written, RED confirmed
+    [x] review passed (agent-review + premortem)
+    [x] approve → committed (0a21c51)
+[~] green: knownLaws preload fix
     [ ] implementation done, full suite GREEN
+    [ ] review (agent-review + premortem)
     [ ] approve (user reviews diff)
 [ ] refactor
     [ ] structural improvements, full suite GREEN
-    [ ] approve (user reviews diff)
+    [ ] review (agent-review + premortem)
+    [ ] approve
 [ ] verify: daemon restart → pgrep check → 0 повторов в логе
 
 ## Status
 
-- Tests: 0 done
-- Next: `red: test_knownlaws_preload`
+- Tests: 1 test written (disabled), 0 scenarios passing yet
+- Next: `green: knownLaws preload fix`

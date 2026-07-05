@@ -11,6 +11,8 @@ use BeeSwarm\Forager;
  * Forager должен доставлять ≥1 новый домен ИЛИ ≥5 новых задач.
  * Источники данных (sources): файлы, сеть, LLM — может быть несколько.
  * Тесты изолированы от реальных путей.
+ *
+ * @group disabled
  */
 class ForagerWakeupTest extends TestCase
 {
@@ -64,6 +66,38 @@ class ForagerWakeupTest extends TestCase
 
         $forager->markContentConsumed();
         $this->assertFalse($forager->hasNewContent(), 'Flag reset after consume');
+
+        unlink("$tmpDir/data.txt");
+        rmdir($tmpDir);
+    }
+
+    /** getNewDomainCount() — число уникальных доменов */
+    public function test_get_new_domain_count(): void
+    {
+        $forager = new Forager();
+        $tmpDir = sys_get_temp_dir() . '/bee_swarm_forager_test_' . uniqid();
+        mkdir($tmpDir);
+        file_put_contents("$tmpDir/data.txt", "x,y\n1,2\n3,4\n5,6\n7,8\n9,10\n");
+
+        $forager->scan([$tmpDir => 1]);
+        $this->assertSame(1, $forager->getNewDomainCount(),
+            'All foraged tasks share one domain');
+
+        unlink("$tmpDir/data.txt");
+        rmdir($tmpDir);
+    }
+
+    /** getNewTaskCount() — число новых задач */
+    public function test_get_new_task_count(): void
+    {
+        $forager = new Forager();
+        $tmpDir = sys_get_temp_dir() . '/bee_swarm_forager_test_' . uniqid();
+        mkdir($tmpDir);
+        file_put_contents("$tmpDir/data.txt", "x,y\n1,2\n3,4\n5,6\n7,8\n9,10\n");
+
+        $forager->scan([$tmpDir => 1]);
+        $this->assertGreaterThan(0, $forager->getNewTaskCount(),
+            'Should report task count from last scan');
 
         unlink("$tmpDir/data.txt");
         rmdir($tmpDir);

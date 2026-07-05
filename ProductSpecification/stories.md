@@ -1,13 +1,13 @@
 # Bee Swarm Stories — Stage 0 (HONEST_CRITERIA.md)
 
-> Каждый критерий → story → progress.md → red → green → refactor → verify
+> Каждый критерий → story → progress.md → red → green → lint → refactor → verify
 > Цель: pass 7/7 критериев 24h непрерывно
 
 ## In Progress
 
 | # | Criterion | What | Spec | Core | Tests | % |
 |---|-----------|------|------|------|-------|---|
-| 02 | 1.5 Plateau Honesty | PLATEAU detect + compose off | ✅ | — | — | 0% |
+| 02 | 1.5 Plateau Honesty | PLATEAU detect + compose off | ✅ | 🔧 | 9/12 | 50% |
 
 ## Backlog (priority order)
 
@@ -19,16 +19,21 @@
 | 06 | 1.4 Non-Triviality | Алгебраическая редукция | Чистит +(x0,0) и ×(x1,1) |
 | 07 | 1.3 Parsimony | complexity(e), выбор простейшего | Оптимизация, не безопасность — можно последним |
 
+## Technical Debt (после Stage 0)
+
+| # | Что | Инструменты |
+|---|-----|-------------|
+| D1 | Модульная структура src/ и tests/ | ADR/Layered по ARCHITECTURE.md |
+| D2 | Статический анализ | psalm level 3+ |
+| D3 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
+| D4 | Автоформатирование | php-cs-fixer (PSR-12) |
+
+## Lint step (добавлен в workflow)
+
+После GREEN, до REVIEW: `php -l` на всех изменённых .php файлах. Ловит parse errors до коммита.
+
 ## Done
 
 | # | Criterion | Completed |
 |---|-----------|-----------|
 | 01 | 1.6 Deduplication | ✅ preload + UNIQUE(name,formula) |
-
-## Stage 1+ (будущее)
-
-| Stage | Criteria | Когда |
-|-------|----------|-------|
-| Stage 1 | Living System (2.1–2.7 + bis–sexies) | После Stage 0 pass 24h |
-| Stage 2 | Understanding (3.1–3.5) | После Stage 1 |
-| Stage 3 | Autonomy | После Stage 2 |

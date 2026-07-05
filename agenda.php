@@ -68,8 +68,8 @@ $lairDir = getenv('HOME') . '/Documents/the_lair';
 $corpusVocab = null;
 $sentenceRegistry = null;
 if (is_dir($lairDir)) {
-    $corpusVocab = new \BeeSwarm\CorpusVocabulary([$lairDir]);
-    $sentenceRegistry = new \BeeSwarm\SentenceRegistry([$lairDir], $corpusVocab);
+    $corpusVocab = new \BeeSwarm\Text\CorpusVocabulary([$lairDir]);
+    $sentenceRegistry = new \BeeSwarm\Text\SentenceRegistry([$lairDir], $corpusVocab);
     roeLog("Corpus: {$corpusVocab->size()} words, {$sentenceRegistry->count()} sentences");
 }
 

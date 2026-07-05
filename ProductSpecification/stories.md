@@ -1,27 +1,34 @@
 # Bee Swarm Stories — Stage 0 (HONEST_CRITERIA.md)
 
-> Каждый критерий Stage 0 → story с progress.md
-> Формат: continue-framework (rakovi4/continue-framework)
-> Карта: PLATEAU_PLAN.md → критерии
+> Каждый критерий → story → progress.md → red → green → refactor → verify
+> Цель: pass 7/7 критериев 24h непрерывно
 
-## Stage 0: Reliable Invariant Extraction (7 criteria → pass 24h)
+## In Progress
 
-| # | Story (Criterion) | Spec | Core | Tests | Refactor | % | PLATEAU_PLAN |
-|---|-------------------|------|------|-------|----------|---|-------------|
-| 01 | 1.6 Deduplication | ✅ | 🔧 | — | — | 0% | Phase 1.1 |
-| 02 | 1.5 Plateau Honesty | ✅ | — | — | — | 0% | Phase 1.2–1.3 |
+| # | Criterion | What | Spec | Core | Tests | % |
+|---|-----------|------|------|------|-------|---|
+| 02 | 1.5 Plateau Honesty | PLATEAU detect + compose off | ✅ | — | — | 0% |
 
-## Stage 0 Backlog
+## Backlog (priority order)
 
-| # | Story (Criterion) | PLATEAU_PLAN |
-|---|-------------------|-------------|
-| 03 | 1.1 Held-Out Validation | Phase 2.3 |
-| 04 | 1.2 Statistical Sufficiency | Phase 2.1 |
-| 05 | 1.7 Compression Superiority | Phase 2.1 |
-| 06 | 1.3 Parsimony | — |
-| 07 | 1.4 Non-Triviality | Phase 3.1 |
+| # | Criterion | What | Почему первый |
+|---|-----------|------|---------------|
+| 03 | 1.1 Held-Out Validation | train/test split, ε_holdout=0.10 | Фундамент: без него нет контроля false positives |
+| 04 | 1.2 Statistical Sufficiency | t ≥ t_min, защита от случайных CV→0 | Без него held-out бессмысленен |
+| 05 | 1.7 Compression Superiority | MDL cost vs y=mean(y) | Отсекает over-parameterized constants |
+| 06 | 1.4 Non-Triviality | Алгебраическая редукция | Чистит +(x0,0) и ×(x1,1) |
+| 07 | 1.3 Parsimony | complexity(e), выбор простейшего | Оптимизация, не безопасность — можно последним |
 
 ## Done
 
-| # | Story | Completed |
-|---|-------|-----------|
+| # | Criterion | Completed |
+|---|-----------|-----------|
+| 01 | 1.6 Deduplication | ✅ preload + UNIQUE(name,formula) |
+
+## Stage 1+ (будущее)
+
+| Stage | Criteria | Когда |
+|-------|----------|-------|
+| Stage 1 | Living System (2.1–2.7 + bis–sexies) | После Stage 0 pass 24h |
+| Stage 2 | Understanding (3.1–3.5) | После Stage 1 |
+| Stage 3 | Autonomy | После Stage 2 |

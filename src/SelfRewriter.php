@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
 /**
  * SelfRewriter: рой переписывает свой код для оптимальности.
  * Анализирует → генерирует варианты → тестирует → применяет лучший.

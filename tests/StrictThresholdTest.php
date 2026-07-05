@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Core\Search;
+
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Search;
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 use BeeSwarm\Database;
 
 class StrictThresholdTest extends TestCase

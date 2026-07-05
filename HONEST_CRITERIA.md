@@ -192,6 +192,8 @@ Based on preliminary runs: `t_min ≈ 8` for depth 1, `t_min ≈ 15` for depth 2
 
 All seven criteria (1.1–1.7) must return `pass` simultaneously for a continuous observation period of **24 hours** of system runtime. The verification scripts must be run on the same log file and database.
 
+**Infrastructure prerequisite:** Forager (or equivalent data feed mechanism) MUST be connected to the daemon and deliver ≥1 new domain or ≥5 new tasks during the observation period. Log must contain `FORAGER_NEW_DOMAIN` or `FORAGER_NEW_TASK`. Without this, the system cannot exit plateau (0.5), cannot accumulate data for sufficient sample sizes (0.2), and cannot discover new laws in previously unseen domains. This is not a search-quality criterion — it verifies that the pipe is connected.
+
 ---
 
 ## 2. STAGE 1 — LIVING SYSTEM (POPULATION)

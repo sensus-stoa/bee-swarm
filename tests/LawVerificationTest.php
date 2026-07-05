@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\AtomRegistry;
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 use BeeSwarm\Database;
 
 class LawVerificationTest extends TestCase

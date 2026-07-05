@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
 class MetaInventor
 {
     public function invent(array $unsolved, Grammar $grammar): ?string

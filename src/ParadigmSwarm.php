@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
+
 /**
  * ParadigmSwarm: эксперты изолированы парадигмами.
  * Каждая парадигма = своя грамматика + своя специализация.

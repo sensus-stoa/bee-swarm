@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
+
 /**
  * DarwinLoop: биологическая эволюция роя.
  * Не self-modify. Spawn → mutate → compete → replace parent.

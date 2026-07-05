@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace BeeSwarm;
+namespace BeeSwarm\Core;
 
 use BeeSwarm\Core\ExpressionTree;
+use BeeSwarm\Database;
+use BeeSwarm\ConceptRegistry;
 
 class Grammar
 {

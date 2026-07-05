@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Grammar;
+
 /**
  * HypothesisGenerator: генерирует проверяемые гипотезы из кросс-доменных мостов.
  * Принцип: если операция × работает в 6 доменах, она ДОЛЖНА работать в домене X.

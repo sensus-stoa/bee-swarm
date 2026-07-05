@@ -2,6 +2,10 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Search;
+
+use BeeSwarm\Core\Grammar;
+
 /**
  * CellBee: пчела-клетка.
  * Своя грамматика (мембрана). Своя энергия. Своя история.

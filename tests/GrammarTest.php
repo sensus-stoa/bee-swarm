@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 
 class GrammarTest extends TestCase
 {

@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace BeeSwarm;
 
+use BeeSwarm\Core\Grammar;
+
 /**
  * AutonomousAgent: рой САМ решает что делать.
  * На основе само-описания выбирает следующее действие.

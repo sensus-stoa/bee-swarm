@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Core\Search;
+
 use BeeSwarm\Database;
 
 /**

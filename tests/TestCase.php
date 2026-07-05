@@ -10,7 +10,14 @@ abstract class TestCase extends BaseTestCase
 {
     protected function setUp(): void
     {
-        // Ensure DB is initialized
+        // GUARD: prevent test leakage into production DB
+        $dbPath = getenv('SWARM_DB_PATH');
+        if (!$dbPath || !str_contains($dbPath, 'test')) {
+            $this->markTestSkipped(
+                'SWARM_DB_PATH must point to a test database. ' .
+                'Run with phpunit.xml or set SWARM_DB_PATH=data/test_swarm.db'
+            );
+        }
         Database::get();
     }
 }

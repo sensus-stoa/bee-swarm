@@ -10,6 +10,8 @@ class Forager
     private array $strategyScores = [];
     private int $newTaskCount = 0;
     private array $newDomains = [];
+    private string $lastReportedFingerprint = '';
+    private string $currentFingerprint = '';
 
     public function __construct(?array $priorities = null)
     {
@@ -121,7 +123,24 @@ class Forager
             }
         }
 
-        // Track new content
+        // Compute fingerprint from scanned file paths
+        $paths = [];
+        foreach ($sorted as $dir => $pri) {
+            if (!is_dir($dir)) continue;
+            try {
+                $iter = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
+                );
+                foreach ($iter as $f) {
+                    try { $paths[] = $f->getPathname(); }
+                    catch (\Throwable) {}
+                }
+            } catch (\Throwable) {}
+        }
+        sort($paths);
+        $this->currentFingerprint = md5(implode(',', $paths));
+        
+        // Always track current content
         $this->newTaskCount = count($allTasks);
         foreach ($allTasks as $t) {
             $domain = $t['domain'] ?? 'unknown';
@@ -144,6 +163,9 @@ class Forager
     /** ≥1 новый домен ИЛИ ≥5 новых задач с последнего consume */
     public function hasNewContent(): bool
     {
+        if ($this->currentFingerprint === $this->lastReportedFingerprint && $this->lastReportedFingerprint !== '') {
+            return false;
+        }
         return count($this->newDomains) >= 1 || $this->newTaskCount >= 5;
     }
 
@@ -157,11 +179,10 @@ class Forager
         return $this->newTaskCount;
     }
 
-    /** Сбросить счётчики новизны (вызвать после обработки новых данных) */
+    /** Запомнить текущий скан как доложенный */
     public function markContentConsumed(): void
     {
-        $this->newTaskCount = 0;
-        $this->newDomains = [];
+        $this->lastReportedFingerprint = $this->currentFingerprint;
     }
 
     private function scanDir(string $dir, int $max, array $strategies): array

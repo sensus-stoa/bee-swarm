@@ -166,43 +166,7 @@ class AtomRegistry
      */
     public static function discover(array $X, array $y): array
     {
-        $found = [];
-        $nFeat = count($X[0] ?? []);
-        $n = count($y);
-
-        foreach (self::all() as $atom) {
-            $vec = [];
-            $valid = true;
-
-            foreach ($X as $row) {
-                if (self::isBinary($atom) && $nFeat >= 2) {
-                    $v = self::apply($atom, (float)$row[0], (float)$row[1]);
-                } elseif (self::isUnary($atom)) {
-                    $v = self::apply($atom, (float)$row[0]);
-                } else {
-                    $valid = false;
-                    break;
-                }
-                if ($v === null || is_nan($v) || is_infinite($v)) {
-                    $valid = false;
-                    break;
-                }
-                $vec[] = $v;
-            }
-
-            if (!$valid || count($vec) !== $n) continue;
-
-            $cv = self::cv($vec, $y);
-            if ($cv < 0.001) {
-                $found[] = [
-                    'atom' => $atom,
-                    'cv'   => $cv,
-                    'mode' => self::isBinary($atom) ? 'binary' : 'unary',
-                ];
-            }
-        }
-
-        return $found;
+        return Core\AtomProvider::discover($X, $y);
     }
 
     /**
@@ -289,62 +253,7 @@ class AtomRegistry
      */
     public static function discoverCompose(array $X, array $y, array $grammar): array
     {
-        $found = [];
-        $nFeat = count($X[0] ?? []);
-        $n = count($y);
-
-        foreach ($grammar as $outer) {
-            foreach ($grammar as $inner) {
-                if ($outer === $inner) continue;
-                if (!self::isUnary($outer) && !self::isBinary($outer)) continue;
-                if (!self::isUnary($inner) && !self::isBinary($inner)) continue;
-
-                $vec = [];
-                $valid = true;
-
-                foreach ($X as $row) {
-                    // Inner
-                    if (self::isBinary($inner) && $nFeat >= 2) {
-                        $v1 = self::apply($inner, (float)$row[0], (float)$row[1]);
-                    } elseif (self::isUnary($inner)) {
-                        $v1 = self::apply($inner, (float)$row[0]);
-                    } else {
-                        $valid = false; break;
-                    }
-                    if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
-                        $valid = false; break;
-                    }
-
-                    // Outer
-                    if (self::isBinary($outer) && $nFeat >= 3) {
-                        $v2 = self::apply($outer, $v1, (float)$row[2]);
-                    } elseif (self::isBinary($outer) && $nFeat >= 2) {
-                        $v2 = self::apply($outer, $v1, (float)$row[1]);
-                    } elseif (self::isUnary($outer)) {
-                        $v2 = self::apply($outer, $v1);
-                    } else {
-                        $valid = false; break;
-                    }
-                    if ($v2 === null || is_nan($v2) || is_infinite($v2)) {
-                        $valid = false; break;
-                    }
-                    $vec[] = $v2;
-                }
-
-                if (!$valid || count($vec) !== $n) continue;
-
-                $cv = self::cv($vec, $y);
-                if ($cv < 0.001) {
-                    $found[] = [
-                        'atom' => "{$outer}({$inner})",
-                        'cv'   => $cv,
-                        'mode' => 'compose',
-                    ];
-                }
-            }
-        }
-
-        return $found;
+        return Core\AtomProvider::discoverCompose($X, $y, $grammar);
     }
 
     // ═══ СИГНАЛ ═══

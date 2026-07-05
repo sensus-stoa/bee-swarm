@@ -62,4 +62,10 @@ class PlateauDetector
     {
         return $this->justEntered;
     }
+
+    /** Compose должен работать только НЕ на плато */
+    public function shouldRunCompose(): bool
+    {
+        return !$this->isPlateau();
+    }
 }

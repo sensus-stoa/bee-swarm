@@ -8,6 +8,8 @@ class Forager
     private array $priorities = [];
     private array $strategies = [];
     private array $strategyScores = [];
+    private int $newTaskCount = 0;
+    private array $newDomains = [];
 
     public function __construct(?array $priorities = null)
     {
@@ -119,6 +121,13 @@ class Forager
             }
         }
 
+        // Track new content
+        $this->newTaskCount = count($allTasks);
+        foreach ($allTasks as $t) {
+            $domain = $t['domain'] ?? 'unknown';
+            $this->newDomains[$domain] = true;
+        }
+
         foreach ($this->strategyScores as $name => $score) {
             if ($score === 0 && count($this->strategies) > 3) {
                 unset($this->strategies[$name]);
@@ -130,6 +139,19 @@ class Forager
     public function getPriorities(): array
     {
         return $this->priorities;
+    }
+
+    /** ≥1 новый домен ИЛИ ≥5 новых задач с последнего consume */
+    public function hasNewContent(): bool
+    {
+        return count($this->newDomains) >= 1 || $this->newTaskCount >= 5;
+    }
+
+    /** Сбросить счётчики новизны (вызвать после обработки новых данных) */
+    public function markContentConsumed(): void
+    {
+        $this->newTaskCount = 0;
+        $this->newDomains = [];
     }
 
     private function scanDir(string $dir, int $max, array $strategies): array

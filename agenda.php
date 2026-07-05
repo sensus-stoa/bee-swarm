@@ -9,10 +9,16 @@ use BeeSwarm\Search;
 use BeeSwarm\Database;
 use BeeSwarm\AtomRegistry;
 use BeeSwarm\PlateauDetector;
+use BeeSwarm\Forager;
 
 $log = []; $tick = 0; $lastDiscovery = time();
 $knownLaws = [];
 $plateauDetector = new PlateauDetector(50);
+$forager = new Forager();
+$foragerScanInterval = 100; // тиков между сканами
+$foragerSources = getenv('FORAGER_SOURCES')
+    ? array_fill_keys(explode(':', getenv('FORAGER_SOURCES')), 1)
+    : [];
 
 $logDir = __DIR__ . '/logs';
 if (!is_dir($logDir)) mkdir($logDir, 0755, true);
@@ -51,6 +57,20 @@ while (true) {
     $load = sys_getloadavg();
     $cpu = $load[0] / max(1, (int)shell_exec('nproc 2>/dev/null') ?: 1);
     if ($cpu > 0.7) { usleep(2000000); continue; }
+    
+    // Forager: сканируем источники каждые N тиков или при входе в PLATEAU
+    if (!empty($foragerSources) && ($tick % $foragerScanInterval === 0 || $plateauDetector->justEnteredPlateau())) {
+        $foragedTasks = $forager->scan($foragerSources);
+        if (!empty($foragedTasks)) {
+            $foragedTasksGlobal = array_merge($foragedTasksGlobal ?? [], $foragedTasks);
+            if ($forager->hasNewContent()) {
+                $newDomains = count(array_filter($foragedTasks, fn($t) => ($t['domain'] ?? '') !== ''));
+                roeLog("FORAGER_NEW_TASK: " . count($foragedTasks) . " tasks, $newDomains domains");
+                $plateauDetector->wakeup();
+                $forager->markContentConsumed();
+            }
+        }
+    }
     
     $tasks = getTasks();
     if (empty($tasks)) { usleep(1000000); continue; }

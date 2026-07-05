@@ -43,6 +43,15 @@ foreach ($preloadRows as $row) {
 }
 roeLog("Preloaded " . count($knownLaws) . " known laws from DB");
 
+// Forager scan before retrospective (нужны foraged-задачи)
+if (!empty($foragerSources)) {
+    $foragedTasks = $forager->scan($foragerSources);
+    if (!empty($foragedTasks)) {
+        $foragedTasksGlobal = $foragedTasks;
+        roeLog("Forager startup: " . count($foragedTasks) . " tasks");
+    }
+}
+
 // Retrospective validation: удалить overfit законы при старте (HONEST_CRITERIA §1.1)
 $allTasks = getTasks();
 if (!empty($allTasks)) {

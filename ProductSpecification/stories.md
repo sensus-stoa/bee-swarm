@@ -8,7 +8,8 @@
 | # | Criterion | What | Spec | Core | Tests | % |
 |---|-----------|------|------|------|-------|---|
 | 02b | 1.5 Plateau Wakeup | forager→tick, timeout probe | ✅ | 🔧 | 1/1 | 100% |
-| 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | — | — | 0% |
+| 02c | 1.5 Forager Integration | wire Forager, plateau exit | ✅ | 🔧 | 1/1 | 100% |
+| 03 | 1.1 Held-Out Validation | train/test split, ε=0.10 | ✅ | — | — | 0% |
 
 ## Backlog (priority order)
 
@@ -30,7 +31,7 @@
 | D4 | Clean Code PHP rules | https://github.com/piotrplenik/clean-code-php |
 | D5 | Cognitive complexity | https://github.com/Rarst/phpcs-cognitive-complexity |
 | D6 | Автоформатирование | php-cs-fixer (PSR-12) |
-| D7 | Forager — баги и оптимизации | issues: maxTotal=30, strategyScores leak, composed→json, hardcoded domains, hardcoded exclusions, explode_lines comma-split, file_get_contents @-silent. Плюс: pluggable sources (файлы/сеть/LLM), maxTasks env, domain extraction |
+| D7 | Forager — баги и оптимизации | scanDir 110 строк → разбить. maxTotal=30, strategyScores leak, composed→json, hardcoded domains, hardcoded exclusions, explode_lines comma-split, file_get_contents @-silent. Плюс: pluggable sources (файлы/сеть/LLM), maxTasks env, domain extraction |
 
 ## Lint step (добавлен в workflow)
 

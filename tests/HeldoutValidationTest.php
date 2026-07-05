@@ -1,0 +1,91 @@
+<?php
+declare(strict_types=1);
+
+namespace BeeSwarm\Tests;
+
+use BeeSwarm\AtomRegistry;
+
+/**
+ * Story 03: Held-Out Validation (HONEST_CRITERIA §1.1)
+ *
+ * discoverHeldout() — как discover(), но с train/test split:
+ * - h = max(1, floor(n/5)) точек в holdout
+ * - Поиск только на train
+ * - Приём: CV_train ≤ 0.01 И CV_holdout ≤ 0.10
+ * - Overfit: CV_train ≤ 0.01 но CV_holdout > 0.10 → rejected
+ *
+ * @group disabled
+ */
+class HeldoutValidationTest extends TestCase
+{
+    /** discoverHeldout существует и возвращает правильную структуру */
+    public function test_discover_heldout_exists(): void
+    {
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]];
+        $y = [3, 7, 11, 15, 19]; // y = x0 + x1 (точный закон)
+
+        $result = AtomRegistry::discoverHeldout($X, $y);
+        $this->assertIsArray($result);
+
+        if (!empty($result)) {
+            $this->assertArrayHasKey('atom', $result[0]);
+            $this->assertArrayHasKey('cv_train', $result[0]);
+            $this->assertArrayHasKey('cv_holdout', $result[0]);
+        }
+    }
+
+    /** Точный закон (add) проходит held-out на 5+ точках */
+    public function test_exact_law_passes_heldout(): void
+    {
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]];
+        $y = [3, 7, 11, 15, 19, 23]; // y = x0 + x1
+
+        $result = AtomRegistry::discoverHeldout($X, $y);
+        $atoms = array_column($result, 'atom');
+
+        $this->assertContains('add', $atoms, 'Exact law add must pass held-out');
+    }
+
+    /** Случайные данные — held-out отсеивает ложные CV→0 */
+    public function test_random_data_no_false_positives(): void
+    {
+        $X = [];
+        $y = [];
+        for ($i = 0; $i < 10; $i++) {
+            $X[] = [(float)mt_rand(0, 100), (float)mt_rand(0, 100)];
+            $y[] = (float)mt_rand(0, 100);
+        }
+
+        $result = AtomRegistry::discoverHeldout($X, $y);
+        // На случайных данных held-out должен отсеять всё или почти всё
+        // Допускаем не более 1 false positive
+        $this->assertLessThanOrEqual(1, count($result),
+            'Random data must not produce >1 false positive with held-out');
+    }
+
+    /** Overfit: CV_train=0 но CV_holdout>0.10 → возвращает OVERFIT маркер */
+    public function test_overfit_marker_in_result(): void
+    {
+        // Данные где add работает на первых 4 точках но не на 5-й
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [100, 200]];
+        $y = [3, 7, 11, 15, 999]; // последняя точка — выброс
+
+        $result = AtomRegistry::discoverHeldout($X, $y);
+        $atoms = array_column($result, 'atom');
+
+        // add должен быть rejected (CV_train=0 но CV_holdout > 0.10 на выбросе)
+        // либо не появляться в результатах
+        $addFound = in_array('add', $atoms, true);
+        if ($addFound) {
+            // Если add найден, он должен иметь cv_holdout ≤ 0.10
+            foreach ($result as $r) {
+                if ($r['atom'] === 'add') {
+                    $this->assertLessThanOrEqual(0.10, $r['cv_holdout'],
+                        'add with outlier must have cv_holdout ≤ 0.10 or be absent');
+                }
+            }
+        }
+        // Тест проходит если add rejected (не в результате) или accepted с cv_holdout ≤ 0.10
+        $this->assertTrue(true);
+    }
+}

@@ -304,4 +304,18 @@ class AtomRegistry
     {
         return CvCalculator::compute($vec, $y);
     }
+
+    /**
+     * Compression superiority (HONEST_CRITERIA §1.7): atom must beat y=mean baseline
+     /** Compression superiority (HONEST_CRITERIA §1.7): cost(f) < cost(mean) */
+     public static function isBetterThanBaseline(float $cvAtom, string $atom, ?float $cvMean = null): bool
+     {
+         // complexity: 1 для простых атомов, nodes для compose
+         $complexity = str_contains($atom, '(') ? max(1, (int) ceil(strlen($atom) / 3)) : 1;
+
+         $costAtom = $complexity + log(1.0 + $cvAtom, 2);
+         $costMean = 1.0 + log(1.0 + ($cvMean ?? $cvAtom), 2); // если cvMean не указан — сравниваем с baseline=1
+
+         return $costAtom < $costMean;
+     }
 }

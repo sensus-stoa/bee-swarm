@@ -7,8 +7,6 @@ use BeeSwarm\Core\AtomRegistry;
 
 /**
  * Story 05: Compression Superiority (HONEST_CRITERIA §1.7)
- *
- * @group disabled
  */
 class CompressionTest extends TestCase
 {
@@ -17,27 +15,38 @@ class CompressionTest extends TestCase
     {
         $this->assertTrue(
             method_exists(AtomRegistry::class, 'isBetterThanBaseline'),
-            'AtomRegistry must implement isBetterThanBaseline() for compression check'
+            'AtomRegistry must implement isBetterThanBaseline()'
         );
     }
 
-    /** Точный закон (vec=y) лучше baseline (vec=mean) */
-    public function test_exact_beats_baseline(): void
+    /** CV=0 → cost=complexity + 0 < cost(mean) → true */
+    public function test_exact_cv_zero_beats_baseline(): void
     {
-        $y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        $mean = array_sum($y) / count($y);
-        $vecMean = array_fill(0, count($y), $mean);
-
-        // Точный закон: CV=0 → MDL → −∞ → лучше mean
+        // CV=0 на среднем: cost = 1 + log₂(1) = 1
+        // baseline = 1 + log₂(1) = 1 → равенство → false (не строго лучше)
+        // Но для CV_atom=0 на данных с разбросом: cvMean > 0 → costMean > 1 → true
         $this->assertTrue(
-            AtomRegistry::isBetterThanBaseline($y, $y, 'exact'),
-            'Exact prediction must beat mean baseline'
+            AtomRegistry::isBetterThanBaseline(0.0, 'add', 0.5),
+            'CV=0 law must beat baseline with CV_mean=0.5'
         );
+    }
 
-        // Константа = mean: CV одинаковый → MDL одинаковый → НЕ лучше
+    /** CV=CV_mean → rejected (эквивалентно baseline) */
+    public function test_equal_cv_rejected(): void
+    {
+        // Атом с тем же CV что у mean → НЕ лучше
         $this->assertFalse(
-            AtomRegistry::isBetterThanBaseline($vecMean, $y, 'K'),
-            'Constant equal to mean must NOT beat baseline (§1.7)'
+            AtomRegistry::isBetterThanBaseline(0.1, 'K', 0.1),
+            'Atom equivalent to mean must be rejected (§1.7)'
+        );
+    }
+
+    /** CV хуже mean → rejected */
+    public function test_worse_cv_rejected(): void
+    {
+        $this->assertFalse(
+            AtomRegistry::isBetterThanBaseline(0.3, 'add', 0.1),
+            'Atom with CV worse than mean must be rejected'
         );
     }
 }

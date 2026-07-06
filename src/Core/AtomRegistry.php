@@ -315,20 +315,17 @@ class AtomRegistry
             return true;
         }
 
-        // Algebraic reductions: add(x,0), mul(x,1), sub(x,0), div(x,1)
+        // Algebraic reductions (§1.4): identity, double negation, idempotence
         if (str_contains($atom, '(')) {
-            if (preg_match('/^(add|\\+)\\(.+,0\\)$/', $atom)) {
-                return true;
-            }
-            if (preg_match('/^(mul|×)\\(.+,1\\)$/', $atom)) {
-                return true;
-            }
-            if (preg_match('/^(sub|−)\\(.+,0\\)$/', $atom)) {
-                return true;
-            }
-            if (preg_match('/^(div|\\/)\\(.+,1\\)$/', $atom)) {
-                return true;
-            }
+            if (preg_match('/^(add|\\+)\\(.+,0\\)$/', $atom)) return true;
+            if (preg_match('/^(mul|×)\\(.+,1\\)$/', $atom)) return true;
+            if (preg_match('/^(sub|−)\\(.+,0\\)$/', $atom)) return true;
+            if (preg_match('/^(div|\\/)\\(.+,1\\)$/', $atom)) return true;
+            if (preg_match('/^neg\\(neg\\(.+\\)\\)$/', $atom)) return true;
+            if (preg_match('/^inv\\(inv\\(.+\\)\\)$/', $atom)) return true;
+            if (preg_match('/^abs\\(abs\\(.+\\)\\)$/', $atom)) return true;
+            if (preg_match('/^min\\(([^,]+),\\1\\)$/', $atom)) return true;
+            if (preg_match('/^max\\(([^,]+),\\1\\)$/', $atom)) return true;
         }
 
         return false;

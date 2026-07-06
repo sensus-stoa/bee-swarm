@@ -77,8 +77,10 @@ class ExpressionTree
     
     /**
      * Сериализует дерево в JSON для хранения в БД.
+     *
+     * @return false|string
      */
-    public function toJson(): string
+    public function toJson(): string|false
     {
         return json_encode($this->tree);
     }

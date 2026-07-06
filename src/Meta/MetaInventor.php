@@ -106,9 +106,9 @@ class MetaInventor
     private function tryLevel1(array $unsolved, Grammar $grammar): ?string
     {
         $strategies = [
-            'unary_not' => fn($t, $g) => $this->tryUnary($t, $g, fn($x) => 1 - $x, '¬x'),
-            'unary_square' => fn($t, $g) => $this->tryUnary($t, $g, fn($x) => $x * $x, 'sq_x'),
-            'invert_mul' => fn($t, $g) => $this->tryInvertOp($t, $g),
+            'unary_not' => fn($t, $g): string|null => $this->tryUnary($t, $g, fn($x) => 1 - $x, '¬x'),
+            'unary_square' => fn($t, $g): string|null => $this->tryUnary($t, $g, fn($x) => $x * $x, 'sq_x'),
+            'invert_mul' => fn($t, $g): string|null => $this->tryInvertOp($t, $g),
         ];
         $keys = array_keys($strategies);
         shuffle($keys);

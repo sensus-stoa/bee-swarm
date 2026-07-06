@@ -34,6 +34,7 @@ class LawValidator implements ValidatorInterface
     }
 
     /** ValidatorInterface: фильтрует кандидатов через held-out */
+    #[Override]
     public static function validate(array $candidates, array $X, array $y): array
     {
         $found = [];

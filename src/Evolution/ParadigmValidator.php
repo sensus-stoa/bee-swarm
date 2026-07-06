@@ -28,7 +28,6 @@ class ParadigmValidator
         $laws = $db->query("SELECT name, formula, cv, domain FROM laws")->fetchAll();
         
         $validated = [];
-        $requests = [];
         
         foreach ($paradigms['hypotheses'] as $h) {
             $result = $this->checkParadigm($h, $laws);
@@ -96,7 +95,6 @@ class ParadigmValidator
         
         // Подтверждение: есть законы с CV→0 в релевантных доменах
         $cv0Laws = array_filter($matchingLaws, fn($l) => $l['cv'] < 0.01);
-        $allMatching = array_merge($matchingLaws, $domainMatches);
         
         if (!empty($cv0Laws)) {
             return [

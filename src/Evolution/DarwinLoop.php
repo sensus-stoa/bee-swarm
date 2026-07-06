@@ -158,7 +158,7 @@ class DarwinLoop
         // Мутация 4: уменьшить размер слайсов (быстрее, меньше памяти)
         $mutations[] = [
             'name' => 'smaller_slices',
-            'apply' => function(string $code): string {
+            'apply' => function(string $code): string|null {
                 $code = preg_replace('/array_slice\(\$l1Keys,\s*0,\s*\)\d+/', 'array_slice($l1Keys, 0, 30)', $code);
                 $code = preg_replace('/array_slice\(\$l1Unary,\s*0,\s*\)\d+/', 'array_slice($l1Unary, 0, 20)', $code);
                 return $code;

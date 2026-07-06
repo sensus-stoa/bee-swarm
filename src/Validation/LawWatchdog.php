@@ -84,7 +84,7 @@ class LawWatchdog
             $tree = ExpressionTree::fromFormula($formula);
             if ($tree) {
                 $vec = [];
-                foreach ($X as $i => $row) {
+                foreach ($X as $row) {
                     $vec[] = $tree->evaluate($row[0] ?? 0, $row[1] ?? 0);
                 }
                 return Search::cv($vec, $y);

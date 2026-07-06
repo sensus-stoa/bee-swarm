@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Core;
 
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 /**
  * AtomProvider — открытие атомов из данных.

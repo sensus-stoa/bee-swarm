@@ -5,7 +5,7 @@
 
 date_default_timezone_set('Europe/Moscow');
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 $logFile = __DIR__ . '/logs/agenda.log';
 if (!file_exists($logFile)) { echo "No log file\n"; exit; }

@@ -7,7 +7,7 @@ use BeeSwarm\Core\Search;
 
 use BeeSwarm\Infra\ResourceGuard;
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Infra\Database;
 
 /**

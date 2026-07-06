@@ -1,7 +1,7 @@
 <?php
 // Auto-generated: sq_add_ from SQ_SUM
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 $data = array (
   0 => 
   array (

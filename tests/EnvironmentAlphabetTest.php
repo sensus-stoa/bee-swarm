@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 class EnvironmentAlphabetTest extends TestCase
 {

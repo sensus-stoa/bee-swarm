@@ -4,7 +4,7 @@
 // Варианты: inverse | compose | random-features | holdout
 
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Grammar;
 
 // ═══ ВАРИАНТ 1: INVERSE — обратные задачи ═══

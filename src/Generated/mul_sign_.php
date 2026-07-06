@@ -1,7 +1,7 @@
 <?php
 // Auto-generated: mul_sign_ from AND
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 $data = array (
   0 => 
   array (

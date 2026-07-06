@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Validation;
 
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Math\CvCalculator;
 
 /**

@@ -3,7 +3,7 @@
 // Generated: ' . date('Y-m-d H:i:s') . '
 
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 $data = array (
   0 => 

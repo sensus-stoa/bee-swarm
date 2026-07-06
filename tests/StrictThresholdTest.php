@@ -5,7 +5,7 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\Search;
 
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Infra\Database;
 

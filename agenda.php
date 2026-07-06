@@ -7,9 +7,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
 use BeeSwarm\Infra\Database;
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Infra\PlateauDetector;
-use BeeSwarm\Forager;
+use BeeSwarm\Forager\Forager;
 
 $log = []; $tick = 0; $lastDiscovery = time();
 $knownLaws = [];

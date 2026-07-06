@@ -141,7 +141,9 @@ class ExpressionTree
         return null; // сложные формулы парсить не будем — используем встроенные
     }
 
-    /** Count operation nodes recursively. Leaves = 1, operators = 1 + children. */
+    /**
+     * Count operation nodes recursively. Leaves = 1, operators = 1 + children.
+     */
     public function nodeCount(): int
     {
         return $this->countNodesRecursive($this->tree);

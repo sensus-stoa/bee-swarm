@@ -10,7 +10,9 @@ namespace BeeSwarm\Core;
  */
 class AtomProvider
 {
-    /** Применить атом к строке данных. null если атом не подходит. */
+    /**
+     * Применить атом к строке данных. null если атом не подходит.
+     */
     private static function applyToRow(string $atom, int $nFeat, array $row): ?float
     {
         if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {

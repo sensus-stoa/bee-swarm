@@ -55,7 +55,9 @@ class LawValidator implements ValidatorInterface
             ) {
                 // Compression check (HONEST_CRITERIA §1.7)
                 if (! AtomRegistry::isBetterThanBaseline(
-                    $result['cv_holdout'], $c['atom'], $result['cv_mean_holdout']
+                    $result['cv_holdout'],
+                    $c['atom'],
+                    $result['cv_mean_holdout']
                 )) {
                     continue;
                 }

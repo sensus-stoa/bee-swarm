@@ -549,4 +549,24 @@ class Forager
         }
         return $tasks;
     }
+    /** Insert semantic fact into knowledge_graph (shared by old scan + accumulator) */
+    public function addSemanticFact(string $s, string $p, string $o): void
+    {
+        $s = trim($s);
+        $o = trim($o);
+        if (mb_strlen($s) < 3 || mb_strlen($o) < 3) return;
+        try {
+            $stmt = Database::get()->prepare('SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?');
+            $stmt->execute([$s, $p, $o]);
+            $existing = $stmt->fetchColumn();
+            if ($existing !== false) {
+                Database::get()->prepare('UPDATE knowledge_graph SET confidence=MIN(1.0,?+0.15) WHERE subject=? AND predicate=? AND object=?')
+                    ->execute([(float)$existing, $s, $p, $o]);
+            } else {
+                Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
+                    ->execute([$s, $p, $o]);
+            }
+        } catch (\PDOException) {}
+    }
+
 }

@@ -99,9 +99,9 @@ class Hive
         AtomRegistry::setHeldoutEnabled(true);
 
         // Preload known laws
-        $rows = Database::get()->query('SELECT name, formula FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = Database::get()->query('SELECT name, formula, domain FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $r) {
-            $this->knownLaws[$r['name'] . '::' . $r['formula']] = true;
+            $this->knownLaws[($r['domain'] ?? 'unknown') . '::' . $r['name'] . '::' . $r['formula']] = true;
         }
         $this->log('Preloaded ' . count($this->knownLaws) . ' known laws from DB');
 
@@ -298,18 +298,20 @@ class Hive
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
     {
         $key = $domain . '::' . $task['name'] . '::' . $d['atom'];
-        if (! isset($this->knownLaws[$key])) {
-            $this->knownLaws[$key] = true;
-            $foundAny = true;
-            $g = new Grammar();
-            if (! in_array($d['atom'], $g->all())) {
-                $g->add($d['atom'], 'auto-discover');
-            }
-            Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
-            $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [{$domain}]");
-            $this->plateau->tick(true);
+        if (isset($this->knownLaws[$key])) {
+            $this->log("DUPLICATE: {$d['atom']} [{$domain}]");
+            return;
         }
+        $this->knownLaws[$key] = true;
+        $foundAny = true;
+        $g = new Grammar();
+        if (! in_array($d['atom'], $g->all())) {
+            $g->add($d['atom'], 'auto-discover');
+        }
+        Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
+            ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
+        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [{$domain}]");
+        $this->plateau->tick(true);
     }
 
     private function doComposeTick(array $X, array $y, string $domain, bool &$foundAny): void

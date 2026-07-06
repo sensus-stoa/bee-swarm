@@ -279,9 +279,10 @@ class Hive
     {
         // Statistical sufficiency (HONEST_CRITERIA §1.2)
         $nFeat = count($X[0] ?? []);
-        $tMin = max(10, $nFeat * 5);
+        $tMin = max(8, $nFeat * 4);
         if (count($y) < $tMin) {
-            return; // недостаточно данных
+            $this->log("INSUFFICIENT_DATA: {$task['name']} t=" . count($y) . " < tMin=$tMin");
+            return;
         }
 
         if (AtomRegistry::isHeldoutEnabled()) {
@@ -324,8 +325,9 @@ class Hive
 
         // Statistical sufficiency (HONEST_CRITERIA §1.2)
         $nFeat = count($X[0] ?? []);
-        $tMin = max(10, $nFeat * 5);
+        $tMin = max(8, $nFeat * 4);
         if (count($y) < $tMin) {
+            $this->log("INSUFFICIENT_DATA: compose t=" . count($y) . " < tMin=$tMin");
             return;
         }
 

@@ -11,7 +11,7 @@ class Search
         $n = count($vec);
         $exact = true;
         for ($i = 0; $i < $n; $i++) {
-            if (abs($vec[$i] - $y[$i]) > 0.001) {
+            if (abs($vec[$i] - $y[$i]) > 0.0001) {
                 $exact = false;
                 break;
             }
@@ -164,7 +164,7 @@ class Search
         foreach ($feats as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
-                if (abs($vec[$i] - $y[$i]) > 0.001) {
+                if (abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }
@@ -179,7 +179,7 @@ class Search
         foreach ($exprs as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
-                if (abs($vec[$i] - $y[$i]) > 0.001) {
+                if (abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }

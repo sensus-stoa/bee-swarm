@@ -9,8 +9,6 @@ use BeeSwarm\Forager\Forager;
 
 /**
  * Story D2: Hive class (agenda.php → OOP)
- *
- * @group disabled
  */
 class HiveTest extends TestCase
 {

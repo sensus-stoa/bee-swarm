@@ -135,7 +135,7 @@ class Grammar
     public function getUnaryOps(): array
     {
         $unary = [];
-        foreach ($this->ops as $name => $info) {
+        foreach ($this->ops as $name => $_) {
             if (in_array($name, ['log2', 'inverse', 'parity', 'abs', 'sqrt', 'sq', 'neg', 'inv']) || str_starts_with($name, 'pow')) {
                 $unary[] = $name;
             }

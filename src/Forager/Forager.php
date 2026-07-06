@@ -128,7 +128,7 @@ class Forager
 
         // Compute fingerprint from scanned file paths
         $paths = [];
-        foreach ($sorted as $dir => $pri) {
+        foreach ($sorted as $dir => $_) {
             if (!is_dir($dir)) continue;
             try {
                 $iter = new \RecursiveIteratorIterator(

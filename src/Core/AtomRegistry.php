@@ -18,7 +18,6 @@ class AtomRegistry
     private const CV_EXACT_TOLERANCE = 0.0001;
 
     private static bool $heldoutEnabled = true;
-    private static array $fnCache = [];
     private static ?array $envAtoms = null;
 
     // ═══ АЛФАВИТ ИЗ СРЕДЫ ═══

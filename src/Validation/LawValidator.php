@@ -71,7 +71,7 @@ class LawValidator implements ValidatorInterface
      * ValidatorInterface: фильтрует кандидатов через held-out
      */
     #[Override]
-    public static function validate(array $candidates, array $X, array $y): array
+     public static function validate(array $candidates, array $X, array $y): array
     {
         $found = [];
         foreach ($candidates as $c) {
@@ -95,6 +95,9 @@ class LawValidator implements ValidatorInterface
                     'cv_holdout' => $result['cv_holdout'],
                     'mode' => $c['mode'],
                 ];
+            } elseif ($result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX) {
+                // OVERFIT: passed train but failed holdout (§1.1)
+                error_log("OVERFIT: {$c['atom']} (cv_train={$result['cv_train']}, cv_holdout={$result['cv_holdout']})");
             }
         }
         return self::selectSimplest($found);

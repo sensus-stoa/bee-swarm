@@ -1,9 +1,0 @@
-FROM trueasync/php-true-async:latest
-
-COPY . /swarm/
-WORKDIR /swarm
-
-EXPOSE 8765
-
-# TrueAsync HTTP server — 4 workers, parallel bees
-CMD ["php", "src/async_worker.php"]

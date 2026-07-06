@@ -119,10 +119,8 @@ class AtomRegistryTest extends TestCase
      */
     public function testDiscoverAdd(): void
     {
-        $X = [[1.0], [3.0], [5.0], [10.0]];
-        $y = [3.0, 7.0, 11.0, 30.0];
-        // ADD = x0 + x1, но у нас 2 признака
-        $X2 = [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0], [10.0, 20.0]];
+        $X2 = [[1.0, 2.0],[3.0, 4.0],[5.0, 6.0],[7.0, 8.0],[9.0, 10.0],[10.0, 20.0],[11.0, 12.0],[13.0, 14.0],[15.0, 16.0],[17.0, 18.0]];
+        $y = [3.0, 7.0, 11.0, 15.0, 19.0, 30.0, 23.0, 27.0, 31.0, 35.0];
 
         $result = AtomRegistry::discover($X2, $y);
         $this->assertNotNull($result, 'Should find at least one atom');
@@ -134,8 +132,8 @@ class AtomRegistryTest extends TestCase
      */
     public function testDiscoverSqrt(): void
     {
-        $X = [[1.0], [4.0], [9.0], [16.0]];
-        $y = [1.0, 2.0, 3.0, 4.0];
+        $X = [[1.0],[4.0],[9.0],[16.0],[25.0],[36.0],[49.0],[64.0],[81.0],[100.0]];
+        $y = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0];
 
         $result = AtomRegistry::discover($X, $y);
         $found = array_filter($result, fn ($r) => $r['atom'] === 'sqrt' && $r['cv'] < 0.001);
@@ -147,8 +145,8 @@ class AtomRegistryTest extends TestCase
      */
     public function testDiscoverMin(): void
     {
-        $X = [[0.0, 0.0], [2.0, 3.0], [5.0, 1.0], [4.0, 4.0]];
-        $y = [0.0, 2.0, 1.0, 4.0];
+        $X = [[0.0,0.0],[2.0,3.0],[5.0,1.0],[4.0,4.0],[1.0,2.0],[3.0,0.0],[6.0,3.0],[7.0,2.0],[8.0,1.0],[9.0,0.0]];
+        $y = [0.0, 2.0, 1.0, 4.0, 1.0, 0.0, 3.0, 2.0, 1.0, 0.0];
 
         $result = AtomRegistry::discover($X, $y);
         $found = array_filter($result, fn ($r) => $r['atom'] === 'min' && $r['cv'] < 0.001);

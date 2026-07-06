@@ -3,7 +3,7 @@
 // Forager с реальным извлечением законов → meta-законы
 
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 $home = getenv('HOME');
 $baseDir = $home . '/Documents/the_lair';

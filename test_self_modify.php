@@ -6,7 +6,7 @@ $home = getenv('HOME');
 $configFile = __DIR__ . '/data/forage_config.json';
 
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 // ═══ КОНФИГ ═══
 $config = file_exists($configFile) 

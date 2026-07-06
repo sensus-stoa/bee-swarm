@@ -1,7 +1,7 @@
 <?php
 // Auto-generated: min_abs_ from MIN
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 $data = array (
   0 => 
   array (

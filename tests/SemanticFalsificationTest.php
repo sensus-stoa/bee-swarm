@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager;
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Forager\Forager;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 
 /**

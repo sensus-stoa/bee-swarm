@@ -1,7 +1,7 @@
 <?php
 // Auto-generated: neq_sign_ from foraged_sem_GitHub - janvarevIrene-Voice-Assistant Ирина - русский голосовой ассистент для работы оффлайн. Поддерживает скиллы через плагины..md
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 $data = array (
   0 => 
   array (

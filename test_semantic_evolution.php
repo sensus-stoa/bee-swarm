@@ -3,7 +3,7 @@
 // ТЕСТ: граф знаний растёт сам, порождает семантические законы
 
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Grammar;
 use BeeSwarm\Infra\Database;
 

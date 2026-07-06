@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager;
+use BeeSwarm\Forager\Forager;
 
 class ForagerEvolutionTest extends TestCase
 {

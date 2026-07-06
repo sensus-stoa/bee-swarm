@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager;
+use BeeSwarm\Forager\Forager;
 use BeeSwarm\Infra\Database;
 
 class SemanticFactFilterTest extends TestCase

@@ -1,7 +1,7 @@
 <?php
 // Auto-generated: mul_min_ from MIN_MUL
 require_once '~/.bee_swarm/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 $data = array (
   0 => 
   array (

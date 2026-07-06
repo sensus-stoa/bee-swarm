@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Infra\Database;
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 class ComposePruningTest extends TestCase
 {

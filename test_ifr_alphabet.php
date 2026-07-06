@@ -80,7 +80,7 @@ echo "New binary: " . count($newBinary) . " — " . implode(', ', array_slice($n
 
 // ═══ ТЕСТ НА РЕАЛЬНЫХ ДАННЫХ ═══
 require_once __DIR__ . '/vendor/autoload.php';
-use BeeSwarm\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 // Файлы
 $files = [];

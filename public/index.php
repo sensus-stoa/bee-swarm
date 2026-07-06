@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Grammar;
+use BeeSwarm\Core\Grammar;
 use BeeSwarm\Infra\Database;
-use BeeSwarm\Search;
+use BeeSwarm\Core\Search;
 use BeeSwarm\Meta\MetaInventor;
 use BeeSwarm\Bee\ConsciousBee;
 use BeeSwarm\Bee\SelfLearningBee;

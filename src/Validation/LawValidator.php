@@ -42,6 +42,32 @@ class LawValidator implements ValidatorInterface
 
     /**
      * ValidatorInterface: фильтрует кандидатов через held-out
+     /** Выбрать простейший атом из прошедших held-out (HONEST_CRITERIA §1.3) */
+     public static function selectSimplest(array $candidates): array
+     {
+         if (empty($candidates)) {
+             return [];
+         }
+
+         // complexity: 1 для простых, nodes для compose
+         $withComplexity = array_map(function ($c) {
+             $atom = $c['atom'];
+             if (! str_contains($atom, '(')) {
+                 $c['_complexity'] = 1;
+             } else {
+                 // Count nodes: each '(' starts a new subtree
+                 $c['_complexity'] = 1 + substr_count($atom, '(');
+             }
+             return $c;
+         }, $candidates);
+
+         $minComplexity = min(array_column($withComplexity, '_complexity'));
+
+         return array_values(array_filter($withComplexity, fn($c) => $c['_complexity'] === $minComplexity));
+     }
+
+    /**
+     * ValidatorInterface: фильтрует кандидатов через held-out
      */
     #[Override]
     public static function validate(array $candidates, array $X, array $y): array
@@ -70,7 +96,7 @@ class LawValidator implements ValidatorInterface
                 ];
             }
         }
-        return $found;
+        return self::selectSimplest($found);
     }
 
     /**

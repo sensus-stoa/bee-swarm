@@ -177,7 +177,11 @@ class Forager
         $allTasks = [];
         $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
 
+        $maxTasks = 500; // OOM guard
         foreach ($sorted as $dir => $pri) {
+            if (count($allTasks) >= $maxTasks) {
+                break;
+            }
             if (! is_dir($dir)) {
                 continue;
             }

@@ -115,7 +115,7 @@ class Hive
         }
 
         // Retrospective validation
-        $allTasks = $this->getTasks();
+        $allTasks = $this->getTasks(skipGenerated: true);
         if (! empty($allTasks)) {
             $retro = AtomRegistry::retrospectiveValidate($allTasks);
             if (count($retro['overfit']) > 0) {
@@ -343,7 +343,7 @@ class Hive
 
     // ═══ ЗАДАЧИ ═══
 
-    private function getTasks(): array
+    private function getTasks(bool $skipGenerated = false): array
     {
         static $tasks = null;
         static $lastRegen = 0;
@@ -410,7 +410,7 @@ class Hive
         $tasks = array_merge($tasks, $base);
 
         // Generated compose tasks (disabled on plateau — HONEST_CRITERIA §1.5)
-        if ($this->plateau->isPlateau()) {
+        if ($skipGenerated || $this->plateau->isPlateau()) {
             return array_merge($tasks, $this->foragedTasksGlobal);
         }
 

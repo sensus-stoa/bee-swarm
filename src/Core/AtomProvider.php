@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Core;
 
-use BeeSwarm\Core\AtomRegistry;
-
 /**
  * AtomProvider — открытие атомов из данных.
  * Вынесено из AtomRegistry (SOLID S).
@@ -28,9 +26,9 @@ class AtomProvider
 
             foreach ($X as $row) {
                 if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {
-                    $v = AtomRegistry::apply($atom, (float)$row[0], (float)$row[1]);
+                    $v = AtomRegistry::apply($atom, (float) $row[0], (float) $row[1]);
                 } elseif (AtomRegistry::isUnary($atom)) {
-                    $v = AtomRegistry::apply($atom, (float)$row[0]);
+                    $v = AtomRegistry::apply($atom, (float) $row[0]);
                 } else {
                     $valid = false;
                     break;
@@ -42,7 +40,7 @@ class AtomProvider
                 $vec[] = $v;
             }
 
-            if (!$valid || count($vec) !== $n) {
+            if (! $valid || count($vec) !== $n) {
                 continue;
             }
 
@@ -50,7 +48,7 @@ class AtomProvider
             if ($cv < 0.001) {
                 $found[] = [
                     'atom' => $atom,
-                    'cv'   => $cv,
+                    'cv' => $cv,
                     'mode' => AtomRegistry::isBinary($atom) ? 'binary' : 'unary',
                 ];
             }
@@ -73,10 +71,10 @@ class AtomProvider
                 if ($outer === $inner) {
                     continue;
                 }
-                if (!AtomRegistry::isUnary($outer) && !AtomRegistry::isBinary($outer)) {
+                if (! AtomRegistry::isUnary($outer) && ! AtomRegistry::isBinary($outer)) {
                     continue;
                 }
-                if (!AtomRegistry::isUnary($inner) && !AtomRegistry::isBinary($inner)) {
+                if (! AtomRegistry::isUnary($inner) && ! AtomRegistry::isBinary($inner)) {
                     continue;
                 }
 
@@ -85,9 +83,9 @@ class AtomProvider
 
                 foreach ($X as $row) {
                     if (AtomRegistry::isBinary($inner) && $nFeat >= 2) {
-                        $v1 = AtomRegistry::apply($inner, (float)$row[0], (float)$row[1]);
+                        $v1 = AtomRegistry::apply($inner, (float) $row[0], (float) $row[1]);
                     } elseif (AtomRegistry::isUnary($inner)) {
-                        $v1 = AtomRegistry::apply($inner, (float)$row[0]);
+                        $v1 = AtomRegistry::apply($inner, (float) $row[0]);
                     } else {
                         $valid = false;
                         break;
@@ -98,9 +96,9 @@ class AtomProvider
                     }
 
                     if (AtomRegistry::isBinary($outer) && $nFeat >= 3) {
-                        $v2 = AtomRegistry::apply($outer, $v1, (float)$row[2]);
+                        $v2 = AtomRegistry::apply($outer, $v1, (float) $row[2]);
                     } elseif (AtomRegistry::isBinary($outer) && $nFeat >= 2) {
-                        $v2 = AtomRegistry::apply($outer, $v1, (float)$row[1]);
+                        $v2 = AtomRegistry::apply($outer, $v1, (float) $row[1]);
                     } elseif (AtomRegistry::isUnary($outer)) {
                         $v2 = AtomRegistry::apply($outer, $v1);
                     } else {
@@ -114,7 +112,7 @@ class AtomProvider
                     $vec[] = $v2;
                 }
 
-                if (!$valid || count($vec) !== $n) {
+                if (! $valid || count($vec) !== $n) {
                     continue;
                 }
 
@@ -122,7 +120,7 @@ class AtomProvider
                 if ($cv < 0.001) {
                     $found[] = [
                         'atom' => "{$outer}({$inner})",
-                        'cv'   => $cv,
+                        'cv' => $cv,
                         'mode' => 'compose',
                     ];
                 }

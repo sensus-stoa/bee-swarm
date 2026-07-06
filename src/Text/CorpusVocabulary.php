@@ -7,11 +7,15 @@ namespace BeeSwarm\Text;
 class CorpusVocabulary
 {
     private const MAX_WORDS = 5000;
+
     private const MAX_FILES = 200;
+
     private const MIN_WORD_LEN = 3;
 
     private array $wordToId = [];
+
     private array $idToWord = [];
+
     private int $nextId = 1;
 
     public function __construct(array $dirs)
@@ -26,7 +30,7 @@ class CorpusVocabulary
 
     private function scanDir(string $dir): void
     {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             return;
         }
 
@@ -47,7 +51,7 @@ class CorpusVocabulary
                 break;
             }
             $content = @file_get_contents($file->getPathname());
-            if (!$content) {
+            if (! $content) {
                 continue;
             }
             $this->indexContent($content);
@@ -68,7 +72,7 @@ class CorpusVocabulary
             if (mb_strlen($key) < self::MIN_WORD_LEN) {
                 continue; // мин 3 символа
             }
-            if (!isset($this->wordToId[$key])) {
+            if (! isset($this->wordToId[$key])) {
                 $this->wordToId[$key] = $this->nextId;
                 $this->idToWord[$this->nextId] = $token;
                 $this->nextId++;
@@ -80,13 +84,13 @@ class CorpusVocabulary
     {
         $text = preg_replace('/[#*_`\[\]()|>\\-]/u', ' ', $text);
         $raw = preg_split('/[\s,.;:!?«»"\'—–]+/u', $text, -1, PREG_SPLIT_NO_EMPTY);
-        return array_values(array_filter($raw, fn($w) => mb_strlen($w) >= self::MIN_WORD_LEN));
+        return array_values(array_filter($raw, fn ($w) => mb_strlen($w) >= self::MIN_WORD_LEN));
     }
 
     public function tokenize(string $sentence): array
     {
         $tokens = $this->tokenizeText($sentence);
-        return array_map(fn($t) => $this->wordToId[mb_strtolower($t)] ?? 0, $tokens);
+        return array_map(fn ($t) => $this->wordToId[mb_strtolower($t)] ?? 0, $tokens);
     }
 
     public function id(string $word): ?int

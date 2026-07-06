@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Core;
 
-use BeeSwarm\Core\Grammar;
-
 class Search
 {
     public static function cv(array $vec, array $y): float
@@ -49,15 +47,15 @@ class Search
         $feats = [];
         for ($i = 0; $i < $nFeat; $i++) {
             $col = array_column($X, $i);
-            $feats["x$i"] = $col;
-            $feats["x{$i}²"] = array_map(fn($v) => $v * $v, $col);
+            $feats["x{$i}"] = $col;
+            $feats["x{$i}²"] = array_map(fn ($v) => $v * $v, $col);
         }
         foreach ([1.0, 2.0] as $c) {
-            $feats["K$c"] = array_fill(0, $n, $c);
+            $feats["K{$c}"] = array_fill(0, $n, $c);
         }
         foreach ($grammar->all() as $op) {
             if (preg_match('/^K[_-]?(\d+(\.\d+)?)$/', $op, $m)) {
-                $feats[$op] = array_fill(0, $n, (float)$m[1]);
+                $feats[$op] = array_fill(0, $n, (float) $m[1]);
             }
         }
 
@@ -101,8 +99,8 @@ class Search
         $l1Sq = [];
         foreach (array_slice($l1Keys, 0, 200) as $name) {
             $vec = $exprs[$name];
-            $exprs["($name)²"] = array_map(fn($v) => $v * $v, $vec);
-            $l1Sq[] = "($name)²";
+            $exprs["({$name})²"] = array_map(fn ($v) => $v * $v, $vec);
+            $l1Sq[] = "({$name})²";
         }
 
         // 🔥 Unary on L1 results
@@ -148,7 +146,7 @@ class Search
 
         // L3: L2 / constant (для MIN = (...)/2)
         if ($depth >= 3) {
-            $constKeys = array_filter($featKeys, fn($k) => str_starts_with($k, 'K'));
+            $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));
             foreach ($l2Keys as $l2name) {
                 foreach ($constKeys as $ck) {
                     $vec = [];
@@ -157,7 +155,7 @@ class Search
                         $r = $grammar->apply($exprs[$l2name][$i], $cvec[$i], '/');
                         $vec[] = $r ?? 0.0;
                     }
-                    $exprs["($l2name/$ck)"] = $vec;
+                    $exprs["({$l2name}/{$ck})"] = $vec;
                 }
             }
         }

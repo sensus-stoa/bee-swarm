@@ -38,7 +38,7 @@ class ExpressionTree
     private function evalNode(array|string|float $node, float $a, float $b): float
     {
         if (is_numeric($node)) {
-            return (float)$node;
+            return (float) $node;
         }
         if ($node === 'a') {
             return $a;
@@ -87,8 +87,6 @@ class ExpressionTree
 
     /**
      * Сериализует дерево в JSON для хранения в БД.
-     *
-     * @return false|string
      */
     public function toJson(): string|false
     {
@@ -120,18 +118,24 @@ class ExpressionTree
             return 'b';
         }
         if (is_numeric($f)) {
-            return (float)$f;
+            return (float) $f;
         }
         if (preg_match('/^K(\d+(\.\d+)?)$/', $f)) {
-            return (float)substr($f, 1);
+            return (float) substr($f, 1);
         }
 
         // Унарные: (x0 op) → {"op":"op","arg":"a"}
         if (preg_match('/^\(x0(\w+)\)$/', $f, $m)) {
-            return ['op' => $m[1], 'arg' => 'a'];
+            return [
+                'op' => $m[1],
+                'arg' => 'a',
+            ];
         }
         if (preg_match('/^\(x1(\w+)\)$/', $f, $m)) {
-            return ['op' => $m[1], 'arg' => 'b'];
+            return [
+                'op' => $m[1],
+                'arg' => 'b',
+            ];
         }
 
         return null; // сложные формулы парсить не будем — используем встроенные

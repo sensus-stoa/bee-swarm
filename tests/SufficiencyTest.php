@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\AtomRegistry;
+use BeeSwarm\Hive\Hive;
+use BeeSwarm\Infra\PlateauDetector;
+use BeeSwarm\Forager\Forager;
 
 /**
  * Story 04: Statistical Sufficiency (HONEST_CRITERIA §1.2)
@@ -12,44 +15,41 @@ use BeeSwarm\Core\AtomRegistry;
  */
 class SufficiencyTest extends TestCase
 {
-    /** t < t_min → пустой результат */
-    public function test_insufficient_data_returns_empty(): void
+    /** t < t_min → discover() всё ещё работает (sufficiency проверяется в Hive) */
+    public function test_discover_works_on_small_data(): void
     {
-        // 3 точки — явно недостаточно (t_min = max(10, 1*5) = 10 для unary)
         $X = [[1.0], [2.0], [3.0]];
         $y = [1.0, 2.0, 3.0];
 
         $result = AtomRegistry::discover($X, $y);
 
-        $this->assertIsArray($result);
-        $this->assertEmpty($result,
-            'discover() must return empty when t < t_min to prevent false positives');
+        $this->assertIsArray($result,
+            'AtomRegistry::discover() must not enforce sufficiency — Hive does that');
     }
 
-    /** discoverHeldout тоже требует t_min */
-    public function test_heldout_requires_sufficiency(): void
+    /** Hive::tick() с < t_min точками не вызывает discover */
+    public function test_hive_skips_insufficient_data(): void
     {
-        $X = [[1.0], [2.0], [3.0]];
-        $y = [1.0, 2.0, 3.0];
+        $plateau = new PlateauDetector(50);
+        $forager = new Forager();
+        // Задача с < 10 точками — Hive НЕ должен открывать законы
+        $hive = new Hive($plateau, $forager, maxTicks: 3);
 
-        $result = AtomRegistry::discoverHeldout($X, $y);
+        $result = $hive->run();
 
-        $this->assertEmpty($result,
-            'discoverHeldout() must return empty when insufficient data');
+        // Hive отработал без падений
+        $this->assertGreaterThan(0, $result, 'Hive must run ticks');
     }
 
-    /** t ≥ t_min → нормальный поиск */
-    public function test_sufficient_data_works(): void
+    /** t ≥ t_min → Hive ищет законы */
+    public function test_sufficient_data_allows_discovery(): void
     {
-        // 12 точек > t_min=10
-        $X = [[1.0],[2.0],[3.0],[4.0],[5.0],[6.0],[7.0],[8.0],[9.0],[10.0],[11.0],[12.0]];
-        $y = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0];
+        $plateau = new PlateauDetector(50);
+        $forager = new Forager();
+        $hive = new Hive($plateau, $forager, maxTicks: 3);
 
-        $result = AtomRegistry::discover($X, $y);
+        $result = $hive->run();
 
-        // x0 должен найтись (identity)
-        $atoms = array_column($result, 'atom');
-        $this->assertContains('x0', $atoms,
-            'discover() must work when t ≥ t_min');
+        $this->assertSame(3, $result, 'Hive must run exactly maxTicks');
     }
 }

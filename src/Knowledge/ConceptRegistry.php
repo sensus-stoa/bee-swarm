@@ -19,8 +19,8 @@ class ConceptRegistry
      */
     public static function register(string $concept): float
     {
-        $hash = (float)(abs(crc32($concept)) % 1000) / 1000.0; // 0.000–0.999
-        self::$hashToConcept[(string)$hash] = $concept;
+        $hash = (float) (abs(crc32($concept)) % 1000) / 1000.0; // 0.000–0.999
+        self::$hashToConcept[(string) $hash] = $concept;
         return $hash;
     }
 
@@ -29,7 +29,7 @@ class ConceptRegistry
      */
     public static function concept(float $hash): ?string
     {
-        return self::$hashToConcept[(string)$hash] ?? null;
+        return self::$hashToConcept[(string) $hash] ?? null;
     }
 
     /**
@@ -37,8 +37,8 @@ class ConceptRegistry
      */
     public static function checkFact(float $subjectHash, string $predicate, float $objectHash): float
     {
-        $s = self::$hashToConcept[(string)$subjectHash] ?? null;
-        $o = self::$hashToConcept[(string)$objectHash] ?? null;
+        $s = self::$hashToConcept[(string) $subjectHash] ?? null;
+        $o = self::$hashToConcept[(string) $objectHash] ?? null;
 
         if ($s === null || $o === null) {
             return 0.0;  // неизвестный концепт → факта нет
@@ -46,12 +46,12 @@ class ConceptRegistry
 
         $db = Database::get();
         $stmt = $db->prepare(
-            "SELECT MAX(confidence) FROM knowledge_graph WHERE subject = ? AND predicate = ? AND object = ?"
+            'SELECT MAX(confidence) FROM knowledge_graph WHERE subject = ? AND predicate = ? AND object = ?'
         );
         $stmt->execute([$s, $predicate, $o]);
         $result = $stmt->fetchColumn();
 
-        return $result !== false ? (float)$result : 0.0;
+        return $result !== false ? (float) $result : 0.0;
     }
 
     /**

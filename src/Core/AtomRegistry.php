@@ -4,26 +4,32 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Core;
 
-use BeeSwarm\Core\AtomDefinitions;
+use BeeSwarm\Math\CvCalculator;
 use BeeSwarm\Validation\LawValidator;
 use BeeSwarm\Validation\RetrospectiveValidator;
-use BeeSwarm\Math\CvCalculator;
 
 class AtomRegistry
 {
     // Held-out validation (HONEST_CRITERIA §1.1)
     private const HO_MIN_POINTS = 3;
+
     private const HO_SPLIT_RATIO = 5;
+
     private const CV_TRAIN_MAX = 0.01;
+
     private const CV_HOLDOUT_MAX = 0.10;
+
     private const CV_EXACT_TOLERANCE = 0.0001;
 
     private static bool $heldoutEnabled = true;
+
     private static ?array $envAtoms = null;
 
     // ═══ АЛФАВИТ ИЗ СРЕДЫ ═══
 
-    /** Загрузить все числовые PHP-функции (один раз, кэшируется) */
+    /**
+     * Загрузить все числовые PHP-функции (один раз, кэшируется)
+     */
     public static function loadEnvironment(): array
     {
         if (self::$envAtoms !== null) {
@@ -56,9 +62,9 @@ class AtomRegistry
                 $r = null;
             }
             ob_get_clean();
-            if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
-                $rf = (float)$r;
-                if (!is_nan($rf) && !is_infinite($rf)) {
+            if ($r !== null && $r !== false && ! is_array($r) && ! is_object($r) && ! is_string($r) && ! is_bool($r)) {
+                $rf = (float) $r;
+                if (! is_nan($rf) && ! is_infinite($rf)) {
                     $unary[] = $fn;
                     continue;
                 }
@@ -72,9 +78,9 @@ class AtomRegistry
                 $r = null;
             }
             ob_get_clean();
-            if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
-                $rf = (float)$r;
-                if (!is_nan($rf) && !is_infinite($rf)) {
+            if ($r !== null && $r !== false && ! is_array($r) && ! is_object($r) && ! is_string($r) && ! is_bool($r)) {
+                $rf = (float) $r;
+                if (! is_nan($rf) && ! is_infinite($rf)) {
                     $binary[] = $fn;
                 }
             }
@@ -132,51 +138,51 @@ class AtomRegistry
 
         return match ($name) {
             // Унарные
-            'abs'   => abs($a),
-            'sqrt'  => $a >= 0 ? sqrt($a) : null,
-            'sin'   => sin($a),
-            'cos'   => cos($a),
-            'tan'   => (abs(cos($a)) > 1e-10) ? tan($a) : null,
-            'asin'  => ($a >= -1 && $a <= 1) ? asin($a) : null,
-            'acos'  => ($a >= -1 && $a <= 1) ? acos($a) : null,
-            'atan'  => atan($a),
-            'sinh'  => sinh($a),
-            'cosh'  => cosh($a),
-            'tanh'  => tanh($a),
-            'exp'   => ($a < 20) ? exp($a) : null,
-            'log'   => ($a > 0) ? log($a) : null,
+            'abs' => abs($a),
+            'sqrt' => $a >= 0 ? sqrt($a) : null,
+            'sin' => sin($a),
+            'cos' => cos($a),
+            'tan' => (abs(cos($a)) > 1e-10) ? tan($a) : null,
+            'asin' => ($a >= -1 && $a <= 1) ? asin($a) : null,
+            'acos' => ($a >= -1 && $a <= 1) ? acos($a) : null,
+            'atan' => atan($a),
+            'sinh' => sinh($a),
+            'cosh' => cosh($a),
+            'tanh' => tanh($a),
+            'exp' => ($a < 20) ? exp($a) : null,
+            'log' => ($a > 0) ? log($a) : null,
             'log10' => ($a > 0) ? log10($a) : null,
             'log1p' => ($a > -1) ? log1p($a) : null,
             'floor' => floor($a),
-            'ceil'  => ceil($a),
+            'ceil' => ceil($a),
             'round' => round($a),
             'deg2rad' => deg2rad($a),
             'rad2deg' => rad2deg($a),
-            'sq'    => $a * $a,
-            'cube'  => $a * $a * $a,
-            'inv'   => ($a != 0) ? 1.0 / $a : null,
-            'neg'   => -$a,
-            'sign'  => $a > 0 ? 1.0 : ($a < 0 ? -1.0 : 0.0),
-            'relu'  => max(0.0, $a),
-            'not'   => $a > 0 ? 0.0 : 1.0,
+            'sq' => $a * $a,
+            'cube' => $a * $a * $a,
+            'inv' => ($a != 0) ? 1.0 / $a : null,
+            'neg' => -$a,
+            'sign' => $a > 0 ? 1.0 : ($a < 0 ? -1.0 : 0.0),
+            'relu' => max(0.0, $a),
+            'not' => $a > 0 ? 0.0 : 1.0,
 
             // Бинарные с b
-            'add'   => $a + $b,
-            'sub'   => $a - $b,
-            'mul'   => $a * $b,
-            'div'   => ($b != 0) ? $a / $b : null,
-            'mod'   => ($b != 0) ? fmod($a, $b) : null,
-            'min'   => min($a, $b),
-            'max'   => max($a, $b),
+            'add' => $a + $b,
+            'sub' => $a - $b,
+            'mul' => $a * $b,
+            'div' => ($b != 0) ? $a / $b : null,
+            'mod' => ($b != 0) ? fmod($a, $b) : null,
+            'min' => min($a, $b),
+            'max' => max($a, $b),
             'hypot' => hypot($a, $b),
-            'pow'   => $a ** $b,
-            'fmod'  => ($b != 0) ? fmod($a, $b) : null,
-            'gt'    => ($a > $b) ? 1.0 : 0.0,
-            'lt'    => ($a < $b) ? 1.0 : 0.0,
-            'eq'    => (abs($a - $b) < 0.001) ? 1.0 : 0.0,
-            'neq'   => (abs($a - $b) >= 0.001) ? 1.0 : 0.0,
-            'and'   => (($a > 0) && ($b > 0)) ? 1.0 : 0.0,
-            'or'    => (($a > 0) || ($b > 0)) ? 1.0 : 0.0,
+            'pow' => $a ** $b,
+            'fmod' => ($b != 0) ? fmod($a, $b) : null,
+            'gt' => ($a > $b) ? 1.0 : 0.0,
+            'lt' => ($a < $b) ? 1.0 : 0.0,
+            'eq' => (abs($a - $b) < 0.001) ? 1.0 : 0.0,
+            'neq' => (abs($a - $b) >= 0.001) ? 1.0 : 0.0,
+            'and' => (($a > 0) && ($b > 0)) ? 1.0 : 0.0,
+            'or' => (($a > 0) || ($b > 0)) ? 1.0 : 0.0,
 
             default => null,
         };
@@ -239,9 +245,9 @@ class AtomRegistry
 
             foreach ($X as $row) {
                 if (self::isBinary($atom) && $nFeat >= 2) {
-                    $v = self::apply($atom, (float)$row[0], (float)$row[1]);
+                    $v = self::apply($atom, (float) $row[0], (float) $row[1]);
                 } elseif (self::isUnary($atom)) {
-                    $v = self::apply($atom, (float)$row[0]);
+                    $v = self::apply($atom, (float) $row[0]);
                 } else {
                     $valid = false;
                     break;
@@ -253,7 +259,7 @@ class AtomRegistry
                 $vec[] = $v;
             }
 
-            if (!$valid || count($vec) !== $n) {
+            if (! $valid || count($vec) !== $n) {
                 continue;
             }
 
@@ -264,7 +270,7 @@ class AtomRegistry
         }
 
         return [
-            'total'   => $total,
+            'total' => $total,
             'domains' => count($domains),
             'by_domain' => $domains,
         ];

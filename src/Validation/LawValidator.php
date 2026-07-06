@@ -15,8 +15,11 @@ use Override;
 class LawValidator implements ValidatorInterface
 {
     private const HO_SPLIT_RATIO = 5;
+
     private const CV_TRAIN_MAX = 0.01;
+
     private const CV_HOLDOUT_MAX = 0.10;
+
     private const CV_EXACT_TOLERANCE = 0.0001;
 
     /**
@@ -25,7 +28,7 @@ class LawValidator implements ValidatorInterface
     public static function discoverHeldout(array $X, array $y): array
     {
         $n = count($y);
-        $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
+        $h = max(1, (int) floor($n / self::HO_SPLIT_RATIO));
         if ($n - $h < 2) {
             return [];
         }
@@ -37,7 +40,9 @@ class LawValidator implements ValidatorInterface
         return self::validate($candidates, $X, $y);
     }
 
-    /** ValidatorInterface: фильтрует кандидатов через held-out */
+    /**
+     * ValidatorInterface: фильтрует кандидатов через held-out
+     */
     #[Override]
     public static function validate(array $candidates, array $X, array $y): array
     {
@@ -60,11 +65,13 @@ class LawValidator implements ValidatorInterface
         return $found;
     }
 
-    /** Проверяет CV формулы на held-out данных. Возвращает [cv_train, cv_holdout] или null. */
+    /**
+     * Проверяет CV формулы на held-out данных. Возвращает [cv_train, cv_holdout] или null.
+     */
     public static function evaluateHeldout(string $formula, array $X, array $y): ?array
     {
         $n = count($y);
-        $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
+        $h = max(1, (int) floor($n / self::HO_SPLIT_RATIO));
         if ($n - $h < 2) {
             return null;
         }
@@ -77,7 +84,7 @@ class LawValidator implements ValidatorInterface
 
         $vecTrain = [];
         foreach ($X_train as $row) {
-            $v = AtomRegistry::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
+            $v = AtomRegistry::apply($formula, (float) $row[0], $nFeat >= 2 ? (float) ($row[1] ?? 0) : 0);
             if ($v === null || is_nan($v) || is_infinite($v)) {
                 $vecTrain = [];
                 break;
@@ -93,7 +100,7 @@ class LawValidator implements ValidatorInterface
 
         $vecHoldout = [];
         foreach ($X_holdout as $row) {
-            $v = AtomRegistry::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
+            $v = AtomRegistry::apply($formula, (float) $row[0], $nFeat >= 2 ? (float) ($row[1] ?? 0) : 0);
             if ($v === null || is_nan($v) || is_infinite($v)) {
                 $vecHoldout = [];
                 break;
@@ -107,6 +114,9 @@ class LawValidator implements ValidatorInterface
             ? (abs($vecHoldout[0] - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
             : CvCalculator::compute($vecHoldout, $y_holdout);
 
-        return ['cv_train' => $cvTrain, 'cv_holdout' => $cvHoldout];
+        return [
+            'cv_train' => $cvTrain,
+            'cv_holdout' => $cvHoldout,
+        ];
     }
 }

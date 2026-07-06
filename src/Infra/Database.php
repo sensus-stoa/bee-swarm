@@ -9,6 +9,7 @@ use PDO;
 class Database
 {
     private static ?PDO $instance = null;
+
     private static ?string $forcedPath = null;
 
     private const LAWS_DDL = "CREATE TABLE IF NOT EXISTS %s (
@@ -38,12 +39,12 @@ class Database
             $path = self::$forcedPath
                 ?? getenv('SWARM_DB_PATH')
                 ?: __DIR__ . '/../../data/swarm.db';
-            self::$instance = new PDO("sqlite:$path", null, null, [
+            self::$instance = new PDO("sqlite:{$path}", null, null, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
-            self::$instance->exec("PRAGMA journal_mode=WAL");
-            self::$instance->exec("PRAGMA synchronous=NORMAL");
+            self::$instance->exec('PRAGMA journal_mode=WAL');
+            self::$instance->exec('PRAGMA synchronous=NORMAL');
             self::migrate();
         }
         return self::$instance;
@@ -55,7 +56,8 @@ class Database
         $db->exec(sprintf(self::LAWS_DDL, 'laws'));
         // Migration: remove old name-only UNIQUE if exists (SQLite 3.35+)
         try {
-            $cols = $db->query("PRAGMA index_list(laws)")->fetchAll(\PDO::FETCH_ASSOC);
+            $cols = $db->query('PRAGMA index_list(laws)')
+                ->fetchAll(\PDO::FETCH_ASSOC);
             $hasOldUnique = false;
             foreach ($cols as $col) {
                 if (str_contains($col['name'] ?? '', 'sqlite_autoindex_laws') && ($col['unique'] ?? 0)) {
@@ -70,9 +72,9 @@ class Database
             if ($hasOldUnique) {
                 // Recreate without old unique, with new composite unique
                 $db->exec(sprintf(self::LAWS_DDL, 'laws_migrated'));
-                $db->exec("INSERT OR IGNORE INTO laws_migrated SELECT * FROM laws");
-                $db->exec("DROP TABLE laws");
-                $db->exec("ALTER TABLE laws_migrated RENAME TO laws");
+                $db->exec('INSERT OR IGNORE INTO laws_migrated SELECT * FROM laws');
+                $db->exec('DROP TABLE laws');
+                $db->exec('ALTER TABLE laws_migrated RENAME TO laws');
             }
         } catch (\PDOException $e) {
             // Migration already done or table doesn't exist — ok
@@ -96,10 +98,10 @@ class Database
             created_at TEXT DEFAULT (datetime('now')),
             UNIQUE(subject, predicate, object)
         )");
-        $db->exec("CREATE TABLE IF NOT EXISTS hive_state (
+        $db->exec('CREATE TABLE IF NOT EXISTS hive_state (
             key TEXT PRIMARY KEY,
             value TEXT
-        )");
+        )');
         $db->exec("CREATE TABLE IF NOT EXISTS action_pool (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             code TEXT,
@@ -110,10 +112,10 @@ class Database
             created_at TEXT DEFAULT (datetime('now')),
             last_success_at TEXT
         )");
-        $db->exec("CREATE TABLE IF NOT EXISTS conscious_state (
+        $db->exec('CREATE TABLE IF NOT EXISTS conscious_state (
             key TEXT PRIMARY KEY,
             value TEXT
-        )");
+        )');
         $db->exec("CREATE TABLE IF NOT EXISTS conscious_events (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             event TEXT,

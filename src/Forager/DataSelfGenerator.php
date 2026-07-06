@@ -18,7 +18,7 @@ class DataSelfGenerator
     public function fromMetrics(): array
     {
         $path = '~/ninjacat/Documents/the_lair/ExoCortex/Journal/global/metrics.jsonl';
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             return [];
         }
 
@@ -37,7 +37,7 @@ class DataSelfGenerator
         $available = [];
         foreach ($metrics as $m) {
             foreach ($m as $k => $v) {
-                if (is_numeric($v) && !isset($available[$k])) {
+                if (is_numeric($v) && ! isset($available[$k])) {
                     $available[$k] = true;
                 }
             }
@@ -56,7 +56,7 @@ class DataSelfGenerator
                     $v1 = $m[$k1] ?? null;
                     $v2 = $m[$k2] ?? null;
                     if (is_numeric($v1) && is_numeric($v2)) {
-                        $pairs[] = [(float)$v1, (float)$v2];
+                        $pairs[] = [(float) $v1, (float) $v2];
                     }
                 }
                 if (count($pairs) >= 10) {
@@ -81,8 +81,10 @@ class DataSelfGenerator
     public function fromLaws(): array
     {
         $db = Database::get();
-        $laws = $db->query("SELECT name, formula, domain FROM laws WHERE cv < 0.05 LIMIT 10")->fetchAll();
-        $domains = $db->query("SELECT DISTINCT domain FROM laws")->fetchAll();
+        $laws = $db->query('SELECT name, formula, domain FROM laws WHERE cv < 0.05 LIMIT 10')
+            ->fetchAll();
+        $domains = $db->query('SELECT DISTINCT domain FROM laws')
+            ->fetchAll();
         $domainList = array_column($domains, 'domain');
 
         $tasks = [];
@@ -100,7 +102,7 @@ class DataSelfGenerator
                     $synthetic[] = [$x, $x * 1.5, $val];
                 }
 
-                if (!empty($synthetic)) {
+                if (! empty($synthetic)) {
                     $tasks[] = [
                         'name' => "{$law['name']}_in_{$targetDomain}",
                         'domain' => $targetDomain,

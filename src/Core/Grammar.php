@@ -4,20 +4,40 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Core;
 
-use BeeSwarm\Core\ExpressionTree;
 use BeeSwarm\Infra\Database;
 use BeeSwarm\Knowledge\ConceptRegistry;
 
 class Grammar
 {
     public const BASE_OPS = [
-        '+' => ['fn' => 'add', 'symbol' => '+'],
-        '×' => ['fn' => 'mul', 'symbol' => '×'],
-        '−' => ['fn' => 'sub', 'symbol' => '−'],
-        '/' => ['fn' => 'div', 'symbol' => '/'],
-        'min' => ['fn' => 'min', 'symbol' => 'min'],
-        'max' => ['fn' => 'max', 'symbol' => 'max'],
-        'sq' => ['fn' => 'sq', 'symbol' => 'sq'],
+        '+' => [
+            'fn' => 'add',
+            'symbol' => '+',
+        ],
+        '×' => [
+            'fn' => 'mul',
+            'symbol' => '×',
+        ],
+        '−' => [
+            'fn' => 'sub',
+            'symbol' => '−',
+        ],
+        '/' => [
+            'fn' => 'div',
+            'symbol' => '/',
+        ],
+        'min' => [
+            'fn' => 'min',
+            'symbol' => 'min',
+        ],
+        'max' => [
+            'fn' => 'max',
+            'symbol' => 'max',
+        ],
+        'sq' => [
+            'fn' => 'sq',
+            'symbol' => 'sq',
+        ],
     ];
 
     // Семантические предикаты — такие же атомы как + и ×, но над концептами
@@ -32,16 +52,24 @@ class Grammar
 
         // Семантические атомы из знания (knowledge_graph)
         foreach (self::SEMANTIC_OPS as $semOp) {
-            $this->ops[$semOp] = ['fn' => 'semantic_' . $semOp, 'symbol' => $semOp, 'semantic' => true];
+            $this->ops[$semOp] = [
+                'fn' => 'semantic_' . $semOp,
+                'symbol' => $semOp,
+                'semantic' => true,
+            ];
         }
 
         $db = Database::get();
-        $rows = $db->query("SELECT name, definition FROM grammar_ops")->fetchAll();
+        $rows = $db->query('SELECT name, definition FROM grammar_ops')
+            ->fetchAll();
         foreach ($rows as $row) {
             $name = $row['name'];
             // Не перезаписываем базовые — дополняем
-            if (!isset($this->ops[$name])) {
-                $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+            if (! isset($this->ops[$name])) {
+                $this->ops[$name] = [
+                    'fn' => 'custom_' . $name,
+                    'symbol' => $name,
+                ];
                 if ($row['definition']) {
                     $this->ops[$name]['definition'] = $row['definition'];
                 }
@@ -55,28 +83,35 @@ class Grammar
             return false;
         }
 
-        $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+        $this->ops[$name] = [
+            'fn' => 'custom_' . $name,
+            'symbol' => $name,
+        ];
         if ($definition) {
             $this->ops[$name]['definition'] = $definition;
         }
 
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?,?,?)")
-           ->execute([$name, $source, $definition]);
+        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?,?,?)')
+            ->execute([$name, $source, $definition]);
         return true;
     }
 
     public function reloadFromDb(): void
     {
         $db = Database::get();
-        $rows = $db->query("SELECT name, definition FROM grammar_ops")->fetchAll();
+        $rows = $db->query('SELECT name, definition FROM grammar_ops')
+            ->fetchAll();
         $this->ops = [];
         foreach ($rows as $row) {
             $name = $row['name'];
             if (isset(self::BASE_OPS[$name])) {
                 $this->ops[$name] = self::BASE_OPS[$name];
             } else {
-                $this->ops[$name] = ['fn' => 'custom_' . $name, 'symbol' => $name];
+                $this->ops[$name] = [
+                    'fn' => 'custom_' . $name,
+                    'symbol' => $name,
+                ];
                 if ($row['definition']) {
                     $this->ops[$name]['definition'] = $row['definition'];
                 }
@@ -125,12 +160,12 @@ class Grammar
         }
         // powN: a^b (e.g. pow2 means 2^x)
         if (str_starts_with($op, 'pow') && strlen($op) > 3) {
-            $base = (float)substr($op, 3);
+            $base = (float) substr($op, 3);
             return $base ** $a;
         }
         // parity: (-1)^(a%2)
         if ($op === 'parity') {
-            $mod = (int)$a % 2;
+            $mod = (int) $a % 2;
             return $mod === 0 ? 1.0 : -1.0;
         }
         // log2: log2(x)
@@ -148,13 +183,16 @@ class Grammar
     {
         return array_keys($this->ops);
     }
+
     public function count(): int
     {
         return count($this->ops);
     }
 
     /** Unary operations: those that only need one argument */
-    /** Унарные операции */
+    /**
+     * Унарные операции
+     */
     public function getUnaryOps(): array
     {
         $unary = [];
@@ -166,7 +204,9 @@ class Grammar
         return $unary;
     }
 
-    /** Ограничить грамматику конкретными операциями (для изоляции парадигм) */
+    /**
+     * Ограничить грамматику конкретными операциями (для изоляции парадигм)
+     */
     public function restrictTo(array $allowedOps): void
     {
         $filtered = [];
@@ -178,7 +218,9 @@ class Grammar
         $this->ops = $filtered;
     }
 
-    /** Полностью очистить грамматику */
+    /**
+     * Полностью очистить грамматику
+     */
     public function clearAll(): void
     {
         $this->ops = [];

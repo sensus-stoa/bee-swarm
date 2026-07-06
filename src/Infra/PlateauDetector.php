@@ -16,10 +16,13 @@ namespace BeeSwarm\Infra;
 class PlateauDetector
 {
     private int $threshold;
+
     private int $consecutiveNoDiscovery = 0;
+
     private bool $justEntered = false;
 
     private const BASE_SLEEP_US = 200_000;
+
     private const PLATEAU_SLEEP_US = 10_000_000;
 
     public function __construct(int $threshold = 50)
@@ -27,7 +30,9 @@ class PlateauDetector
         $this->threshold = $threshold;
     }
 
-    /** Один тик демона. $foundDiscovery = true если было открытие. */
+    /**
+     * Один тик демона. $foundDiscovery = true если было открытие.
+     */
     public function tick(bool $foundDiscovery): void
     {
         $wasPlateau = $this->isPlateau();
@@ -40,7 +45,7 @@ class PlateauDetector
         }
 
         // justEntered: ровно на переходе через порог
-        $this->justEntered = !$wasPlateau && $this->isPlateau();
+        $this->justEntered = ! $wasPlateau && $this->isPlateau();
     }
 
     public function isPlateau(): bool
@@ -58,19 +63,25 @@ class PlateauDetector
         return $this->consecutiveNoDiscovery;
     }
 
-    /** true только на первом тике после входа в плато (для однократного лога) */
+    /**
+     * true только на первом тике после входа в плато (для однократного лога)
+     */
     public function justEnteredPlateau(): bool
     {
         return $this->justEntered;
     }
 
-    /** Compose должен работать только НЕ на плато */
+    /**
+     * Compose должен работать только НЕ на плато
+     */
     public function shouldRunCompose(): bool
     {
-        return !$this->isPlateau();
+        return ! $this->isPlateau();
     }
 
-    /** Внешнее событие (forager, новые данные) — выход из плато */
+    /**
+     * Внешнее событие (forager, новые данные) — выход из плато
+     */
     public function wakeup(): void
     {
         $this->consecutiveNoDiscovery = 0;

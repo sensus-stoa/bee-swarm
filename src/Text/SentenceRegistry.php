@@ -24,7 +24,7 @@ class SentenceRegistry
 
     private function scanDir(string $dir, CorpusVocabulary $vocab): void
     {
-        if (!is_dir($dir)) {
+        if (! is_dir($dir)) {
             return;
         }
 
@@ -40,7 +40,7 @@ class SentenceRegistry
                 continue;
             }
             $content = @file_get_contents($file->getPathname());
-            if (!$content) {
+            if (! $content) {
                 continue;
             }
 
@@ -74,7 +74,9 @@ class SentenceRegistry
         return $this->sentences[$id] ?? null;
     }
 
-    /** Возвращает все предложения (для итерации) */
+    /**
+     * Возвращает все предложения (для итерации)
+     */
     public function all(): array
     {
         return $this->sentences;

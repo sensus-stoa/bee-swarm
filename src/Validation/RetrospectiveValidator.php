@@ -14,6 +14,7 @@ use BeeSwarm\Infra\Database;
 class RetrospectiveValidator
 {
     private const CV_TRAIN_MAX = 0.01;
+
     private const CV_HOLDOUT_MAX = 0.10;
 
     /**
@@ -25,9 +26,13 @@ class RetrospectiveValidator
     public static function validate(array $tasks): array
     {
         $db = Database::get();
-        $laws = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $laws = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         if (empty($laws)) {
-            return ['passed' => [], 'overfit' => []];
+            return [
+                'passed' => [],
+                'overfit' => [],
+            ];
         }
 
         $taskIndex = [];
@@ -42,7 +47,7 @@ class RetrospectiveValidator
             $name = $law['name'];
             $formula = $law['formula'];
 
-            if (!isset($taskIndex[$name])) {
+            if (! isset($taskIndex[$name])) {
                 continue;
             }
 
@@ -54,7 +59,7 @@ class RetrospectiveValidator
             }
 
             $nFeat = count($data[0]) - 1;
-            $X = array_map(fn($r) => array_slice($r, 0, $nFeat), $data);
+            $X = array_map(fn ($r) => array_slice($r, 0, $nFeat), $data);
             $y = array_column($data, $nFeat);
 
             $result = LawValidator::evaluateHeldout($formula, $X, $y);
@@ -70,11 +75,14 @@ class RetrospectiveValidator
                 $passed[] = $key;
             } else {
                 $overfit[] = $key;
-                $db->prepare("DELETE FROM laws WHERE name=? AND formula=?")
-                   ->execute([$name, $formula]);
+                $db->prepare('DELETE FROM laws WHERE name=? AND formula=?')
+                    ->execute([$name, $formula]);
             }
         }
 
-        return ['passed' => $passed, 'overfit' => $overfit];
+        return [
+            'passed' => $passed,
+            'overfit' => $overfit,
+        ];
     }
 }

@@ -51,10 +51,21 @@ class PlateauDetectorTest extends TestCase
     public function testAtThresholdNotPlateau(): void
     {
         $d = new PlateauDetector(self::T);
+        $this->tickTimes($d, self::T - 1);
+
+        $this->assertFalse($d->isPlateau(), 'T-1 ticks: still not plateau');
+        $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
+    }
+
+    /**
+     * На пороге — плато (>= threshold)
+     */
+    public function testPlateauAtThreshold(): void
+    {
+        $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T);
 
-        $this->assertFalse($d->isPlateau(), 'T ticks: still not plateau (> not >=)');
-        $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
+        $this->assertTrue($d->isPlateau(), 'T ticks: plateau entered');
     }
 
     /**
@@ -111,9 +122,9 @@ class PlateauDetectorTest extends TestCase
     public function testPlateauEnteredEventFiresOnce(): void
     {
         $d = new PlateauDetector(self::T);
-        $this->tickTimes($d, self::T + 1);
+        $this->tickTimes($d, self::T);
 
-        $this->assertTrue($d->justEnteredPlateau(), 'T+1 tick: just entered');
+        $this->assertTrue($d->justEnteredPlateau(), 'T tick: just entered');
 
         $d->tick(false);
         $this->assertFalse($d->justEnteredPlateau(), 'T+2 tick: already in plateau');

@@ -53,6 +53,12 @@ class LawValidator implements ValidatorInterface
                 $result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX
                 && $result['cv_holdout'] <= self::CV_HOLDOUT_MAX
             ) {
+                // Compression check (HONEST_CRITERIA §1.7)
+                if (! AtomRegistry::isBetterThanBaseline(
+                    $result['cv_holdout'], $c['atom'], $result['cv_mean_holdout']
+                )) {
+                    continue;
+                }
                 $found[] = [
                     'atom' => $c['atom'],
                     'cv' => $c['cv'],
@@ -114,9 +120,17 @@ class LawValidator implements ValidatorInterface
             ? (abs($vecHoldout[0] - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
             : CvCalculator::compute($vecHoldout, $y_holdout);
 
+        // Baseline: CV of mean on held-out points (HONEST_CRITERIA §1.7)
+        $meanHoldout = array_sum($y_holdout) / max(1, count($y_holdout));
+        $vecMeanHoldout = array_fill(0, count($y_holdout), $meanHoldout);
+        $cvMeanHoldout = count($y_holdout) < 2
+            ? (abs($meanHoldout - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
+            : CvCalculator::compute($vecMeanHoldout, $y_holdout);
+
         return [
             'cv_train' => $cvTrain,
             'cv_holdout' => $cvHoldout,
+            'cv_mean_holdout' => $cvMeanHoldout,
         ];
     }
 }

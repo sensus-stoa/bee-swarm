@@ -42,22 +42,19 @@ class LawValidator implements ValidatorInterface
 
     /**
      * ValidatorInterface: фильтрует кандидатов через held-out
+     /** Complexity: 1 для простых атомов, 1+N для compose с N открывающих скобок */
+     private static function atomComplexity(string $atom): int
+     {
+         return str_contains($atom, '(') ? 1 + substr_count($atom, '(') : 1;
+     }
+
      /** Выбрать простейший атом из прошедших held-out (HONEST_CRITERIA §1.3) */
      public static function selectSimplest(array $candidates): array
      {
-         if (empty($candidates)) {
-             return [];
-         }
+         if (empty($candidates)) return [];
 
-         // complexity: 1 для простых, nodes для compose
          $withComplexity = array_map(function ($c) {
-             $atom = $c['atom'];
-             if (! str_contains($atom, '(')) {
-                 $c['_complexity'] = 1;
-             } else {
-                 // Count nodes: each '(' starts a new subtree
-                 $c['_complexity'] = 1 + substr_count($atom, '(');
-             }
+             $c['_complexity'] = self::atomComplexity($c['atom']);
              return $c;
          }, $candidates);
 

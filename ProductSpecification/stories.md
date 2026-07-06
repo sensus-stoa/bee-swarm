@@ -1,10 +1,5 @@
 # Bee Swarm Stories
 
-## In Progress
-
-| # | What | Status |
-|---|------|--------|
-
 ## Stage 0
 
 | # | Criterion | What | Status |
@@ -18,9 +13,6 @@
 
 | # | Что | Статус |
 |---|-----|--------|
-| D4 | Clean Code PHP rules | ⬜ |
-| D5 | Cognitive complexity (phpcs) | ⬜ |
-| D6 | php-cs-fixer | ⬜ |
 | D7 | Forager overhaul (стратегии, источники) | ⬜ |
 | D8 | Forager caps (maxTotal, 500K chunking) | ⬜ |
 | E1 | CV→0 regex atoms | ⬜ |
@@ -35,3 +27,4 @@
 | D1 | SOLID: Modular Architecture |
 | D2 | Hive class (agenda.php → OOP) |
 | D3 | Psalm level 5 — 0 errors |
+| D4-6 | ECS: PSR-12 + Common + Clean Code — 0 errors |

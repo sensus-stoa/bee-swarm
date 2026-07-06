@@ -107,7 +107,7 @@ class Hive
 
         // Forager startup scan
         if (! empty($this->foragerSources)) {
-            $foraged = $this->forager->scan($this->foragerSources);
+            $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
                 $this->foragedTasksGlobal = $foraged;
                 $this->log('Forager startup: ' . count($foraged) . ' tasks');
@@ -151,7 +151,7 @@ class Hive
             ! empty($this->foragerSources)
             && ($this->tick % $this->foragerScanInterval === 0 || $this->plateau->justEnteredPlateau())
         ) {
-            $foraged = $this->forager->scan($this->foragerSources);
+            $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
                 $this->foragedTasksGlobal = array_merge($this->foragedTasksGlobal, $foraged);
                 if ($this->forager->hasNewContent()) {

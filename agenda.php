@@ -208,7 +208,7 @@ function getTasks(): array {
     $tasks = [];
     
     // Метрики
-    $gen = new BeeSwarm\DataSelfGenerator();
+    $gen = new BeeSwarm\Forager\DataSelfGenerator();
     $tasks = array_merge($tasks, $gen->fromMetrics());
     
     // Базовые задачи

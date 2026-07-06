@@ -317,7 +317,7 @@ class Forager
                 continue;
             }
 
-            $content = @file_get_contents($path);
+            $content = @file_get_contents($path, false, null, 0, 50_000); // cap read size
             if (! $content) {
                 continue;
             }

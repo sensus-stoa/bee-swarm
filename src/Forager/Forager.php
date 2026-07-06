@@ -241,7 +241,9 @@ class Forager
                 $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS));
                 foreach ($iter as $f) {
                     try { $path = $f->getPathname(); $paths[] = $path; } catch (\Throwable) {}
-                    if (str_contains($path, '.git/') || str_contains($path, 'venv/')) continue;
+                    if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) continue;
+                    if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) continue;
+                    if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) continue;
                     $content = @file_get_contents($path, false, null, 0, 50_000);
                     if (! $content) continue;
                     foreach ($allStrategies as $sname => $fn) {

@@ -255,6 +255,10 @@ class Forager
                                 $stmt->execute([$pat, json_encode([$r['s'], $r['p'], $r['o']]), 'foraged_semantic']);
                             } elseif (isset($r[0]) && is_array($r[0])) {
                                 foreach ($r as $row) {
+                                    // Skip non-numeric rows
+                                    $allNum = true;
+                                    foreach ($row as $v) { if (! is_numeric($v)) { $allNum = false; break; } }
+                                    if (! $allNum) continue;
                                     $pat = 'num_' . md5($sname . count($row));
                                     $stmt->execute([$pat, json_encode($row), 'foraged']);
                                 }

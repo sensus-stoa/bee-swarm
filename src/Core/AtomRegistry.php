@@ -334,7 +334,9 @@ class AtomRegistry
         return false;
     }
 
-    /** Complexity: 1 для простых атомов, 1+N для compose */
+    /**
+     * Complexity: 1 для простых атомов, 1+N для compose
+     */
     public static function atomComplexity(string $atom): int
     {
         return str_contains($atom, '(') ? 1 + substr_count($atom, '(') : 1;

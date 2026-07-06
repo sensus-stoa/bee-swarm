@@ -42,26 +42,30 @@ class LawValidator implements ValidatorInterface
 
     /**
      * ValidatorInterface: фильтрует кандидатов через held-out
-     /** Complexity: 1 для простых атомов, 1+N для compose (delegates to AtomRegistry) */
-     private static function atomComplexity(string $atom): int
-     {
-         return \BeeSwarm\Core\AtomRegistry::atomComplexity($atom);
-     }
+     * /** Complexity: 1 для простых атомов, 1+N для compose (delegates to AtomRegistry) */
+    private static function atomComplexity(string $atom): int
+    {
+        return \BeeSwarm\Core\AtomRegistry::atomComplexity($atom);
+    }
 
-     /** Выбрать простейший атом из прошедших held-out (HONEST_CRITERIA §1.3) */
-     public static function selectSimplest(array $candidates): array
-     {
-         if (empty($candidates)) return [];
+    /**
+     * Выбрать простейший атом из прошедших held-out (HONEST_CRITERIA §1.3)
+     */
+    public static function selectSimplest(array $candidates): array
+    {
+        if (empty($candidates)) {
+            return [];
+        }
 
-         $withComplexity = array_map(function ($c) {
-             $c['_complexity'] = self::atomComplexity($c['atom']);
-             return $c;
-         }, $candidates);
+        $withComplexity = array_map(function ($c) {
+            $c['_complexity'] = self::atomComplexity($c['atom']);
+            return $c;
+        }, $candidates);
 
-         $minComplexity = min(array_column($withComplexity, '_complexity'));
+        $minComplexity = min(array_column($withComplexity, '_complexity'));
 
-         return array_values(array_filter($withComplexity, fn($c) => $c['_complexity'] === $minComplexity));
-     }
+        return array_values(array_filter($withComplexity, fn ($c) => $c['_complexity'] === $minComplexity));
+    }
 
     /**
      * ValidatorInterface: фильтрует кандидатов через held-out

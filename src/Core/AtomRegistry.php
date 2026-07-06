@@ -181,11 +181,6 @@ class AtomRegistry
         return LawValidator::discoverHeldout($X, $y);
     }
 
-    private static function evaluateHeldout(string $formula, array $X, array $y): ?array
-    {
-        return LawValidator::evaluateHeldout($formula, $X, $y);
-    }
-
     // ═══ COMPOSE: пары grammar-атомов ═══
 
     /**

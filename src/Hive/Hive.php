@@ -27,7 +27,6 @@ class Hive
     private string $logFile;
     private array $log = [];
     private int $tick = 0;
-    private int $lastDiscovery;
     private array $knownLaws = [];
 
     private ?CorpusVocabulary $corpusVocab = null;
@@ -44,8 +43,7 @@ class Hive
         $this->plateau = $plateau ?? new PlateauDetector(50);
         $this->forager = $forager ?? new Forager();
         $this->maxTicks = $maxTicks;
-        $this->lastDiscovery = time();
-
+        
         $sources = getenv('FORAGER_SOURCES');
         $this->foragerSources = $sources
             ? array_fill_keys(explode(':', $sources), 1)
@@ -251,30 +249,38 @@ class Hive
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                     ->execute([$task['name'], $bestAtom, $bestError, $domain]);
                 $this->log("📖 {$task['name']} -> {$bestAtom} (err=" . round($bestError, 3) . ")");
-                $this->lastDiscovery = time();
-                $this->plateau->tick(true);
+                                $this->plateau->tick(true);
             }
         }
     }
 
     private function doDiscoverTick(array $task, array $X, array $y, string $domain, bool &$foundAny): void
     {
-        $discoverFn = AtomRegistry::isHeldoutEnabled() ? 'discoverHeldout' : 'discover';
-        foreach ([AtomRegistry::class, $discoverFn]($X, $y) as $d) {
-            $key = $task['name'] . '::' . $d['atom'];
-            if (!isset($this->knownLaws[$key])) {
-                $this->knownLaws[$key] = true;
-                $foundAny = true;
-                $g = new Grammar();
-                if (!in_array($d['atom'], $g->all())) {
-                    $g->add($d['atom'], 'auto-discover');
-                }
-                Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
-                    ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
-                $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
-                $this->lastDiscovery = time();
-                $this->plateau->tick(true);
+        if (AtomRegistry::isHeldoutEnabled()) {
+            foreach (AtomRegistry::discoverHeldout($X, $y) as $d) {
+                $this->recordDiscovery($d, $task, $domain, $foundAny);
             }
+        } else {
+            foreach (AtomRegistry::discover($X, $y) as $d) {
+                $this->recordDiscovery($d, $task, $domain, $foundAny);
+            }
+        }
+    }
+
+    private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
+    {
+        $key = $task['name'] . '::' . $d['atom'];
+        if (!isset($this->knownLaws[$key])) {
+            $this->knownLaws[$key] = true;
+            $foundAny = true;
+            $g = new Grammar();
+            if (!in_array($d['atom'], $g->all())) {
+                $g->add($d['atom'], 'auto-discover');
+            }
+            Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
+                ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
+            $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [$domain]");
+                        $this->plateau->tick(true);
         }
     }
 
@@ -295,8 +301,7 @@ class Hive
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                     ->execute([$c['atom'], $c['atom'], $c['cv'], $domain]);
                 $this->log("🧬 {$c['atom']} (COMPOSE) [$domain]");
-                $this->lastDiscovery = time();
-            }
+                            }
         }
     }
 

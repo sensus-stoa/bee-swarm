@@ -146,7 +146,7 @@ class SelfCodingTest extends TestCase
 // Generated: {$this->now()}
 
 require_once '{$vendorPath}';
-use BeeSwarm\\AtomRegistry;
+use BeeSwarm\Core\AtomRegistry;
 
 \$data = {$testDataStr};
 \$nFeat = {$nFeat};

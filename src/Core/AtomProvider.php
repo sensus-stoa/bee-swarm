@@ -10,6 +10,18 @@ namespace BeeSwarm\Core;
  */
 class AtomProvider
 {
+    /** Применить атом к строке данных. null если атом не подходит. */
+    private static function applyToRow(string $atom, int $nFeat, array $row): ?float
+    {
+        if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {
+            return AtomRegistry::apply($atom, (float) $row[0], (float) $row[1]);
+        }
+        if (AtomRegistry::isUnary($atom)) {
+            return AtomRegistry::apply($atom, (float) $row[0]);
+        }
+        return null;
+    }
+
     /**
      * Перебирает ВСЕ атомы, возвращает те что дают CV=0 на данных.
      * @return array [{atom, cv, mode}, ...]
@@ -25,14 +37,7 @@ class AtomProvider
             $valid = true;
 
             foreach ($X as $row) {
-                if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {
-                    $v = AtomRegistry::apply($atom, (float) $row[0], (float) $row[1]);
-                } elseif (AtomRegistry::isUnary($atom)) {
-                    $v = AtomRegistry::apply($atom, (float) $row[0]);
-                } else {
-                    $valid = false;
-                    break;
-                }
+                $v = self::applyToRow($atom, $nFeat, $row);
                 if ($v === null || is_nan($v) || is_infinite($v)) {
                     $valid = false;
                     break;
@@ -82,14 +87,7 @@ class AtomProvider
                 $valid = true;
 
                 foreach ($X as $row) {
-                    if (AtomRegistry::isBinary($inner) && $nFeat >= 2) {
-                        $v1 = AtomRegistry::apply($inner, (float) $row[0], (float) $row[1]);
-                    } elseif (AtomRegistry::isUnary($inner)) {
-                        $v1 = AtomRegistry::apply($inner, (float) $row[0]);
-                    } else {
-                        $valid = false;
-                        break;
-                    }
+                    $v1 = self::applyToRow($inner, $nFeat, $row);
                     if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
                         $valid = false;
                         break;

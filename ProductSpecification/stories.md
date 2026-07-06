@@ -1,14 +1,9 @@
 # Bee Swarm Stories — Stage 0 + Tech Debt
 
-> Каждый критерий / техдолг → story → progress.md
-> Цель: pass 7/7 Stage 0 критериев 24h непрерывно + SOLID архитектура
-
 ## In Progress
 
-| # | What | Spec | Core | Tests | % |
-|---|------|------|------|-------|---|
-| D1b | Core: Grammar, Search, ExpressionTree | ✅ | ✅ | 3/3 | 100% |
-| D1c | Validation: LawVerifier, LawCompressor, LawWatchdog | ✅ | 🔧 | — | 0% |
+| # | What | Status |
+|---|------|--------|
 
 ## Backlog — Stage 0
 
@@ -19,26 +14,24 @@
 | 06 | 1.4 Non-Triviality | Алгебраическая редукция |
 | 07 | 1.3 Parsimony | complexity(e) |
 
-## Backlog — Modular Architecture
+## Backlog — Technical Debt
 
-| # | Module | Classes |
-|---|--------|---------|
-| D1c | Validation/ | LawVerifier, LawCompressor, LawWatchdog |
-| D1d | Bee/ | ConsciousBee, SelfLearningBee, CellBee |
-| D1e | Hive/ | EcoHive, DensityHive, PersistentHive |
-| D1f | Evolution/ | DarwinLoop, PhenotypeManager, Paradigm* |
-| D1g | Forager/ | DataRequestor |
-| D1h | Text/ | CorpusVocabulary, SentenceRegistry |
-| D1i | Infra/ | Database, ResourceGuard, PlateauDetector |
-| D1j | Meta/ + rest | MetaInventor, Ontology, SwarmSpawner, etc. |
-| D2 | Daemon class | agenda.php → OOP |
+| # | Что |
+|---|-----|
+| D2 | Daemon class (agenda.php → OOP) |
+| D3 | Статический анализ (psalm) |
+| D4 | Clean Code PHP |
+| D5 | Cognitive complexity (phpcs) |
+| D6 | Автоформатирование (php-cs-fixer) |
+| D7 | Forager overhaul (11 пунктов + стратегии) |
+| D8 | Forager caps (maxTotal, 500K chunking) |
+| E1 | Self-discovered regex atoms (CV→0 text) |
 
 ## Done
 
-| # | What | Completed |
-|---|------|-----------|
-| 01 | 1.6 Deduplication | ✅ |
-| 02 | 1.5 Plateau Honesty + wakeup + forager | ✅ |
-| 03 | 1.1 Held-Out Validation + retrospective | ✅ |
-| 03b | 1.1 Retrospective Data | 🔧 2/4 |
-| D1 | SOLID: Split AtomRegistry (7/7) | ✅ |
+| # | What |
+|---|------|
+| 01 | 1.6 Deduplication |
+| 02 | 1.5 Plateau Honesty + wakeup + forager |
+| 03 | 1.1 Held-Out Validation + retrospective |
+| D1 | SOLID: Split AtomRegistry + Modular Architecture (36 файлов, 11 директорий) |

@@ -281,7 +281,7 @@ class Hive
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
-            $this->log("INSUFFICIENT_DATA: {$task['name']} t=" . count($y) . " < tMin=$tMin");
+            $this->log("INSUFFICIENT_DATA: {$task['name']} t=" . count($y) . " < tMin={$tMin}");
             return;
         }
 
@@ -327,7 +327,7 @@ class Hive
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
-            $this->log("INSUFFICIENT_DATA: compose t=" . count($y) . " < tMin=$tMin");
+            $this->log('INSUFFICIENT_DATA: compose t=' . count($y) . " < tMin={$tMin}");
             return;
         }
 
@@ -335,7 +335,9 @@ class Hive
         if (! empty($candidates)) {
             $validated = \BeeSwarm\Validation\LawValidator::validate($candidates, $X, $y);
             foreach ($validated as $c) {
-                $this->recordDiscovery($c, ['name' => $c['atom']], $domain, $foundAny);
+                $this->recordDiscovery($c, [
+                    'name' => $c['atom'],
+                ], $domain, $foundAny);
                 if (! in_array($c['atom'], $grammarOps)) {
                     $g->add($c['atom'], 'auto-compose');
                 }

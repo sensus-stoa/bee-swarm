@@ -317,15 +317,33 @@ class AtomRegistry
 
         // Algebraic reductions (§1.4): identity, double negation, idempotence
         if (str_contains($atom, '(')) {
-            if (preg_match('/^(add|\\+)\\(.+,0\\)$/', $atom)) return true;
-            if (preg_match('/^(mul|×)\\(.+,1\\)$/', $atom)) return true;
-            if (preg_match('/^(sub|−)\\(.+,0\\)$/', $atom)) return true;
-            if (preg_match('/^(div|\\/)\\(.+,1\\)$/', $atom)) return true;
-            if (preg_match('/^neg\\(neg\\(.+\\)\\)$/', $atom)) return true;
-            if (preg_match('/^inv\\(inv\\(.+\\)\\)$/', $atom)) return true;
-            if (preg_match('/^abs\\(abs\\(.+\\)\\)$/', $atom)) return true;
-            if (preg_match('/^min\\(([^,]+),\\1\\)$/', $atom)) return true;
-            if (preg_match('/^max\\(([^,]+),\\1\\)$/', $atom)) return true;
+            if (preg_match('/^(add|\\+)\\(.+,0\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(mul|×)\\(.+,1\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(sub|−)\\(.+,0\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(div|\\/)\\(.+,1\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^neg\\(neg\\(.+\\)\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^inv\\(inv\\(.+\\)\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^abs\\(abs\\(.+\\)\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^min\\(([^,]+),\\1\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^max\\(([^,]+),\\1\\)$/', $atom)) {
+                return true;
+            }
         }
 
         return false;
@@ -333,15 +351,15 @@ class AtomRegistry
 
     /**
      * Complexity: 1 для простых атомов, 1+N для compose
-     /** Complexity: 1 для простых атомов, nodes для compose */
-     public static function atomComplexity(string $atom): int
-     {
-         if (! str_contains($atom, '(')) {
-             return 1;
-         }
-         $tree = ExpressionTree::fromFormula($atom);
-         return $tree ? $tree->nodeCount() : 1 + substr_count($atom, '(');
-     }
+     * /** Complexity: 1 для простых атомов, nodes для compose */
+    public static function atomComplexity(string $atom): int
+    {
+        if (! str_contains($atom, '(')) {
+            return 1;
+        }
+        $tree = ExpressionTree::fromFormula($atom);
+        return $tree ? $tree->nodeCount() : 1 + substr_count($atom, '(');
+    }
 
     public static function cv(array $vec, array $y): float
     {

@@ -2,25 +2,28 @@
 
 > tMin=10 отсекает 99% foraged-данных. Нужно аккумулировать одинаковые паттерны из сотен файлов.
 
-## Spec
-
-1. `Forager::scan()` → записывает извлечённые данные в SQLite таблицу `forager_data`
-2. Ключ: `(pattern_hash, domain)` — одинаковые паттерны из разных файлов группируются
-3. При накоплении ≥ tMin точек по паттерну → выпускает задачу
-4. Память: O(1) на файл (читаем → пишем в БД → забываем)
-5. Совместимость: возвращает тот же формат `[{name, data, domain}, ...]` что и сейчас
-
 ## Core
 
-[~] red: test_streaming_accumulates — 5 файлов × 3 точки = 15 точек (проходит tMin)
-    [ ] test written, RED confirmed
-    [ ] review
-    [ ] approve
-[ ] green: SQLite-backed scan() with accumulator
-    [ ] implementation, full suite GREEN
-    [ ] lint
-    [ ] review
-    [ ] approve
+[x] red: test_streaming_accumulates — 5 файлов × ≥10 точек
+[x] green: scanWithAccumulator() + streamFile(), 281 tests
+[~] red: semantic facts → KG через accumulator (не closure-хак)
+
+## Spec: KG fix (стратегический)
+
+Проблема: `preg_match_is_a` использует closure `$addFact` для прямой вставки в KG. Аккумулятор не видит семантику.
+
+Хак (отвергнут): запускать старый `scan()` параллельно для KG.
+
+Стратегическое решение:
+1. Рефакторинг: `Forager::addFact()` — публичный метод, доступный и старому scan(), и аккумулятору
+2. Аккумулятор вызывает `$this->addFact()` для семантических результатов
+3. Старый код использует тот же метод
+
+## Work Units
+
+[~] red: test_semantic_facts_populate_kg — accumulator добавляет факты в KG
+[ ] green: refactor addFact → Forager::addFact(), accumulator calls it
+[ ] lint + review + approve
 
 ## Status
-- Next: `red: test_streaming_accumulates`
+- Next: `red: test_semantic_facts_populate_kg`

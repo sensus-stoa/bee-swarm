@@ -195,9 +195,18 @@ class Hive
             $this->doClozeTick($task, $data, $domain, $foundAny);
         }
 
-        // Discover
-        if (! $foundAny && $domain !== 'cloze') {
+        // Discover (skip semantic — KG-only)
+        if (! $foundAny && $domain !== 'cloze' && $domain !== 'foraged_semantic') {
             $this->doDiscoverTick($task, $X, $y, $domain, $foundAny);
+        }
+
+        // Semantic facts → KG directly
+        if ($domain === 'foraged_semantic' && ! empty($data[0]) && count($data[0]) >= 3) {
+            [$s, $p, $o] = $data[0];
+            try {
+                Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
+                    ->execute([$s, $p, $o]);
+            } catch (\PDOException) {}
         }
 
         // Compose

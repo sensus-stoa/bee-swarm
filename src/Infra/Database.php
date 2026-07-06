@@ -98,35 +98,5 @@ class Database
             created_at TEXT DEFAULT (datetime('now')),
             UNIQUE(subject, predicate, object)
         )");
-        $db->exec('CREATE TABLE IF NOT EXISTS hive_state (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )');
-        $db->exec("CREATE TABLE IF NOT EXISTS action_pool (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            code TEXT,
-            code_hash TEXT,
-            success_count INTEGER DEFAULT 0,
-            avg_cv REAL,
-            source TEXT,
-            created_at TEXT DEFAULT (datetime('now')),
-            last_success_at TEXT
-        )");
-        $db->exec('CREATE TABLE IF NOT EXISTS conscious_state (
-            key TEXT PRIMARY KEY,
-            value TEXT
-        )');
-        $db->exec("CREATE TABLE IF NOT EXISTS conscious_events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            event TEXT,
-            d_energy REAL,
-            d_curiosity REAL,
-            d_virtue REAL,
-            d_focus REAL,
-            energy_after REAL,
-            virtue_after REAL,
-            mood TEXT,
-            created_at TEXT DEFAULT (datetime('now'))
-        )");
     }
 }

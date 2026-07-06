@@ -41,7 +41,7 @@ class AtomRegistry
             // Унарный тест (in-process)
             ob_start();
             try { $r = @$fn(-5.0); } catch (\Throwable $e) { $r = null; }
-            $out = ob_get_clean();
+            ob_get_clean();
             if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
                 $rf = (float)$r;
                 if (!is_nan($rf) && !is_infinite($rf)) { $unary[] = $fn; continue; }

@@ -68,10 +68,10 @@ class SelfOptimizer
         uasort($scored, fn($a, $b) => $b['score'] <=> $a['score']);
         
         $best = reset($scored);
-        $worst = end($scored);
+        end($scored);
         
         // Генерируем желание из оптимального действия
-        $state = $bee->state();
+        $bee->state();
         $desires = [];
         
         foreach ($scored as $cat => $info) {

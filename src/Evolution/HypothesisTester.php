@@ -96,7 +96,7 @@ class HypothesisTester
         $nextAction = null;
         if (!empty($needsData)) {
             $next = $needsData[0];
-            $target = $next['hypothesis'];
+            $next['hypothesis'];
             // Извлекаем домен из гипотезы
             if (preg_match("/в домене '([^']+)'/", $next['hypothesis'], $m)) {
                 $domain = $m[1];

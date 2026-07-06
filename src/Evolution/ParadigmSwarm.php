@@ -45,8 +45,8 @@ class ParadigmSwarm
         foreach ($this->paradigms as $name => &$p) {
             $g = new Grammar();
             // Удаляем всё кроме базовых и добавляем специализированные
-            $db = Database::get();
-            $baseOps = $p['ops'];
+            Database::get();
+            $p['ops'];
             $p['grammar'] = $g; // grammar содержит все ops из БД
         }
     }

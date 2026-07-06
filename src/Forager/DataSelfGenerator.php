@@ -48,8 +48,7 @@ class DataSelfGenerator
                     }
                 }
                 if (count($pairs) >= 10) {
-                    $X = array_map(fn($p) => [$p[0]], $pairs);
-                    $y = array_column($pairs, 1);
+                    array_map(fn($p) => [$p[0]], $pairs);
                     $tasks[] = [
                         'name' => $k1 . '→' . $k2,
                         'domain' => 'metrics',

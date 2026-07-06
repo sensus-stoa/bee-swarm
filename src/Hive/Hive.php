@@ -414,6 +414,7 @@ class Hive
             return array_merge($tasks, $this->foragedTasksGlobal);
         }
 
+        srand(42); // deterministic seed for reproducible GEN_ data
         $g = new Grammar();
         $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {

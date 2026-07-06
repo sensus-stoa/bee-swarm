@@ -19,7 +19,7 @@ class Database
         cv REAL,
         domain TEXT DEFAULT 'unknown',
         found_at TEXT DEFAULT (datetime('now')),
-        UNIQUE(name, formula)
+        UNIQUE(name, formula, domain)
     )";
 
     public static function setPath(string $path): void

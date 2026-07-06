@@ -7,6 +7,8 @@ use BeeSwarm\Forager\Forager;
 
 /**
  * Story D8: Forager caps — maxTotal removal
+ *
+ * @group slow
  */
 class ForagerCapsTest extends TestCase
 {

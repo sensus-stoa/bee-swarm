@@ -261,9 +261,10 @@ class Forager
 
     private function addTask(array &$tasks, array &$taskIndex, string $name, array $data, string $domain): void
     {
+        $data = array_slice($data, 0, 100); // cap data rows
         if (isset($taskIndex[$name])) {
             $i = $taskIndex[$name];
-            $tasks[$i]['data'] = array_merge($tasks[$i]['data'], $data);
+            $tasks[$i]['data'] = array_merge(array_slice($tasks[$i]['data'], 0, 50), $data);
         } else {
             $tasks[] = ['name' => $name, 'data' => $data, 'domain' => $domain];
             $taskIndex[$name] = count($tasks) - 1;
@@ -292,9 +293,6 @@ class Forager
             try {
                 $size = $file->getSize();
             } catch (\Throwable $e) {
-                continue;
-            }
-            if ($size > 500_000) {
                 continue;
             }
             if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {

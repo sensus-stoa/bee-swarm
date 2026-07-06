@@ -19,8 +19,8 @@ class HeldoutValidationTest extends TestCase
      */
     public function testDiscoverHeldoutExists(): void
     {
-        $X = [[1,2],[3,4],[5,6],[7,8],[9,10],[11,12],[13,14],[15,16],[17,18],[19,20]];
-        $y = [3,7,11,15,19,23,27,31,35,39];
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14], [15, 16], [17, 18], [19, 20]];
+        $y = [3, 7, 11, 15, 19, 23, 27, 31, 35, 39];
 
         $result = AtomRegistry::discoverHeldout($X, $y);
         $this->assertIsArray($result);
@@ -37,8 +37,8 @@ class HeldoutValidationTest extends TestCase
      */
     public function testExactLawPassesHeldout(): void
     {
-        $X = [[1,2],[3,4],[5,6],[7,8],[9,10],[11,12],[13,14],[15,16],[17,18],[19,20]];
-        $y = [3,7,11,15,19,23,27,31,35,39];
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14], [15, 16], [17, 18], [19, 20]];
+        $y = [3, 7, 11, 15, 19, 23, 27, 31, 35, 39];
 
         $result = AtomRegistry::discoverHeldout($X, $y);
         $atoms = array_column($result, 'atom');

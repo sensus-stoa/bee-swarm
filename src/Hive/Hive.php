@@ -409,7 +409,11 @@ class Hive
         ];
         $tasks = array_merge($tasks, $base);
 
-        // Generated compose tasks
+        // Generated compose tasks (disabled on plateau — HONEST_CRITERIA §1.5)
+        if ($this->plateau->isPlateau()) {
+            return array_merge($tasks, $this->foragedTasksGlobal);
+        }
+
         $g = new Grammar();
         $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {

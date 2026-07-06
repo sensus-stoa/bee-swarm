@@ -43,8 +43,11 @@
 - [x] B3: Dedup ключ с domain
 - [x] B4: Compose sufficiency
 - [x] B5: Plateau синтетика
-- [ ] B6: OVERFIT logging (validate() молча пропускает)
+- [x] B6: OVERFIT logging (validate() молча пропускает)
 - [ ] B7: Search на train-only (сейчас на всех данных)
+
+> Закрыто: discoverHeldout() уже ищет на $X_train/$y_train (строка 39 LawValidator.php). 
+> Проблемный путь — else-ветка без held-out — никогда не активен (held-out всегда enabled).
 
 
     | #   | Критерий | Находка                                                              | Критичность |

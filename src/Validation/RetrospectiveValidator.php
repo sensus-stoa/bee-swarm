@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Validation;
@@ -25,7 +26,9 @@ class RetrospectiveValidator
     {
         $db = Database::get();
         $laws = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
-        if (empty($laws)) return ['passed' => [], 'overfit' => []];
+        if (empty($laws)) {
+            return ['passed' => [], 'overfit' => []];
+        }
 
         $taskIndex = [];
         foreach ($tasks as $t) {
@@ -39,20 +42,28 @@ class RetrospectiveValidator
             $name = $law['name'];
             $formula = $law['formula'];
 
-            if (!isset($taskIndex[$name])) continue;
+            if (!isset($taskIndex[$name])) {
+                continue;
+            }
 
             $task = $taskIndex[$name];
             $data = $task['data'];
             $n = count($data);
-            if ($n < 3) continue;
+            if ($n < 3) {
+                continue;
+            }
 
             $nFeat = count($data[0]) - 1;
             $X = array_map(fn($r) => array_slice($r, 0, $nFeat), $data);
             $y = array_column($data, $nFeat);
 
             $result = LawValidator::evaluateHeldout($formula, $X, $y);
-            if ($result === null) continue;
-            if ($result['cv_train'] > self::CV_TRAIN_MAX) continue;
+            if ($result === null) {
+                continue;
+            }
+            if ($result['cv_train'] > self::CV_TRAIN_MAX) {
+                continue;
+            }
 
             $key = $name . '::' . $formula;
             if ($result['cv_holdout'] <= self::CV_HOLDOUT_MAX) {

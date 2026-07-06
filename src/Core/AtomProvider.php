@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Core;
@@ -41,7 +42,9 @@ class AtomProvider
                 $vec[] = $v;
             }
 
-            if (!$valid || count($vec) !== $n) continue;
+            if (!$valid || count($vec) !== $n) {
+                continue;
+            }
 
             $cv = AtomRegistry::cv($vec, $y);
             if ($cv < 0.001) {
@@ -67,9 +70,15 @@ class AtomProvider
 
         foreach ($grammar as $outer) {
             foreach ($grammar as $inner) {
-                if ($outer === $inner) continue;
-                if (!AtomRegistry::isUnary($outer) && !AtomRegistry::isBinary($outer)) continue;
-                if (!AtomRegistry::isUnary($inner) && !AtomRegistry::isBinary($inner)) continue;
+                if ($outer === $inner) {
+                    continue;
+                }
+                if (!AtomRegistry::isUnary($outer) && !AtomRegistry::isBinary($outer)) {
+                    continue;
+                }
+                if (!AtomRegistry::isUnary($inner) && !AtomRegistry::isBinary($inner)) {
+                    continue;
+                }
 
                 $vec = [];
                 $valid = true;
@@ -80,10 +89,12 @@ class AtomProvider
                     } elseif (AtomRegistry::isUnary($inner)) {
                         $v1 = AtomRegistry::apply($inner, (float)$row[0]);
                     } else {
-                        $valid = false; break;
+                        $valid = false;
+                        break;
                     }
                     if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
-                        $valid = false; break;
+                        $valid = false;
+                        break;
                     }
 
                     if (AtomRegistry::isBinary($outer) && $nFeat >= 3) {
@@ -93,15 +104,19 @@ class AtomProvider
                     } elseif (AtomRegistry::isUnary($outer)) {
                         $v2 = AtomRegistry::apply($outer, $v1);
                     } else {
-                        $valid = false; break;
+                        $valid = false;
+                        break;
                     }
                     if ($v2 === null || is_nan($v2) || is_infinite($v2)) {
-                        $valid = false; break;
+                        $valid = false;
+                        break;
                     }
                     $vec[] = $v2;
                 }
 
-                if (!$valid || count($vec) !== $n) continue;
+                if (!$valid || count($vec) !== $n) {
+                    continue;
+                }
 
                 $cv = AtomRegistry::cv($vec, $y);
                 if ($cv < 0.001) {

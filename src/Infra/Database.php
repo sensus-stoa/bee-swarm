@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Infra;
@@ -19,18 +20,18 @@ class Database
         found_at TEXT DEFAULT (datetime('now')),
         UNIQUE(name, formula)
     )";
-    
+
     public static function setPath(string $path): void
     {
         self::$forcedPath = $path;
         self::$instance = null;  // force reconnect
     }
-    
+
     public static function reset(): void
     {
         self::$instance = null;
     }
-    
+
     public static function get(): PDO
     {
         if (self::$instance === null) {
@@ -47,7 +48,7 @@ class Database
         }
         return self::$instance;
     }
-    
+
     private static function migrate(): void
     {
         $db = self::$instance;

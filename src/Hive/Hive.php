@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Hive;
@@ -43,14 +44,16 @@ class Hive
         $this->plateau = $plateau ?? new PlateauDetector(50);
         $this->forager = $forager ?? new Forager();
         $this->maxTicks = $maxTicks;
-        
+
         $sources = getenv('FORAGER_SOURCES');
         $this->foragerSources = $sources
             ? array_fill_keys(explode(':', $sources), 1)
             : [];
 
         $logDir = dirname(__DIR__, 2) . '/logs';
-        if (!is_dir($logDir)) mkdir($logDir, 0755, true);
+        if (!is_dir($logDir)) {
+            mkdir($logDir, 0755, true);
+        }
         $this->logFile = $logDir . '/agenda.log';
     }
 
@@ -137,7 +140,8 @@ class Hive
         }
 
         // Forager scan
-        if (!empty($this->foragerSources)
+        if (
+            !empty($this->foragerSources)
             && ($this->tick % $this->foragerScanInterval === 0 || $this->plateau->justEnteredPlateau())
         ) {
             $foraged = $this->forager->scan($this->foragerSources);
@@ -224,20 +228,30 @@ class Hive
             foreach ($data as $row) {
                 [$sId, $maskPos, $targetId, $expected] = $row;
                 $sentence = $this->sentenceRegistry->get((int)$sId);
-                if (!$sentence) { $errors++; continue; }
+                if (!$sentence) {
+                    $errors++;
+                    continue;
+                }
                 $ids = $sentence['token_ids'];
 
                 $window = [];
                 for ($i = max(0, $maskPos - $radius); $i <= min(count($ids) - 1, $maskPos + $radius); $i++) {
-                    if ($i !== $maskPos) $window[] = $ids[$i];
+                    if ($i !== $maskPos) {
+                        $window[] = $ids[$i];
+                    }
                 }
 
                 $pred = in_array((int)$targetId, $window) ? 1.0 : 0.0;
-                if (abs($pred - $expected) > 0.01) $errors++;
+                if (abs($pred - $expected) > 0.01) {
+                    $errors++;
+                }
             }
 
             $er = $errors / max(1, $total);
-            if ($er < $bestError) { $bestError = $er; $bestAtom = $op; }
+            if ($er < $bestError) {
+                $bestError = $er;
+                $bestAtom = $op;
+            }
             $opIndex++;
         }
 
@@ -288,7 +302,9 @@ class Hive
     {
         $g = new Grammar();
         $grammarOps = $g->all();
-        if (count($grammarOps) < 2) return;
+        if (count($grammarOps) < 2) {
+            return;
+        }
 
         foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps) as $c) {
             $key = $c['atom'];
@@ -301,7 +317,7 @@ class Hive
                 Database::get()->prepare("INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)")
                     ->execute([$c['atom'], $c['atom'], $c['cv'], $domain]);
                 $this->log("🧬 {$c['atom']} (COMPOSE) [$domain]");
-                            }
+            }
         }
     }
 
@@ -325,15 +341,15 @@ class Hive
 
         // Base tasks
         $base = [
-            ['name'=>'AND','domain'=>'logic','data'=>[[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
-            ['name'=>'ADD','domain'=>'arithmetic','data'=>[[1,2,3],[3,4,7],[5,6,11]]],
-            ['name'=>'MUL','domain'=>'arithmetic','data'=>[[1,2,2],[2,3,6],[3,4,12]]],
-            ['name'=>'OR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
-            ['name'=>'XOR','domain'=>'logic','data'=>[[0,0,0],[0,1,1],[1,0,1],[1,1,0]]],
-            ['name'=>'SQUARE','domain'=>'arithmetic','data'=>[[1,1],[2,4],[3,9],[4,16]]],
-            ['name'=>'SQRT','domain'=>'arithmetic','data'=>[[0,0],[1,1],[4,2],[9,3],[16,4]]],
-            ['name'=>'MAX','domain'=>'arithmetic','data'=>[[0,0,0],[2,3,3],[5,1,5],[4,4,4]]],
-            ['name'=>'DIV','domain'=>'arithmetic','data'=>[[6,2,3],[12,3,4],[20,4,5],[10,2,5]]],
+            ['name' => 'AND','domain' => 'logic','data' => [[0,0,0],[0,1,0],[1,0,0],[1,1,1]]],
+            ['name' => 'ADD','domain' => 'arithmetic','data' => [[1,2,3],[3,4,7],[5,6,11]]],
+            ['name' => 'MUL','domain' => 'arithmetic','data' => [[1,2,2],[2,3,6],[3,4,12]]],
+            ['name' => 'OR','domain' => 'logic','data' => [[0,0,0],[0,1,1],[1,0,1],[1,1,1]]],
+            ['name' => 'XOR','domain' => 'logic','data' => [[0,0,0],[0,1,1],[1,0,1],[1,1,0]]],
+            ['name' => 'SQUARE','domain' => 'arithmetic','data' => [[1,1],[2,4],[3,9],[4,16]]],
+            ['name' => 'SQRT','domain' => 'arithmetic','data' => [[0,0],[1,1],[4,2],[9,3],[16,4]]],
+            ['name' => 'MAX','domain' => 'arithmetic','data' => [[0,0,0],[2,3,3],[5,1,5],[4,4,4]]],
+            ['name' => 'DIV','domain' => 'arithmetic','data' => [[6,2,3],[12,3,4],[20,4,5],[10,2,5]]],
         ];
         $tasks = array_merge($tasks, $base);
 
@@ -344,8 +360,12 @@ class Hive
             $count = 0;
             foreach ($grammarOps as $outer) {
                 foreach ($grammarOps as $inner) {
-                    if ($outer === $inner || $count >= 10) break 2;
-                    if (!AtomRegistry::isUnary($outer)) continue;
+                    if ($outer === $inner || $count >= 10) {
+                        break 2;
+                    }
+                    if (!AtomRegistry::isUnary($outer)) {
+                        continue;
+                    }
                     $data = [];
                     for ($i = 0; $i < 6; $i++) {
                         $x = mt_rand(-10, 10);
@@ -353,9 +373,13 @@ class Hive
                         $v1 = AtomRegistry::isBinary($inner)
                             ? AtomRegistry::apply($inner, (float)$x, (float)$y)
                             : AtomRegistry::apply($inner, (float)$x);
-                        if ($v1 === null || is_nan($v1) || is_infinite($v1)) continue;
+                        if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
+                            continue;
+                        }
                         $v2 = AtomRegistry::apply($outer, $v1);
-                        if ($v2 === null || is_nan($v2) || is_infinite($v2)) continue;
+                        if ($v2 === null || is_nan($v2) || is_infinite($v2)) {
+                            continue;
+                        }
                         $data[] = [(float)$x, (float)$y, $v2];
                     }
                     if (count($data) >= 3) {
@@ -371,14 +395,20 @@ class Hive
             $n = min($this->sentenceRegistry->count(), 50);
             for ($i = 0; $i < $n; $i++) {
                 $s = $this->sentenceRegistry->get($i);
-                if (!$s || count($s['token_ids']) < 3) continue;
+                if (!$s || count($s['token_ids']) < 3) {
+                    continue;
+                }
                 foreach ($s['token_ids'] as $pos => $tid) {
                     $w = $this->corpusVocab->word($tid);
-                    if (!$w || in_array($w, ['i', 'v', 'na', 's', 'ne', 'ili', 'no', 'a'])) continue;
+                    if (!$w || in_array($w, ['i', 'v', 'na', 's', 'ne', 'ili', 'no', 'a'])) {
+                        continue;
+                    }
                     $d = [[$i, $pos, $tid, 1.0]];
                     for ($j = 0; $j < 3; $j++) {
                         $r = mt_rand(1, $this->corpusVocab->size());
-                        if ($r !== $tid) $d[] = [$i, $pos, $r, 0.0];
+                        if ($r !== $tid) {
+                            $d[] = [$i, $pos, $r, 0.0];
+                        }
                     }
                     $tasks[] = ['name' => "cloze_{$i}_{$pos}", 'data' => $d, 'domain' => 'cloze'];
                     break;

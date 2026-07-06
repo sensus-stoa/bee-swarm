@@ -23,7 +23,7 @@ See `ARCHITECTURE.md` — 7 layers (0-7): Environment → Laws → Self-generate
 - **Database:** SQLite via PDO
 - **Tests:** PHPUnit (`vendor/bin/phpunit tests/`)
 - **Daemon:** `agenda.php` (run loop)
-- **Tech profile:** `.claude/tech/php-rr/` (coding standards, TDD rules, templates)
+- **Tech profile:** `.agents/tech/php-rr/` (coding standards, TDD rules, templates)
 
 ## Key Files
 
@@ -49,13 +49,13 @@ See `ARCHITECTURE.md` — 7 layers (0-7): Environment → Laws → Self-generate
 
 | When you need to... | Read |
 |--------------------|------|
-| Write a test (RED) | `.claude/agents/red.md` + `.claude/tech/php-rr/tdd.md` |
-| Implement code (GREEN) | `.claude/agents/green.md` + `.claude/tech/php-rr/tdd.md` |
-| Refactor | `.claude/agents/refactor.md` |
-| Review test quality | `.claude/agents/review.md` |
-| Understand coding standards | `.claude/tech/php-rr/coding.md` |
-| See test template | `.claude/tech/php-rr/templates/test-class.md` |
-| See implementation template | `.claude/tech/php-rr/templates/implementation.md` |
+| Write a test (RED) | `.agents/agents/red.md` + `.agents/tech/php-rr/tdd.md` |
+| Implement code (GREEN) | `.agents/agents/green.md` + `.agents/tech/php-rr/tdd.md` |
+| Refactor | `.agents/agents/refactor.md` |
+| Review test quality | `.agents/agents/review.md` |
+| Understand coding standards | `.agents/tech/php-rr/coding.md` |
+| See test template | `.agents/tech/php-rr/templates/test-class.md` |
+| See implementation template | `.agents/tech/php-rr/templates/implementation.md` |
 | Know all pitfalls | skill: `swarm-tdd` (Hermes) |
 
 ## Progress Tracking

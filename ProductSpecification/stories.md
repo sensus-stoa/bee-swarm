@@ -4,7 +4,7 @@
 
 | # | Criterion | What | Status |
 |---|-----------|------|--------|
-| 04 | 1.2 Statistical Sufficiency | t ≥ t_min | ⬜ |
+| 04 | 1.2 Statistical Sufficiency | t ≥ t_min | 🔧 |
 | 05 | 1.7 Compression Superiority | MDL cost | ⬜ |
 | 06 | 1.4 Non-Triviality | Алгебраическая редукция | ⬜ |
 | 07 | 1.3 Parsimony | complexity(e) | ⬜ |

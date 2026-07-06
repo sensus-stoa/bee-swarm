@@ -208,7 +208,12 @@ class Forager
             }
         }
         sort($paths);
-        $this->currentFingerprint = md5(implode(',', $paths));
+        // Include file sizes to detect content changes
+        $fpParts = [];
+        foreach ($paths as $p) {
+            try { $fpParts[] = $p . ':' . filesize($p); } catch (\Throwable) { $fpParts[] = $p; }
+        }
+        $this->currentFingerprint = md5(implode(',', $fpParts));
 
         // Always track current content
         $this->newTaskCount = count($allTasks);
@@ -264,7 +269,7 @@ class Forager
         $data = array_slice($data, 0, 100); // cap data rows
         if (isset($taskIndex[$name])) {
             $i = $taskIndex[$name];
-            $tasks[$i]['data'] = array_merge(array_slice($tasks[$i]['data'], 0, 50), $data);
+            $tasks[$i]['data'] = array_slice(array_merge($tasks[$i]['data'], $data), 0, 100);
         } else {
             $tasks[] = ['name' => $name, 'data' => $data, 'domain' => $domain];
             $taskIndex[$name] = count($tasks) - 1;
@@ -382,7 +387,7 @@ class Forager
                     }
 
                     if (count($data) >= 2) {  // минимум 2 точки: positive + negative
-                        $this->addTask($tasks, $taskIndex, 'foraged_sem_' . basename($path), $data, 'foraged_semantic');
+                        $this->addTask($tasks, $taskIndex, 'foraged_sem_' . md5($path), $data, 'foraged_semantic');
                         $count++;
                     }
                 } else {
@@ -397,7 +402,7 @@ class Forager
                                     }
                                 }
                                 if (count($data) >= 3) {
-                                    $this->addTask($tasks, $taskIndex, 'foraged_' . basename($path) . "_c{$c1}c{$c2}", $data, 'foraged');
+                                    $this->addTask($tasks, $taskIndex, 'foraged_' . md5($path) . "_c{$c1}c{$c2}", $data, 'foraged');
                                     $count++;
                                 }
                             }

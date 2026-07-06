@@ -322,6 +322,13 @@ class Hive
             return;
         }
 
+        // Statistical sufficiency (HONEST_CRITERIA §1.2)
+        $nFeat = count($X[0] ?? []);
+        $tMin = max(10, $nFeat * 5);
+        if (count($y) < $tMin) {
+            return;
+        }
+
         $candidates = AtomRegistry::discoverCompose($X, $y, $grammarOps);
         if (! empty($candidates)) {
             $validated = \BeeSwarm\Validation\LawValidator::validate($candidates, $X, $y);

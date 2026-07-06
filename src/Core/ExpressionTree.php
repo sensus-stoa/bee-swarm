@@ -140,4 +140,28 @@ class ExpressionTree
 
         return null; // сложные формулы парсить не будем — используем встроенные
     }
+
+    /** Count operation nodes recursively. Leaves = 1, operators = 1 + children. */
+    public function nodeCount(): int
+    {
+        return $this->countNodesRecursive($this->tree);
+    }
+
+    private function countNodesRecursive(array|string|float $node): int
+    {
+        if (! is_array($node) || ! isset($node['op'])) {
+            return 1; // leaf node
+        }
+        $count = 1;
+        if (isset($node['left']) && is_array($node['left']) && isset($node['left']['op'])) {
+            $count += $this->countNodesRecursive($node['left']);
+        }
+        if (isset($node['right']) && is_array($node['right']) && isset($node['right']['op'])) {
+            $count += $this->countNodesRecursive($node['right']);
+        }
+        if (isset($node['arg']) && is_array($node['arg']) && isset($node['arg']['op'])) {
+            $count += $this->countNodesRecursive($node['arg']);
+        }
+        return $count;
+    }
 }

@@ -70,7 +70,7 @@ class Forager
                 } if (count($r) < 3) {
                     return [];
                 }
-                return array_map(fn ($row) => array_values(array_filter($row, 'is_numeric')), $r);
+                return array_map(fn ($row) => is_array($row) ? array_values(array_filter($row, 'is_numeric')) : [], $r);
             },
             'str_getcsv' => function (string $c): array {
                 $lines = explode("\n", trim($c));
@@ -175,17 +175,13 @@ class Forager
         $sorted = $dirs;
         arsort($sorted);
         $allTasks = [];
-        $maxTotal = 30;
         $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
 
         foreach ($sorted as $dir => $pri) {
-            if (count($allTasks) >= $maxTotal) {
-                break;
-            }
             if (! is_dir($dir)) {
                 continue;
             }
-            $dirTasks = $this->scanDir($dir, $maxTotal - count($allTasks), $allStrategies);
+            $dirTasks = $this->scanDir($dir, $allStrategies);
             $allTasks = array_merge($allTasks, $dirTasks);
             if (count($dirTasks) > 0) {
                 $this->priorities[$dir] = min(1.0, $pri + count($dirTasks) * 0.05);
@@ -263,7 +259,7 @@ class Forager
         $this->lastReportedFingerprint = $this->currentFingerprint;
     }
 
-    private function scanDir(string $dir, int $max, array $strategies): array
+    private function scanDir(string $dir, array $strategies): array
     {
         $tasks = [];
         $count = 0;
@@ -276,9 +272,6 @@ class Forager
         }
 
         foreach ($iterator as $file) {
-            if ($count >= $max) {
-                break;
-            }
             try {
                 $path = $file->getPathname();
             } catch (\Throwable $e) {

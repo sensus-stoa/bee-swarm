@@ -39,7 +39,9 @@
 ## Статус
 
 - [~] B1: Compose held-out
-- [ ] B2: isTrivial regex + compose filter
+- [x] B2: isTrivial regex + compose filter + missing reductions
 - [ ] B3: Dedup ключ с domain
 - [ ] B4: Compose sufficiency
 - [ ] B5: Plateau синтетика
+- [ ] B6: OVERFIT logging (validate() молча пропускает)
+- [ ] B7: Search на train-only (сейчас на всех данных)

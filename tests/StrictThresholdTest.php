@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
-
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 use BeeSwarm\Infra\Database;
 
 class StrictThresholdTest extends TestCase
@@ -19,8 +18,10 @@ class StrictThresholdTest extends TestCase
 
     // ═══ 1. STRICT THRESHOLD ═══
 
-    /** CV < 0.01 — записываем */
-    public function test_strict_law_recorded(): void
+    /**
+     * CV < 0.01 — записываем
+     */
+    public function testStrictLawRecorded(): void
     {
         $X = [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]];
         $y = [3.0, 7.0, 11.0];
@@ -31,8 +32,10 @@ class StrictThresholdTest extends TestCase
         $this->assertLessThan(0.01, $cv, 'CV should be near 0');
     }
 
-    /** CV > 0.01 — НЕ записываем */
-    public function test_weak_law_not_recorded(): void
+    /**
+     * CV > 0.01 — НЕ записываем
+     */
+    public function testWeakLawNotRecorded(): void
     {
         // Слабый сигнал (случайные данные)
         $X = [[1.0], [2.0], [3.0], [4.0], [5.0]];
@@ -50,11 +53,14 @@ class StrictThresholdTest extends TestCase
 
     // ═══ 2. ИНТЕГРАЦИЯ ═══
 
-    /** Fallback с strict порогом не записывает шум */
-    public function test_fallback_strict_threshold(): void
+    /**
+     * Fallback с strict порогом не записывает шум
+     */
+    public function testFallbackStrictThreshold(): void
     {
         $db = Database::get();
-        $countBefore = $db->query("SELECT COUNT(*) FROM laws")->fetchColumn();
+        $countBefore = $db->query('SELECT COUNT(*) FROM laws')
+            ->fetchColumn();
 
         // Симуляция: задача решается только Search::find с плохим CV
         $X = [[1.0], [2.0], [3.0]];
@@ -64,19 +70,22 @@ class StrictThresholdTest extends TestCase
 
         if ($ok && $cv < 0.01) {
             // Если нашёлся strict-закон — ОК, записываем
-            $db->prepare("INSERT INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
-               ->execute(['test_strict_fallback', $formula, $cv, 'test_strict']);
+            $db->prepare('INSERT INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)')
+                ->execute(['test_strict_fallback', $formula, $cv, 'test_strict']);
         }
 
-        $countAfter = $db->query("SELECT COUNT(*) FROM laws")->fetchColumn();
+        $countAfter = $db->query('SELECT COUNT(*) FROM laws')
+            ->fetchColumn();
         // Шумный закон НЕ должен быть записан (CV > 0.01)
         if ($ok && $cv > 0.01) {
             $this->assertEquals($countBefore, $countAfter, 'Weak law not recorded');
         }
     }
 
-    /** AtomRegistry strict laws still recorded */
-    public function test_atom_registry_strict_works(): void
+    /**
+     * AtomRegistry strict laws still recorded
+     */
+    public function testAtomRegistryStrictWorks(): void
     {
         $X = [[1.0], [4.0], [9.0], [16.0]];
         $y = [1.0, 2.0, 3.0, 4.0];

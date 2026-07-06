@@ -21,8 +21,10 @@ class PhenotypeEvolutionTest extends TestCase
 
     // ═══ 1. ФЕНОТИП: ЗАГРУЗКА/СОХРАНЕНИЕ ═══
 
-    /** Фенотип загружается из файла */
-    public function test_phenotype_load_defaults(): void
+    /**
+     * Фенотип загружается из файла
+     */
+    public function testPhenotypeLoadDefaults(): void
     {
         $p = $this->loadPhenotype();
         $this->assertArrayHasKey('compose_min_grammar', $p);
@@ -32,8 +34,10 @@ class PhenotypeEvolutionTest extends TestCase
         $this->assertEquals(100, $p['task_regen_interval']);
     }
 
-    /** Фенотип сохраняется и загружается */
-    public function test_phenotype_save_and_load(): void
+    /**
+     * Фенотип сохраняется и загружается
+     */
+    public function testPhenotypeSaveAndLoad(): void
     {
         $p = $this->loadPhenotype();
         $p['compose_min_grammar'] = 7;
@@ -45,8 +49,10 @@ class PhenotypeEvolutionTest extends TestCase
 
     // ═══ 2. МУТАЦИЯ ═══
 
-    /** Мутация меняет один параметр на ±30% */
-    public function test_mutate_changes_one_parameter(): void
+    /**
+     * Мутация меняет один параметр на ±30%
+     */
+    public function testMutateChangesOneParameter(): void
     {
         $p = $this->loadPhenotype();
         $original = $p;
@@ -55,13 +61,17 @@ class PhenotypeEvolutionTest extends TestCase
         // Ровно один параметр изменился
         $changes = 0;
         foreach ($original as $key => $val) {
-            if ($mutated[$key] !== $val) $changes++;
+            if ($mutated[$key] !== $val) {
+                $changes++;
+            }
         }
         $this->assertEquals(1, $changes, 'Exactly one parameter should change');
     }
 
-    /** Мутация не выходит за границы */
-    public function test_mutate_stays_in_bounds(): void
+    /**
+     * Мутация не выходит за границы
+     */
+    public function testMutateStaysInBounds(): void
     {
         $p = $this->loadPhenotype();
         for ($i = 0; $i < 50; $i++) {
@@ -73,8 +83,10 @@ class PhenotypeEvolutionTest extends TestCase
 
     // ═══ 3. SELF-LAW → PHENOTYPE ═══
 
-    /** Self-law: grammar растёт логарифмически → увеличить compose_min_grammar */
-    public function test_self_law_adjusts_phenotype(): void
+    /**
+     * Self-law: grammar растёт логарифмически → увеличить compose_min_grammar
+     */
+    public function testSelfLawAdjustsPhenotype(): void
     {
         $p = $this->loadPhenotype();
 
@@ -98,8 +110,10 @@ class PhenotypeEvolutionTest extends TestCase
 
     // ═══ 4. FITNESS + ОТБОР ═══
 
-    /** Мутация с ростом fitness закрепляется */
-    public function test_selection_keeps_beneficial_mutation(): void
+    /**
+     * Мутация с ростом fitness закрепляется
+     */
+    public function testSelectionKeepsBeneficialMutation(): void
     {
         $p = $this->loadPhenotype();
         $oldFitness = $this->measureFitness($p);
@@ -124,12 +138,12 @@ class PhenotypeEvolutionTest extends TestCase
             return json_decode(file_get_contents($this->tmpPhenotypeFile), true);
         }
         return [
-            'compose_min_grammar'   => 3,
-            'task_regen_interval'   => 100,
-            'starvation_timeout'    => 600,
-            'forager_max_files'     => 30,
+            'compose_min_grammar' => 3,
+            'task_regen_interval' => 100,
+            'starvation_timeout' => 600,
+            'forager_max_files' => 30,
             'self_metrics_interval' => 200,
-            'mutation_interval'     => 1000,
+            'mutation_interval' => 1000,
         ];
     }
 
@@ -145,9 +159,9 @@ class PhenotypeEvolutionTest extends TestCase
         $old = $p[$key];
         // Мутация: +1 или ×1.5/÷1.5 — гарантирует изменение
         if (mt_rand(0, 1)) {
-            $p[$key] = min(5000, max(1, (int)($old * 1.5)));
+            $p[$key] = min(5000, max(1, (int) ($old * 1.5)));
         } else {
-            $p[$key] = max(1, (int)($old / 1.5));
+            $p[$key] = max(1, (int) ($old / 1.5));
         }
         return $p;
     }
@@ -170,14 +184,14 @@ class PhenotypeEvolutionTest extends TestCase
 
     private function applySelfLaw(array $p, array $grammarSizes, array $ticks): array
     {
-        $lastSize = (float)end($grammarSizes);
-        $firstSize = (float)reset($grammarSizes);
+        $lastSize = (float) end($grammarSizes);
+        $firstSize = (float) reset($grammarSizes);
         $growthRate = count($ticks) > 1 ? ($lastSize - $firstSize) / count($ticks) : 0;
 
         if ($growthRate < 1.0 && $lastSize > 20) {
             // Логарифмический рост: грамматика большая, рост медленный
             // → увеличить порог (меньше compose, грамматика уже насыщена)
-            $p['compose_min_grammar'] = (int)($p['compose_min_grammar'] * 1.5);
+            $p['compose_min_grammar'] = (int) ($p['compose_min_grammar'] * 1.5);
         }
 
         return $p;

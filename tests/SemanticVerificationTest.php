@@ -15,27 +15,31 @@ class SemanticVerificationTest extends TestCase
 
     // ═══ 1. ПОДТВЕРЖДЕНИЕ ИЗ НЕСКОЛЬКИХ ИСТОЧНИКОВ ═══
 
-    /** Факт из нескольких источников — с текущей схемой unique, 1 запись = 1 источник */
-    public function test_multi_source_confirmation(): void
+    /**
+     * Факт из нескольких источников — с текущей схемой unique, 1 запись = 1 источник
+     */
+    public function testMultiSourceConfirmation(): void
     {
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_cat', 'is_a', 'test_sv_mammal', 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_cat', 'is_a', 'test_sv_mammal', 1.0]);
         // UNIQUE constraint не даст дубликат — это ожидаемое поведение
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_cat', 'is_a', 'test_sv_mammal', 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_cat', 'is_a', 'test_sv_mammal', 1.0]);
 
         $verified = $this->verifyFact('test_sv_cat', 'is_a', 'test_sv_mammal');
         $this->assertTrue($verified['confirmed'], 'Existing fact should be found');
         $this->assertEquals(1, $verified['sources'], 'One unique entry = one source');
     }
 
-    /** Факт из 1 источника → низкая confidence */
-    public function test_single_source_low_confidence(): void
+    /**
+     * Факт из 1 источника → низкая confidence
+     */
+    public function testSingleSourceLowConfidence(): void
     {
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_dog', 'is_a', 'test_sv_reptile', 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_dog', 'is_a', 'test_sv_reptile', 1.0]);
 
         $verified = $this->verifyFact('test_sv_dog', 'is_a', 'test_sv_reptile');
         $this->assertTrue($verified['confirmed'], 'Fact exists');
@@ -46,38 +50,44 @@ class SemanticVerificationTest extends TestCase
 
     // ═══ 2. ПРОТИВОРЕЧИЯ ═══
 
-    /** Противоречащие факты → флаг */
-    public function test_contradictory_facts_flagged(): void
+    /**
+     * Противоречащие факты → флаг
+     */
+    public function testContradictoryFactsFlagged(): void
     {
         $db = Database::get();
         // Прямое противоречие
-        $db->prepare("INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_whale', 'is_a', 'test_sv_fish', 1.0]);
-        $db->prepare("INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_whale', 'is_a', 'test_sv_mammal', 1.0]);
+        $db->prepare('INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_whale', 'is_a', 'test_sv_fish', 1.0]);
+        $db->prepare('INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_whale', 'is_a', 'test_sv_mammal', 1.0]);
 
         $contradictions = $this->findContradictions();
         $this->assertGreaterThanOrEqual(1, count($contradictions), 'Should find contradiction');
 
         $hasWhale = false;
         foreach ($contradictions as $c) {
-            if ($c['subject'] === 'test_sv_whale') $hasWhale = true;
+            if ($c['subject'] === 'test_sv_whale') {
+                $hasWhale = true;
+            }
         }
         $this->assertTrue($hasWhale, 'Whale contradiction found');
     }
 
     // ═══ 3. КРОСС-ВАЛИДАЦИЯ С ЧИСЛОВЫМИ ЗАКОНАМИ ═══
 
-    /** Семантический факт подтверждается числовым законом */
-    public function test_semantic_confirmed_by_numerical_law(): void
+    /**
+     * Семантический факт подтверждается числовым законом
+     */
+    public function testSemanticConfirmedByNumericalLaw(): void
     {
         $db = Database::get();
         // Семантический факт
-        $db->prepare("INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute(['test_sv_metric_a', 'correlates_with', 'test_sv_metric_b', 1.0]);
+        $db->prepare('INSERT INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute(['test_sv_metric_a', 'correlates_with', 'test_sv_metric_b', 1.0]);
         // Числовой закон это подтверждает
-        $db->prepare("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
-           ->execute(['test_sv_metric_a→test_sv_metric_b', 'add', 0.0, 'cross']);
+        $db->prepare('INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)')
+            ->execute(['test_sv_metric_a→test_sv_metric_b', 'add', 0.0, 'cross']);
 
         $result = $this->crossValidate('test_sv_metric_a', 'correlates_with', 'test_sv_metric_b');
         $this->assertTrue($result['numerical_backing'], 'Numerical law confirms semantic fact');
@@ -88,9 +98,9 @@ class SemanticVerificationTest extends TestCase
     private function verifyFact(string $s, string $p, string $o): array
     {
         $db = Database::get();
-        $stmt = $db->prepare("SELECT COUNT(*) as cnt FROM knowledge_graph WHERE subject = ? AND predicate = ? AND object = ?");
+        $stmt = $db->prepare('SELECT COUNT(*) as cnt FROM knowledge_graph WHERE subject = ? AND predicate = ? AND object = ?');
         $stmt->execute([$s, $p, $o]);
-        $count = (int)$stmt->fetchColumn();
+        $count = (int) $stmt->fetchColumn();
 
         return [
             'confirmed' => $count >= 1,
@@ -114,8 +124,10 @@ class SemanticVerificationTest extends TestCase
     {
         $db = Database::get();
         $lawName = "{$s}→{$o}";
-        $stmt = $db->prepare("SELECT COUNT(*) FROM laws WHERE (name = ? OR name = ?) AND cv < 0.05");
+        $stmt = $db->prepare('SELECT COUNT(*) FROM laws WHERE (name = ? OR name = ?) AND cv < 0.05');
         $stmt->execute([$lawName, "{$o}→{$s}"]);
-        return ['numerical_backing' => $stmt->fetchColumn() > 0];
+        return [
+            'numerical_backing' => $stmt->fetchColumn() > 0,
+        ];
     }
 }

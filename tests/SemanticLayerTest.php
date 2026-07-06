@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\AtomRegistry;
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Infra\Database;
 
 class SemanticLayerTest extends TestCase
@@ -17,8 +16,10 @@ class SemanticLayerTest extends TestCase
 
     // ═══ 1. DISCOVER → KNOWLEDGE GRAPH ═══
 
-    /** Открытие атома создаёт семантические факты */
-    public function test_discovery_creates_semantic_facts(): void
+    /**
+     * Открытие атома создаёт семантические факты
+     */
+    public function testDiscoveryCreatesSemanticFacts(): void
     {
         $X = [[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]];
         $y = [3.0, 7.0, 11.0];
@@ -44,8 +45,10 @@ class SemanticLayerTest extends TestCase
 
     // ═══ 2. COMPOSE → KNOWLEDGE GRAPH ═══
 
-    /** Compose создаёт семантические факты */
-    public function test_compose_creates_semantic_facts(): void
+    /**
+     * Compose создаёт семантические факты
+     */
+    public function testComposeCreatesSemanticFacts(): void
     {
         $grammar = ['abs', 'sub'];
 
@@ -70,8 +73,10 @@ class SemanticLayerTest extends TestCase
 
     // ═══ 3. ДУБЛИКАТЫ НЕ СОЗДАЮТСЯ ═══
 
-    /** Повторное открытие не дублирует факты */
-    public function test_duplicate_discovery_no_duplicate_facts(): void
+    /**
+     * Повторное открытие не дублирует факты
+     */
+    public function testDuplicateDiscoveryNoDuplicateFacts(): void
     {
         $this->recordDiscovery('add', 'test_ADD');
         $countBefore = $this->countFacts();
@@ -85,8 +90,10 @@ class SemanticLayerTest extends TestCase
 
     // ═══ 4. СЕМАНТИЧЕСКИЕ ЗАКОНЫ ИЗ ГРАФА ═══
 
-    /** Граф с фактами порождает семантические законы */
-    public function test_semantic_laws_from_populated_graph(): void
+    /**
+     * Граф с фактами порождает семантические законы
+     */
+    public function testSemanticLawsFromPopulatedGraph(): void
     {
         // Наполняем граф УНИКАЛЬНЫМИ атомами чтобы не пересекаться с демоном
         $this->recordDiscovery('tst_add', 'tst_task_A');
@@ -97,28 +104,39 @@ class SemanticLayerTest extends TestCase
 
         // Проверяем: все открытые атомы классифицированы
         $db = Database::get();
-        $discovered = $db->query("SELECT COUNT(*) FROM knowledge_graph WHERE predicate = 'is_a' AND object = 'discovered_atom'")->fetchColumn();
+        $discovered = $db->query("SELECT COUNT(*) FROM knowledge_graph WHERE predicate = 'is_a' AND object = 'discovered_atom'")
+            ->fetchColumn();
         $this->assertGreaterThanOrEqual(3, $discovered, 'At least 3 atoms classified');
 
         // Проверяем: composes_with — асимметрично (только тестовые атомы)
-        $pairs = $db->query("SELECT subject, object FROM knowledge_graph WHERE predicate = 'composes_with' AND (subject LIKE 'tst_%' OR object LIKE 'tst_%')")->fetchAll(\PDO::FETCH_ASSOC);
+        $pairs = $db->query("SELECT subject, object FROM knowledge_graph WHERE predicate = 'composes_with' AND (subject LIKE 'tst_%' OR object LIKE 'tst_%')")
+            ->fetchAll(\PDO::FETCH_ASSOC);
         $pairSet = [];
-        foreach ($pairs as $p) $pairSet[$p['subject'] . '|' . $p['object']] = true;
+        foreach ($pairs as $p) {
+            $pairSet[$p['subject'] . '|' . $p['object']] = true;
+        }
         $sym = 0;
         foreach ($pairSet as $key => $_) {
             [$a, $b] = explode('|', $key);
-            if (isset($pairSet[$b . '|' . $a])) $sym++;
+            if (isset($pairSet[$b . '|' . $a])) {
+                $sym++;
+            }
         }
         $this->assertEquals(0, $sym, 'composes_with should be asymmetric (CV=0)');
 
         // Проверяем: solves — асимметрично (только тестовые)
-        $solves = $db->query("SELECT subject, object FROM knowledge_graph WHERE predicate = 'solves' AND (subject LIKE 'tst_%' OR object LIKE 'tst_%')")->fetchAll(\PDO::FETCH_ASSOC);
+        $solves = $db->query("SELECT subject, object FROM knowledge_graph WHERE predicate = 'solves' AND (subject LIKE 'tst_%' OR object LIKE 'tst_%')")
+            ->fetchAll(\PDO::FETCH_ASSOC);
         $solveSet = [];
-        foreach ($solves as $s) $solveSet[$s['subject'] . '|' . $s['object']] = true;
+        foreach ($solves as $s) {
+            $solveSet[$s['subject'] . '|' . $s['object']] = true;
+        }
         $symSolves = 0;
         foreach ($solveSet as $key => $_) {
             [$a, $b] = explode('|', $key);
-            if (isset($solveSet[$b . '|' . $a])) $symSolves++;
+            if (isset($solveSet[$b . '|' . $a])) {
+                $symSolves++;
+            }
         }
         $this->assertEquals(0, $symSolves, 'solves should be asymmetric (CV=0)');
     }
@@ -128,25 +146,25 @@ class SemanticLayerTest extends TestCase
     private function recordDiscovery(string $atomName, string $taskName): void
     {
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute([$atomName, 'solves', $taskName, 1.0]);
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute([$atomName, 'is_a', 'discovered_atom', 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute([$atomName, 'solves', $taskName, 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute([$atomName, 'is_a', 'discovered_atom', 1.0]);
     }
 
     private function recordCompose(string $compName): void
     {
         $db = Database::get();
-        $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-           ->execute([$compName, 'is_a', 'compose_operation', 1.0]);
+        $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+            ->execute([$compName, 'is_a', 'compose_operation', 1.0]);
         if (preg_match('/^(\w+)\((\w+)\)$/', $compName, $pm)) {
-            $db->prepare("INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)")
-               ->execute([$pm[1], 'composes_with', $pm[2], 1.0]);
+            $db->prepare('INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,?)')
+                ->execute([$pm[1], 'composes_with', $pm[2], 1.0]);
         }
     }
 
     private function countFacts(): int
     {
-        return (int)Database::get()->query("SELECT COUNT(*) FROM knowledge_graph")->fetchColumn();
+        return (int) Database::get()->query('SELECT COUNT(*) FROM knowledge_graph')->fetchColumn();
     }
 }

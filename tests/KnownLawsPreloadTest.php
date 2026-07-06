@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Infra\Database;
 use BeeSwarm\Core\AtomRegistry;
+use BeeSwarm\Infra\Database;
 
 /**
  * Тест: preload knownLaws из БД при старте демона.
@@ -12,68 +12,79 @@ use BeeSwarm\Core\AtomRegistry;
  */
 class KnownLawsPreloadTest extends TestCase
 {
-    /** После рестарта knownLaws загружается из БД */
-    public function test_preload_populates_known_laws(): void
+    /**
+     * После рестарта knownLaws загружается из БД
+     */
+    public function testPreloadPopulatesKnownLaws(): void
     {
         $db = Database::get();
-        
+
         // Вставляем тестовый закон
         $db->exec("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES ('TEST_PRELOAD', 'test_atom', 0, 'test')");
-        
+
         // Симулируем preload как в agenda.php
         $knownLaws = [];
-        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $knownLaws[$row['name'] . '::' . $row['formula']] = true;
         }
-        
+
         // Проверяем что тестовый закон загружен
         $this->assertArrayHasKey('TEST_PRELOAD::test_atom', $knownLaws);
         $this->assertTrue($knownLaws['TEST_PRELOAD::test_atom']);
-        
+
         // Чистим
         $db->exec("DELETE FROM laws WHERE name = 'TEST_PRELOAD'");
     }
-    
-    /** knownLaws не пустая после preload если в БД есть законы */
-    public function test_preload_non_empty_when_db_has_laws(): void
+
+    /**
+     * knownLaws не пустая после preload если в БД есть законы
+     */
+    public function testPreloadNonEmptyWhenDbHasLaws(): void
     {
         $db = Database::get();
-        $lawCount = (int)$db->query("SELECT COUNT(*) FROM laws")->fetchColumn();
-        
+        $lawCount = (int) $db->query('SELECT COUNT(*) FROM laws')
+            ->fetchColumn();
+
         $knownLaws = [];
-        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $knownLaws[$row['name'] . '::' . $row['formula']] = true;
         }
-        
+
         $this->assertCount($lawCount, $knownLaws);
     }
-    
-    /** Повторная вставка того же закона не дублирует knownLaws */
-    public function test_preload_no_duplicates(): void
+
+    /**
+     * Повторная вставка того же закона не дублирует knownLaws
+     */
+    public function testPreloadNoDuplicates(): void
     {
         $db = Database::get();
-        
+
         $db->exec("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES ('TEST_PRELOAD2', 'dup_atom', 0, 'test')");
-        
+
         // Первый preload
         $knownLaws1 = [];
-        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $knownLaws1[$row['name'] . '::' . $row['formula']] = true;
         }
-        
+
         // Второй preload (симуляция рестарта — БД та же)
         $knownLaws2 = [];
-        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $knownLaws2[$row['name'] . '::' . $row['formula']] = true;
         }
-        
+
         $this->assertCount(count($knownLaws1), $knownLaws2);
         $this->assertArrayHasKey('TEST_PRELOAD2::dup_atom', $knownLaws2);
-        
+
         $db->exec("DELETE FROM laws WHERE name = 'TEST_PRELOAD2'");
     }
 
@@ -84,10 +95,8 @@ class KnownLawsPreloadTest extends TestCase
      * (например, abs, floor, ceil, round, relu для y=x), но DB имеет name UNIQUE —
      * только первый атом сохраняется. После рестарта preload загружает только
      * сохранённый атом, а остальные переоткрываются заново.
-     *
-     * @group disabled
      */
-    public function test_preload_key_matches_all_discovered_atom_keys(): void
+    public function testPreloadKeyMatchesAllDiscoveredAtomKeys(): void
     {
         $db = Database::get();
         $db->exec("DELETE FROM laws WHERE name LIKE 'TEST_PRELOAD_%'");
@@ -102,19 +111,23 @@ class KnownLawsPreloadTest extends TestCase
         // === Шаг 1: Симулируем открытие (как daemon) ===
         $discovered = AtomRegistry::discover($X, $y);
         $this->assertNotEmpty($discovered, 'Should discover atoms for identity-like task');
-        $this->assertGreaterThan(1, count($discovered),
-            'Need multiple atoms to demonstrate dedup bug');
+        $this->assertGreaterThan(
+            1,
+            count($discovered),
+            'Need multiple atoms to demonstrate dedup bug'
+        );
 
         // Симулируем сохранение ВСЕХ открытых атомов в БД (как daemon)
         // НО: name UNIQUE → только первый атом реально сохраняется
         foreach ($discovered as $d) {
-            $db->prepare("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)")
-               ->execute([$taskName, $d['atom'], $d['cv'], 'test']);
+            $db->prepare('INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)')
+                ->execute([$taskName, $d['atom'], $d['cv'], 'test']);
         }
 
         // === Шаг 2: Симулируем preload после рестарта ===
         $knownLaws = [];
-        $rows = $db->query("SELECT name, formula FROM laws")->fetchAll(\PDO::FETCH_ASSOC);
+        $rows = $db->query('SELECT name, formula FROM laws')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
             $knownLaws[$row['name'] . '::' . $row['formula']] = true;
         }
@@ -123,9 +136,12 @@ class KnownLawsPreloadTest extends TestCase
         // BUG: только первый атом (abs) в БД, остальные — нет
         foreach ($discovered as $d) {
             $discoveryKey = $taskName . '::' . $d['atom'];
-            $this->assertArrayHasKey($discoveryKey, $knownLaws,
+            $this->assertArrayHasKey(
+                $discoveryKey,
+                $knownLaws,
                 "Atom '{$d['atom']}' discovered but missing from preload"
-                . " — will be re-discovered after restart");
+                . ' — will be re-discovered after restart'
+            );
         }
 
         // Cleanup

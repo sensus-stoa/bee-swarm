@@ -3,24 +3,28 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Forager\Forager;
 use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\PlateauDetector;
-use BeeSwarm\Forager\Forager;
 
 /**
  * Story D2: Hive class (agenda.php → OOP)
  */
 class HiveTest extends TestCase
 {
-    /** Hive можно создать без аргументов (использует defaults) */
-    public function test_hive_constructs_with_defaults(): void
+    /**
+     * Hive можно создать без аргументов (использует defaults)
+     */
+    public function testHiveConstructsWithDefaults(): void
     {
         $hive = new Hive();
         $this->assertInstanceOf(Hive::class, $hive);
     }
 
-    /** Hive принимает внешние зависимости */
-    public function test_hive_constructs_with_dependencies(): void
+    /**
+     * Hive принимает внешние зависимости
+     */
+    public function testHiveConstructsWithDependencies(): void
     {
         $plateau = new PlateauDetector(50);
         $forager = new Forager();
@@ -28,8 +32,10 @@ class HiveTest extends TestCase
         $this->assertInstanceOf(Hive::class, $hive);
     }
 
-    /** tick() возвращает количество задач */
-    public function test_tick_returns_task_count(): void
+    /**
+     * tick() возвращает количество задач
+     */
+    public function testTickReturnsTaskCount(): void
     {
         $hive = new Hive(maxTicks: 1);
         $status = $hive->tick();
@@ -38,8 +44,10 @@ class HiveTest extends TestCase
         $this->assertGreaterThan(0, $status['tasks_processed']);
     }
 
-    /** run() с maxTicks=1 выполняет ровно 1 тик */
-    public function test_run_with_max_ticks(): void
+    /**
+     * run() с maxTicks=1 выполняет ровно 1 тик
+     */
+    public function testRunWithMaxTicks(): void
     {
         $hive = new Hive(maxTicks: 1);
         $totalTicks = $hive->run();

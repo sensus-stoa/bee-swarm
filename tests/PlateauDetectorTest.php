@@ -15,7 +15,9 @@ use BeeSwarm\Infra\PlateauDetector;
 class PlateauDetectorTest extends TestCase
 {
     private const T = 50;  // threshold
+
     private const BASE_SLEEP_US = 200_000;
+
     private const PLATEAU_SLEEP_US = 10_000_000;
 
     private function tickTimes(PlateauDetector $d, int $n): void
@@ -30,8 +32,10 @@ class PlateauDetectorTest extends TestCase
         $this->tickTimes($d, self::T + 10);
     }
 
-    /** Ниже порога — не плато, обычный sleep */
-    public function test_not_plateau_below_threshold(): void
+    /**
+     * Ниже порога — не плато, обычный sleep
+     */
+    public function testNotPlateauBelowThreshold(): void
     {
         $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T - 1);
@@ -41,8 +45,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::T - 1, $d->getConsecutiveNoDiscovery());
     }
 
-    /** Ровно на пороге — ещё не плато */
-    public function test_at_threshold_not_plateau(): void
+    /**
+     * Ровно на пороге — ещё не плато
+     */
+    public function testAtThresholdNotPlateau(): void
     {
         $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T);
@@ -51,8 +57,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
     }
 
-    /** Выше порога — плато, длинный sleep */
-    public function test_plateau_after_threshold(): void
+    /**
+     * Выше порога — плато, длинный sleep
+     */
+    public function testPlateauAfterThreshold(): void
     {
         $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T + 1);
@@ -61,8 +69,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::PLATEAU_SLEEP_US, $d->getSleepUs());
     }
 
-    /** Открытие сбрасывает счётчик и выходит из плато */
-    public function test_discovery_resets_counter_and_exits_plateau(): void
+    /**
+     * Открытие сбрасывает счётчик и выходит из плато
+     */
+    public function testDiscoveryResetsCounterAndExitsPlateau(): void
     {
         $d = new PlateauDetector(self::T);
         $this->enterDeepPlateau($d);
@@ -75,8 +85,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
     }
 
-    /** Несколько открытий подряд — счётчик на 0, потом растёт */
-    public function test_multiple_discoveries_keep_counter_zero(): void
+    /**
+     * Несколько открытий подряд — счётчик на 0, потом растёт
+     */
+    public function testMultipleDiscoveriesKeepCounterZero(): void
     {
         $d = new PlateauDetector(self::T);
 
@@ -93,8 +105,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(2, $d->getConsecutiveNoDiscovery());
     }
 
-    /** justEnteredPlateau — только на первом тике после входа */
-    public function test_plateau_entered_event_fires_once(): void
+    /**
+     * justEnteredPlateau — только на первом тике после входа
+     */
+    public function testPlateauEnteredEventFiresOnce(): void
     {
         $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T + 1);
@@ -105,15 +119,19 @@ class PlateauDetectorTest extends TestCase
         $this->assertFalse($d->justEnteredPlateau(), 'T+2 tick: already in plateau');
     }
 
-    /** Compose работает только НЕ на плато */
-    public function test_should_run_compose_when_not_plateau(): void
+    /**
+     * Compose работает только НЕ на плато
+     */
+    public function testShouldRunComposeWhenNotPlateau(): void
     {
         $d = new PlateauDetector(self::T);
         $this->assertTrue($d->shouldRunCompose(), 'Below threshold: compose enabled');
     }
 
-    /** Compose отключается на плато */
-    public function test_should_not_run_compose_on_plateau(): void
+    /**
+     * Compose отключается на плато
+     */
+    public function testShouldNotRunComposeOnPlateau(): void
     {
         $d = new PlateauDetector(self::T);
         $this->tickTimes($d, self::T + 1);
@@ -121,8 +139,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertFalse($d->shouldRunCompose(), 'On plateau: compose disabled');
     }
 
-    /** Compose снова включается после выхода из плато */
-    public function test_compose_reenables_after_plateau_exit(): void
+    /**
+     * Compose снова включается после выхода из плато
+     */
+    public function testComposeReenablesAfterPlateauExit(): void
     {
         $d = new PlateauDetector(self::T);
         $this->enterDeepPlateau($d);
@@ -132,8 +152,10 @@ class PlateauDetectorTest extends TestCase
         $this->assertTrue($d->shouldRunCompose(), 'After discovery: compose re-enabled');
     }
 
-    /** wakeup() — внешнее событие (forager) выводит из плато */
-    public function test_wakeup_exits_plateau(): void
+    /**
+     * wakeup() — внешнее событие (forager) выводит из плато
+     */
+    public function testWakeupExitsPlateau(): void
     {
         $d = new PlateauDetector(self::T);
         $this->enterDeepPlateau($d);

@@ -5,6 +5,7 @@ namespace BeeSwarm\Validation;
 
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Math\CvCalculator;
+use Override;
 
 /**
  * LawValidator — held-out validation (HONEST_CRITERIA §1.1).

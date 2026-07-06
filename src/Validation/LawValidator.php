@@ -42,10 +42,10 @@ class LawValidator implements ValidatorInterface
 
     /**
      * ValidatorInterface: фильтрует кандидатов через held-out
-     /** Complexity: 1 для простых атомов, 1+N для compose с N открывающих скобок */
+     /** Complexity: 1 для простых атомов, 1+N для compose (delegates to AtomRegistry) */
      private static function atomComplexity(string $atom): int
      {
-         return str_contains($atom, '(') ? 1 + substr_count($atom, '(') : 1;
+         return \BeeSwarm\Core\AtomRegistry::atomComplexity($atom);
      }
 
      /** Выбрать простейший атом из прошедших held-out (HONEST_CRITERIA §1.3) */

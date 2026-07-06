@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\AtomRegistry;
-use BeeSwarm\Core\Grammar;
 
 class SelfCodingTest extends TestCase
 {
     private string $modulesDir;
+
     private string $backupAutoload;
 
     protected function setUp(): void
@@ -25,28 +25,35 @@ class SelfCodingTest extends TestCase
 
     // ═══ 1. ГЕНЕРАЦИЯ КОДА ═══
 
-    /** Генератор создаёт валидный PHP */
-    public function test_generate_produces_valid_php(): void
+    /**
+     * Генератор создаёт валидный PHP
+     */
+    public function testGenerateProducesValidPhp(): void
     {
-        $code = $this->generateModule('add', 'ADD', [[1,2,3],[3,4,7],[5,6,11]]);
+        $code = $this->generateModule('add', 'ADD', [[1, 2, 3], [3, 4, 7], [5, 6, 11]]);
         $this->assertStringContainsString('<?php', $code);
         // Проверяем что код синтаксически верный
         $tmpFile = $this->modulesDir . '/_check.php';
         file_put_contents($tmpFile, $code);
-        $check = shell_exec("php -l $tmpFile 2>&1");
+        $check = shell_exec("php -l {$tmpFile} 2>&1");
         @unlink($tmpFile);
         $this->assertStringContainsString('No syntax errors', $check);
     }
 
-    /** Сгенерированный код решает задачу */
-    public function test_generated_code_solves_task(): void
+    /**
+     * Сгенерированный код решает задачу
+     */
+    public function testGeneratedCodeSolvesTask(): void
     {
         $tasks = [
-            ['name' => 'ADD', 'data' => [[1,2,3],[3,4,7],[5,6,11]]],
+            [
+                'name' => 'ADD',
+                'data' => [[1, 2, 3], [3, 4, 7], [5, 6, 11]],
+            ],
         ];
 
         foreach ($tasks as $task) {
-            $X = array_map(fn($r) => array_slice($r, 0, -1), $task['data']);
+            $X = array_map(fn ($r) => array_slice($r, 0, -1), $task['data']);
             $y = array_column($task['data'], count($task['data'][0]) - 1);
 
             $found = AtomRegistry::discover($X, $y);
@@ -58,7 +65,7 @@ class SelfCodingTest extends TestCase
             // Выполняем сгенерированный код
             $tmpFile = $this->modulesDir . '/test_module.php';
             file_put_contents($tmpFile, $code);
-            $output = shell_exec("timeout 3 php $tmpFile 2>/dev/null");
+            $output = shell_exec("timeout 3 php {$tmpFile} 2>/dev/null");
             @unlink($tmpFile);
 
             $this->assertNotEmpty($output, 'Generated code should produce output');
@@ -70,21 +77,25 @@ class SelfCodingTest extends TestCase
 
     // ═══ 2. УСТАНОВКА МОДУЛЯ ═══
 
-    /** Модуль устанавливается в файловую систему */
-    public function test_install_module_creates_file(): void
+    /**
+     * Модуль устанавливается в файловую систему
+     */
+    public function testInstallModuleCreatesFile(): void
     {
         $atomName = 'add';
-        $code = $this->generateModule($atomName, 'ADD', [[1,2,3],[3,4,7]]);
+        $code = $this->generateModule($atomName, 'ADD', [[1, 2, 3], [3, 4, 7]]);
 
         $installedPath = $this->installModule($atomName, $code);
         $this->assertFileExists($installedPath);
         $this->assertStringContainsString('<?php', file_get_contents($installedPath));
     }
 
-    /** Установленный модуль проходит валидацию */
-    public function test_installed_module_passes_validation(): void
+    /**
+     * Установленный модуль проходит валидацию
+     */
+    public function testInstalledModulePassesValidation(): void
     {
-        $code = $this->generateModule('add', 'ADD', [[1,2,3],[3,4,7]]);
+        $code = $this->generateModule('add', 'ADD', [[1, 2, 3], [3, 4, 7]]);
         $path = $this->installModule('add', $code);
 
         // Валидация: запустить модуль — должен вернуть ok=true на своих данных
@@ -94,8 +105,10 @@ class SelfCodingTest extends TestCase
 
     // ═══ 3. ОТБОР: НЕРАБОЧИЙ МОДУЛЬ ОТБРАСЫВАЕТСЯ ═══
 
-    /** Модуль с ошибкой не устанавливается */
-    public function test_broken_module_not_installed(): void
+    /**
+     * Модуль с ошибкой не устанавливается
+     */
+    public function testBrokenModuleNotInstalled(): void
     {
         $badCode = "<?php\n// broken\n\$x = ;\n";
         $path = $this->installModule('broken', $badCode);
@@ -104,17 +117,25 @@ class SelfCodingTest extends TestCase
 
     // ═══ 4. ПОЛНЫЙ ЦИКЛ: ГОЛОД → ГЕНЕРАЦИЯ → ТЕСТ → УСТАНОВКА ═══
 
-    /** Полный цикл самокодирования */
-    public function test_full_self_coding_cycle(): void
+    /**
+     * Полный цикл самокодирования
+     */
+    public function testFullSelfCodingCycle(): void
     {
         $tasks = [
-            ['name' => 'ADD',  'data' => [[1,2,3],[3,4,7]]],
-            ['name' => 'SQRT', 'data' => [[1,1],[4,2],[9,3]]],
+            [
+                'name' => 'ADD',
+                'data' => [[1, 2, 3], [3, 4, 7]],
+            ],
+            [
+                'name' => 'SQRT',
+                'data' => [[1, 1], [4, 2], [9, 3]],
+            ],
         ];
 
         $installed = [];
         foreach ($tasks as $task) {
-            $X = array_map(fn($r) => array_slice($r, 0, -1), $task['data']);
+            $X = array_map(fn ($r) => array_slice($r, 0, -1), $task['data']);
             $y = array_column($task['data'], count($task['data'][0]) - 1);
 
             foreach (AtomRegistry::discover($X, $y) as $found) {
@@ -122,7 +143,9 @@ class SelfCodingTest extends TestCase
                 $path = $this->installModule($found['atom'], $code);
                 if ($path) {
                     $valid = $this->validateModule($path, []);
-                    if ($valid) $installed[] = $path;
+                    if ($valid) {
+                        $installed[] = $path;
+                    }
                 }
             }
         }
@@ -174,8 +197,8 @@ PHP;
         // Проверка синтаксиса
         $tmpFile = $this->modulesDir . '/_tmp.php';
         file_put_contents($tmpFile, $code);
-        $syntaxCheck = shell_exec("php -l $tmpFile 2>&1");
-        if (!str_contains($syntaxCheck, 'No syntax errors')) {
+        $syntaxCheck = shell_exec("php -l {$tmpFile} 2>&1");
+        if (! str_contains($syntaxCheck, 'No syntax errors')) {
             @unlink($tmpFile);
             return null;
         }
@@ -187,20 +210,26 @@ PHP;
 
     private function validateModule(string $path, array $testData): bool
     {
-        // Модуль уже содержит свои обучающие данные. 
+        // Модуль уже содержит свои обучающие данные.
         // Для теста просто запускаем — он должен отработать без ошибок.
-        $output = shell_exec("timeout 3 php $path 2>/dev/null");
-        if (!$output) return false;
+        $output = shell_exec("timeout 3 php {$path} 2>/dev/null");
+        if (! $output) {
+            return false;
+        }
         $result = json_decode($output, true);
         return ($result['ok'] ?? false) === true;
     }
 
     private function rrmdir(string $dir): void
     {
-        if (!is_dir($dir)) return;
+        if (! is_dir($dir)) {
+            return;
+        }
         foreach (scandir($dir) as $f) {
-            if ($f === '.' || $f === '..') continue;
-            $p = "$dir/$f";
+            if ($f === '.' || $f === '..') {
+                continue;
+            }
+            $p = "{$dir}/{$f}";
             is_dir($p) ? $this->rrmdir($p) : @unlink($p);
         }
         @rmdir($dir);

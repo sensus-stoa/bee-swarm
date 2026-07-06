@@ -4,9 +4,8 @@ declare(strict_types=1);
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
-    ->withPaths([__DIR__ . '/src', __DIR__ . '/agenda.php'])
+    ->withPaths([__DIR__ . '/src', __DIR__ . '/tests', __DIR__ . '/agenda.php', __DIR__ . '/public'])
     ->withSkip([
-        __DIR__ . '/tests',
         __DIR__ . '/vendor',
     ])
     // PSR-12 + Common + Clean Code

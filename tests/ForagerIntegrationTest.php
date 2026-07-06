@@ -21,20 +21,24 @@ class ForagerIntegrationTest extends TestCase
 
     // ═══ 1. СКАНИРОВАНИЕ ДИРЕКТОРИЙ ═══
 
-    /** Forager находит файлы с числами */
-    public function test_scan_finds_files_with_numbers(): void
+    /**
+     * Forager находит файлы с числами
+     */
+    public function testScanFindsFilesWithNumbers(): void
     {
         // Создаём тестовые файлы
         file_put_contents($this->tmpDir . '/rich.md', "|a|b|\n|---|---|\n|1|2|\n|3|4|\n|5|6|");
-        file_put_contents($this->tmpDir . '/empty.md', "no numbers here");
-        file_put_contents($this->tmpDir . '/broken.md', "");
+        file_put_contents($this->tmpDir . '/empty.md', 'no numbers here');
+        file_put_contents($this->tmpDir . '/broken.md', '');
 
         $tasks = $this->forageDir($this->tmpDir);
         $this->assertNotEmpty($tasks, 'Should find tasks in rich.md');
     }
 
-    /** Пустая директория не даёт задач */
-    public function test_empty_dir_returns_no_tasks(): void
+    /**
+     * Пустая директория не даёт задач
+     */
+    public function testEmptyDirReturnsNoTasks(): void
     {
         $emptyDir = $this->tmpDir . '/empty';
         @mkdir($emptyDir);
@@ -44,15 +48,20 @@ class ForagerIntegrationTest extends TestCase
 
     // ═══ 2. ПРИОРИТЕТЫ ═══
 
-    /** Приоритетная директория сканируется первой */
-    public function test_priority_order(): void
+    /**
+     * Приоритетная директория сканируется первой
+     */
+    public function testPriorityOrder(): void
     {
         file_put_contents($this->tmpDir . '/low.md', "1 2\n3 4");
         $highDir = $this->tmpDir . '/high';
         @mkdir($highDir);
         file_put_contents($highDir . '/data.md', "|x|y|\n|---|---|\n|1|2|\n|3|4|\n|5|6|");
 
-        $priorities = [$highDir => 0.9, $this->tmpDir => 0.3];
+        $priorities = [
+            $highDir => 0.9,
+            $this->tmpDir => 0.3,
+        ];
         $results = $this->forageWithPriorities($priorities);
 
         // High priority dir должен быть обработан и дать результат
@@ -61,11 +70,15 @@ class ForagerIntegrationTest extends TestCase
 
     // ═══ 3. ИЗВЛЕЧЕНИЕ ЗАДАЧ ═══
 
-    /** Markdown таблицы → задачи */
-    public function test_markdown_table_extraction(): void
+    /**
+     * Markdown таблицы → задачи
+     */
+    public function testMarkdownTableExtraction(): void
     {
-        file_put_contents($this->tmpDir . '/table.md', 
-            "| sleep | stress | energy |\n|---|---|---|\n|7|3|7|\n|6|5|6|\n|8|2|8|");
+        file_put_contents(
+            $this->tmpDir . '/table.md',
+            "| sleep | stress | energy |\n|---|---|---|\n|7|3|7|\n|6|5|6|\n|8|2|8|"
+        );
 
         $tasks = $this->forageDir($this->tmpDir);
         $this->assertNotEmpty($tasks);
@@ -79,16 +92,36 @@ class ForagerIntegrationTest extends TestCase
         }
     }
 
-    /** JSON → задачи */
-    public function test_json_extraction(): void
+    /**
+     * JSON → задачи
+     */
+    public function testJsonExtraction(): void
     {
-        file_put_contents($this->tmpDir . '/data.json', 
+        file_put_contents(
+            $this->tmpDir . '/data.json',
             json_encode([
-                ['sleep' => 7, 'stress' => 3, 'energy' => 7],
-                ['sleep' => 6, 'stress' => 5, 'energy' => 6],
-                ['sleep' => 8, 'stress' => 2, 'energy' => 8],
-                ['sleep' => 5, 'stress' => 8, 'energy' => 4],
-            ]));
+                [
+                    'sleep' => 7,
+                    'stress' => 3,
+                    'energy' => 7,
+                ],
+                [
+                    'sleep' => 6,
+                    'stress' => 5,
+                    'energy' => 6,
+                ],
+                [
+                    'sleep' => 8,
+                    'stress' => 2,
+                    'energy' => 8,
+                ],
+                [
+                    'sleep' => 5,
+                    'stress' => 8,
+                    'energy' => 4,
+                ],
+            ])
+        );
 
         $tasks = $this->forageDir($this->tmpDir);
         $this->assertNotEmpty($tasks, 'Should extract tasks from JSON');
@@ -97,12 +130,16 @@ class ForagerIntegrationTest extends TestCase
 
     // ═══ 4. ПРИОРИТЕТЫ ОБНОВЛЯЮТСЯ ═══
 
-    /** Успешная директория получает приоритет */
-    public function test_priorities_updated_on_success(): void
+    /**
+     * Успешная директория получает приоритет
+     */
+    public function testPrioritiesUpdatedOnSuccess(): void
     {
         file_put_contents($this->tmpDir . '/good.md', "|a|b|\n|---|---|\n|1|2|\n|3|4|\n|5|6|");
 
-        $priorities = [$this->tmpDir => 0.3];
+        $priorities = [
+            $this->tmpDir => 0.3,
+        ];
         $results = $this->forageWithPriorities($priorities);
 
         $this->assertNotEmpty($results);
@@ -115,7 +152,9 @@ class ForagerIntegrationTest extends TestCase
 
     private function forageDir(string $dir): array
     {
-        return $this->forageWithPriorities([$dir => 0.5])['tasks'] ?? [];
+        return $this->forageWithPriorities([
+            $dir => 0.5,
+        ])['tasks'] ?? [];
     }
 
     private function forageWithPriorities(array $priorities): array
@@ -124,7 +163,9 @@ class ForagerIntegrationTest extends TestCase
         $updatedPriorities = $priorities;
 
         foreach ($priorities as $dir => $pri) {
-            if (!is_dir($dir)) continue;
+            if (! is_dir($dir)) {
+                continue;
+            }
 
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
@@ -132,13 +173,19 @@ class ForagerIntegrationTest extends TestCase
 
             $dirTaskCount = 0;
             foreach ($iterator as $file) {
-                if ($file->getSize() > 500_000) continue;
+                if ($file->getSize() > 500_000) {
+                    continue;
+                }
                 $ext = $file->getExtension();
                 $path = $file->getPathname();
-                if (str_contains($path, '.git/') || str_contains($path, 'venv/')) continue;
+                if (str_contains($path, '.git/') || str_contains($path, 'venv/')) {
+                    continue;
+                }
 
                 $content = file_get_contents($path);
-                if (!$content) continue;
+                if (! $content) {
+                    continue;
+                }
 
                 // Markdown tables
                 if ($ext === 'md' && preg_match_all('/\|.+\|.*\n\|[-| ]+\|.*\n((?:\|.+\|.*\n?)+)/', $content, $matches)) {
@@ -147,7 +194,9 @@ class ForagerIntegrationTest extends TestCase
                         foreach (explode("\n", trim($table)) as $line) {
                             $cells = array_map('trim', explode('|', trim($line, '|')));
                             $nums = array_filter($cells, 'is_numeric');
-                            if (count($nums) >= 2) $rows[] = array_map('floatval', $nums);
+                            if (count($nums) >= 2) {
+                                $rows[] = array_map('floatval', $nums);
+                            }
                         }
                         if (count($rows) >= 3) {
                             $nCols = count($rows[0]);
@@ -155,10 +204,16 @@ class ForagerIntegrationTest extends TestCase
                                 for ($c2 = $c1 + 1; $c2 < $nCols; $c2++) {
                                     $data = [];
                                     foreach ($rows as $r) {
-                                        if (isset($r[$c1], $r[$c2])) $data[] = [$r[$c1], $r[$c2]];
+                                        if (isset($r[$c1], $r[$c2])) {
+                                            $data[] = [$r[$c1], $r[$c2]];
+                                        }
                                     }
                                     if (count($data) >= 3) {
-                                        $allTasks[] = ['name' => 'foraged_' . basename($path) . "_c{$c1}c{$c2}", 'data' => $data, 'domain' => 'foraged'];
+                                        $allTasks[] = [
+                                            'name' => 'foraged_' . basename($path) . "_c{$c1}c{$c2}",
+                                            'data' => $data,
+                                            'domain' => 'foraged',
+                                        ];
                                         $dirTaskCount++;
                                     }
                                 }
@@ -171,21 +226,35 @@ class ForagerIntegrationTest extends TestCase
                 if (in_array($ext, ['json', 'jsonl'])) {
                     $decoded = json_decode($content, true);
                     if (is_array($decoded)) {
-                        if (!isset($decoded[0])) $decoded = [$decoded];
+                        if (! isset($decoded[0])) {
+                            $decoded = [$decoded];
+                        }
                         if (count($decoded) >= 3) {
                             $numKeys = [];
-                            foreach ($decoded[0] as $k => $v) if (is_numeric($v)) $numKeys[] = $k;
-                            foreach ($numKeys as $k1) foreach ($numKeys as $k2) {
-                                if ($k1 === $k2) continue;
-                                $data = [];
-                                foreach ($decoded as $row) {
-                                    if (isset($row[$k1], $row[$k2]) && is_numeric($row[$k1]) && is_numeric($row[$k2])) {
-                                        $data[] = [(float)$row[$k1], (float)$row[$k2]];
-                                    }
+                            foreach ($decoded[0] as $k => $v) {
+                                if (is_numeric($v)) {
+                                    $numKeys[] = $k;
                                 }
-                                if (count($data) >= 3) {
-                                    $allTasks[] = ['name' => 'foraged_' . basename($path) . "_{$k1}_{$k2}", 'data' => $data, 'domain' => 'foraged'];
-                                    $dirTaskCount++;
+                            }
+                            foreach ($numKeys as $k1) {
+                                foreach ($numKeys as $k2) {
+                                    if ($k1 === $k2) {
+                                        continue;
+                                    }
+                                    $data = [];
+                                    foreach ($decoded as $row) {
+                                        if (isset($row[$k1], $row[$k2]) && is_numeric($row[$k1]) && is_numeric($row[$k2])) {
+                                            $data[] = [(float) $row[$k1], (float) $row[$k2]];
+                                        }
+                                    }
+                                    if (count($data) >= 3) {
+                                        $allTasks[] = [
+                                            'name' => 'foraged_' . basename($path) . "_{$k1}_{$k2}",
+                                            'data' => $data,
+                                            'domain' => 'foraged',
+                                        ];
+                                        $dirTaskCount++;
+                                    }
                                 }
                             }
                         }
@@ -198,9 +267,15 @@ class ForagerIntegrationTest extends TestCase
                     if (count($nm[0]) >= 6) {
                         $nums = array_map('floatval', $nm[0]);
                         $data = [];
-                        for ($i = 0; $i < count($nums) - 1; $i += 2) $data[] = [$nums[$i], $nums[$i+1]];
+                        for ($i = 0; $i < count($nums) - 1; $i += 2) {
+                            $data[] = [$nums[$i], $nums[$i + 1]];
+                        }
                         if (count($data) >= 3) {
-                            $allTasks[] = ['name' => 'foraged_' . basename($path), 'data' => array_slice($data, 0, 30), 'domain' => 'foraged'];
+                            $allTasks[] = [
+                                'name' => 'foraged_' . basename($path),
+                                'data' => array_slice($data, 0, 30),
+                                'domain' => 'foraged',
+                            ];
                             $dirTaskCount++;
                         }
                     }
@@ -212,15 +287,22 @@ class ForagerIntegrationTest extends TestCase
             }
         }
 
-        return ['tasks' => $allTasks, 'priorities' => $updatedPriorities];
+        return [
+            'tasks' => $allTasks,
+            'priorities' => $updatedPriorities,
+        ];
     }
 
     private function rrmdir(string $dir): void
     {
-        if (!is_dir($dir)) return;
+        if (! is_dir($dir)) {
+            return;
+        }
         foreach (scandir($dir) as $f) {
-            if ($f === '.' || $f === '..') continue;
-            $p = "$dir/$f";
+            if ($f === '.' || $f === '..') {
+                continue;
+            }
+            $p = "{$dir}/{$f}";
             is_dir($p) ? $this->rrmdir($p) : @unlink($p);
         }
         @rmdir($dir);

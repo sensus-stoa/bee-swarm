@@ -21,8 +21,10 @@ class AutonomousDecisionsTest extends TestCase
 
     // ═══ 1. DOMAIN EXPANSION: расширение радиуса поиска ═══
 
-    /** При голоде рой расширяет зону поиска */
-    public function test_starvation_expands_search_radius(): void
+    /**
+     * При голоде рой расширяет зону поиска
+     */
+    public function testStarvationExpandsSearchRadius(): void
     {
         $state = $this->freshState();
         $this->assertCount(1, $state['scan_dirs']);
@@ -36,8 +38,10 @@ class AutonomousDecisionsTest extends TestCase
         $this->assertArrayHasKey('/home/user/Documents', $state['scan_dirs'], 'Parent added');
     }
 
-    /** Успешная директория остаётся, пустая удаляется */
-    public function test_successful_dir_kept_empty_pruned(): void
+    /**
+     * Успешная директория остаётся, пустая удаляется
+     */
+    public function testSuccessfulDirKeptEmptyPruned(): void
     {
         $state = $this->freshState();
         $state['scan_dirs']['/tmp/empty_dir'] = 0.3;
@@ -55,29 +59,45 @@ class AutonomousDecisionsTest extends TestCase
 
     // ═══ 2. SELF-DIRECTED GOALS: выбор цели ═══
 
-    /** Рой выбирает цель на основе self-метрик */
-    public function test_goal_selection_based_on_metrics(): void
+    /**
+     * Рой выбирает цель на основе self-метрик
+     */
+    public function testGoalSelectionBasedOnMetrics(): void
     {
         $state = $this->freshState();
 
         // Сценарий 1: много starvation → приоритет на поиск доменов
-        $metrics = ['starvation_rate' => 5, 'discovery_rate' => 0.1, 'grammar_diversity' => 0.8];
+        $metrics = [
+            'starvation_rate' => 5,
+            'discovery_rate' => 0.1,
+            'grammar_diversity' => 0.8,
+        ];
         $goal = $this->selectGoal($metrics);
         $this->assertEquals('explore_domains', $goal, 'High starvation → explore');
 
         // Сценарий 2: много открытий, grammar однообразна → diversify
-        $metrics = ['starvation_rate' => 0.1, 'discovery_rate' => 10, 'grammar_diversity' => 0.2];
+        $metrics = [
+            'starvation_rate' => 0.1,
+            'discovery_rate' => 10,
+            'grammar_diversity' => 0.2,
+        ];
         $goal = $this->selectGoal($metrics);
         $this->assertEquals('diversify_grammar', $goal, 'Low diversity → diversify');
 
         // Сценарий 3: всё в норме → compress (H1-style)
-        $metrics = ['starvation_rate' => 0.5, 'discovery_rate' => 2, 'grammar_diversity' => 0.6];
+        $metrics = [
+            'starvation_rate' => 0.5,
+            'discovery_rate' => 2,
+            'grammar_diversity' => 0.6,
+        ];
         $goal = $this->selectGoal($metrics);
         $this->assertEquals('compress', $goal, 'Balanced → compress');
     }
 
-    /** Цель сохраняется и восстанавливается */
-    public function test_goal_persistence(): void
+    /**
+     * Цель сохраняется и восстанавливается
+     */
+    public function testGoalPersistence(): void
     {
         $state = $this->freshState();
         $state['current_goal'] = 'explore_domains';
@@ -90,13 +110,19 @@ class AutonomousDecisionsTest extends TestCase
 
     // ═══ 3. ПОЛНЫЙ ЦИКЛ: метрики → цель → действие → результат ═══
 
-    /** Полный цикл автономного решения */
-    public function test_full_autonomous_cycle(): void
+    /**
+     * Полный цикл автономного решения
+     */
+    public function testFullAutonomousCycle(): void
     {
         $state = $this->freshState();
 
         // Шаг 1: собираем метрики
-        $metrics = ['starvation_rate' => 3.0, 'discovery_rate' => 0.2, 'grammar_diversity' => 0.5];
+        $metrics = [
+            'starvation_rate' => 3.0,
+            'discovery_rate' => 0.2,
+            'grammar_diversity' => 0.5,
+        ];
 
         // Шаг 2: выбираем цель
         $goal = $this->selectGoal($metrics);
@@ -120,7 +146,9 @@ class AutonomousDecisionsTest extends TestCase
     private function freshState(): array
     {
         return [
-            'scan_dirs' => ['/home/user/Documents/the_lair' => 0.5],
+            'scan_dirs' => [
+                '/home/user/Documents/the_lair' => 0.5,
+            ],
             'current_goal' => 'discover',
             'starvation_count' => 0,
             'last_action' => null,
@@ -135,7 +163,7 @@ class AutonomousDecisionsTest extends TestCase
             $current = array_keys($state['scan_dirs']);
             $last = end($current);
             $parent = dirname($last);
-            if ($parent !== $last && !isset($state['scan_dirs'][$parent])) {
+            if ($parent !== $last && ! isset($state['scan_dirs'][$parent])) {
                 $state['scan_dirs'][$parent] = 0.3;
             }
             $state['starvation_count'] = 0;
@@ -156,9 +184,15 @@ class AutonomousDecisionsTest extends TestCase
     private function selectGoal(array $metrics): string
     {
         // Простой multi-objective выбор
-        if ($metrics['starvation_rate'] > 2.0) return 'explore_domains';
-        if ($metrics['grammar_diversity'] < 0.3) return 'diversify_grammar';
-        if ($metrics['discovery_rate'] < 0.5) return 'explore_domains';
+        if ($metrics['starvation_rate'] > 2.0) {
+            return 'explore_domains';
+        }
+        if ($metrics['grammar_diversity'] < 0.3) {
+            return 'diversify_grammar';
+        }
+        if ($metrics['discovery_rate'] < 0.5) {
+            return 'explore_domains';
+        }
         return 'compress';
     }
 

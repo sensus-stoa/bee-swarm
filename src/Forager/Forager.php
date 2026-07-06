@@ -259,9 +259,21 @@ class Forager
         $this->lastReportedFingerprint = $this->currentFingerprint;
     }
 
+    private function addTask(array &$tasks, array &$taskIndex, string $name, array $data, string $domain): void
+    {
+        if (isset($taskIndex[$name])) {
+            $i = $taskIndex[$name];
+            $tasks[$i]['data'] = array_merge($tasks[$i]['data'], $data);
+        } else {
+            $tasks[] = ['name' => $name, 'data' => $data, 'domain' => $domain];
+            $taskIndex[$name] = count($tasks) - 1;
+        }
+    }
+
     private function scanDir(string $dir, array $strategies): array
     {
         $tasks = [];
+        $taskIndex = []; // dedup by name
         $count = 0;
         try {
             $iterator = new \RecursiveIteratorIterator(
@@ -372,11 +384,7 @@ class Forager
                     }
 
                     if (count($data) >= 2) {  // минимум 2 точки: positive + negative
-                        $tasks[] = [
-                            'name' => 'foraged_sem_' . basename($path),
-                            'data' => $data,
-                            'domain' => 'foraged_semantic',
-                        ];
+                        $this->addTask($tasks, $taskIndex, 'foraged_sem_' . basename($path), $data, 'foraged_semantic');
                         $count++;
                     }
                 } else {
@@ -391,11 +399,7 @@ class Forager
                                     }
                                 }
                                 if (count($data) >= 3) {
-                                    $tasks[] = [
-                                        'name' => 'foraged_' . basename($path) . "_c{$c1}c{$c2}",
-                                        'data' => $data,
-                                        'domain' => 'foraged',
-                                    ];
+                                    $this->addTask($tasks, $taskIndex, 'foraged_' . basename($path) . "_c{$c1}c{$c2}", $data, 'foraged');
                                     $count++;
                                 }
                             }

@@ -300,6 +300,40 @@ class AtomRegistry
         self::$heldoutEnabled = $enabled;
     }
 
+    /**
+     * Check if atom is trivial (HONEST_CRITERIA §1.4): identity, constant, algebraic reduction
+     */
+    public static function isTrivial(string $atom, array $X, array $y): bool
+    {
+        // Feature references: x0, x1, x2...
+        if (preg_match('/^x\d+$/', $atom)) {
+            return true;
+        }
+
+        // Constants: K1, K2.5, K-3...
+        if (preg_match('/^K-?[\d.]+$/', $atom)) {
+            return true;
+        }
+
+        // Algebraic reductions: add(x,0), mul(x,1), sub(x,0), div(x,1)
+        if (str_contains($atom, '(')) {
+            if (preg_match('/^(add|\\+)\\(.+,0\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(mul|×)\\(.+,1\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(sub|−)\\(.+,0\\)$/', $atom)) {
+                return true;
+            }
+            if (preg_match('/^(div|\\/)\\(.+,1\\)$/', $atom)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static function cv(array $vec, array $y): float
     {
         return CvCalculator::compute($vec, $y);
@@ -307,15 +341,15 @@ class AtomRegistry
 
     /**
      * Compression superiority (HONEST_CRITERIA §1.7): atom must beat y=mean baseline
-     /** Compression superiority (HONEST_CRITERIA §1.7): cost(f) < cost(mean) */
-     public static function isBetterThanBaseline(float $cvAtom, string $atom, ?float $cvMean = null): bool
-     {
-         // complexity: 1 для простых атомов, nodes для compose
-         $complexity = str_contains($atom, '(') ? max(1, (int) ceil(strlen($atom) / 3)) : 1;
+     * /** Compression superiority (HONEST_CRITERIA §1.7): cost(f) < cost(mean) */
+    public static function isBetterThanBaseline(float $cvAtom, string $atom, ?float $cvMean = null): bool
+    {
+        // complexity: 1 для простых атомов, nodes для compose
+        $complexity = str_contains($atom, '(') ? max(1, (int) ceil(strlen($atom) / 3)) : 1;
 
-         $costAtom = $complexity + log(1.0 + $cvAtom, 2);
-         $costMean = 1.0 + log(1.0 + ($cvMean ?? $cvAtom), 2); // если cvMean не указан — сравниваем с baseline=1
+        $costAtom = $complexity + log(1.0 + $cvAtom, 2);
+        $costMean = 1.0 + log(1.0 + ($cvMean ?? $cvAtom), 2); // если cvMean не указан — сравниваем с baseline=1
 
-         return $costAtom < $costMean;
-     }
+        return $costAtom < $costMean;
+    }
 }

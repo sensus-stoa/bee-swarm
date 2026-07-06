@@ -35,6 +35,11 @@ class AtomProvider
         $n = count($y);
 
         foreach (AtomRegistry::all() as $atom) {
+            // Skip trivial atoms (HONEST_CRITERIA §1.4)
+            if (AtomRegistry::isTrivial($atom, $X, $y)) {
+                continue;
+            }
+
             $vec = [];
             $valid = true;
 

@@ -173,48 +173,6 @@ class Forager
     /**
      * Streaming scan with SQLite accumulator — groups same patterns across files
      */
-    public function scanWithAccumulator(array $dirs): array
-    {
-        $db = new \PDO('sqlite::memory:');
-        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, PRIMARY KEY(pattern, row_json))');
-        $stmt = $db->prepare('INSERT OR IGNORE INTO fd VALUES (?, ?, ?)');
-
-        $sorted = $dirs;
-        arsort($sorted);
-        $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
-
-        foreach ($sorted as $dir => $pri) {
-            if (! is_dir($dir)) {
-                continue;
-            }
-            $this->streamFile($dir, $allStrategies, $stmt);
-        }
-
-        $tMin = 10;
-        $tasks = [];
-        $this->newTaskCount = 0;
-        $this->newDomains = [];
-        $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
-        while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
-            $data = [];
-            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
-            while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
-                $data[] = json_decode($d[0], true);
-            }
-            $tasks[] = [
-                'name' => 'foraged_' . substr($r['pattern'], 0, 16),
-                'data' => $data,
-                'domain' => $r['domain'],
-            ];
-        }
-        $this->newTaskCount = count($tasks);
-        $this->newDomains = [];
-        foreach ($tasks as $t) {
-            $this->newDomains[$t['domain']] = true;
-        }
-        return $tasks;
-    }
-
     private function streamFile(string $dir, array $strategies, \PDOStatement $stmt): void
     {
         try {
@@ -265,6 +223,71 @@ class Forager
     /**
      * Original batch scan (delegates to streaming accumulator)
      */
+    /** Streaming scan with SQLite accumulator — groups same patterns across files */
+    public function scanWithAccumulator(array $dirs): array
+    {
+        $db = new \PDO('sqlite::memory:');
+        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, PRIMARY KEY(pattern, row_json))');
+        $stmt = $db->prepare('INSERT OR IGNORE INTO fd VALUES (?, ?, ?)');
+
+        $sorted = $dirs;
+        arsort($sorted);
+        $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
+        $paths = [];
+
+        foreach ($sorted as $dir => $pri) {
+            if (! is_dir($dir)) continue;
+            try {
+                $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS));
+                foreach ($iter as $f) {
+                    try { $path = $f->getPathname(); $paths[] = $path; } catch (\Throwable) {}
+                    if (str_contains($path, '.git/') || str_contains($path, 'venv/')) continue;
+                    $content = @file_get_contents($path, false, null, 0, 50_000);
+                    if (! $content) continue;
+                    foreach ($allStrategies as $sname => $fn) {
+                        try {
+                            $r = $fn($content);
+                            if (empty($r) || ! is_array($r)) continue;
+                            if (isset($r['semantic'])) {
+                                $pat = 'sem_' . md5($r['s'] . $r['p'] . $r['o']);
+                                $stmt->execute([$pat, json_encode([$r['s'], $r['p'], $r['o']]), 'foraged_semantic']);
+                            } elseif (isset($r[0]) && is_array($r[0])) {
+                                foreach ($r as $row) {
+                                    $pat = 'num_' . md5($sname . count($row));
+                                    $stmt->execute([$pat, json_encode($row), 'foraged']);
+                                }
+                            }
+                        } catch (\Throwable) {}
+                    }
+                }
+            } catch (\Throwable) {}
+        }
+
+        // Fingerprint from scanned paths
+        sort($paths);
+        $fpParts = [];
+        foreach ($paths as $p) {
+            try { $fpParts[] = $p . ':' . filesize($p); } catch (\Throwable) { $fpParts[] = $p; }
+        }
+        $this->currentFingerprint = md5(implode(',', $fpParts));
+
+        // Query patterns with >= tMin data points
+        $tMin = 10;
+        $tasks = [];
+        $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= $tMin");
+        while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
+            $data = [];
+            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r["pattern"]}' LIMIT 200");
+            while ($d = $dr->fetch(\PDO::FETCH_NUM)) $data[] = json_decode($d[0], true);
+            $tasks[] = ['name' => 'foraged_' . substr($r['pattern'], 0, 16), 'data' => $data, 'domain' => $r['domain']];
+        }
+
+        $this->newTaskCount = count($tasks);
+        $this->newDomains = [];
+        foreach ($tasks as $t) $this->newDomains[$t['domain']] = true;
+        return $tasks;
+    }
+
     public function scan(array $dirs): array
     {
         $sorted = $dirs;

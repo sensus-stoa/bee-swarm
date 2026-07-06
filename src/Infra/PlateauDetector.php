@@ -50,7 +50,7 @@ class PlateauDetector
 
     public function isPlateau(): bool
     {
-        return $this->consecutiveNoDiscovery > $this->threshold;
+        return $this->consecutiveNoDiscovery >= $this->threshold;
     }
 
     public function getSleepUs(): int

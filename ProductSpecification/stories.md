@@ -4,6 +4,7 @@
 
 | # | What | Status |
 |---|------|--------|
+| D2 | Daemon class | 🔧 |
 
 ## Backlog — Stage 0
 

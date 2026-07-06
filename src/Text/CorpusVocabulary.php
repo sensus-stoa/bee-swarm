@@ -32,7 +32,8 @@ class CorpusVocabulary
         $fileCount = 0;
         foreach ($files as $file) {
             if ($file->getExtension() !== 'md') continue;
-            if ($fileCount++ >= self::MAX_FILES) break;
+            if ($fileCount >= self::MAX_FILES) break;
+            $fileCount++;
             if ($this->nextId > self::MAX_WORDS) break;
             $content = @file_get_contents($file->getPathname());
             if (!$content) continue;

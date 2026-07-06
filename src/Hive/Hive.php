@@ -320,17 +320,14 @@ class Hive
             return;
         }
 
-        foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps) as $c) {
-            $key = $c['atom'];
-            if (! isset($this->knownLaws[$key])) {
-                $this->knownLaws[$key] = true;
-                $foundAny = true;
+        $candidates = AtomRegistry::discoverCompose($X, $y, $grammarOps);
+        if (! empty($candidates)) {
+            $validated = \BeeSwarm\Validation\LawValidator::validate($candidates, $X, $y);
+            foreach ($validated as $c) {
+                $this->recordDiscovery($c, ['name' => $c['atom']], $domain, $foundAny);
                 if (! in_array($c['atom'], $grammarOps)) {
                     $g->add($c['atom'], 'auto-compose');
                 }
-                Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                    ->execute([$c['atom'], $c['atom'], $c['cv'], $domain]);
-                $this->log("🧬 {$c['atom']} (COMPOSE) [{$domain}]");
             }
         }
     }

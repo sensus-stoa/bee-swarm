@@ -250,10 +250,18 @@ class Forager
                         try {
                             $r = $fn($content);
                             if (empty($r) || ! is_array($r)) continue;
-                            if (isset($r['semantic'])) {
-                                $pat = 'sem_' . md5($r['s'] . $r['p'] . $r['o']);
-                                $stmt->execute([$pat, json_encode([$r['s'], $r['p'], $r['o']]), 'foraged_semantic']);
-                            } elseif (isset($r[0]) && is_array($r[0])) {
+                            // Handle semantic facts (array of entries from preg_match_is_a)
+                            $isSemantic = false;
+                            foreach ($r as $entry) {
+                                if (is_array($entry) && isset($entry['semantic'])) {
+                                    $this->addSemanticFact($entry['s'], $entry['p'], $entry['o']);
+                                    $pat = 'sem_' . md5($entry['s'] . $entry['p'] . $entry['o']);
+                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic']);
+                                    $isSemantic = true;
+                                }
+                            }
+                            if ($isSemantic) continue;
+                            if (isset($r[0]) && is_array($r[0])) {
                                 foreach ($r as $row) {
                                     // Skip non-numeric rows
                                     $allNum = true;
@@ -555,6 +563,9 @@ class Forager
         $s = trim($s);
         $o = trim($o);
         if (mb_strlen($s) < 3 || mb_strlen($o) < 3) return;
+        $stopWords = ['и','в','на','с','не','то','же','как','так','он','она','оно','они','мы','вы','это','там','ещё','уже','для','что','нет','или','да','но','а','за','из','от','до','при','под','над','во','со','по','бы','ли','false','true','null','none','undefined','NaN'];
+        if (in_array(mb_strtolower($s), $stopWords) || in_array(mb_strtolower($o), $stopWords)) return;
+        if (preg_match('/^[\d.]+$/', $s) || preg_match('/^[\d.]+$/', $o)) return;
         try {
             $stmt = Database::get()->prepare('SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?');
             $stmt->execute([$s, $p, $o]);

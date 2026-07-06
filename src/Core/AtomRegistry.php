@@ -336,11 +336,15 @@ class AtomRegistry
 
     /**
      * Complexity: 1 для простых атомов, 1+N для compose
-     */
-    public static function atomComplexity(string $atom): int
-    {
-        return str_contains($atom, '(') ? 1 + substr_count($atom, '(') : 1;
-    }
+     /** Complexity: 1 для простых атомов, nodes для compose */
+     public static function atomComplexity(string $atom): int
+     {
+         if (! str_contains($atom, '(')) {
+             return 1;
+         }
+         $tree = ExpressionTree::fromFormula($atom);
+         return $tree ? $tree->nodeCount() : 1 + substr_count($atom, '(');
+     }
 
     public static function cv(array $vec, array $y): float
     {

@@ -122,9 +122,10 @@ class AtomProvider
                 }
 
                 $cv = AtomRegistry::cv($vec, $y);
-                if ($cv < 0.001) {
+                $composeAtom = "{$outer}({$inner})";
+                if ($cv < 0.001 && ! AtomRegistry::isTrivial($composeAtom, $X, $y)) {
                     $found[] = [
-                        'atom' => "{$outer}({$inner})",
+                        'atom' => $composeAtom,
                         'cv' => $cv,
                         'mode' => 'compose',
                     ];

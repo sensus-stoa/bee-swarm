@@ -263,7 +263,7 @@ class Hive
         }
 
         if ($bestAtom && $bestError < 0.5) {
-            $key = $task['name'] . '::' . $bestAtom;
+            $key = $domain . '::' . $task['name'] . '::' . $bestAtom;
             if (! isset($this->knownLaws[$key])) {
                 $this->knownLaws[$key] = true;
                 $foundAny = true;
@@ -297,7 +297,7 @@ class Hive
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
     {
-        $key = $task['name'] . '::' . $d['atom'];
+        $key = $domain . '::' . $task['name'] . '::' . $d['atom'];
         if (! isset($this->knownLaws[$key])) {
             $this->knownLaws[$key] = true;
             $foundAny = true;

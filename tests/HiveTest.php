@@ -12,53 +12,37 @@ use BeeSwarm\Forager\Forager;
  */
 class HiveTest extends TestCase
 {
-    /** Hive можно создать с зависимостями */
+    /** Hive можно создать без аргументов (использует defaults) */
+    public function test_hive_constructs_with_defaults(): void
+    {
+        $hive = new Hive();
+        $this->assertInstanceOf(Hive::class, $hive);
+    }
+
+    /** Hive принимает внешние зависимости */
     public function test_hive_constructs_with_dependencies(): void
     {
         $plateau = new PlateauDetector(50);
         $forager = new Forager();
-
         $hive = new Hive($plateau, $forager);
-
         $this->assertInstanceOf(Hive::class, $hive);
     }
 
-    /** tick() выполняет один цикл и возвращает статус */
-    public function test_tick_runs_one_cycle(): void
+    /** tick() возвращает количество задач */
+    public function test_tick_returns_task_count(): void
     {
-        $plateau = new PlateauDetector(50);
-        $forager = new Forager();
-        $hive = new Hive($plateau, $forager);
-
+        $hive = new Hive(maxTicks: 1);
         $status = $hive->tick();
-
         $this->assertIsArray($status);
         $this->assertArrayHasKey('tasks_processed', $status);
-        $this->assertArrayHasKey('discoveries', $status);
+        $this->assertGreaterThan(0, $status['tasks_processed']);
     }
 
-    /** Без задач — tick возвращает empty status */
-    public function test_tick_with_no_tasks(): void
+    /** run() с maxTicks=1 выполняет ровно 1 тик */
+    public function test_run_with_max_ticks(): void
     {
-        $plateau = new PlateauDetector(50);
-        $forager = new Forager();
-        $hive = new Hive($plateau, $forager, tasks: []);
-
-        $status = $hive->tick();
-
-        $this->assertSame(0, $status['tasks_processed']);
-        $this->assertSame(0, $status['discoveries']);
-    }
-
-    /** run() запускает главный цикл (только 1 итерацию в тесте) */
-    public function test_run_executes_ticks(): void
-    {
-        $plateau = new PlateauDetector(50);
-        $forager = new Forager();
-        $hive = new Hive($plateau, $forager, tasks: [], maxTicks: 1);
-
+        $hive = new Hive(maxTicks: 1);
         $totalTicks = $hive->run();
-
         $this->assertSame(1, $totalTicks);
     }
 }

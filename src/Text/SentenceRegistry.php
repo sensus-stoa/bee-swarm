@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Text;
@@ -10,7 +11,7 @@ namespace BeeSwarm\Text;
 class SentenceRegistry
 {
     private array $sentences = [];
-    
+
     /**
      * @param string[] $dirs Директории для сканирования
      */
@@ -20,27 +21,37 @@ class SentenceRegistry
             $this->scanDir($dir, $vocab);
         }
     }
-    
+
     private function scanDir(string $dir, CorpusVocabulary $vocab): void
     {
-        if (!is_dir($dir)) return;
-        
+        if (!is_dir($dir)) {
+            return;
+        }
+
         $files = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
         );
-        
+
         foreach ($files as $file) {
-            if (count($this->sentences) >= 1000) break; // лимит предложений
-            if ($file->getExtension() !== 'md') continue;
+            if (count($this->sentences) >= 1000) {
+                break; // лимит предложений
+            }
+            if ($file->getExtension() !== 'md') {
+                continue;
+            }
             $content = @file_get_contents($file->getPathname());
-            if (!$content) continue;
-            
+            if (!$content) {
+                continue;
+            }
+
             // Разбиваем текст на предложения
             $raw = preg_split('/[.!?]+/u', $content, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($raw as $sentence) {
                 $sentence = trim($sentence);
-                if (mb_strlen($sentence) < 10 || mb_strlen($sentence) > 500) continue; // слишком короткие
-                
+                if (mb_strlen($sentence) < 10 || mb_strlen($sentence) > 500) {
+                    continue; // слишком короткие
+                }
+
                 $ids = $vocab->tokenize($sentence);
                 if (count($ids) >= 3) { // минимум 3 слова
                     $this->sentences[] = [
@@ -52,17 +63,17 @@ class SentenceRegistry
             }
         }
     }
-    
+
     public function count(): int
     {
         return count($this->sentences);
     }
-    
+
     public function get(int $id): ?array
     {
         return $this->sentences[$id] ?? null;
     }
-    
+
     /** Возвращает все предложения (для итерации) */
     public function all(): array
     {

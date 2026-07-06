@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Core;
@@ -25,37 +26,60 @@ class AtomRegistry
     /** Загрузить все числовые PHP-функции (один раз, кэшируется) */
     public static function loadEnvironment(): array
     {
-        if (self::$envAtoms !== null) return self::$envAtoms;
+        if (self::$envAtoms !== null) {
+            return self::$envAtoms;
+        }
 
         $all = get_defined_functions()['internal'];
-        $unary = []; $binary = [];
-        
+        $unary = [];
+        $binary = [];
+
         $skip = AtomDefinitions::ENV_SKIP_PREFIXES;
-        
+
         foreach ($all as $fn) {
             $skipIt = false;
-            foreach ($skip as $p) if (str_starts_with($fn, $p)) { $skipIt = true; break; }
-            if ($skipIt) continue;
-            
+            foreach ($skip as $p) {
+                if (str_starts_with($fn, $p)) {
+                    $skipIt = true;
+                    break;
+                }
+            }
+            if ($skipIt) {
+                continue;
+            }
+
             // Унарный тест (in-process)
             ob_start();
-            try { $r = @$fn(-5.0); } catch (\Throwable $e) { $r = null; }
+            try {
+                $r = @$fn(-5.0);
+            } catch (\Throwable $e) {
+                $r = null;
+            }
             ob_get_clean();
             if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
                 $rf = (float)$r;
-                if (!is_nan($rf) && !is_infinite($rf)) { $unary[] = $fn; continue; }
+                if (!is_nan($rf) && !is_infinite($rf)) {
+                    $unary[] = $fn;
+                    continue;
+                }
             }
-            
+
             // Бинарный тест
             ob_start();
-            try { $r = @$fn(1.0, 2.0); } catch (\Throwable $e) { $r = null; }
+            try {
+                $r = @$fn(1.0, 2.0);
+            } catch (\Throwable $e) {
+                $r = null;
+            }
             ob_get_clean();
             if ($r !== null && $r !== false && !is_array($r) && !is_object($r) && !is_string($r) && !is_bool($r)) {
                 $rf = (float)$r;
-                if (!is_nan($rf) && !is_infinite($rf)) $binary[] = $fn;
+                if (!is_nan($rf) && !is_infinite($rf)) {
+                    $binary[] = $fn;
+                }
             }
         }
-        
+
         self::$envAtoms = array_values(array_unique(array_merge($unary, $binary)));
         return self::$envAtoms;
     }
@@ -101,7 +125,7 @@ class AtomRegistry
     {
         $name = self::resolve($name);
         $isBinary = self::isBinary($name);
-        
+
         if ($isBinary && $b === null) {
             return null; // бинарный атом требует два аргумента
         }
@@ -135,7 +159,7 @@ class AtomRegistry
             'sign'  => $a > 0 ? 1.0 : ($a < 0 ? -1.0 : 0.0),
             'relu'  => max(0.0, $a),
             'not'   => $a > 0 ? 0.0 : 1.0,
-            
+
             // Бинарные с b
             'add'   => $a + $b,
             'sub'   => $a - $b,
@@ -153,7 +177,7 @@ class AtomRegistry
             'neq'   => (abs($a - $b) >= 0.001) ? 1.0 : 0.0,
             'and'   => (($a > 0) && ($b > 0)) ? 1.0 : 0.0,
             'or'    => (($a > 0) || ($b > 0)) ? 1.0 : 0.0,
-            
+
             default => null,
         };
     }
@@ -219,15 +243,19 @@ class AtomRegistry
                 } elseif (self::isUnary($atom)) {
                     $v = self::apply($atom, (float)$row[0]);
                 } else {
-                    $valid = false; break;
+                    $valid = false;
+                    break;
                 }
                 if ($v === null || is_nan($v) || is_infinite($v)) {
-                    $valid = false; break;
+                    $valid = false;
+                    break;
                 }
                 $vec[] = $v;
             }
 
-            if (!$valid || count($vec) !== $n) continue;
+            if (!$valid || count($vec) !== $n) {
+                continue;
+            }
 
             $cv = self::cv($vec, $y);
             $signal = max(0, 1.0 - min(1.0, $cv)) * $novelty;

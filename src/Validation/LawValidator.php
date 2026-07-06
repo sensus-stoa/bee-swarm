@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Validation;
@@ -25,7 +26,9 @@ class LawValidator implements ValidatorInterface
     {
         $n = count($y);
         $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
-        if ($n - $h < 2) return [];
+        if ($n - $h < 2) {
+            return [];
+        }
 
         $X_train = array_slice($X, 0, $n - $h);
         $y_train = array_slice($y, 0, $n - $h);
@@ -41,8 +44,10 @@ class LawValidator implements ValidatorInterface
         $found = [];
         foreach ($candidates as $c) {
             $result = self::evaluateHeldout($c['atom'], $X, $y);
-            if ($result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX
-                && $result['cv_holdout'] <= self::CV_HOLDOUT_MAX) {
+            if (
+                $result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX
+                && $result['cv_holdout'] <= self::CV_HOLDOUT_MAX
+            ) {
                 $found[] = [
                     'atom' => $c['atom'],
                     'cv' => $c['cv'],
@@ -60,7 +65,9 @@ class LawValidator implements ValidatorInterface
     {
         $n = count($y);
         $h = max(1, (int)floor($n / self::HO_SPLIT_RATIO));
-        if ($n - $h < 2) return null;
+        if ($n - $h < 2) {
+            return null;
+        }
 
         $X_train = array_slice($X, 0, $n - $h);
         $y_train = array_slice($y, 0, $n - $h);
@@ -71,10 +78,15 @@ class LawValidator implements ValidatorInterface
         $vecTrain = [];
         foreach ($X_train as $row) {
             $v = AtomRegistry::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
-            if ($v === null || is_nan($v) || is_infinite($v)) { $vecTrain = []; break; }
+            if ($v === null || is_nan($v) || is_infinite($v)) {
+                $vecTrain = [];
+                break;
+            }
             $vecTrain[] = $v;
         }
-        if (count($vecTrain) !== count($y_train)) return null;
+        if (count($vecTrain) !== count($y_train)) {
+            return null;
+        }
         $cvTrain = count($y_train) < 2
             ? (abs($vecTrain[0] - $y_train[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
             : CvCalculator::compute($vecTrain, $y_train);
@@ -82,10 +94,15 @@ class LawValidator implements ValidatorInterface
         $vecHoldout = [];
         foreach ($X_holdout as $row) {
             $v = AtomRegistry::apply($formula, (float)$row[0], $nFeat >= 2 ? (float)($row[1] ?? 0) : 0);
-            if ($v === null || is_nan($v) || is_infinite($v)) { $vecHoldout = []; break; }
+            if ($v === null || is_nan($v) || is_infinite($v)) {
+                $vecHoldout = [];
+                break;
+            }
             $vecHoldout[] = $v;
         }
-        if (count($vecHoldout) !== count($y_holdout)) return null;
+        if (count($vecHoldout) !== count($y_holdout)) {
+            return null;
+        }
         $cvHoldout = count($y_holdout) < 2
             ? (abs($vecHoldout[0] - $y_holdout[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
             : CvCalculator::compute($vecHoldout, $y_holdout);

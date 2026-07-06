@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace BeeSwarm\Core;
 
 /**
@@ -10,7 +12,7 @@ namespace BeeSwarm\Core;
 class ExpressionTree
 {
     private array|string|float|null $tree = [];
-    
+
     public function __construct(array|string|float $tree)
     {
         if (is_string($tree)) {
@@ -20,7 +22,7 @@ class ExpressionTree
             $this->tree = $tree;
         }
     }
-    
+
     /**
      * Вычисляет дерево для пары (a, b).
      * Узлы: {"op":"+","left":X,"right":Y} — бинарная операция
@@ -32,16 +34,24 @@ class ExpressionTree
     {
         return $this->evalNode($this->tree, $a, $b);
     }
-    
+
     private function evalNode(array|string|float $node, float $a, float $b): float
     {
-        if (is_numeric($node)) return (float)$node;
-        if ($node === 'a') return $a;
-        if ($node === 'b') return $b;
-        if (is_string($node)) return 0.0;
-        
+        if (is_numeric($node)) {
+            return (float)$node;
+        }
+        if ($node === 'a') {
+            return $a;
+        }
+        if ($node === 'b') {
+            return $b;
+        }
+        if (is_string($node)) {
+            return 0.0;
+        }
+
         $op = $node['op'] ?? '?';
-        
+
         // 🔥 NATIVE: динамический вызов PHP-функций без хардкода
         if ($op === 'native') {
             $fn = $node['fn'] ?? '';
@@ -59,7 +69,7 @@ class ExpressionTree
                 default => 0.0,
             };
         }
-        
+
         return match ($op) {
             '+' => $this->evalNode($node['left'], $a, $b) + $this->evalNode($node['right'], $a, $b),
             '−' => $this->evalNode($node['left'], $a, $b) - $this->evalNode($node['right'], $a, $b),
@@ -74,7 +84,7 @@ class ExpressionTree
             default => 0.0,
         };
     }
-    
+
     /**
      * Сериализует дерево в JSON для хранения в БД.
      *
@@ -84,7 +94,7 @@ class ExpressionTree
     {
         return json_encode($this->tree);
     }
-    
+
     /**
      * Строит дерево из формулы Search.
      * «(x0+x1−abs(x0−x1))/K2» → JSON-дерево
@@ -93,19 +103,29 @@ class ExpressionTree
     {
         // Упрощённый парсер для формул Search
         $tree = self::parseFormula($formula);
-        if ($tree === null) return null;
+        if ($tree === null) {
+            return null;
+        }
         // Примитивные значения (строка/число) evalNode обрабатывает нативно
         return new self(is_array($tree) ? $tree : $tree);
     }
-    
+
     private static function parseFormula(string $f): array|string|float|null
     {
         // Простые случаи
-        if ($f === 'x0') return 'a';
-        if ($f === 'x1') return 'b';
-        if (is_numeric($f)) return (float)$f;
-        if (preg_match('/^K(\d+(\.\d+)?)$/', $f)) return (float)substr($f, 1);
-        
+        if ($f === 'x0') {
+            return 'a';
+        }
+        if ($f === 'x1') {
+            return 'b';
+        }
+        if (is_numeric($f)) {
+            return (float)$f;
+        }
+        if (preg_match('/^K(\d+(\.\d+)?)$/', $f)) {
+            return (float)substr($f, 1);
+        }
+
         // Унарные: (x0 op) → {"op":"op","arg":"a"}
         if (preg_match('/^\(x0(\w+)\)$/', $f, $m)) {
             return ['op' => $m[1], 'arg' => 'a'];
@@ -113,7 +133,7 @@ class ExpressionTree
         if (preg_match('/^\(x1(\w+)\)$/', $f, $m)) {
             return ['op' => $m[1], 'arg' => 'b'];
         }
-        
+
         return null; // сложные формулы парсить не будем — используем встроенные
     }
 }

@@ -42,7 +42,7 @@
 - [x] B2: isTrivial regex + compose filter + missing reductions
 - [x] B3: Dedup ключ с domain
 - [x] B4: Compose sufficiency
-- [ ] B5: Plateau синтетика
+- [x] B5: Plateau синтетика
 - [ ] B6: OVERFIT logging (validate() молча пропускает)
 - [ ] B7: Search на train-only (сейчас на всех данных)
 

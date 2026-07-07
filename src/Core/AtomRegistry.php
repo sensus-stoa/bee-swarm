@@ -102,6 +102,12 @@ class AtomRegistry
     public static function all(): array
     {
         $curated = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY, self::TEXT_ATOMS);
+        // Guard: text atoms must not collide with math atoms
+        $mathAtoms = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY);
+        $collision = array_intersect($mathAtoms, self::TEXT_ATOMS);
+        if ($collision) {
+            throw new \RuntimeException('TEXT_ATOMS collision with math atoms: ' . implode(', ', $collision));
+        }
         $env = self::$envAtoms ?? [];
         return array_values(array_unique(array_merge($curated, $env)));
     }

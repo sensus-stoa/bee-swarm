@@ -262,7 +262,7 @@ class Forager
                     if (! $content) {
                         continue;
                     }
-                    $contentSample = substr($content, 0, 5000);
+                    $contentSample = mb_substr($content, 0, 5000);
                     foreach ($allStrategies as $sname => $fn) {
                         try {
                             $r = $fn($content);

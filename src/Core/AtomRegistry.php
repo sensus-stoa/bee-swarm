@@ -124,16 +124,21 @@ class AtomRegistry
     public static function addDiscoveredTextAtom(string $parentAtom, string $arg): void
     {
         if (! self::isTextAtom($parentAtom)) {
-            return; // not a text atom → skip
+            return;
         }
         if ($arg === '') {
-            return; // empty arg → skip
+            return;
         }
         $name = "{$parentAtom}({$arg})";
         if (isset(self::$discoveredAtoms[$name])) {
             return;
         }
         self::$discoveredAtoms[$name] = true;
+        // Persist to grammar_ops
+        try {
+            \BeeSwarm\Infra\Database::get()->prepare('INSERT OR IGNORE INTO grammar_ops (name,source) VALUES (?,?)')
+                ->execute([$name, 'discovered']);
+        } catch (\PDOException) {}
     }
 
 

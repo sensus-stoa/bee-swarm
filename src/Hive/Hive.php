@@ -217,7 +217,9 @@ class Hive
                 // Try common labels from content
                 preg_match_all('/\b(\w+):/u', $content, $labels);
                 foreach (array_unique($labels[1]) as $label) {
-                    if (mb_strlen($label) < 2) continue;
+                    if (mb_strlen($label) < 2) {
+                        continue;
+                    }
                     $result = AtomRegistry::applyTextAtom($textAtom, $content, $label);
                     if ($result !== null && ! empty($result)) {
                         $composed = "{$textAtom}({$label})";

@@ -17,12 +17,16 @@ namespace BeeSwarm\Hive;
 class Bee
 {
     private const TICK_COST = 0.01;
+
     private const SEARCH_COST = 0.1;
+
     private const DISCOVERY_REWARD = 2.0;
 
     private float $energy;
 
-    /** @var string[] grammar operations */
+    /**
+     * @var string[] grammar operations
+     */
     private array $grammar;
 
     /**
@@ -40,13 +44,17 @@ class Bee
         return $this->energy;
     }
 
-    /** @return string[] */
+    /**
+     * @return string[]
+     */
     public function grammar(): array
     {
         return $this->grammar;
     }
 
-    /** Base metabolism — every tick costs energy. Dead bees ignore. */
+    /**
+     * Base metabolism — every tick costs energy. Dead bees ignore.
+     */
     public function tick(): void
     {
         if (! $this->isAlive()) {
@@ -55,7 +63,9 @@ class Bee
         $this->energy -= self::TICK_COST;
     }
 
-    /** Search attempt costs energy. Dead bees ignore. */
+    /**
+     * Search attempt costs energy. Dead bees ignore.
+     */
     public function chargeSearch(): void
     {
         if (! $this->isAlive()) {
@@ -64,7 +74,9 @@ class Bee
         $this->energy -= self::SEARCH_COST;
     }
 
-    /** Successful discovery rewards energy. Dead bees ignore (can't resurrect). */
+    /**
+     * Successful discovery rewards energy. Dead bees ignore (can't resurrect).
+     */
     public function rewardDiscovery(): void
     {
         if (! $this->isAlive()) {
@@ -75,6 +87,6 @@ class Bee
 
     public function isAlive(): bool
     {
-        return $this->energy > 0.0;
+        return $this->energy > 1e-12;
     }
 }

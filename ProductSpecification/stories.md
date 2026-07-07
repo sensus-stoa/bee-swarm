@@ -44,18 +44,38 @@
 | D9 | ExpressionTree::nodeCount() | ✅ |
 | D10 | Forager Decomposition (614→310, 4 classes extracted) | ✅ |
 
-## Backlog
+## E1 — Text Atoms ✅
+
+| # | What | Status |
+|---|------|--------|
+| E1.1 | Text atom definitions (AtomRegistry) | ✅ |
+| E1.2 | Text-aware task format | ✅ |
+| E1.3 | CV→0 over text atoms | ✅ |
+| E1.4 | Feedback loop (atoms → strategies) | ✅ |
+| E1.5 | Integration (476 files) | ✅ |
+| E1.6 | Data → law pipeline | ✅ |
+
+## Stage 1 — Population (Backlog)
+
+| # | Criterion | What | Сложность |
+|---|-----------|------|-----------|
+| S1.1 | 2.1 Bee death | Energy model + starvation | ⭐ |
+| S1.2 | 2.2 Bee birth | Spawn + grammar mutation | ⭐⭐⭐ |
+| S1.3 | 2.3 Grammar isolation | Per-bee grammar (no shared state) | ⭐⭐ |
+| S1.4 | 2.4 Task routing | Competitive distribution | ⭐⭐ |
+| S1.5 | 2.5 Evolutionary dynamics | Grammar compression + diversity | ⭐⭐⭐ |
+
+## Stage 2 — Understanding (Backlog)
+
+| # | Criterion | What | Сложность |
+|---|-----------|------|-----------|
+| S2.1 | 2.5-bis | Generational capability growth | ⭐⭐⭐⭐⭐ |
+| S2.2 | 2.5-ter | Grammar ceiling break (NESTED) | ⭐⭐⭐⭐⭐ |
+| S2.3 | 2.5-quater | Contradiction → paradigm | ⭐⭐⭐⭐⭐ |
+
+## Other Backlog
 
 | # | What | Сложность |
 |---|------|-----------|
-| D11 | Search perf — grammar cap + pruning (551 ops → 8B combos) | ⭐⭐ |
-| E1 | CV→0 regex atoms | ⭐⭐⭐ |
+| D11 | Search perf — grammar cap + pruning | ⭐⭐ |
 | F1 | RoadRunner worker for bee | ⭐⭐ |
-| S1.1 | 2.1 Bee death (starvation) | ⭐ |
-| S1.2 | 2.2 Bee birth (spawn + mutation) | ⭐⭐⭐ |
-| S1.3 | 2.3 Grammar isolation | ⭐⭐ |
-| S1.4 | 2.4 Competitive task distribution | ⭐⭐ |
-| S1.5 | 2.5 Evolutionary dynamics | ⭐⭐⭐ |
-| S2.1 | 2.5-bis Generational growth | ⭐⭐⭐⭐⭐ |
-| S2.2 | 2.5-ter Grammar ceiling break (NESTED) | ⭐⭐⭐⭐⭐ |
-| S2.3 | 2.5-quater Contradiction → paradigm | ⭐⭐⭐⭐⭐ |

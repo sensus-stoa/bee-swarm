@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Forager;
 
-use BeeSwarm\Infra\Database;
-use BeeSwarm\Knowledge\ConceptRegistry;
-
 class Forager
 {
     private array $priorities = [];
@@ -25,11 +22,14 @@ class Forager
 
     private SemanticFactInserter $factInserter;
 
+    private Scanner $scanner;
+
     public function __construct(?array $priorities = null)
     {
         $this->priorities = $priorities ?? [];
         $this->strategies = $this->loadStrategies();
         $this->factInserter = new SemanticFactInserter();
+        $this->scanner = new Scanner();
     }
 
     /**
@@ -221,31 +221,11 @@ class Forager
     }
 
     /**
-     * Compute content-change fingerprint from directory listing.
-     *
-     * @param array<string, int> $dirs
+     * Insert semantic fact into knowledge_graph — delegates to SemanticFactInserter (D10 Phase 3).
      */
-    private function computeFingerprint(array $dirs): string
+    public function addSemanticFact(string $s, string $p, string $o): void
     {
-        $paths = [];
-        foreach ($dirs as $dir => $_) {
-            if (! is_dir($dir)) {
-                continue;
-            }
-            try {
-                $iter = new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
-                );
-                foreach ($iter as $f) {
-                    try {
-                        $paths[] = $f->getPathname();
-                    } catch (\Throwable) {
-                    }
-                }
-            } catch (\Throwable) {
-            }
-        }
-        return $this->fingerprintFromPaths($paths);
+        $this->factInserter->insert($s, $p, $o);
     }
 
     public function scan(array $dirs): array
@@ -254,6 +234,7 @@ class Forager
         arsort($sorted);
         $allTasks = [];
         $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
+        $allPaths = [];
 
         $maxTasks = 200; // OOM guard for 1499 files
         foreach ($sorted as $dir => $pri) {
@@ -263,15 +244,20 @@ class Forager
             if (! is_dir($dir)) {
                 continue;
             }
-            $dirTasks = $this->scanDir($dir, $allStrategies);
+            $result = $this->scanner->scanDir($dir, $allStrategies);
+            $dirTasks = $result['tasks'];
+            $allPaths = array_merge($allPaths, $result['paths']);
+            foreach ($result['scores'] as $sname => $score) {
+                $this->strategyScores[$sname] = ($this->strategyScores[$sname] ?? 0) + $score;
+            }
             $allTasks = array_merge($allTasks, $dirTasks);
             if (count($dirTasks) > 0) {
                 $this->priorities[$dir] = min(1.0, $pri + count($dirTasks) * 0.05);
             }
         }
 
-        // Compute fingerprint from scanned file paths
-        $this->currentFingerprint = $this->computeFingerprint($sorted);
+        // Compute fingerprint from scanned file paths (single walk — no desync)
+        $this->currentFingerprint = $this->fingerprintFromPaths($allPaths);
 
         // Always track current content
         $this->newTaskCount = count($allTasks);
@@ -320,167 +306,5 @@ class Forager
     public function markContentConsumed(): void
     {
         $this->lastReportedFingerprint = $this->currentFingerprint;
-    }
-
-    private function addTask(array &$tasks, array &$taskIndex, string $name, array $data, string $domain): void
-    {
-        $data = array_slice($data, 0, 100); // cap data rows
-        if (isset($taskIndex[$name])) {
-            $i = $taskIndex[$name];
-            $tasks[$i]['data'] = array_slice(array_merge($tasks[$i]['data'], $data), 0, 100);
-        } else {
-            $tasks[] = [
-                'name' => $name,
-                'data' => $data,
-                'domain' => $domain,
-            ];
-            $taskIndex[$name] = count($tasks) - 1;
-        }
-    }
-
-    private function scanDir(string $dir, array $strategies): array
-    {
-        $tasks = [];
-        $taskIndex = []; // dedup by name
-        $count = 0;
-        try {
-            $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
-            );
-        } catch (\Throwable $e) {
-            return [];
-        }
-
-        foreach ($iterator as $file) {
-            try {
-                $path = $file->getPathname();
-            } catch (\Throwable $e) {
-                continue;
-            }
-            try {
-                $size = $file->getSize();
-            } catch (\Throwable $e) {
-                continue;
-            }
-            if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
-                continue;
-            }
-            if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
-                continue;
-            }
-            if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
-                continue;
-            }
-            if (str_contains($path, '/.symfony') || str_contains($path, '/.composer/')) {
-                continue;
-            }
-
-            $content = @file_get_contents($path, false, null, 0, 50_000); // cap read size
-            if (! $content) {
-                continue;
-            }
-
-            foreach ($strategies as $sname => $strategy) {
-                $rows = $strategy($content);
-                $this->strategyScores[$sname] = ($this->strategyScores[$sname] ?? 0) + count($rows);
-
-                $isSemantic = isset($rows[0]['semantic']) && $rows[0]['semantic'] === true;
-                $minRows = $isSemantic ? 1 : 3;
-                if (count($rows) < $minRows) {
-                    continue;
-                }
-
-                if ($isSemantic) {
-                    $data = [];
-                    $subjects = [];
-                    $objects = [];
-                    $positivePairs = [];
-
-                    foreach ($rows as $r) {
-                        if (isset($r['s'], $r['p'], $r['o'])) {
-                            $s = trim($r['s']);
-                            $o = trim($r['o']);
-                            $pred = $r['p'];
-                            $sh = ConceptRegistry::register($s);
-                            $oh = ConceptRegistry::register($o);
-                            $data[] = [$sh, $oh, 1.0];
-                            $subjects[] = $s;
-                            $objects[] = $o;
-                            $positivePairs[$s . '::' . $o] = true;
-
-                            // ═══ KG INSERT: замыкаем петлю ═══
-                            $dbCheck = Database::get()->prepare(
-                                'SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?'
-                            );
-                            $dbCheck->execute([$s, $pred, $o]);
-                            $existing = $dbCheck->fetchColumn();
-                            if ($existing !== false) {
-                                // Повторное обнаружение → повышаем confidence
-                                $newConf = min(1.0, (float) $existing + 0.25);
-                                Database::get()->prepare(
-                                    'UPDATE knowledge_graph SET confidence=? WHERE subject=? AND predicate=? AND object=?'
-                                )->execute([$newConf, $s, $pred, $o]);
-                            } else {
-                                // Первое обнаружение → низкий confidence
-                                Database::get()->prepare(
-                                    'INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,0.3)'
-                                )->execute([$s, $pred, $o]);
-                            }
-                        }
-                    }
-
-                    // Negative examples: cross-product субъектов и объектов где нет связи
-                    $uniqSubjects = array_unique($subjects);
-                    $uniqObjects = array_unique($objects);
-                    $negCount = 0;
-                    foreach ($uniqSubjects as $s) {
-                        foreach ($uniqObjects as $o) {
-                            if (isset($positivePairs[$s . '::' . $o])) {
-                                continue;
-                            }
-                            $sh = ConceptRegistry::register($s);
-                            $oh = ConceptRegistry::register($o);
-                            $data[] = [$sh, $oh, 0.0];
-                            $negCount++;
-                            if ($negCount >= 10) {
-                                break 2; // лимит отрицательных примеров
-                            }
-                        }
-                    }
-
-                    if (count($data) >= 2) {  // минимум 2 точки: positive + negative
-                        $this->addTask($tasks, $taskIndex, 'foraged_sem_' . md5($path), $data, 'foraged_semantic');
-                        $count++;
-                    }
-                } else {
-                    if (isset($rows[0]) && count($rows[0]) >= 2) {
-                        $nCols = count($rows[0]);
-                        for ($c1 = 0; $c1 < min($nCols, 4); $c1++) {
-                            for ($c2 = $c1 + 1; $c2 < min($nCols, 4); $c2++) {
-                                $data = [];
-                                foreach ($rows as $r) {
-                                    if (isset($r[$c1], $r[$c2])) {
-                                        $data[] = [(float) $r[$c1], (float) $r[$c2]];
-                                    }
-                                }
-                                if (count($data) >= 3) {
-                                    $this->addTask($tasks, $taskIndex, 'foraged_' . md5($path) . "_c{$c1}c{$c2}", $data, 'foraged');
-                                    $count++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return $tasks;
-    }
-
-    /**
-     * Insert semantic fact into knowledge_graph — delegates to SemanticFactInserter (D10 Phase 3).
-     */
-    public function addSemanticFact(string $s, string $p, string $o): void
-    {
-        $this->factInserter->insert($s, $p, $o);
     }
 }

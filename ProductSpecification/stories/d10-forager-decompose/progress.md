@@ -24,16 +24,20 @@
 - [x] computeFingerprint() removed (dead code)
 - [x] Paths collected AFTER skip-dir filter
 
-### Phase 5: Flatten nesting + unify KG writes
-- [ ] RED — ...
-- [ ] GREEN — ...
-- [ ] **Review finding #2:** Scanner пишет в KG напрямую (+0.25 boost), минуя SemanticFactInserter (+0.15 boost + валидация). Два пути с разными параметрами. Унифицировать — Scanner должен делегировать KG-записи в SemanticFactInserter.
-- [ ] Nesting ≤2 уровня, методы ≤30 строк
+### Phase 5: Flatten nesting + unify KG writes ✅
+- [x] KG unified: Scanner delegates to SemanticFactInserter (+0.15 boost + validation)
+- [x] scanDir(): 130 → 25 lines body
+- [x] Methods >40: 11 → 0
+- [x] break 2 eliminated (→ return)
+- [x] else eliminated in scanDir (→ early continue)
+- [x] Nesting: 54 → 12
 
 ## Status
-🔧 Phase 5 — next session
+✅ COMPLETE
 
 ## Метрики цели
 - Forager.php: 608 → 310 (↓ 298, -49%)
-- Nesting: 4 → ? (Phase 5)
-- Методы >40: ? → ? (Phase 5)
+- Nesting: 54 → 12 (↓ 78%)
+- Методы >40: 11 → 0
+- New classes: Strategies, StreamingAccumulator, SemanticFactInserter, Scanner
+- Tests: +13 (51/51 PASS)

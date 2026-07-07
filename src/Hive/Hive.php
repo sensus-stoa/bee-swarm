@@ -210,6 +210,25 @@ class Hive
             }
         }
 
+        // Text atom discovery from raw content (E1 feedback loop)
+        if (! $foundAny && ! empty($task['content'])) {
+            foreach (['match_label', 'preg_match'] as $textAtom) {
+                $content = $task['content'];
+                // Try common labels from content
+                preg_match_all('/\b(\w+):/u', $content, $labels);
+                foreach (array_unique($labels[1]) as $label) {
+                    if (mb_strlen($label) < 2) continue;
+                    $result = AtomRegistry::applyTextAtom($textAtom, $content, $label);
+                    if ($result !== null && ! empty($result)) {
+                        $composed = "{$textAtom}({$label})";
+                        AtomRegistry::addDiscoveredTextAtom($textAtom, $label);
+                        $this->log("🧬 {$composed} (TEXT ATOM)");
+                        $foundAny = true;
+                    }
+                }
+            }
+        }
+
         // Compose
         if ($this->plateau->shouldRunCompose() && $foundAny && $domain !== 'cloze') {
             $this->doComposeTick($X, $y, $domain, $foundAny);

@@ -3,19 +3,25 @@
 declare(strict_types=1);
 
 /**
- * RoadRunner worker entry point (F1).
+ * RoadRunner worker entry point (F1 Phase 2).
  *
- * Each worker is a persistent PHP process.
+ * Each worker holds one BeeWorker → one Bee → one grammar.
  * HTTP requests arrive via RoadRunner relay (pipes).
- *
- * .rr.yaml: command="php src/worker.php", pool.num_workers=4
  */
 
-use Spiral\RoadRunner\Http\PSR7Worker;
+use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\BeeWorker;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Spiral\RoadRunner\Http\PSR7Worker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
+// Seed grammar — baseline operations from protocol
+$seedGrammar = ['add', 'mul', 'sub', 'div', 'sq', 'sqrt', 'abs', 'max', 'min'];
+
+$bee = new Bee($seedGrammar);
+$beeWorker = new BeeWorker($bee);
 
 $factory = new Psr17Factory();
 $worker = new PSR7Worker(
@@ -27,14 +33,20 @@ $worker = new PSR7Worker(
 
 while ($request = $worker->waitRequest()) {
     try {
-        $uri = $request->getUri()->getPath();
+        $uri = $request->getUri()
+            ->getPath();
 
         if ($uri === '/status') {
-            $body = json_encode(['status' => 'ok', 'mode' => 'roadrunner-worker']);
-            $response = new Response(200, ['Content-Type' => 'application/json'], $body);
+            $body = json_encode($beeWorker->status(), JSON_UNESCAPED_UNICODE);
+            $response = new Response(200, [
+                'Content-Type' => 'application/json',
+            ], $body);
         } elseif ($uri === '/task' && $request->getMethod() === 'POST') {
-            $body = json_encode(['accepted' => true]);
-            $response = new Response(200, ['Content-Type' => 'application/json'], $body);
+            $rawBody = (string) $request->getBody();
+            $result = $beeWorker->handleTask($rawBody);
+            $response = new Response(200, [
+                'Content-Type' => 'application/json',
+            ], json_encode($result));
         } else {
             $response = new Response(404, [], 'Not Found');
         }

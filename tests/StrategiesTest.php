@@ -7,8 +7,6 @@ use BeeSwarm\Forager\Strategies;
 
 /**
  * D10: Forager decomposition — Strategies extraction
- *
- * @group disabled
  */
 class StrategiesTest extends TestCase
 {

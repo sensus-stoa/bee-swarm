@@ -23,13 +23,18 @@ class Forager
 
     private string $currentFingerprint = '';
 
+    private SemanticFactInserter $factInserter;
+
     public function __construct(?array $priorities = null)
     {
         $this->priorities = $priorities ?? [];
         $this->strategies = $this->loadStrategies();
+        $this->factInserter = new SemanticFactInserter();
     }
 
-    /** @internal D10 bridge — public access to strategies for extraction */
+    /**
+     * @internal D10 bridge — public access to strategies for extraction
+     */
     public function getStrategiesForExtraction(): array
     {
         return $this->strategies;
@@ -177,113 +182,32 @@ class Forager
     }
 
     /**
-     * Streaming scan with SQLite accumulator — groups same patterns across files
-     */
-    /**
-     * Original batch scan (delegates to streaming accumulator)
-     */
-    /**
-     * Streaming scan with SQLite accumulator — groups same patterns across files
+     * Streaming scan with SQLite accumulator — delegates to StreamingAccumulator (D10 Phase 2).
      */
     public function scanWithAccumulator(array $dirs): array
     {
-        $db = new \PDO('sqlite::memory:');
-        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
-        $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,content) VALUES (?, ?, ?, ?)');
-
-        $sorted = $dirs;
-        arsort($sorted);
         $allStrategies = array_merge($this->strategies, $this->getComposedStrategies());
-        $paths = [];
+        $acc = new StreamingAccumulator($allStrategies, $this->factInserter);
+        $tasks = $acc->scan($dirs);
 
-        foreach ($sorted as $dir => $pri) {
-            if (! is_dir($dir)) {
-                continue;
-            }
-            try {
-                $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS));
-                foreach ($iter as $f) {
-                    try {
-                        $path = $f->getPathname();
-                        $paths[] = $path;
-                    } catch (\Throwable) {
-                    }
-                    if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
-                        continue;
-                    }
-                    if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
-                        continue;
-                    }
-                    if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
-                        continue;
-                    }
-                    $content = @file_get_contents($path, false, null, 0, 50_000);
-                    if (! $content) {
-                        continue;
-                    }
-                    $contentSample = mb_substr($content, 0, 5000);
-                    foreach ($allStrategies as $sname => $fn) {
-                        try {
-                            $r = $fn($content);
-                            if (empty($r) || ! is_array($r)) {
-                                continue;
-                            }
-                            // Handle semantic facts (array of entries from preg_match_is_a)
-                            $isSemantic = false;
-                            foreach ($r as $entry) {
-                                if (is_array($entry) && isset($entry['semantic'])) {
-                                    $this->addSemanticFact($entry['s'], $entry['p'], $entry['o']);
-                                    $pat = 'sem_' . md5($entry['s'] . $entry['p'] . $entry['o']);
-                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic', $contentSample]);
-                                    $isSemantic = true;
-                                }
-                            }
-                            if ($isSemantic) {
-                                continue;
-                            }
-                            if (isset($r[0]) && is_array($r[0])) {
-                                foreach ($r as $row) {
-                                    // Skip non-numeric rows
-                                    $allNum = true;
-                                    foreach ($row as $v) {
-                                        if (! is_numeric($v)) {
-                                            $allNum = false;
-                                            break;
-                                        }
-                                    }
-                                    if (! $allNum) {
-                                        continue;
-                                    }
-                                    $pat = 'num_' . md5($sname . count($row));
-                                    $stmt->execute([$pat, json_encode($row), 'foraged', $contentSample]);
-                                }
-                            }
-                        } catch (\Throwable) {
-                        }
-                    }
-                    // Apply discovered text atoms (E1.6)
-                    $txtAtoms = array_filter(\BeeSwarm\Core\AtomRegistry::all(), fn ($a) => \BeeSwarm\Core\AtomRegistry::isTextAtom($a) && str_contains($a, '('));
-                    foreach ($txtAtoms as $atom) {
-                        if (preg_match('/^(\w+)\((.+)\)$/', $atom, $m)) {
-                            try {
-                                $result = \BeeSwarm\Core\AtomRegistry::applyTextAtom($m[1], $content, $m[2]);
-                                if (is_array($result) && ! empty($result) && is_numeric($result[0] ?? null)) {
-                                    $pat = 'txt_' . md5($atom);
-                                    foreach ($result as $val) {
-                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $contentSample]);
-                                    }
-                                }
-                            } catch (\Throwable $e) {
-                            }
-                        }
-                    }
+        // Fingerprint from paths collected during scan (single walk — no desync)
+        $this->currentFingerprint = $this->fingerprintFromPaths($acc->getPaths());
 
-                }
-            } catch (\Throwable) {
-            }
+        $this->newTaskCount = count($tasks);
+        $this->newDomains = [];
+        foreach ($tasks as $t) {
+            $this->newDomains[$t['domain']] = true;
         }
+        return $tasks;
+    }
 
-        // Fingerprint from scanned paths
+    /**
+     * Compute md5 fingerprint from file paths + sizes.
+     *
+     * @param string[] $paths
+     */
+    private function fingerprintFromPaths(array $paths): string
+    {
         sort($paths);
         $fpParts = [];
         foreach ($paths as $p) {
@@ -293,35 +217,35 @@ class Forager
                 $fpParts[] = $p;
             }
         }
-        $this->currentFingerprint = md5(implode(',', $fpParts));
+        return md5(implode(',', $fpParts));
+    }
 
-        // Query patterns with >= tMin data points
-        $tMin = 10;
-        $tasks = [];
-        $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
-        while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
-            $data = [];
-            $dr = $db->query("SELECT row_json, content FROM fd WHERE pattern='{$r['pattern']}' LIMIT 1");
-            $cr = $dr->fetch(\PDO::FETCH_ASSOC);
-            $contentSample = $cr['content'] ?? '';
-            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
-            while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
-                $data[] = json_decode($d[0], true);
+    /**
+     * Compute content-change fingerprint from directory listing.
+     *
+     * @param array<string, int> $dirs
+     */
+    private function computeFingerprint(array $dirs): string
+    {
+        $paths = [];
+        foreach ($dirs as $dir => $_) {
+            if (! is_dir($dir)) {
+                continue;
             }
-            $tasks[] = [
-                'name' => 'foraged_' . substr($r['pattern'], 0, 16),
-                'data' => $data,
-                'domain' => $r['domain'],
-                'content' => $contentSample,
-            ];
+            try {
+                $iter = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
+                );
+                foreach ($iter as $f) {
+                    try {
+                        $paths[] = $f->getPathname();
+                    } catch (\Throwable) {
+                    }
+                }
+            } catch (\Throwable) {
+            }
         }
-
-        $this->newTaskCount = count($tasks);
-        $this->newDomains = [];
-        foreach ($tasks as $t) {
-            $this->newDomains[$t['domain']] = true;
-        }
-        return $tasks;
+        return $this->fingerprintFromPaths($paths);
     }
 
     public function scan(array $dirs): array
@@ -347,35 +271,7 @@ class Forager
         }
 
         // Compute fingerprint from scanned file paths
-        $paths = [];
-        foreach ($sorted as $dir => $_) {
-            if (! is_dir($dir)) {
-                continue;
-            }
-            try {
-                $iter = new \RecursiveIteratorIterator(
-                    new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS)
-                );
-                foreach ($iter as $f) {
-                    try {
-                        $paths[] = $f->getPathname();
-                    } catch (\Throwable) {
-                    }
-                }
-            } catch (\Throwable) {
-            }
-        }
-        sort($paths);
-        // Include file sizes to detect content changes
-        $fpParts = [];
-        foreach ($paths as $p) {
-            try {
-                $fpParts[] = $p . ':' . filesize($p);
-            } catch (\Throwable) {
-                $fpParts[] = $p;
-            }
-        }
-        $this->currentFingerprint = md5(implode(',', $fpParts));
+        $this->currentFingerprint = $this->computeFingerprint($sorted);
 
         // Always track current content
         $this->newTaskCount = count($allTasks);
@@ -581,34 +477,10 @@ class Forager
     }
 
     /**
-     * Insert semantic fact into knowledge_graph (shared by old scan + accumulator)
+     * Insert semantic fact into knowledge_graph — delegates to SemanticFactInserter (D10 Phase 3).
      */
     public function addSemanticFact(string $s, string $p, string $o): void
     {
-        $s = trim($s);
-        $o = trim($o);
-        if (mb_strlen($s) < 3 || mb_strlen($o) < 3) {
-            return;
-        }
-        $stopWords = ['и', 'в', 'на', 'с', 'не', 'то', 'же', 'как', 'так', 'он', 'она', 'оно', 'они', 'мы', 'вы', 'это', 'там', 'ещё', 'уже', 'для', 'что', 'нет', 'или', 'да', 'но', 'а', 'за', 'из', 'от', 'до', 'при', 'под', 'над', 'во', 'со', 'по', 'бы', 'ли', 'false', 'true', 'null', 'none', 'undefined', 'NaN', 'который', 'этот', 'весь', 'твой', 'наш', 'один', 'два', 'три', 'себя', 'свой', 'какой', 'кто', 'где', 'когда', 'почему', 'очень', 'быть', 'сказать', 'мочь', 'говорить', 'знать', 'стать', 'есть', 'хотеть', 'видеть', 'идти', 'стоять', 'даже', 'если', 'также', 'вот', 'ну', 'ведь', 'хоть', 'раз', 'про', 'лишь', 'более', 'менее', 'без', 'через', 'около', 'так', 'после', 'перед', 'между', 'снова', 'опять', 'всё', 'чего', 'был', 'была', 'было', 'были', 'может', 'будет', 'могут', 'быть', 'себе', 'б', 'ль', 'со', 'во', 'ко', 'ж', 'ведь', 'мол', 'де', 'якобы', 'почти', 'вроде', 'именно', 'просто', 'только', 'лишь', 'вообще', 'вдруг', 'опять', 'снова', 'значит', 'поэтому', 'однако', 'например', 'кстати', 'всего', 'конечно', 'возможно', 'вероятно', 'точно', 'ровно', 'буквально', 'фактически', 'обычно', 'иногда', 'редко', 'всегда', 'никогда', 'часто', 'давно', 'недавно', 'сейчас', 'теперь', 'сегодня', 'завтра', 'вчера', 'потом', 'тогда', 'тут', 'там', 'здесь', 'везде', 'нигде', 'где-то', 'куда-то', 'откуда-то', 'почему-то', 'зачем-то', 'как-то', 'что-то', 'кто-то', 'чей-то', 'сколько-то', 'никак', 'ничто', 'никто', 'некого', 'нечего', 'нечем', 'некуда', 'незачем'];
-        if (in_array(mb_strtolower($s), $stopWords) || in_array(mb_strtolower($o), $stopWords)) {
-            return;
-        }
-        if (preg_match('/^[\d.]+$/', $s) || preg_match('/^[\d.]+$/', $o)) {
-            return;
-        }
-        try {
-            $stmt = Database::get()->prepare('SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?');
-            $stmt->execute([$s, $p, $o]);
-            $existing = $stmt->fetchColumn();
-            if ($existing !== false) {
-                Database::get()->prepare('UPDATE knowledge_graph SET confidence=MIN(1.0,?+0.15) WHERE subject=? AND predicate=? AND object=?')
-                    ->execute([(float) $existing, $s, $p, $o]);
-            } else {
-                Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
-                    ->execute([$s, $p, $o]);
-            }
-        } catch (\PDOException) {
-        }
+        $this->factInserter->insert($s, $p, $o);
     }
 }

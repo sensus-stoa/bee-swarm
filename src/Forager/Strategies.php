@@ -11,7 +11,9 @@ namespace BeeSwarm\Forager;
  */
 class Strategies
 {
-    /** @var array<string, callable> */
+    /**
+     * @var array<string, callable>
+     */
     private array $strategies;
 
     public function __construct()
@@ -21,7 +23,9 @@ class Strategies
         $this->strategies = $forager->getStrategiesForExtraction();
     }
 
-    /** @return array<string, callable> */
+    /**
+     * @return array<string, callable>
+     */
     public function all(): array
     {
         return $this->strategies;

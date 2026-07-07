@@ -116,7 +116,8 @@ class AtomRegistry
             foreach ($db->query("SELECT name FROM grammar_ops WHERE source='discovered'") as $r) {
                 $discovered[] = $r['name'];
             }
-        } catch (\PDOException) {}
+        } catch (\PDOException) {
+        }
         $env = self::$envAtoms ?? [];
         return array_values(array_unique(array_merge($curated, $discovered, $env)));
     }

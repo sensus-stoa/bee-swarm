@@ -120,4 +120,51 @@ class BeeTest extends TestCase
         $this->assertFalse($bee->isAlive());
         $this->assertLessThan(0, $bee->energy());
     }
+
+    // ── Spawn (Protocol §2.2) ──
+
+    public function testSpawnReturnsChildWithMutatedGrammar(): void
+    {
+        $parent = new Bee(['add', 'mul', 'sub'], 15.0);
+        $available = ['add', 'mul', 'sub', 'div', 'sq', 'sqrt'];
+        $child = $parent->spawn($available);
+
+        $this->assertNotSame($parent, $child, 'Child must be a different instance');
+        $this->assertNotEquals($parent->grammar(), $child->grammar(), 'Child grammar must differ');
+        $this->assertEqualsWithDelta(7.0, $child->energy(), 0.0001, 'Child must start with E=7.0');
+    }
+
+    public function testSpawnCostsParent(): void
+    {
+        $parent = new Bee(['add', 'mul'], 15.0);
+        $parent->spawn(['add', 'mul', 'sq']);
+
+        $this->assertEqualsWithDelta(8.0, $parent->energy(), 0.0001, 'Parent pays 7.0 for spawn');
+    }
+
+    public function testCannotSpawnBelowThreshold(): void
+    {
+        $parent = new Bee(['add', 'mul'], 14.9);
+        $child = $parent->spawn(['add', 'mul', 'sq']);
+
+        $this->assertNull($child, 'Cannot spawn below E=15.0');
+        $this->assertSame(14.9, $parent->energy(), 'Energy unchanged when spawn fails');
+    }
+
+    public function testDeadBeeCannotSpawn(): void
+    {
+        $parent = new Bee(['add'], 0.0);
+        $child = $parent->spawn(['add', 'mul']);
+
+        $this->assertNull($child, 'Dead bee cannot spawn');
+    }
+
+    public function testSpawnWithEmptyAvailableRetainsGrammar(): void
+    {
+        $parent = new Bee(['add', 'mul', 'sub'], 15.0);
+        $child = $parent->spawn([]);
+
+        $this->assertNotNull($child);
+        $this->assertSame(['add', 'mul', 'sub'], $child->grammar(), 'Empty available → child grammar same as parent');
+    }
 }

@@ -89,4 +89,26 @@ class Bee
     {
         return $this->energy > 1e-12;
     }
+
+    /**
+     * Spawn child with mutated grammar. Protocol §2.2.
+     *
+     * @param string[] $available all possible grammar operations
+     * @return self|null child Bee or null if spawn conditions not met
+     */
+    public function spawn(array $available): ?self
+    {
+        if (! $this->isAlive() || $this->energy < 15.0) {
+            return null;
+        }
+
+        $this->energy -= 7.0;
+
+        $childGrammar = $this->grammar;
+        if (! empty($available)) {
+            $childGrammar = GrammarMutator::mutate($this->grammar, $available);
+        }
+
+        return new self($childGrammar, 7.0);
+    }
 }

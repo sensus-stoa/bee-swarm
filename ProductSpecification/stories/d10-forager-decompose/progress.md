@@ -1,50 +1,21 @@
 # Story D10: Forager Decomposition + Nesting Cleanup
 
-> Forager.php: 659 строк, 11 методов >40. Глубокая вложенность if/foreach/else.
+> Forager.php: 608 строк, 4+ уровней вложенности. Жить нельзя.
 
-## Spec
+## Phases
 
-### Phase 1: Decompose (5 files ≤200 lines)
-
-| New file | Lines | Responsibility |
-|----------|-------|----------------|
-| `src/Forager/Forager.php` | ~150 | Orchestrator, scan() |
-| `src/Forager/Scanner.php` | ~100 | File iteration, content reading |
-| `src/Forager/Accumulator.php` | ~120 | SQLite-backed scanWithAccumulator |
-| `src/Forager/Strategies.php` | ~150 | Strategy loading + composition |
-| `src/Forager/Semantics.php` | ~80 | addSemanticFact, KG insert |
-
-### Phase 2: Flatten nesting (≤30 lines/method, no else)
-
-**Правило: `else` — индикатор сложности. Заменять на early return/continue.**
-
-```php
-// ❌ Deep nesting with else
-if ($x) {
-    foreach ($arr as $item) {
-        if ($item['ok']) {
-            process($item);
-        } else {
-            logSkip($item);
-        }
-    }
-} else {
-    handleEmpty();
-}
-
-// ✅ Flat with early returns
-if (! $x) { handleEmpty(); return; }
-foreach ($arr as $item) {
-    if (! $item['ok']) { logSkip($item); continue; }
-    process($item);
-}
-```
-
-**Метрики:**
-- Каждый метод ≤30 строк
-- `else` только для симметричных веток (true/false одинакового веса)
-- Вложенность ≤2 уровня (method → if/foreach → тело)
-- `scanWithAccumulator` (120 строк) → 4 метода по ≤30 строк
+### Phase 1: Strategies ✅
+- [x] RED — class not found
+- [x] GREEN — bridge class + getStrategiesForExtraction()
+- [ ] Phase 2: Accumulator → `scanWithAccumulator()` в отдельный класс
+- [ ] Phase 3: Semantics → `addSemanticFact()` в отдельный класс
+- [ ] Phase 4: Scanner → файловая итерация в отдельный класс
+- [ ] Phase 5: Flatten nesting → ≤2 уровня, ≤30 строк/метод
 
 ## Status
-⬜ Backlog — после E1, до Stage 1
+🔧 Phase 2 — next session
+
+## Метрики цели
+- Forager.php: 608 → ≤150
+- Nesting: 4 → ≤2
+- Методы >40: 11 → 0

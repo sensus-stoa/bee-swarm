@@ -29,6 +29,12 @@ class Forager
         $this->strategies = $this->loadStrategies();
     }
 
+    /** @internal D10 bridge — public access to strategies for extraction */
+    public function getStrategiesForExtraction(): array
+    {
+        return $this->strategies;
+    }
+
     private function loadStrategies(): array
     {
         return [

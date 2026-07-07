@@ -17,15 +17,11 @@ class TextDiscoverTest extends TestCase
     {
         $content = "GI: 7.2\nDQ: 6\nsleep: 5.5\nmood: 8\nenergy: 4";
 
-        // match_label(content, 'GI') → [7.2]
+        // match_label возвращает массив всех значений
         $result = AtomRegistry::applyTextAtom('match_label', $content, 'GI');
-        $this->assertNotNull($result, 'match_label must extract value from text content');
-        $this->assertEqualsWithDelta(
-            7.2,
-            $result,
-            0.01,
-            'match_label("GI") must extract 7.2 from "GI: 7.2"'
-        );
+        $this->assertIsArray($result, 'match_label must return array of values');
+        $this->assertNotEmpty($result, 'match_label must extract at least one value');
+        $this->assertEqualsWithDelta(7.2, $result[0], 0.01, 'First match must be 7.2');
     }
 
     /**

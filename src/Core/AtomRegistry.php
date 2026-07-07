@@ -110,6 +110,13 @@ class AtomRegistry
             throw new \RuntimeException('TEXT_ATOMS collision with math atoms: ' . implode(', ', $collision));
         }
         $discovered = array_keys(self::$discoveredAtoms);
+        // Load persisted discovered atoms from DB (survive restart)
+        try {
+            $db = \BeeSwarm\Infra\Database::get();
+            foreach ($db->query("SELECT name FROM grammar_ops WHERE source='discovered'") as $r) {
+                $discovered[] = $r['name'];
+            }
+        } catch (\PDOException) {}
         $env = self::$envAtoms ?? [];
         return array_values(array_unique(array_merge($curated, $discovered, $env)));
     }
@@ -138,9 +145,9 @@ class AtomRegistry
         try {
             \BeeSwarm\Infra\Database::get()->prepare('INSERT OR IGNORE INTO grammar_ops (name,source) VALUES (?,?)')
                 ->execute([$name, 'discovered']);
-        } catch (\PDOException) {}
+        } catch (\PDOException) {
+        }
     }
-
 
     /**
      * Apply text atom to raw content
@@ -153,11 +160,12 @@ class AtomRegistry
             $arg = $arg ?: $m[2];
         }
         $result = match ($name) {
-            'match_label' => (function (string $c, string $label): ?float {
-                if (preg_match('/' . preg_quote($label, '/') . ':\s*([\d.]+)/u', $c, $m)) {
-                    return (float) $m[1];
+            'match_label' => (function (string $c, string $label): array {
+                preg_match_all('/' . preg_quote($label, '/') . ':\s*([\d.]+)/u', $c, $m);
+                if (empty($m[1])) {
+                    return [];
                 }
-                return null;
+                return array_map('floatval', $m[1]);
             })($content, $arg),
             'preg_match' => (function (string $c, string $pattern): array {
                 $r = @preg_match_all('{' . $pattern . '}u', $c, $m, PREG_SET_ORDER);

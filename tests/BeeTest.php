@@ -104,6 +104,15 @@ class BeeTest extends TestCase
         $this->assertSame(0.0, $bee->energy());
     }
 
+    public function testDeadBeeIgnoresSearchCharge(): void
+    {
+        $bee = new Bee([], 0.0);
+        $this->assertFalse($bee->isAlive());
+        $bee->chargeSearch();
+        $this->assertFalse($bee->isAlive());
+        $this->assertSame(0.0, $bee->energy(), 'Dead bee must not pay search cost');
+    }
+
     public function testEnergyCanGoNegative(): void
     {
         $bee = new Bee([], 0.005);

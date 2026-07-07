@@ -4,7 +4,6 @@
 
 | # | What | Status |
 |---|------|--------|
-| D9 | Streaming Forager (SQLite accumulator) | 🔧 |
 
 ## Stage 0 — COMPLETE ✅
 
@@ -43,12 +42,13 @@
 | D4-6 | ECS: PSR-12 + Common + Clean Code — 0 errors | ✅ |
 | D8 | Forager caps (maxTotal, dedup, chunking) | ✅ |
 | D9 | ExpressionTree::nodeCount() | ✅ |
+| D10 | Forager Decomposition (614→310, 4 classes extracted) | ✅ |
 
 ## Backlog
 
 | # | What | Сложность |
 |---|------|-----------|
-| D9 | Streaming Forager (SQLite accumulator) | ⭐⭐ |
+| D11 | Search perf — grammar cap + pruning (551 ops → 8B combos) | ⭐⭐ |
 | E1 | CV→0 regex atoms | ⭐⭐⭐ |
 | F1 | RoadRunner worker for bee | ⭐⭐ |
 | S1.1 | 2.1 Bee death (starvation) | ⭐ |

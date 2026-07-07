@@ -173,53 +173,6 @@ class Forager
     /**
      * Streaming scan with SQLite accumulator — groups same patterns across files
      */
-    private function streamFile(string $dir, array $strategies, \PDOStatement $stmt): void
-    {
-        try {
-            $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS));
-        } catch (\Throwable) {
-            return;
-        }
-        foreach ($iter as $f) {
-            try {
-                $path = $f->getPathname();
-            } catch (\Throwable) {
-                continue;
-            }
-            if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
-                continue;
-            }
-            if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
-                continue;
-            }
-            if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
-                continue;
-            }
-            $content = @file_get_contents($path, false, null, 0, 50_000);
-            if (! $content) {
-                continue;
-            }
-            foreach ($strategies as $sname => $fn) {
-                try {
-                    $r = $fn($content);
-                    if (empty($r) || ! is_array($r)) {
-                        continue;
-                    }
-                    if (isset($r['semantic'])) {
-                        $pat = 'sem_' . md5($r['s'] . $r['p'] . $r['o']);
-                        $stmt->execute([$pat, json_encode([$r['s'], $r['p'], $r['o']]), 'foraged_semantic']);
-                    } elseif (isset($r[0]) && is_array($r[0])) {
-                        foreach ($r as $row) {
-                            $pat = 'num_' . md5($sname . count($row));
-                            $stmt->execute([$pat, json_encode($row), 'foraged', $contentSample]);
-                        }
-                    }
-                } catch (\Throwable) {
-                }
-            }
-        }
-    }
-
     /**
      * Original batch scan (delegates to streaming accumulator)
      */

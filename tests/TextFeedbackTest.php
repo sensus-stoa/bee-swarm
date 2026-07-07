@@ -7,12 +7,12 @@ use BeeSwarm\Core\AtomRegistry;
 
 /**
  * E1.4: Feedback loop — discovered text atoms become available
- *
- * @group disabled
  */
 class TextFeedbackTest extends TestCase
 {
-    /** addDiscoveredTextAtom() регистрирует открытый compose-атом */
+    /**
+     * addDiscoveredTextAtom() регистрирует открытый compose-атом
+     */
     public function testAddDiscoveredTextAtomRegisters(): void
     {
         $this->assertTrue(
@@ -24,9 +24,14 @@ class TextFeedbackTest extends TestCase
         AtomRegistry::addDiscoveredTextAtom('match_label', 'GI');
 
         $atoms = AtomRegistry::all();
-        $this->assertContains($composed, $atoms,
-            'After addDiscoveredTextAtom, match_label(GI) must be in grammar');
-        $this->assertTrue(AtomRegistry::isTextAtom($composed),
-            'Discovered compose atom must be recognized as text atom');
+        $this->assertContains(
+            $composed,
+            $atoms,
+            'After addDiscoveredTextAtom, match_label(GI) must be in grammar'
+        );
+        $this->assertTrue(
+            AtomRegistry::isTextAtom($composed),
+            'Discovered compose atom must be recognized as text atom'
+        );
     }
 }

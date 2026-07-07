@@ -99,29 +99,54 @@ class AtomRegistry
 
     private const TEXT_ATOMS = ['preg_match', 'match_label', 'extract_col'];
 
+    private static array $discoveredAtoms = [];
+
     public static function all(): array
     {
         $curated = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY, self::TEXT_ATOMS);
-        // Guard: text atoms must not collide with math atoms
         $mathAtoms = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY);
         $collision = array_intersect($mathAtoms, self::TEXT_ATOMS);
         if ($collision) {
             throw new \RuntimeException('TEXT_ATOMS collision with math atoms: ' . implode(', ', $collision));
         }
+        $discovered = array_keys(self::$discoveredAtoms);
         $env = self::$envAtoms ?? [];
-        return array_values(array_unique(array_merge($curated, $env)));
+        return array_values(array_unique(array_merge($curated, $discovered, $env)));
     }
 
     public static function isTextAtom(string $name): bool
     {
-        return in_array($name, self::TEXT_ATOMS, true);
+        return in_array($name, self::TEXT_ATOMS, true) || isset(self::$discoveredAtoms[$name]);
     }
+
+    /**
+     * /** Register discovered text atom (compose: match_label + arg) */
+    public static function addDiscoveredTextAtom(string $parentAtom, string $arg): void
+    {
+        if (! self::isTextAtom($parentAtom)) {
+            return; // not a text atom → skip
+        }
+        if ($arg === '') {
+            return; // empty arg → skip
+        }
+        $name = "{$parentAtom}({$arg})";
+        if (isset(self::$discoveredAtoms[$name])) {
+            return;
+        }
+        self::$discoveredAtoms[$name] = true;
+    }
+
 
     /**
      * Apply text atom to raw content
      */
     public static function applyTextAtom(string $name, string $content, string $arg = ''): mixed
     {
+        // Decompose composed name like match_label(GI)
+        if (preg_match('/^(\w+)\((.+)\)$/', $name, $m)) {
+            $name = $m[1];
+            $arg = $arg ?: $m[2];
+        }
         $result = match ($name) {
             'match_label' => (function (string $c, string $label): ?float {
                 if (preg_match('/' . preg_quote($label, '/') . ':\s*([\d.]+)/u', $c, $m)) {

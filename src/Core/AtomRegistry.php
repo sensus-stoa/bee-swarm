@@ -117,6 +117,51 @@ class AtomRegistry
         return in_array($name, self::TEXT_ATOMS, true);
     }
 
+    /**
+     * Apply text atom to raw content
+     */
+    public static function applyTextAtom(string $name, string $content, string $arg = ''): mixed
+    {
+        $result = match ($name) {
+            'match_label' => (function (string $c, string $label): ?float {
+                if (preg_match('/' . preg_quote($label, '/') . ':\s*([\d.]+)/u', $c, $m)) {
+                    return (float) $m[1];
+                }
+                return null;
+            })($content, $arg),
+            'preg_match' => (function (string $c, string $pattern): array {
+                $r = @preg_match_all('{' . $pattern . '}u', $c, $m, PREG_SET_ORDER);
+                if ($r === false || empty($m)) {
+                    return [];
+                }
+                $pairs = [];
+                foreach ($m as $match) {
+                    array_shift($match);
+                    $pairs[] = array_values($match);
+                }
+                return $pairs;
+            })($content, $arg),
+            'extract_col' => (function (string $c, string $col): array {
+                // Apply preg_match first, then extract column
+                $matches = (function (string $ct, string $p): array {
+                    $r = @preg_match_all('{' . $p . '}u', $ct, $m, PREG_SET_ORDER);
+                    return ($r === false || empty($m)) ? [] : $m;
+                })($c, '(\w+):\s+([\d.]+)');
+                $col = (int) $col;
+                $result = [];
+                foreach ($matches as $m) {
+                    array_shift($m); // full match
+                    if (isset($m[$col])) {
+                        $result[] = $m[$col];
+                    }
+                }
+                return $result;
+            })($content, $arg),
+            default => null,
+        };
+        return $result;
+    }
+
     public static function isUnary(string $name): bool
     {
         return in_array($name, AtomDefinitions::UNARY, true);

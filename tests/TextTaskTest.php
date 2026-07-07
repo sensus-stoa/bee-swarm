@@ -7,12 +7,12 @@ use BeeSwarm\Forager\Forager;
 
 /**
  * E1.2: Text-aware task format — forager tasks must carry raw content
- *
- * @group disabled
  */
 class TextTaskTest extends TestCase
 {
-    /** Forager tasks должны нести сырой контент */
+    /**
+     * Forager tasks должны нести сырой контент
+     */
     public function testForagerTaskHasContent(): void
     {
         $f = new Forager();
@@ -21,11 +21,13 @@ class TextTaskTest extends TestCase
         // 20 строк — достаточно для tMin=10 в аккумуляторе
         $lines = '';
         for ($i = 0; $i < 20; $i++) {
-            $lines .= ($i) . ' ' . ($i+1) . ' ' . ($i+2) . "\n";
+            $lines .= ($i) . ' ' . ($i + 1) . ' ' . ($i + 2) . "\n";
         }
-        file_put_contents("$dir/data.txt", $lines);
+        file_put_contents("{$dir}/data.txt", $lines);
 
-        $tasks = $f->scanWithAccumulator([$dir => 1]);
+        $tasks = $f->scanWithAccumulator([
+            $dir => 1,
+        ]);
 
         $this->assertNotEmpty($tasks, 'Must produce tasks with tMin met');
         foreach ($tasks as $t) {
@@ -36,7 +38,7 @@ class TextTaskTest extends TestCase
             );
         }
 
-        array_map('unlink', glob("$dir/*"));
+        array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
     }
 }

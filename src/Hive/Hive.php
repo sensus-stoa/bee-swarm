@@ -206,7 +206,8 @@ class Hive
             try {
                 Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
                     ->execute([$s, $p, $o]);
-            } catch (\PDOException) {}
+            } catch (\PDOException) {
+            }
         }
 
         // Compose

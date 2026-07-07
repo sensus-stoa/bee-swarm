@@ -12,21 +12,17 @@ namespace BeeSwarm\Hive;
  * - ΔE_tick = −0.01 (метаболизм)
  * - ΔE_search = −0.1 (попытка поиска)
  * - ΔE_discovery = +2.0 (открытие)
- * - E ≤ 0 → death
+ * - E ≤ 0 → death; dead bees ignore all energy mutations
  */
 class Bee
 {
     private const TICK_COST = 0.01;
-
     private const SEARCH_COST = 0.1;
-
     private const DISCOVERY_REWARD = 2.0;
 
     private float $energy;
 
-    /**
-     * @var string[] grammar operations
-     */
+    /** @var string[] grammar operations */
     private array $grammar;
 
     /**
@@ -35,7 +31,7 @@ class Bee
      */
     public function __construct(array $grammar, float $energy = 10.0)
     {
-        $this->grammar = $grammar;
+        $this->grammar = array_values($grammar);
         $this->energy = $energy;
     }
 
@@ -44,35 +40,36 @@ class Bee
         return $this->energy;
     }
 
-    /**
-     * @return string[]
-     */
+    /** @return string[] */
     public function grammar(): array
     {
         return $this->grammar;
     }
 
-    /**
-     * Base metabolism — every tick costs energy
-     */
+    /** Base metabolism — every tick costs energy. Dead bees ignore. */
     public function tick(): void
     {
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->energy -= self::TICK_COST;
     }
 
-    /**
-     * Search attempt costs energy
-     */
+    /** Search attempt costs energy. Dead bees ignore. */
     public function chargeSearch(): void
     {
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->energy -= self::SEARCH_COST;
     }
 
-    /**
-     * Successful discovery rewards energy
-     */
+    /** Successful discovery rewards energy. Dead bees ignore (can't resurrect). */
     public function rewardDiscovery(): void
     {
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->energy += self::DISCOVERY_REWARD;
     }
 

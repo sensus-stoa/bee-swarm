@@ -95,13 +95,20 @@ class BeeTest extends TestCase
         $this->assertFalse($bee->isAlive(), 'Bee must die after 1001 ticks');
     }
 
-    public function testEnergyNeverGoesNegative(): void
+    public function testDeadBeeIgnoresReward(): void
+    {
+        $bee = new Bee([], 0.0);
+        $this->assertFalse($bee->isAlive());
+        $bee->rewardDiscovery();
+        $this->assertFalse($bee->isAlive(), 'Dead bee must not resurrect via reward');
+        $this->assertSame(0.0, $bee->energy());
+    }
+
+    public function testEnergyCanGoNegative(): void
     {
         $bee = new Bee([], 0.005);
-        $bee->tick(); // E = −0.005 → dead
+        $bee->tick(); // E = −0.005 → dead, energy reflects actual debt
         $this->assertFalse($bee->isAlive());
-        // Energy should not be clamped — it reflects actual debt
-        // But protocol says: E≤0 → exit, not "clamp to 0"
         $this->assertLessThan(0, $bee->energy());
     }
 }

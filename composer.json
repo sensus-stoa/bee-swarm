@@ -1,5 +1,6 @@
 {"name":"ninjacat/bee-swarm","require":{"php":">=8.1",
-        "spiral/roadrunner-http": "^4.1"},"autoload":{"psr-4":{"BeeSwarm\\":"src/"}},
+        "spiral/roadrunner-http": "^4.1",
+                "nyholm/psr7": "^1.8@dev"},"autoload":{"psr-4":{"BeeSwarm\\":"src/"}},
     "autoload-dev":{"psr-4":{"BeeSwarm\\Tests\\":"tests/"}},
     "require-dev": {
         "spiral/roadrunner-cli": "^2.7",

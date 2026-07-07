@@ -49,9 +49,9 @@ class DaemonEfficiencyTest extends TestCase
         Search::find($X, $y, $g, 3);
         $elapsed = microtime(true) - $start;
 
-        // С текущим grammar (192 ops) это может быть дорого
-        // Проверяем что не зависает намертво (верхняя граница 10s)
-        $this->assertLessThan(10.0, $elapsed, "Search::find depth=3 took {$elapsed}s");
+        // С текущим grammar (551 ops) это может быть дорого
+        // Проверяем что не зависает намертво (верхняя граница 15s)
+        $this->assertLessThan(15.0, $elapsed, "Search::find depth=3 took {$elapsed}s");
     }
 
     /**

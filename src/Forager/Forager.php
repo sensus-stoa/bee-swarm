@@ -223,7 +223,9 @@ class Forager
     /**
      * Original batch scan (delegates to streaming accumulator)
      */
-    /** Streaming scan with SQLite accumulator — groups same patterns across files */
+    /**
+     * Streaming scan with SQLite accumulator — groups same patterns across files
+     */
     public function scanWithAccumulator(array $dirs): array
     {
         $db = new \PDO('sqlite::memory:');
@@ -236,20 +238,36 @@ class Forager
         $paths = [];
 
         foreach ($sorted as $dir => $pri) {
-            if (! is_dir($dir)) continue;
+            if (! is_dir($dir)) {
+                continue;
+            }
             try {
                 $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS));
                 foreach ($iter as $f) {
-                    try { $path = $f->getPathname(); $paths[] = $path; } catch (\Throwable) {}
-                    if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) continue;
-                    if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) continue;
-                    if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) continue;
+                    try {
+                        $path = $f->getPathname();
+                        $paths[] = $path;
+                    } catch (\Throwable) {
+                    }
+                    if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
+                        continue;
+                    }
+                    if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
+                        continue;
+                    }
+                    if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
+                        continue;
+                    }
                     $content = @file_get_contents($path, false, null, 0, 50_000);
-                    if (! $content) continue;
+                    if (! $content) {
+                        continue;
+                    }
                     foreach ($allStrategies as $sname => $fn) {
                         try {
                             $r = $fn($content);
-                            if (empty($r) || ! is_array($r)) continue;
+                            if (empty($r) || ! is_array($r)) {
+                                continue;
+                            }
                             // Handle semantic facts (array of entries from preg_match_is_a)
                             $isSemantic = false;
                             foreach ($r as $entry) {
@@ -260,45 +278,68 @@ class Forager
                                     $isSemantic = true;
                                 }
                             }
-                            if ($isSemantic) continue;
+                            if ($isSemantic) {
+                                continue;
+                            }
                             if (isset($r[0]) && is_array($r[0])) {
                                 foreach ($r as $row) {
                                     // Skip non-numeric rows
                                     $allNum = true;
-                                    foreach ($row as $v) { if (! is_numeric($v)) { $allNum = false; break; } }
-                                    if (! $allNum) continue;
+                                    foreach ($row as $v) {
+                                        if (! is_numeric($v)) {
+                                            $allNum = false;
+                                            break;
+                                        }
+                                    }
+                                    if (! $allNum) {
+                                        continue;
+                                    }
                                     $pat = 'num_' . md5($sname . count($row));
                                     $stmt->execute([$pat, json_encode($row), 'foraged']);
                                 }
                             }
-                        } catch (\Throwable) {}
+                        } catch (\Throwable) {
+                        }
                     }
                 }
-            } catch (\Throwable) {}
+            } catch (\Throwable) {
+            }
         }
 
         // Fingerprint from scanned paths
         sort($paths);
         $fpParts = [];
         foreach ($paths as $p) {
-            try { $fpParts[] = $p . ':' . filesize($p); } catch (\Throwable) { $fpParts[] = $p; }
+            try {
+                $fpParts[] = $p . ':' . filesize($p);
+            } catch (\Throwable) {
+                $fpParts[] = $p;
+            }
         }
         $this->currentFingerprint = md5(implode(',', $fpParts));
 
         // Query patterns with >= tMin data points
         $tMin = 10;
         $tasks = [];
-        $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= $tMin");
+        $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
         while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
             $data = [];
-            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r["pattern"]}' LIMIT 200");
-            while ($d = $dr->fetch(\PDO::FETCH_NUM)) $data[] = json_decode($d[0], true);
-            $tasks[] = ['name' => 'foraged_' . substr($r['pattern'], 0, 16), 'data' => $data, 'domain' => $r['domain']];
+            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
+            while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
+                $data[] = json_decode($d[0], true);
+            }
+            $tasks[] = [
+                'name' => 'foraged_' . substr($r['pattern'], 0, 16),
+                'data' => $data,
+                'domain' => $r['domain'],
+            ];
         }
 
         $this->newTaskCount = count($tasks);
         $this->newDomains = [];
-        foreach ($tasks as $t) $this->newDomains[$t['domain']] = true;
+        foreach ($tasks as $t) {
+            $this->newDomains[$t['domain']] = true;
+        }
         return $tasks;
     }
 
@@ -557,27 +598,36 @@ class Forager
         }
         return $tasks;
     }
-    /** Insert semantic fact into knowledge_graph (shared by old scan + accumulator) */
+
+    /**
+     * Insert semantic fact into knowledge_graph (shared by old scan + accumulator)
+     */
     public function addSemanticFact(string $s, string $p, string $o): void
     {
         $s = trim($s);
         $o = trim($o);
-        if (mb_strlen($s) < 3 || mb_strlen($o) < 3) return;
-        $stopWords = ['и','в','на','с','не','то','же','как','так','он','она','оно','они','мы','вы','это','там','ещё','уже','для','что','нет','или','да','но','а','за','из','от','до','при','под','над','во','со','по','бы','ли','false','true','null','none','undefined','NaN'];
-        if (in_array(mb_strtolower($s), $stopWords) || in_array(mb_strtolower($o), $stopWords)) return;
-        if (preg_match('/^[\d.]+$/', $s) || preg_match('/^[\d.]+$/', $o)) return;
+        if (mb_strlen($s) < 3 || mb_strlen($o) < 3) {
+            return;
+        }
+        $stopWords = ['и', 'в', 'на', 'с', 'не', 'то', 'же', 'как', 'так', 'он', 'она', 'оно', 'они', 'мы', 'вы', 'это', 'там', 'ещё', 'уже', 'для', 'что', 'нет', 'или', 'да', 'но', 'а', 'за', 'из', 'от', 'до', 'при', 'под', 'над', 'во', 'со', 'по', 'бы', 'ли', 'false', 'true', 'null', 'none', 'undefined', 'NaN'];
+        if (in_array(mb_strtolower($s), $stopWords) || in_array(mb_strtolower($o), $stopWords)) {
+            return;
+        }
+        if (preg_match('/^[\d.]+$/', $s) || preg_match('/^[\d.]+$/', $o)) {
+            return;
+        }
         try {
             $stmt = Database::get()->prepare('SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?');
             $stmt->execute([$s, $p, $o]);
             $existing = $stmt->fetchColumn();
             if ($existing !== false) {
                 Database::get()->prepare('UPDATE knowledge_graph SET confidence=MIN(1.0,?+0.15) WHERE subject=? AND predicate=? AND object=?')
-                    ->execute([(float)$existing, $s, $p, $o]);
+                    ->execute([(float) $existing, $s, $p, $o]);
             } else {
                 Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
                     ->execute([$s, $p, $o]);
             }
-        } catch (\PDOException) {}
+        } catch (\PDOException) {
+        }
     }
-
 }

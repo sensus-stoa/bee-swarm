@@ -97,11 +97,18 @@ class AtomRegistry
 
     // ═══ РЕЕСТР ═══
 
+    private const TEXT_ATOMS = ['preg_match', 'match_label', 'extract_col'];
+
     public static function all(): array
     {
-        $curated = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY);
+        $curated = array_merge(AtomDefinitions::UNARY, AtomDefinitions::BINARY, self::TEXT_ATOMS);
         $env = self::$envAtoms ?? [];
         return array_values(array_unique(array_merge($curated, $env)));
+    }
+
+    public static function isTextAtom(string $name): bool
+    {
+        return in_array($name, self::TEXT_ATOMS, true);
     }
 
     public static function isUnary(string $name): bool

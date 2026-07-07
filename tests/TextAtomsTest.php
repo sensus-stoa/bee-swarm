@@ -12,23 +12,31 @@ class TextAtomsTest extends TestCase
 {
     public function testIsTextAtomExists(): void
     {
-        $this->assertTrue(method_exists(AtomRegistry::class, 'isTextAtom'),
-            'AtomRegistry must have isTextAtom() to distinguish text from math atoms');
+        $this->assertTrue(
+            method_exists(AtomRegistry::class, 'isTextAtom'),
+            'AtomRegistry must have isTextAtom() to distinguish text from math atoms'
+        );
     }
 
     public function testPregMatchIsText(): void
     {
-        $this->assertTrue(AtomRegistry::isTextAtom('preg_match'),
-            'preg_match must be recognized as text atom');
+        $this->assertTrue(
+            AtomRegistry::isTextAtom('preg_match'),
+            'preg_match must be recognized as text atom'
+        );
     }
 
     public function testAddIsNotText(): void
     {
-        $this->assertFalse(AtomRegistry::isTextAtom('add'),
-            'add must NOT be recognized as text atom');
+        $this->assertFalse(
+            AtomRegistry::isTextAtom('add'),
+            'add must NOT be recognized as text atom'
+        );
     }
 
-    /** Seed text atoms exist in grammar */
+    /**
+     * Seed text atoms exist in grammar
+     */
     public function testSeedTextAtomsInAll(): void
     {
         $atoms = AtomRegistry::all();

@@ -9,11 +9,11 @@ declare(strict_types=1);
  * HTTP requests arrive via RoadRunner relay (pipes).
  */
 
-use BeeSwarm\Hive\Bee;
-use BeeSwarm\Hive\BeeWorker;
+use Spiral\RoadRunner\Http\PSR7Worker;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
-use Spiral\RoadRunner\Http\PSR7Worker;
+use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\BeeWorker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -24,35 +24,36 @@ $bee = new Bee($seedGrammar);
 $beeWorker = new BeeWorker($bee);
 
 $factory = new Psr17Factory();
-$worker = new PSR7Worker(
+$psrWorker = new PSR7Worker(
     \Spiral\RoadRunner\Worker::create(),
     $factory,
     $factory,
     $factory
 );
 
-while ($request = $worker->waitRequest()) {
+while (true) {
     try {
-        $uri = $request->getUri()
-            ->getPath();
+        $request = $psrWorker->waitRequest();
+        if ($request === null) {
+            break;
+        }
+
+        $uri = $request->getUri()->getPath();
 
         if ($uri === '/status') {
             $body = json_encode($beeWorker->status(), JSON_UNESCAPED_UNICODE);
-            $response = new Response(200, [
-                'Content-Type' => 'application/json',
-            ], $body);
+            $response = new Response(200, ['Content-Type' => 'application/json'], (string) $body);
         } elseif ($uri === '/task' && $request->getMethod() === 'POST') {
             $rawBody = (string) $request->getBody();
             $result = $beeWorker->handleTask($rawBody);
-            $response = new Response(200, [
-                'Content-Type' => 'application/json',
-            ], json_encode($result));
+            $response = new Response(200, ['Content-Type' => 'application/json'], json_encode($result));
         } else {
             $response = new Response(404, [], 'Not Found');
         }
 
-        $worker->respond($response);
+        $psrWorker->respond($response);
     } catch (\Throwable $e) {
-        $worker->respond(new Response(500, [], 'Error: ' . $e->getMessage()));
+        error_log("Bee worker error: " . $e->getMessage());
+        $psrWorker->respond(new Response(500, [], 'Internal error'));
     }
 }

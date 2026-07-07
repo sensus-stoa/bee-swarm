@@ -29,7 +29,7 @@ class Forager
         $this->priorities = $priorities ?? [];
         $this->strategies = $this->loadStrategies();
         $this->factInserter = new SemanticFactInserter();
-        $this->scanner = new Scanner();
+        $this->scanner = new Scanner($this->factInserter);
     }
 
     /**

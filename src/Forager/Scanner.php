@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Forager;
 
-use BeeSwarm\Infra\Database;
 use BeeSwarm\Knowledge\ConceptRegistry;
 
 /**
@@ -15,6 +14,13 @@ use BeeSwarm\Knowledge\ConceptRegistry;
  */
 class Scanner
 {
+    private SemanticFactInserter $factInserter;
+
+    public function __construct(?SemanticFactInserter $factInserter = null)
+    {
+        $this->factInserter = $factInserter ?? new SemanticFactInserter();
+    }
+
     /**
      * Scan one directory with given strategies.
      *
@@ -40,130 +46,38 @@ class Scanner
             ];
         }
 
-        foreach ($iterator as $file) {
-            try {
-                $path = $file->getPathname();
-            } catch (\Throwable) {
-                continue;
-            }
-            try {
-                $file->getSize();
-            } catch (\Throwable) {
-                continue;
-            }
-            if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
-                continue;
-            }
-            if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
-                continue;
-            }
-            if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
-                continue;
-            }
-            if (str_contains($path, '/.symfony') || str_contains($path, '/.composer/')) {
-                continue;
-            }
-
-            $paths[] = $path;
-
-            $content = @file_get_contents($path, false, null, 0, 50_000);
-            if (! $content) {
-                continue;
-            }
-
-            foreach ($strategies as $sname => $strategy) {
-                $rows = $strategy($content);
-                $scores[$sname] = ($scores[$sname] ?? 0) + count($rows);
-
-                $isSemantic = isset($rows[0]['semantic']) && $rows[0]['semantic'] === true;
-                $minRows = $isSemantic ? 1 : 3;
-                if (count($rows) < $minRows) {
-                    continue;
-                }
-
-                if ($isSemantic) {
-                    $data = [];
-                    $subjects = [];
-                    $objects = [];
-                    $positivePairs = [];
-
-                    foreach ($rows as $r) {
-                        if (isset($r['s'], $r['p'], $r['o'])) {
-                            $s = trim($r['s']);
-                            $o = trim($r['o']);
-                            $pred = $r['p'];
-                            $sh = ConceptRegistry::register($s);
-                            $oh = ConceptRegistry::register($o);
-                            $data[] = [$sh, $oh, 1.0];
-                            $subjects[] = $s;
-                            $objects[] = $o;
-                            $positivePairs[$s . '::' . $o] = true;
-
-                            $dbCheck = Database::get()->prepare(
-                                'SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?'
-                            );
-                            $dbCheck->execute([$s, $pred, $o]);
-                            $existing = $dbCheck->fetchColumn();
-                            if ($existing !== false) {
-                                $newConf = min(1.0, (float) $existing + 0.25);
-                                Database::get()->prepare(
-                                    'UPDATE knowledge_graph SET confidence=? WHERE subject=? AND predicate=? AND object=?'
-                                )->execute([$newConf, $s, $pred, $o]);
-                            } else {
-                                Database::get()->prepare(
-                                    'INSERT OR IGNORE INTO knowledge_graph (subject, predicate, object, confidence) VALUES (?,?,?,0.3)'
-                                )->execute([$s, $pred, $o]);
-                            }
-                        }
-                    }
-
-                    $uniqSubjects = array_unique($subjects);
-                    $uniqObjects = array_unique($objects);
-                    $negCount = 0;
-                    foreach ($uniqSubjects as $s) {
-                        foreach ($uniqObjects as $o) {
-                            if (isset($positivePairs[$s . '::' . $o])) {
-                                continue;
-                            }
-                            $sh = ConceptRegistry::register($s);
-                            $oh = ConceptRegistry::register($o);
-                            $data[] = [$sh, $oh, 0.0];
-                            $negCount++;
-                            if ($negCount >= 10) {
-                                break 2;
-                            }
-                        }
-                    }
-
-                    if (count($data) >= 2) {
-                        $this->addTask($tasks, $taskIndex, 'foraged_sem_' . md5($path), $data, 'foraged_semantic');
-                    }
-                } else {
-                    if (isset($rows[0]) && count($rows[0]) >= 2) {
-                        $nCols = count($rows[0]);
-                        for ($c1 = 0; $c1 < min($nCols, 4); $c1++) {
-                            for ($c2 = $c1 + 1; $c2 < min($nCols, 4); $c2++) {
-                                $data = [];
-                                foreach ($rows as $r) {
-                                    if (isset($r[$c1], $r[$c2])) {
-                                        $data[] = [(float) $r[$c1], (float) $r[$c2]];
-                                    }
-                                }
-                                if (count($data) >= 3) {
-                                    $this->addTask($tasks, $taskIndex, 'foraged_' . md5($path) . "_c{$c1}c{$c2}", $data, 'foraged');
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        $this->scanFiles($iterator, $strategies, $tasks, $taskIndex, $scores, $paths);
 
         return [
             'tasks' => $tasks,
             'scores' => $scores,
             'paths' => $paths,
         ];
+    }
+
+    /**
+     * @param array<string, callable> $strategies
+     * @param array<int, array> $tasks
+     * @param array<string, int> $taskIndex
+     * @param array<string, int> $scores
+     * @param string[] $paths
+     */
+    private function scanFiles(\RecursiveIteratorIterator $iterator, array $strategies, array &$tasks, array &$taskIndex, array &$scores, array &$paths): void
+    {
+        foreach ($iterator as $file) {
+            $path = $this->safePath($file);
+            if ($path === null || $this->isSkippablePath($path)) {
+                continue;
+            }
+
+            $paths[] = $path;
+            $content = @file_get_contents($path, false, null, 0, 50_000);
+            if (! $content) {
+                continue;
+            }
+
+            $this->processFile($path, $content, $strategies, $tasks, $taskIndex, $scores);
+        }
     }
 
     /**
@@ -183,6 +97,145 @@ class Scanner
                 'domain' => $domain,
             ];
             $taskIndex[$name] = count($tasks) - 1;
+        }
+    }
+
+    /**
+     * @param array<string, callable> $strategies
+     * @param array<int, array> $tasks
+     * @param array<string, int> $taskIndex
+     * @param array<string, int> $scores
+     */
+    private function processFile(string $path, string $content, array $strategies, array &$tasks, array &$taskIndex, array &$scores): void
+    {
+        foreach ($strategies as $sname => $strategy) {
+            $rows = $strategy($content);
+            $scores[$sname] = ($scores[$sname] ?? 0) + count($rows);
+
+            $isSemantic = isset($rows[0]['semantic']) && $rows[0]['semantic'] === true;
+            $minRows = $isSemantic ? 1 : 3;
+            if (count($rows) < $minRows) {
+                continue;
+            }
+
+            if ($isSemantic) {
+                $this->processSemanticRows($rows, $path, $tasks, $taskIndex);
+                continue;
+            }
+            $this->processNumericRows($rows, $path, $tasks, $taskIndex);
+        }
+    }
+
+    private function safePath(\SplFileInfo $file): ?string
+    {
+        try {
+            $path = $file->getPathname();
+            $file->getSize();
+            return $path;
+        } catch (\Throwable) {
+            return null;
+        }
+    }
+
+    private function isSkippablePath(string $path): bool
+    {
+        if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
+            return true;
+        }
+        if (str_contains($path, '/.cache/') || str_contains($path, '/.local/share/')) {
+            return true;
+        }
+        if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
+            return true;
+        }
+        if (str_contains($path, '/.symfony') || str_contains($path, '/.composer/')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param array<int, array> $tasks
+     * @param array<string, int> $taskIndex
+     */
+    private function processSemanticRows(array $rows, string $path, array &$tasks, array &$taskIndex): void
+    {
+        $data = [];
+        $subjects = [];
+        $objects = [];
+        $positivePairs = [];
+
+        foreach ($rows as $r) {
+            if (! isset($r['s'], $r['p'], $r['o'])) {
+                continue;
+            }
+            $s = trim($r['s']);
+            $o = trim($r['o']);
+            $pred = $r['p'];
+            $sh = ConceptRegistry::register($s);
+            $oh = ConceptRegistry::register($o);
+            $data[] = [$sh, $oh, 1.0];
+            $subjects[] = $s;
+            $objects[] = $o;
+            $positivePairs[$s . '::' . $o] = true;
+
+            $this->factInserter->insert($s, $pred, $o);
+        }
+
+        $this->addNegativeExamples($subjects, $objects, $positivePairs, $data);
+
+        if (count($data) >= 2) {
+            $this->addTask($tasks, $taskIndex, 'foraged_sem_' . md5($path), $data, 'foraged_semantic');
+        }
+    }
+
+    /**
+     * @param string[] $subjects
+     * @param string[] $objects
+     * @param array<string, bool> $positivePairs
+     * @param array<int, array> $data
+     */
+    private function addNegativeExamples(array $subjects, array $objects, array $positivePairs, array &$data): void
+    {
+        $negCount = 0;
+        foreach (array_unique($subjects) as $s) {
+            foreach (array_unique($objects) as $o) {
+                if (isset($positivePairs[$s . '::' . $o])) {
+                    continue;
+                }
+                $sh = ConceptRegistry::register($s);
+                $oh = ConceptRegistry::register($o);
+                $data[] = [$sh, $oh, 0.0];
+                $negCount++;
+                if ($negCount >= 10) {
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param array<int, array> $tasks
+     * @param array<string, int> $taskIndex
+     */
+    private function processNumericRows(array $rows, string $path, array &$tasks, array &$taskIndex): void
+    {
+        if (! isset($rows[0]) || count($rows[0]) < 2) {
+            return;
+        }
+        $nCols = count($rows[0]);
+        for ($c1 = 0; $c1 < min($nCols, 4); $c1++) {
+            for ($c2 = $c1 + 1; $c2 < min($nCols, 4); $c2++) {
+                $data = [];
+                foreach ($rows as $r) {
+                    if (isset($r[$c1], $r[$c2])) {
+                        $data[] = [(float) $r[$c1], (float) $r[$c2]];
+                    }
+                }
+                if (count($data) >= 3) {
+                    $this->addTask($tasks, $taskIndex, 'foraged_' . md5($path) . "_c{$c1}c{$c2}", $data, 'foraged');
+                }
+            }
         }
     }
 }

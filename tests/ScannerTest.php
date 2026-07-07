@@ -8,7 +8,7 @@ use BeeSwarm\Forager\Scanner;
 use BeeSwarm\Infra\Database;
 
 /**
- * Story D10 Phase 4: Scanner — scanDir() extracted from Forager
+ * Story D10 Phase 4-5: Scanner — scanDir() extracted from Forager
  */
 class ScannerTest extends TestCase
 {
@@ -16,6 +16,12 @@ class ScannerTest extends TestCase
      * @var string[] temp dirs to clean up
      */
     private array $tempDirs = [];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Database::get()->exec("DELETE FROM knowledge_graph WHERE subject IN ('Тигр','Кошка','Собака')");
+    }
 
     protected function tearDown(): void
     {
@@ -28,9 +34,6 @@ class ScannerTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * Directory with numeric files → tasks with column pairs
-     */
     public function testScanDirProducesNumericTasks(): void
     {
         $scanner = new Scanner();
@@ -62,9 +65,6 @@ class ScannerTest extends TestCase
         $this->assertArrayHasKey('explode_lines', $result['scores'], 'Must track strategy scores');
     }
 
-    /**
-     * Empty directory → empty tasks
-     */
     public function testEmptyDirReturnsNoTasks(): void
     {
         $scanner = new Scanner();
@@ -77,9 +77,6 @@ class ScannerTest extends TestCase
         $this->assertSame([], $result['paths']);
     }
 
-    /**
-     * Semantic facts → tasks produced + DB populated
-     */
     public function testScanDirProcessesSemanticFacts(): void
     {
         $scanner = new Scanner();
@@ -105,17 +102,56 @@ class ScannerTest extends TestCase
 
         $result = $scanner->scanDir($dir, $strategies);
 
-        // Must produce at least 1 semantic task
         $this->assertGreaterThan(0, count($result['tasks']), 'Must produce semantic tasks');
         $this->assertArrayHasKey('preg_match_is_a', $result['scores']);
 
-        // Verify KG was populated
         $stmt = Database::get()->prepare(
             'SELECT COUNT(*) FROM knowledge_graph WHERE predicate=? AND object=?'
         );
         $stmt->execute(['is_a', 'животное']);
         $count = (int) $stmt->fetchColumn();
         $this->assertGreaterThan(0, $count, 'Knowledge graph must contain semantic facts');
+    }
+
+    /**
+     * KG writes must delegate to SemanticFactInserter → +0.15 boost, not +0.25
+     */
+    public function testKgConfidenceMatchesSemanticFactInserter(): void
+    {
+        $scanner = new Scanner();
+        $strategies = [
+            'preg_match_is_a' => function (string $c): array {
+                if (preg_match_all('/([А-Яа-яA-Za-z_]+)\s*—\s*это\s+([А-Яа-яA-Za-z_]+)/u', $c, $mm)) {
+                    return [[
+                        'semantic' => true,
+                        's' => $mm[1][0],
+                        'p' => 'is_a',
+                        'o' => $mm[2][0],
+                    ]];
+                }
+                return [];
+            },
+        ];
+
+        $dir = $this->tempDir('d10_conf_');
+        file_put_contents("{$dir}/a.txt", "Тигр — это животное\n");
+        file_put_contents("{$dir}/b.txt", "Тигр — это животное\n");
+
+        $scanner->scanDir($dir, $strategies);
+
+        $stmt = Database::get()->prepare(
+            'SELECT confidence FROM knowledge_graph WHERE subject=? AND predicate=? AND object=?'
+        );
+        $stmt->execute(['Тигр', 'is_a', 'животное']);
+        $confidence = (float) $stmt->fetchColumn();
+
+        // SemanticFactInserter: first insert 0.3, second +0.15 → 0.45
+        $this->assertEqualsWithDelta(
+            0.45,
+            $confidence,
+            0.0001,
+            'Confidence must match SemanticFactInserter boost (+0.15), not old +0.25'
+        );
     }
 
     private function tempDir(string $prefix): string

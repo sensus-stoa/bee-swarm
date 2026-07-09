@@ -1,45 +1,18 @@
-# Story S1.4: Competitive Task Distribution
+# Story S1.4: Density-based Task Routing
 
-> Protocol 2.4: задачи распределяются пропорционально исторической успешности, а не циклически.
-
-## Спецификация
-
-Из протокола §2.4:
-- `wins_i` — число открытий пчелы i
-- `attempts_i` — число задач, назначенных пчеле i
-- `p_i = (wins_i + 1) / Σ(wins_j + 1)` — вероятность назначения (сглаживание Лапласа)
-- Таймаут: `K = 100` тактов → задача отзывается и переназначается
-- Пчела, не решившая задачу, всё равно платит `ΔE_search`
-
-## Архитектура
-
-```
-TaskRouter {
-    bees: Bee[]
-    wins: map<bee_id, int>
-    attempts: map<bee_id, int>
-    
-    dispatch(task):      choose bee by p_i
-    timeout(task, bee):  reassign if unsolved after K ticks
-}
-```
+> Protocol 2.4: distribution non-uniform. Implementation: fingerprint + outcome history, domains emerge.
 
 ## Phases
 
-### Phase 1: Task router
-- RED: test_router_weighted_by_wins — пчела с wins=5 получает больше задач чем с wins=1
-- GREEN: TaskRouter::dispatch() с вероятностным распределением
+### Phase 1: TaskRouter ✅
+- [x] Structural fingerprint (columns, size bucket, text/numeric)
+- [x] Outcome history: fingerprint → bee → success score
+- [x] Exploration/exploitation: N ticks random + 20% ongoing
+- [x] 4 tests PASS, review PASS
 
-### Phase 2: Timeout + reassign
-- RED: test_task_timeout_reassign — задача не решена за K тактов → другая пчела
-- GREEN: TaskRouter отслеживает pending задачи, перераспределяет
-
-### Phase 3: Wiring
-- RED: test_energy_cost_on_failed_task — пчела платит ΔE_search даже при неудаче
-- GREEN: интеграция с энергетической моделью Bee
-
-## Метрики цели
-- verify_1_4: распределение не равномерно (χ² тест), ≥1 задача отозвана и переназначена
+### Phase 2: Timeout + reassign (backlog)
+- [ ] K=100 ticks timeout, переназначение
+- [ ] → S1-WIRE Phase 2
 
 ## Status
-⬜ Backlog
+🔧 Phase 2 — wiring (зависит от S1-WIRE)

@@ -62,8 +62,11 @@
 | S1.1 | 2.1 Bee death | Energy model + starvation | ⭐ |
 | S1.2 | 2.2 Bee birth | Spawn + grammar mutation | ⭐⭐⭐ |
 | S1.3 | 2.3 Grammar isolation | Per-bee grammar (no shared state) | ⭐⭐ |
-| S1.4 | 2.4 Task routing | Competitive distribution | ⭐⭐ |
+| S1.4 | 2.4 Task routing | Density-based: fingerprint + outcome history, domains emerge | ✅ |
+| S1-WIRE | — Hive population wiring | Bee+TaskRouter+RoadRunner → живая популяция | ⭐⭐⭐⭐ |
 | S1.5 | 2.5 Evolutionary dynamics | Grammar compression + diversity | ⭐⭐⭐ |
+| S1.5-FCI | 2.5+ Functional Complexity Index | Grammar coverage > size, нейро-inspired | ⭐⭐⭐ |
+| SX-Compose | Emergent compose | Нелинейная композиция ops, топология grammar | ⭐⭐⭐⭐ |
 
 ## Stage 2 — Understanding (Backlog)
 

@@ -98,5 +98,18 @@ class Database
             created_at TEXT DEFAULT (datetime('now')),
             UNIQUE(subject, predicate, object)
         )");
+
+        // §1.8: Overlap Awareness — pairwise bee answer comparison
+        $db->exec("CREATE TABLE IF NOT EXISTS overlap_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            bee_a TEXT NOT NULL,
+            bee_b TEXT NOT NULL,
+            task TEXT NOT NULL,
+            answer_a TEXT NOT NULL,
+            answer_b TEXT NOT NULL,
+            matched INTEGER DEFAULT 0,
+            created_at TEXT DEFAULT (datetime('now'))
+        )");
+        $db->exec("CREATE INDEX IF NOT EXISTS idx_overlap_pair ON overlap_log(bee_a, bee_b)");
     }
 }

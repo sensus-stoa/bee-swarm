@@ -247,11 +247,10 @@ class Hive
 
         // Route via TaskRouter if population exists, else random
         $this->routedBee = null;
-        if ($this->taskRouter && ! empty($this->bees)) {
-            $this->routedBee = $this->taskRouter->route($tasks[0]);
-        }
-
         $task = $tasks[array_rand($tasks)];
+        if ($this->taskRouter && ! empty($this->bees)) {
+            $this->routedBee = $this->taskRouter->route($task);
+        }
 
         if ($this->routedBee) {
             $beeIdx = array_search($this->routedBee, $this->bees, true);

@@ -53,10 +53,8 @@ class BeeWorker
             ];
         }
 
-        $this->bee->chargeSearch();
-
         $task = json_decode($body, true);
-        if (! $task || ! isset($task['data'])) {
+        if (! $task || ! isset($task['data']) || empty($task['data'])) {
             return [
                 'accepted' => false,
                 'error' => 'invalid task format',
@@ -65,17 +63,21 @@ class BeeWorker
 
         // Extract X and y from task data
         $data = $task['data'];
-        $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
-        $y = array_column($data, count($data[0]) - 1);
-
-        // Run CV→0 search
-        $grammar = new \BeeSwarm\Core\Grammar();
-        // Load bee's custom grammar ops
-        foreach ($this->bee->grammar() as $op) {
-            if (! in_array($op, array_keys(\BeeSwarm\Core\Grammar::BASE_OPS))) {
-                $grammar->add($op, 'bee-' . spl_object_id($this->bee));
+        $nCols = count($data[0]);
+        foreach ($data as $row) {
+            if (count($row) !== $nCols) {
+                return ['accepted' => false, 'error' => 'inconsistent row lengths'];
             }
         }
+
+        $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
+        $y = array_column($data, $nCols - 1);
+
+        // Charge search energy BEFORE search (after validation)
+        $this->bee->chargeSearch();
+
+        // Use standard grammar (BASE_OPS + SEMANTIC_OPS)
+        $grammar = new \BeeSwarm\Core\Grammar();
 
         [$found, $cv, $formula] = \BeeSwarm\Core\Search::find($X, $y, $grammar, 2);
 
@@ -84,7 +86,7 @@ class BeeWorker
             'grammar' => $this->bee->grammar(),
         ];
 
-        if ($found && $cv < 0.01) {
+        if ($found && $cv <= 0.01) {
             $result['discovery'] = ['formula' => $formula, 'cv' => $cv];
             $this->discoveries++;
             $this->bee->rewardDiscovery();

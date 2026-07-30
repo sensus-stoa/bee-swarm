@@ -50,6 +50,10 @@ class Hive
 
     private ?Bee $routedBee = null;
 
+    private int $generation = 0;
+
+    private int $spawnCount = 0;
+
     public function __construct(
         ?PlateauDetector $plateau = null,
         ?Forager $forager = null,
@@ -91,6 +95,31 @@ class Hive
         $intersection = count(array_intersect($a, $b));
         $union = count(array_unique(array_merge($a, $b)));
         return $union > 0 ? $intersection / $union : 0.0;
+    }
+
+    private function computeDiversity(): float
+    {
+        $alive = array_filter($this->bees, fn (Bee $b) => $b->isAlive());
+        if (count($alive) < 2) return 0.0;
+
+        $grammars = array_map(fn (Bee $b) => $b->grammar(), array_values($alive));
+        $sum = 0.0;
+        $pairs = 0;
+        for ($i = 0; $i < count($grammars); $i++) {
+            for ($j = $i + 1; $j < count($grammars); $j++) {
+                $sum += self::jaccard($grammars[$i], $grammars[$j]);
+                $pairs++;
+            }
+        }
+        return $pairs > 0 ? 1.0 - ($sum / $pairs) : 0.0;
+    }
+
+    private function avgGrammarSize(): float
+    {
+        $alive = array_filter($this->bees, fn (Bee $b) => $b->isAlive());
+        if (empty($alive)) return 0.0;
+        $sum = array_sum(array_map(fn (Bee $b) => count($b->grammar()), $alive));
+        return $sum / count($alive);
     }
 
     // ═══ ГЛАВНЫЙ ЦИКЛ ═══
@@ -161,6 +190,11 @@ class Hive
         // Create TaskRouter with the population
         if ($this->taskRouter === null && ! empty($this->bees)) {
             $this->taskRouter = new TaskRouter($this->bees, 10);
+        }
+
+        // §2.5: Log initial generation 0
+        if ($this->generation === 0 && ! empty($this->bees)) {
+            $this->log('GEN: 0 pop=' . count($this->bees) . ' (bootstrap)');
         }
 
         // Enable held-out validation
@@ -281,7 +315,18 @@ class Hive
             if ($child) {
                 $this->bees[] = $child;
                 $idx = count($this->bees) - 1;
+                $this->spawnCount++;
                 $this->log("SPAWN: bee#{$idx} from parent E={$parent->energy()}");
+
+                // §2.5: Generation tracking — spawn_events ≥ N → new generation
+                if ($this->spawnCount >= count($this->bees)) {
+                    $this->generation++;
+                    $this->spawnCount = 0;
+                    $diversity = $this->computeDiversity();
+                    $avgGrammarSize = $this->avgGrammarSize();
+                    $this->log("GEN: {$this->generation} pop=" . count($this->bees)
+                        . " diversity={$diversity} avg|G|={$avgGrammarSize}");
+                }
             }
         }
 

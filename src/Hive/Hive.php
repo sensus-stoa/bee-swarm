@@ -82,6 +82,13 @@ class Hive
         return $this->bees;
     }
 
+    private static function jaccard(array $a, array $b): float
+    {
+        $intersection = count(array_intersect($a, $b));
+        $union = count(array_unique(array_merge($a, $b)));
+        return $union > 0 ? $intersection / $union : 0.0;
+    }
+
     // ═══ ГЛАВНЫЙ ЦИКЛ ═══
 
     public function run(): int
@@ -110,20 +117,35 @@ class Hive
 
         // §0.6: Bootstrap Phase — cold start with seed population
         if (empty($this->bees)) {
-            $allOps = array_keys(Grammar::BASE_OPS);
-            $semOps = Grammar::SEMANTIC_OPS;
-            $available = array_merge($allOps, $semOps);
+        $allOps = array_keys(Grammar::BASE_OPS);
+        $semOps = Grammar::SEMANTIC_OPS;
+        $available = array_merge($allOps, $semOps);
 
-            // G₁ = baseline grammar B
-            $bee1 = new Bee($allOps, 10.0);
-            // G₂ = mutate(B)
-            $bee2 = new Bee(GrammarMutator::mutate($allOps, $available), 10.0);
-            // G₃ = mutate(mutate(B))
+        // G₁ = baseline grammar B
+        $g1 = $allOps;
+        // G₂ = mutate(B) — retry until Jaccard < 1.0 with G₁
+        $g2 = $g1;
+        for ($retry = 0; $retry < 10; $retry++) {
             $g2 = GrammarMutator::mutate($allOps, $available);
-            $bee3 = new Bee(GrammarMutator::mutate($g2, $available), 10.0);
+            if (self::jaccard($g1, $g2) < 1.0) {
+                break;
+            }
+        }
+        // G₃ = mutate(mutate(B)) — pairwise Jaccard < 1.0 with both
+        $g3 = $g2;
+        for ($retry = 0; $retry < 10; $retry++) {
+            $g3 = GrammarMutator::mutate($g2, $available);
+            if (self::jaccard($g1, $g3) < 1.0 && self::jaccard($g2, $g3) < 1.0) {
+                break;
+            }
+        }
 
-            $this->bees = [$bee1, $bee2, $bee3];
-            $this->log('BOOTSTRAP: 3 seed bees created');
+        $this->bees = [
+            new Bee($g1, 10.0),
+            new Bee($g2, 10.0),
+            new Bee($g3, 10.0),
+        ];
+        $this->log('BOOTSTRAP: 3 seed bees created');
         }
 
         // Enable held-out validation

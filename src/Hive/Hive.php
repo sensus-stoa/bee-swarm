@@ -43,10 +43,14 @@ class Hive
 
     private ?int $maxTicks;
 
+    /** @var Bee[] */
+    private array $bees = [];
+
     public function __construct(
         ?PlateauDetector $plateau = null,
         ?Forager $forager = null,
         ?int $maxTicks = null,
+        ?string $logFile = null,
     ) {
         $this->plateau = $plateau ?? new PlateauDetector(50);
         $this->forager = $forager ?? new Forager();
@@ -61,7 +65,7 @@ class Hive
         if (! is_dir($logDir)) {
             mkdir($logDir, 0755, true);
         }
-        $this->logFile = $logDir . '/agenda.log';
+        $this->logFile = $logFile ?? $logDir . '/agenda.log';
     }
 
     // ═══ ЛОГГИРОВАНИЕ ═══
@@ -71,6 +75,11 @@ class Hive
         $line = '[' . date('H:i:s') . '] ' . $msg . PHP_EOL;
         echo $line;
         file_put_contents($this->logFile, $line, FILE_APPEND);
+    }
+
+    public function getBees(): array
+    {
+        return $this->bees;
     }
 
     // ═══ ГЛАВНЫЙ ЦИКЛ ═══
@@ -94,6 +103,28 @@ class Hive
     private function bootstrap(): void
     {
         echo "[AGI v4-cloze] Hive. Log: {$this->logFile}\n";
+
+        // §0.6-бис: Data Bootstrap Acknowledgment
+        $this->log('DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault');
+        $this->log('DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS');
+
+        // §0.6: Bootstrap Phase — cold start with seed population
+        if (empty($this->bees)) {
+            $allOps = array_keys(Grammar::BASE_OPS);
+            $semOps = Grammar::SEMANTIC_OPS;
+            $available = array_merge($allOps, $semOps);
+
+            // G₁ = baseline grammar B
+            $bee1 = new Bee($allOps, 10.0);
+            // G₂ = mutate(B)
+            $bee2 = new Bee(GrammarMutator::mutate($allOps, $available), 10.0);
+            // G₃ = mutate(mutate(B))
+            $g2 = GrammarMutator::mutate($allOps, $available);
+            $bee3 = new Bee(GrammarMutator::mutate($g2, $available), 10.0);
+
+            $this->bees = [$bee1, $bee2, $bee3];
+            $this->log('BOOTSTRAP: 3 seed bees created');
+        }
 
         // Enable held-out validation
         AtomRegistry::setHeldoutEnabled(true);

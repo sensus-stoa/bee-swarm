@@ -385,6 +385,38 @@ class AtomRegistry
         return RetrospectiveValidator::validate($tasks);
     }
 
+    /**
+     * §0.7: System Null-Calibration — run full pipeline on shuffled data.
+     * Returns ['fpr' => float, 'trials' => int, 'false_discoveries' => int, 'pass' => bool]
+     */
+    public static function runNullCalibration(array $domains, int $trialsPerDomain = 20): array
+    {
+        $totalFalseDiscoveries = 0;
+        $totalTrials = 0;
+
+        foreach ($domains as $domain) {
+            $X = $domain['X'];
+            $y = $domain['y'];
+
+            for ($trial = 0; $trial < $trialsPerDomain; $trial++) {
+                $shuffledY = $y;
+                shuffle($shuffledY);
+                $discoveries = self::discoverHeldout($X, $shuffledY);
+                if (! empty($discoveries)) {
+                    $totalFalseDiscoveries++;
+                }
+                $totalTrials++;
+            }
+        }
+
+        return [
+            'fpr' => $totalTrials > 0 ? $totalFalseDiscoveries / $totalTrials : 0,
+            'trials' => $totalTrials,
+            'false_discoveries' => $totalFalseDiscoveries,
+            'pass' => $totalFalseDiscoveries === 0,
+        ];
+    }
+
     // ═══ CV ═══
 
     public static function isHeldoutEnabled(): bool

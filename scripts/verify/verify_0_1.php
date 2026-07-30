@@ -5,11 +5,7 @@ declare(strict_types=1);
 /**
  * verify_0_1.php — Held-Out Validation (§1.1)
  *
- * Проверяет что все открытия имеют held-out CV и нет OVERFIT.
- * Использует QueryEngine (S0-QUERY).
- *
- * Использование: php scripts/verify/verify_0_1.php [logfile]
- * Exit 0 = PASS, Exit 1 = FAIL.
+ * Протокол требует: count(OVERFIT)=0 И count(DISCOVERY)>0.
  */
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -18,47 +14,42 @@ use BeeSwarm\Core\QueryEngine;
 
 $engine = new QueryEngine();
 
-// 1. Проверить что held-out включён
-$heldoutLaws = $engine->query(
-    "SELECT COUNT(*) as cnt FROM laws WHERE cv IS NOT NULL"
-);
-echo "Laws with CV: {$heldoutLaws[0]['cnt']}\n";
-
-// 2. Проверить отсутствие OVERFIT в логе
-$logFile = $argv[1] ?? null;
-$overfitCount = 0;
-
-if ($logFile && file_exists($logFile)) {
-    $log = file_get_contents($logFile);
-    preg_match_all('/OVERFIT/', $log, $matches);
-    $overfitCount = count($matches[0]);
-    echo "OVERFIT events in log: {$overfitCount}\n";
-}
-
-// 3. Проверить что каждый закон имеет held-out CV
-$laws = $engine->query(
-    "SELECT name, formula, cv, domain FROM laws"
-);
-
-$withoutCV = 0;
+// Все законы должны иметь held-out CV
+$laws = $engine->query("SELECT name, formula, cv FROM laws");
 $discoveries = 0;
+$withoutCV = 0;
+
 foreach ($laws as $law) {
-    if ($law['cv'] === null) {
-        $withoutCV++;
-    } else {
+    if ($law['cv'] !== null) {
         $discoveries++;
+    } else {
+        $withoutCV++;
     }
 }
 
-echo "Discoveries with held-out CV: {$discoveries}\n";
+// Проверить OVERFIT в логе
+$logFile = $argv[1] ?? null;
+$overfitCount = 0;
+if ($logFile && file_exists($logFile)) {
+    $log = file_get_contents($logFile);
+    $overfitCount = substr_count($log, 'OVERFIT');
+}
+
+echo "Discoveries with CV: {$discoveries}\n";
 echo "Laws without CV: {$withoutCV}\n";
+echo "OVERFIT events: {$overfitCount}\n";
 
-$pass = $withoutCV === 0;
+// §1.1: count(OVERFIT)=0 И count(DISCOVERY)>0
+$pass = ($withoutCV === 0) && ($overfitCount === 0) && ($discoveries > 0);
 
-if ($pass) {
-    echo "PASS: All discoveries have held-out CV\n";
-    exit(0);
-} else {
-    echo "FAIL: {$withoutCV} laws without held-out CV\n";
+if (! $pass) {
+    $reasons = [];
+    if ($withoutCV > 0) $reasons[] = "{$withoutCV} laws without CV";
+    if ($overfitCount > 0) $reasons[] = "{$overfitCount} OVERFIT events";
+    if ($discoveries === 0) $reasons[] = "no discoveries";
+    echo "FAIL: " . implode(', ', $reasons) . "\n";
     exit(1);
 }
+
+echo "PASS: All discoveries have held-out CV, 0 OVERFIT\n";
+exit(0);

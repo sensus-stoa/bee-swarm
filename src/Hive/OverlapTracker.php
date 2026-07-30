@@ -21,12 +21,13 @@ class OverlapTracker
     public function record(string $beeA, string $beeB, string $task, string $answerA, string $answerB): void
     {
         $key = $this->pairKey($beeA, $beeB);
+        [$canonicalA, $canonicalB] = explode('::', $key);
         $matched = $this->answersMatch($answerA, $answerB) ? 1 : 0;
 
         $db = Database::get();
         $db->prepare('INSERT INTO overlap_log (bee_a, bee_b, task, answer_a, answer_b, matched)
                       VALUES (?, ?, ?, ?, ?, ?)')
-           ->execute([$beeA, $beeB, $task, $answerA, $answerB, $matched]);
+           ->execute([$canonicalA, $canonicalB, $task, $answerA, $answerB, $matched]);
     }
 
     /**

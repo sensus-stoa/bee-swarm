@@ -67,9 +67,22 @@ class Hive
         $this->maxTicks = $maxTicks;
 
         $sources = getenv('FORAGER_SOURCES');
-        $this->foragerSources = $sources
-            ? array_fill_keys(explode(':', $sources), 1)
-            : [];
+        if ($sources) {
+            $this->foragerSources = array_fill_keys(explode(':', $sources), 1);
+        } else {
+            // Universal fallback: scan user's home directory
+            $home = getenv('HOME') ?: '/home/' . get_current_user();
+            $this->foragerSources = [];
+            foreach (['Documents', 'Desktop', 'Downloads'] as $dir) {
+                $path = $home . '/' . $dir;
+                if (is_dir($path)) {
+                    $this->foragerSources[$path] = 1;
+                }
+            }
+            if (empty($this->foragerSources)) {
+                $this->foragerSources = [$home => 1]; // fallback: scan entire home
+            }
+        }
 
         $logDir = dirname(__DIR__, 2) . '/logs';
         if (! is_dir($logDir)) {

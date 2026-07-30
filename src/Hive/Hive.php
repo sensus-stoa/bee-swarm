@@ -354,7 +354,22 @@ class Hive
             }
         }
 
-        $data = $task['data'];
+        $data = $task['data'] ?? [];
+        $domain = $task['domain'] ?? 'unknown';
+
+        // Skip semantic tasks early — they don't have numeric data
+        if ($domain === 'foraged_semantic' || empty($data)) {
+            if ($domain === 'foraged_semantic' && ! empty($data[0]) && count($data[0]) >= 3) {
+                [$s, $p, $o] = $data[0];
+                try {
+                    Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
+                        ->execute([$s, $p, $o]);
+                } catch (\PDOException) {}
+            }
+            usleep(500_000);
+            return;
+        }
+
         if (count($data) > 30) {
             $keys = array_rand($data, 30);
             $data = array_map(fn ($k) => $data[$k], $keys);
@@ -374,16 +389,6 @@ class Hive
         // Discover (skip semantic — KG-only)
         if (! $foundAny && $domain !== 'cloze' && $domain !== 'foraged_semantic') {
             $this->doDiscoverTick($task, $X, $y, $domain, $foundAny);
-        }
-
-        // Semantic facts → KG directly
-        if ($domain === 'foraged_semantic' && ! empty($data[0]) && count($data[0]) >= 3) {
-            [$s, $p, $o] = $data[0];
-            try {
-                Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
-                    ->execute([$s, $p, $o]);
-            } catch (\PDOException) {
-            }
         }
 
         // Text atom discovery from raw content (E1 feedback loop)

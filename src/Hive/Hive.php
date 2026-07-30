@@ -46,6 +46,10 @@ class Hive
     /** @var Bee[] */
     private array $bees = [];
 
+    private ?TaskRouter $taskRouter = null;
+
+    private ?Bee $routedBee = null;
+
     public function __construct(
         ?PlateauDetector $plateau = null,
         ?Forager $forager = null,
@@ -154,6 +158,11 @@ class Hive
         $this->log('BOOTSTRAP: 3 seed bees created');
         }
 
+        // Create TaskRouter with the population
+        if ($this->taskRouter === null && ! empty($this->bees)) {
+            $this->taskRouter = new TaskRouter($this->bees, 10);
+        }
+
         // Enable held-out validation
         AtomRegistry::setHeldoutEnabled(true);
 
@@ -236,7 +245,18 @@ class Hive
             $lastTaskCount = $currentTaskCount;
         }
 
+        // Route via TaskRouter if population exists, else random
+        $this->routedBee = null;
+        if ($this->taskRouter && ! empty($this->bees)) {
+            $this->routedBee = $this->taskRouter->route($tasks[0]);
+        }
+
         $task = $tasks[array_rand($tasks)];
+
+        if ($this->routedBee) {
+            $beeIdx = array_search($this->routedBee, $this->bees, true);
+            $this->log("ROUTE: task -> bee#{$beeIdx}");
+        }
         $data = $task['data'];
         if (count($data) > 30) {
             $keys = array_rand($data, 30);
@@ -401,6 +421,10 @@ class Hive
         }
         Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
             ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
+        // Record success on TaskRouter
+        if ($this->taskRouter && $this->routedBee) {
+            $this->taskRouter->recordOutcome($task, $this->routedBee, true);
+        }
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [{$domain}]");
         $this->plateau->tick(true);
     }

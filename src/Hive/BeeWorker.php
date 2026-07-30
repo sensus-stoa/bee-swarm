@@ -42,7 +42,7 @@ class BeeWorker
      * Handle a task from Hive.
      *
      * @param string $body raw JSON task body
-     * @return array{accepted: bool, grammar?: string[], error?: string}
+     * @return array{accepted: bool, grammar?: array, error?: string, discovery?: array}
      */
     public function handleTask(string $body): array
     {

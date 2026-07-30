@@ -131,6 +131,9 @@ class Hive
                 break;
             }
         }
+        if (self::jaccard($g1, $g2) >= 1.0) {
+            throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
+        }
         // G₃ = mutate(mutate(B)) — pairwise Jaccard < 1.0 with both
         $g3 = $g2;
         for ($retry = 0; $retry < 10; $retry++) {
@@ -138,6 +141,9 @@ class Hive
             if (self::jaccard($g1, $g3) < 1.0 && self::jaccard($g2, $g3) < 1.0) {
                 break;
             }
+        }
+        if (self::jaccard($g1, $g3) >= 1.0 || self::jaccard($g2, $g3) >= 1.0) {
+            throw new \RuntimeException('BOOTSTRAP: G₃ not distinct from G₁/G₂ after 10 retries');
         }
 
         $this->bees = [

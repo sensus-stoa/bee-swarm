@@ -54,6 +54,8 @@ class Hive
 
     private int $spawnCount = 0;
 
+    private int $generationStartPop = 0;
+
     public function __construct(
         ?PlateauDetector $plateau = null,
         ?Forager $forager = null,
@@ -194,6 +196,7 @@ class Hive
 
         // §2.5: Log initial generation 0
         if ($this->generation === 0 && ! empty($this->bees)) {
+            $this->generationStartPop = count($this->bees);
             $this->log('GEN: 0 pop=' . count($this->bees) . ' (bootstrap)');
         }
 
@@ -318,14 +321,19 @@ class Hive
                 $this->spawnCount++;
                 $this->log("SPAWN: bee#{$idx} from parent E={$parent->energy()}");
 
-                // §2.5: Generation tracking — spawn_events ≥ N → new generation
-                if ($this->spawnCount >= count($this->bees)) {
+                // §2.5: Generation tracking — spawn_events ≥ generation_start_population
+                if ($this->spawnCount >= $this->generationStartPop) {
                     $this->generation++;
                     $this->spawnCount = 0;
+                    $this->generationStartPop = count($this->bees);
                     $diversity = $this->computeDiversity();
                     $avgGrammarSize = $this->avgGrammarSize();
+                    $uniqueGrammars = count(array_unique(array_map(
+                        fn (Bee $b) => implode(',', $b->grammar()),
+                        array_filter($this->bees, fn (Bee $b) => $b->isAlive())
+                    )));
                     $this->log("GEN: {$this->generation} pop=" . count($this->bees)
-                        . " diversity={$diversity} avg|G|={$avgGrammarSize}");
+                        . " unique={$uniqueGrammars} diversity={$diversity} avg|G|={$avgGrammarSize}");
                 }
             }
         }

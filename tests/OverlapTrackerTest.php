@@ -17,7 +17,8 @@ class OverlapTrackerTest extends TestCase
     {
         parent::setUp();
         $this->tracker = new OverlapTracker();
-        $this->testRun++;
+        // Изоляция: чистим overlap_log перед каждым тестом
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM overlap_log');
     }
 
     /** Уникальные имена пчёл для изоляции тестов */

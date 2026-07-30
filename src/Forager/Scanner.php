@@ -151,6 +151,10 @@ class Scanner
         if (str_contains($path, '/.symfony') || str_contains($path, '/.composer/')) {
             return true;
         }
+        // Security: skip sensitive directories
+        if (str_contains($path, '/.ssh/') || str_contains($path, '/.gnupg/') || str_contains($path, '/.aws/')) {
+            return true;
+        }
         return false;
     }
 

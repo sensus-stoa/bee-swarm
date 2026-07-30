@@ -80,7 +80,7 @@ class Hive
                 }
             }
             if (empty($this->foragerSources)) {
-                $this->foragerSources = [$home => 1]; // fallback: scan entire home
+                $this->foragerSources = [$home => 1];
             }
         }
 
@@ -225,6 +225,9 @@ class Hive
 
         // Forager startup scan
         if (! empty($this->foragerSources)) {
+            if (! getenv('FORAGER_SOURCES')) {
+                $this->log('WARNING: FORAGER_SOURCES not set, using default directories');
+            }
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
                 $this->foragedTasksGlobal = $foraged;

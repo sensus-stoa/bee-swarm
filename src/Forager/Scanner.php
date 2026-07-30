@@ -155,6 +155,16 @@ class Scanner
         if (str_contains($path, '/.ssh/') || str_contains($path, '/.gnupg/') || str_contains($path, '/.aws/')) {
             return true;
         }
+        // Performance: skip large binary/media directories
+        if (str_contains($path, '/.zoom/') || str_contains($path, '/.dropbox/')) {
+            return true;
+        }
+        if (str_contains($path, '/Downloads/') || str_contains($path, '/Music/')) {
+            return true;
+        }
+        if (str_contains($path, '/Videos/') || str_contains($path, '/Pictures/')) {
+            return true;
+        }
         return false;
     }
 

@@ -63,9 +63,33 @@ class BeeWorker
             ];
         }
 
-        return [
+        // Extract X and y from task data
+        $data = $task['data'];
+        $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
+        $y = array_column($data, count($data[0]) - 1);
+
+        // Run CV→0 search
+        $grammar = new \BeeSwarm\Core\Grammar();
+        // Load bee's custom grammar ops
+        foreach ($this->bee->grammar() as $op) {
+            if (! in_array($op, array_keys(\BeeSwarm\Core\Grammar::BASE_OPS))) {
+                $grammar->add($op, 'bee-' . spl_object_id($this->bee));
+            }
+        }
+
+        [$found, $cv, $formula] = \BeeSwarm\Core\Search::find($X, $y, $grammar, 2);
+
+        $result = [
             'accepted' => true,
             'grammar' => $this->bee->grammar(),
         ];
+
+        if ($found && $cv < 0.01) {
+            $result['discovery'] = ['formula' => $formula, 'cv' => $cv];
+            $this->discoveries++;
+            $this->bee->rewardDiscovery();
+        }
+
+        return $result;
     }
 }

@@ -256,6 +256,35 @@ class Hive
             $beeIdx = array_search($this->routedBee, $this->bees, true);
             $this->log("ROUTE: task -> bee#{$beeIdx}");
         }
+
+        // §2.1: Energy loop — tick all bees, log deaths
+        foreach ($this->bees as $i => $bee) {
+            if (! $bee->isAlive()) continue;
+            $bee->tick();
+            // §2.1: energy must not go negative — floor at 0
+            if ($bee->energy() < 0.0) {
+                $ref = new \ReflectionProperty(Bee::class, 'energy');
+                $ref->setValue($bee, 0.0);
+            }
+            if (! $bee->isAlive()) {
+                $this->log("DEATH: bee#{$i} energy={$bee->energy()}");
+            }
+        }
+
+        // §2.2: Spawn loop — E≥15 → new bee with mutated grammar
+        $allOps = array_keys(Grammar::BASE_OPS);
+        $semOps = Grammar::SEMANTIC_OPS;
+        $available = array_merge($allOps, $semOps);
+        foreach ($this->bees as $parent) {
+            if (! $parent->isAlive()) continue;
+            $child = $parent->spawn($available);
+            if ($child) {
+                $this->bees[] = $child;
+                $idx = count($this->bees) - 1;
+                $this->log("SPAWN: bee#{$idx} from parent E={$parent->energy()}");
+            }
+        }
+
         $data = $task['data'];
         if (count($data) > 30) {
             $keys = array_rand($data, 30);

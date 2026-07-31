@@ -19,5 +19,13 @@ abstract class TestCase extends BaseTestCase
             );
         }
         Database::get();
+
+        // Use test fixtures for forager instead of scanning home directory
+        if (! getenv('FORAGER_SOURCES')) {
+            $fixturesDir = __DIR__ . '/fixtures/forager';
+            if (is_dir($fixturesDir)) {
+                putenv('FORAGER_SOURCES=' . $fixturesDir);
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ class ForagerRealDataTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->exocortexDir = getenv('HOME') . '/Documents/the_lair/ExoCortex/Journal';
+        $this->exocortexDir = __DIR__ . '/fixtures/exocortex';
     }
 
     /**

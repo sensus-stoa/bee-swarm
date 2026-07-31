@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Bee;

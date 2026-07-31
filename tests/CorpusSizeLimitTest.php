@@ -18,7 +18,7 @@ class CorpusSizeLimitTest extends TestCase
     {
         $lair = getenv('HOME') . '/Documents/the_lair';
         if (! is_dir($lair)) {
-            $this->markTestSkipped('Lair not found');
+            $lair = __DIR__ . '/fixtures/lair';
         }
 
         $vocab = new CorpusVocabulary([$lair]);
@@ -37,7 +37,7 @@ class CorpusSizeLimitTest extends TestCase
     {
         $lair = getenv('HOME') . '/Documents/the_lair';
         if (! is_dir($lair)) {
-            $this->markTestSkipped('Lair not found');
+            $lair = __DIR__ . '/fixtures/lair';
         }
 
         $start = microtime(true);

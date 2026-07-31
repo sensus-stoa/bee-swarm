@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\QueryEngine;
+use BeeSwarm\Infra\Database;
 
 /**
  * Story S0-QUERY: Structured System Query (Theo-Conjecture T3)
@@ -21,9 +22,11 @@ class QueryEngineTest extends TestCase
     /** lawsByDomain возвращает законы для указанного домена */
     public function testLawsByDomain(): void
     {
+        // S1.10: :memory: БД пустая — self-seed вместо накопленного мусора
+        Database::get()->exec("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES ('ARITH_LAW', 'x+y', 0, 'arithmetic')");
+
         $laws = $this->engine->lawsByDomain('arithmetic');
         $this->assertIsArray($laws);
-        // В тестовой БД есть арифметические законы
         $this->assertNotEmpty($laws, 'Must have arithmetic laws in test DB');
         $this->assertArrayHasKey('name', $laws[0]);
         $this->assertArrayHasKey('formula', $laws[0]);

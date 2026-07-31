@@ -11,11 +11,12 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         // GUARD: prevent test leakage into production DB
+        // :memory: — in-memory test DB (S1.10); test-пути — файловые тестовые БД
         $dbPath = getenv('SWARM_DB_PATH');
-        if (! $dbPath || ! str_contains($dbPath, 'test')) {
+        if ($dbPath !== ':memory:' && (! $dbPath || ! str_contains($dbPath, 'test'))) {
             $this->markTestSkipped(
-                'SWARM_DB_PATH must point to a test database. ' .
-                'Run with phpunit.xml or set SWARM_DB_PATH=data/test_swarm.db'
+                'SWARM_DB_PATH must point to a test database (:memory: or test path). ' .
+                'Run with phpunit.xml or set SWARM_DB_PATH=:memory:'
             );
         }
         Database::get();

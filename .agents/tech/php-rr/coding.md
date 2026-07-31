@@ -33,7 +33,7 @@ The daemon is the run loop. It runs continuously under RoadRunner or as a standa
 
 ```
 Pre-start checks:
-- phpunit.xml env: SWARM_DB_PATH=data/test_swarm.db (NOT production)
+- phpunit.xml env: SWARM_DB_PATH=:memory: (in-memory test DB, S1.10)
 - pgrep -f agenda.php → must return PID
 
 After code changes:
@@ -57,7 +57,7 @@ $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 ```xml
 <!-- phpunit.xml -->
-<env name="SWARM_DB_PATH" value="data/test_swarm.db"/>
+<env name="SWARM_DB_PATH" value=":memory:"/>
 ```
 
 Tests run on SEPARATE database. Never use `--no-configuration` flag — it bypasses the env var.

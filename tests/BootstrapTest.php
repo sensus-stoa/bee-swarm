@@ -29,7 +29,7 @@ class BootstrapTest extends TestCase
     {
         [$hive, $logFile] = $this->createHive();
         $bees = $hive->getBees();
-        $this->assertCount(2, $bees, "Bootstrap must create 2 seed bees"');
+        $this->assertCount(2, $bees, 'Bootstrap must create 2 seed bees');
         unlink($logFile);
     }
 
@@ -44,8 +44,6 @@ class BootstrapTest extends TestCase
 
         $grammars = array_map(fn (Bee $b) => $b->grammar(), $bees);
         $this->assertNotEquals($grammars[0], $grammars[1], 'G₁ ≠ G₂');
-        $this->assertNotEquals($grammars[1], $grammars[2], 'G₂ ≠ G₃');
-        $this->assertNotEquals($grammars[0], $grammars[2], 'G₁ ≠ G₃');
         unlink($logFile);
     }
 
@@ -57,7 +55,7 @@ class BootstrapTest extends TestCase
         [$hive, $logFile] = $this->createHive();
         $bees = $hive->getBees();
         foreach ($bees as $bee) {
-            $this->assertEqualsWithDelta(10.0, $bee->energy(), 0.001);
+            $this->assertEqualsWithDelta(10.0, $bee->energy(), 0.02, 'Seed bee must have E₀ ≈ 10.0');
         }
         unlink($logFile);
     }

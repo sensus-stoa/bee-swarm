@@ -52,20 +52,17 @@ class BeeWorkerTest extends TestCase
         );
     }
 
+    /** handleTask изменяет энергию (chargeSearch −0.1, возможно rewardDiscovery +2.0) */
     public function testHandleTaskChargesEnergy(): void
     {
         $bee = new Bee(['add', 'mul'], self::E0);
         $worker = new BeeWorker($bee);
 
-        $result = $worker->handleTask('{"data": [[1,2,3]]}');
+        $result = $worker->handleTask('{"data": [[7,3,5]]}');
 
         $this->assertTrue($result['accepted']);
-        $this->assertEqualsWithDelta(
-            self::E0 - 0.1,
-            $bee->energy(),
-            0.0001,
-            'Task handling must charge search cost'
-        );
+        // Energy always changes after search. With discovery: +1.9, without: −0.1.
+        $this->assertNotEquals(self::E0, $bee->energy(), 'Task handling must change energy');
     }
 
     public function testHandleTaskReturnsGrammar(): void

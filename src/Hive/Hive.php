@@ -319,6 +319,17 @@ class Hive
                 $ref = new \ReflectionProperty(Bee::class, 'energy');
                 $ref->setValue($bee, 0.0);
             }
+            // §S1.5-HUNGER: голодная мутация при E<5
+            if ($bee->isAlive() && $bee->energy() < 5.0) {
+                $allOps = array_keys(Grammar::BASE_OPS);
+                $semOps = Grammar::SEMANTIC_OPS;
+                $available = array_merge($allOps, $semOps);
+                $oldGrammar = $bee->grammar();
+                $bee->hungerMutate($available);
+                if ($bee->grammar() !== $oldGrammar) {
+                    $this->log("HUNGER_MUTATE: bee#{$i} E={$bee->energy()}");
+                }
+            }
             if (! $bee->isAlive()) {
                 $this->log("DEATH: bee#{$i} energy={$bee->energy()}");
             }
@@ -703,6 +714,23 @@ class Hive
                     break;
                 }
             }
+        }
+
+        // E1-FIX: Text atom cross-pairing — single values → X/y pairs
+        $txtTasks = array_filter($this->foragedTasksGlobal, fn ($t) => str_starts_with($t['name'] ?? '', 'foraged_txt_'));
+        if (count($txtTasks) >= 2) {
+            $atoms = [];
+            foreach ($txtTasks as $t) {
+                $name = $t['name'];
+                foreach ($t['data'] as $row) {
+                    $val = $row[0] ?? null;
+                    if ($val !== null) {
+                        $atoms[$name][] = (float) $val;
+                    }
+                }
+            }
+            $crossTasks = \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+            $tasks = array_merge($tasks, $crossTasks);
         }
 
         return array_merge($tasks, $this->foragedTasksGlobal);

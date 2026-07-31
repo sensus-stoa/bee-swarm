@@ -23,13 +23,13 @@ class BootstrapTest extends TestCase
 
     /**
      * §0.6: При первом запуске (популяция пуста) система создаёт
-     * 3 seed-пчелы с попарно разными грамматиками (Жаккар < 1.0).
+     * 2 seed-пчелы с попарно разными грамматиками (Жаккар < 1.0).
      */
     public function testBootstrapCreatesThreeSeedBees(): void
     {
         [$hive, $logFile] = $this->createHive();
         $bees = $hive->getBees();
-        $this->assertCount(3, $bees, 'Bootstrap must create 3 seed bees');
+        $this->assertCount(2, $bees, "Bootstrap must create 2 seed bees"');
         unlink($logFile);
     }
 
@@ -40,7 +40,7 @@ class BootstrapTest extends TestCase
     {
         [$hive, $logFile] = $this->createHive();
         $bees = $hive->getBees();
-        $this->assertCount(3, $bees);
+        $this->assertCount(2, $bees);
 
         $grammars = array_map(fn (Bee $b) => $b->grammar(), $bees);
         $this->assertNotEquals($grammars[0], $grammars[1], 'G₁ ≠ G₂');

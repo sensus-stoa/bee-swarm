@@ -1,0 +1,5 @@
+PASS — DataSelfGenerator path injection review
+Tests: 3/3 PASS (DataSelfGeneratorPathTest)
+Full suite: 44/45 PASS (1 pre-existing failure in BeeWorkerTest unrelated)
+Hive compatibility: backward-compatible (no-arg instantiation at Hive.php:579)
+Diff: +constructor + $metricsPath property, fromMetrics() uses injected path

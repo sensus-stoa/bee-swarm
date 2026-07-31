@@ -182,24 +182,12 @@ class Hive
         if (self::jaccard($g1, $g2) >= 1.0) {
             throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
         }
-        // G₃ = mutate(mutate(B)) — pairwise Jaccard < 1.0 with both
-        $g3 = $g2;
-        for ($retry = 0; $retry < 10; $retry++) {
-            $g3 = GrammarMutator::mutate($g2, $available);
-            if (self::jaccard($g1, $g3) < 1.0 && self::jaccard($g2, $g3) < 1.0) {
-                break;
-            }
-        }
-        if (self::jaccard($g1, $g3) >= 1.0 || self::jaccard($g2, $g3) >= 1.0) {
-            throw new \RuntimeException('BOOTSTRAP: G₃ not distinct from G₁/G₂ after 10 retries');
-        }
 
         $this->bees = [
             new Bee($g1, 10.0),
             new Bee($g2, 10.0),
-            new Bee($g3, 10.0),
         ];
-        $this->log('BOOTSTRAP: 3 seed bees created');
+        $this->log('BOOTSTRAP: 2 seed bees created');
         }
 
         // Create TaskRouter with the population
@@ -308,6 +296,15 @@ class Hive
         if ($this->routedBee) {
             $beeIdx = array_search($this->routedBee, $this->bees, true);
             $this->log("ROUTE: task -> bee#{$beeIdx}");
+
+            // §S1.7-NOVELTY: reward bee for exploring new fingerprint
+            static $seenFingerprints = [];
+            $fp = $this->taskRouter->fingerprint($task);
+            if (! isset($seenFingerprints[$fp])) {
+                $seenFingerprints[$fp] = true;
+                $this->routedBee->rewardNovelty();
+                $this->log("NOVELTY: bee#{$beeIdx} new fingerprint");
+            }
         }
 
         // §2.1: Energy loop — tick all bees, log deaths

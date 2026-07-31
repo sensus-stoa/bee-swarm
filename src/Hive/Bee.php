@@ -126,4 +126,13 @@ class Bee
         $this->grammar = $mutator->mutate($this->grammar, $available);
         $this->energy = max(0.0, $this->energy - 0.5);
     }
+
+    /**
+     * §S1.7-NOVELTY: +0.5 энергии за exploration новой задачи.
+     */
+    public function rewardNovelty(): void
+    {
+        if (! $this->isAlive()) return;
+        $this->energy += 0.5;
+    }
 }

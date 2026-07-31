@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Infra\PlateauDetector;
 
 /**
  * Story S0-BOOTSTRAP: Bootstrap Phase (§0.6 + §0.6-бис)
@@ -49,13 +47,19 @@ class BootstrapTest extends TestCase
 
     /**
      * §0.6: Seed-пчёлы имеют E₀ = 10.0.
+     *
+     * maxTicks=0: bootstrap без тика — novelty/ROUTE не влияют на энергию.
+     * (Флак-фикс 01.08: static $seenFingerprints + array_rand давали +0.5
+     * в первом тике → 10.49 ≠ 10.0.)
      */
     public function testSeedBeesHaveInitialEnergy(): void
     {
-        [$hive, $logFile] = $this->createHive();
+        $logFile = tempnam(sys_get_temp_dir(), 'bs_');
+        $hive = new Hive(maxTicks: 0, logFile: $logFile);
+        $hive->run();
         $bees = $hive->getBees();
         foreach ($bees as $bee) {
-            $this->assertEqualsWithDelta(10.0, $bee->energy(), 0.02, 'Seed bee must have E₀ ≈ 10.0');
+            $this->assertSame(10.0, $bee->energy(), 'Seed bee must have E₀ = 10.0');
         }
         unlink($logFile);
     }

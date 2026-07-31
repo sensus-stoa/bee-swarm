@@ -130,6 +130,30 @@ class Grammar
         };
     }
 
+    /**
+     * S1.9-GENERATIVE: reduce(op, vector) — arity bridge (float[]→float).
+     *
+     * Generative rule (AXIOM, не оператор): любой АССОЦИАТИВНЫЙ бинарный
+     * оператор грамматики применим к вектору через reduce.
+     * Не-ассоциативные (−, /) и семантические предикаты → null.
+     * ОДНА аксиома вместо sum/mean/correl вручную.
+     */
+    public function reduce(string $op, array $vector): ?float
+    {
+        $n = count($vector);
+        if ($n === 0) {
+            return null;
+        }
+
+        return match ($op) {
+            '+' => array_sum($vector),
+            '×' => array_product($vector),
+            'max' => max($vector),
+            'min' => min($vector),
+            default => null,
+        };
+    }
+
     private function applyCustom(float $a, float $b, string $op): ?float
     {
         // 0. Семантические операции: запрос к knowledge_graph

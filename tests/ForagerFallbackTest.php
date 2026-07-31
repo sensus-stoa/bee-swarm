@@ -6,7 +6,6 @@ namespace BeeSwarm\Tests;
 /**
  * Forager universal fallback: works without FORAGER_SOURCES env var.
  *
- * @group disabled — requires full Hive run with home directory scan (2+ min).
  * Run manually: vendor/bin/phpunit tests/ForagerFallbackTest.php --no-configuration
  */
 class ForagerFallbackTest extends TestCase

@@ -11,7 +11,6 @@ use BeeSwarm\Hive\Bee;
  * Пчела получает +0.5 за задачу с новым fingerprint'ом.
  * Exploration budget не привязанный к CV. Паттерн B.
  *
- * @group disabled — требует полного Hive::run() со сканированием.
  * Запускать вручную.
  */
 class NoveltyBonusTest extends TestCase

@@ -52,4 +52,6 @@ compose(reduce(+, w), /(x, count)) → mean(v)
 - ❌ Gradient reward за CV improvement (NovaMind-3 anti-pattern)
 
 ## Статус
-🔧 Phase 1 — RED
+✅ Phase 1 + Phase 1.5 завершены (09741be)
+⬜ Phase 2 — Search integration (backlog)
+⬜ Phase 3 — Co-evolution (backlog, Stage 2)

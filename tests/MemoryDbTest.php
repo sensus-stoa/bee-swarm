@@ -42,4 +42,18 @@ class MemoryDbTest extends TestCase
         $this->assertContains('knowledge_graph', $tables);
         $this->assertContains('overlap_log', $tables);
     }
+
+    /**
+     * :memory: БД стартует чистой — никакого накопленного мусора.
+     *
+     * Database::reset() создаёт СВЕЖУЮ :memory: БД, поэтому проверка
+     * детерминирована (не зависит от порядка тестов в процессе).
+     */
+    public function testMemoryDbStartsClean(): void
+    {
+        Database::reset();
+        $db = Database::get();
+        $ops = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
+        $this->assertSame(0, $ops, ':memory: grammar_ops must start empty');
+    }
 }

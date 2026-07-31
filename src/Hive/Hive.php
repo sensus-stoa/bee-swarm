@@ -12,6 +12,7 @@ use BeeSwarm\Infra\Database;
 use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Text\CorpusVocabulary;
 use BeeSwarm\Text\SentenceRegistry;
+use BeeSwarm\Validation\LawValidator;
 use BeeSwarm\Validation\NullCalibrator;
 
 /**
@@ -535,13 +536,33 @@ class Hive
             return;
         }
 
+        // V0: Null-calibration — per-fingerprint epsilon replaces hardcoded 0.01
+        $fp = $this->taskRouter
+            ? $this->taskRouter->fingerprint($task)
+            : ($domain . ':' . count($X[0] ?? []) . 'c:' . count($y));
+        if ($this->getEpsilon($fp) === null) {
+            try {
+                $grammar = new Grammar();
+                $grammar->restrictTo(array_keys(Grammar::BASE_OPS));
+                $this->calibrateEpsilon($fp, $X, $y, $grammar);
+            } catch (\Throwable $e) {
+                $this->log("CALIBRATE_FAILED: fp={$fp} " . $e->getMessage());
+                // fall through — getEpsilon returns null, use hardcoded 0.01 below
+            }
+        }
+        $cvTrainMax = $this->getEpsilon($fp) ?? 0.01;
+
         if (AtomRegistry::isHeldoutEnabled()) {
-            foreach (AtomRegistry::discoverHeldout($X, $y) as $d) {
+            foreach (LawValidator::discoverHeldout($X, $y, cvTrainMax: $cvTrainMax) as $d) {
                 $this->recordDiscovery($d, $task, $domain, $foundAny);
             }
         } else {
+            // Raw discover (no heldout): filter by epsilon manually here —
+            // AtomRegistry::discover does NOT go through LawValidator
             foreach (AtomRegistry::discover($X, $y) as $d) {
-                $this->recordDiscovery($d, $task, $domain, $foundAny);
+                if ($d['cv'] <= $cvTrainMax) {
+                    $this->recordDiscovery($d, $task, $domain, $foundAny);
+                }
             }
         }
     }

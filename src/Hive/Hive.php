@@ -420,9 +420,13 @@ class Hive
             }
         }
 
-        // Compose
-        if ($this->plateau->shouldRunCompose() && $foundAny && $domain !== 'cloze') {
+        // Compose — standard: plateau + foundAny; desperation: hunger OR novel fingerprint
+        $desperationCompose = $this->isDesperationCompose($task);
+        if ($desperationCompose || ($this->plateau->shouldRunCompose() && $foundAny && $domain !== 'cloze')) {
             $this->doComposeTick($X, $y, $domain, $foundAny);
+            if ($desperationCompose && ! $foundAny) {
+                $this->log('DESPERATION_COMPOSE: no discovery, trying compose from hunger/curiosity');
+            }
         }
 
         if (! $foundAny) {
@@ -569,7 +573,28 @@ class Hive
         }
     }
 
-    // ═══ ЗАДАЧИ ═══
+    /**
+     * §S1.8-DESPERATION: compose без foundAny при голоде ИЛИ любопытстве.
+     */
+    private function isDesperationCompose(array $task): bool
+    {
+        // Track seen fingerprints for curiosity check
+        static $seenFp = [];
+        $fp = $this->taskRouter ? $this->taskRouter->fingerprint($task) : '';
+
+        $hunger = false;
+        foreach ($this->bees as $bee) {
+            if ($bee->isAlive() && $bee->energy() < 5.0) {
+                $hunger = true;
+                break;
+            }
+        }
+
+        $curiosity = ! isset($seenFp[$fp]);
+        $seenFp[$fp] = true;
+
+        return $hunger || $curiosity;
+    }
 
     private function getTasks(bool $skipGenerated = false): array
     {

@@ -4,6 +4,7 @@
 
 | # | What | Status |
 |---|------|--------|
+| V0 | Runtime Null-Calibration | 🔧 Phase 3 — wiring into doDiscoverTick |
 
 ## Stage 0 — COMPLETE ✅
 

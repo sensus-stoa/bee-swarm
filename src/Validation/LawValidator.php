@@ -24,8 +24,10 @@ class LawValidator implements ValidatorInterface
 
     /**
      * discover с held-out validation.
+     *
+     * @param ?float $cvTrainMax кастомный порог (null = дефолт 0.01; V0: null-calibration)
      */
-    public static function discoverHeldout(array $X, array $y): array
+    public static function discoverHeldout(array $X, array $y, ?float $cvTrainMax = null): array
     {
         $n = count($y);
         $h = max(1, (int) floor($n / self::HO_SPLIT_RATIO));
@@ -37,7 +39,7 @@ class LawValidator implements ValidatorInterface
         $y_train = array_slice($y, 0, $n - $h);
 
         $candidates = AtomRegistry::discover($X_train, $y_train);
-        return self::validate($candidates, $X, $y);
+        return self::validate($candidates, $X, $y, cvTrainMax: $cvTrainMax);
     }
 
     /**
@@ -68,16 +70,20 @@ class LawValidator implements ValidatorInterface
     }
 
     /**
-     * ValidatorInterface: фильтрует кандидатов через held-out
+     * ValidatorInterface: фильтрует кандидатов через held-out.
+     *
+     * @param ?float $cvTrainMax кастомный порог (null = дефолт 0.01; V0: null-calibration)
      */
     #[Override]
-    public static function validate(array $candidates, array $X, array $y): array
+    public static function validate(array $candidates, array $X, array $y, ?float $cvTrainMax = null): array
     {
+        $threshold = $cvTrainMax ?? self::CV_TRAIN_MAX;
+
         $found = [];
         foreach ($candidates as $c) {
             $result = self::evaluateHeldout($c['atom'], $X, $y);
             if (
-                $result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX
+                $result !== null && $result['cv_train'] <= $threshold
                 && $result['cv_holdout'] <= self::CV_HOLDOUT_MAX
             ) {
                 // Compression check (HONEST_CRITERIA §1.7)
@@ -95,7 +101,7 @@ class LawValidator implements ValidatorInterface
                     'cv_holdout' => $result['cv_holdout'],
                     'mode' => $c['mode'],
                 ];
-            } elseif ($result !== null && $result['cv_train'] <= self::CV_TRAIN_MAX) {
+            } elseif ($result !== null && $result['cv_train'] <= $threshold) {
                 // OVERFIT: passed train but failed holdout (§1.1)
                 error_log("OVERFIT: {$c['atom']} (cv_train={$result['cv_train']}, cv_holdout={$result['cv_holdout']})");
             }

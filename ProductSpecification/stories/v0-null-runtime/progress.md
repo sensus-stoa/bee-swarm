@@ -35,15 +35,21 @@
 
 ## Phases
 
-### Phase 1: NullCalibrator — shuffle-based ε_null
-- [ ] RED: NullCalibratorTest — на синтетических данных (y = сигнал + шум)
-- [ ] GREEN: NullCalibrator::calibrate($X, $y, $grammar, $nPerms=100) → float ε_null
-- [ ] LINT + REVIEW (sub-agent commit)
+### Phase 1: NullCalibrator — shuffle-based ε_null ✅
+- [x] RED: NullCalibratorTest — 4/4 Error (class not found)
+- [x] GREEN: calibrate() + 4 tests PASS; ceil(N*0.99)-1 перцентиль, NaN-filter, fallback 0.01
+- [x] LINT + REVIEW (deleg_6bccf55b: PASS, 3 CONCERNS → fixed; deleg_71337687: PASS)
 
-### Phase 2: Интеграция в Hive::doTick
-- [ ] replace hardcoded 0.01 → null-калиброванный порог per-fingerprint
-- [ ] Three-zone reward model: DISCOVERY/SIGNAL/IMPROVEMENT/DEAD
-- [ ] Калибровка при первом encounter нового fingerprint (calibration phase, потом search phase)
+### Phase 2: Интеграция в Hive ✅
+- [x] RED: HiveNullCalibrationTest — 2/2 Error (undefined methods)
+- [x] GREEN: calibrateEpsilon + getEpsilon + epsilonCache (53d67f1)
+- [x] LINT + REVIEW (deleg_70a5c836: PASS)
+- [x] 409/409 PASS, 843 assertions
+
+### Phase 3: Wiring в doDiscoverTick (backlog)
+- [ ] Замена hardcoded CV≤0.01 на ε_null в doDiscoverTick
+- [ ] Three-zone reward: DISCOVERY/SIGNAL/IMPROVEMENT/DEAD
+- [ ] Первый прогон на реальных данных (sleep→energy)
 
 ### Phase 3: Проверка на реальных данных
 - [ ] Прогон на metrics.jsonl — ε_null для sleep→energy
@@ -60,4 +66,5 @@
 - S1.10 ✅ :memory: test DB — быстрое тестирование
 
 ## Статус
-⬜ Phase 1 — RED
+✅ Phase 1 + Phase 2 завершены (53d67f1)
+⬜ Phase 3 — Wiring в doDiscoverTick (backlog)

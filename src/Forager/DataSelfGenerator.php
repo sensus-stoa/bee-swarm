@@ -11,13 +11,21 @@ use BeeSwarm\Infra\Database;
  */
 class DataSelfGenerator
 {
+    private string $metricsPath;
+
+    public function __construct(
+        ?string $metricsPath = null
+    ) {
+        $this->metricsPath = $metricsPath
+            ?? '~/ninjacat/Documents/the_lair/ExoCortex/Journal/global/metrics.jsonl';
+    }
     /**
      * Генерирует задачи из metrics.jsonl — все комбинации метрик.
      * Исправлено: пары с реальными данными.
      */
     public function fromMetrics(): array
     {
-        $path = '~/ninjacat/Documents/the_lair/ExoCortex/Journal/global/metrics.jsonl';
+        $path = $this->metricsPath;
         if (! file_exists($path)) {
             return [];
         }

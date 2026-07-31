@@ -223,12 +223,16 @@ class GrammarTest extends TestCase
     }
 
     /**
-     * reloadFromDb: восстановление после очистки
+     * reloadFromDb: восстановление после очистки.
+     *
+     * S1.10: :memory: БД стартует пустой — self-seed перед reload,
+     * чтобы тест не зависел от порядка в файле (testAddNewOp).
      */
     public function testReload(): void
     {
+        $this->g->add('seed_op_for_reload', 'test');
         $this->g->clearAll();
         $this->g->reloadFromDb();
-        $this->assertNotEmpty($this->g->all());
+        $this->assertContains('seed_op_for_reload', $this->g->all());
     }
 }

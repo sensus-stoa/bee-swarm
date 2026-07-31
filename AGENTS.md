@@ -40,7 +40,7 @@ See `ARCHITECTURE.md` — 7 layers (0-7): Environment → Laws → Self-generate
 ## Critical Rules
 
 1. **TDD:** test → code → all green. NEVER modify agenda.php without a test first.
-2. **Test DB isolation:** `SWARM_DB_PATH=data/test_swarm.db` set in phpunit.xml. NEVER `--no-configuration`.
+2. **Test DB isolation:** `SWARM_DB_PATH=:memory:` set in phpunit.xml (in-memory SQLite). NEVER `--no-configuration`.
 3. **Daemon restart:** `pkill -f agenda.php; sleep 1; php agenda.php &`
 4. **EVOLVE DON'T ADD:** новое должно эмерджентно возникать через compose, не хардкодиться.
 5. **prepare()→execute() returns bool** — always separate calls.

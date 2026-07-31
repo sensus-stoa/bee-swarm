@@ -5,18 +5,15 @@
 
 declare(strict_types=1);
 
+use BeeSwarm\Infra\Database;
 use PHPUnit\Framework\TestCase;
 
 class {ClassName}Test extends TestCase
 {
-    private ?PDO $db = null;
-
     protected function setUp(): void
     {
-        // Test DB isolation — use test_swarm.db
-        $dbPath = __DIR__ . '/../data/test_swarm.db';
-        $this->db = new PDO("sqlite:$dbPath");
-        $this->db->exec('DELETE FROM known_laws WHERE name LIKE "test_%"');
+        // Test DB isolation — in-memory SQLite (S1.10)
+        $this->db = Database::get();
     }
 
     public function test_{scenario}(): void

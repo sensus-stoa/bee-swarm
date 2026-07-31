@@ -39,13 +39,19 @@ class KnownLawsPreloadTest extends TestCase
     }
 
     /**
-     * knownLaws не пустая после preload если в БД есть законы
+     * knownLaws не пустая после preload если в БД есть законы.
+     *
+     * S1.10: :memory: БД стартует пустой — self-seed вместо
+     * зависимости от накопленного мусора в файловой БД.
      */
     public function testPreloadNonEmptyWhenDbHasLaws(): void
     {
         $db = Database::get();
+        $db->exec("INSERT OR IGNORE INTO laws (name, formula, cv, domain) VALUES ('SEED_LAW', 'seed_atom', 0, 'test')");
+
         $lawCount = (int) $db->query('SELECT COUNT(*) FROM laws')
             ->fetchColumn();
+        $this->assertGreaterThan(0, $lawCount, 'Seeded law must exist');
 
         $knownLaws = [];
         $rows = $db->query('SELECT name, formula FROM laws')
@@ -55,6 +61,8 @@ class KnownLawsPreloadTest extends TestCase
         }
 
         $this->assertCount($lawCount, $knownLaws);
+        $this->assertArrayHasKey('SEED_LAW::seed_atom', $knownLaws);
+        $db->exec("DELETE FROM laws WHERE name = 'SEED_LAW'");
     }
 
     /**

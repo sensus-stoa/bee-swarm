@@ -34,7 +34,7 @@
 - [x] RED: MemoryDbTest — guard скипает :memory: (3/3 Skipped)
 - [x] GREEN: guard `:memory: || str_contains($dbPath, 'test')` (3/3 PASS)
 - [x] phpunit.xml: SWARM_DB_PATH=:memory:
-- [x] Прогон сьюта — найден 1 FAIL (MemoryDbTest::testMemoryDbStartsClean — снят как слабый: порядок тестов в процессе недетерминирован)
+- [x] Прогон сьюта — найден 1 FAIL (MemoryDbTest::testMemoryDbStartsClean); возвращён детерминированно через Database::reset() (970ebb5)
 
 ### Phase 2: Починить тесты, зависимые от предзаполненных данных ✅
 - [x] GrammarTest::testReload — self-seed seed_op_for_reload перед reloadFromDb()

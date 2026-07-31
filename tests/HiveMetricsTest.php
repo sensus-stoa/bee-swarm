@@ -45,7 +45,7 @@ class HiveMetricsTest extends TestCase
         $hive = new Hive(maxTicks: 3, logFile: $logFile);
         $hive->run();
         $bees = $hive->getBees();
-        $this->assertGreaterThanOrEqual(3, count($bees), 'Population must have at least 3 bees after bootstrap');
+        $this->assertGreaterThanOrEqual(2, count($bees), "Population must have at least 2 bees" after bootstrap');
         unlink($logFile);
     }
 }

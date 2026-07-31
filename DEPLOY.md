@@ -10,6 +10,58 @@
 - Свободно ~500 MB RAM
 - Linux (предпочтительно) или macOS
 
+## 0. Pre-setup: установка PHP и Composer (если не установлены)
+
+### Linux (Debian/Ubuntu)
+
+```bash
+# Установить PHP + расширения
+sudo apt update
+sudo apt install -y php-cli php-sqlite3 php-mbstring php-xml unzip curl
+
+# Проверить версию (должна быть ≥8.1)
+php -v
+
+# Установить Composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php --quiet
+sudo mv composer.phar /usr/local/bin/composer
+rm composer-setup.php
+
+# Проверить
+composer --version
+```
+
+### macOS
+
+```bash
+# Установить Homebrew если нет
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Установить PHP
+brew install php@8.2
+
+# Установить Composer
+brew install composer
+
+# Проверить
+php -v && composer --version
+```
+
+### Windows
+
+```powershell
+# Скачать и установить PHP 8.2 с https://windows.php.net/download/
+# Выбрать "Thread Safe" zip, распаковать в C:\php
+# Добавить C:\php в PATH (System Properties → Environment Variables)
+
+# Установить Composer с https://getcomposer.org/Composer-Setup.exe
+
+# Проверить
+php -v
+composer --version
+```
+
 ## 1. Установка
 
 ```bash

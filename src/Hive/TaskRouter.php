@@ -114,10 +114,31 @@ class TaskRouter
     }
 
     /**
+     * Compute task weight for a bee (base + frontier bonus).
+     * §S1.4-FRONTIER: tasks with best_CV ∈ [0.01, 0.10] get +0.3 boost.
+     */
+    public function computeWeight(array $task, Bee $bee): float
+    {
+        $beeIdx = array_search($bee, $this->bees, true);
+        $fp = $this->fingerprint($task);
+
+        // Base weight = Laplace smoothing
+        $wins = $this->history[$fp][$beeIdx] ?? 0;
+        $total = array_sum($this->history[$fp] ?? []);
+        $baseWeight = ($wins + 1) / max(1, $total + count($this->bees));
+
+        // Frontier bonus: almost-solved tasks get priority
+        $bestCv = $task['best_cv'] ?? 1.0;
+        $frontierBonus = ($bestCv >= 0.01 && $bestCv <= 0.10) ? 0.3 : 0.0;
+
+        return $baseWeight + $frontierBonus;
+    }
+
+    /**
      * Structural fingerprint — no domain names.
      * Only measurable properties of the data itself.
      */
-    private function fingerprint(array $task): string
+    public function fingerprint(array $task): string
     {
         $data = $task['data'] ?? [];
         $nRows = count($data);

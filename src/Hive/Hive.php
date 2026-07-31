@@ -12,6 +12,7 @@ use BeeSwarm\Infra\Database;
 use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Text\CorpusVocabulary;
 use BeeSwarm\Text\SentenceRegistry;
+use BeeSwarm\Validation\NullCalibrator;
 
 /**
  * Hive — главный цикл роя.
@@ -35,6 +36,11 @@ class Hive
 
     private array $knownLaws = [];
 
+    /**
+     * @var array<string, float> fingerprint to epsilon_null (V0: Runtime Null-Calibration)
+     */
+    private array $epsilonCache = [];
+
     private ?CorpusVocabulary $corpusVocab = null;
 
     private ?SentenceRegistry $sentenceRegistry = null;
@@ -43,7 +49,9 @@ class Hive
 
     private ?int $maxTicks;
 
-    /** @var Bee[] */
+    /**
+     * @var Bee[]
+     */
     private array $bees = [];
 
     private ?TaskRouter $taskRouter = null;
@@ -80,7 +88,9 @@ class Hive
                 }
             }
             if (empty($this->foragerSources)) {
-                $this->foragerSources = [$home => 1];
+                $this->foragerSources = [
+                    $home => 1,
+                ];
             }
         }
 
@@ -115,7 +125,9 @@ class Hive
     private function computeDiversity(): float
     {
         $alive = array_filter($this->bees, fn (Bee $b) => $b->isAlive());
-        if (count($alive) < 2) return 0.0;
+        if (count($alive) < 2) {
+            return 0.0;
+        }
 
         $grammars = array_map(fn (Bee $b) => $b->grammar(), array_values($alive));
         $sum = 0.0;
@@ -132,7 +144,9 @@ class Hive
     private function avgGrammarSize(): float
     {
         $alive = array_filter($this->bees, fn (Bee $b) => $b->isAlive());
-        if (empty($alive)) return 0.0;
+        if (empty($alive)) {
+            return 0.0;
+        }
         $sum = array_sum(array_map(fn (Bee $b) => count($b->grammar()), $alive));
         return $sum / count($alive);
     }
@@ -172,29 +186,29 @@ class Hive
 
         // §0.6: Bootstrap Phase — cold start with seed population
         if (empty($this->bees)) {
-        $allOps = array_keys(Grammar::BASE_OPS);
-        $semOps = Grammar::SEMANTIC_OPS;
-        $available = array_merge($allOps, $semOps);
+            $allOps = array_keys(Grammar::BASE_OPS);
+            $semOps = Grammar::SEMANTIC_OPS;
+            $available = array_merge($allOps, $semOps);
 
-        // G₁ = baseline grammar B
-        $g1 = $allOps;
-        // G₂ = mutate(B) — retry until Jaccard < 1.0 with G₁
-        $g2 = $g1;
-        for ($retry = 0; $retry < 10; $retry++) {
-            $g2 = GrammarMutator::mutate($allOps, $available);
-            if (self::jaccard($g1, $g2) < 1.0) {
-                break;
+            // G₁ = baseline grammar B
+            $g1 = $allOps;
+            // G₂ = mutate(B) — retry until Jaccard < 1.0 with G₁
+            $g2 = $g1;
+            for ($retry = 0; $retry < 10; $retry++) {
+                $g2 = GrammarMutator::mutate($allOps, $available);
+                if (self::jaccard($g1, $g2) < 1.0) {
+                    break;
+                }
             }
-        }
-        if (self::jaccard($g1, $g2) >= 1.0) {
-            throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
-        }
+            if (self::jaccard($g1, $g2) >= 1.0) {
+                throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
+            }
 
-        $this->bees = [
-            new Bee($g1, 10.0),
-            new Bee($g2, 10.0),
-        ];
-        $this->log('BOOTSTRAP: 2 seed bees created');
+            $this->bees = [
+                new Bee($g1, 10.0),
+                new Bee($g2, 10.0),
+            ];
+            $this->log('BOOTSTRAP: 2 seed bees created');
         }
 
         // Create TaskRouter with the population
@@ -316,7 +330,9 @@ class Hive
 
         // §2.1: Energy loop — tick all bees, log deaths
         foreach ($this->bees as $i => $bee) {
-            if (! $bee->isAlive()) continue;
+            if (! $bee->isAlive()) {
+                continue;
+            }
             $bee->tick();
             // §2.1: energy must not go negative — floor at 0
             if ($bee->energy() < 0.0) {
@@ -344,7 +360,9 @@ class Hive
         $semOps = Grammar::SEMANTIC_OPS;
         $available = array_merge($allOps, $semOps);
         foreach ($this->bees as $parent) {
-            if (! $parent->isAlive()) continue;
+            if (! $parent->isAlive()) {
+                continue;
+            }
             $child = $parent->spawn($available);
             if ($child) {
                 $this->bees[] = $child;
@@ -379,7 +397,8 @@ class Hive
                 try {
                     Database::get()->prepare('INSERT OR IGNORE INTO knowledge_graph (subject,predicate,object,confidence) VALUES (?,?,?,0.3)')
                         ->execute([$s, $p, $o]);
-                } catch (\PDOException) {}
+                } catch (\PDOException) {
+                }
             }
             usleep(500_000);
             return;
@@ -773,5 +792,27 @@ class Hive
             'tasks_processed' => count($this->getTasks()),
             'discoveries' => 0,
         ];
+    }
+
+    // ═══ V0: NULL-CALIBRATION ═══
+
+    /**
+     * Calibrate epsilon_null for a structural task fingerprint.
+     */
+    public function calibrateEpsilon(string $fp, array $X, array $y, Grammar $grammar, int $nPerms = 100): float
+    {
+        if (! isset($this->epsilonCache[$fp])) {
+            $this->epsilonCache[$fp] = NullCalibrator::calibrate($X, $y, $grammar, $nPerms);
+            $this->log("CALIBRATE: fp={$fp} epsilon={$this->epsilonCache[$fp]}");
+        }
+        return $this->epsilonCache[$fp];
+    }
+
+    /**
+     * Retrieve cached epsilon_null for fingerprint, or null if not calibrated.
+     */
+    public function getEpsilon(string $fp): ?float
+    {
+        return $this->epsilonCache[$fp] ?? null;
     }
 }

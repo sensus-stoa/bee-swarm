@@ -31,6 +31,9 @@ class QueryEngineTest extends TestCase
         $this->assertArrayHasKey('name', $laws[0]);
         $this->assertArrayHasKey('formula', $laws[0]);
         $this->assertArrayHasKey('cv', $laws[0]);
+
+        // Cleanup (конвенция: тест не оставляет мусор в БД)
+        Database::get()->exec("DELETE FROM laws WHERE name = 'ARITH_LAW'");
     }
 
     /** topAtoms возвращает наиболее часто используемые атомы */

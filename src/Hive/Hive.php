@@ -143,6 +143,11 @@ class Hive
     {
         $this->bootstrap();
 
+        // maxTicks=0: bootstrap только, без тиков (детерминированная проверка E₀)
+        if ($this->maxTicks === 0) {
+            return 0;
+        }
+
         while (true) {
             $this->tick++;
             $this->doTick();
@@ -158,6 +163,8 @@ class Hive
     private function bootstrap(): void
     {
         echo "[AGI v4-cloze] Hive. Log: {$this->logFile}\n";
+
+        $this->log('SESSION_START: ' . date('Y-m-d H:i:s') . ' bees=' . count($this->bees ?: []) . ' grammar=' . (new Grammar())->count() . ' ops');
 
         // §0.6-бис: Data Bootstrap Acknowledgment
         $this->log('DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault');

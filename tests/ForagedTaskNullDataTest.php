@@ -6,7 +6,6 @@ namespace BeeSwarm\Tests;
 /**
  * BUG: foraged-задача без data → крах doTick()
  *
- * @group disabled — требует полного Hive::run() со сканированием (2+ мин).
  * Баг исправлен: добавлен guard `$data = $task['data'] ?? []` + early return.
  */
 class ForagedTaskNullDataTest extends TestCase

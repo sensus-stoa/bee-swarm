@@ -4,7 +4,7 @@
 
 | # | What | Status |
 |---|------|--------|
-| V0 | Runtime Null-Calibration | 🔧 Phase 3 — wiring into doDiscoverTick |
+| V0 | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
 
 ## Stage 0 — COMPLETE ✅
 

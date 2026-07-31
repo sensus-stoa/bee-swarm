@@ -111,4 +111,19 @@ class Bee
 
         return new self($childGrammar, 7.0);
     }
+
+    /**
+     * §S1.5-HUNGER: при E<5 — мутировать грамматику за счёт энергии.
+     * Стоимость: ΔE = −0.5. Не вызывает spawn (только при E≥15).
+     */
+    public function hungerMutate(array $available): void
+    {
+        if ($this->energy >= 5.0 || ! $this->isAlive()) {
+            return;
+        }
+
+        $mutator = new GrammarMutator();
+        $this->grammar = $mutator->mutate($this->grammar, $available);
+        $this->energy = max(0.0, $this->energy - 0.5);
+    }
 }

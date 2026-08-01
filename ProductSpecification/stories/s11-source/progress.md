@@ -29,7 +29,17 @@
 - [ ] `bee law sources` — список законов с их источниками
 - [ ] При отсутствии source — честно писать `src=unknown`
 
-### Phase 3 (будущее): Обратная трассировка
+### Phase 3: Semantic column labeling
+- [ ] Markdown-таблицы: парсить header row → имена колонок (`курс_доллара` вместо `x0`)
+- [ ] CSV: первая строка = заголовки колонок
+- [ ] JSON: ключи объекта = имена колонок
+- [ ] StreamingAccumulator: поле `col_labels` в task-структуре
+- [ ] Search::find: использовать `col_labels` для имён фич в формулах
+- [ ] laws-таблица: колонка `col_labels TEXT` (JSON array)
+- [ ] Пример результата: `((курс/Rmax_курс)+(инфляция/Rmax_инфляция))` вместо `((x4/Rmaxx4)+(x5/Rmaxx5))`
+- [ ] При отсутствии заголовков → fallback на x0, x1, ...
+
+### Phase 4 (будущее): Обратная трассировка
 - [ ] Индекс: source_path → список законов
 - [ ] Подсветка source-файла в vault при просмотре закона
 
@@ -37,23 +47,29 @@
 
 ```
 StreamingAccumulator.scan()
-  ├── fd: pattern, row_json, source_path[NEW], content
-  └── task: name, data, domain, content, source_path[NEW]
+  ├── fd: pattern, row_json, source_path[NEW], col_labels[NEW], content
+  └── task: name, data, domain, content, source_path[NEW], col_labels[NEW]
         │
         ▼
 Hive::doDiscoverTick()
-  └── recordDiscovery(task, ...)
-        ├── laws: name, formula, cv, domain, source_path[NEW], content_sample[NEW]
+  └── Search::find(X, y, grammar, depth, col_labels[NEW])  ← именованные фичи
+        │
+        ▼
+  Hive::recordDiscovery(task, ...)
+        ├── laws: name, formula, cv, domain, source_path, content_sample, col_labels
         └── log: "🔍 {task} -> {formula} (CV={cv}) [{domain}] src={path}"
+                  формула: ((курс/Rmax_курс)+(инфляция/Rmax_инфляция))  ← не x4, x5
 ```
 
 ## Что НЕ делать
 - ❌ Не дублировать контент (content_sample — только первые 200 символов)
 - ❌ Не менять формат task['name'] (хеш остаётся)
 - ❌ Не замедлять сканирование (source_path и так известен)
-- ❌ Не парсить source_path для извлечения метаданных (пока)
+- ❌ Не требовать заголовки — fallback на x0, x1 при отсутствии
+- ❌ Не усложнять Search::find — col_labels опциональны
 
 ## Статус
 ⬜ Phase 1 — Source metadata pipeline
 ⬜ Phase 2 — Traceability tools
-⬜ Phase 3 — Обратная трассировка (backlog)
+⬜ Phase 3 — Semantic column labeling
+⬜ Phase 4 — Обратная трассировка (backlog)

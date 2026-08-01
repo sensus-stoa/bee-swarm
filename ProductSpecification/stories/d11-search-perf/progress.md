@@ -1,36 +1,40 @@
-# Story D11: Search Performance — Grammar Outgrowing Combinatorial Search
+# Story D11-SEARCH-PERF: Search Performance — Grammar Cap
 
-> Search::find depth=3: 551 ops → 8B комбинаций → 11 секунд. При 192 ops было <5s.
-> Демон открывает законы → grammar растёт → search экспоненциально замедляется.
+> 1349 grammar ops → 909K пар в discoverCompose → каждый тик тормозит.
 
-## Root Cause
+## Почему
 
-`Search::find` — полный перебор O(features² × ops^depth):
-- L1: 7² × 551 = 27K выражений
-- L2: 27K × 551 = 15M
-- L3: 15M × 551 = 8B
+- Grammar::all() возвращает 1349 ops (BASE_OPS + SEMANTIC_OPS + auto-discovered)
+- discoverCompose перебирает C(1349,2) = 909,276 пар
+- Для каждой пары: O(n) проход по строкам данных → CV
+- На метриках (152 строки) это сотни тысяч операций
 
-При depth=3 каждая новая операция в grammar умножает пространство поиска на 551.
+Search::find уже использует `restrictTo(BASE_OPS)` — проблема только в compose.
 
 ## Phases
 
-### Phase 1: Grammar cap for search
-- Top-N ops по частоте использования в известных законах
-- Или: только ops, реально встречающиеся в formulas с CV < 0.1
-- Цель: сократить grammar для search до ~100 ops без потери качества
+### Phase 1: Grammar::capped(limit) — топ-N ops
+- [ ] Grammar: `capped(int $limit): array` — BASE_OPS + top N по frequency
+- [ ] frequency = количество использований в законах (laws table count by formula)
+- [ ] По умолчанию limit=50
+- [ ] Использовать в doDiscoverTick для compose grammar
+- [ ] E2E: grep -c "🔍" за 50 тиков до/после
 
-### Phase 2: Pruning на ранних depth
-- CV > 1.0 на depth=1 → не раскрывать на depth=2
-- Монотонность: если выражение плохое на depth=k, композиция на depth=k+1 не станет лучше
+### Phase 2: Pruning — досрочный выход при CV > best
+- [ ] discoverCompose: если промежуточный CV уже хуже лучшего → skip
+- [ ] AtomProvider::discoverCompose: early exit оптимизация
 
-### Phase 3: Benchmark + time bound
-- DaemonEfficiencyTest: bound должен зависеть от grammar size
-- formula: `max_time = ops_count * 0.02 * depth` или калибровать dynamically
+### Phase 3: Time budget — ограничение по времени на тик
+- [ ] doDiscoverTick: общий таймаут на все поиски в тике
 
-## Status
-🔧 Backlog
+## Что НЕ делать
+- ❌ Не трогать Search::find (уже restricted до BASE_OPS)
+- ❌ Не удалять ops из grammar — только капировать для compose
 
-## Метрики цели
-- Search::find depth=3: ≤5s при 500+ ops
-- Или: ≤3s при capped grammar (100 ops)
-- DaemonEfficiencyTest: bound адаптивный
+## E2E
+E2E: discovery_rate ↑ (grep -c "🔍" за 50 тиков до/после деплоя)
+
+## Статус
+⬜ Phase 1 — Grammar::capped()
+⬜ Phase 2 — Early exit pruning
+⬜ Phase 3 — Time budget

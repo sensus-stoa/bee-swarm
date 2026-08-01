@@ -249,4 +249,22 @@ class Grammar
     {
         $this->ops = [];
     }
+
+    /**
+     * D11: Возвращает BASE_OPS + топ-N кастомных ops по частоте в законах.
+     * Частота = количество использований формулы в laws-таблице.
+     * @return string[] имена операторов
+     */
+    public function capped(int $limit): array
+    {
+        $base = array_keys(self::BASE_OPS);
+        $db = Database::get();
+        $rows = $db->prepare(
+            'SELECT formula, COUNT(*) as cnt FROM laws GROUP BY formula ORDER BY cnt DESC LIMIT ?'
+        );
+        $rows->execute([$limit]);
+        $top = $rows->fetchAll(\PDO::FETCH_COLUMN);
+
+        return array_values(array_unique(array_merge($base, $top)));
+    }
 }

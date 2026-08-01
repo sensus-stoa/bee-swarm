@@ -14,11 +14,9 @@ Search::find уже использует `restrictTo(BASE_OPS)` — пробле
 ## Phases
 
 ### Phase 1: Grammar::capped(limit) — топ-N ops
-- [ ] Grammar: `capped(int $limit): array` — BASE_OPS + top N по frequency
-- [ ] frequency = количество использований в законах (laws table count by formula)
-- [ ] По умолчанию limit=50
-- [ ] Использовать в doDiscoverTick для compose grammar
-- [ ] E2E: grep -c "🔍" за 50 тиков до/после
+- [x] Grammar::capped(int $limit): BASE_OPS + топ-N по частоте в законах
+- [x] doDiscoverTick compose: capped(50) → 57 ops → 1,596 пар (было 909K)
+- [x] 425/425 PASS, E2E: 302 тика stable (7008004)
 
 ### Phase 2: Pruning — досрочный выход при CV > best
 - [ ] discoverCompose: если промежуточный CV уже хуже лучшего → skip

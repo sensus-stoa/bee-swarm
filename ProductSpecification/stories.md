@@ -11,6 +11,11 @@
 | S1.13 | LANDSCAPE — эпигенетический ландшафт | ⬜ Phase 1 backlog |
 | D11 | SEARCH-PERF — grammar cap + pruning | ✅ Phase 2 complete (9317726) |
 | D12 | INSUFFICIENT — skip insufficient tasks | ✅ Phase 2 complete (df16758) |
+| D13 | ENERGY-FIX — wire reward into doDiscoverTick | ✅ (41d7a49) — пчёлы едят |
+| S2.1 | BOOTSTRAP-FIX — N=3 seed bees per §0.6 | ⬜ bugfix |
+| S2.2 | IDLE-DREAMING — bees search when idle §2.5-децим | ⬜ Phase 1 backlog |
+| S2.3 | PARALLEL-ROUTING — N tasks → N bees per tick | ⬜ Phase 1 backlog |
+| S2.4 | SLEEP-TUNING — adaptive idle sleep | ⬜ Phase 1 backlog |
 
 ## Stage 0 — COMPLETE ✅
 

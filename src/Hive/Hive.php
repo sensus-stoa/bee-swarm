@@ -586,8 +586,8 @@ class Hive
             }
         }
 
-        // S1.12: Compose discovery — pairs of grammar atoms
-        $composeGrammar = (new Grammar())->all();
+        // S1.12: Compose discovery — pairs of grammar atoms (capped for perf)
+        $composeGrammar = (new Grammar())->capped(50);
         if (count($composeGrammar) >= 2) {
             foreach (AtomRegistry::discoverCompose($X, $y, $composeGrammar) as $d) {
                 if ($d['cv'] <= $cvTrainMax) {

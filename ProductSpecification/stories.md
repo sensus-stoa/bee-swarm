@@ -7,7 +7,9 @@
 | V0 | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
 | S1.9 | GENERATIVE — reduce arity bridge | ✅ Phase 2 complete (cb2cc2c) — первые открытия |
 | S1.11 | SOURCE — foraged provenance | ✅ Phase 3 complete (512f204) — source + labels |
-| S1.12 | EVOLVE — grammar evolution | ⬜ Phase 1 backlog |
+| S1.12 | EVOLVE — grammar evolution | ✅ Phase 3 complete (62968b9) |
+| S1.13 | LANDSCAPE — эпигенетический ландшафт | ⬜ Phase 1 backlog |
+| D11 | SEARCH-PERF — grammar cap + pruning | ⬜ Phase 1 backlog |
 
 ## Stage 0 — COMPLETE ✅
 

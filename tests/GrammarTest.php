@@ -235,4 +235,32 @@ class GrammarTest extends TestCase
         $this->g->reloadFromDb();
         $this->assertContains('seed_op_for_reload', $this->g->all());
     }
+
+    /**
+     * D11 Phase 1: capped(limit) возвращает BASE_OPS + топ-N по частоте в законах
+     */
+    public function testCappedReturnsTopOps(): void
+    {
+        // Seed несколько ops с разной частотой в laws
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->exec("DELETE FROM grammar_ops WHERE source='test_capped'");
+        $this->g->add('top_op', 'test_capped');
+        $this->g->add('mid_op', 'test_capped');
+        $this->g->add('low_op', 'test_capped');
+
+        // Частота = количество использований в законах
+        for ($i = 0; $i < 5; $i++) {
+            $db->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
+                ->execute(["t{$i}", 'top_op', 0.0, 'test']);
+        }
+        for ($i = 0; $i < 2; $i++) {
+            $db->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
+                ->execute(["m{$i}", 'mid_op', 0.0, 'test']);
+        }
+
+        $capped = $this->g->capped(3);
+        $this->assertLessThanOrEqual(3 + count(Grammar::BASE_OPS), count($capped));
+        $this->assertContains('top_op', $capped, 'top_op (5 uses) must be in capped');
+        $this->assertContains('mid_op', $capped, 'mid_op (2 uses) must be in capped');
+    }
 }

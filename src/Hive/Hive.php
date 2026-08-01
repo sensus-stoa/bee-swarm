@@ -862,4 +862,17 @@ class Hive
     {
         return $this->epsilonCache[$fp] ?? null;
     }
+
+    /**
+     * S1.11 Phase 2: Запрос законов с source-метаданными.
+     * @return array<int, array{name: string, formula: string, cv: float, domain: string, source_path: string, content_sample: string}>
+     */
+    public function lawsWithSources(string $domain): array
+    {
+        $stmt = Database::get()->prepare(
+            'SELECT name, formula, cv, domain, source_path, content_sample FROM laws WHERE domain = ? ORDER BY rowid DESC LIMIT 50'
+        );
+        $stmt->execute([$domain]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

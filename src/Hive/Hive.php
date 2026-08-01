@@ -585,6 +585,16 @@ class Hive
                 }
             }
         }
+
+        // S1.12: Compose discovery — pairs of grammar atoms
+        $composeGrammar = (new Grammar())->all();
+        if (count($composeGrammar) >= 2) {
+            foreach (AtomRegistry::discoverCompose($X, $y, $composeGrammar) as $d) {
+                if ($d['cv'] <= $cvTrainMax) {
+                    $this->recordDiscovery($d, $task, $domain, $foundAny);
+                }
+            }
+        }
     }
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void

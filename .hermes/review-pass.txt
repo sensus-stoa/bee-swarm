@@ -1,78 +1,81 @@
-PASS 2026-08-01T09:41:00+03:00 # deleg_S1.11_phase3_review
+REVIEW: S1.12 Phase 1 — discoverCompose wiring
+================================================
 
-=== 1. AGENT-REVIEW ===
+## 1. AGENT-REVIEW — bugs, edge cases, invariants
 
-Bugs in code: NONE found.
+### Changed: src/Hive/Hive.php:589-597
+Adds 9 lines in `doDiscoverTick()`: after heldout/raw discover, calls 
+`AtomRegistry::discoverCompose($X, $y, $composeGrammar)` with a fresh grammar 
+snapshot from DB, filters by `$cvTrainMax`, and records via `recordDiscovery()`.
 
-Edge cases verified:
-- featName closure: `$colLabels[$i] ?? "x{$i}"` — when $colLabels is null, `$null[$i]` triggers PHP warning but `??` catches; functionally correct. Verified by testFindWithoutLabelsUsesDefaultNames (PASS).
-- rawFeatNames set: replaces `preg_match('/^x\d+$/', $fname)` with pre-collected `$rawFeatNames[$featName($i)] = true`. Clean — no regex on feature keys, no false negatives when labels contain digits.
-- guessLabels(): CSV detection with `str_getcsv` + non-numeric filter — correctly identifies headers like `price,qty` and rejects all-numeric first lines.
-- guessLabels() Windows line endings: `trim()` on each line strips `\r`, so `\r\n` files are handled correctly for both markdown and CSV.
-- json_decode fallback: `json_decode($colLabelsJson, true) ?? []` — invalid JSON → [].
-- recordDiscovery: col_labels stored as `json_encode($task['col_labels'] ?? [])` — gracefully handles missing labels (empty array → '[]').
-- cloze/compose paths: INSERT without col_labels → column DEFAULT '[]' fills in.
-- Backward compatibility: null $colLabels → featName falls back to x0,x1,…; all existing tests pass unchanged.
+### Edge cases analysed:
 
-Test quality issues:
-- testTasksIncludeColumnLabels only exercises CSV path; markdown table header parsing (lines 193–203 of guessLabels) has zero test coverage.
-- No test for guessLabels edge: empty content, single-line content, content with markdown table NOT on first line.
-- testFindUsesColumnLabels verifies `price` appears in formula and `x0` does NOT — but doesn't assert what formula IS, only substring presence. Could pass if formula is `(qty/price)` instead of `(price/R+price)`. The assertStringNotContainsString('x0') is correct but only a partial check.
+**(a) Grammar freshness**: `(new Grammar())->all()` creates a fresh instance 
+reading from DB. Since `recordDiscovery()` (called by heldout/raw path above) 
+writes to DB immediately, newly discovered atoms ARE visible to compose. ✓
 
-These are CONCERNS-level, not BLOCK.
+**(b) Redundancy with doComposeTick()**: `doComposeTick()` (line 631) is only 
+called under plateau/desperation conditions. The new eager compose in 
+`doDiscoverTick` runs on EVERY tick after the heldout/raw block. Duplicate 
+check in `recordDiscovery()` (line 603, `$this->knownLaws` key) prevents 
+double-insertion. Harmless redundancy. ✓
 
-=== 2. PROTOCOL CHECK ===
+**(c) CV threshold**: `discoverCompose()` internally returns only `cv < 0.001` 
+atoms, so the `$d['cv'] <= $cvTrainMax` guard is currently redundant but 
+defensively correct — mirrors the raw discover path and respects null-calibrated 
+epsilon. ✓
 
-Spec: S1.11 Phase 3 — Semantic column labeling
+**(d) Empty X / insufficient data**: Block inherits statistical sufficiency 
+check at top of doDiscoverTick (line 532-537). $X and $y guaranteed valid. ✓
 
-| Requirement | Status | Evidence |
-|---|---|---|
-| guessLabels() extracts CSV headers | ✅ | StreamingAccumulator.php:206–211, str_getcsv + non-numeric filter |
-| guessLabels() extracts markdown table headers | ✅ | StreamingAccumulator.php:193–203, regex + separator detection |
-| fd table has col_labels column | ✅ | Line 60: CREATE TABLE fd (… col_labels TEXT, …) |
-| All INSERTs pass col_labels (5 params → 6) | ✅ | Lines 105,125,140: all stmt->execute calls include $colLabels |
-| Task structure returns decoded col_labels array | ✅ | Line 172: json_decode($colLabelsJson, true) ?? [] |
-| Search::find accepts ?array $colLabels | ✅ | Search.php:38, signature |
-| featName closure for named features | ✅ | Search.php:47: `fn (int $i) => $colLabels[$i] ?? "x{$i}"` |
-| GlobalReduce uses rawFeatNames set instead of x\d+ regex | ✅ | Search.php:72–75 collect names, line 78: isset check |
-| LAWS_DDL has col_labels TEXT DEFAULT '[]' | ✅ | Database.php:23 |
-| ALTER TABLE migration for existing DBs | ✅ | Database.php:71–75, try/catch |
-| recordDiscovery INSERTs 7 params (was 6) | ✅ | Hive.php:603–609 |
-| col_labels stored as JSON in laws | ✅ | Hive.php:609: json_encode($task['col_labels'] ?? []) |
-| Backward compatible: null → x0,x1,… | ✅ | SearchTest.php:258–266, testFindWithoutLabelsUsesDefaultNames |
-| col_labels passed from task to Search::find | ✅ | Hive.php:561–562, $colLabels extracted from $task |
+**(e) count($composeGrammar) >= 2 guard**: Prevents wasted O(n²) pair iteration 
+when grammar has < 2 atoms. ✓
 
-=== 3. STRATEGIC GATE ===
+### Invariants preserved:
+- No modification to task, $X, $y, $domain state
+- `$foundAny` propagated correctly through recordDiscovery
+- `$this->knownLaws` cache consistent via key-based dedup
+- LINT: php -l clean on both changed files
 
-Is the design sound? YES.
+## 2. PROTOCOL CHECK
 
-Pattern: Header extraction at scan time → JSON-encoded storage in SQLite accumulator → decoded array in task structure → forwarded to Search::find as label map.
+| Check | Status | Detail |
+|-------|--------|--------|
+| Compose grammar uses current ops | PASS | `(new Grammar())->all()` reads DB; heldout/raw discoveries written before compose call |
+| CV threshold respected | PASS | Uses `$cvTrainMax` (null-calibrated epsilon, fallback 0.01) — same as heldout/raw paths |
+| Statistical sufficiency | PASS | Inherits `count($y) >= max(10, nFeat*5)` guard at top of doDiscoverTick |
+| Duplicate prevention | PASS | `recordDiscovery()` checks `$this->knownLaws` before insert |
+| Non-numeric domains skipped | PASS | `doDiscoverTick` only called when `$domain !== 'cloze' && $domain !== 'foraged_semantic'` |
 
-Key design decisions:
-- Labels extracted from file content (CSV/markdown), not from external metadata — self-contained, no side channel needed.
-- JSON encoding for transport through SQLite (fd table is in-memory, laws table is persistent) — consistent serialization format.
-- featName closure with ?? fallback — single point of naming logic, no scattered x\d+ regex.
-- rawFeatNames set replaces regex — the old regex `preg_match('/^x\d+$/', $fname)` would fail when labels contain digits (e.g., "x1" as a label name would be incorrectly treated as a raw feature). The set-based approach correctly identifies raw features regardless of naming scheme.
+## 3. STRATEGIC GATE
 
-No architectural debt: no hardcoded paths, no duplicate logic, no bypass of core pipeline. The labels flow naturally through the existing task structure.
+**Assessment: Sound.**
 
-=== 4. DEAD BEE CHECK ===
+The eager compose path ensures composite atoms are discovered alongside basic 
+atoms on every tick — not just under plateau or desperation conditions. This 
+increases discovery throughput.
 
-N/A — this story modifies forager/search/infra layers, not bee lifecycle. No energy-mutating methods touched.
+The dual path (eager in doDiscoverTick + conditional in doComposeTick) is 
+acceptable: `recordDiscovery` deduplication prevents any double-counting or 
+double-insertion.
 
-=== 5. VERDICT ===
+`discoverCompose` pre-filters to `cv < 0.001`, so quality bar is actually 
+higher than the `$cvTrainMax` threshold allows. No risk of low-quality compose 
+atoms polluting grammar.
 
-| Criterion | Result |
-|---|---|
-| Code correctness | PASS — no bugs found |
-| Protocol compliance | PASS — all 14 requirements met |
-| Design soundness | PASS — set-based rawFeatNames replaces fragile x\d+ regex |
-| Backward compatibility | PASS — null labels → default x0,x1 names |
-| Test coverage | CONCERNS — markdown path untested; formula assertion is substring-only |
-| Dead bee check | N/A |
+The test `testHiveDiscoversComposeAtom` validates end-to-end mechanism: seed 
+grammar → discoverCompose → abs(sub) found. Coverage is adequate for Phase 1.
 
-Overall: PASS
+**No strategic concerns.**
 
-CONCERNS (non-blocking):
-1. Markdown table header parsing in guessLabels() has no test coverage (only CSV exercised).
-2. testFindUsesColumnLabels asserts substring presence (`assertStringContainsString('price', ...)`) rather than exact formula — could pass with wrong formula that happens to contain 'price'.
+## 4. DEAD BEE CHECK
+
+N/A — purely additive discovery logic. No bee lifecycle changes.
+
+## 5. VERDICT
+
+**PASS** — 424/424 tests, 881 assertions. LINT clean. No bugs found. 
+Protocol checks pass. Design sound.
+
+Reviewer: sub-agent (S1.12-review)
+Date: 2026-08-01

@@ -59,6 +59,64 @@ class Search
             }
         }
 
+        // GlobalReduce: arity bridge (float[]→float) via Grammar::reduce
+        // S1.9 Phase 2 — reduce on top-level feature columns
+        // Constants (R+x0, R×x0, Rmaxx0, Rminx0) enter L1/L2 pool
+        // Pointwise expressions enter expression pool directly
+        $reduceAssoc = ['+', '×', 'max', 'min'];
+        $rawFeatKeys = array_keys($feats);
+        foreach ($rawFeatKeys as $fname) {
+            if (!preg_match('/^x\d+$/', $fname)) continue; // only raw features
+            $col = $feats[$fname];
+            foreach ($reduceAssoc as $rop) {
+                $reduced = $grammar->reduce($rop, $col);
+                if ($reduced === null || abs($reduced) < 1e-10) continue;
+
+                // Reduce constant: enters L1/L2 pool
+                $cname = "R{$rop}{$fname}";
+                $feats[$cname] = array_fill(0, $n, $reduced);
+
+                // Pointwise: (xj / reduce(op, xj)) — normalization
+                $pnameDiv = "({$fname}/R{$rop}{$fname})";
+                $vecDiv = [];
+                for ($i = 0; $i < $n; $i++) {
+                    $r = $grammar->apply($col[$i], $reduced, '/');
+                    $vecDiv[] = $r ?? 0.0;
+                }
+                $feats[$pnameDiv] = $vecDiv;
+
+                // Pointwise: (xj - reduce(op, xj)) — centering
+                // Only for min/max (subtracting sum/product is meaningless)
+                if ($rop === 'min' || $rop === 'max') {
+                    $pnameSub = "({$fname}-R{$rop}{$fname})";
+                    $vecSub = [];
+                    for ($i = 0; $i < $n; $i++) {
+                        $r = $grammar->apply($col[$i], $reduced, '−');
+                        $vecSub[] = $r ?? 0.0;
+                    }
+                    $feats[$pnameSub] = $vecSub;
+                }
+            }
+
+            // Range constant: (Rmaxxj - Rminxj) — useful for min-max normalization
+            $rmax = $grammar->reduce('max', $col);
+            $rmin = $grammar->reduce('min', $col);
+            if ($rmax !== null && $rmin !== null && abs($rmax - $rmin) > 1e-10) {
+                $range = $rmax - $rmin;
+                $feats["Rrange{$fname}"] = array_fill(0, $n, $range);
+
+                // Pointwise min-max norm: (xj - Rminxj) / range
+                $pnameNorm = "(Rnorm{$fname})";
+                $vecNorm = [];
+                for ($i = 0; $i < $n; $i++) {
+                    $num = $grammar->apply($col[$i], $rmin, '−') ?? 0.0;
+                    $den = $range;
+                    $vecNorm[] = $den != 0 ? ($num / $den) : 0.0;
+                }
+                $feats[$pnameNorm] = $vecNorm;
+            }
+        }
+
         $exprs = $feats;
         $featKeys = array_keys($feats);
         $ops = $grammar->all();

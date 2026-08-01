@@ -37,10 +37,12 @@ compose(reduce(+, w), /(x, count)) → mean(v)
 - [x] BootstrapTest E₀: maxTicks=0 → assertSame(10.0), детерминированно
 - [x] 400/400 PASS (было: 1/5 прогонов BootstrapTest флакал из-за novelty +0.5)
 
-### Phase 2: Search integration (backlog)
-- [ ] Search::find: L-слой reduce-выражений (reduce по колонкам)
-- [ ] Составные: reduce(+, x)/count → mean
-- [ ] Проверка на реальных данных (sleep→energy)
+### Phase 2: Search integration ✅
+- [x] Search::find: GlobalReduce слой — reduce по колонкам (R+x0, R×x0, Rmaxx0, Rminx0)
+- [x] Pointwise выражения: (xj / Ropxj), (xj - Rminxj), (xj - Rmaxxj)
+- [x] Range константа Rrangex0 + min-max нормализация (Rnormx0)
+- [x] 3 теста в SearchTest: testFindReduceMin, testFindReduceMinMaxNormalization, testFindReduceWithMultipleColumns
+- [x] 415/415 PASS (было 412), 853 assertions
 
 ### Phase 3: Co-evolution (backlog, Stage 2)
 - [ ] S2.13-AFD: повторяющиеся compose-цепи → новые операторы

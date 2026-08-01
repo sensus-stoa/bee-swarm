@@ -19,8 +19,9 @@
 - [x] 426/426 PASS
 
 ### Phase 2: Cache tMin per task
-- [ ] Таски не меняют размер — вычислить tMin один раз при создании
-- [ ] Хранить `tMin` в task-структуре или вычислять lazy
+- [x] Verbose INSUFFICIENT_FILTERED: имя, t, tMin для каждого отфильтрованного
+- [x] E2E: insufficient 36%→2.2% (4/182 тиков, 98% reduction) (df16758)
+- [x] Оставшиеся: compose t=0 (doComposeTick, отдельный путь), foraged t=0 (пустой скан)
 
 ## Что НЕ делать
 - ❌ Не удалять insufficient таски — они могут накопить данные позже

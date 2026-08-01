@@ -71,7 +71,7 @@ Hive::doDiscoverTick()
 - ❌ Не усложнять Search::find — col_labels опциональны
 
 ## Статус
-⬜ Phase 1 — Source metadata pipeline
-⬜ Phase 2 — Traceability tools
-⬜ Phase 3 — Semantic column labeling
+✅ Phase 1 — Source metadata pipeline (a9770e4)
+✅ Phase 2 — Traceability tools (476ef0e)  
+✅ Phase 3 — Semantic column labeling (512f204)
 ⬜ Phase 4 — Обратная трассировка (backlog)

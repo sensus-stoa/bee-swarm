@@ -561,6 +561,9 @@ class Hive
                 $searchGrammar = new Grammar();
                 $searchGrammar->restrictTo(array_keys(Grammar::BASE_OPS));
                 $colLabels = $task['col_labels'] ?? null;
+                if ($this->routedBee) {
+                    $this->routedBee->chargeSearch();
+                }
                 [$sFound, $sCv, $sFormula] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2, $colLabels);
                 if ($sFound && $sCv <= $cvTrainMax) {
                     $this->recordDiscovery([
@@ -639,6 +642,9 @@ class Hive
         $cvFmt = number_format($d['cv'], 4);
         $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
+        if ($this->routedBee) {
+            $this->routedBee->rewardDiscovery();
+        }
         $this->plateau->tick(true);
     }
 

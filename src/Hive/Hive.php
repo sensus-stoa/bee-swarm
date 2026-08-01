@@ -879,7 +879,8 @@ class Hive
 
         $filtered = [];
         $skipped = 0;
-        foreach ($best as [$t, $cnt]) {
+        $passedCounts = [];
+        foreach ($best as $name => [$t, $cnt]) {
             if (!isset($t['data'])) {
                 $filtered[] = $t;  // text/semantic — не фильтруем
                 continue;
@@ -888,12 +889,14 @@ class Hive
             $tMin = max(self::MIN_DATA_POINTS, $nFeat * 5);
             if ($cnt >= $tMin) {
                 $filtered[] = $t;
+                $passedCounts[] = "{$name}({$cnt})";
             } else {
+                $this->log("INSUFFICIENT_FILTERED: {$name} t={$cnt} < tMin={$tMin}");
                 $skipped++;
             }
         }
         if ($skipped > 0) {
-            $this->log("PRE_FILTER: skipped {$skipped} insufficient tasks");
+            $this->log("PRE_FILTER: skipped {$skipped} insufficient, passed " . count($passedCounts));
         }
         return $filtered;
     }

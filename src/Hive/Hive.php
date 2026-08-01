@@ -37,6 +37,8 @@ class Hive
 
     private array $knownLaws = [];
 
+    private const MIN_DATA_POINTS = 10;
+
     /**
      * @var array<string, float> fingerprint to epsilon_null (V0: Runtime Null-Calibration)
      */
@@ -699,7 +701,7 @@ class Hive
         static $lastRegen = 0;
 
         if ($tasks !== null && ($this->tick - $lastRegen) < 100) {
-            return array_merge($tasks, $this->foragedTasksGlobal);
+            return $this->filterInsufficient(array_merge($tasks, $this->foragedTasksGlobal));
         }
         $lastRegen = $this->tick;
 
@@ -761,7 +763,7 @@ class Hive
 
         // Generated compose tasks (disabled on plateau — HONEST_CRITERIA §1.5)
         if ($skipGenerated || $this->plateau->isPlateau()) {
-            return array_merge($tasks, $this->foragedTasksGlobal);
+            return $this->filterInsufficient(array_merge($tasks, $this->foragedTasksGlobal));
         }
 
         srand(42); // deterministic seed for reproducible GEN_ data
@@ -852,7 +854,48 @@ class Hive
             $tasks = array_merge($tasks, $crossTasks);
         }
 
-        return array_merge($tasks, $this->foragedTasksGlobal);
+        return $this->filterInsufficient(array_merge($tasks, $this->foragedTasksGlobal));
+    }
+
+    /**
+     * D12: Отфильтровать таски с недостаточными данными.
+     * Вычисляет tMin = max(10, nFeat × 5) для каждого таска.
+     * Таски без ключа 'data' (text/semantic) пропускаются.
+     */
+    private function filterInsufficient(array $tasks): array
+    {
+        // Дедупликация: для каждого имени таска — версия с максимумом данных
+        $best = [];
+        foreach ($tasks as $t) {
+            $name = $t['name'] ?? '';
+            if ($name === '') {
+                continue;
+            }
+            $cnt = isset($t['data']) ? count($t['data']) : PHP_INT_MAX;
+            if (!isset($best[$name]) || $cnt > $best[$name][1]) {
+                $best[$name] = [$t, $cnt];
+            }
+        }
+
+        $filtered = [];
+        $skipped = 0;
+        foreach ($best as [$t, $cnt]) {
+            if (!isset($t['data'])) {
+                $filtered[] = $t;  // text/semantic — не фильтруем
+                continue;
+            }
+            $nFeat = is_array($t['data'][0] ?? null) ? max(1, count($t['data'][0]) - 1) : 1;
+            $tMin = max(self::MIN_DATA_POINTS, $nFeat * 5);
+            if ($cnt >= $tMin) {
+                $filtered[] = $t;
+            } else {
+                $skipped++;
+            }
+        }
+        if ($skipped > 0) {
+            $this->log("PRE_FILTER: skipped {$skipped} insufficient tasks");
+        }
+        return $filtered;
     }
 
     // ═══ ТЕСТОВЫЕ МЕТОДЫ ═══

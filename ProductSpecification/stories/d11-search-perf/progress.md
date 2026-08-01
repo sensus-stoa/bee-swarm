@@ -19,8 +19,9 @@ Search::find уже использует `restrictTo(BASE_OPS)` — пробле
 - [x] 425/425 PASS, E2E: 302 тика stable (7008004)
 
 ### Phase 2: Pruning — досрочный выход при CV > best
-- [ ] discoverCompose: если промежуточный CV уже хуже лучшего → skip
-- [ ] AtomProvider::discoverCompose: early exit оптимизация
+- [x] discoverCompose: cvThreshold param + early exit каждые 20% строк
+- [x] doDiscoverTick: проброс cvTrainMax в compose
+- [x] E2E: 0ms выигрыш — type checks доминируют, capped(50) уже решил проблему (9317726)
 
 ### Phase 3: Time budget — ограничение по времени на тик
 - [ ] doDiscoverTick: общий таймаут на все поиски в тике

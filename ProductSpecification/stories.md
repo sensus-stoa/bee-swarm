@@ -9,7 +9,8 @@
 | S1.11 | SOURCE — foraged provenance | ✅ Phase 3 complete (512f204) — source + labels |
 | S1.12 | EVOLVE — grammar evolution | ✅ Phase 3 complete (62968b9) |
 | S1.13 | LANDSCAPE — эпигенетический ландшафт | ⬜ Phase 1 backlog |
-| D11 | SEARCH-PERF — grammar cap + pruning | ⬜ Phase 1 backlog |
+| D11 | SEARCH-PERF — grammar cap + pruning | ⬜ Phase 2 (early exit) |
+| D12 | INSUFFICIENT — skip insufficient tasks | ⬜ Phase 1 backlog |
 
 ## Stage 0 — COMPLETE ✅
 

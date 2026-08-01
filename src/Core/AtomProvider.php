@@ -72,11 +72,13 @@ class AtomProvider
     /**
      * Перебирает все пары grammar-атомов, возвращает compose с CV=0.
      */
-    public static function discoverCompose(array $X, array $y, array $grammar): array
+    public static function discoverCompose(array $X, array $y, array $grammar, ?float $cvThreshold = null): array
     {
         $found = [];
         $nFeat = count($X[0] ?? []);
         $n = count($y);
+        $threshold = $cvThreshold ?? 0.001;
+        $bestCv = $threshold;  // early exit: abort pairs worse than threshold
 
         foreach ($grammar as $outer) {
             foreach ($grammar as $inner) {
@@ -92,8 +94,9 @@ class AtomProvider
 
                 $vec = [];
                 $valid = true;
+                $checkInterval = max(10, (int)($n / 5));  // check every 20% of rows
 
-                foreach ($X as $row) {
+                foreach ($X as $i => $row) {
                     $v1 = self::applyToRow($inner, $nFeat, $row);
                     if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
                         $valid = false;
@@ -115,6 +118,15 @@ class AtomProvider
                         break;
                     }
                     $vec[] = $v2;
+
+                    // Early exit: estimate partial CV, abort if clearly above threshold
+                    if ($cvThreshold !== null && $i > 0 && $i % $checkInterval === 0 && count($vec) >= 3) {
+                        $partialCv = AtomRegistry::cv($vec, array_slice($y, 0, count($vec)));
+                        if ($partialCv > $threshold * 5) {  // 5x margin for partial estimate
+                            $valid = false;
+                            break;
+                        }
+                    }
                 }
 
                 if (! $valid || count($vec) !== $n) {
@@ -123,12 +135,15 @@ class AtomProvider
 
                 $cv = AtomRegistry::cv($vec, $y);
                 $composeAtom = "{$outer}({$inner})";
-                if ($cv < 0.001 && ! AtomRegistry::isTrivial($composeAtom, $X, $y)) {
+                if ($cv <= $threshold && ! AtomRegistry::isTrivial($composeAtom, $X, $y)) {
                     $found[] = [
                         'atom' => $composeAtom,
                         'cv' => $cv,
                         'mode' => 'compose',
                     ];
+                    if ($cv < $bestCv) {
+                        $bestCv = $cv;
+                    }
                 }
             }
         }

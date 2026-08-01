@@ -589,7 +589,7 @@ class Hive
         // S1.12: Compose discovery — pairs of grammar atoms (capped for perf)
         $composeGrammar = (new Grammar())->capped(50);
         if (count($composeGrammar) >= 2) {
-            foreach (AtomRegistry::discoverCompose($X, $y, $composeGrammar) as $d) {
+            foreach (AtomRegistry::discoverCompose($X, $y, $composeGrammar, $cvTrainMax) as $d) {
                 if ($d['cv'] <= $cvTrainMax) {
                     $this->recordDiscovery($d, $task, $domain, $foundAny);
                 }

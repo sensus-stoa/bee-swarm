@@ -552,6 +552,25 @@ class Hive
         }
         $cvTrainMax = $this->getEpsilon($fp) ?? 0.01;
 
+        // S1.9 Phase 2: Generative search via Search::find (includes GlobalReduce)
+        // Runs BEFORE AtomRegistry discover — generates expressions systematically
+        if (! $foundAny) {
+            try {
+                $searchGrammar = new Grammar();
+                $searchGrammar->restrictTo(array_keys(Grammar::BASE_OPS));
+                [$sFound, $sCv, $sFormula] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2);
+                if ($sFound && $sCv <= $cvTrainMax) {
+                    $this->recordDiscovery([
+                        'atom' => $sFormula,
+                        'cv' => $sCv,
+                        'mode' => 'search',
+                    ], $task, $domain, $foundAny);
+                }
+            } catch (\Throwable $e) {
+                $this->log("SEARCH_FAILED: fp={$fp} " . $e->getMessage());
+            }
+        }
+
         if (AtomRegistry::isHeldoutEnabled()) {
             foreach (LawValidator::discoverHeldout($X, $y, cvTrainMax: $cvTrainMax) as $d) {
                 $this->recordDiscovery($d, $task, $domain, $foundAny);
@@ -586,7 +605,8 @@ class Hive
         if ($this->taskRouter && $this->routedBee) {
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
-        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV=0) [{$domain}]");
+        $cvFmt = number_format($d['cv'], 4);
+        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]");
         $this->plateau->tick(true);
     }
 

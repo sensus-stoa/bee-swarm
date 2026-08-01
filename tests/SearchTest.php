@@ -222,4 +222,18 @@ class SearchTest extends TestCase
         $this->assertTrue($ok, "Should find reduce+feature combination, got cv=$cv formula=$formula");
         $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv formula=$formula");
     }
+
+    /**
+     * find: int колонки проходят guard (is_int) — reduce работает
+     * Проверяет что guard не отсекает целочисленные данные.
+     */
+    public function testFindIntColumnsPassGuard(): void
+    {
+        $g = new Grammar();
+        $X = [[7], [5], [9]];  // int, не float
+        $y = [2.0, 0.0, 4.0];  // y = x0 - min(x0) = x0 - 5
+        [$ok, $cv] = Search::find($X, $y, $g, 2);
+        $this->assertTrue($ok, "Should find reduce on int column, got cv=$cv");
+        $this->assertLessThan(0.001, $cv);
+    }
 }

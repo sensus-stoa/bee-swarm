@@ -68,6 +68,12 @@ class Search
         foreach ($rawFeatKeys as $fname) {
             if (!preg_match('/^x\d+$/', $fname)) continue; // only raw features
             $col = $feats[$fname];
+            // Skip non-numeric columns (text data, labels, etc.)
+            $allNumeric = true;
+            foreach ($col as $v) {
+                if (!is_float($v) && !is_int($v)) { $allNumeric = false; break; }
+            }
+            if (!$allNumeric) continue;
             foreach ($reduceAssoc as $rop) {
                 $reduced = $grammar->reduce($rop, $col);
                 if ($reduced === null || abs($reduced) < 1e-10) continue;
@@ -80,7 +86,7 @@ class Search
                 $pnameDiv = "({$fname}/R{$rop}{$fname})";
                 $vecDiv = [];
                 for ($i = 0; $i < $n; $i++) {
-                    $r = $grammar->apply($col[$i], $reduced, '/');
+                    $r = $grammar->apply((float)$col[$i], $reduced, '/');
                     $vecDiv[] = $r ?? 0.0;
                 }
                 $feats[$pnameDiv] = $vecDiv;
@@ -91,7 +97,7 @@ class Search
                     $pnameSub = "({$fname}-R{$rop}{$fname})";
                     $vecSub = [];
                     for ($i = 0; $i < $n; $i++) {
-                        $r = $grammar->apply($col[$i], $reduced, '−');
+                        $r = $grammar->apply((float)$col[$i], $reduced, '−');
                         $vecSub[] = $r ?? 0.0;
                     }
                     $feats[$pnameSub] = $vecSub;
@@ -109,7 +115,7 @@ class Search
                 $pnameNorm = "(Rnorm{$fname})";
                 $vecNorm = [];
                 for ($i = 0; $i < $n; $i++) {
-                    $num = $grammar->apply($col[$i], $rmin, '−') ?? 0.0;
+                    $num = $grammar->apply((float)$col[$i], $rmin, '−') ?? 0.0;
                     $den = $range;
                     $vecNorm[] = $den != 0 ? ($num / $den) : 0.0;
                 }

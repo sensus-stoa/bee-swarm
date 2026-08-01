@@ -5,7 +5,8 @@
 | # | What | Status |
 |---|------|--------|
 | V0 | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
-| S1.9 | GENERATIVE — reduce arity bridge | 🔴 Phase 2: Search integration (блокирует открытия) |
+| S1.9 | GENERATIVE — reduce arity bridge | ✅ Phase 2 complete (cb2cc2c) — первые открытия |
+| S1.11 | SOURCE — foraged provenance | ⬜ Phase 1 backlog |
 
 ## Stage 0 — COMPLETE ✅
 

@@ -55,5 +55,15 @@ compose(reduce(+, w), /(x, count)) → mean(v)
 
 ## Статус
 ✅ Phase 1 + Phase 1.5 завершены (09741be)
-⬜ Phase 2 — Search integration (backlog)
+✅ Phase 2 — Search integration + Hive wiring (cb2cc2c)
 ⬜ Phase 3 — Co-evolution (backlog, Stage 2)
+
+## Результаты Phase 2 (01.08.2026)
+- **Первые открытия на реальных данных** (ноутбук, демон PID 15016):
+  - sleep→energy: 3 закона (CV=0.055–0.084)
+  - discipline→dq: 3 закона (CV=0.075–0.084)
+  - foraged_num_0af5a10ad369: 3 закона (CV=0.067–0.133)
+  - dq→intact, stress→intact, gi→dq, anxiety→intact, energy→intact, sleep→discipline
+- Все используют reduce-выражения (R+x0, x0/R+x0, Rmaxx0, x0minK2)
+- Hive::doDiscoverTick теперь вызывает Search::find с калиброванным ε_null
+- 416/416 PASS, 855 assertions

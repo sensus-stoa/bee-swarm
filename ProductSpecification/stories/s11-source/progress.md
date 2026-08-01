@@ -19,10 +19,12 @@
 ## Что нужно
 
 ### Phase 1: Source metadata pipeline
-- [ ] StreamingAccumulator: добавить `source_path` в fd-таблицу и task-структуру
-- [ ] laws-таблица: миграция — колонки `source_path TEXT`, `content_sample TEXT`
-- [ ] Hive::recordDiscovery: сохранять source_path и content_sample из task
-- [ ] Лог открытий: `🔍 {task} -> {formula} (CV={cv}) [{domain}] src={path_basename}`
+- [x] StreamingAccumulator: fd таблица + `source_path` TEXT, все INSERT передают `$path`
+- [x] task-структура: `'source_path' => $sourcePath` из первого ряда GROUP BY
+- [x] laws-таблица: LAWS_DDL + миграция ALTER TABLE — колонки `source_path`, `content_sample`
+- [x] Hive::recordDiscovery: INSERT 6 params (было 4), пишет source_path + первые 200 символов content
+- [x] Лог открытий: `🔍 {task} -> {formula} (CV={cv}) [{domain}] src={basename}`
+- [x] 2 теста: testTasksIncludeSourcePath, testLawsTableHasSourceColumns (418/418 PASS)
 
 ### Phase 2: Traceability tools
 - [ ] `bee law show <id>` — показать source_path + первые 200 символов content_sample

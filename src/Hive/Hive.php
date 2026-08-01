@@ -599,14 +599,20 @@ class Hive
         if (! in_array($d['atom'], $g->all())) {
             $g->add($d['atom'], 'auto-discover');
         }
-        Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-            ->execute([$task['name'], $d['atom'], $d['cv'], $domain]);
+        Database::get()->prepare(
+            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample) VALUES (?,?,?,?,?,?)'
+        )->execute([
+            $task['name'], $d['atom'], $d['cv'], $domain,
+            $task['source_path'] ?? '',
+            mb_substr($task['content'] ?? '', 0, 200),
+        ]);
         // Record success on TaskRouter
         if ($this->taskRouter && $this->routedBee) {
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
         $cvFmt = number_format($d['cv'], 4);
-        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]");
+        $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
+        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
         $this->plateau->tick(true);
     }
 

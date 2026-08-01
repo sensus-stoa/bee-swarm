@@ -114,4 +114,50 @@ class StreamingAccumulatorTest extends TestCase
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
     }
+
+    /**
+     * S1.11 Phase 1: source_path в task-структуре
+     * Каждая задача должна содержать source_path — путь к файлу-источнику данных.
+     */
+    public function testTasksIncludeSourcePath(): void
+    {
+        $strategies = [
+            'csv' => function (string $c): array {
+                $lines = explode("\n", trim($c));
+                $rows = [];
+                foreach ($lines as $l) {
+                    $parts = str_getcsv($l);
+                    $nums = array_filter($parts, 'is_numeric');
+                    if (count($nums) >= 2) {
+                        $rows[] = array_map('floatval', $nums);
+                    }
+                }
+                return $rows;
+            },
+        ];
+        $factInserter = new SemanticFactInserter();
+        $acc = new StreamingAccumulator($strategies, $factInserter);
+        $dir = sys_get_temp_dir() . '/s11_src_' . uniqid();
+        mkdir($dir);
+
+        // 3 файла с одинаковым паттерном → накопятся в одну задачу
+        for ($i = 0; $i < 3; $i++) {
+            file_put_contents("{$dir}/src{$i}.csv", ($i) . ',' . ($i+1) . "\n" .
+                ($i+5) . ',' . ($i+6) . "\n" .
+                ($i+10) . ',' . ($i+11) . "\n" .
+                ($i+15) . ',' . ($i+16) . "\n");
+        }
+
+        $tasks = $acc->scan([$dir => 1]);
+
+        $this->assertGreaterThan(0, count($tasks), 'Must produce tasks');
+        foreach ($tasks as $t) {
+            $this->assertArrayHasKey('source_path', $t, 'Task must have source_path field');
+            $this->assertNotEmpty($t['source_path'], 'source_path must not be empty');
+            $this->assertStringContainsString('src', $t['source_path'], 'source_path must reference a source file');
+        }
+
+        array_map('unlink', glob("{$dir}/*"));
+        rmdir($dir);
+    }
 }

@@ -53,4 +53,16 @@ class HiveTest extends TestCase
         $totalTicks = $hive->run();
         $this->assertSame(1, $totalTicks);
     }
+
+    /**
+     * S1.11: laws-таблица содержит колонки source_path и content_sample
+     */
+    public function testLawsTableHasSourceColumns(): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $cols = $db->query('PRAGMA table_info(laws)')->fetchAll(\PDO::FETCH_ASSOC);
+        $names = array_column($cols, 'name');
+        $this->assertContains('source_path', $names, 'laws table must have source_path column');
+        $this->assertContains('content_sample', $names, 'laws table must have content_sample column');
+    }
 }

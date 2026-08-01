@@ -610,6 +610,18 @@ class Hive
         if (! in_array($d['atom'], $g->all())) {
             $g->add($d['atom'], 'auto-discover');
         }
+
+        // S1.12 Phase 2: Cross-domain signal — атом на ≥2 доменах
+        if (($d['mode'] ?? '') === 'compose') {
+            $otherDomains = Database::get()->prepare(
+                'SELECT DISTINCT domain FROM laws WHERE formula=? AND domain!=?'
+            );
+            $otherDomains->execute([$d['atom'], $domain]);
+            $crossDomains = $otherDomains->fetchAll(\PDO::FETCH_COLUMN);
+            if (count($crossDomains) > 0) {
+                $this->log("CROSS_DOMAIN: {$d['atom']} now in [" . implode(',', array_merge([$domain], $crossDomains)) . ']');
+            }
+        }
         Database::get()->prepare(
             'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels) VALUES (?,?,?,?,?,?,?)'
         )->execute([

@@ -1,81 +1,83 @@
-REVIEW: S1.12 Phase 1 — discoverCompose wiring
-================================================
+REVIEW: S1.12 Phase 2 — Cross-domain tracking
+==============================================
 
 ## 1. AGENT-REVIEW — bugs, edge cases, invariants
 
-### Changed: src/Hive/Hive.php:589-597
-Adds 9 lines in `doDiscoverTick()`: after heldout/raw discover, calls 
-`AtomRegistry::discoverCompose($X, $y, $composeGrammar)` with a fresh grammar 
-snapshot from DB, filters by `$cvTrainMax`, and records via `recordDiscovery()`.
+### Changed: src/Hive/Hive.php:614-624 (+12 lines)
+Adds cross-domain check in `recordDiscovery()`: when `mode==='compose'`, queries
+`laws` table for same formula in DIFFERENT domains. If found, logs CROSS_DOMAIN.
 
 ### Edge cases analysed:
 
-**(a) Grammar freshness**: `(new Grammar())->all()` creates a fresh instance 
-reading from DB. Since `recordDiscovery()` (called by heldout/raw path above) 
-writes to DB immediately, newly discovered atoms ARE visible to compose. ✓
+**(a) mode null safety**: `($d['mode'] ?? '') === 'compose'` — null coalescing
+handles missing key. ✓
 
-**(b) Redundancy with doComposeTick()**: `doComposeTick()` (line 631) is only 
-called under plateau/desperation conditions. The new eager compose in 
-`doDiscoverTick` runs on EVERY tick after the heldout/raw block. Duplicate 
-check in `recordDiscovery()` (line 603, `$this->knownLaws` key) prevents 
-double-insertion. Harmless redundancy. ✓
+**(b) Duplicate CROSS_DOMAIN logs**: `recordDiscovery` deduplicates by
+`$this->knownLaws`, so each (atom, domain) pair fires at most once. When atom
+appears in domains A→B→C, you get 2 logs (B-found-A, C-found-A+B) — correct;
+each log captures the growing domain set. ✓
 
-**(c) CV threshold**: `discoverCompose()` internally returns only `cv < 0.001` 
-atoms, so the `$d['cv'] <= $cvTrainMax` guard is currently redundant but 
-defensively correct — mirrors the raw discover path and respects null-calibrated 
-epsilon. ✓
+**(c) SQL injection**: Uses PDO prepared statement with positional `?` params. ✓
 
-**(d) Empty X / insufficient data**: Block inherits statistical sufficiency 
-check at top of doDiscoverTick (line 532-537). $X and $y guaranteed valid. ✓
+**(d) PDO portability**: Uses `?` placeholders — PDO rewrites per driver. Works
+on both SQLite and PostgreSQL. ✓
 
-**(e) count($composeGrammar) >= 2 guard**: Prevents wasted O(n²) pair iteration 
-when grammar has < 2 atoms. ✓
+**(e) fetchAll(FETCH_COLUMN)**: Returns flat array of domain strings — correct
+input for `implode()`. ✓
+
+**(f) Domain ordering**: `array_merge([$domain], $crossDomains)` puts current
+domain first. `$crossDomains` has no ORDER BY (non-deterministic but acceptable
+for logging). ✓
+
+**(g) Performance**: One SELECT DISTINCT per new compose atom. `laws` table row
+count is moderate at Stage 0. An index on `(formula, domain)` would help at
+scale — acceptable for prototype. ✓
 
 ### Invariants preserved:
-- No modification to task, $X, $y, $domain state
-- `$foundAny` propagated correctly through recordDiscovery
-- `$this->knownLaws` cache consistent via key-based dedup
-- LINT: php -l clean on both changed files
+- No side effects on grammar, task state, or DB beyond logging
+- `recordDiscovery` return type unchanged (void)
+- `$foundAny` propagated correctly — new code doesn't touch it
+- Read-only query — no data corruption risk
+- Grammar already auto-grows via existing `$g->add()` + INSERT OR IGNORE
 
 ## 2. PROTOCOL CHECK
 
 | Check | Status | Detail |
 |-------|--------|--------|
-| Compose grammar uses current ops | PASS | `(new Grammar())->all()` reads DB; heldout/raw discoveries written before compose call |
-| CV threshold respected | PASS | Uses `$cvTrainMax` (null-calibrated epsilon, fallback 0.01) — same as heldout/raw paths |
-| Statistical sufficiency | PASS | Inherits `count($y) >= max(10, nFeat*5)` guard at top of doDiscoverTick |
-| Duplicate prevention | PASS | `recordDiscovery()` checks `$this->knownLaws` before insert |
-| Non-numeric domains skipped | PASS | `doDiscoverTick` only called when `$domain !== 'cloze' && $domain !== 'foraged_semantic'` |
+| Only compose atoms tracked | PASS | `mode === 'compose'` guard — raw/heldout atoms not checked |
+| Cross-domain query correct | PASS | `domain!=?` excludes current domain, `DISTINCT` deduplicates |
+| Log format readable | PASS | `"CROSS_DOMAIN: atom now in [domainA,domainB,...]"` |
+| No INSERT before check | PASS | Cross-domain query runs BEFORE INSERT OR IGNORE — so it finds atoms from prior ticks, not the one being inserted now |
+| Grammar growth untouched | PASS | Existing auto-discover + INSERT path unchanged |
+
+Note: the INSERT OR IGNORE for the *current* atom happens AFTER the check. So
+the cross-domain query only finds atoms from PRIOR ticks/domains — correct. The
+current atom's own domain won't appear in `$crossDomains` until the next
+cross-domain check for another domain.
 
 ## 3. STRATEGIC GATE
 
 **Assessment: Sound.**
 
-The eager compose path ensures composite atoms are discovered alongside basic 
-atoms on every tick — not just under plateau or desperation conditions. This 
-increases discovery throughput.
+Cross-domain tracking is essential infrastructure. When an atom proves useful
+across ≥2 domains, it signals generality — the core property we're hunting
+(CV→0). This log gives the daemon a signal it can eventually act on (e.g.,
+promoting cross-domain atoms to a shared grammar pool, weighting them higher in
+bees, or triggering deeper analysis).
 
-The dual path (eager in doDiscoverTick + conditional in doComposeTick) is 
-acceptable: `recordDiscovery` deduplication prevents any double-counting or 
-double-insertion.
-
-`discoverCompose` pre-filters to `cv < 0.001`, so quality bar is actually 
-higher than the `$cvTrainMax` threshold allows. No risk of low-quality compose 
-atoms polluting grammar.
-
-The test `testHiveDiscoversComposeAtom` validates end-to-end mechanism: seed 
-grammar → discoverCompose → abs(sub) found. Coverage is adequate for Phase 1.
+Minimal implementation — 12 lines, no refactoring, no new abstractions. The log
+is currently informational; future phases can build on it.
 
 **No strategic concerns.**
 
 ## 4. DEAD BEE CHECK
 
-N/A — purely additive discovery logic. No bee lifecycle changes.
+N/A — purely additive logging in discovery path. No bee lifecycle changes.
 
 ## 5. VERDICT
 
-**PASS** — 424/424 tests, 881 assertions. LINT clean. No bugs found. 
+**PASS** — 424/424 tests, 881 assertions. LINT clean. No bugs found.
 Protocol checks pass. Design sound.
 
-Reviewer: sub-agent (S1.12-review)
+Reviewer: sub-agent (S1.12-phase2-review)
 Date: 2026-08-01

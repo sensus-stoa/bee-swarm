@@ -25,11 +25,13 @@
 - [x] 424/424 PASS (d69381c)
 
 ### Phase 2: Auto-promote в grammar_ops
-- [ ] CV=0 на ≥2 доменах → `$g->add($atom, 'auto-discover')`
-- [ ] Кросс-доменный трекинг через accumulateSignal
+- [x] Cross-domain tracking: запрос laws на других доменах
+- [x] Лог CROSS_DOMAIN при ≥2 доменах
+- [x] Grammar auto-grow через существующий auto-discover (63a1084)
 
 ### Phase 3: Grammar reload в цикле
-- [ ] После promote → grammar reload для следующего тика
+- [x] `(new Grammar())->all()` читает свежую БД каждый тик
+- [x] recordDiscovery → DB write → следующий тик видит новые атомы
 
 ## Что НЕ делать
 - ❌ Не добавлять операторы вручную (manual operator anti-pattern)

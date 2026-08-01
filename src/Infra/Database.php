@@ -20,6 +20,7 @@ class Database
         domain TEXT DEFAULT 'unknown',
         source_path TEXT DEFAULT '',
         content_sample TEXT DEFAULT '',
+        col_labels TEXT DEFAULT '[]',
         found_at TEXT DEFAULT (datetime('now')),
         UNIQUE(name, formula, domain)
     )";
@@ -64,6 +65,11 @@ class Database
         }
         try {
             $db->exec('ALTER TABLE laws ADD COLUMN content_sample TEXT DEFAULT \'\'');
+        } catch (\PDOException) {
+            // Column already exists — ok
+        }
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN col_labels TEXT DEFAULT \'[]\'');
         } catch (\PDOException) {
             // Column already exists — ok
         }

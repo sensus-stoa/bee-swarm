@@ -236,4 +236,32 @@ class SearchTest extends TestCase
         $this->assertTrue($ok, "Should find reduce on int column, got cv=$cv");
         $this->assertLessThan(0.001, $cv);
     }
+
+    /**
+     * S1.11 Phase 3: col_labels → именованные фичи в формулах
+     * (price/R+price) вместо (x0/R+x0)
+     */
+    public function testFindUsesColumnLabels(): void
+    {
+        $g = new Grammar();
+        $X = [[2.0, 5.0], [3.0, 5.0], [5.0, 5.0]];
+        $y = [0.2, 0.3, 0.5];  // y = x0 / sum(x0) = x0/10
+        [$ok, $cv, $formula] = Search::find($X, $y, $g, 2, ['price', 'qty']);
+        $this->assertTrue($ok, "Should find pattern, got cv=$cv formula=$formula");
+        $this->assertStringContainsString('price', $formula, 'Formula must use label "price" not x0');
+        $this->assertStringNotContainsString('x0', $formula, 'Formula must NOT contain x0 when labels provided');
+    }
+
+    /**
+     * S1.11 Phase 3: col_labels=null → x0,x1 (обратная совместимость)
+     */
+    public function testFindWithoutLabelsUsesDefaultNames(): void
+    {
+        $g = new Grammar();
+        $X = [[7.0], [5.0], [9.0]];
+        $y = [2.0, 0.0, 4.0];
+        [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);  // без labels
+        $this->assertTrue($ok, "Should find pattern, got cv=$cv formula=$formula");
+        $this->assertStringContainsString('x0', $formula, 'Default feature name must be x0');
+    }
 }

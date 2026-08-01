@@ -160,4 +160,53 @@ class StreamingAccumulatorTest extends TestCase
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
     }
+
+    /**
+     * S1.11 Phase 3: col_labels из markdown-таблиц
+     * Заголовки колонок из | header1 | header2 | → попадают в task['col_labels']
+     */
+    public function testTasksIncludeColumnLabels(): void
+    {
+        $strategies = [
+            'csv' => function (string $c): array {
+                $lines = explode("\n", trim($c));
+                $rows = [];
+                foreach ($lines as $l) {
+                    $parts = str_getcsv($l);
+                    $nums = array_filter($parts, 'is_numeric');
+                    if (count($nums) >= 2) {
+                        $rows[] = array_map('floatval', $nums);
+                    }
+                }
+                return $rows;
+            },
+        ];
+        $factInserter = new SemanticFactInserter();
+        $acc = new StreamingAccumulator($strategies, $factInserter);
+        $dir = sys_get_temp_dir() . '/s11_cols_' . uniqid();
+        mkdir($dir);
+
+        // CSV с заголовком
+        file_put_contents("{$dir}/data.csv", "price,qty\n10,5\n20,3\n30,2\n40,1\n50,4\n");
+        // Ещё строк для tMin=10
+        file_put_contents("{$dir}/more.csv", "price,qty\n60,6\n70,7\n80,8\n90,9\n100,10\n");
+
+        $tasks = $acc->scan([$dir => 1]);
+
+        $this->assertGreaterThan(0, count($tasks), 'Must produce tasks');
+        $numTasks = 0;
+        foreach ($tasks as $t) {
+            if ($t['domain'] === 'foraged') {
+                $numTasks++;
+                $this->assertArrayHasKey('col_labels', $t, 'Task must have col_labels field');
+                $this->assertIsArray($t['col_labels'], 'col_labels must be array');
+                $this->assertContains('price', $t['col_labels'], 'Labels must include price');
+                $this->assertContains('qty', $t['col_labels'], 'Labels must include qty');
+            }
+        }
+        $this->assertGreaterThan(0, $numTasks, 'Must have at least one foraged task');
+
+        array_map('unlink', glob("{$dir}/*"));
+        rmdir($dir);
+    }
 }

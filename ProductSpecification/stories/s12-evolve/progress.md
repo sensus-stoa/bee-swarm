@@ -20,8 +20,9 @@
 ## Phases
 
 ### Phase 1: discoverCompose в doDiscoverTick
-- [ ] После Search::find → AtomRegistry::discoverCompose на той же задаче
-- [ ] Найденные compose-атомы → recordDiscovery
+- [x] После Search::find + AtomRegistry::discover → discoverCompose
+- [x] Использует калиброванный cvTrainMax
+- [x] 424/424 PASS (d69381c)
 
 ### Phase 2: Auto-promote в grammar_ops
 - [ ] CV=0 на ≥2 доменах → `$g->add($atom, 'auto-discover')`

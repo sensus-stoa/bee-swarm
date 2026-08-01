@@ -35,7 +35,7 @@ class Search
         return sqrt($variance / $n) / abs($mean);
     }
 
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2): array
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null): array
     {
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
@@ -43,12 +43,16 @@ class Search
         }
         $nFeat = count($X[0]);
 
+        // Feature naming: colLabels[0]='price' → feature key 'price' instead of 'x0'
+        $featName = fn (int $i): string => $colLabels[$i] ?? "x{$i}";
+
         // L0: Features
         $feats = [];
         for ($i = 0; $i < $nFeat; $i++) {
             $col = array_column($X, $i);
-            $feats["x{$i}"] = $col;
-            $feats["x{$i}²"] = array_map(fn ($v) => $v * $v, $col);
+            $fname = $featName($i);
+            $feats[$fname] = $col;
+            $feats["{$fname}²"] = array_map(fn ($v) => $v * $v, $col);
         }
         foreach ([1.0, 2.0] as $c) {
             $feats["K{$c}"] = array_fill(0, $n, $c);
@@ -64,9 +68,14 @@ class Search
         // Constants (R+x0, R×x0, Rmaxx0, Rminx0) enter L1/L2 pool
         // Pointwise expressions enter expression pool directly
         $reduceAssoc = ['+', '×', 'max', 'min'];
+        // Collect raw feature names (first $nFeat entries, before squared versions)
+        $rawFeatNames = [];
+        for ($i = 0; $i < $nFeat; $i++) {
+            $rawFeatNames[$featName($i)] = true;
+        }
         $rawFeatKeys = array_keys($feats);
         foreach ($rawFeatKeys as $fname) {
-            if (!preg_match('/^x\d+$/', $fname)) continue; // only raw features
+            if (!isset($rawFeatNames[$fname])) continue; // only raw features
             $col = $feats[$fname];
             // Skip non-numeric columns (text data, labels, etc.)
             $allNumeric = true;

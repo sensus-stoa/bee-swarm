@@ -558,7 +558,8 @@ class Hive
             try {
                 $searchGrammar = new Grammar();
                 $searchGrammar->restrictTo(array_keys(Grammar::BASE_OPS));
-                [$sFound, $sCv, $sFormula] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2);
+                $colLabels = $task['col_labels'] ?? null;
+                [$sFound, $sCv, $sFormula] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2, $colLabels);
                 if ($sFound && $sCv <= $cvTrainMax) {
                     $this->recordDiscovery([
                         'atom' => $sFormula,
@@ -600,11 +601,12 @@ class Hive
             $g->add($d['atom'], 'auto-discover');
         }
         Database::get()->prepare(
-            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample) VALUES (?,?,?,?,?,?)'
+            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels) VALUES (?,?,?,?,?,?,?)'
         )->execute([
             $task['name'], $d['atom'], $d['cv'], $domain,
             $task['source_path'] ?? '',
             mb_substr($task['content'] ?? '', 0, 200),
+            json_encode($task['col_labels'] ?? []),
         ]);
         // Record success on TaskRouter
         if ($this->taskRouter && $this->routedBee) {

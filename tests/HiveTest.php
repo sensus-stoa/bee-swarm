@@ -64,6 +64,7 @@ class HiveTest extends TestCase
         $names = array_column($cols, 'name');
         $this->assertContains('source_path', $names, 'laws table must have source_path column');
         $this->assertContains('content_sample', $names, 'laws table must have content_sample column');
+        $this->assertContains('col_labels', $names, 'laws table must have col_labels column');
     }
 
     /**

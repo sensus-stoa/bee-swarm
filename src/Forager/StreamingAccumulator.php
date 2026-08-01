@@ -57,8 +57,8 @@ class StreamingAccumulator
         $this->lastPaths = [];
 
         $db = new \PDO('sqlite::memory:');
-        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, source_path TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
-        $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,source_path,content) VALUES (?, ?, ?, ?, ?)');
+        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, source_path TEXT, col_labels TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
+        $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,source_path,col_labels,content) VALUES (?, ?, ?, ?, ?, ?)');
 
         $sorted = $dirs;
         arsort($sorted);
@@ -90,6 +90,7 @@ class StreamingAccumulator
                         continue;
                     }
                     $contentSample = mb_substr($content, 0, 5000);
+                    $colLabels = self::guessLabels($contentSample);
                     foreach ($this->strategies as $sname => $fn) {
                         try {
                             $r = $fn($content);
@@ -101,7 +102,7 @@ class StreamingAccumulator
                                 if (is_array($entry) && isset($entry['semantic'])) {
                                     $this->factInserter->insert($entry['s'], $entry['p'], $entry['o']);
                                     $pat = 'sem_' . md5($entry['s'] . $entry['p'] . $entry['o']);
-                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic', $path, $contentSample]);
+                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic', $path, $colLabels, $contentSample]);
                                     $isSemantic = true;
                                 }
                             }
@@ -121,7 +122,7 @@ class StreamingAccumulator
                                         continue;
                                     }
                                     $pat = 'num_' . md5($sname . count($row));
-                                    $stmt->execute([$pat, json_encode($row), 'foraged', $path, $contentSample]);
+                                    $stmt->execute([$pat, json_encode($row), 'foraged', $path, $colLabels, $contentSample]);
                                 }
                             }
                         } catch (\Throwable) {
@@ -136,7 +137,7 @@ class StreamingAccumulator
                                 if (is_array($result) && ! empty($result) && is_numeric($result[0] ?? null)) {
                                     $pat = 'txt_' . md5($atom);
                                     foreach ($result as $val) {
-                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $path, $contentSample]);
+                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $path, $colLabels, $contentSample]);
                                     }
                                 }
                             } catch (\Throwable) {
@@ -152,10 +153,11 @@ class StreamingAccumulator
         $tasks = [];
         $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
         while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
-            $dr = $db->query("SELECT row_json, content, source_path FROM fd WHERE pattern='{$r['pattern']}' LIMIT 1");
+            $dr = $db->query("SELECT row_json, content, source_path, col_labels FROM fd WHERE pattern='{$r['pattern']}' LIMIT 1");
             $cr = $dr->fetch(\PDO::FETCH_ASSOC);
             $contentSample = $cr['content'] ?? '';
             $sourcePath = $cr['source_path'] ?? '';
+            $colLabelsJson = $cr['col_labels'] ?? '[]';
             $data = [];
             $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
             while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
@@ -167,9 +169,47 @@ class StreamingAccumulator
                 'domain' => $r['domain'],
                 'content' => $contentSample,
                 'source_path' => $sourcePath,
+                'col_labels' => json_decode($colLabelsJson, true) ?? [],
             ];
         }
 
         return $tasks;
+    }
+
+    /**
+     * S1.11 Phase 3: Извлечение заголовков колонок из контента.
+     * Пытается CSV (первая строка), markdown-таблицу (| h1 | h2 |), иначе пустой массив.
+     * @return string JSON-encoded array of labels (e.g. '["price","qty"]')
+     */
+    private static function guessLabels(string $content): string
+    {
+        $lines = explode("\n", trim($content));
+        if (empty($lines)) {
+            return '[]';
+        }
+
+        // Markdown table: | header1 | header2 |
+        // followed by |---|----|
+        foreach ($lines as $i => $line) {
+            $line = trim($line);
+            if (preg_match('/^\|(.+)\|$/', $line, $m)) {
+                $cells = array_map('trim', explode('|', $m[1]));
+                $cells = array_filter($cells, fn ($c) => $c !== '' && !preg_match('/^[-: ]+$/', $c));
+                if (count($cells) >= 2 && isset($lines[$i + 1])
+                    && preg_match('/^\|[-: |]+\|$/', trim($lines[$i + 1]))) {
+                    return json_encode(array_values($cells));
+                }
+            }
+        }
+
+        // CSV: первая строка с нечисловыми значениями → заголовки
+        $first = trim($lines[0]);
+        $parts = str_getcsv($first);
+        $nonNumeric = array_filter($parts, fn ($p) => $p !== '' && !is_numeric($p));
+        if (count($nonNumeric) >= 2 && count($parts) >= 2) {
+            return json_encode($parts);
+        }
+
+        return '[]';
     }
 }

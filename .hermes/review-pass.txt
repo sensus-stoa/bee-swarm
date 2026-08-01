@@ -1,1 +1,78 @@
-PASS 2026-08-01T09:24:00+03:00 # deleg_S1.11_review
+PASS 2026-08-01T09:41:00+03:00 # deleg_S1.11_phase3_review
+
+=== 1. AGENT-REVIEW ===
+
+Bugs in code: NONE found.
+
+Edge cases verified:
+- featName closure: `$colLabels[$i] ?? "x{$i}"` — when $colLabels is null, `$null[$i]` triggers PHP warning but `??` catches; functionally correct. Verified by testFindWithoutLabelsUsesDefaultNames (PASS).
+- rawFeatNames set: replaces `preg_match('/^x\d+$/', $fname)` with pre-collected `$rawFeatNames[$featName($i)] = true`. Clean — no regex on feature keys, no false negatives when labels contain digits.
+- guessLabels(): CSV detection with `str_getcsv` + non-numeric filter — correctly identifies headers like `price,qty` and rejects all-numeric first lines.
+- guessLabels() Windows line endings: `trim()` on each line strips `\r`, so `\r\n` files are handled correctly for both markdown and CSV.
+- json_decode fallback: `json_decode($colLabelsJson, true) ?? []` — invalid JSON → [].
+- recordDiscovery: col_labels stored as `json_encode($task['col_labels'] ?? [])` — gracefully handles missing labels (empty array → '[]').
+- cloze/compose paths: INSERT without col_labels → column DEFAULT '[]' fills in.
+- Backward compatibility: null $colLabels → featName falls back to x0,x1,…; all existing tests pass unchanged.
+
+Test quality issues:
+- testTasksIncludeColumnLabels only exercises CSV path; markdown table header parsing (lines 193–203 of guessLabels) has zero test coverage.
+- No test for guessLabels edge: empty content, single-line content, content with markdown table NOT on first line.
+- testFindUsesColumnLabels verifies `price` appears in formula and `x0` does NOT — but doesn't assert what formula IS, only substring presence. Could pass if formula is `(qty/price)` instead of `(price/R+price)`. The assertStringNotContainsString('x0') is correct but only a partial check.
+
+These are CONCERNS-level, not BLOCK.
+
+=== 2. PROTOCOL CHECK ===
+
+Spec: S1.11 Phase 3 — Semantic column labeling
+
+| Requirement | Status | Evidence |
+|---|---|---|
+| guessLabels() extracts CSV headers | ✅ | StreamingAccumulator.php:206–211, str_getcsv + non-numeric filter |
+| guessLabels() extracts markdown table headers | ✅ | StreamingAccumulator.php:193–203, regex + separator detection |
+| fd table has col_labels column | ✅ | Line 60: CREATE TABLE fd (… col_labels TEXT, …) |
+| All INSERTs pass col_labels (5 params → 6) | ✅ | Lines 105,125,140: all stmt->execute calls include $colLabels |
+| Task structure returns decoded col_labels array | ✅ | Line 172: json_decode($colLabelsJson, true) ?? [] |
+| Search::find accepts ?array $colLabels | ✅ | Search.php:38, signature |
+| featName closure for named features | ✅ | Search.php:47: `fn (int $i) => $colLabels[$i] ?? "x{$i}"` |
+| GlobalReduce uses rawFeatNames set instead of x\d+ regex | ✅ | Search.php:72–75 collect names, line 78: isset check |
+| LAWS_DDL has col_labels TEXT DEFAULT '[]' | ✅ | Database.php:23 |
+| ALTER TABLE migration for existing DBs | ✅ | Database.php:71–75, try/catch |
+| recordDiscovery INSERTs 7 params (was 6) | ✅ | Hive.php:603–609 |
+| col_labels stored as JSON in laws | ✅ | Hive.php:609: json_encode($task['col_labels'] ?? []) |
+| Backward compatible: null → x0,x1,… | ✅ | SearchTest.php:258–266, testFindWithoutLabelsUsesDefaultNames |
+| col_labels passed from task to Search::find | ✅ | Hive.php:561–562, $colLabels extracted from $task |
+
+=== 3. STRATEGIC GATE ===
+
+Is the design sound? YES.
+
+Pattern: Header extraction at scan time → JSON-encoded storage in SQLite accumulator → decoded array in task structure → forwarded to Search::find as label map.
+
+Key design decisions:
+- Labels extracted from file content (CSV/markdown), not from external metadata — self-contained, no side channel needed.
+- JSON encoding for transport through SQLite (fd table is in-memory, laws table is persistent) — consistent serialization format.
+- featName closure with ?? fallback — single point of naming logic, no scattered x\d+ regex.
+- rawFeatNames set replaces regex — the old regex `preg_match('/^x\d+$/', $fname)` would fail when labels contain digits (e.g., "x1" as a label name would be incorrectly treated as a raw feature). The set-based approach correctly identifies raw features regardless of naming scheme.
+
+No architectural debt: no hardcoded paths, no duplicate logic, no bypass of core pipeline. The labels flow naturally through the existing task structure.
+
+=== 4. DEAD BEE CHECK ===
+
+N/A — this story modifies forager/search/infra layers, not bee lifecycle. No energy-mutating methods touched.
+
+=== 5. VERDICT ===
+
+| Criterion | Result |
+|---|---|
+| Code correctness | PASS — no bugs found |
+| Protocol compliance | PASS — all 14 requirements met |
+| Design soundness | PASS — set-based rawFeatNames replaces fragile x\d+ regex |
+| Backward compatibility | PASS — null labels → default x0,x1 names |
+| Test coverage | CONCERNS — markdown path untested; formula assertion is substring-only |
+| Dead bee check | N/A |
+
+Overall: PASS
+
+CONCERNS (non-blocking):
+1. Markdown table header parsing in guessLabels() has no test coverage (only CSV exercised).
+2. testFindUsesColumnLabels asserts substring presence (`assertStringContainsString('price', ...)`) rather than exact formula — could pass with wrong formula that happens to contain 'price'.

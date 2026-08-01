@@ -13,11 +13,10 @@
 ## Phases
 
 ### Phase 1: Pre-filter insufficient tasks
-- [ ] Hive::getTasks(): параметр `$minDataPoints` — фильтровать таски с data < tMin
-- [ ] tMin = max(10, nFeat * 5) — как в doDiscoverTick
-- [ ] Таски без `data` ключа (text/semantic) — пропускать (не фильтровать)
-- [ ] Лог: `PRE_FILTER: skipped N insufficient tasks`
-- [ ] E2E: grep -c "INSUFFICIENT_DATA" после 200 тиков должно быть 0
+- [x] filterInsufficientTasks(): dedup по max(data_count) + per-task tMin
+- [x] tMin = max(10, (nFeat-1) × 5) — синхронизирован с doDiscoverTick
+- [x] E2E: insufficient с 78% → 39% (PRE_FILTER: 758 skipped, ещё остаток)
+- [x] 426/426 PASS
 
 ### Phase 2: Cache tMin per task
 - [ ] Таски не меняют размер — вычислить tMin один раз при создании

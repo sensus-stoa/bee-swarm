@@ -18,6 +18,8 @@ class Database
         formula TEXT,
         cv REAL,
         domain TEXT DEFAULT 'unknown',
+        source_path TEXT DEFAULT '',
+        content_sample TEXT DEFAULT '',
         found_at TEXT DEFAULT (datetime('now')),
         UNIQUE(name, formula, domain)
     )";
@@ -54,6 +56,17 @@ class Database
     {
         $db = self::$instance;
         $db->exec(sprintf(self::LAWS_DDL, 'laws'));
+        // S1.11: Add source_path + content_sample to existing laws table
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN source_path TEXT DEFAULT \'\'');
+        } catch (\PDOException) {
+            // Column already exists — ok
+        }
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN content_sample TEXT DEFAULT \'\'');
+        } catch (\PDOException) {
+            // Column already exists — ok
+        }
         // Migration: remove old name-only UNIQUE if exists (SQLite 3.35+)
         try {
             $cols = $db->query('PRAGMA index_list(laws)')

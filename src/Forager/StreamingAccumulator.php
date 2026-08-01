@@ -57,8 +57,8 @@ class StreamingAccumulator
         $this->lastPaths = [];
 
         $db = new \PDO('sqlite::memory:');
-        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
-        $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,content) VALUES (?, ?, ?, ?)');
+        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, source_path TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
+        $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,source_path,content) VALUES (?, ?, ?, ?, ?)');
 
         $sorted = $dirs;
         arsort($sorted);
@@ -101,7 +101,7 @@ class StreamingAccumulator
                                 if (is_array($entry) && isset($entry['semantic'])) {
                                     $this->factInserter->insert($entry['s'], $entry['p'], $entry['o']);
                                     $pat = 'sem_' . md5($entry['s'] . $entry['p'] . $entry['o']);
-                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic', $contentSample]);
+                                    $stmt->execute([$pat, json_encode([$entry['s'], $entry['p'], $entry['o']]), 'foraged_semantic', $path, $contentSample]);
                                     $isSemantic = true;
                                 }
                             }
@@ -121,7 +121,7 @@ class StreamingAccumulator
                                         continue;
                                     }
                                     $pat = 'num_' . md5($sname . count($row));
-                                    $stmt->execute([$pat, json_encode($row), 'foraged', $contentSample]);
+                                    $stmt->execute([$pat, json_encode($row), 'foraged', $path, $contentSample]);
                                 }
                             }
                         } catch (\Throwable) {
@@ -136,7 +136,7 @@ class StreamingAccumulator
                                 if (is_array($result) && ! empty($result) && is_numeric($result[0] ?? null)) {
                                     $pat = 'txt_' . md5($atom);
                                     foreach ($result as $val) {
-                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $contentSample]);
+                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $path, $contentSample]);
                                     }
                                 }
                             } catch (\Throwable) {
@@ -152,9 +152,10 @@ class StreamingAccumulator
         $tasks = [];
         $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
         while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
-            $dr = $db->query("SELECT row_json, content FROM fd WHERE pattern='{$r['pattern']}' LIMIT 1");
+            $dr = $db->query("SELECT row_json, content, source_path FROM fd WHERE pattern='{$r['pattern']}' LIMIT 1");
             $cr = $dr->fetch(\PDO::FETCH_ASSOC);
             $contentSample = $cr['content'] ?? '';
+            $sourcePath = $cr['source_path'] ?? '';
             $data = [];
             $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
             while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
@@ -165,6 +166,7 @@ class StreamingAccumulator
                 'data' => $data,
                 'domain' => $r['domain'],
                 'content' => $contentSample,
+                'source_path' => $sourcePath,
             ];
         }
 

@@ -313,9 +313,9 @@ class AtomRegistry
     /**
      * Перебирает все пары grammar-атомов, возвращает compose с CV=0.
      */
-    public static function discoverCompose(array $X, array $y, array $grammar): array
+    public static function discoverCompose(array $X, array $y, array $grammar, ?float $cvThreshold = null): array
     {
-        return AtomProvider::discoverCompose($X, $y, $grammar);
+        return AtomProvider::discoverCompose($X, $y, $grammar, $cvThreshold);
     }
 
     // ═══ СИГНАЛ ═══

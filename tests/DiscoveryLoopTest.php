@@ -231,4 +231,25 @@ class DiscoveryLoopTest extends TestCase
         // Проверяем что механизм работает на уровне AtomProvider (уже ✅)
         // и что doDiscoverTick теперь вызывает discoverCompose (будет ✅).
     }
+
+    /**
+     * D11 Phase 2: cvThreshold расширяет приём кандидатов
+     * Без threshold: только CV < 0.001 (жёстко)
+     * С threshold=0.5: принимает до CV <= 0.5
+     */
+    public function testComposeWithCvThreshold(): void
+    {
+        $g = new Grammar();
+        $g->add('max', 'seed');
+        $g->add('add', 'seed');
+
+        // Данные где compose max(add) примерно коррелирует с y (неточно)
+        $X = [[1.0, 2.0], [3.0, 1.5], [2.0, 3.5], [4.0, 0.5], [1.5, 4.0],
+              [5.0, 2.0], [2.5, 3.0], [3.5, 1.0]];
+        $y = [4.0, 5.5, 6.5, 5.5, 6.5, 8.0, 6.5, 5.5];
+
+        // С threshold=0.5 — должен найти compose-кандидата
+        $found = AtomRegistry::discoverCompose($X, $y, $g->all(), 0.5);
+        $this->assertNotEmpty($found, 'With threshold=0.5: should find compose atom despite noise');
+    }
 }

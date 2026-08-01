@@ -161,4 +161,65 @@ class SearchTest extends TestCase
         [$ok, $cv] = Search::find([], [], $g, 2);
         $this->assertFalse($ok);
     }
+
+    // ── S1.9 Phase 2: GlobalReduce integration ──
+
+    /**
+     * find: GlobalReduce — y = x0 - min(x0)
+     * Требует reduce('min', x0) → константа, затем (x0 - Rminx0)
+     * Без reduce: нет константы min(x0)=5 → CV > 0
+     */
+    public function testFindReduceMin(): void
+    {
+        $g = new Grammar();
+        // x0 = [7, 5, 9], min = 5 → y = x0 - 5
+        $X = [[7.0], [5.0], [9.0]];
+        $y = [2.0, 0.0, 4.0];
+        [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
+        $this->assertTrue($ok, "Should find (x0-Rminx0), got cv=$cv formula=$formula");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv formula=$formula");
+    }
+
+    /**
+     * find: GlobalReduce — y = (x0 - min(x0)) / (max(x0) - min(x0))
+     * Min-max нормализация: требует reduce('min') и reduce('max')
+     * Без reduce: нет констант 5 и 9 → CV > 0
+     */
+    public function testFindReduceMinMaxNormalization(): void
+    {
+        $g = new Grammar();
+        // x0 = [7, 5, 9], min=5, max=9, range=4
+        // y = (x0 - 5) / 4
+        $X = [[7.0], [5.0], [9.0]];
+        $range = 4.0;
+        $y = [(7.0-5.0)/$range, (5.0-5.0)/$range, (9.0-5.0)/$range];
+        [$ok, $cv] = Search::find($X, $y, $g, 2);
+        $this->assertTrue($ok, "Should find min-max normalization, got cv=$cv");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv");
+    }
+
+    /**
+     * find: GlobalReduce с двумя колонками — y = (x0/sum(x0)) + x1
+     * Комбинация reduce-нормализации и обычной фичи.
+     * Без reduce: sum(x0)=12, но нет K12 → CV > 0
+     */
+    public function testFindReduceWithMultipleColumns(): void
+    {
+        $g = new Grammar();
+        // x0=[3,4,5], sum=12; x1=[10,20,30]
+        $X = [
+            [3.0, 10.0],
+            [4.0, 20.0],
+            [5.0, 30.0],
+        ];
+        $sum0 = 12.0;
+        $y = [
+            3.0/$sum0 + 10.0,
+            4.0/$sum0 + 20.0,
+            5.0/$sum0 + 30.0,
+        ];
+        [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
+        $this->assertTrue($ok, "Should find reduce+feature combination, got cv=$cv formula=$formula");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv formula=$formula");
+    }
 }

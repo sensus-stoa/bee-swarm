@@ -46,7 +46,7 @@
 **Подфазы:**
 
 - [x] **5a: IdleDreamer per-bee** — `dream()` принимает `$grammarOps` параметр. Hive передаёт `baseOpNames() + bee->grammar()`. ✅ (02.08)
-- [ ] **5b: Remove Grammar::add() from recordDiscovery** — убрать `$g->add()` из `recordDiscovery()`. Общая БД = read-only архив. (1h)
+- [x] **5b: Remove Grammar::add() from recordDiscovery** — убрать `$g->add()` из `recordDiscovery()`. Общая БД = read-only архив. ✅ (02.08)
 - [ ] **5c: AtomRegistry::all() from laws** — читать формулы из `laws.formula`, не из `grammar_ops`. (1h)
 - [ ] **5d: QueryEngine::topAtoms() from laws** — то же. (0.5h)
 - [ ] **5e: Verify scripts адаптация** — переключить на чтение из laws. (0.5h)

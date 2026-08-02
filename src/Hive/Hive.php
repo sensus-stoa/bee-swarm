@@ -636,12 +636,8 @@ class Hive
         }
         $this->knownLaws[$key] = true;
         $foundAny = true;
-        $g = new Grammar();
-        if (! in_array($d['atom'], $g->all())) {
-            $g->add($d['atom'], 'auto-discover');
-        }
-
-        // §2.3 изоляция: добавить атом в per-bee грамматику
+        // §2.3 изоляция: добавить атом только в per-bee грамматику.
+        // Общая grammar_ops — read-only архив (Phase 5b).
         if ($this->routedBee && $this->routedBee->isAlive()) {
             $this->routedBee->addToGrammar($d['atom']);
         }

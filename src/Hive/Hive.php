@@ -742,26 +742,13 @@ class Hive
         ];
         $tasks = array_merge($tasks, $base);
 
-        // E1-FIX Phase 3: cross-pairing — работает всегда (data transformation, не generation)
+        // D15: cross-pair now handled by TaskGenerator
         $crossTasks = [];
-        $txtTasks = array_filter($this->foragedTasksGlobal, fn ($t) => str_starts_with($t['name'] ?? '', 'foraged_txt_'));
-        if (count($txtTasks) >= 2) {
-            $atoms = [];
-            foreach ($txtTasks as $t) {
-                $name = $t['name'];
-                foreach ($t['data'] as $row) {
-                    $val = $row[0] ?? null;
-                    if ($val !== null) {
-                        $atoms[$name][] = (float) $val;
-                    }
-                }
-            }
-            $crossTasks = \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
-        }
 
         // Generated compose tasks (disabled on plateau — HONEST_CRITERIA §1.5)
         if ($skipGenerated || $this->plateau->isPlateau()) {
-            return $this->filterInsufficient(array_merge($tasks, $crossTasks, $this->foragedTasksGlobal));
+            $generator = new TaskGenerator();
+            return $this->filterInsufficient($generator->generate($this->foragedTasksGlobal, $crossTasks));
         }
 
         srand(42); // deterministic seed for reproducible GEN_ data
@@ -835,7 +822,11 @@ class Hive
             }
         }
 
-        return $this->filterInsufficient(array_merge($tasks, $crossTasks, $this->foragedTasksGlobal));
+        // D15: делегировать генерацию TaskGenerator
+        $generator = new TaskGenerator();
+        $tasks = $generator->generate($this->foragedTasksGlobal, $crossTasks);
+
+        return $this->filterInsufficient($tasks);
     }
 
     /**

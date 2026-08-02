@@ -12,16 +12,21 @@ namespace BeeSwarm\Hive;
 class TaskGenerator
 {
     /**
-     * Сгенерировать задачи: foraged + базовые синтетические.
+     * Сгенерировать задачи: foraged + базовые + cross-pair.
      *
      * @param array $foragedTasksGlobal глобальный список foraged задач
-     * @param array $baseTasks дополнительные задачи (cross-pair и т.д.)
+     * @param array $baseTasks дополнительные задачи
      * @return array<int, array{name: string, data: array, domain: string}>
      */
     public function generate(array $foragedTasksGlobal, array $baseTasks): array
     {
         $tasks = $this->createBaseTasks();
         $tasks = array_merge($tasks, $baseTasks);
+
+        // E1-FIX: cross-pairing из текстовых атомов
+        $crossTasks = $this->crossPairTasks($foragedTasksGlobal);
+        $tasks = array_merge($tasks, $crossTasks);
+
         return array_merge($tasks, $foragedTasksGlobal);
     }
 
@@ -49,5 +54,32 @@ class TaskGenerator
                 'domain' => 'arithmetic',
             ],
         ];
+    }
+
+    /**
+     * Cross-pairing: текстовые атомы → X/y пары.
+     *
+     * @param array $foragedTasksGlobal
+     * @return array<int, array{name: string, data: array, domain: string}>
+     */
+    private function crossPairTasks(array $foragedTasksGlobal): array
+    {
+        $txtTasks = array_filter($foragedTasksGlobal, fn ($t) => str_starts_with($t['name'] ?? '', 'foraged_txt_'));
+        if (count($txtTasks) < 2) {
+            return [];
+        }
+
+        $atoms = [];
+        foreach ($txtTasks as $t) {
+            $name = $t['name'];
+            foreach ($t['data'] as $row) {
+                $val = $row[0] ?? null;
+                if ($val !== null) {
+                    $atoms[$name][] = (float) $val;
+                }
+            }
+        }
+
+        return \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
     }
 }

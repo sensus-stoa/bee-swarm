@@ -210,7 +210,7 @@ class Hive
         }
 
         // §2.5: Log initial generation 0
-        if ($this->generation === 0 && ! empty($this->bees)) {
+        if ($this->spawnManager->getGeneration() === 0 && ! empty($this->bees)) {
             $this->log('GEN: 0 pop=' . count($this->bees) . ' (bootstrap)');
         }
 

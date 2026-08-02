@@ -4,97 +4,32 @@
 
 | # | What | Status |
 |---|------|--------|
-| **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | 🔧 7/8 + V0.8 (overlap) + V0.9 (24h gate) |
-| **V0.8** | **OVERLAP-TRACKING — последний критерий Стадии 0** | 🔧 Phase 1-2 done. Phase 3-4 backlog. |
-| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔧 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
-| **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify (1_1 death ✅, 1_4 routing ✅). 3 pending (spawn/dynamics). Blocker: data ceiling. |
-| **V1.3** | **GRAMMAR-ISOLATION — per-bee grammar (§2.3)** | ✅ Все 5 фаз (5a-5e). |
-| V0-old | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
-| S1.9 | GENERATIVE — reduce arity bridge | ✅ Phase 2 complete (cb2cc2c) — первые открытия |
-| S1.11 | SOURCE — foraged provenance | ✅ Phase 3 complete (512f204) — source + labels |
-| S1.12 | EVOLVE — grammar evolution | ✅ Phase 3 complete (62968b9) |
-| S2.1 | BOOTSTRAP-FIX — N=3 seed bees per §0.6 | ✅ (N=3 + evolvable energy + disembodied guard) |
-| S2.2 | IDLE-DREAMING — bees search when idle §2.5-децим | ✅ Phase 1 (review PASS). Phase 2-5 backlog. |
-| **D14** | **HIVE-DECOMPOSE — улей 1037→200 строк** | ✅ 6 фаз. |
-| **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | ⬜ Phase 1-4 |
-| S1.13 | LANDSCAPE — эпигенетический ландшафт | ⬜ Phase 1 backlog |
-| S2.3 | PARALLEL-ROUTING — N tasks → N bees per tick | ⬜ Phase 1 backlog |
-| S2.4 | SLEEP-TUNING — adaptive idle sleep | ⬜ Phase 1 backlog |
+| **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | 🔧 7/8 + overlap ✅ + 24h gate 🔄 |
+| **V0.8** | **OVERLAP-TRACKING — алгебраическая редукция** | ✅ 4 фазы (включая reduceAnswer). |
+| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔄 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
+| **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify. 3 pending (data ceiling). |
+| **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (Obsidian vault). |
 
-## Stage 0 — COMPLETE ✅
-
-| # | Criterion | What | Status |
-|---|-----------|------|--------|
-| 01 | 1.6 Deduplication | AtomRegistry split | ✅ |
-| 02 | 1.5 Plateau Honesty | wakeup + forager | ✅ |
-| 03 | 1.1 Held-Out Validation | retrospective + held-out | ✅ |
-| 04 | 1.2 Statistical Sufficiency | t ≥ t_min | ✅ |
-| 05 | 1.7 Compression Superiority | MDL cost vs baseline | ✅ |
-| 06 | 1.4 Non-Triviality | Алгебраическая редукция | ✅ |
-| 07 | 1.3 Parsimony | complexity(e) | ✅ |
-
-## Bugfixes — COMPLETE ✅
+## Completed
 
 | # | What | Status |
 |---|------|--------|
-| B1 | Compose held-out | ✅ |
-| B2 | isTrivial regex + compose + reductions | ✅ |
-| B3 | Dedup ключ с domain + DUPLICATE log | ✅ |
-| B4 | Compose sufficiency | ✅ |
-| B5 | Plateau синтетика + off-by-one | ✅ |
-| B6 | OVERFIT logging | ✅ |
-| B7 | Search train-only (closed — already train-only) | ✅ |
-| L1 | CV tolerance unified 0.0001 | ✅ |
-| L2 | skipGenerated flag + srand(42) | ✅ |
-| L3 | DATA log + full audit PASS | ✅ |
+| V1.3 | GRAMMAR-ISOLATION — per-bee grammar (§2.3) | ✅ 5 фаз |
+| D14 | HIVE-DECOMPOSE — extraction + wiring | ✅ 7 фаз (extraction + wiring). Hive 1037→906. |
+| S2.1 | BOOTSTRAP-FIX — N=3 seed bees | ✅ |
+| S2.2 | IDLE-DREAMING — cross-domain compose | ✅ Phase 1. Phase 2-5 backlog. |
+| — | INFORMATION-REWARD — intrinsic value of search | ✅ (Nature Neuroscience 2026) |
+| — | ALGEBRAIC-REDUCTION — overlap answer comparison | ✅ (V0.8 Phase 4) |
 
-## Technical Debt — Done ✅
+## Backlog
 
-| # | What | Status |
-|---|------|--------|
-| D1 | SOLID: Modular Architecture (36 файлов) | ✅ |
-| D2 | Hive class (agenda.php → OOP) | ✅ |
-| D3 | Psalm level 5 — 0 errors | ✅ |
-| D4-6 | ECS: PSR-12 + Common + Clean Code — 0 errors | ✅ |
-| D8 | Forager caps (maxTotal, dedup, chunking) | ✅ |
-| D9 | ExpressionTree::nodeCount() | ✅ |
-| D10 | Forager Decomposition (614→310, 4 classes extracted) | ✅ |
-
-## E1 — Text Atoms ✅
-
-| # | What | Status |
-|---|------|--------|
-| E1.1 | Text atom definitions (AtomRegistry) | ✅ |
-| E1.2 | Text-aware task format | ✅ |
-| E1.3 | CV→0 over text atoms | ✅ |
-| E1.4 | Feedback loop (atoms → strategies) | ✅ |
-| E1.5 | Integration (476 files) | ✅ |
-| E1.6 | Data → law pipeline | ✅ |
-
-## Stage 1 — Population (Backlog)
-
-| # | Criterion | What | Сложность |
-|---|-----------|------|-----------|
-| S1.1 | 2.1 Bee death | Energy model + starvation | ⭐ |
-| S1.2 | 2.2 Bee birth | Spawn + grammar mutation | ⭐⭐⭐ |
-| S1.3 | 2.3 Grammar isolation | Per-bee grammar (no shared state) | ⭐⭐ |
-| S1.4 | 2.4 Task routing | Density-based: fingerprint + outcome history, domains emerge | ✅ |
-| S1-WIRE | — Hive population wiring | Bee+TaskRouter+RoadRunner → живая популяция | ⭐⭐⭐⭐ |
-| S1.5 | 2.5 Evolutionary dynamics | Grammar compression + diversity | ⭐⭐⭐ |
-| S1.5-FCI | 2.5+ Functional Complexity Index | Grammar coverage > size, нейро-inspired | ⭐⭐⭐ |
-| SX-Compose | Emergent compose | Нелинейная композиция ops, топология grammar | ⭐⭐⭐⭐ |
-
-## Stage 2 — Understanding (Backlog)
-
-| # | Criterion | What | Сложность |
-|---|-----------|------|-----------|
-| S2.1 | 2.5-bis | Generational capability growth | ⭐⭐⭐⭐⭐ |
-| S2.2 | 2.5-ter | Grammar ceiling break (NESTED) | ⭐⭐⭐⭐⭐ |
-| S2.3 | 2.5-quater | Contradiction → paradigm | ⭐⭐⭐⭐⭐ |
-
-## Other Backlog
-
-| # | What | Сложность |
-|---|------|-----------|
-| D11 | Search perf — grammar cap + pruning | ⭐⭐ |
-| F1 | RoadRunner worker for bee | ⭐⭐ |
+| # | What | Hours | Priority |
+|---|------|-------|----------|
+| **D15** | **TASK-GENERATOR — getTasks 200→10** | 3h | High |
+| **D16** | **BOOTSTRAP-MANAGER — bootstrap 60→5** | 2h | High |
+| **D17** | **SPAWN-MANAGER — spawn logic из doTick** | 2h | Medium |
+| **D18** | **RECORD-KEEPER — recordDiscovery 40→5** | 1.5h | Medium |
+| S2.2 Ph.2-5 | IDLE-DREAMING tuning | 4h | Low |
+| S2.3 | PARALLEL-ROUTING | 3h | Low |
+| S2.4 | SLEEP-TUNING | 2h | Low |
+| S1.13 | LANDSCAPE | 4h | Low |

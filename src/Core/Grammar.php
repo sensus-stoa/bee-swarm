@@ -253,11 +253,18 @@ class Grammar
         $g = new self();
         // Не читаем из БД — перезаписываем ops напрямую
         $g->ops = [];
+        $allKnown = array_merge(self::BASE_OPS, self::SEMANTIC_OPS);
         foreach ($opNames as $op) {
-            $g->ops[$op] = [
-                'fn' => 'custom_' . $op,
-                'symbol' => $op,
-            ];
+            if (isset($allKnown[$op])) {
+                $g->ops[$op] = $allKnown[$op];
+            } elseif (isset(self::BASE_OPS[$op])) {
+                $g->ops[$op] = self::BASE_OPS[$op];
+            } else {
+                $g->ops[$op] = [
+                    'fn' => self::BASE_OPS['add']['fn'] ?? 'custom_' . $op,
+                    'symbol' => $op,
+                ];
+            }
         }
         return $g;
     }

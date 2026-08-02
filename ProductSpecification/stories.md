@@ -33,4 +33,5 @@
 | S2.2 Ph.2-5 | IDLE-DREAMING tuning | 4h | Low |
 | S2.3 | PARALLEL-ROUTING | 3h | Low |
 | S2.4 | SLEEP-TUNING | 2h | Low |
+| **S3.1** | **ASSOCIATION-RULES — market basket analysis** | 5.5h | Stage 3 |
 | S1.13 | LANDSCAPE | 4h | Low |

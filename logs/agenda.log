@@ -183333,3 +183333,236 @@
 [13:18:19] 🔍 XOR -> ((x0−x1))² (CV=0.0000) [logic]
 [13:18:19] CROSS_DOMAIN: sq(−) now in [logic,arithmetic]
 [13:18:19] 🔍 XOR -> sq(−) (CV=0.0000) [logic]
+[13:22:00] SESSION_START: 2026-08-02 13:22:00 bees=0 grammar=22 ops
+[13:22:00] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:22:00] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:22:00] BOOTSTRAP: 3 seed bees created
+[13:22:00] GEN: 0 pop=3 (bootstrap)
+[13:22:00] Preloaded 92 known laws from DB
+[13:22:00] Retrospective: 4 passed, 0 overfit removed
+[13:22:01] Corpus: 5000 words, 1008 sentences
+[13:22:01] ROUTE: task -> bee#1
+[13:22:01] CALIBRATE: fp=3c:M:num epsilon=2.9999954244491
+[13:22:01] 🔍 MUL -> (x0×x1) (CV=0.0000) [arithmetic]
+[13:22:01] 🔍 MUL -> mul (CV=0.0000) [arithmetic]
+[13:22:01] CROSS_DOMAIN: +(×) now in [arithmetic,logic]
+[13:22:01] 🔍 MUL -> +(×) (CV=0.3926) [arithmetic]
+[13:22:01] 🔍 MUL -> +(min) (CV=0.6041) [arithmetic]
+[13:22:01] 🔍 MUL -> +(mul) (CV=0.3926) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(+) (CV=0.4649) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(−) (CV=1.7453) [arithmetic]
+[13:22:01] CROSS_DOMAIN: ×(min) now in [arithmetic,logic]
+[13:22:01] 🔍 MUL -> ×(min) (CV=0.4447) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(max) (CV=0.5253) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(sq) (CV=0.6000) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(sqrt) (CV=0.4544) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(mul) (CV=0.5774) [arithmetic]
+[13:22:01] 🔍 MUL -> ×(add) (CV=0.4649) [arithmetic]
+[13:22:01] 🔍 MUL -> −(×) (CV=0.6849) [arithmetic]
+[13:22:01] 🔍 MUL -> −(min) (CV=1.2637) [arithmetic]
+[13:22:01] 🔍 MUL -> −(mul) (CV=0.6849) [arithmetic]
+[13:22:01] 🔍 MUL -> min(+) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> min(×) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> min(−) (CV=1.9953) [arithmetic]
+[13:22:01] 🔍 MUL -> min(max) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> min(sq) (CV=0.4681) [arithmetic]
+[13:22:01] 🔍 MUL -> min(sqrt) (CV=0.6514) [arithmetic]
+[13:22:01] 🔍 MUL -> min(mul) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> min(add) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> max(×) (CV=0.0000) [arithmetic]
+[13:22:01] 🔍 MUL -> max(min) (CV=0.7171) [arithmetic]
+[13:22:01] 🔍 MUL -> max(mul) (CV=0.0000) [arithmetic]
+[13:22:01] 🔍 MUL -> sq(×) (CV=0.9711) [arithmetic]
+[13:22:01] 🔍 MUL -> sq(min) (CV=0.4812) [arithmetic]
+[13:22:01] 🔍 MUL -> sq(mul) (CV=0.9711) [arithmetic]
+[13:22:01] 🔍 MUL -> sqrt(×) (CV=0.5317) [arithmetic]
+[13:22:01] 🔍 MUL -> sqrt(min) (CV=0.6579) [arithmetic]
+[13:22:01] 🔍 MUL -> sqrt(mul) (CV=0.5317) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(+) (CV=0.4649) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(×) (CV=0.5774) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(−) (CV=1.7453) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(min) (CV=0.4447) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(max) (CV=0.5253) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(sq) (CV=0.6000) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(sqrt) (CV=0.4544) [arithmetic]
+[13:22:01] 🔍 MUL -> mul(add) (CV=0.4649) [arithmetic]
+[13:22:01] 🔍 MUL -> add(×) (CV=0.3926) [arithmetic]
+[13:22:01] 🔍 MUL -> add(min) (CV=0.6041) [arithmetic]
+[13:22:01] 🔍 MUL -> add(mul) (CV=0.3926) [arithmetic]
+[13:22:01] SESSION_START: 2026-08-02 13:22:01 bees=0 grammar=22 ops
+[13:22:01] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:22:01] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:22:01] BOOTSTRAP: 3 seed bees created
+[13:22:01] GEN: 0 pop=3 (bootstrap)
+[13:22:01] Preloaded 136 known laws from DB
+[13:22:01] Retrospective: 5 passed, 0 overfit removed
+[13:22:02] Corpus: 5000 words, 1008 sentences
+[13:22:02] SESSION_START: 2026-08-02 13:22:02 bees=0 grammar=22 ops
+[13:22:02] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:22:02] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:22:02] BOOTSTRAP: 3 seed bees created
+[13:22:02] GEN: 0 pop=3 (bootstrap)
+[13:22:02] Preloaded 137 known laws from DB
+[13:22:02] Retrospective: 5 passed, 0 overfit removed
+[13:22:03] Corpus: 5000 words, 1008 sentences
+[13:22:09] SESSION_START: 2026-08-02 13:22:09 bees=0 grammar=11 ops
+[13:22:09] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:22:09] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:22:09] BOOTSTRAP: 3 seed bees created
+[13:22:09] GEN: 0 pop=3 (bootstrap)
+[13:22:09] Preloaded 12 known laws from DB
+[13:22:09] Retrospective: 0 passed, 0 overfit removed
+[13:22:10] Corpus: 5000 words, 1008 sentences
+[13:22:10] ROUTE: task -> bee#2
+[13:22:10] CALIBRATE: fp=2c:M:num epsilon=1.5989026215727
+[13:22:11] 🔍 AND -> ×(min) (CV=0.0000) [logic]
+[13:22:11] DREAM: ×(min) [logic]
+[13:22:11] SESSION_START: 2026-08-02 13:22:11 bees=0 grammar=11 ops
+[13:22:11] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:22:11] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:22:11] BOOTSTRAP: 3 seed bees created
+[13:22:11] GEN: 0 pop=3 (bootstrap)
+[13:22:11] Preloaded 13 known laws from DB
+[13:22:11] Retrospective: 0 passed, 0 overfit removed
+[13:22:12] Corpus: 5000 words, 1008 sentences
+[13:22:12] ROUTE: task -> bee#1
+[13:22:12] CALIBRATE: fp=2c:M:num epsilon=1.5989075022749
+[13:22:12] DUPLICATE: ×(min) [logic]
+[13:22:13] ROUTE: task -> bee#2
+[13:22:13] 🔍 sleep→intact -> (((x0−x0²))²−((x0+R+x0))²) (CV=0.1066) [metrics]
+[13:27:00] SESSION_START: 2026-08-02 13:27:00 bees=0 grammar=22 ops
+[13:27:00] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:27:00] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:27:00] BOOTSTRAP: 3 seed bees created
+[13:27:00] GEN: 0 pop=3 (bootstrap)
+[13:27:00] Preloaded 36 known laws from DB
+[13:27:00] Retrospective: 1 passed, 0 overfit removed
+[13:27:01] Corpus: 5000 words, 1008 sentences
+[13:27:01] ROUTE: task -> bee#1
+[13:27:01] CALIBRATE: fp=2c:M:num epsilon=1.5262108444391
+[13:27:01] DUPLICATE: x0² [arithmetic]
+[13:27:01] DUPLICATE: sq [arithmetic]
+[13:27:01] DUPLICATE: ×(min) [logic]
+[13:27:01] SESSION_START: 2026-08-02 13:27:01 bees=0 grammar=22 ops
+[13:27:01] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:27:01] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:27:01] BOOTSTRAP: 3 seed bees created
+[13:27:01] GEN: 0 pop=3 (bootstrap)
+[13:27:01] Preloaded 36 known laws from DB
+[13:27:01] Retrospective: 1 passed, 0 overfit removed
+[13:27:02] Corpus: 5000 words, 1008 sentences
+[13:27:02] SESSION_START: 2026-08-02 13:27:02 bees=0 grammar=22 ops
+[13:27:02] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:27:02] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:27:02] BOOTSTRAP: 3 seed bees created
+[13:27:02] GEN: 0 pop=3 (bootstrap)
+[13:27:02] Preloaded 37 known laws from DB
+[13:27:02] Retrospective: 1 passed, 0 overfit removed
+[13:27:03] Corpus: 5000 words, 1008 sentences
+[13:27:06] SESSION_START: 2026-08-02 13:27:06 bees=0 grammar=11 ops
+[13:27:06] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:27:06] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:27:06] BOOTSTRAP: 3 seed bees created
+[13:27:06] GEN: 0 pop=3 (bootstrap)
+[13:27:06] Preloaded 150 known laws from DB
+[13:27:06] Retrospective: 3 passed, 0 overfit removed
+[13:27:06] Corpus: 5000 words, 1008 sentences
+[13:27:06] ROUTE: task -> bee#0
+[13:27:07] CALIBRATE: fp=2c:L:num epsilon=0.15239981901659
+[13:27:07] 🔍 anxiety→discipline -> ((x0−Rmaxx0)−((x0/K2))²) (CV=0.1365) [metrics]
+[13:27:07] SESSION_START: 2026-08-02 13:27:07 bees=0 grammar=11 ops
+[13:27:07] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[13:27:07] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[13:27:07] BOOTSTRAP: 3 seed bees created
+[13:27:07] GEN: 0 pop=3 (bootstrap)
+[13:27:07] Preloaded 151 known laws from DB
+[13:27:07] Retrospective: 3 passed, 0 overfit removed
+[13:27:08] Corpus: 5000 words, 1008 sentences
+[13:27:08] ROUTE: task -> bee#1
+[13:27:09] CALIBRATE: fp=2c:L:num epsilon=0.11324733015997
+[13:27:09] 🔍 energy→dq -> ((x0+K2)×((x0−R+x0))²) (CV=0.0968) [metrics]
+[13:27:10] ROUTE: task -> bee#2
+[13:27:10] DUPLICATE: ×(min) [logic]
+[15:47:13] SESSION_START: 2026-08-02 15:47:13 bees=0 grammar=22 ops
+[15:47:13] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[15:47:13] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[15:47:13] BOOTSTRAP: 3 seed bees created
+[15:47:13] GEN: 0 pop=3 (bootstrap)
+[15:47:13] Preloaded 12 known laws from DB
+[15:47:13] Retrospective: 0 passed, 0 overfit removed
+[15:47:14] Corpus: 5000 words, 1008 sentences
+[15:47:14] ROUTE: task -> bee#0
+[15:47:15] CALIBRATE: fp=2c:M:num epsilon=0.11026156802084
+[15:47:15] DUPLICATE: ((x0/K2)min((x0minK2))²) [metrics]
+[15:47:15] DUPLICATE: ×(min) [logic]
+[15:47:15] SESSION_START: 2026-08-02 15:47:15 bees=0 grammar=22 ops
+[15:47:15] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[15:47:15] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[15:47:15] BOOTSTRAP: 3 seed bees created
+[15:47:15] GEN: 0 pop=3 (bootstrap)
+[15:47:15] Preloaded 12 known laws from DB
+[15:47:15] Retrospective: 0 passed, 0 overfit removed
+[15:47:16] Corpus: 5000 words, 1008 sentences
+[15:47:16] SESSION_START: 2026-08-02 15:47:16 bees=0 grammar=22 ops
+[15:47:16] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[15:47:16] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[15:47:16] BOOTSTRAP: 3 seed bees created
+[15:47:16] GEN: 0 pop=3 (bootstrap)
+[15:47:16] Preloaded 13 known laws from DB
+[15:47:16] Retrospective: 0 passed, 0 overfit removed
+[15:47:17] Corpus: 5000 words, 1008 sentences
+[15:47:20] SESSION_START: 2026-08-02 15:47:20 bees=0 grammar=11 ops
+[15:47:20] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[15:47:20] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[15:47:20] BOOTSTRAP: 3 seed bees created
+[15:47:20] GEN: 0 pop=3 (bootstrap)
+[15:47:20] Preloaded 0 known laws from DB
+[15:47:20] Retrospective: 0 passed, 0 overfit removed
+[15:47:21] Corpus: 5000 words, 1008 sentences
+[15:47:21] ROUTE: task -> bee#1
+[15:47:22] CALIBRATE: fp=2c:L:num epsilon=0.13966649770855
+[15:47:22] 🔍 discipline→dq -> ((x0+x0²)/((x0+K2))²) (CV=0.1019) [metrics]
+[15:47:23] SESSION_START: 2026-08-02 15:47:23 bees=0 grammar=11 ops
+[15:47:23] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[15:47:23] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[15:47:23] BOOTSTRAP: 3 seed bees created
+[15:47:23] GEN: 0 pop=3 (bootstrap)
+[15:47:23] Preloaded 1 known laws from DB
+[15:47:23] Retrospective: 0 passed, 0 overfit removed
+[15:47:24] Corpus: 5000 words, 1008 sentences
+[15:47:24] ROUTE: task -> bee#2
+[15:47:24] CALIBRATE: fp=2c:M:num epsilon=2.9999936904574
+[15:47:24] 🔍 SQRT -> sqrt (CV=0.0000) [arithmetic]
+[15:47:24] 🔍 SQRT -> sq(sqrt) (CV=0.6383) [arithmetic]
+[15:47:24] 🔍 SQRT -> sqrt(sq) (CV=0.6383) [arithmetic]
+[15:47:24] ROUTE: task -> bee#1
+[15:47:24] SPAWN: bee#3 from parent E=8.88
+[15:47:24] GRAMMAR_SPAWN parent=2 child=3 parent_size=11 child_size=10
+[15:47:25] CALIBRATE: fp=3c:M:num epsilon=1.2247448713916
+[15:47:25] 🔍 OR -> (x0maxx1) (CV=0.0000) [logic]
+[15:47:25] 🔍 OR -> +(×) (CV=1.1157) [logic]
+[15:47:25] 🔍 OR -> +(−) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> +(min) (CV=1.1157) [logic]
+[15:47:25] 🔍 OR -> +(max) (CV=0.6008) [logic]
+[15:47:25] 🔍 OR -> +(sq) (CV=0.6325) [logic]
+[15:47:25] 🔍 OR -> +(sqrt) (CV=0.6325) [logic]
+[15:47:25] 🔍 OR -> ×(+) (CV=1.1157) [logic]
+[15:47:25] 🔍 OR -> ×(max) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> −(+) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> min(+) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> min(max) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> max(+) (CV=0.6325) [logic]
+[15:47:25] 🔍 OR -> max(×) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> max(−) (CV=0.0000) [logic]
+[15:47:25] 🔍 OR -> max(min) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> max(sq) (CV=0.0000) [logic]
+[15:47:25] 🔍 OR -> max(sqrt) (CV=0.0000) [logic]
+[15:47:25] 🔍 OR -> sq(+) (CV=0.9689) [logic]
+[15:47:25] 🔍 OR -> sq(−) (CV=0.8165) [logic]
+[15:47:25] 🔍 OR -> sq(max) (CV=0.0000) [logic]
+[15:47:25] CROSS_DOMAIN: sq(sqrt) now in [logic,arithmetic]
+[15:47:25] 🔍 OR -> sq(sqrt) (CV=1.0000) [logic]
+[15:47:25] 🔍 OR -> sqrt(+) (CV=0.5320) [logic]
+[15:47:25] 🔍 OR -> sqrt(max) (CV=0.0000) [logic]
+[15:47:25] CROSS_DOMAIN: sqrt(sq) now in [logic,arithmetic]
+[15:47:25] 🔍 OR -> sqrt(sq) (CV=1.0000) [logic]

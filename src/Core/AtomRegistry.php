@@ -110,11 +110,11 @@ class AtomRegistry
             throw new \RuntimeException('TEXT_ATOMS collision with math atoms: ' . implode(', ', $collision));
         }
         $discovered = array_keys(self::$discoveredAtoms);
-        // Load persisted discovered atoms from DB (survive restart)
+        // §2.3 Phase 5c: читать открытые формулы из laws, не из grammar_ops
         try {
             $db = \BeeSwarm\Infra\Database::get();
-            foreach ($db->query("SELECT name FROM grammar_ops WHERE source='discovered'") as $r) {
-                $discovered[] = $r['name'];
+            foreach ($db->query("SELECT DISTINCT formula FROM laws") as $r) {
+                $discovered[] = $r['formula'];
             }
         } catch (\PDOException) {
         }

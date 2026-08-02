@@ -51,7 +51,7 @@ class QueryEngine
     public function topAtoms(int $n = 10): array
     {
         return $this->query(
-            'SELECT name, COUNT(*) as cnt FROM grammar_ops GROUP BY name ORDER BY cnt DESC LIMIT ?',
+            'SELECT formula as name, COUNT(*) as cnt FROM laws GROUP BY formula ORDER BY cnt DESC LIMIT ?',
             [$n]
         );
     }

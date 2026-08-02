@@ -87,10 +87,11 @@ class OverlapTracker
      */
     public static function reduceAnswer(string $formula): string
     {
-        // 1. Нормализация пробелов
         $formula = trim($formula);
 
-        // 2. Парсинг: op(arg1,arg2)
+        // Каноникализация нуля: x0_0 → 0
+        $formula = preg_replace('/\bx0_0\b/', '0', $formula);
+
         if (! preg_match('/^(\w+)\((.+)\)$/', $formula, $m)) {
             return $formula; // переменная или константа
         }
@@ -113,10 +114,10 @@ class OverlapTracker
 
         // 3. Правила редукции
         // x+0 = x
-        if ($op === 'add' && ($b === '0' || $b === 'x0_0')) {
+        if ($op === 'add' && $b === '0') {
             return $a;
         }
-        if ($op === 'add' && ($a === '0' || $a === 'x0_0')) {
+        if ($op === 'add' && $a === '0') {
             return $b;
         }
         // x×1 = x

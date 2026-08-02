@@ -43,14 +43,15 @@
 **G1:** общая таблица `grammar_ops` нарушает §2.3. Сейчас 6 путей чтения/записи.
 **G4:** `recordDiscovery` пишет в обе — per-bee грамматика не источник истины.
 
-**Что сделать:**
-- `Grammar::add()` → только per-bee `addToGrammar()`, общая БД = read-only архив
-- `AtomRegistry::all()` → читать из законов (laws.formula), не из grammar_ops
-- `QueryEngine::topAtoms()` → то же
-- `IdleDreamer` → использовать `$bee->grammar()`, не `(new Grammar())->all()`
-- Verify-скрипты → адаптировать к чтению из laws вместо grammar_ops
+**Подфазы:**
 
-**Сложность:** ⭐⭐⭐ | 3h
+- [x] **5a: IdleDreamer per-bee** — `dream()` принимает `$grammarOps` параметр. Hive передаёт `baseOpNames() + bee->grammar()`. ✅ (02.08)
+- [ ] **5b: Remove Grammar::add() from recordDiscovery** — убрать `$g->add()` из `recordDiscovery()`. Общая БД = read-only архив. (1h)
+- [ ] **5c: AtomRegistry::all() from laws** — читать формулы из `laws.formula`, не из `grammar_ops`. (1h)
+- [ ] **5d: QueryEngine::topAtoms() from laws** — то же. (0.5h)
+- [ ] **5e: Verify scripts адаптация** — переключить на чтение из laws. (0.5h)
+
+**Сложность:** ⭐⭐⭐ | 3h (суммарно)
 
 ## Сложность: ⭐⭐⭐⭐ | 7.5h
 

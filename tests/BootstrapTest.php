@@ -42,7 +42,7 @@ class BootstrapTest extends TestCase
         $this->assertCount(3, $bees);
 
         $grammars = array_map(fn (Bee $b) => $b->grammar(), $bees);
-        // Все три попарно различны
+        // Проверяем что все три грамматики попарно различны
         $this->assertNotEquals($grammars[0], $grammars[1], 'G₁ ≠ G₂');
         $this->assertNotEquals($grammars[0], $grammars[2], 'G₁ ≠ G₃');
         $this->assertNotEquals($grammars[1], $grammars[2], 'G₂ ≠ G₃');

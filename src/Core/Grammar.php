@@ -243,6 +243,34 @@ class Grammar
     }
 
     /**
+     * Создать Grammar только из указанных операций — без чтения общей БД.
+     * Для per-bee грамматик (§2.3 изоляция).
+     *
+     * @param string[] $opNames имена операций
+     */
+    public static function fromOps(array $opNames): self
+    {
+        $g = new self();
+        // Не читаем из БД — перезаписываем ops напрямую
+        $g->ops = [];
+        foreach ($opNames as $op) {
+            $g->ops[$op] = [
+                'fn' => 'custom_' . $op,
+                'symbol' => $op,
+            ];
+        }
+        return $g;
+    }
+
+    /**
+     * @return string[] имена базовых операций (всегда доступны всем пчёлам)
+     */
+    public static function baseOpNames(): array
+    {
+        return array_keys(self::BASE_OPS);
+    }
+
+    /**
      * Полностью очистить грамматику
      */
     public function clearAll(): void

@@ -44,11 +44,17 @@ class Bee
     private const SEARCH_MAX = 1.0;
     private const REWARD_MIN = 0.5;
     private const REWARD_MAX = 10.0;
+    private const INFO_REWARD_MIN = 0.001;
+    private const INFO_REWARD_MAX = 1.0;
+
+    /** Default information reward (intrinsic value of information). */
+    public const DEFAULT_INFORMATION_REWARD = 0.0;
 
     private float $energy;
     private float $tickCost;
     private float $searchCost;
     private float $discoveryReward;
+    private float $informationReward;
 
     /**
      * @var string[] seed grammar operations (inherited from parent)
@@ -66,6 +72,7 @@ class Bee
      * @param float|null $tickCost energy cost per tick (default: DEFAULT_TICK_COST)
      * @param float|null $searchCost energy cost per search attempt (default: DEFAULT_SEARCH_COST)
      * @param float|null $discoveryReward energy reward for discovery (default: DEFAULT_DISCOVERY_REWARD)
+     * @param float|null $informationReward energy reward for search attempt itself (default: 0.0)
      * @param string[] $customGrammarOps pre-discovered custom ops (for spawn inheritance)
      */
     public function __construct(
@@ -74,6 +81,7 @@ class Bee
         ?float $tickCost = null,
         ?float $searchCost = null,
         ?float $discoveryReward = null,
+        ?float $informationReward = null,
         array $customGrammarOps = [],
     ) {
         $this->grammar = array_values($grammar);
@@ -82,6 +90,7 @@ class Bee
         $this->tickCost = $tickCost ?? self::DEFAULT_TICK_COST;
         $this->searchCost = $searchCost ?? self::DEFAULT_SEARCH_COST;
         $this->discoveryReward = $discoveryReward ?? self::DEFAULT_DISCOVERY_REWARD;
+        $this->informationReward = $informationReward ?? self::DEFAULT_INFORMATION_REWARD;
     }
 
     public function energy(): float
@@ -130,6 +139,11 @@ class Bee
         return $this->discoveryReward;
     }
 
+    public function informationReward(): float
+    {
+        return $this->informationReward;
+    }
+
     // ── Energy lifecycle ──
 
     /**
@@ -165,6 +179,19 @@ class Bee
         $this->energy += $this->discoveryReward;
     }
 
+    /**
+     * Внутренняя ценность информации: бонус за сам акт поиска,
+     * независимо от результата. Nature Neuroscience (Bussell et al., 2026).
+     * По умолчанию 0.0 — обратная совместимость.
+     */
+    public function rewardInformation(): void
+    {
+        if (! $this->isAlive()) {
+            return;
+        }
+        $this->energy += $this->informationReward;
+    }
+
     public function isAlive(): bool
     {
         return $this->energy > 1e-12;
@@ -193,6 +220,7 @@ class Bee
         $childTick = $this->mutateParam($this->tickCost, self::TICK_MIN, self::TICK_MAX);
         $childSearch = $this->mutateParam($this->searchCost, self::SEARCH_MIN, self::SEARCH_MAX);
         $childReward = $this->mutateParam($this->discoveryReward, self::REWARD_MIN, self::REWARD_MAX);
+        $childInfoReward = $this->mutateParam($this->informationReward, self::INFO_REWARD_MIN, self::INFO_REWARD_MAX);
 
         return new self(
             $childGrammar,
@@ -200,6 +228,7 @@ class Bee
             $childTick,
             $childSearch,
             $childReward,
+            $childInfoReward,
             $this->customGrammarOps,  // inherit parent's discovered ops
         );
     }

@@ -144,6 +144,13 @@ class StreamingAccumulator
                             }
                         }
                     }
+
+                    // E1-FIX Phase 2: markdown → текстовая задача для bootstrap
+                    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+                    if (in_array($ext, ['md', 'txt', 'markdown']) && ! empty($contentSample)) {
+                        $txtPat = 'txt_content_' . md5($path);
+                        $stmt->execute([$txtPat, json_encode(['text' => $contentSample]), 'foraged_text', $path, '[]', $contentSample]);
+                    }
                 }
             } catch (\Throwable) {
             }

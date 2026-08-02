@@ -625,6 +625,11 @@ class Hive
                 }
             }
         }
+
+        // Внутренняя ценность информации: бонус за сам акт поиска
+        if ($this->routedBee && $this->routedBee->isAlive()) {
+            $this->routedBee->rewardInformation();
+        }
     }
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void

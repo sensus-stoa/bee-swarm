@@ -7,7 +7,7 @@
 | **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | 🔧 7/8 + V0.8 (overlap) + V0.9 (24h gate) |
 | **V0.8** | **OVERLAP-TRACKING — последний критерий Стадии 0** | 🔧 Phase 1-2 done. Phase 3-4 backlog. |
 | **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔧 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
-| **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | ⬜ 0/5. Blocker: V1.3 grammar isolation. |
+| **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify (1_1 death ✅, 1_4 routing ✅). 3 pending (spawn/dynamics). Blocker: data ceiling. |
 | **V1.3** | **GRAMMAR-ISOLATION — per-bee grammar (§2.3)** | ✅ Все 5 фаз (5a-5e). |
 | V0-old | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
 | S1.9 | GENERATIVE — reduce arity bridge | ✅ Phase 2 complete (cb2cc2c) — первые открытия |
@@ -15,7 +15,7 @@
 | S1.12 | EVOLVE — grammar evolution | ✅ Phase 3 complete (62968b9) |
 | S2.1 | BOOTSTRAP-FIX — N=3 seed bees per §0.6 | ✅ (N=3 + evolvable energy + disembodied guard) |
 | S2.2 | IDLE-DREAMING — bees search when idle §2.5-децим | ✅ Phase 1 (review PASS). Phase 2-5 backlog. |
-| **D14** | **HIVE-DECOMPOSE — улей 1037→200 строк** | ⬜ 6 фаз |
+| **D14** | **HIVE-DECOMPOSE — улей 1037→200 строк** | ✅ 6 фаз. |
 | **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | ⬜ Phase 1-4 |
 | S1.13 | LANDSCAPE — эпигенетический ландшафт | ⬜ Phase 1 backlog |
 | S2.3 | PARALLEL-ROUTING — N tasks → N bees per tick | ⬜ Phase 1 backlog |

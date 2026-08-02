@@ -782,7 +782,9 @@ class Hive
         $dreamer = new IdleDreamer();
         $fp = $this->taskRouter ? $this->taskRouter->fingerprint($tasks[0]) : 'idle';
         $epsilon = $this->getEpsilon($fp) ?? 0.01;
-        $result = $dreamer->dream($dreamTasks, $epsilon);
+        // §2.3: per-bee грамматика + BASE_OPS для idle dreaming
+        $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
+        $result = $dreamer->dream($dreamTasks, $epsilon, $grammarOps);
 
         if ($result !== null) {
             $foundAny = false; // локальный флаг для recordDiscovery

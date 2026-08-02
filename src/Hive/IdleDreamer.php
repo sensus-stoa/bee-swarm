@@ -21,17 +21,20 @@ class IdleDreamer
      *
      * @param array $tasks массив ['name' => string, 'domain' => string, 'X' => array, 'y' => array]
      * @param float $cvThreshold порог CV для открытия
+     * @param string[] $grammarOps операции грамматики для compose (per-bee + BASE_OPS)
      * @return array{atom: string, cv: float, mode: string, domain: string, task_name: string}|null открытие или null
      */
-    public function dream(array $tasks, float $cvThreshold = 0.01): ?array
+    public function dream(array $tasks, float $cvThreshold = 0.01, array $grammarOps = []): ?array
     {
         if (empty($tasks)) {
             return null;
         }
 
-        // Все известные grammar ops
-        $grammar = (new Grammar())->all();
-        if (count($grammar) < 2) {
+        // Использовать переданные grammar ops (per-bee §2.3) или общую БД (legacy)
+        if (empty($grammarOps)) {
+            $grammarOps = (new Grammar())->all();
+        }
+        if (count($grammarOps) < 2) {
             return null;
         }
 
@@ -45,7 +48,7 @@ class IdleDreamer
                 continue;
             }
 
-            $found = AtomRegistry::discoverCompose($X, $y, $grammar, $cvThreshold);
+            $found = AtomRegistry::discoverCompose($X, $y, $grammarOps, $cvThreshold);
             if (! empty($found)) {
                 $best = $found[0];
                 $best['mode'] = 'dream';

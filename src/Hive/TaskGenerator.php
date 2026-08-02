@@ -18,8 +18,13 @@ class TaskGenerator
      * @param array $crossTasks дополнительные cross-pair задачи (не используется — TaskGenerator сам делает cross-pair)
      * @return array<int, array{name: string, data: array, domain: string}>
      */
-    public function generate(array $foragedTasksGlobal, array $crossTasks = []): array
-    {
+    public function generate(
+        array $foragedTasksGlobal,
+        array $crossTasks = [],
+        ?\BeeSwarm\Text\SentenceRegistry $sentenceRegistry = null,
+        ?\BeeSwarm\Text\CorpusVocabulary $corpusVocab = null,
+        int $currentTaskCount = 0,
+    ): array {
         // Базовые синтетические задачи — делегируем TaskManager
         $tm = new TaskManager();
         $tasks = $tm->getBaseTasks();
@@ -28,7 +33,12 @@ class TaskGenerator
         $cross = $this->crossPairTasks($foragedTasksGlobal);
         $tasks = array_merge($tasks, $cross);
 
-        // Foraged задачи — основной источник данных
+        // Cloze tasks (limited)
+        if ($sentenceRegistry && $corpusVocab && $currentTaskCount < 40) {
+            $cloze = $this->clozeTasks($sentenceRegistry, $corpusVocab);
+            $tasks = array_merge($tasks, $cloze);
+        }
+
         return array_merge($tasks, $foragedTasksGlobal);
     }
 
@@ -54,5 +64,96 @@ class TaskGenerator
         }
 
         return \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+    }
+
+    /**
+     * Cloze-задачи: предсказание пропущенного слова.
+     */
+    private function clozeTasks(
+        \BeeSwarm\Text\SentenceRegistry $sr,
+        \BeeSwarm\Text\CorpusVocabulary $cv,
+    ): array {
+        $tasks = [];
+        $n = min($sr->count(), 50);
+        $stopWords = ['i', 'v', 'na', 's', 'ne', 'ili', 'no', 'a'];
+        for ($i = 0; $i < $n; $i++) {
+            $s = $sr->get($i);
+            if (! $s || count($s['token_ids']) < 3) {
+                continue;
+            }
+            foreach ($s['token_ids'] as $pos => $tid) {
+                $w = $cv->word($tid);
+                if (! $w || in_array($w, $stopWords)) {
+                    continue;
+                }
+                $d = [[$i, $pos, $tid, 1.0]];
+                for ($j = 0; $j < 3; $j++) {
+                    $r = mt_rand(1, $cv->size());
+                    if ($r !== $tid) {
+                        $d[] = [$i, $pos, $r, 0.0];
+                    }
+                }
+                $tasks[] = [
+                    'name' => "cloze_{$i}_{$pos}",
+                    'data' => $d,
+                    'domain' => 'cloze',
+                ];
+                break;
+            }
+        }
+        return $tasks;
+    }
+
+    /**
+     * GEN_ compose-задачи: пары grammar-операций → синтетические данные.
+     * Извлечён из Hive::getTasks().
+     */
+    public function createComposeTasks(): array
+    {
+        srand(42);
+        $g = new \BeeSwarm\Core\Grammar();
+        $grammarOps = $g->all();
+        if (count($grammarOps) < 2) {
+            return [];
+        }
+
+        $tasks = [];
+        $count = 0;
+        foreach ($grammarOps as $outer) {
+            foreach ($grammarOps as $inner) {
+                if ($outer === $inner || $count >= 10) {
+                    break 2;
+                }
+                if (! \BeeSwarm\Core\AtomRegistry::isUnary($outer)) {
+                    continue;
+                }
+                $data = [];
+                for ($i = 0; $i < 6; $i++) {
+                    $x = mt_rand(-10, 10);
+                    $y = mt_rand(-10, 10);
+                    $v1 = \BeeSwarm\Core\AtomRegistry::isBinary($inner)
+                        ? \BeeSwarm\Core\AtomRegistry::apply($inner, (float) $x, (float) $y)
+                        : \BeeSwarm\Core\AtomRegistry::apply($inner, (float) $x);
+                    if ($v1 === null || is_nan($v1) || is_infinite($v1)) {
+                        continue;
+                    }
+                    $v2 = \BeeSwarm\Core\AtomRegistry::apply($outer, $v1);
+                    if ($v2 === null || is_nan($v2) || is_infinite($v2)) {
+                        continue;
+                    }
+                    $data[] = [(float) $x, (float) $y, $v2];
+                }
+                if (count($data) >= 3) {
+                    $tasks[] = [
+                        'name' => "GEN_{$outer}_{$inner}",
+                        'data' => $data,
+                        'domain' => 'generated',
+                    ];
+                    $count++;
+                }
+            }
+        }
+
+        return $tasks;
     }
 }

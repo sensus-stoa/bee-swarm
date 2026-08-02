@@ -454,15 +454,7 @@ class Hive
             }
         }
 
-        // Compose — standard: plateau + foundAny; desperation: hunger OR novel fingerprint
-        $desperationCompose = $this->isDesperationCompose($task);
-        if ($desperationCompose || ($this->plateau->shouldRunCompose() && $foundAny && $domain !== 'cloze')) {
-            $this->doComposeTick($X, $y, $domain, $foundAny);
-            if ($desperationCompose && ! $foundAny) {
-                $this->log('DESPERATION_COMPOSE: no discovery, trying compose from hunger/curiosity');
-            }
-        }
-
+        // D14: Compose now handled by DiscoveryEngine
         if (! $foundAny) {
             // §2.5-децим: idle dreaming — cross-domain compose вместо пассивного сна
             $this->idleDreamTick();
@@ -547,12 +539,11 @@ class Hive
 
     private function doDiscoverTick(array $task, array $X, array $y, string $domain, bool &$foundAny): void
     {
-        // §2.1-эво: discoveries require a live routed bee — no disembodied discovery
         if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
             return;
         }
 
-        // Statistical sufficiency (HONEST_CRITERIA §1.2)
+        // Sufficiency check
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
@@ -560,76 +551,36 @@ class Hive
             return;
         }
 
-        // V0: Null-calibration — per-fingerprint epsilon replaces hardcoded 0.01
+        // Null-calibration
         $fp = $this->taskRouter
             ? $this->taskRouter->fingerprint($task)
-            : ($domain . ':' . count($X[0] ?? []) . 'c:' . count($y));
+            : ($domain . ':' . $nFeat . 'c:' . count($y));
         if ($this->getEpsilon($fp) === null) {
             try {
-                $grammar = new Grammar();
-                $grammar->restrictTo(array_keys(Grammar::BASE_OPS));
-                $this->calibrateEpsilon($fp, $X, $y, $grammar);
+                $calibGrammar = new Grammar();
+                $calibGrammar->restrictTo(array_keys(Grammar::BASE_OPS));
+                $this->calibrateEpsilon($fp, $X, $y, $calibGrammar);
             } catch (\Throwable $e) {
                 $this->log("CALIBRATE_FAILED: fp={$fp} " . $e->getMessage());
-                // fall through — getEpsilon returns null, use hardcoded 0.01 below
             }
         }
         $cvTrainMax = $this->getEpsilon($fp) ?? 0.01;
 
-        // S1.9 Phase 2: Generative search via Search::find (includes GlobalReduce)
-        // Runs BEFORE AtomRegistry discover — generates expressions systematically
-        if (! $foundAny) {
-            try {
-                // §2.3: per-bee грамматика + BASE_OPS (явное слияние)
-                $searchGrammar = Grammar::fromOps(array_merge(
-                    Grammar::baseOpNames(),
-                    $this->routedBee->grammar()
-                ));
-                $colLabels = $task['col_labels'] ?? null;
-                if ($this->routedBee) {
-                    $this->routedBee->chargeSearch();
-                }
-                [$sFound, $sCv, $sFormula] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2, $colLabels);
-                if ($sFound && $sCv <= $cvTrainMax) {
-                    $this->recordDiscovery([
-                        'atom' => $sFormula,
-                        'cv' => $sCv,
-                        'mode' => 'search',
-                    ], $task, $domain, $foundAny);
-                }
-            } catch (\Throwable $e) {
-                $this->log("SEARCH_FAILED: fp={$fp} " . $e->getMessage());
-            }
+        // D14 Wiring: engine-based discovery (replaces inline Search + Heldout + Compose)
+        if ($this->routedBee) {
+            $this->routedBee->chargeSearch();
+        }
+        $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
+        $colLabels = $task['col_labels'] ?? null;
+        $engine = new DiscoveryEngine();
+        $candidates = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
+
+        foreach ($candidates as $d) {
+            $this->recordDiscovery($d, $task, $domain, $foundAny);
         }
 
-        if (AtomRegistry::isHeldoutEnabled()) {
-            foreach (LawValidator::discoverHeldout($X, $y, cvTrainMax: $cvTrainMax) as $d) {
-                $this->recordDiscovery($d, $task, $domain, $foundAny);
-            }
-        } else {
-            // Raw discover (no heldout): filter by epsilon manually here —
-            // AtomRegistry::discover does NOT go through LawValidator
-            foreach (AtomRegistry::discover($X, $y) as $d) {
-                if ($d['cv'] <= $cvTrainMax) {
-                    $this->recordDiscovery($d, $task, $domain, $foundAny);
-                }
-            }
-        }
-
-        // S1.12: Compose discovery — pairs of grammar atoms (capped for perf)
-        $composeGrammar = (new Grammar())->capped(50);
-        if (count($composeGrammar) >= 2) {
-            foreach (AtomRegistry::discoverCompose($X, $y, $composeGrammar, $cvTrainMax) as $d) {
-                if ($d['cv'] <= $cvTrainMax) {
-                    $this->recordDiscovery($d, $task, $domain, $foundAny);
-                }
-            }
-        }
-
-        // Внутренняя ценность информации: бонус за сам акт поиска
-        if ($this->routedBee && $this->routedBee->isAlive()) {
-            $this->routedBee->rewardInformation();
-        }
+        // Information reward — intrinsic value of search
+        $this->routedBee->rewardInformation();
     }
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
@@ -679,57 +630,6 @@ class Hive
             $this->routedBee->rewardDiscovery();
         }
         $this->plateau->tick(true);
-    }
-
-    private function doComposeTick(array $X, array $y, string $domain, bool &$foundAny): void
-    {
-        $g = new Grammar();
-        $grammarOps = $g->all();
-        if (count($grammarOps) < 2) {
-            return;
-        }
-
-        // Statistical sufficiency (HONEST_CRITERIA §1.2)
-        $nFeat = count($X[0] ?? []);
-        $tMin = max(10, $nFeat * 5);
-        if (count($y) < $tMin) {
-            $this->log('INSUFFICIENT_DATA: compose t=' . count($y) . " < tMin={$tMin}");
-            return;
-        }
-
-        $candidates = AtomRegistry::discoverCompose($X, $y, $grammarOps);
-        if (! empty($candidates)) {
-            $validated = \BeeSwarm\Validation\LawValidator::validate($candidates, $X, $y);
-            foreach ($validated as $c) {
-                $this->recordDiscovery($c, [
-                    'name' => $c['atom'],
-                ], $domain, $foundAny);
-                // per-bee грамматика обновляется в recordDiscovery через addToGrammar
-            }
-        }
-    }
-
-    /**
-     * §S1.8-DESPERATION: compose без foundAny при голоде ИЛИ любопытстве.
-     */
-    private function isDesperationCompose(array $task): bool
-    {
-        // Track seen fingerprints for curiosity check
-        static $seenFp = [];
-        $fp = $this->taskRouter ? $this->taskRouter->fingerprint($task) : '';
-
-        $hunger = false;
-        foreach ($this->bees as $bee) {
-            if ($bee->isAlive() && $bee->energy() < 5.0) {
-                $hunger = true;
-                break;
-            }
-        }
-
-        $curiosity = ! isset($seenFp[$fp]);
-        $seenFp[$fp] = true;
-
-        return $hunger || $curiosity;
     }
 
     /**

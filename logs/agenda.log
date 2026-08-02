@@ -182643,3 +182643,106 @@
 [12:17:28] ROUTE: task -> bee#0
 [12:17:28] CALIBRATE: fp=2c:L:num epsilon=0.091043222577774
 [12:17:29] 🔍 gi→dq -> (((x0−x0²))²−((x0+R+x0))²) (CV=0.0878) [metrics]
+[12:23:26] SESSION_START: 2026-08-02 12:23:26 bees=0 grammar=22 ops
+[12:23:26] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[12:23:26] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[12:23:26] BOOTSTRAP: 3 seed bees created
+[12:23:26] GEN: 0 pop=3 (bootstrap)
+[12:23:26] Preloaded 34 known laws from DB
+[12:23:26] Retrospective: 0 passed, 0 overfit removed
+[12:23:27] Corpus: 5000 words, 1008 sentences
+[12:23:27] ROUTE: task -> bee#1
+[12:23:28] CALIBRATE: fp=2c:L:num epsilon=0.72720014712866
+[12:23:28] DUPLICATE: ×(min) [logic]
+[12:23:28] SESSION_START: 2026-08-02 12:23:28 bees=0 grammar=22 ops
+[12:23:28] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[12:23:28] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[12:23:28] BOOTSTRAP: 3 seed bees created
+[12:23:28] GEN: 0 pop=3 (bootstrap)
+[12:23:28] Preloaded 34 known laws from DB
+[12:23:28] Retrospective: 0 passed, 0 overfit removed
+[12:23:29] Corpus: 5000 words, 1008 sentences
+[12:23:29] SESSION_START: 2026-08-02 12:23:29 bees=0 grammar=22 ops
+[12:23:29] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[12:23:29] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[12:23:29] BOOTSTRAP: 3 seed bees created
+[12:23:29] GEN: 0 pop=3 (bootstrap)
+[12:23:29] Preloaded 35 known laws from DB
+[12:23:29] Retrospective: 0 passed, 0 overfit removed
+[12:23:30] Corpus: 5000 words, 1008 sentences
+[12:23:33] SESSION_START: 2026-08-02 12:23:33 bees=0 grammar=11 ops
+[12:23:33] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[12:23:33] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[12:23:33] BOOTSTRAP: 3 seed bees created
+[12:23:33] GEN: 0 pop=3 (bootstrap)
+[12:23:33] Preloaded 29 known laws from DB
+[12:23:33] Retrospective: 0 passed, 0 overfit removed
+[12:23:34] Corpus: 5000 words, 1008 sentences
+[12:23:34] ROUTE: task -> bee#1
+[12:23:34] CALIBRATE: fp=3c:M:num epsilon=2.5349705287266
+[12:23:34] 🔍 MUL -> (x0×x1) (CV=0.0000) [arithmetic]
+[12:23:34] 🔍 MUL -> mul (CV=0.0000) [arithmetic]
+[12:23:34] CROSS_DOMAIN: +(×) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> +(×) (CV=0.3926) [arithmetic]
+[12:23:34] CROSS_DOMAIN: +(min) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> +(min) (CV=0.6041) [arithmetic]
+[12:23:34] 🔍 MUL -> +(mul) (CV=0.3926) [arithmetic]
+[12:23:34] CROSS_DOMAIN: ×(+) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> ×(+) (CV=0.4649) [arithmetic]
+[12:23:34] 🔍 MUL -> ×(−) (CV=1.7453) [arithmetic]
+[12:23:34] CROSS_DOMAIN: ×(min) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> ×(min) (CV=0.4447) [arithmetic]
+[12:23:34] CROSS_DOMAIN: ×(max) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> ×(max) (CV=0.5253) [arithmetic]
+[12:23:34] CROSS_DOMAIN: ×(sq) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> ×(sq) (CV=0.6000) [arithmetic]
+[12:23:34] 🔍 MUL -> ×(mul) (CV=0.5774) [arithmetic]
+[12:23:34] 🔍 MUL -> −(×) (CV=0.6849) [arithmetic]
+[12:23:34] 🔍 MUL -> −(min) (CV=1.2637) [arithmetic]
+[12:23:34] 🔍 MUL -> −(mul) (CV=0.6849) [arithmetic]
+[12:23:34] CROSS_DOMAIN: min(+) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> min(+) (CV=0.7171) [arithmetic]
+[12:23:34] CROSS_DOMAIN: min(×) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> min(×) (CV=0.7171) [arithmetic]
+[12:23:34] 🔍 MUL -> min(−) (CV=1.9953) [arithmetic]
+[12:23:34] CROSS_DOMAIN: min(max) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> min(max) (CV=0.7171) [arithmetic]
+[12:23:34] CROSS_DOMAIN: min(sq) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> min(sq) (CV=0.4681) [arithmetic]
+[12:23:34] 🔍 MUL -> min(mul) (CV=0.7171) [arithmetic]
+[12:23:34] CROSS_DOMAIN: max(×) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> max(×) (CV=0.0000) [arithmetic]
+[12:23:34] CROSS_DOMAIN: max(min) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> max(min) (CV=0.7171) [arithmetic]
+[12:23:34] 🔍 MUL -> max(mul) (CV=0.0000) [arithmetic]
+[12:23:34] CROSS_DOMAIN: sq(×) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> sq(×) (CV=0.9711) [arithmetic]
+[12:23:34] CROSS_DOMAIN: sq(min) now in [arithmetic,logic]
+[12:23:34] 🔍 MUL -> sq(min) (CV=0.4812) [arithmetic]
+[12:23:34] 🔍 MUL -> sq(mul) (CV=0.9711) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(+) (CV=0.4649) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(×) (CV=0.5774) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(−) (CV=1.7453) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(min) (CV=0.4447) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(max) (CV=0.5253) [arithmetic]
+[12:23:34] 🔍 MUL -> mul(sq) (CV=0.6000) [arithmetic]
+[12:23:35] SESSION_START: 2026-08-02 12:23:35 bees=0 grammar=11 ops
+[12:23:35] DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault
+[12:23:35] DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS
+[12:23:35] BOOTSTRAP: 3 seed bees created
+[12:23:35] GEN: 0 pop=3 (bootstrap)
+[12:23:35] Preloaded 61 known laws from DB
+[12:23:35] Retrospective: 1 passed, 0 overfit removed
+[12:23:36] Corpus: 5000 words, 1008 sentences
+[12:23:36] ROUTE: task -> bee#1
+[12:23:36] CALIBRATE: fp=2c:M:num epsilon=2.9999938152619
+[12:23:36] 🔍 SQRT -> sqrt (CV=0.0000) [arithmetic]
+[12:23:36] 🔍 SQRT -> sq(sqrt) (CV=0.6383) [arithmetic]
+[12:23:36] 🔍 SQRT -> sqrt(sq) (CV=0.6383) [arithmetic]
+[12:23:36] ROUTE: task -> bee#1
+[12:23:36] SPAWN: bee#3 from parent E=8.88
+[12:23:36] GRAMMAR_SPAWN parent=1 child=3 parent_size=11 child_size=10
+[12:23:36] CROSS_DOMAIN: sq(sqrt) now in [metrics,arithmetic]
+[12:23:36] 🔍 discipline→cardio -> sq(sqrt) (CV=1.5237) [metrics]
+[12:23:36] CROSS_DOMAIN: sqrt(sq) now in [metrics,arithmetic]
+[12:23:36] 🔍 discipline→cardio -> sqrt(sq) (CV=1.5237) [metrics]

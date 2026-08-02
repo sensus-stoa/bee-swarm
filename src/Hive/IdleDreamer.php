@@ -17,6 +17,36 @@ use BeeSwarm\Core\Grammar;
 class IdleDreamer
 {
     /**
+     * Подготовить задачи для dreaming: извлечь X,y из data, отфильтровать insufficient.
+     *
+     * @param array $tasks сырые задачи из getTasks()
+     * @return array<int, array{name: string, domain: string, X: array, y: array}>
+     */
+    public static function prepareTasks(array $tasks): array
+    {
+        $dreamTasks = [];
+        foreach ($tasks as $t) {
+            $data = $t['data'] ?? [];
+            if (empty($data) || count($data[0] ?? []) < 2) {
+                continue;
+            }
+            $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
+            $y = array_column($data, count($data[0]) - 1);
+            $nFeat = count($X[0] ?? []);
+            if (count($y) < max(10, $nFeat * 5)) {
+                continue;
+            }
+            $dreamTasks[] = [
+                'name' => $t['name'] ?? 'unknown',
+                'domain' => $t['domain'] ?? 'unknown',
+                'X' => $X,
+                'y' => $y,
+            ];
+        }
+        return $dreamTasks;
+    }
+
+    /**
      * Попытаться найти закон через расширенный compose на всех задачах.
      *
      * @param array $tasks массив ['name' => string, 'domain' => string, 'X' => array, 'y' => array]

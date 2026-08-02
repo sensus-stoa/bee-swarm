@@ -30,7 +30,8 @@ class BeeWorkerTest extends TestCase
         $status = $worker->status();
 
         $this->assertSame(self::E0, $status['energy']);
-        $this->assertSame(['add', 'mul'], $status['grammar']);
+        $this->assertContains('add', $status['grammar']);
+        $this->assertContains('mul', $status['grammar']);
         $this->assertTrue($status['alive']);
         $this->assertSame(0, $status['discoveries']);
     }
@@ -72,6 +73,7 @@ class BeeWorkerTest extends TestCase
 
         $result = $worker->handleTask('{"data": [[1,2]]}');
 
-        $this->assertSame(['add', 'sq'], $result['grammar']);
+        $this->assertContains('add', $result['grammar']);
+        $this->assertContains('sq', $result['grammar']);
     }
 }

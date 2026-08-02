@@ -194,41 +194,8 @@ class Hive
 
         // §0.6: Bootstrap Phase — cold start with seed population
         if (empty($this->bees)) {
-            $allOps = array_keys(Grammar::BASE_OPS);
-            $semOps = Grammar::SEMANTIC_OPS;
-            $available = array_merge($allOps, $semOps);
-
-            // G₁ = baseline grammar B
-            $g1 = $allOps;
-            // G₂ = mutate(B) — retry until Jaccard < 1.0 with G₁
-            $g2 = $g1;
-            for ($retry = 0; $retry < 10; $retry++) {
-                $g2 = GrammarMutator::mutate($allOps, $available);
-                if (self::jaccard($g1, $g2) < 1.0) {
-                    break;
-                }
-            }
-            if (self::jaccard($g1, $g2) >= 1.0) {
-                throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
-            }
-
-            // G₃ = mutate(mutate(B)) — retry until distinct from both G₁ and G₂
-            $g3 = $g1;
-            for ($retry = 0; $retry < 20; $retry++) {
-                $g3 = GrammarMutator::mutate($g2, $available);
-                if (self::jaccard($g1, $g3) < 1.0 && self::jaccard($g2, $g3) < 0.95) {
-                    break;
-                }
-            }
-            if (self::jaccard($g1, $g3) >= 0.95 || self::jaccard($g2, $g3) >= 0.95) {
-                throw new \RuntimeException('BOOTSTRAP: G₃ not sufficiently distinct after 20 retries');
-            }
-
-            $this->bees = [
-                new Bee($g1, 10.0),
-                new Bee($g2, 10.0),
-                new Bee($g3, 10.0),
-            ];
+            $bm = new BootstrapManager();
+            $this->bees = $bm->createSeedBees();
             $this->log('BOOTSTRAP: 3 seed bees created');
         }
 
@@ -282,10 +249,17 @@ class Hive
         }
 
         // Corpus
-        $lairDir = getenv('HOME') . '/Documents/the_lair';
-        if (is_dir($lairDir)) {
-            $this->corpusVocab = new CorpusVocabulary([$lairDir]);
-            $this->sentenceRegistry = new SentenceRegistry([$lairDir], $this->corpusVocab);
+        $corpusDirs = getenv('CORPUS_DIRS');
+        if ($corpusDirs) {
+            $dirs = explode(':', $corpusDirs);
+        } else {
+            // Fallback: домашняя директория пользователя
+            $dirs = [getenv('HOME') ?: '/home/' . get_current_user()];
+        }
+        $dirs = array_filter($dirs, 'is_dir');
+        if (! empty($dirs)) {
+            $this->corpusVocab = new CorpusVocabulary($dirs);
+            $this->sentenceRegistry = new SentenceRegistry($dirs, $this->corpusVocab);
             $this->log("Corpus: {$this->corpusVocab->size()} words, {$this->sentenceRegistry->count()} sentences");
         }
     }
@@ -397,6 +371,11 @@ class Hive
                 $idx = count($this->bees) - 1;
                 $this->spawnCount++;
                 $this->log("SPAWN: bee#{$idx} from parent E={$parent->energy()}");
+                // §2.3: логировать грамматики для verify_1_3
+                $this->log('GRAMMAR_SPAWN parent=' . array_search($parent, $this->bees, true)
+                    . ' child=' . $idx
+                    . ' parent_size=' . count($parent->grammar())
+                    . ' child_size=' . count($child->grammar()));
 
                 // §2.5: Generation tracking — spawn_events ≥ generation_start_population
                 if ($this->spawnCount >= $this->generationStartPop) {
@@ -601,8 +580,11 @@ class Hive
         // Runs BEFORE AtomRegistry discover — generates expressions systematically
         if (! $foundAny) {
             try {
-                $searchGrammar = new Grammar();
-                $searchGrammar->restrictTo(array_keys(Grammar::BASE_OPS));
+                // §2.3: per-bee грамматика + BASE_OPS (явное слияние)
+                $searchGrammar = Grammar::fromOps(array_merge(
+                    Grammar::baseOpNames(),
+                    $this->routedBee->grammar()
+                ));
                 $colLabels = $task['col_labels'] ?? null;
                 if ($this->routedBee) {
                     $this->routedBee->chargeSearch();
@@ -657,6 +639,11 @@ class Hive
         $g = new Grammar();
         if (! in_array($d['atom'], $g->all())) {
             $g->add($d['atom'], 'auto-discover');
+        }
+
+        // §2.3 изоляция: добавить атом в per-bee грамматику
+        if ($this->routedBee && $this->routedBee->isAlive()) {
+            $this->routedBee->addToGrammar($d['atom']);
         }
 
         // S1.12 Phase 2: Cross-domain signal — атом на ≥2 доменах

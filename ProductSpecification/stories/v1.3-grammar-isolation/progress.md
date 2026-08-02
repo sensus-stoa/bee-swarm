@@ -39,7 +39,20 @@
 - Для каждой пары: если G_i == G_j и обе живы ≥10 тактов → FAIL
 - Проверяет что грамматика потомка ≠ грамматика родителя при spawn
 
-## Сложность: ⭐⭐⭐⭐ | 4.5h
+### Phase 5: Remove shared grammar_ops dependency (3h)
+**G1:** общая таблица `grammar_ops` нарушает §2.3. Сейчас 6 путей чтения/записи.
+**G4:** `recordDiscovery` пишет в обе — per-bee грамматика не источник истины.
+
+**Что сделать:**
+- `Grammar::add()` → только per-bee `addToGrammar()`, общая БД = read-only архив
+- `AtomRegistry::all()` → читать из законов (laws.formula), не из grammar_ops
+- `QueryEngine::topAtoms()` → то же
+- `IdleDreamer` → использовать `$bee->grammar()`, не `(new Grammar())->all()`
+- Verify-скрипты → адаптировать к чтению из laws вместо grammar_ops
+
+**Сложность:** ⭐⭐⭐ | 3h
+
+## Сложность: ⭐⭐⭐⭐ | 7.5h
 
 ## E2E
 После деплоя: `grep -c 'SPAWN' logs/agenda.log` — spawn'ы должны передавать грамматику.

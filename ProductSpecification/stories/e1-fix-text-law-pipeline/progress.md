@@ -80,3 +80,8 @@ Obsidian vault (1910 .md)
 
 Phase 3+: `text_laws_count = COUNT(*) FROM laws WHERE domain LIKE '%text%' OR domain LIKE '%txt%'`.
 Базовая линия: 0. Цель Phase 3: >0. Цель Phase 4: >10.
+
+## Tech Debt
+
+- **Fallback сканирует $HOME целиком** — при отсутствии `CORPUS_DIRS` env. На больших домашних директориях — потенциальная деградация. Принято: на ноутбуке HOME маленький.
+- **`Grammar::fromOps()` делает DB-чтение в конструкторе** — `new self()` читает grammar_ops, затем `$g->ops = []` перезаписывает. Waste, не баг. Принято: вызывается 1 раз/тик, SQLite in-memory.

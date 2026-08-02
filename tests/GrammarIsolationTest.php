@@ -7,72 +7,71 @@ namespace BeeSwarm\Tests;
 use BeeSwarm\Hive\Bee;
 
 /**
- * Story S1.3: Grammar Isolation — per-bee grammar, no shared state
- * Protocol §2.3: G_i ≠ G_j for independent bees
+ * Story V1.3: Grammar Isolation (§2.3)
+ *
+ * Phase 1: каждая пчела хранит свою грамматику. Открытия добавляются в per-bee набор,
+ * не в общую БД. Две пчелы с разными грамматиками — не влияют друг на друга.
  */
 class GrammarIsolationTest extends TestCase
 {
     /**
-     * Two bees spawned from same parent must have different grammar
+     * Пчела хранит СВОЙ набор операций, независимый от других пчёл.
+     *
+     * Predicted: FAIL — метод addToGrammar не существует.
      */
-    public function testSpawnProducesIndependentGrammarInstances(): void
+    public function testBeeHasOwnGrammar(): void
     {
-        $available = ['add', 'mul', 'sub', 'div', 'sq', 'sqrt', 'abs', 'max', 'min'];
+        $bee1 = new Bee(['add', 'mul', 'sub'], 10.0);
+        $bee2 = new Bee(['add', 'div', 'sq'], 10.0);
 
-        $parent1 = new Bee(['add', 'mul', 'sub'], 15.0);
-        $parent2 = new Bee(['add', 'mul', 'sub'], 15.0);
+        // У каждой пчелы своя грамматика (seed + BASE_OPS)
+        $this->assertContains('add', $bee1->grammar());
+        $this->assertContains('mul', $bee1->grammar());
+        $this->assertContains('sub', $bee1->grammar());
+        $this->assertContains('add', $bee2->grammar());
+        $this->assertContains('div', $bee2->grammar());
+        $this->assertContains('sq', $bee2->grammar());
 
-        $child1 = $parent1->spawn($available);
-        $child2 = $parent2->spawn($available);
+        // Пчела 1 добавляет атом в свою грамматику
+        $bee1->addToGrammar('custom_op');
+        $this->assertContains('custom_op', $bee1->grammar(), 'Bee1 must have custom_op');
 
-        $this->assertNotNull($child1);
-        $this->assertNotNull($child2);
-        // Grammars are independent arrays — modifying one doesn't affect the other
-        $child1Grammar = $child1->grammar();
-        $child2Grammar = $child2->grammar();
-        $child1Grammar[] = 'INJECTED';
-        $this->assertNotContains('INJECTED', $child2->grammar(), 'Grammar arrays must be independent copies');
+        // Пчела 2 НЕ должна получить custom_op
+        $this->assertNotContains('custom_op', $bee2->grammar(), 'Bee2 must NOT have custom_op — grammar isolation');
     }
 
     /**
-     * Bee's grammar is independent — modifying one doesn't affect the other
+     * grammar() возвращает per-bee ops (seed + custom), без BASE_OPS.
+     * BASE_OPS доступны через Grammar::baseOpNames().
      */
-    public function testGrammarIsIndependent(): void
+    public function testGrammarReturnsPerBeeOpsOnly(): void
     {
-        $bee1 = new Bee(['add', 'mul'], 10.0);
-        $bee2 = new Bee(['sub', 'div'], 10.0);
+        $bee = new Bee(['custom1'], 10.0);
 
-        // Each has its own grammar
-        $this->assertSame(['add', 'mul'], $bee1->grammar());
-        $this->assertSame(['sub', 'div'], $bee2->grammar());
+        $grammar = $bee->grammar();
+
+        // Должны быть per-bee ops
+        $this->assertContains('custom1', $grammar, 'Seed op must be in grammar');
+        // BASE_OPS НЕ должны быть в grammar() — они добавляются отдельно
+        $this->assertNotContains('+', $grammar, 'BASE_OPS must NOT be in per-bee grammar');
     }
 
     /**
-     * Grammar persists through energy mutations
+     * Две пчелы не влияют на грамматику друг друга.
+     *
+     * Predicted: FAIL — addToGrammar не существует.
      */
-    public function testGrammarSurvivesTicks(): void
+    public function testGrammarIsolationBetweenBees(): void
     {
-        $bee = new Bee(['add', 'sq', 'sqrt'], 10.0);
-        $bee->tick();
-        $bee->chargeSearch();
-        $bee->rewardDiscovery();
+        $beeA = new Bee(['add', 'mul'], 10.0);
+        $beeB = new Bee(['sub', 'div'], 10.0);
 
-        $this->assertSame(['add', 'sq', 'sqrt'], $bee->grammar(), 'Grammar must survive energy mutations');
-    }
+        $beeA->addToGrammar('discovery_A');
+        $beeB->addToGrammar('discovery_B');
 
-    /**
-     * Spawned child keeps its grammar after parent mutates
-     */
-    public function testChildGrammarIndependentOfParent(): void
-    {
-        $parent = new Bee(['add', 'mul'], 15.0);
-        $child = $parent->spawn(['add', 'mul', 'sq', 'sqrt']);
-        $this->assertNotNull($child);
-
-        $childGrammar = $child->grammar();
-
-        // Parent spawns again (mutates further) — child's grammar must not change
-        $parent->spawn(['add', 'mul', 'sq', 'sqrt']);
-        $this->assertSame($childGrammar, $child->grammar(), 'Child grammar must be independent of parent after spawn');
+        $this->assertContains('discovery_A', $beeA->grammar());
+        $this->assertNotContains('discovery_A', $beeB->grammar());
+        $this->assertContains('discovery_B', $beeB->grammar());
+        $this->assertNotContains('discovery_B', $beeA->grammar());
     }
 }

@@ -51,9 +51,14 @@ class Bee
     private float $discoveryReward;
 
     /**
-     * @var string[] grammar operations
+     * @var string[] seed grammar operations (inherited from parent)
      */
     private array $grammar;
+
+    /**
+     * @var string[] custom ops discovered by this bee (per-bee isolation §2.3)
+     */
+    private array $customGrammarOps = [];
 
     /**
      * @param string[] $grammar initial grammar operations
@@ -61,6 +66,7 @@ class Bee
      * @param float|null $tickCost energy cost per tick (default: DEFAULT_TICK_COST)
      * @param float|null $searchCost energy cost per search attempt (default: DEFAULT_SEARCH_COST)
      * @param float|null $discoveryReward energy reward for discovery (default: DEFAULT_DISCOVERY_REWARD)
+     * @param string[] $customGrammarOps pre-discovered custom ops (for spawn inheritance)
      */
     public function __construct(
         array $grammar,
@@ -68,8 +74,10 @@ class Bee
         ?float $tickCost = null,
         ?float $searchCost = null,
         ?float $discoveryReward = null,
+        array $customGrammarOps = [],
     ) {
         $this->grammar = array_values($grammar);
+        $this->customGrammarOps = array_values($customGrammarOps);
         $this->energy = $energy;
         $this->tickCost = $tickCost ?? self::DEFAULT_TICK_COST;
         $this->searchCost = $searchCost ?? self::DEFAULT_SEARCH_COST;
@@ -82,11 +90,27 @@ class Bee
     }
 
     /**
-     * @return string[]
+     * @return string[] per-bee grammar ops: seed + custom (§2.3 изоляция).
+     *         BASE_OPS доступны через Grammar::baseOpNames() и добавляются
+     *         в Search::find явно (doDiscoverTick).
      */
     public function grammar(): array
     {
-        return $this->grammar;
+        return array_values(array_unique(array_merge(
+            $this->grammar,
+            $this->customGrammarOps,
+        )));
+    }
+
+    /**
+     * Добавить операцию в per-bee грамматику (§2.3 изоляция).
+     * Другие пчёлы не видят эту операцию.
+     */
+    public function addToGrammar(string $op): void
+    {
+        if (! in_array($op, $this->customGrammarOps, true)) {
+            $this->customGrammarOps[] = $op;
+        }
     }
 
     // ── Energy param accessors (for mutation & testing) ──
@@ -170,7 +194,14 @@ class Bee
         $childSearch = $this->mutateParam($this->searchCost, self::SEARCH_MIN, self::SEARCH_MAX);
         $childReward = $this->mutateParam($this->discoveryReward, self::REWARD_MIN, self::REWARD_MAX);
 
-        return new self($childGrammar, self::SPAWN_CHILD_ENERGY, $childTick, $childSearch, $childReward);
+        return new self(
+            $childGrammar,
+            self::SPAWN_CHILD_ENERGY,
+            $childTick,
+            $childSearch,
+            $childReward,
+            $this->customGrammarOps,  // inherit parent's discovered ops
+        );
     }
 
     /**

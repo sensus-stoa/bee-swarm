@@ -5,8 +5,8 @@
 | # | What | Status |
 |---|------|--------|
 | **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | 🔧 7/8 + V0.8 (overlap) + V0.9 (24h gate) |
-| **V0.8** | **OVERLAP-TRACKING — последний критерий Стадии 0** | ⬜ Phase 1-3 (3h) |
-| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | ⬜ 24h wall time |
+| **V0.8** | **OVERLAP-TRACKING — последний критерий Стадии 0** | 🔧 Phase 1-2 done. Phase 3-4 backlog. |
+| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔧 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
 | **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | ⬜ 0/5. Blocker: V1.3 grammar isolation. |
 | **V1.3** | **GRAMMAR-ISOLATION — per-bee grammar (§2.3)** | ⬜ 4 фазы (4.5h). Архитектурный барьер Стадии 1. |
 | V0-old | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |

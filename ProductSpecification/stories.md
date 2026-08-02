@@ -8,6 +8,7 @@
 | **V0.8** | **OVERLAP-TRACKING — алгебраическая редукция** | ✅ 4 фазы (включая reduceAnswer). |
 | **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔄 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
 | **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify. 3 pending (data ceiling). |
+| **V0.8.5** | **OUT-OF-SAMPLE-CV — anti-tautology gate** | ⬜ 4 фазы (2.5h). |
 | **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (Obsidian vault). |
 
 ## Completed

@@ -5,62 +5,35 @@ declare(strict_types=1);
 namespace BeeSwarm\Hive;
 
 /**
- * TaskGenerator — генерация задач (foraged + базовые синтетические).
+ * TaskGenerator — генерация задач (foraged + базовые + cross-pair).
  *
- * Извлечён из Hive::getTasks(). D15 Phase 1: базовая структура.
+ * Извлечён из Hive::getTasks(). D15: делегирует TaskManager для базовых задач.
  */
 class TaskGenerator
 {
     /**
-     * Сгенерировать задачи: foraged + базовые + cross-pair.
+     * Сгенерировать задачи: базовые (TaskManager) + cross-pair + foraged.
      *
      * @param array $foragedTasksGlobal глобальный список foraged задач
-     * @param array $baseTasks дополнительные задачи
+     * @param array $crossTasks дополнительные cross-pair задачи (не используется — TaskGenerator сам делает cross-pair)
      * @return array<int, array{name: string, data: array, domain: string}>
      */
-    public function generate(array $foragedTasksGlobal, array $baseTasks): array
+    public function generate(array $foragedTasksGlobal, array $crossTasks = []): array
     {
-        $tasks = $this->createBaseTasks();
-        $tasks = array_merge($tasks, $baseTasks);
+        // Базовые синтетические задачи — делегируем TaskManager
+        $tm = new TaskManager();
+        $tasks = $tm->getBaseTasks();
 
         // E1-FIX: cross-pairing из текстовых атомов
-        $crossTasks = $this->crossPairTasks($foragedTasksGlobal);
-        $tasks = array_merge($tasks, $crossTasks);
+        $cross = $this->crossPairTasks($foragedTasksGlobal);
+        $tasks = array_merge($tasks, $cross);
 
+        // Foraged задачи — основной источник данных
         return array_merge($tasks, $foragedTasksGlobal);
     }
 
     /**
-     * Базовые синтетические задачи (логика + арифметика).
-     *
-     * @return array<int, array{name: string, data: array, domain: string}>
-     */
-    private function createBaseTasks(): array
-    {
-        return [
-            [
-                'name' => 'logic_AND',
-                'data' => [[0, 0, 0], [0, 1, 0], [1, 0, 0], [1, 1, 1], [0, 0, 0], [1, 0, 0], [0, 1, 0], [1, 1, 1], [0, 1, 0], [1, 1, 1]],
-                'domain' => 'logic',
-            ],
-            [
-                'name' => 'logic_OR',
-                'data' => [[0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 1], [0, 0, 0], [1, 1, 1], [0, 1, 1], [1, 0, 1], [0, 1, 1], [1, 1, 1]],
-                'domain' => 'logic',
-            ],
-            [
-                'name' => 'arith_mul',
-                'data' => [[2, 3, 6], [4, 5, 20], [1, 7, 7], [3, 3, 9], [5, 2, 10], [6, 1, 6], [2, 4, 8], [3, 6, 18], [1, 9, 9], [4, 2, 8]],
-                'domain' => 'arithmetic',
-            ],
-        ];
-    }
-
-    /**
      * Cross-pairing: текстовые атомы → X/y пары.
-     *
-     * @param array $foragedTasksGlobal
-     * @return array<int, array{name: string, data: array, domain: string}>
      */
     private function crossPairTasks(array $foragedTasksGlobal): array
     {

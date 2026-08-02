@@ -716,8 +716,9 @@ class Hive
 
     public function tick(): array
     {
+        $tasks = $this->getTasks();
         return [
-            'tasks_processed' => count($this->getTasks()),
+            'tasks_processed' => count($tasks),
             'discoveries' => 0,
         ];
     }

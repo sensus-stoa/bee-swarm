@@ -38,6 +38,7 @@ class HiveTest extends TestCase
     public function testTickReturnsTaskCount(): void
     {
         $hive = new Hive(maxTicks: 1);
+        $hive->run(); // bootstrap + forager → tasks available
         $status = $hive->tick();
         $this->assertIsArray($status);
         $this->assertArrayHasKey('tasks_processed', $status);

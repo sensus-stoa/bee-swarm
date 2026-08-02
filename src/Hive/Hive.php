@@ -742,31 +742,7 @@ class Hive
         }
 
         $tasks = $this->getTasks(skipGenerated: true);
-        if (empty($tasks)) {
-            usleep(100_000);
-            return;
-        }
-
-        // Подготавливаем задачи в формате для IdleDreamer
-        $dreamTasks = [];
-        foreach ($tasks as $t) {
-            $data = $t['data'] ?? [];
-            if (empty($data) || count($data[0] ?? []) < 2) {
-                continue;
-            }
-            $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
-            $y = array_column($data, count($data[0]) - 1);
-            $nFeat = count($X[0] ?? []);
-            if (count($y) < max(10, $nFeat * 5)) {
-                continue;
-            }
-            $dreamTasks[] = [
-                'name' => $t['name'] ?? 'unknown',
-                'domain' => $t['domain'] ?? 'unknown',
-                'X' => $X,
-                'y' => $y,
-            ];
-        }
+        $dreamTasks = IdleDreamer::prepareTasks($tasks);
 
         if (empty($dreamTasks)) {
             usleep(100_000);

@@ -8,7 +8,7 @@
 | **V0.8** | **OVERLAP-TRACKING — последний критерий Стадии 0** | 🔧 Phase 1-2 done. Phase 3-4 backlog. |
 | **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔧 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
 | **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | ⬜ 0/5. Blocker: V1.3 grammar isolation. |
-| **V1.3** | **GRAMMAR-ISOLATION — per-bee grammar (§2.3)** | ⬜ 4 фазы (4.5h). Архитектурный барьер Стадии 1. |
+| **V1.3** | **GRAMMAR-ISOLATION — per-bee grammar (§2.3)** | ✅ Все 5 фаз (5a-5e). |
 | V0-old | Runtime Null-Calibration | ✅ Phase 1-3 complete (0800f7c) |
 | S1.9 | GENERATIVE — reduce arity bridge | ✅ Phase 2 complete (cb2cc2c) — первые открытия |
 | S1.11 | SOURCE — foraged provenance | ✅ Phase 3 complete (512f204) — source + labels |

@@ -222,11 +222,8 @@ class Hive
         AtomRegistry::setHeldoutEnabled(true);
 
         // Preload known laws
-        $rows = Database::get()->query('SELECT name, formula, domain FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
-        foreach ($rows as $r) {
-            $this->knownLaws[($r['domain'] ?? 'unknown') . '::' . $r['name'] . '::' . $r['formula']] = true;
-        }
-        $this->log('Preloaded ' . count($this->knownLaws) . ' known laws from DB');
+        $known = $this->recordKeeper->preloadKnown();
+        $this->log('Preloaded ' . $known . ' known laws from DB');
 
         // Forager startup scan
         if (! empty($this->foragerSources)) {
@@ -360,41 +357,18 @@ class Hive
             }
         }
 
-        // §2.2: Spawn loop — E≥15 → new bee with mutated grammar
-        $allOps = array_keys(Grammar::BASE_OPS);
-        $semOps = Grammar::SEMANTIC_OPS;
-        $available = array_merge($allOps, $semOps);
-        foreach ($this->bees as $parent) {
-            if (! $parent->isAlive()) {
-                continue;
-            }
-            $child = $parent->spawn($available);
-            if ($child) {
-                $this->bees[] = $child;
-                $idx = count($this->bees) - 1;
-                $this->spawnCount++;
-                $this->log("SPAWN: bee#{$idx} from parent E={$parent->energy()}");
-                // §2.3: логировать грамматики для verify_1_3
-                $this->log('GRAMMAR_SPAWN parent=' . array_search($parent, $this->bees, true)
-                    . ' child=' . $idx
-                    . ' parent_size=' . count($parent->grammar())
-                    . ' child_size=' . count($child->grammar()));
-
-                // §2.5: Generation tracking — spawn_events ≥ generation_start_population
-                if ($this->spawnCount >= $this->generationStartPop) {
-                    $this->generation++;
-                    $this->spawnCount = 0;
-                    $this->generationStartPop = count($this->bees);
-                    $diversity = $this->computeDiversity();
-                    $avgGrammarSize = $this->avgGrammarSize();
-                    $uniqueGrammars = count(array_unique(array_map(
-                        fn (Bee $b) => implode(',', $b->grammar()),
-                        array_filter($this->bees, fn (Bee $b) => $b->isAlive())
-                    )));
-                    $this->log("GEN: {$this->generation} pop=" . count($this->bees)
-                        . " unique={$uniqueGrammars} diversity={$diversity} avg|G|={$avgGrammarSize}");
-                }
-            }
+        // D17: SpawnManager handles spawning + generation tracking
+        $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
+        $spawned = $this->spawnManager->trySpawn($this->bees, $allOps);
+        if ($spawned > 0) {
+            $diversity = SpawnManager::computeDiversity($this->bees);
+            $avgG = SpawnManager::avgGrammarSize($this->bees);
+            $uniqueCount = count(array_unique(array_map(
+                fn (Bee $b) => implode(',', $b->grammar()),
+                array_filter($this->bees, fn (Bee $b) => $b->isAlive())
+            )));
+            $this->log("GEN: {$this->spawnManager->getGeneration()} pop=" . count($this->bees)
+                . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG}");
         }
 
         $data = $task['data'] ?? [];
@@ -485,57 +459,17 @@ class Hive
 
     private function doClozeTick(array $task, array $data, string $domain, bool &$foundAny): void
     {
-        $g = new Grammar();
-        $grammarOps = $g->all();
-        $bestAtom = null;
-        $bestError = 1.0;
-        $opIndex = 0;
-
-        foreach ($grammarOps as $op) {
-            $errors = 0;
-            $total = count($data);
-            $radius = 1 + ($opIndex % 3);
-
-            foreach ($data as $row) {
-                [$sId, $maskPos, $targetId, $expected] = $row;
-                $sentence = $this->sentenceRegistry->get((int) $sId);
-                if (! $sentence) {
-                    $errors++;
-                    continue;
-                }
-                $ids = $sentence['token_ids'];
-
-                $window = [];
-                for ($i = max(0, $maskPos - $radius); $i <= min(count($ids) - 1, $maskPos + $radius); $i++) {
-                    if ($i !== $maskPos) {
-                        $window[] = $ids[$i];
-                    }
-                }
-
-                $pred = in_array((int) $targetId, $window) ? 1.0 : 0.0;
-                if (abs($pred - $expected) > 0.01) {
-                    $errors++;
-                }
-            }
-
-            $er = $errors / max(1, $total);
-            if ($er < $bestError) {
-                $bestError = $er;
-                $bestAtom = $op;
-            }
-            $opIndex++;
-        }
-
-        if ($bestAtom && $bestError < 0.5) {
-            $key = $domain . '::' . $task['name'] . '::' . $bestAtom;
-            if (! isset($this->knownLaws[$key])) {
-                $this->knownLaws[$key] = true;
+        $engine = new ClozeEngine();
+        $engine->setSentenceRegistry($this->sentenceRegistry);
+        $allOps = (new Grammar())->all();
+        $best = $engine->findBestAtom($data, $allOps);
+        if ($best !== null) {
+            $result = $this->recordKeeper->record(['atom' => $best['atom'], 'cv' => $best['error'], 'mode' => 'cloze'], $task, $domain);
+            if ($result['inserted']) {
                 $foundAny = true;
                 Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                    ->execute([$task['name'], $bestAtom, $bestError, $domain]);
-                $this->log("📖 {$task['name']} -> {$bestAtom} (err=" . round($bestError, 3) . ')');
-                $this->lastAnswerFormula = $bestAtom;
-                $this->plateau->tick(true);
+                    ->execute([$task['name'], $best['atom'], $best['error'], $domain]);
+                $this->log("📖 {$task['name']} -> {$best['atom']} (err=" . round($best['error'], 3) . ')');
             }
         }
     }
@@ -593,51 +527,18 @@ class Hive
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
-        if ($this->taskRouter && $this->routedBee) '::' . $task['name'] . '::' . $d['atom'];
-        if (isset($this->knownLaws[$key])) {
-            $this->log("DUPLICATE: {$d['atom']} [{$domain}]");
-            return;
-        }
-        $this->knownLaws[$key] = true;
-        $foundAny = true;
-        // §2.3 изоляция: добавить атом только в per-bee грамматику.
-        // Общая grammar_ops — read-only архив (Phase 5b).
-        if ($this->routedBee && $this->routedBee->isAlive()) {
-            $this->routedBee->addToGrammar($d['atom']);
-        }
-
-        // S1.12 Phase 2: Cross-domain signal — атом на ≥2 доменах
-        if (($d['mode'] ?? '') === 'compose') {
-            $otherDomains = Database::get()->prepare(
-                'SELECT DISTINCT domain FROM laws WHERE formula=? AND domain!=?'
-            );
-            $otherDomains->execute([$d['atom'], $domain]);
-            $crossDomains = $otherDomains->fetchAll(\PDO::FETCH_COLUMN);
-            if (count($crossDomains) > 0) {
-                $this->log("CROSS_DOMAIN: {$d['atom']} now in [" . implode(',', array_merge([$domain], $crossDomains)) . ']');
-            }
-        }
-        Database::get()->prepare(
-            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels) VALUES (?,?,?,?,?,?,?)'
-        )->execute([
-            $task['name'], $d['atom'], $d['cv'], $domain,
-            $task['source_path'] ?? '',
-            mb_substr($task['content'] ?? '', 0, 200),
-            json_encode($task['col_labels'] ?? []),
-        ]);
-        // Record success on TaskRouter
         if ($this->taskRouter && $this->routedBee) {
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
-        $cvFmt = number_format($d['cv'], 4);
-        $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
-        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
-        // Сохраняем формулу для overlap-трекинга
         $this->lastAnswerFormula = $d['atom'];
         if ($this->routedBee) {
             $this->routedBee->rewardDiscovery();
         }
         $this->plateau->tick(true);
+
+        $cvFmt = number_format($d['cv'], 4);
+        $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
+        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
     }
 
     /**
@@ -653,34 +554,17 @@ class Hive
             usleep(100_000);
             return;
         }
-
         $tasks = $this->getTasks(skipGenerated: true);
-        $dreamTasks = IdleDreamer::prepareTasks($tasks);
-
-        if (empty($dreamTasks)) {
-            usleep(100_000);
-            return;
-        }
-
-        $dreamer = new IdleDreamer();
-        $fp = $this->taskRouter ? $this->taskRouter->fingerprint($tasks[0]) : 'idle';
-        $epsilon = $this->getEpsilon($fp) ?? 0.01;
-        // §2.3: per-bee грамматика + BASE_OPS для idle dreaming
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
-        $result = $dreamer->dream($dreamTasks, $epsilon, $grammarOps);
-
+        $fp = $this->taskRouter ? $this->taskRouter->fingerprint($tasks[0] ?? []) : 'idle';
+        $epsilon = $this->getEpsilon($fp) ?? 0.01;
+        $result = IdleDreamer::tick($tasks, $grammarOps, $epsilon);
         if ($result !== null) {
-            $foundAny = false; // локальный флаг для recordDiscovery
-            $task = [
-                'name' => $result['task_name'] ?? $result['atom'],
-            ];
-            $domain = $result['domain'] ?? 'dream';
-            $this->recordDiscovery($result, $task, $domain, $foundAny);
-            if ($foundAny) {
-                $this->log("DREAM: {$result['atom']} [{$domain}]");
-            }
+            $foundAny = false;
+            $this->recordDiscovery($result, ['name' => $result['task_name'] ?? $result['atom']], $result['domain'] ?? 'dream', $foundAny);
+            if ($foundAny) $this->log("DREAM: {$result['atom']} [{$result['domain']}]");
         } else {
-            usleep(100_000); // короткий сон после безрезультатного dreaming
+            usleep(100_000);
         }
     }
 

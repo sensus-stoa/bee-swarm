@@ -17,6 +17,19 @@ use BeeSwarm\Core\Grammar;
 class IdleDreamer
 {
     /**
+     * Полный цикл idle dreaming: подготовка задач + поиск.
+     */
+    public static function tick(array $tasks, array $grammarOps, float $cvThreshold = 0.01): ?array
+    {
+        $dreamTasks = self::prepareTasks($tasks);
+        if (empty($dreamTasks)) {
+            return null;
+        }
+        $dreamer = new self();
+        return $dreamer->dream($dreamTasks, $cvThreshold, $grammarOps);
+    }
+
+    /**
      * Подготовить задачи для dreaming: извлечь X,y из data, отфильтровать insufficient.
      *
      * @param array $tasks сырые задачи из getTasks()

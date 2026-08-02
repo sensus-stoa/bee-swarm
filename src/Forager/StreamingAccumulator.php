@@ -17,6 +17,8 @@ use BeeSwarm\Core\AtomRegistry;
  */
 class StreamingAccumulator
 {
+    /** E1-FIX: расширения файлов для текстового скоринга */
+    private const TEXT_EXTENSIONS = ['md', 'txt', 'markdown', 'org', 'rst'];
     /**
      * @var array<string, callable>
      */
@@ -145,11 +147,11 @@ class StreamingAccumulator
                         }
                     }
 
-                    // E1-FIX Phase 2: markdown → текстовая задача для bootstrap
+                    // E1-FIX Phase 2: markdown → текстовая задача для bootstrap.
+                    // Общий паттерн чтобы накопилось ≥10 файлов.
                     $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-                    if (in_array($ext, ['md', 'txt', 'markdown']) && ! empty($contentSample)) {
-                        $txtPat = 'txt_content_' . md5($path);
-                        $stmt->execute([$txtPat, json_encode(['text' => $contentSample]), 'foraged_text', $path, '[]', $contentSample]);
+                    if (in_array($ext, self::TEXT_EXTENSIONS) && ! empty($contentSample)) {
+                        $stmt->execute(['txt_content_raw', json_encode(['text' => $contentSample]), 'foraged_text', $path, '[]', $contentSample]);
                     }
                 }
             } catch (\Throwable) {

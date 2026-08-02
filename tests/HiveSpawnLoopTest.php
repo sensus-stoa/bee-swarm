@@ -46,7 +46,7 @@ class HiveSpawnLoopTest extends TestCase
         $hive2->run();
         $bees2 = $hive2->getBees();
 
-        $this->assertCount(2, $bees2, 'Bootstrap creates 2 bees');
+        $this->assertCount(3, $bees2, 'Bootstrap creates 3 bees');
 
         // Verify spawn test separately via Bee::spawn()
         $parent = new Bee(['add', 'mul'], 15.0);

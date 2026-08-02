@@ -61,6 +61,11 @@ class Hive
 
     private ?Bee $routedBee = null;
 
+    private ?OverlapTracker $overlapTracker = null;
+
+    /** Последний ответ (формула) для overlap-трекинга. */
+    private ?string $lastAnswerFormula = null;
+
     private int $generation = 0;
 
     private int $spawnCount = 0;
@@ -207,11 +212,29 @@ class Hive
                 throw new \RuntimeException('BOOTSTRAP: G₂ identical to G₁ after 10 retries');
             }
 
+            // G₃ = mutate(mutate(B)) — retry until distinct from both G₁ and G₂
+            $g3 = $g1;
+            for ($retry = 0; $retry < 20; $retry++) {
+                $g3 = GrammarMutator::mutate($g2, $available);
+                if (self::jaccard($g1, $g3) < 1.0 && self::jaccard($g2, $g3) < 0.95) {
+                    break;
+                }
+            }
+            if (self::jaccard($g1, $g3) >= 0.95 || self::jaccard($g2, $g3) >= 0.95) {
+                throw new \RuntimeException('BOOTSTRAP: G₃ not sufficiently distinct after 20 retries');
+            }
+
             $this->bees = [
                 new Bee($g1, 10.0),
                 new Bee($g2, 10.0),
+                new Bee($g3, 10.0),
             ];
-            $this->log('BOOTSTRAP: 2 seed bees created');
+            $this->log('BOOTSTRAP: 3 seed bees created');
+        }
+
+        // Overlap tracker (§1.8)
+        if ($this->overlapTracker === null) {
+            $this->overlapTracker = new OverlapTracker();
         }
 
         // Create TaskRouter with the population
@@ -271,6 +294,8 @@ class Hive
 
     private function doTick(): void
     {
+        $this->lastAnswerFormula = null;
+
         // CPU guard
         $load = sys_getloadavg();
         $nproc = max(1, (int) (shell_exec('nproc 2>/dev/null') ?: 1));
@@ -443,6 +468,7 @@ class Hive
                         $composed = "{$textAtom}({$label})";
                         AtomRegistry::addDiscoveredTextAtom($textAtom, $label);
                         $this->log("🧬 {$composed} (TEXT ATOM)");
+                        $this->lastAnswerFormula = $composed;
                         $foundAny = true;
                     }
                 }
@@ -459,7 +485,8 @@ class Hive
         }
 
         if (! $foundAny) {
-            usleep(500_000);
+            // §2.5-децим: idle dreaming — cross-domain compose вместо пассивного сна
+            $this->idleDreamTick();
         }
 
         if (count($this->log) > 200) {
@@ -469,6 +496,16 @@ class Hive
         if ($this->plateau->justEnteredPlateau()) {
             $this->log('🏔️ PLATEAU');
         }
+
+        // §1.8 Overlap: записать попытку пчелы на задаче
+        if ($this->overlapTracker && $this->routedBee) {
+            $beeIdx = array_search($this->routedBee, $this->bees, true);
+            if ($beeIdx !== false) {
+                $taskName = $task['name'] ?? 'unknown';
+                $this->overlapTracker->recordTaskAttempt($taskName, $beeIdx, $this->lastAnswerFormula);
+            }
+        }
+
         usleep($this->plateau->getSleepUs());
     }
 
@@ -523,6 +560,7 @@ class Hive
                 Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
                     ->execute([$task['name'], $bestAtom, $bestError, $domain]);
                 $this->log("📖 {$task['name']} -> {$bestAtom} (err=" . round($bestError, 3) . ')');
+                $this->lastAnswerFormula = $bestAtom;
                 $this->plateau->tick(true);
             }
         }
@@ -530,6 +568,11 @@ class Hive
 
     private function doDiscoverTick(array $task, array $X, array $y, string $domain, bool &$foundAny): void
     {
+        // §2.1-эво: discoveries require a live routed bee — no disembodied discovery
+        if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            return;
+        }
+
         // Statistical sufficiency (HONEST_CRITERIA §1.2)
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
@@ -642,6 +685,8 @@ class Hive
         $cvFmt = number_format($d['cv'], 4);
         $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
+        // Сохраняем формулу для overlap-трекинга
+        $this->lastAnswerFormula = $d['atom'];
         if ($this->routedBee) {
             $this->routedBee->rewardDiscovery();
         }
@@ -699,6 +744,72 @@ class Hive
         $seenFp[$fp] = true;
 
         return $hunger || $curiosity;
+    }
+
+    /**
+     * §2.5-децим: Idle-Time Dreaming — кросс-доменный compose в простое.
+     *
+     * Вызывается когда foundAny=false за тик. Пытается найти закон через
+     * расширенный compose (все grammar ops) на всех доступных задачах.
+     */
+    private function idleDreamTick(): void
+    {
+        // Требуется живая пчела для вознаграждения
+        if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            usleep(100_000);
+            return;
+        }
+
+        $tasks = $this->getTasks(skipGenerated: true);
+        if (empty($tasks)) {
+            usleep(100_000);
+            return;
+        }
+
+        // Подготавливаем задачи в формате для IdleDreamer
+        $dreamTasks = [];
+        foreach ($tasks as $t) {
+            $data = $t['data'] ?? [];
+            if (empty($data) || count($data[0] ?? []) < 2) {
+                continue;
+            }
+            $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
+            $y = array_column($data, count($data[0]) - 1);
+            $nFeat = count($X[0] ?? []);
+            if (count($y) < max(10, $nFeat * 5)) {
+                continue;
+            }
+            $dreamTasks[] = [
+                'name' => $t['name'] ?? 'unknown',
+                'domain' => $t['domain'] ?? 'unknown',
+                'X' => $X,
+                'y' => $y,
+            ];
+        }
+
+        if (empty($dreamTasks)) {
+            usleep(100_000);
+            return;
+        }
+
+        $dreamer = new IdleDreamer();
+        $fp = $this->taskRouter ? $this->taskRouter->fingerprint($tasks[0]) : 'idle';
+        $epsilon = $this->getEpsilon($fp) ?? 0.01;
+        $result = $dreamer->dream($dreamTasks, $epsilon);
+
+        if ($result !== null) {
+            $foundAny = false; // локальный флаг для recordDiscovery
+            $task = [
+                'name' => $result['task_name'] ?? $result['atom'],
+            ];
+            $domain = $result['domain'] ?? 'dream';
+            $this->recordDiscovery($result, $task, $domain, $foundAny);
+            if ($foundAny) {
+                $this->log("DREAM: {$result['atom']} [{$domain}]");
+            }
+        } else {
+            usleep(100_000); // короткий сон после безрезультатного dreaming
+        }
     }
 
     private function getTasks(bool $skipGenerated = false): array

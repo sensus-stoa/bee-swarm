@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
@@ -6,95 +7,130 @@ namespace BeeSwarm\Tests;
 use BeeSwarm\Hive\OverlapTracker;
 
 /**
- * Story S0-OVERLAP: Overlap Awareness (§1.8)
+ * Story V0.8: Overlap Tracking (§1.8)
+ *
+ * Phase 1: OverlapTracker — запись в overlap_log при смене пчелы на задаче.
  */
 class OverlapTrackerTest extends TestCase
 {
-    private OverlapTracker $tracker;
-    private int $testRun = 0;
-
     protected function setUp(): void
     {
         parent::setUp();
-        $this->tracker = new OverlapTracker();
-        // Изоляция: чистим overlap_log перед каждым тестом
-        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM overlap_log');
-    }
-
-    /** Уникальные имена пчёл для изоляции тестов */
-    private function bees(string $suffix = ''): array
-    {
-        $id = $this->testRun . '_' . $suffix;
-        return ["bee_a_{$id}", "bee_b_{$id}"];
+        \BeeSwarm\Infra\Database::get()->exec("DELETE FROM overlap_log");
     }
 
     /**
-     * §1.8: При переназначении задачи система логирует pairwise сравнение.
+     * Первое назначение задачи — overlap не записывается (не с чем сравнивать).
+     *
+     * Predicted: FAIL — класс OverlapTracker не существует.
      */
-    public function testRecordPairwiseOverlap(): void
+    public function testFirstAssignmentDoesNotRecordOverlap(): void
     {
-        [$a, $b] = $this->bees('r');
-        $this->tracker->record($a, $b, 'task_add', '+(x0,x1)', '+(x0,x1)');
-        $this->tracker->record($a, $b, 'task_mul', '×(x0,x1)', '+(x0,x1)');
+        $tracker = new OverlapTracker();
+        $tracker->recordTaskAttempt('task_x', 0, 'x0+x1');
 
-        $stats = $this->tracker->pairStats($a, $b);
-        $this->assertSame(2, $stats['shared_tasks']);
-        $this->assertSame(1, $stats['matched']);
+        $rows = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT COUNT(*) FROM overlap_log")
+            ->fetchColumn();
+
+        $this->assertSame(0, (int) $rows, 'First assignment must not create overlap');
     }
 
     /**
-     * §1.8: При shared_tasks ≥ 10 пара считается «измеренной».
+     * Второе назначение той же задачи другой пчеле → overlap.
+     *
+     * Predicted: FAIL — класс OverlapTracker не существует.
      */
-    public function testPairBecomesMeasuredAtTenSharedTasks(): void
+    public function testSecondAssignmentDifferentBeeRecordsOverlap(): void
     {
-        [$a, $b] = $this->bees('m');
-        for ($i = 0; $i < 10; $i++) {
-            $this->tracker->record($a, $b, "task_{$i}", '+(x0,x1)', '+(x0,x1)');
-        }
-        $stats = $this->tracker->pairStats($a, $b);
-        $this->assertSame(10, $stats['shared_tasks']);
-        $this->assertTrue($stats['measured'], 'Pair must be measured at ≥10 shared tasks');
+        $tracker = new OverlapTracker();
+        $tracker->recordTaskAttempt('task_x', 0, 'x0+x1');
+        $tracker->recordTaskAttempt('task_x', 1, 'x0+x1');
+
+        $rows = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT * FROM overlap_log ORDER BY id")
+            ->fetchAll(\PDO::FETCH_ASSOC);
+
+        $this->assertCount(1, $rows, 'Second assignment to different bee must create 1 overlap record');
+        $this->assertSame('0', $rows[0]['bee_a']);
+        $this->assertSame('1', $rows[0]['bee_b']);
+        $this->assertSame('task_x', $rows[0]['task']);
+        $this->assertEquals(1, $rows[0]['matched'], 'Same answer → matched=1');
     }
 
     /**
-     * Ответы совпадают если expression tree идентично после алгебраической редукции.
+     * Разные ответы → matched=0.
+     *
+     * Predicted: FAIL — класс не существует.
      */
-    public function testAnswersMatchAfterAlgebraicReduction(): void
+    public function testDifferentAnswersRecordUnmatched(): void
     {
-        [$a, $b] = $this->bees('re');
-        // add(x,0) → x после редукции (§1.4). Оба ответа сворачиваются в x0.
-        $this->tracker->record($a, $b, 'task_id', 'add(x0,0)', 'x0');
+        $tracker = new OverlapTracker();
+        $tracker->recordTaskAttempt('task_y', 0, 'x0+x1');
+        $tracker->recordTaskAttempt('task_y', 2, 'x0−x1');
 
-        $stats = $this->tracker->pairStats($a, $b);
-        $this->assertSame(1, $stats['matched'],
-            'add(x,0) and x0 must match after algebraic reduction');
+        $row = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->fetch(\PDO::FETCH_ASSOC);
+
+        $this->assertEquals(0, $row['matched'], 'Different answers → matched=0');
     }
 
     /**
-     * §1.8: Формат лога OVERLAP i j.
+     * Одна и та же пчела на той же задаче — не overlap.
+     *
+     * Predicted: FAIL — класс не существует.
      */
-    public function testOverlapLogFormat(): void
+    public function testSameBeeTwiceDoesNotRecordOverlap(): void
     {
-        [$a, $b] = $this->bees('l');
-        $this->tracker->record($a, $b, 'task_1', '+(x0,x1)', '+(x0,x1)');
-        $this->tracker->record($a, $b, 'task_2', '+(x0,x1)', '×(x0,x1)');
+        $tracker = new OverlapTracker();
+        $tracker->recordTaskAttempt('task_z', 0, 'x0+x1');
+        $tracker->recordTaskAttempt('task_z', 0, 'x0−x1'); // та же пчела, другой ответ
 
-        $log = $this->tracker->getLog();
-        $this->assertStringContainsString("OVERLAP {$a} {$b}", $log);
+        $rows = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT COUNT(*) FROM overlap_log")
+            ->fetchColumn();
+
+        $this->assertSame(0, (int) $rows, 'Same bee must not create self-overlap');
     }
 
     /**
-     * §1.8: При shared_tasks ≥ 10 лог включает (MEASURED) и matched/n.
+     * Null-ответ (пчела не нашла) → answer пустая строка.
+     *
+     * Predicted: FAIL — класс не существует.
      */
-    public function testMeasuredLogFormat(): void
+    public function testNullAnswerRecordedAsEmpty(): void
     {
-        [$a, $b] = $this->bees('ml');
-        for ($i = 0; $i < 10; $i++) {
-            $match = $i < 5 ? '+(x0,x1)' : '×(x0,x1)';
-            $this->tracker->record($a, $b, "task_{$i}", '+(x0,x1)', $match);
-        }
+        $tracker = new OverlapTracker();
+        $tracker->recordTaskAttempt('task_w', 0, null);
+        $tracker->recordTaskAttempt('task_w', 1, 'x0+x1');
 
-        $log = $this->tracker->getMeasuredLog();
-        $this->assertStringContainsString("OVERLAP {$a} {$b} 5/10 (MEASURED)", $log);
+        $row = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->fetch(\PDO::FETCH_ASSOC);
+
+        $this->assertSame('', $row['answer_a'], 'Null answer → empty string');
+        $this->assertSame('x0+x1', $row['answer_b']);
+        $this->assertEquals(0, $row['matched'], 'Null vs answer → unmatched');
+    }
+
+    /**
+     * Канонический порядок: (1,0) → INSERT (0,1).
+     *
+     * Review fix: без canonical ordering GROUP BY разбивает пары (A,B) и (B,A).
+     */
+    public function testCanonicalOrderingOnInsert(): void
+    {
+        $tracker = new OverlapTracker();
+        // Первая пчела 1, вторая 0 — должен записаться порядок (0,1)
+        $tracker->recordTaskAttempt('task_c', 1, 'x0+x1');
+        $tracker->recordTaskAttempt('task_c', 0, 'x0+x1');
+
+        $row = \BeeSwarm\Infra\Database::get()
+            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->fetch(\PDO::FETCH_ASSOC);
+
+        $this->assertSame('0', $row['bee_a'], 'Canonical: min first');
+        $this->assertSame('1', $row['bee_b'], 'Canonical: max second');
     }
 }

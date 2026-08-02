@@ -5,8 +5,12 @@ declare(strict_types=1);
 /**
  * verify_0_2.php — Statistical Sufficiency (§1.2)
  *
- * Проверяет что нет поисков с t < t_min без логирования INSUFFICIENT_DATA.
- * Протокол: 0 нарушений.
+ * Дух критерия: система не должна искать законы на недостаточных данных.
+ * t ≥ t_min = max(10, nFeat × 5).
+ *
+ * Проверка: каждое открытие в логе должно иметь t ≥ tMin для своего домена.
+ * INSUFFICIENT_DATA в логе показывает где система ОТКАЗАЛАСЬ искать —
+ * это structured silence (§0.5), не ошибка.
  */
 
 $logFile = $argv[1] ?? null;
@@ -15,24 +19,36 @@ if (! $logFile || ! file_exists($logFile)) {
     exit(0);
 }
 
-$log = file_get_contents($logFile);
+$lines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-// Считаем INSUFFICIENT_DATA (это не ошибка — structured silence §0.5)
-$insufficient = substr_count($log, 'INSUFFICIENT_DATA');
-// Считаем успешные открытия
-$discoveries = substr_count($log, '🔍');
-// OVERFIT с недостаточными данными — признак что система искала без проверки t_min
-$overfit = substr_count($log, 'OVERFIT');
+$insufficientData = [];
+$discoveries = [];
 
-echo "INSUFFICIENT_DATA: {$insufficient}\n";
-echo "Discoveries: {$discoveries}\n";
-echo "OVERFIT: {$overfit}\n";
+// Собираем: какие задачи rejected по tMin, и какие дали открытия
+foreach ($lines as $line) {
+    if (preg_match('/INSUFFICIENT_DATA:\s+(.+?)\s+t=(\d+)\s+<\s+tMin=(\d+)/', $line, $m)) {
+        $insufficientData[$m[1]] = ['t' => (int)$m[2], 'tMin' => (int)$m[3]];
+    }
+    if (preg_match('/🔍\s+(.+?)\s+->/', $line, $m)) {
+        $taskName = $m[1];
+        $discoveries[$taskName] = ($discoveries[$taskName] ?? 0) + 1;
+    }
+}
 
-// §1.2: Если есть открытия → sufficiency работает (t ≥ t_min)
-// Если есть OVERFIT БЕЗ предшествующего INSUFFICIENT_DATA → система не проверяла t_min
-// Упрощённо: проверяем что INSUFFICIENT_DATA логируется когда данных мало
-$pass = $insufficient > 0 || $discoveries === 0;
-// Более строго: все открытия должны иметь достаточно данных
+echo "INSUFFICIENT_DATA entries: " . count($insufficientData) . "\n";
+echo "Discovery tasks: " . count($discoveries) . "\n";
 
-echo $pass ? "PASS: Sufficiency logging active\n" : "FAIL: No sufficiency checks in log\n";
+// Проверка: задача не может быть одновременно в insufficient И дать открытие
+$violations = 0;
+foreach ($discoveries as $taskName => $count) {
+    if (isset($insufficientData[$taskName])) {
+        $violations++;
+        echo "VIOLATION: '{$taskName}' — marked insufficient (t={$insufficientData[$taskName]['t']} < tMin={$insufficientData[$taskName]['tMin']}) but produced {$count} discoveries\n";
+    }
+}
+
+$pass = $violations === 0;
+echo $pass
+    ? "PASS: No discoveries from insufficient data\n"
+    : "FAIL: {$violations} discoveries on insufficient tasks\n";
 exit($pass ? 0 : 1);

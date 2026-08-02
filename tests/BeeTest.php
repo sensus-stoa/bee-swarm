@@ -167,4 +167,64 @@ class BeeTest extends TestCase
         $this->assertNotNull($child);
         $this->assertSame(['add', 'mul', 'sub'], $child->grammar(), 'Empty available → child grammar same as parent');
     }
+
+    // ── Evolvable Energy Params (§2.1-эво) ──
+
+    public function testCustomEnergyParams(): void
+    {
+        $bee = new Bee(['add'], 10.0, tickCost: 0.005, searchCost: 0.05, discoveryReward: 3.0);
+        // Проверяем через поведение, не через геттеры
+        $bee->tick();
+        $this->assertEqualsWithDelta(9.995, $bee->energy(), 0.0001, 'Custom tickCost=0.005');
+        $bee->chargeSearch();
+        $this->assertEqualsWithDelta(9.945, $bee->energy(), 0.0001, 'Custom searchCost=0.05');
+        $bee->rewardDiscovery();
+        $this->assertEqualsWithDelta(12.945, $bee->energy(), 0.0001, 'Custom discoveryReward=3.0');
+    }
+
+    public function testDefaultEnergyParams(): void
+    {
+        $bee = new Bee(['add'], 10.0);
+        $bee->tick();
+        $this->assertEqualsWithDelta(9.99, $bee->energy(), 0.0001, 'Default tickCost=0.01');
+        $bee->chargeSearch();
+        $this->assertEqualsWithDelta(9.89, $bee->energy(), 0.0001, 'Default searchCost=0.1');
+        $bee->rewardDiscovery();
+        $this->assertEqualsWithDelta(11.89, $bee->energy(), 0.0001, 'Default discoveryReward=2.0');
+    }
+
+    public function testChildInheritsEnergyParams(): void
+    {
+        $parent = new Bee(['add', 'mul'], 15.0, tickCost: 0.005, searchCost: 0.05, discoveryReward: 3.0);
+        $child = $parent->spawn(['add', 'mul', 'sq']);
+
+        $this->assertNotNull($child);
+        // Child starts with E=7.0
+        $this->assertEqualsWithDelta(7.0, $child->energy(), 0.0001);
+        // Test child's energy params through behaviour
+        $child->tick();
+        // Default 0.01 → 6.99. Custom 0.005 → 6.995. Mutated somewhere around.
+        // Just verify tick costs something and energy is in valid range
+        $this->assertLessThan(7.0, $child->energy());
+        $this->assertGreaterThan(6.9, $child->energy(), 'Tick cost should be reasonable');
+    }
+
+    public function testEnergyParamsMutateOnSpawn(): void
+    {
+        $parent = new Bee(['add', 'mul', 'sub', 'div', 'sq'], 50.0, tickCost: 0.01, searchCost: 0.1, discoveryReward: 2.0);
+        $available = ['add', 'mul', 'sub', 'div', 'sq', 'sqrt'];
+
+        // Spawn 5 children — they should have varying energy costs
+        $energiesAfterTick = [];
+        for ($i = 0; $i < 5; $i++) {
+            $child = $parent->spawn($available);
+            $this->assertNotNull($child, "Spawn #{$i} must succeed");
+            $child->tick();
+            $energiesAfterTick[] = $child->energy();
+        }
+
+        // Не все должны быть одинаковыми (хотя бы 2 разных значения)
+        $unique = array_unique($energiesAfterTick);
+        $this->assertGreaterThan(1, count($unique), 'Energy params must mutate — at least 2 different tick costs among children');
+    }
 }

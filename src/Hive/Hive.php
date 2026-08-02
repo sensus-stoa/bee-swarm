@@ -699,9 +699,7 @@ class Hive
                 $this->recordDiscovery($c, [
                     'name' => $c['atom'],
                 ], $domain, $foundAny);
-                if (! in_array($c['atom'], $grammarOps)) {
-                    $g->add($c['atom'], 'auto-compose');
-                }
+                // per-bee грамматика обновляется в recordDiscovery через addToGrammar
             }
         }
     }

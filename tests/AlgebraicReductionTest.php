@@ -23,6 +23,10 @@ class AlgebraicReductionTest extends TestCase
     {
         $this->assertSame('x0', OverlapTracker::reduceAnswer('add(x0,0)'));
         $this->assertSame('x0', OverlapTracker::reduceAnswer('add(x0,x0_0)'));
+        // x0_0 канонизируется в 0
+        $this->assertSame('0', OverlapTracker::reduceAnswer('x0_0'));
+        $this->assertSame('0', OverlapTracker::reduceAnswer('add(0,0)'));
+        $this->assertSame('0', OverlapTracker::reduceAnswer('add(x0_0,x0_0)'));
     }
 
     /**

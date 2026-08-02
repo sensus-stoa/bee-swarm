@@ -22,6 +22,8 @@ use BeeSwarm\Validation\NullCalibrator;
 class Hive
 {
     private PlateauDetector $plateau;
+    private RecordKeeper $recordKeeper;
+    private SpawnManager $spawnManager;
 
     private Forager $forager;
 
@@ -35,7 +37,6 @@ class Hive
 
     private int $tick = 0;
 
-    private array $knownLaws = [];
 
     private const MIN_DATA_POINTS = 10;
 
@@ -80,6 +81,8 @@ class Hive
     ) {
         $this->plateau = $plateau ?? new PlateauDetector(50);
         $this->forager = $forager ?? new Forager();
+        $this->recordKeeper = new RecordKeeper();
+        $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
 
         $sources = getenv('FORAGER_SOURCES');
@@ -585,7 +588,12 @@ class Hive
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
     {
-        $key = $domain . '::' . $task['name'] . '::' . $d['atom'];
+        $result = $this->recordKeeper->record($d, $task, $domain);
+        if (! $result['inserted']) { $this->log("DUPLICATE: {$d['atom']} [{$domain}]"); return; }
+        if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
+        $foundAny = true;
+        if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
+        if ($this->taskRouter && $this->routedBee) '::' . $task['name'] . '::' . $d['atom'];
         if (isset($this->knownLaws[$key])) {
             $this->log("DUPLICATE: {$d['atom']} [{$domain}]");
             return;

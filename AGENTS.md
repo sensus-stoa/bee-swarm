@@ -15,6 +15,7 @@ User: next
 
 ## Architecture
 
+See `CODE_NAVIGATION.md` — полная карта кода: data flow, классы, pitfalls, тестовые паттерны.
 See `ARCHITECTURE.md` — 7 layers (0-7): Environment → Laws → Self-generate → Self-coding → Semantic → Self-modify → Autonomous.
 
 ## Technology
@@ -29,13 +30,15 @@ See `ARCHITECTURE.md` — 7 layers (0-7): Environment → Laws → Self-generate
 
 | File | Purpose |
 |------|---------|
+| `CODE_NAVIGATION.md` | **AI agent code map** — data flow, classes, pitfalls |
 | `agenda.php` | Daemon main loop |
-| `src/Database.php` | SQLite singleton, test DB isolation |
-| `src/AtomRegistry.php` | Atom discovery + compose |
-| `src/Forager.php` | External data scanner |
-| `src/ResourceGuard.php` | Process CPU monitoring |
-| `tests/` | 40 test files, 230 tests, 481 assertions |
-| `config/` | RoadRunner config |
+| `src/Infra/Database.php` | SQLite singleton, DDL, migrations |
+| `src/Core/Search.php` | CV→0 search: `find(X, y, grammar)` |
+| `src/Core/AtomRegistry.php` | Atom registry + text atom discovery |
+| `src/Hive/Hive.php` | Main loop, task routing, engines |
+| `src/Hive/DiscoveryEngine.php` | Law discovery pipeline |
+| `src/Forager/StreamingAccumulator.php` | File scanning, foraged task creation |
+| `tests/` | 491 tests, 1639 assertions (03.08.2026) |
 
 ## Critical Rules
 

@@ -116,6 +116,12 @@ class AtomRegistry
             foreach ($db->query("SELECT DISTINCT formula FROM laws") as $r) {
                 $discovered[] = $r['formula'];
             }
+            // V0.8.5 fix: загружать текст-атомы из grammar_ops
+            // (E1 feedback loop сохраняет их туда, но они не попадают в laws)
+            foreach ($db->query("SELECT name FROM grammar_ops WHERE source='discovered' AND name LIKE '%(%)%'") as $r) {
+                $discovered[] = $r['name'];
+                self::$discoveredAtoms[$r['name']] = true;
+            }
         } catch (\PDOException) {
         }
         $env = self::$envAtoms ?? [];

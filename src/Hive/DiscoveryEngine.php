@@ -72,6 +72,13 @@ class DiscoveryEngine
             }
         }
 
+        // Normalize: ensure all results have 'class' field
+        foreach ($found as &$d) {
+            if (! isset($d['class'])) {
+                $d['class'] = 'EMPIRICAL';
+            }
+        }
+
         return $found;
     }
 }

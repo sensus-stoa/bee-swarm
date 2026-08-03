@@ -136,10 +136,16 @@ class StreamingAccumulator
                         if (preg_match('/^(\w+)\((.+)\)$/', $atom, $m)) {
                             try {
                                 $result = AtomRegistry::applyTextAtom($m[1], $content, $m[2]);
-                                if (is_array($result) && ! empty($result) && is_numeric($result[0] ?? null)) {
+                                if (is_array($result) && ! empty($result)) {
                                     $pat = 'txt_' . md5($atom);
-                                    foreach ($result as $val) {
-                                        $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $path, $colLabels, $contentSample]);
+                                    if (is_numeric($result[0] ?? null)) {
+                                        foreach ($result as $val) {
+                                            $stmt->execute([$pat, json_encode([(float) $val]), 'foraged', $path, $colLabels, $contentSample]);
+                                        }
+                                    } else {
+                                        // Non-numeric (e.g., preg_match without capture groups):
+                                        // count occurrences in this file as a numeric feature
+                                        $stmt->execute([$pat, json_encode([(float) count($result)]), 'foraged', $path, $colLabels, $contentSample]);
                                     }
                                 }
                             } catch (\Throwable) {

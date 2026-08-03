@@ -38,6 +38,18 @@ class Grammar
             'fn' => 'sq',
             'symbol' => 'sq',
         ],
+        '√' => [
+            'fn' => 'sqrt',
+            'symbol' => '√',
+        ],
+        'log' => [
+            'fn' => 'log',
+            'symbol' => 'log',
+        ],
+        '^' => [
+            'fn' => 'pow',
+            'symbol' => '^',
+        ],
     ];
 
     // Семантические предикаты — такие же атомы как + и ×, но над концептами
@@ -126,6 +138,10 @@ class Grammar
             '×' => $a * $b,
             '−' => $a - $b,
             '/' => ($b != 0) ? $a / $b : null,
+            '√' => ($a >= 0) ? sqrt($a) : null,
+            'log' => ($a > 0) ? log($a) : null,
+            '^' => pow($a, $b),
+            'sq' => $a * $a,
             default => $this->applyCustom($a, $b, $op),
         };
     }

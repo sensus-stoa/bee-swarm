@@ -229,7 +229,9 @@ class Hive
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
                 $this->foragedTasksGlobal = $foraged;
-                $this->log('Forager startup: ' . count($foraged) . ' tasks');
+                $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
+                $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
+                $this->log("Forager startup: " . count($foraged) . " tasks, mem={$mem}MB peak={$peak}MB");
             }
         }
 
@@ -266,6 +268,13 @@ class Hive
     {
         $this->lastAnswerFormula = null;
 
+        // Memory monitor every 100 ticks
+        if ($this->tick % 100 === 0) {
+            $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
+            $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
+            $this->log("MEM: tick={$this->tick} mem={$mem}MB peak={$peak}MB tasks=" . count($this->foragedTasksGlobal));
+        }
+
         // CPU guard
         $load = sys_getloadavg();
         $nproc = max(1, (int) (shell_exec('nproc 2>/dev/null') ?: 1));
@@ -292,6 +301,16 @@ class Hive
         }
 
         $tasks = $this->getTasks();
+
+        // One-time log after first task generation (cross-pair happens here)
+        static $firstTasksLogged = false;
+        if (! $firstTasksLogged && ! empty($tasks)) {
+            $firstTasksLogged = true;
+            $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
+            $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
+            $this->log("MEM_FIRST_TASKS: " . count($tasks) . " tasks, mem={$mem}MB peak={$peak}MB");
+        }
+
         if (empty($tasks)) {
             usleep(1_000_000);
             return;

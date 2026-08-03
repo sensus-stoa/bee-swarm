@@ -22,9 +22,19 @@
 - **Энергия**: mean_energy, energy_variance, starvation_events
 - **Грамматика**: mean_grammar_size, unique_grammars, new_atoms_per_gen
 - **Overlap**: measured_pairs, agreements, disagreements
-- **Система**: uptime, ticks_per_second, memory_usage, log_errors
+- **Система**: uptime, ticks_per_second, memory_usage, peak_memory, log_errors
+- **Память (добавлено 04.08)**: memory_usage, peak_memory, oom_warnings
+  - Критично после V0.8.5: cross-pair создаёт O(N²) txt_pair задач
+  - 800 атомов → 640K задач → ~1GB RAM. При 2000 атомах → 4M задач → OOM.
+  - Вотчер должен слать alert при memory_usage > 2GB или росте >100MB/min
 
 ## Фазы
+
+### Phase 0: Тактический MEM-лог (✅ 04.08)
+- Уже в коде: `MEM: tick=N mem=XMB peak=YMB` каждые 100 тиков
+- `MEM_FIRST_TASKS` после первой генерации задач (момент cross-pair взрыва)
+- `Forager startup: N tasks, mem=XMB peak=YMB`
+- Это временный мост до полноценного HiveWatcher
 
 ### Phase 1: MetricsCollector (1.5h)
 - Класс `HiveWatcher` в `src/Hive/`

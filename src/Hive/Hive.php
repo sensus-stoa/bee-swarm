@@ -236,7 +236,9 @@ class Hive
         }
 
         // Retrospective validation
+        $this->log("MEM_PRE_RETRO: mem=" . round(memory_get_usage(true)/1024/1024, 1) . "MB peak=" . round(memory_get_peak_usage(true)/1024/1024, 1) . "MB");
         $allTasks = $this->getTasks(skipGenerated: true);
+        $this->log("MEM_POST_RETRO: mem=" . round(memory_get_usage(true)/1024/1024, 1) . "MB peak=" . round(memory_get_peak_usage(true)/1024/1024, 1) . "MB tasks=" . count($allTasks));
         if (! empty($allTasks)) {
             $retro = AtomRegistry::retrospectiveValidate($allTasks);
             if (count($retro['overfit']) > 0) {

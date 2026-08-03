@@ -59,7 +59,7 @@ class StreamingAccumulator
         $this->lastPaths = [];
 
         $db = new \PDO('sqlite::memory:');
-        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, source_path TEXT, col_labels TEXT, content TEXT, PRIMARY KEY(pattern, row_json))');
+        $db->exec('CREATE TABLE fd (pattern TEXT, row_json TEXT, domain TEXT, source_path TEXT, col_labels TEXT, content TEXT, PRIMARY KEY(pattern, row_json, source_path))');
         $stmt = $db->prepare('INSERT OR IGNORE INTO fd (pattern,row_json,domain,source_path,col_labels,content) VALUES (?, ?, ?, ?, ?, ?)');
 
         $sorted = $dirs;

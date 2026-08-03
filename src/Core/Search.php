@@ -35,11 +35,11 @@ class Search
         return sqrt($variance / $n) / abs($mean);
     }
 
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null): array
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0): array
     {
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
-            return [false, 9.99, 'none'];
+            return [false, 9.99, 'none', 9.99, 'NONE'];
         }
         $nFeat = count($X[0]);
 
@@ -243,7 +243,7 @@ class Search
                 }
             }
             if ($exact) {
-                return [true, 0.0, $name];
+                return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
         }
         // Evaluate all expressions
@@ -258,7 +258,7 @@ class Search
                 }
             }
             if ($exact) {
-                return [true, 0.0, $name];
+                return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
 
             $std = self::stddev($vec);
@@ -272,7 +272,12 @@ class Search
             }
         }
 
-        return [$bestCv < 0.15, $bestCv, $bestName ?? 'none'];
+                $found = $bestCv < 0.15 && isset($bestName);
+        $cv_train = $found ? $bestCv : 9.99;
+        $cv_test = $cv_train; // no split by default
+        $class = $found ? 'EMPIRICAL' : 'NONE';
+        return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
+
     }
 
     private static function stddev(array $v): float

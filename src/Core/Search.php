@@ -274,10 +274,43 @@ class Search
 
                 $found = $bestCv < 0.15 && isset($bestName);
         $cv_train = $found ? $bestCv : 9.99;
-        $cv_test = $cv_train; // no split by default
-        $class = $found ? 'EMPIRICAL' : 'NONE';
+        $cv_test = $cv_train;
+        
+        // V0.8.5: out-of-sample validation when testRatio > 0
+        if ($found && $testRatio > 0.0 && $n > 10) {
+            $splitIdx = (int) ($n * (1.0 - $testRatio));
+            if ($splitIdx > 5 && $splitIdx < $n - 1) {
+                $X_test = array_slice($X, $splitIdx);
+                $y_test = array_slice($y, $splitIdx);
+                $cv_test = self::testCv($bestName, $X_test, $y_test, $bestStd ?? 1.0, $n);
+            }
+        }
+        
+        $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
 
+    }
+
+
+    private static function classify(float $cv_train, float $cv_test): string
+    {
+        // IDENTITY: perfect on train, fails on test (R-tautology)
+        if ($cv_train < 0.02 && $cv_test > 0.5) {
+            return 'IDENTITY';
+        }
+        return 'EMPIRICAL';
+    }
+
+    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n): float
+    {
+        $nTest = count($y_test);
+        if ($nTest < 2) return 9.99;
+        
+        $result = \BeeSwarm\Validation\LawValidator::evaluateHeldout($name, $X_test, $y_test);
+        if ($result === null || ($result['cv_heldout'] ?? 9.99) > 9.0) {
+            return 9.99;
+        }
+        return $result['cv_heldout'];
     }
 
     private static function stddev(array $v): float

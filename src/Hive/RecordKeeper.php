@@ -31,6 +31,8 @@ class RecordKeeper
 
         $this->knownLaws[$key] = true;
 
+        $lawClass = $d['class'] ?? 'EMPIRICAL';
+
         // Cross-domain detection
         $crossDomains = [];
         if (($d['mode'] ?? '') === 'compose') {
@@ -42,12 +44,13 @@ class RecordKeeper
         }
 
         Database::get()->prepare(
-            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels) VALUES (?,?,?,?,?,?,?)'
+            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels,law_class) VALUES (?,?,?,?,?,?,?,?)'
         )->execute([
             $task['name'], $d['atom'], $d['cv'], $domain,
             $task['source_path'] ?? '',
             mb_substr($task['content'] ?? '', 0, 200),
             json_encode($task['col_labels'] ?? []),
+            $lawClass,
         ]);
 
         return ['inserted' => true, 'cross_domains' => $crossDomains, 'key' => $key];

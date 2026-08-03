@@ -7,12 +7,6 @@ namespace BeeSwarm\Tests;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Hive\DiscoveryEngine;
 
-/**
- * Auto MPG Dataset (UCI, 1983) — загружен из auto+mpg.zip.
- * 398 записей. Предсказание mpg по horsepower, weight, displacement.
- *
- * Источник: https://archive.ics.uci.edu/dataset/9/auto+mpg
- */
 class AutoMpgDatasetTest extends TestCase
 {
     private array $X = [];
@@ -33,22 +27,18 @@ class AutoMpgDatasetTest extends TestCase
         foreach (file($file) as $line) {
             $line = trim($line);
             if ($line === '') continue;
-            // Формат: mpg cyl disp hp weight acc year origin name
             $parts = preg_split('/\s+/', $line, 9);
             if (count($parts) < 8) continue;
             $mpg    = (float) $parts[0];
             $disp   = (float) $parts[2];
             $hp     = (float) $parts[3];
             $weight = (float) $parts[4];
-            if ($hp === 0.0) continue; // пропускаем missing HP (несколько записей)
+            if ($hp === 0.0) continue;
             $this->X[] = [$hp, $weight, $disp];
             $this->y[] = $mpg;
         }
     }
 
-    /**
-     * Weight → MPG: обратная корреляция на реальных 398 записях.
-     */
     public function testWeightAndHpPredictMpg(): void
     {
         $this->assertGreaterThan(100, count($this->X), 'Need 100+ data rows');
@@ -63,8 +53,34 @@ class AutoMpgDatasetTest extends TestCase
         );
 
         $this->assertNotEmpty($results, 'Auto MPG (398 rows) must yield laws');
-        // Хотя бы один закон с CV ≤ 0.25
         $good = array_filter($results, fn ($r) => ($r['cv'] ?? 1.0) <= 0.25);
-        $this->assertNotEmpty($good, 'At least one law with CV≤0.25');
+        $this->assertNotEmpty($good, 'At least one law with CV<=0.25');
+    }
+
+    /**
+     * V0.8.5 Phase 4: DiscoveryEngine returns class field on real data.
+     */
+    public function testDiscoveryReturnsLawClass(): void
+    {
+        $this->assertGreaterThan(100, count($this->X), 'Need 100+ data rows');
+
+        $engine = new DiscoveryEngine();
+        $results = $engine->discover(
+            $this->X, $this->y,
+            array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'min', 'max', 'abs', 'neg', 'sq', 'sqrt']),
+            0.3,
+            ['horsepower', 'weight', 'displacement'],
+            0.2
+        );
+
+        $this->assertNotEmpty($results, 'Auto MPG must yield laws');
+        foreach ($results as $r) {
+            $this->assertArrayHasKey('class', $r, 'Each result must have class field');
+            $this->assertContains($r['class'], ['EMPIRICAL', 'IDENTITY', 'NONE']);
+            // Real-world noisy data: search laws should be EMPIRICAL
+            if (($r['mode'] ?? '') === 'search') {
+                $this->assertEquals('EMPIRICAL', $r['class']);
+            }
+        }
     }
 }

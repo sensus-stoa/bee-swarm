@@ -463,8 +463,6 @@ class Hive
             $result = $this->recordKeeper->record(['atom' => $best['atom'], 'cv' => $best['error'], 'mode' => 'cloze'], $task, $domain);
             if ($result['inserted']) {
                 $foundAny = true;
-                Database::get()->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                    ->execute([$task['name'], $best['atom'], $best['error'], $domain]);
                 $this->log("📖 {$task['name']} -> {$best['atom']} (err=" . round($best['error'], 3) . ')');
             }
         }

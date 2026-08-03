@@ -4,9 +4,9 @@
 
 | # | What | Status |
 |---|------|--------|
-| **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | 🔧 7/8 + overlap ✅ + 24h gate 🔄 |
+| **V0** | **STAGE-0-VERIFY — формальная верификация Стадии 0** | ✅ 9/9 PASS (production, 24h gate). |
 | **V0.8** | **OVERLAP-TRACKING — алгебраическая редукция** | ✅ 4 фазы (включая reduceAnswer). |
-| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | 🔄 Старт: 02.08 13:31. Дедлайн: 03.08 13:31. |
+| **V0.9** | **24H-PRODUCTION-GATE — непрерывный суточный прогон** | ✅ 24h пройдены, Stage 0 подтверждён. |
 | **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify. 3 pending (data ceiling). |
 | **V0.8.5** | **LAW-CLASSIFICATION — IDENTITY vs EMPIRICAL gate** | ⬜ 4 фазы (2.5h). |
 | **V0.10** | **HIVE-WATCHER — структурный мониторинг улья** | ⬜ 4 фазы (3.5h). |

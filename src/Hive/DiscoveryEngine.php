@@ -33,6 +33,7 @@ class DiscoveryEngine
         array $grammarOps,
         float $cvThreshold,
         ?array $colLabels = null,
+        float $testRatio = 0.2,
     ): array {
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
@@ -45,9 +46,9 @@ class DiscoveryEngine
         // 1. Generative search (Search::find — основной путь)
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
-            [$sFound, $sCv, $sFormula] = Search::find($X, $y, $searchGrammar, 2, $colLabels);
-            if ($sFound && $sCv <= $cvThreshold) {
-                $found[] = ['atom' => $sFormula, 'cv' => $sCv, 'mode' => 'search'];
+            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio);
+            if ($sFound) {
+                $found[] = ['atom' => $sFormula, 'cv' => $sCv, 'cv_test' => $sCvTest, 'mode' => 'search', 'class' => $sClass];
             }
         }
 

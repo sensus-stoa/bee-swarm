@@ -99,6 +99,12 @@ class StreamingAccumulator
                     if (str_contains($path, '/.mozilla/') || str_contains($path, '/.config/')) {
                         continue;
                     }
+                    // Skip binary files — text atoms/strategies won't extract signal
+                    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+                    if ($ext !== '' && ! in_array($ext, self::TEXT_EXTENSIONS)
+                        && ! in_array($ext, ['json', 'jsonl', 'csv', 'log'])) {
+                        continue;
+                    }
                     $content = @file_get_contents($path, false, null, 0, 50_000);
                     if (! $content) {
                         continue;

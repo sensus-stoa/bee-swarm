@@ -19,6 +19,17 @@ class StreamingAccumulator
 {
     /** E1-FIX: расширения файлов для текстового скоринга */
     private const TEXT_EXTENSIONS = ['md', 'txt', 'markdown', 'org', 'rst'];
+
+    /** @var resource|null stderr handle for logging */
+    private static $logStream = null;
+
+    private static function log(string $msg): void
+    {
+        if (self::$logStream === null) {
+            self::$logStream = fopen('php://stderr', 'w');
+        }
+        fwrite(self::$logStream, '[Accumulator] ' . $msg . "\n");
+    }
     /**
      * @var array<string, callable>
      */
@@ -75,7 +86,8 @@ class StreamingAccumulator
                     try {
                         $path = $f->getPathname();
                         $this->lastPaths[] = $path;
-                    } catch (\Throwable) {
+                    } catch (\Throwable $e) {
+                        self::log("path error: " . $e->getMessage());
                         continue;
                     }
                     if (str_contains($path, '.git/') || str_contains($path, 'venv/') || str_contains($path, 'node_modules/')) {
@@ -91,6 +103,7 @@ class StreamingAccumulator
                     if (! $content) {
                         continue;
                     }
+                    try {
                     $contentSample = mb_substr($content, 0, 5000);
                     $colLabels = self::guessLabels($contentSample);
                     foreach ($this->strategies as $sname => $fn) {
@@ -127,7 +140,8 @@ class StreamingAccumulator
                                     $stmt->execute([$pat, json_encode($row), 'foraged', $path, $colLabels, $contentSample]);
                                 }
                             }
-                        } catch (\Throwable) {
+                        } catch (\Throwable $e) {
+                            self::log("strategy {$sname} error on " . basename($path) . ": " . $e->getMessage());
                         }
                     }
                     // Apply discovered text atoms (E1.6)
@@ -148,7 +162,8 @@ class StreamingAccumulator
                                         $stmt->execute([$pat, json_encode([(float) count($result)]), 'foraged', $path, $colLabels, $contentSample]);
                                     }
                                 }
-                            } catch (\Throwable) {
+                            } catch (\Throwable $e) {
+                                self::log("text atom {$atom} error on " . basename($path) . ": " . $e->getMessage());
                             }
                         }
                     }
@@ -159,8 +174,13 @@ class StreamingAccumulator
                     if (in_array($ext, self::TEXT_EXTENSIONS) && ! empty($contentSample)) {
                         $stmt->execute(['txt_content_raw', json_encode(['text' => $contentSample]), 'foraged_text', $path, '[]', $contentSample]);
                     }
+                    } catch (\Throwable $e) {
+                        self::log("file error on " . basename($path) . ": " . $e->getMessage());
+                        continue;
+                    }
                 }
-            } catch (\Throwable) {
+            } catch (\Throwable $e) {
+                self::log("scan directory error: " . $e->getMessage());
             }
         }
 

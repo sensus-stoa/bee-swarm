@@ -41,4 +41,6 @@
 | **S3.4** | **PEER-REVIEW — cross-swarm validation** | 4h | Stage 3 |
 | **S3.5** | **PARADIGM-SHIFT — ontology migration** | 6h | Stage 3 |
 | **S3.6** | **META-KNOWLEDGE — knowing what you don't know** | 2h | Stage 2 |
+| **S3.7** | **COMPRESSION-DISCOVERY — image/binary patterns** | 20h+ | Stage 3+ |
+| **S3.8** | **AUDIO-PATTERNS — acoustic invariant discovery** | 15h+ | Stage 3+ |
 | S1.13 | LANDSCAPE | 4h | Low |

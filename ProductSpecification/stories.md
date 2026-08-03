@@ -35,4 +35,10 @@
 | S2.3 | PARALLEL-ROUTING | 3h | Low |
 | S2.4 | SLEEP-TUNING | 2h | Low |
 | **S3.1** | **ASSOCIATION-RULES — market basket analysis** | 5.5h | Stage 3 |
+| **S2.5** | **FORAGER-SELF-MOD — extraction ceiling** | 8h+ | Stage 3 |
+| **S3.2** | **LAW-GROUNDING-AUDIT — 5-criteria check** | 3.5h | Stage 2 |
+| **S3.3** | **FALSIFICATION-LOOP — automatic refutation** | 3h | Stage 2 |
+| **S3.4** | **PEER-REVIEW — cross-swarm validation** | 4h | Stage 3 |
+| **S3.5** | **PARADIGM-SHIFT — ontology migration** | 6h | Stage 3 |
+| **S3.6** | **META-KNOWLEDGE — knowing what you don't know** | 2h | Stage 2 |
 | S1.13 | LANDSCAPE | 4h | Low |

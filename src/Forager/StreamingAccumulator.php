@@ -232,7 +232,7 @@ class StreamingAccumulator
                 $cells = array_filter($cells, fn ($c) => $c !== '' && !preg_match('/^[-: ]+$/', $c));
                 if (count($cells) >= 2 && isset($lines[$i + 1])
                     && preg_match('/^\|[-: |]+\|$/', trim($lines[$i + 1]))) {
-                    return json_encode(array_values($cells));
+                    return json_encode(array_values($cells)) ?: '[]';
                 }
             }
         }
@@ -242,7 +242,7 @@ class StreamingAccumulator
         $parts = str_getcsv($first);
         $nonNumeric = array_filter($parts, fn ($p) => $p !== '' && !is_numeric($p));
         if (count($nonNumeric) >= 2 && count($parts) >= 2) {
-            return json_encode($parts);
+            return json_encode($parts) ?: '[]';
         }
 
         return '[]';

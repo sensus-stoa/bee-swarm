@@ -29,4 +29,25 @@ abstract class TestCase extends BaseTestCase
             }
         }
     }
+
+    /**
+     * ARCH-V2: Assert no RNG poisoning leaked from this test.
+     *
+     * §0.5: srand(42) in one test poisons array_rand() for ALL subsequent
+     * tests in the same process. This tearDown catches the leak immediately
+     * on the guilty test — so you know exactly which test caused it.
+     *
+     * If this assertion fires:
+     *   1. The test whose tearDown() fails is the LEAKER.
+     *   2. Look for srand() without restore() in the code that test exercises.
+     *   3. Use RngIsolation::deterministicSeed(N) + ->restore() pattern.
+     *
+     * Tests that intentionally manage RNG state (like RngIsolationTest itself)
+     * should clean up in their own tearDown before this assertion runs.
+     */
+    protected function tearDown(): void
+    {
+        \BeeSwarm\Infra\RngIsolation::assertClean();
+        parent::tearDown();
+    }
 }

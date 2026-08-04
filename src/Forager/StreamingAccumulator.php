@@ -191,6 +191,7 @@ class StreamingAccumulator
         }
 
         $tMin = 10;
+        $maxColsPerTask = 3;  // E1-FIX Phase 4: narrow extraction
         $tasks = [];
         $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
         while ($r = $rows->fetch(\PDO::FETCH_ASSOC)) {
@@ -204,14 +205,47 @@ class StreamingAccumulator
             while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
                 $data[] = json_decode($d[0], true);
             }
-            $tasks[] = [
-                'name' => 'foraged_' . substr($r['pattern'], 0, 16),
-                'data' => $data,
-                'domain' => $r['domain'],
-                'content' => $contentSample,
-                'source_path' => $sourcePath,
-                'col_labels' => json_decode($colLabelsJson, true) ?? [],
-            ];
+
+            if (empty($data) || empty($data[0])) {
+                continue;
+            }
+
+            $nCols = count($data[0]);
+            $colLabels = json_decode($colLabelsJson, true) ?? [];
+
+            // E1-FIX Phase 4: narrow extraction — split wide data into ≤maxColsPerTask columns
+            if ($nCols > $maxColsPerTask) {
+                for ($start = 0; $start <= $nCols - $maxColsPerTask; $start++) {
+                    $subset = [];
+                    foreach ($data as $row) {
+                        $slice = array_slice($row, $start, $maxColsPerTask);
+                        // Только строки где все значения числовые
+                        if (count(array_filter($slice, 'is_numeric')) === $maxColsPerTask) {
+                            $subset[] = array_map('floatval', $slice);
+                        }
+                    }
+                    if (count($subset) >= $tMin) {
+                        $labelSlice = array_slice($colLabels, $start, $maxColsPerTask);
+                        $tasks[] = [
+                            'name' => 'foraged_' . substr($r['pattern'], 0, 12) . '_w' . $start,
+                            'data' => $subset,
+                            'domain' => $r['domain'],
+                            'content' => $contentSample,
+                            'source_path' => $sourcePath,
+                            'col_labels' => $labelSlice,
+                        ];
+                    }
+                }
+            } else {
+                $tasks[] = [
+                    'name' => 'foraged_' . substr($r['pattern'], 0, 16),
+                    'data' => $data,
+                    'domain' => $r['domain'],
+                    'content' => $contentSample,
+                    'source_path' => $sourcePath,
+                    'col_labels' => $colLabels,
+                ];
+            }
         }
 
         return $tasks;

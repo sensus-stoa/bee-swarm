@@ -24,6 +24,17 @@ class NullCalibrator
     private const PERCENTILE = 0.99;
 
     private const FALLBACK_EPSILON = 0.01;
+    private const FALLBACK_NULL_FLOOR = 0.5;  // S1.6-GRADIENT
+
+    /**
+     * S1.6-GRADIENT: null_floor — порог выше которого CV считается шумом.
+     * По умолчанию 0.5; калиброванное значение через calibrate().
+     */
+    public static function getNullFloor(array $X, array $y, Grammar $grammar, int $nPerms = self::DEFAULT_PERMS): float
+    {
+        if (count($y) < 5) return self::FALLBACK_NULL_FLOOR;
+        return self::calibrate($X, $y, $grammar, $nPerms);
+    }
 
     /**
      * Калибровка порога для конкретной задачи.

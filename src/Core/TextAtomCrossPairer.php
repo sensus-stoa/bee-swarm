@@ -15,18 +15,19 @@ namespace BeeSwarm\Core;
 class TextAtomCrossPairer
 {
     /**
+     * S2.7: Lazy generator — O(1) memory instead of O(N²).
+     *
      * @param array<string, list<float>> $atoms atom_name → [values...]
      * @param string $domain label for generated tasks
-     * @return list<array{name: string, data: list<list<float>>, domain: string}>
+     * @return \Generator<array{name: string, data: list<list<float>>, domain: string}>
      */
-    public static function crossPair(array $atoms, string $domain): array
+    public static function crossPair(array $atoms, string $domain): \Generator
     {
         // Нужно минимум 3 точки с ≥2 разными атомами
         if (count($atoms) < 2) {
-            return [];
+            return;
         }
 
-        $tasks = [];
         $names = array_keys($atoms);
 
         foreach ($names as $featureName) {
@@ -40,15 +41,13 @@ class TextAtomCrossPairer
 
                 if (count($rows) < 3) continue;
 
-                $tasks[] = [
+                yield [
                     'name' => "txt_pair_{$featureName}_to_{$targetName}",
                     'data' => $rows,
                     'domain' => $domain,
                 ];
             }
         }
-
-        return $tasks;
     }
 
     /**

@@ -11,6 +11,7 @@
 | **V0.8.5** | **LAW-CLASSIFICATION — IDENTITY vs EMPIRICAL gate** | ⬜ 4 фазы (2.5h). |
 | **V0.10** | **HIVE-WATCHER — структурный мониторинг улья** | ⬜ 4 фазы (3.5h). |
 | **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (Obsidian vault). |
+| **S2.7** | **LAZY-CROSSPAIR — генератор вместо O(N²) массива** | ✅ 504/504 PASS, 18MB память (было 9GB). |
 
 ## Completed
 

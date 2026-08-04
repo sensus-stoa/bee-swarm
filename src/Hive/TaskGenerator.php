@@ -11,6 +11,9 @@ namespace BeeSwarm\Hive;
  */
 class TaskGenerator
 {
+    /** S2.7: Maximum cross-pair tasks from generator (bounds O(N²) memory). */
+    private int $maxCrossPair = 2000;
+
     /**
      * Сгенерировать задачи: базовые (TaskManager) + cross-pair + foraged.
      *
@@ -29,8 +32,14 @@ class TaskGenerator
         $tm = new TaskManager();
         $tasks = $tm->getBaseTasks();
 
-        // E1-FIX: cross-pairing из текстовых атомов
-        $cross = $this->crossPairTasks($foragedTasksGlobal);
+        // S2.7: Lazy cross-pairing — consume generator with bound
+        $cross = [];
+        $crossCount = 0;
+        foreach ($this->crossPairTasks($foragedTasksGlobal) as $crossTask) {
+            $cross[] = $crossTask;
+            $crossCount++;
+            if ($crossCount >= $this->maxCrossPair) break;
+        }
         $tasks = array_merge($tasks, $cross);
 
         // Cloze tasks (limited)
@@ -43,13 +52,15 @@ class TaskGenerator
     }
 
     /**
-     * Cross-pairing: текстовые атомы → X/y пары.
+     * Cross-pairing: текстовые атомы → X/y пары (lazy generator).
+     *
+     * @return \Generator<array{name: string, data: array, domain: string}>
      */
-    private function crossPairTasks(array $foragedTasksGlobal): array
+    private function crossPairTasks(array $foragedTasksGlobal): \Generator
     {
         $txtTasks = array_filter($foragedTasksGlobal, fn ($t) => str_starts_with($t['name'] ?? '', 'foraged_txt_'));
         if (count($txtTasks) < 2) {
-            return [];
+            return;
         }
 
         $atoms = [];
@@ -63,7 +74,7 @@ class TaskGenerator
             }
         }
 
-        return \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+        yield from \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
     }
 
     /**

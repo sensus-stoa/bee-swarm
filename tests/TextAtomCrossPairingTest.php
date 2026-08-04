@@ -8,6 +8,8 @@ namespace BeeSwarm\Tests;
  *
  * Single-column text atom data → X/y pairs for CV→0.
  * Without this, foraged tasks fail tMin=10 (only 1 column = no features).
+ *
+ * S2.7: crossPair() returns \Generator — tests wrap in iterator_to_array().
  */
 class TextAtomCrossPairingTest extends TestCase
 {
@@ -21,7 +23,10 @@ class TextAtomCrossPairingTest extends TestCase
             'Sleep' => [5, 6, 4, 5],
         ];
 
-        $tasks = \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test_metrics');
+        $tasks = iterator_to_array(
+            \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test_metrics'),
+            false
+        );
 
         // Должно быть 6 задач (3×2 перестановок)
         $this->assertCount(6, $tasks);
@@ -44,7 +49,11 @@ class TextAtomCrossPairingTest extends TestCase
             'DQ' => [6.0, 5.5],
         ];
 
-        $tasks = \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test');
+        $tasks = iterator_to_array(
+            \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test'),
+            false
+        );
+
         $this->assertEmpty($tasks, 'Less than 3 data points → no tasks');
     }
 
@@ -56,7 +65,11 @@ class TextAtomCrossPairingTest extends TestCase
             'DQ' => array_fill(0, 15, 6.0),
         ];
 
-        $tasks = \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test');
+        $tasks = iterator_to_array(
+            \BeeSwarm\Core\TextAtomCrossPairer::crossPair($atoms, 'test'),
+            false
+        );
+
         $this->assertCount(2, $tasks); // GI→DQ, DQ→GI
         $this->assertGreaterThanOrEqual(10, count($tasks[0]['data']));
     }

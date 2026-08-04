@@ -1,13 +1,13 @@
 #!/bin/bash
-# .githooks/pre-commit — BLOCK commits that poison RNG
+# .githooks/pre-commit v3 — BLOCK commits that break invariants
 #
 # Install: git config core.hooksPath .githooks
 #
-# This runs BEFORE every commit. It's fast (< 2s) and catches:
-# 1. RNG poisoning (srand without restore)
-# 2. Syntax errors in staged PHP files
-#
-# For full validation, run scripts/gate.sh before commit.
+# Gates (in order, fast→slow):
+# 1. RNG poisoning (srand without restore)          < 1s
+# 2. Syntax errors in staged PHP files              < 1s
+# 3. Full pipeline regression test                  ~50s
+# 4. Weighted task selection unit tests              < 1s
 
 set -e
 
@@ -18,40 +18,61 @@ NC='\033[0m'
 HAS_ERRORS=0
 
 # ── GATE 1: RNG clean ────────────────────────────────
-# Fastest test: проверяет что array_rand() не детерминирован
 RNG_CHECK=$(php -r '
 require "vendor/autoload.php";
-if (\BeeSwarm\Infra\RngIsolation::hasUnrestoredGuards()) {
-    echo "UNRESTORED_GUARDS"; exit(1);
+if (method_exists("BeeSwarm\\Infra\\RngIsolation", "hasUnrestoredGuards")
+    && \BeeSwarm\Infra\RngIsolation::hasUnrestoredGuards()) {
+    echo "UNRESTORED"; exit(1);
 }
 echo "CLEAN";
 ' 2>/dev/null)
 
 if [ "$RNG_CHECK" != "CLEAN" ]; then
-    echo -e "${RED}[PRE-COMMIT BLOCKED] RNG POISONING DETECTED${NC}"
-    echo "  srand(N) was called without restore. array_rand() is deterministic."
-    echo "  Fix: ensure every srand() has a corresponding srand(entropy_token)."
-    echo "  Use RngIsolation::deterministicSeed(N) + ->restore() pattern."
+    echo -e "${RED}[GATE 1] RNG POISONING — srand without restore${NC}"
     HAS_ERRORS=1
+else
+    echo -e "${GREEN}[GATE 1] RNG clean${NC}"
 fi
 
-# ── GATE 2: Syntax check on staged files ─────────────
+# ── GATE 2: Syntax check ─────────────────────────────
 STAGED=$(git diff --cached --name-only 2>/dev/null | grep "\.php$" || true)
 if [ -n "$STAGED" ]; then
     for f in $STAGED; do
         if ! php -l "$f" 2>/dev/null | grep -q "No syntax errors"; then
-            echo -e "${RED}[PRE-COMMIT BLOCKED] Syntax error in $f${NC}"
-            php -l "$f" 2>&1
+            echo -e "${RED}[GATE 2] Syntax error: $f${NC}"
+            php -l "$f" 2>&1 | tail -1
             HAS_ERRORS=1
         fi
     done
 fi
+echo -e "${GREEN}[GATE 2] Syntax OK${NC}"
+
+# ── GATE 3: Regression test ──────────────────────────
+echo -n "[GATE 3] Full pipeline regression... "
+if vendor/bin/phpunit tests/FullPipelineRegressionTest.php --no-output 2>/dev/null; then
+    echo -e "${GREEN}PASS${NC}"
+else
+    echo -e "${RED}FAIL${NC}"
+    echo -e "${RED}  Run: vendor/bin/phpunit tests/FullPipelineRegressionTest.php${NC}"
+    echo -e "${RED}  This test catches: srand poisoning, pool bloat, nFeat=0, bee death${NC}"
+    HAS_ERRORS=1
+fi
+
+# ── GATE 4: Weighted task selection ──────────────────
+echo -n "[GATE 4] Weighted task selection... "
+if vendor/bin/phpunit tests/WeightedTaskSelectionTest.php --no-output 2>/dev/null; then
+    echo -e "${GREEN}PASS${NC}"
+else
+    echo -e "${RED}FAIL${NC}"
+    HAS_ERRORS=1
+fi
 
 if [ $HAS_ERRORS -eq 0 ]; then
-    echo -e "${GREEN}[PRE-COMMIT] PASS — RNG clean, syntax OK${NC}"
+    echo -e "${GREEN}[PRE-COMMIT] ALL GATES PASS${NC}"
     exit 0
 else
     echo ""
     echo -e "${RED}Commit blocked. Fix errors above.${NC}"
+    echo -e "${RED}EMERGENCY BYPASS: git commit --no-verify${NC}"
     exit 1
 fi

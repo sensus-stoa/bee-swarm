@@ -61,7 +61,7 @@ class WineDatasetTest extends TestCase
              'hue', 'od280_od315', 'proline'],
         );
 
-        $this->assertNotEmpty($results, 'Wine (178 rows) must yield laws');
+        $this->assertNotEmpty($results[0], 'Wine (178 rows) must yield laws');
     }
 
     /**
@@ -82,8 +82,8 @@ class WineDatasetTest extends TestCase
             0.2
         );
 
-        $this->assertNotEmpty($results, 'Wine must yield laws');
-        foreach ($results as $r) {
+        $this->assertNotEmpty($results[0], 'Wine must yield laws');
+        foreach ($results[0] as $r) {
             $this->assertArrayHasKey('class', $r, 'Each result must have class field');
             $this->assertContains($r['class'], ['EMPIRICAL', 'IDENTITY', 'NONE']);
         }

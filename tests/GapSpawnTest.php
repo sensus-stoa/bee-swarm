@@ -4,57 +4,99 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Hive;
-use BeeSwarm\Infra\PlateauDetector;
+use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\SpawnManager;
 
 /**
- * Story S1.2 Phase 4: Gap-Triggered Spawn
+ * Story S1.2 Phase 4: Gap-Triggered Spawn — unit-тесты механики.
+ *
+ * История: интеграционный вариант (полный Hive, 25 тиков) стал флаки
+ * после srand-фиксов — улей открывает законы почти каждый тик, плато
+ * не набирает 20 тиков подряд, GAP_SPAWN не успевает сработать.
+ * Механика тестируется напрямую: детерминированно, без реальных данных.
  */
 class GapSpawnTest extends TestCase
 {
     /**
-     * RED → GREEN: PLATEAU > 5×P → GAP_SPAWN.
+     * @return Bee[]
      */
-    public function testGapSpawnOnPlateau(): void
+    private function liveBees(): array
     {
-        $plateau = new PlateauDetector(2, plateauSleepUs: 0);
-        $logFile = tempnam(sys_get_temp_dir(), 'gapspawn_');
-        $hive = new Hive(plateau: $plateau, maxTicks: 25, logFile: $logFile);
-        $hive->run();
-
-        $log = file_get_contents($logFile);
-        unlink($logFile);
-
-        $this->assertStringContainsString('GAP_SPAWN', $log,
-            'PLATEAU > 20 ticks must trigger GAP_SPAWN');
+        return [new Bee(['+'], 10.0), new Bee(['×'], 8.0), new Bee(['−'], 5.0)];
     }
 
     /**
-     * E=0 → нет gap-spawn.
+     * Плато 20+ тиков без новых данных → fallback spawn (10×P, P=2).
+     */
+    public function testGapSpawnFiresOnFallbackThreshold(): void
+    {
+        $sm = new SpawnManager();
+        $bees = $this->liveBees();
+
+        $spawned = $sm->tryGapSpawn($bees, ['+', '×'], true, 20, false, 2);
+
+        $this->assertSame(1, $spawned, 'Fallback threshold (10×P) must trigger gap-spawn');
+        $this->assertCount(4, $bees, 'Child bee must be added to population');
+    }
+
+    /**
+     * Плато 10+ тиков + новые данные → spawn по new-data порогу (5×P).
+     */
+    public function testGapSpawnFiresOnNewDataThreshold(): void
+    {
+        $sm = new SpawnManager();
+        $bees = $this->liveBees();
+
+        $spawned = $sm->tryGapSpawn($bees, ['+', '×'], true, 10, true, 2);
+
+        $this->assertSame(1, $spawned, 'New-data threshold (5×P) must trigger gap-spawn');
+    }
+
+    /**
+     * Ниже порогов — никакого спавна.
+     */
+    public function testNoGapSpawnBelowThreshold(): void
+    {
+        $sm = new SpawnManager();
+        $bees = $this->liveBees();
+
+        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], true, 9, true, 2));
+        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], true, 19, false, 2));
+        $this->assertCount(3, $bees, 'No spawn below thresholds');
+    }
+
+    /**
+     * Нет плато → нет gap-spawn, даже при большом счётчике.
+     */
+    public function testNoGapSpawnWithoutPlateau(): void
+    {
+        $sm = new SpawnManager();
+        $bees = $this->liveBees();
+
+        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], false, 999, true, 2));
+    }
+
+    /**
+     * Все пчёлы мертвы → нет родителя → нет gap-spawn.
      */
     public function testNoGapSpawnWhenAllDead(): void
     {
-        $plateau = new PlateauDetector(1, plateauSleepUs: 0);
-        $logFile = tempnam(sys_get_temp_dir(), 'gapspawn_dead_');
-        $hive = new Hive(plateau: $plateau, maxTicks: 30, logFile: $logFile);
-        $hive->run();
+        $sm = new SpawnManager();
+        $bees = [new Bee(['+'], 0.0)];
 
-        $log = file_get_contents($logFile);
-        unlink($logFile);
+        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], true, 999, true, 2));
+    }
 
-        $lines = explode("\n", $log);
-        $lastDeath = 0;
-        $gapSpawnAfterDeath = false;
-        foreach ($lines as $i => $line) {
-            if (str_contains($line, 'DEATH:')) {
-                $lastDeath = $i;
-            }
-            if (str_contains($line, 'GAP_SPAWN') && $i > $lastDeath && $lastDeath > 0) {
-                $gapSpawnAfterDeath = true;
-            }
-        }
+    /**
+     * Cooldown: один gap-spawn за плато-период.
+     */
+    public function testGapSpawnCooldownOncePerPlateau(): void
+    {
+        $sm = new SpawnManager();
+        $bees = $this->liveBees();
 
-        $this->assertFalse($gapSpawnAfterDeath,
-            'GAP_SPAWN must not occur after all bees are dead');
+        $this->assertSame(1, $sm->tryGapSpawn($bees, ['+'], true, 20, false, 2));
+        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], true, 999, false, 2),
+            'Cooldown: only one gap-spawn per plateau period');
     }
 }

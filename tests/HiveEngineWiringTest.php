@@ -30,9 +30,10 @@ class HiveEngineWiringTest extends TestCase
             0.01,
             ['x0', 'x1']
         );
+        $candidates = $results[0];
 
-        $this->assertNotEmpty($results, 'Must discover ADD');
-        $atoms = array_column($results, 'atom');
+        $this->assertNotEmpty($candidates, 'Must discover ADD');
+        $atoms = array_column($candidates, 'atom');
         $found = false;
         foreach ($atoms as $a) {
             if (str_contains($a, 'add') || str_contains($a, '+')) {
@@ -54,6 +55,6 @@ class HiveEngineWiringTest extends TestCase
         $engine = new DiscoveryEngine();
         $results = $engine->discover($X, $y, Grammar::baseOpNames(), 0.01);
 
-        $this->assertEmpty($results, 'Insufficient data → empty');
+        $this->assertEmpty($results[0], 'Insufficient data → empty');
     }
 }

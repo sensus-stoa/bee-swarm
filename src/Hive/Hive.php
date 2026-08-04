@@ -450,11 +450,18 @@ class Hive
                 // Try common labels from content
                 preg_match_all('/\b(\w+):/u', $content, $labels);
                 foreach (array_unique($labels[1]) as $label) {
-                    if (mb_strlen($label) < 2) {
+                    // E1.3-fix: только валидные label-кандидаты в метрику
+                    // (буквы, ≥3, не римские, не стоп-слова)
+                    if (! AtomRegistry::isValidTextAtomLabel($label)) {
                         continue;
                     }
                     $result = AtomRegistry::applyTextAtom($textAtom, $content, $label);
                     if ($result !== null && ! empty($result)) {
+                        // E1.3-fix: без реальных данных (числа/захваченные группы) —
+                        // это вхождения слова, а не открытие. Спам убивал plateau/gap-spawn.
+                        if (! AtomRegistry::hasTextAtomData($result)) {
+                            continue;
+                        }
                         $composed = "{$textAtom}({$label})";
                         AtomRegistry::addDiscoveredTextAtom($textAtom, $label);
                         $this->log("🧬 {$composed} (TEXT ATOM)");

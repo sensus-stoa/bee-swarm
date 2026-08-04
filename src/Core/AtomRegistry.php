@@ -21,6 +21,34 @@ class AtomRegistry
 
     private const CV_EXACT_TOLERANCE = 0.0001;
 
+    /**
+     * Стоп-слова для text-atom label'ов (E1.3-fix, 04.08.2026).
+     * Label — это кандидат в метрику («GI:», «sleep:»), а не любое слово
+     * перед двоеточием. Числа, римские цифры и служебные слова — мусор.
+     */
+    private const TEXT_ATOM_STOPWORDS = [
+        // русские
+        'и', 'в', 'на', 'с', 'не', 'то', 'же', 'как', 'так', 'он', 'она', 'оно', 'они', 'мы', 'вы', 'ты',
+        'это', 'этот', 'эта', 'эти', 'там', 'тут', 'ещё', 'уже', 'для', 'что', 'нет', 'или', 'да', 'но',
+        'а', 'за', 'из', 'от', 'до', 'при', 'под', 'над', 'об', 'во', 'со', 'ко', 'по', 'бы', 'ли', 'ль',
+        'б', 'про', 'без', 'у', 'к', 'о', 'же', 'вот', 'все', 'всё', 'всегда', 'иногда', 'потом', 'сейчас',
+        'только', 'также', 'например', 'кстати', 'вообще', 'конечно', 'вероятно', 'возможно', 'нужно',
+        'можно', 'нельзя', 'должен', 'должна', 'должны', 'будет', 'быть', 'есть', 'был', 'была', 'были',
+        // английские
+        'the', 'and', 'for', 'with', 'not', 'but', 'you', 'that', 'this', 'it', 'is', 'are', 'was',
+        'were', 'has', 'have', 'had', 'will', 'would', 'can', 'could', 'should', 'may', 'might', 'must',
+        'of', 'in', 'on', 'at', 'to', 'from', 'by', 'as', 'be', 'or', 'if', 'then', 'than', 'so', 'too',
+        'very', 'just', 'only', 'also', 'still', 'even', 'well', 'now', 'here', 'there', 'when', 'where',
+        'why', 'how', 'what', 'which', 'who', 'whom', 'whose', 'do', 'does', 'did', 'done', 'being',
+        'been', 'about', 'into', 'over', 'under', 'again', 'further', 'once', 'all', 'any', 'both',
+        'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'own', 'same', 'than',
+        'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'your', 'yours', 'yourself',
+        'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'its', 'itself',
+        'they', 'them', 'their', 'theirs', 'themselves', 'these', 'those', 'am', 'having', 'because',
+        'until', 'while', 'against', 'between', 'through', 'during', 'before', 'after', 'above', 'below',
+        'up', 'down', 'out', 'off', 'first', 'second', 'third', 'last', 'next', 'left', 'right',
+    ];
+
     private static bool $heldoutEnabled = true;
 
     private static ?array $envAtoms = null;
@@ -134,6 +162,56 @@ class AtomRegistry
     }
 
     /**
+     * E1.3-fix: валидация label для text-атомов.
+     * Отсекает мусор: числа, римские цифры, короткие (<3), небуквенные,
+     * стоп-слова. Label должен быть кандидатом в метрику.
+     */
+    public static function isValidTextAtomLabel(string $label): bool
+    {
+        $len = mb_strlen($label);
+        if ($len < 2 || $len > 40) {
+            return false;
+        }
+        // Только буквы (кириллица/латиница) — числа и смешанные отсекаются
+        if (! preg_match('/^[A-Za-zА-Яа-яЁё]+$/u', $label)) {
+            return false;
+        }
+        // Римские цифры (III, IV, X, XL...)
+        if (preg_match('/^[IVXLCDM]+$/i', $label)
+            && preg_match('/^(?=[MDCLXVI])M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$/i', $label)
+        ) {
+            return false;
+        }
+        // Стоп-слова (регистронезависимо)
+        if (in_array(mb_strtolower($label), self::TEXT_ATOM_STOPWORDS, true)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * E1.3-fix: есть ли в результате text-атома РЕАЛЬНЫЕ данные.
+     *
+     * match_label → [7.2, 6.0] — числа → true.
+     * preg_match с группами → [[7.2,...], ...] — непустые группы → true.
+     * preg_match без групп → [[], [], []] — пустые вхождения → false.
+     * (Безгрупповые вхождения НЕ считаются открытием в Hive, но остаются
+     * доступны Forager/StreamingAccumulator для частотных foraged_txt_* задач.)
+     */
+    public static function hasTextAtomData(array $result): bool
+    {
+        foreach ($result as $row) {
+            if (is_numeric($row)) {
+                return true;
+            }
+            if (is_array($row) && ! empty($row)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * /** Register discovered text atom (compose: match_label + arg) */
     public static function addDiscoveredTextAtom(string $parentAtom, string $arg): void
     {
@@ -141,6 +219,10 @@ class AtomRegistry
             return;
         }
         if ($arg === '') {
+            return;
+        }
+        // E1.3-fix: мусорные label не персистим в grammar_ops (защита БД)
+        if (! self::isValidTextAtomLabel($arg)) {
             return;
         }
         $name = "{$parentAtom}({$arg})";

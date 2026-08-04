@@ -28,8 +28,8 @@ class IntegrationLawTest extends TestCase
             ['x0', 'x1'],
         );
 
-        $this->assertNotEmpty($results, 'Must find ADD law');
-        $atoms = array_column($results, 'atom');
+        $this->assertNotEmpty($results[0], 'Must find ADD law');
+        $atoms = array_column($results[0], 'atom');
         $this->assertContains('(x0+x1)', $atoms, 'ADD law formula must be in results');
     }
 
@@ -49,7 +49,7 @@ class IntegrationLawTest extends TestCase
             ['x0'],
         );
 
-        $this->assertNotEmpty($results, 'Must find MUL law');
+        $this->assertNotEmpty($results[0], 'Must find MUL law');
     }
 
     /**
@@ -66,6 +66,6 @@ class IntegrationLawTest extends TestCase
         $engine = new DiscoveryEngine();
         $results = $engine->discover($X, $y, Grammar::baseOpNames(), 0.001);
 
-        $this->assertEmpty($results, 'Pure noise → no laws');
+        $this->assertEmpty($results[0], 'Pure noise → no laws');
     }
 }

@@ -27,7 +27,7 @@ class DiscoveryEngineTest extends TestCase
         $result = $engine->discover($X, $y, $grammarOps, 0.01);
 
         $this->assertNotNull($result, 'Must discover ADD law');
-        $this->assertNotEmpty($result, 'Must return at least one discovery');
+        $this->assertNotEmpty($result[0], 'Must return at least one discovery');
     }
 
     /**
@@ -45,6 +45,6 @@ class DiscoveryEngineTest extends TestCase
         $engine = new DiscoveryEngine();
         $result = $engine->discover($X, $y, Grammar::baseOpNames(), 0.001);
 
-        $this->assertEmpty($result, 'No discoveries on pure noise');
+        $this->assertEmpty($result[0], 'No discoveries on pure noise');
     }
 }

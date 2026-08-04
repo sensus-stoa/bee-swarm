@@ -21,8 +21,17 @@ class GlobalStateGuardTest extends TestCase
     public function testDetectsIniSetLeak(): void
     {
         GlobalStateGuard::snapshot();
+        // PHP 8.2: ini_set(memory_limit) ниже текущего usage НЕ работает (false).
+        // Воркер paratest после Hive-тестов держит гигабайты → ставим ВЫШЕ usage.
         $prev = ini_get('memory_limit');
-        ini_set('memory_limit', '128M');
+        $usageMb = (int) ceil(memory_get_usage(true) / 1024 / 1024);
+        $targetMb = $usageMb + 64;
+        if ($prev === $targetMb . 'M') {
+            $targetMb += 64;  // коллизия с текущим значением — сдвигаем
+        }
+        $target = $targetMb . 'M';
+        $this->assertNotFalse(ini_set('memory_limit', $target),
+            "Precondition: ini_set({$target}) must succeed (usage {$usageMb}MB)");
 
         try {
             GlobalStateGuard::assertClean();

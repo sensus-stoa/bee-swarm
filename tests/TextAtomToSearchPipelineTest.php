@@ -92,9 +92,9 @@ class TextAtomToSearchPipelineTest extends TestCase
                 0.2
             );
 
-            if (! empty($results)) {
+            if (! empty($results[0])) {
                 $anyLawFound = true;
-                foreach ($results as $r) {
+                foreach ($results[0] as $r) {
                     $this->assertArrayHasKey('class', $r);
                     $this->assertContains($r['class'], ['EMPIRICAL', 'IDENTITY', 'NONE']);
                 }

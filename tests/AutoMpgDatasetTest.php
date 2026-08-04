@@ -52,8 +52,8 @@ class AutoMpgDatasetTest extends TestCase
             ['horsepower', 'weight', 'displacement'],
         );
 
-        $this->assertNotEmpty($results, 'Auto MPG (398 rows) must yield laws');
-        $good = array_filter($results, fn ($r) => ($r['cv'] ?? 1.0) <= 0.25);
+        $this->assertNotEmpty($results[0], 'Auto MPG (398 rows) must yield laws');
+        $good = array_filter($results[0], fn ($r) => ($r['cv'] ?? 1.0) <= 0.25);
         $this->assertNotEmpty($good, 'At least one law with CV<=0.25');
     }
 
@@ -73,8 +73,8 @@ class AutoMpgDatasetTest extends TestCase
             0.2
         );
 
-        $this->assertNotEmpty($results, 'Auto MPG must yield laws');
-        foreach ($results as $r) {
+        $this->assertNotEmpty($results[0], 'Auto MPG must yield laws');
+        foreach ($results[0] as $r) {
             $this->assertArrayHasKey('class', $r, 'Each result must have class field');
             $this->assertContains($r['class'], ['EMPIRICAL', 'IDENTITY', 'NONE']);
             // Real-world noisy data: search laws should be EMPIRICAL

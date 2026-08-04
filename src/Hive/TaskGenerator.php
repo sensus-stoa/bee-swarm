@@ -12,7 +12,7 @@ namespace BeeSwarm\Hive;
 class TaskGenerator
 {
     /** S2.7: Maximum cross-pair tasks from generator (bounds O(N²) memory). */
-    private int $maxCrossPair = 2000;
+    private int $maxCrossPair = 0;  // E1-FIX: 0 пока нет полезных foraged_txt_ атомов
 
     /**
      * Сгенерировать задачи: базовые (TaskManager) + cross-pair + foraged.
@@ -121,10 +121,15 @@ class TaskGenerator
      */
     public function createComposeTasks(): array
     {
-        srand(42);
+        // DETERMINISTIC GEN_: save & restore RNG state so array_rand() elsewhere stays random.
+        // Pattern: save entropy token → seed deterministically → restore entropy token.
+        // Without this, downstream array_rand() becomes deterministic (1 law instead of 450).
+        $savedSeed = mt_rand();          // capture one entropy token
+        srand(42);                       // deterministic GEN_ generation
         $g = new \BeeSwarm\Core\Grammar();
         $grammarOps = $g->all();
         if (count($grammarOps) < 2) {
+            srand($savedSeed);           // RESTORE before early return
             return [];
         }
 
@@ -165,6 +170,7 @@ class TaskGenerator
             }
         }
 
+        srand($savedSeed);         // RESTORE: feed entropy token back
         return $tasks;
     }
 }

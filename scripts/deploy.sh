@@ -78,4 +78,7 @@ for f in $FILES; do
 done
 
 echo ""
-echo -e "${GREEN}DEPLOY DONE. Restart hive on laptop to apply.${NC}"
+echo -e "${GREEN}DEPLOY DONE. Writing deploy marker...${NC}"
+php scripts/deploy-version.php write
+
+echo -e "${GREEN}Restart hive on laptop to apply.${NC}"

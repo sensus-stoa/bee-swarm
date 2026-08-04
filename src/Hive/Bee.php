@@ -98,6 +98,17 @@ class Bee
         return $this->energy;
     }
 
+    /** @return float per-instance tick cost */
+    public function getTickCost(): float { return $this->tickCost; }
+    /** @return float per-instance search cost */
+    public function getSearchCost(): float { return $this->searchCost; }
+    /** @return float per-instance discovery reward */
+    public function getDiscoveryReward(): float { return $this->discoveryReward; }
+    /** @return float per-instance information reward */
+    public function getInformationReward(): float { return $this->informationReward; }
+    /** @return string[] custom grammar ops */
+    public function getCustomGrammarOps(): array { return $this->customGrammarOps; }
+
     /**
      * @return string[] per-bee grammar ops: seed + custom (§2.3 изоляция).
      *         BASE_OPS доступны через Grammar::baseOpNames() и добавляются

@@ -25,9 +25,17 @@ class PlateauDetector
 
     private const PLATEAU_SLEEP_US = 10_000_000;
 
-    public function __construct(int $threshold = 50)
+    private int $plateauSleepUs;
+
+    public function __construct(int $threshold = 50, ?int $plateauSleepUs = null)
     {
         $this->threshold = $threshold;
+        $this->plateauSleepUs = $plateauSleepUs ?? self::PLATEAU_SLEEP_US;
+    }
+
+    public function getThreshold(): int
+    {
+        return $this->threshold;
     }
 
     /**
@@ -55,7 +63,7 @@ class PlateauDetector
 
     public function getSleepUs(): int
     {
-        return $this->isPlateau() ? self::PLATEAU_SLEEP_US : self::BASE_SLEEP_US;
+        return $this->isPlateau() ? $this->plateauSleepUs : self::BASE_SLEEP_US;
     }
 
     public function getConsecutiveNoDiscovery(): int

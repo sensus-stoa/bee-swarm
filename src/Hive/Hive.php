@@ -286,6 +286,7 @@ class Hive
         }
 
         // Forager scan
+        $hasNewForagerData = false;
         if (
             ! empty($this->foragerSources)
             && ($this->tick % $this->foragerScanInterval === 0 || $this->plateau->justEnteredPlateau())
@@ -294,6 +295,7 @@ class Hive
             if (! empty($foraged)) {
                 $this->foragedTasksGlobal = array_merge($this->foragedTasksGlobal, $foraged);
                 if ($this->forager->hasNewContent()) {
+                    $hasNewForagerData = true;
                     $this->log('FORAGER_NEW_TASK: ' . $this->forager->getNewTaskCount()
                         . ' tasks, ' . $this->forager->getNewDomainCount() . ' domains');
                     $this->plateau->wakeup();
@@ -383,11 +385,11 @@ class Hive
             $this->bees, $allOps,
             $this->plateau->isPlateau(),
             $this->plateau->getConsecutiveNoDiscovery(),
-            $this->forager->hasNewContent(),
+            $hasNewForagerData,
             $this->plateau->getThreshold(),
         );
         if ($gapSpawned > 0) {
-            $trigger = $this->forager->hasNewContent() ? 'new_data' : 'fallback';
+            $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
             $this->log("GAP_SPAWN: pop=" . count($this->bees) . " trigger={$trigger}");
             $spawned += $gapSpawned;
         }

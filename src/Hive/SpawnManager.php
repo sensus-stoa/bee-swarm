@@ -14,6 +14,7 @@ class SpawnManager
     private int $spawnCount = 0;
     private int $generation = 0;
     private int $generationStartPop = 0;
+    private bool $gapSpawnFired = false;  // S1.2 Phase 4: cooldown
 
     /**
      * S1.2 Phase 4: Gap-Triggered Spawn.
@@ -26,7 +27,12 @@ class SpawnManager
         $thresholdFallback = 10 * $plateauThreshold;
 
         if (! $isPlateau) {
+            $this->gapSpawnFired = false;  // сброс при выходе из plateau
             return 0;
+        }
+
+        if ($this->gapSpawnFired) {
+            return 0;  // cooldown: один spawn за plateau-период
         }
 
         $shouldSpawn = ($plateauTicks >= $thresholdNewData && $hasNewData)
@@ -66,6 +72,7 @@ class SpawnManager
 
         $bees[] = $child;
         $this->spawnCount++;
+        $this->gapSpawnFired = true;
 
         return 1;
     }

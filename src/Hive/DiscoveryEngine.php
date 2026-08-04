@@ -15,9 +15,7 @@ use BeeSwarm\Validation\LawValidator;
 class DiscoveryEngine
 {
     /**
-     * Поиск законов: Search::find + Heldout/AtomRegistry + Compose.
-     *
-     * @return array{0: list<array>, 1: float} [candidates, bestCv]
+     * @return array{0: list<array>, 1: float, 2: float} [candidates, bestCv, searchCv]
      */
     public function discover(
         array $X,
@@ -30,23 +28,25 @@ class DiscoveryEngine
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
-            return [[], 9.99];
+            return [[], 9.99, 9.99];
         }
 
         $found = [];
         $bestCv = 9.99;
+        $searchCv = 9.99;  // S1.6-GRADIENT: only Search::find, not compose
 
-        // 1. Generative search (Search::find — основной путь)
+        // 1. Generative search
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
             [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio);
             $bestCv = min($bestCv, $sCv);
+            $searchCv = $sCv;
             if ($sFound) {
                 $found[] = ['atom' => $sFormula, 'cv' => $sCv, 'cv_test' => $sCvTest, 'mode' => 'search', 'class' => $sClass];
             }
         }
 
-        // 2. Held-out или raw discover
+        // 2. Held-out / raw discover
         if (AtomRegistry::isHeldoutEnabled()) {
             foreach (LawValidator::discoverHeldout($X, $y, cvTrainMax: $cvThreshold) as $d) {
                 $found[] = $d;
@@ -61,7 +61,7 @@ class DiscoveryEngine
             }
         }
 
-        // 3. Compose
+        // 3. Compose (does NOT affect searchCv)
         if (count($grammarOps) >= 2) {
             foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps, $cvThreshold) as $d) {
                 $found[] = $d;
@@ -75,6 +75,6 @@ class DiscoveryEngine
             }
         }
 
-        return [$found, $bestCv];
+        return [$found, $bestCv, $searchCv];
     }
 }

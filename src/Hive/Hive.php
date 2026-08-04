@@ -542,7 +542,7 @@ class Hive
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $colLabels = $task['col_labels'] ?? null;
         $engine = new DiscoveryEngine();
-        [$candidates, $bestCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
+        [$candidates, $bestCv, $searchCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
 
         foreach ($candidates as $d) {
             $this->recordDiscovery($d, $task, $domain, $foundAny);
@@ -551,12 +551,12 @@ class Hive
         // Information reward — intrinsic value of search
         $this->routedBee->rewardInformation();
 
-        // S1.6-GRADIENT: signal reward when no discovery but best CV in signal zone
-        if (! $foundAny && $bestCv > $cvTrainMax && $bestCv < 9.0) {
+        // S1.6-GRADIENT: signal reward — uses searchCv (не портится compose)
+        if (! $foundAny && $searchCv > $cvTrainMax && $searchCv < 9.0) {
             $nullFloor = NullCalibrator::getNullFloor($X, $y, Grammar::fromOps($grammarOps));
-            if ($bestCv <= $nullFloor) {
+            if ($searchCv <= $nullFloor) {
                 $this->routedBee->rewardSignal();
-                $this->log("SIGNAL: best_CV=" . round($bestCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
+                $this->log("SIGNAL: best_CV=" . round($searchCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
             }
         }
     }

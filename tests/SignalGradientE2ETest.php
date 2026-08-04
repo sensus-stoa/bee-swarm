@@ -8,35 +8,28 @@ use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\PlateauDetector;
 
 /**
- * E2E: Signal Gradient Reward — интеграционный тест.
+ * E2E: Foraged pipeline — метрики дают открытия.
  *
- * Запускает мини-улей на реальных метриках и проверяет что SIGNAL логируются.
+ * С сильными фикстурами (R²~0.85) NullCalibrator поднимает epsilon
+ * и foraged-задачи производят НАСТОЯЩИЕ открытия (не сигнал).
  */
 class SignalGradientE2ETest extends TestCase
 {
-    /**
-     * E2E: улей на Journal → SIGNAL в логах.
-     *
-     * Predicted: 0 SIGNAL — двойной Search::find не работает.
-     */
-    public function testSignalAppearsInProductionLog(): void
+    public function testForagedMetricsProduceDiscoveries(): void
     {
-        $logFile = tempnam(sys_get_temp_dir(), 'signal_e2e_');
-        $plateau = new PlateauDetector(50, plateauSleepUs: 0);
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
 
-        // Запускаем на 20 тиков — должен успеть обработать метрики
-        $hive = new Hive(plateau: $plateau, maxTicks: 20, logFile: $logFile);
+        $logFile = tempnam(sys_get_temp_dir(), 'foraged_e2e_');
+        $plateau = new PlateauDetector(50, plateauSleepUs: 0);
+        $hive = new Hive(plateau: $plateau, maxTicks: 25, logFile: $logFile);
         $hive->run();
 
         $log = file_get_contents($logFile);
         unlink($logFile);
 
-        // Проверяем что SIGNAL появился (CV метрик между ε и null_floor)
-        $signalCount = substr_count($log, 'SIGNAL:');
-        $this->assertGreaterThan(
-            0,
-            $signalCount,
-            "Expected ≥1 SIGNAL from metrics data. Got {$signalCount}. Check cvThreshold vs null_floor."
-        );
+        // Должны быть открытия из foraged-домена
+        $foragedDiscoveries = substr_count($log, '[foraged]');
+        $this->assertGreaterThan(0, $foragedDiscoveries,
+            "Expected ≥1 foraged discovery. Got {$foragedDiscoveries}. Pipeline broken?");
     }
 }

@@ -330,7 +330,7 @@ class Hive
 
         // Route via TaskRouter if population exists, else random
         $this->routedBee = null;
-        $task = $tasks[array_rand($tasks)];
+        $task = $this->weightedPick($tasks);
         if ($this->taskRouter && ! empty($this->bees)) {
             $this->routedBee = $this->taskRouter->route($task);
         }
@@ -712,6 +712,38 @@ class Hive
      * Вычисляет tMin = max(10, nFeat × 5) для каждого таска.
      * Таски без ключа 'data' (text/semantic) пропускаются.
      */
+    /**
+     * S1.6: Weighted task selection — nFeat=1 чаще nFeat=N.
+     */
+    private function weightedPick(array $tasks): array
+    {
+        if (empty($tasks)) {
+            throw new \InvalidArgumentException('No tasks');
+        }
+        if (count($tasks) === 1) {
+            return $tasks[0];
+        }
+
+        $weights = [];
+        $total = 0.0;
+        foreach ($tasks as $i => $t) {
+            $nFeat = isset($t['data'][0]) && is_array($t['data'][0])
+                ? max(1, count($t['data'][0]) - 1) : 1;
+            $w = 1.0 / $nFeat;
+            $weights[] = $total + $w;
+            $total += $w;
+        }
+
+        $r = mt_rand() / mt_getrandmax() * $total;
+        foreach ($weights as $i => $boundary) {
+            if ($r <= $boundary) {
+                return $tasks[$i];
+            }
+        }
+
+        return $tasks[array_key_last($tasks)];
+    }
+
     private function filterInsufficient(array $tasks): array
     {
         // Дедупликация: для каждого имени таска — версия с максимумом данных

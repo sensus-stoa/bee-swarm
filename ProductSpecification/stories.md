@@ -13,6 +13,7 @@
 | **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (Obsidian vault). |
 | **S2.7** | **LAZY-CROSSPAIR — генератор вместо O(N²) массива** | ✅ 504/504 PASS, 18MB память (было 9GB). |
 | **S1.6** | **WEIGHTED-TASKS — взвешенный отбор (nFeat=1 чаще)** | ⬜ RED. |
+| **D19** | **FAANG-REVIEW — 4-layer bug prevention (10 stories)** | ⬜ 10 фаз. |
 
 ## Completed
 

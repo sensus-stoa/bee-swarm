@@ -213,30 +213,36 @@ class StreamingAccumulator
             $nCols = count($data[0]);
             $colLabels = json_decode($colLabelsJson, true) ?? [];
 
-            // E1-FIX Phase 4: narrow extraction — split wide data into ≤maxColsPerTask columns
-            if ($nCols > $maxColsPerTask) {
-                for ($start = 0; $start <= $nCols - $maxColsPerTask; $start++) {
-                    $subset = [];
-                    foreach ($data as $row) {
-                        $slice = array_slice($row, $start, $maxColsPerTask);
-                        // Только строки где все значения числовые
-                        if (count(array_filter($slice, 'is_numeric')) === $maxColsPerTask) {
-                            $subset[] = array_map('floatval', $slice);
+            // E1-FIX Phase 4c: all-pairs extraction — как Scanner::processNumericRows()
+            // Все пары из первых min(nCols, 4) колонок. 450 законов были открыты этим методом.
+            $maxCols = min($nCols, 4);
+            if ($maxCols >= 2) {
+                for ($c1 = 0; $c1 < $maxCols; $c1++) {
+                    for ($c2 = $c1 + 1; $c2 < $maxCols; $c2++) {
+                        $pairData = [];
+                        foreach ($data as $row) {
+                            if (isset($row[$c1], $row[$c2]) && is_numeric($row[$c1]) && is_numeric($row[$c2])) {
+                                $pairData[] = [(float) $row[$c1], (float) $row[$c2]];
+                            }
                         }
-                    }
-                    if (count($subset) >= $tMin) {
-                        $labelSlice = array_slice($colLabels, $start, $maxColsPerTask);
-                        $tasks[] = [
-                            'name' => 'foraged_' . substr($r['pattern'], 0, 12) . '_w' . $start,
-                            'data' => $subset,
-                            'domain' => $r['domain'],
-                            'content' => $contentSample,
-                            'source_path' => $sourcePath,
-                            'col_labels' => $labelSlice,
-                        ];
+                        if (count($pairData) >= $tMin) {
+                            $labelPair = [
+                                $colLabels[$c1] ?? "col{$c1}",
+                                $colLabels[$c2] ?? "col{$c2}",
+                            ];
+                            $tasks[] = [
+                                'name' => 'foraged_' . substr($r['pattern'], 0, 12) . "_c{$c1}c{$c2}",
+                                'data' => $pairData,
+                                'domain' => $r['domain'],
+                                'content' => $contentSample,
+                                'source_path' => $sourcePath,
+                                'col_labels' => $labelPair,
+                            ];
+                        }
                     }
                 }
             } else {
+                // Текстовые/семантические задачи — исходный формат
                 $tasks[] = [
                     'name' => 'foraged_' . substr($r['pattern'], 0, 16),
                     'data' => $data,

@@ -627,7 +627,8 @@ class Hive
             return $this->filterInsufficient($generator->generate($this->foragedTasksGlobal, $crossTasks));
         }
 
-        srand(42); // deterministic seed for reproducible GEN_ data
+        // Save & restore RNG — srand(42) for GEN_ must not poison array_rand()
+        $rngGuard = \BeeSwarm\Infra\RngIsolation::deterministicSeed(42);
         $g = new Grammar();
         $grammarOps = $g->all();
         if (count($grammarOps) >= 2) {
@@ -667,6 +668,7 @@ class Hive
                 }
             }
         }
+        $rngGuard->restore(); // Restore random RNG for array_rand at line 333
 
         // Cloze tasks
         if ($this->sentenceRegistry && $this->corpusVocab && count($tasks) < 40) {

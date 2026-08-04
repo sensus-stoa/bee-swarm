@@ -1,0 +1,57 @@
+#!/bin/bash
+# .githooks/pre-commit — BLOCK commits that poison RNG
+#
+# Install: git config core.hooksPath .githooks
+#
+# This runs BEFORE every commit. It's fast (< 2s) and catches:
+# 1. RNG poisoning (srand without restore)
+# 2. Syntax errors in staged PHP files
+#
+# For full validation, run scripts/gate.sh before commit.
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+HAS_ERRORS=0
+
+# ── GATE 1: RNG clean ────────────────────────────────
+# Fastest test: проверяет что array_rand() не детерминирован
+RNG_CHECK=$(php -r '
+require "vendor/autoload.php";
+if (\BeeSwarm\Infra\RngIsolation::hasUnrestoredGuards()) {
+    echo "UNRESTORED_GUARDS"; exit(1);
+}
+echo "CLEAN";
+' 2>/dev/null)
+
+if [ "$RNG_CHECK" != "CLEAN" ]; then
+    echo -e "${RED}[PRE-COMMIT BLOCKED] RNG POISONING DETECTED${NC}"
+    echo "  srand(N) was called without restore. array_rand() is deterministic."
+    echo "  Fix: ensure every srand() has a corresponding srand(entropy_token)."
+    echo "  Use RngIsolation::deterministicSeed(N) + ->restore() pattern."
+    HAS_ERRORS=1
+fi
+
+# ── GATE 2: Syntax check on staged files ─────────────
+STAGED=$(git diff --cached --name-only 2>/dev/null | grep "\.php$" || true)
+if [ -n "$STAGED" ]; then
+    for f in $STAGED; do
+        if ! php -l "$f" 2>/dev/null | grep -q "No syntax errors"; then
+            echo -e "${RED}[PRE-COMMIT BLOCKED] Syntax error in $f${NC}"
+            php -l "$f" 2>&1
+            HAS_ERRORS=1
+        fi
+    done
+fi
+
+if [ $HAS_ERRORS -eq 0 ]; then
+    echo -e "${GREEN}[PRE-COMMIT] PASS — RNG clean, syntax OK${NC}"
+    exit 0
+else
+    echo ""
+    echo -e "${RED}Commit blocked. Fix errors above.${NC}"
+    exit 1
+fi

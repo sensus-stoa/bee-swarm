@@ -197,10 +197,18 @@ class Bee
      */
     public function rewardInformation(): void
     {
-        if (! $this->isAlive()) {
-            return;
-        }
+        if (! $this->isAlive()) return;
         $this->energy += $this->informationReward;
+    }
+
+    /**
+     * S1.6-GRADIENT: partial reward for signal (ε < CV ≤ null_floor).
+     * Не закон, но «здесь что-то есть, копай».
+     */
+    public function rewardSignal(): void
+    {
+        if (! $this->isAlive()) return;
+        $this->energy += 0.5;
     }
 
     public function isAlive(): bool

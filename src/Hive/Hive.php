@@ -550,6 +550,17 @@ class Hive
 
         // Information reward — intrinsic value of search
         $this->routedBee->rewardInformation();
+
+        // S1.6-GRADIENT: signal reward when CV between ε_train and null_floor
+        if (empty($candidates) && count($y) >= 10) {
+            $searchGrammar = Grammar::fromOps($grammarOps);
+            [$sFound, $sCv] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2, $colLabels, 0.0);
+            $nullFloor = NullCalibrator::getNullFloor($X, $y, $searchGrammar);
+            if (! $sFound && $sCv > $cvTrainMax && $sCv <= $nullFloor) {
+                $this->routedBee->rewardSignal();
+                $this->log("SIGNAL: best_CV=" . round($sCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
+            }
+        }
     }
 
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void

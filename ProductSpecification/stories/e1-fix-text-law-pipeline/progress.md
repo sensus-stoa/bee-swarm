@@ -1,53 +1,36 @@
-# Story E1-FIX Phase 4: Forager Narrow Extraction
+# Story E1-FIX: Text Law Pipeline
 
-> Forager извлекает ВСЕ числовые колонки файла как одну задачу → tMin завышен → всё фильтруется.
-> Нужно: разбивать на задачи с 2-3 колонками (пары/тройки признаков).
+> Полный путь: .md файлы → forager → cross-pair → законы.
 
-## Диагноз
+## Phase 1-3: Cross-pair + Pipeline ✅
+- [x] TextAtomCrossPairer
+- [x] TaskGenerator crossPairTasks
+- [x] StreamingAccumulator text atom extraction
 
+## Phase 4: Forager Narrow Extraction ✅
+> Forager извлекал ВСЕ колонки как одну задачу → tMin завышен.
+> Fix: разбивка на окна по 3 колонки.
+
+- [x] red: test_narrow_extraction
+- [x] green: sliding window split
+- [x] 506/506 PASS, review CONCERNS accepted
+- [x] Journal-only: 697 задач, все PASS tMin
+
+## Phase 4b: Task Priority by Column Count ⬜
+> Узкие задачи (пары/тройки) должны быть в начале пула — выше шанс открытия.
+> Широкие — в конце.
+
+**Spec:**
 ```
-metrics.jsonl: 6 колонок × 5 = tMin=30, данных t=19 → INSUFFICIENT
-AirQualityUCI.csv: 249 колонок × 5 = tMin=1245, данных t=10 → INSUFFICIENT
-
-Результат: 0 foraged-задач проходят tMin. 2983 passed = только GEN_ и base.
+filterInsufficient() → usort по nFeat ASC
+nFeat = count(data[0]) - 1
+text/semantic → в конец (nFeat=999)
 ```
 
-## Spec
-
-**Forager должен извлекать из одного файла НЕСКОЛЬКО задач:**
-- Каждая задача = 1 target + 1-2 features (пары/тройки соседних колонок)
-- tMin для пары = 10 (2 features × 5), для тройки = 15
-- 155 строк metrics.jsonl → t=155 >> tMin=10 → проходит
-
-**Стратегия разбивки:**
-- Для каждого числового столбца как target:
-  - Создать задачу target + 1 соседний признак (min tMin)
-  - Создать задачу target + 2 соседних признака
-  - Не создавать target + ALL (текущее поведение — убрать)
-
-**Альтернатива (если структура данных неизвестна):**
-- Вычислить все столбцы → определить max_rows, max_cols
-- Если max_cols > 5: создавать задачи-пары вместо одной широкой
-- Если max_cols ≤ 5: текущее поведение ок
-
-## Core
-
-[ ] red: test_narrow_extraction_from_metrics — metrics.jsonl → задачи с t≥tMin
-[ ] red: test_wide_csv_becomes_pairs — 249-колоночный CSV → пары, не одна широкая задача
-[ ] red: test_small_file_unchanged — файл с 3 колонками → старое поведение
-[ ] green: StreamingAccumulator narrow extraction mode
-[ ] green: Forager config: max_cols_per_task=3
-[ ] refactor + lint
-
-## Work Units
-
-[ ] red: test_narrow_extraction_from_metrics
-[ ] red: test_wide_csv_becomes_pairs
-[ ] red: test_small_file_unchanged
-[ ] green: narrow extraction in StreamingAccumulator
-[ ] green: Forager config
-[ ] tests pass + review
-[ ] deploy → metrics.jsonl задачи проходят tMin
+[ ] red: test_tasks_sorted_by_column_count
+[ ] green: usort by nFeat ASC
+[ ] refactor + lint + review
+[ ] deploy
 
 ## Status
-- Next: `red: test_narrow_extraction_from_metrics`
+🔧 Phase 4b — `red: test_tasks_sorted_by_column_count`

@@ -720,6 +720,14 @@ class Hive
         if ($skipped > 0) {
             $this->log("PRE_FILTER: skipped {$skipped} insufficient, passed " . count($passedCounts));
         }
+
+        // E1-FIX Phase 4b: узкие задачи (меньше колонок) → выше шанс открытия → в начало
+        usort($filtered, function (array $a, array $b): int {
+            $aFeat = isset($a['data'][0]) && is_array($a['data'][0]) ? count($a['data'][0]) - 1 : 999;
+            $bFeat = isset($b['data'][0]) && is_array($b['data'][0]) ? count($b['data'][0]) - 1 : 999;
+            return $aFeat <=> $bFeat;
+        });
+
         return $filtered;
     }
 

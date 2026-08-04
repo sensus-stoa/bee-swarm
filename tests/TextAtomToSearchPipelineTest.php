@@ -66,7 +66,10 @@ class TextAtomToSearchPipelineTest extends TestCase
             }
         }
 
-        $crossTasks = TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+        $crossTasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair($atoms, 'text_pairs'),
+            false
+        );
         $this->assertNotEmpty($crossTasks, 'Cross-pair must create tasks from 3 text atoms');
 
         // Шаг 3: каждая cross-pair задача → DiscoveryEngine → Search::find
@@ -120,10 +123,13 @@ class TextAtomToSearchPipelineTest extends TestCase
             $atomB[] = $a * 2.0 + (sin($i * 0.3) * 0.1); // почти точная зависимость
         }
 
-        $crossTasks = TextAtomCrossPairer::crossPair([
-            'txt_word_count' => $atomA,
-            'txt_char_count' => $atomB,
-        ], 'text_pairs');
+        $crossTasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair([
+                'txt_word_count' => $atomA,
+                'txt_char_count' => $atomB,
+            ], 'text_pairs'),
+            false
+        );
 
         $this->assertNotEmpty($crossTasks);
 

@@ -11,6 +11,8 @@ use BeeSwarm\Core\TextAtomCrossPairer;
  *
  * TextAtomCrossPairer превращает одиночные значения текстовых атомов
  * в X/y пары для CV→0.
+ *
+ * S2.7: crossPair() returns \Generator — tests wrap in iterator_to_array().
  */
 class TextAtomCrossPairerTest extends TestCase
 {
@@ -24,7 +26,10 @@ class TextAtomCrossPairerTest extends TestCase
             'preg_match(DQ)' => [6.0, 5.5, 6.2],
         ];
 
-        $tasks = TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+        $tasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair($atoms, 'text_pairs'),
+            false
+        );
 
         $this->assertNotEmpty($tasks, 'Must create cross-pair tasks');
         // Должны быть задачи GI→DQ и DQ→GI
@@ -45,9 +50,12 @@ class TextAtomCrossPairerTest extends TestCase
      */
     public function testCrossPairRequiresTwoAtoms(): void
     {
-        $tasks = TextAtomCrossPairer::crossPair(
-            ['preg_match(GI)' => [7.2, 6.8]],
-            'text_pairs'
+        $tasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair(
+                ['preg_match(GI)' => [7.2, 6.8]],
+                'text_pairs'
+            ),
+            false
         );
 
         $this->assertEmpty($tasks, 'Need ≥2 atoms for cross-pairing');
@@ -63,7 +71,10 @@ class TextAtomCrossPairerTest extends TestCase
             'preg_match(DQ)' => [6.0],
         ];
 
-        $tasks = TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
+        $tasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair($atoms, 'text_pairs'),
+            false
+        );
 
         $this->assertEmpty($tasks, 'Need ≥3 aligned rows');
     }
@@ -78,7 +89,10 @@ class TextAtomCrossPairerTest extends TestCase
             'preg_match(DQ)' => [6.0, 5.5, 6.2],
         ];
 
-        $tasks = TextAtomCrossPairer::crossPair($atoms, 'obsidian_metrics');
+        $tasks = iterator_to_array(
+            TextAtomCrossPairer::crossPair($atoms, 'obsidian_metrics'),
+            false
+        );
 
         foreach ($tasks as $task) {
             $this->assertSame('obsidian_metrics', $task['domain']);

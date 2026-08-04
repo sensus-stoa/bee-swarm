@@ -542,7 +542,7 @@ class Hive
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $colLabels = $task['col_labels'] ?? null;
         $engine = new DiscoveryEngine();
-        $candidates = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
+        [$candidates, $bestCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
 
         foreach ($candidates as $d) {
             $this->recordDiscovery($d, $task, $domain, $foundAny);
@@ -551,14 +551,12 @@ class Hive
         // Information reward — intrinsic value of search
         $this->routedBee->rewardInformation();
 
-        // S1.6-GRADIENT: signal reward when CV between ε_train and null_floor
-        if (empty($candidates) && count($y) >= 10) {
-            $searchGrammar = Grammar::fromOps($grammarOps);
-            [$sFound, $sCv] = \BeeSwarm\Core\Search::find($X, $y, $searchGrammar, 2, $colLabels, 0.0);
-            $nullFloor = NullCalibrator::getNullFloor($X, $y, $searchGrammar);
-            if (! $sFound && $sCv > $cvTrainMax && $sCv <= $nullFloor) {
+        // S1.6-GRADIENT: signal reward when no discovery but best CV in signal zone
+        if (! $foundAny && $bestCv > $cvTrainMax && $bestCv < 9.0) {
+            $nullFloor = NullCalibrator::getNullFloor($X, $y, Grammar::fromOps($grammarOps));
+            if ($bestCv <= $nullFloor) {
                 $this->routedBee->rewardSignal();
-                $this->log("SIGNAL: best_CV=" . round($sCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
+                $this->log("SIGNAL: best_CV=" . round($bestCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
             }
         }
     }

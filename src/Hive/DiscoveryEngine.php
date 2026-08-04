@@ -11,21 +11,13 @@ use BeeSwarm\Validation\LawValidator;
 
 /**
  * DiscoveryEngine — поиск законов в данных (§1.1-1.4).
- *
- * Извлечён из Hive::doDiscoverTick(). Phase 3: discover() с Search::find.
- * recordDiscovery и побочные эффекты остаются в Hive (Phase 6).
  */
 class DiscoveryEngine
 {
     /**
-     * Поиск законов: Search::find (генеративный) + Heldout/AtomRegistry + Compose.
+     * Поиск законов: Search::find + Heldout/AtomRegistry + Compose.
      *
-     * @param array $X features
-     * @param array $y targets
-     * @param string[] $grammarOps операции грамматики (per-bee + BASE_OPS)
-     * @param float $cvThreshold порог CV (калиброванный вызывающим)
-     * @param array|null $colLabels метки колонок для Search::find
-     * @return array<int, array{atom: string, cv: float, mode: string}>
+     * @return array{0: list<array>, 1: float} [candidates, bestCv]
      */
     public function discover(
         array $X,
@@ -38,15 +30,17 @@ class DiscoveryEngine
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
-            return [];
+            return [[], 9.99];
         }
 
         $found = [];
+        $bestCv = 9.99;
 
         // 1. Generative search (Search::find — основной путь)
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
             [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio);
+            $bestCv = min($bestCv, $sCv);
             if ($sFound) {
                 $found[] = ['atom' => $sFormula, 'cv' => $sCv, 'cv_test' => $sCvTest, 'mode' => 'search', 'class' => $sClass];
             }
@@ -56,29 +50,31 @@ class DiscoveryEngine
         if (AtomRegistry::isHeldoutEnabled()) {
             foreach (LawValidator::discoverHeldout($X, $y, cvTrainMax: $cvThreshold) as $d) {
                 $found[] = $d;
+                $bestCv = min($bestCv, $d['cv'] ?? 9.99);
             }
         } else {
             foreach (AtomRegistry::discover($X, $y) as $d) {
+                $bestCv = min($bestCv, $d['cv'] ?? 9.99);
                 if ($d['cv'] <= $cvThreshold) {
                     $found[] = $d;
                 }
             }
         }
 
-        // 3. Compose — используем переданные grammarOps
+        // 3. Compose
         if (count($grammarOps) >= 2) {
             foreach (AtomRegistry::discoverCompose($X, $y, $grammarOps, $cvThreshold) as $d) {
                 $found[] = $d;
+                $bestCv = min($bestCv, $d['cv'] ?? 9.99);
             }
         }
 
-        // Normalize: ensure all results have 'class' field
         foreach ($found as &$d) {
             if (! isset($d['class'])) {
                 $d['class'] = 'EMPIRICAL';
             }
         }
 
-        return $found;
+        return [$found, $bestCv];
     }
 }

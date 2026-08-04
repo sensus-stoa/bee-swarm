@@ -377,6 +377,21 @@ class Hive
         // D17: SpawnManager handles spawning + generation tracking
         $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
         $spawned = $this->spawnManager->trySpawn($this->bees, $allOps);
+
+        // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
+        $gapSpawned = $this->spawnManager->tryGapSpawn(
+            $this->bees, $allOps,
+            $this->plateau->isPlateau(),
+            $this->plateau->getConsecutiveNoDiscovery(),
+            $this->forager->hasNewContent(),
+            $this->plateau->getThreshold(),
+        );
+        if ($gapSpawned > 0) {
+            $trigger = $this->forager->hasNewContent() ? 'new_data' : 'fallback';
+            $this->log("GAP_SPAWN: pop=" . count($this->bees) . " trigger={$trigger}");
+            $spawned += $gapSpawned;
+        }
+
         if ($spawned > 0) {
             $diversity = SpawnManager::computeDiversity($this->bees);
             $avgG = SpawnManager::avgGrammarSize($this->bees);

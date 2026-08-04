@@ -16,6 +16,61 @@ class SpawnManager
     private int $generationStartPop = 0;
 
     /**
+     * S1.2 Phase 4: Gap-Triggered Spawn.
+     *
+     * Пороги: 5× plateauThreshold (с новыми данными) или 10× (без).
+     */
+    public function tryGapSpawn(array &$bees, array $allOps, bool $isPlateau, int $plateauTicks, bool $hasNewData, int $plateauThreshold = 50): int
+    {
+        $thresholdNewData = 5 * $plateauThreshold;
+        $thresholdFallback = 10 * $plateauThreshold;
+
+        if (! $isPlateau) {
+            return 0;
+        }
+
+        $shouldSpawn = ($plateauTicks >= $thresholdNewData && $hasNewData)
+            || ($plateauTicks >= $thresholdFallback);
+
+        if (! $shouldSpawn) {
+            return 0;
+        }
+
+        $parent = null;
+        foreach ($bees as $bee) {
+            if ($bee->isAlive() && $bee->energy() > 0) {
+                $parent = $bee;
+                break;
+            }
+        }
+
+        if ($parent === null) {
+            return 0;
+        }
+
+        $childEnergy = min(10.0, $parent->energy() * 1.5);
+        $childGrammar = $parent->grammar();
+        if (! empty($allOps)) {
+            $childGrammar = \BeeSwarm\Hive\GrammarMutator::mutate($childGrammar, $allOps);
+        }
+
+        $child = new Bee(
+            $childGrammar,
+            $childEnergy,
+            $parent->getTickCost(),
+            $parent->getSearchCost(),
+            $parent->getDiscoveryReward(),
+            $parent->getInformationReward(),
+            $parent->getCustomGrammarOps(),
+        );
+
+        $bees[] = $child;
+        $this->spawnCount++;
+
+        return 1;
+    }
+
+    /**
      * Попытаться spawn: проверка порога → мутация → рождение.
      *
      * @param Bee[] $bees текущая популяция (по ссылке — добавляем потомков)

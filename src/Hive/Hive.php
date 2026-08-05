@@ -57,6 +57,8 @@ class Hive
      * @var Bee[]
      */
     private array $bees = [];
+    /** Последний размер пула задач (wakeup-детектор, только РОСТ будит плато) */
+    private int $lastTaskCount = 0;
 
     private ?TaskRouter $taskRouter = null;
 
@@ -343,13 +345,14 @@ class Hive
             return;
         }
 
-        // Wakeup on new task count
-        static $lastTaskCount = 0;
+        // Wakeup on GROWTH only (CONCERNS A 05.08): consumeTask уменьшает пул
+        // почти каждый тик — `!==` будил плато бесконечно, GAP_SPAWN мёртв.
+        // Рост задач = новая пища; потребление = не пища, плато не будит.
         $currentTaskCount = count($tasks);
-        if ($currentTaskCount !== $lastTaskCount) {
+        if ($currentTaskCount > $this->lastTaskCount) {
             $this->plateau->wakeup();
-            $lastTaskCount = $currentTaskCount;
         }
+        $this->lastTaskCount = $currentTaskCount;
 
         // Route via TaskRouter if population exists, else random
         $this->routedBee = null;

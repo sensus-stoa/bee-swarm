@@ -121,15 +121,13 @@ class TaskGenerator
      */
     public function createComposeTasks(): array
     {
-        // DETERMINISTIC GEN_: save & restore RNG state so array_rand() elsewhere stays random.
-        // Pattern: save entropy token → seed deterministically → restore entropy token.
-        // Without this, downstream array_rand() becomes deterministic (1 law instead of 450).
-        $savedSeed = mt_rand();          // capture one entropy token
-        srand(42);                       // deterministic GEN_ generation
+        // RngIsolation — детерминизм GEN_ с восстановлением энтропии
+        // (E1.3-fix: попадает под assertClean + pre-commit grep-запрет)
+        $guard = \BeeSwarm\Infra\RngIsolation::deterministicSeed(42);
         $g = new \BeeSwarm\Core\Grammar();
         $grammarOps = $g->all();
         if (count($grammarOps) < 2) {
-            srand($savedSeed);           // RESTORE before early return
+            $guard->restore();
             return [];
         }
 
@@ -170,7 +168,7 @@ class TaskGenerator
             }
         }
 
-        srand($savedSeed);         // RESTORE: feed entropy token back
+        $guard->restore();
         return $tasks;
     }
 }

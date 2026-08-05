@@ -665,7 +665,7 @@ class Hive
             return $this->filterInsufficient($generator->generate($this->foragedTasksGlobal, $crossTasks));
         }
 
-        // Save & restore RNG — srand(42) for GEN_ must not poison array_rand()
+        // Save & restore RNG — детерминизм GEN_ не должен портить array_rand()
         $rngGuard = \BeeSwarm\Infra\RngIsolation::deterministicSeed(42);
         $g = new Grammar();
         $grammarOps = $g->all();

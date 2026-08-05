@@ -15,6 +15,10 @@ class AtomProvider
      */
     private static function applyToRow(string $atom, int $nFeat, array $row): ?float
     {
+        // Guard: пустые ряды → null, без Warning (millions in logs, ноутбук 05.08)
+        if (! isset($row[0])) {
+            return null;
+        }
         if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {
             return AtomRegistry::apply($atom, (float) $row[0], (float) $row[1]);
         }

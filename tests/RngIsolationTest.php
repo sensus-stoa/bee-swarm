@@ -82,4 +82,20 @@ class RngIsolationTest extends TestCase
         // Cleanup — в реальном тесте это делает tearDown
         $guard->restore();
     }
+
+    /**
+     * E1.3-fix: createComposeTasks() использует RngIsolation
+     * (раньше был ручной захват/восстановление seed).
+     * Проверяем что после вызова RNG чист.
+     */
+    public function testCreateComposeTasksKeepsRngClean(): void
+    {
+        $tg = new \BeeSwarm\Hive\TaskGenerator();
+        $tg->createComposeTasks();
+
+        $this->assertFalse(
+            RngIsolation::hasUnrestoredGuards(),
+            'createComposeTasks() must restore RNG after deterministic block'
+        );
+    }
 }

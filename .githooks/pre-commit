@@ -48,8 +48,12 @@ fi
 echo -e "${GREEN}[GATE 2] Syntax OK${NC}"
 
 # ── GATE 2bis: srand( без RngIsolation ──────────────
+# 05.08: tests/ и scripts/ исключены — детерминизм тестов и демо = фича
+# (mt_srand в фикстурах), бан только для src/ (прод-код улея).
 SRAND_FILES=$(git diff --cached --name-only 2>/dev/null \
     | grep -v '^.githooks/' \
+    | grep -v '^tests/' \
+    | grep -v '^scripts/' \
     | xargs grep -l 'srand(' 2>/dev/null || true)
 if [ -n "$SRAND_FILES" ]; then
     # Исключаем RngIsolation.php и строки-комментарии

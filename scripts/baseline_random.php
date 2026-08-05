@@ -65,6 +65,10 @@ function randomSearch(array $X, array $y, Grammar $g, int $budget): int
     $found = 0;
     $n = count($y);
     $nFeat = count($X[0] ?? []);
+    // Guard (CONCERNS 05.08): пустой датасет → mt_rand(0,-1) ValueError
+    if ($nFeat < 1 || $n < 2) {
+        return 0;
+    }
     $ops = $g->all();
 
     for ($eval = 0; $eval < $budget; $eval++) {
@@ -183,9 +187,15 @@ foreach ($datasets as $kind) {
     $sysStr = $sys ? "{$sys[0]} (CV={$sys[1]})" : "none";
     $verdict = '—';
     if ($kind === 'NOISE') {
-        $verdict = $randomHits === 0 ? 'random OK' : 'random FAIL (noise)';
+        $verdict = ($randomHits === 0 && $sys === null) ? 'both OK (noise)' : 'FAIL (noise)';
+    } elseif ($sys && $randomHits > 0) {
+        $verdict = 'both find';
+    } elseif ($sys && $randomHits === 0) {
+        $verdict = 'SYSTEMATIC ONLY';
+    } elseif (! $sys && $randomHits > 0) {
+        $verdict = 'random only!';
     } else {
-        $verdict = $sys ? 'both find' : 'random only!';
+        $verdict = 'none';
     }
 
     printf("%-8s | %-18s | %-18s | %s\n", $kind, $randomHits, $sysStr, $verdict);

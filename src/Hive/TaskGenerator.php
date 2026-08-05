@@ -12,7 +12,7 @@ namespace BeeSwarm\Hive;
 class TaskGenerator
 {
     /** S2.7: Maximum cross-pair tasks from generator (bounds O(N²) memory). */
-    private int $maxCrossPair = 0;  // E1-FIX: 0 пока нет полезных foraged_txt_ атомов
+    private int $maxCrossPair = 200;  // cross-pairing включён с variance-фильтром (05.08)
 
     /**
      * Сгенерировать задачи: базовые (TaskManager) + cross-pair + foraged.

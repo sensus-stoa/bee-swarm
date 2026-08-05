@@ -23,6 +23,15 @@ class TextAtomCrossPairer
      */
     public static function crossPair(array $atoms, string $domain): \Generator
     {
+        // Filter out constant atoms (variance≈0 — no signal for law discovery)
+        $atoms = array_filter($atoms, function (array $values): bool {
+            if (count($values) < 2) return false;
+            $mean = array_sum($values) / count($values);
+            $variance = 0.0;
+            foreach ($values as $v) { $variance += ($v - $mean) ** 2; }
+            return $variance > 0.0001;
+        });
+
         // Нужно минимум 3 точки с ≥2 разными атомами
         if (count($atoms) < 2) {
             return;

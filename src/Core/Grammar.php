@@ -200,6 +200,18 @@ class Grammar
         if ($op === 'inverse') {
             return $a != 0 ? 1.0 / $a : null;
         }
+        // inv (alias for inverse)
+        if ($op === 'inv') {
+            return $a != 0 ? 1.0 / $a : null;
+        }
+        // sqrt
+        if ($op === 'sqrt') {
+            return $a >= 0 ? sqrt($a) : null;
+        }
+        // neg (unary negation)
+        if ($op === 'neg') {
+            return -$a;
+        }
         return null;
     }
 

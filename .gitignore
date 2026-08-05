@@ -6,3 +6,12 @@ data/swarm.db-wal
 logs/
 .phpunit.result.cache
 .phpunit.cache/
+
+# Datasets — не хранить в git (150MB+)
+*.csv
+*.xlsx
+*.xls
+*.zip
+*.data
+*.data-original
+

@@ -142,7 +142,11 @@ class StreamingAccumulator
                                     if (! $allNum) {
                                         continue;
                                     }
-                                    $pat = 'num_' . md5($sname . count($row));
+                                    // E1-FIX 05.08 (FILE-COLLISION): имена колонок в паттерне —
+                                    // файлы с одинаковым числом колонок, но разной семантикой
+                                    // (little: lambda,W,L vs amdahl: p,n,speedup) НЕ смешиваются.
+                                    // Пустые имена (файлы без заголовков) — тот же паттерн, объединение сохраняется.
+                                    $pat = 'num_' . md5($sname . count($row) . '|' . $colLabels);
                                     $stmt->execute([$pat, json_encode($row), 'foraged', $path, $colLabels, $contentSample]);
                                 }
                             }

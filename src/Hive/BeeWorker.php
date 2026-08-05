@@ -86,7 +86,8 @@ class BeeWorker
             'grammar' => $this->bee->grammar(),
         ];
 
-        if ($found && $cv <= 0.01) {
+        // 0.15 — единый порог (05.08, CONCERNS B: рассинхрон с Search::find/DiscoveryEngine)
+        if ($found && $cv <= 0.15) {
             $result['discovery'] = ['formula' => $formula, 'cv' => $cv];
             $this->discoveries++;
             $this->bee->rewardDiscovery();

@@ -38,7 +38,7 @@ class DiscoveryEngine
         // 1. Generative search
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
-            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio);
+            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio, $cvThreshold);
             $bestCv = min($bestCv, $sCv);
             $searchCv = $sCv;
             if ($sFound) {

@@ -625,7 +625,12 @@ class Hive
 
         $cvFmt = number_format($d['cv'], 4);
         $srcHint = isset($task['source_path']) ? ' src=' . basename($task['source_path']) : '';
-        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}");
+        $colHint = '';
+        if (! empty($task['col_labels']) && count($task['col_labels']) >= 2) {
+            $labels = $task['col_labels'];
+            $colHint = ' [' . ($labels[0] ?? '?') . '→' . ($labels[count($labels)-1] ?? '?') . ']';
+        }
+        $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}{$colHint}");
     }
 
     /**

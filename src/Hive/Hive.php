@@ -602,7 +602,15 @@ class Hive
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
     {
         $result = $this->recordKeeper->record($d, $task, $domain);
-        if (! $result['inserted']) { $this->log("DUPLICATE: {$d['atom']} [{$domain}]"); return; }
+        if (! $result['inserted']) {
+            // Rate-limit: каждый атом логируется как дубликат только один раз за сессию
+            static $duplicateLogged = [];
+            if (! isset($duplicateLogged[$d['atom']])) {
+                $duplicateLogged[$d['atom']] = true;
+                $this->log("DUPLICATE: {$d['atom']} [{$domain}]");
+            }
+            return;
+        }
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);

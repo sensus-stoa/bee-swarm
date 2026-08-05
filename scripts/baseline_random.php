@@ -106,6 +106,66 @@ function systematicSearch(array $X, array $y, Grammar $g): ?array
 $datasets = ['ADD', 'MUL', 'XOR', 'NOISE'];
 $budget = 2000; // evaluations
 
+// Реальные данные: metrics.jsonl (154 строки)
+$real = loadRealMetrics('~/ninjacat/Documents/the_lair/ExoCortex/Journal/global/metrics.jsonl');
+
+/**
+ * Загрузить метрики: [date, sleep, energy, stress, anxiety, discipline, gi, dq, intact]
+ */
+function loadRealMetrics(string $path): array
+{
+    $rows = [];
+    foreach (file($path) as $line) {
+        $m = json_decode(trim($line), true);
+        if (! $m || ! isset($m['sleep']) || ! isset($m['intact'])) continue;
+        $rows[] = [
+            (float) $m['sleep'], (float) $m['energy'], (float) $m['stress'],
+            (float) $m['anxiety'], (float) $m['discipline'], (float) $m['gi'],
+            (float) $m['dq'], (float) $m['intact'],
+        ];
+    }
+    // X = первые 7 колонок, y = intact (целевая)
+    $X = array_map(fn ($r) => array_slice($r, 0, 7), $rows);
+    $y = array_column($rows, 7);
+    return [$X, $y];
+}
+
+/**
+ * Wine: 12 features → alcohol (col 1)
+ */
+function loadWine(string $path): array
+{
+    $X = []; $y = [];
+    if (! file_exists($path)) return [$X, $y];
+    foreach (file($path) as $line) {
+        $parts = explode(',', trim($line));
+        if (count($parts) < 14) continue;
+        $y[] = (float) $parts[1];
+        $feat = [];
+        for ($i = 2; $i < 14; $i++) $feat[] = (float) $parts[$i];
+        $X[] = $feat;
+    }
+    return [$X, $y];
+}
+
+/**
+ * AutoMpg: displacement, horsepower, weight → mpg
+ */
+function loadAutoMpg(string $path): array
+{
+    $X = []; $y = [];
+    if (! file_exists($path)) return [$X, $y];
+    foreach (file($path) as $line) {
+        $parts = preg_split('/\s+/', trim($line), 9);
+        if (count($parts) < 8) continue;
+        $hp = (float) $parts[3];
+        if ($hp === 0.0) continue;
+        $y[] = (float) $parts[0];
+        $X[] = [(float) $parts[2], $hp, (float) $parts[4]];
+    }
+    return [$X, $y];
+}
+
 echo "BASELINE: random search vs systematic Search::find\n";
 echo "Budget: {$budget} evaluations per dataset\n";
 echo str_repeat('-', 72) . "\n";
@@ -130,6 +190,31 @@ foreach ($datasets as $kind) {
 
     printf("%-8s | %-18s | %-18s | %s\n", $kind, $randomHits, $sysStr, $verdict);
 }
+
+// Реальные метрики: 7 колонок → intact
+[$realX, $realY] = $real;
+$g = Grammar::fromOps(Grammar::baseOpNames());
+$realRandom = randomSearch($realX, $realY, $g, $budget);
+$realSys = systematicSearch($realX, $realY, $g);
+$sysStr = $realSys ? "{$realSys[0]} (CV={$realSys[1]})" : "none";
+printf("%-8s | %-18s | %-18s | %s\n", "REAL", $realRandom, $sysStr,
+    $realSys ? 'systematic found' : 'none found');
+
+// Wine: 12 features → alcohol (col 1)
+[$wineX, $wineY] = loadWine('~/.bee_swarm/wine.data');
+$wineRandom = randomSearch($wineX, $wineY, $g, $budget);
+$wineSys = systematicSearch($wineX, $wineY, $g);
+$sysStr = $wineSys ? "{$wineSys[0]} (CV=" . round($wineSys[1], 4) . ")" : "none";
+printf("%-8s | %-18s | %-18s | %s\n", "WINE", $wineRandom, $sysStr,
+    $wineSys ? 'systematic found' : 'none found');
+
+// AutoMpg: disp, hp, weight → mpg
+[$mpgX, $mpgY] = loadAutoMpg('~/.bee_swarm/auto-mpg.data');
+$mpgRandom = randomSearch($mpgX, $mpgY, $g, $budget);
+$mpgSys = systematicSearch($mpgX, $mpgY, $g);
+$sysStr = $mpgSys ? "{$mpgSys[0]} (CV=" . round($mpgSys[1], 4) . ")" : "none";
+printf("%-8s | %-18s | %-18s | %s\n", "MPG", $mpgRandom, $sysStr,
+    $mpgSys ? 'systematic found' : 'none found');
 
 echo str_repeat('-', 72) . "\n";
 echo "Вывод: если random находит законы на NOISE — null-калибровка обязательна.\n";

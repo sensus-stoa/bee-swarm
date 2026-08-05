@@ -11,7 +11,8 @@ class Search
         $n = count($vec);
         $exact = true;
         for ($i = 0; $i < $n; $i++) {
-            if (abs($vec[$i] - $y[$i]) > 0.0001) {
+            // NaN/INF — артефакт, не закон (бейзлайн 05.08: R× переполнение)
+            if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                 $exact = false;
                 break;
             }
@@ -237,7 +238,8 @@ class Search
         foreach ($feats as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
-                if (abs($vec[$i] - $y[$i]) > 0.0001) {
+                // NaN/INF не могут быть законом (артефакт переполнения R×)
+                if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }
@@ -252,7 +254,8 @@ class Search
         foreach ($exprs as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
-                if (abs($vec[$i] - $y[$i]) > 0.0001) {
+                // NaN/INF не могут быть законом (артефакт переполнения R×)
+                if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }

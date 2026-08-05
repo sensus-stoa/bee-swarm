@@ -293,7 +293,31 @@ class Hive
         ) {
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
-                $this->foragedTasksGlobal = array_merge($this->foragedTasksGlobal, $foraged);
+                // Дедуп: не добавляем задачи, чьи имена уже в пуле
+                $existingNames = [];
+                foreach ($this->foragedTasksGlobal as $t) {
+                    $existingNames[$t['name'] ?? ''] = true;
+                }
+                $newCount = 0;
+                foreach ($foraged as $t) {
+                    $name = $t['name'] ?? '';
+                    if (isset($existingNames[$name])) {
+                        continue;
+                    }
+                    $existingNames[$name] = true;
+                    $this->foragedTasksGlobal[] = $t;
+                    $newCount++;
+                }
+                // Потолок: удерживаем последние 8000 задач (предотвращает OOM)
+                if (count($this->foragedTasksGlobal) > 8000) {
+                    $this->foragedTasksGlobal = array_slice(
+                        $this->foragedTasksGlobal, -8000
+                    );
+                }
+                if ($newCount > 0) {
+                    $this->log("FORAGER: {$newCount} new tasks, pool="
+                        . count($this->foragedTasksGlobal));
+                }
                 if ($this->forager->hasNewContent()) {
                     $hasNewForagerData = true;
                     $this->log('FORAGER_NEW_TASK: ' . $this->forager->getNewTaskCount()
@@ -331,6 +355,8 @@ class Hive
         // Route via TaskRouter if population exists, else random
         $this->routedBee = null;
         $task = $this->weightedPick($tasks);
+        // Потребление: удалить выбранную задачу из пула
+        $this->consumeTask($task['name'] ?? '');
         if ($this->taskRouter && ! empty($this->bees)) {
             $this->routedBee = $this->taskRouter->route($task);
         }
@@ -463,6 +489,11 @@ class Hive
                             continue;
                         }
                         $composed = "{$textAtom}({$label})";
+                        // E1.3-fix: если атом уже в grammar_ops — это не новое
+                        // открытие. Повторные foundAny убивали plateau.
+                        if (AtomRegistry::isDiscoveredTextAtom($composed)) {
+                            continue;
+                        }
                         AtomRegistry::addDiscoveredTextAtom($textAtom, $label);
                         $this->log("🧬 {$composed} (TEXT ATOM)");
                         $this->lastAnswerFormula = $composed;
@@ -829,6 +860,29 @@ class Hive
     public function getEpsilon(string $fp): ?float
     {
         return $this->epsilonCache[$fp] ?? null;
+    }
+
+    /**
+     * Потребление задачи из foragedTasksGlobal по имени.
+     * Предотвращает бесконечный рост пула (OOM: 325k задач за ночь).
+     */
+    private function consumeTask(string $name): void
+    {
+        if ($name === '') {
+            return;
+        }
+        foreach ($this->foragedTasksGlobal as $i => $t) {
+            if (($t['name'] ?? '') === $name) {
+                unset($this->foragedTasksGlobal[$i]);
+                // Компактируем массив каждые 100 удалений
+                static $removeCount = 0;
+                $removeCount++;
+                if ($removeCount % 100 === 0) {
+                    $this->foragedTasksGlobal = array_values($this->foragedTasksGlobal);
+                }
+                return;
+            }
+        }
     }
 
     /**

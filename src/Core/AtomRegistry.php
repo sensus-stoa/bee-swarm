@@ -162,6 +162,16 @@ class AtomRegistry
     }
 
     /**
+     * E1.3-fix: проверяет, зарегистрирован ли text-атом ранее.
+     * Используется в Hive::doTick чтобы повторные вхождения слова
+     * не сбрасывали plateau (foundAny). Атом в БД ≠ новое открытие.
+     */
+    public static function isDiscoveredTextAtom(string $name): bool
+    {
+        return isset(self::$discoveredAtoms[$name]);
+    }
+
+    /**
      * E1.3-fix: валидация label для text-атомов.
      * Отсекает мусор: числа, римские цифры, короткие (<3), небуквенные,
      * стоп-слова. Label должен быть кандидатом в метрику.

@@ -162,6 +162,16 @@ class Database
             invented_at TEXT DEFAULT (datetime('now')),
             definition TEXT
         )");
+        // B1-DBDEDUP (05.08): дедуп существующих — keep first по id
+        try {
+            $db->exec(
+                'DELETE FROM grammar_ops WHERE id NOT IN (SELECT MIN(id) FROM grammar_ops GROUP BY name)'
+            );
+            // Единый путь UNIQUE — явный индекс (старая и новая БД одинаковы)
+            $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS uq_grammar_ops_name ON grammar_ops(name)');
+        } catch (\PDOException $e) {
+            // table empty or missing — ok
+        }
         // Все таблицы создаются здесь — не в модулях.
         // Это гарантирует, что тестовая БД и production БД идентичны.
         $db->exec("CREATE TABLE IF NOT EXISTS knowledge_graph (

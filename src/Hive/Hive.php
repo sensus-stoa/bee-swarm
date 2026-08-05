@@ -322,7 +322,6 @@ class Hive
                     $hasNewForagerData = true;
                     $this->log('FORAGER_NEW_TASK: ' . $this->forager->getNewTaskCount()
                         . ' tasks, ' . $this->forager->getNewDomainCount() . ' domains');
-                    $this->plateau->wakeup();
                     $this->forager->markContentConsumed();
                 }
             }

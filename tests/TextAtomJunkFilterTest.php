@@ -127,4 +127,25 @@ class TextAtomJunkFilterTest extends TestCase
         )->fetchColumn();
         $this->assertSame(1, $count, 'valid atom must be persisted');
     }
+
+    /**
+     * E1.3-fix: новизна — атом, уже существующий в grammar_ops,
+     * НЕ должен регистрироваться как открытие повторно.
+     */
+    public function testIsDiscoveredTextAtomReturnsFalseForNew(): void
+    {
+        $this->assertFalse(
+            AtomRegistry::isDiscoveredTextAtom('match_label(NovelMetric)'),
+            'Brand-new atom must not be discovered yet'
+        );
+    }
+
+    public function testIsDiscoveredTextAtomReturnsTrueAfterAdd(): void
+    {
+        AtomRegistry::addDiscoveredTextAtom('match_label', 'TestMetric');
+        $this->assertTrue(
+            AtomRegistry::isDiscoveredTextAtom('match_label(TestMetric)'),
+            'Atom must be recognised as discovered after add'
+        );
+    }
 }

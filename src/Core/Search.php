@@ -36,7 +36,7 @@ class Search
         return sqrt($variance / $n) / abs($mean);
     }
 
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0): array
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15): array
     {
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
@@ -275,7 +275,7 @@ class Search
             }
         }
 
-                $found = $bestCv < 0.15 && isset($bestName);
+                $found = $bestCv < $cvTrainMax && isset($bestName);
         $cv_train = $found ? $bestCv : 9.99;
         $cv_test = $cv_train;
         

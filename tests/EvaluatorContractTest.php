@@ -96,4 +96,30 @@ class EvaluatorContractTest extends TestCase
         $this->assertNull($grammar2->apply(-1.0, 0.0, 'sqrt'));
         $this->assertNull(\BeeSwarm\Core\AtomRegistry::apply('sqrt', -1.0));
     }
+
+    /**
+     * CONCERNS кластера B (05.08): inverse/log2/parity знал Grammar,
+     * AtomRegistry — нет. Асимметрия: Search находил закон, heldout отвергал.
+     */
+    public function testUnarySymmetryAfterInsert(): void
+    {
+        $grammar = new Grammar();
+        foreach (['inverse', 'log2', 'parity'] as $op) {
+            $grammar->add($op, 'test');
+        }
+        $grammar2 = new Grammar();
+
+        $cases = [
+            ['inverse', 4.0, 0.25],
+            ['log2', 8.0, 3.0],
+            ['parity', 4.0, 1.0],
+            ['parity', 3.0, -1.0],
+        ];
+        foreach ($cases as [$op, $arg, $expected]) {
+            $gResult = $grammar2->apply($arg, 0.0, $op);
+            $aResult = \BeeSwarm\Core\AtomRegistry::apply($op, $arg);
+            $this->assertEqualsWithDelta($expected, $gResult, 0.0001, "Grammar $op($arg)");
+            $this->assertEqualsWithDelta($expected, $aResult, 0.0001, "AtomRegistry $op($arg)");
+        }
+    }
 }

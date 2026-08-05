@@ -55,17 +55,26 @@ class ForagerAllPairsExtractionTest extends TestCase
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
 
-        // C(4,2) = 6 пар
-        $this->assertCount(6, $tasks, '4 columns must produce all 6 pairs');
+        // MULTI-FEATURE (05.08): C(4,2)=6 пар + C(4,2)×2=12 троек = 18 задач
+        $this->assertCount(18, $tasks, '4 columns must produce 6 pairs + 12 triples');
 
-        // Каждая задача должна иметь nFeat=1 (2 колонки: feature + target)
-        foreach ($tasks as $task) {
-            $this->assertCount(2, $task['data'][0], 'Each task must be a pair [feature, target]');
+        // Пары: имя без '->', 2 колонки [feature, target]
+        $pairs = array_values(array_filter($tasks, fn (array $t): bool => ! str_contains($t['name'], '->')));
+        $this->assertCount(6, $pairs, 'must have exactly 6 pairs');
+        foreach ($pairs as $task) {
+            $this->assertCount(2, $task['data'][0], 'Pair must be [feature, target]');
         }
 
-        // Все пары должны быть уникальны по имени
+        // Тройки: имя с '->', 3 колонки [c0, c1, target]
+        $triples = array_values(array_filter($tasks, fn (array $t): bool => str_contains($t['name'], '->')));
+        $this->assertCount(12, $triples, 'must have exactly 12 triples');
+        foreach ($triples as $task) {
+            $this->assertCount(3, $task['data'][0], 'Triple must be [c0, c1, target]');
+        }
+
+        // Все задачи уникальны по имени
         $names = array_column($tasks, 'name');
-        $this->assertCount(6, array_unique($names), 'All pair names must be unique');
+        $this->assertCount(18, array_unique($names), 'All task names must be unique');
     }
 
     /**

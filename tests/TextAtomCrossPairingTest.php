@@ -60,9 +60,10 @@ class TextAtomCrossPairingTest extends TestCase
     /** Таски должны иметь t ≥ tMin=10 для прохождения sufficiency */
     public function testTasksHaveSufficientData(): void
     {
+        // Значения с variance > 0 (константы отбрасываются фильтром)
         $atoms = [
-            'GI' => array_fill(0, 15, 7.0),
-            'DQ' => array_fill(0, 15, 6.0),
+            'GI' => [7.2, 6.8, 7.5, 8.1, 6.5, 7.0, 7.3, 6.9, 7.8, 7.1, 6.7, 7.4, 8.0, 6.6, 7.6],
+            'DQ' => [6.0, 5.5, 7.0, 5.8, 6.2, 6.5, 5.9, 6.1, 6.8, 5.7, 6.3, 6.4, 5.6, 6.9, 6.0],
         ];
 
         $tasks = iterator_to_array(

@@ -126,6 +126,10 @@ class Grammar
             '×' => $a * $b,
             '−' => $a - $b,
             '/' => ($b != 0) ? $a / $b : null,
+            'add' => $a + $b,
+            'sub' => $a - $b,
+            'mul' => $a * $b,
+            'div' => ($b != 0) ? $a / $b : null,
             default => $this->applyCustom($a, $b, $op),
         };
     }

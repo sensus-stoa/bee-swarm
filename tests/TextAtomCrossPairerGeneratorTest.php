@@ -81,10 +81,14 @@ class TextAtomCrossPairerGeneratorTest extends TestCase
      */
     public function testCrossPairGeneratorDoesNotPreallocate(): void
     {
-        // Создаём 200 атомов × 100 значений = симуляция большого набора
+        // Создаём 200 атомов × 100 значений с variance (не константы)
         $atoms = [];
         for ($i = 0; $i < 200; $i++) {
-            $atoms["atom_{$i}"] = array_fill(0, 100, (float) $i);
+            $vals = [];
+            for ($j = 0; $j < 100; $j++) {
+                $vals[] = (float) ($i + $j * 0.1);  // variance > 0
+            }
+            $atoms["atom_{$i}"] = $vals;
         }
 
         $memBefore = memory_get_usage(true);
@@ -122,10 +126,6 @@ class TextAtomCrossPairerGeneratorTest extends TestCase
      */
     public function testTaskGeneratorBoundsCrossPairSample(): void
     {
-        $this->markTestSkipped(
-            'MAX_CROSS_PAIR=0 временный костыль; вернуть тест при variance-фиксе (фильтр атомов)'
-        );
-
         $tg = new \BeeSwarm\Hive\TaskGenerator();
 
         // Используем рефлексию чтобы получить MAX_CROSS_PAIR

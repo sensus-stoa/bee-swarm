@@ -6,7 +6,7 @@ namespace BeeSwarm\Core;
 
 class Search
 {
-    public static function cv(array $vec, array $y): float
+    public static function cv(array $vec, array $y, float $shift = 0.0): float
     {
         $n = count($vec);
         $exact = true;
@@ -21,9 +21,12 @@ class Search
             return 0.0;
         }
 
+        // AFFINE-LAWS (ЭКСП-012): при знакопеременной цели y (переход через 0)
+        // ratio = pred/y не определён (деление на 0, знакопеременный CV→∞).
+        // Сдвиг: ratio = (pred−shift)/(y−shift), shift = min(y)−1 → знаменатель > 0.
         $ratio = [];
         for ($i = 0; $i < $n; $i++) {
-            $ratio[] = $vec[$i] / ($y[$i] + 1e-8);
+            $ratio[] = ($vec[$i] - $shift) / ($y[$i] - $shift + 1e-8);
         }
         $mean = array_sum($ratio) / $n;
         if (abs($mean) < 1e-8) {
@@ -248,6 +251,11 @@ class Search
                 return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
         }
+        // AFFINE-LAWS (ЭКСП-012): сдвиг для знакопеременных целей
+        $minY = min($y);
+        $maxY = max($y);
+        $affineShift = ($minY < 0 && $maxY > 0) ? $minY - 1.0 : 0.0;
+
         // Evaluate all expressions — top-K кандидатов (SEARCH-TOP-K, ЭКСП-009):
         // на шуме лучший по train часто R-подгонка (CV_test=9.99), а закон
         // (2-я кандидатка, CV_test=0.004) терялся. Храним K лучших по train,
@@ -275,7 +283,7 @@ class Search
             if ($std < 1e-6) {
                 continue;
             }
-            $cv = self::cv($vec, $y);
+            $cv = self::cv($vec, $y, $affineShift);
             if ($cv < $cvTrainMax) {
                 $plausible[] = ['cv' => $cv, 'name' => $name];
             }
@@ -297,8 +305,9 @@ class Search
                 $bestTestCv = 9.99;
                 $bestTestName = null;
                 $bestTestTrainCv = 9.99;
+                $X_train_cv = array_slice($X, 0, $splitIdx);
                 foreach ($plausible as $cand) {
-                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels);
+                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv);
                     if ($t < $bestTestCv) {
                         $bestTestCv = $t;
                         $bestTestName = $cand['name'];
@@ -308,8 +317,10 @@ class Search
                 if ($bestTestName !== null) {
                     $bestName = $bestTestName;
                     $cv_test = $bestTestCv;
-                    // CONCERNS (deleg_68f5709e): cv_train ПОБЕДИТЕЛЯ, не plausible[0]
+                    // CONCERNS (deleg_68f5709e + deleg_6ee92a50): cv_train
+                    // ПОБЕДИТЕЛЯ — обновлять И $bestCv, И $cv_train
                     $bestCv = $bestTestTrainCv;
+                    $cv_train = $bestTestTrainCv;
                 } else {
                     // CONCERNS (deleg_1ebc06b4): ни один правдоподобный не
                     // прошёл held-out (все R-подгонки/шум) — честный отказ
@@ -340,7 +351,7 @@ class Search
         return 'EMPIRICAL';
     }
 
-    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null): float
+    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null, ?array $X_train = null): float
     {
         $nTest = count($y_test);
         if ($nTest < 2) {
@@ -359,7 +370,13 @@ class Search
             uksort($map, fn (string $a, string $b): int => strlen($b) <=> strlen($a));
             $name = str_replace(array_keys($map), array_values($map), $name);
         }
-        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($name, $X_test);
+        // CONCERNS (deleg_6ee92a50): R-статистики фиксируются по TRAIN
+        // (константы модели), иначе R-подгонка пересчитывает их на тесте и
+        // адаптируется к шуму теста (0.007956 vs 0.008010 — «побеждает»).
+        $stats = $X_train !== null
+            ? \BeeSwarm\Core\ExpressionEvaluator::collectStats($name, $X_train)
+            : [];
+        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($name, $X_test, $stats);
         if ($vec === null || count($vec) !== $nTest) {
             return 9.99;
         }
@@ -368,7 +385,14 @@ class Search
             return 9.99;
         }
 
-        return self::cv($vec, $y_test);
+        // AFFINE-LAWS (CONCERNS deleg_9cf56711): тот же shift, что в train —
+        // иначе знакопеременная цель в held-out даёт ложный отказ (found=false
+        // при testRatio≥0.3, когда ноль попадает в тест)
+        $minY = min($y_test);
+        $maxY = max($y_test);
+        $affineShift = ($minY < 0 && $maxY > 0) ? $minY - 1.0 : 0.0;
+
+        return self::cv($vec, $y_test, $affineShift);
     }
 
     private static function stddev(array $v): float

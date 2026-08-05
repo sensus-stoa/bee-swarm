@@ -96,8 +96,13 @@ class PlateauDetector
         if (! $this->wasPlateau || $this->isPlateau()) {
             return false;
         }
+        // CONCERNS (deleg_294903fa): edge-trigger — сброс ПРИ РЕГИСТРАЦИИ,
+        // иначе в discovery-rich фазе (consecutive<=1) событие фолдится
+        // каждый тик (8 событий на один выход). Однократное срабатывание.
+        $exited = $this->consecutiveNoDiscovery <= 1;
+        $this->wasPlateau = false;
 
-        return $this->consecutiveNoDiscovery <= 1;
+        return $exited;
     }
 
     /**

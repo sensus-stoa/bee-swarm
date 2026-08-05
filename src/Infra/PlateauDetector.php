@@ -21,6 +21,8 @@ class PlateauDetector
 
     private bool $justEntered = false;
 
+    private bool $wasPlateau = false;
+
     private const BASE_SLEEP_US = 200_000;
 
     private const PLATEAU_SLEEP_US = 10_000_000;
@@ -54,6 +56,12 @@ class PlateauDetector
 
         // justEntered: ровно на переходе через порог
         $this->justEntered = ! $wasPlateau && $this->isPlateau();
+        if ($this->isPlateau()) {
+            $this->wasPlateau = true;
+        } elseif ($this->consecutiveNoDiscovery > 1) {
+            // CONCERNS 05.08: wasPlateau липкий — сброс, когда ушли из плато
+            $this->wasPlateau = false;
+        }
     }
 
     public function isPlateau(): bool
@@ -77,6 +85,19 @@ class PlateauDetector
     public function justEnteredPlateau(): bool
     {
         return $this->justEntered;
+    }
+
+    /**
+     * D-ACT (аудит 05.08): true на тике, когда плато завершилось открытием
+     * (было плато, foundDiscovery=true, consecutive сброшен).
+     */
+    public function justExitedPlateau(): bool
+    {
+        if (! $this->wasPlateau || $this->isPlateau()) {
+            return false;
+        }
+
+        return $this->consecutiveNoDiscovery <= 1;
     }
 
     /**

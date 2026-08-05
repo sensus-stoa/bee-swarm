@@ -61,6 +61,11 @@ class Hive
     private int $memoryGuardMb = 256;
     /** D_RATIO телеметрия (аудит 05.08 §2.5.8): интервал тиков, default 500 */
     private int $dRatioInterval = 500;
+    /** D_ACT кольцевой буфер (аудит 05.08): окно, default 500; zero-allocation */
+    private int $dActWindow = 500;
+    private int $dActInterval = 100;
+    private \SplFixedArray $dActBuffer;
+    private int $dActHead = 0;
     /** Последний размер пула задач (wakeup-детектор, только РОСТ будит плато) */
     private int $lastTaskCount = 0;
 
@@ -142,6 +147,57 @@ class Hive
         $this->dRatioInterval = $ticks;
 
         return $this;
+    }
+
+    /**
+     * D_ACT (аудит 05.08): инъекция окна буфера для тестов.
+     */
+    public function setDActivityWindow(int $window): self
+    {
+        $this->dActWindow = $window;
+
+        return $this;
+    }
+
+    /**
+     * D_ACT (аудит 05.08): инъекция интервала лога для тестов.
+     */
+    public function setDActivityInterval(int $ticks): self
+    {
+        $this->dActInterval = $ticks;
+
+        return $this;
+    }
+
+    /**
+     * D_ACT: запись тика в кольцевой буфер (zero-allocation, head-указатель).
+     * Событие = mutation (спавн) | overfit (held-out провал) | plateau_exit.
+     */
+    private function recordDActivity(bool $event): void
+    {
+        if (! isset($this->dActBuffer)) {
+            $this->dActBuffer = new \SplFixedArray($this->dActWindow);
+        } elseif ($this->dActBuffer->getSize() !== $this->dActWindow) {
+            // CONCERNS 05.08: SplFixedArray не resize — пересоздаём при смене окна
+            $this->dActBuffer = new \SplFixedArray($this->dActWindow);
+            $this->dActHead = 0;
+        }
+        $this->dActBuffer[$this->dActHead] = $event ? 1 : 0;
+        $this->dActHead = ($this->dActHead + 1) % $this->dActWindow;
+    }
+
+    /**
+     * D_ACT: лог скользящей доли активных тиков.
+     */
+    private function logDActivity(): void
+    {
+        $events = 0;
+        $n = min($this->dActWindow, $this->tick);
+        for ($i = 0; $i < $n; $i++) {
+            $events += $this->dActBuffer[$i] ?? 0;
+        }
+        $d = $n > 0 ? $events / $n : 0.0;
+        $this->log("D_ACT: win={$this->dActWindow} events={$events} D=" . number_format($d, 3));
     }
 
     /**
@@ -494,6 +550,14 @@ class Hive
             $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
             $this->log("GAP_SPAWN: pop=" . count($this->bees) . " trigger={$trigger}");
             $spawned += $gapSpawned;
+        }
+
+        // D_ACT (аудит 05.08): событие тика = mutation (спавн) | plateau_exit.
+        // EVENT_CONTRADICTION (S1.8) и EVENT_GRAMMAR_DIAGNOSIS — будущие стори.
+        $dActEvent = $spawned > 0 || $this->plateau->justExitedPlateau();
+        $this->recordDActivity($dActEvent);
+        if ($this->dActInterval > 0 && $this->tick % $this->dActInterval === 0) {
+            $this->logDActivity();
         }
 
         if ($spawned > 0) {

@@ -89,6 +89,26 @@ class SpawnManager
     public function trySpawn(array &$bees, array $allOps): int
     {
         $spawned = 0;
+        $aliveCount = 0;
+        foreach ($bees as $bee) {
+            if ($bee->isAlive()) {
+                $aliveCount++;
+            }
+        }
+
+        // AUDIT 05.08 §2.7 SEED_SPAWN: ALL_DEAD → рой обязан воскреснуть.
+        // Раньше trySpawn спавнил только от живых — при всех мёртвых
+        // (kill -9 / энергия ≤ 0) рой умирал навсегда.
+        if ($aliveCount === 0 && ! empty($bees)) {
+            $seedOps = ['+', '×', 'min'];
+            foreach ($seedOps as $op) {
+                $bees[] = new \BeeSwarm\Hive\Bee([$op]);
+                $spawned++;
+                $this->spawnCount++;
+            }
+            return $spawned;
+        }
+
         foreach ($bees as $idx => $bee) {
             if (! $bee->isAlive()) {
                 continue;

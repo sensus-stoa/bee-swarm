@@ -126,32 +126,19 @@ class LawValidator implements ValidatorInterface
         $y_holdout = array_slice($y, $n - $h);
         $nFeat = count($X[0] ?? []);
 
-        $vecTrain = [];
-        foreach ($X_train as $row) {
-            $v = AtomRegistry::apply($formula, (float) $row[0], $nFeat >= 2 ? (float) ($row[1] ?? 0) : 0);
-            if ($v === null || is_nan($v) || is_infinite($v)) {
-                $vecTrain = [];
-                break;
-            }
-            $vecTrain[] = $v;
-        }
-        if (count($vecTrain) !== count($y_train)) {
+        // SEARCH-TOP-K (05.08): выражения через ExpressionEvaluator
+        // (AtomRegistry::apply понимал только атомы — held-out был мёртв
+        // для выражений, всё не-атомарное давало null → 9.99).
+        $vecTrain = self::applyFormula($formula, $X_train);
+        if ($vecTrain === null || count($vecTrain) !== count($y_train)) {
             return null;
         }
         $cvTrain = count($y_train) < 2
             ? (abs($vecTrain[0] - $y_train[0]) > self::CV_EXACT_TOLERANCE ? 9.99 : 0.0)
             : CvCalculator::compute($vecTrain, $y_train);
 
-        $vecHoldout = [];
-        foreach ($X_holdout as $row) {
-            $v = AtomRegistry::apply($formula, (float) $row[0], $nFeat >= 2 ? (float) ($row[1] ?? 0) : 0);
-            if ($v === null || is_nan($v) || is_infinite($v)) {
-                $vecHoldout = [];
-                break;
-            }
-            $vecHoldout[] = $v;
-        }
-        if (count($vecHoldout) !== count($y_holdout)) {
+        $vecHoldout = self::applyFormula($formula, $X_holdout);
+        if ($vecHoldout === null || count($vecHoldout) !== count($y_holdout)) {
             return null;
         }
         $cvHoldout = count($y_holdout) < 2
@@ -170,5 +157,28 @@ class LawValidator implements ValidatorInterface
             'cv_holdout' => $cvHoldout,
             'cv_mean_holdout' => $cvMeanHoldout,
         ];
+    }
+
+    /**
+     * SEARCH-TOP-K (05.08): выражение через ExpressionEvaluator,
+     * fallback — атом через AtomRegistry::apply (add/mul/... — имена операций).
+     */
+    private static function applyFormula(string $formula, array $X): ?array
+    {
+        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($formula, $X);
+        if ($vec !== null) {
+            return $vec;
+        }
+        $nFeat = count($X[0] ?? []);
+        $vec = [];
+        foreach ($X as $row) {
+            $v = AtomRegistry::apply($formula, (float) $row[0], $nFeat >= 2 ? (float) ($row[1] ?? 0) : 0);
+            if ($v === null || is_nan($v) || is_infinite($v)) {
+                return null;
+            }
+            $vec[] = $v;
+        }
+
+        return $vec;
     }
 }

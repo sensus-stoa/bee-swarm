@@ -245,6 +245,41 @@ class StreamingAccumulator
                         }
                     }
                 }
+                // MULTI-FEATURE-TASKS (05.08, ЭКСП-006): тройки колонок
+                // X=[c0,c1], y=c2 → nFeat=2. Двухфичевые законы (Литтла L=λ×W)
+                // неоткрываемы из пар. Ограничение: min(nCols,4), как у пар.
+                for ($c1 = 0; $c1 < $maxCols; $c1++) {
+                    for ($c2 = $c1 + 1; $c2 < $maxCols; $c2++) {
+                        for ($c3 = 0; $c3 < $maxCols; $c3++) {
+                            if ($c3 === $c1 || $c3 === $c2) {
+                                continue;
+                            }
+                            $tripleData = [];
+                            foreach ($data as $row) {
+                                if (isset($row[$c1], $row[$c2], $row[$c3])
+                                    && is_numeric($row[$c1]) && is_numeric($row[$c2]) && is_numeric($row[$c3])) {
+                                    $tripleData[] = [(float) $row[$c1], (float) $row[$c2], (float) $row[$c3]];
+                                }
+                            }
+                            if (count($tripleData) >= $tMin) {
+                                $labelTriple = [
+                                    $colLabels[$c1] ?? "col{$c1}",
+                                    $colLabels[$c2] ?? "col{$c2}",
+                                    $colLabels[$c3] ?? "col{$c3}",
+                                ];
+                                $tasks[] = [
+                                    'name' => 'foraged_' . substr($r['pattern'], 0, 12)
+                                        . "_c{$c1}c{$c2}->c{$c3}",
+                                    'data' => $tripleData,
+                                    'domain' => $r['domain'],
+                                    'content' => $contentSample,
+                                    'source_path' => $sourcePath,
+                                    'col_labels' => $labelTriple,
+                                ];
+                            }
+                        }
+                    }
+                }
             } else {
                 // Текстовые/семантические задачи — исходный формат
                 $tasks[] = [

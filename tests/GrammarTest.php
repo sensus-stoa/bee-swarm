@@ -248,15 +248,14 @@ class GrammarTest extends TestCase
         $this->g->add('mid_op', 'test_capped');
         $this->g->add('low_op', 'test_capped');
 
-        // Частота = количество использований в законах
-        for ($i = 0; $i < 5; $i++) {
-            $db->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                ->execute(["t{$i}", 'top_op', 0.0, 'test']);
-        }
-        for ($i = 0; $i < 2; $i++) {
-            $db->prepare('INSERT OR IGNORE INTO laws (name,formula,cv,domain) VALUES (?,?,?,?)')
-                ->execute(["m{$i}", 'mid_op', 0.0, 'test']);
-        }
+        // Ф1: UNIQUE(formula,domain) — частота = usage_count (не число записей)
+        $db->exec("DELETE FROM laws WHERE formula IN ('top_op','mid_op','low_op') AND domain='test'");
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,5)')
+            ->execute(['top', 'top_op', 0.0, 'test']);
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,2)')
+            ->execute(['mid', 'mid_op', 0.0, 'test']);
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,1)')
+            ->execute(['low', 'low_op', 0.0, 'test']);
 
         $capped = $this->g->capped(3);
         $this->assertLessThanOrEqual(3 + count(Grammar::BASE_OPS), count($capped));

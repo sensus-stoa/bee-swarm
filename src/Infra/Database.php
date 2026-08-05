@@ -23,7 +23,8 @@ class Database
         col_labels TEXT DEFAULT '[]',
         law_class TEXT DEFAULT 'EMPIRICAL',
         found_at TEXT DEFAULT (datetime('now')),
-        UNIQUE(name, formula, domain)
+        usage_count INTEGER DEFAULT 1,
+        UNIQUE(formula, domain)
     )";
 
     public static function setPath(string $path): void
@@ -103,6 +104,56 @@ class Database
             }
         } catch (\PDOException $e) {
             // Migration already done or table doesn't exist — ok
+        }
+        // FORMAL-LAYER Ф1 (05.08): бэкфилл — нормализовать существующие формулы
+        try {
+            $rows = $db->query('SELECT id, formula FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($rows as $row) {
+                if ($row['formula'] === null || $row['formula'] === '') {
+                    continue;
+                }
+                $canon = \BeeSwarm\Core\ExpressionNormalizer::normalize($row['formula']);
+                if ($canon !== $row['formula']) {
+                    $stmt = $db->prepare('UPDATE laws SET formula = ? WHERE id = ?');
+                    $stmt->execute([$canon, $row['id']]);
+                }
+            }
+        } catch (\PDOException $e) {
+            // laws table doesn't exist yet — ok
+        }
+        // FORMAL-LAYER Ф1 (05.08): UNIQUE (name,formula,domain) → (formula,domain).
+        // Формула — сущность дедупликации; name задачи вторичен (CONCERNS Ф1).
+        try {
+            $cols = $db->query('PRAGMA index_list(laws)')->fetchAll(\PDO::FETCH_ASSOC);
+            $hasComposite = false;
+            foreach ($cols as $col) {
+                if (str_contains($col['name'] ?? '', 'sqlite_autoindex_laws') && ($col['unique'] ?? 0)) {
+                    $info = $db->query("PRAGMA index_info({$col['name']})")->fetchAll(\PDO::FETCH_ASSOC);
+                    $indexedCols = array_column($info, 'name');
+                    if ($indexedCols === ['name', 'formula', 'domain']) {
+                        $hasComposite = true;
+                        break;
+                    }
+                }
+            }
+            if ($hasComposite) {
+                $db->exec(sprintf(self::LAWS_DDL, 'laws_migrated2'));
+                $db->exec(
+                    "INSERT OR IGNORE INTO laws_migrated2 (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at)
+                     SELECT name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at FROM laws"
+                );
+                $db->exec('DROP TABLE laws');
+                $db->exec('ALTER TABLE laws_migrated2 RENAME TO laws');
+            }
+        } catch (\PDOException $e) {
+            // already migrated or table missing — ok
+        }
+        // Ф1: usage_count для существующих БД (добавлен в DDL, но старые таблицы
+        // пересоздаются только при миграции UNIQUE — здесь ALTER-фолбэк)
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN usage_count INTEGER DEFAULT 1');
+        } catch (\PDOException $e) {
+            // column already exists — ok
         }
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

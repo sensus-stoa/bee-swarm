@@ -51,7 +51,7 @@ class ExpressionNormalizer
      * @param array<string, string> $map
      * @return array
      */
-    private static function restoreAtoms(array $node, array $map): array
+    public static function restoreAtoms(array $node, array $map): array
     {
         if (isset($node['atom'])) {
             if (isset($map[$node['atom']])) {
@@ -64,7 +64,10 @@ class ExpressionNormalizer
             return $node;
         }
         $node['l'] = self::restoreAtoms($node['l'], $map);
-        $node['r'] = self::restoreAtoms($node['r'], $map);
+        // Унарные (neg, inv, sqrt...) имеют r=null — не рекурсировать
+        if ($node['r'] !== null) {
+            $node['r'] = self::restoreAtoms($node['r'], $map);
+        }
         return $node;
     }
 
@@ -81,7 +84,7 @@ class ExpressionNormalizer
      *
      * @return array{0: string, 1: array<string, string>} [protected, map placeholder=>original]
      */
-    private static function protect(string $expr): array
+    public static function protect(string $expr): array
     {
         $map = [];
         $n = 0;
@@ -108,7 +111,7 @@ class ExpressionNormalizer
     /**
      * @return array{op: string, l: array, r: array}|array{atom: string}|null
      */
-    private static function parse(string $expr): ?array
+    public static function parse(string $expr): ?array
     {
         $expr = trim($expr);
         if ($expr === '') {
@@ -184,8 +187,10 @@ class ExpressionNormalizer
         }
 
         // Нет оператора на верхнем уровне — inner может быть вложенным
-        // выражением: "((x0−x1))" → "(x0−x1)" → распарсить рекурсивно
-        if (str_starts_with($inner, '(') && str_ends_with($inner, ')')) {
+        // выражением: "((x0−x1))" → "(x0−x1)" → распарсить рекурсивно.
+        // Или с суффиксом: "(x0+x0)²" → ²-квадрат (SEARCH-TOP-K 05.08)
+        if ((str_starts_with($inner, '(') && str_ends_with($inner, ')'))
+            || mb_substr($inner, -1, 1) === '²') {
             return self::parse($inner) ?? ['atom' => $inner];
         }
         // Unary-суффикс внутри внешних скобок: "((x0+x1)sq)" → sq("(x0+x1)")

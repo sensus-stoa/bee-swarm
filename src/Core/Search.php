@@ -248,9 +248,16 @@ class Search
                 return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
         }
-        // Evaluate all expressions
-        $bestCv = 9.99;
-        $bestName = null;
+        // Evaluate all expressions — top-K кандидатов (SEARCH-TOP-K, ЭКСП-009):
+        // на шуме лучший по train часто R-подгонка (CV_test=9.99), а закон
+        // (2-я кандидатка, CV_test=0.004) терялся. Храним K лучших по train,
+        // выбор — по held-out.
+        // SEARCH-TOP-K (ЭКСП-009 + CONCERNS deleg_1ebc06b4): на шуме train-CV
+        // не отличает закон от R-подгонок (все ~0.03-0.05), held-out отличает
+        // (закон 0.004, подгонки 9.99). top-K по train теряет закон (2x вне
+        // top-30). Решение: ВСЕ правдоподобные (CV_train < cvTrainMax),
+        // testCv каждого (дёшево), лучший по тесту = закон.
+        $plausible = [];
         foreach ($exprs as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
@@ -269,24 +276,53 @@ class Search
                 continue;
             }
             $cv = self::cv($vec, $y);
-            if ($cv < $bestCv) {
-                $bestCv = $cv;
-                $bestName = $name;
+            if ($cv < $cvTrainMax) {
+                $plausible[] = ['cv' => $cv, 'name' => $name];
             }
         }
 
-                $found = $bestCv < $cvTrainMax && isset($bestName);
-        $cv_train = $found ? $bestCv : 9.99;
+        usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
+        $bestCv = $plausible[0]['cv'] ?? 9.99;
+        $bestName = $plausible[0]['name'] ?? null;
+        $cv_train = $bestCv < $cvTrainMax ? $bestCv : 9.99;
         $cv_test = $cv_train;
-        
-        // V0.8.5: out-of-sample validation when testRatio > 0
-        if ($found && $testRatio > 0.0 && $n > 10) {
+
+        // V0.8.5 + SEARCH-TOP-K: out-of-sample — лучший по ТЕСТУ среди ВСЕХ
+        // правдоподобных (R-подгонки с test=9.99 отсеиваются, закон проходит)
+        if ($testRatio > 0.0 && $n > 10 && ! empty($plausible)) {
             $splitIdx = (int) ($n * (1.0 - $testRatio));
             if ($splitIdx > 5 && $splitIdx < $n - 1) {
                 $X_test = array_slice($X, $splitIdx);
                 $y_test = array_slice($y, $splitIdx);
-                $cv_test = self::testCv($bestName, $X_test, $y_test, $bestStd ?? 1.0, $n);
+                $bestTestCv = 9.99;
+                $bestTestName = null;
+                $bestTestTrainCv = 9.99;
+                foreach ($plausible as $cand) {
+                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels);
+                    if ($t < $bestTestCv) {
+                        $bestTestCv = $t;
+                        $bestTestName = $cand['name'];
+                        $bestTestTrainCv = $cand['cv'];
+                    }
+                }
+                if ($bestTestName !== null) {
+                    $bestName = $bestTestName;
+                    $cv_test = $bestTestCv;
+                    // CONCERNS (deleg_68f5709e): cv_train ПОБЕДИТЕЛЯ, не plausible[0]
+                    $bestCv = $bestTestTrainCv;
+                } else {
+                    // CONCERNS (deleg_1ebc06b4): ни один правдоподобный не
+                    // прошёл held-out (все R-подгонки/шум) — честный отказ
+                    $bestName = null;
+                    $cv_test = 9.99;
+                }
             }
+        }
+
+        $found = $bestCv < $cvTrainMax && isset($bestName) && $cv_test < $cvTrainMax;
+        if (! $found) {
+            $cv_train = 9.99;
+            $cv_test = 9.99;
         }
         
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
@@ -304,16 +340,35 @@ class Search
         return 'EMPIRICAL';
     }
 
-    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n): float
+    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null): float
     {
         $nTest = count($y_test);
-        if ($nTest < 2) return 9.99;
-        
-        $result = \BeeSwarm\Validation\LawValidator::evaluateHeldout($name, $X_test, $y_test);
-        if ($result === null || ($result['cv_heldout'] ?? 9.99) > 9.0) {
+        if ($nTest < 2) {
             return 9.99;
         }
-        return $result['cv_heldout'];
+
+        // SEARCH-TOP-K (05.08): evaluateHeldout резал переданный тест ещё раз
+        // (4 → 3+1) и exact-проверял 1 точку — зашумлённые данные всегда 9.99.
+        // CV формулы напрямую по ВСЕМ тестовым точкам через ExpressionEvaluator.
+        // Метки колонок (colLabels: 'feature') → xN: evaluator понимает x0..x3.
+        if (! empty($colLabels)) {
+            $map = [];
+            foreach ($colLabels as $i => $label) {
+                $map[(string) $label] = "x{$i}";
+            }
+            uksort($map, fn (string $a, string $b): int => strlen($b) <=> strlen($a));
+            $name = str_replace(array_keys($map), array_values($map), $name);
+        }
+        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($name, $X_test);
+        if ($vec === null || count($vec) !== $nTest) {
+            return 9.99;
+        }
+        $std = self::stddev($vec);
+        if ($std < 1e-6) {
+            return 9.99;
+        }
+
+        return self::cv($vec, $y_test);
     }
 
     private static function stddev(array $v): float

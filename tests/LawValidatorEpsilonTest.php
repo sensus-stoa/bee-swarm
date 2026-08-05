@@ -18,7 +18,13 @@ class LawValidatorEpsilonTest extends TestCase
     public function testValidateAcceptsCustomCvTrainMax(): void
     {
         $X = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0], [7.0], [8.0], [9.0], [10.0]];
-        $y = [2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0];
+        // 05.08 (SEARCH-TOP-K): y = x × (0.97|1.03) — ratio колеблется ±3%,
+        // CV(x0) ≈ 0.03: между дефолтом 0.01 и кастомным 0.05.
+        // (раньше held-out был мёртв и 'x0' отклонялся всегда, независимо от данных)
+        $y = [];
+        for ($i = 0; $i < 10; $i++) {
+            $y[] = ($i + 1) * ($i % 2 === 0 ? 0.97 : 1.03);
+        }
 
         // Кандидат с CV=0.03 — выше дефолта, ниже кастомного
         $weakCandidate = ['atom' => 'x0', 'cv' => 0.03, 'name' => 't1', 'atom_raw' => 'x0', 'mode' => 'discover'];

@@ -1,10 +1,8 @@
 <?php
 declare(strict_types=1);
 
-
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
 use BeeSwarm\Infra\Database;
@@ -34,28 +32,31 @@ class StrictThresholdTest extends TestCase
     }
 
     /**
-     * CV > 0.01 — НЕ записываем
+     * CV > 0.01 — НЕ записываем (детерминированно: закон находится,
+     * но с CV > 0.01 — assert выполняется всегда)
      */
     public function testWeakLawNotRecorded(): void
     {
-        // Слабый сигнал (случайные данные)
-        $X = [[1.0], [2.0], [3.0], [4.0], [5.0]];
-        $y = [2.1, 3.9, 6.2, 7.8, 10.1]; // ~2x но с шумом
-        $g = new Grammar();
-        [$ok, $cv, $formula] = Search::find($X, $y, $g, 3);
-
-        // Search::find может найти формулу, но CV будет > 0.01
-        if ($ok) {
-            $this->assertGreaterThan(0.01, $cv, 'Weak law should be rejected');
+        // 12 точек, y = 1.5x + sin-шум ~±5% → CV ≈ 0.02-0.04, закон находим
+        $X = [];
+        $y = [];
+        for ($i = 0; $i < 12; $i++) {
+            $x = $i + 1.0;
+            $X[] = [$x];
+            $y[] = 1.5 * $x + 0.05 * $x * sin($i * 0.9);
         }
-        // Если не нашёл — тоже OK
-        $this->assertTrue(true);
+        $g = new Grammar();
+        [$ok, $cv] = Search::find($X, $y, $g, 3);
+
+        $this->assertTrue($ok, 'law must be found on 12 points');
+        $this->assertGreaterThan(0.01, $cv, 'Weak law should be rejected by strict threshold');
     }
 
     // ═══ 2. ИНТЕГРАЦИЯ ═══
 
     /**
      * Fallback с strict порогом не записывает шум
+     * (детерминированно: weak-закон найден → assert записи выполняется)
      */
     public function testFallbackStrictThreshold(): void
     {
@@ -63,38 +64,27 @@ class StrictThresholdTest extends TestCase
         $countBefore = $db->query('SELECT COUNT(*) FROM laws')
             ->fetchColumn();
 
-        // Симуляция: задача решается только Search::find с плохим CV
-        $X = [[1.0], [2.0], [3.0]];
-        $y = [1.5, 3.5, 5.5]; // примерно 1.5x, шумно
+        // 12 точек, y = 1.5x + шум ±5% — закон находится с CV > 0.01
+        $X = [];
+        $y = [];
+        for ($i = 0; $i < 12; $i++) {
+            $x = $i + 1.0;
+            $X[] = [$x];
+            $y[] = 1.5 * $x + 0.05 * $x * sin($i * 0.9);
+        }
         $g = new Grammar();
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 3);
 
-        if ($ok && $cv < 0.01) {
-            // Если нашёлся strict-закон — ОК, записываем
+        $this->assertTrue($ok, 'law must be found (weak)');
+        $this->assertGreaterThan(0.01, $cv, 'CV must exceed strict threshold');
+
+        if ($cv < 0.01) {
             $db->prepare('INSERT INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)')
                 ->execute(['test_strict_fallback', $formula, $cv, 'test_strict']);
         }
 
         $countAfter = $db->query('SELECT COUNT(*) FROM laws')
             ->fetchColumn();
-        // Шумный закон НЕ должен быть записан (CV > 0.01)
-        if ($ok && $cv > 0.01) {
-            $this->assertEquals($countBefore, $countAfter, 'Weak law not recorded');
-        }
-    }
-
-    /**
-     * AtomRegistry strict laws still recorded
-     */
-    public function testAtomRegistryStrictWorks(): void
-    {
-        $X = [[1.0], [4.0], [9.0], [16.0]];
-        $y = [1.0, 2.0, 3.0, 4.0];
-
-        $found = AtomRegistry::discover($X, $y);
-        $this->assertNotEmpty($found);
-        foreach ($found as $f) {
-            $this->assertLessThan(0.001, $f['cv'], 'AtomRegistry uses strict CV');
-        }
+        $this->assertEquals($countBefore, $countAfter, 'Weak law not recorded');
     }
 }

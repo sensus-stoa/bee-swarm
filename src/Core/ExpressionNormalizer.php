@@ -295,6 +295,7 @@ class ExpressionNormalizer
         $rIsZero = is_numeric($rs) && (float) $rs === 0.0;
         $lIsOne = is_numeric($ls) && (float) $ls === 1.0;
         $rIsOne = is_numeric($rs) && (float) $rs === 1.0;
+        // Тождества
         if ($op === '+') {
             if ($lIsZero) {
                 return $r;
@@ -312,6 +313,16 @@ class ExpressionNormalizer
             }
             if ($rIsOne) {
                 return $l;
+            }
+            // Сокращение деления (05.08, R-тавтологии):
+            // (R×x) × (x/R×x) = x; (x/R×x) × (R×x) = x
+            $lDiv = $l['op'] ?? null;
+            $rDiv = $r['op'] ?? null;
+            if ($lDiv === '/' && self::render($l['r'] ?? []) === $rs) {
+                return $l['l'];
+            }
+            if ($rDiv === '/' && self::render($r['r'] ?? []) === $ls) {
+                return $r['l'];
             }
         }
         return null;

@@ -188,4 +188,12 @@ class ExpressionNormalizerTest extends TestCase
         $this->assertSame($a, ExpressionNormalizer::normalize('((x1+x0)sq)'),
             'Commutative variant of unary-wrapped expression must normalize equally');
     }
+
+    public function testRDivisionTautologyCollapses(): void
+    {
+        // 05.08 (данные CsPbBr3): (R×x0)×(x0/R×x0) = x0 — R-тавтология,
+        // проходила IDENTITY-фильтр (строка ≠ "x0"), засоряла открытия CV=0
+        $this->assertSame('x0', ExpressionNormalizer::normalize('((R×x0)×(x0/R×x0))'));
+        $this->assertSame('x0', ExpressionNormalizer::normalize('((x0/R×x0)×(R×x0))'));
+    }
 }

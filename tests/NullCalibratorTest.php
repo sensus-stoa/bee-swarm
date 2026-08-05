@@ -92,11 +92,11 @@ class NullCalibratorTest extends TestCase
     }
 
     /**
-     * Пустые данные → fallback ε = 0.01 (существующий порог).
+     * Пустые данные → fallback ε = 0.15 (05.08: 0.01 делал систему слепой).
      */
     public function testCalibrateEmptyReturnsFallback(): void
     {
         $epsilon = NullCalibrator::calibrate([], [], $this->grammar);
-        $this->assertEqualsWithDelta(0.01, $epsilon, 0.001, 'Empty data must return hardcoded fallback');
+        $this->assertEqualsWithDelta(0.15, $epsilon, 0.001, 'Empty data must return hardcoded fallback');
     }
 }

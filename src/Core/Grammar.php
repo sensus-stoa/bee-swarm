@@ -311,7 +311,7 @@ class Grammar
         $base = array_keys(self::BASE_OPS);
         $db = Database::get();
         $rows = $db->prepare(
-            'SELECT formula, COUNT(*) as cnt FROM laws GROUP BY formula ORDER BY cnt DESC LIMIT ?'
+            'SELECT formula, SUM(usage_count) as cnt FROM laws GROUP BY formula ORDER BY cnt DESC LIMIT ?'
         );
         $rows->execute([$limit]);
         $top = $rows->fetchAll(\PDO::FETCH_COLUMN);

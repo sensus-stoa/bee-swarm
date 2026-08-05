@@ -116,7 +116,8 @@ class HeldoutValidationTest extends TestCase
     public function testValidLawPassesRetrospective(): void
     {
         $db = Database::get();
-        $db->exec("DELETE FROM laws WHERE name='TEST_RETRO_ADD'");
+        // Ф1: UNIQUE(formula,domain) — чистим по паре, не по name
+        $db->exec("DELETE FROM laws WHERE formula='add' AND domain='arithmetic'");
 
         // Сохраняем закон (как будто открыт до held-out)
         $db->prepare('INSERT INTO laws (name, formula, cv, domain) VALUES (?,?,?,?)')

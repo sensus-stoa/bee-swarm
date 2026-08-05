@@ -24,7 +24,12 @@ class RecordKeeper
      */
     public function record(array $d, array $task, string $domain): array
     {
-        $key = $domain . '::' . $task['name'] . '::' . $d['atom'];
+        // FORMAL-LAYER Ф1: каноническая форма формулы — (x1+x0) ≡ (x0+x1)
+        $canonFormula = \BeeSwarm\Core\ExpressionNormalizer::normalize($d['atom']);
+
+        // Ключ БЕЗ name (CONCERNS Ф1 05.08): разные задачи с одинаковой
+        // формулой в одном домене — один закон, не дубли
+        $key = $domain . '::' . $canonFormula;
         if (isset($this->knownLaws[$key])) {
             return ['inserted' => false, 'cross_domains' => [], 'key' => $key];
         }
@@ -39,14 +44,18 @@ class RecordKeeper
             $other = Database::get()->prepare(
                 'SELECT DISTINCT domain FROM laws WHERE formula=? AND domain!=?'
             );
-            $other->execute([$d['atom'], $domain]);
+            $other->execute([$canonFormula, $domain]);
             $crossDomains = $other->fetchAll(\PDO::FETCH_COLUMN);
         }
 
+        // Ф1: дедуп по (formula,domain); повторное открытие = usage_count+1
+        // (сохраняет частотность для Grammar::capped)
         Database::get()->prepare(
-            'INSERT OR IGNORE INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels,law_class) VALUES (?,?,?,?,?,?,?,?)'
+            'INSERT INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,usage_count)
+             VALUES (?,?,?,?,?,?,?,?,1)
+             ON CONFLICT(formula,domain) DO UPDATE SET usage_count = usage_count + 1'
         )->execute([
-            $task['name'], $d['atom'], $d['cv'], $domain,
+            $task['name'], $canonFormula, $d['cv'], $domain,
             $task['source_path'] ?? '',
             mb_substr($task['content'] ?? '', 0, 200),
             json_encode($task['col_labels'] ?? []),
@@ -60,7 +69,7 @@ class RecordKeeper
     {
         $rows = Database::get()->query('SELECT name, formula, domain FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($rows as $r) {
-            $this->knownLaws[($r['domain'] ?? 'unknown') . '::' . $r['name'] . '::' . $r['formula']] = true;
+            $this->knownLaws[($r['domain'] ?? 'unknown') . '::' . $r['formula']] = true;
         }
         return count($this->knownLaws);
     }

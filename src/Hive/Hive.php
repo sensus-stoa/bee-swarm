@@ -570,7 +570,7 @@ class Hive
                 $this->log("CALIBRATE_FAILED: fp={$fp} " . $e->getMessage());
             }
         }
-        $cvTrainMax = $this->getEpsilon($fp) ?? 0.01;
+        $cvTrainMax = $this->getEpsilon($fp) ?? 0.15;
 
         // D14 Wiring: engine-based discovery (replaces inline Search + Heldout + Compose)
         if ($this->routedBee) {
@@ -648,7 +648,7 @@ class Hive
         $tasks = $this->getTasks(skipGenerated: true);
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $fp = $this->taskRouter ? $this->taskRouter->fingerprint($tasks[0] ?? []) : 'idle';
-        $epsilon = $this->getEpsilon($fp) ?? 0.01;
+        $epsilon = $this->getEpsilon($fp) ?? 0.15;
         $result = IdleDreamer::tick($tasks, $grammarOps, $epsilon);
         if ($result !== null) {
             $foundAny = false;

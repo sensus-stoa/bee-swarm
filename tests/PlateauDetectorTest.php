@@ -179,4 +179,24 @@ class PlateauDetectorTest extends TestCase
         $this->assertSame(self::BASE_SLEEP_US, $d->getSleepUs());
         $this->assertTrue($d->shouldRunCompose(), 'Compose re-enabled after wakeup');
     }
+
+    public function testJustExitedPlateauFiresOnce(): void
+    {
+        // CONCERNS (deleg_294903fa): edge-trigger — в discovery-rich фазе
+        // (consecutive<=1) событие выхода должно сработать РОВНО ОДИН раз,
+        // а не каждый тик (было: 8 событий на один выход, липкий wasPlateau).
+        $d = new PlateauDetector(3, 0);
+        // 3 тика без открытий → плато
+        $d->tick(false); $d->tick(false); $d->tick(false);
+        $this->assertTrue($d->isPlateau());
+        // Выход: открытие + discovery-rich фаза (открытия каждый тик)
+        $d->tick(true);   // consecutive -> 0
+        $this->assertTrue($d->justExitedPlateau(), 'exit must fire once');
+        $this->assertFalse($d->justExitedPlateau(), 'second call must NOT fire (edge-trigger)');
+        // Discovery-rich фаза: открытия каждый тик — событий быть не должно
+        for ($i = 0; $i < 5; $i++) {
+            $d->tick(true);
+            $this->assertFalse($d->justExitedPlateau(), "no fire on discovery-rich tick {$i}");
+        }
+    }
 }

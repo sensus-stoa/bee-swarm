@@ -175,6 +175,10 @@ class Hive
      */
     private function recordDActivity(bool $event): void
     {
+        if ($this->dActWindow < 1) {
+            return; // CONCERNS (deleg_294903fa): window<1 → DivisionByZeroError
+        }
+
         if (! isset($this->dActBuffer)) {
             $this->dActBuffer = new \SplFixedArray($this->dActWindow);
         } elseif ($this->dActBuffer->getSize() !== $this->dActWindow) {

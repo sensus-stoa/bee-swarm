@@ -25,7 +25,7 @@ class ExpressionEvaluator
     /**
      * Вычислить формулу по всем строкам. null если формула неприменима.
      */
-    public static function evaluateFormula(string $formula, array $rows): ?array
+    public static function evaluateFormula(string $formula, array $rows, ?array $stats = null): ?array
     {
         // R-атомы (R+x0) содержат операторы — защищаем как в normalize:
         // protect → parse → restore, иначе "R+x0" разбирается как R + x0
@@ -37,7 +37,9 @@ class ExpressionEvaluator
         if (! empty($map)) {
             $node = ExpressionNormalizer::restoreAtoms($node, $map);
         }
-        $stats = self::collectReduceStats($node, $rows);
+        // CONCERNS (deleg_6ee92a50): переданные stats (по TRAIN) имеют приоритет
+        // — R-атомы = константы модели, не пересчитываются по тестовой выборке
+        $stats ??= self::collectReduceStats($node, $rows);
         $vec = [];
         foreach ($rows as $row) {
             $v = self::evalNode($node, $row, $stats);
@@ -48,6 +50,23 @@ class ExpressionEvaluator
         }
 
         return $vec;
+    }
+
+    /**
+     * Публичный: R-статистики формулы по выборке (для testCv — по TRAIN).
+     */
+    public static function collectStats(string $formula, array $rows): array
+    {
+        [$protected, $map] = ExpressionNormalizer::protect($formula);
+        $node = ExpressionNormalizer::parse($protected);
+        if ($node === null) {
+            return [];
+        }
+        if (! empty($map)) {
+            $node = ExpressionNormalizer::restoreAtoms($node, $map);
+        }
+
+        return self::collectReduceStats($node, $rows);
     }
 
     /**

@@ -57,6 +57,10 @@ class Hive
      * @var Bee[]
      */
     private array $bees = [];
+    /** MEMORY-GUARD (аудит 05.08): порог MB, default 256. 0 = выключен. */
+    private int $memoryGuardMb = 256;
+    /** D_RATIO телеметрия (аудит 05.08 §2.5.8): интервал тиков, default 500 */
+    private int $dRatioInterval = 500;
     /** Последний размер пула задач (wakeup-детектор, только РОСТ будит плато) */
     private int $lastTaskCount = 0;
 
@@ -118,6 +122,70 @@ class Hive
         $line = '[' . date('H:i:s') . '] ' . $msg . PHP_EOL;
         echo $line;
         file_put_contents($this->logFile, $line, FILE_APPEND);
+    }
+
+    /**
+     * MEMORY-GUARD (аудит 05.08): инъекция порога для тестов.
+     */
+    public function setMemoryGuardMb(int $mb): self
+    {
+        $this->memoryGuardMb = $mb;
+
+        return $this;
+    }
+
+    /**
+     * D_RATIO телеметрия (аудит 05.08 §2.5.8): инъекция интервала для тестов.
+     */
+    public function setDRatioInterval(int $ticks): self
+    {
+        $this->dRatioInterval = $ticks;
+
+        return $this;
+    }
+
+    /**
+     * D_RATIO: лог разнообразия грамматик (термометр §2.5.8).
+     * Коридор: D ∈ [0.1, 0.5] здоровье; <0.1 кристалл; >0.5 хаос.
+     */
+    private function logDRatioSnapshot(): void
+    {
+        $alive = array_filter($this->bees, fn (Bee $b): bool => $b->isAlive());
+        $pop = count($alive);
+        if ($pop === 0) {
+            $this->log("D_RATIO: win={$this->dRatioInterval} D=0.000 pop=0 zone=CRYSTAL");
+
+            return;
+        }
+        $d = SpawnManager::computeDiversity(array_values($alive));
+        // CONCERNS 05.08: коридор [0.1,0.5] валиден при N≥10 (протокол §2.5.8).
+        // При pop<10 min(D)=1/pop>0.1 — CRYSTAL математически недостижим,
+        // pop=1 → D=1.0 = кристалл, не хаос. Зоны — только при достаточной популяции.
+        $zone = $pop < 10
+            ? 'NA (pop<10)'
+            : ($d < 0.1 ? 'CRYSTAL' : ($d > 0.5 ? 'CHAOS' : 'OK'));
+        $this->log("D_RATIO: win={$this->dRatioInterval} D=" . number_format($d, 3) . " pop={$pop} zone={$zone}");
+    }
+
+    /**
+     * MEMORY-GUARD: при memory_get_usage > порога → gc_collect_cycles + лог.
+     * Предохранитель после OOM 04.08 (7710MB при лимите 8G).
+     */
+    private function checkMemoryGuard(): void
+    {
+        if ($this->memoryGuardMb <= 0) {
+            return;
+        }
+        $usage = memory_get_usage(true);
+        $limit = $this->memoryGuardMb * 1024 * 1024;
+        if ($usage > $limit) {
+            $freed = gc_collect_cycles();
+            $after = round(memory_get_usage(true) / 1024 / 1024, 1);
+            $this->log(
+                "MEM_GUARD: usage=" . round($usage / 1024 / 1024, 1)
+                . "MB > limit={$this->memoryGuardMb}MB freed_cycles={$freed} after={$after}MB"
+            );
+        }
     }
 
     public function getBees(): array
@@ -272,11 +340,17 @@ class Hive
     {
         $this->lastAnswerFormula = null;
 
-        // Memory monitor every 100 ticks
-        if ($this->tick % 100 === 0) {
+        // Memory monitor every 100 ticks + первый тик (ранний предохранитель)
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
             $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
             $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
             $this->log("MEM: tick={$this->tick} mem={$mem}MB peak={$peak}MB tasks=" . count($this->foragedTasksGlobal));
+            $this->checkMemoryGuard();
+        }
+
+        // D_RATIO телеметрия (аудит 05.08 §2.5.8): скользящее окно
+        if ($this->dRatioInterval > 0 && ($this->tick % $this->dRatioInterval === 0 || $this->tick === 1)) {
+            $this->logDRatioSnapshot();
         }
 
         // CPU guard

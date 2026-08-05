@@ -23,7 +23,9 @@ class NullCalibrator
 
     private const PERCENTILE = 0.99;
 
-    private const FALLBACK_EPSILON = 0.01;
+    // 05.08: FALLBACK 0.01 делал систему слепой (wine CV=0.048 не проходил).
+    // Если шум не даёт ложных открытий (nActual<2) — FPR=0, порог = стандарт.
+    private const FALLBACK_EPSILON = 0.15;
     private const FALLBACK_NULL_FLOOR = 0.5;  // S1.6-GRADIENT
 
     /**

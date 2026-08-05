@@ -49,17 +49,21 @@ foreach ([2, 3, 7, 12] as $nFeat) {
 
 echo str_repeat('-', 60) . "\n";
 
-// Sample complexity (PAC): m ≥ (VCdim + ln(1/δ)) / ε
-echo "\n=== Sample complexity (PAC) ===\n";
+// Sample complexity (PAC): m ≥ (ln N + ln(1/δ)) / ε
+// (формальная конечная граница для класса из N выражений; агностическая
+//  VC-граница O((d·log(1/ε)+log(1/δ))/ε²) — на порядки консервативнее,
+//  честный worst-case — миллионы при ε=0.01)
+echo "\n=== Sample complexity (PAC, полный класс L0+L1+L2) ===\n";
 $eps = 0.01; // ε_train
 $delta = 0.05;
 foreach ([2, 3, 7, 12] as $nFeat) {
     $pairs = combinations($nFeat, 2);
+    $l0 = $nFeat * 2 + 2;
     $l1 = $pairs * count($binaryOps) + $nFeat * count($unaryOps);
-    $total = $nFeat * 2 + 2 + $l1;
-    $vc = (int) floor(log($total, 2));
-    $m = (int) ceil(($vc + log(1 / $delta, 2)) / $eps);
-    printf("nFeat=%2d: VCdim≤%d → m_min(ε=0.01, δ=0.05) ≈ %d точек\n", $nFeat, $vc, $m);
+    $l2 = combinations(min($l1, 200), 2) * count($binaryOps);
+    $total = $l0 + $l1 + $l2;
+    $m = (int) ceil((log($total) + log(1 / $delta)) / $eps);
+    printf("nFeat=%2d: N≈%d → m_min(ε=0.01, δ=0.05) ≈ %d точек\n", $nFeat, $total, $m);
 }
 
 echo "\nТекущий эмпирический t_min = max(10, nFeat*5):\n";

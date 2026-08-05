@@ -50,4 +50,29 @@ class AtomProviderGuardTest extends TestCase
         // Может найти или не найти — зависит от held-out/trivial фильтров,
         // главное что не падает с исключением
     }
+
+    public function testRaggedRowsNoWarning(): void
+    {
+        // CONCERNS 05.08: первый ряд длинный (nFeat≥2), поздний короче —
+        // бинарная ветка читает $row[1] → Warning. Guard: isset($row[1]).
+        $X = [[1.0, 2.0], [3.0, 4.0], [5.0]];  // третий ряд — ragged
+        $y = [3.0, 7.0, 5.0];
+
+        $caught = [];
+        set_error_handler(function (int $severity, string $message) use (&$caught): bool {
+            $caught[] = $message;
+            return true;
+        });
+
+        try {
+            AtomProvider::discover($X, $y, 2);
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertEmpty(
+            array_filter($caught, fn (string $m): bool => str_contains($m, 'Undefined array key')),
+            'Ragged rows must not produce Undefined array key warnings. Got: ' . implode('; ', $caught)
+        );
+    }
 }

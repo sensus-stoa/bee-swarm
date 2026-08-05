@@ -15,11 +15,15 @@ class AtomProvider
      */
     private static function applyToRow(string $atom, int $nFeat, array $row): ?float
     {
-        // Guard: пустые ряды → null, без Warning (millions in logs, ноутбук 05.08)
+        // Guard (CONCERNS 05.08): ragged-ряды — первый ряд длинный, поздний короче.
+        // isset($row[0]) недостаточно: бинарная ветка читает $row[1] → Warning.
         if (! isset($row[0])) {
             return null;
         }
         if (AtomRegistry::isBinary($atom) && $nFeat >= 2) {
+            if (! isset($row[1])) {
+                return null;
+            }
             return AtomRegistry::apply($atom, (float) $row[0], (float) $row[1]);
         }
         if (AtomRegistry::isUnary($atom)) {

@@ -565,6 +565,7 @@ class Hive
         }
 
         if ($spawned > 0) {
+            $this->log("SPAWN: +{$spawned} pop=" . count($this->bees));
             $diversity = SpawnManager::computeDiversity($this->bees);
             $avgG = SpawnManager::avgGrammarSize($this->bees);
             $uniqueCount = count(array_unique(array_map(

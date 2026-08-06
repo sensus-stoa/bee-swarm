@@ -781,6 +781,38 @@ class Hive
         }
     }
 
+    /**
+     * GRAMMAR-PROPAGATION (ЭКСП-012): операторы найденной формулы получают вес.
+     */
+    private function boostFormulaOps(string $formula): void
+    {
+        // Группа A (контроль, EXP-012): PROPAGATION=0 отключает культурную эволюцию
+        if (getenv('PROPAGATION') === '0') {
+            return;
+        }
+        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($formula);
+        if ($node === null) {
+            return;
+        }
+        $opMap = [
+            '+' => 'add', '−' => 'sub', '×' => 'mul', '/' => 'div',
+            'max' => 'max', 'min' => 'min', 'sq' => 'sq',
+        ];
+        $seen = [];
+        $walk = function (array $n) use (&$walk, &$seen, $opMap): void {
+            if (isset($n['op'])) {
+                $name = $opMap[$n['op']] ?? $n['op'];
+                if (! isset($seen[$name])) {
+                    $seen[$name] = true;
+                    \BeeSwarm\Core\Grammar::staticBoostOp($name);
+                }
+            }
+            if (isset($n['l'])) { $walk($n['l']); }
+            if (isset($n['r'])) { $walk($n['r']); }
+        };
+        $walk($node);
+    }
+
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
     {
         $result = $this->recordKeeper->record($d, $task, $domain);
@@ -795,6 +827,12 @@ class Hive
         }
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
+        // GRAMMAR-PROPAGATION (ЭКСП-012): успех → вес операторов формулы.
+        // ТОЛЬКО для реальных законов: тавтологии (CV=0.0000) бустятся
+        // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).
+        if (($d['cv'] ?? 1.0) > 0.001) {
+            $this->boostFormulaOps($d['atom']);
+        }
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
         if ($this->taskRouter && $this->routedBee) {
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);

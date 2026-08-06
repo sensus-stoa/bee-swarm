@@ -237,6 +237,33 @@ class Grammar
     /**
      * GRAMMAR-PROPAGATION (ЭКСП-012): увеличить вес оператора после успеха.
      */
+    /**
+     * GRAMMAR-PROPAGATION: статический boost (из Hive, без инстанса).
+     */
+    /**
+     * GRAMMAR-PROPAGATION: weights op→usage_count (топ-100) для weightedPick.
+     */
+    public static function weightsFromDb(): array
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $rows = $db->query(
+            'SELECT name, usage_count FROM grammar_ops ORDER BY usage_count DESC LIMIT 100'
+        )->fetchAll(\PDO::FETCH_ASSOC);
+        $w = [];
+        foreach ($rows as $r) {
+            $w[$r['name']] = (float) $r['usage_count'];
+        }
+        return $w;
+    }
+
+    public static function staticBoostOp(string $op, int $delta = 1): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->prepare('INSERT INTO grammar_ops (name, source, usage_count) VALUES (?, ?, ?)
+            ON CONFLICT(name) DO UPDATE SET usage_count = usage_count + excluded.usage_count')
+            ->execute([$op, 'boost', $delta]);
+    }
+
     public function boostOp(string $op, int $delta = 1): void
     {
         $db = \BeeSwarm\Infra\Database::get();

@@ -22,6 +22,35 @@ class ExpressionEvaluator
     /** R-операторы в именах атомов: R+{col}, R×{col}, Rmax{col}, Rmin{col}, Rrange{col}, Rnorm{col} */
     private const R_OPS = ['range', 'norm', 'max', 'min', '×', '−', '/', '+'];
 
+    /** @var array<string,array|null> кэш definition по имени атома */
+    private static array $defCache = [];
+
+    private static function definition(string $atom): ?array
+    {
+        if (array_key_exists($atom, self::$defCache)) {
+            return self::$defCache[$atom];
+        }
+        $db = \BeeSwarm\Infra\Database::get();
+        $stmt = $db->prepare('SELECT definition FROM grammar_ops WHERE name = ? AND definition IS NOT NULL AND definition != \'\' LIMIT 1');
+        $stmt->execute([$atom]);
+        $def = $stmt->fetchColumn();
+        if ($def === false) {
+            self::$defCache[$atom] = null;
+            return null;
+        }
+        [$protected, $map] = ExpressionNormalizer::protect((string) $def);
+        $node = ExpressionNormalizer::parse($protected);
+        if ($node === null) {
+            self::$defCache[$atom] = null;
+            return null;
+        }
+        if (! empty($map)) {
+            $node = ExpressionNormalizer::restoreAtoms($node, $map);
+        }
+        self::$defCache[$atom] = $node;
+        return $node;
+    }
+
     /**
      * Вычислить формулу по всем строкам. null если формула неприменима.
      */
@@ -169,6 +198,12 @@ class ExpressionEvaluator
         if (isset($stats[$atom])) {
             return $stats[$atom];
         }
+        // GRAMMAR-BIRTH (ЭКСП-015): атом с definition (source='birth')
+        $def = self::definition($atom);
+        if ($def !== null) {
+            return self::evalNode($def, $row, $stats);
+        }
+
         // Rnorm{col}: (x - min) / range — поточечно, нужен контекст строки
         if (str_starts_with($atom, 'Rnorm')) {
             $colName = substr($atom, 5);

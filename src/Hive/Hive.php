@@ -782,6 +782,23 @@ class Hive
     }
 
     /**
+     * GRAMMAR-BIRTH (ЭКСП-015): составная формула (глубина ≥2, без R-атомов)
+     * → новый атом в grammar_ops (source='birth', definition=формула).
+     * Рождение = абстракция: пчела «изобретает» оператор из успешного паттерна.
+     */
+    private function birthOperator(string $formula): void
+    {
+        // Тривиальные/тавтологии не рождают операторы
+        if (str_contains($formula, 'R+') || str_contains($formula, 'R×')
+            || str_contains($formula, 'Rmin') || str_contains($formula, 'Rmax')
+            || strlen($formula) < 5) {
+            return;
+        }
+        $name = 'B' . substr(md5($formula), 0, 6);
+        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula);
+    }
+
+    /**
      * GRAMMAR-PROPAGATION (ЭКСП-012): операторы найденной формулы получают вес.
      */
     private function boostFormulaOps(string $formula): void
@@ -832,6 +849,7 @@ class Hive
         // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).
         if (($d['cv'] ?? 1.0) > 0.001) {
             $this->boostFormulaOps($d['atom']);
+            $this->birthOperator($d['atom']); // GRAMMAR-BIRTH (ЭКСП-015)
         }
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
         if ($this->taskRouter && $this->routedBee) {

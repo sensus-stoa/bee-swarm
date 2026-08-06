@@ -23,7 +23,11 @@ class GrammarMutator
      * @param array<string,float>|null $weights op → weight (null = uniform)
      * @return string[] mutated grammar
      */
-    public static function mutate(array $grammar, array $available, ?array $weights = null): array
+    /**
+     * @param array<string,float>|null $weights op → weight
+     * @param float $p доля культурного выбора (0.0 = uniform, 1.0 = weights)
+     */
+    public static function mutate(array $grammar, array $available, ?array $weights = null, float $p = 1.0): array
     {
         $grammar = array_values($grammar);
         $available = array_values(array_unique($available));
@@ -48,7 +52,7 @@ class GrammarMutator
 
         switch ($action) {
             case 'add':
-                $grammar[] = self::pickOp($missing, $weights);
+                $grammar[] = self::pickOp($missing, $weights, $p);
                 break;
             case 'remove':
                 $idx = array_rand($grammar);
@@ -56,16 +60,17 @@ class GrammarMutator
                 break;
             case 'replace':
                 $idx = array_rand($grammar);
-                $grammar[$idx] = self::pickOp($missing, $weights);
+                $grammar[$idx] = self::pickOp($missing, $weights, $p);
                 break;
         }
 
         return array_values($grammar);
     }
 
-    private static function pickOp(array $ops, ?array $weights): string
+    private static function pickOp(array $ops, ?array $weights, float $p = 1.0): string
     {
-        if ($weights === null) {
+        // ЭКСП-016: с вероятностью (1-p) — uniform (exploration)
+        if ($weights === null || mt_rand(0, 1000000) / 1000000.0 >= $p) {
             return $ops[array_rand($ops)];
         }
         $total = 0.0;

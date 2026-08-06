@@ -232,9 +232,10 @@ class Bee
 
         $childGrammar = $this->grammar;
         if (! empty($available)) {
-            // GRAMMAR-PROPAGATION (ЭКСП-012): группа B — weights из usage_count
+            // GRAMMAR-PROPAGATION (ЭКСП-012/016): weights + уровень культуры
             $weights = getenv('PROPAGATION') === '0' ? null : \BeeSwarm\Core\Grammar::weightsFromDb();
-            $childGrammar = GrammarMutator::mutate($this->grammar, $available, $weights);
+            $culture = (float) (getenv('CULTURE_LEVEL') ?: '1.0');
+            $childGrammar = GrammarMutator::mutate($this->grammar, $available, $weights, $culture);
         }
 
         // Mutate energy params (±MUTATION_RANGE within bounds)

@@ -155,12 +155,19 @@ class Database
         } catch (\PDOException $e) {
             // column already exists — ok
         }
+        // GRAMMAR-PROPAGATION (ЭКСП-012): вес оператора в grammar_ops
+        try {
+            $db->exec('ALTER TABLE grammar_ops ADD COLUMN usage_count INTEGER DEFAULT 1');
+        } catch (\PDOException $e) {
+            // column already exists — ok
+        }
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             source TEXT DEFAULT 'base',
             invented_at TEXT DEFAULT (datetime('now')),
-            definition TEXT
+            definition TEXT,
+            usage_count INTEGER DEFAULT 1
         )");
         // B1-DBDEDUP (05.08): дедуп существующих — keep first по id
         try {

@@ -11,15 +11,19 @@ namespace BeeSwarm\Hive;
  * - ADD: one random available op not in grammar
  * - REMOVE: one random op from grammar (if |G| > 2)
  * - REPLACE: swap one op for another
+ *
+ * GRAMMAR-PROPAGATION (ЭКСП-012): $weights[op] для weightedPick —
+ * культурная эволюция (успех оператора → вес → чаще мутируют в него).
  */
 class GrammarMutator
 {
     /**
      * @param string[] $grammar current grammar
      * @param string[] $available all possible operations
+     * @param array<string,float>|null $weights op → weight (null = uniform)
      * @return string[] mutated grammar
      */
-    public static function mutate(array $grammar, array $available): array
+    public static function mutate(array $grammar, array $available, ?array $weights = null): array
     {
         $grammar = array_values($grammar);
         $available = array_values(array_unique($available));
@@ -44,7 +48,7 @@ class GrammarMutator
 
         switch ($action) {
             case 'add':
-                $grammar[] = $missing[array_rand($missing)];
+                $grammar[] = self::pickOp($missing, $weights);
                 break;
             case 'remove':
                 $idx = array_rand($grammar);
@@ -52,10 +56,29 @@ class GrammarMutator
                 break;
             case 'replace':
                 $idx = array_rand($grammar);
-                $grammar[$idx] = $missing[array_rand($missing)];
+                $grammar[$idx] = self::pickOp($missing, $weights);
                 break;
         }
 
         return array_values($grammar);
+    }
+
+    private static function pickOp(array $ops, ?array $weights): string
+    {
+        if ($weights === null) {
+            return $ops[array_rand($ops)];
+        }
+        $total = 0.0;
+        foreach ($ops as $op) {
+            $total += $weights[$op] ?? 1.0;
+        }
+        $roll = mt_rand(0, 1000000) / 1000000.0 * $total;
+        foreach ($ops as $op) {
+            $roll -= $weights[$op] ?? 1.0;
+            if ($roll <= 0) {
+                return $op;
+            }
+        }
+        return $ops[array_rand($ops)];
     }
 }

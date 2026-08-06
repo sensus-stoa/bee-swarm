@@ -40,7 +40,7 @@ class PopulationPersistenceTest extends TestCase
         // Перезапуск: та же БД, новый Hive
         Database::reset();
         Database::setPath($this->dbPath);
-        $hive2 = new Hive(maxTicks: 1, logFile: tempnam(sys_get_temp_dir(), 'pl2_'));
+        $hive2 = new Hive(maxTicks: 0, logFile: tempnam(sys_get_temp_dir(), 'pl2_'));
         $hive2->run(); // bootstrap → loadPopulation
 
         $beesAfter = $hive2->getBees();

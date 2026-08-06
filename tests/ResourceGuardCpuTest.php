@@ -78,8 +78,11 @@ class ResourceGuardCpuTest extends TestCase
 
         $initial = $g->sleepUs();
 
-        // Много вызовов guard на idle системе → sleep уменьшается к минимуму
+        // Много вызовов guard на idle системе → sleep уменьшается к минимуму.
+        // БЕЗ usleep: быстрый loop = процессный CPU 100% в моменты измерения →
+        // guard видит нагрузку и НЕ уменьшает sleep (флаки paratest)
         for ($i = 0; $i < 20; $i++) {
+            usleep(20_000); // процесс реально отдыхает → CPU ~0
             $g->guard();
         }
 

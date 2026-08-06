@@ -322,6 +322,72 @@ class AtomRegistry
 
     // ═══ ПРИМЕНЕНИЕ ═══
 
+    /**
+     * GRAMMAR-BIRTH фаза 2: вычисление атома через definition.
+     * definition — формула от x0 (унарная абстракция).
+     */
+    public static function clearDefCache(): void
+    {
+        self::$bornCache = [];
+    }
+
+    private static array $bornCache = [];
+
+    private static function bornDefinition(string $name): ?\Closure
+    {
+        $cache = &self::$bornCache;
+        if (array_key_exists($name, $cache)) {
+            return $cache[$name];
+        }
+        $db = \BeeSwarm\Infra\Database::get();
+        // ТОЛЬКО source='birth': любой definition (например 'add') может
+        // ссылаться на себя → бесконечная рекурсия evaluator→apply
+        $stmt = $db->prepare(
+            'SELECT definition FROM grammar_ops WHERE name = ? AND source = ? AND definition IS NOT NULL AND definition != \'\' LIMIT 1'
+        );
+        $stmt->execute([$name, 'birth']);
+        $def = $stmt->fetchColumn();
+        if ($def === false) {
+            // null-кэш ОБЯЗАН (иначе SELECT на каждый miss — лавина),
+            // инвалидируется в Grammar::staticAdd (рождение атома)
+            $cache[$name] = null;
+            return null;
+        }
+        // ПАРСИМ ОДИН РАЗ: evaluator на каждый apply = ×7 к suite
+        [$protected, $map] = \BeeSwarm\Core\ExpressionNormalizer::protect($def);
+        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($protected);
+        if ($node === null) {
+            $cache[$name] = null;
+            return null;
+        }
+        if (! empty($map)) {
+            $node = \BeeSwarm\Core\ExpressionNormalizer::restoreAtoms($node, $map);
+        }
+        $fn = function (float $a, ?float $b = null) use ($node, $def): ?float {
+            // Инфиксные формулы ((x0×K2)) — узел с x0/x1
+            $val = \BeeSwarm\Core\ExpressionEvaluator::evalNode($node, [$a, $b ?? 0.0], []);
+            if ($val !== null && is_finite($val)) {
+                return $val;
+            }
+            // fallback: compose-имя "floor(deg2rad)" — цепочка СПРАВА НАЛЕВО
+            preg_match_all('/\w+/', $def, $m);
+            $inner = $a;
+            $depth = 0;
+            foreach (array_reverse($m[0]) as $fname) {
+                if (++$depth > 10) {
+                    return null; // depth-guard (CONCERNS deleg_bc5b6d02)
+                }
+                $inner = self::apply($fname, (float) $inner, $b);
+                if ($inner === null) {
+                    return null;
+                }
+            }
+            return (float) $inner;
+        };
+        $cache[$name] = $fn;
+        return $fn;
+    }
+
     public static function apply(string $name, float $a, ?float $b = null): ?float
     {
         $name = self::resolve($name);
@@ -329,6 +395,15 @@ class AtomRegistry
 
         if ($isBinary && $b === null) {
             return null; // бинарный атом требует два аргумента
+        }
+
+        // GRAMMAR-BIRTH фаза 2 (фаза Б): атом с definition (source='birth').
+        // ТОЛЬКО для B-префикса — иначе SELECT на каждый sq/abs (лавина)
+        if (str_starts_with($name, 'B')) {
+            $def = self::bornDefinition($name);
+            if ($def !== null) {
+                return $def($a, $b);
+            }
         }
 
         return match ($name) {

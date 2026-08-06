@@ -9,6 +9,9 @@ use BeeSwarm\Knowledge\ConceptRegistry;
 
 class Grammar
 {
+    /** @var string[]|null кэш unary ops (GRAMMAR-BIRTH, 06.08) */
+    private ?array $unaryOpsCache = null;
+
     public const BASE_OPS = [
         '+' => [
             'fn' => 'add',
@@ -77,7 +80,7 @@ class Grammar
         }
     }
 
-    public function add(string $name, string $source = 'invented', ?string $definition = null): bool
+    public function add(string $name, string $source = 'invented', ?string $definition = null, string $birthDomain = ''): bool
     {
         if (isset($this->ops[$name])) {
             return false;
@@ -92,8 +95,8 @@ class Grammar
         }
 
         $db = Database::get();
-        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?,?,?)')
-            ->execute([$name, $source, $definition]);
+        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?,?,?,?)')
+            ->execute([$name, $source, $definition, $birthDomain]);
         return true;
     }
 
@@ -159,6 +162,20 @@ class Grammar
     }
 
     private function applyCustom(float $a, float $b, string $op): ?float
+    {
+        // GRAMMAR-BIRTH фаза 2: рождённый атом (definition) — через AtomRegistry
+        if (str_starts_with($op, 'B')) {
+            $v = \BeeSwarm\Core\AtomRegistry::apply($op, $a, $b);
+            if ($v !== null) {
+                return $v;
+            }
+        }
+
+        // ОРИГИНАЛЬНАЯ логика custom ops (abs/min/max/inverse/pow/parity/semantic)
+        return $this->applyCustomOriginal($a, $b, $op);
+    }
+
+    private function applyCustomOriginal(float $a, float $b, string $op): ?float
     {
         // 0. Семантические операции: запрос к knowledge_graph
         if (($this->ops[$op]['semantic'] ?? false)) {
@@ -259,11 +276,30 @@ class Grammar
     /**
      * GRAMMAR-BIRTH (ЭКСП-015): статический add с definition (из Hive).
      */
-    public static function staticAdd(string $name, string $source, string $definition): void
+    public static function staticAdd(string $name, string $source, string $definition, string $birthDomain = ''): void
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?, ?, ?)')
-            ->execute([$name, $source, $definition]);
+        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, ?, ?, ?)')
+            ->execute([$name, $source, $definition, $birthDomain]);
+        // Рождение атома → инвалидация null-кэша AtomRegistry
+        \BeeSwarm\Core\AtomRegistry::clearDefCache();
+    }
+
+    /**
+     * REUSE-TRACKING (06.08): B-атом использован в discovery домена.
+     */
+    public static function registerReuse(string $name, string $domain): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        // Простой путь: читаем домены, обновляем в PHP (CASE/instr — дорого)
+        $cur = $db->prepare('SELECT reuse_domains FROM grammar_ops WHERE name = ?');
+        $cur->execute([$name]);
+        $domains = json_decode((string) ($cur->fetchColumn() ?: '[]'), true) ?: [];
+        if (! in_array($domain, $domains, true)) {
+            $domains[] = $domain;
+        }
+        $stmt = $db->prepare('UPDATE grammar_ops SET reuse_count = reuse_count + 1, reuse_domains = ? WHERE name = ? AND source = \'birth\'');
+        $stmt->execute([json_encode($domains), $name]);
     }
 
     public static function staticBoostOp(string $op, int $delta = 1): void
@@ -298,6 +334,15 @@ class Grammar
             if (in_array($name, ['log2', 'inverse', 'parity', 'abs', 'sqrt', 'sq', 'neg', 'inv']) || str_starts_with($name, 'pow')) {
                 $unary[] = $name;
             }
+        }
+        // GRAMMAR-BIRTH фаза 2: рождённые атомы (source='birth') — унарные
+        // абстракции, вычисляются через definition (AtomRegistry::apply)
+        $db = \BeeSwarm\Infra\Database::get();
+        // ТОЛЬКО топ-10 по reuse — иначе B-атомы раздувают unary pool
+        foreach ($db->query(
+            "SELECT name FROM grammar_ops WHERE source = 'birth' ORDER BY reuse_count DESC LIMIT 10"
+        ) as $row) {
+            $unary[] = $row['name'];
         }
         return $unary;
     }

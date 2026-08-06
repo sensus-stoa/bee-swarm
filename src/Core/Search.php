@@ -289,7 +289,16 @@ class Search
             }
         }
 
-        usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
+        // PARSIMONY-SELECTION (P0, из gplearn): при равном CV (∆<1e-3)
+        // простейшая формула побеждает — R-блут/тени отсекаются
+        usort($plausible, function (array $a, array $b): int {
+            $d = $a['cv'] <=> $b['cv'];
+            if ($d !== 0 && abs($a['cv'] - $b['cv']) > 1e-3) {
+                return $d;
+            }
+
+            return strlen($a['name']) <=> strlen($b['name']);
+        });
         $bestCv = $plausible[0]['cv'] ?? 9.99;
         $bestName = $plausible[0]['name'] ?? null;
         $cv_train = $bestCv < $cvTrainMax ? $bestCv : 9.99;
@@ -302,13 +311,19 @@ class Search
             if ($splitIdx > 5 && $splitIdx < $n - 1) {
                 $X_test = array_slice($X, $splitIdx);
                 $y_test = array_slice($y, $splitIdx);
+                // PARSIMONY-SELECTION (P0): score = testCv + λ·len —
+                // сложные R-тени (len~60) штрафуются при равном testCv
+                $lambda = 5e-5; // (C) калибруемый: 0.00005/символ
+                $bestTestScore = 9.99;
                 $bestTestCv = 9.99;
                 $bestTestName = null;
                 $bestTestTrainCv = 9.99;
                 $X_train_cv = array_slice($X, 0, $splitIdx);
                 foreach ($plausible as $cand) {
                     $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv);
-                    if ($t < $bestTestCv) {
+                    $score = $t + $lambda * strlen($cand['name']);
+                    if ($score < $bestTestScore) {
+                        $bestTestScore = $score;
                         $bestTestCv = $t;
                         $bestTestName = $cand['name'];
                         $bestTestTrainCv = $cand['cv'];

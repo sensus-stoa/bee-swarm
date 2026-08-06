@@ -224,6 +224,27 @@ class Grammar
         return array_keys($this->ops);
     }
 
+    /**
+     * GRAMMAR-PROPAGATION (ЭКСП-012): вес оператора (культурная эволюция).
+     */
+    public function usageCount(string $op): int
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $v = $db->query("SELECT usage_count FROM grammar_ops WHERE name = " . $db->quote($op))->fetchColumn();
+        return $v === false ? 0 : (int) $v;
+    }
+
+    /**
+     * GRAMMAR-PROPAGATION (ЭКСП-012): увеличить вес оператора после успеха.
+     */
+    public function boostOp(string $op, int $delta = 1): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->prepare('INSERT INTO grammar_ops (name, source, usage_count) VALUES (?, ?, ?)
+            ON CONFLICT(name) DO UPDATE SET usage_count = usage_count + excluded.usage_count')
+            ->execute([$op, 'boost', $delta]);
+    }
+
     public function count(): int
     {
         return count($this->ops);

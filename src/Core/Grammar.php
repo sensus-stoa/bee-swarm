@@ -256,6 +256,16 @@ class Grammar
         return $w;
     }
 
+    /**
+     * GRAMMAR-BIRTH (ЭКСП-015): статический add с definition (из Hive).
+     */
+    public static function staticAdd(string $name, string $source, string $definition): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition) VALUES (?, ?, ?)')
+            ->execute([$name, $source, $definition]);
+    }
+
     public static function staticBoostOp(string $op, int $delta = 1): void
     {
         $db = \BeeSwarm\Infra\Database::get();

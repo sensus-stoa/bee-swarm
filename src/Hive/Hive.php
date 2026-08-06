@@ -291,9 +291,38 @@ class Hive
 
     // ═══ ГЛАВНЫЙ ЦИКЛ ═══
 
+    public function savePopulation(): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->exec('UPDATE bee_persistence SET is_alive = 0');
+        $stmt = $db->prepare('INSERT INTO bee_persistence (grammar, energy, is_alive) VALUES (?, ?, 1)');
+        foreach ($this->bees as $bee) {
+            if ($bee->isAlive()) {
+                $stmt->execute([json_encode($bee->grammar()), $bee->energy()]);
+            }
+        }
+    }
+
+    private function loadPopulation(): ?array
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $rows = $db->query('SELECT grammar, energy FROM bee_persistence WHERE is_alive = 1')->fetchAll(\PDO::FETCH_ASSOC);
+        if (empty($rows)) return null;
+        $bees = [];
+        foreach ($rows as $row) {
+            $g = json_decode($row['grammar'], true);
+            if (is_array($g)) $bees[] = new \BeeSwarm\Hive\Bee($g, (float) $row['energy']);
+        }
+        return $bees ?: null;
+    }
+
     public function run(): int
     {
         $this->bootstrap();
+        // POPULATION-PERSISTENCE: сохранить популяцию при shutdown
+        register_shutdown_function(function (): void {
+            $this->savePopulation();
+        });
 
         // maxTicks=0: bootstrap только, без тиков (детерминированная проверка E₀)
         if ($this->maxTicks === 0) {
@@ -321,6 +350,14 @@ class Hive
         // §0.6-бис: Data Bootstrap Acknowledgment
         $this->log('DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault');
         $this->log('DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS');
+
+        // POPULATION-PERSISTENCE (P0, 06.08): восстановление популяции
+        $restored = $this->loadPopulation();
+        if ($restored !== null) {
+            $this->bees = $restored;
+            $this->log('RESTORE: ' . count($this->bees) . ' bees loaded from DB');
+            return;
+        }
 
         // §0.6: Bootstrap Phase — cold start with seed population
         if (empty($this->bees)) {

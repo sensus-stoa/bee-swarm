@@ -172,6 +172,25 @@ class Database
         } catch (\PDOException $e) {
             // table empty or missing — ok
         }
+        // POPULATION-PERSISTENCE (06.08, P0): сохранение пчёл при перезапуске
+        $db->exec("CREATE TABLE IF NOT EXISTS bee_persistence (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            grammar TEXT NOT NULL,
+            energy REAL NOT NULL DEFAULT 10.0,
+            is_alive INTEGER NOT NULL DEFAULT 1,
+            tick_cost REAL NOT NULL DEFAULT -0.01,
+            search_cost REAL NOT NULL DEFAULT -0.1,
+            discovery_reward REAL NOT NULL DEFAULT 2.0,
+            info_reward REAL NOT NULL DEFAULT 0.5,
+            custom_ops TEXT NOT NULL DEFAULT '[]'
+        )");
+        // CONCERNS (deleg_0f9d1b7f): ALTER для существующих БД
+        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN tick_cost REAL NOT NULL DEFAULT -0.01'); } catch (\PDOException $e) {}
+        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN search_cost REAL NOT NULL DEFAULT -0.1'); } catch (\PDOException $e) {}
+        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN discovery_reward REAL NOT NULL DEFAULT 2.0'); } catch (\PDOException $e) {}
+        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN info_reward REAL NOT NULL DEFAULT 0.5'); } catch (\PDOException $e) {}
+        try { $db->exec("ALTER TABLE bee_persistence ADD COLUMN custom_ops TEXT NOT NULL DEFAULT '[]'"); } catch (\PDOException $e) {}
+
         // Все таблицы создаются здесь — не в модулях.
         // Это гарантирует, что тестовая БД и production БД идентичны.
         $db->exec("CREATE TABLE IF NOT EXISTS knowledge_graph (

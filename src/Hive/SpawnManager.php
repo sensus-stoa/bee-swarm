@@ -45,7 +45,7 @@ class SpawnManager
 
         $parent = null;
         foreach ($bees as $bee) {
-            if ($bee->isAlive() && $bee->energy() >= self::SPAWN_THRESHOLD) {
+            if ($bee->isAlive() && $bee->energy() > 0.0) {
                 $parent = $bee;
                 break;
             }

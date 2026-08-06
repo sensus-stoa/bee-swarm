@@ -6,6 +6,9 @@ namespace BeeSwarm\Core;
 
 class Search
 {
+    /** PARSIMONY: штраф за символ формулы (C) калибруемый, из gplearn */
+    private const PARSIMONY_LAMBDA = 5e-5;
+
     public static function cv(array $vec, array $y, float $shift = 0.0): float
     {
         $n = count($vec);
@@ -289,18 +292,25 @@ class Search
             }
         }
 
-        // PARSIMONY-SELECTION (P0, из gplearn): при равном CV (∆<1e-3)
-        // простейшая формула побеждает — R-блут/тени отсекаются
-        usort($plausible, function (array $a, array $b): int {
-            $d = $a['cv'] <=> $b['cv'];
-            if ($d !== 0 && abs($a['cv'] - $b['cv']) > 1e-3) {
-                return $d;
-            }
+        usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
 
-            return strlen($a['name']) <=> strlen($b['name']);
-        });
-        $bestCv = $plausible[0]['cv'] ?? 9.99;
-        $bestName = $plausible[0]['name'] ?? null;
+        // PARSIMONY: при testRatio=0 (без теста) выбираем короткую среди
+        // равных по cv — score = cv + λ·len. При testRatio>0 — в test-блоке.
+        if ($testRatio <= 0.0 && ! empty($plausible)) {
+            $lambda = self::PARSIMONY_LAMBDA;
+            $bestScore = 9.99;
+            foreach ($plausible as $cand) {
+                $score = $cand['cv'] + $lambda * strlen($cand['name']);
+                if ($score < $bestScore) {
+                    $bestScore = $score;
+                    $bestCv = $cand['cv'];
+                    $bestName = $cand['name'];
+                }
+            }
+        } else {
+            $bestCv = $plausible[0]['cv'] ?? 9.99;
+            $bestName = $plausible[0]['name'] ?? null;
+        }
         $cv_train = $bestCv < $cvTrainMax ? $bestCv : 9.99;
         $cv_test = $cv_train;
 
@@ -313,7 +323,7 @@ class Search
                 $y_test = array_slice($y, $splitIdx);
                 // PARSIMONY-SELECTION (P0): score = testCv + λ·len —
                 // сложные R-тени (len~60) штрафуются при равном testCv
-                $lambda = 5e-5; // (C) калибруемый: 0.00005/символ
+                $lambda = self::PARSIMONY_LAMBDA; // (C) калибруемый: 0.00005/символ
                 $bestTestScore = 9.99;
                 $bestTestCv = 9.99;
                 $bestTestName = null;

@@ -786,8 +786,20 @@ class Hive
      * → новый атом в grammar_ops (source='birth', definition=формула).
      * Рождение = абстракция: пчела «изобретает» оператор из успешного паттерна.
      */
-    private function birthOperator(string $formula): void
+    private function birthOperator(string $formula, string $domain): void
     {
+        // ЛАВИНА (06.08): без потолка B-атомы раздувают unary pool —
+        // каждый Search::find перебирает их на каждой фиче. Cap 30.
+        // static-кэш счётчика: COUNT на каждое открытие дорог (suite 20 мин)
+        static $birthCount = -1;
+        if ($birthCount === -1) {
+            $db = \BeeSwarm\Infra\Database::get();
+            $birthCount = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")->fetchColumn();
+        }
+        if ($birthCount >= 30) {
+            return;
+        }
+        $birthCount++;
         // Тривиальные/тавтологии не рождают операторы
         if (str_contains($formula, 'R+') || str_contains($formula, 'R×')
             || str_contains($formula, 'Rmin') || str_contains($formula, 'Rmax')
@@ -795,7 +807,18 @@ class Hive
             return;
         }
         $name = 'B' . substr(md5($formula), 0, 6);
-        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula);
+        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula, $domain);
+    }
+
+    /**
+     * REUSE-TRACKING (06.08): B-атомы в найденной формуле получают reuse.
+     */
+    private function registerReuseOps(string $formula, string $domain): void
+    {
+        preg_match_all('/B[0-9a-f]{6}/', $formula, $m);
+        foreach ($m[0] as $born) {
+            \BeeSwarm\Core\Grammar::registerReuse($born, $domain);
+        }
     }
 
     /**
@@ -849,7 +872,11 @@ class Hive
         // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).
         if (($d['cv'] ?? 1.0) > 0.001) {
             $this->boostFormulaOps($d['atom']);
-            $this->birthOperator($d['atom']); // GRAMMAR-BIRTH (ЭКСП-015)
+            // NO_BIRTH=1 — диагностика: рождение/реюс не влияют на тик
+            if (getenv('NO_BIRTH') !== '1') {
+                $this->birthOperator($d['atom'], $domain); // GRAMMAR-BIRTH (ЭКСП-015)
+                $this->registerReuseOps($d['atom'], $domain); // REUSE-TRACKING
+            }
         }
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
         if ($this->taskRouter && $this->routedBee) {

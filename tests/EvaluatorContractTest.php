@@ -14,7 +14,10 @@ class EvaluatorContractTest extends TestCase
     public function testGrammarAndAtomRegistryAgreeUnary(): void
     {
         $grammar = new Grammar();
-        $ops = $grammar->getUnaryOps();
+        $ops = array_values(array_filter(
+            $grammar->getUnaryOps(),
+            fn (string $op) => ! str_starts_with($op, 'B') // born-атомы — в GrammarBirth*
+        ));
         $testValues = [-10.0, -1.0, 0.0, 1.0, 10.0, 3.14, -0.5, 2.0];
 
         $mismatches = [];

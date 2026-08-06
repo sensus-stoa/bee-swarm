@@ -25,6 +25,11 @@ class ExpressionEvaluator
     /** @var array<string,array|null> кэш definition по имени атома */
     private static array $defCache = [];
 
+    public static function clearDefCache(): void
+    {
+        self::$defCache = [];
+    }
+
     private static function definition(string $atom): ?array
     {
         if (array_key_exists($atom, self::$defCache)) {
@@ -153,7 +158,7 @@ class ExpressionEvaluator
         return null;
     }
 
-    private static function evalNode(array $node, array $row, array $stats): ?float
+    public static function evalNode(array $node, array $row, array $stats): ?float
     {
         if (isset($node['atom'])) {
             return self::evalAtom($node['atom'], $row, $stats);

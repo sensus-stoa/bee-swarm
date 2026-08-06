@@ -35,6 +35,9 @@ class Database
 
     public static function reset(): void
     {
+        // CONCERNS (deleg_bc5b6d02): сброс кэшей definition (GRAMMAR-BIRTH)
+        \BeeSwarm\Core\ExpressionEvaluator::clearDefCache();
+        \BeeSwarm\Core\AtomRegistry::clearDefCache();
         self::$instance = null;
     }
 
@@ -179,6 +182,16 @@ class Database
         } catch (\PDOException $e) {
             // table empty or missing — ok
         }
+        // REUSE-TRACKING (06.08): домен рождения + reuse (ПОСЛЕ CREATE TABLE!)
+        try {
+            $db->exec('ALTER TABLE grammar_ops ADD COLUMN birth_domain TEXT DEFAULT \'\'');
+        } catch (\PDOException $e) {}
+        try {
+            $db->exec('ALTER TABLE grammar_ops ADD COLUMN reuse_count INTEGER DEFAULT 0');
+        } catch (\PDOException $e) {}
+        try {
+            $db->exec('ALTER TABLE grammar_ops ADD COLUMN reuse_domains TEXT DEFAULT \'[]\'');
+        } catch (\PDOException $e) {}
         // POPULATION-PERSISTENCE (06.08, P0): сохранение пчёл при перезапуске
         $db->exec("CREATE TABLE IF NOT EXISTS bee_persistence (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

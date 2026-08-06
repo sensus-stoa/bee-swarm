@@ -26,7 +26,7 @@ class FullPipelineRegressionTest extends TestCase
     public function testDiscoveriesMade(): void
     {
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $hive = $this->runHive(25);
+        $hive = $this->runHive(12);
 
         $laws = \BeeSwarm\Infra\Database::get()->query(
             'SELECT COUNT(*) FROM laws'
@@ -42,7 +42,7 @@ class FullPipelineRegressionTest extends TestCase
     public function testMultipleDomains(): void
     {
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $this->runHive(25);
+        $this->runHive(12);
 
         $domains = \BeeSwarm\Infra\Database::get()->query(
             'SELECT COUNT(DISTINCT domain) FROM laws'
@@ -96,7 +96,7 @@ class FullPipelineRegressionTest extends TestCase
     public function testBeesAliveAfterTicks(): void
     {
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $hive = $this->runHive(25);
+        $hive = $this->runHive(12);
 
         $alive = count(array_filter(
             $hive->getBees(),

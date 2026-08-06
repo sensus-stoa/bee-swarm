@@ -12,8 +12,10 @@ class DiscoveryLoopTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        // Чистим grammar_ops от предыдущих тестов
-        Database::get()->exec("DELETE FROM grammar_ops WHERE source LIKE 'auto%' OR source = 'seed'");
+        // ПОЛНАЯ изоляция: чужие атомы (B-атомы от FullPipeline, 'test' от
+        // EvaluatorContract) ломают in_array($f['atom'], $g->all())
+        Database::get()->exec('DELETE FROM grammar_ops');
+        Database::get()->exec('DELETE FROM laws');
     }
 
     /**

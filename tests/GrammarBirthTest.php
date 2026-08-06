@@ -15,6 +15,15 @@ use BeeSwarm\Core\Grammar;
  */
 class GrammarBirthTest extends TestCase
 {
+
+    protected function tearDown(): void
+    {
+        // GRAMMAR-BIRTH: не засорять общую :memory: БД — иначе
+        // последующие Search-тесты перебирают B-атомы (лавина)
+        \BeeSwarm\Infra\Database::get()->exec("DELETE FROM grammar_ops WHERE source = 'birth'");
+        parent::tearDown();
+    }
+
     public function testBornAtomEvaluatesByDefinition(): void
     {
         // Рождаем атом: имя = нормализованная формула, definition = формула

@@ -20,6 +20,8 @@ class RetrospectiveDataTest extends TestCase
     public function testRetrospectiveWithForagedTasks(): void
     {
         $db = Database::get();
+        // ПОЛНАЯ очистка: чужые законы в :memory: → UNIQUE(formula,domain) fail
+        $db->exec('DELETE FROM laws');
         $db->exec("DELETE FROM laws WHERE name LIKE 'TEST_RETRO_%'");
 
         // Симулируем foraged-закон (как будто открыт без held-out)
@@ -53,6 +55,8 @@ class RetrospectiveDataTest extends TestCase
     public function testGarbageLawDetectedAsOverfit(): void
     {
         $db = Database::get();
+        // ПОЛНАЯ очистка: чужые законы в :memory: → UNIQUE(formula,domain) fail
+        $db->exec('DELETE FROM laws');
         $db->exec("DELETE FROM laws WHERE name LIKE 'TEST_RETRO_%'");
 
         // abs на identity-данных: train (0,1,2,3,4) → CV=0

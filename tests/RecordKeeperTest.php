@@ -17,6 +17,8 @@ class RecordKeeperTest extends TestCase
 
     public function testRecordSavesLawClassIdentity(): void
     {
+        // Изоляция от pollution :memory: (FullPipeline вставляет (x0+x1)/arithmetic)
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
         $keeper = new RecordKeeper();
         $keeper->preloadKnown();
 
@@ -38,6 +40,8 @@ class RecordKeeperTest extends TestCase
 
     public function testRecordDefaultsToEmpirical(): void
     {
+        // Изоляция от pollution :memory: (FullPipeline вставляет (x0+x1)/arithmetic)
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
         $keeper = new RecordKeeper();
         $keeper->preloadKnown();
 
@@ -59,6 +63,8 @@ class RecordKeeperTest extends TestCase
 
     public function testRecordDedupPreservesClass(): void
     {
+        // Изоляция от pollution :memory: (FullPipeline вставляет (x0+x1)/arithmetic)
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
         $keeper = new RecordKeeper();
         $keeper->preloadKnown();
 

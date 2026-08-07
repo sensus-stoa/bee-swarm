@@ -36,6 +36,8 @@ class Hive
     private array $log = [];
 
     private int $tick = 0;
+    private int $lifetimeAccum = 0; // LIFETIME-METRIC (07.08)
+    private int $lifetimeCount = 0;
 
 
     private const MIN_DATA_POINTS = 10;
@@ -571,7 +573,11 @@ class Hive
                 }
             }
             if (! $bee->isAlive()) {
-                $this->log("DEATH: bee#{$i} energy={$bee->energy()}");
+                // LIFETIME-METRIC (07.08): lifespan = tick смерти − tick рождения
+                $life = $this->tick - $bee->getBirthTick();
+                $this->log("DEATH: bee#{$i} energy={$bee->energy()} life={$life}");
+                $this->lifetimeAccum += $life;
+                $this->lifetimeCount++;
             }
         }
 
@@ -586,6 +592,7 @@ class Hive
             $this->plateau->getConsecutiveNoDiscovery(),
             $hasNewForagerData,
             $this->plateau->getThreshold(),
+            $this->tick,
         );
         if ($gapSpawned > 0) {
             $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
@@ -609,8 +616,12 @@ class Hive
                 fn (Bee $b) => implode(',', $b->grammar()),
                 array_filter($this->bees, fn (Bee $b) => $b->isAlive())
             )));
+            $avgLife = $this->lifetimeCount > 0
+                ? (int) round($this->lifetimeAccum / $this->lifetimeCount) : 0;
+            $this->lifetimeAccum = 0;
+            $this->lifetimeCount = 0;
             $this->log("GEN: {$this->spawnManager->getGeneration()} pop=" . count($this->bees)
-                . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG}");
+                . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG} avg_lifetime={$avgLife}");
         }
 
         $data = $task['data'] ?? [];

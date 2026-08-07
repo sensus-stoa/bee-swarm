@@ -44,6 +44,10 @@ class Search
 
     public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15): array
     {
+        // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
+        static $profGen = 0.0, $profCv = 0.0, $profTest = 0.0;
+        static $profCalls = 0;
+        $p0 = microtime(true);
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
             return [false, 9.99, 'none', 9.99, 'NONE'];
@@ -143,6 +147,7 @@ class Search
         $featKeys = array_keys($feats);
         $ops = $grammar->all();
 
+        $pGen = microtime(true);
         // L1: pairwise on features
         for ($a = 0; $a < count($featKeys); $a++) {
             for ($b = $a + 1; $b < count($featKeys); $b++) {
@@ -267,6 +272,8 @@ class Search
         // не отличает закон от R-подгонок (все ~0.03-0.05), held-out отличает
         // (закон 0.004, подгонки 9.99). top-K по train теряет закон (2x вне
         // top-30). Решение: ВСЕ правдоподобные (CV_train < cvTrainMax),
+        $profGen += microtime(true) - $pGen;
+        $pCv = microtime(true);
         // testCv каждого (дёшево), лучший по тесту = закон.
         $plausible = [];
         foreach ($exprs as $name => $vec) {
@@ -293,6 +300,8 @@ class Search
         }
 
         usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
+        $profCv += microtime(true) - $pCv;
+        $pTest = microtime(true);
 
         // PARSIMONY: при testRatio=0 (без теста) выбираем короткую среди
         // равных по cv — score = cv + λ·len. При testRatio>0 — в test-блоке.
@@ -363,6 +372,19 @@ class Search
         
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
+
+
+        // ЭКСП-018b: вывод профиля каждые 50 вызовов
+        $profCalls++;
+        if (getenv('SEARCH_PROFILE') === '1' && $profCalls % 50 === 0) {
+            $total = $profGen + $profCv + $profTest;
+            $total = $total > 0 ? $total : 1.0;
+            fwrite(STDERR, sprintf(
+                "SEARCH_PROFILE: calls=%d GEN=%.1f%% CV=%.1f%% TEST=%.1f%% total=%.1fs\n",
+                $profCalls, 100*$profGen/$total, 100*$profCv/$total,
+                100*$profTest/$total, $total
+            ));
+        }
 
     }
 

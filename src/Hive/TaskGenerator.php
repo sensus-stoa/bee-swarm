@@ -28,9 +28,11 @@ class TaskGenerator
         ?\BeeSwarm\Text\CorpusVocabulary $corpusVocab = null,
         int $currentTaskCount = 0,
     ): array {
-        // Базовые синтетические задачи — делегируем TaskManager
+        // Базовые синтетические задачи — делегируем TaskManager.
+        // ЭКСП-017: NO_BASE_TASKS=1 — голодная среда (base = вечная кормушка:
+        // каждая задача даёт +0.5 information reward)
         $tm = new TaskManager();
-        $tasks = $tm->getBaseTasks();
+        $tasks = getenv('NO_BASE_TASKS') === '1' ? [] : $tm->getBaseTasks();
 
         // S2.7: Lazy cross-pairing — consume generator with bound
         $cross = [];

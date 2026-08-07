@@ -437,6 +437,9 @@ class Hive
 
     private function doTick(): void
     {
+        // ЭКСП-018: Colony Economics Profile (PROFILE=1)
+        $profT0 = microtime(true);
+        $profSearchT0 = $profT0;
         $this->lastAnswerFormula = null;
 
         // Memory monitor every 100 ticks + первый тик (ранний предохранитель)
@@ -622,6 +625,26 @@ class Hive
             $this->lifetimeCount = 0;
             $this->log("GEN: {$this->spawnManager->getGeneration()} pop=" . count($this->bees)
                 . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG} avg_lifetime={$avgLife}");
+
+            // ЭКСП-018: энергетический баланс по классам |G| (PROFILE=1)
+            if (getenv('PROFILE') === '1') {
+                $buckets = [1 => [], 2 => [], 5 => [], 10 => [], 20 => [], 50 => [], 100 => []];
+                $keys = array_keys($buckets);
+                foreach ($this->bees as $b) {
+                    if (! $b->isAlive()) continue;
+                    $g = count($b->grammar());
+                    $bucket = 100;
+                    foreach ($keys as $k) { if ($g <= $k) { $bucket = $k; break; } }
+                    $buckets[$bucket][] = $b->energy();
+                }
+                $parts = [];
+                foreach ($buckets as $k => $energies) {
+                    if (empty($energies)) continue;
+                    $parts[] = "|G|≤{$k}:" . round(array_sum($energies) / count($energies), 2)
+                        . "x" . count($energies);
+                }
+                $this->log('G_BALANCE: ' . implode(' ', $parts));
+            }
         }
 
         $data = $task['data'] ?? [];
@@ -719,6 +742,13 @@ class Hive
             }
         }
 
+        // ЭКСП-018: Colony Economics Profile (PROFILE=1)
+        if (getenv('PROFILE') === '1') {
+            $tickMs = (int) round((microtime(true) - $profT0) * 1000);
+            $searchMs = (int) round((microtime(true) - $profSearchT0) * 1000);
+            $this->log("PROFILE: tick={$this->tick} TICK_MS={$tickMs} SEARCH_MS={$searchMs} task=" . (isset($task) ? 'yes' : 'no'));
+        }
+
         usleep($this->plateau->getSleepUs());
     }
 
@@ -772,6 +802,7 @@ class Hive
         }
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $colLabels = $task['col_labels'] ?? null;
+        $profSearchT0 = microtime(true);
         $engine = new DiscoveryEngine();
         [$candidates, $bestCv, $searchCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
 

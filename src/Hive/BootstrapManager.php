@@ -54,9 +54,10 @@ class BootstrapManager
         }
 
         return [
-            new Bee($g1, 10.0),
-            new Bee($g2, 10.0),
-            new Bee($g3, 10.0),
+            // ЭКСП-017: SEED_ENERGY env — голодный тест (низкая энергия = быстрая смерть)
+            new Bee($g1, (float) (getenv('SEED_ENERGY') ?: '10.0')),
+            new Bee($g2, (float) (getenv('SEED_ENERGY') ?: '10.0')),
+            new Bee($g3, (float) (getenv('SEED_ENERGY') ?: '10.0')),
         ];
     }
 

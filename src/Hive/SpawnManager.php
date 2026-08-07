@@ -43,6 +43,37 @@ class SpawnManager
             return 0;
         }
 
+        // GRAMMAR-DEGRADATION (06.08): монокультура (уникальных грамматик < 3)
+        // → FORCED seed-разнообразие: рожаем +, ×, min вместо клонов.
+        // Иначе |G|=1 самоподдерживается: клоны не находят законов.
+        // ТОЛЬКО при живых пчёлах: all-dead обрабатывает SEED_SPAWN (trySpawn).
+        $hasAlive = false;
+        $uniqueGrammars = [];
+        foreach ($bees as $bee) {
+            // ТОЛЬКО живые в подсчёте разнообразия: мёртвые маскируют
+            // монокультуру (CONCERNS deleg_0a2963d2)
+            if ($bee->isAlive()) {
+                $uniqueGrammars[implode(',', $bee->grammar())] = true;
+                $hasAlive = true;
+            }
+        }
+        if ($hasAlive && count($uniqueGrammars) < 3) {
+            // ПАРЫ операторов, не одиночки: |G|=1 не выражает законы —
+            // seed'ы умрут так же, как монокультура. |G|=2 выразимо.
+            $seedSets = [['+', '×'], ['−', '/'], ['min', 'sq']];
+            $added = 0;
+            foreach ($seedSets as $seedGrammar) {
+                $key = implode(',', $seedGrammar);
+                if (! isset($uniqueGrammars[$key])) {
+                    $bees[] = new Bee($seedGrammar, 10.0);
+                    $uniqueGrammars[$key] = true;
+                    $added++;
+                }
+            }
+            $this->gapSpawnFired = true; // cooldown: один spawn за plateau
+            return $added;
+        }
+
         $parent = null;
         foreach ($bees as $bee) {
             if ($bee->isAlive() && $bee->energy() > 0.0) {

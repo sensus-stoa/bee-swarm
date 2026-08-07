@@ -22,7 +22,7 @@ class SpawnManager
      *
      * Пороги: 5× plateauThreshold (с новыми данными) или 10× (без).
      */
-    public function tryGapSpawn(array &$bees, array $allOps, bool $isPlateau, int $plateauTicks, bool $hasNewData, int $plateauThreshold = 50): int
+    public function tryGapSpawn(array &$bees, array $allOps, bool $isPlateau, int $plateauTicks, bool $hasNewData, int $plateauThreshold = 50, int $tick = 0): int
     {
         $thresholdNewData = 5 * $plateauThreshold;
         $thresholdFallback = 10 * $plateauThreshold;
@@ -65,7 +65,9 @@ class SpawnManager
             foreach ($seedSets as $seedGrammar) {
                 $key = implode(',', $seedGrammar);
                 if (! isset($uniqueGrammars[$key])) {
-                    $bees[] = new Bee($seedGrammar, 10.0);
+                    $seed = new Bee($seedGrammar, 10.0);
+                    $seed->setBirthTick($tick);
+                    $bees[] = $seed;
                     $uniqueGrammars[$key] = true;
                     $added++;
                 }
@@ -101,6 +103,7 @@ class SpawnManager
             $parent->getInformationReward(),
             $parent->getCustomGrammarOps(),
         );
+        $child->setBirthTick($tick);
 
         $bees[] = $child;
         // Gap spawns counted separately — не влияют на generation tracking
@@ -117,7 +120,7 @@ class SpawnManager
      * @param string[] $allOps доступные операции грамматики
      * @return int количество новых спавнов
      */
-    public function trySpawn(array &$bees, array $allOps): int
+    public function trySpawn(array &$bees, array $allOps, int $tick = 0): int
     {
         $spawned = 0;
         $aliveCount = 0;

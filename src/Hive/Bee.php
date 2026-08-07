@@ -51,6 +51,7 @@ class Bee
     public const DEFAULT_INFORMATION_REWARD = 0.0;
 
     private float $energy;
+    private int $birthTick = 0; // LIFETIME-METRIC (07.08)
     private float $tickCost;
     private float $searchCost;
     private float $discoveryReward;
@@ -126,6 +127,16 @@ class Bee
      * Добавить операцию в per-bee грамматику (§2.3 изоляция).
      * Другие пчёлы не видят эту операцию.
      */
+    public function getBirthTick(): int
+    {
+        return $this->birthTick;
+    }
+
+    public function setBirthTick(int $tick): void
+    {
+        $this->birthTick = $tick;
+    }
+
     public function addToGrammar(string $op): void
     {
         if (! in_array($op, $this->customGrammarOps, true)) {

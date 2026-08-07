@@ -48,9 +48,14 @@ class ColonyProfileTest extends TestCase
         try {
             $hive = new Hive(
                 plateau: new PlateauDetector(50, plateauSleepUs: 0),
-                maxTicks: 5,
+                maxTicks: 15,
                 logFile: $logFile,
             );
+            // E≥15 → спавн на 1-м тике → GEN → G_BALANCE
+            $ref = new \ReflectionClass(Hive::class);
+            $bees = $ref->getProperty('bees');
+            $bees->setAccessible(true);
+            $bees->setValue($hive, [new \BeeSwarm\Hive\Bee(['+'], 20.0)]);
             $hive->run();
         } finally {
             putenv('PROFILE');

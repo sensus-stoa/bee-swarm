@@ -1,5 +1,5 @@
 <?php
-// ~/.bee_swarm/agenda.php v5 — Hive
+// agenda.php v5 — Hive
 date_default_timezone_set('Europe/Moscow');
 
 // Error reporting: всё в stderr + лог-файл

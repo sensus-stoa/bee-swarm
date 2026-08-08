@@ -292,10 +292,22 @@ class ExpressionNormalizer
      *
      * @return array|null упрощённый узел или null если тождества нет
      */
+    private static function resolveK(string $s): string
+    {
+        return match ($s) {
+            'K1' => '1',
+            'K2' => '2',
+            default => $s,
+        };
+    }
+
     private static function applyIdentity(string $op, array $l, array $r): ?array
     {
         $ls = self::render($l);
         $rs = self::render($r);
+        // LAW-CLASS (08.08): K1 ≡ 1.0, K2 ≡ 2.0 — константы грамматики
+        $ls = self::resolveK($ls);
+        $rs = self::resolveK($rs);
         $lIsZero = is_numeric($ls) && (float) $ls === 0.0;
         $rIsZero = is_numeric($rs) && (float) $rs === 0.0;
         $lIsOne = is_numeric($ls) && (float) $ls === 1.0;

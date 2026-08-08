@@ -29,7 +29,7 @@
 ## H-C2: New Domain Temporarily Breaks Plateau
 
 **Статус (03.08): ⏳ ОЖИДАЕТ.** E1-FIX Phase 1-3 готов (CORPUS_DIRS, text bootstrap, cross-pair).
-Obsidian vault (1910 .md) подключён но не задеплоен — 24h gate.
+internal document corpus (1910 .md) подключён но не задеплоен — 24h gate.
 После деплоя: текстовые атомы → foraged_txt задачи → cross-pair → законы.
 CV→0 протестирован на 4 внешних датасетах — система живая, должна сработать.
 

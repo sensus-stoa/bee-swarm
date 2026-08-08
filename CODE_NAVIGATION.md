@@ -129,6 +129,6 @@ Reduce-константы создают алгебраические тожде
 scp src/... laptop:~/.bee_swarm/src/...
 
 # Остановка + запуск
-ssh hive 'kill $(pgrep -f "php agenda"); sleep 1'
+ssh hive 'pkill -f "php agenda"; sleep 1'
 ssh hive 'cd ~/.bee_swarm && CORPUS_DIRS=~/obsidian FORAGER_SOURCES=~/obsidian setsid php agenda.php >> logs/agenda.log 2>&1 < /dev/null &'
 ```

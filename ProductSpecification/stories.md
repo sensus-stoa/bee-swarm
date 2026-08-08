@@ -10,7 +10,7 @@
 | **V1** | **STAGE-1-VERIFY — формальная верификация Стадии 1** | 🔧 2/5 verify. 3 pending (data ceiling). |
 | **V0.8.5** | **LAW-CLASSIFICATION — IDENTITY vs EMPIRICAL gate** | ⬜ 4 фазы (2.5h). |
 | **V0.10** | **HIVE-WATCHER — структурный мониторинг улья** | ⬜ 4 фазы (3.5h). |
-| **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (Obsidian vault). |
+| **E1-FIX** | **TEXT-LAW-PIPELINE — текст-атомы→законы** | 🔧 Phase 1-3 done. Phase 4 ⬜ (document corpus). |
 | **S2.7** | **LAZY-CROSSPAIR — генератор вместо O(N²) массива** | ✅ 504/504 PASS, 18MB память (было 9GB). |
 | **S1.6** | **WEIGHTED-TASKS — взвешенный отбор (nFeat=1 чаще)** | ⬜ RED. |
 | **D19** | **FAANG-REVIEW — 4-layer bug prevention (10 stories)** | ⬜ 10 фаз. |

@@ -29,9 +29,11 @@ class HiveEnergyLoopTest extends TestCase
     /** При E ≤ 0 пчела умирает — DEATH в логе */
     public function testBeeDiesAtZeroEnergy(): void
     {
-        // Пчела с энергией 0.01 — умрёт через 2 тика
+        // Пчела с энергией 0.01 — SHRINK (08.08): E<3 → тик 0.001 → смерть через 10 тиков
         $bee = new Bee(['add'], 0.01);
-        $bee->tick(); // E = 0.00
+        for ($i = 0; $i < 11; $i++) {
+            $bee->tick();
+        }
         $this->assertFalse($bee->isAlive(), 'Bee with E≤0 must be dead');
     }
 

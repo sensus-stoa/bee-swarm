@@ -16,10 +16,12 @@ class LifetimeMetricTest extends TestCase
 {
     public function testDeathLogsLifespan(): void
     {
+        // NO_NOVELTY=1: детерминизм (NOVELTY +0.5×N типов не кормит пчелу)
+        putenv('NO_NOVELTY=1');
         $logFile = tempnam(sys_get_temp_dir(), 'lm_');
         $hive = new Hive(
             plateau: new PlateauDetector(50, plateauSleepUs: 0),
-            maxTicks: 15,
+            maxTicks: 30,
             logFile: $logFile,
         );
 
@@ -27,9 +29,10 @@ class LifetimeMetricTest extends TestCase
         $ref = new \ReflectionClass(Hive::class);
         $bees = $ref->getProperty('bees');
         $bees->setAccessible(true);
-        $bees->setValue($hive, [new Bee(['+'], 0.005)]); // смерть на 1-м тике (до NOVELTY)
+        $bees->setValue($hive, [new Bee(['+'], 0.0005)]); // смерть на 1-м тике (тик 0.001, до NOVELTY)
 
         $hive->run();
+        putenv('NO_NOVELTY');
 
         $log = file_get_contents($logFile);
         $deathLines = [];

@@ -1,6 +1,6 @@
 # ExoCortex AGI Roj — Спецификация v2.0
 
-> 03.07.2026 | Архитектор: Dolgov Evgeniy V. | Co-Architect: Hermes
+> 03.07.2026 | Architect: Dolgov Evgeniy V. | Co-Architect: Hermes
 > 230 тестов, 481 assertion, 61 закон, 5000-словный корпус
 
 ---

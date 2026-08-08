@@ -147,7 +147,7 @@ class AutonomousDecisionsTest extends TestCase
     {
         return [
             'scan_dirs' => [
-                '/home/user/Documents/the_lair' => 0.5,
+                '/home/user/Documents/data' => 0.5,
             ],
             'current_goal' => 'discover',
             'starvation_count' => 0,

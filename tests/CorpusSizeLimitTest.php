@@ -16,7 +16,7 @@ class CorpusSizeLimitTest extends TestCase
      */
     public function testVocabularyHasUpperLimit(): void
     {
-        $lair = getenv('HOME') . '/Documents/the_lair';
+        $lair = getenv('HOME') . '/Documents/data';
         if (! is_dir($lair)) {
             $lair = __DIR__ . '/fixtures/lair';
         }
@@ -35,7 +35,7 @@ class CorpusSizeLimitTest extends TestCase
      */
     public function testScansLimitedFiles(): void
     {
-        $lair = getenv('HOME') . '/Documents/the_lair';
+        $lair = getenv('HOME') . '/Documents/data';
         if (! is_dir($lair)) {
             $lair = __DIR__ . '/fixtures/lair';
         }

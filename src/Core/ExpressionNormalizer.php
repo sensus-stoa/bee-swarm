@@ -21,7 +21,9 @@ class ExpressionNormalizer
     private const COMMUTATIVE = ['+', '×', 'max', 'min'];
 
     /** Все бинарные операторы (длинные первыми для парсинга). */
-    private const BINARY_OPS = ['max', 'min', '×', '−', '/', '+'];
+    private const BINARY_OPS = ['max', 'min', 'add', 'sub', 'mul', 'div', '×', '−', '/', '+'];
+    // EVALUATOR-OP-NAMES (08.08): add/sub/mul/div — имена операций Search;
+    // без них heldout слеп к композициям ((x0addx1) → 9.99 → REFUTED)
 
     /** R-префиксы (reduce-атомы из Search::find) — длинные первыми. */
     private const R_PREFIXES = ['range', 'norm', 'max', 'min', '×', '−', '/', '+'];
@@ -165,8 +167,13 @@ class ExpressionNormalizer
         // Вложенные скобки — рекурсивно разбиваем по оператору верхнего уровня.
         // NORMALIZER-PRIORITY-BUG (08.08): СНАЧАЛА +/− (низкий приоритет),
         // ПОТОМ ×/÷ и остальные. Иначе a×b+c разбивается по × → искажение.
-        $split = self::findTopOperator($inner, ['+', '−'])
-            ?? self::findTopOperator($inner, array_values(array_diff(self::BINARY_OPS, ['+', '−'])));
+        // Три тира (CONCERNS deleg_26879775): сложение/вычитание (низкий),
+        // max/min (средний), умножение/деление (высокий). Эквиваленты
+        // СИМВОЛ+СЛОВО в ОДНОМ тире (CONCERNS deleg_aa12a1ff): иначе
+        // a−b sub c ≠ a sub b−c при смешанной нотации.
+        $split = self::findTopOperator($inner, ['+', '−', 'add', 'sub'])
+            ?? self::findTopOperator($inner, ['max', 'min'])
+            ?? self::findTopOperator($inner, ['mul', 'div', '×', '÷', '/']);
         if ($split !== null) {
             [$op, $left, $right] = $split;
             return [

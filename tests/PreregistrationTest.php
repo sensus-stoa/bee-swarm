@@ -14,10 +14,25 @@ use BeeSwarm\Infra\Database;
  */
 class PreregistrationTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        // Изоляция :memory: (законы/атомы прошлых прогонов → все discovery
+        // = DUPLICATE → PREREG-лог пуст — флак)
+        $db = Database::get();
+        $db->exec('DELETE FROM preregistrations');
+        $db->exec('DELETE FROM laws');
+        $db->exec('DELETE FROM grammar_ops WHERE source = \'birth\'');
+        Database::reset();
+        Database::setPath(':memory:');
+    }
+
     public function testDiscoveryCreatesPreregistration(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'pr_');
         putenv('NO_NOVELTY=1');
+        // Изоляция: только base-задачи (forager с page_034 — нестабилен)
+        putenv('FORAGER_SOURCES=' . sys_get_temp_dir() . '/prereg_empty');
+        @mkdir(sys_get_temp_dir() . '/prereg_empty');
         try {
             $hive = new Hive(
                 plateau: new PlateauDetector(50, plateauSleepUs: 0),
@@ -27,11 +42,12 @@ class PreregistrationTest extends TestCase
             $hive->run();
         } finally {
             putenv('NO_NOVELTY');
+            putenv('FORAGER_SOURCES');
         }
 
         $rows = Database::get()->query(
             'SELECT formula, cv_predicted, status FROM preregistrations
-             ORDER BY id DESC LIMIT 5'
+             WHERE status != \'PENDING\' ORDER BY id DESC LIMIT 5'
         )->fetchAll(\PDO::FETCH_ASSOC);
 
         $this->assertNotEmpty($rows, 'discovery must create preregistrations');
@@ -56,6 +72,7 @@ class PreregistrationTest extends TestCase
         // Шумовые данные: R-подгонки имеют cv_test > порога → REFUTED
         $logFile = tempnam(sys_get_temp_dir(), 'pr2_');
         putenv('NO_NOVELTY=1');
+        putenv('FORAGER_SOURCES=' . sys_get_temp_dir() . '/prereg_empty');
         try {
             $hive = new Hive(
                 plateau: new PlateauDetector(50, plateauSleepUs: 0),
@@ -65,6 +82,7 @@ class PreregistrationTest extends TestCase
             $hive->run();
         } finally {
             putenv('NO_NOVELTY');
+            putenv('FORAGER_SOURCES');
         }
 
         $log = file_get_contents($logFile);

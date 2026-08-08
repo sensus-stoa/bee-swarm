@@ -1,151 +1,151 @@
-# CV→0 Bee Swarm — Инструкция по развёртыванию и запуску
+# CV→0 Bee Swarm — Deployment & Run Guide
 
-> 31.07.2026 | Для AI-агента или человека на чистой машине
+> 31.07.2026 | For an AI agent or a human on a clean machine
 
-## Требования
+## Requirements
 
 - PHP 8.1+ (cli, sqlite3, mbstring, pdo)
 - Composer
-- git (опционально, для обновлений)
-- Свободно ~500 MB RAM
-- Linux (предпочтительно) или macOS
+- git (optional, for updates)
+- ~500 MB free RAM
+- Linux (preferred) or macOS
 
-## 0. Pre-setup: установка PHP и Composer (если не установлены)
+## 0. Pre-setup: install PHP and Composer (if not installed)
 
 ### Linux (Debian/Ubuntu)
 
 ```bash
-# Установить PHP + расширения
+# Install PHP + extensions
 sudo apt update
 sudo apt install -y php-cli php-sqlite3 php-mbstring php-xml unzip curl
 
-# Проверить версию (должна быть ≥8.1)
+# Verify version (must be ≥8.1)
 php -v
 
-# Установить Composer
+# Install Composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php --quiet
 sudo mv composer.phar /usr/local/bin/composer
 rm composer-setup.php
 
-# Проверить
+# Verify
 composer --version
 ```
 
 ### macOS
 
 ```bash
-# Установить Homebrew если нет
+# Install Homebrew if missing
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Установить PHP
+# Install PHP
 brew install php@8.2
 
-# Установить Composer
+# Install Composer
 brew install composer
 
-# Проверить
+# Verify
 php -v && composer --version
 ```
 
 ### Windows
 
 ```powershell
-# Скачать и установить PHP 8.2 с https://windows.php.net/download/
-# Выбрать "Thread Safe" zip, распаковать в C:\php
-# Добавить C:\php в PATH (System Properties → Environment Variables)
+# Download and install PHP 8.2 from https://windows.php.net/download/
+# Choose the "Thread Safe" zip, extract to C:\php
+# Add C:\php to PATH (System Properties → Environment Variables)
 
-# Установить Composer с https://getcomposer.org/Composer-Setup.exe
+# Install Composer from https://getcomposer.org/Composer-Setup.exe
 
-# Проверить
+# Verify
 php -v
 composer --version
 ```
 
-## 1. Установка
+## 1. Installation
 
 ```bash
-# Скопировать папку .bee_swarm с флешки в домашнюю директорию
-cp -r /media/flash/.bee_swarm ~/
-cd ~/.bee_swarm
+# Clone the repository
+git clone https://github.com/sensus-stoa/bee-swarm.git
+cd bee-swarm
 
-# Установить зависимости
+# Install dependencies
 composer install --no-dev --optimize-autoloader
 
-# Проверить что всё работает
+# Verify environment
 php -r "echo 'PHP: ' . PHP_VERSION . PHP_EOL;"
 php -r "echo 'SQLite: ' . (extension_loaded('pdo_sqlite') ? 'yes' : 'NO') . PHP_EOL;"
 ```
 
-## 2. Проверка тестами (опционально, но рекомендуется)
+## 2. Test check (optional but recommended)
 
 ```bash
-cd ~/.bee_swarm
+cd ~/bee-swarm
 
-# Быстрая проверка: только core-тесты (без интеграционных)
+# Quick check: core tests only (no integration)
 vendor/bin/phpunit tests/AtomRegistryTest.php tests/SearchTest.php tests/BeeTest.php
 
-# Полный набор (медленно, ~2 минуты)
+# Full suite (slow, ~2 minutes)
 vendor/bin/phpunit tests/ --exclude-group disabled
 ```
 
-Ожидаемый результат: `OK (XXX tests, XXX assertions)`, 0 failures, может быть 1 skipped.
+Expected: `OK (XXX tests, XXX assertions)`, 0 failures, possibly 1 skipped.
 
-## 3. Запуск демона
+## 3. Running the daemon
 
 ```bash
-cd ~/.bee_swarm
+cd ~/bee-swarm
 
-# Запустить в фоне с логированием
+# Run in background with logging
 nohup php agenda.php > /dev/null 2>&1 &
 
-# Или запустить напрямую (Ctrl+C чтобы остановить)
+# Or run directly (Ctrl+C to stop)
 php agenda.php
 ```
 
-Демон запустит цикл: поиск законов → plateau detection → forager scan → repeat.
+The daemon runs the loop: law search → plateau detection → forager scan → repeat.
 
-## 4. Мониторинг
+## 4. Monitoring
 
 ```bash
-# Смотреть лог в реальном времени
-tail -f ~/.bee_swarm/logs/agenda.log
+# Watch the log in real time
+tail -f ~/bee-swarm/logs/agenda.log
 
-# Ключевые события в логе:
-#   🔍 — открыт новый закон
-#   🏔️ PLATEAU — система в режиме ожидания
-#   ROUTE — задача направлена пчеле
-#   DEATH — пчела умерла (энергия = 0)
-#   SPAWN — родилась новая пчела
-#   GEN — смена поколения
-#   DUPLICATE — закон уже известен
-#   OVERFIT — кандидат отвергнут held-out проверкой
-#   INSUFFICIENT_DATA — недостаточно данных для поиска
+# Key log events:
+#   🔍 — new law discovered
+#   🏔️ PLATEAU — system in waiting mode
+#   ROUTE — task routed to a bee
+#   DEATH — a bee died (energy = 0)
+#   SPAWN — a new bee was born
+#   GEN — generation change
+#   DUPLICATE — law already known
+#   OVERFIT — candidate rejected by held-out check
+#   INSUFFICIENT_DATA — not enough data for search
 
-# Проверить что процесс жив
+# Check the process is alive
 pgrep -f agenda.php && echo "RUNNING" || echo "STOPPED"
 ```
 
-## 5. Верификация Stage 0
+## 5. Stage 0 verification
 
 ```bash
-cd ~/.bee_swarm
+cd ~/bee-swarm
 
-# Запустить все 9 проверок Stage 0
+# Run all Stage 0 checks
 php scripts/verify/verify_all.php
 
-# С лог-файлом:
+# With log file:
 php scripts/verify/verify_all.php --log=logs/agenda.log
 ```
 
-Ожидаемый результат: `9/9 PASS` или `8/9 PASS` (verify_0_8 может быть SKIP если overlap-данных <10 пар).
+Expected: `9/9 PASS` or `8/9 PASS` (verify_0_8 may be SKIP if overlap data <10 pairs).
 
-## 6. Проверка БД
+## 6. Database checks
 
 ```bash
-cd ~/.bee_swarm
+cd ~/bee-swarm
 
-# Сколько законов открыто
+# How many laws were discovered
 php -r "
 require 'vendor/autoload.php';
 \$db = BeeSwarm\Infra\Database::get();
@@ -153,7 +153,7 @@ require 'vendor/autoload.php';
 echo \"Laws: \$count\n\";
 "
 
-# Сколько пчёл в популяции (если запущен)
+# How many overlap records (if daemon is running)
 php -r "
 require 'vendor/autoload.php';
 \$db = BeeSwarm\Infra\Database::get();
@@ -162,42 +162,42 @@ echo \"Overlap records: \$overlap\n\";
 "
 ```
 
-## 7. Ожидаемые результаты за 24 часа
+## 7. Expected results after 24 hours
 
-После 24 часов непрерывной работы:
+After 24 hours of continuous operation:
 
-- ≥5 новых законов (🔍 в логе)
-- ≥3 spawn events (SPAWN в логе)
-- ≥1 death event (DEATH в логе)
-- ≥10 overlap-записей (overlap_log в БД)
+- ≥5 new laws (🔍 in log)
+- ≥3 spawn events (SPAWN in log)
+- ≥1 death event (DEATH in log)
+- ≥10 overlap records (overlap_log in DB)
 - verify_all.php → 8-9/9 PASS
 
-## 8. Диагностика проблем
+## 8. Troubleshooting
 
-| Симптом | Проверка |
-|---------|---------|
-| Демон не запускается | `php -l agenda.php` — нет ли синтаксических ошибок |
-| Ошибка SQLite | `ls -la data/swarm.db` — существует ли файл БД, права на запись |
-| Поиск слишком медленный | Это нормально при 551 ops в grammar — глубина поиска 2 |
-| Память растёт | Ограничить: `export PHP_MEMORY_LIMIT=512M` перед запуском |
-| Нет overlap-записей | Нормально для первых часов — данные накапливаются |
+| Symptom | Check |
+|---------|-------|
+| Daemon won't start | `php -l agenda.php` — syntax errors? |
+| SQLite error | `ls -la data/swarm.db` — does the DB file exist, write permissions? |
+| Search too slow | Normal with large grammars — search depth is bounded |
+| Memory grows | Limit: `export PHP_MEMORY_LIMIT=512M` before starting |
+| No overlap records | Normal for the first hours — data accumulates |
 
-## 9. Остановка
+## 9. Stopping
 
 ```bash
-# Мягкая остановка
+# Graceful stop
 pkill -f agenda.php
 
-# Жёсткая (если не отвечает)
+# Hard kill (if unresponsive)
 pkill -9 -f agenda.php
 ```
 
-## 10. Передача результатов
+## 10. Transferring results
 
-Скопировать на флешку для анализа:
+Copy for analysis:
 
 ```bash
-cp ~/.bee_swarm/logs/agenda.log /media/flash/
-cp ~/.bee_swarm/data/swarm.db /media/flash/
-php ~/.bee_swarm/scripts/verify/verify_all.php > /media/flash/verify_results.txt
+cp ~/bee-swarm/logs/agenda.log /media/flash/
+cp ~/bee-swarm/data/swarm.db /media/flash/
+php ~/bee-swarm/scripts/verify/verify_all.php > /media/flash/verify_results.txt
 ```

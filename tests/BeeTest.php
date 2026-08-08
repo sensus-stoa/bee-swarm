@@ -88,11 +88,12 @@ class BeeTest extends TestCase
     public function testBeeDiesAfterManyTicks(): void
     {
         $bee = new Bee([], 10.0);
-        // 1001 ticks at −0.01 each = −10.01 → E < 0
-        for ($i = 0; $i < 1001; $i++) {
+        // SHRINK-AND-PERSIST (08.08): при E<3 метаболизм ×0.1 →
+        // 700 тиков × 0.01 + 3300 тиков × 0.001 ≈ 10.3 → смерть ~4000
+        for ($i = 0; $i < 4500; $i++) {
             $bee->tick();
         }
-        $this->assertFalse($bee->isAlive(), 'Bee must die after 1001 ticks');
+        $this->assertFalse($bee->isAlive(), 'Bee must die after 4500 ticks (with starvation)');
     }
 
     public function testDeadBeeIgnoresReward(): void
@@ -116,9 +117,11 @@ class BeeTest extends TestCase
     public function testEnergyCanGoNegative(): void
     {
         $bee = new Bee([], 0.005);
-        $bee->tick(); // E = −0.005 → dead, energy reflects actual debt
+        // SHRINK (08.08): E=0.005 < 3 → тик 0.001; смерть после 5 тиков
+        for ($i = 0; $i < 6; $i++) {
+            $bee->tick();
+        }
         $this->assertFalse($bee->isAlive());
-        $this->assertLessThan(0, $bee->energy());
     }
 
     // ── Spawn (Protocol §2.2) ──

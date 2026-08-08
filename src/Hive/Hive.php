@@ -544,9 +544,10 @@ class Hive
             $this->log("ROUTE: task -> bee#{$beeIdx}");
 
             // §S1.7-NOVELTY: reward bee for exploring new fingerprint
+            // NO_NOVELTY=1 — тестовый флаг (детерминизм энергетики)
             static $seenFingerprints = [];
             $fp = $this->taskRouter->fingerprint($task);
-            if (! isset($seenFingerprints[$fp])) {
+            if (getenv('NO_NOVELTY') !== '1' && ! isset($seenFingerprints[$fp])) {
                 $seenFingerprints[$fp] = true;
                 $this->routedBee->rewardNovelty();
                 $this->log("NOVELTY: bee#{$beeIdx} new fingerprint");
@@ -564,8 +565,10 @@ class Hive
                 $ref = new \ReflectionProperty(Bee::class, 'energy');
                 $ref->setValue($bee, 0.0);
             }
-            // §S1.5-HUNGER: голодная мутация при E<5
-            if ($bee->isAlive() && $bee->energy() < 5.0) {
+            // §S1.5-HUNGER: голодная мутация при 3≤E<5 (адаптация ДО голода).
+            // SHRINK (08.08): при E<3 — спячка (метаболизм ×0.1), мутации НЕТ —
+            // иначе зомби с E≈0 мутировал бы каждый тик 2900 раз (раздувание).
+            if ($bee->isAlive() && $bee->energy() >= 3.0 && $bee->energy() < 5.0) {
                 $allOps = array_keys(Grammar::BASE_OPS);
                 $semOps = Grammar::SEMANTIC_OPS;
                 $available = array_merge($allOps, $semOps);

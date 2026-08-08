@@ -43,6 +43,12 @@ class Bee
     private const SEARCH_MIN = 0.01;
     private const SEARCH_MAX = 1.0;
     private const REWARD_MIN = 0.5;
+    // SHRINK-AND-PERSIST (08.08): голод = замедление, не смерть.
+    // Порог 3.0 — ниже порога hunger-мутации (5.0): адаптация до голода,
+    // спячка после. Множитель 0.1 — жизнь ×10 на малом расходе.
+    // (Е)-параметры модели; эволюция в геноме — следующий шаг.
+    private const STARVATION_THRESHOLD = 3.0;
+    private const STARVATION_MULTIPLIER = 0.1;
     private const REWARD_MAX = 10.0;
     private const INFO_REWARD_MIN = 0.001;
     private const INFO_REWARD_MAX = 1.0;
@@ -176,7 +182,13 @@ class Bee
         if (! $this->isAlive()) {
             return;
         }
-        $this->energy -= $this->tickCost;
+        // SHRINK-AND-PERSIST (08.08, ECONOMICS п.1): голод ≠ смерть,
+        // голод = замедление. При E < порога метаболизм ×0.1 —
+        // пчела живёт в 10 раз дольше на малом расходе.
+        $cost = $this->energy < self::STARVATION_THRESHOLD
+            ? $this->tickCost * self::STARVATION_MULTIPLIER
+            : $this->tickCost;
+        $this->energy -= $cost;
     }
 
     /**
@@ -272,7 +284,9 @@ class Bee
      */
     public function hungerMutate(array $available): void
     {
-        if ($this->energy >= 5.0 || ! $this->isAlive()) {
+        // SHRINK (08.08): мутация только 3≤E<5 (адаптация до голода);
+        // при E<3 — спячка, мутации нет (зомби не раздувает грамматику)
+        if ($this->energy >= 5.0 || $this->energy < 3.0 || ! $this->isAlive()) {
             return;
         }
 

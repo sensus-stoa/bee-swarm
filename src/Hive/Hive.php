@@ -807,7 +807,7 @@ class Hive
         [$candidates, $bestCv, $searchCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
 
         foreach ($candidates as $d) {
-            $this->recordDiscovery($d, $task, $domain, $foundAny);
+            $this->recordDiscovery($d, $task, $domain, $foundAny, $X, $y);
         }
 
         // Information reward — intrinsic value of search
@@ -895,7 +895,7 @@ class Hive
         $walk($node);
     }
 
-    private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny): void
+    private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny, ?array $X = null, ?array $y = null): void
     {
         $result = $this->recordKeeper->record($d, $task, $domain);
         if (! $result['inserted']) {
@@ -925,7 +925,27 @@ class Hive
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
         $this->lastAnswerFormula = $d['atom'];
-        if ($this->routedBee) {
+        // LAW-CLASS-REWARD (08.08): награда ТОЛЬКО за первый представитель
+        // pred-класса (численно эквивалентные формулы — один класс).
+        // Иначе сотни приближений одного закона = бесконечная еда.
+        $newClass = true;
+        if ($X !== null && $y !== null) {
+            $classHash = \BeeSwarm\Core\LawClassifier::hash($d['atom'], $X, $y);
+            if ($classHash !== '') {
+                $exists = Database::get()->prepare(
+                    'SELECT 1 FROM laws WHERE domain = ? AND law_class = ? LIMIT 1'
+                );
+                $exists->execute([$domain, $classHash]);
+                if ($exists->fetchColumn() !== false) {
+                    $newClass = false;
+                } else {
+                    Database::get()->prepare(
+                        'UPDATE laws SET law_class = ? WHERE domain = ? AND formula = ?'
+                    )->execute([$classHash, $domain, $d['atom']]);
+                }
+            }
+        }
+        if ($this->routedBee && $newClass) {
             $this->routedBee->rewardDiscovery();
         }
         $this->plateau->tick(true);

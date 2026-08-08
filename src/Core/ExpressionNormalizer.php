@@ -142,48 +142,38 @@ class ExpressionNormalizer
             return ['op' => 'sq', 'l' => $parsed, 'r' => null];
         }
 
-        // Атом: нет внешних скобок
+        // Атом: нет внешних скобок. НО если внутри есть оператор верхнего
+        // уровня (x0×K2, K2+x1) — разбить (NORMALIZER-PRIORITY-BUG 08.08):
+        // left='x0×K2' из (x0×K2+x1) не должен оставаться атомом.
         if (! str_starts_with($expr, '(') || ! str_ends_with($expr, ')')) {
+            $split = self::findTopOperator($expr, ['+', '−'])
+                ?? self::findTopOperator($expr, array_values(array_diff(self::BINARY_OPS, ['+', '−'])));
+            if ($split !== null) {
+                [$op, $left, $right] = $split;
+                return [
+                    'op' => $op,
+                    'l' => self::parse($left) ?? ['atom' => $left],
+                    'r' => self::parse($right) ?? ['atom' => $right],
+                ];
+            }
             return ['atom' => $expr];
         }
 
         // Внутренность внешних скобок
         $inner = substr($expr, 1, -1);
 
-        // Вложенные скобки — рекурсивно разбиваем по оператору верхнего уровня
-        $depth = 0;
-        $len = strlen($inner);
-        for ($i = 0; $i < $len; $i++) {
-            $ch = $inner[$i];
-            if ($ch === '(') {
-                $depth++;
-            } elseif ($ch === ')') {
-                $depth--;
-            } elseif ($depth === 0) {
-                // На верхнем уровне — ищем оператор.
-                // Токен-граница ТОЛЬКО для мультисимвольных max/min
-                // (CONCERNS Ф1 05.08): "speed_max+x0" не должен расколоться
-                // по "max" внутри слова. Одиночные +−×/ — безопасны
-                // (R-префиксы и JSON уже защищены protect()).
-                foreach (self::BINARY_OPS as $op) {
-                    if (str_starts_with(substr($inner, $i), $op)) {
-                        if (strlen($op) > 1 && $i > 0
-                            && preg_match('/[A-Za-z_]/', $inner[$i - 1])) {
-                            continue; // "speed_max" — подстрока, не оператор
-                        }
-                        $left = substr($inner, 0, $i);
-                        $right = substr($inner, $i + strlen($op));
-                        if ($left === '' || $right === '') {
-                            continue;
-                        }
-                        return [
-                            'op' => $op,
-                            'l' => self::parse($left) ?? ['atom' => $left],
-                            'r' => self::parse($right) ?? ['atom' => $right],
-                        ];
-                    }
-                }
-            }
+        // Вложенные скобки — рекурсивно разбиваем по оператору верхнего уровня.
+        // NORMALIZER-PRIORITY-BUG (08.08): СНАЧАЛА +/− (низкий приоритет),
+        // ПОТОМ ×/÷ и остальные. Иначе a×b+c разбивается по × → искажение.
+        $split = self::findTopOperator($inner, ['+', '−'])
+            ?? self::findTopOperator($inner, array_values(array_diff(self::BINARY_OPS, ['+', '−'])));
+        if ($split !== null) {
+            [$op, $left, $right] = $split;
+            return [
+                'op' => $op,
+                'l' => self::parse($left) ?? ['atom' => $left],
+                'r' => self::parse($right) ?? ['atom' => $right],
+            ];
         }
 
         // Нет оператора на верхнем уровне — inner может быть вложенным
@@ -292,6 +282,47 @@ class ExpressionNormalizer
      *
      * @return array|null упрощённый узел или null если тождества нет
      */
+    /**
+     * Ищет первый оператор верхнего уровня из списка.
+     * Токен-граница ТОЛЬКО для мультисимвольных max/min ("speed_max").
+     *
+     * @return array{0: string, 1: string, 2: string}|null [op, left, right]
+     */
+    private static function findTopOperator(string $inner, array $ops): ?array
+    {
+        $depth = 0;
+        $len = strlen($inner);
+        for ($i = 0; $i < $len; $i++) {
+            $ch = $inner[$i];
+            if ($ch === '(') {
+                $depth++;
+                continue;
+            }
+            if ($ch === ')') {
+                $depth--;
+                continue;
+            }
+            if ($depth !== 0) {
+                continue;
+            }
+            foreach ($ops as $op) {
+                if (str_starts_with(substr($inner, $i), $op)) {
+                    if (strlen($op) > 1 && $i > 0
+                        && preg_match('/[A-Za-z_]/', $inner[$i - 1])) {
+                        continue; // "speed_max" — подстрока, не оператор
+                    }
+                    $left = substr($inner, 0, $i);
+                    $right = substr($inner, $i + strlen($op));
+                    if ($left === '' || $right === '') {
+                        continue;
+                    }
+                    return [$op, $left, $right];
+                }
+            }
+        }
+        return null;
+    }
+
     private static function resolveK(string $s): string
     {
         return match ($s) {

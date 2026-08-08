@@ -385,15 +385,27 @@ class Search
         // PENDING ДО held-out (HARKing-защита: формула + cv_train + tick
         // записаны ДО того, как тест увиден). UPDATE статуса — после.
         $preregIds = [];
-        if ($testRatio > 0.0 && $n > 10 && ! empty($plausible)) {
+        // PREREG (08.08): транзакция + топ-30 (сотни INSERT вне транзакции =
+        // fsync на каждый = тик ×N; статистике хватает топ-30).
+        // SEARCH_NO_PREREG=1 — полное отключение для скоростных прогонов.
+        if (getenv('SEARCH_NO_PREREG') !== '1'
+            && $testRatio > 0.0 && $n > 10 && ! empty($plausible)) {
             $prDb = \BeeSwarm\Infra\Database::get();
-            $prIns = $prDb->prepare(
-                'INSERT INTO preregistrations (formula, domain, cv_predicted, tick, status)
-                 VALUES (?,?,?,?,?)'
-            );
-            foreach ($plausible as $prCand) {
-                $prIns->execute([$prCand['name'], '', $prCand['cv'], 0, 'PENDING']);
-                $preregIds[$prCand['name']] = (int) $prDb->lastInsertId();
+            $prDb->beginTransaction();
+            try {
+                $prIns = $prDb->prepare(
+                    'INSERT INTO preregistrations (formula, domain, cv_predicted, tick, status)
+                     VALUES (?,?,?,?,?)'
+                );
+                foreach (array_slice($plausible, 0, 30) as $prCand) {
+                    $prIns->execute([$prCand['name'], '', $prCand['cv'], 0, 'PENDING']);
+                    $preregIds[$prCand['name']] = (int) $prDb->lastInsertId();
+                }
+                $prDb->commit();
+            } catch (\Throwable $e) {
+                if ($prDb->inTransaction()) {
+                    $prDb->rollBack();
+                }
             }
         }
 

@@ -928,6 +928,20 @@ class Hive
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
         $this->lastAnswerFormula = $d['atom'];
+        // S2.1 PREREG-лог: статус гипотезы из preregistrations (двухфазная
+        // запись — в Search::find: PENDING до heldout, UPDATE после)
+        $prSt = Database::get()->prepare(
+            'SELECT status, cv_predicted FROM preregistrations WHERE formula = ?
+             ORDER BY id DESC LIMIT 1'
+        );
+        $prSt->execute([$d['atom']]);
+        if (($prRow = $prSt->fetch(\PDO::FETCH_ASSOC)) !== false) {
+            $this->log(sprintf(
+                'PREREG: %s cv_train=%.4f -> %s cv_test=%.4f',
+                $d['atom'], (float) $prRow['cv_predicted'],
+                $prRow['status'], $d['cv_test'] ?? 9.99
+            ));
+        }
         // LAW-CLASS-REWARD (08.08): награда ТОЛЬКО за первый представитель
         // pred-класса (численно эквивалентные формулы — один класс).
         // Иначе сотни приближений одного закона = бесконечная еда.

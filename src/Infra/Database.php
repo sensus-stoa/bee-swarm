@@ -192,6 +192,17 @@ class Database
         try {
             $db->exec('ALTER TABLE grammar_ops ADD COLUMN reuse_domains TEXT DEFAULT \'[]\'');
         } catch (\PDOException $e) {}
+        // S2.1 PREREGISTRATION (08.08): гипотезы до подтверждения
+        $db->exec('CREATE TABLE IF NOT EXISTS preregistrations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            formula TEXT NOT NULL,
+            domain TEXT DEFAULT \'\',
+            cv_predicted REAL NOT NULL,
+            tick INTEGER DEFAULT 0,
+            status TEXT DEFAULT \'PENDING\',
+            created_at TEXT DEFAULT (datetime(\'now\'))
+        )');
+
         // POPULATION-PERSISTENCE (06.08, P0): сохранение пчёл при перезапуске
         $db->exec("CREATE TABLE IF NOT EXISTS bee_persistence (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

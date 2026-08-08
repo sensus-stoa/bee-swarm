@@ -9,7 +9,7 @@ use BeeSwarm\Text\CorpusVocabulary;
 /**
  * Story E1-FIX Phase 1: Corpus loader.
  *
- * Корень проблемы: CorpusVocabulary сканирует ~/Documents/the_lair (0 .md),
+ * Корень проблемы: CorpusVocabulary сканирует ~/Documents/data (0 .md),
  * а Obsidian vault (~/obsidian/, 1910 .md) не сканируется.
  */
 class CorpusVocabularyTest extends TestCase

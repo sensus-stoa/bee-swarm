@@ -282,6 +282,7 @@ class Search
                 }
             }
             if ($exact) {
+                self::preregisterExact($name);
                 return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
         }
@@ -312,6 +313,7 @@ class Search
                 }
             }
             if ($exact) {
+                self::preregisterExact($name);
                 return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
             }
 
@@ -349,6 +351,22 @@ class Search
         $cv_train = $bestCv < $cvTrainMax ? $bestCv : 9.99;
         $cv_test = $cv_train;
 
+        // S2.1 PREREGISTRATION (08.08): ФАЗА 1 — гипотезы фиксируются
+        // PENDING ДО held-out (HARKing-защита: формула + cv_train + tick
+        // записаны ДО того, как тест увиден). UPDATE статуса — после.
+        $preregIds = [];
+        if ($testRatio > 0.0 && $n > 10 && ! empty($plausible)) {
+            $prDb = \BeeSwarm\Infra\Database::get();
+            $prIns = $prDb->prepare(
+                'INSERT INTO preregistrations (formula, domain, cv_predicted, tick, status)
+                 VALUES (?,?,?,?,?)'
+            );
+            foreach ($plausible as $prCand) {
+                $prIns->execute([$prCand['name'], '', $prCand['cv'], 0, 'PENDING']);
+                $preregIds[$prCand['name']] = (int) $prDb->lastInsertId();
+            }
+        }
+
         // V0.8.5 + SEARCH-TOP-K: out-of-sample — лучший по ТЕСТУ среди ВСЕХ
         // правдоподобных (R-подгонки с test=9.99 отсеиваются, закон проходит)
         if ($testRatio > 0.0 && $n > 10 && ! empty($plausible)) {
@@ -366,6 +384,14 @@ class Search
                 $X_train_cv = array_slice($X, 0, $splitIdx);
                 foreach ($plausible as $cand) {
                     $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv);
+                    // S2.1 ФАЗА 2 (все кандидаты): статус по held-out
+                    if (isset($preregIds[$cand['name']])) {
+                        $prUpdAll = $prDb->prepare(
+                            'UPDATE preregistrations SET status = ? WHERE id = ?'
+                        );
+                        $prUpdAll->execute([$t < $cvTrainMax ? 'CONFIRMED' : 'REFUTED',
+                            $preregIds[$cand['name']]]);
+                    }
                     $score = $t + $lambda * strlen($cand['name']);
                     if ($score < $bestTestScore) {
                         $bestTestScore = $score;
@@ -390,6 +416,16 @@ class Search
             }
         }
 
+        // S2.1 ФАЗА 2: статус по held-out (порог = cvTrainMax, параметр)
+        if (! empty($preregIds) && isset($bestName) && isset($preregIds[$bestName])) {
+            $prDb = \BeeSwarm\Infra\Database::get();
+            $status = $cv_test < $cvTrainMax ? 'CONFIRMED' : 'REFUTED';
+            $prUpd = $prDb->prepare(
+                'UPDATE preregistrations SET status = ? WHERE id = ?'
+            );
+            $prUpd->execute([$status, $preregIds[$bestName]]);
+        }
+
         $found = $bestCv < $cvTrainMax && isset($bestName) && $cv_test < $cvTrainMax;
         if (! $found) {
             $cv_train = 9.99;
@@ -403,6 +439,16 @@ class Search
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
     }
 
+
+    private static function preregisterExact(string $formula): void
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $stmt = $db->prepare(
+            'INSERT INTO preregistrations (formula, domain, cv_predicted, tick, status)
+             VALUES (?,?,?,?,?)'
+        );
+        $stmt->execute([$formula, '', 0.0, 0, 'CONFIRMED']);
+    }
 
     private static function classify(float $cv_train, float $cv_test): string
     {

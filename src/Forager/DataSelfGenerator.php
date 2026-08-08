@@ -17,8 +17,7 @@ class DataSelfGenerator
         ?string $metricsPath = null
     ) {
         $this->metricsPath = $metricsPath
-            ?? (getenv('HOME') ?: '/home/' . get_current_user())
-            . '/Documents/the_lair/ExoCortex/Journal/global/metrics.jsonl';
+            ?? (getenv('METRICS_PATH') ?: getenv('HOME') . '/metrics.jsonl');
     }
     /**
      * Генерирует задачи из metrics.jsonl — все комбинации метрик.

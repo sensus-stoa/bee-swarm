@@ -36,6 +36,7 @@ class Hive
     private array $log = [];
 
     private int $tick = 0;
+    private array $lastCandidates = []; // REUSE-TRACKING (08.08)
     private int $lifetimeAccum = 0; // LIFETIME-METRIC (07.08)
     private int $lifetimeCount = 0;
 
@@ -808,6 +809,7 @@ class Hive
         $profSearchT0 = microtime(true);
         $engine = new DiscoveryEngine();
         [$candidates, $bestCv, $searchCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
+        $this->lastCandidates = $candidates; // REUSE-TRACKING (08.08): все кандидаты
 
         foreach ($candidates as $d) {
             $this->recordDiscovery($d, $task, $domain, $foundAny, $X, $y);
@@ -920,7 +922,14 @@ class Hive
             // NO_BIRTH=1 — диагностика: рождение/реюс не влияют на тик
             if (getenv('NO_BIRTH') !== '1') {
                 $this->birthOperator($d['atom'], $domain); // GRAMMAR-BIRTH (ЭКСП-015)
-                $this->registerReuseOps($d['atom'], $domain); // REUSE-TRACKING
+                // REUSE-TRACKING: победитель + (08.08) все кандидаты с B-атомами —
+                // иначе reuse не регистрируется (parsimony выбирает короче)
+                $this->registerReuseOps($d['atom'], $domain);
+                foreach ($this->lastCandidates ?? [] as $lc) {
+                    if (is_string($lc['atom'] ?? null) && $lc['atom'] !== $d['atom']) {
+                        $this->registerReuseOps($lc['atom'], $domain);
+                    }
+                }
             }
         }
         if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);

@@ -237,6 +237,23 @@ class Search
                 $randTail = array_slice($rest, 0, $beamRand);
                 $pool = array_map(fn (array $x): string => $x['n'], array_merge($top, $randTail));
             }
+            // BINARY-B-ATOMS (08.08, P0): рождённые атомы арности 2
+            // (definition с x0 И x1) применяются к ПАРАМ фич в L2 —
+            // не вырождаются (B(x0)=x0+0). Разблокирует transfer.
+            $bornBinary = [];
+            try {
+                $bbStmt = \BeeSwarm\Infra\Database::get()->prepare(
+                    'SELECT name, definition FROM grammar_ops
+                     WHERE source = ? AND definition LIKE ? AND definition LIKE ?
+                     AND definition != \'\''
+                );
+                $bbStmt->execute(['birth', '%x0%', '%x1%']);
+                foreach ($bbStmt->fetchAll() as $bb) {
+                    $bornBinary[$bb['name']] = $bb['definition'];
+                }
+            } catch (\Throwable $e) {
+                $bornBinary = [];
+            }
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
@@ -248,6 +265,19 @@ class Search
                             $vec[] = $r ?? 0.0;
                         }
                         $name = "({$pool[$a]}$op{$pool[$b]})";
+                        $exprs[$name] = $vec;
+                        $l2Keys[] = $name;
+                    }
+                    // Бинарные born-атомы: B(va, vb)
+                    foreach ($bornBinary as $bbName => $bbDef) {
+                        $vec = [];
+                        for ($i = 0; $i < $n; $i++) {
+                            $r = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(
+                                $bbDef, [[$va[$i], $vb[$i]]]
+                            );
+                            $vec[] = $r[0] ?? 0.0;
+                        }
+                        $name = "({$pool[$a]}$bbName{$pool[$b]})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
                     }

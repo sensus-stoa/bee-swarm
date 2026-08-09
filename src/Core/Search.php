@@ -285,6 +285,27 @@ class Search
             }
         }
 
+        // SEARCH-L2L1 (09.08): L3 = L1 op Фича — композиции второго уровня.
+        // (x0+x1) — L1-уровень; без L1×фича (x0+x1)×x2 невыразим →
+        // transfer-тест невалиден (ЭКСП-022d). top-30 L1 × фичи × ops.
+        if ($depth >= 3 && ! empty($l1Keys)) {
+            $l1Top = array_slice($l1Keys, 0, 30);
+            foreach ($l1Top as $l1name) {
+                foreach ($featKeys as $fname) {
+                    foreach ($ops as $op) {
+                        $vec = [];
+                        for ($i = 0; $i < $n; $i++) {
+                            $r = $grammar->apply($exprs[$l1name][$i], $exprs[$fname][$i], $op);
+                            $vec[] = $r ?? 0.0;
+                        }
+                        $name = "({$l1name}$op{$fname})";
+                        $exprs[$name] = $vec;
+                        $l2Keys[] = $name;
+                    }
+                }
+            }
+        }
+
         // L3: L2 / constant (для MIN = (...)/2)
         if ($depth >= 3) {
             $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));

@@ -152,8 +152,11 @@ class Search
         $bornBinary = [];
         if (getenv('NO_BIRTH') !== '1') {
             try {
+                // BINARY-B-CAP (09.08, ЭКСП-022o ноут): 30+ атомов × 1600 пар
+                // в L2 = 48K evaluateFormula на тик (тик-бомба!). Cap 3.
+                $bCap = max(1, (int) (getenv('BINARY_B_CAP') ?: '3'));
                 $stmt = \BeeSwarm\Infra\Database::get()->prepare(
-                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ?'
+                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ? LIMIT ' . $bCap
                 );
                 $stmt->execute(['birth', '%x0%', '%x1%']);
                 foreach ($stmt->fetchAll() as $bb) {

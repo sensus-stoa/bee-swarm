@@ -889,9 +889,14 @@ class Hive
                 'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition IS NOT NULL AND length(definition) >= ?'
             );
             $bb->execute(['birth', $minDefLen]);
-            $bb->execute(['birth']);
             foreach ($bb->fetchAll() as $r) {
-                if (str_contains($formula, $r['definition'])) {
+                // НОТАЦИЯ (09.08, ЭКСП-022n): formula в символьной
+                // ((x0+x1)×x2), definition во внутренней ((x0addx1)) —
+                // конвертируем definition в символы
+                $defCanon = strtr((string) $r['definition'], [
+                    'add' => '+', 'sub' => '−', 'mul' => '×', 'div' => '/',
+                ]);
+                if ($defCanon !== '' && str_contains($formula, $defCanon)) {
                     \BeeSwarm\Core\Grammar::registerReuse($r['name'], $domain);
                 }
             }
@@ -947,18 +952,29 @@ class Hive
         // GRAMMAR-PROPAGATION (ЭКСП-012): успех → вес операторов формулы.
         // ТОЛЬКО для реальных законов: тавтологии (CV=0.0000) бустятся
         // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).
-        if (($d['cv'] ?? 1.0) > 0.001) {
+        // РЕАЛЬНЫЙ ЗАКОН (09.08, правка пользователя): структурный фильтр,
+        // НЕ CV! Условие cv>0.001 резало ТОЧНЫЕ законы (CV=0.0000 —
+        // чистейшие!) как «тавтологии». Тавтология = структурная (нет фич
+        // или простой атом). Точные составные законы: рожают атомы,
+        // бустят ops (пропаганда), дают классы.
+        $realLaw = (bool) preg_match('/[+×−\/(]/', $d['atom'] ?? '')
+            && (bool) preg_match('/[xX]\d+/', $d['atom'] ?? '');
+        if ($realLaw) {
             $this->boostFormulaOps($d['atom']);
             // NO_BIRTH=1 — диагностика: рождение/реюс не влияют на тик
             if (getenv('NO_BIRTH') !== '1') {
                 $this->birthOperator($d['atom'], $domain); // GRAMMAR-BIRTH (ЭКСП-015)
-                // REUSE-TRACKING: победитель + (08.08) все кандидаты с B-атомами —
-                // иначе reuse не регистрируется (parsimony выбирает короче)
-                $this->registerReuseOps($d['atom'], $domain);
-                foreach ($this->lastCandidates ?? [] as $lc) {
-                    if (is_string($lc['atom'] ?? null) && $lc['atom'] !== $d['atom']) {
-                        $this->registerReuseOps($lc['atom'], $domain);
-                    }
+            }
+        }
+        // REUSE-TRACKING: ВНЕ условия CV>0.001 (09.08, ЭКСП-022n) — точные
+        // законы (CV=0.0000) — ЧИСТЕЙШИЕ, не тавтологии! Раньше условие
+        // резало их → reuse не регистрировался при фактическом применении
+        // атома. Победитель + все кандидаты с B-атомами.
+        if (getenv('NO_BIRTH') !== '1') {
+            $this->registerReuseOps($d['atom'], $domain);
+            foreach ($this->lastCandidates ?? [] as $lc) {
+                if (is_string($lc['atom'] ?? null) && $lc['atom'] !== $d['atom']) {
+                    $this->registerReuseOps($lc['atom'], $domain);
                 }
             }
         }

@@ -145,6 +145,24 @@ class Search
         $exprs = $feats;
         $featKeys = array_keys($feats);
         $ops = $grammar->all();
+        $bKeys = [];
+        // B-AS-ARGUMENT (09.08): born-атомы читаем ДО L1 — B(фича,фича)
+        // в L1-pairwise (как add). Раньше bornBinary применялся только к
+        // парам L1-элементов (не фичам!) → (x0 B7a7aee x1) не генерировался.
+        $bornBinary = [];
+        if (getenv('NO_BIRTH') !== '1') {
+            try {
+                $stmt = \BeeSwarm\Infra\Database::get()->prepare(
+                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ?'
+                );
+                $stmt->execute(['birth', '%x0%', '%x1%']);
+                foreach ($stmt->fetchAll() as $bb) {
+                    $bornBinary[$bb['name']] = $bb['definition'];
+                }
+            } catch (\Throwable $e) {
+                $bornBinary = [];
+            }
+        }
 
         $pGen = microtime(true);
         // L1: pairwise on features
@@ -159,6 +177,19 @@ class Search
                         $vec[] = $r ?? 0.0;
                     }
                     $exprs["({$featKeys[$a]}$op{$featKeys[$b]})"] = $vec;
+                }
+                // B-AS-ARGUMENT: B(фича, фича) в L1-pairwise
+                foreach ($bornBinary as $bbName => $bbDef) {
+                    $vec = [];
+                    for ($i = 0; $i < $n; $i++) {
+                        $r = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(
+                            $bbDef, [[$va[$i], $vb[$i]]]
+                        );
+                        $vec[] = $r[0] ?? 0.0;
+                    }
+                    $name = "({$featKeys[$a]}$bbName{$featKeys[$b]})";
+                    $exprs[$name] = $vec;
+                    $bKeys[] = $name;
                 }
             }
         }
@@ -237,25 +268,9 @@ class Search
                 $randTail = array_slice($rest, 0, $beamRand);
                 $pool = array_map(fn (array $x): string => $x['n'], array_merge($top, $randTail));
             }
-            // BINARY-B-ATOMS (08.08, P0): рождённые атомы арности 2
-            // (definition с x0 И x1) применяются к ПАРАМ фич в L2 —
-            // не вырождаются (B(x0)=x0+0). Разблокирует transfer.
-            $bornBinary = [];
-            $bKeys = []; // B-AS-ARGUMENT (09.08): имена B-форм для L2L1
-            try {
-                $bbStmt = \BeeSwarm\Infra\Database::get()->prepare(
-                    'SELECT name, definition FROM grammar_ops
-                     WHERE source = ? AND definition LIKE ? AND definition LIKE ?
-                     AND definition != \'\''
-                );
-                $bbStmt->execute(['birth', '%x0%', '%x1%']);
-                foreach ($bbStmt->fetchAll() as $bb) {
-                    $bornBinary[$bb['name']] = $bb['definition'];
-                }
-            } catch (\Throwable $e) {
-                $bornBinary = [];
-            $bKeys = []; // B-AS-ARGUMENT (09.08): имена B-форм для L2L1
-            }
+            // B-AS-ARGUMENT (09.08): bornBinary прочитан ДО L1 (см. выше) —
+            // здесь только применение к парам pool-элементов
+            $bornBinary = $bornBinary ?? [];
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
@@ -339,7 +354,12 @@ class Search
             }
             if ($exact) {
                 self::preregisterExact($name);
-                return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
+                // COMPRESSION-CRITERION (09.08): exact-путь выбирает
+                // КРАТЧАЙШУЮ формулу — иначе add-форма (раньше в порядке)
+                // всегда выигрывает у B1-формы → атом не используется
+                if ($bestExact === null || strlen($name) < strlen($bestExact)) {
+                    $bestExact = $name;
+                }//exact
             }
         }
         // AFFINE-LAWS (ЭКСП-012): сдвиг для знакопеременных целей
@@ -359,6 +379,7 @@ class Search
         $pCv = microtime(true);
         // testCv каждого (дёшево), лучший по тесту = закон.
         $plausible = [];
+        $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact
         foreach ($exprs as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
@@ -370,7 +391,12 @@ class Search
             }
             if ($exact) {
                 self::preregisterExact($name);
-                return [true, 0.0, $name, 0.0, 'EMPIRICAL'];//exact
+                // COMPRESSION-CRITERION (09.08): exact-путь выбирает
+                // КРАТЧАЙШУЮ формулу — иначе add-форма (раньше в порядке)
+                // всегда выигрывает у B1-формы → атом не используется
+                if ($bestExact === null || strlen($name) < strlen($bestExact)) {
+                    $bestExact = $name;
+                }//exact
             }
 
             $std = self::stddev($vec);
@@ -381,6 +407,10 @@ class Search
             if ($cv < $cvTrainMax) {
                 $plausible[] = ['cv' => $cv, 'name' => $name];
             }
+        }
+
+        if ($bestExact !== null) {
+            return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL'];
         }
 
         usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);

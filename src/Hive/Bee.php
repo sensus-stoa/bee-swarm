@@ -226,10 +226,23 @@ class Bee
     /**
      * Successful discovery rewards energy. Dead bees ignore (can't resurrect).
      */
-    public function rewardDiscovery(float $multiplier = 1.0): void
+    public function rewardDiscovery(float $multiplier = 1.0, ?string $formula = null, bool $hasFeatures = true): void
     {
         if (! $this->isAlive()) {
             return;
+        }
+        // NO-REWARD-FOR-NONBUILDERS (09.08): не кормят:
+        // (а) тени: простые атомы без операторов (abs, floor, x0) — любая
+        //     монотонная функция на монотонных данных даёт CV=0;
+        // (б) константные композиции БЕЗ фич (×(min), mul(add)) —
+        //     структурный мусор, не закон. $hasFeatures вычисляется в Hive
+        //     по colLabels (CONCERNS deleg_ceef5093: регекс [xX]\d+ не
+        //     покрывал реальные метки pop/deaths_cum).
+        if ($formula !== null) {
+            $hasOps = (bool) preg_match('/[+×−\/(]/', $formula);
+            if (! $hasOps || ! $hasFeatures) {
+                return;
+            }
         }
         $this->energy += $this->discoveryReward * $multiplier;
     }

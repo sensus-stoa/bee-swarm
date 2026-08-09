@@ -972,7 +972,12 @@ class Hive
             }
         }
         if ($this->routedBee && $newClass) {
-            $this->routedBee->rewardDiscovery();
+            // DOMAIN-SATIETY (08.08): новый класс → register + множитель
+            // (первый класс ×1.5, насыщение ×0.1 — переключение доменов)
+            $this->routedBee->registerClass($domain);
+            $this->routedBee->rewardDiscovery(
+                $this->routedBee->discoveryMultiplier($domain)
+            );
         }
         $this->plateau->tick(true);
 

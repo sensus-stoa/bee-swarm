@@ -58,6 +58,10 @@ class Bee
 
     private float $energy;
     private int $birthTick = 0; // LIFETIME-METRIC (07.08)
+    private array $satiety = []; // DOMAIN-SATIETY (08.08): классы по доменам
+    private const SATIETY_K = 3; // после K классов в домене — ×0.1
+    private const SATIETY_FIRST_BOOST = 1.5; // первый класс в домене
+    private const SATIETY_DIM = 0.1;
     private float $tickCost;
     private float $searchCost;
     private float $discoveryReward;
@@ -138,6 +142,23 @@ class Bee
         return $this->birthTick;
     }
 
+    public function registerClass(string $domain): void
+    {
+        $this->satiety[$domain] = ($this->satiety[$domain] ?? 0) + 1;
+    }
+
+    public function discoveryMultiplier(string $domain): float
+    {
+        $n = $this->satiety[$domain] ?? 0;
+        if ($n === 1) {
+            return self::SATIETY_FIRST_BOOST; // новый домен — поощрение
+        }
+        if ($n > self::SATIETY_K) {
+            return self::SATIETY_DIM; // насыщение — «я сыт»
+        }
+        return 1.0;
+    }
+
     public function setBirthTick(int $tick): void
     {
         $this->birthTick = $tick;
@@ -205,12 +226,12 @@ class Bee
     /**
      * Successful discovery rewards energy. Dead bees ignore (can't resurrect).
      */
-    public function rewardDiscovery(): void
+    public function rewardDiscovery(float $multiplier = 1.0): void
     {
         if (! $this->isAlive()) {
             return;
         }
-        $this->energy += $this->discoveryReward;
+        $this->energy += $this->discoveryReward * $multiplier;
     }
 
     /**

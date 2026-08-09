@@ -40,9 +40,26 @@ class DiscoveryEngine
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
             // DISCOVERY-DEPTH (09.08): глубина — параметр (инъекция ?? env ??
-            // 3), НЕ хардкод. Следующий шаг: depth в геноме пчелы.
-            $depth ??= max(1, (int) (getenv('SEARCH_DEPTH') ?: '3')); // валидация (CONCERNS)
-            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, $depth, $colLabels, $testRatio, $cvThreshold);
+            // 2), НЕ хардкод. ADAPTIVE-DEPTH: default 2 (быстрые тики),
+            // эскалация до SEARCH_DEPTH_MAX при пустом результате.
+            $depth ??= max(1, (int) (getenv('SEARCH_DEPTH') ?: '2'));
+            $maxDepth = max($depth, (int) (getenv('SEARCH_DEPTH_MAX') ?: '4'));
+            $depth = min($depth, $maxDepth); // кламп: depth > MAX → пустой цикл (CONCERNS)
+            $sFound = false;
+            $sCv = 9.99;
+            $sFormula = null;
+            $sCvTest = 9.99;
+            $sClass = 'EMPIRICAL';
+            for ($d = $depth; $d <= $maxDepth; $d++) {
+                [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
+                // CONCERNS deleg_ceef5093: «нашёл хоть что-то» — слабый критерий.
+                // Тень (простой атом, CV=0) не должна останавливать эскалацию:
+                // break ТОЛЬКО при составном законе с хорошим CV.
+                $isShadow = $sFormula !== null && ! preg_match('/[+×−\/(]/', $sFormula);
+                if ($sFound && $sCv <= 0.05 && ! $isShadow) {
+                    break;
+                }
+            }
             $bestCv = min($bestCv, $sCv);
             $searchCv = $sCv;
             if ($sFound) {

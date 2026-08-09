@@ -13,5 +13,8 @@
         <ini name="error_reporting" value="E_ALL"/>
         <ini name="display_errors" value="1"/>
         <env name="SWARM_DB_PATH" value=":memory:"/>
+        <env name="SEARCH_DEPTH_MAX" value="2"/>
+        <!-- SEARCH_DEPTH_MAX=2: тесты НЕ эскалируют глубину (адаптивная
+             эскалация раздувала FullPipeline: мусор на depth=2 → 4) -->
     </php>
 </phpunit>

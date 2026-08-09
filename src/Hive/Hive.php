@@ -975,8 +975,19 @@ class Hive
             // DOMAIN-SATIETY (08.08): новый класс → register + множитель
             // (первый класс ×1.5, насыщение ×0.1 — переключение доменов)
             $this->routedBee->registerClass($domain);
+            $labels = $task['col_labels'] ?? [];
+            $formulaStr = $d['atom'] ?? '';
+            $hasFeatures = (bool) preg_match('/[xX]\d+/', $formulaStr);
+            foreach ($labels as $lb) {
+                if (is_string($lb) && str_contains($formulaStr, $lb)) {
+                    $hasFeatures = true;
+                    break;
+                }
+            }
             $this->routedBee->rewardDiscovery(
-                $this->routedBee->discoveryMultiplier($domain)
+                $this->routedBee->discoveryMultiplier($domain),
+                $formulaStr,
+                $hasFeatures
             );
         }
         $this->plateau->tick(true);

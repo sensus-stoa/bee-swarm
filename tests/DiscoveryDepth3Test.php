@@ -31,7 +31,13 @@ class DiscoveryDepth3Test extends TestCase
 
         $g = Grammar::fromOps(['add', 'sub', 'mul', 'div', 'max', 'min']);
         $engine = new DiscoveryEngine($g);
-        [$found] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y']);
+        // phpunit.xml ограничивает SEARCH_DEPTH_MAX=2 — тест явно поднимает
+        putenv('SEARCH_DEPTH_MAX=3');
+        try {
+            [$found] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y']);
+        } finally {
+            putenv('SEARCH_DEPTH_MAX');
+        }
 
         $this->assertNotEmpty($found, 'engine must find (x0+x1)×x2 at depth 3');
         $this->assertStringContainsString('mulx2', $found[0]['atom'] ?? '',
@@ -52,12 +58,27 @@ class DiscoveryDepth3Test extends TestCase
         $g = Grammar::fromOps(['add', 'sub', 'mul', 'div', 'max', 'min']);
         $engine = new DiscoveryEngine($g);
 
-        [$found2] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y'], depth: 2);
+        // ADAPTIVE-DEPTH (09.08): depth=2 как НАЧАЛЬНАЯ эскалируется до 3
+        // при пустом результате — двухуровневый закон находится
+        putenv('SEARCH_DEPTH_MAX=3');
+        try {
+            [$found2] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y'], depth: 2);
+        } finally {
+            putenv('SEARCH_DEPTH_MAX');
+        }
         $atoms2 = array_map(fn ($c) => $c['atom'] ?? '', $found2);
-        $this->assertNotContains('((x0addx1)mulx2)', $atoms2,
-            'depth=2 must not express (x0+x1)×x2: ' . json_encode($atoms2));
+        $this->assertContains('((x0addx1)mulx2)', $atoms2,
+            'adaptive depth must escalate 2→3: ' . json_encode($atoms2));
 
-        [$found3] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y'], depth: 3);
-        $this->assertNotEmpty($found3, 'depth=3 must express (x0+x1)×x2');
+        // Жёсткий предел SEARCH_DEPTH_MAX=2: НЕ выражает двухуровневый
+        putenv('SEARCH_DEPTH_MAX=2');
+        try {
+            [$found3] = $engine->discover($X, $y, ['add', 'sub', 'mul', 'div'], 0.15, ['x0', 'x1', 'x2', 'y'], depth: 2);
+        } finally {
+            putenv('SEARCH_DEPTH_MAX');
+        }
+        $atoms3 = array_map(fn ($c) => $c['atom'] ?? '', $found3);
+        $this->assertNotContains('((x0addx1)mulx2)', $atoms3,
+            'SEARCH_DEPTH_MAX=2 must not express (x0+x1)×x2: ' . json_encode($atoms3));
     }
 }

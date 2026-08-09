@@ -853,7 +853,10 @@ class Hive
             || strlen($formula) < 5) {
             return;
         }
-        $name = 'B' . substr(md5($formula), 0, 6);
+        // COMPRESSION-CRITERION (09.08): имя атома КОРОЧЕ definition —
+        // иначе (x0B7a7aeex1) длиннее (x0addx1) → parsimony выбирает add →
+        // B-атом никогда не используется → reuse=0. B1/B2 = сжатие (2 симв).
+        $name = 'B' . ($birthCount + 1);
         \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula, $domain);
     }
 
@@ -862,7 +865,9 @@ class Hive
      */
     private function registerReuseOps(string $formula, string $domain): void
     {
-        preg_match_all('/B[0-9a-f]{6}/', $formula, $m);
+        // B-AS-ARGUMENT (09.08): имена B1/B2 (короткие) — regex B\d+
+        // (старые B7a7aee тоже матчатся: B7a7aee начинается с B\d)
+        preg_match_all('/B\d+[0-9a-f]*/', $formula, $m);
         foreach ($m[0] as $born) {
             \BeeSwarm\Core\Grammar::registerReuse($born, $domain);
         }

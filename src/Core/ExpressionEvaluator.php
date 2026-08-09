@@ -19,6 +19,8 @@ namespace BeeSwarm\Core;
  */
 class ExpressionEvaluator
 {
+    /** B-AS-ARGUMENT: глубина рекурсии B-в-B (guard от циклов) */
+    private static int $bDepth = 0;
     /** R-операторы в именах атомов: R+{col}, R×{col}, Rmax{col}, Rmin{col}, Rrange{col}, Rnorm{col} */
     private const R_OPS = ['range', 'norm', 'max', 'min', '×', '−', '/', '+'];
 
@@ -44,7 +46,7 @@ class ExpressionEvaluator
             return null;
         }
         [$protected, $map] = ExpressionNormalizer::protect((string) $def);
-        $node = ExpressionNormalizer::parse($protected);
+        $node = ExpressionNormalizer::parse($protected, []); // null-safe: нет B-контекста
         if ($node === null) {
             self::$defCache[$atom] = null;
             return null;
@@ -59,12 +61,12 @@ class ExpressionEvaluator
     /**
      * Вычислить формулу по всем строкам. null если формула неприменима.
      */
-    public static function evaluateFormula(string $formula, array $rows, ?array $stats = null): ?array
+    public static function evaluateFormula(string $formula, array $rows, ?array $stats = null, array $extraOps = [], array $opDefs = []): ?array
     {
         // R-атомы (R+x0) содержат операторы — защищаем как в normalize:
         // protect → parse → restore, иначе "R+x0" разбирается как R + x0
         [$protected, $map] = ExpressionNormalizer::protect($formula);
-        $node = ExpressionNormalizer::parse($protected);
+        $node = ExpressionNormalizer::parse($protected, $extraOps);
         if ($node === null) {
             return null;
         }
@@ -76,7 +78,7 @@ class ExpressionEvaluator
         $stats ??= self::collectReduceStats($node, $rows);
         $vec = [];
         foreach ($rows as $row) {
-            $v = self::evalNode($node, $row, $stats);
+            $v = self::evalNode($node, $row, $stats, $opDefs);
             if ($v === null || ! is_finite($v)) {
                 return null;
             }
@@ -89,10 +91,10 @@ class ExpressionEvaluator
     /**
      * Публичный: R-статистики формулы по выборке (для testCv — по TRAIN).
      */
-    public static function collectStats(string $formula, array $rows): array
+    public static function collectStats(string $formula, array $rows, array $extraOps = [], array $opDefs = []): array
     {
         [$protected, $map] = ExpressionNormalizer::protect($formula);
-        $node = ExpressionNormalizer::parse($protected);
+        $node = ExpressionNormalizer::parse($protected, $extraOps);
         if ($node === null) {
             return [];
         }
@@ -158,14 +160,34 @@ class ExpressionEvaluator
         return null;
     }
 
-    public static function evalNode(array $node, array $row, array $stats): ?float
+    public static function evalNode(array $node, array $row, array $stats, array $opDefs = []): ?float
     {
         if (isset($node['atom'])) {
             return self::evalAtom($node['atom'], $row, $stats);
         }
         $op = $node['op'] ?? null;
-        $l = isset($node['l']) ? self::evalNode($node['l'], $row, $stats) : null;
-        $r = isset($node['r']) ? self::evalNode($node['r'], $row, $stats) : null;
+        $l = isset($node['l']) ? self::evalNode($node['l'], $row, $stats, $opDefs) : null;
+        $r = isset($node['r']) ? self::evalNode($node['r'], $row, $stats, $opDefs) : null;
+        // B-AS-ARGUMENT (09.08): рождённый атом — вычислить definition
+        // с аргументами [l, r] (x0→l, x1→r). DEPTH-GUARD (CONCERNS
+        // deleg_c1b509c5): вложенные B (B-в-B) и self-reference — лимит 10,
+        // иначе цикл/бесконечность.
+        if ($op !== null && isset($opDefs[$op])) {
+            if ($l === null || $r === null) {
+                return null;
+            }
+            if (self::$bDepth >= 10) {
+                return null;
+            }
+            self::$bDepth++;
+            try {
+                $def = $opDefs[$op];
+                $sub = self::evaluateFormula($def, [[$l, $r]], $stats, array_keys($opDefs), $opDefs);
+                return $sub[0] ?? null;
+            } finally {
+                self::$bDepth--;
+            }
+        }
 
         return match ($op) {
             '+', 'add' => ($l !== null && $r !== null) ? $l + $r : null,
@@ -186,7 +208,7 @@ class ExpressionEvaluator
         };
     }
 
-    private static function evalAtom(string $atom, array $row, array $stats): ?float
+    private static function evalAtom(string $atom, array $row, array $stats, array $opDefs = []): ?float
     {
         if (preg_match('/^x(\d+)$/', $atom, $m)) {
             return (float) ($row[(int) $m[1]] ?? 0);
@@ -206,7 +228,7 @@ class ExpressionEvaluator
         // GRAMMAR-BIRTH (ЭКСП-015): атом с definition (source='birth')
         $def = self::definition($atom);
         if ($def !== null) {
-            return self::evalNode($def, $row, $stats);
+            return self::evalNode($def, $row, $stats, $opDefs);
         }
 
         // Rnorm{col}: (x - min) / range — поточечно, нужен контекст строки

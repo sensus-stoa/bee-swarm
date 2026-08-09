@@ -113,7 +113,7 @@ class ExpressionNormalizer
     /**
      * @return array{op: string, l: array, r: array}|array{atom: string}|null
      */
-    public static function parse(string $expr): ?array
+    public static function parse(string $expr, array $extraOps = []): ?array
     {
         $expr = trim($expr);
         if ($expr === '') {
@@ -127,7 +127,7 @@ class ExpressionNormalizer
                 if (! str_starts_with($inner, '(') || ! str_ends_with($inner, ')')) {
                     continue; // не обёртка: col1sq — атом
                 }
-                $parsed = self::parse($inner);
+                $parsed = self::parse($inner, $extraOps);
                 if ($parsed !== null) {
                     return ['op' => $suffix, 'l' => $parsed, 'r' => null];
                 }
@@ -137,7 +137,7 @@ class ExpressionNormalizer
         // Унарный квадрат: (X)² или X² (² — 2 байта UTF-8, нужен mb_substr)
         if (mb_substr($expr, -1, 1) === '²') {
             $inner = mb_substr($expr, 0, -1);
-            $parsed = self::parse($inner);
+            $parsed = self::parse($inner, $extraOps);
             if ($parsed === null) {
                 return null;
             }
@@ -154,8 +154,8 @@ class ExpressionNormalizer
                 [$op, $left, $right] = $split;
                 return [
                     'op' => $op,
-                    'l' => self::parse($left) ?? ['atom' => $left],
-                    'r' => self::parse($right) ?? ['atom' => $right],
+                    'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
+                    'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
                 ];
             }
             return ['atom' => $expr];
@@ -171,15 +171,17 @@ class ExpressionNormalizer
         // max/min (средний), умножение/деление (высокий). Эквиваленты
         // СИМВОЛ+СЛОВО в ОДНОМ тире (CONCERNS deleg_aa12a1ff): иначе
         // a−b sub c ≠ a sub b−c при смешанной нотации.
+        // B-операторы (B-AS-ARGUMENT, 09.08): динамические имена рождённых
+        // атомов из БД — иначе (x0B7a7aee(x1)) → null → heldout убивает.
         $split = self::findTopOperator($inner, ['+', '−', 'add', 'sub'])
-            ?? self::findTopOperator($inner, ['max', 'min'])
+            ?? self::findTopOperator($inner, array_merge(['max', 'min'], $extraOps))
             ?? self::findTopOperator($inner, ['mul', 'div', '×', '÷', '/']);
         if ($split !== null) {
             [$op, $left, $right] = $split;
             return [
                 'op' => $op,
-                'l' => self::parse($left) ?? ['atom' => $left],
-                'r' => self::parse($right) ?? ['atom' => $right],
+                'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
+                'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
             ];
         }
 

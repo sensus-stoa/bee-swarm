@@ -241,6 +241,7 @@ class Search
             // (definition с x0 И x1) применяются к ПАРАМ фич в L2 —
             // не вырождаются (B(x0)=x0+0). Разблокирует transfer.
             $bornBinary = [];
+            $bKeys = []; // B-AS-ARGUMENT (09.08): имена B-форм для L2L1
             try {
                 $bbStmt = \BeeSwarm\Infra\Database::get()->prepare(
                     'SELECT name, definition FROM grammar_ops
@@ -253,6 +254,7 @@ class Search
                 }
             } catch (\Throwable $e) {
                 $bornBinary = [];
+            $bKeys = []; // B-AS-ARGUMENT (09.08): имена B-форм для L2L1
             }
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
@@ -280,6 +282,7 @@ class Search
                         $name = "({$pool[$a]}$bbName{$pool[$b]})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
+                        $bKeys[] = $name; // B-AS-ARGUMENT: B-формы в L2L1
                     }
                 }
             }
@@ -289,7 +292,9 @@ class Search
         // (x0+x1) — L1-уровень; без L1×фича (x0+x1)×x2 невыразим →
         // transfer-тест невалиден (ЭКСП-022d). top-30 L1 × фичи × ops.
         if ($depth >= 3 && ! empty($l1Keys)) {
-            $l1Top = array_slice($l1Keys, 0, 30);
+            // B-AS-ARGUMENT: B-формы (B7a7aee×x2) в L2L1 — без них атомы
+            // не участвуют в двухуровневых композициях
+            $l1Top = array_slice(array_merge($l1Keys, $bKeys ?? []), 0, 30);
             foreach ($l1Top as $l1name) {
                 foreach ($featKeys as $fname) {
                     foreach ($ops as $op) {
@@ -446,7 +451,7 @@ class Search
                 $bestTestTrainCv = 9.99;
                 $X_train_cv = array_slice($X, 0, $splitIdx);
                 foreach ($plausible as $cand) {
-                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv);
+                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary);
                     // S2.1 ФАЗА 2 (все кандидаты): статус по held-out
                     if (isset($preregIds[$cand['name']])) {
                         $prUpdAll = $prDb->prepare(
@@ -522,7 +527,7 @@ class Search
         return 'EMPIRICAL';
     }
 
-    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null, ?array $X_train = null): float
+    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null, ?array $X_train = null, array $extraOps = [], array $opDefs = []): float
     {
         $nTest = count($y_test);
         if ($nTest < 2) {
@@ -545,9 +550,9 @@ class Search
         // (константы модели), иначе R-подгонка пересчитывает их на тесте и
         // адаптируется к шуму теста (0.007956 vs 0.008010 — «побеждает»).
         $stats = $X_train !== null
-            ? \BeeSwarm\Core\ExpressionEvaluator::collectStats($name, $X_train)
+            ? \BeeSwarm\Core\ExpressionEvaluator::collectStats($name, $X_train, $extraOps, $opDefs)
             : [];
-        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($name, $X_test, $stats);
+        $vec = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($name, $X_test, $stats, $extraOps, $opDefs);
         if ($vec === null || count($vec) !== $nTest) {
             return 9.99;
         }

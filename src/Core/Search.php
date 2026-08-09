@@ -261,7 +261,16 @@ class Search
                     foreach ($r as $rr) { $v += ($rr - $m) ** 2; }
                     $scored[] = ['n' => $pname, 'cv' => sqrt($v / $quickN) / (abs($m) + 1e-8)];
                 }
-                usort($scored, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
+                // COMPRESSION-CRITERION (09.08): tie по CV → КОРОЧЕ выше
+                // (B-форма (x0B4x1) короче add-формы → в top-K beam,
+                // иначе exact-tie забивали слоты add-формами)
+                usort($scored, function (array $a, array $b): int {
+                    $cv = $a['cv'] <=> $b['cv'];
+                    if ($cv !== 0) {
+                        return $cv;
+                    }
+                    return strlen($a['n']) <=> strlen($b['n']);
+                });
                 $top = array_slice($scored, 0, $beamK);
                 $rest = array_slice($scored, $beamK);
                 shuffle($rest);

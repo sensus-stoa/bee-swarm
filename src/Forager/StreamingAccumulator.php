@@ -245,38 +245,60 @@ class StreamingAccumulator
                         }
                     }
                 }
-                // MULTI-FEATURE-TASKS (05.08, ЭКСП-006): тройки колонок
-                // X=[c0,c1], y=c2 → nFeat=2. Двухфичевые законы (Литтла L=λ×W)
-                // неоткрываемы из пар. Ограничение: min(nCols,4), как у пар.
-                for ($c1 = 0; $c1 < $maxCols; $c1++) {
-                    for ($c2 = $c1 + 1; $c2 < $maxCols; $c2++) {
-                        for ($c3 = 0; $c3 < $maxCols; $c3++) {
-                            if ($c3 === $c1 || $c3 === $c2) {
+                // FORAGER-ARITY (09.08): параметрическая размерность задач —
+                // k фич для k = 2..MAX_ARITY (env, default 3): C(n,k-1)
+                // комбинаций фич → y = оставшаяся колонка. НЕ хардкод на
+                // каждую размерность (анти-паттерн QUAD/L5): один параметр
+                // закрывает все арности. Кап 50 задач на арность.
+                $maxArity = (int) (getenv('MAX_ARITY') ?: '3');
+                // arity = ЧИСЛО ФИЧ X (nFeat): 1 = пары, 2 = тройки, 3 = 4-колоночные
+                for ($arity = 2; $arity <= $maxArity; $arity++) {
+                    if ($arity >= $maxCols) {
+                        break; // нужна минимум одна колонка под y
+                    }
+                    // ЛЕНИВЫЙ кап (CONCERNS deleg_b472699a): combinations с
+                    // лимитом 50 ВНУТРИ рекурсии — иначе C(100,5)=75M (OOM)
+                    $combos = self::combinations(range(0, $maxCols - 1), $arity, 50);
+                    foreach ($combos as $combo) {
+                        foreach (range(0, $maxCols - 1) as $yc) {
+                            if (in_array($yc, $combo, true)) {
                                 continue;
                             }
-                            $tripleData = [];
+                            $rowData = [];
                             foreach ($data as $row) {
-                                if (isset($row[$c1], $row[$c2], $row[$c3])
-                                    && is_numeric($row[$c1]) && is_numeric($row[$c2]) && is_numeric($row[$c3])) {
-                                    $tripleData[] = [(float) $row[$c1], (float) $row[$c2], (float) $row[$c3]];
+                                $ok = isset($row[$yc]) && is_numeric($row[$yc]);
+                                foreach ($combo as $ci) {
+                                    $ok = $ok && isset($row[$ci]) && is_numeric($row[$ci]);
                                 }
+                                if (! $ok) {
+                                    continue;
+                                }
+                                $vals = [];
+                                foreach ($combo as $ci) {
+                                    $vals[] = (float) $row[$ci];
+                                }
+                                $vals[] = (float) $row[$yc];
+                                $rowData[] = $vals;
                             }
-                            if (count($tripleData) >= $tMin) {
-                                $labelTriple = [
-                                    $colLabels[$c1] ?? "col{$c1}",
-                                    $colLabels[$c2] ?? "col{$c2}",
-                                    $colLabels[$c3] ?? "col{$c3}",
-                                ];
-                                $tasks[] = [
-                                    'name' => 'foraged_' . substr($r['pattern'], 0, 12)
-                                        . "_c{$c1}c{$c2}->c{$c3}",
-                                    'data' => $tripleData,
-                                    'domain' => $r['domain'],
-                                    'content' => $contentSample,
-                                    'source_path' => $sourcePath,
-                                    'col_labels' => $labelTriple,
-                                ];
+                            if (count($rowData) < $tMin) {
+                                continue;
                             }
+                            $labels = [];
+                            $nameSuffix = '';
+                            foreach ($combo as $ci) {
+                                $labels[] = $colLabels[$ci] ?? "col{$ci}";
+                                $nameSuffix .= "c{$ci}";
+                            }
+                            $labels[] = $colLabels[$yc] ?? "col{$yc}";
+                            $tasks[] = [
+                                'name' => 'foraged_' . substr($r['pattern'], 0, 12)
+                                    . "_{$nameSuffix}->c{$yc}",
+                                'data' => $rowData,
+                                'domain' => $r['domain'],
+                                'content' => $contentSample,
+                                'source_path' => $sourcePath,
+                                'col_labels' => $labels,
+                            ];
                         }
                     }
                 }
@@ -331,5 +353,36 @@ class StreamingAccumulator
         }
 
         return '[]';
+    }
+
+    /** FORAGER-ARITY: сочетания C(n,k) с ЛИМИТОМ (ленивый кап) */
+    private static function combinations(array $items, int $k, int $limit = 50): array
+    {
+        if ($k <= 0) {
+            return [[]];
+        }
+        if ($k > count($items)) {
+            return [];
+        }
+        if ($k === 1) {
+            $out = [];
+            foreach ($items as $i) {
+                $out[] = [$i];
+                if (count($out) >= $limit) {
+                    return $out;
+                }
+            }
+            return $out;
+        }
+        $result = [];
+        for ($i = 0; $i <= count($items) - $k; $i++) {
+            foreach (self::combinations(array_slice($items, $i + 1), $k - 1, $limit - count($result)) as $tail) {
+                $result[] = array_merge([$items[$i]], $tail);
+                if (count($result) >= $limit) {
+                    return $result;
+                }
+            }
+        }
+        return $result;
     }
 }

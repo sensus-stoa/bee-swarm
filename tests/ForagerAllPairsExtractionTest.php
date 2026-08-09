@@ -55,8 +55,9 @@ class ForagerAllPairsExtractionTest extends TestCase
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
 
-        // MULTI-FEATURE (05.08): C(4,2)=6 пар + C(4,2)×2=12 троек = 18 задач
-        $this->assertCount(18, $tasks, '4 columns must produce 6 pairs + 12 triples');
+        // MULTI-FEATURE (05.08): 6 пар + 12 троек; FORAGER-ARITY (09.08):
+        // MAX_ARITY=3 → + C(4,3)=4 четверки (nFeat=3) = 22 задачи
+        $this->assertCount(22, $tasks, '4 columns must produce 6 pairs + 12 triples');
 
         // Пары: имя без '->', 2 колонки [feature, target]
         $pairs = array_values(array_filter($tasks, fn (array $t): bool => ! str_contains($t['name'], '->')));
@@ -66,15 +67,21 @@ class ForagerAllPairsExtractionTest extends TestCase
         }
 
         // Тройки: имя с '->', 3 колонки [c0, c1, target]
-        $triples = array_values(array_filter($tasks, fn (array $t): bool => str_contains($t['name'], '->')));
+        $multi = array_values(array_filter($tasks, fn (array $t): bool => str_contains($t['name'], '->')));
+        $triples = array_values(array_filter($multi, fn (array $t): bool => count($t['data'][0] ?? []) === 3));
+        $quads = array_values(array_filter($multi, fn (array $t): bool => count($t['data'][0] ?? []) === 4));
         $this->assertCount(12, $triples, 'must have exactly 12 triples');
+        $this->assertCount(4, $quads, 'FORAGER-ARITY: must have 4 quad tasks');
         foreach ($triples as $task) {
             $this->assertCount(3, $task['data'][0], 'Triple must be [c0, c1, target]');
+        }
+        foreach ($quads as $task) {
+            $this->assertCount(4, $task['data'][0], 'Quad must be [c0, c1, c2, target]');
         }
 
         // Все задачи уникальны по имени
         $names = array_column($tasks, 'name');
-        $this->assertCount(18, array_unique($names), 'All task names must be unique');
+        $this->assertCount(22, array_unique($names), 'All task names must be unique');
     }
 
     /**

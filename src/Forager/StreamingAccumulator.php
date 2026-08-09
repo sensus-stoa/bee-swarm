@@ -195,6 +195,14 @@ class StreamingAccumulator
         }
 
         $tMin = 10;
+        // FORAGER-ENV-PARAMS (09.08): параметры вместо хардкода (FIN-EXP-001).
+        // Дефолты = прежнее поведение; финансы: MAX_ROWS=13552, MAX_COLS=15, COMBO_CAP=0/большой.
+        $maxRows = max(1, (int) (getenv('FORAGER_MAX_ROWS') ?: '200'));
+        $maxColsParam = max(2, (int) (getenv('FORAGER_MAX_COLS') ?: '4'));
+        $comboCap = (int) (getenv('FORAGER_COMBO_CAP') ?: '50');
+        if ($comboCap <= 0) {
+            $comboCap = PHP_INT_MAX; // 0 = без лимита (осторожно: C(100,5)=75M)
+        }
         $maxColsPerTask = 3;  // E1-FIX Phase 4: narrow extraction
         $tasks = [];
         $rows = $db->query("SELECT pattern, domain, COUNT(*) cnt FROM fd GROUP BY pattern, domain HAVING cnt >= {$tMin}");
@@ -205,7 +213,7 @@ class StreamingAccumulator
             $sourcePath = $cr['source_path'] ?? '';
             $colLabelsJson = $cr['col_labels'] ?? '[]';
             $data = [];
-            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT 200");
+            $dr = $db->query("SELECT row_json FROM fd WHERE pattern='{$r['pattern']}' LIMIT {$maxRows}");
             while ($d = $dr->fetch(\PDO::FETCH_NUM)) {
                 $data[] = json_decode($d[0], true);
             }
@@ -218,8 +226,8 @@ class StreamingAccumulator
             $colLabels = json_decode($colLabelsJson, true) ?? [];
 
             // E1-FIX Phase 4c: all-pairs extraction — как Scanner::processNumericRows()
-            // Все пары из первых min(nCols, 4) колонок. 450 законов были открыты этим методом.
-            $maxCols = min($nCols, 4);
+            // Все пары из первых min(nCols, FORAGER_MAX_COLS) колонок. 450 законов были открыты этим методом.
+            $maxCols = min($nCols, $maxColsParam);
             if ($maxCols >= 2) {
                 for ($c1 = 0; $c1 < $maxCols; $c1++) {
                     for ($c2 = $c1 + 1; $c2 < $maxCols; $c2++) {
@@ -257,8 +265,9 @@ class StreamingAccumulator
                         break; // нужна минимум одна колонка под y
                     }
                     // ЛЕНИВЫЙ кап (CONCERNS deleg_b472699a): combinations с
-                    // лимитом 50 ВНУТРИ рекурсии — иначе C(100,5)=75M (OOM)
-                    $combos = self::combinations(range(0, $maxCols - 1), $arity, 50);
+                    // лимитом ВНУТРИ рекурсии — иначе C(100,5)=75M (OOM).
+                    // FORAGER_COMBO_CAP=0 → без лимита (PHP_INT_MAX).
+                    $combos = self::combinations(range(0, $maxCols - 1), $arity, $comboCap);
                     foreach ($combos as $combo) {
                         foreach (range(0, $maxCols - 1) as $yc) {
                             if (in_array($yc, $combo, true)) {

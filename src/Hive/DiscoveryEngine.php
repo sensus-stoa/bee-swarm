@@ -24,6 +24,7 @@ class DiscoveryEngine
         float $cvThreshold,
         ?array $colLabels = null,
         float $testRatio = 0.2,
+        ?int $depth = null,
     ): array {
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
@@ -38,7 +39,10 @@ class DiscoveryEngine
         // 1. Generative search
         if (count($grammarOps) >= 2) {
             $searchGrammar = Grammar::fromOps($grammarOps);
-            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, 2, $colLabels, $testRatio, $cvThreshold);
+            // DISCOVERY-DEPTH (09.08): глубина — параметр (инъекция ?? env ??
+            // 3), НЕ хардкод. Следующий шаг: depth в геноме пчелы.
+            $depth ??= max(1, (int) (getenv('SEARCH_DEPTH') ?: '3')); // валидация (CONCERNS)
+            [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, $depth, $colLabels, $testRatio, $cvThreshold);
             $bestCv = min($bestCv, $sCv);
             $searchCv = $sCv;
             if ($sFound) {

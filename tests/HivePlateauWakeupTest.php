@@ -17,6 +17,9 @@ class HivePlateauWakeupTest extends TestCase
 {
     public function testConsumeDoesNotResetPlateau(): void
     {
+        // SEARCH_DEPTH=2: тест про плато-механику, не про глубину —
+        // depth=3 даёт больше находок → foundAny сбрасывает плато (флак)
+        putenv('SEARCH_DEPTH=2');
         $plateau = new PlateauDetector(50, 0);
 
         // Forager, который каждый скан даёт 10 задач — но hasNewContent=false
@@ -48,17 +51,21 @@ class HivePlateauWakeupTest extends TestCase
         };
 
         $logFile = tempnam(sys_get_temp_dir(), 'wake_');
-        $hive = new Hive($plateau, $forager, maxTicks: 30, logFile: $logFile);
-        $hive->run();
+        try {
+            $hive = new Hive($plateau, $forager, maxTicks: 30, logFile: $logFile);
+            $hive->run();
 
-        // За 30 тиков потребление удалило ~30 задач из пула, но НИ ОДИН
-        // wakeup от count-изменения не сработал (только РОСТ будит).
-        // Плато должно накопиться (нет foundAny, нет wakeup-источников).
-        $this->assertGreaterThan(
-            0,
-            $plateau->getConsecutiveNoDiscovery(),
-            'Consumption must NOT reset plateau — consecutiveNoDiscovery must grow'
-        );
-        unlink($logFile);
+            // За 30 тиков потребление удалило ~30 задач из пула, но НИ ОДИН
+            // wakeup от count-изменения не сработал (только РОСТ будит).
+            // Плато должно накопиться (нет foundAny, нет wakeup-источников).
+            $this->assertGreaterThan(
+                0,
+                $plateau->getConsecutiveNoDiscovery(),
+                'Consumption must NOT reset plateau — consecutiveNoDiscovery must grow'
+            );
+        } finally {
+            putenv('SEARCH_DEPTH'); // cleanup при падении (CONCERNS deleg_84b58ba4)
+            unlink($logFile);
+        }
     }
 }

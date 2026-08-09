@@ -871,6 +871,31 @@ class Hive
         foreach ($m[0] as $born) {
             \BeeSwarm\Core\Grammar::registerReuse($born, $domain);
         }
+        // REUSE-VIA-DEFINITION (09.08, ЭКСП-022m): heldout-путь применяет
+        // атомы (bornDefinition), но возвращает формулу с РАЗВЁРНУТЫМ
+        // определением ((x0+x1)×x2) — reuse по B-имени не видит.
+        // Матчим по definition-подстроке (порог >= 7, CONCERNS
+        // deleg_16d28c6b: < 7 — частые короткие структуры = ложные
+        // срабатывания). НАБЛЮДАТЕЛЬНАЯ метрика: не кормит/не отбирает.
+        // ПЕРЕД внедрением REUSE-REWARD (отбор по reuse) — перейти на
+        // явный учёт применений (AST-маппинг), иначе каскадный двойной
+        // счёт вложенных определений врёт системе.
+        if (strlen($formula) > 8) {
+            // РУЧКА (09.08): REUSE_MIN_DEF_LEN env (default 7) — порог
+            // длины определения для reuse-по-подстроке. Следующий шаг:
+            // порог по РЕДКОСТИ структуры (встречаемость в laws).
+            $minDefLen = max(3, (int) (getenv('REUSE_MIN_DEF_LEN') ?: '7'));
+            $bb = Database::get()->prepare(
+                'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition IS NOT NULL AND length(definition) >= ?'
+            );
+            $bb->execute(['birth', $minDefLen]);
+            $bb->execute(['birth']);
+            foreach ($bb->fetchAll() as $r) {
+                if (str_contains($formula, $r['definition'])) {
+                    \BeeSwarm\Core\Grammar::registerReuse($r['name'], $domain);
+                }
+            }
+        }
     }
 
     /**

@@ -158,9 +158,18 @@ class Search
                 // символов) впереди длинных (B13/B14) — иначе cap отрезает
                 // нужный атом (022o: B11 не в первых 3 по id → add выиграл).
                 $bCap = max(1, (int) (getenv('BINARY_B_CAP') ?: '3'));
-                $stmt = \BeeSwarm\Infra\Database::get()->prepare(
-                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ? ORDER BY length(definition) ASC LIMIT ' . $bCap
-                );
+                // REUSE-CRITERION-BIRTH (10.08): ACTIVE атомы приоритетнее
+                // кандидатов (закреплённые культурой — впереди, при cap).
+                // ДЕДУП по definition: атомы-дубли (BC1/B4 — один definition)
+                // не забивают cap 3. ROW_NUMBER-вариант падал («no such
+                // column: status» в подзапросе, 10.08) — GROUP BY + ORDER BY
+                // (активный, короткий, первый по id — фактически детерминизм).
+                $sql = 'SELECT name, definition FROM grammar_ops
+                    WHERE source = ? AND definition LIKE ? AND definition LIKE ?
+                    GROUP BY definition
+                    ORDER BY CASE WHEN status = \'active\' THEN 0 ELSE 1 END, length(definition), MIN(id)
+                    LIMIT ' . $bCap;
+                $stmt = \BeeSwarm\Infra\Database::get()->prepare($sql);
                 $stmt->execute(['birth', '%x0%', '%x1%']);
                 foreach ($stmt->fetchAll() as $bb) {
                     $bornBinary[$bb['name']] = $bb['definition'];

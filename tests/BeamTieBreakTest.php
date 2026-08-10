@@ -15,6 +15,9 @@ class BeamTieBreakTest extends TestCase
 {
     public function testShorterFormWinsBeamSlotOnTie(): void
     {
+        // Изоляция (10.08): другие тесты в процессе создают birth-атомы
+        // (BC1-3) — их дубликаты-определения забивают bornBinary cap 3.
+        \BeeSwarm\Infra\Database::get()->exec("DELETE FROM grammar_ops WHERE source = 'birth'");
         // B4=(x0+x1) — короткая форма; задача y=(x0+x1)×x2
         \BeeSwarm\Core\Grammar::staticAdd('B4', 'birth', '(x0addx1)', 'test');
         try {

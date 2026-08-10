@@ -154,9 +154,12 @@ class Search
             try {
                 // BINARY-B-CAP (09.08, ЭКСП-022o ноут): 30+ атомов × 1600 пар
                 // в L2 = 48K evaluateFormula на тик (тик-бомба!). Cap 3.
+                // ORDER BY length: КОРОТКИЕ определения (B11=(x0+x1) — 7
+                // символов) впереди длинных (B13/B14) — иначе cap отрезает
+                // нужный атом (022o: B11 не в первых 3 по id → add выиграл).
                 $bCap = max(1, (int) (getenv('BINARY_B_CAP') ?: '3'));
                 $stmt = \BeeSwarm\Infra\Database::get()->prepare(
-                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ? LIMIT ' . $bCap
+                    'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition LIKE ? AND definition LIKE ? ORDER BY length(definition) ASC LIMIT ' . $bCap
                 );
                 $stmt->execute(['birth', '%x0%', '%x1%']);
                 foreach ($stmt->fetchAll() as $bb) {

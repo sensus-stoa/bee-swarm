@@ -885,10 +885,11 @@ class Hive
             // длины определения для reuse-по-подстроке. Следующий шаг:
             // порог по РЕДКОСТИ структуры (встречаемость в laws).
             $minDefLen = max(3, (int) (getenv('REUSE_MIN_DEF_LEN') ?: '7'));
-            $bb = Database::get()->prepare(
-                'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition IS NOT NULL AND length(definition) >= ?'
+            // TYPED-EXECUTE (09.08): Database::run — int→PARAM_INT
+            $bb = Database::run(
+                'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition IS NOT NULL AND length(definition) >= ?',
+                ['birth', $minDefLen]
             );
-            $bb->execute(['birth', $minDefLen]);
             foreach ($bb->fetchAll() as $r) {
                 // НОТАЦИЯ (09.08, ЭКСП-022n): formula в символьной
                 // ((x0+x1)×x2), definition во внутренней ((x0addx1)) —

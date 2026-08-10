@@ -194,6 +194,13 @@ class Database
             definition TEXT,
             usage_count INTEGER DEFAULT 1
         )");
+        // REUSE-CRITERION-BIRTH (10.08): двухфазное рождение B-атомов.
+        // candidate → active после reuse≥1. Легаси (без status) — active.
+        try {
+            $db->exec("ALTER TABLE grammar_ops ADD COLUMN status TEXT DEFAULT 'active'");
+        } catch (\Throwable $e) {
+            // колонка уже есть
+        }
         // B1-DBDEDUP (05.08): дедуп существующих — keep first по id
         try {
             $db->exec(

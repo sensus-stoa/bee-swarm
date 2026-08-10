@@ -279,8 +279,11 @@ class Grammar
     public static function staticAdd(string $name, string $source, string $definition, string $birthDomain = ''): void
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, ?, ?, ?)')
-            ->execute([$name, $source, $definition, $birthDomain]);
+        // REUSE-CRITERION-BIRTH (10.08): рождение = КАНДИДАТ (двухфазность);
+        // активным становится после reuse≥1 (registerReuse → PROMOTED).
+        $status = $source === 'birth' ? 'candidate' : 'active';
+        $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source, definition, birth_domain, status) VALUES (?, ?, ?, ?, ?)')
+            ->execute([$name, $source, $definition, $birthDomain, $status]);
         // Рождение атома → инвалидация null-кэша AtomRegistry
         \BeeSwarm\Core\AtomRegistry::clearDefCache();
     }
@@ -290,6 +293,14 @@ class Grammar
      */
     public static function registerReuse(string $name, string $domain): void
     {
+        // REUSE-CRITERION-BIRTH (10.08): reuse≥1 → PROMOTED (candidate→active)
+        try {
+            \BeeSwarm\Infra\Database::get()->prepare(
+                'UPDATE grammar_ops SET status = \'active\' WHERE name = ? AND source = \'birth\''
+            )->execute([$name]);
+        } catch (\Throwable $e) {
+            // колонка status может отсутствовать (старая БД без миграции)
+        }
         $db = \BeeSwarm\Infra\Database::get();
         // Простой путь: читаем домены, обновляем в PHP (CASE/instr — дорого)
         $cur = $db->prepare('SELECT reuse_domains FROM grammar_ops WHERE name = ?');

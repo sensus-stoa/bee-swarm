@@ -41,6 +41,28 @@ class Database
         self::$instance = null;
     }
 
+    /**
+     * TYPED-EXECUTE (09.08, ЭКСП-022o): execute(['...', 7]) — PHP PDO
+     * связывает int как TEXT → SQLite: INTEGER >= '7' = 0 строк (баг!).
+     * run(): PHP-типы массива → PDO-типы автоматически.
+     * Использовать для ВСЕХ запросов с числовыми параметрами.
+     */
+    public static function run(string $sql, array $params = []): \PDOStatement
+    {
+        $stmt = self::get()->prepare($sql);
+        foreach ($params as $k => $v) {
+            $pdoType = match (true) {
+                is_int($v) => PDO::PARAM_INT,
+                is_float($v) => PDO::PARAM_STR, // SQLite REAL: строка ок
+                is_bool($v) => PDO::PARAM_INT,
+                default => PDO::PARAM_STR,
+            };
+            $stmt->bindValue(is_int($k) ? $k + 1 : $k, $v, $pdoType);
+        }
+        $stmt->execute();
+        return $stmt;
+    }
+
     public static function get(): PDO
     {
         if (self::$instance === null) {

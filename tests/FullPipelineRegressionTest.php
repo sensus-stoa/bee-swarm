@@ -25,6 +25,9 @@ class FullPipelineRegressionTest extends TestCase
      */
     public function testDiscoveriesMade(): void
     {
+        // ДЕТЕРМИНИЗМ (10.08): улей использует array_rand (mt_rand!) —
+        // без mt_srand тест флакал 1/5 (≥3 законов: улей-рандомизация).
+        mt_srand(42);
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
         $hive = $this->runHive(12);
 

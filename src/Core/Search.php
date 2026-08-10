@@ -537,8 +537,67 @@ class Search
                 $bestTestName = null;
                 $bestTestTrainCv = 9.99;
                 $X_train_cv = array_slice($X, 0, $splitIdx);
+                // NON-CONSTANCY (10.08, ЭКСП-026/MOEX): константные псевдозаконы
+                // проходят CV через shift: знакопеременный y → shift=min(y)−1 →
+                // ratio сглаживается → (x0/R+x0) на ШУМЕ CV=0.028 < 0.15.
+                // NULL-ФИЛЬТР (вариант B стори): CV формулы на ЦИКЛИЧЕСКИ
+                // сдвинутом y (детерминированно!) — если сигнал НЕ лучше
+                // шума (cvReal >= nullCv − margin) — REFUTED (нет информации).
+                // NULL-SIGNAL-RATIO (10.08, «обратный Парето»): сигнал должен
+                // держать ≤80% от шума (20% диссипации). Параметр для
+                // эволюции: пчела может мутировать порог сжатия.
+                // Калибровка 10.08 (итерация 3): псевдозакон t/null≈0.79,
+                // слабые реальные (FullPipeline) 0.52-0.65 (флуктуация 1/3
+                // прогонов резала при 0.6!). Порог 0.55: псевдо (0.79)
+                // режется стабильно, слабые реальные (≤0.55) проходят.
+                $nullRatio = (float) (getenv('NULL_SIGNAL_RATIO') ?: '0.55');
+                $nullCvCache = [];
                 foreach ($plausible as $cand) {
                     $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary);
+                    if (is_finite($t) && $t < $cvTrainMax) {
+                        if (! isset($nullCvCache[$cand['name']])) {
+                            // NULL = STEP-ПЕРЕСТАНОВКА (CONCERNS deleg_1d163bae +
+                            // флак 10.08): ротация сохраняла соседние пары →
+                            // nullCv занижен для гладких рядов; mt_srand+shuffle
+                            // НЕДЕТЕРМИНИРОВАН (reset глобального mt → beam-
+                            // рандомы улья скачут → FullPipeline флак!).
+                            // Шаг от имени кандидата: детерминированно,
+                            // структура ряда разрушена, mt не тронут.
+                            $nTest = count($y_test);
+                            // NULL = МЕДИАНА 3 перестановок (10.08, итерация 4):
+                            // одна реализация флуктуирует ±0.03 → +(−)-законы
+                            // (t/null=0.7) неотличимы от псевдозаконов (0.79).
+                            // ВЗАИМНО-ПРОСТЫЕ шаги (полные перестановки, повторов
+                            // нет: шаги 2/4/6 для n=8 давали ПОВТОРЫ → null искажён).
+                            $nulls = [];
+                            // 5 перестановок (CONCERNS deleg_1d2cab3a: медиана 3
+                            // флуктуирует на краю 0.52-0.70 — нулевой запас).
+                            for ($r = 0; $r < 5; $r++) {
+                                $step = 2 + $r;
+                                while ($step < $nTest && $nTest % $step === 0) {
+                                    $step++;
+                                }
+                                if ($step >= $nTest) {
+                                    $step = $nTest - 1;
+                                }
+                                $nullY = [];
+                                for ($i = 0; $i < $nTest; $i++) {
+                                    $nullY[] = $y_test[($i * $step) % $nTest];
+                                }
+                                $nulls[] = self::testCv(
+                                    $cand['name'], $X_test, $nullY, $bestStd ?? 1.0,
+                                    $n, $colLabels, $X_train_cv,
+                                    array_keys($bornBinary), $bornBinary
+                                );
+                            }
+                            sort($nulls);
+                            $nullCvCache[$cand['name']] = $nulls[2]; // медиана 5
+                        }
+                        // Относительный критерий: сигнал на 20% лучше шума
+                        if ($t >= $nullCvCache[$cand['name']] * $nullRatio) {
+                            $t = 9.99; // сигнал не лучше шума — псевдозакон
+                        }
+                    }
                     // S2.1 ФАЗА 2 (все кандидаты): статус по held-out
                     if (isset($preregIds[$cand['name']])) {
                         $prUpdAll = $prDb->prepare(

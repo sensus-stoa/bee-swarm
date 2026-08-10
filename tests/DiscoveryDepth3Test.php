@@ -40,7 +40,10 @@ class DiscoveryDepth3Test extends TestCase
         }
 
         $this->assertNotEmpty($found, 'engine must find (x0+x1)×x2 at depth 3');
-        $this->assertStringContainsString('mulx2', $found[0]['atom'] ?? '',
+        // B-AS-ARGUMENT: find возвращает КОРОТКУЮ B-форму (exact-shortest/
+        // parsimony) — структурно: двухуровневый закон (x0…x1) … x2.
+        $atom = $found[0]['atom'] ?? '';
+        $this->assertMatchesRegularExpression('/\(x0.{1,12}x1\).{1,6}x2/', $atom,
             'found law must be two-level: ' . json_encode($found[0] ?? []));
     }
 
@@ -67,7 +70,12 @@ class DiscoveryDepth3Test extends TestCase
             putenv('SEARCH_DEPTH_MAX');
         }
         $atoms2 = array_map(fn ($c) => $c['atom'] ?? '', $found2);
-        $this->assertContains('((x0addx1)mulx2)', $atoms2,
+        // B-AS-ARGUMENT (09.08): find возвращает КОРОТКУЮ B-форму
+        // ((x0B5x1)mulx2) — exact-shortest/parsimony. Тест про ГЛУБИНУ,
+        // не форму: структурно — закон ((x0 … x1) mul x2) в любой нотации.
+        $matched = array_filter($atoms2, fn (string $a): bool =>
+            (bool) preg_match('/\(\(x0.{1,12}x1\)mulx2\)/', $a));
+        $this->assertNotEmpty($matched,
             'adaptive depth must escalate 2→3: ' . json_encode($atoms2));
 
         // Жёсткий предел SEARCH_DEPTH_MAX=2: НЕ выражает двухуровневый

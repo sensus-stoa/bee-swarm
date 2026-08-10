@@ -171,9 +171,28 @@ class Search
         }
 
         $pGen = microtime(true);
-        // L1: pairwise on features
+        // L1: pairwise on features.
+        // R-BLOAT-FIX (10.08): ВСЕ производные ключи ($featKeys) попадали
+        // в pairwise → квадратичный раздув: 12 фич → 174K форм, 1.6GB
+        // (вино!). Правило: raw×raw + raw×R-КОНСТАНТЫ (аффинные:
+        // (x0−Rminx0)=x0−2, (x0/Rmaxx0) — РЕГРЕССИЯ без них:
+        // AffineLawsTest!). R×R (константа op константа) — не генерируем.
+        // R-BLOAT-FIX v3 (10.08): pairwise по ВСЕМ ключам (фичи, ², нормы
+        // (x/Rsumx), R-константы, K-константы) КРОМЕ пар константа×константа
+        // (R×R, K×K — мусор). Регрессии: (а) исключение производных убило
+        // (x0/Rsumx0)+x1 (SearchTest::testFindReduceWithMultipleColumns!);
+        // (б) исключение констант убило y=x−2 (AffineLawsTest). Итог:
+        // const-фильтр только на ОБА операнда.
+        $isConstKey = fn (string $k): bool =>
+            str_starts_with($k, 'R') || str_starts_with($k, 'K');
         for ($a = 0; $a < count($featKeys); $a++) {
+            if ($isConstKey($featKeys[$a])) {
+                continue; // константа будет ПРАВЫМ операндом ниже
+            }
             for ($b = $a + 1; $b < count($featKeys); $b++) {
+                if ($isConstKey($featKeys[$b])) {
+                    continue; // (const op const) — мусор
+                }
                 $va = $feats[$featKeys[$a]];
                 $vb = $feats[$featKeys[$b]];
                 foreach ($ops as $op) {
@@ -196,6 +215,29 @@ class Search
                     $name = "({$featKeys[$a]}$bbName{$featKeys[$b]})";
                     $exprs[$name] = $vec;
                     $bKeys[] = $name;
+                }
+            }
+        }
+        // (raw/нормы) × константы: (x0−Rminx0)=x0−2, (x0/K2), (x0×K2) —
+        // аффинные. Однонаправленно: (не-const op const); (const op x) —
+        // не нужен (коммутативные ops покрывают; − и / — не-закон).
+        foreach ($featKeys as $rk) {
+            if ($isConstKey($rk)) {
+                continue;
+            }
+            $va = $feats[$rk];
+            foreach ($featKeys as $ck) {
+                if (! $isConstKey($ck)) {
+                    continue;
+                }
+                $vb = $feats[$ck];
+                foreach ($ops as $op) {
+                    $vec = [];
+                    for ($i = 0; $i < $n; $i++) {
+                        $r = $grammar->apply($va[$i], $vb[$i], $op);
+                        $vec[] = $r ?? 0.0;
+                    }
+                    $exprs["({$rk}$op{$ck})"] = $vec;
                 }
             }
         }

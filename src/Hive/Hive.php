@@ -853,6 +853,16 @@ class Hive
             || strlen($formula) < 5) {
             return;
         }
+        // BIRTH-SOURCE-FILTER (09.08, ЭКСП-022h, CONCERNS deleg_78091319):
+        // ALLOW-list (fail-closed): рождение ТОЛЬКО из foraged_* (реальные
+        // задачи) и 'text' (реальные текстовые законы). base-домены
+        // (arithmetic/logic — синтетические тавтологии ADD/AND) и dream
+        // (compose-мусор) НЕ рожают. Новые домены по умолчанию молчат —
+        // deny-list рецидивировал бы при каждом добавлении домена.
+        $isRealSource = str_starts_with($domain, 'foraged') || $domain === 'text';
+        if (! $isRealSource) {
+            return;
+        }
         // COMPRESSION-CRITERION (09.08): имя атома КОРОЧЕ definition —
         // иначе (x0B7a7aeex1) длиннее (x0addx1) → parsimony выбирает add →
         // B-атом никогда не используется → reuse=0. B1/B2 = сжатие (2 симв).

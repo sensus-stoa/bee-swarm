@@ -438,6 +438,16 @@ class Hive
 
     private function doTick(): void
     {
+        // REUSE-CRITERION-BIRTH фаза 3 (10.08): ЗАБВЕНИЕ кандидатов.
+        // Кандидат без reuse за TTL часов удаляется; активные (reuse>0) —
+        // процедурная память, НЕ забываются. Раз в 100 тиков.
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
+            $ttlHours = max(1, (int) (getenv('CANDIDATE_TTL_HOURS') ?: '24'));
+            \BeeSwarm\Infra\Database::get()->prepare(
+                "DELETE FROM grammar_ops WHERE source = 'birth' AND status = 'candidate'
+                 AND invented_at < datetime('now', ?)"
+            )->execute(['-' . $ttlHours . ' hours']);
+        }
         // ЭКСП-018: Colony Economics Profile (PROFILE=1)
         $profT0 = microtime(true);
         $profSearchT0 = $profT0;

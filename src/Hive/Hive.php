@@ -438,6 +438,17 @@ class Hive
 
     private function doTick(): void
     {
+        // DEAD-CLEANUP (10.08): мёртвые пчёлы накапливались в $this->bees
+        // (254 за 5ч — утечка памяти и метрик). Удаление каждые 100 тиков.
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
+            $alive = array_values(array_filter(
+                $this->bees,
+                fn (Bee $b): bool => $b->isAlive()
+            ));
+            if (count($alive) !== count($this->bees)) {
+                $this->bees = $alive;
+            }
+        }
         // REUSE-CRITERION-BIRTH фаза 3 (10.08): ЗАБВЕНИЕ кандидатов.
         // Кандидат без reuse за TTL часов удаляется; активные (reuse>0) —
         // процедурная память, НЕ забываются. Раз в 100 тиков.

@@ -231,10 +231,31 @@ class Bee
         if (! $this->isAlive()) {
             return;
         }
-        // REUSE-REWARD ф1 (11.08): бонус кооперации — закон с B-атомом
-        // (reuse культуры!) кормит ×1.5. Социум выгоднее одиночества.
-        if ($formula !== null && preg_match('/B\d+[0-9a-f]*/', $formula) === 1) {
-            $multiplier *= 1.5;
+        // REUSE-REWARD (11.08): бонус кооперации — закон с B-атомом
+        // (reuse культуры!) кормит ×1.5; TRANSFER-бонус ф2: атом с reuse
+        // в ≥2 доменах (перенос! transfer²) — ×2.0.
+        if ($formula !== null && preg_match('/B\d+[0-9a-f]*/', $formula, $m) === 1) {
+            $mult = 1.5;
+            try {
+                // BLOCK deleg_8458f590: 'search' — ТЕХНИЧЕСКИЙ домен
+                // (find-хит), не знаниевый! transfer = атом применён в
+                // ≥2 РЕАЛЬНЫХ доменах (reuse_domains БЕЗ 'search').
+                $cur = \BeeSwarm\Infra\Database::get()->prepare(
+                    'SELECT reuse_domains FROM grammar_ops WHERE name = ?'
+                );
+                $cur->execute([$m[0]]);
+                $domains = json_decode((string) ($cur->fetchColumn() ?: '[]'), true) ?: [];
+                $real = array_values(array_filter(
+                    $domains,
+                    fn ($d) => is_string($d) && $d !== 'search'
+                ));
+                if (count($real) >= 2) {
+                    $mult = 2.0; // атом ПЕРЕНОСИТСЯ между доменами
+                }
+            } catch (\Throwable $e) {
+                // БД недоступна — базовый reuse-бонус
+            }
+            $multiplier *= $mult;
         }
         // NO-REWARD-FOR-NONBUILDERS (09.08): не кормят:
         // (а) тени: простые атомы без операторов (abs, floor, x0) — любая

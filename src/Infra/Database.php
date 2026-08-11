@@ -264,6 +264,16 @@ class Database
             UNIQUE(subject, predicate, object)
         )");
 
+        // S1.5 (11.08): GENERATION SNAPSHOTS - evolutionary dynamics
+        // (diversity, avg |G|, unique grammars) for verify_1_*.
+        $db->exec('CREATE TABLE IF NOT EXISTS generation_snapshots (
+            gen INTEGER,
+            diversity REAL,
+            avg_g REAL,
+            unique_grammars INTEGER,
+            alive INTEGER,
+            timestamp TEXT
+        )');
         // §1.8: Overlap Awareness — pairwise bee answer comparison
         $db->exec("CREATE TABLE IF NOT EXISTS overlap_log (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

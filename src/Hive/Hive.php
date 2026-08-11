@@ -891,37 +891,10 @@ class Hive
         foreach ($m[0] as $born) {
             \BeeSwarm\Core\Grammar::registerReuse($born, $domain);
         }
-        // REUSE-VIA-DEFINITION (09.08, ЭКСП-022m): heldout-путь применяет
-        // атомы (bornDefinition), но возвращает формулу с РАЗВЁРНУТЫМ
-        // определением ((x0+x1)×x2) — reuse по B-имени не видит.
-        // Матчим по definition-подстроке (порог >= 7, CONCERNS
-        // deleg_16d28c6b: < 7 — частые короткие структуры = ложные
-        // срабатывания). НАБЛЮДАТЕЛЬНАЯ метрика: не кормит/не отбирает.
-        // ПЕРЕД внедрением REUSE-REWARD (отбор по reuse) — перейти на
-        // явный учёт применений (AST-маппинг), иначе каскадный двойной
-        // счёт вложенных определений врёт системе.
-        if (strlen($formula) > 8) {
-            // РУЧКА (09.08): REUSE_MIN_DEF_LEN env (default 7) — порог
-            // длины определения для reuse-по-подстроке. Следующий шаг:
-            // порог по РЕДКОСТИ структуры (встречаемость в laws).
-            $minDefLen = max(3, (int) (getenv('REUSE_MIN_DEF_LEN') ?: '7'));
-            // TYPED-EXECUTE (09.08): Database::run — int→PARAM_INT
-            $bb = Database::run(
-                'SELECT name, definition FROM grammar_ops WHERE source = ? AND definition IS NOT NULL AND length(definition) >= ?',
-                ['birth', $minDefLen]
-            );
-            foreach ($bb->fetchAll() as $r) {
-                // НОТАЦИЯ (09.08, ЭКСП-022n): formula в символьной
-                // ((x0+x1)×x2), definition во внутренней ((x0addx1)) —
-                // конвертируем definition в символы
-                $defCanon = strtr((string) $r['definition'], [
-                    'add' => '+', 'sub' => '−', 'mul' => '×', 'div' => '/',
-                ]);
-                if ($defCanon !== '' && str_contains($formula, $defCanon)) {
-                    \BeeSwarm\Core\Grammar::registerReuse($r['name'], $domain);
-                }
-            }
-        }
+        // REUSE-TOUCH-ATOM ф3 (10.08): definition-подстрока УДАЛЕНА —
+        // touchAtom в Search::find (точка применения) достовернее
+        // (подстрока ≠ применение, аудит deleg_0518ec3b: 15 мест отказа).
+        // Regex B\d+ остаётся fallback для compose-путей.
     }
 
     /**

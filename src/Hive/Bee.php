@@ -231,6 +231,11 @@ class Bee
         if (! $this->isAlive()) {
             return;
         }
+        // REUSE-REWARD ф1 (11.08): бонус кооперации — закон с B-атомом
+        // (reuse культуры!) кормит ×1.5. Социум выгоднее одиночества.
+        if ($formula !== null && preg_match('/B\d+[0-9a-f]*/', $formula) === 1) {
+            $multiplier *= 1.5;
+        }
         // NO-REWARD-FOR-NONBUILDERS (09.08): не кормят:
         // (а) тени: простые атомы без операторов (abs, floor, x0) — любая
         //     монотонная функция на монотонных данных даёт CV=0;

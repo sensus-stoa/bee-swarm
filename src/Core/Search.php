@@ -304,7 +304,7 @@ class Search
             $beamK = (int) (getenv('SEARCH_BEAM_K') ?: '0');
             if ($beamK > 0) {
                 $beamRand = (int) (getenv('SEARCH_BEAM_RANDOM') ?: '5');
-                $quickN = max(4, (int) ($n * 0.25));
+                $quickN = min($n, max(4, (int) ($n * 0.25)));
                 $scored = [];
                 foreach ($pool as $pname) {
                     $pv = $exprs[$pname];
@@ -409,6 +409,7 @@ class Search
         }
 
         // Evaluate FEATURES first (fast path)
+        $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact (10.08: было после — undefined в features-цикле!)
         foreach ($feats as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
@@ -476,6 +477,11 @@ class Search
         }
 
         if ($bestExact !== null) {
+            // REUSE-TOUCH-ATOM (10.08): применение в точке использования!
+            // Имя атома известно в момент победы — регистрируем reuse.
+            if (preg_match('/B\d+/', (string) $bestExact, $m) === 1) {
+                \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
+            }
             return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL'];
         }
 
@@ -659,6 +665,10 @@ class Search
         SearchProfiler::add(0.0, 0.0, microtime(true) - $pTest);
 
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
+        // REUSE-TOUCH-ATOM (10.08): победитель с B-именем → touchAtom
+        if ($found && is_string($bestName) && preg_match('/B\d+/', $bestName, $m) === 1) {
+            \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
+        }
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
     }
 

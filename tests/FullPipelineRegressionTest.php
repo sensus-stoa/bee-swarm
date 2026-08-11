@@ -23,14 +23,27 @@ class FullPipelineRegressionTest extends TestCase
     /**
      * Главный инвариант: ≥3 открытий за 25 тиков на чистой БД.
      */
-    public function testDiscoveriesMade(): void
+    private static ?Hive $sharedHive = null;
+
+    /**
+     * ПАРАЛЛЕЛИЗМ (10.08): раньше 5 тестов × 12 тиков = 60 тиков серийно
+     * (~144с). ОДИН прогон на класс — тесты читают static (12 тиков,
+     * ~30с). Проверяемые инварианты не зависят от порядка тиков.
+     */
+    public static function setUpBeforeClass(): void
     {
-        // ДЕТЕРМИНИЗМ (10.08): улей использует array_rand (mt_rand!) —
-        // без mt_srand тест флакал 1/5 (≥3 законов: улей-рандомизация).
         mt_srand(42);
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $hive = $this->runHive(12);
+        $logFile = tempnam(sys_get_temp_dir(), 'regress_');
+        $plateau = new \BeeSwarm\Infra\PlateauDetector(50, plateauSleepUs: 0);
+        $hive = new \BeeSwarm\Hive\Hive(plateau: $plateau, maxTicks: 15, logFile: $logFile);
+        $hive->run();
+        unlink($logFile);
+        self::$sharedHive = $hive;
+    }
 
+    public function testDiscoveriesMade(): void
+    {
         $laws = \BeeSwarm\Infra\Database::get()->query(
             'SELECT COUNT(*) FROM laws'
         )->fetchColumn();
@@ -44,8 +57,7 @@ class FullPipelineRegressionTest extends TestCase
      */
     public function testMultipleDomains(): void
     {
-        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $this->runHive(12);
+        $hive = self::$sharedHive;
 
         $domains = \BeeSwarm\Infra\Database::get()->query(
             'SELECT COUNT(DISTINCT domain) FROM laws'
@@ -98,8 +110,7 @@ class FullPipelineRegressionTest extends TestCase
      */
     public function testBeesAliveAfterTicks(): void
     {
-        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-        $hive = $this->runHive(12);
+        $hive = self::$sharedHive;
 
         $alive = count(array_filter(
             $hive->getBees(),

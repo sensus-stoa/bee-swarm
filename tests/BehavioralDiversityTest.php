@@ -24,16 +24,27 @@ class BehavioralDiversityTest extends TestCase
      * ИНВАРИАНТ: ≥2 разных открытий за 20 тиков.
      * Ломалось: srand(42) → array_rand детерминизм.
      */
-    public function testDiscoveryDiversity(): void
+    private static string $sharedLog = '';
+    private static ?Hive $sharedHive = null;
+
+    /**
+     * ПАРАЛЛЕЛИЗМ (10.08): 3 теста × 10-20 тиков серийно (~204с).
+     * ОДИН прогон (20 тиков) на класс — тесты читают static (~70с).
+     */
+    public static function setUpBeforeClass(): void
     {
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-
         $logFile = tempnam(sys_get_temp_dir(), 'behdiv_');
         $hive = new Hive(plateau: new PlateauDetector(50, plateauSleepUs: 0), maxTicks: 20, logFile: $logFile);
         $hive->run();
-
-        $log = file_get_contents($logFile);
+        self::$sharedLog = file_get_contents($logFile);
         unlink($logFile);
+        self::$sharedHive = $hive;
+    }
+
+    public function testDiscoveryDiversity(): void
+    {
+        $log = self::$sharedLog;
 
         // Считаем уникальные формулы
         preg_match_all('/🔍.*->\s*(\S+)\s/', $log, $m);
@@ -47,13 +58,6 @@ class BehavioralDiversityTest extends TestCase
      */
     public function testRngCleanAfterRun(): void
     {
-        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-
-        $logFile = tempnam(sys_get_temp_dir(), 'behrng_');
-        $hive = new Hive(plateau: new PlateauDetector(50, plateauSleepUs: 0), maxTicks: 10, logFile: $logFile);
-        $hive->run();
-        unlink($logFile);
-
         $this->assertFalse(method_exists(RngIsolation::class, 'hasUnrestoredGuards')
             && RngIsolation::hasUnrestoredGuards(),
             'RNG poisoned after Hive::run()');
@@ -64,14 +68,7 @@ class BehavioralDiversityTest extends TestCase
      */
     public function testTaskDomainDiversity(): void
     {
-        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
-
-        $logFile = tempnam(sys_get_temp_dir(), 'behdom_');
-        $hive = new Hive(plateau: new PlateauDetector(50, plateauSleepUs: 0), maxTicks: 20, logFile: $logFile);
-        $hive->run();
-
-        $log = file_get_contents($logFile);
-        unlink($logFile);
+        $log = self::$sharedLog;
 
         preg_match_all('/\[(\w+)\]/', $log, $m);
         $domains = array_unique($m[1]);

@@ -302,13 +302,16 @@ class Grammar
             // колонка status может отсутствовать (старая БД без миграции)
         }
         $db = \BeeSwarm\Infra\Database::get();
-        // Простой путь: читаем домены, обновляем в PHP (CASE/instr — дорого)
+        // CONCERNS deleg_71cd0698: SHORT-CIRCUIT — UPDATE только при НОВОМ
+        // домене (SET-семантика: reuse_count = число УНИКАЛЬНЫХ доменов,
+        // не частотомер хитов!). Повторный хит того же домена — no-op.
         $cur = $db->prepare('SELECT reuse_domains FROM grammar_ops WHERE name = ?');
         $cur->execute([$name]);
         $domains = json_decode((string) ($cur->fetchColumn() ?: '[]'), true) ?: [];
-        if (! in_array($domain, $domains, true)) {
-            $domains[] = $domain;
+        if (in_array($domain, $domains, true)) {
+            return;
         }
+        $domains[] = $domain;
         $stmt = $db->prepare('UPDATE grammar_ops SET reuse_count = reuse_count + 1, reuse_domains = ? WHERE name = ? AND source = \'birth\'');
         $stmt->execute([json_encode($domains), $name]);
     }

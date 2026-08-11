@@ -449,6 +449,15 @@ class Hive
                 $this->bees = $alive;
             }
         }
+        // S1.5 фаза 2 (11.08): MONOCULTURE ALARM — diversity < порога
+        // (env MONOCULTURE_ALARM_DIVERSITY, default 0.34): сжатие грамматики.
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
+            $diversity = SpawnManager::computeDiversity($this->bees);
+            $monoThreshold = (float) (getenv('MONOCULTURE_ALARM_DIVERSITY') ?: '0.34');
+            if ($diversity > 0.0 && $diversity < $monoThreshold) {
+                $this->log("MONOCULTURE: diversity={$diversity} < {$monoThreshold} (env MONOCULTURE_ALARM_DIVERSITY)");
+            }
+        }
         // REUSE-CRITERION-BIRTH фаза 3 (10.08): ЗАБВЕНИЕ кандидатов.
         // Кандидат без reuse за TTL часов удаляется; активные (reuse>0) —
         // процедурная память, НЕ забываются. Раз в 100 тиков.

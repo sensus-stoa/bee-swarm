@@ -133,7 +133,10 @@ class SpawnManager
         // AUDIT 05.08 §2.7 SEED_SPAWN: ALL_DEAD → рой обязан воскреснуть.
         // Раньше trySpawn спавнил только от живых — при всех мёртвых
         // (kill -9 / энергия ≤ 0) рой умирал навсегда.
-        if ($aliveCount === 0 && ! empty($bees)) {
+        if ($aliveCount === 0) {
+            // 11.08: empty-гейт УБРАН — dead-cleanup (6679b76) удаляет всех
+            // мёртвых → bees=[] → SEED_SPAWN молча умирал. В тике bees уже
+            // не пуст (bootstrap до trySpawn), пустой = полная смерть.
             $seedOps = ['+', '×', 'min'];
             foreach ($seedOps as $op) {
                 $bees[] = new \BeeSwarm\Hive\Bee([$op]);
@@ -163,6 +166,31 @@ class SpawnManager
             $this->generation++;
             $this->spawnCount = 0;
             $this->generationStartPop = count($bees);
+            // S1.5 (11.08): ПОКОЛЕНЧЕСКИЙ СНИМОК в БД — diversity, avg |G|,
+            // уникальные грамматики (для verify_1_* и анализа монокультуры).
+            try {
+                $alive = array_filter($bees, fn (Bee $b) => $b->isAlive());
+                $aliveN = count($alive);
+                $grams = array_map(fn (Bee $b) => $b->grammar(), array_values($alive));
+                $avgG = $aliveN > 0 ? array_sum(array_map('count', $grams)) / $aliveN : 0.0;
+                $uniqueG = count(array_unique(array_map(
+                    fn ($g) => implode(',', $g),
+                    $grams
+                )));
+                \BeeSwarm\Infra\Database::get()->prepare(
+                    'INSERT INTO generation_snapshots (gen, diversity, avg_g, unique_grammars, alive, timestamp) VALUES (?, ?, ?, ?, ?, ?)'
+                )->execute([
+                    $this->generation,
+                    self::computeDiversity($bees),
+                    round($avgG, 3),
+                    $uniqueG,
+                    $aliveN,
+                    date('Y-m-d H:i:s'),
+                ]);
+            } catch (\Throwable $e) {
+                // снимок не критичен — не роняем улей, но ошибку видно
+                error_log('[bee_swarm] snapshot write failed: ' . $e->getMessage());
+            }
         }
 
         return $spawned;

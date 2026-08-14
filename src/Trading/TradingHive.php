@@ -21,6 +21,7 @@ final class TradingHive
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
     public const POP_CAP = 500;      // потолок популяции (ёмкость среды)
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20'];
+    public const EXT_ATOMS = ['fund5', 'taker5', 'oi_chg5']; // внешние фиды (z-норм.)
     public const HOLDS = [2, 3, 5, 10, 20];
 
     /** @var list<array{genome: array, energy: float, alive: bool}> */
@@ -33,7 +34,7 @@ final class TradingHive
     }
 
     /**
-     * @param list<list<float>> $windows — ряды ret1 (чередуются поколениями)
+     * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
     public function evolve(array $windows, int $generations): array
@@ -48,12 +49,13 @@ final class TradingHive
         }
         for ($g = 0; $g < $generations; $g++) {
             // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ режимов
-            $window = $windows[$g % count($windows)];
+            $win = $windows[$g % count($windows)];
+            [$window, $ext] = self::unpackWindow($win);
             foreach ($this->pop as &$bee) {
                 if (! $bee['alive']) {
                     continue;
                 }
-                $pnls = self::tradeDeals($bee['genome'], $window);
+                $pnls = self::tradeDeals($bee['genome'], $window, $ext);
                 // t-статистика сделок: Шёпот — слабый эффект накапливается
                 $t = self::tStat($pnls);
                 // РЕДКИЕ СДЕЛКИ (v8): 1-2/мес — бонус качества входа;
@@ -104,7 +106,8 @@ final class TradingHive
             if ($bee['alive']) {
                 $clean = 0.0;
                 foreach ($windows as $w) {
-                    $clean += array_sum(self::tradeDeals($bee['genome'], $w));
+                    [$rw, $ex] = self::unpackWindow($w);
+                    $clean += array_sum(self::tradeDeals($bee['genome'], $rw, $ex));
                 }
                 $out[] = [
                     'genome' => $bee['genome'],
@@ -118,12 +121,25 @@ final class TradingHive
         return ['survivors' => $out, 'total_energy' => $total];
     }
 
+    /** Распаковка окна: list<float> или ['ret'=>..., 'ext'=>...] */
+    private static function unpackWindow(mixed $win): array
+    {
+        if (is_array($win) && isset($win['ret'])) {
+            return [$win['ret'], $win['ext'] ?? []];
+        }
+        return [$win, []];
+    }
+
     /** @return array{atom:string,threshold:float,op:string,side:int,hold:int,lots:int} */
     private static function randomGenome(): array
     {
+        $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
+        $atom = $allAtoms[array_rand($allAtoms)];
+        $isExt = in_array($atom, self::EXT_ATOMS, true);
         return [
-            'atom' => self::ATOMS[array_rand(self::ATOMS)],
-            'threshold' => (rand() / getrandmax()) * 0.06,
+            'atom' => $atom,
+            // внешние фиды — z-нормированы (~±3): порог ±2; внутренние — 0..0.06
+            'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
             'op' => rand(0, 1) === 1 ? '>' : '<',
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
@@ -135,11 +151,12 @@ final class TradingHive
     private static function mutate(array $g, float $p): array
     {
         if (rand(0, 99) < (int) ($p * 100)) {
-            $step = $g['threshold'] * 0.3 + 0.0005;
+            $isExt = in_array($g['atom'], self::EXT_ATOMS, true);
+            $step = $isExt ? 0.3 : ($g['threshold'] * 0.3 + 0.0005);
             if (rand(0, 9) === 0) {
-                $step = $g['threshold'] * 1.5 + 0.005;
+                $step = $isExt ? 1.0 : ($g['threshold'] * 1.5 + 0.005);
             }
-            $g['threshold'] = max(0.0, $g['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
+            $g['threshold'] = max($isExt ? -4.0 : 0.0, $g['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['op'] = $g['op'] === '>' ? '<' : '>';
@@ -157,9 +174,10 @@ final class TradingHive
             $g['lots'] = $g['lots'] === 1 ? 2 : 1;
         }
         if (rand(0, 99) < (int) ($p * 50)) {
-            $ci = array_search($g['atom'], self::ATOMS, true);
+            $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
+            $ci = array_search($g['atom'], $allAtoms, true);
             $ci = $ci === false ? 1 : $ci;
-            $g['atom'] = self::ATOMS[($ci + rand(1, count(self::ATOMS) - 1)) % count(self::ATOMS)];
+            $g['atom'] = $allAtoms[($ci + rand(1, count($allAtoms) - 1)) % count($allAtoms)];
         }
         return $g;
     }
@@ -229,7 +247,7 @@ final class TradingHive
     }
 
     /** Список PnL сделок (без издержек на выходе — они внутри) */
-    private static function tradeDeals(array $g, array $ret): array
+    private static function tradeDeals(array $g, array $ret, array $ext = []): array
     {
         $n = count($ret);
         $deals = [];
@@ -244,6 +262,21 @@ final class TradingHive
                     $cur -= self::COST * $g['lots'];
                     $deals[] = $cur;
                     $cur = 0.0;
+                }
+                continue;
+            }
+            // ВНЕШНИЙ атом: значение из фида (z-норм.); дыра → нет сигнала
+            if (in_array($g['atom'], self::EXT_ATOMS, true)) {
+                $v = $ext[$g['atom']][$i] ?? null;
+                if ($v === null) {
+                    continue;
+                }
+                $sig = ($g['op'] === '>' && $v >= $g['threshold'])
+                    || ($g['op'] === '<' && $v <= $g['threshold']);
+                if ($sig) {
+                    $side = $g['side'];
+                    $inPos = $g['hold'];
+                    $cur = -self::COST * $g['lots'];
                 }
                 continue;
             }

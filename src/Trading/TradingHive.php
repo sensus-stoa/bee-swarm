@@ -84,9 +84,12 @@ final class TradingHive
                 $td = self::tradeDeals($g2, $window, $ext);
                 $pnls = $td['deals'];
                 $t = self::tStat($pnls);
-                // ИНДИВИДУАЛЬНОЕ ОБУЧЕНИЕ: разделить сделки на успешные/неудачные
-                // по главному признаку на входе → сдвинуть порог в успешную зону
-                self::learnThreshold($bee['genome'], $pnls, $td['entryFeats']);
+                // ИНДИВИДУАЛЬНОЕ ОБУЧЕНИЕ (каждые 5 поколений): найти атом-фильтр,
+                // отделяющий успешные входы от неудачных, и ДОБАВИТЬ его условием
+                // (успешные сделки не трогаем — только отсекаем неудачные)
+                if ($g % 5 === 4) {
+                    self::learnFilter($bee['genome'], $pnls, $td['entryFeats']);
+                }
                 // уверенность сглаживается (0.7 прежняя + 0.3 свежий t)
                 $bee['conf'] = 0.7 * $bee['conf'] + 0.3 * $t;
                 // КАЛИБРОВКА: ставка оправдалась (высокая уверенность → прибыль) или
@@ -377,7 +380,7 @@ final class TradingHive
     {
         $n = count($ret);
         $deals = [];
-        $entryFeats = [];
+        $entryFeats = []; // [сделка][атом] = значение на входе
         $inPos = 0;
         $side = 0;
         $cur = 0.0;
@@ -436,44 +439,94 @@ final class TradingHive
                 $side = $g['side'];
                 $inPos = $g['hold'];
                 $cur = -self::COST * $g['lots'];
-                    $peak = $cur;
+                $peak = $cur;
+                // ВСЕ внутренние атомы на входе (для дообучения-фильтра)
+                $fvRow = [];
+                foreach (self::ATOMS as $an) {
+                    $fvRow[$an] = self::feat($an, $ret, $i);
+                }
+                $entryFeats[] = $fvRow;
             }
         }
         return ['deals' => $deals, 'entryFeats' => $entryFeats];
     }
 
-    /** Обучение: порог главного атома сдвигается к зоне успешных сделок */
-    private static function learnThreshold(array &$g, array $pnls, array $feats): void
+    /** Дообучение: добавить атом-фильтр, отделяющий успешные входы от неудачных.
+     *  Успешные параметры НЕ меняются — только добавляется AND-условие,
+     *  отсекающее неудачные зоны (не входим, если фильтр не пропускает). */
+    private static function learnFilter(array &$g, array $pnls, array $feats): void
     {
-        $s = [];
-        $f = [];
-        foreach ($pnls as $idx => $p) {
-            $v = $feats[$idx] ?? null;
-            if ($v === null) {
+        if (count($pnls) < 6 || count($g['conds']) >= 5) {
+            return;
+        }
+        $succ = 0;
+        $fail = 0;
+        foreach ($pnls as $p) {
+            if ($p > 0) {
+                $succ++;
+            } else {
+                $fail++;
+            }
+        }
+        if ($succ < 3 || $fail < 3) {
+            return;
+        }
+        $bestAtom = null;
+        $bestThr = 0.0;
+        $bestOp = '>';
+        $bestAcc = 0.0;
+        foreach (self::ATOMS as $an) {
+            $vals = [];
+            foreach ($pnls as $idx => $p) {
+                if (isset($feats[$idx][$an])) {
+                    $vals[] = [$feats[$idx][$an], $p > 0];
+                }
+            }
+            if (count($vals) < 6) {
                 continue;
             }
-            if ($p > 0) {
-                $s[] = $v;
-            } else {
-                $f[] = $v;
+            // порог = середина средних успешных/неудачных
+            $ms = 0.0;
+            $mf = 0.0;
+            $cs = 0;
+            $cf = 0;
+            foreach ($vals as [$v, $ok]) {
+                if ($ok) {
+                    $ms += $v;
+                    $cs++;
+                } else {
+                    $mf += $v;
+                    $cf++;
+                }
+            }
+            if ($cs === 0 || $cf === 0) {
+                continue;
+            }
+            $ms /= $cs;
+            $mf /= $cf;
+            $thr = ($ms + $mf) / 2;
+            $op = $ms > $mf ? '>' : '<'; // успешные — по одну сторону порога
+            // точность разделения
+            $right = 0;
+            foreach ($vals as [$v, $ok]) {
+                $pred = $op === '>' ? ($v >= $thr) : ($v <= $thr);
+                if ($pred === $ok) {
+                    $right++;
+                }
+            }
+            $acc = $right / count($vals);
+            if ($acc > $bestAcc) {
+                $bestAcc = $acc;
+                $bestAtom = $an;
+                $bestThr = $thr;
+                $bestOp = $op;
             }
         }
-        if (count($s) < 2 || count($f) < 2 || $g['conds'] === []) {
-            return;
+        // добавляем фильтр только при хорошем разделении (защита от переобучения)
+        if ($bestAtom !== null && $bestAcc >= 0.75) {
+            $g['conds'][] = ['atom' => $bestAtom, 'op' => $bestOp, 'threshold' => $bestThr];
+            $g['logics'][] = 'AND';
         }
-        $ms = array_sum($s) / count($s);
-        $mf = array_sum($f) / count($f);
-        $gap = abs($ms - $mf);
-        if ($gap < 1e-9) {
-            return;
-        }
-        $thr = $g['conds'][0]['threshold'];
-        $isExt = in_array($g['conds'][0]['atom'], self::EXT_ATOMS, true);
-        // сдвиг к успешной зоне: если успешные выше — поднять порог, ниже — опустить
-        $new = $thr + 0.25 * ($ms - $thr);
-        $lo = $isExt ? -4.0 : 0.0;
-        $hi = $isExt ? 4.0 : 0.12;
-        $g['conds'][0]['threshold'] = max($lo, min($hi, $new));
     }
 
     /** t-статистика сделок: mean/std×√N (шёпот: слабый эффект накапливается) */

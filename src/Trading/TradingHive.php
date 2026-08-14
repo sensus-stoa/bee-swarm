@@ -67,7 +67,8 @@ final class TradingHive
                 } elseif ($nDeals > 15) {
                     $freq = 0.5;
                 }
-                $bee['energy'] += $t * self::T_SCALE * $freq;
+                $bee['energy'] += $t * self::T_SCALE * $freq
+                    - 0.03 * (count($bee['genome']['conds']) - 1); // parsimony: лишние условия дороги
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }
@@ -130,36 +131,81 @@ final class TradingHive
         return [$win, []];
     }
 
-    /** @return array{atom:string,threshold:float,op:string,side:int,hold:int,lots:int} */
+    /** @return array{conds:list<array{atom:string,threshold:float,op:string}>,logics:list<string>,side:int,hold:int,lots:int} */
     private static function randomGenome(): array
     {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
-        $atom = $allAtoms[array_rand($allAtoms)];
-        $isExt = in_array($atom, self::EXT_ATOMS, true);
+        $nConds = rand(1, 2); // стартуем с 1-2 условий — глубина растёт эволюцией
+        $conds = [];
+        for ($c = 0; $c < $nConds; $c++) {
+            $atom = $allAtoms[array_rand($allAtoms)];
+            $isExt = in_array($atom, self::EXT_ATOMS, true);
+            $conds[] = [
+                'atom' => $atom,
+                'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
+                'op' => rand(0, 1) === 1 ? '>' : '<',
+            ];
+        }
+        $logics = [];
+        for ($c = 1; $c < $nConds; $c++) {
+            $logics[] = rand(0, 1) === 1 ? 'AND' : 'OR';
+        }
         return [
-            'atom' => $atom,
-            // внешние фиды — z-нормированы (~±3): порог ±2; внутренние — 0..0.06
-            'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
-            'op' => rand(0, 1) === 1 ? '>' : '<',
+            'conds' => $conds,
+            'logics' => $logics,
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
         ];
     }
 
-    /** @param array $g геном — мутируют ВСЕ параметры (сила по p) */
+    /** @param array $g геном — мутируют ВСЕ параметры; структура условий растёт/ужимается */
     private static function mutate(array $g, float $p): array
     {
-        if (rand(0, 99) < (int) ($p * 100)) {
-            $isExt = in_array($g['atom'], self::EXT_ATOMS, true);
-            $step = $isExt ? 0.3 : ($g['threshold'] * 0.3 + 0.0005);
+        $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
+        // мутация случайного условия
+        if ($g['conds'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($g['conds']) - 1);
+            $c = $g['conds'][$ci];
+            $isExt = in_array($c['atom'], self::EXT_ATOMS, true);
+            $step = $isExt ? 0.3 : ($c['threshold'] * 0.3 + 0.0005);
             if (rand(0, 9) === 0) {
-                $step = $isExt ? 1.0 : ($g['threshold'] * 1.5 + 0.005);
+                $step = $isExt ? 1.0 : ($c['threshold'] * 1.5 + 0.005);
             }
-            $g['threshold'] = max($isExt ? -4.0 : 0.0, $g['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
+            $c['threshold'] = max($isExt ? -4.0 : 0.0, $c['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
+            if (rand(0, 9) < 4) {
+                $c['op'] = $c['op'] === '>' ? '<' : '>';
+            }
+            if (rand(0, 9) < 3) {
+                $c['atom'] = $allAtoms[array_rand($allAtoms)];
+            }
+            $g['conds'][$ci] = $c;
         }
-        if (rand(0, 99) < (int) ($p * 100)) {
-            $g['op'] = $g['op'] === '>' ? '<' : '>';
+        // ДОБАВИТЬ условие (структура растёт; потолок 5 — parsimony)
+        if (count($g['conds']) < 5 && rand(0, 99) < (int) ($p * 40)) {
+            $atom = $allAtoms[array_rand($allAtoms)];
+            $isExt = in_array($atom, self::EXT_ATOMS, true);
+            $g['conds'][] = [
+                'atom' => $atom,
+                'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
+                'op' => rand(0, 1) === 1 ? '>' : '<',
+            ];
+            $g['logics'][] = rand(0, 1) === 1 ? 'AND' : 'OR';
+        }
+        // УДАЛИТЬ условие (если больше одного)
+        if (count($g['conds']) > 1 && rand(0, 99) < (int) ($p * 40)) {
+            $ci = rand(0, count($g['conds']) - 1);
+            array_splice($g['conds'], $ci, 1);
+            if ($ci > 0) {
+                array_splice($g['logics'], $ci - 1, 1);
+            } elseif ($g['logics'] !== []) {
+                array_splice($g['logics'], 0, 1);
+            }
+        }
+        // мутация логики
+        if ($g['logics'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($g['logics']) - 1);
+            $g['logics'][$ci] = $g['logics'][$ci] === 'AND' ? 'OR' : 'AND';
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['side'] = -$g['side'];
@@ -172,12 +218,6 @@ final class TradingHive
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['lots'] = $g['lots'] === 1 ? 2 : 1;
-        }
-        if (rand(0, 99) < (int) ($p * 50)) {
-            $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
-            $ci = array_search($g['atom'], $allAtoms, true);
-            $ci = $ci === false ? 1 : $ci;
-            $g['atom'] = $allAtoms[($ci + rand(1, count($allAtoms) - 1)) % count($allAtoms)];
         }
         return $g;
     }
@@ -246,7 +286,7 @@ final class TradingHive
         return ($mx - $mn) > 1e-9 ? ($c - $mn) / ($mx - $mn) : 0.5;
     }
 
-    /** Список PnL сделок (без издержек на выходе — они внутри) */
+    /** Список PnL сделок; сигнал — ЦЕПОЧКА условий (conds + logics) */
     private static function tradeDeals(array $g, array $ret, array $ext = []): array
     {
         $n = count($ret);
@@ -265,25 +305,34 @@ final class TradingHive
                 }
                 continue;
             }
-            // ВНЕШНИЙ атом: значение из фида (z-норм.); дыра → нет сигнала
-            if (in_array($g['atom'], self::EXT_ATOMS, true)) {
-                $v = $ext[$g['atom']][$i] ?? null;
+            // свернуть цепочку условий
+            $sig = null;
+            foreach ($g['conds'] as $ci => $cond) {
+                $v = in_array($cond['atom'], self::EXT_ATOMS, true)
+                    ? ($ext[$cond['atom']][$i] ?? null)
+                    : self::feat($cond['atom'], $ret, $i);
                 if ($v === null) {
+                    // нет данных по внешнему атому: условие «неизвестно»
+                    if ($sig === null) {
+                        $sig = false;
+                    }
+                    if ($ci === 0) {
+                        continue;
+                    }
+                    $lg = $g['logics'][$ci - 1];
+                    $sig = $lg === 'AND' ? false : $sig; // AND×неизвестно=false; OR — без изменений
                     continue;
                 }
-                $sig = ($g['op'] === '>' && $v >= $g['threshold'])
-                    || ($g['op'] === '<' && $v <= $g['threshold']);
-                if ($sig) {
-                    $side = $g['side'];
-                    $inPos = $g['hold'];
-                    $cur = -self::COST * $g['lots'];
+                $csig = ($cond['op'] === '>' && $v >= $cond['threshold'])
+                    || ($cond['op'] === '<' && $v <= $cond['threshold']);
+                if ($sig === null) {
+                    $sig = $csig;
+                    continue;
                 }
-                continue;
+                $lg = $g['logics'][$ci - 1];
+                $sig = $lg === 'AND' ? ($sig && $csig) : ($sig || $csig);
             }
-            $f = self::feat($g['atom'], $ret, $i);
-            $sig = ($g['op'] === '>' && $f >= $g['threshold'])
-                || ($g['op'] === '<' && $f <= $g['threshold']);
-            if ($sig) {
+            if ($sig === true) {
                 $side = $g['side'];
                 $inPos = $g['hold'];
                 $cur = -self::COST * $g['lots'];

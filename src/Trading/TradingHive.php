@@ -4,16 +4,24 @@ declare(strict_types=1);
 namespace BeeSwarm\Trading;
 
 /**
- * FIN-005 TRADING-BEES (14.08, v4): пчёлы торгуют, без законов.
- * ЭНЕРГИЯ-МЕХАНИКА: пчела имеет капитал (energy). PnL прибавляется,
- * energy <= 0 → СМЕРТЬ (gambler's ruin). Размножаются только НАКОПИВШИЕ
- * (energy > стартовой). На шуме — гарантированное вымирание (издержки
- * дают отрицательный дрейф); на эффекте — накопление и потомство.
+ * FIN-005 TRADING-BEES (v6, 15.08): пчёлы торгуют, без законов.
+ * АРСЕНАЛ: 10 атомов (мультитаймфрейм r2-r40, vol, моментум, z-скор,
+ * серия знаков, позиция в диапазоне = поддержка/сопротивление).
+ * ФИТНЕС: t-статистика сделок (mean/std×√N — Шёпот: слабый эффект
+ * накапливается статистически, шум усредняется).
+ * ЭНЕРГИЯ: накапливается по t; energy<=0 → смерть; размножаются
+ * накопившие; дележ при размножении (энергия не создаётся из ничего);
+ * окна ЧЕРЕДУЮТСЯ (адаптация к смене режимов).
  */
 final class TradingHive
 {
     public const START_ENERGY = 1.0;
-    public const COST = 0.002;    // 0.2% за цикл (вход+выход)
+    public const COST = 0.002;       // 0.2% за цикл (вход+выход)
+    public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
+    public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
+    public const POP_CAP = 500;      // потолок популяции (ёмкость среды)
+    public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20'];
+    public const HOLDS = [2, 3, 5, 10, 20];
 
     /** @var list<array{genome: array, energy: float, alive: bool}> */
     private array $pop = [];
@@ -25,8 +33,8 @@ final class TradingHive
     }
 
     /**
-     * @param list<list<float>> $windows — ряды ret1: [train..., oos...]
-     * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float}>, total_energy: float}
+     * @param list<list<float>> $windows — ряды ret1 (чередуются поколениями)
+     * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
     public function evolve(array $windows, int $generations): array
     {
@@ -39,61 +47,55 @@ final class TradingHive
             ];
         }
         for ($g = 0; $g < $generations; $g++) {
-            // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ
-            // режимов (одно окно вечно эксплуатировать нельзя)
+            // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ режимов
             $window = $windows[$g % count($windows)];
             foreach ($this->pop as &$bee) {
                 if (! $bee['alive']) {
                     continue;
                 }
-                $pnl = self::trade($bee['genome'], $window);
-                $bee['energy'] += $pnl;
+                $pnls = self::tradeDeals($bee['genome'], $window);
+                // t-статистика сделок: Шёпот — слабый эффект накапливается
+                $t = self::tStat($pnls);
+                $bee['energy'] += $t * self::T_SCALE;
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }
             }
             unset($bee);
 
-            // родители = живые НАКОПИВШИЕ (energy > стартовой)
-            $parents = [];
+            // РАЗМНОЖЕНИЕ (популяционная динамика): родитель, накопивший
+            // REPRO_ENERGY, ДЕЛИТСЯ на двух потомков (по START_ENERGY каждому)
+            // и исчезает. Потомки — мутанты генома родителя.
+            $next = [];
             foreach ($this->pop as $bee) {
-                if ($bee['alive'] && $bee['energy'] > self::START_ENERGY) {
-                    $parents[] = $bee;
+                if (! $bee['alive']) {
+                    continue;
+                }
+                if ($bee['energy'] >= self::REPRO_ENERGY) {
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'alive' => true];
+                } else {
+                    $next[] = $bee;
                 }
             }
-            $newPop = [];
-            if ($parents !== []) {
-                // элитизм: лучшие родители — копируются без мутаций
-                usort($parents, fn ($a, $b) => $b['energy'] <=> $a['energy']);
-                $perParent = (int) ceil($this->popSize / count($parents));
-                for ($i = 0; $i < $this->popSize; $i++) {
-                    $p = $parents[$i % count($parents)];
-                    $isElite = $i < max(1, (int) ($this->popSize * 0.1)) && $i < count($parents);
-                    // ЭЛИТА мутирует СЛАБО (p=0.1 — удержание без заморозки шума);
-                    // прибыльные — умеренно (0.3), убыточные — сильно (0.7, поиск)
-                    $mp = $isElite ? 0.1 : ($p['energy'] > self::START_ENERGY ? 0.3 : 0.7);
-                    $newPop[] = [
-                        'genome' => self::mutate($p['genome'], $mp),
-                        // ДЕЛЕЖ энергии: потомок получает ДОЛЮ родителя
-                        // (энергия не создаётся из ничего — сумма сохраняется)
-                        'energy' => $p['energy'] / $perParent,
-                        'alive' => true,
-                    ];
-                }
+            // ЁМКОСТЬ СРЕДЫ: излишек убирается СЛУЧАЙНО (без bias отбора)
+            if (count($next) > self::POP_CAP) {
+                shuffle($next);
+                $next = array_slice($next, 0, self::POP_CAP);
             }
-            // вымершие линии не размножаются; популяция схлопывается
-            $this->pop = $newPop;
+            $this->pop = $next;
+            if ($this->pop === []) {
+                break; // вымирание — эволюция честно закончилась
+            }
         }
 
         $out = [];
         $total = 0.0;
         foreach ($this->pop as $bee) {
             if ($bee['alive']) {
-                // ЧИСТЫЙ PnL: переторговка генома с нуля на ВСЕХ окнах
-                // (не наследство!) — честная «прибыль за всё время»
                 $clean = 0.0;
                 foreach ($windows as $w) {
-                    $clean += self::trade($bee['genome'], $w);
+                    $clean += array_sum(self::tradeDeals($bee['genome'], $w));
                 }
                 $out[] = [
                     'genome' => $bee['genome'],
@@ -110,100 +112,157 @@ final class TradingHive
     /** @return array{atom:string,threshold:float,op:string,side:int,hold:int,lots:int} */
     private static function randomGenome(): array
     {
-        $atoms = ['r5', 'r20', 'vol'];
         return [
-            'atom' => $atoms[array_rand($atoms)],
+            'atom' => self::ATOMS[array_rand(self::ATOMS)],
             'threshold' => (rand() / getrandmax()) * 0.06,
             'op' => rand(0, 1) === 1 ? '>' : '<',
             'side' => rand(0, 1) === 1 ? 1 : -1,
-            'hold' => [2, 3, 5, 10, 20][array_rand([2, 3, 5, 10, 20])],
+            'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
         ];
     }
 
-    /** @param array $g геном — мутируют ВСЕ параметры (v5), сила по p */
+    /** @param array $g геном — мутируют ВСЕ параметры (сила по p) */
     private static function mutate(array $g, float $p): array
     {
-        // порог: ОТНОСИТЕЛЬНЫЙ шаг (мелкий у малых порогов — точная подгонка
-        // под слабые эффекты; + редкий крупный прыжок для исследования)
         if (rand(0, 99) < (int) ($p * 100)) {
             $step = $g['threshold'] * 0.3 + 0.0005;
             if (rand(0, 9) === 0) {
-                $step = $g['threshold'] * 1.5 + 0.005; // крупный прыжок
+                $step = $g['threshold'] * 1.5 + 0.005;
             }
             $g['threshold'] = max(0.0, $g['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
         }
-        // оператор
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['op'] = $g['op'] === '>' ? '<' : '>';
         }
-        // сторона
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['side'] = -$g['side'];
         }
-        // hold — шаг по шкале
         if (rand(0, 99) < (int) ($p * 100)) {
-            $holds = [2, 3, 5, 10, 20];
-            $ci = array_search($g['hold'], $holds, true);
+            $ci = array_search($g['hold'], self::HOLDS, true);
             $ci = $ci === false ? 2 : $ci;
-            $ci = max(0, min(4, $ci + (rand(0, 1) === 1 ? 1 : -1)));
-            $g['hold'] = $holds[$ci];
+            $ci = max(0, min(count(self::HOLDS) - 1, $ci + (rand(0, 1) === 1 ? 1 : -1)));
+            $g['hold'] = self::HOLDS[$ci];
         }
-        // лоты
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['lots'] = $g['lots'] === 1 ? 2 : 1;
         }
-        // атом (тип признака)
         if (rand(0, 99) < (int) ($p * 50)) {
-            $atoms = ['r5', 'r20', 'vol'];
-            $ci = array_search($g['atom'], $atoms, true);
-            $ci = $ci === false ? 0 : $ci;
-            $g['atom'] = $atoms[($ci + rand(1, 2)) % 3];
+            $ci = array_search($g['atom'], self::ATOMS, true);
+            $ci = $ci === false ? 1 : $ci;
+            $g['atom'] = self::ATOMS[($ci + rand(1, count(self::ATOMS) - 1)) % count(self::ATOMS)];
         }
         return $g;
     }
 
-    /** Торговля пчелы по ряду ret1: итоговый PnL с издержками */
-    private static function trade(array $g, array $ret): float
+    /** Признак атома по ПРОШЛЫМ дням (лаг — без текущего дня) */
+    private static function feat(string $atom, array $ret, int $i): float
     {
-        $n = count($ret);
-        $pnl = 0.0;
-        $inPos = 0;
-        $side = 0;
-        for ($i = 5; $i < $n; $i++) {
-            if ($inPos > 0) {
-                $pnl += $side * $ret[$i] * $g['lots'];
-                $inPos--;
-                if ($inPos === 0) {
-                    $pnl -= self::COST * $g['lots'];
-                }
-                continue;
-            }
-            // признаки по ПРОШЛЫМ дням (лаг — без текущего дня)
-            $feat = match ($g['atom']) {
-                'r5' => array_sum(array_slice($ret, $i - 5, 5)) / 5,
-                'r20' => array_sum(array_slice($ret, $i - 20, 20)) / 20,
-                default => self::vol20($ret, $i),
-            };
-            $sig = ($g['op'] === '>' && $feat >= $g['threshold'])
-                || ($g['op'] === '<' && $feat <= $g['threshold']);
-            if ($sig) {
-                $side = $g['side'];
-                $inPos = $g['hold'];
-                $pnl -= self::COST * $g['lots'];
-            }
-        }
-        return $pnl;
+        return match ($atom) {
+            'r2' => array_sum(array_slice($ret, $i - 2, 2)) / 2,
+            'r5' => array_sum(array_slice($ret, $i - 5, 5)) / 5,
+            'r10' => array_sum(array_slice($ret, $i - 10, 10)) / 10,
+            'r20' => array_sum(array_slice($ret, $i - 20, 20)) / 20,
+            'r40' => array_sum(array_slice($ret, $i - 40, 40)) / 40,
+            'vol' => self::volN($ret, $i, 20),
+            // моментум: быстрый − медленный
+            'mom' => array_sum(array_slice($ret, $i - 5, 5)) / 5
+                   - array_sum(array_slice($ret, $i - 20, 20)) / 20,
+            // z-скор: 20-дневная доходность / волатильность
+            'zs' => (self::volN($ret, $i, 20) > 1e-9)
+                ? (array_sum(array_slice($ret, $i - 20, 20)) / 20) / self::volN($ret, $i, 20)
+                : 0.0,
+            // серия знаков: длина текущей серии одного знака (±)
+            'streak' => self::streak($ret, $i),
+            // позиция в 20-дневном диапазоне (поддержка/сопротивление)
+            default => self::posInRange($ret, $i, 20),
+        };
     }
 
-    private static function vol20(array $ret, int $i): float
+    private static function volN(array $ret, int $i, int $n): float
     {
-        $seg = array_slice($ret, $i - 20, 20);
-        $m = array_sum($seg) / 20;
+        $seg = array_slice($ret, $i - $n, $n);
+        $m = array_sum($seg) / $n;
         $v = 0.0;
         foreach ($seg as $x) {
             $v += ($x - $m) ** 2;
         }
-        return sqrt($v / 20);
+        return sqrt($v / $n);
+    }
+
+    private static function streak(array $ret, int $i): float
+    {
+        $sign = $ret[$i - 1] >= 0 ? 1 : -1;
+        $len = 1;
+        for ($j = $i - 2; $j > $i - 21 && $j >= 0; $j--) {
+            if (($ret[$j] >= 0 ? 1 : -1) === $sign) {
+                $len++;
+            } else {
+                break;
+            }
+        }
+        return $sign * $len;
+    }
+
+    private static function posInRange(array $ret, int $i, int $n): float
+    {
+        $seg = array_slice($ret, $i - $n, $n);
+        $cum = array_sum($seg);
+        $mn = $cum;
+        $mx = $cum;
+        $c = 0.0;
+        for ($j = $i - $n; $j < $i; $j++) {
+            $c += $ret[$j];
+            $mn = min($mn, $c);
+            $mx = max($mx, $c);
+        }
+        return ($mx - $mn) > 1e-9 ? ($c - $mn) / ($mx - $mn) : 0.5;
+    }
+
+    /** Список PnL сделок (без издержек на выходе — они внутри) */
+    private static function tradeDeals(array $g, array $ret): array
+    {
+        $n = count($ret);
+        $deals = [];
+        $inPos = 0;
+        $side = 0;
+        $cur = 0.0;
+        for ($i = 5; $i < $n; $i++) {
+            if ($inPos > 0) {
+                $cur += $side * $ret[$i] * $g['lots'];
+                $inPos--;
+                if ($inPos === 0) {
+                    $cur -= self::COST * $g['lots'];
+                    $deals[] = $cur;
+                    $cur = 0.0;
+                }
+                continue;
+            }
+            $f = self::feat($g['atom'], $ret, $i);
+            $sig = ($g['op'] === '>' && $f >= $g['threshold'])
+                || ($g['op'] === '<' && $f <= $g['threshold']);
+            if ($sig) {
+                $side = $g['side'];
+                $inPos = $g['hold'];
+                $cur = -self::COST * $g['lots'];
+            }
+        }
+        return $deals;
+    }
+
+    /** t-статистика сделок: mean/std×√N (шёпот: слабый эффект накапливается) */
+    private static function tStat(array $deals): float
+    {
+        $n = count($deals);
+        if ($n < 2) {
+            return 0.0;
+        }
+        $m = array_sum($deals) / $n;
+        $v = 0.0;
+        foreach ($deals as $d) {
+            $v += ($d - $m) ** 2;
+        }
+        $sd = sqrt($v / $n);
+        return $sd > 1e-9 ? ($m / $sd) * sqrt($n) : 0.0;
     }
 }

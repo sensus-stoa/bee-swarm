@@ -53,6 +53,7 @@ final class TradingHive
                     'genome' => self::mutate($sg, 0.3),
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
+                    'calib' => 0.5,
                     'alive' => true,
                 ];
             }
@@ -62,6 +63,7 @@ final class TradingHive
                     'genome' => self::randomGenome(),
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
+                    'calib' => 0.5,
                     'alive' => true,
                 ];
             }
@@ -73,14 +75,25 @@ final class TradingHive
                 if (! $bee['alive']) {
                     continue;
                 }
-                // KELLY-РИСК: размер позиции ∝ уверенности пчелы (её средний t)
-                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0));
+                // KELLY-РИСК с КАЛИБРОВКОЙ (v10: интеллект улья):
+                // ставка ∝ уверенности × надёжность грамматики (calib)
+                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0)) * $bee['calib'];
+                $kelly = max(0.25, min(3.0, $kelly));
                 $g2 = $bee['genome'];
                 $g2['lots'] = $bee['genome']['lots'] * $kelly;
-                $pnls = self::tradeDeals($g2, $window, $ext);
+                $td = self::tradeDeals($g2, $window, $ext);
+                $pnls = $td['deals'];
                 $t = self::tStat($pnls);
+                // ИНДИВИДУАЛЬНОЕ ОБУЧЕНИЕ: разделить сделки на успешные/неудачные
+                // по главному признаку на входе → сдвинуть порог в успешную зону
+                self::learnThreshold($bee['genome'], $pnls, $td['entryFeats']);
                 // уверенность сглаживается (0.7 прежняя + 0.3 свежий t)
                 $bee['conf'] = 0.7 * $bee['conf'] + 0.3 * $t;
+                // КАЛИБРОВКА: ставка оправдалась (высокая уверенность → прибыль) или
+                // сомнение спасло (низкая уверенность при убытке) → calib↑; иначе ↓
+                $stakeRight = ($bee['conf'] > 0.5 && $t > 0) || ($bee['conf'] < -0.5 && $t < 0)
+                    || abs($bee['conf']) <= 0.5;
+                $bee['calib'] = max(0.25, min(1.75, $bee['calib'] + ($stakeRight ? 0.05 : -0.1)));
                 $nDeals = count($pnls);
                 $freq = 1.0;
                 if ($nDeals >= 1 && $nDeals <= 6) {
@@ -102,8 +115,8 @@ final class TradingHive
                     continue;
                 }
                 if ($bee['energy'] >= self::REPRO_ENERGY) {
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'alive' => true];
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'alive' => true];
                 } else {
                     $next[] = $bee;
                 }
@@ -123,18 +136,20 @@ final class TradingHive
         foreach ($this->pop as $bee) {
             if ($bee['alive']) {
                 $clean = 0.0;
-                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0));
+                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0)) * $bee['calib'];
                 $g2 = $bee['genome'];
                 $g2['lots'] = $bee['genome']['lots'] * $kelly;
                 foreach ($windows as $w) {
                     [$rw, $ex] = self::unpackWindow($w);
-                    $clean += array_sum(self::tradeDeals($g2, $rw, $ex));
+                    $clean += array_sum(self::tradeDeals($g2, $rw, $ex)['deals']);
                 }
                 $out[] = [
                     'genome' => $bee['genome'],
                     'energy' => $bee['energy'],
                     'oos_pnl' => $bee['energy'] - self::START_ENERGY,
                     'clean_pnl' => $clean,
+                    'conf' => $bee['conf'],
+                    'calib' => $bee['calib'],
                 ];
                 $total += $bee['energy'];
             }
@@ -357,11 +372,12 @@ final class TradingHive
         return $sig > 1e-9 ? $cum / ($sig * sqrt(200)) : 0.0;
     }
 
-    /** Список PnL сделок; сигнал — ЦЕПОЧКА условий (conds + logics) */
+    /** Сделки + главный признак на входе (для индивидуального обучения пчелы) */
     private static function tradeDeals(array $g, array $ret, array $ext = []): array
     {
         $n = count($ret);
         $deals = [];
+        $entryFeats = [];
         $inPos = 0;
         $side = 0;
         $cur = 0.0;
@@ -423,7 +439,41 @@ final class TradingHive
                     $peak = $cur;
             }
         }
-        return $deals;
+        return ['deals' => $deals, 'entryFeats' => $entryFeats];
+    }
+
+    /** Обучение: порог главного атома сдвигается к зоне успешных сделок */
+    private static function learnThreshold(array &$g, array $pnls, array $feats): void
+    {
+        $s = [];
+        $f = [];
+        foreach ($pnls as $idx => $p) {
+            $v = $feats[$idx] ?? null;
+            if ($v === null) {
+                continue;
+            }
+            if ($p > 0) {
+                $s[] = $v;
+            } else {
+                $f[] = $v;
+            }
+        }
+        if (count($s) < 2 || count($f) < 2 || $g['conds'] === []) {
+            return;
+        }
+        $ms = array_sum($s) / count($s);
+        $mf = array_sum($f) / count($f);
+        $gap = abs($ms - $mf);
+        if ($gap < 1e-9) {
+            return;
+        }
+        $thr = $g['conds'][0]['threshold'];
+        $isExt = in_array($g['conds'][0]['atom'], self::EXT_ATOMS, true);
+        // сдвиг к успешной зоне: если успешные выше — поднять порог, ниже — опустить
+        $new = $thr + 0.25 * ($ms - $thr);
+        $lo = $isExt ? -4.0 : 0.0;
+        $hi = $isExt ? 4.0 : 0.12;
+        $g['conds'][0]['threshold'] = max($lo, min($hi, $new));
     }
 
     /** t-статистика сделок: mean/std×√N (шёпот: слабый эффект накапливается) */

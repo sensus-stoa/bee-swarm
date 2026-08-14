@@ -47,12 +47,12 @@ final class TradingHive
         $this->pop = [];
         if ($seedGenomes !== []) {
             // НАПРАВЛЕННАЯ СЕЛЕКЦИЯ: стартовая популяция — мутанты лучших
-            // геномов предыдущего раунда (порода ведётся)
             for ($i = 0; $i < $this->popSize; $i++) {
                 $sg = $seedGenomes[$i % count($seedGenomes)];
                 $this->pop[] = [
                     'genome' => self::mutate($sg, 0.3),
                     'energy' => self::START_ENERGY,
+                    'conf' => 0.0,
                     'alive' => true,
                 ];
             }
@@ -61,61 +61,60 @@ final class TradingHive
                 $this->pop[] = [
                     'genome' => self::randomGenome(),
                     'energy' => self::START_ENERGY,
+                    'conf' => 0.0,
                     'alive' => true,
                 ];
             }
         }
         for ($g = 0; $g < $generations; $g++) {
-            // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ режимов
             $win = $windows[$g % count($windows)];
             [$window, $ext] = self::unpackWindow($win);
             foreach ($this->pop as &$bee) {
                 if (! $bee['alive']) {
                     continue;
                 }
-                $pnls = self::tradeDeals($bee['genome'], $window, $ext);
-                // t-статистика сделок: Шёпот — слабый эффект накапливается
+                // KELLY-РИСК: размер позиции ∝ уверенности пчелы (её средний t)
+                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0));
+                $g2 = $bee['genome'];
+                $g2['lots'] = $bee['genome']['lots'] * $kelly;
+                $pnls = self::tradeDeals($g2, $window, $ext);
                 $t = self::tStat($pnls);
-                // РЕДКИЕ СДЕЛКИ (v8): 1-2/мес — бонус качества входа;
-                // частые — штраф (издержки и шум съедают)
+                // уверенность сглаживается (0.7 прежняя + 0.3 свежий t)
+                $bee['conf'] = 0.7 * $bee['conf'] + 0.3 * $t;
                 $nDeals = count($pnls);
                 $freq = 1.0;
                 if ($nDeals >= 1 && $nDeals <= 6) {
-                    $freq = 1.5; // ~1-2 сделки в месяц на окно ~70 дней
+                    $freq = 1.5;
                 } elseif ($nDeals > 15) {
                     $freq = 0.5;
                 }
                 $bee['energy'] += $t * self::T_SCALE * $freq
-                    - 0.03 * (count($bee['genome']['conds']) - 1); // parsimony: лишние условия дороги
+                    - 0.03 * (count($bee['genome']['conds']) - 1);
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }
             }
             unset($bee);
 
-            // РАЗМНОЖЕНИЕ (популяционная динамика): родитель, накопивший
-            // REPRO_ENERGY, ДЕЛИТСЯ на двух потомков (по START_ENERGY каждому)
-            // и исчезает. Потомки — мутанты генома родителя.
             $next = [];
             foreach ($this->pop as $bee) {
                 if (! $bee['alive']) {
                     continue;
                 }
                 if ($bee['energy'] >= self::REPRO_ENERGY) {
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'alive' => true];
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'alive' => true];
                 } else {
                     $next[] = $bee;
                 }
             }
-            // ЁМКОСТЬ СРЕДЫ: излишек убирается СЛУЧАЙНО (без bias отбора)
             if (count($next) > self::POP_CAP) {
                 shuffle($next);
                 $next = array_slice($next, 0, self::POP_CAP);
             }
             $this->pop = $next;
             if ($this->pop === []) {
-                break; // вымирание — эволюция честно закончилась
+                break;
             }
         }
 
@@ -124,9 +123,12 @@ final class TradingHive
         foreach ($this->pop as $bee) {
             if ($bee['alive']) {
                 $clean = 0.0;
+                $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0));
+                $g2 = $bee['genome'];
+                $g2['lots'] = $bee['genome']['lots'] * $kelly;
                 foreach ($windows as $w) {
                     [$rw, $ex] = self::unpackWindow($w);
-                    $clean += array_sum(self::tradeDeals($bee['genome'], $rw, $ex));
+                    $clean += array_sum(self::tradeDeals($g2, $rw, $ex));
                 }
                 $out[] = [
                     'genome' => $bee['genome'],

@@ -24,6 +24,7 @@ final class TradingHive
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',
         'body', 'uwick', 'lwick', 'engulf', 'doji', 'impulse', 'gapmin', 'gapmax', // свечи Гусева/Бегса
+        'vix5', 'ndq5', 'dxy5', 'trends', 'dvol', 'month', 'dow', // макро/внимание/календарь
     ];
     public const HOLDS = [2, 3, 5, 10, 20];
 

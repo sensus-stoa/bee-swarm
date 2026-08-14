@@ -297,12 +297,26 @@ class Hive
     public function savePopulation(): void
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $db->exec('UPDATE bee_persistence SET is_alive = 0');
-        $stmt = $db->prepare('INSERT INTO bee_persistence (grammar, energy, is_alive) VALUES (?, ?, 1)');
-        foreach ($this->bees as $bee) {
-            if ($bee->isAlive()) {
-                $stmt->execute([json_encode($bee->grammar()), $bee->energy()]);
+        try {
+            // CONCERNS deleg_3777bd82: (1) purge мёртвых (иначе append-only
+            // рост — 864×P строк/сутки!); (2) ВСЁ в ОДНОЙ транзакции
+            // (pkill -9 между UPDATE и INSERT не оставит «все мертвы»!).
+            $db->beginTransaction();
+            $db->exec('DELETE FROM bee_persistence');
+            $stmt = $db->prepare(
+                'INSERT INTO bee_persistence (grammar, energy, is_alive) VALUES (?, ?, 1)'
+            );
+            foreach ($this->bees as $bee) {
+                if ($bee->isAlive()) {
+                    $stmt->execute([json_encode($bee->grammar()), $bee->energy()]);
+                }
             }
+            $db->commit();
+        } catch (\Throwable $e) {
+            if ($db->inTransaction()) {
+                $db->rollBack();
+            }
+            error_log('[bee_swarm] savePopulation failed: ' . $e->getMessage());
         }
     }
 
@@ -448,6 +462,12 @@ class Hive
             if (count($alive) !== count($this->bees)) {
                 $this->bees = $alive;
             }
+        }
+        // POPULATION-PERSISTENCE ПЕРИОДИЧЕСКАЯ (14.08): savePopulation был
+        // ТОЛЬКО в shutdown-hook — pkill -9 (SIGKILL) терял популяцию целиком
+        // (13 дней на ноуте!). Теперь: каждые 100 тиков сохраняем — теряем ≤100.
+        if ($this->tick % 100 === 0 && $this->tick > 0) {
+            $this->savePopulation();
         }
         // S1.5 фаза 2 (11.08): MONOCULTURE ALARM — diversity < порога
         // (env MONOCULTURE_ALARM_DIVERSITY, default 0.34): сжатие грамматики.

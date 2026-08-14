@@ -176,6 +176,8 @@ final class TradingHive
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
+            // ТРЕЙЛИНГ: 0 = выключен (выход по hold), иначе порог отката от пика
+            'trail' => rand(0, 9) < 3 ? 0.0 : (0.02 + (rand() / getrandmax()) * 0.08),
         ];
     }
 
@@ -238,6 +240,16 @@ final class TradingHive
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             $g['lots'] = $g['lots'] === 1 ? 2 : 1;
+        }
+        // трейлинг: вкл/выкл/шаг порога
+        if (rand(0, 99) < (int) ($p * 100)) {
+            if ($g['trail'] <= 0.0) {
+                $g['trail'] = 0.02 + (rand() / getrandmax()) * 0.08;
+            } elseif (rand(0, 9) < 4) {
+                $g['trail'] = 0.0;
+            } else {
+                $g['trail'] = max(0.01, min(0.15, $g['trail'] + (rand(0, 1) === 1 ? 1 : -1) * 0.02));
+            }
         }
         return $g;
     }
@@ -314,9 +326,22 @@ final class TradingHive
         $inPos = 0;
         $side = 0;
         $cur = 0.0;
+        $peak = 0.0;
         for ($i = 5; $i < $n; $i++) {
             if ($inPos > 0) {
                 $cur += $side * $ret[$i] * $g['lots'];
+                // ТРЕЙЛИНГ-СТОП: закрыть при откате от пика позиции на trail
+                if (($g['trail'] ?? 0.0) > 0.0) {
+                    $peak = max($peak, $cur);
+                    if ($cur <= $peak - $g['trail']) {
+                        $cur -= self::COST * $g['lots'];
+                        $deals[] = $cur;
+                        $cur = 0.0;
+                        $inPos = 0;
+                        $side = 0;
+                        continue;
+                    }
+                }
                 $inPos--;
                 if ($inPos === 0) {
                     $cur -= self::COST * $g['lots'];
@@ -356,6 +381,7 @@ final class TradingHive
                 $side = $g['side'];
                 $inPos = $g['hold'];
                 $cur = -self::COST * $g['lots'];
+                    $peak = $cur;
             }
         }
         return $deals;

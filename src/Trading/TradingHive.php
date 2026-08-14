@@ -20,12 +20,12 @@ final class TradingHive
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
     public const POP_CAP = 500;      // потолок популяции (ёмкость среды)
-    public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20'];
+    public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20', 'brk20', 'regime'];
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',
         'body', 'uwick', 'lwick', 'engulf', 'doji', 'impulse', 'gapmin', 'gapmax', // свечи Гусева/Бегса
         'vix5', 'ndq5', 'dxy5', 'trends', 'dvol', 'month', 'dow', // макро/внимание/календарь
-        'relstr5', 'amihud', 'volz', // межрыночные: rel strength vs BTC, Amihud, объём-z
+        'relstr5', 'amihud', 'volz', 'rank20', // межрыночные: rank среди монет (О'Нил)
     ];
     public const HOLDS = [2, 3, 5, 10, 20];
 
@@ -274,7 +274,11 @@ final class TradingHive
             // серия знаков: длина текущей серии одного знака (±)
             'streak' => self::streak($ret, $i),
             // позиция в 20-дневном диапазоне (поддержка/сопротивление)
-            default => self::posInRange($ret, $i, 20),
+            'pos20' => self::posInRange($ret, $i, 20),
+            // ПРОБОЙ КАНАЛА (Turtle/Джонс): насколько close выше max прошлых 20д, в сигмах
+            'brk20' => self::breakout20($ret, $i),
+            // РЕЖИМ: z-скор 200-дневного тренда (кумулят / vol·√200)
+            default => self::regime200($ret, $i),
         };
     }
 
@@ -316,6 +320,41 @@ final class TradingHive
             $mx = max($mx, $c);
         }
         return ($mx - $mn) > 1e-9 ? ($c - $mn) / ($mx - $mn) : 0.5;
+    }
+
+    /** Пробой канала: (cum20 − max прошлых 20д) / σ20 — в сигмах (Turtle/Джонс) */
+    private static function breakout20(array $ret, int $i): float
+    {
+        if ($i < 45) {
+            return 0.0;
+        }
+        $cum = 0.0;
+        for ($j = $i - 20; $j < $i; $j++) {
+            $cum += $ret[$j];
+        }
+        // максимум кумулятивной позиции в окне [i-40, i-21)
+        $mxPrev = -1e18;
+        $c = 0.0;
+        for ($j = $i - 40; $j < $i - 20; $j++) {
+            $c += $ret[$j];
+            $mxPrev = max($mxPrev, $c);
+        }
+        $sig = self::volN($ret, $i, 20);
+        return $sig > 1e-9 ? ($cum - $mxPrev) / $sig : 0.0;
+    }
+
+    /** Режим: z-скор 200-дневного тренда */
+    private static function regime200(array $ret, int $i): float
+    {
+        if ($i < 210) {
+            return 0.0;
+        }
+        $cum = 0.0;
+        for ($j = $i - 200; $j < $i; $j++) {
+            $cum += $ret[$j];
+        }
+        $sig = self::volN($ret, $i, 20);
+        return $sig > 1e-9 ? $cum / ($sig * sqrt(200)) : 0.0;
     }
 
     /** Список PnL сделок; сигнал — ЦЕПОЧКА условий (conds + logics) */

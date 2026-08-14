@@ -37,15 +37,28 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = []): array
     {
         $this->pop = [];
-        for ($i = 0; $i < $this->popSize; $i++) {
-            $this->pop[] = [
-                'genome' => self::randomGenome(),
-                'energy' => self::START_ENERGY,
-                'alive' => true,
-            ];
+        if ($seedGenomes !== []) {
+            // НАПРАВЛЕННАЯ СЕЛЕКЦИЯ: стартовая популяция — мутанты лучших
+            // геномов предыдущего раунда (порода ведётся)
+            for ($i = 0; $i < $this->popSize; $i++) {
+                $sg = $seedGenomes[$i % count($seedGenomes)];
+                $this->pop[] = [
+                    'genome' => self::mutate($sg, 0.3),
+                    'energy' => self::START_ENERGY,
+                    'alive' => true,
+                ];
+            }
+        } else {
+            for ($i = 0; $i < $this->popSize; $i++) {
+                $this->pop[] = [
+                    'genome' => self::randomGenome(),
+                    'energy' => self::START_ENERGY,
+                    'alive' => true,
+                ];
+            }
         }
         for ($g = 0; $g < $generations; $g++) {
             // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ режимов

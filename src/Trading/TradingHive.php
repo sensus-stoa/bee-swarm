@@ -19,7 +19,7 @@ final class TradingHive
     public const COST = 0.002;       // 0.2% за цикл (вход+выход)
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
-    public const POP_CAP = 500;      // потолок популяции (ёмкость среды)
+    public const POP_CAP = 2000;     // потолок популяции (ёмкость среды)
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20', 'brk20', 'regime'];
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',

@@ -571,45 +571,13 @@ class Search
                     $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary);
                     if (is_finite($t) && $t < $cvTrainMax) {
                         if (! isset($nullCvCache[$cand['name']])) {
-                            // NULL = STEP-ПЕРЕСТАНОВКА (CONCERNS deleg_1d163bae +
-                            // флак 10.08): ротация сохраняла соседние пары →
-                            // nullCv занижен для гладких рядов; mt_srand+shuffle
-                            // НЕДЕТЕРМИНИРОВАН (reset глобального mt → beam-
-                            // рандомы улья скачут → FullPipeline флак!).
-                            // Шаг от имени кандидата: детерминированно,
-                            // структура ряда разрушена, mt не тронут.
-                            $nTest = count($y_test);
-                            // NULL = МЕДИАНА 3 перестановок (10.08, итерация 4):
-                            // одна реализация флуктуирует ±0.03 → +(−)-законы
-                            // (t/null=0.7) неотличимы от псевдозаконов (0.79).
-                            // ВЗАИМНО-ПРОСТЫЕ шаги (полные перестановки, повторов
-                            // нет: шаги 2/4/6 для n=8 давали ПОВТОРЫ → null искажён).
-                            $nulls = [];
-                            // 5 перестановок (CONCERNS deleg_1d2cab3a: медиана 3
-                            // флуктуирует на краю 0.52-0.70 — нулевой запас).
-                            for ($r = 0; $r < 5; $r++) {
-                                $step = 2 + $r;
-                                while ($step < $nTest && $nTest % $step === 0) {
-                                    $step++;
-                                }
-                                if ($step >= $nTest) {
-                                    $step = $nTest - 1;
-                                }
-                                $nullY = [];
-                                for ($i = 0; $i < $nTest; $i++) {
-                                    $nullY[] = $y_test[($i * $step) % $nTest];
-                                }
-                                $nulls[] = self::testCv(
-                                    $cand['name'], $X_test, $nullY, $bestStd ?? 1.0,
-                                    $n, $colLabels, $X_train_cv,
-                                    array_keys($bornBinary), $bornBinary
-                                );
-                            }
-                            sort($nulls);
-                            $nullCvCache[$cand['name']] = $nulls[2]; // медиана 5
+                            $nullCvCache[$cand['name']] = \BeeSwarm\Core\NonConstancyFilter::nullMedianCv(
+                                $cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n,
+                                $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary
+                            );
                         }
                         // Относительный критерий: сигнал на 20% лучше шума
-                        if ($t >= $nullCvCache[$cand['name']] * $nullRatio) {
+                        if (\BeeSwarm\Core\NonConstancyFilter::rejects($t, $nullCvCache[$cand['name']], $nullRatio)) {
                             $t = 9.99; // сигнал не лучше шума — псевдозакон
                         }
                     }
@@ -692,7 +660,7 @@ class Search
         return 'EMPIRICAL';
     }
 
-    private static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null, ?array $X_train = null, array $extraOps = [], array $opDefs = []): float
+    public static function testCv(string $name, array $X_test, array $y_test, float $trainStd, int $n, ?array $colLabels = null, ?array $X_train = null, array $extraOps = [], array $opDefs = []): float
     {
         $nTest = count($y_test);
         if ($nTest < 2) {
@@ -736,7 +704,7 @@ class Search
         return self::cv($vec, $y_test, $affineShift);
     }
 
-    private static function stddev(array $v): float
+    public static function stddev(array $v): float
     {
         $n = count($v);
         $mean = array_sum($v) / $n;

@@ -38,10 +38,10 @@ final class TradingHive
                 'alive' => true,
             ];
         }
-        $lastIdx = count($windows) - 1;
-
         for ($g = 0; $g < $generations; $g++) {
-            $window = $windows[$lastIdx]; // OOS: всегда НЕ-обучающее окно
+            // АДАПТАЦИЯ: окна ЧЕРЕДУЮТСЯ — пчела должна выживать на СМЕНЕ
+            // режимов (одно окно вечно эксплуатировать нельзя)
+            $window = $windows[$g % count($windows)];
             foreach ($this->pop as &$bee) {
                 if (! $bee['alive']) {
                     continue;
@@ -63,11 +63,17 @@ final class TradingHive
             }
             $newPop = [];
             if ($parents !== []) {
+                // элитизм: лучшие родители — копируются без мутаций
+                usort($parents, fn ($a, $b) => $b['energy'] <=> $a['energy']);
                 $perParent = (int) ceil($this->popSize / count($parents));
                 for ($i = 0; $i < $this->popSize; $i++) {
                     $p = $parents[$i % count($parents)];
+                    $isElite = $i < max(1, (int) ($this->popSize * 0.1)) && $i < count($parents);
+                    // ЭЛИТА мутирует СЛАБО (p=0.1 — удержание без заморозки шума);
+                    // прибыльные — умеренно (0.3), убыточные — сильно (0.7, поиск)
+                    $mp = $isElite ? 0.1 : ($p['energy'] > self::START_ENERGY ? 0.3 : 0.7);
                     $newPop[] = [
-                        'genome' => self::mutate($p['genome']),
+                        'genome' => self::mutate($p['genome'], $mp),
                         // ДЕЛЕЖ энергии: потомок получает ДОЛЮ родителя
                         // (энергия не создаётся из ничего — сумма сохраняется)
                         'energy' => $p['energy'] / $perParent,
@@ -83,10 +89,17 @@ final class TradingHive
         $total = 0.0;
         foreach ($this->pop as $bee) {
             if ($bee['alive']) {
+                // ЧИСТЫЙ PnL: переторговка генома с нуля на ВСЕХ окнах
+                // (не наследство!) — честная «прибыль за всё время»
+                $clean = 0.0;
+                foreach ($windows as $w) {
+                    $clean += self::trade($bee['genome'], $w);
+                }
                 $out[] = [
                     'genome' => $bee['genome'],
                     'energy' => $bee['energy'],
                     'oos_pnl' => $bee['energy'] - self::START_ENERGY,
+                    'clean_pnl' => $clean,
                 ];
                 $total += $bee['energy'];
             }
@@ -103,29 +116,49 @@ final class TradingHive
             'threshold' => (rand() / getrandmax()) * 0.06,
             'op' => rand(0, 1) === 1 ? '>' : '<',
             'side' => rand(0, 1) === 1 ? 1 : -1,
-            'hold' => [5, 10, 20, 40][array_rand([5, 10, 20, 40])],
+            'hold' => [2, 3, 5, 10, 20][array_rand([2, 3, 5, 10, 20])],
             'lots' => [1, 2][array_rand([1, 2])],
         ];
     }
 
-    /** @param array $g геном */
-    private static function mutate(array $g): array
+    /** @param array $g геном — мутируют ВСЕ параметры (v5), сила по p */
+    private static function mutate(array $g, float $p): array
     {
-        switch (rand(0, 4)) {
-            case 0:
-                $g['threshold'] = max(0.0, $g['threshold'] + (rand() / getrandmax() - 0.5) * 0.02);
-                break;
-            case 1:
-                $g['op'] = $g['op'] === '>' ? '<' : '>';
-                break;
-            case 2:
-                $g['side'] = -$g['side'];
-                break;
-            case 3:
-                $g['hold'] = [5, 10, 20, 40][array_rand([5, 10, 20, 40])];
-                break;
-            default:
-                $g['lots'] = $g['lots'] === 1 ? 2 : 1;
+        // порог: ОТНОСИТЕЛЬНЫЙ шаг (мелкий у малых порогов — точная подгонка
+        // под слабые эффекты; + редкий крупный прыжок для исследования)
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $step = $g['threshold'] * 0.3 + 0.0005;
+            if (rand(0, 9) === 0) {
+                $step = $g['threshold'] * 1.5 + 0.005; // крупный прыжок
+            }
+            $g['threshold'] = max(0.0, $g['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
+        }
+        // оператор
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $g['op'] = $g['op'] === '>' ? '<' : '>';
+        }
+        // сторона
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $g['side'] = -$g['side'];
+        }
+        // hold — шаг по шкале
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $holds = [2, 3, 5, 10, 20];
+            $ci = array_search($g['hold'], $holds, true);
+            $ci = $ci === false ? 2 : $ci;
+            $ci = max(0, min(4, $ci + (rand(0, 1) === 1 ? 1 : -1)));
+            $g['hold'] = $holds[$ci];
+        }
+        // лоты
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $g['lots'] = $g['lots'] === 1 ? 2 : 1;
+        }
+        // атом (тип признака)
+        if (rand(0, 99) < (int) ($p * 50)) {
+            $atoms = ['r5', 'r20', 'vol'];
+            $ci = array_search($g['atom'], $atoms, true);
+            $ci = $ci === false ? 0 : $ci;
+            $g['atom'] = $atoms[($ci + rand(1, 2)) % 3];
         }
         return $g;
     }

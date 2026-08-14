@@ -25,6 +25,7 @@ final class TradingHive
         'fund5', 'taker5', 'oi_chg5', 'fng',
         'body', 'uwick', 'lwick', 'engulf', 'doji', 'impulse', 'gapmin', 'gapmax', // свечи Гусева/Бегса
         'vix5', 'ndq5', 'dxy5', 'trends', 'dvol', 'month', 'dow', // макро/внимание/календарь
+        'relstr5', 'amihud', 'volz', // межрыночные: rel strength vs BTC, Amihud, объём-z
     ];
     public const HOLDS = [2, 3, 5, 10, 20];
 

@@ -56,7 +56,16 @@ final class TradingHive
                 $pnls = self::tradeDeals($bee['genome'], $window);
                 // t-статистика сделок: Шёпот — слабый эффект накапливается
                 $t = self::tStat($pnls);
-                $bee['energy'] += $t * self::T_SCALE;
+                // РЕДКИЕ СДЕЛКИ (v8): 1-2/мес — бонус качества входа;
+                // частые — штраф (издержки и шум съедают)
+                $nDeals = count($pnls);
+                $freq = 1.0;
+                if ($nDeals >= 1 && $nDeals <= 6) {
+                    $freq = 1.5; // ~1-2 сделки в месяц на окно ~70 дней
+                } elseif ($nDeals > 15) {
+                    $freq = 0.5;
+                }
+                $bee['energy'] += $t * self::T_SCALE * $freq;
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }

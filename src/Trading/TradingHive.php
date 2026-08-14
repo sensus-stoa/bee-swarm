@@ -54,6 +54,7 @@ final class TradingHive
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
                     'calib' => 0.5,
+                    'journal' => ['deals' => [], 'feats' => []],
                     'alive' => true,
                 ];
             }
@@ -64,6 +65,7 @@ final class TradingHive
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
                     'calib' => 0.5,
+                    'journal' => ['deals' => [], 'feats' => []],
                     'alive' => true,
                 ];
             }
@@ -84,11 +86,14 @@ final class TradingHive
                 $td = self::tradeDeals($g2, $window, $ext);
                 $pnls = $td['deals'];
                 $t = self::tStat($pnls);
-                // ИНДИВИДУАЛЬНОЕ ОБУЧЕНИЕ (каждые 5 поколений): найти атом-фильтр,
-                // отделяющий успешные входы от неудачных, и ДОБАВИТЬ его условием
-                // (успешные сделки не трогаем — только отсекаем неудачные)
+                // ЖУРНАЛ копится через поколения (ограничим 300 последних сделок)
+                $bee['journal']['deals'] = array_slice(
+                    array_merge($bee['journal']['deals'], $pnls), -300);
+                $bee['journal']['feats'] = array_slice(
+                    array_merge($bee['journal']['feats'], $td['entryFeats']), -300);
+                // ДООБУЧЕНИЕ (каждые 5 поколений) по НАКОПЛЕННОМУ журналу
                 if ($g % 5 === 4) {
-                    self::learnFilter($bee['genome'], $pnls, $td['entryFeats']);
+                    self::learnFilter($bee['genome'], $bee['journal']['deals'], $bee['journal']['feats']);
                 }
                 // уверенность сглаживается (0.7 прежняя + 0.3 свежий t)
                 $bee['conf'] = 0.7 * $bee['conf'] + 0.3 * $t;
@@ -118,8 +123,8 @@ final class TradingHive
                     continue;
                 }
                 if ($bee['energy'] >= self::REPRO_ENERGY) {
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'alive' => true];
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'journal' => $bee['journal'], 'alive' => true];
+                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'journal' => $bee['journal'], 'alive' => true];
                 } else {
                     $next[] = $bee;
                 }
@@ -523,7 +528,7 @@ final class TradingHive
             }
         }
         // добавляем фильтр только при хорошем разделении (защита от переобучения)
-        if ($bestAtom !== null && $bestAcc >= 0.75) {
+        if ($bestAtom !== null && $bestAcc >= 0.65) {
             $g['conds'][] = ['atom' => $bestAtom, 'op' => $bestOp, 'threshold' => $bestThr];
             $g['logics'][] = 'AND';
         }

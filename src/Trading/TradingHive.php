@@ -21,7 +21,10 @@ final class TradingHive
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
     public const POP_CAP = 500;      // потолок популяции (ёмкость среды)
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20'];
-    public const EXT_ATOMS = ['fund5', 'taker5', 'oi_chg5', 'fng']; // внешние фиды (z-норм.)
+    public const EXT_ATOMS = [
+        'fund5', 'taker5', 'oi_chg5', 'fng',
+        'body', 'uwick', 'lwick', 'engulf', 'doji', 'impulse', 'gapmin', 'gapmax', // свечи Гусева/Бегса
+    ];
     public const HOLDS = [2, 3, 5, 10, 20];
 
     /** @var list<array{genome: array, energy: float, alive: bool}> */

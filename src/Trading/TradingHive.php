@@ -26,7 +26,7 @@ final class TradingHive
     }
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
-    public const POP_CAP = 2000;     // потолок популяции (ёмкость среды)
+    public const POP_CAP = 20000;     // потолок популяции (ёмкость среды)
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20', 'brk20', 'regime'];
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',
@@ -49,7 +49,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {
@@ -97,6 +97,9 @@ final class TradingHive
                 $g2 = $bee['genome'];
                 foreach ($g2['branches'] ?? [] as $bi => $_) {
                     $g2['branches'][$bi]['lots'] = ($g2['branches'][$bi]['lots'] ?? 1) * $kelly;
+                    if ($binary === 1) {
+                        $g2['branches'][$bi]['hold'] = 1; // БИНАРКА: горизонт 1 день
+                    }
                 }
                 if (empty($g2['branches'])) {
                     $g2['lots'] = ($bee['genome']['lots'] ?? 1) * $kelly;
@@ -147,8 +150,30 @@ final class TradingHive
                 } elseif ($nDeals > 15) {
                     $freq = 0.5;
                 }
-                $bee['energy'] += $niche * ($t * self::T_SCALE * $freq)
-                    - 0.03 * max(0, array_sum(array_map(fn ($br) => count($br['conds'] ?? []), $bee['genome']['branches'] ?? [])) - 1);
+                if ($binary === 1 && count($pnls) > 0) {
+                    // БИНАРНЫЙ ФИТНЕС v3: только при N>=15 (защита от wr-шума
+                    // малых выборок). z-оценка vs 54% + ЖЁСТКАЯ смерть при
+                    // подтверждённой монетке (N>=20 и wr<50% → −0.6 энергии).
+                    $wins = 0;
+                    foreach ($pnls as $p) {
+                        if ($p > 0) {
+                            $wins++;
+                        }
+                    }
+                    $nB = count($pnls);
+                    $wr = $wins / $nB;
+                    if ($nB >= 15) {
+                        $se = sqrt($wr * (1 - $wr) / $nB);
+                        $z = ($wr - 0.54) / max($se, 1e-9);
+                        $bee['energy'] += $niche * $z * 0.5;
+                        if ($nB >= 20 && $wr < 0.50) {
+                            $bee['energy'] -= 0.6; // подтверждённая монетка = смерть
+                        }
+                    }
+                } else {
+                    $bee['energy'] += $niche * ($t * self::T_SCALE * $freq)
+                        - 0.03 * max(0, array_sum(array_map(fn ($br) => count($br['conds'] ?? []), $bee['genome']['branches'] ?? [])) - 1);
+                }
                 // ЧАСТЫЙ АД: обязан торговать — редкие сделки штрафуются
                 // (отбор сам уберёт длинные hold — выживут только активные)
                 if ($minDealsPerWindow > 0 && count($pnls) < $minDealsPerWindow) {
@@ -191,6 +216,9 @@ final class TradingHive
                 $g2 = $bee['genome'];
                 foreach ($g2['branches'] ?? [] as $bi => $_) {
                     $g2['branches'][$bi]['lots'] = ($g2['branches'][$bi]['lots'] ?? 1) * $kelly;
+                    if ($binary === 1) {
+                        $g2['branches'][$bi]['hold'] = 1; // БИНАРКА: горизонт 1 день
+                    }
                 }
                 if (empty($g2['branches'])) {
                     $g2['lots'] = ($bee['genome']['lots'] ?? 1) * $kelly;

@@ -188,7 +188,12 @@ final class TradingHive
                 $clean = 0.0;
                 $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0)) * $bee['calib'];
                 $g2 = $bee['genome'];
-                $g2['lots'] = $bee['genome']['lots'] * $kelly;
+                foreach ($g2['branches'] ?? [] as $bi => $_) {
+                    $g2['branches'][$bi]['lots'] = ($g2['branches'][$bi]['lots'] ?? 1) * $kelly;
+                }
+                if (empty($g2['branches'])) {
+                    $g2['lots'] = ($bee['genome']['lots'] ?? 1) * $kelly;
+                }
                 foreach ($windows as $w) {
                     [$rw, $ex] = self::unpackWindow($w);
                     $clean += array_sum(self::tradeDeals($g2, $rw, $ex)['deals']);
@@ -550,6 +555,7 @@ final class TradingHive
         $deals = [];
         $entryFeats = [];
         $entryDays = [];
+        $liquidations = 0;
         $entryBranches = [];
         $inPos = 0;
         $side = 0;

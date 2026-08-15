@@ -18,6 +18,7 @@ final class TradingHive
     public const START_ENERGY = 1.0;
     public const COST = 0.002;       // 0.2% за цикл (вход+выход)
     public static float $costOverride = -1.0; // микро-ад: 0.0007 и т.п.
+    public static int $levCap = 100; // потолок плеча (устойчивый отбор: 3)
 
     private static function cost(): float
     {
@@ -212,6 +213,12 @@ final class TradingHive
         return ['survivors' => $out, 'total_energy' => $total];
     }
 
+    /** Доступные плечи (с учётом потолка устойчивости) */
+    private static function levChoices(): array
+    {
+        return array_values(array_filter([1, 2, 3, 5, 10, 20, 50, 100], fn ($l) => $l <= self::$levCap));
+    }
+
     /** Доля входов A, совпавших со входами B (ниша-штраф) */
     public static function nicheOverlap(array $a, array $b): float
     {
@@ -342,7 +349,7 @@ final class TradingHive
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
-            'lev' => [1, 2, 3, 5, 10][array_rand([1, 2, 3, 5, 10])], // ПЛЕЧО: рынок отберёт умеренных
+            'lev' => self::levChoices()[array_rand(self::levChoices())], // ПЛЕЧО (≤ cap)
             'trail' => rand(0, 9) < 3 ? 0.0 : (0.02 + (rand() / getrandmax()) * 0.08),
         ];
     }
@@ -423,7 +430,7 @@ final class TradingHive
             $b['lots'] = $b['lots'] === 1 ? 2 : 1;
         }
         if (rand(0, 99) < (int) ($p * 100)) {
-            $levs = [1, 2, 3, 5, 10];
+            $levs = self::levChoices();
             $ci = array_search($b['lev'] ?? 1, $levs, true);
             $ci = $ci === false ? 0 : $ci;
             $ci = max(0, min(count($levs) - 1, $ci + (rand(0, 1) === 1 ? 1 : -1)));
@@ -564,10 +571,38 @@ final class TradingHive
         $activeBranch = null;
         for ($i = 5; $i < $n; $i++) {
             if ($inPos > 0) {
-                $cur += $side * $ret[$i] * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
-                // МАРЖИН-КОЛЛ: потерян ВЕСЬ залог (−1.0) → ликвидация
+                // РЕАЛЬНАЯ БИРЖА: интрабар-ликвидация по ВНУТРИДНЕВНОМУ
+                // движению (high/low), а не по close: свеча могла закрыться
+                // в плюс, но ВНУТРИ дня пробить цену ликвидации
+                $levNow = ($activeBranch['lev'] ?? 1);
+                $adv = $ext['adv'][$i] ?? abs($ret[$i]); // запасной: |ret|
+                if ($adv * $levNow >= 0.95) {
+                    $deals[] = -1.0 - 0.02 * $levNow;
+                    $liquidations++;
+                    $cur = 0.0;
+                    $inPos = 0;
+                    $side = 0;
+                    continue;
+                }
+                // движение close×плечо (если adv не пробил, но close дошёл)
+                $mv = $side * $ret[$i] * $levNow;
+                if ($mv <= -0.95) {
+                    // залог + штраф ликвидации (растёт с плечом, как на бирже)
+                    $deals[] = -1.0 - 0.02 * ($activeBranch['lev'] ?? 1);
+                    $liquidations++;
+                    $cur = 0.0;
+                    $inPos = 0;
+                    $side = 0;
+                    continue;
+                }
+                $cur += $mv * $activeBranch['lots'];
+                // FUNDING × ПЛЕЧО: шорт получает, лонг платит (с множителем lev)
+                if (isset($ext['funding'][$i])) {
+                    $cur -= $side * $ext['funding'][$i] * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
+                }
+                // кумулятивный МАРЖИН-КОЛЛ
                 if ($cur <= -1.0) {
-                    $deals[] = -1.0;
+                    $deals[] = -1.0 - 0.02 * ($activeBranch['lev'] ?? 1);
                     $liquidations++;
                     $cur = 0.0;
                     $inPos = 0;
@@ -577,7 +612,7 @@ final class TradingHive
                 if (($activeBranch['trail'] ?? 0.0) > 0.0) {
                     $peak = max($peak, $cur);
                     if ($cur <= $peak - $activeBranch['trail']) {
-                        $cur -= self::cost() * $activeBranch['lots'];
+                        $cur -= self::cost() * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
                         $deals[] = $cur;
                         $cur = 0.0;
                         $inPos = 0;
@@ -587,7 +622,7 @@ final class TradingHive
                 }
                 $inPos--;
                 if ($inPos === 0) {
-                    $cur -= self::cost() * $activeBranch['lots'];
+                    $cur -= self::cost() * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
                     $deals[] = $cur;
                     $cur = 0.0;
                 }
@@ -599,7 +634,7 @@ final class TradingHive
                 if (self::branchSignal($branch, $ret, $ext, $i)) {
                     $side = $branch['side'];
                     $inPos = $branch['hold'];
-                    $cur = -self::cost() * $branch['lots'];
+                    $cur = -self::cost() * $branch['lots'] * ($branch['lev'] ?? 1);
                     $peak = $cur;
                     $activeBranch = $branch;
                     $fvRow = [];

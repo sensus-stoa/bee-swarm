@@ -21,6 +21,17 @@ abstract class TestCase extends BaseTestCase
         }
         Database::get();
 
+        // ИЗОЛЯЦИЯ (15.08, CONCERNS deleg_2eb385c7): DELETE и в setUp —
+        // защита от фатала ПРЕДЫДУЩЕГО теста (tearDown мог не выполниться!)
+        try {
+            Database::get()->exec('DELETE FROM bee_persistence');
+        } catch (\Throwable $e) {
+            // нет таблицы — легитимно; остальное — видно
+            if (! str_contains($e->getMessage(), 'no such table')) {
+                error_log('[test] bee_persistence cleanup: ' . $e->getMessage());
+            }
+        }
+
         // Use test fixtures for forager instead of scanning home directory
         if (! getenv('FORAGER_SOURCES')) {
             $fixturesDir = __DIR__ . '/fixtures/forager';
@@ -48,6 +59,18 @@ abstract class TestCase extends BaseTestCase
     protected function tearDown(): void
     {
         \BeeSwarm\Infra\RngIsolation::assertClean();
+        // ИЗОЛЯЦИЯ (15.08): periodic-save (doTick каждые 100 тиков) пишет
+        // bee_persistence — без очистки следующий тест процесса видит
+        // RESTORE чужих пчёл (флаки BehavioralDiversity/HiveZeroTicks/
+        // LifetimeMetric в paratest!).
+        try {
+            Database::get()->exec('DELETE FROM bee_persistence');
+        } catch (\Throwable $e) {
+            // нет таблицы — легитимно; остальное — видно
+            if (! str_contains($e->getMessage(), 'no such table')) {
+                error_log('[test] bee_persistence cleanup: ' . $e->getMessage());
+            }
+        }
         parent::tearDown();
     }
 }

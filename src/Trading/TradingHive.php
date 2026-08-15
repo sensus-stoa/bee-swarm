@@ -17,6 +17,12 @@ final class TradingHive
 {
     public const START_ENERGY = 1.0;
     public const COST = 0.002;       // 0.2% за цикл (вход+выход)
+    public static float $costOverride = -1.0; // микро-ад: 0.0007 и т.п.
+
+    private static function cost(): float
+    {
+        return self::$costOverride >= 0 ? self::$costOverride : self::COST;
+    }
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
     public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
     public const POP_CAP = 2000;     // потолок популяции (ёмкость среды)
@@ -42,7 +48,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = []): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {
@@ -134,6 +140,11 @@ final class TradingHive
                 }
                 $bee['energy'] += $niche * ($t * self::T_SCALE * $freq)
                     - 0.03 * max(0, array_sum(array_map(fn ($br) => count($br['conds'] ?? []), $bee['genome']['branches'] ?? [])) - 1);
+                // ЧАСТЫЙ АД: обязан торговать — редкие сделки штрафуются
+                // (отбор сам уберёт длинные hold — выживут только активные)
+                if ($minDealsPerWindow > 0 && count($pnls) < $minDealsPerWindow) {
+                    $bee['energy'] -= 0.3;
+                }
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }
@@ -535,7 +546,7 @@ final class TradingHive
                 if (($activeBranch['trail'] ?? 0.0) > 0.0) {
                     $peak = max($peak, $cur);
                     if ($cur <= $peak - $activeBranch['trail']) {
-                        $cur -= self::COST * $activeBranch['lots'];
+                        $cur -= self::cost() * $activeBranch['lots'];
                         $deals[] = $cur;
                         $cur = 0.0;
                         $inPos = 0;
@@ -545,7 +556,7 @@ final class TradingHive
                 }
                 $inPos--;
                 if ($inPos === 0) {
-                    $cur -= self::COST * $activeBranch['lots'];
+                    $cur -= self::cost() * $activeBranch['lots'];
                     $deals[] = $cur;
                     $cur = 0.0;
                 }
@@ -557,7 +568,7 @@ final class TradingHive
                 if (self::branchSignal($branch, $ret, $ext, $i)) {
                     $side = $branch['side'];
                     $inPos = $branch['hold'];
-                    $cur = -self::COST * $branch['lots'];
+                    $cur = -self::cost() * $branch['lots'];
                     $peak = $cur;
                     $activeBranch = $branch;
                     $fvRow = [];

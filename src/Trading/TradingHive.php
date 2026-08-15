@@ -49,7 +49,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0, int $swarmLearn = 0): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0, int $swarmLearn = 0, int $hgt = 0): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {
@@ -204,6 +204,27 @@ final class TradingHive
             $this->pop = $next;
             if ($this->pop === []) {
                 break;
+            }
+            // КРОСС-ОПЫЛЕНИЕ (HGT): 20% пчёл берут случайную ветку у топ-5 по энергии
+            if ($hgt === 1) {
+                $sorted = $this->pop;
+                usort($sorted, fn ($a, $b) => $b['energy'] <=> $a['energy']);
+                $donors = array_slice($sorted, 0, min(5, count($sorted)));
+                foreach ($this->pop as $bi => &$bee) {
+                    if (($bee['alive'] ?? true) && rand(0, 99) < 20) {
+                        $donor = $donors[array_rand($donors)];
+                        $dBr = $donor['genome']['branches'] ?? [];
+                        if ($dBr !== []) {
+                            $branch = $dBr[array_rand($dBr)];
+                            if (! empty($bee['genome']['branches'])) {
+                                $bee['genome']['branches'][array_rand($bee['genome']['branches'])] = $branch;
+                            } else {
+                                $bee['genome']['branches'][] = $branch;
+                            }
+                        }
+                    }
+                }
+                unset($bee);
             }
         }
 

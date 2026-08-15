@@ -632,7 +632,8 @@ class Hive
             if (! $bee->isAlive()) {
                 // LIFETIME-METRIC (07.08): lifespan = tick смерти − tick рождения
                 $life = $this->tick - $bee->getBirthTick();
-                $this->log("DEATH: bee#{$i} energy={$bee->energy()} life={$life}");
+                // IEEE-754: после 1000 тиков E≈1e-13 — смерть логгируем как 0
+                $this->log("DEATH: bee#{$i} energy=" . max(0.0, $bee->energy()) . " life={$life}");
                 $this->lifetimeAccum += $life;
                 $this->lifetimeCount++;
             }

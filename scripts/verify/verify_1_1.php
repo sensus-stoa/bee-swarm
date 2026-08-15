@@ -22,11 +22,11 @@ $energyLog = [];
 
 foreach ($lines as $i => $line) {
     // DEATH: bee#0 energy=0
-    if (preg_match('/DEATH:\s+bee#(\d+)\s+energy=([\d.-]+)/', $line, $m)) {
+    if (preg_match('/DEATH:\s+bee#(\d+)\s+energy=([\d.eE+-]+)/', $line, $m)) {
         $deaths[] = ['bee' => (int)$m[1], 'energy' => (float)$m[2], 'line' => $i];
     }
     // HUNGER_MUTATE: bee#0 E=4.5
-    if (preg_match('/HUNGER_MUTATE:\s+bee#(\d+)\s+E=([\d.]+)/', $line, $m)) {
+    if (preg_match('/HUNGER_MUTATE:\s+bee#(\d+)\s+E=([\d.eE+-]+)/', $line, $m)) {
         $energyLog[] = ['bee' => (int)$m[1], 'energy' => (float)$m[2], 'line' => $i];
     }
 }
@@ -40,9 +40,11 @@ if (count($deaths) === 0) {
 
 $violations = 0;
 foreach ($deaths as $death) {
-    if ($death['energy'] > 0) {
+    // IEEE-754: 1000 тиков × -0.01 оставляет E≈1e-13 вместо 0.
+    // Смерть на суб-нано-энергии — это СМЕРТЬ (epsilon 1e-9!), не violation.
+    if ($death['energy'] > 1e-9) {
         $violations++;
-        echo "VIOLATION: bee#{$death['bee']} died with energy={$death['energy']} (>0)\n";
+        echo "VIOLATION: bee#{$death['bee']} died with energy={$death['energy']} (>1e-9)\n";
     }
 }
 

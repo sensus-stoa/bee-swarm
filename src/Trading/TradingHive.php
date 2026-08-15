@@ -199,6 +199,69 @@ final class TradingHive
         return max(0.2, 1.0 - 0.8 * $overlap);
     }
 
+    /**
+     * ПОРТФЕЛЬНЫЙ ОТБОР: жадный выбор пчёл по независимости сделок.
+     * Лучшая по PnL — первая; следующая берётся, только если её серия
+     * слабо коррелирует (< maxCorr) со всеми уже выбранными.
+     *
+     * @param array<int, list<float>> $series — sparse PnL-серии по дням
+     * @param array<int, float> $pnls — чистый PnL пчёл
+     * @return list<int> — индексы выбранных
+     */
+    public static function selectPortfolio(array $series, array $pnls, int $topN, float $maxCorr): array
+    {
+        $order = array_keys($pnls);
+        usort($order, fn ($a, $b) => $pnls[$b] <=> $pnls[$a]);
+        $selected = [];
+        foreach ($order as $idx) {
+            if (count($selected) >= $topN) {
+                break;
+            }
+            $ok = true;
+            foreach ($selected as $selIdx) {
+                if (self::pearson($series[$idx], $series[$selIdx]) >= $maxCorr) {
+                    $ok = false;
+                    break;
+                }
+            }
+            if ($ok) {
+                $selected[] = $idx;
+            }
+        }
+        return $selected;
+    }
+
+    /** Pearson-корреляция двух рядов (выравнивание по длине) */
+    private static function pearson(array $a, array $b): float
+    {
+        $n = min(count($a), count($b));
+        if ($n < 2) {
+            return 0.0;
+        }
+        $ma = 0.0;
+        $mb = 0.0;
+        for ($i = 0; $i < $n; $i++) {
+            $ma += $a[$i];
+            $mb += $b[$i];
+        }
+        $ma /= $n;
+        $mb /= $n;
+        $cov = 0.0;
+        $va = 0.0;
+        $vb = 0.0;
+        for ($i = 0; $i < $n; $i++) {
+            $da = $a[$i] - $ma;
+            $db = $b[$i] - $mb;
+            $cov += $da * $db;
+            $va += $da * $da;
+            $vb += $db * $db;
+        }
+        if ($va < 1e-12 || $vb < 1e-12) {
+            return 0.0;
+        }
+        return $cov / sqrt($va * $vb);
+    }
+
     /** Распаковка окна: list<float> или ['ret'=>..., 'ext'=>...] */
     private static function unpackWindow(mixed $win): array
     {

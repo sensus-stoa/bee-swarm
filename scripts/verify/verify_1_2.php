@@ -22,7 +22,7 @@ $grammarSpawns = [];
 
 foreach ($lines as $line) {
     // SPAWN: bee#3 from parent E=60.88
-    if (preg_match('/SPAWN:\s+bee#(\d+)\s+from parent/', $line, $m)) {
+    if (preg_match('/SPAWN:\s+bee#(\d+)\s+from (parent|seed)/', $line, $m)) {
         $spawns[] = (int)$m[1];
     }
     // GRAMMAR_SPAWN parent=0 child=3 parent_size=15 child_size=14

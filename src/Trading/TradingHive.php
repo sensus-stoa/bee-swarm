@@ -49,7 +49,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0, int $swarmLearn = 0): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {

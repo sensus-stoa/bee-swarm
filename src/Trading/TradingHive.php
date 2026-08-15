@@ -88,7 +88,12 @@ final class TradingHive
                 $kelly = max(0.5, min(2.0, 1.0 + $bee['conf'] / 5.0)) * $bee['calib'];
                 $kelly = max(0.25, min(3.0, $kelly));
                 $g2 = $bee['genome'];
-                $g2['lots'] = $bee['genome']['lots'] * $kelly;
+                foreach ($g2['branches'] ?? [] as $bi => $_) {
+                    $g2['branches'][$bi]['lots'] = ($g2['branches'][$bi]['lots'] ?? 1) * $kelly;
+                }
+                if (empty($g2['branches'])) {
+                    $g2['lots'] = ($bee['genome']['lots'] ?? 1) * $kelly;
+                }
                 $td = self::tradeDeals($g2, $window, $ext);
                 $pnls = $td['deals'];
                 $t = self::tStat($pnls);
@@ -99,7 +104,13 @@ final class TradingHive
                     array_merge($bee['journal']['feats'], $td['entryFeats']), -300);
                 // ДООБУЧЕНИЕ (каждые 5 поколений) по НАКОПЛЕННОМУ журналу
                 if ($g % 5 === 4) {
-                    self::learnFilter($bee['genome'], $bee['journal']['deals'], $bee['journal']['feats']);
+                    // обучаем ветку, давшую больше всего сделок
+                    $counts = array_count_values($td['entryBranches']);
+                    arsort($counts);
+                    $bestBranch = array_key_first($counts);
+                    if ($bestBranch !== null && isset($bee['genome']['branches'][$bestBranch])) {
+                        self::learnFilterBranch($bee['genome']['branches'][$bestBranch], $pnls, $td['entryFeats']);
+                    }
                 }
                 // уверенность сглаживается (0.7 прежняя + 0.3 свежий t)
                 $bee['conf'] = 0.7 * $bee['conf'] + 0.3 * $t;
@@ -122,7 +133,7 @@ final class TradingHive
                     $freq = 0.5;
                 }
                 $bee['energy'] += $niche * ($t * self::T_SCALE * $freq)
-                    - 0.03 * (count($bee['genome']['conds']) - 1);
+                    - 0.03 * max(0, array_sum(array_map(fn ($br) => count($br['conds'] ?? []), $bee['genome']['branches'] ?? [])) - 1);
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
                 }
@@ -271,11 +282,22 @@ final class TradingHive
         return [$win, []];
     }
 
-    /** @return array{conds:list<array{atom:string,threshold:float,op:string}>,logics:list<string>,side:int,hold:int,lots:int} */
+    /** @return array{branches:list<array>,conf...}: пчела = набор ВЕТОК (каждая со своей стороной) */
     private static function randomGenome(): array
     {
+        $nBranches = rand(1, 2); // стартуем с 1-2 веток — универсальность растёт эволюцией
+        $branches = [];
+        for ($b = 0; $b < $nBranches; $b++) {
+            $branches[] = self::randomBranch();
+        }
+        return ['branches' => $branches];
+    }
+
+    /** Одна ветка: условия + сторона + выход (бык/медведь/флэт-ветка) */
+    private static function randomBranch(): array
+    {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
-        $nConds = rand(1, 2); // стартуем с 1-2 условий — глубина растёт эволюцией
+        $nConds = rand(1, 2);
         $conds = [];
         for ($c = 0; $c < $nConds; $c++) {
             $atom = $allAtoms[array_rand($allAtoms)];
@@ -296,19 +318,36 @@ final class TradingHive
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
-            // ТРЕЙЛИНГ: 0 = выключен (выход по hold), иначе порог отката от пика
             'trail' => rand(0, 9) < 3 ? 0.0 : (0.02 + (rand() / getrandmax()) * 0.08),
         ];
     }
 
-    /** @param array $g геном — мутируют ВСЕ параметры; структура условий растёт/ужимается */
+    /** @param array $g геном — мутирует случайную ВЕТКУ; ветки добавляются/удаляются */
     private static function mutate(array $g, float $p): array
+    {
+        if ($g['branches'] !== []) {
+            $bi = rand(0, count($g['branches']) - 1);
+            $g['branches'][$bi] = self::mutateBranch($g['branches'][$bi], $p);
+        }
+        // ДОБАВИТЬ ветку (универсальность растёт; потолок 4 — parsimony)
+        if (count($g['branches']) < 4 && rand(0, 99) < (int) ($p * 40)) {
+            $g['branches'][] = self::randomBranch();
+        }
+        // УДАЛИТЬ ветку (если больше одной)
+        if (count($g['branches']) > 1 && rand(0, 99) < (int) ($p * 25)) {
+            array_splice($g['branches'], rand(0, count($g['branches']) - 1), 1);
+        }
+        return $g;
+    }
+
+    /** Мутация одной ветки (условия, сторона, выход) */
+    private static function mutateBranch(array $b, float $p): array
     {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
         // мутация случайного условия
-        if ($g['conds'] !== [] && rand(0, 99) < (int) ($p * 100)) {
-            $ci = rand(0, count($g['conds']) - 1);
-            $c = $g['conds'][$ci];
+        if ($b['conds'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($b['conds']) - 1);
+            $c = $b['conds'][$ci];
             $isExt = in_array($c['atom'], self::EXT_ATOMS, true);
             $step = $isExt ? 0.3 : ($c['threshold'] * 0.3 + 0.0005);
             if (rand(0, 9) === 0) {
@@ -321,100 +360,79 @@ final class TradingHive
             if (rand(0, 9) < 3) {
                 $c['atom'] = $allAtoms[array_rand($allAtoms)];
             }
-            $g['conds'][$ci] = $c;
+            $b['conds'][$ci] = $c;
         }
-        // ДОБАВИТЬ условие (структура растёт; потолок 5 — parsimony)
-        if (count($g['conds']) < 5 && rand(0, 99) < (int) ($p * 40)) {
+        if (count($b['conds']) < 5 && rand(0, 99) < (int) ($p * 40)) {
             $atom = $allAtoms[array_rand($allAtoms)];
             $isExt = in_array($atom, self::EXT_ATOMS, true);
-            $g['conds'][] = [
+            $b['conds'][] = [
                 'atom' => $atom,
                 'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
                 'op' => rand(0, 1) === 1 ? '>' : '<',
             ];
-            $g['logics'][] = rand(0, 1) === 1 ? 'AND' : 'OR';
+            $b['logics'][] = rand(0, 1) === 1 ? 'AND' : 'OR';
         }
-        // УДАЛИТЬ условие (если больше одного)
-        if (count($g['conds']) > 1 && rand(0, 99) < (int) ($p * 40)) {
-            $ci = rand(0, count($g['conds']) - 1);
-            array_splice($g['conds'], $ci, 1);
+        if (count($b['conds']) > 1 && rand(0, 99) < (int) ($p * 40)) {
+            $ci = rand(0, count($b['conds']) - 1);
+            array_splice($b['conds'], $ci, 1);
             if ($ci > 0) {
-                array_splice($g['logics'], $ci - 1, 1);
-            } elseif ($g['logics'] !== []) {
-                array_splice($g['logics'], 0, 1);
+                array_splice($b['logics'], $ci - 1, 1);
+            } elseif ($b['logics'] !== []) {
+                array_splice($b['logics'], 0, 1);
             }
         }
-        // мутация логики
-        if ($g['logics'] !== [] && rand(0, 99) < (int) ($p * 100)) {
-            $ci = rand(0, count($g['logics']) - 1);
-            $g['logics'][$ci] = $g['logics'][$ci] === 'AND' ? 'OR' : 'AND';
+        if ($b['logics'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($b['logics']) - 1);
+            $b['logics'][$ci] = $b['logics'][$ci] === 'AND' ? 'OR' : 'AND';
         }
         if (rand(0, 99) < (int) ($p * 100)) {
-            $g['side'] = -$g['side'];
+            $b['side'] = -$b['side'];
         }
         if (rand(0, 99) < (int) ($p * 100)) {
-            $ci = array_search($g['hold'], self::HOLDS, true);
+            $ci = array_search($b['hold'], self::HOLDS, true);
             $ci = $ci === false ? 2 : $ci;
             $ci = max(0, min(count(self::HOLDS) - 1, $ci + (rand(0, 1) === 1 ? 1 : -1)));
-            $g['hold'] = self::HOLDS[$ci];
+            $b['hold'] = self::HOLDS[$ci];
         }
         if (rand(0, 99) < (int) ($p * 100)) {
-            $g['lots'] = $g['lots'] === 1 ? 2 : 1;
+            $b['lots'] = $b['lots'] === 1 ? 2 : 1;
         }
-        // трейлинг: вкл/выкл/шаг порога
         if (rand(0, 99) < (int) ($p * 100)) {
-            if ($g['trail'] <= 0.0) {
-                $g['trail'] = 0.02 + (rand() / getrandmax()) * 0.08;
+            if ($b['trail'] <= 0.0) {
+                $b['trail'] = 0.02 + (rand() / getrandmax()) * 0.08;
             } elseif (rand(0, 9) < 4) {
-                $g['trail'] = 0.0;
+                $b['trail'] = 0.0;
             } else {
-                $g['trail'] = max(0.01, min(0.15, $g['trail'] + (rand(0, 1) === 1 ? 1 : -1) * 0.02));
+                $b['trail'] = max(0.01, min(0.15, $b['trail'] + (rand(0, 1) === 1 ? 1 : -1) * 0.02));
             }
         }
-        return $g;
+        return $b;
     }
 
-    /** Признак атома по ПРОШЛЫМ дням (лаг — без текущего дня) */
-    private static function feat(string $atom, array $ret, int $i): float
-    {
-        return match ($atom) {
-            'r2' => array_sum(array_slice($ret, $i - 2, 2)) / 2,
-            'r5' => array_sum(array_slice($ret, $i - 5, 5)) / 5,
-            'r10' => array_sum(array_slice($ret, $i - 10, 10)) / 10,
-            'r20' => array_sum(array_slice($ret, $i - 20, 20)) / 20,
-            'r40' => array_sum(array_slice($ret, $i - 40, 40)) / 40,
-            'vol' => self::volN($ret, $i, 20),
-            // моментум: быстрый − медленный
-            'mom' => array_sum(array_slice($ret, $i - 5, 5)) / 5
-                   - array_sum(array_slice($ret, $i - 20, 20)) / 20,
-            // z-скор: 20-дневная доходность / волатильность
-            'zs' => (self::volN($ret, $i, 20) > 1e-9)
-                ? (array_sum(array_slice($ret, $i - 20, 20)) / 20) / self::volN($ret, $i, 20)
-                : 0.0,
-            // серия знаков: длина текущей серии одного знака (±)
-            'streak' => self::streak($ret, $i),
-            // позиция в 20-дневном диапазоне (поддержка/сопротивление)
-            'pos20' => self::posInRange($ret, $i, 20),
-            // ПРОБОЙ КАНАЛА (Turtle/Джонс): насколько close выше max прошлых 20д, в сигмах
-            'brk20' => self::breakout20($ret, $i),
-            // РЕЖИМ: z-скор 200-дневного тренда (кумулят / vol·√200)
-            default => self::regime200($ret, $i),
-        };
-    }
-
+    /** Волатильность n дней (std) */
     private static function volN(array $ret, int $i, int $n): float
     {
-        $seg = array_slice($ret, $i - $n, $n);
-        $m = array_sum($seg) / $n;
+        if ($i < $n) {
+            return 0.0;
+        }
+        $m = 0.0;
+        for ($j = $i - $n; $j < $i; $j++) {
+            $m += $ret[$j];
+        }
+        $m /= $n;
         $v = 0.0;
-        foreach ($seg as $x) {
-            $v += ($x - $m) ** 2;
+        for ($j = $i - $n; $j < $i; $j++) {
+            $v += ($ret[$j] - $m) ** 2;
         }
         return sqrt($v / $n);
     }
 
+    /** Серия знаков: длина текущей серии одного знака (со знаком) */
     private static function streak(array $ret, int $i): float
     {
+        if ($i < 2) {
+            return 0.0;
+        }
         $sign = $ret[$i - 1] >= 0 ? 1 : -1;
         $len = 1;
         for ($j = $i - 2; $j > $i - 21 && $j >= 0; $j--) {
@@ -427,12 +445,33 @@ final class TradingHive
         return $sign * $len;
     }
 
+    /** Признак атома по ПРОШЛЫМ дням (лаг — без текущего дня) */
+    private static function feat(string $atom, array $ret, int $i): float
+    {
+        return match ($atom) {
+            'r2' => array_sum(array_slice($ret, $i - 2, 2)) / 2,
+            'r5' => array_sum(array_slice($ret, $i - 5, 5)) / 5,
+            'r10' => array_sum(array_slice($ret, $i - 10, 10)) / 10,
+            'r20' => array_sum(array_slice($ret, $i - 20, 20)) / 20,
+            'r40' => array_sum(array_slice($ret, $i - 40, 40)) / 40,
+            'vol' => self::volN($ret, $i, 20),
+            'mom' => array_sum(array_slice($ret, $i - 5, 5)) / 5 - array_sum(array_slice($ret, $i - 20, 20)) / 20,
+            'zs' => self::volN($ret, $i, 20) > 1e-9 ? (array_sum(array_slice($ret, $i - 20, 20)) / 20) / self::volN($ret, $i, 20) : 0.0,
+            'streak' => self::streak($ret, $i),
+            'pos20' => self::posInRange($ret, $i, 20),
+            'brk20' => self::breakout20($ret, $i),
+            default => self::regime200($ret, $i),
+        };
+    }
+
+    /** Позиция цены в n-дневном диапазоне (0=низ, 1=верх) */
     private static function posInRange(array $ret, int $i, int $n): float
     {
-        $seg = array_slice($ret, $i - $n, $n);
-        $cum = array_sum($seg);
-        $mn = $cum;
-        $mx = $cum;
+        if ($i < $n) {
+            return 0.5;
+        }
+        $mn = 1e18;
+        $mx = -1e18;
         $c = 0.0;
         for ($j = $i - $n; $j < $i; $j++) {
             $c += $ret[$j];
@@ -477,25 +516,26 @@ final class TradingHive
         return $sig > 1e-9 ? $cum / ($sig * sqrt(200)) : 0.0;
     }
 
-    /** Сделки + главный признак на входе (для индивидуального обучения пчелы) */
+    /** Сделки + признаки/дни/ветка на входе (для обучения и ниш) */
     private static function tradeDeals(array $g, array $ret, array $ext = []): array
     {
         $n = count($ret);
         $deals = [];
-        $entryFeats = []; // [сделка][атом] = значение на входе
-        $entryDays = [];  // индекс дня входа (для ниша-штрафа)
+        $entryFeats = [];
+        $entryDays = [];
+        $entryBranches = [];
         $inPos = 0;
         $side = 0;
         $cur = 0.0;
         $peak = 0.0;
+        $activeBranch = null;
         for ($i = 5; $i < $n; $i++) {
             if ($inPos > 0) {
-                $cur += $side * $ret[$i] * $g['lots'];
-                // ТРЕЙЛИНГ-СТОП: закрыть при откате от пика позиции на trail
-                if (($g['trail'] ?? 0.0) > 0.0) {
+                $cur += $side * $ret[$i] * $activeBranch['lots'];
+                if (($activeBranch['trail'] ?? 0.0) > 0.0) {
                     $peak = max($peak, $cur);
-                    if ($cur <= $peak - $g['trail']) {
-                        $cur -= self::COST * $g['lots'];
+                    if ($cur <= $peak - $activeBranch['trail']) {
+                        $cur -= self::COST * $activeBranch['lots'];
                         $deals[] = $cur;
                         $cur = 0.0;
                         $inPos = 0;
@@ -505,62 +545,83 @@ final class TradingHive
                 }
                 $inPos--;
                 if ($inPos === 0) {
-                    $cur -= self::COST * $g['lots'];
+                    $cur -= self::COST * $activeBranch['lots'];
                     $deals[] = $cur;
                     $cur = 0.0;
                 }
                 continue;
             }
-            // свернуть цепочку условий
-            $sig = null;
-            foreach ($g['conds'] as $ci => $cond) {
-                $v = in_array($cond['atom'], self::EXT_ATOMS, true)
-                    ? ($ext[$cond['atom']][$i] ?? null)
-                    : self::feat($cond['atom'], $ret, $i);
-                if ($v === null) {
-                    // нет данных по внешнему атому: условие «неизвестно»
-                    if ($sig === null) {
-                        $sig = false;
+            // перебор ВЕТОК: первая с выполненными условиями даёт вход
+            $branches = $g['branches'] ?? [self::legacyBranch($g)];
+            foreach ($branches as $bi => $branch) {
+                if (self::branchSignal($branch, $ret, $ext, $i)) {
+                    $side = $branch['side'];
+                    $inPos = $branch['hold'];
+                    $cur = -self::COST * $branch['lots'];
+                    $peak = $cur;
+                    $activeBranch = $branch;
+                    $fvRow = [];
+                    foreach (self::ATOMS as $an) {
+                        $fvRow[$an] = self::feat($an, $ret, $i);
                     }
-                    if ($ci === 0) {
-                        continue;
-                    }
-                    $lg = $g['logics'][$ci - 1];
-                    $sig = $lg === 'AND' ? false : $sig; // AND×неизвестно=false; OR — без изменений
-                    continue;
+                    $entryFeats[] = $fvRow;
+                    $entryDays[] = $i;
+                    $entryBranches[] = $bi;
+                    break;
                 }
-                $csig = ($cond['op'] === '>' && $v >= $cond['threshold'])
-                    || ($cond['op'] === '<' && $v <= $cond['threshold']);
-                if ($sig === null) {
-                    $sig = $csig;
-                    continue;
-                }
-                $lg = $g['logics'][$ci - 1];
-                $sig = $lg === 'AND' ? ($sig && $csig) : ($sig || $csig);
-            }
-            if ($sig === true) {
-                $side = $g['side'];
-                $inPos = $g['hold'];
-                $cur = -self::COST * $g['lots'];
-                $peak = $cur;
-                // ВСЕ внутренние атомы на входе (для дообучения-фильтра)
-                $fvRow = [];
-                foreach (self::ATOMS as $an) {
-                    $fvRow[$an] = self::feat($an, $ret, $i);
-                }
-                $entryFeats[] = $fvRow;
-                $entryDays[] = $i;
             }
         }
-        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays];
+        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays, 'entryBranches' => $entryBranches];
+    }
+
+    /** Условия ветки выполнены? */
+    private static function branchSignal(array $branch, array $ret, array $ext, int $i): bool
+    {
+        $sig = null;
+        foreach ($branch['conds'] as $ci => $cond) {
+            $v = in_array($cond['atom'], self::EXT_ATOMS, true)
+                ? ($ext[$cond['atom']][$i] ?? null)
+                : self::feat($cond['atom'], $ret, $i);
+            if ($v === null) {
+                if ($ci === 0) {
+                    $sig = false;
+                    continue;
+                }
+                $lg = $branch['logics'][$ci - 1];
+                $sig = $lg === 'AND' ? false : $sig;
+                continue;
+            }
+            $csig = ($cond['op'] === '>' && $v >= $cond['threshold'])
+                || ($cond['op'] === '<' && $v <= $cond['threshold']);
+            if ($sig === null) {
+                $sig = $csig;
+                continue;
+            }
+            $lg = $branch['logics'][$ci - 1];
+            $sig = $lg === 'AND' ? ($sig && $csig) : ($sig || $csig);
+        }
+        return $sig === true;
+    }
+
+    /** Совместимость: старый геном (conds+side) → одна ветка */
+    private static function legacyBranch(array $g): array
+    {
+        return [
+            'conds' => $g['conds'] ?? [],
+            'logics' => $g['logics'] ?? [],
+            'side' => $g['side'] ?? 1,
+            'hold' => $g['hold'] ?? 20,
+            'lots' => $g['lots'] ?? 1,
+            'trail' => $g['trail'] ?? 0.0,
+        ];
     }
 
     /** Дообучение: добавить атом-фильтр, отделяющий успешные входы от неудачных.
      *  Успешные параметры НЕ меняются — только добавляется AND-условие,
      *  отсекающее неудачные зоны (не входим, если фильтр не пропускает). */
-    private static function learnFilter(array &$g, array $pnls, array $feats): void
+    private static function learnFilterBranch(array &$branch, array $pnls, array $feats): void
     {
-        if (count($pnls) < 6 || count($g['conds']) >= 5) {
+        if (count($pnls) < 6 || count($branch['conds']) >= 5) {
             return;
         }
         $succ = 0;
@@ -628,8 +689,8 @@ final class TradingHive
         }
         // добавляем фильтр только при хорошем разделении (защита от переобучения)
         if ($bestAtom !== null && $bestAcc >= 0.65) {
-            $g['conds'][] = ['atom' => $bestAtom, 'op' => $bestOp, 'threshold' => $bestThr];
-            $g['logics'][] = 'AND';
+            $branch['conds'][] = ['atom' => $bestAtom, 'op' => $bestOp, 'threshold' => $bestThr];
+            $branch['logics'][] = 'AND';
         }
     }
 

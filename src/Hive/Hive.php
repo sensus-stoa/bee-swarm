@@ -667,6 +667,12 @@ class Hive
 
         if ($spawned > 0) {
             $this->log("SPAWN: +{$spawned} pop=" . count($this->bees));
+            // VERIFY_1_3 (14.08): логируем грамматики новорождённых —
+            // изоляция грамматик проверяема (verify_1_3 без этого SKIP!).
+            $newBees = array_slice($this->bees, max(0, count($this->bees) - $spawned));
+            foreach ($newBees as $bee) {
+                $this->log('GRAMMAR_SPAWN child=' . json_encode($bee->grammar()));
+            }
             $diversity = SpawnManager::computeDiversity($this->bees);
             $avgG = SpawnManager::avgGrammarSize($this->bees);
             $uniqueCount = count(array_unique(array_map(

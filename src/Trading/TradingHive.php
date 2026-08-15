@@ -42,7 +42,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = []): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = []): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {
@@ -73,6 +73,12 @@ final class TradingHive
         for ($g = 0; $g < $generations; $g++) {
             $win = $windows[$g % count($windows)];
             [$window, $ext] = self::unpackWindow($win);
+            // НИШИ: дни входов чемпионов на этом окне (вычисляем раз за поколение)
+            $champDays = [];
+            foreach ($champions as $cg) {
+                $cd = self::tradeDeals($cg, $window, $ext);
+                $champDays[] = $cd['entryDays'];
+            }
             foreach ($this->pop as &$bee) {
                 if (! $bee['alive']) {
                     continue;
@@ -102,6 +108,12 @@ final class TradingHive
                 $stakeRight = ($bee['conf'] > 0.5 && $t > 0) || ($bee['conf'] < -0.5 && $t < 0)
                     || abs($bee['conf']) <= 0.5;
                 $bee['calib'] = max(0.25, min(1.75, $bee['calib'] + ($stakeRight ? 0.05 : -0.1)));
+                // НИША-ШТРАФ: занята ли её ниша чемпионом (совпадение входов)
+                $maxOv = 0.0;
+                foreach ($champDays as $cd) {
+                    $maxOv = max($maxOv, self::nicheOverlap($td['entryDays'], $cd));
+                }
+                $niche = self::nichePenalty($maxOv);
                 $nDeals = count($pnls);
                 $freq = 1.0;
                 if ($nDeals >= 1 && $nDeals <= 6) {
@@ -109,7 +121,7 @@ final class TradingHive
                 } elseif ($nDeals > 15) {
                     $freq = 0.5;
                 }
-                $bee['energy'] += $t * self::T_SCALE * $freq
+                $bee['energy'] += $niche * ($t * self::T_SCALE * $freq)
                     - 0.03 * (count($bee['genome']['conds']) - 1);
                 if ($bee['energy'] <= 0.0) {
                     $bee['alive'] = false;
@@ -163,6 +175,28 @@ final class TradingHive
             }
         }
         return ['survivors' => $out, 'total_energy' => $total];
+    }
+
+    /** Доля входов A, совпавших со входами B (ниша-штраф) */
+    public static function nicheOverlap(array $a, array $b): float
+    {
+        if ($a === []) {
+            return 0.0;
+        }
+        $bSet = array_flip($b);
+        $hit = 0;
+        foreach ($a as $d) {
+            if (isset($bSet[$d])) {
+                $hit++;
+            }
+        }
+        return $hit / count($a);
+    }
+
+    /** Фактор энергии за занятость ниши: 1.0 (свободна) → 0.2 (занята) */
+    public static function nichePenalty(float $overlap): float
+    {
+        return max(0.2, 1.0 - 0.8 * $overlap);
     }
 
     /** Распаковка окна: list<float> или ['ret'=>..., 'ext'=>...] */
@@ -386,6 +420,7 @@ final class TradingHive
         $n = count($ret);
         $deals = [];
         $entryFeats = []; // [сделка][атом] = значение на входе
+        $entryDays = [];  // индекс дня входа (для ниша-штрафа)
         $inPos = 0;
         $side = 0;
         $cur = 0.0;
@@ -451,9 +486,10 @@ final class TradingHive
                     $fvRow[$an] = self::feat($an, $ret, $i);
                 }
                 $entryFeats[] = $fvRow;
+                $entryDays[] = $i;
             }
         }
-        return ['deals' => $deals, 'entryFeats' => $entryFeats];
+        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays];
     }
 
     /** Дообучение: добавить атом-фильтр, отделяющий успешные входы от неудачных.

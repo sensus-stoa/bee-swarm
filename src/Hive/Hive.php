@@ -641,7 +641,7 @@ class Hive
 
         // D17: SpawnManager handles spawning + generation tracking
         $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
-        $spawned = $this->spawnManager->trySpawn($this->bees, $allOps);
+        [$spawned, $spawnDetails] = $this->spawnManager->trySpawn($this->bees, $allOps);
 
         // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
         $gapSpawned = $this->spawnManager->tryGapSpawn(
@@ -668,11 +668,21 @@ class Hive
 
         if ($spawned > 0) {
             $this->log("SPAWN: +{$spawned} pop=" . count($this->bees));
-            // VERIFY_1_3 (14.08): логируем грамматики новорождённых —
-            // изоляция грамматик проверяема (verify_1_3 без этого SKIP!).
-            $newBees = array_slice($this->bees, max(0, count($this->bees) - $spawned));
-            foreach ($newBees as $bee) {
-                $this->log('GRAMMAR_SPAWN child=' . json_encode($bee->grammar()));
+            // VERIFY_1_2/1_3 (15.08): SPAWN-детали в формате verify-скриптов:
+            // SPAWN: bee#N from parent M + GRAMMAR_SPAWN parent=N child=M
+            // parent_size=X child_size=Y (изоляция грамматик проверяема!).
+            foreach ($spawnDetails as $d) {
+                $childIdx = $d['child_key'];
+                if ($d['parent'] === null) {
+                    $this->log("SPAWN: bee#{$childIdx} from seed");
+                    $this->log('GRAMMAR_SPAWN parent=seed child=' . $childIdx
+                        . ' parent_size=0 child_size=' . count($d['child_grammar']));
+                } else {
+                    $this->log("SPAWN: bee#{$childIdx} from parent {$d['parent']}");
+                    $this->log('GRAMMAR_SPAWN parent=' . $d['parent'] . ' child=' . $childIdx
+                        . ' parent_size=' . count($d['parent_grammar'])
+                        . ' child_size=' . count($d['child_grammar']));
+                }
             }
             $diversity = SpawnManager::computeDiversity($this->bees);
             $avgG = SpawnManager::avgGrammarSize($this->bees);

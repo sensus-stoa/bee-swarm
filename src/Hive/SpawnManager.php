@@ -120,9 +120,14 @@ class SpawnManager
      * @param string[] $allOps доступные операции грамматики
      * @return int количество новых спавнов
      */
-    public function trySpawn(array &$bees, array $allOps, int $tick = 0): int
+    /**
+     * @return array{0: int, 1: array<int, array{parent:int|null,
+     *   parent_grammar:array<string>, child_grammar:array<string>}>}
+     */
+    public function trySpawn(array &$bees, array $allOps, int $tick = 0): array
     {
         $spawned = 0;
+        $details = [];
         $aliveCount = 0;
         foreach ($bees as $bee) {
             if ($bee->isAlive()) {
@@ -139,11 +144,20 @@ class SpawnManager
             // не пуст (bootstrap до trySpawn), пустой = полная смерть.
             $seedOps = ['+', '×', 'min'];
             foreach ($seedOps as $op) {
+                // CONCERNS deleg_7319d247: фактический ключ ДО append
+                // (устойчиво к дырам/батчам!), не формула count-spawned+i
+                $childKey = count($bees);
                 $bees[] = new \BeeSwarm\Hive\Bee([$op]);
                 $spawned++;
                 $this->spawnCount++;
+                $details[] = [
+                    'parent' => null,
+                    'parent_grammar' => [],
+                    'child_grammar' => [$op],
+                    'child_key' => $childKey,
+                ];
             }
-            return $spawned;
+            return [$spawned, $details];
         }
 
         foreach ($bees as $idx => $bee) {
@@ -152,9 +166,16 @@ class SpawnManager
             }
             $child = $bee->spawn($allOps);
             if ($child !== null) {
+                $childKey = count($bees);
                 $bees[] = $child;
                 $this->spawnCount++;
                 $spawned++;
+                $details[] = [
+                    'parent' => $idx,
+                    'parent_grammar' => $bee->grammar(),
+                    'child_grammar' => $child->grammar(),
+                    'child_key' => $childKey,
+                ];
             }
         }
 
@@ -193,7 +214,7 @@ class SpawnManager
             }
         }
 
-        return $spawned;
+        return [$spawned, $details];
     }
 
     public function getGeneration(): int

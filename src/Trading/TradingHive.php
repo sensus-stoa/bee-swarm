@@ -103,6 +103,14 @@ final class TradingHive
                 $td = self::tradeDeals($g2, $window, $ext);
                 $pnls = $td['deals'];
                 $t = self::tStat($pnls);
+                // РЕАЛЬНЫЙ МАРЖИН-КОЛЛ: каждая ликвидация = потеря залога (1.0 энергии)
+                if (($td['liquidations'] ?? 0) > 0) {
+                    $bee['energy'] -= 1.0 * $td['liquidations'];
+                    if ($bee['energy'] <= 0.0) {
+                        $bee['alive'] = false;
+                        continue;
+                    }
+                }
                 // ЖУРНАЛ копится через поколения (ограничим 300 последних сделок)
                 $bee['journal']['deals'] = array_slice(
                     array_merge($bee['journal']['deals'], $pnls), -300);
@@ -329,6 +337,7 @@ final class TradingHive
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
+            'lev' => [1, 2, 3, 5, 10][array_rand([1, 2, 3, 5, 10])], // ПЛЕЧО: рынок отберёт умеренных
             'trail' => rand(0, 9) < 3 ? 0.0 : (0.02 + (rand() / getrandmax()) * 0.08),
         ];
     }
@@ -407,6 +416,13 @@ final class TradingHive
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             $b['lots'] = $b['lots'] === 1 ? 2 : 1;
+        }
+        if (rand(0, 99) < (int) ($p * 100)) {
+            $levs = [1, 2, 3, 5, 10];
+            $ci = array_search($b['lev'] ?? 1, $levs, true);
+            $ci = $ci === false ? 0 : $ci;
+            $ci = max(0, min(count($levs) - 1, $ci + (rand(0, 1) === 1 ? 1 : -1)));
+            $b['lev'] = $levs[$ci];
         }
         if (rand(0, 99) < (int) ($p * 100)) {
             if ($b['trail'] <= 0.0) {
@@ -542,7 +558,16 @@ final class TradingHive
         $activeBranch = null;
         for ($i = 5; $i < $n; $i++) {
             if ($inPos > 0) {
-                $cur += $side * $ret[$i] * $activeBranch['lots'];
+                $cur += $side * $ret[$i] * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
+                // МАРЖИН-КОЛЛ: потерян ВЕСЬ залог (−1.0) → ликвидация
+                if ($cur <= -1.0) {
+                    $deals[] = -1.0;
+                    $liquidations++;
+                    $cur = 0.0;
+                    $inPos = 0;
+                    $side = 0;
+                    continue;
+                }
                 if (($activeBranch['trail'] ?? 0.0) > 0.0) {
                     $peak = max($peak, $cur);
                     if ($cur <= $peak - $activeBranch['trail']) {
@@ -582,7 +607,7 @@ final class TradingHive
                 }
             }
         }
-        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays, 'entryBranches' => $entryBranches];
+        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays, 'entryBranches' => $entryBranches, 'liquidations' => $liquidations];
     }
 
     /** Условия ветки выполнены? */
@@ -623,6 +648,7 @@ final class TradingHive
             'side' => $g['side'] ?? 1,
             'hold' => $g['hold'] ?? 20,
             'lots' => $g['lots'] ?? 1,
+            'lev' => $g['lev'] ?? 1,
             'trail' => $g['trail'] ?? 0.0,
         ];
     }

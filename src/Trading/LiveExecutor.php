@@ -73,6 +73,48 @@ class LiveExecutor
         return $positionSide > 0 ? 4 : 2;
     }
 
+    /**
+     * СВЕРКА state с биржей (РЕГРЕССИЯ 18.08: reconciliation пересоздавал
+     * close_after — части с hold=3 терялись). Чистая функция:
+     * - биржа пуста → запись закрыта (удалить, вернуть 'closed')
+     * - биржа не пуста, записи нет → сирота (усыновить, close_after=now+3д)
+     * - иначе запись сохраняется КАК ЕСТЬ (close_after НЕ трогаем!)
+     */
+    public static function reconcileState(array $state, array $exchangeAssets, int $now): array
+    {
+        $closed = [];
+        $state['open'] = $state['open'] ?? [];
+        foreach ($state['open'] as $key => $pos) {
+            $asset = str_contains((string) $key, '_')
+                ? substr((string) $key, strpos((string) $key, '_') + 1)
+                : (string) $key;
+            if (! isset($exchangeAssets[$asset]) || $exchangeAssets[$asset] <= 0.0001) {
+                unset($state['open'][$key]);
+                $closed[] = $asset;
+            }
+        }
+        foreach ($exchangeAssets as $asset => $vol) {
+            $found = false;
+            foreach (($state['open'] ?? []) as $key => $pos) {
+                $a = str_contains((string) $key, '_')
+                    ? substr((string) $key, strpos((string) $key, '_') + 1)
+                    : (string) $key;
+                if ($a === $asset) {
+                    $found = true;
+                    break;
+                }
+            }
+            if (! $found) {
+                $sym = str_replace('USDT', '_USDT', $asset);
+                $state['open']['orphan_' . $asset] = [
+                    'symbol' => $sym, 'side' => -1, 'vol' => $vol, 'entry' => 0.0,
+                    'peak' => 0.0, 'trail' => 0.0, 'close_after' => $now + 3 * 86400,
+                ];
+            }
+        }
+        return [$state, $closed];
+    }
+
     /** трейлинг-параметры: closeSide (2=шорт-закрытие, 4=лонг-закрытие) + backValue в долях */
     public static function trailParams(array $branch): ?array
     {

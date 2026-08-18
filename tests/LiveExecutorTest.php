@@ -125,4 +125,35 @@ class LiveExecutorTest extends TestCase
         $this->assertSame(4, LiveExecutor::closeSide(1), 'лонг закрывается side=4 (close long)');
         $this->assertSame(2, LiveExecutor::closeSide(-1), 'шорт закрывается side=2 (close short)');
     }
+
+    /** РЕГРЕССИЯ 18.08: reconciliation НЕ пересоздаёт close_after (hold=3 терялся) */
+    public function testReconcileKeepsCloseAfter(): void
+    {
+        $state = ['open' => [
+            's0_DOTUSDT' => ['symbol' => 'DOT_USDT', 'side' => -1, 'vol' => 6, 'entry' => 1.0, 'peak' => 1.0, 'trail' => 0.09, 'close_after' => 100],
+            's1_DOTUSDT' => ['symbol' => 'DOT_USDT', 'side' => -1, 'vol' => 2, 'entry' => 1.0, 'peak' => 1.0, 'trail' => 0.0, 'close_after' => 200],
+        ]];
+        [$newState, $closed] = LiveExecutor::reconcileState($state, ['DOTUSDT' => 8.0], 999);
+        $this->assertSame([], $closed, 'позиция на бирже — записи живы');
+        $this->assertSame(100, $newState['open']['s0_DOTUSDT']['close_after'], 'close_after НЕ пересоздан!');
+        $this->assertSame(200, $newState['open']['s1_DOTUSDT']['close_after'], 'close_after НЕ пересоздан!');
+    }
+
+    /** биржа пуста → записи закрыты */
+    public function testReconcileClosesWhenExchangeEmpty(): void
+    {
+        $state = ['open' => ['s0_DOTUSDT' => ['symbol' => 'DOT_USDT', 'close_after' => 100]]];
+        [$newState, $closed] = LiveExecutor::reconcileState($state, [], 999);
+        $this->assertSame(['DOTUSDT'], $closed);
+        $this->assertSame([], $newState['open']);
+    }
+
+    /** биржа не пуста, state пуст → сирота усыновлена */
+    public function testReconcileAdoptsOrphan(): void
+    {
+        [$newState, $closed] = LiveExecutor::reconcileState(['open' => []], ['ADAUSDT' => 5.0], 1000);
+        $this->assertSame([], $closed);
+        $this->assertArrayHasKey('orphan_ADAUSDT', $newState['open']);
+        $this->assertSame(1000 + 3 * 86400, $newState['open']['orphan_ADAUSDT']['close_after']);
+    }
 }

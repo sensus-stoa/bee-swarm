@@ -63,6 +63,16 @@ class LiveExecutor
         return max($r, $minVol);
     }
 
+    /**
+     * MEXC side-код закрытия позиции:
+     * 1=open long, 2=close SHORT, 3=open short, 4=close LONG.
+     * БАГ 18.08: путали (2/4 наоборот) — позиция не закрывалась (2009).
+     */
+    public static function closeSide(int $positionSide): int
+    {
+        return $positionSide > 0 ? 4 : 2;
+    }
+
     /** трейлинг-параметры: closeSide (2=шорт-закрытие, 4=лонг-закрытие) + backValue в долях */
     public static function trailParams(array $branch): ?array
     {

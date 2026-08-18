@@ -118,4 +118,11 @@ class LiveExecutorTest extends TestCase
         $pos = ['side' => -1, 'entry' => 1.0, 'peak' => 1.0, 'trail' => 0.0, 'close_after' => time() + 99999];
         $this->assertNull(LiveExecutor::exitDecision($pos, 0.99, time()));
     }
+
+    /** РЕГРЕССИЯ 18.08: side-коды закрытия (2/4 были перепутаны → 2009) */
+    public function testCloseSide(): void
+    {
+        $this->assertSame(4, LiveExecutor::closeSide(1), 'лонг закрывается side=4 (close long)');
+        $this->assertSame(2, LiveExecutor::closeSide(-1), 'шорт закрывается side=2 (close short)');
+    }
 }

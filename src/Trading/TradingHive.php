@@ -25,8 +25,8 @@ final class TradingHive
         return self::$costOverride >= 0 ? self::$costOverride : self::COST;
     }
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
-    public const REPRO_ENERGY = 2.0; // порог размножения (накопили вдвое)
-    public const POP_CAP = 20000;     // потолок популяции (ёмкость среды)
+    public const REPRO_ENERGY = 3.0; // порог размножения (накопили вдвое)
+    public const POP_CAP = 12000;     // потолок популяции (жёсткий отбор)
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20', 'brk20', 'regime'];
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',
@@ -49,7 +49,7 @@ final class TradingHive
      * @param list<mixed> $windows — окна: list<float> ИЛИ ['ret'=>list<float>, 'ext'=>array<string,list<?float>>]
      * @return array{survivors: list<array{genome: array, energy: float, oos_pnl: float, clean_pnl: float}>, total_energy: float}
      */
-    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0, int $swarmLearn = 0, int $hgt = 0): array
+    public function evolve(array $windows, int $generations, array $seedGenomes = [], array $champions = [], int $minDealsPerWindow = 0, int $binary = 0, int $swarmLearn = 0, int $hgt = 0, ?callable $onGen = null): array
     {
         $this->pop = [];
         if ($seedGenomes !== []) {
@@ -226,6 +226,15 @@ final class TradingHive
                 }
                 unset($bee);
             }
+            // CALLBACK: прогресс поколения
+            if ($onGen !== null) {
+                $alive = count(array_filter($this->pop, fn($b) => $b['alive']));
+                $totalEnergy = 0;
+                foreach ($this->pop as $b) {
+                    if ($b['alive']) $totalEnergy += $b['energy'];
+                }
+                $onGen($g, $generations, $alive, count($this->pop), $totalEnergy);
+            }
         }
 
         $out = [];
@@ -377,6 +386,7 @@ final class TradingHive
     private static function randomBranch(): array
     {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
+        // === ENTRY conditions ===
         $nConds = rand(1, 2);
         $conds = [];
         for ($c = 0; $c < $nConds; $c++) {
@@ -392,9 +402,27 @@ final class TradingHive
         for ($c = 1; $c < $nConds; $c++) {
             $logics[] = rand(0, 1) === 1 ? 'AND' : 'OR';
         }
+        // === EXIT conditions (отдельные от entry!) ===
+        $nExitConds = rand(1, 2);
+        $exitConds = [];
+        for ($c = 0; $c < $nExitConds; $c++) {
+            $atom = $allAtoms[array_rand($allAtoms)];
+            $isExt = in_array($atom, self::EXT_ATOMS, true);
+            $exitConds[] = [
+                'atom' => $atom,
+                'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
+                'op' => rand(0, 1) === 1 ? '>' : '<',
+            ];
+        }
+        $exitLogics = [];
+        for ($c = 1; $c < $nExitConds; $c++) {
+            $exitLogics[] = rand(0, 1) === 1 ? 'AND' : 'OR';
+        }
         return [
             'conds' => $conds,
             'logics' => $logics,
+            'exit_conds' => $exitConds,
+            'exit_logics' => $exitLogics,
             'side' => rand(0, 1) === 1 ? 1 : -1,
             'hold' => self::HOLDS[array_rand(self::HOLDS)],
             'lots' => [1, 2][array_rand([1, 2])],
@@ -493,6 +521,55 @@ final class TradingHive
             } else {
                 $b['trail'] = max(0.01, min(0.15, $b['trail'] + (rand(0, 1) === 1 ? 1 : -1) * 0.02));
             }
+        }
+        // === EXIT conditions mutation (независимо от entry!) ===
+        if (!isset($b['exit_conds'])) {
+            $b['exit_conds'] = [];
+            $b['exit_logics'] = [];
+        }
+        // мутация случайного exit-условия
+        if ($b['exit_conds'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($b['exit_conds']) - 1);
+            $c = $b['exit_conds'][$ci];
+            $isExt = in_array($c['atom'], self::EXT_ATOMS, true);
+            $step = $isExt ? 0.3 : ($c['threshold'] * 0.3 + 0.0005);
+            if (rand(0, 9) === 0) {
+                $step = $isExt ? 1.0 : ($c['threshold'] * 1.5 + 0.005);
+            }
+            $c['threshold'] = max($isExt ? -4.0 : 0.0, $c['threshold'] + (rand(0, 1) === 1 ? 1 : -1) * $step);
+            if (rand(0, 9) < 4) {
+                $c['op'] = $c['op'] === '>' ? '<' : '>';
+            }
+            if (rand(0, 9) < 3) {
+                $c['atom'] = $allAtoms[array_rand($allAtoms)];
+            }
+            $b['exit_conds'][$ci] = $c;
+        }
+        // добавить exit-условие
+        if (count($b['exit_conds']) < 3 && rand(0, 99) < (int) ($p * 40)) {
+            $atom = $allAtoms[array_rand($allAtoms)];
+            $isExt = in_array($atom, self::EXT_ATOMS, true);
+            $b['exit_conds'][] = [
+                'atom' => $atom,
+                'threshold' => $isExt ? (rand() / getrandmax() * 4 - 2) : (rand() / getrandmax()) * 0.06,
+                'op' => rand(0, 1) === 1 ? '>' : '<',
+            ];
+            $b['exit_logics'][] = rand(0, 1) === 1 ? 'AND' : 'OR';
+        }
+        // удалить exit-условие
+        if (count($b['exit_conds']) > 1 && rand(0, 99) < (int) ($p * 40)) {
+            $ci = rand(0, count($b['exit_conds']) - 1);
+            array_splice($b['exit_conds'], $ci, 1);
+            if ($ci > 0) {
+                array_splice($b['exit_logics'], $ci - 1, 1);
+            } elseif ($b['exit_logics'] !== []) {
+                array_splice($b['exit_logics'], 0, 1);
+            }
+        }
+        // мутация exit-логики
+        if ($b['exit_logics'] !== [] && rand(0, 99) < (int) ($p * 100)) {
+            $ci = rand(0, count($b['exit_logics']) - 1);
+            $b['exit_logics'][$ci] = $b['exit_logics'][$ci] === 'AND' ? 'OR' : 'AND';
         }
         return $b;
     }
@@ -669,6 +746,15 @@ final class TradingHive
                         continue;
                     }
                 }
+                // === EXIT CONDITIONS: проверяем exit_conds на каждой свече ===
+                if (!empty($activeBranch['exit_conds'] ?? []) && self::branchSignal($activeBranch, $ret, $ext, $i, 'exit')) {
+                    $cur -= self::cost() * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
+                    $deals[] = $cur;
+                    $cur = 0.0;
+                    $inPos = 0;
+                    $side = 0;
+                    continue;
+                }
                 $inPos--;
                 if ($inPos === 0) {
                     $cur -= self::cost() * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
@@ -701,10 +787,12 @@ final class TradingHive
     }
 
     /** Условия ветки выполнены? */
-    private static function branchSignal(array $branch, array $ret, array $ext, int $i): bool
+    private static function branchSignal(array $branch, array $ret, array $ext, int $i, string $type = 'entry'): bool
     {
+        $conds = $type === 'exit' ? ($branch['exit_conds'] ?? []) : $branch['conds'];
+        $logics = $type === 'exit' ? ($branch['exit_logics'] ?? []) : $branch['logics'];
         $sig = null;
-        foreach ($branch['conds'] as $ci => $cond) {
+        foreach ($conds as $ci => $cond) {
             $v = in_array($cond['atom'], self::EXT_ATOMS, true)
                 ? ($ext[$cond['atom']][$i] ?? null)
                 : self::feat($cond['atom'], $ret, $i);
@@ -713,7 +801,7 @@ final class TradingHive
                     $sig = false;
                     continue;
                 }
-                $lg = $branch['logics'][$ci - 1];
+                $lg = $logics[$ci - 1];
                 $sig = $lg === 'AND' ? false : $sig;
                 continue;
             }
@@ -723,7 +811,7 @@ final class TradingHive
                 $sig = $csig;
                 continue;
             }
-            $lg = $branch['logics'][$ci - 1];
+            $lg = $logics[$ci - 1];
             $sig = $lg === 'AND' ? ($sig && $csig) : ($sig || $csig);
         }
         return $sig === true;
@@ -735,6 +823,8 @@ final class TradingHive
         return [
             'conds' => $g['conds'] ?? [],
             'logics' => $g['logics'] ?? [],
+            'exit_conds' => $g['exit_conds'] ?? [],
+            'exit_logics' => $g['exit_logics'] ?? [],
             'side' => $g['side'] ?? 1,
             'hold' => $g['hold'] ?? 20,
             'lots' => $g['lots'] ?? 1,

@@ -1705,3 +1705,97 @@ Bee на MPG дал ПРАВИЛЬНЫЙ ответ относительно с�
 - ⬜ Свести финальную таблицу
 
 
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-028 волна 2 (25.08.2026) — ДО кода!
+
+**Контекст:** волна 1 (depth=3) показала: heat 0/20 (PySR 0.9!), dot 0/20
+(PySR 0.4), kinetic 0/20 (PySR 0.2). Причина (диагностирована):
+- heat P=κ(T2−T1)A/d = ((L1×A)/d) — нужен (L2 op фича) = L3L1
+- dot x1y1+x2y2+x3y3 — нужен (L2 op L1) = L3L2 (сумма L2+L1)
+- kinetic 0.5·m·(v²+u²+w²) — (L2 op L1) + константа 0.5
+
+**Гипотезы (предрегистрированы ДО реализации):**
+H1: L3L1 = (L2 op фича) при depth>=4 → heat найден (CV_H≤0.10)
+H2: L3L2 = (L2 op L1-форма) при depth>=5 → dot/kinetic найден (CV_H≤0.10)
+H3: производительность: seed ≤ 30s на 5-фичевых задачах (cap форм!)
+
+**Правила волны 2:**
+- Те же frozen splits (seed 1..20), та же грамматика (+ - * / sq sqrt),
+  тот же бюджет 30s, те же метрики (CV_H, success rate)
+- Первая волна НЕ переписывается (depth=3 = отдельная строка в таблице)
+- Сравнение: Bee(depth3), Bee(depth4/5), PySR(maxdepth5) — три колонки
+- Если L3L2 взрывает время (>30s/seed) — cap 30×30×5, зафиксировать
+
+**Ожидаемый результат:**
+- heat: Bee волна 2 ≥ 0.8 success (H1)
+- dot/kinetic: Bee волна 2 ≥ 0.5 success (H2, частично — константа 0.5!)
+- gravity: вероятно НЕ найдена (тройная сумма + G-константа — глубже)
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-029 (25.08.2026) — КУЛЬТУРНЫЙ БЕНЧМАРК (ДО кода!)
+
+**Контекст:** EXP-028 волна 1 (depth 3): heat 0/20, dot 0/20, kinetic 0/20
+(PySR: 0.9/0.4/0.2). Диагноз: heat = 4 уровня умножений — depth 3 не
+выражает; полный перебор L4L1 на PHP = часы (281M eval, проверено).
+PySR справляется (C/Julia) — аппаратная граница, НЕ концептуальная.
+
+**НАШ уникальный механизм: культурный перенос (B-атомы, ЭКСП-022t: Fisher p<0.001!).
+У PySR его НЕТ (каждая задача с нуля).**
+
+**Гипотезы (предрегистрированы ДО реализации):**
+H1: B-атом (x0−x1) из фазы A → heat найден на depth 3+ (L3L1) за ≤30s/seed
+H2: B-атом (x0×x1) из фазы A → dot найден на depth 3+ (L3L2) за ≤30s/seed
+H3: kinetic (0.5·m·Σv²) — константа 0.5 невыразима → частично (или отказ)
+
+**Механика (честная имитация культуры, не хардкод!):**
+- Фаза A: простая задача y = x0−x1 (и y = x0×x1) → Search::find находит
+  закон → записывается в grammar_ops (source='birth', definition) —
+  РОВНО как улей записывает рождённые атомы (ЭКСП-015/022)!
+- Фаза B: 12 задач × 20 seeds — Search::find ЧИТАЕТ bornBinary из БД
+  (BINARY-B-CAP=3, механизм уже в проде!) — культурный контекст.
+- Та же грамматика (restrictTo), те же splits, бюджет 30s.
+
+**Сравнение (три колонки):**
+Bee(depth3, без культуры) | Bee(depth3, с культурой) | PySR(maxdepth5)
+Ожидание: heat: 0/20 → ≥8/20; dot: 0/20 → ≥6/20 (B-атомы закрывают глубину!)
+
+**Ограничение честности:** фаза A — искусственная (в улье атомы рождаются
+из реальных задач). Для бенча: фаза A = «прошлый опыт роя» — легитимная
+имитация культурного механизма (документируется явно!).
+
+### ПРАВКИ ИНТЕРПРЕТАЦИИ (25.08.2026, рецензия аналитика — ДО результатов EXP-029!)
+
+1. **EXP-029 = SEEDED-CULTURE / MECHANISTIC ABLATION**, НЕ autonomous culture.
+   B1/B2 выбраны после диагноза heat/dot/kinetic — informed intervention.
+   Проверяемый вопрос: «помогают ли УЖЕ ИМЕЮЩИЕСЯ культурные атомы
+   преодолеть ограничение глубины?» — легитимно как ablation.
+
+2. **EXP-030 (новый!) — настоящий transfer test:**
+   - Заморозить B1/B2 ДО выбора targets
+   - 5 НОВЫХ Feynman-задач (НЕ использованных при выборе атомов!)
+   - Никаких новых атомов
+   - Тезис: «Previously acquired reusable structures improve discovery
+     on unseen tasks»
+   - + CONTROL: PySR + equivalent seeded prior (guesses!) — иначе аргумент
+     «сам механизм культуры», а не «одному дали подсказку»
+
+3. **WINE: operational/descriptive parity** (distributions overlap, 20/20 оба).
+   НЕ «statistically equivalent» (нет pre-registered margin!). Парные
+   сравнения по split: Δ_i = CV_Bee,i − CV_PySR,i (одинаковые splits!).
+
+4. **heat/energy — CLEAR PySR WINS.** Не маскировать как «аппаратную
+   границу»: это algorithmic/implementation/search-budget limitation +
+   правильный DEPTH-диагноз (система честно диагностирует глубину!).
+
+5. **relmass 20/20 vs 16/20 — numerical advantage, БЕЗ superiority claim**
+   (4 discordant splits — недостаточно для McNemar).
+   **gravity 6/20 vs 0/20 — кандидат на преимущество**, нужен exact
+   paired test (McNemar/Fisher) перед claim.
+
+6. **НЕ писать «PySR не умеет культуру».** У PySR есть guesses/warm_start.
+   Корректно: «PySR does not implement Bee Swarm's autonomous cross-task
+   cultural acquisition mechanism BY DEFAULT.»
+
+7. **PySR на MPG/concrete НЕ «отказывается»** — он выдаёт approximation;
+   наш CV→0 evaluator отвергает его candidate как invariant. Refusal =
+   преимущество acceptance-протокола, не search engine (PySR можно
+   обернуть тем же фильтром!).

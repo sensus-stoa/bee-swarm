@@ -71,9 +71,9 @@ function cvRatio(array $pred, array $y): float
     return sqrt($var / $n) / abs($m);
 }
 
-function frozenSplit(array $X, array $y): array
+function frozenSplit(array $X, array $y, int $seed = 42): array
 {
-    mt_srand(42);
+    mt_srand($seed);
     $n = count($y);
     $idx = range(0, $n - 1);
     // shuffle как Python: Fisher-Yates с mt_rand
@@ -145,6 +145,78 @@ function runWine(): void
     }
 }
 
+function runWineSeeds(int $nSeeds = 20): void
+{
+    [$X, $y] = loadWine(__DIR__ . '/../wine.data');
+
+    echo "\n=== WINE: {$nSeeds} seeds (разные splits, seed 1..{$nSeeds}) ===\n";
+    $cvs = [];
+    $r2s = [];
+    $times = [];
+    for ($s = 1; $s <= $nSeeds; $s++) {
+        [$Xtr, $ytr, $Xte, $yte] = frozenSplit($X, $y, $s);
+        $found = findLaw($Xtr, $ytr, 2, 60.0);
+        if ($found === null || $found['found'] !== true || $found['cv'] >= 9.0) {
+            $cvs[] = 9.99; // отказ
+            $times[] = $found['time_s'] ?? 0;
+            continue;
+        }
+        $stats = \BeeSwarm\Core\ExpressionEvaluator::collectStats($found['formula'], $Xtr);
+        $predTe = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($found['formula'], $Xte, $stats);
+        $cvTe = ($predTe !== null && count($predTe) === count($yte)) ? cvRatio($predTe, $yte) : 9.99;
+        $cvs[] = $cvTe;
+        $r2s[] = corr2($predTe, $yte);
+        $times[] = $found['time_s'];
+        if ($s <= 3 || $s === $nSeeds) {
+            echo "  seed {$s}: {$found['formula']}  CV_H=" . round($cvTe, 4) . "  (" . $found['time_s'] . "s)\n";
+        }
+    }
+    $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
+    echo "  CV_H median: " . round(median($cvs), 4) . "  q25: " . round(percentile($cvs, 25), 4)
+        . "  q75: " . round(percentile($cvs, 75), 4) . "\n";
+    echo "  success rate (CV_H<=0.10): " . count($accepted) . "/{$nSeeds}\n";
+    if ($r2s) {
+        echo "  R² median (найденные): " . round(median($r2s), 3) . "\n";
+    }
+    echo "  время median: " . round(median($times), 1) . "s\n";
+}
+
+function median(array $a): float
+{
+    sort($a);
+    $n = count($a);
+    $mid = intdiv($n, 2);
+    return $n % 2 === 1 ? $a[$mid] : ($a[$mid - 1] + $a[$mid]) / 2;
+}
+
+function percentile(array $a, int $p): float
+{
+    sort($a);
+    $n = count($a);
+    $idx = (int) ceil($p / 100 * $n) - 1;
+    return $a[max(0, min($n - 1, $idx))];
+}
+
+function corr2(array $a, array $b): float
+{
+    $n = count($a);
+    if ($n === 0) {
+        return 0.0;
+    }
+    $ma = array_sum($a) / $n;
+    $mb = array_sum($b) / $n;
+    $num = 0.0;
+    $da = 0.0;
+    $db = 0.0;
+    for ($i = 0; $i < $n; $i++) {
+        $num += ($a[$i] - $ma) * ($b[$i] - $mb);
+        $da += ($a[$i] - $ma) ** 2;
+        $db += ($b[$i] - $mb) ** 2;
+    }
+    $den = sqrt($da * $db);
+    return $den > 0 ? ($num / $den) ** 2 : 0.0;
+}
+
 function runMpg(): void
 {
     [$X, $y] = loadMpg(__DIR__ . '/../auto-mpg.data');
@@ -171,7 +243,8 @@ function runMpgNull(int $nRuns = 100): void
         $shuffled = $ytr;
         shuffle($shuffled);
         $found = findLaw($Xtr, $shuffled);
-        if ($found !== null) {
+        // findLaw ВСЕГДА возвращает массив — считаем ТОЛЬКО реальные находки!
+        if ($found !== null && $found['found'] === true && $found['cv'] < 9.0) {
             $foundCount++;
             $cvs[] = (float) $found['cv'];
         }
@@ -184,6 +257,7 @@ function runMpgNull(int $nRuns = 100): void
 }
 
 runWine();
+runWineSeeds();
 runMpg();
 runMpgNull();
 echo "\nDONE\n";

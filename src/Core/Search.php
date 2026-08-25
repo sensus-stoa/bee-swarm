@@ -400,9 +400,16 @@ class Search
             // B-AS-ARGUMENT: B-формы (B7a7aee×x2) в L2L1 — без них атомы
             // не участвуют в двухуровневых композициях
             $l1Top = array_slice(array_merge($l1Keys, $bKeys ?? []), 0, 30);
+            // L2L1: $ops = ВСЯ грамматика (прод: 3562 ops!) → 30×12×3562×n —
+            // вечность на проде. Cap до top-50 (как beam) + проверка бюджета.
+            $l2l1Ops = array_slice($ops, 0, 50);
+            $l2l1Count = 0;
             foreach ($l1Top as $l1name) {
+                if ((++$l2l1Count & 15) === 0 && microtime(true) > $deadline) {
+                    return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                }
                 foreach ($featKeys as $fname) {
-                    foreach ($ops as $op) {
+                    foreach ($l2l1Ops as $op) {
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
                             $r = $grammar->apply($exprs[$l1name][$i], $exprs[$fname][$i], $op);

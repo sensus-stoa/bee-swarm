@@ -1621,18 +1621,37 @@ PySR + CV→0 wrapper был бы столь же «честным» — чес�
 | R² median | 0.360 | 0.405 |
 | время | ~13s | **2.4s** |
 
-**Вердикт: PARITY подтверждён статистически** (полное перекрытие
-распределений; 0.047 vs 0.0485 — без superiority-claim).
+**Вердикт: Performance parity on WINE across 20 independent seeds.**
+Разница медиан 0.0015 (0.047 vs 0.0485). Обе системы стабильно внутри
+порога 0.10 (success 20/20 оба). Одинаковые квантили:
+- Bee:  q05-q95 = 0.0427-0.0503
+- PySR: q05-q95 = 0.0457-0.0485
+ПРИМЕЧАНИЕ: перекрытие интервалов НЕ доказывает статистическую
+эквивалентность. Для formal equivalence: margin |ΔCV| < 0.005 +
+bootstrap CI (не выполнено, не заявляем «statistically equivalent»).
+Красиво: Bee находит ОДИН И ТОТ ЖЕ закон ((Rnormx11)+Rmaxx*) на всех
+20 split'ах — устойчивая структура, не случайные разные формулы.
 
 **AUTO-MPG:**
 | Метрика | PySR | Bee Swarm |
 |---|---|---|
 | real CV_H | 0.175 (R²=0.708) | НЕ НАЙДЕНО (refusal) |
-| null (100 shuffled) | q05=0.346 | 0/100 (FPR=0) |
+| null (100 shuffled) | q05=0.346 | observed FPR = 0/100 (0%);
+  95% верхняя граница ≈ 3% (rule of three) |
 
-**Три класса, а не два:**
-NULL/NO SIGNAL → APPROXIMATION/PREDICTIVE STRUCTURE (MPG: 0.175 << 0.346,
-реальный сигнал!) → INVARIANT (WINE: CV_H≤0.10).
+**Классификация (таблица для benchmark paper):**
+| Dataset | signal? | invariant? | PySR | Bee |
+|---|---|---|---|---|
+| WINE | да | да (CV≤0.10) | finds | finds |
+| MPG | да (0.175<<0.346) | НЕТ (0.175>0.10) | approximation | refuses |
+| shuffled MPG | нет | нет | случайные candidates | 0/100 accepts |
+
+**Два разных вопроса, оба метода правы:**
+PySR: «What equation best approximates this dataset?» → MPG: R²=0.708.
+CV→0: «Is the relationship sufficiently stable to qualify as an
+invariant under a pre-registered criterion?» → MPG: нет, отказ.
+Bee на MPG дал ПРАВИЛЬНЫЙ ответ относительно собственного target
+(find invariant OR refuse) — не «тупость», а соответствие задаче.
 
 **Интерпретация (защищаемая):**
 > WINE: Bee Swarm and PySR reach essentially identical held-out invariant

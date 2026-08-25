@@ -83,4 +83,16 @@ agenda.php → Hive::run()
 
 ## License
 
-CC BY 4.0 (protocol texts), MIT (code). See LICENSE.
+This repository contains two distinct types of content, each with its own license:
+
+| Content | License | File |
+|---------|---------|------|
+| **Source code** (PHP, scripts, tests) | **MIT** — free to use, modify, distribute, commercial use allowed | `LICENSE-CODE` |
+| **Protocol & scientific texts** (docs/protocol.md, README, ARCHITECTURE) | **CC BY 4.0** — free to share and adapt with attribution | `LICENSE-PROTOCOL` |
+
+**Summary:** The code is MIT-licensed (standard open-source permissive). The protocol
+documentation is CC BY 4.0 (attribution required when sharing/adapting). If you use
+both, both licenses apply to their respective parts. If you use only code, MIT applies.
+If you use only the protocol text, CC BY applies.
+
+Full texts: [LICENSE-CODE](LICENSE-CODE) · [LICENSE-PROTOCOL](LICENSE-PROTOCOL)

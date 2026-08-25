@@ -13,6 +13,22 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use BeeSwarm\Core\Search;
 
+function loadCsv(string $path): array
+{
+    $X = [];
+    $y = [];
+    foreach (file($path) as $line) {
+        $parts = explode(',', trim($line));
+        if (count($parts) < 2) {
+            continue;
+        }
+        $vals = array_map('floatval', $parts);
+        $y[] = array_pop($vals);
+        $X[] = $vals;
+    }
+    return [$X, $y];
+}
+
 function loadWine(string $path): array
 {
     $X = [];
@@ -98,7 +114,7 @@ function findLaw(array $X, array $y, int $depth = 2, float $budgetSec = 60.0): ?
     // НЕ прод-БД (3562 атома = культурное преимущество, но несправедливо
     // против PySR с его заданным алфавитом!). Ограничиваем до базовых ops.
     $g = new \BeeSwarm\Core\Grammar();
-    $g->restrictTo(['add', 'sub', 'mul', 'div', 'sqrt', 'log', 'exp', 'abs', 'min', 'max', 'sq']);
+    $g->restrictTo(['add', 'sub', 'mul', 'div', 'sqrt', 'sq']);
     $start = microtime(true);
     $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;
@@ -217,6 +233,69 @@ function corr2(array $a, array $b): float
     return $den > 0 ? ($num / $den) ** 2 : 0.0;
 }
 
+function runTask(string $name, array $X, array $y, int $nSeeds = 20): void
+{
+    echo "\n=== {$name}: " . count($y) . " rows ===\n";
+    $cvs = [];
+    $r2s = [];
+    $times = [];
+    for ($s = 1; $s <= $nSeeds; $s++) {
+        [$Xtr, $ytr, $Xte, $yte] = frozenSplit($X, $y, $s);
+        $found = findLaw($Xtr, $ytr, 3, 30.0); // depth 3, бюджет 30s (как PySR)
+        if ($found === null || $found['found'] !== true || $found['cv'] >= 9.0) {
+            $cvs[] = 9.99;
+            $times[] = $found['time_s'] ?? 0;
+            continue;
+        }
+        $stats = \BeeSwarm\Core\ExpressionEvaluator::collectStats($found['formula'], $Xtr);
+        $predTe = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($found['formula'], $Xte, $stats);
+        $cvTe = ($predTe !== null && count($predTe) === count($yte)) ? cvRatio($predTe, $yte) : 9.99;
+        $cvs[] = $cvTe;
+        if ($predTe !== null && count($predTe) === count($yte)) {
+            $r2s[] = corr2($predTe, $yte);
+        }
+        $times[] = $found['time_s'];
+    }
+    $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
+    echo "  CV_H med=" . round(median($cvs), 4) . " q05=" . round(percentile($cvs, 5), 4)
+        . " q95=" . round(percentile($cvs, 95), 4)
+        . "  success=" . count($accepted) . "/{$nSeeds}"
+        . ($r2s ? "  R2=" . round(median($r2s), 3) : "")
+        . "  t=" . round(median($times), 1) . "s\n";
+}
+
+function runAllTasks(): void
+{
+    $tasks = [
+        'feynman_gravity' => 'data/feynman_gravity.csv',
+        'feynman_kinetic' => 'data/feynman_kinetic_energy.csv',
+        'feynman_dot' => 'data/feynman_dot_product.csv',
+        'feynman_heat' => 'data/feynman_heat_conduction.csv',
+        'feynman_relmass' => 'data/feynman_relativistic_mass.csv',
+        'feynman_kinetic_noise5' => 'data/feynman_kinetic_energy_noise5.csv',
+        'feynman_coulomb_noise15' => 'data/feynman_coulomb_noise15.csv',
+        'concrete' => 'data/concrete_strength.csv',
+        'airfoil' => 'data/airfoil_selfnoise.csv',
+        'energy' => 'data/energy_efficiency.csv',
+        'auto-mpg' => 'auto-mpg.data',
+        'wine' => 'wine.data',
+    ];
+    foreach ($tasks as $name => $file) {
+        if (! file_exists(__DIR__ . '/../' . $file)) {
+            echo "  SKIP {$name}: нет файла {$file}\n";
+            continue;
+        }
+        if ($name === 'wine') {
+            [$X, $y] = loadWine(__DIR__ . '/../' . $file);
+        } elseif ($name === 'auto-mpg') {
+            [$X, $y] = loadMpg(__DIR__ . '/../' . $file);
+        } else {
+            [$X, $y] = loadCsv(__DIR__ . '/../' . $file);
+        }
+        runTask($name, $X, $y);
+    }
+}
+
 function runMpg(): void
 {
     [$X, $y] = loadMpg(__DIR__ . '/../auto-mpg.data');
@@ -256,8 +335,6 @@ function runMpgNull(int $nRuns = 100): void
     }
 }
 
-runWine();
-runWineSeeds();
-runMpg();
+runAllTasks();
 runMpgNull();
 echo "\nDONE\n";

@@ -51,7 +51,7 @@ php agenda.php   # see DEPLOY.md
 
 ## Comparison with gplearn (symbolic regression baseline)
 
-Same 13 Stage-0 tasks, same data, CV→0 criterion vs gplearn (MSE-optimized GP):
+Same Stage-0 tasks, same data, CV→0 criterion vs gplearn (MSE-optimized GP):
 
 | Metric | Bee Swarm | gplearn |
 |--------|-----------|---------|
@@ -61,6 +61,23 @@ Same 13 Stage-0 tasks, same data, CV→0 criterion vs gplearn (MSE-optimized GP)
 | TSP (permutation class) | **solves** (≥ greedy+2-opt) | not applicable (0/9 valid tours) |
 
 Methodology and full series: EXP-008..011 in the experiment journal.
+
+## Comparison with PySR (SOTA symbolic regression, Julia)
+
+EXP-027 (25.08.2026): same data, same frozen splits (60/40, seed 1..20),
+same grammar (+, −, ×, /, sq, sqrt), same metrics (CV_train/CV_holdout):
+
+| Dataset | PySR (20 seeds) | Bee Swarm (20 seeds) |
+|---------|-----------------|----------------------|
+| WINE | CV_H median 0.0485 (20/20) | CV_H median **0.047** (20/20) |
+| AUTO-MPG | CV_H 0.175, R²=0.708 (approximation) | **refusal** (0/100 null accepted, FPR=0) |
+
+Interpretation: approximation and invariant discovery are distinct tasks.
+PySR finds genuine predictive structure on MPG (below null q05=0.346), but it
+does not satisfy the pre-registered invariant criterion (CV_H≤0.10).
+CV→0 refuses to promote an approximation to an invariant.
+
+Full series: EXP-027..028 in the experiment journal.
 
 ## Architecture (v4)
 

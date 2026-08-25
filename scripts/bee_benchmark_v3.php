@@ -52,6 +52,25 @@ function loadMpg(string $path): array
 }
 
 /** Frozen split: тот же seed 42, 60/40, как в Python-скрипте */
+function cvRatio(array $pred, array $y): float
+{
+    $eps = 1e-9;
+    $n = count($y);
+    $ratio = [];
+    for ($i = 0; $i < $n; $i++) {
+        $ratio[] = abs($pred[$i]) / (abs($y[$i]) + $eps);
+    }
+    $m = array_sum($ratio) / $n;
+    if (abs($m) < $eps) {
+        return INF;
+    }
+    $var = 0.0;
+    foreach ($ratio as $r) {
+        $var += ($r - $m) ** 2;
+    }
+    return sqrt($var / $n) / abs($m);
+}
+
 function frozenSplit(array $X, array $y): array
 {
     mt_srand(42);
@@ -75,15 +94,26 @@ function frozenSplit(array $X, array $y): array
 
 function findLaw(array $X, array $y, int $depth = 2, float $budgetSec = 60.0): ?array
 {
+    // ЧЕСТНЫЙ БЕНЧМАРК vs PySR: та же грамматика (+,-,*,/,sqrt,log,exp,abs),
+    // НЕ прод-БД (3562 атома = культурное преимущество, но несправедливо
+    // против PySR с его заданным алфавитом!). Ограничиваем до базовых ops.
     $g = new \BeeSwarm\Core\Grammar();
+    $g->restrictTo(['add', 'sub', 'mul', 'div', 'sqrt', 'log', 'exp', 'abs', 'min', 'max', 'sq']);
     $start = microtime(true);
-    $res = Search::find($X, $y, $g, $depth);
+    $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;
     if ($res === null) {
         return ['formula' => 'NONE', 'cv' => 9.99, 'time_s' => round($elapsed, 2)];
     }
-    $res['time_s'] = round($elapsed, 2);
-    return $res;
+    // Search::find → позиционный [found, cv, formula, cvTest, class]
+    return [
+        'found' => $res[0],
+        'cv' => $res[1],
+        'formula' => $res[2],
+        'cv_test' => $res[3],
+        'class' => $res[4],
+        'time_s' => round($elapsed, 2),
+    ];
 }
 
 function runWine(): void
@@ -103,10 +133,16 @@ function runWine(): void
     echo "  Найдено: {$found['formula']}  CV_train={$found['cv']}\n";
     echo "  Время: {$found['time_s']}s\n";
 
-    // Оценка на HOLDOUT (замороженный split!)
+    // Оценка на HOLDOUT (замороженный split!): evaluateFormula возвращает
+    // ВЕКТОР pred → CV(pred, y_holdout) через cv_ratio (как у PySR!)
     $stats = \BeeSwarm\Core\ExpressionEvaluator::collectStats($found['formula'], $Xtr);
-    $cvTe = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($found['formula'], $Xte, $stats);
-    echo "  CV_holdout: " . round((float) $cvTe, 4) . "\n";
+    $predTe = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($found['formula'], $Xte, $stats);
+    if ($predTe !== null && count($predTe) === count($yte)) {
+        $cvTe = cvRatio($predTe, $yte);
+        echo "  CV_holdout: " . round($cvTe, 4) . "\n";
+    } else {
+        echo "  CV_holdout: N/A (evaluateFormula вернул null/неверную длину)\n";
+    }
 }
 
 function runMpg(): void

@@ -120,15 +120,21 @@ class ExpressionEvaluator
                         if ($col === null) {
                             break;
                         }
-                        $stats[$n['atom']] = match ($rop) {
-                            '+' => array_sum($col),
-                            '×' => array_product($col),
-                            'max' => max($col),
-                            'min' => min($col),
-                            'range' => max($col) - min($col),
-                            'norm' => null, // нормализация — поточечная, см. ниже
-                            default => null,
-                        };
+                        // norm: НЕ класть null (isset(null) убивает evaluateFormula!).
+                        // Собираем Rmin/Rrange для поточечной ветки Rnorm в evalNode.
+                        if ($rop === 'norm') {
+                            $stats["Rmin{$colName}"] = min($col);
+                            $stats["Rrange{$colName}"] = max($col) - min($col);
+                        } else {
+                            $stats[$n['atom']] = match ($rop) {
+                                '+' => array_sum($col),
+                                '×' => array_product($col),
+                                'max' => max($col),
+                                'min' => min($col),
+                                'range' => max($col) - min($col),
+                                default => null,
+                            };
+                        }
                         break;
                     }
                 }

@@ -25,10 +25,11 @@ class AllDeadRespawnTest extends TestCase
         }
 
         $spawner = new SpawnManager();
-        $spawned = $spawner->trySpawn($bees, ['+', '×', '-', '/', 'min', 'max', 'sq']);
+        [$spawned, $details] = $spawner->trySpawn($bees, ['+', '×', '-', '/', 'min', 'max', 'sq']);
 
         // §2.7: SEED_SPAWN — ровно 3 новых пчелы с разными G
         $this->assertSame(3, $spawned, 'SEED_SPAWN must create exactly 3 bees');
+        $this->assertCount(3, $details, 'details для каждого seed-ребёнка');
         $alive = array_filter($bees, fn (Bee $b): bool => $b->isAlive());
         $this->assertCount(3, $alive, 'exactly 3 alive bees after respawn');
         $grams = array_map(fn (Bee $b): string => implode(',', $b->grammar()), array_values($alive));

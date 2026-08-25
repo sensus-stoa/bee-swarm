@@ -42,11 +42,22 @@ class Search
         return sqrt($variance / $n) / abs($mean);
     }
 
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15): array
+    /**
+     * @param float $budgetSec Полный wall-clock бюджет (включая подготовку фич!),
+     *   0.0 = без лимита. По истечении: [false, 9.99, 'none', 9.99, 'TIMEOUT'].
+     *   'TIMEOUT' и 'none' оба = «нет результата» — потребители обязаны
+     *   проверять $res[0] (found) ДО чтения score/expr (9.99 = sentinel!).
+     *   Семантика: бюджет = тотальный wall-clock (как timeout PySR 30s).
+     */
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0): array
     {
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
+        $deadline = $budgetSec > 0.0 ? $p0 + $budgetSec : INF;
+        if (microtime(true) > $deadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+        }
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
             return [false, 9.99, 'none', 9.99, 'NONE'];
@@ -59,6 +70,9 @@ class Search
         // L0: Features
         $feats = [];
         for ($i = 0; $i < $nFeat; $i++) {
+            if (microtime(true) > $deadline) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+            }
             $col = array_column($X, $i);
             $fname = $featName($i);
             $feats[$fname] = $col;
@@ -85,6 +99,9 @@ class Search
         }
         $rawFeatKeys = array_keys($feats);
         foreach ($rawFeatKeys as $fname) {
+            if (microtime(true) > $deadline) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+            }
             if (!isset($rawFeatNames[$fname])) continue; // only raw features
             $col = $feats[$fname];
             // Skip non-numeric columns (text data, labels, etc.)
@@ -291,8 +308,12 @@ class Search
         }
 
         // L2: combinations of (L1 + L1² + L1-unary)
+        if (microtime(true) > $deadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+        }
         $l2Keys = [];
         if ($depth >= 2) {
+            $checkCount = 0;
             $pool = array_merge(
                 array_slice($l1Keys, 0, 40),
                 array_slice($l1Sq, 0, 30),
@@ -307,6 +328,9 @@ class Search
                 $quickN = min($n, max(4, (int) ($n * 0.25)));
                 $scored = [];
                 foreach ($pool as $pname) {
+                    if ((++$checkCount & 31) === 0 && microtime(true) > $deadline) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                    }
                     $pv = $exprs[$pname];
                     $r = [];
                     for ($i = 0; $i < $quickN; $i++) {
@@ -393,9 +417,16 @@ class Search
         }
 
         // L3: L2 / constant (для MIN = (...)/2)
+        if (microtime(true) > $deadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+        }
         if ($depth >= 3) {
             $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));
+            $l3Count = 0;
             foreach ($l2Keys as $l2name) {
+                if ((++$l3Count & 31) === 0 && microtime(true) > $deadline) {
+                    return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                }
                 foreach ($constKeys as $ck) {
                     $vec = [];
                     $cvec = $feats[$ck];

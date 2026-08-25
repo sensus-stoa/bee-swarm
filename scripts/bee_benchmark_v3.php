@@ -167,12 +167,12 @@ function runWineSeeds(int $nSeeds = 20): void
         $cvs[] = $cvTe;
         $r2s[] = corr2($predTe, $yte);
         $times[] = $found['time_s'];
-        if ($s <= 3 || $s === $nSeeds) {
-            echo "  seed {$s}: {$found['formula']}  CV_H=" . round($cvTe, 4) . "  (" . $found['time_s'] . "s)\n";
-        }
+        echo "  seed {$s}: " . ($found['found'] === true ? $found['formula'] : 'REFUSE')
+            . "  CV_H=" . round($cvTe, 4) . "  (" . ($found['time_s'] ?? 0) . "s)\n";
     }
     $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
-    echo "  CV_H median: " . round(median($cvs), 4) . "  q25: " . round(percentile($cvs, 25), 4)
+    echo "  CV_H median: " . round(median($cvs), 4) . "  q05: " . round(percentile($cvs, 5), 4)
+        . "  q95: " . round(percentile($cvs, 95), 4) . "  q25: " . round(percentile($cvs, 25), 4)
         . "  q75: " . round(percentile($cvs, 75), 4) . "\n";
     echo "  success rate (CV_H<=0.10): " . count($accepted) . "/{$nSeeds}\n";
     if ($r2s) {

@@ -114,7 +114,7 @@ function findLaw(array $X, array $y, int $depth = 2, float $budgetSec = 60.0): ?
     // НЕ прод-БД (3562 атома = культурное преимущество, но несправедливо
     // против PySR с его заданным алфавитом!). Ограничиваем до базовых ops.
     $g = new \BeeSwarm\Core\Grammar();
-    $g->restrictTo(['add', 'sub', 'mul', 'div', 'sqrt', 'sq']);
+    $g->restrictTo(['+', '×', '−', '/', 'sq', 'sqrt']);
     $start = microtime(true);
     $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;

@@ -183,10 +183,16 @@ class Grammar
         }
 
         // 1. Проверяем definition в БД (динамическое определение)
+        // AST-CACHE (26.08, EXP-029): new ExpressionTree() на КАЖДЫЙ вызов
+        // = миллионы парсингов (540 строк × пары × B-вызовы = 20x slowdown,
+        // heat/airfoil TIMEOUT). Кэшируем дерево по имени оператора.
         $def = $this->ops[$op]['definition'] ?? null;
         if ($def) {
-            $tree = new ExpressionTree($def);
-            return $tree->evaluate($a, $b);
+            static $treeCache = [];
+            if (! isset($treeCache[$op])) {
+                $treeCache[$op] = new ExpressionTree($def);
+            }
+            return $treeCache[$op]->evaluate($a, $b);
         }
 
         // 2. Хардкод для базовых операций (временно)

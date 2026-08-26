@@ -65,8 +65,13 @@ class ExpressionEvaluator
     {
         // R-атомы (R+x0) содержат операторы — защищаем как в normalize:
         // protect → parse → restore, иначе "R+x0" разбирается как R + x0
+        // B-CULTURE-PARSE (26.08, EXP-029): B-атомы из БД = ОПЕРАТОРЫ парсера
+        // (иначе (x1B1x2) → один атом 'x1B1x2' → definition('x1B1x2') → NULL
+        // → вся culture-цепочка умирает на heldout!)
+        $bNames = self::birthOpNames();
+        $allExtraOps = array_merge($extraOps, $bNames);
         [$protected, $map] = ExpressionNormalizer::protect($formula);
-        $node = ExpressionNormalizer::parse($protected, $extraOps);
+        $node = ExpressionNormalizer::parse($protected, $allExtraOps);
         if ($node === null) {
             return null;
         }
@@ -93,8 +98,9 @@ class ExpressionEvaluator
      */
     public static function collectStats(string $formula, array $rows, array $extraOps = [], array $opDefs = []): array
     {
+        $allExtraOps = array_merge($extraOps, self::birthOpNames());
         [$protected, $map] = ExpressionNormalizer::protect($formula);
-        $node = ExpressionNormalizer::parse($protected, $extraOps);
+        $node = ExpressionNormalizer::parse($protected, $allExtraOps);
         if ($node === null) {
             return [];
         }
@@ -108,6 +114,33 @@ class ExpressionEvaluator
     /**
      * Предвычисление R-статистик по выборке (R+x0 = сумма колонки x0 и т.д.).
      */
+    /**
+     * B-CULTURE-PARSE (26.08): имена рождённых атомов (source='birth')
+     * для парсера — иначе (x0B1x1) неразличим от неизвестного атома.
+     */
+    private static ?array $birthOpCache = null;
+
+    private static function birthOpNames(): array
+    {
+        if (self::$birthOpCache !== null) {
+            return self::$birthOpCache;
+        }
+        $names = [];
+        try {
+            $stmt = \BeeSwarm\Infra\Database::get()->prepare(
+                "SELECT DISTINCT name FROM grammar_ops WHERE source = 'birth' AND name LIKE 'B%'"
+            );
+            $stmt->execute();
+            foreach ($stmt->fetchAll() as $r) {
+                $names[] = $r['name'];
+            }
+        } catch (\Throwable) {
+            // нет таблицы/БД — пусто (тесты без БД)
+        }
+        self::$birthOpCache = $names;
+        return $names;
+    }
+
     private static function collectReduceStats(array $node, array $rows): array
     {
         $stats = [];
@@ -178,6 +211,23 @@ class ExpressionEvaluator
         // с аргументами [l, r] (x0→l, x1→r). DEPTH-GUARD (CONCERNS
         // deleg_c1b509c5): вложенные B (B-в-B) и self-reference — лимит 10,
         // иначе цикл/бесконечность.
+        // B-CULTURE (26.08): B-оп без opDefs — подтянуть definition из БД.
+        // definition() возвращает ГОТОВЫЙ node — вычисляем рекурсивно.
+        if ($op !== null && ! isset($opDefs[$op]) && preg_match('/^B/i', $op)) {
+            $defNode = self::definition($op);
+            if ($defNode !== null) {
+                if ($l === null || $r === null) {
+                    return null;
+                }
+                self::$bDepth++;
+                try {
+                    // definition (x0 op x1): атомы x0/x1 → row[0]/row[1]
+                    return self::evalNode($defNode, [$l, $r], $stats, $opDefs);
+                } finally {
+                    self::$bDepth--;
+                }
+            }
+        }
         if ($op !== null && isset($opDefs[$op])) {
             if ($l === null || $r === null) {
                 return null;

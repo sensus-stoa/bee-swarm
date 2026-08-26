@@ -115,15 +115,38 @@ class ExpressionEvaluator
      * Предвычисление R-статистик по выборке (R+x0 = сумма колонки x0 и т.д.).
      */
     /**
+     * REVIEW deleg_fe365da6: единая точка сброса static-кэшей.
+     * Новый static-кэш добавлять СЮДА ЖЕ (иначе order-dependent флаки).
+     */
+    public static function resetCaches(): void
+    {
+        self::$birthOpCache = null;
+        self::$birthOpSentinel = null;
+        self::$defCache = [];
+    }
+
+    /**
      * B-CULTURE-PARSE (26.08): имена рождённых атомов (source='birth')
      * для парсера — иначе (x0B1x1) неразличим от неизвестного атома.
      */
     private static ?array $birthOpCache = null;
+    private static ?int $birthOpSentinel = null;
 
     private static function birthOpNames(): array
     {
-        if (self::$birthOpCache !== null) {
-            return self::$birthOpCache;
+        // REVIEW deleg_fe365da6: межпроцессная сталесть — новые birth-атомы
+        // из другого воркера не подхватятся. Сентинел COUNT(*) копеечный,
+        // полный DISTINCT только при изменении.
+        try {
+            $cnt = (int) \BeeSwarm\Infra\Database::get()
+                ->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")->fetchColumn();
+            if (self::$birthOpCache !== null && self::$birthOpSentinel === $cnt) {
+                return self::$birthOpCache;
+            }
+            self::$birthOpSentinel = $cnt;
+        } catch (\Throwable) {
+            // нет БД — отдаём кэш как есть (тесты без БД)
+            return self::$birthOpCache ?? [];
         }
         $names = [];
         try {
@@ -213,9 +236,13 @@ class ExpressionEvaluator
         // иначе цикл/бесконечность.
         // B-CULTURE (26.08): B-оп без opDefs — подтянуть definition из БД.
         // definition() возвращает ГОТОВЫЙ node — вычисляем рекурсивно.
-        if ($op !== null && ! isset($opDefs[$op]) && preg_match('/^B/i', $op)) {
+        // REVIEW deleg_fe365da6: regex /^B\d+$/ (было /^B/i — ложные
+        // срабатывания на будущих операторах вида Bessel/Beta).
+        $birthNames = self::birthOpNames();
+        if ($op !== null && ! isset($opDefs[$op])
+            && (preg_match('/^B\\d+$/', $op) || in_array($op, $birthNames, true))) {
             $defNode = self::definition($op);
-            if ($defNode !== null) {
+            if ($defNode !== null && isset($defNode['op'])) { // битый node → отказ
                 if ($l === null || $r === null) {
                     return null;
                 }

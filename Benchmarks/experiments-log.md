@@ -1959,3 +1959,84 @@ c) Search::find не генерирует L2/L1-форму деления
 - EXP-028 таблица (parity + refusal + FPR=0)
 - Негативный результат: memory ≠ compression без selective retrieval,
   и даже selective retrieval требует другого поискового ядра
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-031-v2 (26.08.2026): CONTEXTUAL CULTURAL RETRIEVAL
+### (полная формула relevance, заменяет 031-v1)
+
+**Гипотеза:** Previously acquired atoms improve deep symbolic discovery only
+when retrieval is conditioned on the current partial hypothesis.
+
+**Архитектурная рамка (3 уровня памяти):**
+1. Семантическая культура: B-примитивы (SUB/MUL) — long-term
+2. Ассоциативная память: контекст → полезные продолжения (граф переходов) — БУДУЩЕЕ
+3. Рабочая память: 3-5 активных атомов на задачу — РЕАЛИЗУЕМ СЕЙЧАС
+
+**Формула relevance (ПОЛНАЯ — требование пользователя):**
+R(z|e) = ΔCV_inner(z|e) − λ·C(z) − μ·D(z,A) + η·P(z|context)
+
+где:
+- ΔCV_inner = CV(e) − min CV(e op z), op ∈ {+,−,×,/} (помогает сейчас)
+- C(z) = complexity penalty (strlen раскрытого z / 10)
+- D(z,A) = redundancy с уже активированными атомами (max |ρ| к ним)
+- P(z|context) = культурный prior (reuse_count атома / max reuse; 0 на старте)
+
+**Константы (заморожены ДО прогона):**
+λ = 0.01 (слабый complexity штраф)
+μ = 0.05 (существенный redundancy штраф)
+η = 0.1 (умеренный prior boost)
+K (top extensions per step) = 2
+B (top hypotheses) = 3
+max retrieval cycles = 2
+
+**Механизм (потоковый, O(n) памяти):**
+for each cultural atom z:
+  vec = evaluate(z)      // временный вектор
+  gain = oneStepGain(e, vec)
+  updateTopK(best, z, gain)
+  free(vec)
+Никаких 32 колонок в Search!
+
+**Протокол:**
+1. depth3 Search нетронут (база)
+2. culture НЕ добавляется глобально
+3. top-3 текущих hypotheses
+4. для каждой — все atoms одним оператором (потоково)
+5. K=2 лучших extensions
+6. max 2 cycles
+7. финальная формула раскрывается
+8. holdout untouched (relevance по TRAIN inner-fit!)
+9. только HEAT
+10. Успех: ≥10/20 при bounded RAM
+
+Если 0/20 → systematic search несовместим с compositional transfer,
+нужна другая search paradigm (фиксируем как архитектурную границу).
+
+### EXP-032 ИТОГ (26.08.2026): spreading activation по графу операторов — FAIL
+
+**Механизм:** граф переходов из 529 реальных законов (13 узлов, 90 рёбер).
+Seed ops: −,×,/ (из fingerprint). Spreading 2 hops, alpha=0.6, top-K=4.
+One-step gain от mean(y). 20 seeds, heat only.
+
+**Результат: 0/20.** Даже реальные weights не помогают.
+
+**Диагноз:** граф операторов слишком абстрактный. Переход «−→/(0.478)»
+говорит «после разности часто идёт деление», но НЕ говорит «для heat
+нужна разность T2−T1». Spreading activation по абстрактным операторам
+не даёт конкретных feature-пар.
+
+**Что нужно вместо этого:**
+1. Граф feature-пар: (T2−T1) → (κ×A) → (/d) — но это knowledge, не abstraction
+2. Residual-guided search с реальными B-атомами (EXP-031-v2 идея)
+3. Или: fingerprint → region → region-specific grammar (карта районов)
+
+**Общий итог культурной серии (EXP-029..032):**
+4 попытки, 4 FAIL. Каждая вскрыла конкретную причину:
+- 029: inline AST → depth explosion (OOM)
+- 030: opaque columns → width explosion (beam)
+- 031: residual retrieval → beam/generation не находит
+- 032: abstract graph → слишком абстрактно для конкретных задач
+
+**Архитектурный вывод (подтверждён 4 экспериментами):**
+Культура без механизма ВНИМАНИЯ = смена формы взрыва.
+Нужен conditional retrieval (EXP-031-v2 формула) ИЛИ
+spreading activation по feature-level графу (не op-level).

@@ -95,4 +95,31 @@ class DormantPoolTest extends TestCase
         $this->assertSame(2, $counts['DIFF']);
         $this->assertSame(1, $counts['PRODUCT']);
     }
+
+    public function testRedistributionOfBurnedQuotas(): void
+    {
+        $pool = new DormantPool();
+        // 3 DIFF, 0 POWER
+        for ($i = 0; $i < 3; $i++) {
+            $pool->deposit(['op' => '−'], 'DIFF', 0.5 + $i * 0.1);
+        }
+        // Квота: DIFF=2, POWER=2 (нет POWER в пуле → deficit=2 → redistribution)
+        $awakened = $pool->awaken(10, ['DIFF' => 2, 'POWER' => 2]);
+        // 2 DIFF + 1 redistribution (остаток из DIFF) = 3
+        $this->assertCount(3, $awakened);
+    }
+
+    public function testAwakenedTimeoutRemovesStale(): void
+    {
+        // timeout=1 секунда для теста
+        $pool = new DormantPool(1);
+        $pool->deposit(['op' => '−'], 'DIFF', 0.9);
+        $pool->awaken(1, ['DIFF' => 1]);
+        $this->assertSame(1, $pool->size());
+
+        // Ждём 2 секунды → awakened timeout
+        sleep(2);
+        $pool->age(100); // maxAge не удалит, но timeout удалит
+        $this->assertSame(0, $pool->size());
+    }
 }

@@ -23,6 +23,13 @@ class DormantPool
     /**
      * Положить рецепт в пул (дёшево — не вычисляет phenotype).
      */
+    private int $awakenedTimeout;
+
+    public function __construct(int $awakenedTimeout = 300)
+    {
+        $this->awakenedTimeout = $awakenedTimeout; // 5 мин по умолчанию
+    }
+
     public function deposit(array $recipe, string $sector, float $novelty, string $lineageId = ''): int
     {
         $id = $this->nextId++;
@@ -53,8 +60,10 @@ class DormantPool
         }
 
         $awakened = [];
+        $deficit = 0; // сгоревшие квоты для redistribution
         foreach ($sectorQuotas as $sector => $quota) {
             if (!isset($bySector[$sector])) {
+                $deficit += $quota;
                 continue;
             }
             // Сортировка: novelty desc, потом age asc (моложе = лучше)
@@ -63,20 +72,22 @@ class DormantPool
                 return $cmp !== 0 ? $cmp : $a['age'] <=> $b['age'];
             });
             $take = min($quota, count($bySector[$sector]));
+            $deficit += $quota - $take;
             for ($i = 0; $i < $take; $i++) {
                 $entry = $bySector[$sector][$i];
                 $this->pool[$entry['id']]['awakened'] = true;
+                $this->pool[$entry['id']]['awakened_at'] = time();
                 $awakened[] = $entry;
             }
         }
 
-        // Остаток — из unknown/seeds (только если квоты не заданы жёстко)
+        // Redistribution: сгоревшие квоты → лучшие из оставшихся
         $used = count($awakened);
-        $remaining = $k - $used;
-        if ($remaining > 0 && empty($sectorQuotas)) {
+        $remaining = min($k - $used, $deficit);
+        if ($remaining > 0) {
             $others = [];
             foreach ($this->pool as $id => $entry) {
-                if (!isset($entry['awakened']) && !isset($sectorQuotas[$entry['sector']])) {
+                if (!isset($entry['awakened'])) {
                     $others[] = ['id' => $id] + $entry;
                 }
             }
@@ -85,6 +96,7 @@ class DormantPool
             for ($i = 0; $i < $take; $i++) {
                 $entry = $others[$i];
                 $this->pool[$entry['id']]['awakened'] = true;
+                $this->pool[$entry['id']]['awakened_at'] = time();
                 $awakened[] = $entry;
             }
         }
@@ -98,8 +110,14 @@ class DormantPool
     public function age(int $maxAge = 10): int
     {
         $removed = 0;
+        $now = time();
         foreach ($this->pool as $id => $entry) {
             if (isset($entry['awakened'])) {
+                // REVIEW deleg_109dc6b6: awakened timeout — утечка в daemon
+                if (isset($entry['awakened_at']) && $now - $entry['awakened_at'] > $this->awakenedTimeout) {
+                    unset($this->pool[$id]);
+                    $removed++;
+                }
                 continue;
             }
             $this->pool[$id]['age']++;

@@ -188,11 +188,15 @@ class Grammar
         // heat/airfoil TIMEOUT). Кэшируем дерево по имени оператора.
         $def = $this->ops[$op]['definition'] ?? null;
         if ($def) {
+            // REVIEW deleg_fe365da6: ключ = имя + md5(definition) — иначе
+            // изменение определения атома в БД (rebirth/PROMOTED) оставляет
+            // устаревшее дерево в кэше долгоживущего процесса = тихо неверный CV.
             static $treeCache = [];
-            if (! isset($treeCache[$op])) {
-                $treeCache[$op] = new ExpressionTree($def);
+            $key = $op . ':' . md5($def);
+            if (! isset($treeCache[$key])) {
+                $treeCache[$key] = new ExpressionTree($def);
             }
-            return $treeCache[$op]->evaluate($a, $b);
+            return $treeCache[$key]->evaluate($a, $b);
         }
 
         // 2. Хардкод для базовых операций (временно)

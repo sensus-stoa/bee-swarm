@@ -37,14 +37,8 @@ class BCultureParseTest extends TestCase
 
     protected function setUp(): void
     {
-        // Static-кэши (birthOpCache, defCache) переживают смену БД — сброс
-        $rc = new \ReflectionClass(ExpressionEvaluator::class);
-        foreach (['birthOpCache' => null, 'defCache' => []] as $prop => $val) {
-            if ($rc->hasProperty($prop)) {
-                $p = $rc->getProperty($prop);
-                $p->setValue(null, $val);
-            }
-        }
+        // REVIEW deleg_fe365da6: единая точка сброса static-кэшей evaluator'а
+        ExpressionEvaluator::resetCaches();
         \BeeSwarm\Core\AtomRegistry::clearDefCache();
     }
 

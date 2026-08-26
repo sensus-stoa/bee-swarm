@@ -1863,3 +1863,99 @@ parity на инвариантах (wine/airfoil/energy), Bee лучше на gr
 честный отказ на шумовых (coulomb15/concrete/mpg-null), DEPTH-граница
 на heat/dot/kinetic. Culture-eval фиксы остаются (reuse жив!), поиск
 B-L2L1-композиций — отдельная стори (CULTURE-COMPOSE, P2).
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-030 (26.08.2026): CULTURE AS SEMANTIC COMPRESSION
+
+**Архитектурный принцип (аналитик):**
+> Культура не должна расширять дерево поиска — она должна СЖИМАТЬ его.
+> Inline-каскад (EXP-029) делал наоборот → OOM. Откат оставлен.
+
+**Механизм: opaque macro-terminals (semantic atoms)**
+1. B templates заморожены ДО запуска: SUB(a,b), MUL(a,b) — 2 штуки.
+2. Instantiation: все (xi op xj), i<j, на TRAIN. Правила отбора K:
+   - finite values only;
+   - убрать почти-константные (std/mean < 1e-6);
+   - semantic dedup: корреляция |ρ|>0.999 с существующим терминалом → дубликат, выкинуть;
+   - deterministic train-only score (std ratio с y);
+   - top K=16 на шаблон (итого ≤32 z-терминалов).
+3. z-терминалы = НЕПРОЗРАЧНЫЕ для Search::find: обычные колонки X.
+4. Search depth остаётся 3. Никаких inline B AST.
+5. Holdout не участвует в отборе терминалов.
+6. КОМПЛЕКСНОСТЬ В ОТЧЁТЕ — после раскрытия B (expanded symbolic complexity);
+   в search-space z стоит 1. Обе цифры публикуются.
+
+**Ожидания:**
+- heat: κ·(T2−T1)·A/d → z0·z1/x4 при depth 2! (0/20 → ≥8/20)
+- dot: x1y1+x2y2+x3y3 → z1+z2+z3 при depth 2 (0/20 → ≥8/20)
+- kinetic: 0.5·m·Σv² — SUM3 chunk отсутствует → вероятно отказ
+  (= честный результат «transfer требует релевантных chunks»)
+
+**Контроль (тот же прогон):** те же 12 задач БЕЗ z-терминалов (волна 1-v2 уже есть).
+
+**Что НЕ делаем:** SUM3/PROD-n канонизация (grammar change) — отдельная стори,
+если heat/dot подтвердят механизм.
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-031 (26.08.2026): TOP-K RESIDUAL CULTURAL RETRIEVAL
+
+**Архитектурный результат EXP-030 (фиксируется как негативный + архитектурный):**
+> Cultural memory alone does not reduce combinatorial complexity.
+> Effective transfer requires SELECTIVE RETRIEVAL (conditional on
+> current partial hypothesis).
+
+inline → depth-взрыв; z-terminals → width-взрыв. Культура меняет ФОРМУ
+взрыва, не устраняет. Нужен селектор.
+
+**Механизм EXP-031 (заморожено до кода):**
+1. Задача: ТОЛЬКО feynman_heat (не 13!).
+2. B-атомы НЕ колонки: кандидаты = все SUB(xi,xj), MUL(xi,xj) пары (i<j),
+   генерируются на TRAIN.
+3. Итеративный цикл (max 2 cultural steps):
+   - Шаг 0: Search::find depth 2 на исходных X → лучший partial e.
+     Если найден инвариант (CV_H≤0.10) — готово.
+   - Шаг 1: residual/ratio r = y/e (AFFINE-shift как в cv()).
+     Для каждого B-кандидата z: score(z) = min CV(r/z), CV(z/r),
+       CV(r·z), CV(r+z), CV(r−z) — «один следующий оператор».
+     Top-3 z → расширение: X' = [X | z_top3], Search depth 3.
+     Если инвариант — готово.
+   - Шаг 2: повторить residual-шаг от нового лучшего candidate,
+     top-3 из ОСТАВШИХСя кандидатов, X'' = [X' | z_new] → Search depth 3.
+4. Holdout не участвует ни в selection, ни в ranking (TRAIN only!).
+5. Бюджет 30s/seed суммарно на все шаги.
+6. Успех: success ≥ 8/20 (heat CV_H ≤ 0.10), без OOM, память bounded.
+
+**Интерпретация:**
+- ≥8/20 → механизм жизнеспособен (conditional retrieval сжимает поиск)
+- <8/20 → systematic search архитектурно плохо совместим с compositional
+  transfer → нужен другой search paradigm (честно фиксируем)
+
+**Не делаем:** ML-селектор, SUM3/PROD канонизацию, остальные 12 задач.
+
+### EXP-031 ИТОГ (26.08.2026): conditional retrieval 0/20 — FAIL
+
+**Механизм:** search → residual → rank candidates vs residual → top-3 →
+extend X → search depth 3. Max 2 steps, holdout изолирован.
+
+**Результат: 0/20.** Все seeds: «поиск без находки (NONE)» — расширенный
+Search::find (5 фич + 3 z-колонки = 8 колонок, depth 3, 30s) НЕ находит
+даже с релевантными z.
+
+**Дебаг-вопрос (не закрыт):** manual ((x0×(x1B1x2))×x3)/x4 даёт CV=0.
+В расширенном X: x4=z(SUB(x1,x2))... формула = ((x0×z)×x2)/x3 — это
+L1×L1 / L1 = depth 2-3. Почему NONE? Возможные причины:
+a) beam отбирает по quick-CV — промежуточные (x0×z) имеют плохой CV без /x3
+b) l2l1Ops cap 50 режет нужный оператор
+c) Search::find не генерирует L2/L1-форму деления
+
+**Архитектурный вывод (усиленный после трёх попыток):**
+> Systematic depth-limited search плохо совместим с compositional transfer:
+> каждый механизм добавления культурных знаний (inline AST, opaque columns,
+> residual retrieval + extend) упирается в beam/combinatorics/depth.
+> Для culture-aware поиска нужна ДРУГАЯ парадигма: guided expansion
+> (residual-driven на каждом шаге построения дерева формулы), а не
+> generate-all-then-filter.
+
+**Что остаётся валидным:**
+- Culture-EVAL фиксы (reuse существующих атомов при вычислении)
+- EXP-028 таблица (parity + refusal + FPR=0)
+- Негативный результат: memory ≠ compression без selective retrieval,
+  и даже selective retrieval требует другого поискового ядра

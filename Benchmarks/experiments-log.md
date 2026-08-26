@@ -2040,3 +2040,62 @@ One-step gain от mean(y). 20 seeds, heat only.
 Культура без механизма ВНИМАНИЯ = смена формы взрыва.
 Нужен conditional retrieval (EXP-031-v2 формула) ИЛИ
 spreading activation по feature-level графу (не op-level).
+
+### ПРЕДРЕГИСТРАЦИЯ EXP-033 (26.08.2026): RESIDUAL-GUIDED GROUNDED GRAPH
+
+**Гипотеза:** abstract operator graph alone cannot perform grounding (EXP-032).
+Residual-guided binding + operator prior together > residual alone > graph alone.
+
+**4 режима (те же 20 seeds, heat only, frozen splits):**
+A. Random symbolic search (baseline — depth 3, без культуры)
+B. Operator graph only (spreading activation, EXP-032 — 0/20 контроль)
+C. Residual-guided only (one-step gain, без graph prior)
+D. Residual + operator graph (graph сужает продолжения, residual выбирает переменные)
+
+**Механизм D:**
+1. Raw features → auto-generate B-atoms: xi−xj, xi+xj, xi/xj, xi×xj, 1/xi
+2. Cheap screening: S(B) = ΔLoss(B) на train/CV → top 10-30
+3. Graph prior: «после DIFF часто MUL, затем DIV» → сужает продолжения
+4. Residual expansion: для каждого candidate e пробуем e op Bi → beam K=20-100
+5. Grammar birth: если DIFF_PAIR устойчиво полезен → сохраняем схему, не конкретику
+
+**Критерий успеха:** D > C > B (порядок эффективности).
+Если D ≥ 10/20 → архитектурный механизм жизнеспособен.
+
+### ИТОГ КУЛЬТУРНОЙ СЕРИИ (26.08.2026): STOP — честная граница зафиксирована
+
+**5 экспериментов (EXP-029..033) проверили вариации одной ошибочной
+предпосылки:** будто можно получить хорошую релевантность ДО того,
+как существует содержательная partial hypothesis.
+
+| EXP | Механизм | FAIL-причина |
+|---|---|---|
+| 029 | inline AST B-атомов | depth explosion → OOM 14.5GB |
+| 030 | opaque z-терминалы | width explosion → beam не справляется |
+| 031 | residual retrieval | beam/generation не находит CV=0 цепочку |
+| 032 | abstract operator graph | знает WHAT, не знает WITH WHAT |
+| 033 | residual(mean) + graph | residual от mean(y) не имеет структурного сигнала |
+
+**Честный вывод (для paper):**
+> Abstraction without selective planning causes either depth explosion
+> or width explosion; local one-step relevance signals are insufficient
+> for multi-step symbolic composition.
+>
+> Five attempted cultural/retrieval mechanisms failed to overcome the
+> compositional depth boundary on HEAT under depth-3 search.
+
+**Три способа победить depth-лимит (пока ни один не реализован):**
+1. Увеличить search depth — дорого (OOM на PHP)
+2. Macro, сворачивающий несколько уровней — нужен transfer из других задач
+3. Planner/value function — строит цепочку partial hypotheses без полного перебора
+
+**Все попытки 029-033 были попытками получить №3 без настоящего planner'а.**
+Self-routing experts = отдельная исследовательская ветка (Scientific Bee vNext),
+не следующий фикс. Начинать только с cheap kill-test.
+
+**Возврат к имеющимся результатам:**
+- PySR benchmark: parity WINE, Bee лучше gravity/relmass, refusal MPG
+- Stage 0/1: 9/9 + 5/5 PASS
+- Null calibration: FPR=0
+- Culture-eval фиксы: reuse существующих атомов работает
+- Архитектурный документ: 4 слоя памяти + фоновый картограф (будущее)

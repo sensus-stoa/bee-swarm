@@ -2443,3 +2443,51 @@ residual как навигатор), но его рецепт «XP-033 глав�
 > канонические имена, rename-тесты) и не угаданный planner: селекцию делает
 > ресурсная экономика. Граница текущего механизма — SUM-композиция chunk'ов
 > (dot/kinetic), следующий предрегистрированный шаг EXP-036.
+
+## АКАДЕМИЧЕСКИЙ АУДИТ (29.08): позиция vs arXiv/SRBench/related work
+
+**Прямых аналогов механизма НЕ найдено (3 поисковых запроса через MCP:**
+**arxiv+openalex, web, academic):**
+
+1. **GP-GOMEA (Virgolin, Bosman 2022, arXiv:2204.12159)** — топ SR через
+   gene-pool optimal mixing + coefficient mutation. НЕТ: ресурсной экономики
+   спавна, сохранения частичных гипотез как наследуемых атомов, birth-гейтов.
+   Близко по духу (mixing ≈ chunk-переиспользование), но chunk — код-поддерево,
+   не эволюционирующий концепт с lineage.
+
+2. **QDSR / Quality-Diversity SR (Baidu Scholar hit)** — exact recovery 91.6%
+   на Feynman-AI 117 задач через Quality-Diversity + physics constraints.
+   НАМ ВАЖНО: они используют знания о физике (units/symmetry) — мы НЕТ.
+   Наш heat 20/20 на 5 фичах — с нуля, без unit-table. Прямое сравнение
+   некорректно (разные допущения), но QDSR — сильнейший baseline для
+   Feynman-подобных задач. Цитировать обязательно.
+
+3. **Novelty Search / MAP-Elites / QD** — это наш ближайший теоретический
+   сосед (сохранение неперспективных, но разнообразных кандидатов = наш
+   DormantPool). В SR-контексте НЕ применялся к «сохранению частичных
+   гипотез с lineage и birth-гейтами». Это и есть новизна: DormantPool
+   как hypothesis archive с эволюционной экономикой (поколения, голод,
+   birthday-гейты), не как behavior-diversity archive.
+
+4. **AI Feynman 2.0 (Udrescu & Tegmark)** — использует physics priors
+   (unit table, symmetry) для РЕКУРСИВНОГО упрощения. Мы — противоположный
+   полюс: без physics priors, чисто из данных + эволюции. Честная рамка:
+   «AI Feynman получает физику извне; Bee Swarm выращивает её внутренне».
+
+5. **LLM-AutoSciLab (2026, arXiv:2605.24043) + Co-Scientist** — закрытый
+   цикл hypothesis→experiment→refine через LLM. Другой класс: LLM-агенты
+   с внешними знаниями. Мы — эволюция БЕЗ LLM. Совпадает цель
+   (closed-loop discovery), не механизм.
+
+**ВЫВОД ДЛЯ PAPER:**
+- Новизна №1: DormantPool/lineage как «hypothesis archive с эволюционной
+  экономикой» — между QD-архивами и lineage-selection, в SR не применялось.
+- Новизна №2: partial hypothesis → born atom → cultural inheritance
+  (B-AS-ARGUMENT контракт + канонизация) — этот слой в GP-GOMEA отсутствует
+  (там chunks не рождаются из слабых особей), в QDSR отсутствует (там
+  архив = behavioral diversity).
+- Слабое место против критиков: heat 20/20 — ОДНА задача. Нужен
+  QDSR-style Feynman-AI прогон (≥10 задач) ИЛИ честная рамка «mechanism
+  demonstration on compositional depth boundary», не «beats SOTA».
+- Обязательный related work: GP-GOMEA, QDSR, AI Feynman 2.0, SRBench,
+  Novelty Search (Lehman & Stanley), MAP-Elites (Mouret & Clune).

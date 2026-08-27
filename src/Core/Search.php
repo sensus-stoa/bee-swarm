@@ -15,7 +15,7 @@ class Search
         $exact = true;
         for ($i = 0; $i < $n; $i++) {
             // NaN/INF — артефакт, не закон (бейзлайн 05.08: R× переполнение)
-            if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                 $exact = false;
                 break;
             }
@@ -169,6 +169,10 @@ class Search
         $bornBinary = [];
         if (getenv('NO_BIRTH') !== '1') {
             try {
+                // EXP-035 DEBUG: bornBinary dump
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    fwrite(STDERR, '[SD-B] before query: ' . microtime(true) . PHP_EOL);
+                }
                 // BINARY-B-CAP (09.08, ЭКСП-022o ноут): 30+ атомов × 1600 пар
                 // в L2 = 48K evaluateFormula на тик (тик-бомба!). Cap 3.
                 // ORDER BY length: КОРОТКИЕ определения (B11=(x0+x1) — 7
@@ -190,6 +194,9 @@ class Search
                 $stmt->execute(['birth', '%x0%', '%x1%']);
                 foreach ($stmt->fetchAll() as $bb) {
                     $bornBinary[$bb['name']] = $bb['definition'];
+                    if (getenv('SEARCH_DEBUG') === '1') {
+                        fwrite(STDERR, '[SD-B] bornBinary: ' . $bb['name'] . ' = ' . $bb['definition'] . PHP_EOL);
+                    }
                 }
             } catch (\Throwable $e) {
                 $bornBinary = [];
@@ -399,7 +406,7 @@ class Search
         if ($depth >= 3 && ! empty($l1Keys)) {
             // B-AS-ARGUMENT: B-формы (B7a7aee×x2) в L2L1 — без них атомы
             // не участвуют в двухуровневых композициях
-            $l1Top = array_slice(array_merge($l1Keys, $bKeys ?? []), 0, 30);
+            $l1Top = array_slice(array_merge($bKeys ?? [], $l1Keys), 0, 30); // bKeys ВПЕРЕДИ (иначе slice-30 отрезает B-формы — EXP-035)
             // L2L1: $ops = ВСЯ грамматика (прод: 3562 ops!) → 30×12×3562×n —
             // вечность на проде. Cap до top-50 (как beam) + проверка бюджета.
             $l2l1Ops = array_slice($ops, 0, 50);
@@ -428,6 +435,12 @@ class Search
             return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
         }
         if ($depth >= 3) {
+            // EXP-035 (27.08): L2 ÷ ФИЧА — heat-законы κ(T2−T1)A/d требуют
+            // деления на ПЕРЕМЕННУЮ (d), не константу. Old: только K*.
+            $yMaxAbs = 1.0;
+            foreach ($y as $yv) { $yMaxAbs = max($yMaxAbs, abs((float)$yv)); }
+            // ОГРАНИЧЕНИЕ: только '/' (выразимость heat) — взрыв контролируем
+            // делителем кол-ва L2.
             $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));
             $l3Count = 0;
             foreach ($l2Keys as $l2name) {
@@ -443,6 +456,32 @@ class Search
                     }
                     $exprs["({$l2name}/{$ck})"] = $vec;
                 }
+                // EXP-035: L2 / фича — переменный делитель (heat /d).
+                // Взрыв-гвард: time-based (deadline), не количественная —
+                // иначе нужный l2 (B×x2 за топ-50) отрезается.
+                if (microtime(true) < $deadline) {
+                    // SEMANTIC GUARD v2 (EXP-035): L2/фича — только для
+                    // ПЕРСПЕКТИВНЫХ l2: |corr(l2,y)|>0.3 или l2name имеет B-атом.
+                    // Фильтр по полезности, не по имени — работает и для
+                    // B-имён, и для B-колонок (урок фазы 3b: chunk вшит в данные).
+                    $l2vec = $exprs[$l2name];
+                    $hasB = preg_match('/B[0-9a-f]{2,}/', $l2name) === 1;
+                    if (! $hasB) {
+                        $corr = self::quickCorr($l2vec, $y);
+                        if (abs($corr) < 0.3) {
+                            continue;
+                        }
+                    }
+                    foreach ($featKeys as $fk) {
+                        if ($fk === $l2name) continue;
+                        $vec = [];
+                        for ($i = 0; $i < $n; $i++) {
+                            $denom = $feats[$fk][$i];
+                            $vec[] = (abs($denom) < 1e-12) ? null : ($exprs[$l2name][$i] / $denom);
+                        }
+                        $exprs["({$l2name}/{$fk})"] = $vec;
+                    }
+                }
             }
         }
 
@@ -452,7 +491,8 @@ class Search
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
-                if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+                // EXP-035: null (ноль-делитель в L2/фича) — не точный закон
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }
@@ -489,7 +529,7 @@ class Search
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
-                if (! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
                     $exact = false;
                     break;
                 }
@@ -523,6 +563,27 @@ class Search
             return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL'];
         }
 
+        if (getenv('SEARCH_DEBUG') === '1') {
+            fwrite(STDERR, '[SD] exprs=' . count($exprs) . ' plausible=' . count($plausible) . PHP_EOL);
+
+            $top = array_slice($plausible, 0, 3);
+            foreach ($top as $t) fwrite(STDERR, '[SD] top: ' . $t['name'] . ' cv=' . number_format($t['cv'], 4) . PHP_EOL);
+            // EXP-035: прямой cv целевой формы
+            $target = '((x0BPf474x1)×x2)';
+            if (isset($exprs[$target])) {
+                $cvT = self::cv($exprs[$target], $y, $affineShift);
+                fwrite(STDERR, '[SD] TARGET ' . $target . ' cv=' . number_format($cvT, 5) . PHP_EOL);
+                $t2 = '(((' . 'x0BPf474x1)×x2)/x3)';
+                if (isset($exprs[$t2])) {
+                    $cvT2 = self::cv($exprs[$t2], $y, $affineShift);
+                    fwrite(STDERR, '[SD] TARGET-L3 ' . $t2 . ' cv=' . number_format($cvT2, 5) . PHP_EOL);
+                } else {
+                    fwrite(STDERR, '[SD] TARGET-L3 отсутствует в exprs' . PHP_EOL);
+                }
+            } else {
+                fwrite(STDERR, '[SD] TARGET-L2 отсутствует' . PHP_EOL);
+            }
+        }
         usort($plausible, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
         SearchProfiler::add(0.0, microtime(true) - $pCv, 0.0);
         $pTest = microtime(true);
@@ -740,6 +801,30 @@ class Search
         $affineShift = ($minY < 0 && $maxY > 0) ? $minY - 1.0 : 0.0;
 
         return self::cv($vec, $y_test, $affineShift);
+    }
+
+    /** EXP-035: быстрый Пирсон corr для семантической гварды L2/фича. */
+    private static function quickCorr(array $a, array $b): float
+    {
+        $n = min(count($a), count($b));
+        if ($n < 3) return 0.0;
+        $sum = 0.0; $sa = 0.0; $sb = 0.0;
+        $da2 = 0.0; $db2 = 0.0;
+        for ($i = 0; $i < $n; $i++) {
+            if ($a[$i] === null || $b[$i] === null) continue;
+            $sum += $a[$i] * $b[$i];
+            $sa += $a[$i]; $sb += $b[$i];
+        }
+        $ma = $sa / $n; $mb = $sb / $n;
+        for ($i = 0; $i < $n; $i++) {
+            if ($a[$i] === null || $b[$i] === null) continue;
+            $da = $a[$i] - $ma; $db = $b[$i] - $mb;
+            $da2 += $da * $da; $db2 += $db * $db;
+        }
+        if ($da2 < 1e-12 || $db2 < 1e-12) return 0.0;
+        // corr = (E[ab]-E[a]E[b]) / (sd_a*sd_b) — через суммы:
+        $cov = $sum / $n - $ma * $mb;
+        return $cov / sqrt($da2 / $n * $db2 / $n);
     }
 
     public static function stddev(array $v): float

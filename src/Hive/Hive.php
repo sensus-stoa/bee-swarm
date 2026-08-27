@@ -657,6 +657,59 @@ class Hive
         return $added;
     }
 
+    /**
+     * PARTIAL-HYPOTHESIS-BIRTH (27.08, EXP-035): частичная гипотеза →
+     * B-кандидат в grammar_ops. Рождение ТОЛЬКО при выполнении всех гейтов:
+     *  1. ≥2 терминала — нетривиальная структура
+     *  2. CV < 0.5 — заметно лучше среднего (не мусор)
+     *  3. Compression: определение компактно против встраивания
+     *  4. Голод линии — stale-счётчик > 0 (ресурсная дисциплина)
+     *
+     * RCB: candidate-статус, активация после reuse≥1 (existing критерий).
+     *
+     * @return bool произошли ли рождение/переиспользование записи
+     */
+    public function partialBirth(string $formula, float $cv, string $domain, float $cvMean): bool
+    {
+        // Гейт 1: нетривиальность (минимум 2 терминала xN)
+        $terminals = preg_match_all('/x\d+/', $formula);
+        if ($terminals < 2) {
+            return false;
+        }
+
+        // Гейт 2: CV существенно лучше среднего
+        if ($cv >= 0.5) {
+            return false;
+        }
+
+        // Гейт 3: компрессия. B-имя при reuse ≈ 'B'+hash (5-6 симв) × 2
+        // встраивания. Формула обязана быть короче 2× этого встраивания.
+        $birthOverhead = strlen('(xBxx)') + 1; // минимальный контекст встраивания
+        if (strlen($formula) > 2 * $birthOverhead) {
+            return false;
+        }
+
+        // Гейт 4: голод линии — хотя бы одна линия живёт в stale (prune
+        // когда-либо отмечал безуспешность). Успешный рой не рождает.
+        $hungry = false;
+        foreach ($this->lineageProgress as $stale) {
+            if ($stale > 0) {
+                $hungry = true;
+                break;
+            }
+        }
+        if (! $hungry) {
+            return false;
+        }
+
+        // Рождение: candidate (RCB двухфазность, reuse≥1 → PROMOTED)
+        $seq = count($this->lineageEnergyBaseline) + 100; // namespace от lineages
+        $name = 'BP' . dechex(crc32($formula . $domain) & 0xFFFF);
+        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula, $domain);
+        $this->log("PARTIAL-BIRTH: {$name} = {$formula} (cv=" . number_format($cv, 3) . ", domain={$domain})");
+        return true;
+    }
+
     private function doTick(): void
     {
         // EXP-034 (27.08): SPAWN-POOL B-ветка. Env SPWN_POOL=1 активирует

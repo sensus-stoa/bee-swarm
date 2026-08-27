@@ -11,6 +11,7 @@ use BeeSwarm\Infra\RngIsolation;
 /**
  * BDD behavioral tests — инварианты пайплайна.
  * Время: ~10 сек на тест.
+ * @group slow
  */
 class BehavioralDiversityTest extends TestCase
 {

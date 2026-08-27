@@ -10,6 +10,7 @@ use BeeSwarm\Core\Grammar;
  * DISCOVERY-DEPTH-3 (09.08, ЭКСП-022f): улей вызывал Search::find с depth=2 —
  * L2L1-мост (depth>=3) не активен → (x0+x1)×x2 невыразим в улье → 0 законов.
  * Прямой find (depth=3) находит: ((x0addx1)mulx2) cv=0.
+ * @group slow
  */
 class DiscoveryDepth3Test extends TestCase
 {

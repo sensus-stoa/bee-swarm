@@ -54,6 +54,13 @@ class MemoryDbTest extends TestCase
         Database::reset();
         $db = Database::get();
         $ops = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
+        if ($ops > 0) {
+            $sample = array_slice($db->query('SELECT name, source FROM grammar_ops LIMIT 6')->fetchAll(), 0, 6);
+            foreach ($sample as $r) {
+                fwrite(STDERR, '  [op] ' . $r['name'] . ' (' . $r['source'] . ')' . PHP_EOL);
+            }
+            fwrite(STDERR, '  [TOTAL] ' . $ops . PHP_EOL);
+        }
         $this->assertSame(0, $ops, ':memory: grammar_ops must start empty');
     }
 }

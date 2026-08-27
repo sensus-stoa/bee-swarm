@@ -2491,3 +2491,26 @@ residual как навигатор), но его рецепт «XP-033 глав�
   demonstration on compositional depth boundary», не «beats SOTA».
 - Обязательный related work: GP-GOMEA, QDSR, AI Feynman 2.0, SRBench,
   Novelty Search (Lehman & Stanley), MAP-Elites (Mouret & Clune).
+
+### МЕТОДОЛОГИЧЕСКИЙ БЛОК: LLM-контаминация Feynman-бенча (28.08)
+
+FunctionEvolve (2026) 120/120 на AI-Feynman — НЕ «открытие», а
+воспроизведение претрейна: Фейнмановские лекции в корпусе каждой
+LLM. Сообщество признало (LLM-SR: "limitations of common benchmarks";
+китайские обзоры: «различай 背(запоминание) и 推(вывод)»).
+
+Собственно ответ авторов: main claim на LLM-SRBench (129 synthetic
+задач вне претрейна), Feynman — пресс-бонус.
+
+**Наша позиция (в paper):**
+- Bee Swarm — эволюция без претрейна: грамматика стартует с 6 ops,
+  канал утечки отсутствует BY CONSTRUCTION.
+- Для non-LLM методов Feynman-бенч остаётся ВАЛИДНЫМ (и мы — одни
+  из последних честных на нём).
+- LLM-методы исключаются из прямого сравнения с пометкой
+  (contamination), их бенч — LLM-SRBench.
+- EXP-036 фаза 2.5 (rename/permute/nuisance) закрывает вопрос
+  «memorization vs grounding» и для нас.
+
+**Anti-hype фиксация:** QDSR 107/120 использует physics priors
+(units/symmetry) — сравнение с ними только «по механизму».

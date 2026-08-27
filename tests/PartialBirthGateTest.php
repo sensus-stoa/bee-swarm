@@ -110,6 +110,50 @@ class PartialBirthGateTest extends TestCase
         $this->assertFalse($born, 'некомпактная формула = отказ (compression)');
     }
 
+    public function testMaterializedChildInheritsPartialBirthOp(): void
+    {
+        $hive = $this->makeShortHive();
+        $this->starveALine($hive);
+
+        $this->assertTrue($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
+        $bName = $this->birthOpName('arithmetic', '(x0−x1)');
+        $this->assertNotNull($bName);
+
+        // Активируем (reuse) — только active видны в грамматике потомка
+        \BeeSwarm\Core\Grammar::registerReuse($bName, 'arithmetic');
+
+        // Новая материализация из ТОЙ ЖЕ линии (родитель жив) —
+        // потомок наследует пчелиную грамматику; B-атом приходит
+        // из grammar_ops через Grammar (BASE+birth)
+        $pool = $hive->dormantPool();
+        $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+        $this->assertSame(1, $hive->materializeFromPool(1));
+
+        $bees = $hive->getBees();
+        $child = $bees[count($bees) - 1];
+        $grammar = $child->grammar();
+        $this->assertContains($bName, $grammar,
+            'потомок линии обязан видеть активированный B-атом');
+    }
+
+    public function testChildGrammarUnionIncludesBirthOps(): void
+    {
+        // Bee::grammar() объединяет personal + customGrammarOps;
+        // birth-опы приходят через $this->customGrammarOps при создании
+        // с наследованием. Проверка контрактная: Grammar::all() содержит
+        // активированный birth-оп.
+        $hive = $this->makeShortHive();
+        $this->starveALine($hive);
+        $this->assertTrue($hive->partialBirth('(x0×x1)', 0.3, 'arithmetic', 1.0));
+        $bName = $this->birthOpName('arithmetic', '(x0×x1)');
+        \BeeSwarm\Core\Grammar::registerReuse($bName, 'arithmetic');
+
+        $g = new \BeeSwarm\Core\Grammar();
+        $all = $g->all(); // all() УЖЕ возвращает имена (array_keys(ops) внутри)
+        $this->assertContains($bName, $all,
+            'Grammar::all() обязан включать активированный birth-оп');
+    }
+
     public function testPartialBirthCannotDuplicate(): void
     {
         $hive = $this->makeShortHive();

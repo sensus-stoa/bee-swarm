@@ -570,6 +570,7 @@ class Hive
         foreach ($awakened as $entry) {
             $recipe = $entry['recipe'];
             $op = (string) ($recipe['op'] ?? '');
+            $sector = (string) ($entry['sector'] ?? 'unknown');
             if ($op === '') {
                 $this->dormantPool->remove($entry['id']);
                 continue;
@@ -628,7 +629,6 @@ class Hive
             $ref->setValue($parent, $pe - Bee::SPAWN_PARENT_COST);
 
             // Фаза C: lineage. Новая линия = сектор, которого ещё нет среди живых.
-            $sector = (string) ($entry['sector'] ?? 'unknown');
             $existingSectors = [];
             foreach ($this->bees as $b) {
                 if ($b->isAlive() && $b->lineageId() !== '') {

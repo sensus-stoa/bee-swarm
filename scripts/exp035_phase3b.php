@@ -12,7 +12,8 @@ declare(strict_types=1);
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('BINARY_B_CAP=3');
-ini_set('memory_limit', '2G');
+putenv('SEARCH_BEAM_K=10'); // без beam L2-pairs = pairwise² → 15К l2Keys → OOM
+ini_set('memory_limit', '3G');
 
 require '/home/ninjacat/.bee_swarm/vendor/autoload.php';
 
@@ -28,7 +29,7 @@ $hive->run();
 // ── 1. Данные: y=(x0+x1)×x2×x3/x4, 100 строк, seed 42 ──
 mt_srand(42);
 $X = []; $y = [];
-for ($i = 0; $i < 100; $i++) {
+for ($i = 0; $i < 60; $i++) {
     $x0 = mt_rand(1, 100) / 10;
     $x1 = mt_rand(1, 100) / 10;
     $x2 = mt_rand(1, 100) / 10;
@@ -37,7 +38,7 @@ for ($i = 0; $i < 100; $i++) {
     $X[] = [$x0, $x1, $x2, $x3, $x4];
     $y[] = ($x0 + $x1) * $x2 * $x3 / $x4;
 }
-echo "1. строк: ", count($y), "; цель y=(x0+x1)*x2*x3/x4 (сырая глубина 4)\n";
+echo "1. строк (60, RAM-гвард): ", count($y), "; цель y=(x0+x1)*x2*x3/x4 (сырая глубина 4)\n";
 
 // ── 2. БАЗЛАЙН: depth-3 без B ──
 $g0 = new Grammar();

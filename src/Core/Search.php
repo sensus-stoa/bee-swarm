@@ -400,13 +400,51 @@ class Search
             }
         }
 
+        // RESOURCE→KNOWLEDGE (27.08, принцип юзера): после L2-pairs —
+        // beam-отбор l2Keys. Формы без пользы (CV плох, B внутри нет)
+        // НЕ получают памяти на следующий уровень — заморозка/смерть.
+        // B-формы всегда живут (chunk-кандидаты, гейт не по CV).
+        $l2BeamK = (int) (getenv('L2_BEAM_K') ?: '40');
+        if ($l2BeamK > 0 && count($l2Keys) > $l2BeamK) {
+            $scored2 = [];
+            foreach ($l2Keys as $pname) {
+                $pv = $exprs[$pname];
+                $cvQ = self::cv(array_slice($pv, 0, min($n, 30)), array_slice($y, 0, min($n, 30)), 0.0);
+                $scored2[] = ['n' => $pname, 'cv' => $cvQ,
+                    'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1];
+            }
+            usort($scored2, function (array $a, array $b): int {
+                // B-формы всегда впереди (chunk-капитал), внутри группы — по CV
+                if ($a['b'] !== $b['b']) return $a['b'] ? -1 : 1;
+                return $a['cv'] <=> $b['cv'];
+            });
+            $kept = array_slice($scored2, 0, $l2BeamK);
+            $keptNames = array_map(fn (array $x): string => $x['n'], $kept);
+            // Заморозка: удаляем неперспективные векторы из памяти (RAM)
+            $keepSet = array_flip($keptNames);
+            foreach ($l2Keys as $pname) {
+                if (! isset($keepSet[$pname])) {
+                    unset($exprs[$pname]);
+                }
+            }
+            $l2Keys = $keptNames;
+        }
+
+        if (getenv('SEARCH_DEBUG') === '1') {
+            fwrite(STDERR, '[SD-BEAM] l2Keys after beam=' . count($l2Keys)
+                . ' exprs=' . count($exprs)
+                . ' mem=' . round(memory_get_usage(true) / 1048576) . 'MB'
+                . ' featKeys=' . count($featKeys) . PHP_EOL);
+        }
         // SEARCH-L2L1 (09.08): L3 = L1 op Фича — композиции второго уровня.
         // (x0+x1) — L1-уровень; без L1×фича (x0+x1)×x2 невыразим →
         // transfer-тест невалиден (ЭКСП-022d). top-30 L1 × фичи × ops.
         if ($depth >= 3 && ! empty($l1Keys)) {
             // B-AS-ARGUMENT: B-формы (B7a7aee×x2) в L2L1 — без них атомы
             // не участвуют в двухуровневых композициях
-            $l1Top = array_slice(array_merge($bKeys ?? [], $l1Keys), 0, 30); // bKeys ВПЕРЕДИ (иначе slice-30 отрезает B-формы — EXP-035)
+            // EXP-035: bKeys ВПЕРЕДИ и cap 200 (105 B-форм > старый slice-30 —
+            // (x0BPf474x1) отрезался → целевая L2L1-форма не создавалась)
+            $l1Top = array_slice(array_merge($bKeys ?? [], $l1Keys), 0, 200);
             // L2L1: $ops = ВСЯ грамматика (прод: 3562 ops!) → 30×12×3562×n —
             // вечность на проде. Cap до top-50 (как beam) + проверка бюджета.
             $l2l1Ops = array_slice($ops, 0, 50);
@@ -418,10 +456,15 @@ class Search
                 foreach ($featKeys as $fname) {
                     foreach ($l2l1Ops as $op) {
                         $vec = [];
+                        $valid = true;
                         for ($i = 0; $i < $n; $i++) {
-                            $r = $grammar->apply($exprs[$l1name][$i], $exprs[$fname][$i], $op);
+                            $la = $exprs[$l1name][$i] ?? null;
+                            $lb = $exprs[$fname][$i] ?? null;
+                            if ($la === null || $lb === null) { $valid = false; break; }
+                            $r = $grammar->apply($la, $lb, $op);
                             $vec[] = $r ?? 0.0;
                         }
+                        if (! $valid) continue;
                         $name = "({$l1name}$op{$fname})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
@@ -434,6 +477,12 @@ class Search
         if (microtime(true) > $deadline) {
             return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
         }
+        if (getenv('SEARCH_DEBUG') === '1') {
+            $bvec = '(x0BPf474x1)';
+            fwrite(STDERR, '[SD-POST-L2L1] bvec exprs: ' . (isset($exprs[$bvec]) ? 'YES' : 'NO')
+                . ' target: ' . (isset($exprs['((x0BPf474x1)×x2)']) ? 'YES' : 'NO')
+                . ' l2Keys=' . count($l2Keys) . PHP_EOL);
+        }
         if ($depth >= 3) {
             // EXP-035 (27.08): L2 ÷ ФИЧА — heat-законы κ(T2−T1)A/d требуют
             // деления на ПЕРЕМЕННУЮ (d), не константу. Old: только K*.
@@ -443,10 +492,72 @@ class Search
             // делителем кол-ва L2.
             $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));
             $l3Count = 0;
+            // РЕСУРС→ЗНАНИЕ (27.08): L3 строим из beam-top l2Keys (жёстко).
+            // Отбор: B-формы приоритет (chunk-капитал), внутри — по CV.
+            // Никаких «все B-формы живут» — L2L1 плодит 12К B-форм (30 l1Top
+            // bKeys × 70 фич × 6 ops), все они конкурируют за память.
+            $l3BeamK = (int) (getenv('L2_BEAM_K') ?: '40');
+            if (count($l2Keys) > $l3BeamK) {
+                $scored3 = [];
+                foreach ($l2Keys as $pname) {
+                    $pv = $exprs[$pname];
+                    $cvQ = self::cv(array_slice($pv, 0, min($n, 30)), array_slice($y, 0, min($n, 30)), 0.0);
+                    $scored3[] = ['n' => $pname, 'cv' => $cvQ,
+                        'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1];
+                }
+                usort($scored3, function (array $a, array $b): int {
+                    if ($a['b'] !== $b['b']) return $a['b'] ? -1 : 1;
+                    return $a['cv'] <=> $b['cv'];
+                });
+                $kept3 = array_slice($scored3, 0, $l3BeamK);
+                $keepSet = array_flip(array_map(fn (array $x): string => $x['n'], $kept3));
+                $bKeySet = array_flip($bKeys ?? []);
+                foreach ($l2Keys as $pname) {
+                    if (! isset($keepSet[$pname]) && ! isset($bKeySet[$pname])) {
+                        unset($exprs[$pname]); // заморозка; bKeys не трогаем (chunk-капитал)
+                    }
+                }
+                $l2Keys = array_map(fn (array $x): string => $x['n'], $kept3);
+            }
+
+            // CHUNK-DIRECT (27.08, принцип «ресурс→знание»): heat-цепочка
+            // κ(chunk×A)/d строится ПРЯМО из chunk-форм (bKeys), минуя
+            // cv-beam: cv у частичного chunk плох ДО полной цепочки —
+            // beam-отбор убивал правильную мысль (урок 3b: TARGET cv=2.2
+            // отсекался). Ресурс: bKeys(1051) × сырые(5) × сырые(4) ≈ 21К
+            // векторов, только finite — контролируемо.
+            $rawAll = array_values(array_filter($featKeys, fn ($k) => preg_match('/^x\d+$/', $k) === 1));
+            $chunkBudget = (int) (getenv('CHUNK_BUDGET') ?: '20000');
+            foreach (($bKeys ?? []) as $ck) {
+                if (! isset($exprs[$ck]) || count($exprs) > 13362 + $chunkBudget) break;
+                foreach ($rawAll as $fk1) {
+                    $mulVec = [];
+                    $mulOk = true;
+                    for ($i = 0; $i < $n; $i++) {
+                        $r = $exprs[$ck][$i] * $feats[$fk1][$i];
+                        if (! is_finite($r)) { $mulOk = false; break; }
+                        $mulVec[] = $r;
+                    }
+                    if (! $mulOk) continue;
+                    $mulName = "({$ck}×{$fk1})";
+                    $exprs[$mulName] = $mulVec;
+                    $l2Keys[] = $mulName;
+                    foreach ($rawAll as $fk2) {
+                        if ($fk2 === $fk1 || str_contains($ck, $fk2)) continue;
+                        $vec = [];
+                        for ($i = 0; $i < $n; $i++) {
+                            $denom = $feats[$fk2][$i];
+                            $vec[] = (abs($denom) < 1e-12) ? null : ($mulVec[$i] / $denom);
+                        }
+                        $exprs["({$mulName}/{$fk2})"] = $vec;
+                    }
+                }
+            }
             foreach ($l2Keys as $l2name) {
                 if ((++$l3Count & 31) === 0 && microtime(true) > $deadline) {
                     return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
                 }
+
                 foreach ($constKeys as $ck) {
                     $vec = [];
                     $cvec = $feats[$ck];
@@ -462,10 +573,11 @@ class Search
                 if (microtime(true) < $deadline) {
                     // SEMANTIC GUARD v2 (EXP-035): L2/фича — только для
                     // ПЕРСПЕКТИВНЫХ l2: |corr(l2,y)|>0.3 или l2name имеет B-атом.
-                    // Фильтр по полезности, не по имени — работает и для
-                    // B-имён, и для B-колонок (урок фазы 3b: chunk вшит в данные).
                     $l2vec = $exprs[$l2name];
-                    $hasB = preg_match('/B[0-9a-f]{2,}/', $l2name) === 1;
+                    // EXP-035 фикс: BPf474-имена (partial birth, буква P после B)
+                    // не матчатся hex-классом [0-9a-f] → hasB=false → chunk-ветки
+                    // скипались. Универсальный класс: B + [A-Za-z0-9]+
+                    $hasB = preg_match('/B[A-Za-z0-9]+/', $l2name) === 1;
                     if (! $hasB) {
                         $corr = self::quickCorr($l2vec, $y);
                         if (abs($corr) < 0.3) {
@@ -480,6 +592,37 @@ class Search
                             $vec[] = (abs($denom) < 1e-12) ? null : ($exprs[$l2name][$i] / $denom);
                         }
                         $exprs["({$l2name}/{$fk})"] = $vec;
+                    }
+                    // EXP-035 L3b (27.08): (l2 × фича) / фича — heat-цепочка
+                    // κ(T2−T1)A/d требует ДВЕ операции после chunk.
+                    // ГВАРДА: только l2, УЖЕ содержащие ×-композицию с B
+                    // (формат ((xBPyz)×xN)) — не все B-формы (OOM 27.08).
+                    if ($hasB && str_contains($l2name, '×')) {
+                        // РЕСУРС→ЗНАНИЕ: L3b только по СЫРЫМ фичам x0..xN
+                        // (heat: ×κ×A/d — переменные, не R-статистики).
+                        // 70 производных ключей × 69 = 96К векторов на l2 = RAM-взрыв.
+                        $rawKeys = array_filter($featKeys, fn ($k) => preg_match('/^x\d+$/', $k) === 1);
+                        foreach ($rawKeys as $fk1) {
+                            $mulVec = [];
+                            $mulOk = true;
+                            for ($i = 0; $i < $n; $i++) {
+                                $r = $exprs[$l2name][$i] * $feats[$fk1][$i];
+                                if (! is_finite($r)) { $mulOk = false; break; }
+                                $mulVec[] = $r;
+                            }
+                            if (! $mulOk) continue;
+                            $mulName = "({$l2name}×{$fk1})";
+                            $exprs[$mulName] = $mulVec;
+                            foreach ($rawKeys as $fk2) {
+                                if ($fk2 === $fk1 || str_contains($l2name, $fk2)) continue;
+                                $vec = [];
+                                for ($i = 0; $i < $n; $i++) {
+                                    $denom = $feats[$fk2][$i];
+                                    $vec[] = (abs($denom) < 1e-12) ? null : ($mulVec[$i] / $denom);
+                                }
+                                $exprs["({$mulName}/{$fk2})"] = $vec;
+                            }
+                        }
                     }
                 }
             }
@@ -568,11 +711,38 @@ class Search
 
             $top = array_slice($plausible, 0, 3);
             foreach ($top as $t) fwrite(STDERR, '[SD] top: ' . $t['name'] . ' cv=' . number_format($t['cv'], 4) . PHP_EOL);
+            // L3b-имя цели
+            $l3b = '((((x0BPf474x1)×x2)×x3)/x4)';
+            fwrite(STDERR, '[SD] L3b exists: ' . (isset($exprs[$l3b]) ? 'YES' : 'NO') . PHP_EOL);
+            $hits = [];
+            foreach (array_keys($exprs) as $k) {
+                if (str_contains($k, 'BPf474') && str_contains($k, '×x2')) $hits[] = $k;
+                if (count($hits) >= 5) break;
+            }
+            fwrite(STDERR, '[SD] BPf474×x2 hits: ' . json_encode($hits) . PHP_EOL);
+            $bvec = '(x0BPf474x1)';
+            fwrite(STDERR, '[SD] (x0BPf474x1) in exprs: ' . (isset($exprs[$bvec]) ? 'YES' : 'NO') . PHP_EOL);
+            fwrite(STDERR, '[SD] bKeys count=' . count($bKeys ?? []) . ' first3=' . json_encode(array_slice($bKeys ?? [], 0, 3)) . PHP_EOL);
+            if (isset($exprs[$l3b])) {
+                $cvL3b = self::cv($exprs[$l3b], $y, $affineShift);
+                fwrite(STDERR, '[SD] L3b cv=' . number_format($cvL3b, 6) . PHP_EOL);
+            }
+            // Сколько l2Keys с ×?
+            $mulCount = 0;
+            foreach ($l2Keys as $k) if (str_contains($k, '×')) $mulCount++;
+            fwrite(STDERR, '[SD] l2Keys total=' . count($l2Keys) . ' with×=' . $mulCount
+                . ' exprs=' . count($exprs)
+                . ' beamK=' . (int) (getenv('L2_BEAM_K') ?: '40') . PHP_EOL);
             // EXP-035: прямой cv целевой формы
             $target = '((x0BPf474x1)×x2)';
             if (isset($exprs[$target])) {
                 $cvT = self::cv($exprs[$target], $y, $affineShift);
                 fwrite(STDERR, '[SD] TARGET ' . $target . ' cv=' . number_format($cvT, 5) . PHP_EOL);
+                fwrite(STDERR, '[SD] TARGET vec[0..4]: ' . json_encode(array_slice($exprs[$target], 0, 5)) . PHP_EOL);
+                $bvec = '(x0BPf474x1)';
+                if (isset($exprs[$bvec])) {
+                    fwrite(STDERR, '[SD] B-vec[0..4]: ' . json_encode(array_slice($exprs[$bvec], 0, 5)) . PHP_EOL);
+                }
                 $t2 = '(((' . 'x0BPf474x1)×x2)/x3)';
                 if (isset($exprs[$t2])) {
                     $cvT2 = self::cv($exprs[$t2], $y, $affineShift);

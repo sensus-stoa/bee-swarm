@@ -17,6 +17,7 @@ use BeeSwarm\Infra\PlateauDetector;
  * улей застревал на logic-дублях и не доходил до foraged за 25 тиков).
  * Теперь: FORAGER_SOURCES и CORPUS_DIRS = tests/fixtures/forager,
  * maxTicks=50 — детерминированная среда.
+ * @group slow
  */
 class SignalGradientE2ETest extends TestCase
 {

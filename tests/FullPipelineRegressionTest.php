@@ -17,6 +17,7 @@ use BeeSwarm\Infra\PlateauDetector;
  * - nFeat=0 задачи → фильтр не работал
  *
  * Запускать: vendor/bin/phpunit tests/FullPipelineRegressionTest.php
+ * @group slow
  */
 class FullPipelineRegressionTest extends TestCase
 {

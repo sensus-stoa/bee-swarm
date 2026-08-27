@@ -11,6 +11,7 @@ use BeeSwarm\Core\Grammar;
  * Story S1.6-GRADIENT: Signal Gradient Reward
  *
  * Три зоны: ОТКРЫТИЕ (+2.0) / СИГНАЛ (+0.5) / ШУМ (0).
+ * @group slow
  */
 class SignalGradientRewardTest extends TestCase
 {

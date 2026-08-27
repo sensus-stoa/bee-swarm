@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BeeSwarm\Tests;
+namespace BeeSwarm\Experiments;
 
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Hive\DiscoveryEngine;

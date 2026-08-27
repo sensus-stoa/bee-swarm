@@ -5,6 +5,7 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\Hive;
+use BeeSwarm\Infra\Database;
 
 /**
  * Story S0-BOOTSTRAP: Bootstrap Phase (§0.6 + §0.6-бис)
@@ -58,6 +59,9 @@ class BootstrapTest extends TestCase
      */
     public function testSeedBeesHaveInitialEnergy(): void
     {
+        // ISOLATION (26.08): :memory: БД — иначе на ноуте подтягиваются
+        // персистентные пчёлы из data/swarm.db (E=1.52 вместо E₀=10)
+        Database::setPath(':memory:');
         $logFile = tempnam(sys_get_temp_dir(), 'bs_');
         $hive = new Hive(maxTicks: 0, logFile: $logFile);
         $hive->run();

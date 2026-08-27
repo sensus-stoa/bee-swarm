@@ -81,6 +81,15 @@ class Hive
     /** SPAWN-POOL (27.08): пул рецептов-потомков (genotype). */
     private DormantPool $dormantPool;
 
+    /** SPAWN-POOL Фаза C: сколько поколений линия прожила без прогресса. */
+    private array $lineageProgress = [];
+
+    /** Фаза C: стартовая энергия линии при рождении (бонус ≠ прогресс). */
+    private array $lineageEnergyBaseline = [];
+
+    /** Фаза C (rev): монотонный счётчик линий — защита от коллапса lineageId. */
+    private int $lineageSeq = 0;
+
     /** Последний ответ (формула) для overlap-трекинга. */
     private ?string $lastAnswerFormula = null;
 
@@ -467,6 +476,81 @@ class Hive
         return $this->dormantPool;
     }
 
+    /** Фаза C: статистика линий (для телеметрии и карты маршрутов). */
+    public function lineageStats(): array
+    {
+        $lines = [];
+        foreach ($this->bees as $b) {
+            if ($b->isAlive() && $b->lineageId() !== '') {
+                $lines[$b->lineageId()] = true;
+            }
+        }
+        return ['lines' => count($lines), 'stale' => count($this->lineageProgress)];
+    }
+
+    /** Фаза C: отметить прогресс линии (discovery или рост энергии). */
+    public function noteLineageProgress(string $lineageId): void
+    {
+        if ($lineageId === '') {
+            return;
+        }
+        $this->lineageProgress[$lineageId] = 0;
+        // Rev: если записи baseline нет (сирота) — ставим по текущим пчёлам линии
+        if (! isset($this->lineageEnergyBaseline[$lineageId])) {
+            $maxE = 0.0;
+            foreach ($this->bees as $b) {
+                if ($b->lineageId() === $lineageId && $b->isAlive()) {
+                    $maxE = max($maxE, $b->energy());
+                }
+            }
+            $this->lineageEnergyBaseline[$lineageId] = $maxE;
+        }
+    }
+
+    /**
+     * Фаза C: подрезка линий без прогресса. Линия, чьи пчёлы не сделали
+     * ни discovery, ни набрали энергии за K поколений, умирает — ресурсы
+     * освобождаются для живых линий (resource-bounded).
+     *
+     * @return int число подрезанных линий
+     */
+    public function pruneLineages(int $maxStaleGenerations): int
+    {
+        foreach ($this->lineageProgress as $lid => $stale) {
+            $this->lineageProgress[$lid] = $stale + 1;
+        }
+        // Прогресс = энергия пчелы линии ВЫШЕ baseline (рост ПОСЛЕ рождения;
+        // exploration bonus при рождении прогрессом НЕ считается).
+        foreach ($this->bees as $b) {
+            $lid = $b->lineageId();
+            if ($b->isAlive() && $lid !== '' && isset($this->lineageEnergyBaseline[$lid])) {
+                if ($b->energy() > $this->lineageEnergyBaseline[$lid] + 0.5) {
+                    $this->lineageProgress[$lid] = 0;
+                    $this->lineageEnergyBaseline[$lid] = $b->energy();
+                }
+            }
+        }
+        $pruned = 0;
+        foreach ($this->lineageProgress as $lid => $stale) {
+            if ($stale > $maxStaleGenerations) {
+                unset($this->lineageProgress[$lid]);
+                // Пчёлы мёртвой линии: лишаем энергии (естественная смерть)
+                foreach ($this->bees as $b) {
+                    if ($b->lineageId() === $lid && $b->isAlive()) {
+                        $ref = new \ReflectionProperty(Bee::class, 'energy');
+                        $ref->setAccessible(true);
+                        $ref->setValue($b, 0.0);
+                    }
+                }
+                $pruned++;
+            }
+        }
+        if ($pruned > 0) {
+            $this->log("SPAWN-POOL: pruned={$pruned} lineages (stale>{$maxStaleGenerations})");
+        }
+        return $pruned;
+    }
+
     /**
      * SPAWN-POOL Фаза B (27.08): материализация top-K рецептов из пула.
      *
@@ -491,13 +575,30 @@ class Hive
                 continue;
             }
 
-            // Родитель: самая энергичная живая пчела (наследует грамматику)
+            // Родитель: продолжение линии приоритетно (пчёлы линии сектора),
+            // иначе seed-пчела → новая линия. Внутри группы — самая энергичная.
             $parents = array_filter($this->bees, fn (Bee $b): bool => $b->isAlive());
             if ($parents === []) {
                 break; // рой пуст — некому унаследовать
             }
+            $sameLineage = array_filter($parents, fn (Bee $b): bool =>
+                $b->lineageId() !== '' && $b->lineageSector() === $sector);
+            if ($sameLineage !== []) {
+                $parents = $sameLineage;
+            }
             usort($parents, fn (Bee $a, Bee $b) => $b->energy() <=> $a->energy());
-            $parent = $parents[0];
+            // Только живой И платёжеспособный родитель (труп прунед-линии
+            // с E=0 блокировал сектор до dead-cleanup)
+            $parent = null;
+            foreach ($parents as $candidate) {
+                if ($candidate->energy() >= Bee::SPAWN_PARENT_COST) {
+                    $parent = $candidate;
+                    break;
+                }
+            }
+            if ($parent === null) {
+                continue; // некому платить — рецепт ждёт следующего тика
+            }
 
             // Phenotype: Bee с грамматикой родителя + op из рецепта
             $grammar = $parent->grammar();
@@ -506,18 +607,47 @@ class Hive
             }
             $child = new Bee($grammar, $this->tick);
 
-            // Ресурсный баланс: ребёнку 7.0, родителю -7.0 (SPAWN-константы)
+            // Ресурсный баланс: ребёнку 7.0, родителю -7.0 (SPAWN-константы).
+            // Родитель уже проверен на платёжеспособность при выборе.
             $ref = new \ReflectionProperty(Bee::class, 'energy');
             $ref->setAccessible(true);
             $pe = (float) $ref->getValue($parent);
-            if ($pe < Bee::SPAWN_PARENT_COST) {
-                continue; // родитель истощён — рецепт откладывается (остаётся в пуле)
-            }
             $ref->setValue($parent, $pe - Bee::SPAWN_PARENT_COST);
-            $ref->setValue($child, Bee::SPAWN_CHILD_ENERGY);
+
+            // Фаза C: lineage. Новая линия = сектор, которого ещё нет среди живых.
+            $sector = (string) ($entry['sector'] ?? 'unknown');
+            $existingSectors = [];
+            foreach ($this->bees as $b) {
+                if ($b->isAlive() && $b->lineageId() !== '') {
+                    $existingSectors[$b->lineageSector()] = true;
+                }
+            }
+            // Линия = по РОДИТЕЛЮ (родословная, не сектор). Ребёнок продолжает
+            // линию родителя; новая линия только у потомка seed-пчелы.
+            $parentLineage = $parent->lineageId();
+            $isNewLineage = ($parentLineage === '');
+            $lineageId = $isNewLineage
+                ? 'lin_' . $sector . '_' . $this->tick . '_' . (++$this->lineageSeq)
+                : $parentLineage;
+            $child->setLineage($lineageId, $parentLineage);
+
+            $ref->setValue($child, Bee::SPAWN_CHILD_ENERGY
+                + ($isNewLineage ? Bee::EXPLORATION_BONUS : 0.0));
 
             $this->bees[] = $child;
             $this->dormantPool->remove($entry['id']);
+            // Рождение потомка ≠ прогресс: линия должна ПОКАЗАТЬ пользу
+            // (discovery/рост энергии), иначе stale-счётчик растёт (prune).
+            // Lazy re-init (rev): осиротевшая линия (записи нет после prune,
+            // пчёлы живы) — восстанавливаем все три записи.
+            if (! isset($this->lineageProgress[$lineageId])) {
+                $this->lineageProgress[$lineageId] = 0;
+                $this->lineageEnergyBaseline[$lineageId] = $ref->getValue($child);
+            }
+            $this->lineageEnergyBaseline[$lineageId] = max(
+                $this->lineageEnergyBaseline[$lineageId] ?? 0.0,
+                $ref->getValue($child)
+            );
             $added++;
         }
 

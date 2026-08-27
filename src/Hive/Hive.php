@@ -659,6 +659,25 @@ class Hive
 
     private function doTick(): void
     {
+        // EXP-034 (27.08): SPAWN-POOL B-ветка. Env SPWN_POOL=1 активирует
+        // ресурсно-ограниченный спавн: пчёлы с discovery рожают рецепты,
+        // топ-K материализуется по квотам секторов каждые SPAWN_POOL_EVERY тиков.
+        if (getenv('SPWN_POOL') === '1' && $this->tick % max(1, (int) (getenv('SPAWN_POOL_EVERY') ?: '25')) === 0) {
+            $k = max(1, (int) (getenv('SPAWN_POOL_K') ?: '3'));
+            $hive = $this;
+            $added = $hive->materializeFromPool($k);
+            // Рецепты от пчёл с discovery: упрощённо — каждая живая пчела
+            // с энергией выше baseline порождает 2 рецепта в пул
+            foreach ($this->bees as $b) {
+                if ($b->isAlive() && $b->energy() > 10.5) {
+                    foreach ($b->emitRecipes(2) as $recipe) {
+                        $this->dormantPool->deposit($recipe, $recipe['sector'], 0.6);
+                    }
+                }
+            }
+            $this->dormantPool()->age(50);
+            $this->pruneLineages(3);
+        }
         // DEAD-CLEANUP (10.08): мёртвые пчёлы накапливались в $this->bees
         // (254 за 5ч — утечка памяти и метрик). Удаление каждые 100 тиков.
         if ($this->tick % 100 === 0 || $this->tick === 1) {

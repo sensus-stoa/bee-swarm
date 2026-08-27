@@ -56,7 +56,7 @@ class PartialBirthGateTest extends TestCase
         $this->starveALine($hive);
 
         $born = $hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0);
-        $this->assertTrue($born, 'голод + компрессия + нетривиальность = рождение');
+        $this->assertNotFalse($born, 'голод + компрессия + нетривиальность = рождение');
 
         $name = $this->birthOpName('arithmetic', '(x0−x1)');
         $this->assertNotNull($name, 'B-кандидат обязан быть в grammar_ops');
@@ -115,7 +115,7 @@ class PartialBirthGateTest extends TestCase
         $hive = $this->makeShortHive();
         $this->starveALine($hive);
 
-        $this->assertTrue($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
+        $this->assertNotFalse($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
         $bName = $this->birthOpName('arithmetic', '(x0−x1)');
         $this->assertNotNull($bName);
 
@@ -144,7 +144,7 @@ class PartialBirthGateTest extends TestCase
         // активированный birth-оп.
         $hive = $this->makeShortHive();
         $this->starveALine($hive);
-        $this->assertTrue($hive->partialBirth('(x0×x1)', 0.3, 'arithmetic', 1.0));
+        $this->assertNotFalse($hive->partialBirth('(x0×x1)', 0.3, 'arithmetic', 1.0));
         $bName = $this->birthOpName('arithmetic', '(x0×x1)');
         \BeeSwarm\Core\Grammar::registerReuse($bName, 'arithmetic');
 
@@ -159,8 +159,8 @@ class PartialBirthGateTest extends TestCase
         $hive = $this->makeShortHive();
         $this->starveALine($hive);
 
-        $this->assertTrue($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
-        $this->assertTrue($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0),
+        $this->assertNotFalse($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
+        $this->assertNotFalse($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0),
             'повторное открытие не падает (INSERT OR IGNORE)');
 
         $cnt = Database::get()->prepare(

@@ -682,7 +682,7 @@ class Hive
      *
      * @return bool произошли ли рождение/переиспользование записи
      */
-    public function partialBirth(string $formula, float $cv, string $domain, float $cvMean): bool
+    public function partialBirth(string $formula, float $cv, string $domain, float $cvMean): string|false
     {
         // Гейт 1: нетривиальность (минимум 2 терминала xN)
         $terminals = preg_match_all('/x\d+/', $formula);
@@ -730,8 +730,11 @@ class Hive
         $seq = count($this->lineageEnergyBaseline) + 100; // namespace от lineages
         $name = 'BP' . dechex(crc32($canonical . $domain) & 0xFFFF);
         \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $canonical, $domain);
-        $this->log("PARTIAL-BIRTH: {$name} = {$formula} (cv=" . number_format($cv, 3) . ", domain={$domain})");
-        return true;
+        $this->log("PARTIAL-BIRTH: {$name} = {$canonical} (cv=" . number_format($cv, 3) . ", domain={$domain})");
+        // EXP-035 ф4: возвращаем ИМЯ атома (string) — вызывающий использует
+        // его напрямую (не ищет по definition, которое канонизировано).
+        // false-ветки выше возвращают false — контракт: truthy = успех.
+        return $name;
     }
 
     private function doTick(): void

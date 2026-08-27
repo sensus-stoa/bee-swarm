@@ -125,17 +125,11 @@ for ($seed = 1; $seed <= 20; $seed++) {
     usort($pairs, fn ($p, $q) => $q['spread'] <=> $p['spread']);
     $partial = $pairs[0]['f'];
 
-    $born = $hive->partialBirth($partial, 0.35, 'arithmetic', 1.0);
+    // EXP-035 ф4: partialBirth возвращает ИМЯ атома (definition канонизирован
+    // ремапом xN→x0/x1 — поиск по definition='(x1−x2)' давал false → B=0/20!)
+    $bName = $hive->partialBirth($partial, 0.35, 'arithmetic', 1.0);
     $okB = false;
-    if ($born) {
-        $rows = Database::get()->query(
-            "SELECT name FROM grammar_ops WHERE source='birth' AND definition=? AND birth_domain='arithmetic'",
-        )->execute([$partial]);
-        // statement reuse — пере-prepare
-        $st = Database::get()->prepare("SELECT name FROM grammar_ops WHERE source='birth' AND definition=? AND birth_domain='arithmetic'");
-        $st->execute([$partial]);
-        $bName = $st->fetchColumn();
-        if ($bName !== false) {
+    if ($bName !== false && $bName !== null && $bName !== '') {
             Grammar::registerReuse($bName, 'arithmetic');
             $gB = new Grammar();
             $gB->restrictTo(['+', '×', '−', '/', 'sq', $bName]);
@@ -152,7 +146,6 @@ for ($seed = 1; $seed <= 20; $seed++) {
                 $okB = $cvH <= 0.10;
                 if ($okB) $formulasB[$seed] = $rB[2] . " (cvH=" . number_format($cvH, 4) . ")";
             }
-        }
     }
     if ($okB) $successB++;
     $memB[] = memory_get_peak_usage(true);

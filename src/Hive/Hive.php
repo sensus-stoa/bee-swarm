@@ -716,9 +716,20 @@ class Hive
         }
 
         // Рождение: candidate (RCB двухфазность, reuse≥1 → PROMOTED)
+        // B-AS-ARGUMENT контракт: definition-атомы обязаны быть x0/x1
+        // (x0→первый операнд, x1→второй). Частичная гипотеза (x1−x2)
+        // канонизируется в (x0−x1) — иначе def молча возвращает мусор
+        // (урок фазы 4: (x1−x2) с row [[l,r]] → x1=row[1]=r, x2=null).
+        $termOrder = [];
+        $canonical = preg_replace_callback('/x\d+/', function ($m) use (&$termOrder) {
+            if (! isset($termOrder[$m[0]])) {
+                $termOrder[$m[0]] = 'x' . count($termOrder);
+            }
+            return $termOrder[$m[0]];
+        }, $formula);
         $seq = count($this->lineageEnergyBaseline) + 100; // namespace от lineages
-        $name = 'BP' . dechex(crc32($formula . $domain) & 0xFFFF);
-        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $formula, $domain);
+        $name = 'BP' . dechex(crc32($canonical . $domain) & 0xFFFF);
+        \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $canonical, $domain);
         $this->log("PARTIAL-BIRTH: {$name} = {$formula} (cv=" . number_format($cv, 3) . ", domain={$domain})");
         return true;
     }

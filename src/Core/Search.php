@@ -191,7 +191,11 @@ class Search
                     ORDER BY CASE WHEN status = \'active\' THEN 0 ELSE 1 END, length(definition), MIN(id)
                     LIMIT ' . $bCap;
                 $stmt = \BeeSwarm\Infra\Database::get()->prepare($sql);
-                $stmt->execute(['birth', '%x0%', '%x1%']);
+                // EXP-035 (28.08): definition может не содержать x0
+                // (напр. (x1−x2) для heat) — фильтр LIKE '%x0%' AND '%x1%'
+                // отсеивал валидные атомы. Требование: хотя бы 2 терминала
+                // xN (любые), проверяем LIKE-фильтром по общему префиксу 'x'.
+                $stmt->execute(['birth', '%x%', '%x%']);
                 foreach ($stmt->fetchAll() as $bb) {
                     $bornBinary[$bb['name']] = $bb['definition'];
                     if (getenv('SEARCH_DEBUG') === '1') {
@@ -246,6 +250,12 @@ class Search
                         $vec[] = $r[0] ?? 0.0;
                     }
                     $name = "({$featKeys[$a]}$bbName{$featKeys[$b]})";
+                    if (getenv('SEARCH_DEBUG') === '1' && $name === '(x1BPf29ex2)') {
+                        fwrite(STDERR, '[SD-BK] def=' . $bbDef . ' va[0..1]='
+                            . json_encode(array_slice($va, 0, 2)) . ' vb[0..1]='
+                            . json_encode(array_slice($vb, 0, 2)) . ' vec[0..1]='
+                            . json_encode(array_slice($vec, 0, 2)) . PHP_EOL);
+                    }
                     $exprs[$name] = $vec;
                     $bKeys[] = $name;
                 }
@@ -527,9 +537,27 @@ class Search
             // отсекался). Ресурс: bKeys(1051) × сырые(5) × сырые(4) ≈ 21К
             // векторов, только finite — контролируемо.
             $rawAll = array_values(array_filter($featKeys, fn ($k) => preg_match('/^x\d+$/', $k) === 1));
-            $chunkBudget = (int) (getenv('CHUNK_BUDGET') ?: '20000');
-            foreach (($bKeys ?? []) as $ck) {
-                if (! isset($exprs[$ck]) || count($exprs) > 13362 + $chunkBudget) break;
+            $chunkBudget = (int) (getenv('CHUNK_BUDGET') ?: '3000');
+            // Приоритет: chunk-формы с РАЗНЫМИ фичами (x0BPfx1) впереди
+            // квадратов (x0BPfx0²) — квадраты редко дают законы,
+            // а бюджет цепочек ограничен.
+            $chunkKeys = ($bKeys ?? []);
+            usort($chunkKeys, fn ($a, $b) => (int) str_contains($a, '²') <=> (int) str_contains($b, '²'));
+            $chunkChains = 0;
+            if (getenv('SEARCH_DEBUG') === '1') {
+                fwrite(STDERR, '[SD-CHUNK] bKeys=' . count($chunkKeys)
+                    . ' rawAll=' . count($rawAll)
+                    . ' exprs=' . count($exprs) . PHP_EOL);
+                $hit = array_filter($chunkKeys, fn ($k) => str_contains($k, 'BPf29ex2'));
+                fwrite(STDERR, '[SD-CHUNK] target chunk in bKeys: ' . (count($hit) ? 'YES ' . json_encode(array_values($hit)) : 'NO') . PHP_EOL);
+            }
+            $targetChain = '((((x1BPf29ex2)×x0)×x3)/x4)';
+            $chainCreated = false;
+            foreach ($chunkKeys as $ck) {
+                if (! isset($exprs[$ck]) || $chunkChains > $chunkBudget) break;
+                if (getenv('SEARCH_DEBUG') === '1' && $ck === '(x1BPf29ex2)') {
+                    fwrite(STDERR, '[SD-CHUNK] ck vec[0..2]: ' . json_encode(array_slice($exprs[$ck], 0, 3)) . PHP_EOL);
+                }
                 foreach ($rawAll as $fk1) {
                     $mulVec = [];
                     $mulOk = true;
@@ -544,16 +572,81 @@ class Search
                     $l2Keys[] = $mulName;
                     foreach ($rawAll as $fk2) {
                         if ($fk2 === $fk1 || str_contains($ck, $fk2)) continue;
+                        // Уровень A: (chunk×fk1)/fk2
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
                             $denom = $feats[$fk2][$i];
                             $vec[] = (abs($denom) < 1e-12) ? null : ($mulVec[$i] / $denom);
                         }
                         $exprs["({$mulName}/{$fk2})"] = $vec;
+                        // Уровень B (EXP-035 heat): (chunk×fk1×fk2)/fk3 —
+                        // κ(chunk)·A·k/d — ДВА умножения после chunk
+                        foreach ($rawAll as $fk3) {
+                            if ($fk3 === $fk2 || str_contains($ck, $fk3)) continue;
+                            $mul2 = [];
+                            $mul2Ok = true;
+                            for ($i = 0; $i < $n; $i++) {
+                                $r = $mulVec[$i] * $feats[$fk2][$i];
+                                if (! is_finite($r)) { $mul2Ok = false; break; }
+                                $mul2[] = $r;
+                            }
+                            if (! $mul2Ok) continue;
+                            $chunkChains++;
+                            $mul2Name = "({$mulName}×{$fk2})";
+                            $exprs[$mul2Name] = $mul2;
+                            if (str_contains($mul2Name, 'BPf29ex2') && str_contains($mul2Name, '×x0')) {
+                                fwrite(STDERR, '[SD-CHUNK] mul2 built: ' . $mul2Name . PHP_EOL);
+                            }
+                            if (getenv('SEARCH_DEBUG') === '1' && str_contains($mul2Name, 'BPf29ex2')) {
+                                static $dbgPrinted = false;
+                                if (! $dbgPrinted) {
+                                    fwrite(STDERR, '[SD-CHUNK] sample mul2: ' . $mul2Name . PHP_EOL);
+                                    $dbgPrinted = true;
+                                }
+                            }
+                            foreach ($rawAll as $fk4) {
+                                if ($fk4 === $fk3 || str_contains($ck, $fk4) || $fk4 === $fk1) continue;
+                                $vec2 = [];
+                                for ($i = 0; $i < $n; $i++) {
+                                    $denom = $feats[$fk4][$i];
+                                    $vec2[] = (abs($denom) < 1e-12) ? null : ($mul2[$i] / $denom);
+                                }
+                                $vec2Name = "({$mul2Name}/{$fk4})";
+                                $exprs[$vec2Name] = $vec2;
+                                if ($vec2Name === $targetChain) {
+                                    $chainCreated = true;
+                                    fwrite(STDERR, '[SD-CHUNK] TARGET CHAIN BUILT' . PHP_EOL);
+                                }
+                            }
+                        }
                     }
                 }
             }
+            if (getenv('SEARCH_DEBUG') === '1') {
+                fwrite(STDERR, '[SD-CHUNK] target chain created: ' . ($chainCreated ? 'YES' : 'NO')
+                    . ' chains=' . $chunkChains . PHP_EOL);
+                if (isset($exprs[$targetChain])) {
+                    $tcv = self::cv($exprs[$targetChain], $y, 0.0);
+                    $nulls = count(array_filter($exprs[$targetChain], fn ($v) => $v === null));
+                    fwrite(STDERR, '[SD-CHUNK] target cv=' . number_format($tcv, 6)
+                        . ' nulls=' . $nulls . '/' . count($exprs[$targetChain]) . PHP_EOL);
+                } else {
+                    fwrite(STDERR, '[SD-CHUNK] target NOT in exprs?!' . PHP_EOL);
+                }
+            }
             foreach ($l2Keys as $l2name) {
+                // РЕСУРС→ЗНАНИЕ: L3-/фича — только beam-top или chunk-пути.
+                // l2Keys после CHUNK-DIRECT ~15К; всем память не даём.
+                static $l3FilterK = null;
+                if ($l3FilterK === null) {
+                    $l3FilterK = (int) (getenv('L2_BEAM_K') ?: '40');
+                }
+                $l3idx = $l3Count;
+                // ЖЁСТКО: L3-/фича только beam-top (chunk-пути уже покрыты
+                // CHUNK-DIRECT — не дублируем память на 15К b-форм).
+                if ($l3idx >= $l3FilterK) {
+                    continue;
+                }
                 if ((++$l3Count & 31) === 0 && microtime(true) > $deadline) {
                     return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
                 }

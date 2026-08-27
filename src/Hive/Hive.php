@@ -605,7 +605,20 @@ class Hive
             if (! in_array($op, $grammar, true)) {
                 $grammar[] = $op;
             }
-            $child = new Bee($grammar, $this->tick);
+            // PARTIAL-HYPOTHESIS-BIRTH фаза 2: наследование активированных
+            // birth-атомов (reuse≥1) — культура передаётся потомкам линии
+            $birthOps = [];
+            try {
+                $rows = \BeeSwarm\Infra\Database::get()->query(
+                    "SELECT name FROM grammar_ops WHERE source='birth' AND status='active'"
+                )->fetchAll();
+                foreach ($rows as $row) {
+                    $birthOps[] = $row['name'];
+                }
+            } catch (\Throwable $e) {
+                // grammar_ops может не иметь status (старая БД) — не критично
+            }
+            $child = new Bee($grammar, Bee::SPAWN_CHILD_ENERGY, customGrammarOps: $birthOps);
 
             // Ресурсный баланс: ребёнку 7.0, родителю -7.0 (SPAWN-константы).
             // Родитель уже проверен на платёжеспособность при выборе.

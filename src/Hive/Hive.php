@@ -78,6 +78,9 @@ class Hive
 
     private ?OverlapTracker $overlapTracker = null;
 
+    /** SPAWN-POOL (27.08): пул рецептов-потомков (genotype). */
+    private DormantPool $dormantPool;
+
     /** Последний ответ (формула) для overlap-трекинга. */
     private ?string $lastAnswerFormula = null;
 
@@ -388,6 +391,10 @@ class Hive
             $this->overlapTracker = new OverlapTracker();
         }
 
+        // SPAWN-POOL (27.08): пул рецептов. Лимит из env (OOM-защита).
+        $maxDormant = max(1000, (int) (getenv('DORMANT_POOL_MAX') ?: '50000'));
+        $this->dormantPool = new DormantPool(300);
+
         // Create TaskRouter with the population
         if ($this->taskRouter === null && ! empty($this->bees)) {
             $this->taskRouter = new TaskRouter($this->bees, 10);
@@ -449,6 +456,76 @@ class Hive
     }
 
     // ═══ ОДИН ТИК ═══
+
+    /** SPAWN-POOL: доступ к пулу рецептов (lazy init — безопасно до bootstrap). */
+    public function dormantPool(): DormantPool
+    {
+        if (! isset($this->dormantPool)) {
+            $maxDormant = max(1000, (int) (getenv('DORMANT_POOL_MAX') ?: '50000'));
+            $this->dormantPool = new DormantPool(300);
+        }
+        return $this->dormantPool;
+    }
+
+    /**
+     * SPAWN-POOL Фаза B (27.08): материализация top-K рецептов из пула.
+     *
+     * Рецепт → Bee (phenotype): грамматика потомка = грамматика родителя
+     * (базовые ops) + op рецепта. Энергия — из бюджета роя (отнимаем у
+     * самых энергичных пчёл — resource-bounded буквально).
+     *
+     * @return int сколько пчёл материализовано
+     */
+    public function materializeFromPool(int $k): int
+    {
+        $scheduler = new ResourceScheduler(maxMaterialized: $k);
+        $quotas = $scheduler->computeQuotas($this->dormantPool->size());
+        $awakened = $this->dormantPool->awaken($k, $quotas);
+
+        $added = 0;
+        foreach ($awakened as $entry) {
+            $recipe = $entry['recipe'];
+            $op = (string) ($recipe['op'] ?? '');
+            if ($op === '') {
+                $this->dormantPool->remove($entry['id']);
+                continue;
+            }
+
+            // Родитель: самая энергичная живая пчела (наследует грамматику)
+            $parents = array_filter($this->bees, fn (Bee $b): bool => $b->isAlive());
+            if ($parents === []) {
+                break; // рой пуст — некому унаследовать
+            }
+            usort($parents, fn (Bee $a, Bee $b) => $b->energy() <=> $a->energy());
+            $parent = $parents[0];
+
+            // Phenotype: Bee с грамматикой родителя + op из рецепта
+            $grammar = $parent->grammar();
+            if (! in_array($op, $grammar, true)) {
+                $grammar[] = $op;
+            }
+            $child = new Bee($grammar, $this->tick);
+
+            // Ресурсный баланс: ребёнку 7.0, родителю -7.0 (SPAWN-константы)
+            $ref = new \ReflectionProperty(Bee::class, 'energy');
+            $ref->setAccessible(true);
+            $pe = (float) $ref->getValue($parent);
+            if ($pe < Bee::SPAWN_PARENT_COST) {
+                continue; // родитель истощён — рецепт откладывается (остаётся в пуле)
+            }
+            $ref->setValue($parent, $pe - Bee::SPAWN_PARENT_COST);
+            $ref->setValue($child, Bee::SPAWN_CHILD_ENERGY);
+
+            $this->bees[] = $child;
+            $this->dormantPool->remove($entry['id']);
+            $added++;
+        }
+
+        if ($added > 0) {
+            $this->log("SPAWN-POOL: materialized={$added} pool=" . $this->dormantPool->size());
+        }
+        return $added;
+    }
 
     private function doTick(): void
     {

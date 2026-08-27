@@ -19,7 +19,7 @@ class MaterializationLoopTest extends TestCase
     /** Hive с выключенным bootstrap-сканированием (быстрый) */
     private function makeShortHive(): Hive
     {
-        putenv('FORAGER_SOURCES=');
+        putenv('FORAGER_SOURCES=:');
         $hive = new Hive(maxTicks: 0, logFile: tempnam(sys_get_temp_dir(), 'hive_'));
         $hive->run(); // bootstrap: seed-пчёлы + dormantPool init
         return $hive;

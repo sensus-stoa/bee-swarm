@@ -34,6 +34,9 @@ class Bee
     /** Energy deducted from parent at spawn. */
     public const SPAWN_PARENT_COST = 7.0;
 
+    /** SPAWN-POOL Фаза C: бонус энергии новой линии (новизна рода). */
+    public const EXPLORATION_BONUS = 1.0;
+
     /** Mutation range: ±20% of current value. */
     private const MUTATION_RANGE = 0.2;
 
@@ -131,6 +134,38 @@ class Bee
             $this->grammar,
             $this->customGrammarOps,
         )));
+    }
+
+    /** SPAWN-POOL Фаза C: id линии (родословной). */
+    private string $lineageId = '';
+
+    /** SPAWN-POOL Фаза C: id родительской линии ('' для seed). */
+    private string $parentLineageId = '';
+
+    public function lineageId(): string
+    {
+        return $this->lineageId;
+    }
+
+    public function parentLineageId(): string
+    {
+        return $this->parentLineageId;
+    }
+
+    /** Задать родословную (при материализации из пула или спавне). */
+    public function setLineage(string $lineageId, string $parentLineageId = ''): void
+    {
+        $this->lineageId = $lineageId;
+        $this->parentLineageId = $parentLineageId;
+    }
+
+    /** Сектор линии (из id: lin_SECTOR_tick_n). */
+    public function lineageSector(): string
+    {
+        if ($this->lineageId === '' || ! preg_match('/^lin_([A-Za-z]+)_/', $this->lineageId, $m)) {
+            return 'unknown';
+        }
+        return $m[1];
     }
 
     /**

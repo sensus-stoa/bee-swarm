@@ -134,6 +134,56 @@ class Bee
     }
 
     /**
+     * SPAWN-POOL (27.08, resource-bounded evolution): порождение m
+     * дешёвых рецептов-потомков (genotype). Никакой оценки — только
+     * описание операций из грамматики ПЧЕЛЫ.
+     *
+     * Сектора по ведущей операции рецепта:
+     *   −,+ → ADDITIVE/DIFF; × → PRODUCT; / → RATIO; sq,sqrt → POWER
+     *
+     * @return array<int, array{op: string, operand: string, sector: string}>
+     */
+    public function emitRecipes(int $m): array
+    {
+        $recipes = [];
+        // Операции пчелы — только те, что реально в её грамматике
+        $ops = [];
+        foreach ($this->grammar() as $opName) {
+            if (! is_string($opName)) {
+                continue;
+            }
+            $ops[] = $opName;
+        }
+        if ($ops === []) {
+            return $recipes;
+        }
+
+        $count = count($ops);
+        for ($i = 0; $i < $m; $i++) {
+            $op = $ops[$i % $count];
+            $recipes[] = [
+                'op' => $op,
+                'operand' => 'x' . (($i * 7) % 8),   // детерминированный разброс фич
+                'sector' => self::classifyOp($op),
+            ];
+        }
+        return $recipes;
+    }
+
+    /** SPAWN-POOL: сектор операции для квот пула. */
+    public static function classifyOp(string $op): string
+    {
+        return match ($op) {
+            '+', 'add' => 'ADDITIVE',
+            '−', '-', 'sub' => 'DIFF',
+            '×', '*', 'mul' => 'PRODUCT',
+            '/', 'div' => 'RATIO',
+            'sq', 'sqrt', 'cube', 'inv' => 'POWER',
+            default => 'unknown',
+        };
+    }
+
+    /**
      * Добавить операцию в per-bee грамматику (§2.3 изоляция).
      * Другие пчёлы не видят эту операцию.
      */

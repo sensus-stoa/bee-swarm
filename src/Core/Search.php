@@ -54,6 +54,13 @@ class Search
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
+        // EXP-036 ревью deleg_1408a6cc BLOCK-фикс: static $mul2Cache
+        // persists между вызовами find() → вектор задачи A подмешивается
+        // в задачу B (тихая порча, cacheKey не содержит данных). Кэш
+        // сбрасывается на КАЖДЫЙ вызов — внутри одного вызова дедуп
+        // работает, между задачами — ноль риска.
+        self::$mul2Cache = [];
+        self::$__prof = [['START', $p0]];
         $deadline = $budgetSec > 0.0 ? $p0 + $budgetSec : INF;
         if (microtime(true) > $deadline) {
             return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
@@ -161,6 +168,9 @@ class Search
 
         $exprs = $feats;
         $featKeys = array_keys($feats);
+        // EXP-036: сырые фичи x0..xN — единое определение для L2L1
+        // (B-формы) и CHUNK-DIRECT. Определяется ОДИН раз в начале.
+        $rawAll = array_values(array_filter($featKeys, fn ($k) => preg_match('/^x\d+$/', $k) === 1));
         $ops = $grammar->all();
         $bKeys = [];
         // B-AS-ARGUMENT (09.08): born-атомы читаем ДО L1 — B(фича,фича)
@@ -377,7 +387,8 @@ class Search
             }
             // B-AS-ARGUMENT (09.08): bornBinary прочитан ДО L1 (см. выше) —
             // здесь только применение к парам pool-элементов
-            $bornBinary = $bornBinary ?? [];
+                    if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L2PAIRS', microtime(true)]; }
+        $bornBinary = $bornBinary ?? [];
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
@@ -446,6 +457,7 @@ class Search
                 . ' mem=' . round(memory_get_usage(true) / 1048576) . 'MB'
                 . ' featKeys=' . count($featKeys) . PHP_EOL);
         }
+                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L2L1', microtime(true)]; }
         // SEARCH-L2L1 (09.08): L3 = L1 op Фича — композиции второго уровня.
         // (x0+x1) — L1-уровень; без L1×фича (x0+x1)×x2 невыразим →
         // transfer-тест невалиден (ЭКСП-022d). top-30 L1 × фичи × ops.
@@ -463,7 +475,16 @@ class Search
                 if ((++$l2l1Count & 15) === 0 && microtime(true) > $deadline) {
                     return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
                 }
-                foreach ($featKeys as $fname) {
+                // EXP-036 ф1 (29.08): B-формы комбинируются ТОЛЬКО с сырыми
+                // фичами (heat-семантика: chunk×κ×A/d — все raw). R-производные
+                // в паре с B-атомом = мусор × 65 лишних колонок = 87% времени
+                // L2L1. Не-B формы (R-законы) — полные featKeys.
+                // Ревью deleg_1408a6cc: 'B' в имени фичи (RB..., x0B...)
+                // молча меняет диспетчер → regex привязан к позиции:
+                // B-имя строго после первого термина в скобках.
+                $l1IsB = preg_match('/^\(x\d+B[A-Za-z0-9]+x\d+\)$/', $l1name) === 1;
+                $companionKeys = $l1IsB ? $rawAll : $featKeys;
+                foreach ($companionKeys as $fname) {
                     foreach ($l2l1Ops as $op) {
                         $vec = [];
                         $valid = true;
@@ -483,6 +504,7 @@ class Search
             }
         }
 
+                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L3', microtime(true)]; }
         // L3: L2 / constant (для MIN = (...)/2)
         if (microtime(true) > $deadline) {
             return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
@@ -530,13 +552,13 @@ class Search
                 $l2Keys = array_map(fn (array $x): string => $x['n'], $kept3);
             }
 
-            // CHUNK-DIRECT (27.08, принцип «ресурс→знание»): heat-цепочка
+                    if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['CHUNK', microtime(true)]; }
+        // CHUNK-DIRECT (27.08, принцип «ресурс→знание»): heat-цепочка
             // κ(chunk×A)/d строится ПРЯМО из chunk-форм (bKeys), минуя
             // cv-beam: cv у частичного chunk плох ДО полной цепочки —
             // beam-отбор убивал правильную мысль (урок 3b: TARGET cv=2.2
             // отсекался). Ресурс: bKeys(1051) × сырые(5) × сырые(4) ≈ 21К
             // векторов, только finite — контролируемо.
-            $rawAll = array_values(array_filter($featKeys, fn ($k) => preg_match('/^x\d+$/', $k) === 1));
             $chunkBudget = (int) (getenv('CHUNK_BUDGET') ?: '3000');
             // Приоритет: chunk-формы с РАЗНЫМИ фичами (x0BPfx1) впереди
             // квадратов (x0BPfx0²) — квадраты редко дают законы,
@@ -580,9 +602,15 @@ class Search
                         }
                         $exprs["({$mulName}/{$fk2})"] = $vec;
                         // Уровень B (EXP-035 heat): (chunk×fk1×fk2)/fk3 —
-                        // κ(chunk)·A·k/d — ДВА умножения после chunk
-                        foreach ($rawAll as $fk3) {
-                            if ($fk3 === $fk2 || str_contains($ck, $fk3)) continue;
+                        // κ(chunk)·A·k/d — ДВА умножения после chunk.
+                        // EXP-036 ф1 (29.08): КЭШ ПРОСТРАНСТВА ПОИСКА.
+                        // mul2 зависит только от (ck, fk1, fk2) — вычисляем
+                        // ОДИН раз (раньше пересчитывался ×|fk3| — 742s).
+                        $cacheKey = $mulName . '|' . $fk2;
+                        if (isset(self::$mul2Cache[$cacheKey])) {
+                            $mul2 = self::$mul2Cache[$cacheKey];
+                            $mul2Name = "({$mulName}×{$fk2})";
+                        } else {
                             $mul2 = [];
                             $mul2Ok = true;
                             for ($i = 0; $i < $n; $i++) {
@@ -591,9 +619,24 @@ class Search
                                 $mul2[] = $r;
                             }
                             if (! $mul2Ok) continue;
-                            $chunkChains++;
                             $mul2Name = "({$mulName}×{$fk2})";
-                            $exprs[$mul2Name] = $mul2;
+                            self::$mul2Cache[$cacheKey] = $mul2;
+                            self::$mul2Computations++;
+                            self::$mul2Unique[$mul2Name] = true;
+                        }
+                        // EXP-036 ф1: cv-скрининг mul2 — отбраковка мусора
+                        // ДО vec2-генерации (×|fk4| экономия). Порог мягкий:
+                        // цели (cv=0) проходят всегда, мусор отсекается.
+                        // Риск (ревью deleg_1408a6cc): (a×b)/c с плохим a×b,
+                        // но хорошим делением — редок, логируется.
+                        $mul2Cv = self::cv($mul2, $y, 0.0);
+                        if ($mul2Cv > self::MUL2_CV_SCREEN_MAX) {
+                            self::$mul2Screened++;
+                            continue;
+                        }
+                        {
+                            $chunkChains++;
+                            $exprs[$mul2Name] = self::$mul2Cache[$cacheKey];
                             if (str_contains($mul2Name, 'BPf29ex2') && str_contains($mul2Name, '×x0')) {
                                 fwrite(STDERR, '[SD-CHUNK] mul2 built: ' . $mul2Name . PHP_EOL);
                             }
@@ -605,7 +648,11 @@ class Search
                                 }
                             }
                             foreach ($rawAll as $fk4) {
-                                if ($fk4 === $fk3 || str_contains($ck, $fk4) || $fk4 === $fk1) continue;
+                                // EXP-036: fk3-цикл удалён (mul2 не зависит от
+                                // fk3 — пересчитывался ×|fk3| впустую).
+                                // fk4(делитель) ≠ fk2(множитель): иначе
+                                // ((chunk×fk1)×fk2)/fk2 вырождается в chunk×fk1
+                                if ($fk4 === $fk2 || str_contains($ck, $fk4) || $fk4 === $fk1) continue;
                                 $vec2 = [];
                                 for ($i = 0; $i < $n; $i++) {
                                     $denom = $feats[$fk4][$i];
@@ -620,6 +667,15 @@ class Search
                             }
                         }
                     }
+                }
+            }
+            if (getenv('SEARCH_PROFILE') === '1') {
+                self::$__prof[] = ['CV_END', microtime(true)];
+                $prev = self::$__prof[0][1] ?? 0;
+                foreach (self::$__prof as $pp) {
+                    if (isset($pp[2])) continue;
+                    fwrite(STDERR, '[PROF] ' . $pp[0] . ' +' . round(($pp[1] - $prev) * 1000) . 'ms' . PHP_EOL);
+                    $prev = $pp[1];
                 }
             }
             if (getenv('SEARCH_DEBUG') === '1') {
@@ -721,6 +777,7 @@ class Search
             }
         }
 
+                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['CV', microtime(true)]; }
         // Evaluate FEATURES first (fast path)
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact (10.08: было после — undefined в features-цикле!)
         foreach ($feats as $name => $vec) {
@@ -1088,6 +1145,38 @@ class Search
         // corr = (E[ab]-E[a]E[b]) / (sd_a*sd_b) — через суммы:
         $cov = $sum / $n - $ma * $mb;
         return $cov / sqrt($da2 / $n * $db2 / $n);
+    }
+
+    /** EXP-036: профиль этапов find. */
+    private static array $__prof = [];
+
+    /** EXP-036: порог cv-скрининга mul2 (ревью: named const, не magic). */
+    public const MUL2_CV_SCREEN_MAX = 100.0;
+
+    /** EXP-036: число скипнутых скринингом (регрессия покрытия видна). */
+    private static int $mul2Screened = 0;
+
+    /** EXP-036 фаза 1: телеметрия кэша mul2 (ChunkCacheTest). */
+    private static int $mul2Computations = 0;
+    private static array $mul2Cache = [];
+    private static array $mul2Unique = [];
+
+    public static function resetMul2Counter(): void
+    {
+        self::$mul2Computations = 0;
+        self::$mul2Screened = 0;
+        self::$mul2Cache = [];
+        self::$mul2Unique = [];
+    }
+
+    public static function getMul2Counter(): int
+    {
+        return self::$mul2Computations;
+    }
+
+    public static function getMul2UniqueKeys(): int
+    {
+        return count(self::$mul2Unique);
     }
 
     public static function stddev(array $v): float

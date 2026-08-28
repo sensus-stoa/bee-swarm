@@ -32,7 +32,12 @@ class SearchL2L1Test extends TestCase
 
         $this->assertTrue($found, 'two-level law must be found');
         $this->assertLessThan(0.10, $cvTest, "cv_test must pass; got {$cvTest}");
-        $this->assertStringContainsString('mul', $formula,
+        // EXP-036: формула может быть через B-атом (chunk-компрессия,
+        // кратчайший exact выигрывает) ИЛИ через mul-L2L1 путь. Оба
+        // валидны — это two-level law.
+        $hasChunk = preg_match('/B[A-Za-z0-9]+/', $formula) === 1;
+        $hasMul = str_contains($formula, 'mul') || str_contains($formula, '×');
+        $this->assertTrue($hasChunk || $hasMul,
             'formula must combine levels; got: ' . $formula);
     }
 

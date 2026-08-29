@@ -388,7 +388,8 @@ class ExpressionNormalizer
     /**
      * @param array $node
      */
-    private static function render(array $node): string
+    /** @internal используется LawIsomorphismCompressor (канонизация шаблонов) */
+    public static function render(array $node): string
     {
         if (isset($node['atom'])) {
             return $node['atom'];

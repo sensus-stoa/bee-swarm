@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Hive;
 
 use BeeSwarm\Core\AtomRegistry;
+use BeeSwarm\Hive\LawIsomorphismCompressor;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Forager\DataSelfGenerator;
 use BeeSwarm\Forager\Forager;
@@ -96,14 +97,18 @@ class Hive
 
 
 
+    private LawIsomorphismCompressor $lawCompressor;
+
     public function __construct(
         ?PlateauDetector $plateau = null,
         ?Forager $forager = null,
         ?int $maxTicks = null,
         ?string $logFile = null,
+        ?LawIsomorphismCompressor $lawCompressor = null,
     ) {
         $this->plateau = $plateau ?? new PlateauDetector(50);
         $this->forager = $forager ?? new Forager();
+        $this->lawCompressor = $lawCompressor ?? new LawIsomorphismCompressor();
         $this->recordKeeper = new RecordKeeper();
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
@@ -767,6 +772,14 @@ class Hive
             ));
             if (count($alive) !== count($this->bees)) {
                 $this->bees = $alive;
+            }
+        }
+        // FLOOR-EMERGENCE M1 (EXP-038, 29.08): периодическое сжатие
+        // изоморфных законов в атомы-слова (§3.8). Тот же ритм 100 тиков.
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
+            $born = $this->lawCompressor->compress();
+            if ($born > 0) {
+                $this->log("LANGUAGE-COMPRESS: born={$born}");
             }
         }
         // POPULATION-PERSISTENCE ПЕРИОДИЧЕСКАЯ (14.08): savePopulation был

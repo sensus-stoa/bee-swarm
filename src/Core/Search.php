@@ -15,7 +15,10 @@ class Search
         $exact = true;
         for ($i = 0; $i < $n; $i++) {
             // NaN/INF — артефакт, не закон (бейзлайн 05.08: R× переполнение)
-            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+            // SCALE-INVARIANCE (EXP-036 2.5, 29.08): eps ОТНОСИТЕЛЬНЫЙ —
+            // abs-eps 1e-4 отвергал точный закон 10·f(x) c остатком ≤1e-3
+            // (K3 kill-test). 1e-4·max(1,|y_i|) инвариантен к масштабу y.
+            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
                 $exact = false;
                 break;
             }
@@ -27,6 +30,30 @@ class Search
         // AFFINE-LAWS (ЭКСП-012): при знакопеременной цели y (переход через 0)
         // ratio = pred/y не определён (деление на 0, знакопеременный CV→∞).
         // Сдвиг: ratio = (pred−shift)/(y−shift), shift = min(y)−1 → знаменатель > 0.
+        // SCALE-INVARIANCE (EXP-036 фаза 2.5, 29.08): сдвиг min(y)−1 —
+        // АБСОЛЮТНЫЙ якорь: при rescale цели y→a·y он не масштабируется,
+        // знаменатель в строке минимума остаётся ~1.0 → ratio взрывается →
+        // валидная пропорциональная форма получает CV=17.75 → no_find
+        // (heat K3: 0/20). Пропорциональный канал (shift=0, ratio pred/y)
+        // математически ИНВАРИНТЕН к масштабу: cv(v, a·y) = cv(v, y),
+        // и на heat-данных не взрывается (guard 1e-8 кусает |y|≲1e-7,
+        // min|y|=0.148). Решение: min-канал — кандидат проходит, если
+        // ЛЮБОЙ из каналов видит закон. Точные пропорциональные — через
+        // shift=0, аффинно-приближённые — через канал со сдвигом
+        // (EXP-012 сохранён: ноль-пересечения приближённых форм больше
+        // не взрываются). K3-контракт: cv(v,a·y,s) ≤ cv(v,y,s) всегда.
+        $cvShift = self::cvSingle($vec, $y, $shift);
+        if ($shift != 0.0) {
+            $cvPlain = self::cvSingle($vec, $y, 0.0);
+            return min($cvShift, $cvPlain);
+        }
+        return $cvShift;
+    }
+
+    /** Один ratio-канал без min-логики (внутренний). */
+    private static function cvSingle(array $vec, array $y, float $shift): float
+    {
+        $n = count($vec);
         $ratio = [];
         for ($i = 0; $i < $n; $i++) {
             $ratio[] = ($vec[$i] - $shift) / ($y[$i] - $shift + 1e-8);
@@ -785,7 +812,7 @@ class Search
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
                 // EXP-035: null (ноль-делитель в L2/фича) — не точный закон
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
                     $exact = false;
                     break;
                 }
@@ -822,7 +849,7 @@ class Search
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001) {
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
                     $exact = false;
                     break;
                 }

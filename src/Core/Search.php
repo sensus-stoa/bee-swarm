@@ -338,6 +338,22 @@ class Search
 
         // Get L1 keys (everything added after features)
         $l1Keys = array_values(array_diff(array_keys($exprs), $featKeys));
+        // A3 SLOT-SNAPSHOT: ×-слоты (имя+вектор) снимаются СРАЗУ после
+        // pairwise — до beam/заморозок. Каскад работает с ПОЛНЫМ L1-набором:
+        // частичные суммы (cv≈2.7) ниже по потоку замораживаются, но
+        // материал для сборки обязан сохраниться. Вектора в снапшоте:
+        // $exprs-записи ниже по потоку могут быть unset.
+        $slotMulKeys = [];
+        foreach ($exprs as $k => $vec) {
+            // (?:²)? — группировка обязательна: ² в байтовом PCRE = 2 байта,
+            // '²?' делает опциональным только последний байт → raw×raw
+            // формы отфильтровывались (регрессия dot, найдена в A3).
+            // Группы на ОБОИХ операндах: sq-first формы (x0²×x1) — те же
+            // слоты, что raw-first (x1×x0²), коммутативно.
+            if (preg_match('/^\(x\d+(?:²)?×x\d+(?:²)?\)$/', $k) === 1) {
+                $slotMulKeys[$k] = $vec;
+            }
+        }
 
         // L1 squared
         $l1Sq = [];
@@ -820,15 +836,10 @@ class Search
             $slotMinY = min($y);
             $slotMaxY = max($y);
             $slotShift = ($slotMinY < 0 && $slotMaxY > 0) ? $slotMinY - 1.0 : 0.0;
-            $mulKeys = array_values(array_filter(
-                array_keys($exprs),
-                fn (string $k): bool => preg_match('/^\(x\d+×x\d+\)$/', $k) === 1
-            ));
-            if (count($mulKeys) >= 3) {
+            if (count($slotMulKeys) >= 3) {
                 $slot = \BeeSwarm\Core\SlotCascade::assemble(
-                    $exprs,
+                    $slotMulKeys,
                     $y,
-                    $mulKeys,
                     fn (array $vec, array $target, float $sh): float => self::cv($vec, $target, $sh),
                     $cvTrainMax,
                     $slotShift

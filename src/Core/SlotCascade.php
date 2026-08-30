@@ -41,7 +41,9 @@ final class SlotCascade
      * @param float $cvMax гейт вставки (cvTrainMax вызывающего)
      * @param float $shift affine-сдвиг цели (тот же, что у суда — иначе
      *   гейт и суд расходятся на офсетных задачах, review п.2)
-     * @return array{0: string, 1: array<float>}|null
+     * @return array{0: string, 1: array<float>, 2: float}|null
+     *   [имя, откалиброванный вектор (vec·calC), калиброванный скаляр c]
+     *   (A4: имя несёт ×c при c≠1, вектор уже умножен — exact-гейт проходит)
      */
     public static function assemble(
         array $slots,
@@ -103,7 +105,41 @@ final class SlotCascade
                 }
             }
         }
+        if ($best === null) {
+            return null;
+        }
 
-        return $best === null ? null : [$best['name'], $best['vec']];
+        // A4: калибровка константы c на train-only (K3-легитимность,
+        // EXP-036 фаза 2.5): c = Σ(v·y)/Σ(v²) — МНК закрытой формой,
+        // точен при y=c·v, не спасает неверную форму. Идентичность
+        // (|c−1| в машинном эпсилон) не масштабирует вектор и имя.
+        $num = 0.0;
+        $den = 0.0;
+        foreach ($best['vec'] as $r => $v) {
+            $num += $v * $y[$r];
+            $den += $v * $v;
+        }
+        $calC = $den > 0.0 ? $num / $den : 1.0;
+        // Дегенераты (review deleg_820ccadd п.3): c≈0 → имя "(S×0)" лжёт
+        // (ненулевой вектор); INF/NaN → битое имя "(S×INF)". Честный
+        // отказ от калибровки — identity-возврат.
+        if (! is_finite($calC) || abs($calC) < 1e-12) {
+            $calC = 1.0;
+
+            return [$best['name'], $best['vec'], $calC];
+        }
+        if (abs($calC - 1.0) <= 1e-12) {
+            $calC = 1.0;
+
+            return [$best['name'], $best['vec'], $calC];
+        }
+        $calVec = array_map(fn (float $v): float => $v * $calC, $best['vec']);
+        // Отрицательный c — константа в скобках: '×(-0.5)' без этого
+        // токенизатор видит бинарный минус без операнда
+        // (review deleg_820ccadd п.2).
+        $calStr = $calC < 0 ? '(' . number_format($calC, 12, '.', '') . ')' : rtrim(rtrim(number_format($calC, 12, '.', ''), '0'), '.');
+        $calName = '(' . $best['name'] . '×' . $calStr . ')';
+
+        return [$calName, $calVec, $calC];
     }
 }

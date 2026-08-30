@@ -805,6 +805,44 @@ class Search
             }
         }
 
+        // A2 SLOT-CASCADE (pysr-rematch): SUM-каркасы из ×-пар L1.
+        // Частичные суммы dot имеют cv≈2.7 — beam их убивает, закон
+        // проявляется ТОЛЬКО на финальном узле. Тройки ×-форм сырых
+        // фич перебираются БЕЗ beam (прототип: 0.01s, FPR=0/1365);
+        // критерий сборки — cv→0 факта (тот же cvTrainMax, суд общий).
+        // Гейт: depth>=3 (dot на depth-2 невыразим) и >=3 сырых фич.
+        // Ресурс: SLOT_BUDGET (cap попыток, единственная ручка).
+        // affineShift ДО гейта: assemble вычисляется ПЕРЕД вычислением
+        // общего affineShift ниже — считаем заранее (review п.2:
+        // гейт и суд обязаны иметь одну семантику сдвига).
+        $slotShift = 0.0;
+        if ($depth >= 3 && count($rawAll) >= 3) {
+            $slotMinY = min($y);
+            $slotMaxY = max($y);
+            $slotShift = ($slotMinY < 0 && $slotMaxY > 0) ? $slotMinY - 1.0 : 0.0;
+            $mulKeys = array_values(array_filter(
+                array_keys($exprs),
+                fn (string $k): bool => preg_match('/^\(x\d+×x\d+\)$/', $k) === 1
+            ));
+            if (count($mulKeys) >= 3) {
+                $slot = \BeeSwarm\Core\SlotCascade::assemble(
+                    $exprs,
+                    $y,
+                    $mulKeys,
+                    fn (array $vec, array $target, float $sh): float => self::cv($vec, $target, $sh),
+                    $cvTrainMax,
+                    $slotShift
+                );
+                if ($slot !== null && ! isset($exprs[$slot[0]])) {
+                    $exprs[$slot[0]] = $slot[1];
+                    $l2Keys[] = $slot[0];
+                    if (getenv('SEARCH_DEBUG') === '1') {
+                        fwrite(STDERR, '[SD-SLOT] assembled: ' . $slot[0] . PHP_EOL);
+                    }
+                }
+            }
+        }
+
                 if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['CV', microtime(true)]; }
         // Evaluate FEATURES first (fast path)
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact (10.08: было после — undefined в features-цикле!)

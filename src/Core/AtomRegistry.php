@@ -141,7 +141,7 @@ class AtomRegistry
         // §2.3 Phase 5c: читать открытые формулы из laws, не из grammar_ops
         try {
             $db = \BeeSwarm\Infra\Database::get();
-            foreach ($db->query("SELECT DISTINCT formula FROM laws") as $r) {
+            foreach ($db->query('SELECT DISTINCT formula FROM laws') as $r) {
                 $discovered[] = $r['formula'];
             }
             // V0.8.5 fix: загружать текст-атомы из grammar_ops
@@ -329,6 +329,11 @@ class AtomRegistry
     public static function clearDefCache(): void
     {
         self::$bornCache = [];
+        // A1: арность/дерево definition кэшируются рядом — сброс ОБЯЗАТЕЛЬНО
+        // вместе с bornCache (paratest переиспользует воркеры: сталесть
+        // против новой :memory: БД = порядок-зависимые флаки, premortem H4)
+        self::$bornArityCache = [];
+        self::$bornNodeCache = [];
     }
 
     private static array $bornCache = [];
@@ -354,8 +359,11 @@ class AtomRegistry
             return null;
         }
         // ПАРСИМ ОДИН РАЗ: evaluator на каждый apply = ×7 к suite
+        // A1: парс С birth-операторами — вложенное BW-слово молекулы
+        // обязано распарситься как оператор, иначе "x1BWdiff0001x2"
+        // склеивается в атом и def вычисляется в NULL (EXP-039 §3).
         [$protected, $map] = \BeeSwarm\Core\ExpressionNormalizer::protect($def);
-        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($protected);
+        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($protected, \BeeSwarm\Core\ExpressionEvaluator::birthOpNames());
         if ($node === null) {
             $cache[$name] = null;
             return null;
@@ -363,13 +371,21 @@ class AtomRegistry
         if (! empty($map)) {
             $node = \BeeSwarm\Core\ExpressionNormalizer::restoreAtoms($node, $map);
         }
-        $fn = function (float $a, ?float $b = null) use ($node, $def): ?float {
+        // A1 arity-aware: замыкание ВАРИАДИК — applyN передаёт полный
+        // binding строки (молекула arity-5), legacy apply($a, $b) работает
+        // как раньше. Ряд = все аргументы: xN → row[N]. $b=null НЕ кладём
+        // в ряд (strict_types: float ...$args отвергает null) — унарный
+        // вызов = односерийный ряд, недостающие терминалы → 0 в evalAtom.
+        $fn = function (float ...$args) use ($node, $def): ?float {
+            $a = $args[0] ?? 0.0;
+            $b = $args[1] ?? null;
             // Инфиксные формулы ((x0×K2)) — узел с x0/x1
-            $val = \BeeSwarm\Core\ExpressionEvaluator::evalNode($node, [$a, $b ?? 0.0], []);
+            $val = \BeeSwarm\Core\ExpressionEvaluator::evalNode($node, $args === [] ? [0.0] : $args, []);
             if ($val !== null && is_finite($val)) {
                 return $val;
             }
             // fallback: compose-имя "floor(deg2rad)" — цепочка СПРАВА НАЛЕВО
+            // ($b объявлена вне evalNode-вызова: null у унарных, число у бинарных)
             preg_match_all('/\w+/', $def, $m);
             $inner = $a;
             $depth = 0;
@@ -402,7 +418,9 @@ class AtomRegistry
         if (str_starts_with($name, 'B')) {
             $def = self::bornDefinition($name);
             if ($def !== null) {
-                return $def($a, $b);
+                // A1: $b=null → унарный вызов $def($a). НЕ $def($a, $b):
+                // variadic float ...$args при strict_types отвергает null.
+                return $b === null ? $def($a) : $def($a, $b);
             }
         }
 
@@ -460,6 +478,118 @@ class AtomRegistry
             default => null,
         };
     }
+
+    /**
+     * A1 arity-aware apply (pysr-rematch): применение birth-формулы
+     * произвольной арности к binding строки.
+     *
+     * Контракт B-AS-ARGUMENT расширяется с 2 аргументов до N: definition
+     * с терминалами x0..x(N−1) вычисляется через evaluateFormula — механизм
+     * доказан замером EXP-039 §3 (5 колонок → −0.667; apply 2 args → NULL).
+     * Терминалы = слоты молекулы (rename-fix A1), строгое соответствие
+     * арности: лишние/недостающие аргументы → null (не молчаливый 0.0).
+     *
+     * @param array<float> $args binding строки (x0..x(N−1))
+     */
+    public static function applyN(string $name, array $args): ?float
+    {
+        if ($args === []) {
+            return null;
+        }
+        $name = self::resolve($name);
+        // Только birth-атомы: у встроенных (add/sq/...) арность известна
+        // из сигнатуры apply — applyN для них не определён.
+        if (! str_starts_with($name, 'B')) {
+            return null;
+        }
+        $def = self::bornDefinition($name);
+        if ($def === null) {
+            return null;
+        }
+        $arity = self::bornArity($name, $def);
+        if ($arity === null || count($args) !== $arity) {
+            return null;
+        }
+        return $def(...array_values($args));
+    }
+
+    /**
+     * Арность birth-формулы: max индекс терминала xN в definition + 1.
+     * null если definition не дерево (compose-имя) — арность неизвестна.
+     */
+    private static function bornArity(string $name, \Closure $def): ?int
+    {
+        // Прямой доступ вместо =& (psalm UnsupportedPropertyReferenceUsage)
+        if (array_key_exists($name, self::$bornArityCache)) {
+            return self::$bornArityCache[$name];
+        }
+        $defNode = self::bornDefinitionNode($name);
+        if ($defNode === null || isset($defNode['atom'])) {
+            self::$bornArityCache[$name] = null;
+
+            return null;
+        }
+        $arity = 0;
+        $walk = function (array $n) use (&$walk, &$arity): void {
+            if (isset($n['atom'])) {
+                if (preg_match('/^x(\d+)$/', $n['atom'], $m) === 1) {
+                    $arity = max($arity, (int) $m[1] + 1);
+                }
+
+                return;
+            }
+            if (isset($n['l'])) {
+                $walk($n['l']);
+            }
+            if (isset($n['r']) && $n['r'] !== null) {
+                $walk($n['r']);
+            }
+        };
+        $walk($defNode);
+        self::$bornArityCache[$name] = $arity;
+
+        return $arity;
+    }
+
+    private static array $bornArityCache = [];
+
+    /**
+     * Сырое дерево definition (для подсчёта арности): тот же путь парсинга,
+     * что в bornDefinition, но без замыкания.
+     */
+    private static function bornDefinitionNode(string $name): ?array
+    {
+        // Прямой доступ вместо =& (psalm UnsupportedPropertyReferenceUsage)
+        if (array_key_exists($name, self::$bornNodeCache)) {
+            return self::$bornNodeCache[$name];
+        }
+        $db = \BeeSwarm\Infra\Database::get();
+        $stmt = $db->prepare(
+            'SELECT definition FROM grammar_ops WHERE name = ? AND source = ? AND definition IS NOT NULL AND definition != \'\' LIMIT 1'
+        );
+        $stmt->execute([$name, 'birth']);
+        $def = $stmt->fetchColumn();
+        if ($def === false) {
+            self::$bornNodeCache[$name] = null;
+
+            return null;
+        }
+        [$protected, $map] = \BeeSwarm\Core\ExpressionNormalizer::protect((string) $def);
+        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($protected);
+        if ($node === null) {
+            self::$bornNodeCache[$name] = null;
+
+            return null;
+        }
+        if (! empty($map)) {
+            $node = \BeeSwarm\Core\ExpressionNormalizer::restoreAtoms($node, $map);
+        }
+        self::$bornNodeCache[$name] = $node;
+
+        return $node;
+    }
+
+    private static array $bornNodeCache = [];
 
     // ═══ DISCOVER: найти все атомы с CV=0 на данных ═══
 

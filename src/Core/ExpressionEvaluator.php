@@ -19,12 +19,19 @@ namespace BeeSwarm\Core;
  */
 class ExpressionEvaluator
 {
-    /** B-AS-ARGUMENT: глубина рекурсии B-в-B (guard от циклов) */
+    /**
+     * B-AS-ARGUMENT: глубина рекурсии B-в-B (guard от циклов)
+     */
     private static int $bDepth = 0;
-    /** R-операторы в именах атомов: R+{col}, R×{col}, Rmax{col}, Rmin{col}, Rrange{col}, Rnorm{col} */
+
+    /**
+     * R-операторы в именах атомов: R+{col}, R×{col}, Rmax{col}, Rmin{col}, Rrange{col}, Rnorm{col}
+     */
     private const R_OPS = ['range', 'norm', 'max', 'min', '×', '−', '/', '+'];
 
-    /** @var array<string,array|null> кэш definition по имени атома */
+    /**
+     * @var array<string,array|null> кэш definition по имени атома
+     */
     private static array $defCache = [];
 
     public static function clearDefCache(): void
@@ -130,16 +137,18 @@ class ExpressionEvaluator
      * для парсера — иначе (x0B1x1) неразличим от неизвестного атома.
      */
     private static ?array $birthOpCache = null;
+
     private static ?int $birthOpSentinel = null;
 
-    private static function birthOpNames(): array
+    public static function birthOpNames(): array
     {
         // REVIEW deleg_fe365da6: межпроцессная сталесть — новые birth-атомы
         // из другого воркера не подхватятся. Сентинел COUNT(*) копеечный,
         // полный DISTINCT только при изменении.
         try {
             $cnt = (int) \BeeSwarm\Infra\Database::get()
-                ->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")->fetchColumn();
+                ->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")
+                ->fetchColumn();
             if (self::$birthOpCache !== null && self::$birthOpSentinel === $cnt) {
                 return self::$birthOpCache;
             }

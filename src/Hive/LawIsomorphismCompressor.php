@@ -121,16 +121,46 @@ final class LawIsomorphismCompressor
      */
     public static function canonize(string $formula): ?string
     {
-        $tree = ExpressionNormalizer::parse($formula);
+        // A1 rename-fix (EXP-039): парс С birth-операторами — иначе
+        // "x1BWdiff0001x2" склеивается в атом и слоты молекулы
+        // переименовываются отдельно от слова → каша при apply.
+        $birthOps = \BeeSwarm\Core\ExpressionEvaluator::birthOpNames();
+        $tree = ExpressionNormalizer::parse($formula, $birthOps);
         if ($tree === null) {
             return null;
         }
         if (isset($tree['atom'])) {
             return null; // атом без структуры — не изоморфизм
         }
+        // Формула с BW-словом внутри = молекула: терминалы — СЛОТЫ
+        // (роли переносимости), renaming их НЕ трогает (решение юзера
+        // 30.08, fix-проба EXP-039: def без renaming → cvH=0).
+        if (self::containsBirthOp($tree, $birthOps)) {
+            return ExpressionNormalizer::render($tree);
+        }
         $map = [];
         $renamed = self::renameTerminals($tree, $map);
         return ExpressionNormalizer::render($renamed);
+    }
+
+    /**
+     * A1: содержит ли дерево birth-слово (B/BW-оператор из grammar_ops).
+     *
+     * @param array $node дерево ExpressionNormalizer::parse
+     * @param array<string> $birthOps имена birth-операторов
+     */
+    private static function containsBirthOp(array $node, array $birthOps): bool
+    {
+        if ($birthOps === []) {
+            return false;
+        }
+        if (isset($node['op']) && in_array($node['op'], $birthOps, true)) {
+            return true;
+        }
+        if (isset($node['l']) && self::containsBirthOp($node['l'], $birthOps)) {
+            return true;
+        }
+        return isset($node['r']) && $node['r'] !== null && self::containsBirthOp($node['r'], $birthOps);
     }
 
     /**

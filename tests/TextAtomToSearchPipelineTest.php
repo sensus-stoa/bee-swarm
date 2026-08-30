@@ -142,7 +142,7 @@ class TextAtomToSearchPipelineTest extends TestCase
         $g = Grammar::fromOps(array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'sq', 'sqrt']));
         $result = Search::find($X, $y, $g, 2, ['feature', 'target'], 0.2);
 
-        $this->assertCount(5, $result);
+        $this->assertCount(6, $result);
         $this->assertTrue($result[0], 'Search::find must discover law from cross-paired text atoms');
         $this->assertLessThan(0.5, $result[1], 'cv_train must be reasonable');
         $this->assertNotEmpty($result[2], 'formula must not be empty');

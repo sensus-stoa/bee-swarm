@@ -49,7 +49,7 @@ class SearchBudgetTest extends TestCase
             "find с budget=1s вернулся за {$elapsed}s (должен <60s, раньше >15 мин!)"
         );
         $this->assertIsArray($res, 'find вернул массив');
-        $this->assertCount(5, $res, 'backward-compatible: [found, cv, formula, cvTest, class]');
+        $this->assertCount(6, $res, 'backward-compatible: [found, cv, formula, cvTest, class]');
         $this->assertSame(
             'TIMEOUT',
             $res[4],

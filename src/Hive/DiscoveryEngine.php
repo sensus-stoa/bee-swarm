@@ -15,7 +15,7 @@ use BeeSwarm\Validation\LawValidator;
 class DiscoveryEngine
 {
     /**
-     * @return array{0: list<array>, 1: float, 2: float} [candidates, bestCv, searchCv]
+     * @return array{0: list<array>, 1: float, 2: float, 3: string|null} [candidates, bestCv, searchCv, diagnosis]
      */
     public function discover(
         array $X,
@@ -25,11 +25,13 @@ class DiscoveryEngine
         ?array $colLabels = null,
         float $testRatio = 0.2,
         ?int $depth = null,
+        ?int $tMin = null,
     ): array {
         $nFeat = count($X[0] ?? []);
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
-            return [[], 9.99, 9.99];
+            // §3.3: DATA-диагноз из маршрутизации (pre-filter §1.2)
+            return [[], 9.99, 9.99, 'DATA'];
         }
 
         $found = [];
@@ -50,8 +52,10 @@ class DiscoveryEngine
             $sFormula = null;
             $sCvTest = 9.99;
             $sClass = 'EMPIRICAL';
+            $lastDiagnosis = null;
             for ($d = $depth; $d <= $maxDepth; $d++) {
-                [$sFound, $sCv, $sFormula, $sCvTest, $sClass] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
+                [$sFound, $sCv, $sFormula, $sCvTest, $sClass, $sDiagnosis] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
+                $lastDiagnosis = $sDiagnosis;
                 // CONCERNS deleg_ceef5093: «нашёл хоть что-то» — слабый критерий.
                 // Тень (простой атом, CV=0) не должна останавливать эскалацию:
                 // break ТОЛЬКО при составном законе с хорошим CV.
@@ -63,7 +67,13 @@ class DiscoveryEngine
             $bestCv = min($bestCv, $sCv);
             $searchCv = $sCv;
             if ($sFound) {
-                $found[] = ['atom' => $sFormula, 'cv' => $sCv, 'cv_test' => $sCvTest, 'mode' => 'search', 'class' => $sClass];
+                $found[] = [
+                    'atom' => $sFormula,
+                    'cv' => $sCv,
+                    'cv_test' => $sCvTest,
+                    'mode' => 'search',
+                    'class' => $sClass,
+                ];
             }
         }
 
@@ -96,6 +106,6 @@ class DiscoveryEngine
             }
         }
 
-        return [$found, $bestCv, $searchCv];
+        return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null];
     }
 }

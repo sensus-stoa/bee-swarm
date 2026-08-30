@@ -1194,9 +1194,13 @@ class Hive
         $colLabels = $task['col_labels'] ?? null;
         $profSearchT0 = microtime(true);
         $engine = new DiscoveryEngine();
-        [$candidates, $bestCv, $searchCv] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels);
+        [$candidates, $bestCv, $searchCv, $diagnosis] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels, 0.2, null, $tMin);
         $this->lastCandidates = $candidates; // REUSE-TRACKING (08.08): все кандидаты
 
+        if ($candidates === [] && $diagnosis !== null) {
+            // §3.3 Само-модель незнания: отказ с диагнозом — в production-лог
+            $this->log("FAILED task={$task['name']} reason={$diagnosis} evidence=cvBest=" . number_format($bestCv, 4));
+        }
         foreach ($candidates as $d) {
             $this->recordDiscovery($d, $task, $domain, $foundAny, $X, $y);
         }

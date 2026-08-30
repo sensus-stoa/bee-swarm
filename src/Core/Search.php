@@ -69,6 +69,45 @@ class Search
         return sqrt($variance / $n) / abs($mean);
     }
 
+    /** §3.3 порог NOISE (С): «CV > 0.5 для всех испробованных» — прямо
+     *  в тексте критерия само-модели незнания. */
+    private const NOISE_CV_FLOOR = 0.5;
+    /** §1.2 tMin base = 10 — Hive-маршрутизация вычисляет
+     *  max(10, nFeat×5) и передаёт в find() (pre-filter на уровне
+     *  маршрутизации, §1.2). */
+    public const T_MIN_BASE = 10;
+
+    /**
+     * §3.3 Само-модель незнания: диагноз причины отказа.
+     *
+     * Приоритет категорий (Е): DATA > DEPTH > GRAMMAR > NOISE — диагноз
+     * по наименее дорогой валидации §3.3. NOISE — вердикт-исключение:
+     * только когда глубина исчерпана (depth=3) и сигнал не виден.
+     *
+     *  NOISE   — лучший cv всех испробованных выражений > NOISE_CV_FLOOR
+     *            (протокол: «CV > 0.5 для всех испробованных»).
+     *  DEPTH   — depth < 3: валидация §3.3 «увеличить глубину → решено»
+     *            (dot-класс: depth=2 fail, depth=3 PASS через slot-каскад).
+     *  GRAMMAR — сигнал есть (cv < NOISE_CV_FLOOR), глубина исчерпана,
+     *            точный закон не достигнут (класс не покрыт грамматикой).
+     *
+     * TIMEOUT не переименовывается (обратная совместимость потребителей);
+     * расширение бюджета/глубины — путь валидации TIMEOUT-случаев.
+     */
+    private static function diagnoseFailure(float $bestCvSeen, int $depth): string
+    {
+        if ($depth < 3) {
+            return 'DEPTH';
+        }
+        // R2 (review deleg_cf353090): INF/NaN = «ничего не оценено» —
+        // пустое пространство перебора, не шум (GRAMMAR-территория).
+        if (is_finite($bestCvSeen) && $bestCvSeen > self::NOISE_CV_FLOOR) {
+            return 'NOISE';
+        }
+
+        return 'GRAMMAR';
+    }
+
     /**
      * @param float $budgetSec Полный wall-clock бюджет (включая подготовку фич!),
      *   0.0 = без лимита. По истечении: [false, 9.99, 'none', 9.99, 'TIMEOUT'].
@@ -76,7 +115,7 @@ class Search
      *   проверять $res[0] (found) ДО чтения score/expr (9.99 = sentinel!).
      *   Семантика: бюджет = тотальный wall-clock (как timeout PySR 30s).
      */
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0): array
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0, ?int $tMin = null): array
     {
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
@@ -90,13 +129,20 @@ class Search
         self::$__prof = [['START', $p0]];
         $deadline = $budgetSec > 0.0 ? $p0 + $budgetSec : INF;
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
         }
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
-            return [false, 9.99, 'none', 9.99, 'NONE'];
+            return [false, 9.99, 'none', 9.99, 'NONE', 'DATA'];
         }
         $nFeat = count($X[0]);
+        // §3.3 DATA-диагноз: tMin передаёт ВЫЗЫВАЮЩИЙ (Hive-маршрутизация,
+        // §1.2 pre-filter на уровне маршрутизации). null = гейт выключен
+        // (legacy-вызовы и unit-тесты механики).
+        if ($tMin !== null && $n < $tMin) {
+            return [false, 9.99, 'none', 9.99, 'NONE', 'DATA'];
+        }
+        $bestCvSeen = INF; // §3.3: лучший cv из ВСЕХ испробованных выражений
 
         // Feature naming: colLabels[0]='price' → feature key 'price' instead of 'x0'
         $featName = fn (int $i): string => $colLabels[$i] ?? "x{$i}";
@@ -105,7 +151,7 @@ class Search
         $feats = [];
         for ($i = 0; $i < $nFeat; $i++) {
             if (microtime(true) > $deadline) {
-                return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
             }
             $col = array_column($X, $i);
             $fname = $featName($i);
@@ -134,7 +180,7 @@ class Search
         $rawFeatKeys = array_keys($feats);
         foreach ($rawFeatKeys as $fname) {
             if (microtime(true) > $deadline) {
-                return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
             }
             if (!isset($rawFeatNames[$fname])) continue; // only raw features
             $col = $feats[$fname];
@@ -380,7 +426,7 @@ class Search
 
         // L2: combinations of (L1 + L1² + L1-unary)
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
         }
         $l2Keys = [];
         if ($depth >= 2) {
@@ -400,7 +446,7 @@ class Search
                 $scored = [];
                 foreach ($pool as $pname) {
                     if ((++$checkCount & 31) === 0 && microtime(true) > $deadline) {
-                        return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
                     }
                     $pv = $exprs[$pname];
                     $r = [];
@@ -517,7 +563,7 @@ class Search
             $l2l1Count = 0;
             foreach ($l1Top as $l1name) {
                 if ((++$l2l1Count & 15) === 0 && microtime(true) > $deadline) {
-                    return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                    return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
                 }
                 // EXP-036 ф1 (29.08): B-формы комбинируются ТОЛЬКО с сырыми
                 // фичами (heat-семантика: chunk×κ×A/d — все raw). R-производные
@@ -551,7 +597,7 @@ class Search
                 if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L3', microtime(true)]; }
         // L3: L2 / constant (для MIN = (...)/2)
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
         }
         if (getenv('SEARCH_DEBUG') === '1') {
             $bvec = '(x0BPf474x1)';
@@ -748,7 +794,7 @@ class Search
                     continue;
                 }
                 if ((++$l3Count & 31) === 0 && microtime(true) > $deadline) {
-                    return [false, 9.99, 'none', 9.99, 'TIMEOUT'];
+                    return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
                 }
 
                 foreach ($constKeys as $ck) {
@@ -937,6 +983,9 @@ class Search
                 continue;
             }
             $cv = self::cv($vec, $y, $affineShift);
+            if ($cv < $bestCvSeen) {
+                $bestCvSeen = $cv;
+            }
             if ($cv < $cvTrainMax) {
                 $plausible[] = ['cv' => $cv, 'name' => $name];
             }
@@ -948,7 +997,7 @@ class Search
             if (preg_match('/(BW[0-9a-f]+|B\d+)/', (string) $bestExact, $m) === 1) {
                 \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
             }
-            return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL'];
+            return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL', null];
         }
 
         if (getenv('SEARCH_DEBUG') === '1') {
@@ -1150,11 +1199,16 @@ class Search
         SearchProfiler::add(0.0, 0.0, microtime(true) - $pTest);
 
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
+        // §3.3 Само-модель незнания: при неудаче — диагноз причины
+        $diagnosis = null;
+        if (! $found) {
+            $diagnosis = self::diagnoseFailure($bestCvSeen, $depth);
+        }
         // REUSE-TOUCH-ATOM (10.08): победитель с B-именем → touchAtom
         if ($found && is_string($bestName) && preg_match('/(BW[0-9a-f]+|B\d+)/', $bestName, $m) === 1) {
             \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
         }
-        return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];
+        return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
     }
 
 

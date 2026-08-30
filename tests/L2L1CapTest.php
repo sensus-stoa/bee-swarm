@@ -46,7 +46,7 @@ class L2L1CapTest extends TestCase
             "depth=3 с 2000-ops грамматикой вернулся за {$elapsed}s (было: вечность!)"
         );
         $this->assertIsArray($res, 'find вернул массив');
-        $this->assertCount(5, $res, 'backward-compatible формат');
+        $this->assertCount(6, $res, 'backward-compatible формат');
     }
 
     public function testL2L1SmallGrammarStillFinds(): void
@@ -58,6 +58,6 @@ class L2L1CapTest extends TestCase
 
         $res = Search::find($X, $y, $g, 3);
         $this->assertIsArray($res);
-        $this->assertCount(5, $res);
+        $this->assertCount(6, $res);
     }
 }

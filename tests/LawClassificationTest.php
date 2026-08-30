@@ -24,7 +24,7 @@ class LawClassificationTest extends TestCase
         $g = Grammar::fromOps(array_merge(Grammar::baseOpNames(), ['add']));
         $result = Search::find($X, $y, $g, 2, ['x0', 'x1']);
 
-        $this->assertCount(5, $result);
+        $this->assertCount(6, $result); // контракт find() расширен: [5]=диагноз §3.3
         $this->assertTrue($result[0], 'Should find ADD law');
         $this->assertLessThan(0.01, $result[1], 'cv_train ≈ 0');
         $this->assertStringContainsString('x0', $result[2], 'formula contains x0');
@@ -49,7 +49,7 @@ class LawClassificationTest extends TestCase
         $g = Grammar::fromOps(array_merge(Grammar::baseOpNames(), ['add']));
         $result = Search::find($X, $y, $g, 2, ['x0', 'x1'], testRatio: 0.2);
 
-        $this->assertCount(5, $result);
+        $this->assertCount(6, $result); // контракт find() расширен: [5]=диагноз §3.3
         if ($result[0]) {
             // cv_test вычислен (даже если неудачно — важно что split не упал)
             $this->assertIsFloat($result[3]);
@@ -70,7 +70,7 @@ class LawClassificationTest extends TestCase
         $g = Grammar::fromOps(array_merge(Grammar::baseOpNames(), ['add']));
         $result = Search::find($X, $y, $g, 2, ['x0', 'x1']);
 
-        $this->assertCount(5, $result);
+        $this->assertCount(6, $result); // контракт find() расширен: [5]=диагноз §3.3
         if ($result[0]) {
             $this->assertEqualsWithDelta($result[1], $result[3], 0.001,
                 'Without split, cv_train == cv_test');

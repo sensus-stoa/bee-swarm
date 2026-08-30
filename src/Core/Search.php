@@ -225,7 +225,8 @@ class Search
                 $sql = 'SELECT name, definition FROM grammar_ops
                     WHERE source = ? AND definition LIKE ? AND definition LIKE ?
                     GROUP BY definition
-                    ORDER BY CASE WHEN status = \'active\' THEN 0 ELSE 1 END, length(definition), MIN(id)
+                    ORDER BY CASE WHEN name LIKE \'BW%\' THEN 0 ELSE 1 END,
+                        CASE WHEN status = \'active\' THEN 0 ELSE 1 END, length(definition), MIN(id)
                     LIMIT ' . $bCap;
                 $stmt = \BeeSwarm\Infra\Database::get()->prepare($sql);
                 // EXP-035 (28.08): definition может не содержать x0
@@ -822,7 +823,16 @@ class Search
                 // COMPRESSION-CRITERION (09.08): exact-путь выбирает
                 // КРАТЧАЙШУЮ формулу — иначе add-форма (раньше в порядке)
                 // всегда выигрывает у B1-формы → атом не используется
-                if ($bestExact === null || strlen($name) < strlen($bestExact)) {
+                // FLOOR-EMERGENCE M1.5: при равном дереве (exact оба) BW-форма
+                // (языковое слово) предпочтительна сырой — reuse активирует
+                // candidate→active, сжатие растёт. Имя длиннее ≠ дерево длиннее.
+                // РЕВЬЮ deleg_1b903868 BLOCK: класс ВЫШЕ длины — иначе короткая
+                // сырая форма (второй операнд strlen<) откатывает BW-победу.
+                $nameIsBw = preg_match('/BW[0-9a-f]+/', $name) === 1;
+                $bestIsBw = $bestExact !== null && preg_match('/BW[0-9a-f]+/', $bestExact) === 1;
+                if ($bestExact === null
+                    || ($nameIsBw && ! $bestIsBw)
+                    || ($nameIsBw === $bestIsBw && strlen($name) < strlen($bestExact))) {
                     $bestExact = $name;
                 }//exact
             }
@@ -859,7 +869,16 @@ class Search
                 // COMPRESSION-CRITERION (09.08): exact-путь выбирает
                 // КРАТЧАЙШУЮ формулу — иначе add-форма (раньше в порядке)
                 // всегда выигрывает у B1-формы → атом не используется
-                if ($bestExact === null || strlen($name) < strlen($bestExact)) {
+                // FLOOR-EMERGENCE M1.5: при равном дереве (exact оба) BW-форма
+                // (языковое слово) предпочтительна сырой — reuse активирует
+                // candidate→active, сжатие растёт. Имя длиннее ≠ дерево длиннее.
+                // РЕВЬЮ deleg_1b903868 BLOCK: класс ВЫШЕ длины — иначе короткая
+                // сырая форма (второй операнд strlen<) откатывает BW-победу.
+                $nameIsBw = preg_match('/BW[0-9a-f]+/', $name) === 1;
+                $bestIsBw = $bestExact !== null && preg_match('/BW[0-9a-f]+/', $bestExact) === 1;
+                if ($bestExact === null
+                    || ($nameIsBw && ! $bestIsBw)
+                    || ($nameIsBw === $bestIsBw && strlen($name) < strlen($bestExact))) {
                     $bestExact = $name;
                 }//exact
             }
@@ -877,7 +896,7 @@ class Search
         if ($bestExact !== null) {
             // REUSE-TOUCH-ATOM (10.08): применение в точке использования!
             // Имя атома известно в момент победы — регистрируем reuse.
-            if (preg_match('/B\d+/', (string) $bestExact, $m) === 1) {
+            if (preg_match('/(BW[0-9a-f]+|B\d+)/', (string) $bestExact, $m) === 1) {
                 \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
             }
             return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL'];
@@ -942,6 +961,9 @@ class Search
             $bestScore = 9.99;
             foreach ($plausible as $cand) {
                 $score = $cand['cv'] + $lambda * strlen($cand['name']);
+                // FLOOR-EMERGENCE M1.5 (rev deleg_1b903868 п.3): scalar-tie-break
+                // здесь dead-path (score===bestScore требует идентичных cv+len).
+                // BW-приоритет живёт в exact-классе и usort($plausible).
                 if ($score < $bestScore) {
                     $bestScore = $score;
                     $bestCv = $cand['cv'];
@@ -1080,7 +1102,7 @@ class Search
 
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
         // REUSE-TOUCH-ATOM (10.08): победитель с B-именем → touchAtom
-        if ($found && is_string($bestName) && preg_match('/B\d+/', $bestName, $m) === 1) {
+        if ($found && is_string($bestName) && preg_match('/(BW[0-9a-f]+|B\d+)/', $bestName, $m) === 1) {
             \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
         }
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class];

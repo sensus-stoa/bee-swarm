@@ -99,6 +99,19 @@ final class ContradictionDetectorTest extends TestCase
         self::assertNull($event, 'дивергенция < δ → не противоречие');
     }
 
+    public function testUnevaluableFormulaIsSkippedNotContaminating(): void
+    {
+        $det = new ContradictionDetector(self::EPS_EXACT, self::DELTA_DIFF);
+        // (x0/x1) вычислима; (x0/(x1−x1)) = деление на ноль → evaluator null/INF → пропуск
+        $cands = [
+            $this->candidate('(x0×x1)', 0.0),
+            $this->candidate('(x0/(x1−x1))', 0.005),
+        ];
+        $event = $det->detect($this->task, $cands);
+        // пара пропущена (невычислимая), других пар нет → противоречия нет
+        self::assertNull($event, 'невычислимая формула не создаёт ложное/отравленное событие');
+    }
+
     public function testCandidatesCarryFormulaAndCv(): void
     {
         $det = new ContradictionDetector(self::EPS_EXACT, self::DELTA_DIFF);

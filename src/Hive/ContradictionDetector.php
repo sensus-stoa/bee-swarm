@@ -26,6 +26,7 @@ final class ContradictionDetector
     public function __construct(
         private readonly float $epsExact,
         private readonly float $deltaDiff,
+        private readonly float $deltaRel = 0.0,
     ) {
     }
 
@@ -46,30 +47,36 @@ final class ContradictionDetector
             return null;
         }
 
-        // пары exact-кандидатов; первая структурная пара с непустым D_diff — событие
+        // пары exact-кандидатов; нормализованные формы считаются ОДИН раз (premortem #4: O(N²)·parse → O(N))
+        $norms = array_map(
+            fn (array $c): string => ExpressionNormalizer::normalize($c['formula']),
+            $exact
+        );
+
         $n = count($exact);
         for ($i = 0; $i < $n; $i++) {
             for ($j = $i + 1; $j < $n; $j++) {
                 $a = $exact[$i];
                 $b = $exact[$j];
-                if ($this->sameFormula($a['formula'], $b['formula'])) {
-                    continue;
+                if ($norms[$i] === $norms[$j]) {
+                    continue; // коммутативные близнецы — одна формула
                 }
                 $va = $this->evaluate($a['formula'], $task);
                 $vb = $this->evaluate($b['formula'], $task);
                 if ($va === null || $vb === null) {
                     continue; // невычислимая формула — не противоречие, её судьбу решает гейт
                 }
-                $diffRows = $this->diffRows($task, $va, $vb);
+                $diffRows = $this->diffRows($task, $va, $vb, max(abs($va[$i] ?? 0), abs($vb[$j] ?? 0)));
                 if ($diffRows === []) {
                     continue; // дивергенция < δ на всех строках — эквивалентны
                 }
                 return [
                     'diff_rows' => $diffRows,
                     'candidates' => [
-                        ['formula' => $a['formula'], 'cv' => $a['cv']],
-                        ['formula' => $b['formula'], 'cv' => $b['cv']],
+                        ['formula' => $a['formula'], 'norm' => $norms[$i], 'cv' => $a['cv']],
+                        ['formula' => $b['formula'], 'norm' => $norms[$j], 'cv' => $b['cv']],
                     ],
+                    'task_fingerprint' => md5(json_encode(array_slice($task[0] ?? [], 0, -1))),
                 ];
             }
         }
@@ -85,9 +92,9 @@ final class ContradictionDetector
 
     /**
      * Значения формулы по строкам задачи. Колонки — именованные (x0, x1, y...),
-     * ExpressionEvaluator принимает rows вида array<string,float>.
+     * ExpressionEvaluator принимает rows с числовыми индексами [f0, f1, ..., y].
      *
-     * @param array<int,array<string,float>> $task
+     * @param array<int,array<int,float>> $task
      * @return array<int,float>|null null = формула невычислима/NaN/INF
      */
     private function evaluate(string $formula, array $task): ?array
@@ -105,22 +112,25 @@ final class ContradictionDetector
     }
 
     /**
-     * D_diff: строки, где |f_A − f_B| > δ.
+     * D_diff: строки, где |f_A − f_B| > max(δ_abs, δ_rel × масштаб).
+     * Смешанный порог: абсолютный для малых величин, относительный —
+     * иначе на данных масштаба 10^4 любая пара даёт шторм событий,
+     * на масштабе 10^-3 — вечная тишина (premortem #2).
      *
      * @param array<int,array<int,float>> $task
      * @param array<int,float> $va
      * @param array<int,float> $vb
+     * @param float $scale max(|f_A|,|f_B|) на строке — для относительной части порога
      * @return array<int,array<int,float>>
      */
-    private function diffRows(array $task, array $va, array $vb): array
+    private function diffRows(array $task, array $va, array $vb, float $scale): array
     {
+        $threshold = $this->deltaDiff + $this->deltaRel * $scale;
         $rows = [];
-        foreach ($task as $i => $row) {
-            if (! isset($va[$i], $vb[$i])) {
-                continue;
-            }
-            if (abs($va[$i] - $vb[$i]) > $this->deltaDiff) {
-                $rows[] = $row;
+        $nVec = min(count($va), count($vb), count($task));
+        for ($i = 0; $i < $nVec; $i++) {
+            if (abs($va[$i] - $vb[$i]) > $threshold) {
+                $rows[] = $task[$i];
             }
         }
         return $rows;

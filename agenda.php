@@ -11,6 +11,11 @@ ini_set('memory_limit', '8G');
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+// ENV-bootstrap (04.09): .env → процессное окружение ДО чтения getenv().
+// Реальное окружение имеет приоритет (immutable). Тесты НЕ подключают —
+// их env задаёт phpunit.xml (изоляция).
+require_once __DIR__ . '/env_bootstrap.php';
+
 // Проверка: деплой через deploy.sh, не через прямой scp
 $marker = __DIR__ . '/.deploy_ok';
 if (! file_exists($marker)) {

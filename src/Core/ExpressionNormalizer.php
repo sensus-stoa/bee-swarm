@@ -372,7 +372,10 @@ class ExpressionNormalizer
         }
         return match ($op) {
             '−' => ['atom' => '0'],
-            '/' => ['atom' => '1'],
+            // T2-review (deleg_79f23159): 0/0 = NaN, НЕ 1. Гард нулевых операндов:
+            // если обе стороны резолвились в 0 — деление неопределено, не схлопываем.
+            '/' => (is_numeric(self::render($l)) && (float) self::render($l) === 0.0)
+                ? null : ['atom' => '1'],
             'max', 'min' => $l,
             default => null,
         };

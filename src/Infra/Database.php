@@ -195,6 +195,25 @@ class Database
         } catch (\PDOException $e) {
             // column already exists — ok
         }
+        // T5-post-2 backfill (ОДНОРАЗОВЫЙ, премортем И1 deleg_122a0816):
+        // законы старше 7 дней пережили SHRINK-отбор — разовая амнистия reservoir.
+        // PRAGMA user_version гарантирует: будущие законы НЕ амнистируются —
+        // только fingerprint-delta (переоткрытие на других данных). Иначе
+        // каждый новый закон амнистировался бы по достижении 7 дней без
+        // единого переоткрытия — противоречит цели re-discovery confirmation.
+        $version = (int) $db->query('PRAGMA user_version')->fetchColumn();
+        if ($version < 1) {
+            try {
+                $db->exec(
+                    "UPDATE laws SET confirmed_count = 1
+                     WHERE confirmed_count = 0
+                       AND found_at < datetime('now', '-7 days')"
+                );
+                $db->exec('PRAGMA user_version = 1');
+            } catch (\PDOException $e) {
+                // column missing (fresh DB до ALTER) — не критично
+            }
+        }
         // GRAMMAR-PROPAGATION (ЭКСП-012): вес оператора в grammar_ops
         try {
             $db->exec('ALTER TABLE grammar_ops ADD COLUMN usage_count INTEGER DEFAULT 1');

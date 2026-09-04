@@ -252,11 +252,12 @@ class GrammarTest extends TestCase
         // FLAKY-FIX (04.09, T5-post): -p8 соседние тесты заполняют laws, LIMIT 3
         // вытесняет mid_op. Изоляция: полный DELETE (тест owns таблицу).
         $db->exec('DELETE FROM laws');
-        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,5)')
+        // T5-post-2: capped читает только durable (confirmed>=1) — сидим подтверждённые
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count,confirmed_count) VALUES (?,?,?,?,5,1)')
             ->execute(['top', 'top_op', 0.0, 'test']);
-        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,2)')
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count,confirmed_count) VALUES (?,?,?,?,2,1)')
             ->execute(['mid', 'mid_op', 0.0, 'test']);
-        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,1)')
+        $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count,confirmed_count) VALUES (?,?,?,?,1,1)')
             ->execute(['low', 'low_op', 0.0, 'test']);
 
         $capped = $this->g->capped(3);

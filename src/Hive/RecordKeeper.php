@@ -106,6 +106,20 @@ class RecordKeeper
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     * T5-post-2: презентация — durable-законы для экспорта/отчётов.
+     * Семантика та же, что confirmedLaws; отдельное имя для читаемости
+     * call-site (презентация ≠ внутренний durable-список).
+     * NOTE (премортем И4): call-site появится в v4-экспорте; до тех пор
+     * метод остаётся документированным API-контрактом durable-семантики.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function presentable(string $domain): array
+    {
+        return $this->confirmedLaws($domain);
+    }
+
     public function preloadKnown(): int
     {
         $rows = Database::get()->query('SELECT name, formula, domain FROM laws')->fetchAll(\PDO::FETCH_ASSOC);

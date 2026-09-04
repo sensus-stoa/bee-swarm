@@ -38,8 +38,10 @@ class RPairwiseBloatTest extends TestCase
         // (paratest: пик процесса = накоплен другими тестами!).
         $memDelta = (memory_get_usage(true) - $memBefore) / 1048576;
 
-        $this->assertLessThan(5.0, $elapsed,
-            '12 фич без R-раздува: find ≤ 5с (было ~9с при 1.6GB)');
+        // FLAKY-FIX (04.09, T4): под -p8 5.07s при пороге 5.0 — запас 0.4% слишком мал.
+        // Суть теста — отсутствие R-раздува (разрыв до ~9с), не точное время. Порог 7.0.
+        $this->assertLessThan(7.0, $elapsed,
+            '12 фич без R-раздува: find ≤ 7с (было ~9с при 1.6GB; 5с локально)');
         $this->assertLessThan(256, $memDelta,
             '12 фич без R-раздува: find аллоцирует ≤ 256MB (было 1.6GB)');
     }

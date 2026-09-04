@@ -437,8 +437,13 @@ class Grammar
     {
         $base = array_keys(self::BASE_OPS);
         $db = Database::get();
+        // T5-post-2: культура питается ТОЛЬКО durable-законами (confirmed_count>=1).
+        // Unlucky-seed закон (EXP3 congruence) не влияет на weightedPick.
+        // NULL (legacy-строки) = COALESCE(0) = unconfirmed.
         $rows = $db->prepare(
-            'SELECT formula, SUM(usage_count) as cnt FROM laws GROUP BY formula ORDER BY cnt DESC LIMIT ?'
+            'SELECT formula, SUM(usage_count) as cnt FROM laws
+             WHERE COALESCE(confirmed_count, 0) >= 1
+             GROUP BY formula ORDER BY cnt DESC LIMIT ?'
         );
         $rows->execute([$limit]);
         $top = $rows->fetchAll(\PDO::FETCH_COLUMN);

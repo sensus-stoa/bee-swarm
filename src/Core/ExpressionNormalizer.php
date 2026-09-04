@@ -34,7 +34,27 @@ class ExpressionNormalizer
     /**
      * Каноническая форма выражения.
      */
+    /** Премортем deleg_f0b2fe04 И3: мемоизация — normalize в канон-дедупе на каждом тике. */
+    private const NORM_CACHE_MAX = 4096;
+
+    /** @var array<string, string> */
+    private static array $normalizeCache = [];
+
     public static function normalize(string $expr): string
+    {
+        if (isset(self::$normalizeCache[$expr])) {
+            return self::$normalizeCache[$expr];
+        }
+        $result = self::normalizeUncached($expr);
+        // Простой cap: при переполнении чистим (формулы повторяются — выгода сохраняется)
+        if (count(self::$normalizeCache) >= self::NORM_CACHE_MAX) {
+            self::$normalizeCache = [];
+        }
+        self::$normalizeCache[$expr] = $result;
+        return $result;
+    }
+
+    private static function normalizeUncached(string $expr): string
     {
         [$protected, $map] = self::protect($expr);
         $node = self::parse($protected);

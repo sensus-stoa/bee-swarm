@@ -79,6 +79,14 @@ final class CanonicalUniquenessTest extends TestCase
         $this->assertSame('0', ExpressionNormalizer::normalize('(0/x0)'));
     }
 
+    /** LawShape K-константы за K9 (premortem deleg_f0b2fe04): K10/K11/K20 — все C. */
+    public function testLawShapeKConstantsBeyondNineStable(): void
+    {
+        $this->assertSame(0, LawShape::distance('K10×x0', 'K11×x0'), 'K10 и K11 — одна форма (C)');
+        $this->assertSame(0, LawShape::distance('K20×x0', 'K10×x0'), 'K20 и K10 — одна форма');
+        $this->assertSame('(C×*)', LawShape::of('K10×x0'), 'маска K10 стабильна, не C0');
+    }
+
     /** LawShape: атомы с цифрами не сливаются (review concern 2, регресс). */
     public function testLawShapeDigitsInsideAtomsNotMerged(): void
     {

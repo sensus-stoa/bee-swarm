@@ -88,10 +88,10 @@ final class HiveEnergyRefusalTest extends TestCase
         $log1 = (string) file_get_contents($this->logFile);
         self::assertStringContainsString('ENERGY_REFUSAL', $log1, 'первый отказ логируется');
 
-        // Восстановление: сброс флага (как в doDiscoverTick при живой пчеле)
-        $prop = new \ReflectionProperty(Hive::class, 'energyRefusalLogged');
+        // Восстановление: сброс cooldown (как в doDiscoverTick при живой пчеле)
+        $prop = new \ReflectionProperty(Hive::class, 'energyRefusalLastAt');
         $prop->setAccessible(true);
-        $prop->setValue($hive, false);
+        $prop->setValue($hive, 0.0);
 
         // Эпизод 2: снова мёртвая → второй лог
         $method->invoke($hive, $task, [[1.0, 2.0]], [1.0], 'test', $foundAny);

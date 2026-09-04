@@ -39,6 +39,6 @@ final class LawShape
         // ПОРЯДОК ВАЖЕН: сначала атомы колонок (x0 — цифра внутри имени!),
         // потом константы. Иначе \d+ съедает '0' из 'x0' → xC вместо *.
         $masked = (string) preg_replace('/\bx\d+\b/', '*', $canon);
-        return (string) preg_replace('/K[1-9]|(?<![\w.])\d+(?:\.\d+)?/', 'C', $masked);
+        return (string) preg_replace('/K\d+|(?<![\w.])\d+(?:\.\d+)?/', 'C', $masked);
     }
 }

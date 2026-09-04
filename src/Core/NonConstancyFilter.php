@@ -29,7 +29,7 @@ final class NonConstancyFilter
      * @param array<int,array<int,float>> $X_test
      * @param array<int,float> $y_test
      * @param array<int,array<int,float>>|null $X_train — для R-статистик (фикс. по train)
-     * @param array<string,mixed> $extraOps
+     * @param list<string> $extraOps
      * @param array<string,mixed> $opDefs
      */
     public static function nullMedianCv(

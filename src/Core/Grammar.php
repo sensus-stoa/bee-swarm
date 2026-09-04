@@ -404,7 +404,7 @@ class Grammar
                 $g->ops[$op] = self::BASE_OPS[$op];
             } else {
                 $g->ops[$op] = [
-                    'fn' => self::BASE_OPS['add']['fn'] ?? 'custom_' . $op,
+                    'fn' => 'custom_' . $op,
                     'symbol' => $op,
                 ];
             }

@@ -33,7 +33,7 @@ final class ContradictionDetector
     /**
      * @param array<int,array<int,float>> $task строки задачи [f0, f1, ..., y] — числовые индексы (контракт ExpressionEvaluator)
      * @param array<int,array{formula:string, cv:float}> $candidates
-     * @return array{diff_rows: array<int,array<int,float>>, candidates: array}|null
+     * @return array{diff_rows: non-empty-array<int, array<int, float>>, candidates: list<array{formula: string, norm: string, cv: float}>, task_fingerprint: string}|null
      *         null = противоречия нет
      */
     public function detect(array $task, array $candidates): ?array

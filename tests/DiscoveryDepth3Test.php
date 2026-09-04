@@ -74,8 +74,11 @@ class DiscoveryDepth3Test extends TestCase
         // B-AS-ARGUMENT (09.08): find возвращает КОРОТКУЮ B-форму
         // ((x0B5x1)mulx2) — exact-shortest/parsimony. Тест про ГЛУБИНУ,
         // не форму: структурно — закон ((x0 … x1) mul x2) в любой нотации.
+        // FLAKY-FIX (04.09): B-AS-ARGUMENT parsimony может вернуть × (символ)
+        // или mul (имя) — нотация атома недетерминированна при равном score.
+        // Тест про ГЛУБИНУ (двухуровневый закон), не про конкретную нотацию.
         $matched = array_filter($atoms2, fn (string $a): bool =>
-            (bool) preg_match('/\(\(x0.{1,12}x1\)mulx2\)/', $a));
+            (bool) preg_match('/\(\(x0.{1,12}x1\)(?:mul|\xc3\x97)x2\)/', $a));
         $this->assertNotEmpty($matched,
             'adaptive depth must escalate 2→3: ' . json_encode($atoms2));
 

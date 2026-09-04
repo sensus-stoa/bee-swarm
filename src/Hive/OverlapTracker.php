@@ -90,7 +90,7 @@ class OverlapTracker
         $formula = trim($formula);
 
         // Каноникализация нуля: x0_0 → 0
-        $formula = preg_replace('/\bx0_0\b/', '0', $formula);
+        $formula = (string) preg_replace('/\bx0_0\b/', '0', $formula);
 
         if (! preg_match('/^(\w+)\((.+)\)$/', $formula, $m)) {
             return $formula; // переменная или константа

@@ -56,6 +56,7 @@ class Scanner
     }
 
     /**
+     * @param \RecursiveIteratorIterator<\RecursiveDirectoryIterator> $iterator
      * @param array<string, callable> $strategies
      * @param array<int, array> $tasks
      * @param array<string, int> $taskIndex

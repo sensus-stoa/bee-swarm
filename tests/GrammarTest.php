@@ -249,7 +249,9 @@ class GrammarTest extends TestCase
         $this->g->add('low_op', 'test_capped');
 
         // Ф1: UNIQUE(formula,domain) — частота = usage_count (не число записей)
-        $db->exec("DELETE FROM laws WHERE formula IN ('top_op','mid_op','low_op') AND domain='test'");
+        // FLAKY-FIX (04.09, T5-post): -p8 соседние тесты заполняют laws, LIMIT 3
+        // вытесняет mid_op. Изоляция: полный DELETE (тест owns таблицу).
+        $db->exec('DELETE FROM laws');
         $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,5)')
             ->execute(['top', 'top_op', 0.0, 'test']);
         $db->prepare('INSERT INTO laws (name,formula,cv,domain,usage_count) VALUES (?,?,?,?,2)')

@@ -24,6 +24,8 @@ class Database
         law_class TEXT DEFAULT 'EMPIRICAL',
         found_at TEXT DEFAULT (datetime('now')),
         usage_count INTEGER DEFAULT 1,
+        confirmed_count INTEGER DEFAULT 0,
+        last_fingerprint TEXT DEFAULT '',
         UNIQUE(formula, domain)
     )";
 
@@ -177,6 +179,19 @@ class Database
         // пересоздаются только при миграции UNIQUE — здесь ALTER-фолбэк)
         try {
             $db->exec('ALTER TABLE laws ADD COLUMN usage_count INTEGER DEFAULT 1');
+        } catch (\PDOException $e) {
+            // column already exists — ok
+        }
+        // T5-post (theorem-level): re-discovery confirmation — закон durable только
+        // после переоткрытия на ДРУГИХ данных (unlucky-seed защита, EXP3 congruence)
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN confirmed_count INTEGER DEFAULT 0');
+        } catch (\PDOException $e) {
+            // column already exists — ok
+        }
+        // T5-post: последний fingerprint, на котором закон открыт (для delta-детекта)
+        try {
+            $db->exec("ALTER TABLE laws ADD COLUMN last_fingerprint TEXT DEFAULT ''");
         } catch (\PDOException $e) {
             // column already exists — ok
         }

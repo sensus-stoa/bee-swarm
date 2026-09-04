@@ -23,7 +23,10 @@ use BeeSwarm\Validation\NullCalibrator;
 class Hive
 {
     /** T1: rate-limit ENERGY_REFUSAL лога (transition-only) */
-    private bool $energyRefusalLogged = false;
+    private float $energyRefusalLastAt = 0.0;
+
+    /** Премортем deleg_f0b2fe04: cooldown 60с вместо bool — флап жив/мёртв не флудит. */
+    private const ENERGY_REFUSAL_COOLDOWN_S = 60.0;
     private PlateauDetector $plateau;
     private RecordKeeper $recordKeeper;
     private SpawnManager $spawnManager;
@@ -1166,15 +1169,16 @@ class Hive
         // Rate-limit (review deleg_2b39b761): лог только на ПЕРЕХОД в мёртвое
         // состояние — иначе мёртвая колония флудит 7200 строк/час.
         if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
-            if (! $this->energyRefusalLogged) {
+            $now = microtime(true);
+            if (($now - $this->energyRefusalLastAt) >= self::ENERGY_REFUSAL_COOLDOWN_S) {
                 $name = $task['name'] ?? 'unknown';
                 $this->log("ENERGY_REFUSAL: {$name} no live bee (routedBee="
                     . ($this->routedBee === null ? 'null' : 'dead') . ')');
-                $this->energyRefusalLogged = true;
+                $this->energyRefusalLastAt = $now;
             }
             return;
         }
-        $this->energyRefusalLogged = false; // восстановление — сброс лимитера
+        $this->energyRefusalLastAt = 0.0; // восстановление — готовность к новому эпизоду
 
         // Sufficiency check
         $nFeat = count($X[0] ?? []);
@@ -1446,9 +1450,10 @@ class Hive
         // Требуется живая пчела для вознаграждения
         // T1: ENERGY-след для idle-пути (тот же rate-limit)
         if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
-            if (! $this->energyRefusalLogged) {
+            $now = microtime(true);
+            if (($now - $this->energyRefusalLastAt) >= self::ENERGY_REFUSAL_COOLDOWN_S) {
                 $this->log('ENERGY_REFUSAL: idle-dream skipped, no live bee');
-                $this->energyRefusalLogged = true;
+                $this->energyRefusalLastAt = $now;
             }
             usleep(100_000);
             return;

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\ExpressionNormalizer;
+use BeeSwarm\Core\LawShape;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -59,6 +60,30 @@ final class CanonicalUniquenessTest extends TestCase
                 "normalize неидемпотентен на {$expr}"
             );
         }
+    }
+
+    /** T2-review (deleg_79f23159): 0/0 НЕ схлопывается в 1 — математически NaN. */
+    public function testZeroOverZeroDoesNotCollapseToOne(): void
+    {
+        // ((x0−x0)/(x0−x0)): оба операнда резолвятся в 0, 0/0 ≠ 1
+        $this->assertNotSame(
+            '1',
+            ExpressionNormalizer::normalize('((x0−x0)/(x0−x0))'),
+            '0/0 → 1 = математическая ошибка (NaN трактован как единица)'
+        );
+    }
+
+    /** 0/x → 0 (валидный случай, остаётся). */
+    public function testZeroOverNonZeroCollapses(): void
+    {
+        $this->assertSame('0', ExpressionNormalizer::normalize('(0/x0)'));
+    }
+
+    /** LawShape: атомы с цифрами не сливаются (review concern 2, регресс). */
+    public function testLawShapeDigitsInsideAtomsNotMerged(): void
+    {
+        $this->assertSame(1, LawShape::distance('c2_5', 'c3_7'));
+        $this->assertSame(1, LawShape::distance('Rnormx12', 'Rnormx13'));
     }
 
     /** НЕ схлопываются (некоммутативные — правильное поведение, 05.08): */

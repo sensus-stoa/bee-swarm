@@ -22,6 +22,8 @@ use BeeSwarm\Validation\NullCalibrator;
  */
 class Hive
 {
+    /** T1: rate-limit ENERGY_REFUSAL лога (transition-only) */
+    private bool $energyRefusalLogged = false;
     private PlateauDetector $plateau;
     private RecordKeeper $recordKeeper;
     private SpawnManager $spawnManager;
@@ -1159,9 +1161,20 @@ class Hive
 
     private function doDiscoverTick(array $task, array $X, array $y, string $domain, bool &$foundAny): void
     {
+        // T1 (theorem-level): тихий отказ нарушает self-model §3.3 —
+        // «пчела мертва / живых нет» = ENERGY-отказ, обязан оставлять след.
+        // Rate-limit (review deleg_2b39b761): лог только на ПЕРЕХОД в мёртвое
+        // состояние — иначе мёртвая колония флудит 7200 строк/час.
         if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            if (! $this->energyRefusalLogged) {
+                $name = $task['name'] ?? 'unknown';
+                $this->log("ENERGY_REFUSAL: {$name} no live bee (routedBee="
+                    . ($this->routedBee === null ? 'null' : 'dead') . ')');
+                $this->energyRefusalLogged = true;
+            }
             return;
         }
+        $this->energyRefusalLogged = false; // восстановление — сброс лимитера
 
         // Sufficiency check
         $nFeat = count($X[0] ?? []);
@@ -1431,7 +1444,12 @@ class Hive
     private function idleDreamTick(): void
     {
         // Требуется живая пчела для вознаграждения
+        // T1: ENERGY-след для idle-пути (тот же rate-limit)
         if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            if (! $this->energyRefusalLogged) {
+                $this->log('ENERGY_REFUSAL: idle-dream skipped, no live bee');
+                $this->energyRefusalLogged = true;
+            }
             usleep(100_000);
             return;
         }

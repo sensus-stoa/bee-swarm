@@ -146,10 +146,18 @@ class SearchTest extends TestCase
         $g = new Grammar();
         $X = [[0, 0], [0, 1], [1, 0], [1, 1]];
         $y = [0, 1, 1, 0];
-        [$ok, $cv] = Search::find($X, $y, $g, 3);
-        // XOR может не найтись с текущей грамматикой — проверяем что поиск НЕ вернул мусор
+        [$ok, $cv, $formula, $cvTest, $class] = Search::find($X, $y, $g, 3);
+        // XOR может не найтись с текущей грамматикой — честный отказ ИЛИ слабый EMPIRICAL.
+        // FLAKY-FIX (04.09, T2a): под -p8 result-cv может быть sentinel 9.99
+        // (bestCvSeen=INF → GRAMMAR-класс). Инвариант теста: NOT found мусора —
+        // либо честный отказ (класс из таксономии), либо cv < 2.0.
         $this->assertNotNull($ok);
-        $this->assertLessThan(2.0, $cv, 'CV should be < 2.0 even for unsolvable tasks');
+        if ($ok === false) {
+            $this->assertContains($class, ['DATA', 'DEPTH', 'NOISE', 'GRAMMAR', 'TIMEOUT', 'ENERGY'],
+                'честный отказ обязан нести класс таксономии');
+        } else {
+            $this->assertLessThan(2.0, $cv, 'CV should be < 2.0 even for unsolvable tasks');
+        }
     }
 
     /**

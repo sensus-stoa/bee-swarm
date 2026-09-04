@@ -361,6 +361,19 @@ class ExpressionNormalizer
                 return $l;
             }
         }
+        if ($op === '−') {
+            if ($rIsZero) {
+                return $l; // (x−0)→x — T2 правая идентичность
+            }
+        }
+        if ($op === '/') {
+            if ($lIsZero && ! $rIsZero) {
+                return ['atom' => '0']; // 0/x→0 (x≠0; деление на 0 не трогаем)
+            }
+            if ($rIsOne) {
+                return $l; // (x/1)→x — T2 правая идентичность
+            }
+        }
         if ($op === '×') {
             if ($lIsZero || $rIsZero) {
                 return ['atom' => '0'];

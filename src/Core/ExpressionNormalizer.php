@@ -42,6 +42,7 @@ class ExpressionNormalizer
             return $expr;
         }
         $node = self::restoreAtoms($node, $map);
+        $node = self::flattenTree($node);
         $node = self::simplify($node);
         return self::render($node);
     }
@@ -271,6 +272,99 @@ class ExpressionNormalizer
      *
      * @return array|null упрощённый узел или null если тавтологии нет
      */
+    /**
+     * T2b: flatten ассоциативных цепочек по всему дереву (пре-проход).
+     * Для узла с коммутативным op: рекурсивно flatten'ит поддеревья,
+     * собирает листья цепочки этого op, сортирует, пересобирает.
+     * Возврат: каноническое дерево узла.
+     */
+    private static function flattenTree(array $node): array
+    {
+        if ($node === []) {
+            return $node;
+        }
+        if (isset($node['atom'])) {
+            return $node;
+        }
+        $op = $node['op'] ?? null;
+        if ($op === null) {
+            return $node;
+        }
+        // Сначала flatten детей (r может быть null у унарных)
+        $node['l'] = is_array($node['l'] ?? null) ? self::flattenTree($node['l']) : $node['l'];
+        $node['r'] = is_array($node['r'] ?? null) ? self::flattenTree($node['r']) : ($node['r'] ?? null);
+
+        if (! in_array($op, self::COMMUTATIVE, true)) {
+            return $node;
+        }
+
+        // Собираем листья цепочки данного коммутативного op
+        $leaves = [];
+        $collect = function (array $n) use (&$collect, $op, &$leaves): void {
+            if (! isset($n['atom']) && ($n['op'] ?? null) === $op) {
+                $collect($n['l']);
+                $collect($n['r']);
+                return;
+            }
+            $leaves[] = $n;
+        };
+        $collect($node);
+
+        // Идентичности/тавтологии на листьях (до сортировки):
+        // + : убираем 0; × : 0 поглощает всё, убираем 1; max/min: self-дубли уберёт sort
+        $kept = [];
+        $sawZero = false;
+        $sawOne = false;
+        foreach ($leaves as $leaf) {
+            $r = self::resolveK(self::render($leaf));
+            if ($op === '+') {
+                if (is_numeric($r) && (float) $r === 0.0) {
+                    continue; // +0 поглощается
+                }
+            }
+            if ($op === '×') {
+                if (is_numeric($r) && (float) $r === 0.0) {
+                    $sawZero = true;
+                    continue; // ×0 → всё выражение 0 (если не было других не-нулей)
+                }
+                if (is_numeric($r) && (float) $r === 1.0) {
+                    $sawOne = true; // ×1 — не лист
+                    continue;
+                }
+            }
+            $kept[] = $leaf;
+        }
+        // ×: если были нули и остались только они → выражение = 0
+        if ($op === '×' && $sawZero) {
+            // нули и единицы поглощены; если никаких других листьев — всё 0
+            if ($kept === []) {
+                return ['atom' => $sawOne ? '0' : '0'];
+            }
+            // 0 × x = 0 — но только если 0 был именно листом (константа), а не колонкой "0"
+            return ['op' => $op, 'l' => ['atom' => '0'], 'r' => self::flattenTree(self::rebuildKept($op, $kept))];
+        }
+        if ($kept === []) {
+            // + : все листья были 0 → 0; × : все 1 → 1
+            return ['atom' => $op === '×' ? '1' : '0'];
+        }
+        if (count($kept) === 1) {
+            return $kept[0];
+        }
+
+        return self::rebuildKept($op, $kept);
+    }
+
+    /** Лево-свёрнутая пересборка отсортированных листьев. */
+    private static function rebuildKept(string $op, array $kept): array
+    {
+        usort($kept, fn (array $a, array $b): int => strcmp(self::render($a), self::render($b)));
+        $acc = $kept[0];
+        $count = count($kept);
+        for ($i = 1; $i < $count; $i++) {
+            $acc = ['op' => $op, 'l' => $acc, 'r' => $kept[$i]];
+        }
+        return $acc;
+    }
     private static function applyTautology(string $op, array $l, array $r): ?array
     {
         if (self::render($l) !== self::render($r)) {

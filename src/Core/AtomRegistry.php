@@ -340,9 +340,8 @@ class AtomRegistry
 
     private static function bornDefinition(string $name): ?\Closure
     {
-        $cache = &self::$bornCache;
-        if (array_key_exists($name, $cache)) {
-            return $cache[$name];
+        if (array_key_exists($name, self::$bornCache)) {
+            return self::$bornCache[$name];
         }
         $db = \BeeSwarm\Infra\Database::get();
         // ТОЛЬКО source='birth': любой definition (например 'add') может
@@ -355,7 +354,7 @@ class AtomRegistry
         if ($def === false) {
             // null-кэш ОБЯЗАН (иначе SELECT на каждый miss — лавина),
             // инвалидируется в Grammar::staticAdd (рождение атома)
-            $cache[$name] = null;
+            self::$bornCache[$name] = null;
             return null;
         }
         // ПАРСИМ ОДИН РАЗ: evaluator на каждый apply = ×7 к suite
@@ -365,7 +364,7 @@ class AtomRegistry
         [$protected, $map] = \BeeSwarm\Core\ExpressionNormalizer::protect($def);
         $node = \BeeSwarm\Core\ExpressionNormalizer::parse($protected, \BeeSwarm\Core\ExpressionEvaluator::birthOpNames());
         if ($node === null) {
-            $cache[$name] = null;
+            self::$bornCache[$name] = null;
             return null;
         }
         if (! empty($map)) {
@@ -400,7 +399,7 @@ class AtomRegistry
             }
             return (float) $inner;
         };
-        $cache[$name] = $fn;
+        self::$bornCache[$name] = $fn;
         return $fn;
     }
 

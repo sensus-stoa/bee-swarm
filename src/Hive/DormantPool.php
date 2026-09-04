@@ -15,7 +15,7 @@ namespace BeeSwarm\Hive;
  */
 class DormantPool
 {
-    /** @var array<int, array{recipe: array, sector: string, novelty: float, age: int, lineage_id: string}> */
+    /** @var array<int, array{recipe: array, sector: string, novelty: float, age: int, lineage_id: string, awakened?: true, awakened_at?: int}> */
     private array $pool = [];
 
     private int $nextId = 1;

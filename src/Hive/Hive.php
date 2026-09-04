@@ -687,7 +687,7 @@ class Hive
      *
      * RCB: candidate-статус, активация после reuse≥1 (existing критерий).
      *
-     * @return bool произошли ли рождение/переиспользование записи
+     * @return string|false имя рождённого/переиспользованного атома или false
      */
     public function partialBirth(string $formula, float $cv, string $domain, float $cvMean): string|false
     {

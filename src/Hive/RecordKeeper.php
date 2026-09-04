@@ -20,7 +20,7 @@ class RecordKeeper
      * @param array $d ['atom' => string, 'cv' => float, 'mode' => string]
      * @param array $task ['name' => string, 'source_path' => string, 'content' => string, 'col_labels' => array]
      * @param string $domain
-     * @return array{inserted: bool, cross_domains: string[]}
+     * @return array{inserted: bool, cross_domains: list<string>, key: string}
      */
     public function record(array $d, array $task, string $domain): array
     {

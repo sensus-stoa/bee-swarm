@@ -111,7 +111,7 @@ class ExpressionNormalizer
     }
 
     /**
-     * @return array{op: string, l: array, r: array}|array{atom: string}|null
+     * @return array{op: string, l: array, r: array|null}|array{atom: string}|null
      */
     public static function parse(string $expr, array $extraOps = []): ?array
     {

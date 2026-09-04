@@ -763,7 +763,6 @@ class Search
                 self::$__prof[] = ['CV_END', microtime(true)];
                 $prev = self::$__prof[0][1] ?? 0;
                 foreach (self::$__prof as $pp) {
-                    if (isset($pp[2])) continue;
                     fwrite(STDERR, '[PROF] ' . $pp[0] . ' +' . round(($pp[1] - $prev) * 1000) . 'ms' . PHP_EOL);
                     $prev = $pp[1];
                 }
@@ -1134,11 +1133,12 @@ class Search
                 $nullRatio = (float) (getenv('NULL_SIGNAL_RATIO') ?: '0.55');
                 $nullCvCache = [];
                 foreach ($plausible as $cand) {
-                    $t = self::testCv($cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n, $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary);
+                    // trainStd — мёртвый параметр testCv (не используется в теле), 1.0 placeholder
+                    $t = self::testCv($cand['name'], $X_test, $y_test, 1.0, $n, $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary);
                     if (is_finite($t) && $t < $cvTrainMax) {
                         if (! isset($nullCvCache[$cand['name']])) {
                             $nullCvCache[$cand['name']] = \BeeSwarm\Core\NonConstancyFilter::nullMedianCv(
-                                $cand['name'], $X_test, $y_test, $bestStd ?? 1.0, $n,
+                                $cand['name'], $X_test, $y_test, 1.0, $n,
                                 $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary
                             );
                         }
@@ -1300,6 +1300,7 @@ class Search
     }
 
     /** EXP-036: профиль этапов find. */
+/** @var list<array{0: string, 1: float}> */
     private static array $__prof = [];
 
     /** EXP-036: порог cv-скрининга mul2 (ревью: named const, не magic). */

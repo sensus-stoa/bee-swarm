@@ -121,7 +121,7 @@ class SpawnManager
      * @return int количество новых спавнов
      */
     /**
-     * @return array{0: int, 1: array<int, array{parent:int|null,
+     * @return list{int, list<array{parent: int|null, parent_grammar: array, child_grammar: array, child_key: int}>}|array{0: int, 1: array<int, array{parent:int|null,
      *   parent_grammar:array<string>, child_grammar:array<string>}>}
      */
     public function trySpawn(array &$bees, array $allOps, int $tick = 0): array

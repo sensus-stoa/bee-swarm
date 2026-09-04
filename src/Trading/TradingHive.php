@@ -36,7 +36,7 @@ final class TradingHive
     ];
     public const HOLDS = [2, 3, 5, 10, 20];
 
-    /** @var list<array{genome: array, energy: float, alive: bool}> */
+    /** @var list<array{genome: array, energy: float, alive: bool, conf?: float, calib?: float, journal?: array{deals: array, feats: array}}> */
     private array $pop = [];
     private int $popSize;
 

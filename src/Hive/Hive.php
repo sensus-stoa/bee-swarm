@@ -783,6 +783,8 @@ class Hive
             $aliveFormulas,
             fn (string $f, string $d): bool => $this->freshCvFor($f, $d) <= $this->lawRegistry->getEps()
         ) as $loss) {
+            // Премортем З5: state-переход в LawRegistry гарантирует одноразовость,
+            // cooldown здесь — вторая линия (анти-флуд при аномалиях)
             $this->log("DISSIPATION: event=LOSS formula={$loss['formula']} [{$loss['domain']}] evidence={$loss['evidence']} gen={$loss['generation']}");
             $this->falsifyFormulaAtoms($loss['formula']);
         }

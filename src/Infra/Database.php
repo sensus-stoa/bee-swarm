@@ -235,9 +235,15 @@ class Database
             formula TEXT NOT NULL,
             domain TEXT NOT NULL,
             generation INTEGER NOT NULL,
+            audit_state TEXT DEFAULT 'pending',
             registered_at TEXT DEFAULT (datetime('now')),
             UNIQUE(formula, domain)
         )");
+        try {
+            $db->exec("ALTER TABLE law_generations ADD COLUMN audit_state TEXT DEFAULT 'pending'");
+        } catch (\PDOException $e) {
+            // column already exists — ok
+        }
         // DISSIPATION-LOOP Phase 5 (§2.5.6): atom-penalty
         $db->exec("CREATE TABLE IF NOT EXISTS atom_penalties (
             atom TEXT PRIMARY KEY,

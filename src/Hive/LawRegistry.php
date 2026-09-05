@@ -46,6 +46,14 @@ final class LawRegistry
         return $stmt->fetchColumn() !== false;
     }
 
+    /** Односторонний state-переход (премортем З2c/З5): LOSS/OBSOLETE фиксируется. */
+    private function markAuditState(string $formula, string $domain, string $state): void
+    {
+        Database::get()->prepare(
+            "UPDATE law_generations SET audit_state = ? WHERE formula = ? AND domain = ?"
+        )->execute([$state, $formula, $domain]);
+    }
+
     public function getEps(): float
     {
         return $this->eps;
@@ -75,25 +83,31 @@ final class LawRegistry
             return []; // ещё рано
         }
 
+        // Премортем З3: in_array O(N×M) → isset на flip-массиве
+        $aliveSet = array_flip($aliveFormulas);
+        // Премортем З2c/З5: state-переход односторонний — LOSS/OBSOLETE не переэмитится
         $losses = [];
         $stmt = Database::get()->query(
-            'SELECT formula, domain, generation FROM law_generations'
+            "SELECT formula, domain, generation, audit_state FROM law_generations
+             WHERE audit_state = 'pending'"
         );
         foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
             $formula = (string) $row['formula'];
             $domain = (string) $row['domain'];
             $generation = (int) $row['generation'];
 
-            $alive = in_array($formula, $aliveFormulas, true);
+            $alive = isset($aliveSet[$formula]);
             $cvOk = $revalidate !== null && $revalidate($formula, $domain);
 
             if ($alive && $cvOk) {
-                continue; // закон жив и подтверждается
+                continue; // закон жив и подтверждается — остаётся pending
             }
 
             $evidence = $alive
                 ? 'cv_revalidation_failed'
                 : 'vanished_from_reservoir';
+
+            $this->markAuditState($formula, $domain, 'loss');
 
             $losses[] = [
                 'event' => 'LOSS',
@@ -123,7 +137,8 @@ final class LawRegistry
 
         $obsolete = [];
         $stmt = Database::get()->query(
-            'SELECT formula, domain, generation FROM law_generations'
+            "SELECT formula, domain, generation FROM law_generations
+             WHERE audit_state = 'pending'"
         );
         foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
             $formula = (string) $row['formula'];
@@ -134,6 +149,7 @@ final class LawRegistry
             }
             $cv = (float) $freshCv($formula, $domain);
             if ($cv > $this->eps) {
+                $this->markAuditState($formula, $domain, 'obsolete');
                 $obsolete[] = [
                     'event' => 'OBSOLETE',
                     'formula' => $formula,

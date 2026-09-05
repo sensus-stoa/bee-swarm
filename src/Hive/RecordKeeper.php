@@ -89,6 +89,7 @@ class RecordKeeper
              VALUES (?,?,?,?,?,?,?,?,1,?,?)
              ON CONFLICT(formula,domain) DO UPDATE SET
                usage_count = MIN(usage_count + 1, ?),
+               cv = excluded.cv,
                last_fingerprint = excluded.last_fingerprint,
                seen_fingerprints = excluded.seen_fingerprints,
                confirmed_count = MIN(confirmed_count + ?, ?)'

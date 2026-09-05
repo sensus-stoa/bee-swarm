@@ -49,8 +49,8 @@ final class AtomPenaltyTest extends TestCase
             $this->penalty->falsify('sqrt');
         }
         self::assertTrue($this->penalty->isPenalized('sqrt'));
-        self::assertEqualsWithDelta(1.0, $this->penalty->weightMultiplier('sqrt'), 0.0001,
-            'на пороге множитель ещё 1.0; затухание начинается с превышения');
+        // Ф5b: isPenalized и multiplier согласованы — порог уже даёт первый шаг затухания
+        self::assertEqualsWithDelta(0.5, $this->penalty->weightMultiplier('sqrt'), 0.0001);
     }
 
     /** Graduated: чем больше фальсификаций, тем ниже множитель. */
@@ -59,8 +59,12 @@ final class AtomPenaltyTest extends TestCase
         for ($i = 0; $i < 5; $i++) {
             $this->penalty->falsify('sqrt');
         }
-        // count=5, threshold=3: превышение=2, множитель = 1/(1+2) = 1/3
-        self::assertEqualsWithDelta(1/3, $this->penalty->weightMultiplier('sqrt'), 0.0001);
+        // count=5, threshold=3: множитель = 1/(1 + 5-3+1) = 1/4 (порог = первый шаг)
+        self::assertEqualsWithDelta(0.25, $this->penalty->weightMultiplier('sqrt'), 0.0001);
+        // при пороге (count=3): 1/(1+1) = 0.5 — isPenalized и multiplier согласованы
+        $p3 = new AtomPenalty(falsifyThreshold: 3);
+        for ($i = 0; $i < 3; $i++) { $p3->falsify('min'); }
+        self::assertEqualsWithDelta(0.5, $p3->weightMultiplier('min'), 0.0001);
     }
 
     /** Реабилитация: успех декрементирует штраф, не ниже нуля. */

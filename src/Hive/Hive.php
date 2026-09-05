@@ -805,7 +805,7 @@ class Hive
     /** Штраф атомам (CULTURE_OPS), входящим в формулу. */
     private function falsifyFormulaAtoms(string $formula): void
     {
-        foreach (['+', '×', '−', '/', 'max', 'min', 'sqrt'] as $op) {
+        foreach (AtomPenalty::FORMULA_OPS as $op) {
             if (str_contains($formula, $op)) {
                 $this->atomPenalty->falsify($op);
             }
@@ -1432,7 +1432,7 @@ class Hive
             }
             // DISSIPATION-LOOP Phase 6 (§2.5.6): подтверждение закона реабилитирует
             // его операторы (успех декрементирует штраф; анти-осцилляция)
-            foreach (['+', '×', '−', '/', 'max', 'min', 'sqrt'] as $op) {
+            foreach (AtomPenalty::FORMULA_OPS as $op) {
                 if (str_contains($d['atom'], $op)) {
                     $this->atomPenalty->rehabilitate($op);
                 }

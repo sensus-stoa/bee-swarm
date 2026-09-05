@@ -61,11 +61,12 @@ final class DissipationWiringTest extends TestCase
             $foundAny
         );
 
-        // register получает атом как есть (сырую формулу discovery), не канон
+        // register получает КАНОН (тот же ключ, что в laws — иначе fake-LOSS:
+        // aliveFormulas сравнивает law_generations с канонами из laws)
         $stmt = Database::get()->prepare(
             'SELECT generation FROM law_generations WHERE formula = ? AND domain = ?'
         );
-        $stmt->execute(['(x0×K2)', 'test_wire']);
+        $stmt->execute(['(K2×x0)', 'test_wire']);
         $gen = $stmt->fetchColumn();
         self::assertNotFalse($gen, 'discovery обязан регистрировать закон в law_generations');
     }
@@ -73,15 +74,12 @@ final class DissipationWiringTest extends TestCase
     /** RED: аудит потерь эмитит DISSIPATION лог и falsify атомам LOSS-формулы. */
     public function testLossAuditEmitsDissipationAndPenalty(): void
     {
-        $foundAny = false;
-        $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'],
-            ['name' => 'dw1', 'domain' => 'test_wire2', 'fingerprint' => 'fp_1'],
-            'test_wire2',
-            $foundAny
-        );
+        // закон РЕГИСТРИРУЕТСЯ, но НЕ записывается в laws (эмуляция исчезновения:
+        // пчела нашла и умерла, запись потеряна — preservation-кейс §2.5.4)
+        $reg = new \BeeSwarm\Hive\LawRegistry(preserveCheckGen: 15, eps: 0.15);
+        $reg->register('(K2×x0)', 'test_wire2', generation: 1);
 
-        // диссипативный аудит через reflection: gen >= 15, reservoir пуст → закон vanished → LOSS
+        // диссипативный аудит: gen >= 15, reservoir пуст → vanished → LOSS
         $m = new \ReflectionMethod(Hive::class, 'runDissipationAudit');
         $m->setAccessible(true);
         $m->invoke($this->hive, currentGeneration: 15);

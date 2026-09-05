@@ -228,6 +228,22 @@ class Database
         } catch (\PDOException $e) {
             // column already exists — ok
         }
+        // DISSIPATION-LOOP Phase 3 (§2.5.4): реестр законов по поколениям
+        // (preservation-аудит; отдельная таблица — DDL laws не трогаем)
+        $db->exec("CREATE TABLE IF NOT EXISTS law_generations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            formula TEXT NOT NULL,
+            domain TEXT NOT NULL,
+            generation INTEGER NOT NULL,
+            registered_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(formula, domain)
+        )");
+        // DISSIPATION-LOOP Phase 5 (§2.5.6): atom-penalty
+        $db->exec("CREATE TABLE IF NOT EXISTS atom_penalties (
+            atom TEXT PRIMARY KEY,
+            penalty_count INTEGER DEFAULT 0,
+            updated_at TEXT DEFAULT (datetime('now'))
+        )");
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,

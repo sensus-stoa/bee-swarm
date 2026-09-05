@@ -1,0 +1,143 @@
+<?php
+
+declare(strict_types=1);
+
+namespace BeeSwarm\Hive;
+
+use BeeSwarm\Infra\Database;
+
+/**
+ * Law registry с preservation-аудитом (протокол §2.5.4, диссипативный контур).
+ *
+ * Реестр законов по поколениям. Аудит на gen-15 (preserveCheckGen):
+ *   закон существует в reservoir И CV подтверждается на свежих данных → жив;
+ *   иначе — событие LOSS (закон потерян роем = диссипация).
+ *
+ * Роль в контуре: observation-only. LOSS — событие, потребитель —
+ * atom-penalty §2.5.6 (Phase 5). Не блокирует discovery, не удаляет строки.
+ *
+ * Хранение: законы живут в laws (общий reservoir). Registry добавляет
+ * поколение открытия (generation) как атрибут аудита — отдельная таблица
+ * law_generations, чтобы не трогать DDL laws (backwards-compat).
+ */
+final class LawRegistry
+{
+    public function __construct(
+        private readonly int $preserveCheckGen,
+        private readonly float $eps,
+    ) {
+    }
+
+    /** Зарегистрировать закон с поколением открытия. */
+    public function register(string $formula, string $domain, int $generation): void
+    {
+        Database::get()->prepare(
+            'INSERT OR IGNORE INTO law_generations (formula, domain, generation) VALUES (?, ?, ?)'
+        )->execute([$formula, $domain, $generation]);
+    }
+
+    public function exists(string $formula, string $domain): bool
+    {
+        $stmt = Database::get()->prepare(
+            'SELECT 1 FROM law_generations WHERE formula = ? AND domain = ?'
+        );
+        $stmt->execute([$formula, $domain]);
+
+        return $stmt->fetchColumn() !== false;
+    }
+
+    public function generationOf(string $formula, string $domain): ?int
+    {
+        $stmt = Database::get()->prepare(
+            'SELECT generation FROM law_generations WHERE formula = ? AND domain = ?'
+        );
+        $stmt->execute([$formula, $domain]);
+        $v = $stmt->fetchColumn();
+
+        return $v === false ? null : (int) $v;
+    }
+
+    /**
+     * Preservation-аудит текущего поколения.
+     *
+     * @param list<string> $aliveFormulas формулы, живые в reservoir сейчас
+     * @param callable(string,string):bool $revalidate (formula, domain) → CV подтверждается
+     * @return list<array{event: string, formula: string, domain: string, generation: int, evidence: string}>
+     */
+    public function audit(int $currentGeneration, float $eps, array $aliveFormulas = [], ?callable $revalidate = null): array
+    {
+        if ($currentGeneration < $this->preserveCheckGen) {
+            return []; // ещё рано
+        }
+
+        $losses = [];
+        $stmt = Database::get()->query(
+            'SELECT formula, domain, generation FROM law_generations'
+        );
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+            $formula = (string) $row['formula'];
+            $domain = (string) $row['domain'];
+            $generation = (int) $row['generation'];
+
+            $alive = in_array($formula, $aliveFormulas, true);
+            $cvOk = $revalidate !== null && $revalidate($formula, $domain);
+
+            if ($alive && $cvOk) {
+                continue; // закон жив и подтверждается
+            }
+
+            $evidence = $alive
+                ? 'cv_revalidation_failed'
+                : 'vanished_from_reservoir';
+
+            $losses[] = [
+                'event' => 'LOSS',
+                'formula' => $formula,
+                'domain' => $domain,
+                'generation' => $generation,
+                'evidence' => $evidence,
+            ];
+        }
+
+        return $losses;
+    }
+
+    /**
+     * Obsolescence recheck (протокол §2.5.5, Phase 4): каждые $recheckEvery
+     * поколений перепроверять CV закона на свежих данных. CV > eps → флаг
+     * OBSOLETE (закон устарел: данные сменились, зависимость перестала быть
+     * инвариантом). Наблюдатель: флаг, не удаление.
+     *
+     * @return list<array{event: string, formula: string, domain: string, cv: float}>
+     */
+    public function obsolescenceCheck(int $currentGeneration, int $recheckEvery, callable $freshCv): array
+    {
+        if ($currentGeneration < $recheckEvery) {
+            return []; // ещё рано
+        }
+
+        $obsolete = [];
+        $stmt = Database::get()->query(
+            'SELECT formula, domain, generation FROM law_generations'
+        );
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+            $formula = (string) $row['formula'];
+            $domain = (string) $row['domain'];
+            // устарел ли: закон открыт давно (>= recheckEvery поколений назад)
+            if ($currentGeneration - (int) $row['generation'] < $recheckEvery) {
+                continue;
+            }
+            $cv = (float) $freshCv($formula, $domain);
+            if ($cv > $this->eps) {
+                $obsolete[] = [
+                    'event' => 'OBSOLETE',
+                    'formula' => $formula,
+                    'domain' => $domain,
+                    'cv' => $cv,
+                ];
+            }
+        }
+
+        return $obsolete;
+    }
+}

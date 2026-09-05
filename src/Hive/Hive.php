@@ -1214,6 +1214,12 @@ class Hive
         }
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $colLabels = $task['col_labels'] ?? null;
+        // T5-post-3 ЭКСП-037 находка: fingerprint вычислялся TaskRouter'ом для routing,
+        // но НЕ записывался в $task → record() получал '' → confirmed-механизм был
+        # мёртв в живом пути (0 confirms за 15-мин прогон). Прописываем явно.
+        if (! isset($task['fingerprint']) && $this->taskRouter !== null) {
+            $task['fingerprint'] = $this->taskRouter->fingerprint($task);
+        }
         $profSearchT0 = microtime(true);
         $engine = new DiscoveryEngine();
         [$candidates, $bestCv, $searchCv, $diagnosis] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels, 0.2, null, $tMin);

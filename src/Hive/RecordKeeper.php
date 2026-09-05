@@ -30,6 +30,9 @@ class RecordKeeper
     /** ЭКСП-014: cap против заморозки грамматики (квадратичный отрыв базовых ops). */
     private const MAX_CULTURE_WEIGHT = 50;
 
+    /** T5-post-4: cap набора виденных fingerprint'ов на закон. */
+    private const SEEN_FP_CAP = 10;
+
     public function record(array $d, array $task, string $domain): array
     {
         // FORMAL-LAYER Ф1: каноническая форма формулы — (x1+x0) ≡ (x0+x1)
@@ -60,30 +63,46 @@ class RecordKeeper
         // (unlucky-seed защита: EXP3 congruence, выборочная корреляция).
         $fingerprint = (string) ($task['fingerprint'] ?? '');
         $stmt = Database::get()->prepare(
-            'SELECT last_fingerprint, confirmed_count FROM laws WHERE formula=? AND domain=?'
+            'SELECT last_fingerprint, confirmed_count, seen_fingerprints FROM laws WHERE formula=? AND domain=?'
         );
         $stmt->execute([$canonFormula, $domain]);
         $prev = $stmt->fetch(\PDO::FETCH_ASSOC);
         $isRepeat = $prev !== false;
-        $confirm = $isRepeat
+        // T5-post-4 (ЭКСП-037): confirm = fp НОВЫЙ для закона (не в seen-наборе).
+        // Повтор той же fp-пары не несёт новой информации — буста нет.
+        $seen = [];
+        if ($isRepeat) {
+            $seen = (array) (json_decode((string) ($prev['seen_fingerprints'] ?? '[]'), true) ?: []);
+        }
+        $isNewPair = $isRepeat
             && $fingerprint !== ''
+            && ! in_array($fingerprint, $seen, true)
             && (string) ($prev['last_fingerprint'] ?? '') !== $fingerprint;
+        $confirm = $isNewPair;
+        // И3 (премортем deleg_e8b0e05b): пустой fp не затирает сохранённый
+        $fpToStore = ($fingerprint !== '' || ! $isRepeat)
+            ? $fingerprint
+            : (string) ($prev['last_fingerprint'] ?? '');
 
         Database::get()->prepare(
-            'INSERT INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,usage_count,last_fingerprint)
-             VALUES (?,?,?,?,?,?,?,?,1,?)
+            'INSERT INTO laws (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,usage_count,last_fingerprint,seen_fingerprints)
+             VALUES (?,?,?,?,?,?,?,?,1,?,?)
              ON CONFLICT(formula,domain) DO UPDATE SET
-               usage_count = usage_count + 1,
+               usage_count = MIN(usage_count + 1, ?),
                last_fingerprint = excluded.last_fingerprint,
-               confirmed_count = confirmed_count + ?'
+               seen_fingerprints = excluded.seen_fingerprints,
+               confirmed_count = MIN(confirmed_count + ?, ?)'
         )->execute([
             $task['name'], $canonFormula, $d['cv'], $domain,
             $task['source_path'] ?? '',
             mb_substr($task['content'] ?? '', 0, 200),
             json_encode($task['col_labels'] ?? []),
             $lawClass,
-            $fingerprint,
+            $fpToStore,
+            json_encode(self::updateSeenSet($fingerprint, $seen)),
+            self::MAX_CULTURE_WEIGHT,
             $confirm ? 1 : 0,
+            self::MAX_CULTURE_WEIGHT,
         ]);
 
         // T5-post-3 (премортем И3 deleg_122a0816): культура следует за durable-знанием.
@@ -169,6 +188,26 @@ class RecordKeeper
                 }
             }
         }
+    }
+
+    /**
+     * T5-post-4: обновить набор виденных fingerprint'ов (cap 10).
+     * Новый fp добавляется; при переполнении вытесняется самый старый.
+     * fp, уже в наборе, не добавляется.
+     *
+     * @param list<string> $seen
+     * @return list<string>
+     */
+    private static function updateSeenSet(string $fingerprint, array $seen): array
+    {
+        if ($fingerprint === '' || in_array($fingerprint, $seen, true)) {
+            return $seen;
+        }
+        $seen[] = $fingerprint;
+        if (count($seen) > self::SEEN_FP_CAP) {
+            array_shift($seen); // вытесняем самый старый
+        }
+        return $seen;
     }
 
     public function preloadKnown(): int

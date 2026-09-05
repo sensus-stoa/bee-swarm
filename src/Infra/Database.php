@@ -26,6 +26,7 @@ class Database
         usage_count INTEGER DEFAULT 1,
         confirmed_count INTEGER DEFAULT 0,
         last_fingerprint TEXT DEFAULT '',
+        seen_fingerprints TEXT DEFAULT '[]',
         UNIQUE(formula, domain)
     )";
 
@@ -192,6 +193,13 @@ class Database
         // T5-post: последний fingerprint, на котором закон открыт (для delta-детекта)
         try {
             $db->exec("ALTER TABLE laws ADD COLUMN last_fingerprint TEXT DEFAULT ''");
+        } catch (\PDOException $e) {
+            // column already exists — ok
+        }
+        // T5-post-4: набор виденных fingerprint'ов (cap 10) — семплирование
+        // уникальных пар (ЭКСП-037: step-буст лечится уникальностью пары)
+        try {
+            $db->exec("ALTER TABLE laws ADD COLUMN seen_fingerprints TEXT DEFAULT '[]'");
         } catch (\PDOException $e) {
             // column already exists — ok
         }

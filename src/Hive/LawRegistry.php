@@ -46,6 +46,11 @@ final class LawRegistry
         return $stmt->fetchColumn() !== false;
     }
 
+    public function getEps(): float
+    {
+        return $this->eps;
+    }
+
     public function generationOf(string $formula, string $domain): ?int
     {
         $stmt = Database::get()->prepare(

@@ -236,6 +236,14 @@ class Database
         } catch (\PDOException $e) {
             // index already exists или дубликаты в legacy-БД — буст через fallback
         }
+        // T5-post-3 (агент-фокус 3): CONFIRMED_POOL COUNT сканирует laws —
+        // частичный индекс ускоряет confirmed-подмножество.
+        try {
+            $db->exec("CREATE INDEX IF NOT EXISTS idx_laws_confirmed
+                       ON laws (confirmed_count) WHERE confirmed_count >= 1");
+        } catch (\PDOException $e) {
+            // legacy-БД до ALTER — не критично
+        }
         // REUSE-CRITERION-BIRTH (10.08): двухфазное рождение B-атомов.
         // candidate → active после reuse≥1. Легаси (без status) — active.
         try {

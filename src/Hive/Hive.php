@@ -27,6 +27,11 @@ class Hive
 
     /** Премортем deleg_f0b2fe04: cooldown 60с вместо bool — флап жив/мёртв не флудит. */
     private const ENERGY_REFUSAL_COOLDOWN_S = 60.0;
+
+    private float $confirmedPoolLastAt = 0.0;
+
+    /** T5-post-3: CONFIRMED_POOL лог не чаще раза в минуту. */
+    private const CONFIRMED_POOL_COOLDOWN_S = 60.0;
     private PlateauDetector $plateau;
     private RecordKeeper $recordKeeper;
     private SpawnManager $spawnManager;
@@ -1329,6 +1334,21 @@ class Hive
     private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny, ?array $X = null, ?array $y = null): void
     {
         $result = $this->recordKeeper->record($d, $task, $domain);
+        // T5-post-3 (премортем И2): confirm возможен ТОЛЬКО на повторе (inserted=false),
+        // поэтому CONFIRMED_POOL логируется до DUPLICATE-return.
+        // Transition-only по определению: confirm — редкое событие.
+        if ($result['confirmed'] ?? false) {
+            // Rate-limit (прецедент ENERGY_REFUSAL cooldown): confirm-события при
+            // активном forager могут быть частыми — cooldown 60с на лог.
+            $now = microtime(true);
+            if (($now - $this->confirmedPoolLastAt) >= self::CONFIRMED_POOL_COOLDOWN_S) {
+                $pool = (int) Database::get()->query(
+                    'SELECT COUNT(*) FROM laws WHERE COALESCE(confirmed_count, 0) >= 1'
+                )->fetchColumn();
+                $this->log("CONFIRMED_POOL: n={$pool} law={$d['atom']} [{$domain}]");
+                $this->confirmedPoolLastAt = $now;
+            }
+        }
         if (! $result['inserted']) {
             // Rate-limit: каждый атом логируется как дубликат только один раз за сессию
             static $duplicateLogged = [];

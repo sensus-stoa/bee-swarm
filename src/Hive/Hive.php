@@ -38,6 +38,9 @@ class Hive
     /** DISSIPATION-LOOP Phase 6 (§2.5.4-2.5.6): preservation + penalty. */
     private LawRegistry $lawRegistry;
 
+    /** §2.5.3 wiring: contradiction detection (финал контура). */
+    private ContradictionDetector $contradictionDetector;
+
     private AtomPenalty $atomPenalty;
     private SpawnManager $spawnManager;
 
@@ -132,6 +135,11 @@ class Hive
         );
         $this->atomPenalty = new AtomPenalty(
             falsifyThreshold: (int) (getenv('DISSIPATION_FALSIFY_THRESHOLD') ?: '3'),
+        );
+        // §2.5.3: epsExact = 0.01 (exact-класс), deltaDiff абсолютный порог D_diff
+        $this->contradictionDetector = new ContradictionDetector(
+            epsExact: (float) (getenv('DISSIPATION_EPS_EXACT') ?: '0.01'),
+            deltaDiff: (float) (getenv('DISSIPATION_DELTA_DIFF') ?: '0.5'),
         );
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
@@ -766,6 +774,37 @@ class Hive
     }
 
     /**
+     * §2.5.3: contradiction check после поиска. Два exact-кандидата разных
+     * формул → DISSIPATION: event=CONTRADICTION + D_diff атрибуция.
+     * Наблюдатель: discovery не блокируется, resolution-задача — контракт.
+     */
+    private function runContradictionCheck(array $task, array $X, array $y): void
+    {
+        if ($this->lastCandidates === [] || $X === [] || $y === []) {
+            return;
+        }
+        $rows = [];
+        foreach ($X as $i => $features) {
+            $rows[] = array_merge(array_values($features), [(float) ($y[$i] ?? 0.0)]);
+        }
+        $candsForDetect = array_map(
+            static fn (array $c): array => ['formula' => $c['atom'], 'cv' => (float) ($c['cv'] ?? 1.0)],
+            $this->lastCandidates
+        );
+        $contradiction = $this->contradictionDetector->detect($rows, $candsForDetect);
+        if ($contradiction === null) {
+            return;
+        }
+        [$a, $b] = $contradiction['candidates'];
+        $this->log(
+            "DISSIPATION: event=CONTRADICTION task={$task['name']} "
+            . "formulaA={$a['norm']} formulaB={$b['norm']} "
+            . "cvA=" . number_format($a['cv'], 4) . " cvB=" . number_format($b['cv'], 4)
+            . " diff_rows=" . count($contradiction['diff_rows'])
+        );
+    }
+
+    /**
      * DISSIPATION-LOOP Phase 6 (§2.5.4/2.5.5/2.5.6): preservation-аудит.
      * Вызывается из doTick раз в 100 тиков. LOSS/OBSOLETE → DISSIPATION-лог
      * + atomPenalty->falsify атомам формулы. Наблюдатель: discovery не блокирует.
@@ -1300,6 +1339,9 @@ class Hive
         $engine = new DiscoveryEngine();
         [$candidates, $bestCv, $searchCv, $diagnosis] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels, 0.2, null, $tMin);
         $this->lastCandidates = $candidates; // REUSE-TRACKING (08.08): все кандидаты
+
+        // §2.5.3 wiring: два exact-кандидата разных формул → CONTRADICTION
+        $this->runContradictionCheck($task, $X, $y);
 
         if ($candidates === [] && $diagnosis !== null) {
             // §3.3 Само-модель незнания: отказ с диагнозом — в production-лог

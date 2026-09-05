@@ -18,6 +18,9 @@ use BeeSwarm\Infra\Database;
  */
 final class AtomPenalty
 {
+    /** Операторы, подлежащие штрафу/реабилитации (единый источник для Hive+RecordKeeper). */
+    public const FORMULA_OPS = ['+', '×', '−', '/', 'max', 'min', 'sqrt'];
+
     public function __construct(
         private readonly int $falsifyThreshold = 3,
         private readonly int $maxPenalty = 50,
@@ -76,6 +79,8 @@ final class AtomPenalty
             return 1.0;
         }
 
-        return 1.0 / (1.0 + ($count - $this->falsifyThreshold));
+        // Ф5b (agent-review deleg_b60a9b23): isPenalized и multiplier согласованы —
+        // сам факт порога даёт первый шаг затухания
+        return 1.0 / (1.0 + ($count - $this->falsifyThreshold + 1));
     }
 }

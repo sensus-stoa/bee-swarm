@@ -228,6 +228,14 @@ class Database
             definition TEXT,
             usage_count INTEGER DEFAULT 1
         )");
+        // T5-post-3: культура через подтверждённые законы — буст usage_count
+        // по (name, source) требует ON CONFLICT-таргет. Индекс идемпотентен.
+        try {
+            $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_grammar_ops_name_source
+                       ON grammar_ops (name, source)');
+        } catch (\PDOException $e) {
+            // index already exists или дубликаты в legacy-БД — буст через fallback
+        }
         // REUSE-CRITERION-BIRTH (10.08): двухфазное рождение B-атомов.
         // candidate → active после reuse≥1. Легаси (без status) — active.
         try {

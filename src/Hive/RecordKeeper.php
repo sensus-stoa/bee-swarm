@@ -22,6 +22,14 @@ class RecordKeeper
      * @param string $domain
      * @return array{inserted: bool, cross_domains: list<string>, key: string}
      */
+    /** T5-post-3: операторы, получающие культурный вес от durable-законов. */
+    // 'sq' НЕ в списке: квадрат в канон-форме записывается как (x*x), токена 'sq'
+    // нет, а str_contains('sq') ловил бы 'sqrt' (двойной буст, self-check 05.09).
+    private const CULTURE_OPS = ['+', '×', '−', '/', 'max', 'min', 'sqrt'];
+
+    /** ЭКСП-014: cap против заморозки грамматики (квадратичный отрыв базовых ops). */
+    private const MAX_CULTURE_WEIGHT = 50;
+
     public function record(array $d, array $task, string $domain): array
     {
         // FORMAL-LAYER Ф1: каноническая форма формулы — (x1+x0) ≡ (x0+x1)
@@ -78,10 +86,19 @@ class RecordKeeper
             $confirm ? 1 : 0,
         ]);
 
+        // T5-post-3 (премортем И3 deleg_122a0816): культура следует за durable-знанием.
+        // Подтверждение закона бустит usage_count операторов его формулы —
+        // weightedPick ведёт рой к строительным операторам. Graduated: каждый
+        // confirm = +1 (не бинарный флаг).
+        if ($confirm) {
+            $this->boostOperators($canonFormula);
+        }
+
         // knownLaws больше НЕ глушит запись: usage_count/confirmed_count обязаны
         // расти на повторах (T5-post). inserted = первое открытие в этом инстансе.
         return [
             'inserted' => ! $known,
+            'confirmed' => $confirm,
             'cross_domains' => $crossDomains,
             'key' => $key,
         ];
@@ -118,6 +135,40 @@ class RecordKeeper
     public function presentable(string $domain): array
     {
         return $this->confirmedLaws($domain);
+    }
+
+    /**
+     * T5-post-3: +1 к usage_count операторов, присутствующих в формуле.
+     * grammar_ops имеет UNIQUE(name) — один оп = одна строка, source = первое
+     * происхождение. Буст: UPDATE по имени; оп не в грамматике — создаётся.
+     * Чужие токены (колонки, константы) молча игнорируются.
+     */
+    private function boostOperators(string $canonFormula): void
+    {
+        $db = Database::get();
+        foreach (self::CULTURE_OPS as $op) {
+            if (! str_contains($canonFormula, $op)) {
+                continue;
+            }
+            // ЭКСП-014 урок (премортем И2 deleg_cca310fb): монотонный буст →
+            // базовые ops квадратично отрываются → грамматика замерзает.
+            // Cap ограничивает отрыв, сохраняя graduated-порядок.
+            $upd = $db->prepare(
+                'UPDATE grammar_ops SET usage_count = usage_count + 1
+                 WHERE name = ? AND usage_count < ?'
+            );
+            $upd->execute([$op, self::MAX_CULTURE_WEIGHT]);
+            if ($upd->rowCount() === 0) {
+                // op отсутствует ИЛИ на cap. INSERT только для отсутствующих.
+                $exists = $db->prepare('SELECT 1 FROM grammar_ops WHERE name = ?');
+                $exists->execute([$op]);
+                if ($exists->fetchColumn() === false) {
+                    $db->prepare(
+                        'INSERT INTO grammar_ops (name, source, usage_count) VALUES (?, ?, 1)'
+                    )->execute([$op, 'culture']);
+                }
+            }
+        }
     }
 
     public function preloadKnown(): int

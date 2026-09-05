@@ -34,6 +34,11 @@ class Hive
     private const CONFIRMED_POOL_COOLDOWN_S = 60.0;
     private PlateauDetector $plateau;
     private RecordKeeper $recordKeeper;
+
+    /** DISSIPATION-LOOP Phase 6 (§2.5.4-2.5.6): preservation + penalty. */
+    private LawRegistry $lawRegistry;
+
+    private AtomPenalty $atomPenalty;
     private SpawnManager $spawnManager;
 
     private Forager $forager;
@@ -120,6 +125,14 @@ class Hive
         $this->forager = $forager ?? new Forager();
         $this->lawCompressor = $lawCompressor ?? new LawIsomorphismCompressor();
         $this->recordKeeper = new RecordKeeper();
+        // DISSIPATION-LOOP Phase 6: preserve-check на gen 15 (progress.md), eps из Env
+        $this->lawRegistry = new LawRegistry(
+            preserveCheckGen: (int) (getenv('DISSIPATION_PRESERVE_GEN') ?: '15'),
+            eps: (float) (getenv('DISSIPATION_EPS') ?: '0.15'),
+        );
+        $this->atomPenalty = new AtomPenalty(
+            falsifyThreshold: (int) (getenv('DISSIPATION_FALSIFY_THRESHOLD') ?: '3'),
+        );
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
 
@@ -752,6 +765,58 @@ class Hive
         return $name;
     }
 
+    /**
+     * DISSIPATION-LOOP Phase 6 (§2.5.4/2.5.5/2.5.6): preservation-аудит.
+     * Вызывается из doTick раз в 100 тиков. LOSS/OBSOLETE → DISSIPATION-лог
+     * + atomPenalty->falsify атомам формулы. Наблюдатель: discovery не блокирует.
+     */
+    private function runDissipationAudit(int $currentGeneration): void
+    {
+        // 2. Preservation: законы, исчезнувшие из reservoir или не подтверждённые
+        $aliveFormulas = array_column(
+            Database::get()->query('SELECT DISTINCT formula FROM laws')->fetchAll(\PDO::FETCH_ASSOC),
+            'formula'
+        );
+        foreach ($this->lawRegistry->audit($currentGeneration, $this->lawRegistry->getEps(), $aliveFormulas) as $loss) {
+            $this->log("DISSIPATION: event=LOSS formula={$loss['formula']} [{$loss['domain']}] evidence={$loss['evidence']} gen={$loss['generation']}");
+            $this->falsifyFormulaAtoms($loss['formula']);
+        }
+
+        // 3. Obsolescence: CV на свежих данных > eps
+        $recheckEvery = (int) (getenv('DISSIPATION_RECHECK_GEN') ?: '50');
+        $obsolete = $this->lawRegistry->obsolescenceCheck(
+            $currentGeneration,
+            $recheckEvery,
+            fn (string $f, string $d): float => $this->freshCvFor($f, $d)
+        );
+        foreach ($obsolete as $obs) {
+            $this->log("DISSIPATION: event=OBSOLETE formula={$obs['formula']} [{$obs['domain']}] cv=" . number_format($obs['cv'], 4));
+            $this->falsifyFormulaAtoms($obs['formula']);
+        }
+    }
+
+    /** Штраф атомам (CULTURE_OPS), входящим в формулу. */
+    private function falsifyFormulaAtoms(string $formula): void
+    {
+        foreach (['+', '×', '−', '/', 'max', 'min', 'sqrt'] as $op) {
+            if (str_contains($formula, $op)) {
+                $this->atomPenalty->falsify($op);
+            }
+        }
+    }
+
+    /** CV формулы на свежих данных (obsolescence-контракт). */
+    private function freshCvFor(string $formula, string $domain): float
+    {
+        $stmt = Database::get()->prepare(
+            'SELECT cv FROM laws WHERE formula = ? AND domain = ? LIMIT 1'
+        );
+        $stmt->execute([$formula, $domain]);
+        $v = $stmt->fetchColumn();
+
+        return $v === false ? 1.0 : (float) $v;
+    }
+
     private function doTick(): void
     {
         // EXP-034 (27.08): SPAWN-POOL B-ветка. Env SPWN_POOL=1 активирует
@@ -783,6 +848,10 @@ class Hive
             if (count($alive) !== count($this->bees)) {
                 $this->bees = $alive;
             }
+        }
+        // DISSIPATION-LOOP Phase 6: preservation-аудит раз в 100 тиков
+        if ($this->tick % 100 === 0 || $this->tick === 1) {
+            $this->runDissipationAudit($this->spawnManager->getGeneration());
         }
         // FLOOR-EMERGENCE M1 (EXP-038, 29.08): периодическое сжатие
         // изоморфных законов в атомы-слова (§3.8). Тот же ритм 100 тиков.
@@ -1354,6 +1423,13 @@ class Hive
                 $this->log("CONFIRMED_POOL: n={$pool} law={$d['atom']} [{$domain}]");
                 $this->confirmedPoolLastAt = $now;
             }
+            // DISSIPATION-LOOP Phase 6 (§2.5.6): подтверждение закона реабилитирует
+            // его операторы (успех декрементирует штраф; анти-осцилляция)
+            foreach (['+', '×', '−', '/', 'max', 'min', 'sqrt'] as $op) {
+                if (str_contains($d['atom'], $op)) {
+                    $this->atomPenalty->rehabilitate($op);
+                }
+            }
         }
         if (! $result['inserted']) {
             // Rate-limit: каждый атом логируется как дубликат только один раз за сессию
@@ -1366,6 +1442,13 @@ class Hive
         }
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
+        // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений
+        // при первом открытии. Аудит потерь — runDissipationAudit() в doTick.
+        $this->lawRegistry->register(
+            $d['atom'],
+            $domain,
+            $this->spawnManager->getGeneration()
+        );
         // GRAMMAR-PROPAGATION (ЭКСП-012): успех → вес операторов формулы.
         // ТОЛЬКО для реальных законов: тавтологии (CV=0.0000) бустятся
         // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).

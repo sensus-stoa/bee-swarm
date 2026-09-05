@@ -777,7 +777,12 @@ class Hive
             Database::get()->query('SELECT DISTINCT formula FROM laws')->fetchAll(\PDO::FETCH_ASSOC),
             'formula'
         );
-        foreach ($this->lawRegistry->audit($currentGeneration, $this->lawRegistry->getEps(), $aliveFormulas) as $loss) {
+        foreach ($this->lawRegistry->audit(
+            $currentGeneration,
+            $this->lawRegistry->getEps(),
+            $aliveFormulas,
+            fn (string $f, string $d): bool => $this->freshCvFor($f, $d) <= $this->lawRegistry->getEps()
+        ) as $loss) {
             $this->log("DISSIPATION: event=LOSS formula={$loss['formula']} [{$loss['domain']}] evidence={$loss['evidence']} gen={$loss['generation']}");
             $this->falsifyFormulaAtoms($loss['formula']);
         }
@@ -1443,9 +1448,11 @@ class Hive
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
         // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений
-        // при первом открытии. Аудит потерь — runDissipationAudit() в doTick.
+        // при первом открытии. КЛЮЧ — каноническая форма (та же, что в laws):
+        // register сырой формы давал fake-LOSS (aliveFormulas сравнивает с laws,
+        // где канон) — self-check Phase 7 поймал масс-LOSS при первом аудите.
         $this->lawRegistry->register(
-            $d['atom'],
+            \BeeSwarm\Core\ExpressionNormalizer::normalize($d['atom']),
             $domain,
             $this->spawnManager->getGeneration()
         );

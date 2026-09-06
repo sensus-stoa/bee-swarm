@@ -53,6 +53,7 @@ class DiscoveryEngine
             $sCvTest = 9.99;
             $sClass = 'EMPIRICAL';
             $lastDiagnosis = null;
+            $lastFormula = null;
             for ($d = $depth; $d <= $maxDepth; $d++) {
                 [$sFound, $sCv, $sFormula, $sCvTest, $sClass, $sDiagnosis] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
                 $lastDiagnosis = $sDiagnosis;
@@ -66,6 +67,14 @@ class DiscoveryEngine
             }
             $bestCv = min($bestCv, $sCv);
             $searchCv = $sCv;
+            // §2.5.2: трекаем лучшую (минимальный cv) непринятую формулу
+            if (! $sFound && $sFormula !== null && isset($lastFormulaCv) && $sCv < $lastFormulaCv) {
+                $lastFormula = $sFormula;
+                $lastFormulaCv = $sCv;
+            } elseif (! $sFound && $sFormula !== null && ! isset($lastFormulaCv)) {
+                $lastFormula = $sFormula;
+                $lastFormulaCv = $sCv;
+            }
             if ($sFound) {
                 $found[] = [
                     'atom' => $sFormula,
@@ -107,7 +116,7 @@ class DiscoveryEngine
         }
 
         // §2.5.2 wiring: лучшая кандидатная формула поиска (даже не принятая) —
-        // сырьё для partialBirth (Grammar Ceiling Break)
-        return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null, $sFormula ?? null];
+        // сырьё для partialBirth (Grammar Ceiling Break). Лучший = минимальный cv.
+        return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null, $lastFormula ?? null];
     }
 }

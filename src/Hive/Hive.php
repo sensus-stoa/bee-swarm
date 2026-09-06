@@ -819,8 +819,16 @@ class Hive
         if ($diagnosis !== 'GRAMMAR' && $diagnosis !== 'DEPTH') {
             return; // потолок ломается только для грамматических/глубинных отказов
         }
-        $cvMean = 0.35; // эмпирический середина weak-signal зоны (§1.5)
-        $this->partialBirth($lastFormula, $searchCv, $task['domain'] ?? 'unknown', $cvMean);
+        // Премортем З1 (deleg_ca278b50): burst FAILED-задач → BP-лавина мимо
+        // cap 30 (birthOperator-механика). Тот же cap обязателен здесь.
+        $birthCount = (int) Database::get()->query(
+            "SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'"
+        )->fetchColumn();
+        if ($birthCount >= 30) {
+            return;
+        }
+        // cvMean зарезервирован для §1.7 isBetterThanBaseline-интеграции
+        $this->partialBirth($lastFormula, $searchCv, $task['domain'] ?? 'unknown', 0.35);
     }
 
     /**

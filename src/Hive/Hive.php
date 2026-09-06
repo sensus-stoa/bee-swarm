@@ -765,10 +765,19 @@ class Hive
             }
             return $termOrder[$m[0]];
         }, $formula);
-        $seq = count($this->lineageEnergyBaseline) + 100; // namespace от lineages
         $name = 'BP' . dechex(crc32($canonical . $domain) & 0xFFFF);
+        // Премортем повторный З2 (deleg_378fb170): дедуп-лог. Повтор partialBirth
+        // с существующим каноном → имя то же → INSERT OR IGNORE молчит, но лог
+        // писал «рождение» второй раз (метрика завышена). Лог только при новой записи.
+        $exists = Database::get()->prepare(
+            'SELECT 1 FROM grammar_ops WHERE name = ?'
+        );
+        $exists->execute([$name]);
+        $isNew = $exists->fetchColumn() === false;
         \BeeSwarm\Core\Grammar::staticAdd($name, 'birth', $canonical, $domain);
-        $this->log("PARTIAL-BIRTH: {$name} = {$canonical} (cv=" . number_format($cv, 3) . ", domain={$domain})");
+        if ($isNew) {
+            $this->log("PARTIAL-BIRTH: {$name} = {$canonical} (cv=" . number_format($cv, 3) . ", domain={$domain})");
+        }
         // EXP-035 ф4: возвращаем ИМЯ атома (string) — вызывающий использует
         // его напрямую (не ищет по definition, которое канонизировано).
         // false-ветки выше возвращают false — контракт: truthy = успех.

@@ -31,7 +31,7 @@ class DiscoveryEngine
         $tMin = max(10, $nFeat * 5);
         if (count($y) < $tMin) {
             // §3.3: DATA-диагноз из маршрутизации (pre-filter §1.2)
-            return [[], 9.99, 9.99, 'DATA'];
+            return [[], 9.99, 9.99, 'DATA', null];
         }
 
         $found = [];
@@ -106,6 +106,8 @@ class DiscoveryEngine
             }
         }
 
-        return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null];
+        // §2.5.2 wiring: лучшая кандидатная формула поиска (даже не принятая) —
+        // сырьё для partialBirth (Grammar Ceiling Break)
+        return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null, $sFormula ?? null];
     }
 }

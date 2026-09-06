@@ -805,6 +805,23 @@ class Hive
     }
 
     /**
+     * §2.5.2 Grammar Ceiling Break wiring: при отказе задачи (диагноз
+     * GRAMMAR/DEPTH, не DATA) попытка частичного рождения B-атома из
+     * лучшей кандидатной формулы. Все гейты внутри partialBirth.
+     */
+    private function runPartialBirthAttempt(array $X, array $y, array $task, float $searchCv, string $diagnosis, ?string $lastFormula): void
+    {
+        if ($lastFormula === null || $searchCv >= 9.0) {
+            return; // нет формулы-кандидата или сантинел
+        }
+        if ($diagnosis !== 'GRAMMAR' && $diagnosis !== 'DEPTH') {
+            return; // потолок ломается только для грамматических/глубинных отказов
+        }
+        $cvMean = 0.35; // эмпирический середина weak-signal зоны (§1.5)
+        $this->partialBirth($lastFormula, $searchCv, $task['domain'] ?? 'unknown', $cvMean);
+    }
+
+    /**
      * DISSIPATION-LOOP Phase 6 (§2.5.4/2.5.5/2.5.6): preservation-аудит.
      * Вызывается из doTick раз в 100 тиков. LOSS/OBSOLETE → DISSIPATION-лог
      * + atomPenalty->falsify атомам формулы. Наблюдатель: discovery не блокирует.
@@ -1337,7 +1354,7 @@ class Hive
         }
         $profSearchT0 = microtime(true);
         $engine = new DiscoveryEngine();
-        [$candidates, $bestCv, $searchCv, $diagnosis] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels, 0.2, null, $tMin);
+        [$candidates, $bestCv, $searchCv, $diagnosis, $lastFormula] = $engine->discover($X, $y, $grammarOps, $cvTrainMax, $colLabels, 0.2, null, $tMin);
         $this->lastCandidates = $candidates; // REUSE-TRACKING (08.08): все кандидаты
 
         // §2.5.3 wiring: два exact-кандидата разных формул → CONTRADICTION
@@ -1346,6 +1363,10 @@ class Hive
         if ($candidates === [] && $diagnosis !== null) {
             // §3.3 Само-модель незнания: отказ с диагнозом — в production-лог
             $this->log("FAILED task={$task['name']} reason={$diagnosis} evidence=cvBest=" . number_format($bestCv, 4));
+
+            // §2.5.2 wiring (Grammar Ceiling Break): лучшая кандидатная формула
+            // при отказе → partialBirth (гейты фильтруют мусор)
+            $this->runPartialBirthAttempt($X, $y, $task, $searchCv, $diagnosis, $lastFormula);
         }
         foreach ($candidates as $d) {
             $this->recordDiscovery($d, $task, $domain, $foundAny, $X, $y);

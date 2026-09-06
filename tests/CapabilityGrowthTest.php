@@ -124,7 +124,8 @@ final class CapabilityGrowthTest extends TestCase
         // Эволюция: Hive с голодной линией + частичные гипотезы → слова
         $this->hiveEvolution();
 
-        // S₁₀: грамматика после рождений (candidate + reused)
+        // S₁₀: грамматика после рождений. ТОТ ЖЕ depth 1, что и S₁ —
+        // рост только от слов, не от глубины (agent-review F5 deleg_23904d59)
         $bornOps = array_column(
             Database::get()->query(
                 "SELECT name FROM grammar_ops WHERE source = 'birth'"
@@ -133,7 +134,7 @@ final class CapabilityGrowthTest extends TestCase
         );
         $grownOps = array_merge($baseOps, $bornOps);
 
-        $s10 = $this->solvedCount($tasks, $grownOps, 2);
+        $s10 = $this->solvedCount($tasks, $grownOps, 1);
 
         self::assertGreaterThanOrEqual(
             1,

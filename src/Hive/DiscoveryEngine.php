@@ -15,8 +15,7 @@ use BeeSwarm\Validation\LawValidator;
 class DiscoveryEngine
 {
     /**
-     * @return array{0: list<array>, 1: float, 2: float, 3: string|null} [candidates, bestCv, searchCv, diagnosis]
-     */
+     * @return array{0: list<array>, 1: float, 2: float, 3: string|null, 4: string|null} [candidates, bestCv, searchCv, diagnosis, lastFormula]     */
     public function discover(
         array $X,
         array $y,

@@ -274,7 +274,12 @@ class Grammar
     {
         $db = \BeeSwarm\Infra\Database::get();
         $rows = $db->query(
-            'SELECT name, usage_count FROM grammar_ops ORDER BY usage_count DESC LIMIT 100'
+            // RCB двухфазность (agent-review F6 deleg_23904d59): культура питается
+            // только АКТИВИРОВАНными словами; candidate (usage=1, непроверенные)
+            // не попадают в weightedPick
+            "SELECT name, usage_count FROM grammar_ops
+             WHERE status = 'active' OR status IS NULL
+             ORDER BY usage_count DESC LIMIT 100"
         )->fetchAll(\PDO::FETCH_ASSOC);
         $w = [];
         foreach ($rows as $r) {

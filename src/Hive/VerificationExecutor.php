@@ -122,27 +122,21 @@ final class VerificationExecutor
         $negY = array_map(static fn ($v): float => -1.0 * (float) $v, $y);
         $found = $this->findBest($vtask, $X, $negY);
         if ($found === null) {
-            // На −y формы нет: знак закона не опровергнут — не подтверждаю и не опровергаю.
+            // На −y формы нет: знак не опровергнут — не подтверждаю и не опровергаю.
             $this->logTask('VINCONCLUSIVE', $vtask, 'no_form_inverted');
 
-            return $this->verdict(
-                self::OUTCOME_INCONCLUSIVE,
-                false,
-                null,
-                null,
-            );
+            return $this->verdict(self::OUTCOME_INCONCLUSIVE, false, null, null);
         }
         [$formula, $cv] = $found;
 
+        // Контракт 10.09 (пробы negY): знак-инверсия меняет LawShape
+        // ((C−*)×C ≠ C×*) — shape mismatch на −y это НОРМА ко-гейта
+        // (зеркало не подтвердилось), не углубление противоречия.
+        // anomaly=true только для anchor-развала (anchorGate).
         if (! $this->shapeMatches((string) $vtask['law_shape'], $formula)) {
             $this->logTask('VREFUTED', $vtask, "inverted_shape formula={$formula}");
 
-            return $this->verdict(
-                self::OUTCOME_REFUTED,
-                true,
-                $formula,
-                $cv,
-            );
+            return $this->verdict(self::OUTCOME_REFUTED, false, $formula, $cv);
         }
 
         return $this->anchorGate($vtask, $formula, $cv, $X, $y);
@@ -278,7 +272,7 @@ final class VerificationExecutor
         }
         if ($kind === VerificationTaskSource::KIND_INVERTED
                 || $kind === VerificationTaskSource::KIND_INVERTED_RESEARCH
-            ) {
+        ) {
             return $this->runInverted($row, $X, $y);
         }
         $this->logTask('VINCONCLUSIVE', $row, "unknown_kind={$kind}");

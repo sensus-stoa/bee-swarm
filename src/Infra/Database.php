@@ -22,6 +22,7 @@ class Database
         content_sample TEXT DEFAULT '',
         col_labels TEXT DEFAULT '[]',
         law_class TEXT DEFAULT 'EMPIRICAL',
+        escrow_status TEXT DEFAULT '',
         found_at TEXT DEFAULT (datetime('now')),
         usage_count INTEGER DEFAULT 1,
         confirmed_count INTEGER DEFAULT 0,
@@ -105,6 +106,13 @@ class Database
         }
         try {
             $db->exec('ALTER TABLE laws ADD COLUMN law_class TEXT DEFAULT \'EMPIRICAL\'');
+        } catch (\PDOException) {
+            // Column already exists — ok
+        }
+        // V0.14 WU-3: статус эскроу закона (''|PAID|UNSTABLE) — диссипационный
+        // аудит ускоряет проверку UNSTABLE (спека WU-3).
+        try {
+            $db->exec('ALTER TABLE laws ADD COLUMN escrow_status TEXT DEFAULT \'\'');
         } catch (\PDOException) {
             // Column already exists — ok
         }
@@ -266,6 +274,20 @@ class Database
             created_at TEXT DEFAULT (datetime('now')),
             data_json TEXT DEFAULT NULL,
             UNIQUE(law_formula, domain, kind, resample_seed, formula_b)
+        )");
+        // V0.14 WU-3 (verification-economy): эскроу отложенной награды.
+        // 70% награды за закон держится здесь до консенсуса V-задач:
+        // settle → выплата носителю, burn → сгорание (dissip-фонд).
+        $db->exec("CREATE TABLE IF NOT EXISTS law_escrow (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            law_formula TEXT NOT NULL,
+            domain TEXT NOT NULL,
+            amount REAL DEFAULT 0,
+            carrier TEXT DEFAULT '',
+            status TEXT DEFAULT 'holding',
+            reason TEXT DEFAULT '',
+            updated_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(law_formula, domain)
         )");
         // DISSIPATION-LOOP Phase 5 (§2.5.6): atom-penalty
         $db->exec("CREATE TABLE IF NOT EXISTS atom_penalties (

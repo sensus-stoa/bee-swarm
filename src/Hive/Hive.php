@@ -44,6 +44,9 @@ class Hive
     /** V0.14 WU-1: среда порождает V-задачи из сигналов (закон/противоречие). */
     private VerificationTaskSource $verificationTasks;
 
+    /** V0.14 WU-3: эскроу отложенной награды (30/70 split). */
+    private EscrowStore $escrow;
+
     private AtomPenalty $atomPenalty;
     private SpawnManager $spawnManager;
 
@@ -146,6 +149,7 @@ class Hive
         );
         // V0.14 WU-1: NO_VERIFY_SPAWN=1 — диагностика (аналог NO_BIRTH/NO_BASE_TASKS).
         $this->verificationTasks = new VerificationTaskSource();
+        $this->escrow = new EscrowStore();
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
 
@@ -1653,7 +1657,9 @@ class Hive
                     break;
                 }
             }
-            $this->routedBee->rewardDiscovery(
+            $this->payDiscovery(
+                \BeeSwarm\Core\ExpressionNormalizer::normalize($formulaStr),
+                $domain,
                 $this->routedBee->discoveryMultiplier($domain),
                 $formulaStr,
                 $hasFeatures
@@ -1726,16 +1732,190 @@ class Hive
     }
 
     /**
-     * V0.14 WU-2: вход исполнителя V-задач. Тик-wiring с энергетикой — WU-3;
-     * батч-лимит (премортем #5) — параметр вызывающего.
+     * Параметры эскроу (PHP-falsy ловушка: '0' — falsy строка для ?:).
+     *
+     * @return array{0: float, 1: int}
+     */
+    private function escrowParams(): array
+    {
+        // Agent-review LOW: ratio clamp [0,1] — 1.5 давал отрицательный immediate.
+        $ratioRaw = getenv('ESCROW_RATIO');
+        $ratio = (float) ($ratioRaw !== false ? $ratioRaw : '0.7');
+
+        return [
+            min(1.0, max(0.0, $ratio)),
+            (int) (getenv('ESCROW_GRACE_TASKS') !== false ? getenv('ESCROW_GRACE_TASKS') : '5'),
+        ];
+    }
+
+    /**
+     * V0.14 WU-3: выплата за закон через эскроу. Grace-период (первые
+     * ESCROW_GRACE_TASKS законов домена платят 100% сразу — анти-вымирание,
+     * спека); после — split: 30% сразу (discoveryReward×(1−ratio)), 70%
+     * (env ESCROW_RATIO) в law_escrow до консенсуса V-задач.
+     */
+    private function payDiscovery(string $canonFormula, string $domain, float $multiplier, string $formulaStr, bool $hasFeatures): void
+    {
+        // PHP-falsy ловушка: getenv('ESCROW_GRACE_TASKS')='0' — falsy строка,
+        // ?: подставляет 5. Сравнение !== false (прецедент enum-флагов).
+        [$ratio, $grace] = $this->escrowParams();
+        // Grace-счётчик по ЗАКОНАМ домена (спека: «первые N задач домена
+        // платят 100%») — счёт по escrow-записям невозможен: grace их не создаёт.
+        $stmt = Database::get()->prepare('SELECT COUNT(*) FROM laws WHERE domain = ?');
+        $stmt->execute([$domain]);
+        $lawsInDomain = (int) $stmt->fetchColumn();
+        if ($lawsInDomain <= $grace) {
+
+            // Grace: полная выплата сразу, эскроу не создаётся.
+            $this->routedBee->rewardDiscovery($multiplier, $formulaStr, $hasFeatures);
+            $this->log("ESCROW: grace law={$canonFormula} [{$domain}] paid=100%");
+
+            return;
+        }
+        $base = $this->routedBee->discoveryReward() * $multiplier;
+        $immediate = $base * (1.0 - $ratio);
+        $this->routedBee->chargePartialReward($immediate);
+        $this->escrow->deposit(
+            $canonFormula,
+            $domain,
+            $base * $ratio,
+            $this->beeIndexOf($this->routedBee)
+        );
+        $this->log('ESCROW: split law=' . $canonFormula . ' now=' . number_format($immediate, 2) . ' held=' . number_format($base * $ratio, 2));
+    }
+
+    /**
+     * V0.14 WU-3: исполнение V-задач домена + закрытие эскроу по исходам.
+     * confirmed → settle (выплата носителю); refuted/anomaly → burn +
+     * штраф носителю + UNSTABLE. Возвращает число исполненных задач.
      */
     public function runPendingVerificationTasks(string $domain, int $limit): int
     {
         $executor = new VerificationExecutor(function (string $m): void {
             $this->log($m);
         });
+        $executed = $executor->runPendingVerificationTasks($domain, $limit);
+        $this->settleEscrowFor($domain);
 
-        return $executor->runPendingVerificationTasks($domain, $limit);
+        return $executed;
+    }
+
+    /**
+     * Закрытие эскроу по завершённым V-задачам. Семантика опровержений
+     * (10.09 пробы negY): знак-инверсия МЕНЯЕТ LawShape ((C−*)×C ≠ C×*),
+     * поэтому inverted-refuted = норма ко-гейта знака (зеркало не подтвердилось,
+     * закон не опровергнут). Burn триггерят:
+     *  - resample-refuted: закон не воспроизводится даже на ресемпле;
+     *  - inverted-anomaly: маска совпала, но anchor разошёлся — противоречие углубилось.
+     * Консенсус (все resample confirmed) → settle.
+     */
+    /**
+     * Агрегат исходов V-задач по законам домена (только completed-статусы).
+     *
+     * @return array<string, array{resample_bad: int, resample_all: int, anomaly: int}>
+     */
+    private function collectLawOutcomes(string $domain): array
+    {
+        $stmt = Database::get()->prepare(
+            "SELECT vt.law_formula AS lf, vt.kind AS k, vt.status AS st
+             FROM verification_tasks vt
+             WHERE vt.domain = ? AND vt.status IN ('confirmed','refuted','anomaly')"
+        );
+        $stmt->execute([$domain]);
+        $byLaw = [];
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $r) {
+            $isResample = str_starts_with((string) $r['k'], 'resample');
+            $byLaw[$r['lf']]['resample_bad'] = ($byLaw[$r['lf']]['resample_bad'] ?? 0)
+                + (($isResample && $r['st'] !== 'confirmed') ? 1 : 0);
+            $byLaw[$r['lf']]['resample_all'] = ($byLaw[$r['lf']]['resample_all'] ?? 0) + ($isResample ? 1 : 0);
+            $byLaw[$r['lf']]['anomaly'] = ($byLaw[$r['lf']]['anomaly'] ?? 0)
+                + (($r['st'] === 'anomaly') ? 1 : 0);
+        }
+
+        return $byLaw;
+    }
+
+    private function settleEscrowFor(string $domain): void
+    {
+        $byLaw = $this->collectLawOutcomes($domain);
+        foreach ($byLaw as $formula => $c) {
+            if (($c['resample_bad'] > 0) || ($c['anomaly'] > 0)) {
+                $this->burnEscrow($formula, $domain);
+                continue;
+            }
+            // Премортем #1: частичный батч (limit) даёт 1-2 confirmed из 5 —
+            // settle на непроверенном законе. Полный консенсус до WU-4 (q):
+            // resample_all должен покрыть ВСЕ 5 resample-задач закона.
+            if ($c['resample_all'] >= VerificationTaskSource::RESAMPLE_COUNT) {
+                $this->settleEscrow($formula, $domain);
+            }
+        }
+    }
+
+    private function burnEscrow(string $formula, string $domain): void
+    {
+        // Agent-review (c1): escrow-UPDATE и laws-label — одна транзакция;
+        // краш между ними оставлял paid-деньги с пустым label навсегда.
+        $db = Database::get();
+        $db->beginTransaction();
+        try {
+            $burned = $this->escrow->burn($formula, $domain, 'VREFUTED');
+            // Agent-review (c3): UNSTABLE по EVIDENCE, не по движению денег —
+            // grace-закон без escrow-строки тоже помечается опровергнутым.
+            Database::get()->prepare(
+                "UPDATE laws SET escrow_status = 'UNSTABLE' WHERE formula = ? AND domain = ?"
+            )->execute([$formula, $domain]);
+            $db->commit();
+        } catch (\Throwable $e) {
+            $db->rollBack();
+
+            throw $e;
+        }
+        // Премортем #6: zombie-задачи — burn отменил закон, хвостовые pending
+        // V-задачи не нужны executor'у (экономия + чистый лог). Вне транзакции:
+        // идемпотентно, отменённые задачи не возвращают escrow к жизни.
+        $cancel = Database::get()->prepare(
+            "UPDATE verification_tasks SET status = 'cancelled'
+             WHERE law_formula = ? AND domain = ? AND status = 'pending'"
+        );
+        $cancel->execute([$formula, $domain]);
+        $this->log("ESCROW: burned law={$formula} amount=" . number_format($burned, 2)
+            . ' → UNSTABLE cancelled=' . $cancel->rowCount());
+    }
+
+    private function settleEscrow(string $formula, string $domain): void
+    {
+        // Agent-review (c1): та же crash-window, что и в burnEscrow.
+        $db = Database::get();
+        $db->beginTransaction();
+        try {
+            $settled = $this->escrow->settle($formula, $domain, 'VCONFIRMED');
+            if ($settled > 0.0) {
+                Database::get()->prepare(
+                    "UPDATE laws SET escrow_status = 'PAID' WHERE formula = ? AND domain = ?"
+                )->execute([$formula, $domain]);
+            }
+            $db->commit();
+        } catch (\Throwable $e) {
+            $db->rollBack();
+
+            throw $e;
+        }
+        if ($settled > 0.0) {
+            $this->log('ESCROW: paid law=' . $formula . ' amount=' . number_format($settled, 2));
+        }
+    }
+
+    private function beeIndexOf(Bee $bee): string
+    {
+        // Agent-review (d): мёртвая/вычищенная пчела = sentinel 'orphan',
+        // не 'bee#0' (тихая мисатрибуция) и не 'bee#' (мусорная строка).
+        $idx = array_search($bee, $this->bees, true);
+        if ($idx === false || ! $bee->isAlive()) {
+            return 'orphan';
+        }
+
+        return 'bee#' . $idx;
     }
 
     /**

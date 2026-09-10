@@ -309,6 +309,19 @@ class Bee
     }
 
     /**
+     * V0.14 WU-3 (escrow): прямая выплата части награды (30% split), без
+     * reuse-бонусов/фильтров — их применяет rewardDiscovery на grace-пути.
+     * Мёртвые пчёлы не воскресают.
+     */
+    public function chargePartialReward(float $amount): void
+    {
+        if (! $this->isAlive() || $amount <= 0.0) {
+            return;
+        }
+        $this->energy += $amount;
+    }
+
+    /**
      * Successful discovery rewards energy. Dead bees ignore (can't resurrect).
      */
     public function rewardDiscovery(float $multiplier = 1.0, ?string $formula = null, bool $hasFeatures = true): void

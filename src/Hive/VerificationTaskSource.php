@@ -44,11 +44,13 @@ final class VerificationTaskSource
     /**
      * Спавн 6 V-задач (5 resample + 1 inverted) на новый закон.
      *
+     * @param array $sliceRows capped train-срез [[x..., y], ...] — данные задачи
+     *     для асинхронного исполнителя (WU-2); пишется в data_json каждой задачи.
      * Возвращает in-memory спецификации задач; факт записи — таблица
      * verification_tasks (persist глушит сбой: наблюдатель-контракт, сбой
      * не роняет discovery).
      */
-    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint): array
+    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint, array $sliceRows = []): array
     {
         // Канон-ключ: cross-table инвариант (fake-LOSS урок) — все писатели
         // V-задач и laws обязаны использовать одну нормализацию формулы.
@@ -60,25 +62,36 @@ final class VerificationTaskSource
         if ($lawId === 0) {
             error_log("VTS resolve miss: law_id=0 formula={$canon} domain={$domain}");
         }
+        $dataJson = $sliceRows === [] ? null : json_encode($sliceRows);
 
         $stmt = Database::get()->prepare(
             'INSERT OR IGNORE INTO verification_tasks
-             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain)
-             VALUES (?,?,?,?,?,?,?,?)'
+             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain, data_json)
+             VALUES (?,?,?,?,?,?,?,?,?)'
         );
 
+        return $this->persistLawTasks($stmt, [
+            'law_id' => $lawId,
+            'law_formula' => $canon,
+            'law_shape' => $shape,
+            'fingerprint' => $fingerprint,
+            'domain' => $domain,
+            'data_json' => $dataJson,
+        ]);
+    }
+
+    /**
+     * 6 V-задач из базового контракта + lawSpecs(); факт записи — таблица.
+     */
+    private function persistLawTasks(\PDOStatement $stmt, array $base): array
+    {
         $tasks = [];
         foreach ($this->lawSpecs() as $s) {
-            $task = [
-                'law_id' => $lawId,
-                'law_formula' => $canon,
-                'law_shape' => $shape,
+            $task = array_merge($base, [
                 'kind' => $s['kind'],
                 'resample_seed' => $s['resample_seed'],
                 'target_sign' => $s['target_sign'],
-                'fingerprint' => $fingerprint,
-                'domain' => $domain,
-            ];
+            ]);
             $tasks[] = $task;
             $this->persist($stmt, $task);
         }
@@ -117,7 +130,7 @@ final class VerificationTaskSource
             $stmt->execute([
                 $task['law_id'], $task['law_formula'], $task['law_shape'],
                 $task['kind'], $task['resample_seed'], $task['target_sign'],
-                $task['fingerprint'], $task['domain'],
+                $task['fingerprint'], $task['domain'], $task['data_json'],
             ]);
         } catch (\PDOException $e) {
             // Премортем #4: контекст в строке — grep-уемость при write-contention.

@@ -135,7 +135,8 @@ class Database
         }
         // FORMAL-LAYER Ф1 (05.08): бэкфилл — нормализовать существующие формулы
         try {
-            $rows = $db->query('SELECT id, formula FROM laws')->fetchAll(\PDO::FETCH_ASSOC);
+            $rows = $db->query('SELECT id, formula FROM laws')
+                ->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($rows as $row) {
                 if ($row['formula'] === null || $row['formula'] === '') {
                     continue;
@@ -152,7 +153,8 @@ class Database
         // FORMAL-LAYER Ф1 (05.08): UNIQUE (name,formula,domain) → (formula,domain).
         // Формула — сущность дедупликации; name задачи вторичен (CONCERNS Ф1).
         try {
-            $cols = $db->query('PRAGMA index_list(laws)')->fetchAll(\PDO::FETCH_ASSOC);
+            $cols = $db->query('PRAGMA index_list(laws)')
+                ->fetchAll(\PDO::FETCH_ASSOC);
             $hasComposite = false;
             foreach ($cols as $col) {
                 if (str_contains($col['name'] ?? '', 'sqlite_autoindex_laws') && ($col['unique'] ?? 0)) {
@@ -167,8 +169,8 @@ class Database
             if ($hasComposite) {
                 $db->exec(sprintf(self::LAWS_DDL, 'laws_migrated2'));
                 $db->exec(
-                    "INSERT OR IGNORE INTO laws_migrated2 (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at)
-                     SELECT name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at FROM laws"
+                    'INSERT OR IGNORE INTO laws_migrated2 (name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at)
+                     SELECT name,formula,cv,domain,source_path,content_sample,col_labels,law_class,found_at FROM laws'
                 );
                 $db->exec('DROP TABLE laws');
                 $db->exec('ALTER TABLE laws_migrated2 RENAME TO laws');
@@ -209,7 +211,8 @@ class Database
         // только fingerprint-delta (переоткрытие на других данных). Иначе
         // каждый новый закон амнистировался бы по достижении 7 дней без
         // единого переоткрытия — противоречит цели re-discovery confirmation.
-        $version = (int) $db->query('PRAGMA user_version')->fetchColumn();
+        $version = (int) $db->query('PRAGMA user_version')
+            ->fetchColumn();
         if ($version < 1) {
             try {
                 $db->exec(
@@ -261,6 +264,7 @@ class Database
             domain TEXT NOT NULL,
             status TEXT DEFAULT 'pending',
             created_at TEXT DEFAULT (datetime('now')),
+            data_json TEXT DEFAULT NULL,
             UNIQUE(law_formula, domain, kind, resample_seed, formula_b)
         )");
         // DISSIPATION-LOOP Phase 5 (§2.5.6): atom-penalty
@@ -288,8 +292,8 @@ class Database
         // T5-post-3 (агент-фокус 3): CONFIRMED_POOL COUNT сканирует laws —
         // частичный индекс ускоряет confirmed-подмножество.
         try {
-            $db->exec("CREATE INDEX IF NOT EXISTS idx_laws_confirmed
-                       ON laws (confirmed_count) WHERE confirmed_count >= 1");
+            $db->exec('CREATE INDEX IF NOT EXISTS idx_laws_confirmed
+                       ON laws (confirmed_count) WHERE confirmed_count >= 1');
         } catch (\PDOException $e) {
             // legacy-БД до ALTER — не критично
         }
@@ -313,13 +317,16 @@ class Database
         // REUSE-TRACKING (06.08): домен рождения + reuse (ПОСЛЕ CREATE TABLE!)
         try {
             $db->exec('ALTER TABLE grammar_ops ADD COLUMN birth_domain TEXT DEFAULT \'\'');
-        } catch (\PDOException $e) {}
+        } catch (\PDOException $e) {
+        }
         try {
             $db->exec('ALTER TABLE grammar_ops ADD COLUMN reuse_count INTEGER DEFAULT 0');
-        } catch (\PDOException $e) {}
+        } catch (\PDOException $e) {
+        }
         try {
             $db->exec('ALTER TABLE grammar_ops ADD COLUMN reuse_domains TEXT DEFAULT \'[]\'');
-        } catch (\PDOException $e) {}
+        } catch (\PDOException $e) {
+        }
         // S2.1 PREREGISTRATION (08.08): гипотезы до подтверждения
         $db->exec('CREATE TABLE IF NOT EXISTS preregistrations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -344,11 +351,26 @@ class Database
             custom_ops TEXT NOT NULL DEFAULT '[]'
         )");
         // CONCERNS (deleg_0f9d1b7f): ALTER для существующих БД
-        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN tick_cost REAL NOT NULL DEFAULT -0.01'); } catch (\PDOException $e) {}
-        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN search_cost REAL NOT NULL DEFAULT -0.1'); } catch (\PDOException $e) {}
-        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN discovery_reward REAL NOT NULL DEFAULT 2.0'); } catch (\PDOException $e) {}
-        try { $db->exec('ALTER TABLE bee_persistence ADD COLUMN info_reward REAL NOT NULL DEFAULT 0.5'); } catch (\PDOException $e) {}
-        try { $db->exec("ALTER TABLE bee_persistence ADD COLUMN custom_ops TEXT NOT NULL DEFAULT '[]'"); } catch (\PDOException $e) {}
+        try {
+            $db->exec('ALTER TABLE bee_persistence ADD COLUMN tick_cost REAL NOT NULL DEFAULT -0.01');
+        } catch (\PDOException $e) {
+        }
+        try {
+            $db->exec('ALTER TABLE bee_persistence ADD COLUMN search_cost REAL NOT NULL DEFAULT -0.1');
+        } catch (\PDOException $e) {
+        }
+        try {
+            $db->exec('ALTER TABLE bee_persistence ADD COLUMN discovery_reward REAL NOT NULL DEFAULT 2.0');
+        } catch (\PDOException $e) {
+        }
+        try {
+            $db->exec('ALTER TABLE bee_persistence ADD COLUMN info_reward REAL NOT NULL DEFAULT 0.5');
+        } catch (\PDOException $e) {
+        }
+        try {
+            $db->exec("ALTER TABLE bee_persistence ADD COLUMN custom_ops TEXT NOT NULL DEFAULT '[]'");
+        } catch (\PDOException $e) {
+        }
 
         // Все таблицы создаются здесь — не в модулях.
         // Это гарантирует, что тестовая БД и production БД идентичны.
@@ -384,6 +406,6 @@ class Database
             matched INTEGER DEFAULT 0,
             created_at TEXT DEFAULT (datetime('now'))
         )");
-        $db->exec("CREATE INDEX IF NOT EXISTS idx_overlap_pair ON overlap_log(bee_a, bee_b)");
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_overlap_pair ON overlap_log(bee_a, bee_b)');
     }
 }

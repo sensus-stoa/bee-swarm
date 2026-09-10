@@ -1544,13 +1544,23 @@ class Hive
         }
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
-        // V0.14 WU-1: новый закон — сигнал среды → V-задачи (5 resample + 1 inverted).
-        // Законы-дубликаты (inserted=false) не спамят очередь: дедуп в источнике.
-        if (getenv('NO_VERIFY_SPAWN') !== '1') {
+        // V0.14 WU-2: V-задача несёт capped train-срез (data_json) — исполнитель
+        // работает асинхронно из очереди, данные не берутся «из воздуха».
+        // cap 30 строк (эхо демона: array_rand 30 на горячем пути). Guard $X/$y:
+        // dream-путь зовёт recordDiscovery без данных (foreach на null = warnings).
+        if (getenv('NO_VERIFY_SPAWN') !== '1' && $X !== null && $y !== null) {
+            $sliceRows = [];
+            foreach ($X as $i => $features) {
+                if ($i >= 30) {
+                    break;
+                }
+                $sliceRows[] = array_merge(array_values($features), [(float) ($y[$i] ?? 0.0)]);
+            }
             $this->verificationTasks->spawnForLaw(
                 $d['atom'],
                 $domain,
-                (string) ($task['fingerprint'] ?? '')
+                (string) ($task['fingerprint'] ?? ''),
+                $sliceRows
             );
         }
         // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений
@@ -1713,6 +1723,19 @@ class Hive
         $tasks = array_merge($tasks, $generator->generate($this->foragedTasksGlobal, $crossTasks));
 
         return $this->filterInsufficient($tasks);
+    }
+
+    /**
+     * V0.14 WU-2: вход исполнителя V-задач. Тик-wiring с энергетикой — WU-3;
+     * батч-лимит (премортем #5) — параметр вызывающего.
+     */
+    public function runPendingVerificationTasks(string $domain, int $limit): int
+    {
+        $executor = new VerificationExecutor(function (string $m): void {
+            $this->log($m);
+        });
+
+        return $executor->runPendingVerificationTasks($domain, $limit);
     }
 
     /**

@@ -41,6 +41,9 @@ class Hive
     /** §2.5.3 wiring: contradiction detection (финал контура). */
     private ContradictionDetector $contradictionDetector;
 
+    /** V0.14 WU-1: среда порождает V-задачи из сигналов (закон/противоречие). */
+    private VerificationTaskSource $verificationTasks;
+
     private AtomPenalty $atomPenalty;
     private SpawnManager $spawnManager;
 
@@ -141,6 +144,8 @@ class Hive
             epsExact: (float) (getenv('DISSIPATION_EPS_EXACT') ?: '0.01'),
             deltaDiff: (float) (getenv('DISSIPATION_DELTA_DIFF') ?: '0.5'),
         );
+        // V0.14 WU-1: NO_VERIFY_SPAWN=1 — диагностика (аналог NO_BIRTH/NO_BASE_TASKS).
+        $this->verificationTasks = new VerificationTaskSource();
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
 
@@ -813,6 +818,14 @@ class Hive
             . "cvA=" . number_format($a['cv'], 4) . " cvB=" . number_format($b['cv'], 4)
             . " diff_rows=" . count($contradiction['diff_rows'])
         );
+        // V0.14 WU-1: противоречие — сигнал среды, порождающий research-задачу.
+        if (getenv('NO_VERIFY_SPAWN') !== '1') {
+            $this->verificationTasks->spawnInvertedResearch(
+                $a['norm'],
+                $b['norm'],
+                $task['domain'] ?? 'unknown'
+            );
+        }
     }
 
     /**
@@ -1531,6 +1544,15 @@ class Hive
         }
         if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
         $foundAny = true;
+        // V0.14 WU-1: новый закон — сигнал среды → V-задачи (5 resample + 1 inverted).
+        // Законы-дубликаты (inserted=false) не спамят очередь: дедуп в источнике.
+        if (getenv('NO_VERIFY_SPAWN') !== '1') {
+            $this->verificationTasks->spawnForLaw(
+                $d['atom'],
+                $domain,
+                (string) ($task['fingerprint'] ?? '')
+            );
+        }
         // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений
         // при первом открытии. КЛЮЧ — каноническая форма (та же, что в laws):
         // register сырой формы давал fake-LOSS (aliveFormulas сравнивает с laws,

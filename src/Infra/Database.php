@@ -244,6 +244,25 @@ class Database
         } catch (\PDOException $e) {
             // column already exists — ok
         }
+        // V0.14 WU-1 (verification-economy): очередь верификационных задач.
+        // Среда порождает V-задачи из сигналов (закон/противоречие); исполнитель
+        // — WU-2. Дедуп: повторное открытие закона не спамит очередь.
+        $db->exec("CREATE TABLE IF NOT EXISTS verification_tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            law_id INTEGER DEFAULT 0,
+            law_formula TEXT NOT NULL,
+            law_shape TEXT NOT NULL,
+            kind TEXT NOT NULL,
+            resample_seed INTEGER DEFAULT 0,
+            target_sign INTEGER DEFAULT 1,
+            fingerprint TEXT DEFAULT '',
+            formula_a TEXT DEFAULT '',
+            formula_b TEXT DEFAULT '',
+            domain TEXT NOT NULL,
+            status TEXT DEFAULT 'pending',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(law_formula, domain, kind, resample_seed, formula_b)
+        )");
         // DISSIPATION-LOOP Phase 5 (§2.5.6): atom-penalty
         $db->exec("CREATE TABLE IF NOT EXISTS atom_penalties (
             atom TEXT PRIMARY KEY,

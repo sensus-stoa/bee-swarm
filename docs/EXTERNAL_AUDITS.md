@@ -108,6 +108,33 @@ This demonstrates REFUSAL with a remedy: the refusal names what would change the
 
 ---
 
+### Audit #5: Laser Welding Screening (steel-copper lap joints, 360 cross-sections)
+
+**Verdict: 3 x REFUSAL (GRAMMAR / NOISE / DATA)**: three targets, three honest refusals, each with a measured mechanism.
+
+This audit demonstrates refusal coverage across diagnosis classes on a single real industrial screening dataset:
+
+1. **Binary cracking target: REFUSAL (GRAMMAR + metric-domain).** The signal is real (logistic regression: AUC 0.96, held-out accuracy 0.93; cracking deterministic at the parameter-combination level). But the engine's ratio-CV metric structurally cannot score binary targets: a near-perfect classifier scores cv 2.46, five times above the gate. The blocking mechanism was measured with a reusable metric diagnostic, not asserted.
+
+2. **Continuous weld dimensions: REFUSAL (NOISE, co-factor DATA-regime).** Row-level baselines look strong (RF R2 0.85) but this is repeats leakage: holding out whole parameter combinations collapses all baselines (RF R2 -12.3). The dataset author's own caveat is quantitatively confirmed.
+
+3. **Dilution pilot (n=18): REFUSAL (DATA).** n is 2.2x below the minimum for reliable held-out validation.
+
+Null controls: 0/30 per target (90 total permutations). Engine unmodified (md5-pinned). ~45 minutes total compute on a consumer laptop.
+
+Practical outputs beyond the verdict: the regime table (which parameter combinations crack, which produce no weld) is actionable screening knowledge; the group-split leakage finding is a protocol amendment candidate (v1.7 draft).
+
+<details>
+<summary>Dataset details</summary>
+
+- Steel-copper lap joints, definitive screening design: 6 factors (laser power, welding speed, gas flow, focal position, angular position, material thickness), 18 parameter combinations, 5 repeats, 4 cuts = 360 cross-sections
+- Binary target: cracking in weld metal (51 yes / 309 no)
+- Secondary: dilution pilot (n=18, continuous copper dilution)
+- Source: Mendeley Data, DOI 10.17632/2s5m3crbkd.2, author Jonas Rinne, Laser Zentrum Hannover e.V.
+
+</details>
+
+
 ## Portfolio summary
 
 | # | Dataset | Verdict | Key artifact |
@@ -116,9 +143,10 @@ This demonstrates REFUSAL with a remedy: the refusal names what would change the
 | 2 | UCI CCPP (9568×4) | REFUSAL (GRAMMAR + METRIC-DOMAIN) | audit caught engine's degenerate formula |
 | 3 | Feynman dot product | **INVARIANT (ensemble-cert)** | 25/25 re-discovery, 0/50 nulls |
 | 4 | UCI Concrete II | REFUSAL + 8-cluster decomposition | Abrams K-table, R² 0.785 held-out |
+| 5 | Laser Welding screening (360×6) | 3 x REFUSAL (GRAMMAR/NOISE/DATA) | all diagnosis classes on one dataset; leakage quantified |
 | + | CCPP contradiction | PREDICTIVE APPROXIMATION | R² 0.889 via anchor inversion |
 
-**All four verdict classes demonstrated on independent data.** The system finds laws when the evidence supports them (#3), refuses when it cannot certify (#1, #2, #4), distinguishes approximation from invariance (+), and its audit layer overrides the engine when the engine's own metric fails physical sanity (#2).
+**All four verdict classes demonstrated on independent data, including all four refusal diagnosis classes (GRAMMAR, METRIC-DOMAIN, DATA, NOISE) on a single screening dataset (Audit #5).** The system finds laws when the evidence supports them (#3), refuses when it cannot certify (#1, #2, #4), distinguishes approximation from invariance (+), and its audit layer overrides the engine when the engine's own metric fails physical sanity (#2).
 
 ---
 

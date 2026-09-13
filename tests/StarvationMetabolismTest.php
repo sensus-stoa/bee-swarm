@@ -45,24 +45,23 @@ class StarvationMetabolismTest extends TestCase
             'starvation must extend lifetime: ' . $ticks . ' ticks');
     }
 
-    public function testStarvingBeeDoesNotHungerMutate(): void
+    public function testStarvingBeeDoesNotAutophagy(): void
     {
-        // CONCERNS deleg_43a824dd: E<3 = спячка, мутации НЕТ (иначе
-        // зомби раздувает грамматику 2900 тиков). Мутация только 3≤E<5.
+        // CONCERNS deleg_43a824dd: E<3 = спячка, деградации НЕТ.
+        // §2.5.14: autophagy заменил hungerMutate, вход 3≤E<5.
         $bee = new Bee(['+'], 2.5);
         $g = $bee->grammar();
-        $bee->hungerMutate(['+', '×', 'min', 'max', 'sq']);
-        $this->assertSame($g, $bee->grammar(),
-            'starving bee must NOT hunger-mutate (hibernation)');
+        $this->assertSame([], $bee->autophagy(),
+            'starving bee must NOT autophagy (hibernation)');
+        $this->assertSame($g, $bee->grammar());
     }
 
-    public function testHungryButNotStarvingMutates(): void
+    public function testHungryButNotStarvingDoesNotGrow(): void
     {
-        // 3 ≤ E < 5: адаптация до голода
+        // 3 ≤ E < 5: autophagy допустим; грамматика не растёт (деградация/ничего).
         $bee = new Bee(['+'], 4.0);
-        $bee->hungerMutate(['+', '×', 'min', 'max', 'sq', 'sub', 'div']);
-        // Может мутировать (добавить/заменить) — грамматика не обязана
-        // измениться (стохастика), но метод не должен падать и при E<3 не трогает.
-        $this->assertTrue(true);
+        $before = count($bee->grammar());
+        $bee->autophagy();
+        $this->assertLessThanOrEqual($before, count($bee->grammar()));
     }
 }

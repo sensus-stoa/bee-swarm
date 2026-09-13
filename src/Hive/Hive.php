@@ -48,6 +48,10 @@ class Hive
     private EscrowStore $escrow;
 
     private AtomPenalty $atomPenalty;
+
+    /** §2.5.14 AUTOPHAGY: популяционная медиана + селективная деградация. */
+    private AutophagyEngine $autophagyEngine;
+
     private SpawnManager $spawnManager;
 
     private Forager $forager;
@@ -134,6 +138,7 @@ class Hive
         $this->forager = $forager ?? new Forager();
         $this->lawCompressor = $lawCompressor ?? new LawIsomorphismCompressor();
         $this->recordKeeper = new RecordKeeper();
+        $this->autophagyEngine = new AutophagyEngine();
         // DISSIPATION-LOOP Phase 6: preserve-check на gen 15 (progress.md), eps из Env
         $this->lawRegistry = new LawRegistry(
             preserveCheckGen: (int) (getenv('DISSIPATION_PRESERVE_GEN') ?: '15'),
@@ -1113,17 +1118,25 @@ class Hive
                 $ref = new \ReflectionProperty(Bee::class, 'energy');
                 $ref->setValue($bee, 0.0);
             }
-            // §S1.5-HUNGER: голодная мутация при 3≤E<5 (адаптация ДО голода).
-            // SHRINK (08.08): при E<3 — спячка (метаболизм ×0.1), мутации НЕТ —
-            // иначе зомби с E≈0 мутировал бы каждый тик 2900 раз (раздувание).
+            // §2.5.14 AUTOPHAGY (замена §S1.5-HUNGER): селективная деградация
+            // при 3≤E<5 (SHRINK: E<3 — спячка). Атомы → общий пул, ΔE=+0.5/атом.
+            // Граница окна ДОЛЖНА совпадать с гейтом в Bee::autophagy()
+            // (>=5.0 return []) — расхождение даёт мёртвую ветку при расширении.
+            // Популяционная медиана utility кандидатов — один расчёт на тик
+            // (не на пчелу/итерацию), протокол §2.5.14 «population median».
+            $autophagyMedian = null;
+            foreach ($this->bees as $b) {
+                if ($b->isAlive() && $b->energy() >= 3.0 && $b->energy() < 5.0) {
+                    $autophagyMedian = $this->autophagyEngine->populationMedian(
+                        array_map(fn (Bee $hb): array => $hb->grammar(), array_filter($this->bees, fn (Bee $hb): bool => $hb->isAlive()))
+                    );
+                    break;
+                }
+            }
             if ($bee->isAlive() && $bee->energy() >= 3.0 && $bee->energy() < 5.0) {
-                $allOps = array_keys(Grammar::BASE_OPS);
-                $semOps = Grammar::SEMANTIC_OPS;
-                $available = array_merge($allOps, $semOps);
-                $oldGrammar = $bee->grammar();
-                $bee->hungerMutate($available);
-                if ($bee->grammar() !== $oldGrammar) {
-                    $this->log("HUNGER_MUTATE: bee#{$i} E={$bee->energy()}");
+                $degraded = $bee->autophagy($autophagyMedian);
+                if ($degraded !== []) {
+                    $this->log("AUTOPHAGY: bee#{$i} degraded=" . implode(',', $degraded) . " E={$bee->energy()}");
                 }
             }
             if (! $bee->isAlive()) {

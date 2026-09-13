@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
@@ -6,48 +7,55 @@ namespace BeeSwarm\Tests;
 use BeeSwarm\Hive\Bee;
 
 /**
- * S1.5-HUNGER: Hunger-driven mutation
+ * §2.5.14 AUTOPHAGY — обновлённый контракт hunger-пути.
  *
- * При E<5 пчела мутирует грамматику ДО смерти.
- * Cold-start bridge: без открытий → голод → mutation → exploration.
+ * Старые тесты §S1.5-HUNGER (случайная мутация GrammarMutator) заменены:
+ * §2.5.14 заменяет panic-мутацию на селективную деградацию. Спячка при
+ * E<3 (SHRINK, 08.08) сохранена — тест №2 прежней семантики.
  */
-class HungerMutationTest extends TestCase
+final class HungerMutationTest extends TestCase
 {
-    /** При E<5 пчела мутирует грамматику */
-    public function testHungerTriggersMutation(): void
+    /**
+     * При 3≤E<5 пчела не растит грамматику: деградация или ничего.
+     */
+    public function testHungerDoesNotGrowGrammar(): void
     {
-        $bee = new Bee(['add', 'mul', 'sq', 'sqrt', 'max', 'min', 'sub', 'div'], 4.0);
-        $available = ['add', 'mul', 'sq', 'sqrt', 'max', 'min', 'sub', 'div', 'Parity', 'Log2'];
+        $bee = new Bee(['+', '×', 'sq', 'B7'], 4.0);
+        $before = count($bee->grammar());
 
-        $originalGrammar = $bee->grammar();
-        $bee->hungerMutate($available);
+        $bee->autophagy();
 
-        $this->assertNotEquals($originalGrammar, $bee->grammar(), 'Grammar must change on hunger');
+        $this->assertLessThanOrEqual(
+            $before,
+            count($bee->grammar()),
+            'hunger must never ADD ops (autophagy replaced random mutation)'
+        );
     }
 
-    /** При E≥5 мутация НЕ происходит */
+    /**
+     * При E≥5 деградация НЕ происходит (пчела сыта).
+     */
     public function testNoMutationWhenWellFed(): void
     {
         $bee = new Bee(['add', 'mul'], 7.0);
-        $available = ['add', 'mul', 'sq', 'sqrt'];
-
         $originalGrammar = $bee->grammar();
-        $bee->hungerMutate($available);
 
-        $this->assertEquals($originalGrammar, $bee->grammar(), 'Well-fed bee must not mutate');
+        $this->assertSame([], $bee->autophagy());
+        $this->assertEquals($originalGrammar, $bee->grammar(), 'Well-fed bee must not degrade');
     }
 
-    /** Голодная мутация не пересекает spawn-порог */
-    public function testHungerMutationDoesNotTriggerSpawn(): void
+    /**
+     * Голодная пчела не пересекает spawn-порог деградацией.
+     */
+    public function testHungerDoesNotTriggerSpawn(): void
     {
         $bee = new Bee(['add', 'mul'], 4.0);
-        $available = ['add', 'mul', 'sq', 'sqrt'];
 
-        $child = $bee->spawn($available);
+        $child = $bee->spawn(['add', 'mul', 'sq', 'sqrt']);
         $this->assertNull($child, 'Hungry bee (E<15) must not spawn');
 
-        // Но мутация срабатывает
-        $bee->hungerMutate($available);
-        $this->assertLessThan(15.0, $bee->energy(), 'Mutation costs energy but must not trigger spawn threshold');
+        // Деградация базовых невозможна → грамматика/энергия не меняются
+        $this->assertSame([], $bee->autophagy());
+        $this->assertLessThan(15.0, $bee->energy());
     }
 }

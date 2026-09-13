@@ -32,6 +32,32 @@ use BeeSwarm\Core\Search;
  */
 final class SelfDiagnosisTest extends TestCase
 {
+    private string $prevBeamK = '';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // WALL-CLOCK-ФЛАК (13.09, серийный прогон 26 мин: GRAMMAR/DEPTH
+        // получали TIMEOUT): budgetSec 20/30s валидировал СКОРОСТЬ перебора,
+        // а не классификацию отказа. Фикс: budgetSec=0.0 (диагноз детерминирован
+        // данными/грамматикой, не таймингом) + SEARCH_BEAM_K=3 (замер 13.09:
+        // GRAMMAR-кейс 4.2s, DEPTH-кейс 37s вместо 116s полного перебора;
+        // невыразимость 1/x и depth-дефицит dot не зависят от ширины beam).
+        $prev = getenv('SEARCH_BEAM_K');
+        $this->prevBeamK = $prev === false ? '' : (string) $prev;
+        putenv('SEARCH_BEAM_K=3');
+    }
+
+    protected function tearDown(): void
+    {
+        if ($this->prevBeamK === '') {
+            putenv('SEARCH_BEAM_K');
+        } else {
+            putenv('SEARCH_BEAM_K=' . $this->prevBeamK);
+        }
+        parent::tearDown();
+    }
+
     /**
      * tMin = max(10, nFeat×5): 2 фичи → tMin=10; 8 строк < 10 → DATA.
      */
@@ -67,7 +93,7 @@ final class SelfDiagnosisTest extends TestCase
             $y[] = 1.0 / $x;
         }
 
-        $res = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 20.0);
+        $res = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 0.0);
 
         $this->assertFalse($res[0], '1/x без / невыразим — закон не должен «найден»');
         $this->assertSame('GRAMMAR', $res[5], 'сигнал есть, класс не покрыт → GRAMMAR');
@@ -75,7 +101,7 @@ final class SelfDiagnosisTest extends TestCase
         // Валидация §3.3: добавить операцию → решается
         $gWith = new Grammar();
         $gWith->restrictTo(['+', '×', '−', '/', 'sq']);
-        $resWith = Search::find($X, $y, $gWith, 3, null, 0.0, 0.15, 20.0);
+        $resWith = Search::find($X, $y, $gWith, 3, null, 0.0, 0.15, 0.0);
         $this->assertTrue($resWith[0], 'валидация §3.3: с / закон найден');
     }
 
@@ -94,7 +120,7 @@ final class SelfDiagnosisTest extends TestCase
             $y[] = mt_rand() / mt_getrandmax();
         }
 
-        $res = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 20.0);
+        $res = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 0.0);
 
         $this->assertFalse($res[0]);
         $this->assertSame('NOISE', $res[5], 'независимая цель → NOISE');
@@ -120,13 +146,13 @@ final class SelfDiagnosisTest extends TestCase
             $y[] = $v[0] * $v[3] + $v[1] * $v[4] + $v[2] * $v[5];
         }
 
-        $res = Search::find($X, $y, $g, 2, null, 0.0, 0.15, 30.0);
+        $res = Search::find($X, $y, $g, 2, null, 0.0, 0.15, 0.0);
 
         $this->assertFalse($res[0], 'depth=2 не покрывает dot (каскад выключен)');
         $this->assertSame('DEPTH', $res[5], 'глубина мала → DEPTH');
 
         // Валидация §3.3: увеличить глубину → решается
-        $res3 = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 30.0);
+        $res3 = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 0.0);
         $this->assertTrue($res3[0], 'валидация §3.3: depth=3 решает dot');
     }
 }

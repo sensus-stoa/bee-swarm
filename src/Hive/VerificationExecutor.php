@@ -342,7 +342,18 @@ final class VerificationExecutor
         putenv("SEARCH_BEAM_K={$beam}");
         $prevLimit = (string) ini_get('memory_limit');
         $memCap = getenv('VVERIFY_MEMORY_LIMIT') ?: self::MEMORY_LIMIT;
-        ini_set('memory_limit', $memCap);
+        // Повышение memory_limit валидно только если cap ВЫШЕ текущего
+        // потребления: PHP отклоняет установку лимита ниже уже занятого
+        // (warning "Failed to set memory limit", 13.09: usage 857M > cap 512M
+        // в -p8 воркере). Кап = защита от OOM-роста, не обрезок занятого.
+        $curLimitRaw = ini_get('memory_limit');
+        $curLimitBytes = $this->limitToBytes(is_string($curLimitRaw) ? $curLimitRaw : '-1');
+        $capBytes = $this->limitToBytes((string) $memCap);
+        $curUsage = memory_get_usage(true);
+        if ($capBytes > 0 && $capBytes > $curUsage
+            && ($curLimitBytes < 0 || $capBytes > $curLimitBytes)) {
+            ini_set('memory_limit', (string) $memCap);
+        }
 
         return function () use ($prevBeam, $prevLimit): void {
             if ($prevBeam === false) {
@@ -351,6 +362,27 @@ final class VerificationExecutor
                 putenv("SEARCH_BEAM_K={$prevBeam}");
             }
             ini_set('memory_limit', $prevLimit);
+        };
+    }
+
+    /**
+     * '512M'/'1G'/'-1' → байты (PHP shorthand notation).
+     */
+    private function limitToBytes(string $limit): int
+    {
+        $limit = trim($limit);
+        if ($limit === '-1') {
+            return -1;
+        }
+        if (! preg_match('/^(\d+)([KMG]?)$/i', $limit, $m)) {
+            return -1;
+        }
+        $val = (int) $m[1];
+        return match (strtolower($m[2])) {
+            'k' => $val * 1024,
+            'm' => $val * 1024 * 1024,
+            'g' => $val * 1024 * 1024 * 1024,
+            default => $val,
         };
     }
 

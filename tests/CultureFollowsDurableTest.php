@@ -142,13 +142,9 @@ final class CultureFollowsDurableTest extends TestCase
 
         $d = ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'];
         // Первое открытие
-        $method->invoke($hive, $d,
-            ['name' => 'pool1', 'domain' => 'test_pool', 'fingerprint' => 'fp_1'],
-            'test_pool', $foundAny);
+        $method->invokeArgs($hive, [$d, ['name' => 'pool1', 'domain' => 'test_pool', 'fingerprint' => 'fp_1'], 'test_pool', &$foundAny]);
         // Подтверждение (другой fingerprint)
-        $method->invoke($hive, $d,
-            ['name' => 'pool2', 'domain' => 'test_pool', 'fingerprint' => 'fp_2'],
-            'test_pool', $foundAny);
+        $method->invokeArgs($hive, [$d, ['name' => 'pool2', 'domain' => 'test_pool', 'fingerprint' => 'fp_2'], 'test_pool', &$foundAny]);
 
         $log = (string) file_get_contents($logFile);
         unlink($logFile);

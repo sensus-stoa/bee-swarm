@@ -306,6 +306,19 @@ class Bee
     }
 
     /**
+     * V0.14 (verification-economy): денежный штраф носителя сгоревшего закона.
+     * Зеркало chargePartialReward: мёртвые пчёлы не платят, энергия не уходит
+     * ниже нуля (голод сам убивает — штраф не нужен как отдельная причина смерти).
+     */
+    public function chargePenalty(float $amount): void
+    {
+        if (! $this->isAlive() || $amount <= 0.0) {
+            return;
+        }
+        $this->energy = max(0.0, $this->energy - $amount);
+    }
+
+    /**
      * Search attempt costs energy. Dead bees ignore.
      */
     public function chargeSearch(): void

@@ -58,7 +58,7 @@ final class HiveEnergyRefusalTest extends TestCase
         $foundAny = false;
         $task = ['name' => 'test_task', 'domain' => 'test'];
         // routedBee у fresh-улья null (не было тиков) → гвард сработает
-        $method->invoke($hive, $task, [[1.0, 2.0]], [1.0], 'test', $foundAny);
+        $method->invokeArgs($hive, [$task, [[1.0, 2.0]], [1.0], 'test', &$foundAny]);
 
         $log = (string) file_get_contents($this->logFile);
         self::assertStringContainsString(
@@ -84,7 +84,7 @@ final class HiveEnergyRefusalTest extends TestCase
         $foundAny = false;
 
         // Эпизод 1: мёртвая (routedBee=null) → лог
-        $method->invoke($hive, $task, [[1.0, 2.0]], [1.0], 'test', $foundAny);
+        $method->invokeArgs($hive, [$task, [[1.0, 2.0]], [1.0], 'test', &$foundAny]);
         $log1 = (string) file_get_contents($this->logFile);
         self::assertStringContainsString('ENERGY_REFUSAL', $log1, 'первый отказ логируется');
 
@@ -94,7 +94,7 @@ final class HiveEnergyRefusalTest extends TestCase
         $prop->setValue($hive, 0.0);
 
         // Эпизод 2: снова мёртвая → второй лог
-        $method->invoke($hive, $task, [[1.0, 2.0]], [1.0], 'test', $foundAny);
+        $method->invokeArgs($hive, [$task, [[1.0, 2.0]], [1.0], 'test', &$foundAny]);
         $count = substr_count((string) file_get_contents($this->logFile), 'ENERGY_REFUSAL');
         self::assertSame(2, $count, "осцилляция обязана дать 2 лога, получено {$count}");
     }
@@ -112,7 +112,7 @@ final class HiveEnergyRefusalTest extends TestCase
         $foundAny = false;
 
         for ($i = 0; $i < 5; $i++) {
-            $method->invoke($hive, $task, [[1.0, 2.0]], [1.0], 'test', $foundAny);
+            $method->invokeArgs($hive, [$task, [[1.0, 2.0]], [1.0], 'test', &$foundAny]);
         }
         $count = substr_count((string) file_get_contents($this->logFile), 'ENERGY_REFUSAL');
         self::assertSame(1, $count, "5 отказов в одном эпизоде = 1 строка, получено {$count}");

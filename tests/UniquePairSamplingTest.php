@@ -129,16 +129,10 @@ final class UniquePairSamplingTest extends TestCase
 
         $d = ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'];
         // путь как в проде: task с fingerprint (doDiscoverTick теперь прописывает)
-        $method->invoke($hive, $d,
-            ['name' => 'i1', 'domain' => 'test_int', 'fingerprint' => 'fp_X1'],
-            'test_int', $foundAny);
-        $method->invoke($hive, $d,
-            ['name' => 'i2', 'domain' => 'test_int', 'fingerprint' => 'fp_X2'],
-            'test_int', $foundAny);
+        $method->invokeArgs($hive, [$d, ['name' => 'i1', 'domain' => 'test_int', 'fingerprint' => 'fp_X1'], 'test_int', &$foundAny]);
+        $method->invokeArgs($hive, [$d, ['name' => 'i2', 'domain' => 'test_int', 'fingerprint' => 'fp_X2'], 'test_int', &$foundAny]);
         // повтор с тем же fp через живой путь
-        $method->invoke($hive, $d,
-            ['name' => 'i3', 'domain' => 'test_int', 'fingerprint' => 'fp_X2'],
-            'test_int', $foundAny);
+        $method->invokeArgs($hive, [$d, ['name' => 'i3', 'domain' => 'test_int', 'fingerprint' => 'fp_X2'], 'test_int', &$foundAny]);
 
         $log = (string) file_get_contents($logFile);
         unlink($logFile);

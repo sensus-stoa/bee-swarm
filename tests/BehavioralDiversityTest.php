@@ -15,10 +15,27 @@ use BeeSwarm\Infra\RngIsolation;
  */
 class BehavioralDiversityTest extends TestCase
 {
+    private static string $prevForagerSources = '';
+
     protected function tearDown(): void
     {
         RngIsolation::assertClean();
         parent::tearDown();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        // WALL-CLOCK/ENV-ФЛАК (13.09): без фиксации FORAGER_SOURCES тест сканировал
+        // реальный ~/Documents ноутбука — пул задач (а значит и discovery-разнообразие)
+        // зависел от файлов пользователя. Фикс: детерминированный источник.
+        if (self::$prevForagerSources === '') {
+            putenv('FORAGER_SOURCES');
+        } else {
+            putenv('FORAGER_SOURCES=' . self::$prevForagerSources);
+        }
+        self::$sharedLog = '';
+        self::$sharedHive = null;
+        parent::tearDownAfterClass();
     }
 
     /**
@@ -34,6 +51,14 @@ class BehavioralDiversityTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
+        // Детерминированный источник задач (13.09): двоеточие = пустой список
+        // скан-каталогов; discovery питается base-задачами TaskManager
+        // (ADD/MUL arithmetic + AND/OR/XOR logic) — ровно 2 домена, точные
+        // законы, без зависимости от файлов пользователя.
+        $prev = getenv('FORAGER_SOURCES');
+        self::$prevForagerSources = $prev === false ? '' : (string) $prev;
+        putenv('FORAGER_SOURCES=');
+
         \BeeSwarm\Infra\Database::get()->exec('DELETE FROM laws');
         $logFile = tempnam(sys_get_temp_dir(), 'behdiv_');
         $hive = new Hive(plateau: new PlateauDetector(50, plateauSleepUs: 0), maxTicks: 20, logFile: $logFile);

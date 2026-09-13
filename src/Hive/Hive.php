@@ -1812,22 +1812,27 @@ class Hive
     /**
      * Агрегат исходов V-задач по законам домена (только completed-статусы).
      *
-     * @return array<string, array{resample_bad: int, resample_all: int, anomaly: int}>
+     * @return array<string, array{resample_bad: int, resample_all: int, resample_confirmed: int, anomaly: int}>
      */
     private function collectLawOutcomes(string $domain): array
     {
+        // inconclusive входит в resample_all: потерянный срез = завершённая
+        // попытка, гейт all>=5 должен закрываться и на них (иначе escrow
+        // заморозка при потерянных задачах — премортем #3 WU-4).
         $stmt = Database::get()->prepare(
             "SELECT vt.law_formula AS lf, vt.kind AS k, vt.status AS st
              FROM verification_tasks vt
-             WHERE vt.domain = ? AND vt.status IN ('confirmed','refuted','anomaly')"
+             WHERE vt.domain = ? AND vt.status IN ('confirmed','refuted','anomaly','inconclusive')"
         );
         $stmt->execute([$domain]);
         $byLaw = [];
         foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $r) {
             $isResample = str_starts_with((string) $r['k'], 'resample');
             $byLaw[$r['lf']]['resample_bad'] = ($byLaw[$r['lf']]['resample_bad'] ?? 0)
-                + (($isResample && $r['st'] !== 'confirmed') ? 1 : 0);
+                + (($isResample && $r['st'] !== 'confirmed' && $r['st'] !== 'inconclusive') ? 1 : 0);
             $byLaw[$r['lf']]['resample_all'] = ($byLaw[$r['lf']]['resample_all'] ?? 0) + ($isResample ? 1 : 0);
+            $byLaw[$r['lf']]['resample_confirmed'] = ($byLaw[$r['lf']]['resample_confirmed'] ?? 0)
+                + (($isResample && $r['st'] === 'confirmed') ? 1 : 0);
             $byLaw[$r['lf']]['anomaly'] = ($byLaw[$r['lf']]['anomaly'] ?? 0)
                 + (($r['st'] === 'anomaly') ? 1 : 0);
         }
@@ -1838,17 +1843,25 @@ class Hive
     private function settleEscrowFor(string $domain): void
     {
         $byLaw = $this->collectLawOutcomes($domain);
+        $q = (new QCalibrator())->qForDomain($domain);
         foreach ($byLaw as $formula => $c) {
-            if (($c['resample_bad'] > 0) || ($c['anomaly'] > 0)) {
+            // Agent-review F1+F2 (WU-4): ОБЕ ветки гейтятся на завершённость
+            // всех 5 resample. Иначе: burn по первому refuted при 4 pending
+            // отменял консенсус до того, как он стал возможен, а confirmed >= q
+            // был тождественно истинен (bad=0 ⇒ confirmed = all ≥ 5 ≥ q) —
+            // q-порог был мёртв, политика де-факто 5/5-or-burn.
+            if ($c['resample_all'] < VerificationTaskSource::RESAMPLE_COUNT) {
+                continue; // батч неполный: ни settle, ни burn, ждём остальные
+            }
+            // resample-refuted (маска не воспроизводится) = провал верификации
+            // по спеке WU-2 → burn; anchor-развал → burn; недобор confirmed < q
+            // (в т.ч. inconclusive-хвосты) → burn.
+            if ($c['resample_bad'] > 0 || $c['anomaly'] > 0
+                || $c['resample_confirmed'] < $q) {
                 $this->burnEscrow($formula, $domain);
                 continue;
             }
-            // Премортем #1: частичный батч (limit) даёт 1-2 confirmed из 5 —
-            // settle на непроверенном законе. Полный консенсус до WU-4 (q):
-            // resample_all должен покрыть ВСЕ 5 resample-задач закона.
-            if ($c['resample_all'] >= VerificationTaskSource::RESAMPLE_COUNT) {
-                $this->settleEscrow($formula, $domain);
-            }
+            $this->settleEscrow($formula, $domain);
         }
     }
 

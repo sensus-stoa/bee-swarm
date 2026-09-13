@@ -46,6 +46,12 @@ final class VerificationExecutor
     public const CV_TRAIN_MAX = 0.05;
 
     /**
+     * Pending-задача старше этого возраста = потеряна (премортем #3 WU-4);
+     * env VVERIFY_ABANDON_HOURS.
+     */
+    public const ABANDON_HOURS = 24;
+
+    /**
      * Anchor-граница спеки: не более чем в 2 раза.
      */
     public const ANCHOR_RATIO_MAX = 2.0;
@@ -209,6 +215,7 @@ final class VerificationExecutor
      */
     public function runPendingVerificationTasks(string $domain, int $limit): int
     {
+        $this->abandonStaleTasks($domain);
         $stmt = Database::get()->prepare(
             "SELECT * FROM verification_tasks
              WHERE status = 'pending' AND domain = ?
@@ -224,6 +231,23 @@ final class VerificationExecutor
         }
 
         return $executed;
+    }
+
+    /**
+     * Премортем #3 (WU-4): pending-задачи старше ABANDON_HOURS часов —
+     * потеряны (executor-сбой без retry-исхода). Закрываю inconclusive:
+     * иначе resample_all никогда не достигнет 5 → escrow-заморозка навсегда.
+     * inconclusive (не burn): потеря ≠ опровержение, escrow остаётся holding.
+     */
+    private function abandonStaleTasks(string $domain): void
+    {
+        $hours = (int) (getenv('VVERIFY_ABANDON_HOURS') !== false
+            ? getenv('VVERIFY_ABANDON_HOURS') : (string) self::ABANDON_HOURS);
+        Database::get()->prepare(
+            "UPDATE verification_tasks SET status = 'inconclusive'
+             WHERE status = 'pending' AND domain = ?
+               AND created_at < datetime('now', ?)"
+        )->execute([$domain, "-{$hours} hours"]);
     }
 
     /**

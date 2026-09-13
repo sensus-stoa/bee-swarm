@@ -126,14 +126,16 @@ final class EscrowWiringTest extends TestCase
     /**
      * RED: опровержение V-задачи → burn + закон UNSTABLE.
      */
-    public function testRefutationBurnsEscrow(): void
+public function testRefutationBurnsEscrow(): void
     {
         $this->discoverLaw();
 
         Database::get()->prepare(
             "UPDATE verification_tasks SET law_shape = '(C+C)' WHERE kind = 'resample_1'"
         )->execute();
-        $this->hive->runPendingVerificationTasks('test_esc_dom', 1);
+        // Agent-review F2 (WU-4): burn ждёт завершения всех 5 resample —
+        // частичный батч не отменяет консенсус до того, как он стал возможен.
+        $this->hive->runPendingVerificationTasks('test_esc_dom', 10);
 
         $status = (string) Database::get()->query(
             "SELECT status FROM law_escrow WHERE domain = 'test_esc_dom'"
@@ -144,6 +146,39 @@ final class EscrowWiringTest extends TestCase
             "SELECT escrow_status FROM laws WHERE domain = 'test_esc_dom'"
         )->fetchColumn();
         self::assertSame('UNSTABLE', $esc, 'закон помечен UNSTABLE');
+    }
+
+    /** RED (F1 WU-4): все 5 завершены, 3 confirmed < q=4 → недобор = burn. */
+    public function testUnderQuorumAfterFullBatchBurns(): void
+    {
+        putenv('ESCROW_GRACE_TASKS=0');
+        putenv('Q_THETA=1.5');
+        try {
+            $this->discoverLaw('(K2×x0)', 'test_uq_dom');
+
+            // Шумовой фон: законы с confirmed 4,4 → медиана {0,0,4,4}=2 → q=ceil(1.5*2+1)=4.
+            $ins = Database::get()->prepare(
+                'INSERT INTO laws (name, formula, cv, domain, usage_count, confirmed_count)
+                 VALUES (?, ?, 0.01, ?, 5, 4)'
+            );
+            $ins->execute(['bg1', '(A×x0)', 'test_uq_dom']);
+            $ins->execute(['bg2', '(B+x1)', 'test_uq_dom']);
+
+            // 3 resample confirmed (данные точные), 2 — inconclusive (срез потерян):
+            // all=5, bad=0, anomaly=0, но confirmed=3 < q=4 → недобор = burn.
+            Database::get()->prepare(
+                "UPDATE verification_tasks SET data_json = NULL WHERE kind IN ('resample_4','resample_5')"
+            )->execute();
+            $this->hive->runPendingVerificationTasks('test_uq_dom', 10);
+
+            $status = (string) Database::get()->query(
+                "SELECT status FROM law_escrow WHERE domain = 'test_uq_dom'"
+            )->fetchColumn();
+            self::assertSame('burned', $status, '3 confirmed < q=4: недобор сжигает эскроу');
+        } finally {
+            putenv('Q_THETA');
+            putenv('ESCROW_GRACE_TASKS');
+        }
     }
 
     /**

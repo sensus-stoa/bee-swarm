@@ -81,6 +81,14 @@ class Bee
     private array $customGrammarOps = [];
 
     /**
+     * §2.5.14 анти-осцилляция: атомы, деградированные этой пчелой (lifetime).
+     * Повторная деградация того же атома той же пчелой запрещена, даже если
+     * атом вернулся в грамматику (re-discovery из пула). Не наследуется при
+     * spawn — ребёнок начинает с чистой историей деградации.
+     */
+    private array $degradedLifetime = [];
+
+    /**
      * @param string[] $grammar initial grammar operations
      * @param float $energy starting energy (default 10.0 per protocol)
      * @param float|null $tickCost energy cost per tick (default: DEFAULT_TICK_COST)
@@ -437,20 +445,39 @@ class Bee
     }
 
     /**
-     * §S1.5-HUNGER: при E<5 — мутировать грамматику за счёт энергии.
-     * Стоимость: ΔE = −0.5. Не вызывает spawn (только при E≥15).
+     * §2.5.14 AUTOPHAGY (замена §S1.5-HUNGER случайной мутации):
+     * селективная деградация грамматики при голодании. При 3≤E<5 пчела
+     * уступает наименее ценные атомы в общий пул за ΔE=+0.5/атом.
+     * SHRINK (08.08): E<3 — спячка, деградации нет (зомби не раздувает).
+     *
+     * @param float|null $populationMedian медиана utility кандидатов по рою
+     *        (Hive вычисляет один раз на тик; null = fallback на свою)
+     * @return string[] деградированные атомы (порядок деградации)
      */
-    public function hungerMutate(array $available): void
+    public function autophagy(?float $populationMedian = null): array
     {
-        // SHRINK (08.08): мутация только 3≤E<5 (адаптация до голода);
-        // при E<3 — спячка, мутации нет (зомби не раздувает грамматику)
         if ($this->energy >= 5.0 || $this->energy < 3.0 || ! $this->isAlive()) {
-            return;
+            return [];
         }
 
-        $mutator = new GrammarMutator();
-        $this->grammar = $mutator->mutate($this->grammar, $available);
-        $this->energy = max(0.0, $this->energy - 0.5);
+        $engine = new AutophagyEngine();
+        $degraded = [];
+        while ($this->energy < AutophagyEngine::STOP_ENERGY) {
+            $atom = $engine->degradeOne(
+                $this->grammar(),
+                array_keys($this->degradedLifetime),
+                $populationMedian
+            );
+            if ($atom === null) {
+                break;
+            }
+            $this->grammar = array_values(array_diff($this->grammar, [$atom]));
+            $this->customGrammarOps = array_values(array_diff($this->customGrammarOps, [$atom]));
+            $this->degradedLifetime[$atom] = true;
+            $this->energy += AutophagyEngine::DEGRADE_ENERGY;
+            $degraded[] = $atom;
+        }
+        return $degraded;
     }
 
     /**

@@ -50,13 +50,23 @@ final class DissipationWiringTest extends TestCase
         $m->invokeArgs($this->hive, [$d, $task, $domain, &$foundAny]);
     }
 
-    /** RED: discovery регистрирует закон в law_generations (живой путь). */
+    /**
+     * RED: discovery регистрирует закон в law_generations (живой путь).
+     */
     public function testDiscoveryRegistersGeneration(): void
     {
         $foundAny = false;
         $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'],
-            ['name' => 'dw1', 'domain' => 'test_wire', 'fingerprint' => 'fp_1'],
+            [
+                'atom' => '(x0×K2)',
+                'cv' => 0.01,
+                'class' => 'EMPIRICAL',
+            ],
+            [
+                'name' => 'dw1',
+                'domain' => 'test_wire',
+                'fingerprint' => 'fp_1',
+            ],
             'test_wire',
             $foundAny
         );
@@ -71,7 +81,9 @@ final class DissipationWiringTest extends TestCase
         self::assertNotFalse($gen, 'discovery обязан регистрировать закон в law_generations');
     }
 
-    /** RED: аудит потерь эмитит DISSIPATION лог и falsify атомам LOSS-формулы. */
+    /**
+     * RED: аудит потерь эмитит DISSIPATION лог и falsify атомам LOSS-формулы.
+     */
     public function testLossAuditEmitsDissipationAndPenalty(): void
     {
         // закон РЕГИСТРИРУЕТСЯ, но НЕ записывается в laws (эмуляция исчезновения:
@@ -85,8 +97,11 @@ final class DissipationWiringTest extends TestCase
         $m->invoke($this->hive, currentGeneration: 15);
 
         $log = (string) file_get_contents($this->logFile);
-        self::assertStringContainsString('DISSIPATION', $log,
-            'LOSS-событие обязано логироваться как DISSIPATION');
+        self::assertStringContainsString(
+            'DISSIPATION',
+            $log,
+            'LOSS-событие обязано логироваться как DISSIPATION'
+        );
 
         // атом формулы (K2×x0): × получил falsify
         $stmt = Database::get()->prepare('SELECT penalty_count FROM atom_penalties WHERE atom = ?');
@@ -96,7 +111,9 @@ final class DissipationWiringTest extends TestCase
         self::assertSame(1, (int) $count);
     }
 
-    /** RED: confirm-путь реабилитирует атомы (успех декрементирует штраф). */
+    /**
+     * RED: confirm-путь реабилитирует атомы (успех декрементирует штраф).
+     */
     public function testConfirmRehabilitatesAtoms(): void
     {
         // пред-штраф: × имеет 5 фальсификаций
@@ -107,26 +124,47 @@ final class DissipationWiringTest extends TestCase
         $foundAny = false;
         // первое открытие
         $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'],
-            ['name' => 'dw1', 'domain' => 'test_wire3', 'fingerprint' => 'fp_1'],
+            [
+                'atom' => '(x0×K2)',
+                'cv' => 0.01,
+                'class' => 'EMPIRICAL',
+            ],
+            [
+                'name' => 'dw1',
+                'domain' => 'test_wire3',
+                'fingerprint' => 'fp_1',
+            ],
             'test_wire3',
             $foundAny
         );
         // confirm на другом fingerprint
         $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'],
-            ['name' => 'dw2', 'domain' => 'test_wire3', 'fingerprint' => 'fp_2'],
+            [
+                'atom' => '(x0×K2)',
+                'cv' => 0.01,
+                'class' => 'EMPIRICAL',
+            ],
+            [
+                'name' => 'dw2',
+                'domain' => 'test_wire3',
+                'fingerprint' => 'fp_2',
+            ],
             'test_wire3',
             $foundAny
         );
 
         $stmt = Database::get()->prepare('SELECT penalty_count FROM atom_penalties WHERE atom = ?');
         $stmt->execute(['×']);
-        self::assertSame(4, (int) $stmt->fetchColumn(),
-            'подтверждение закона реабилитирует его операторы (декремент)');
+        self::assertSame(
+            4,
+            (int) $stmt->fetchColumn(),
+            'подтверждение закона реабилитирует его операторы (декремент)'
+        );
     }
 
-    /** Discovery не блокируется диссипацией (контракт наблюдателя). */
+    /**
+     * Discovery не блокируется диссипацией (контракт наблюдателя).
+     */
     public function testDiscoveryNotBlocked(): void
     {
         // заполнить penalties сверх порога
@@ -136,12 +174,109 @@ final class DissipationWiringTest extends TestCase
 
         $foundAny = false;
         $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.01, 'class' => 'EMPIRICAL'],
-            ['name' => 'dw1', 'domain' => 'test_wire4', 'fingerprint' => 'fp_1'],
+            [
+                'atom' => '(x0×K2)',
+                'cv' => 0.01,
+                'class' => 'EMPIRICAL',
+            ],
+            [
+                'name' => 'dw1',
+                'domain' => 'test_wire4',
+                'fingerprint' => 'fp_1',
+            ],
             'test_wire4',
             $foundAny
         );
 
         self::assertTrue($foundAny, 'законы с заштрафованными атомами всё равно записываются (наблюдатель)');
+    }
+
+    /**
+     * V0.14 обязательство WU-3-аудита №2 (RED): UNSTABLE ускоряет диссипационный
+     * аудит (спека WU-3 RED: «UNSTABLE-статус → диссипационный аудит ускоряется»).
+     * Базлайн-ритм tick%100 остаётся; при живом UNSTABLE-законе аудит добавочно
+     * идёт каждые DISSIPATION_ACCEL_TICKS (env, default 10, 0 = off).
+     */
+    private function setTick(int $tick): void
+    {
+        $t = new \ReflectionProperty(Hive::class, 'tick');
+        $t->setAccessible(true);
+        $t->setValue($this->hive, $tick);
+    }
+
+    private function seedUnstableLaw(string $domain = 'test_accel_dom'): void
+    {
+        Database::get()->prepare(
+            "INSERT INTO laws (name, formula, cv, domain, escrow_status)
+             VALUES ('acc1', '(K2×x0)', 0.01, ?, 'UNSTABLE')"
+        )->execute([$domain]);
+    }
+
+    /**
+     * RED: mid-тик (не 1, не %100) + UNSTABLE закон → аудит должен идти.
+     */
+    public function testAccelAuditFiresOnUnstableLawMidTick(): void
+    {
+        $this->setTick(10);
+        $this->seedUnstableLaw();
+
+        $m = new \ReflectionMethod(Hive::class, 'shouldRunDissipationAudit');
+        $m->setAccessible(true);
+
+        self::assertTrue(
+            (bool) $m->invoke($this->hive),
+            'UNSTABLE-закон ускоряет аудит (tick=10: не baseline, но %accel=10)'
+        );
+    }
+
+    /**
+     * Mid-тик без UNSTABLE → базовый ритм (не ускоряется).
+     */
+    public function testAccelAuditSkipsWithoutUnstable(): void
+    {
+        $this->setTick(5);
+
+        $m = new \ReflectionMethod(Hive::class, 'shouldRunDissipationAudit');
+        $m->setAccessible(true);
+
+        self::assertFalse(
+            (bool) $m->invoke($this->hive),
+            'без UNSTABLE-законов аудит только на baseline (1/%100)'
+        );
+    }
+
+    /**
+     * Baseline-тик 100 срабатывает без UNSTABLE (старый контракт не сломан).
+     */
+    public function testBaselineAuditOnTick100Unchanged(): void
+    {
+        $this->setTick(100);
+
+        $m = new \ReflectionMethod(Hive::class, 'shouldRunDissipationAudit');
+        $m->setAccessible(true);
+
+        self::assertTrue((bool) $m->invoke($this->hive), 'baseline %100 сохранён');
+    }
+
+    /**
+     * Env DISSIPATION_ACCEL_TICKS=0 → ускорение выключено (операторский гейт).
+     */
+    public function testAccelAuditEnvZeroDisables(): void
+    {
+        putenv('DISSIPATION_ACCEL_TICKS=0');
+        try {
+            $this->setTick(5);
+            $this->seedUnstableLaw();
+
+            $m = new \ReflectionMethod(Hive::class, 'shouldRunDissipationAudit');
+            $m->setAccessible(true);
+
+            self::assertFalse(
+                (bool) $m->invoke($this->hive),
+                'ACCEL_TICKS=0: ускорение выключено, только baseline'
+            );
+        } finally {
+            putenv('DISSIPATION_ACCEL_TICKS');
+        }
     }
 }

@@ -126,7 +126,7 @@ final class EscrowWiringTest extends TestCase
     /**
      * RED: опровержение V-задачи → burn + закон UNSTABLE.
      */
-public function testRefutationBurnsEscrow(): void
+    public function testRefutationBurnsEscrow(): void
     {
         $this->discoverLaw();
 
@@ -148,7 +148,9 @@ public function testRefutationBurnsEscrow(): void
         self::assertSame('UNSTABLE', $esc, 'закон помечен UNSTABLE');
     }
 
-    /** RED (F1 WU-4): все 5 завершены, 3 confirmed < q=4 → недобор = burn. */
+    /**
+     * RED (F1 WU-4): все 5 завершены, 3 confirmed < q=4 → недобор = burn.
+     */
     public function testUnderQuorumAfterFullBatchBurns(): void
     {
         putenv('ESCROW_GRACE_TASKS=0');
@@ -202,5 +204,121 @@ public function testRefutationBurnsEscrow(): void
             "SELECT status FROM law_escrow WHERE domain = 'test_esc_dom'"
         )->fetchColumn();
         self::assertSame('holding', $esc, 'inconclusive не закрывает эскроу');
+    }
+
+    /**
+     * V0.14 обязательство WU-3-аудита №1 (RED): burn → денежный штраф носителю.
+     * Спека WU-3 RED: «провал → сгорание в dissip-фонд + штраф носителю».
+     * Fine = burned × ESCROW_BURN_PENALTY.
+     */
+    public function testBurnPenalizesCarrierBee(): void
+    {
+        putenv('ESCROW_BURN_PENALTY=0.5');
+        try {
+            $this->discoverLaw();
+
+            $bee = $this->carrierBee();
+            $before = $bee->energy();
+            $this->refuteFirstResampleAndRun();
+            $burned = (float) Database::get()->query(
+                "SELECT amount FROM law_escrow WHERE domain = 'test_esc_dom'"
+            )->fetchColumn();
+            self::assertGreaterThan(0.0, $burned, 'эскроу сгорел');
+
+            self::assertEqualsWithDelta(
+                $before - $burned * 0.5,
+                $bee->energy(),
+                1e-6,
+                'носитель платит burned × ESCROW_BURN_PENALTY'
+            );
+            $log = (string) file_get_contents($this->logFile);
+            self::assertStringContainsString('BURN-PENALTY', $log, 'штраф наблюдаем в логе');
+        } finally {
+            putenv('ESCROW_BURN_PENALTY');
+        }
+    }
+
+    /**
+     * В escrow живой носитель bee#N, по инжекции Hive::bees.
+     */
+    private function carrierBee(): \BeeSwarm\Hive\Bee
+    {
+        $carrier = (string) Database::get()->query(
+            "SELECT carrier FROM law_escrow WHERE domain = 'test_esc_dom'"
+        )->fetchColumn();
+        self::assertStringStartsWith('bee#', $carrier, 'живой носитель в escrow');
+        $beesProp = new \ReflectionProperty(Hive::class, 'bees');
+        $beesProp->setAccessible(true);
+
+        return $beesProp->getValue($this->hive)[(int) substr($carrier, 4)];
+    }
+
+    /**
+     * Первый resample получает чужую маску → refuted; executor гоняет батч.
+     */
+    private function refuteFirstResampleAndRun(): void
+    {
+        Database::get()->prepare(
+            "UPDATE verification_tasks SET law_shape = '(C+C)' WHERE kind = 'resample_1'"
+        )->execute();
+        $this->hive->runPendingVerificationTasks('test_esc_dom', 10);
+    }
+
+    /**
+     * Env ESCROW_BURN_PENALTY=0: штраф выключен, энергия носителя не меняется.
+     */
+    public function testBurnPenaltyZeroEnvDisables(): void
+    {
+        putenv('ESCROW_BURN_PENALTY=0');
+        try {
+            $this->discoverLaw();
+
+            $carrier = (string) Database::get()->query(
+                "SELECT carrier FROM law_escrow WHERE domain = 'test_esc_dom'"
+            )->fetchColumn();
+            $beesProp = new \ReflectionProperty(Hive::class, 'bees');
+            $beesProp->setAccessible(true);
+            $bee = $beesProp->getValue($this->hive)[(int) substr($carrier, 4)];
+            $before = $bee->energy();
+
+            Database::get()->prepare(
+                "UPDATE verification_tasks SET law_shape = '(C+C)' WHERE kind = 'resample_1'"
+            )->execute();
+            $this->hive->runPendingVerificationTasks('test_esc_dom', 10);
+
+            self::assertEqualsWithDelta($before, $bee->energy(), 1e-6, 'penalty=0: штрафа нет');
+        } finally {
+            putenv('ESCROW_BURN_PENALTY');
+        }
+    }
+
+    /**
+     * carrier='orphan' (мёртвый носитель): штраф не падает, лог фиксирует skip.
+     */
+    public function testBurnPenaltySkipsOrphanCarrier(): void
+    {
+        putenv('ESCROW_BURN_PENALTY=0.5');
+        try {
+            $this->discoverLaw();
+            Database::get()->prepare(
+                "UPDATE law_escrow SET carrier = 'orphan' WHERE domain = 'test_esc_dom'"
+            )->execute();
+
+            $beesProp = new \ReflectionProperty(Hive::class, 'bees');
+            $beesProp->setAccessible(true);
+            $energiesBefore = array_map(fn ($b) => $b->energy(), $beesProp->getValue($this->hive));
+
+            Database::get()->prepare(
+                "UPDATE verification_tasks SET law_shape = '(C+C)' WHERE kind = 'resample_1'"
+            )->execute();
+            $this->hive->runPendingVerificationTasks('test_esc_dom', 10);
+
+            $energiesAfter = array_map(fn ($b) => $b->energy(), $beesProp->getValue($this->hive));
+            self::assertSame($energiesBefore, $energiesAfter, 'orphan: ни одной пчеле штраф не начислен');
+            $log = (string) file_get_contents($this->logFile);
+            self::assertStringContainsString('carrier=orphan', $log, 'skip наблюдаем');
+        } finally {
+            putenv('ESCROW_BURN_PENALTY');
+        }
     }
 }

@@ -83,6 +83,9 @@ class Hive
 
     private array $foragedTasksGlobal = [];
 
+    /** §2.6 Environmental Pressure: governor сложности среды. */
+    private DifficultyGovernor $difficulty;
+
     private ?int $maxTicks;
 
     /**
@@ -157,6 +160,8 @@ class Hive
         $this->escrow = new EscrowStore();
         $this->spawnManager = new SpawnManager();
         $this->maxTicks = $maxTicks;
+        // §2.6 Environmental Pressure: governor читает уровень из env_state.
+        $this->difficulty = new DifficultyGovernor();
 
         $sources = getenv('FORAGER_SOURCES');
         if ($sources) {
@@ -478,7 +483,13 @@ class Hive
             }
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
+                // §2.6 WU-3: R-адмиссия потока (default off — verify-величина).
+                [$foraged, , $rLogs] = EnvPressure::admitAll($foraged, microtime(true));
+                foreach ($rLogs as $rl) {
+                    $this->log($rl);
+                }
                 $this->foragedTasksGlobal = $foraged;
+                $this->foragedTasksGlobal = EnvPressure::stampAll($this->foragedTasksGlobal, $this->tick);
                 $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
                 $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
                 $this->log("Forager startup: " . count($foraged) . " tasks, mem={$mem}MB peak={$peak}MB");
@@ -1016,6 +1027,10 @@ class Hive
             return;
         }
 
+        // §2.6 Environmental Pressure WU-1: порча задач — просроченные
+        // (age >= K тиков) выбрасываются из пула, лог MISSED_OPPORTUNITY.
+        $this->collectTimeouts($this->tick);
+
         // Forager scan
         $hasNewForagerData = false;
         if (
@@ -1024,6 +1039,11 @@ class Hive
         ) {
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
             if (! empty($foraged)) {
+                // §2.6 WU-3: R-адмиссия потока (default off — verify-величина).
+                [$foraged, , $rLogsTick] = EnvPressure::admitAll($foraged, microtime(true));
+                foreach ($rLogsTick as $rl) {
+                    $this->log($rl);
+                }
                 // Дедуп: не добавляем задачи, чьи имена уже в пуле
                 $existingNames = [];
                 foreach ($this->foragedTasksGlobal as $t) {
@@ -1036,7 +1056,7 @@ class Hive
                         continue;
                     }
                     $existingNames[$name] = true;
-                    $this->foragedTasksGlobal[] = $t;
+                    $this->foragedTasksGlobal[] = EnvPressure::stamp($t, $this->tick);
                     $newCount++;
                 }
                 // Потолок: удерживаем последние 8000 задач (предотвращает OOM)
@@ -1312,6 +1332,13 @@ class Hive
         $this->plateau->tick($foundAny);
         if ($this->plateau->justEnteredPlateau()) {
             $this->log('🏔️ PLATEAU');
+        }
+
+        // §2.6 Environmental Pressure WU-2: исход задачи → governor сложности.
+        // Событие смены уровня логируется (ENV_DIFF) — verify_1_6 (b) читает его.
+        $diffEvent = $this->difficulty->recordOutcome($foundAny);
+        if ($diffEvent !== null) {
+            $this->log('ENV_DIFF: ' . $diffEvent . ' level=' . $this->difficulty->difficulty());
         }
 
         // §1.8 Overlap: записать попытку пчелы на задаче
@@ -1731,7 +1758,10 @@ class Hive
         // (HONEST_CRITERIA §1.5 — на plateau не плодим искусственные задачи)
         if ($skipGenerated || $this->plateau->isPlateau()) {
             $generator = new TaskGenerator();
-            return $this->filterInsufficient($generator->generate($this->foragedTasksGlobal, $crossTasks));
+            $tasks = $this->filterInsufficient($generator->generate($this->foragedTasksGlobal, $crossTasks));
+
+            // §2.6: фильтр сложности генерации (генерация входа, не история).
+            return DifficultyGovernor::filterByDifficulty($tasks, $this->difficulty->difficulty());
         }
 
         // Не-plateau: compose-генерация + корпус
@@ -1741,7 +1771,10 @@ class Hive
         $generator = new TaskGenerator();
         $tasks = array_merge($tasks, $generator->generate($this->foragedTasksGlobal, $crossTasks));
 
-        return $this->filterInsufficient($tasks);
+        $tasks = $this->filterInsufficient($tasks);
+
+        // §2.6: фильтр сложности генерации.
+        return DifficultyGovernor::filterByDifficulty($tasks, $this->difficulty->difficulty());
     }
 
     /**
@@ -1952,6 +1985,29 @@ class Hive
     /**
      * S1.6: Weighted task selection — nFeat=1 чаще nFeat=N.
      */
+    /**
+     * §2.6 Environmental Pressure WU-1: сбор просроченных задач.
+     *
+     * @return array<int, array<string, mixed>> выброшенные задачи
+     */
+    private function collectTimeouts(int $tick): array
+    {
+        $pool = $this->foragedTasksGlobal;
+        [$collected, $remaining, $logLines] = EnvPressure::collectExpired(
+            $pool,
+            $tick,
+            EnvPressure::timeoutK(),
+        );
+        if ($collected !== []) {
+            $this->foragedTasksGlobal = $remaining;
+            foreach ($logLines as $line) {
+                $this->log($line);
+            }
+        }
+
+        return $collected;
+    }
+
     private function weightedPick(array $tasks): array
     {
         if (empty($tasks)) {

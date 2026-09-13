@@ -295,6 +295,13 @@ class Database
             penalty_count INTEGER DEFAULT 0,
             updated_at TEXT DEFAULT (datetime('now'))
         )");
+        // §2.6 Environmental Pressure (WU-2): kv-состояние среды
+        // (difficulty level и др.). Persistence между рестартами демона.
+        $db->exec("CREATE TABLE IF NOT EXISTS env_state (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL,
+            updated_at TEXT DEFAULT (datetime('now'))
+        )");
         $db->exec("CREATE TABLE IF NOT EXISTS grammar_ops (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,

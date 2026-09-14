@@ -50,6 +50,15 @@ putenv('SWARM_DB_PATH=' . (sys_get_temp_dir() . "/wu5_{$domain}_s{$seedIdx}.db")
 // rows 100: cap-30 в doTick оставляет 30 — но tMin для 8+ колонок = 40;
 // без этого concrete (9 колонок) вечный INSUFFICIENT_DATA (срез 30 строк)
 putenv('WU5_ROWS_PER_TASK=' . (getenv('WU5_ROWS_PER_TASK') ?: '100'));
+// Чистый эксперимент (юзер 14.09): без ускоренного диссипационного аудита —
+// критерий CCPP «дегенерат умирает диссипацией» должен выполняться экономикой
+// (сгорание эскроу, голодная смерть), не ускоренным ревизором. H3 premortem.
+putenv('DISSIPATION_ACCEL_TICKS=' . (getenv('DISSIPATION_ACCEL_TICKS') ?: '0'));
+// Исполнитель V-задач жёстче первооткрывателя (VVERIFY_CV_TRAIN_MAX=0.05
+// против eps домена 0.0865): законы cv∈[0.05, eps] NEVER не подтверждаются
+// (no_form → inconclusive → burn). Для критерия Concrete (partial-формы)
+// уравниваем порог с прод-eps.
+putenv('VVERIFY_CV_TRAIN_MAX=' . (getenv('VVERIFY_CV_TRAIN_MAX') ?: '0.15'));
 
 use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\Database;

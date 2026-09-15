@@ -878,6 +878,30 @@ class Hive
      * Вызывается из doTick раз в 100 тиков. LOSS/OBSOLETE → DISSIPATION-лог
      * + atomPenalty->falsify атомам формулы. Наблюдатель: discovery не блокирует.
      */
+
+    /**
+     * Обязательство 2 (WU-3-аудит): ускоренный диссипационный аудит.
+     * Baseline: tick 1 или каждые 100. Плюс: каждые DISSIPATION_ACCEL_TICKS
+     * (env, default 10, 0=off) при живом UNSTABLE-законе (короткозамкнутый
+     * SQL-чек за модулем — аудит нечастых тиков не трогаем без повода).
+     */
+    private function shouldRunDissipationAudit(): bool
+    {
+        if ($this->tick === 1 || $this->tick % 100 === 0) {
+            return true;
+        }
+        $raw = getenv('DISSIPATION_ACCEL_TICKS');
+        $accel = (int) ($raw !== false ? $raw : '10');
+        if ($accel <= 0) {
+            return false;
+        }
+
+        return $this->tick % $accel === 0
+            && (bool) Database::get()->query(
+                "SELECT 1 FROM laws WHERE escrow_status = 'UNSTABLE' LIMIT 1"
+            )->fetchColumn();
+    }
+
     private function runDissipationAudit(int $currentGeneration): void
     {
         // 2. Preservation: законы, исчезнувшие из reservoir или не подтверждённые
@@ -964,8 +988,9 @@ class Hive
                 $this->bees = $alive;
             }
         }
-        // DISSIPATION-LOOP Phase 6: preservation-аудит раз в 100 тиков
-        if ($this->tick % 100 === 0 || $this->tick === 1) {
+        // DISSIPATION-LOOP Phase 6 + обязательство 2: baseline раз в 100 тиков,
+        // ПЛЮС ускоренный ритм при живом UNSTABLE-законе (env DISSIPATION_ACCEL_TICKS)
+        if ($this->shouldRunDissipationAudit()) {
             $this->runDissipationAudit($this->spawnManager->getGeneration());
         }
         // FLOOR-EMERGENCE M1 (EXP-038, 29.08): периодическое сжатие
@@ -1933,13 +1958,68 @@ class Hive
         // Премортем #6: zombie-задачи — burn отменил закон, хвостовые pending
         // V-задачи не нужны executor'у (экономия + чистый лог). Вне транзакции:
         // идемпотентно, отменённые задачи не возвращают escrow к жизни.
+        $cancelled = $this->cancelPendingVTasks($formula, $domain);
+        $this->log("ESCROW: burned law={$formula} amount=" . number_format($burned, 2)
+            . ' → UNSTABLE cancelled=' . $cancelled);
+        // Обязательство 1 (WU-3): штраф носителю при burn. ВНЕ транзакции:
+        // штраф — издержка, не денежное обязательство роя (критерий-аудит).
+        $this->penalizeCarrier($formula, $domain, $burned);
+    }
+
+    /**
+     * Обязательство 1: отмена хвостовых pending V-задач сгоревшего закона
+     * (Премортем #6: zombie-задачи). Вне транзакции, идемпотентно.
+     */
+    private function cancelPendingVTasks(string $formula, string $domain): int
+    {
         $cancel = Database::get()->prepare(
             "UPDATE verification_tasks SET status = 'cancelled'
              WHERE law_formula = ? AND domain = ? AND status = 'pending'"
         );
         $cancel->execute([$formula, $domain]);
-        $this->log("ESCROW: burned law={$formula} amount=" . number_format($burned, 2)
-            . ' → UNSTABLE cancelled=' . $cancel->rowCount());
+
+        return $cancel->rowCount();
+    }
+
+    /**
+     * Обязательство 1: штраф носителю = burned × ESCROW_BURN_PENALTY.
+     * carrier = last-bearer (контракт WU-3); orphan/dead → skip-лог.
+     */
+    private function penalizeCarrier(string $formula, string $domain, float $burned): void
+    {
+        $p = $this->burnPenaltyRatio();
+        if ($burned <= 0.0 || $p <= 0.0) {
+            return;
+        }
+        $stmt = Database::get()->prepare(
+            'SELECT carrier FROM law_escrow WHERE law_formula = ? AND domain = ?'
+        );
+        $stmt->execute([$formula, $domain]);
+        $carrier = (string) $stmt->fetchColumn();
+        if (! str_starts_with($carrier, 'bee#')) {
+            $this->log("BURN-PENALTY: skip law={$formula} carrier={$carrier}");
+            return;
+        }
+        $bee = $this->bees[(int) substr($carrier, 4)] ?? null;
+        if ($bee === null || ! $bee->isAlive()) {
+            $this->log("BURN-PENALTY: skip law={$formula} carrier={$carrier} (dead)");
+            return;
+        }
+        $fine = $burned * $p;
+        $bee->chargePenalty($fine);
+        $this->log('BURN-PENALTY: carrier=' . $carrier
+            . ' fine=' . number_format($fine, 2) . ' law=' . $formula);
+    }
+
+    /**
+     * Обязательство 1: ratio из env, clamp [0,1], !== false гвард (PHP-falsy '0').
+     */
+    private function burnPenaltyRatio(): float
+    {
+        $raw = getenv('ESCROW_BURN_PENALTY');
+        $p = (float) ($raw !== false ? $raw : '0.5');
+
+        return min(1.0, max(0.0, $p));
     }
 
     private function settleEscrow(string $formula, string $domain): void

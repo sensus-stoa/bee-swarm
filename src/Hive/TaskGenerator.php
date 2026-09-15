@@ -11,7 +11,9 @@ namespace BeeSwarm\Hive;
  */
 class TaskGenerator
 {
-    /** S2.7: Maximum cross-pair tasks from generator (bounds O(N²) memory). */
+    /**
+     * S2.7: Maximum cross-pair tasks from generator (bounds O(N²) memory).
+     */
     private int $maxCrossPair = 200;  // cross-pairing включён с variance-фильтром (05.08)
 
     /**
@@ -40,7 +42,9 @@ class TaskGenerator
         foreach ($this->crossPairTasks($foragedTasksGlobal) as $crossTask) {
             $cross[] = $crossTask;
             $crossCount++;
-            if ($crossCount >= $this->maxCrossPair) break;
+            if ($crossCount >= $this->maxCrossPair) {
+                break;
+            }
         }
         $tasks = array_merge($tasks, $cross);
 

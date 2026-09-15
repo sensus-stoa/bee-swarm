@@ -31,7 +31,9 @@ final class AuditStateTest extends TestCase
         Database::reset();
     }
 
-    /** RED: после первого аудита закон помечен loss и НЕ возвращается повторно. */
+    /**
+     * RED: после первого аудита закон помечен loss и НЕ возвращается повторно.
+     */
     public function testLossReportedOnce(): void
     {
         $reg = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -44,7 +46,9 @@ final class AuditStateTest extends TestCase
         self::assertSame([], $second, 'повторный аудит: тот же LOSS не переэмитится');
     }
 
-    /** RED: OBSOLETE-флаг персистентен — не штрафуется каждый аудит. */
+    /**
+     * RED: OBSOLETE-флаг персистентен — не штрафуется каждый аудит.
+     */
     public function testObsoleteReportedOnce(): void
     {
         $reg = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -58,7 +62,9 @@ final class AuditStateTest extends TestCase
         self::assertSame([], $second, 'повторный recheck: OBSOLETE не переэмитится');
     }
 
-    /** audit_state записан в law_generations. */
+    /**
+     * audit_state записан в law_generations.
+     */
     public function testAuditStatePersisted(): void
     {
         $reg = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -72,7 +78,9 @@ final class AuditStateTest extends TestCase
         self::assertSame('loss', $stmt->fetchColumn());
     }
 
-    /** Живой закон (в aliveFormulas, cv ok) не переходит в loss — остаётся pending. */
+    /**
+     * Живой закон (в aliveFormulas, cv ok) не переходит в loss — остаётся pending.
+     */
     public function testAliveLawStaysPending(): void
     {
         $reg = new LawRegistry(preserveCheckGen: 15, eps: 0.15);

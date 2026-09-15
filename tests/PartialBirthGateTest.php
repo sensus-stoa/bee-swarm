@@ -29,11 +29,16 @@ class PartialBirthGateTest extends TestCase
         return $hive;
     }
 
-    /** Создаёт линию и доводит её до голода (stale>0 через цикл без прогресса). */
+    /**
+     * Создаёт линию и доводит её до голода (stale>0 через цикл без прогресса).
+     */
     private function starveALine(Hive $hive): void
     {
         $pool = $hive->dormantPool();
-        $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+        $pool->deposit([
+            'op' => '+',
+            'operand' => 'x0',
+        ], 'ADDITIVE', 0.5);
         $hive->materializeFromPool(1);
         // 2 prune без прогресса → stale>0, но K=5 линия жива
         $hive->pruneLineages(5);
@@ -62,11 +67,14 @@ class PartialBirthGateTest extends TestCase
         $this->assertNotNull($name, 'B-кандидат обязан быть в grammar_ops');
 
         $status = Database::get()->prepare(
-            "SELECT status FROM grammar_ops WHERE name=?"
+            'SELECT status FROM grammar_ops WHERE name=?'
         );
         $status->execute([$name]);
-        $this->assertSame('candidate', $status->fetchColumn(),
-            'RCB: рождение = кандидат, не активный');
+        $this->assertSame(
+            'candidate',
+            $status->fetchColumn(),
+            'RCB: рождение = кандидат, не активный'
+        );
     }
 
     public function testGateRejectsTrivialFormula(): void
@@ -126,14 +134,20 @@ class PartialBirthGateTest extends TestCase
         // потомок наследует пчелиную грамматику; B-атом приходит
         // из grammar_ops через Grammar (BASE+birth)
         $pool = $hive->dormantPool();
-        $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+        $pool->deposit([
+            'op' => '+',
+            'operand' => 'x0',
+        ], 'ADDITIVE', 0.5);
         $this->assertSame(1, $hive->materializeFromPool(1));
 
         $bees = $hive->getBees();
         $child = $bees[count($bees) - 1];
         $grammar = $child->grammar();
-        $this->assertContains($bName, $grammar,
-            'потомок линии обязан видеть активированный B-атом');
+        $this->assertContains(
+            $bName,
+            $grammar,
+            'потомок линии обязан видеть активированный B-атом'
+        );
     }
 
     public function testChildGrammarUnionIncludesBirthOps(): void
@@ -150,8 +164,11 @@ class PartialBirthGateTest extends TestCase
 
         $g = new \BeeSwarm\Core\Grammar();
         $all = $g->all(); // all() УЖЕ возвращает имена (array_keys(ops) внутри)
-        $this->assertContains($bName, $all,
-            'Grammar::all() обязан включать активированный birth-оп');
+        $this->assertContains(
+            $bName,
+            $all,
+            'Grammar::all() обязан включать активированный birth-оп'
+        );
     }
 
     public function testPartialBirthCannotDuplicate(): void
@@ -160,8 +177,10 @@ class PartialBirthGateTest extends TestCase
         $this->starveALine($hive);
 
         $this->assertNotFalse($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0));
-        $this->assertNotFalse($hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0),
-            'повторное открытие не падает (INSERT OR IGNORE)');
+        $this->assertNotFalse(
+            $hive->partialBirth('(x0−x1)', 0.42, 'arithmetic', 1.0),
+            'повторное открытие не падает (INSERT OR IGNORE)'
+        );
 
         $cnt = Database::get()->prepare(
             "SELECT COUNT(*) FROM grammar_ops WHERE source='birth' AND definition=? AND birth_domain=?"

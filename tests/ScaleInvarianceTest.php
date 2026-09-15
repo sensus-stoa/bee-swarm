@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\Search;
 
 /**
  * EXP-036 фаза 2.5 K3 (kill-test y×10, 29.08): Search НЕ масштабно-инвариантен.
@@ -27,10 +26,13 @@ use BeeSwarm\Core\ExpressionEvaluator;
  */
 class ScaleInvarianceTest extends TestCase
 {
-    /** Знакопеременный закон с zero-crossing: y = x − 2 (аналог AffineLawsTest). */
+    /**
+     * Знакопеременный закон с zero-crossing: y = x − 2 (аналог AffineLawsTest).
+     */
     private function makeZeroCrossing(): array
     {
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 1; $i <= 20; $i++) {
             $X[] = [(float) $i];
             $y[] = $i - 2.0;
@@ -45,7 +47,8 @@ class ScaleInvarianceTest extends TestCase
         // константы 10 в грамматике нет. Форма (x0−x1) обязана найтись
         // через пропорциональный канал CV (v/y = 0.1 const, shift=0).
         mt_srand(77);
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 0; $i < 40; $i++) {
             $u = (mt_rand() / mt_getrandmax()) * 20 - 10;
             $v = (mt_rand() / mt_getrandmax()) * 20 - 10;
@@ -76,7 +79,8 @@ class ScaleInvarianceTest extends TestCase
         // Свойство критерия: cv(v, a·y) == cv(v, y) для идеальной формы v=y.
         // Данные БЕЗ нулевой строки (y0=0 даёт ratio=0/1e-8=0 — отдельный
         // прокол, чинится ĉ-коррекцией при s≠0; здесь чистый масштаб).
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 3; $i <= 22; $i++) {
             $X[] = [(float) $i];
             $y[] = (float) $i;
@@ -98,7 +102,8 @@ class ScaleInvarianceTest extends TestCase
         // Полный путь: y = x − 2 содержит ноль при x=2; поиск обязан найти.
         [$X, $y] = $this->makeZeroCrossing();
         $vec = $y; // идеальная форма
-        $minY = min($y); $maxY = max($y);
+        $minY = min($y);
+        $maxY = max($y);
         $range = $maxY - $minY;
         $s = $minY - 0.01 * $range; // scale-equivariant shift (фикс)
         $cv = Search::cv($vec, $y, $s);
@@ -109,7 +114,8 @@ class ScaleInvarianceTest extends TestCase
     {
         // Относительный eps: 10·f vs 10·y c остатком 1e-3 — ОБЯЗАН пройти
         // (abs diff 1e-3 > старого 1e-4, но < 1e-4·max(1,|y|) при |y|≥10).
-        $v = []; $y = [];
+        $v = [];
+        $y = [];
         for ($i = 1; $i <= 20; $i++) {
             $v[] = 10.0 * $i + 1e-3 * ($i % 2 ? 1 : -1);
             $y[] = 10.0 * $i;
@@ -118,8 +124,12 @@ class ScaleInvarianceTest extends TestCase
         $rel = true;
         $abs = true;
         foreach ($v as $i => $x) {
-            if (abs($x - $y[$i]) > $eps) $abs = false;
-            if (abs($x - $y[$i]) > $eps * max(1.0, abs($y[$i]))) $rel = false;
+            if (abs($x - $y[$i]) > $eps) {
+                $abs = false;
+            }
+            if (abs($x - $y[$i]) > $eps * max(1.0, abs($y[$i]))) {
+                $rel = false;
+            }
         }
         $this->assertFalse($abs, 'precondition: abs-eps rejects this exact law');
         $this->assertTrue($rel, 'relative eps must accept the rescaled exact law');

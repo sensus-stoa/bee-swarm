@@ -6,7 +6,6 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Forager\SemanticFactInserter;
 use BeeSwarm\Forager\StreamingAccumulator;
-use BeeSwarm\Infra\Database;
 
 /**
  * Story E1-FIX Phase 4: Forager Narrow Extraction
@@ -61,7 +60,9 @@ class ForagerNarrowExtractionTest extends TestCase
         }
         file_put_contents("{$dir}/metrics.csv", $csv);
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         // Очистка
         array_map('unlink', glob("{$dir}/*"));
@@ -113,7 +114,9 @@ class ForagerNarrowExtractionTest extends TestCase
         $csv = "1,10\n2,20\n3,30\n4,40\n5,50\n6,60\n7,70\n8,80\n9,90\n10,100\n";
         file_put_contents("{$dir}/narrow.csv", $csv);
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);

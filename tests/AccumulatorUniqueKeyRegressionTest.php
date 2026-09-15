@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\AtomRegistry;
-use BeeSwarm\Forager\StreamingAccumulator;
 use BeeSwarm\Forager\SemanticFactInserter;
+use BeeSwarm\Forager\StreamingAccumulator;
 
 /**
  * V0.8.5 Regression: PRIMARY KEY(pattern, row_json) коллапсил
@@ -35,11 +35,13 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
         mkdir($tmpDir);
         for ($i = 0; $i < 15; $i++) {
             $path = $tmpDir . "/file_{$i}.md";
-            file_put_contents($path, "testword testword testword testword testword");
+            file_put_contents($path, 'testword testword testword testword testword');
             $tmpFiles[] = $path;
         }
 
-        $tasks = $acc->scan([$tmpDir => 1]);
+        $tasks = $acc->scan([
+            $tmpDir => 1,
+        ]);
 
         // Должна быть хотя бы одна foraged_txt_* задача с ≥10 строками
         $txtTasks = array_filter($tasks, fn ($t) => str_starts_with($t['name'] ?? '', 'foraged_txt_'));
@@ -52,8 +54,11 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
 
         $this->assertNotEmpty($txtTasks, '15 files with identical text atom values must produce foraged_txt_ task');
         $task = reset($txtTasks);
-        $this->assertGreaterThanOrEqual(10, count($task['data']),
-            'GROUP BY must count files, not unique values. Got ' . count($task['data']) . ' rows');
+        $this->assertGreaterThanOrEqual(
+            10,
+            count($task['data']),
+            'GROUP BY must count files, not unique values. Got ' . count($task['data']) . ' rows'
+        );
     }
 
     /**
@@ -70,15 +75,17 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
         $expected = [];
         for ($i = 0; $i < 12; $i++) {
             $count = $i + 1;
-            $content = str_repeat("item ", $count);
+            $content = str_repeat('item ', $count);
             $path = $tmpDir . "/file_{$i}.md";
             file_put_contents($path, $content);
             $expected[] = (float) $count;
         }
 
-        $tasks = $acc->scan([$tmpDir => 1]);
+        $tasks = $acc->scan([
+            $tmpDir => 1,
+        ]);
 
-        foreach ($tmpDir ? glob("$tmpDir/*") : [] as $f) {
+        foreach ($tmpDir ? glob("{$tmpDir}/*") : [] as $f) {
             @unlink($f);
         }
         @rmdir($tmpDir);
@@ -101,12 +108,14 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
         $tmpDir = sys_get_temp_dir() . '/bee_test_' . uniqid();
         mkdir($tmpDir);
         for ($i = 0; $i < 5; $i++) {
-            file_put_contents($tmpDir . "/file_{$i}.md", "rareword");
+            file_put_contents($tmpDir . "/file_{$i}.md", 'rareword');
         }
 
-        $tasks = $acc->scan([$tmpDir => 1]);
+        $tasks = $acc->scan([
+            $tmpDir => 1,
+        ]);
 
-        foreach ($tmpDir ? glob("$tmpDir/*") : [] as $f) {
+        foreach ($tmpDir ? glob("{$tmpDir}/*") : [] as $f) {
             @unlink($f);
         }
         @rmdir($tmpDir);
@@ -129,12 +138,14 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
         mkdir($tmpDir);
         // 12 файлов с GI: от 1.0 до 12.0
         for ($i = 0; $i < 12; $i++) {
-            file_put_contents($tmpDir . "/file_{$i}.md", "GI: " . ($i + 1.0));
+            file_put_contents($tmpDir . "/file_{$i}.md", 'GI: ' . ($i + 1.0));
         }
 
-        $tasks = $acc->scan([$tmpDir => 1]);
+        $tasks = $acc->scan([
+            $tmpDir => 1,
+        ]);
 
-        foreach ($tmpDir ? glob("$tmpDir/*") : [] as $f) {
+        foreach ($tmpDir ? glob("{$tmpDir}/*") : [] as $f) {
             @unlink($f);
         }
         @rmdir($tmpDir);
@@ -143,7 +154,10 @@ class AccumulatorUniqueKeyRegressionTest extends TestCase
         $this->assertNotEmpty($txtTasks);
         $task = reset($txtTasks);
         // 12 разных значений из 12 файлов
-        $this->assertGreaterThanOrEqual(10, count($task['data']),
-            '12 numeric values across 12 files must be preserved');
+        $this->assertGreaterThanOrEqual(
+            10,
+            count($task['data']),
+            '12 numeric values across 12 files must be preserved'
+        );
     }
 }

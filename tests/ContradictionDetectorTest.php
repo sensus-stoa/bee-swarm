@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Grammar;
-use BeeSwarm\Core\Search;
 use BeeSwarm\Hive\ContradictionDetector;
 use PHPUnit\Framework\TestCase;
 
@@ -21,9 +19,12 @@ use PHPUnit\Framework\TestCase;
 final class ContradictionDetectorTest extends TestCase
 {
     private const EPS_EXACT = 0.01;
+
     private const DELTA_DIFF = 0.05;
 
-    /** @var array<int,array<int,float>> synthetic task rows: [x0, x1, y] (числовые индексы — контракт ExpressionEvaluator) */
+    /**
+     * @var array<int,array<int,float>> synthetic task rows: [x0, x1, y] (числовые индексы — контракт ExpressionEvaluator)
+     */
     private array $task = [];
 
     protected function setUp(): void
@@ -125,9 +126,14 @@ final class ContradictionDetectorTest extends TestCase
         }
     }
 
-    /** @return array{formula: string, cv: float} */
+    /**
+     * @return array{formula: string, cv: float}
+     */
     private function candidate(string $formula, float $cv): array
     {
-        return ['formula' => $formula, 'cv' => $cv];
+        return [
+            'formula' => $formula,
+            'cv' => $cv,
+        ];
     }
 }

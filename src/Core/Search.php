@@ -6,7 +6,9 @@ namespace BeeSwarm\Core;
 
 class Search
 {
-    /** PARSIMONY: штраф за символ формулы (C) калибруемый, из gplearn */
+    /**
+     * PARSIMONY: штраф за символ формулы (C) калибруемый, из gplearn
+     */
     private const PARSIMONY_LAMBDA = 5e-5;
 
     public static function cv(array $vec, array $y, float $shift = 0.0): float
@@ -50,7 +52,9 @@ class Search
         return $cvShift;
     }
 
-    /** Один ratio-канал без min-логики (внутренний). */
+    /**
+     * Один ratio-канал без min-логики (внутренний).
+     */
     private static function cvSingle(array $vec, array $y, float $shift): float
     {
         $n = count($vec);
@@ -72,6 +76,7 @@ class Search
     /** §3.3 порог NOISE (С): «CV > 0.5 для всех испробованных» — прямо
      *  в тексте критерия само-модели незнания. */
     private const NOISE_CV_FLOOR = 0.5;
+
     /** §1.2 tMin base = 10 — Hive-маршрутизация вычисляет
      *  max(10, nFeat×5) и передаёт в find() (pre-filter на уровне
      *  маршрутизации, §1.2). */
@@ -182,17 +187,26 @@ class Search
             if (microtime(true) > $deadline) {
                 return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
             }
-            if (!isset($rawFeatNames[$fname])) continue; // only raw features
+            if (! isset($rawFeatNames[$fname])) {
+                continue;
+            } // only raw features
             $col = $feats[$fname];
             // Skip non-numeric columns (text data, labels, etc.)
             $allNumeric = true;
             foreach ($col as $v) {
-                if (!is_float($v) && !is_int($v)) { $allNumeric = false; break; }
+                if (! is_float($v) && ! is_int($v)) {
+                    $allNumeric = false;
+                    break;
+                }
             }
-            if (!$allNumeric) continue;
+            if (! $allNumeric) {
+                continue;
+            }
             foreach ($reduceAssoc as $rop) {
                 $reduced = $grammar->reduce($rop, $col);
-                if ($reduced === null || abs($reduced) < 1e-10) continue;
+                if ($reduced === null || abs($reduced) < 1e-10) {
+                    continue;
+                }
 
                 // Reduce constant: enters L1/L2 pool
                 $cname = "R{$rop}{$fname}";
@@ -202,7 +216,7 @@ class Search
                 $pnameDiv = "({$fname}/R{$rop}{$fname})";
                 $vecDiv = [];
                 for ($i = 0; $i < $n; $i++) {
-                    $r = $grammar->apply((float)$col[$i], $reduced, '/');
+                    $r = $grammar->apply((float) $col[$i], $reduced, '/');
                     $vecDiv[] = $r ?? 0.0;
                 }
                 $feats[$pnameDiv] = $vecDiv;
@@ -213,7 +227,7 @@ class Search
                     $pnameSub = "({$fname}-R{$rop}{$fname})";
                     $vecSub = [];
                     for ($i = 0; $i < $n; $i++) {
-                        $r = $grammar->apply((float)$col[$i], $reduced, '−');
+                        $r = $grammar->apply((float) $col[$i], $reduced, '−');
                         $vecSub[] = $r ?? 0.0;
                     }
                     $feats[$pnameSub] = $vecSub;
@@ -231,7 +245,7 @@ class Search
                 $pnameNorm = "(Rnorm{$fname})";
                 $vecNorm = [];
                 for ($i = 0; $i < $n; $i++) {
-                    $num = $grammar->apply((float)$col[$i], $rmin, '−') ?? 0.0;
+                    $num = $grammar->apply((float) $col[$i], $rmin, '−') ?? 0.0;
                     $den = $range;
                     $vecNorm[] = $den != 0 ? ($num / $den) : 0.0;
                 }
@@ -304,8 +318,7 @@ class Search
         // (x0/Rsumx0)+x1 (SearchTest::testFindReduceWithMultipleColumns!);
         // (б) исключение констант убило y=x−2 (AffineLawsTest). Итог:
         // const-фильтр только на ОБА операнда.
-        $isConstKey = fn (string $k): bool =>
-            str_starts_with($k, 'R') || str_starts_with($k, 'K');
+        $isConstKey = fn (string $k): bool => str_starts_with($k, 'R') || str_starts_with($k, 'K');
         for ($a = 0; $a < count($featKeys); $a++) {
             if ($isConstKey($featKeys[$a])) {
                 continue; // константа будет ПРАВЫМ операндом ниже
@@ -329,7 +342,8 @@ class Search
                     $vec = [];
                     for ($i = 0; $i < $n; $i++) {
                         $r = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(
-                            $bbDef, [[$va[$i], $vb[$i]]]
+                            $bbDef,
+                            [[$va[$i], $vb[$i]]]
                         );
                         $vec[] = $r[0] ?? 0.0;
                     }
@@ -456,8 +470,13 @@ class Search
                     }
                     $m = array_sum($r) / $quickN;
                     $v = 0.0;
-                    foreach ($r as $rr) { $v += ($rr - $m) ** 2; }
-                    $scored[] = ['n' => $pname, 'cv' => sqrt($v / $quickN) / (abs($m) + 1e-8)];
+                    foreach ($r as $rr) {
+                        $v += ($rr - $m) ** 2;
+                    }
+                    $scored[] = [
+                        'n' => $pname,
+                        'cv' => sqrt($v / $quickN) / (abs($m) + 1e-8),
+                    ];
                 }
                 // COMPRESSION-CRITERION (09.08): tie по CV → КОРОЧЕ выше
                 // (B-форма (x0B4x1) короче add-формы → в top-K beam,
@@ -477,8 +496,10 @@ class Search
             }
             // B-AS-ARGUMENT (09.08): bornBinary прочитан ДО L1 (см. выше) —
             // здесь только применение к парам pool-элементов
-                    if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L2PAIRS', microtime(true)]; }
-        $bornBinary = $bornBinary ?? [];
+            if (getenv('SEARCH_PROFILE') === '1') {
+                self::$__prof[] = ['L2PAIRS', microtime(true)];
+            }
+            $bornBinary ??= [];
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
@@ -498,7 +519,8 @@ class Search
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
                             $r = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(
-                                $bbDef, [[$va[$i], $vb[$i]]]
+                                $bbDef,
+                                [[$va[$i], $vb[$i]]]
                             );
                             $vec[] = $r[0] ?? 0.0;
                         }
@@ -521,12 +543,17 @@ class Search
             foreach ($l2Keys as $pname) {
                 $pv = $exprs[$pname];
                 $cvQ = self::cv(array_slice($pv, 0, min($n, 30)), array_slice($y, 0, min($n, 30)), 0.0);
-                $scored2[] = ['n' => $pname, 'cv' => $cvQ,
-                    'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1];
+                $scored2[] = [
+                    'n' => $pname,
+                    'cv' => $cvQ,
+                    'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1,
+                ];
             }
             usort($scored2, function (array $a, array $b): int {
                 // B-формы всегда впереди (chunk-капитал), внутри группы — по CV
-                if ($a['b'] !== $b['b']) return $a['b'] ? -1 : 1;
+                if ($a['b'] !== $b['b']) {
+                    return $a['b'] ? -1 : 1;
+                }
                 return $a['cv'] <=> $b['cv'];
             });
             $kept = array_slice($scored2, 0, $l2BeamK);
@@ -547,7 +574,9 @@ class Search
                 . ' mem=' . round(memory_get_usage(true) / 1048576) . 'MB'
                 . ' featKeys=' . count($featKeys) . PHP_EOL);
         }
-                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L2L1', microtime(true)]; }
+        if (getenv('SEARCH_PROFILE') === '1') {
+            self::$__prof[] = ['L2L1', microtime(true)];
+        }
         // SEARCH-L2L1 (09.08): L3 = L1 op Фича — композиции второго уровня.
         // (x0+x1) — L1-уровень; без L1×фича (x0+x1)×x2 невыразим →
         // transfer-тест невалиден (ЭКСП-022d). top-30 L1 × фичи × ops.
@@ -581,11 +610,16 @@ class Search
                         for ($i = 0; $i < $n; $i++) {
                             $la = $exprs[$l1name][$i] ?? null;
                             $lb = $exprs[$fname][$i] ?? null;
-                            if ($la === null || $lb === null) { $valid = false; break; }
+                            if ($la === null || $lb === null) {
+                                $valid = false;
+                                break;
+                            }
                             $r = $grammar->apply($la, $lb, $op);
                             $vec[] = $r ?? 0.0;
                         }
-                        if (! $valid) continue;
+                        if (! $valid) {
+                            continue;
+                        }
                         $name = "({$l1name}$op{$fname})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
@@ -594,7 +628,9 @@ class Search
             }
         }
 
-                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['L3', microtime(true)]; }
+        if (getenv('SEARCH_PROFILE') === '1') {
+            self::$__prof[] = ['L3', microtime(true)];
+        }
         // L3: L2 / constant (для MIN = (...)/2)
         if (microtime(true) > $deadline) {
             return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
@@ -609,7 +645,9 @@ class Search
             // EXP-035 (27.08): L2 ÷ ФИЧА — heat-законы κ(T2−T1)A/d требуют
             // деления на ПЕРЕМЕННУЮ (d), не константу. Old: только K*.
             $yMaxAbs = 1.0;
-            foreach ($y as $yv) { $yMaxAbs = max($yMaxAbs, abs((float)$yv)); }
+            foreach ($y as $yv) {
+                $yMaxAbs = max($yMaxAbs, abs((float) $yv));
+            }
             // ОГРАНИЧЕНИЕ: только '/' (выразимость heat) — взрыв контролируем
             // делителем кол-ва L2.
             $constKeys = array_filter($featKeys, fn ($k) => str_starts_with($k, 'K'));
@@ -624,11 +662,16 @@ class Search
                 foreach ($l2Keys as $pname) {
                     $pv = $exprs[$pname];
                     $cvQ = self::cv(array_slice($pv, 0, min($n, 30)), array_slice($y, 0, min($n, 30)), 0.0);
-                    $scored3[] = ['n' => $pname, 'cv' => $cvQ,
-                        'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1];
+                    $scored3[] = [
+                        'n' => $pname,
+                        'cv' => $cvQ,
+                        'b' => preg_match('/B[A-Za-z0-9]+/', $pname) === 1,
+                    ];
                 }
                 usort($scored3, function (array $a, array $b): int {
-                    if ($a['b'] !== $b['b']) return $a['b'] ? -1 : 1;
+                    if ($a['b'] !== $b['b']) {
+                        return $a['b'] ? -1 : 1;
+                    }
                     return $a['cv'] <=> $b['cv'];
                 });
                 $kept3 = array_slice($scored3, 0, $l3BeamK);
@@ -642,8 +685,10 @@ class Search
                 $l2Keys = array_map(fn (array $x): string => $x['n'], $kept3);
             }
 
-                    if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['CHUNK', microtime(true)]; }
-        // CHUNK-DIRECT (27.08, принцип «ресурс→знание»): heat-цепочка
+            if (getenv('SEARCH_PROFILE') === '1') {
+                self::$__prof[] = ['CHUNK', microtime(true)];
+            }
+            // CHUNK-DIRECT (27.08, принцип «ресурс→знание»): heat-цепочка
             // κ(chunk×A)/d строится ПРЯМО из chunk-форм (bKeys), минуя
             // cv-beam: cv у частичного chunk плох ДО полной цепочки —
             // beam-отбор убивал правильную мысль (урок 3b: TARGET cv=2.2
@@ -666,7 +711,9 @@ class Search
             $targetChain = '((((x1BPf29ex2)×x0)×x3)/x4)';
             $chainCreated = false;
             foreach ($chunkKeys as $ck) {
-                if (! isset($exprs[$ck]) || $chunkChains > $chunkBudget) break;
+                if (! isset($exprs[$ck]) || $chunkChains > $chunkBudget) {
+                    break;
+                }
                 if (getenv('SEARCH_DEBUG') === '1' && $ck === '(x1BPf29ex2)') {
                     fwrite(STDERR, '[SD-CHUNK] ck vec[0..2]: ' . json_encode(array_slice($exprs[$ck], 0, 3)) . PHP_EOL);
                 }
@@ -675,15 +722,22 @@ class Search
                     $mulOk = true;
                     for ($i = 0; $i < $n; $i++) {
                         $r = $exprs[$ck][$i] * $feats[$fk1][$i];
-                        if (! is_finite($r)) { $mulOk = false; break; }
+                        if (! is_finite($r)) {
+                            $mulOk = false;
+                            break;
+                        }
                         $mulVec[] = $r;
                     }
-                    if (! $mulOk) continue;
+                    if (! $mulOk) {
+                        continue;
+                    }
                     $mulName = "({$ck}×{$fk1})";
                     $exprs[$mulName] = $mulVec;
                     $l2Keys[] = $mulName;
                     foreach ($rawAll as $fk2) {
-                        if ($fk2 === $fk1 || str_contains($ck, $fk2)) continue;
+                        if ($fk2 === $fk1 || str_contains($ck, $fk2)) {
+                            continue;
+                        }
                         // Уровень A: (chunk×fk1)/fk2
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
@@ -705,10 +759,15 @@ class Search
                             $mul2Ok = true;
                             for ($i = 0; $i < $n; $i++) {
                                 $r = $mulVec[$i] * $feats[$fk2][$i];
-                                if (! is_finite($r)) { $mul2Ok = false; break; }
+                                if (! is_finite($r)) {
+                                    $mul2Ok = false;
+                                    break;
+                                }
                                 $mul2[] = $r;
                             }
-                            if (! $mul2Ok) continue;
+                            if (! $mul2Ok) {
+                                continue;
+                            }
                             $mul2Name = "({$mulName}×{$fk2})";
                             self::$mul2Cache[$cacheKey] = $mul2;
                             self::$mul2Computations++;
@@ -724,38 +783,40 @@ class Search
                             self::$mul2Screened++;
                             continue;
                         }
-                        {
-                            $chunkChains++;
-                            $exprs[$mul2Name] = self::$mul2Cache[$cacheKey];
-                            if (str_contains($mul2Name, 'BPf29ex2') && str_contains($mul2Name, '×x0')) {
-                                fwrite(STDERR, '[SD-CHUNK] mul2 built: ' . $mul2Name . PHP_EOL);
-                            }
-                            if (getenv('SEARCH_DEBUG') === '1' && str_contains($mul2Name, 'BPf29ex2')) {
-                                static $dbgPrinted = false;
-                                if (! $dbgPrinted) {
-                                    fwrite(STDERR, '[SD-CHUNK] sample mul2: ' . $mul2Name . PHP_EOL);
-                                    $dbgPrinted = true;
-                                }
-                            }
-                            foreach ($rawAll as $fk4) {
-                                // EXP-036: fk3-цикл удалён (mul2 не зависит от
-                                // fk3 — пересчитывался ×|fk3| впустую).
-                                // fk4(делитель) ≠ fk2(множитель): иначе
-                                // ((chunk×fk1)×fk2)/fk2 вырождается в chunk×fk1
-                                if ($fk4 === $fk2 || str_contains($ck, $fk4) || $fk4 === $fk1) continue;
-                                $vec2 = [];
-                                for ($i = 0; $i < $n; $i++) {
-                                    $denom = $feats[$fk4][$i];
-                                    $vec2[] = (abs($denom) < 1e-12) ? null : ($mul2[$i] / $denom);
-                                }
-                                $vec2Name = "({$mul2Name}/{$fk4})";
-                                $exprs[$vec2Name] = $vec2;
-                                if ($vec2Name === $targetChain) {
-                                    $chainCreated = true;
-                                    fwrite(STDERR, '[SD-CHUNK] TARGET CHAIN BUILT' . PHP_EOL);
-                                }
+
+                        $chunkChains++;
+                        $exprs[$mul2Name] = self::$mul2Cache[$cacheKey];
+                        if (str_contains($mul2Name, 'BPf29ex2') && str_contains($mul2Name, '×x0')) {
+                            fwrite(STDERR, '[SD-CHUNK] mul2 built: ' . $mul2Name . PHP_EOL);
+                        }
+                        if (getenv('SEARCH_DEBUG') === '1' && str_contains($mul2Name, 'BPf29ex2')) {
+                            static $dbgPrinted = false;
+                            if (! $dbgPrinted) {
+                                fwrite(STDERR, '[SD-CHUNK] sample mul2: ' . $mul2Name . PHP_EOL);
+                                $dbgPrinted = true;
                             }
                         }
+                        foreach ($rawAll as $fk4) {
+                            // EXP-036: fk3-цикл удалён (mul2 не зависит от
+                            // fk3 — пересчитывался ×|fk3| впустую).
+                            // fk4(делитель) ≠ fk2(множитель): иначе
+                            // ((chunk×fk1)×fk2)/fk2 вырождается в chunk×fk1
+                            if ($fk4 === $fk2 || str_contains($ck, $fk4) || $fk4 === $fk1) {
+                                continue;
+                            }
+                            $vec2 = [];
+                            for ($i = 0; $i < $n; $i++) {
+                                $denom = $feats[$fk4][$i];
+                                $vec2[] = (abs($denom) < 1e-12) ? null : ($mul2[$i] / $denom);
+                            }
+                            $vec2Name = "({$mul2Name}/{$fk4})";
+                            $exprs[$vec2Name] = $vec2;
+                            if ($vec2Name === $targetChain) {
+                                $chainCreated = true;
+                                fwrite(STDERR, '[SD-CHUNK] TARGET CHAIN BUILT' . PHP_EOL);
+                            }
+                        }
+
                     }
                 }
             }
@@ -823,7 +884,9 @@ class Search
                         }
                     }
                     foreach ($featKeys as $fk) {
-                        if ($fk === $l2name) continue;
+                        if ($fk === $l2name) {
+                            continue;
+                        }
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
                             $denom = $feats[$fk][$i];
@@ -845,14 +908,21 @@ class Search
                             $mulOk = true;
                             for ($i = 0; $i < $n; $i++) {
                                 $r = $exprs[$l2name][$i] * $feats[$fk1][$i];
-                                if (! is_finite($r)) { $mulOk = false; break; }
+                                if (! is_finite($r)) {
+                                    $mulOk = false;
+                                    break;
+                                }
                                 $mulVec[] = $r;
                             }
-                            if (! $mulOk) continue;
+                            if (! $mulOk) {
+                                continue;
+                            }
                             $mulName = "({$l2name}×{$fk1})";
                             $exprs[$mulName] = $mulVec;
                             foreach ($rawKeys as $fk2) {
-                                if ($fk2 === $fk1 || str_contains($l2name, $fk2)) continue;
+                                if ($fk2 === $fk1 || str_contains($l2name, $fk2)) {
+                                    continue;
+                                }
                                 $vec = [];
                                 for ($i = 0; $i < $n; $i++) {
                                     $denom = $feats[$fk2][$i];
@@ -899,7 +969,9 @@ class Search
             }
         }
 
-                if (getenv('SEARCH_PROFILE') === '1') { self::$__prof[] = ['CV', microtime(true)]; }
+        if (getenv('SEARCH_PROFILE') === '1') {
+            self::$__prof[] = ['CV', microtime(true)];
+        }
         // Evaluate FEATURES first (fast path)
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact (10.08: было после — undefined в features-цикле!)
         foreach ($feats as $name => $vec) {
@@ -928,7 +1000,7 @@ class Search
                     || ($nameIsBw && ! $bestIsBw)
                     || ($nameIsBw === $bestIsBw && strlen($name) < strlen($bestExact))) {
                     $bestExact = $name;
-                }//exact
+                }// exact
             }
         }
         // AFFINE-LAWS (ЭКСП-012): сдвиг для знакопеременных целей
@@ -974,7 +1046,7 @@ class Search
                     || ($nameIsBw && ! $bestIsBw)
                     || ($nameIsBw === $bestIsBw && strlen($name) < strlen($bestExact))) {
                     $bestExact = $name;
-                }//exact
+                }// exact
             }
 
             $std = self::stddev($vec);
@@ -986,7 +1058,10 @@ class Search
                 $bestCvSeen = $cv;
             }
             if ($cv < $cvTrainMax) {
-                $plausible[] = ['cv' => $cv, 'name' => $name];
+                $plausible[] = [
+                    'cv' => $cv,
+                    'name' => $name,
+                ];
             }
         }
 
@@ -1003,14 +1078,20 @@ class Search
             fwrite(STDERR, '[SD] exprs=' . count($exprs) . ' plausible=' . count($plausible) . PHP_EOL);
 
             $top = array_slice($plausible, 0, 3);
-            foreach ($top as $t) fwrite(STDERR, '[SD] top: ' . $t['name'] . ' cv=' . number_format($t['cv'], 4) . PHP_EOL);
+            foreach ($top as $t) {
+                fwrite(STDERR, '[SD] top: ' . $t['name'] . ' cv=' . number_format($t['cv'], 4) . PHP_EOL);
+            }
             // L3b-имя цели
             $l3b = '((((x0BPf474x1)×x2)×x3)/x4)';
             fwrite(STDERR, '[SD] L3b exists: ' . (isset($exprs[$l3b]) ? 'YES' : 'NO') . PHP_EOL);
             $hits = [];
             foreach (array_keys($exprs) as $k) {
-                if (str_contains($k, 'BPf474') && str_contains($k, '×x2')) $hits[] = $k;
-                if (count($hits) >= 5) break;
+                if (str_contains($k, 'BPf474') && str_contains($k, '×x2')) {
+                    $hits[] = $k;
+                }
+                if (count($hits) >= 5) {
+                    break;
+                }
             }
             fwrite(STDERR, '[SD] BPf474×x2 hits: ' . json_encode($hits) . PHP_EOL);
             $bvec = '(x0BPf474x1)';
@@ -1022,7 +1103,11 @@ class Search
             }
             // Сколько l2Keys с ×?
             $mulCount = 0;
-            foreach ($l2Keys as $k) if (str_contains($k, '×')) $mulCount++;
+            foreach ($l2Keys as $k) {
+                if (str_contains($k, '×')) {
+                    $mulCount++;
+                }
+            }
             fwrite(STDERR, '[SD] l2Keys total=' . count($l2Keys) . ' with×=' . $mulCount
                 . ' exprs=' . count($exprs)
                 . ' beamK=' . (int) (getenv('L2_BEAM_K') ?: '40') . PHP_EOL);
@@ -1036,7 +1121,7 @@ class Search
                 if (isset($exprs[$bvec])) {
                     fwrite(STDERR, '[SD] B-vec[0..4]: ' . json_encode(array_slice($exprs[$bvec], 0, 5)) . PHP_EOL);
                 }
-                $t2 = '(((' . 'x0BPf474x1)×x2)/x3)';
+                $t2 = '(((x0BPf474x1)×x2)/x3)';
                 if (isset($exprs[$t2])) {
                     $cvT2 = self::cv($exprs[$t2], $y, $affineShift);
                     fwrite(STDERR, '[SD] TARGET-L3 ' . $t2 . ' cv=' . number_format($cvT2, 5) . PHP_EOL);
@@ -1138,8 +1223,15 @@ class Search
                     if (is_finite($t) && $t < $cvTrainMax) {
                         if (! isset($nullCvCache[$cand['name']])) {
                             $nullCvCache[$cand['name']] = \BeeSwarm\Core\NonConstancyFilter::nullMedianCv(
-                                $cand['name'], $X_test, $y_test, 1.0, $n,
-                                $colLabels, $X_train_cv, array_keys($bornBinary), $bornBinary
+                                $cand['name'],
+                                $X_test,
+                                $y_test,
+                                1.0,
+                                $n,
+                                $colLabels,
+                                $X_train_cv,
+                                array_keys($bornBinary),
+                                $bornBinary
                             );
                         }
                         // Относительный критерий: сигнал на 20% лучше шума
@@ -1194,7 +1286,7 @@ class Search
             $cv_train = 9.99;
             $cv_test = 9.99;
         }
-        
+
         // ЭКСП-018b: TEST-секция (heldout/выбор) аккумулируется при выходе
         SearchProfiler::add(0.0, 0.0, microtime(true) - $pTest);
 
@@ -1210,7 +1302,6 @@ class Search
         }
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
     }
-
 
     private static function preregisterExact(string $formula): void
     {
@@ -1275,43 +1366,70 @@ class Search
         return self::cv($vec, $y_test, $affineShift);
     }
 
-    /** EXP-035: быстрый Пирсон corr для семантической гварды L2/фича. */
+    /**
+     * EXP-035: быстрый Пирсон corr для семантической гварды L2/фича.
+     */
     private static function quickCorr(array $a, array $b): float
     {
         $n = min(count($a), count($b));
-        if ($n < 3) return 0.0;
-        $sum = 0.0; $sa = 0.0; $sb = 0.0;
-        $da2 = 0.0; $db2 = 0.0;
+        if ($n < 3) {
+            return 0.0;
+        }
+        $sum = 0.0;
+        $sa = 0.0;
+        $sb = 0.0;
+        $da2 = 0.0;
+        $db2 = 0.0;
         for ($i = 0; $i < $n; $i++) {
-            if ($a[$i] === null || $b[$i] === null) continue;
+            if ($a[$i] === null || $b[$i] === null) {
+                continue;
+            }
             $sum += $a[$i] * $b[$i];
-            $sa += $a[$i]; $sb += $b[$i];
+            $sa += $a[$i];
+            $sb += $b[$i];
         }
-        $ma = $sa / $n; $mb = $sb / $n;
+        $ma = $sa / $n;
+        $mb = $sb / $n;
         for ($i = 0; $i < $n; $i++) {
-            if ($a[$i] === null || $b[$i] === null) continue;
-            $da = $a[$i] - $ma; $db = $b[$i] - $mb;
-            $da2 += $da * $da; $db2 += $db * $db;
+            if ($a[$i] === null || $b[$i] === null) {
+                continue;
+            }
+            $da = $a[$i] - $ma;
+            $db = $b[$i] - $mb;
+            $da2 += $da * $da;
+            $db2 += $db * $db;
         }
-        if ($da2 < 1e-12 || $db2 < 1e-12) return 0.0;
+        if ($da2 < 1e-12 || $db2 < 1e-12) {
+            return 0.0;
+        }
         // corr = (E[ab]-E[a]E[b]) / (sd_a*sd_b) — через суммы:
         $cov = $sum / $n - $ma * $mb;
         return $cov / sqrt($da2 / $n * $db2 / $n);
     }
 
     /** EXP-036: профиль этапов find. */
-/** @var list<array{0: string, 1: float}> */
+    /**
+     * @var list<array{0: string, 1: float}>
+     */
     private static array $__prof = [];
 
-    /** EXP-036: порог cv-скрининга mul2 (ревью: named const, не magic). */
+    /**
+     * EXP-036: порог cv-скрининга mul2 (ревью: named const, не magic).
+     */
     public const MUL2_CV_SCREEN_MAX = 100.0;
 
-    /** EXP-036: число скипнутых скринингом (регрессия покрытия видна). */
+    /**
+     * EXP-036: число скипнутых скринингом (регрессия покрытия видна).
+     */
     private static int $mul2Screened = 0;
 
-    /** EXP-036 фаза 1: телеметрия кэша mul2 (ChunkCacheTest). */
+    /**
+     * EXP-036 фаза 1: телеметрия кэша mul2 (ChunkCacheTest).
+     */
     private static int $mul2Computations = 0;
+
     private static array $mul2Cache = [];
+
     private static array $mul2Unique = [];
 
     public static function resetMul2Counter(): void

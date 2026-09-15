@@ -53,7 +53,9 @@ class BeeWorkerTest extends TestCase
         );
     }
 
-    /** handleTask изменяет энергию (chargeSearch −0.1, возможно rewardDiscovery +2.0) */
+    /**
+     * handleTask изменяет энергию (chargeSearch −0.1, возможно rewardDiscovery +2.0)
+     */
     public function testHandleTaskChargesEnergy(): void
     {
         $bee = new Bee(['add', 'mul'], self::E0);

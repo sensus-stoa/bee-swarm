@@ -16,7 +16,7 @@ class OverlapTrackerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        \BeeSwarm\Infra\Database::get()->exec("DELETE FROM overlap_log");
+        \BeeSwarm\Infra\Database::get()->exec('DELETE FROM overlap_log');
     }
 
     /**
@@ -30,7 +30,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_x', 0, 'x0+x1');
 
         $rows = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT COUNT(*) FROM overlap_log")
+            ->query('SELECT COUNT(*) FROM overlap_log')
             ->fetchColumn();
 
         $this->assertSame(0, (int) $rows, 'First assignment must not create overlap');
@@ -48,7 +48,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_x', 1, 'x0+x1');
 
         $rows = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT * FROM overlap_log ORDER BY id")
+            ->query('SELECT * FROM overlap_log ORDER BY id')
             ->fetchAll(\PDO::FETCH_ASSOC);
 
         $this->assertCount(1, $rows, 'Second assignment to different bee must create 1 overlap record');
@@ -70,7 +70,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_y', 2, 'x0−x1');
 
         $row = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->query('SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1')
             ->fetch(\PDO::FETCH_ASSOC);
 
         $this->assertEquals(0, $row['matched'], 'Different answers → matched=0');
@@ -88,7 +88,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_z', 0, 'x0−x1'); // та же пчела, другой ответ
 
         $rows = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT COUNT(*) FROM overlap_log")
+            ->query('SELECT COUNT(*) FROM overlap_log')
             ->fetchColumn();
 
         $this->assertSame(0, (int) $rows, 'Same bee must not create self-overlap');
@@ -106,7 +106,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_w', 1, 'x0+x1');
 
         $row = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->query('SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1')
             ->fetch(\PDO::FETCH_ASSOC);
 
         $this->assertSame('', $row['answer_a'], 'Null answer → empty string');
@@ -127,7 +127,7 @@ class OverlapTrackerTest extends TestCase
         $tracker->recordTaskAttempt('task_c', 0, 'x0+x1');
 
         $row = \BeeSwarm\Infra\Database::get()
-            ->query("SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1")
+            ->query('SELECT * FROM overlap_log ORDER BY id DESC LIMIT 1')
             ->fetch(\PDO::FETCH_ASSOC);
 
         $this->assertSame('0', $row['bee_a'], 'Canonical: min first');

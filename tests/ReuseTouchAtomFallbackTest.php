@@ -23,8 +23,10 @@ class ReuseTouchAtomFallbackTest extends TestCase
         Grammar::staticAdd('B6', 'birth', '(x0addx1)', 'foraged_a');
 
         $hive = new \BeeSwarm\Hive\Hive(
-            new \BeeSwarm\Infra\PlateauDetector(50, 0), null,
-            maxTicks: 0, logFile: tempnam(sys_get_temp_dir(), 'touch3_')
+            new \BeeSwarm\Infra\PlateauDetector(50, 0),
+            null,
+            maxTicks: 0,
+            logFile: tempnam(sys_get_temp_dir(), 'touch3_')
         );
         $ref = new \ReflectionMethod(\BeeSwarm\Hive\Hive::class, 'registerReuseOps');
         $ref->invoke($hive, '((x0+x1)×x2)', 'foraged_b');
@@ -34,8 +36,11 @@ class ReuseTouchAtomFallbackTest extends TestCase
         );
         $stmt->execute(['B6']);
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $this->assertSame(0, (int) $row['reuse_count'],
-            'definition-подстрока больше не регистрирует reuse');
+        $this->assertSame(
+            0,
+            (int) $row['reuse_count'],
+            'definition-подстрока больше не регистрирует reuse'
+        );
         $this->assertSame('[]', (string) $row['reuse_domains']);
     }
 
@@ -46,15 +51,20 @@ class ReuseTouchAtomFallbackTest extends TestCase
         Grammar::staticAdd('B5', 'birth', '(x0subx1)', 'foraged_a');
 
         $hive = new \BeeSwarm\Hive\Hive(
-            new \BeeSwarm\Infra\PlateauDetector(50, 0), null,
-            maxTicks: 0, logFile: tempnam(sys_get_temp_dir(), 'touch3_')
+            new \BeeSwarm\Infra\PlateauDetector(50, 0),
+            null,
+            maxTicks: 0,
+            logFile: tempnam(sys_get_temp_dir(), 'touch3_')
         );
         $ref = new \ReflectionMethod(\BeeSwarm\Hive\Hive::class, 'registerReuseOps');
         $ref->invoke($hive, '((x0B5x1)mulx2)', 'foraged_b');
 
         $stmt = Database::get()->prepare('SELECT reuse_count FROM grammar_ops WHERE name = ?');
         $stmt->execute(['B5']);
-        $this->assertGreaterThanOrEqual(1, (int) $stmt->fetchColumn(),
-            'B-имя в формуле (fallback) регистрирует reuse');
+        $this->assertGreaterThanOrEqual(
+            1,
+            (int) $stmt->fetchColumn(),
+            'B-имя в формуле (fallback) регистрирует reuse'
+        );
     }
 }

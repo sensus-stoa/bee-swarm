@@ -9,14 +9,18 @@ namespace BeeSwarm\Trading;
  */
 class LiveExecutor
 {
-    /** r-атом: среднее последних n значений */
+    /**
+     * r-атом: среднее последних n значений
+     */
     public static function rAtom(array $ret, int $n): float
     {
         $n = max(1, min($n, count($ret)));
         return array_sum(array_slice($ret, -$n, $n)) / $n;
     }
 
-    /** сигнал ветки: все условия AND по r-атомам; неизвестный атом → false */
+    /**
+     * сигнал ветки: все условия AND по r-атомам; неизвестный атом → false
+     */
     public static function branchSignal(array $branch, array $ret): bool
     {
         foreach (($branch['conds'] ?? []) as $c) {
@@ -40,7 +44,9 @@ class LiveExecutor
         return true;
     }
 
-    /** порядок индексов стратегий по max-lev в геноме (DESC) */
+    /**
+     * порядок индексов стратегий по max-lev в геноме (DESC)
+     */
     public static function maxLevOrder(array $portfolio): array
     {
         $maxLev = [];
@@ -56,7 +62,9 @@ class LiveExecutor
         return $order;
     }
 
-    /** округление объёма по volScale, не ниже минимума */
+    /**
+     * округление объёма по volScale, не ниже минимума
+     */
     public static function roundVol(float $vol, int $scale, float $minVol): float
     {
         $r = round($vol, $scale);
@@ -83,7 +91,7 @@ class LiveExecutor
     public static function reconcileState(array $state, array $exchangeAssets, int $now): array
     {
         $closed = [];
-        $state['open'] = $state['open'] ?? [];
+        $state['open'] ??= [];
         foreach ($state['open'] as $key => $pos) {
             $asset = str_contains((string) $key, '_')
                 ? substr((string) $key, strpos((string) $key, '_') + 1)
@@ -107,15 +115,22 @@ class LiveExecutor
             if (! $found) {
                 $sym = str_replace('USDT', '_USDT', $asset);
                 $state['open']['orphan_' . $asset] = [
-                    'symbol' => $sym, 'side' => -1, 'vol' => $vol, 'entry' => 0.0,
-                    'peak' => 0.0, 'trail' => 0.0, 'close_after' => $now + 3 * 86400,
+                    'symbol' => $sym,
+                    'side' => -1,
+                    'vol' => $vol,
+                    'entry' => 0.0,
+                    'peak' => 0.0,
+                    'trail' => 0.0,
+                    'close_after' => $now + 3 * 86400,
                 ];
             }
         }
         return [$state, $closed];
     }
 
-    /** трейлинг-параметры: closeSide (2=шорт-закрытие, 4=лонг-закрытие) + backValue в долях */
+    /**
+     * трейлинг-параметры: closeSide (2=шорт-закрытие, 4=лонг-закрытие) + backValue в долях
+     */
     public static function trailParams(array $branch): ?array
     {
         $trail = (float) ($branch['trail'] ?? 0);

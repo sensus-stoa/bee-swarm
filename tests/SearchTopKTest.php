@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * SEARCH-TOP-K (ЭКСП-009): на зашумлённых данных y=2x+N(0,0.1) Search::find
@@ -39,8 +39,11 @@ class SearchTopKTest extends TestCase
         [$found, $cv, $formula, $cvTest] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
 
         $this->assertTrue($found, 'law must be found on noisy data');
-        $this->assertLessThan(0.10, $cvTest,
-            "held-out CV must pass (law 2x exists, CV=0.004); got {$cvTest} formula={$formula}");
+        $this->assertLessThan(
+            0.10,
+            $cvTest,
+            "held-out CV must pass (law 2x exists, CV=0.004); got {$cvTest} formula={$formula}"
+        );
         $this->assertNotSame(9.99, $cvTest, 'R-fit must not be the only candidate');
     }
 
@@ -54,8 +57,12 @@ class SearchTopKTest extends TestCase
         [, $cv1] = Search::find($X1, $y1, $g, 2, null, 0.0, 0.15);
         [, $cv1000] = Search::find($X1, $y1000, $g, 2, null, 0.0, 0.15);
 
-        $this->assertEqualsWithDelta($cv1, $cv1000, 0.0001,
-            'CV must be scale-invariant (unlike gplearn MSE, ×10 degradation)');
+        $this->assertEqualsWithDelta(
+            $cv1,
+            $cv1000,
+            0.0001,
+            'CV must be scale-invariant (unlike gplearn MSE, ×10 degradation)'
+        );
     }
 
     public function testNoLawOnHeavyNoise(): void

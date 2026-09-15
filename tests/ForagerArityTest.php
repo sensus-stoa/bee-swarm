@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager\StreamingAccumulator;
 use BeeSwarm\Forager\SemanticFactInserter;
+use BeeSwarm\Forager\StreamingAccumulator;
 
 /**
  * FORAGER-ARITY (09.08): параметрическая размерность задач — k = 1..MAX_ARITY
@@ -43,7 +43,9 @@ class ForagerArityTest extends TestCase
                 },
             ];
             $acc = new StreamingAccumulator($strategies, new SemanticFactInserter());
-            $tasks = $acc->scan([$dir => 1]);
+            $tasks = $acc->scan([
+                $dir => 1,
+            ]);
         } finally {
             putenv('MAX_ARITY');
         }
@@ -91,7 +93,9 @@ class ForagerArityTest extends TestCase
                 },
             ];
             $acc = new StreamingAccumulator($strategies, new SemanticFactInserter());
-            $tasks = $acc->scan([$dir => 1]);
+            $tasks = $acc->scan([
+                $dir => 1,
+            ]);
         } finally {
             putenv('MAX_ARITY');
         }
@@ -99,8 +103,11 @@ class ForagerArityTest extends TestCase
         foreach ($tasks as $t) {
             $data = $t['data'] ?? [];
             $nFeat = count($data[0] ?? []) - 1;
-            $this->assertLessThanOrEqual(2, $nFeat,
-                'MAX_ARITY=2 must not create 3-feature tasks');
+            $this->assertLessThanOrEqual(
+                2,
+                $nFeat,
+                'MAX_ARITY=2 must not create 3-feature tasks'
+            );
         }
         $this->assertNotEmpty($tasks, 'tasks must exist');
     }

@@ -16,58 +16,96 @@ namespace BeeSwarm\Hive;
  */
 class Bee
 {
-    /** Default tick cost (protocol baseline). */
+    /**
+     * Default tick cost (protocol baseline).
+     */
     public const DEFAULT_TICK_COST = 0.01;
 
-    /** Default search attempt cost (protocol baseline). */
+    /**
+     * Default search attempt cost (protocol baseline).
+     */
     public const DEFAULT_SEARCH_COST = 0.1;
 
-    /** Default discovery reward (protocol baseline). */
+    /**
+     * Default discovery reward (protocol baseline).
+     */
     public const DEFAULT_DISCOVERY_REWARD = 2.0;
 
-    /** Minimum spawn energy threshold. */
+    /**
+     * Minimum spawn energy threshold.
+     */
     public const SPAWN_THRESHOLD = 15.0;
 
-    /** Energy given to child at spawn. */
+    /**
+     * Energy given to child at spawn.
+     */
     public const SPAWN_CHILD_ENERGY = 7.0;
 
-    /** Energy deducted from parent at spawn. */
+    /**
+     * Energy deducted from parent at spawn.
+     */
     public const SPAWN_PARENT_COST = 7.0;
 
-    /** SPAWN-POOL Фаза C: бонус энергии новой линии (новизна рода). */
+    /**
+     * SPAWN-POOL Фаза C: бонус энергии новой линии (новизна рода).
+     */
     public const EXPLORATION_BONUS = 1.0;
 
-    /** Mutation range: ±20% of current value. */
+    /**
+     * Mutation range: ±20% of current value.
+     */
     private const MUTATION_RANGE = 0.2;
 
-    /** Param bounds. */
+    /**
+     * Param bounds.
+     */
     private const TICK_MIN = 0.001;
+
     private const TICK_MAX = 0.1;
+
     private const SEARCH_MIN = 0.01;
+
     private const SEARCH_MAX = 1.0;
+
     private const REWARD_MIN = 0.5;
+
     // SHRINK-AND-PERSIST (08.08): голод = замедление, не смерть.
     // Порог 3.0 — ниже порога hunger-мутации (5.0): адаптация до голода,
     // спячка после. Множитель 0.1 — жизнь ×10 на малом расходе.
     // (Е)-параметры модели; эволюция в геноме — следующий шаг.
     private const STARVATION_THRESHOLD = 3.0;
+
     private const STARVATION_MULTIPLIER = 0.1;
+
     private const REWARD_MAX = 10.0;
+
     private const INFO_REWARD_MIN = 0.001;
+
     private const INFO_REWARD_MAX = 1.0;
 
-    /** Default information reward (intrinsic value of information). */
+    /**
+     * Default information reward (intrinsic value of information).
+     */
     public const DEFAULT_INFORMATION_REWARD = 0.0;
 
     private float $energy;
+
     private int $birthTick = 0; // LIFETIME-METRIC (07.08)
+
     private array $satiety = []; // DOMAIN-SATIETY (08.08): классы по доменам
+
     private const SATIETY_K = 3; // после K классов в домене — ×0.1
+
     private const SATIETY_FIRST_BOOST = 1.5; // первый класс в домене
+
     private const SATIETY_DIM = 0.1;
+
     private float $tickCost;
+
     private float $searchCost;
+
     private float $discoveryReward;
+
     private float $informationReward;
 
     /**
@@ -129,16 +167,45 @@ class Bee
         return $this->energy;
     }
 
-    /** @return float per-instance tick cost */
-    public function getTickCost(): float { return $this->tickCost; }
-    /** @return float per-instance search cost */
-    public function getSearchCost(): float { return $this->searchCost; }
-    /** @return float per-instance discovery reward */
-    public function getDiscoveryReward(): float { return $this->discoveryReward; }
-    /** @return float per-instance information reward */
-    public function getInformationReward(): float { return $this->informationReward; }
-    /** @return string[] custom grammar ops */
-    public function getCustomGrammarOps(): array { return $this->customGrammarOps; }
+    /**
+     * @return float per-instance tick cost
+     */
+    public function getTickCost(): float
+    {
+        return $this->tickCost;
+    }
+
+    /**
+     * @return float per-instance search cost
+     */
+    public function getSearchCost(): float
+    {
+        return $this->searchCost;
+    }
+
+    /**
+     * @return float per-instance discovery reward
+     */
+    public function getDiscoveryReward(): float
+    {
+        return $this->discoveryReward;
+    }
+
+    /**
+     * @return float per-instance information reward
+     */
+    public function getInformationReward(): float
+    {
+        return $this->informationReward;
+    }
+
+    /**
+     * @return string[] custom grammar ops
+     */
+    public function getCustomGrammarOps(): array
+    {
+        return $this->customGrammarOps;
+    }
 
     /**
      * @return string[] per-bee grammar ops: seed + custom (§2.3 изоляция).
@@ -153,10 +220,14 @@ class Bee
         )));
     }
 
-    /** SPAWN-POOL Фаза C: id линии (родословной). */
+    /**
+     * SPAWN-POOL Фаза C: id линии (родословной).
+     */
     private string $lineageId = '';
 
-    /** SPAWN-POOL Фаза C: id родительской линии ('' для seed). */
+    /**
+     * SPAWN-POOL Фаза C: id родительской линии ('' для seed).
+     */
     private string $parentLineageId = '';
 
     public function lineageId(): string
@@ -169,14 +240,18 @@ class Bee
         return $this->parentLineageId;
     }
 
-    /** Задать родословную (при материализации из пула или спавне). */
+    /**
+     * Задать родословную (при материализации из пула или спавне).
+     */
     public function setLineage(string $lineageId, string $parentLineageId = ''): void
     {
         $this->lineageId = $lineageId;
         $this->parentLineageId = $parentLineageId;
     }
 
-    /** Сектор линии (из id: lin_SECTOR_tick_n). */
+    /**
+     * Сектор линии (из id: lin_SECTOR_tick_n).
+     */
     public function lineageSector(): string
     {
         if ($this->lineageId === '' || ! preg_match('/^lin_([A-Za-z]+)_/', $this->lineageId, $m)) {
@@ -222,7 +297,9 @@ class Bee
         return $recipes;
     }
 
-    /** SPAWN-POOL: сектор операции для квот пула. */
+    /**
+     * SPAWN-POOL: сектор операции для квот пула.
+     */
     public static function classifyOp(string $op): string
     {
         return match ($op) {
@@ -408,7 +485,9 @@ class Bee
      */
     public function rewardInformation(): void
     {
-        if (! $this->isAlive()) return;
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->energy += $this->informationReward;
     }
 
@@ -418,7 +497,9 @@ class Bee
      */
     public function rewardSignal(): void
     {
-        if (! $this->isAlive()) return;
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->energy += 0.5;
     }
 
@@ -428,7 +509,9 @@ class Bee
      */
     public function signalHint(string $formula, int $tick = 0): void
     {
-        if (! $this->isAlive()) return;
+        if (! $this->isAlive()) {
+            return;
+        }
         $this->signalHint = [$formula, $tick];
     }
 

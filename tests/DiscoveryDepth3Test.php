@@ -3,14 +3,13 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\DiscoveryEngine;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Hive\DiscoveryEngine;
 
 /**
  * DISCOVERY-DEPTH-3 (09.08, ЭКСП-022f): улей вызывал Search::find с depth=2 —
  * L2L1-мост (depth>=3) не активен → (x0+x1)×x2 невыразим в улье → 0 законов.
  * Прямой find (depth=3) находит: ((x0addx1)mulx2) cv=0.
- * @group slow
  */
 class DiscoveryDepth3Test extends TestCase
 {
@@ -44,8 +43,11 @@ class DiscoveryDepth3Test extends TestCase
         // B-AS-ARGUMENT: find возвращает КОРОТКУЮ B-форму (exact-shortest/
         // parsimony) — структурно: двухуровневый закон (x0…x1) … x2.
         $atom = $found[0]['atom'] ?? '';
-        $this->assertMatchesRegularExpression('/\(x0.{1,12}x1\).{1,6}x2/', $atom,
-            'found law must be two-level: ' . json_encode($found[0] ?? []));
+        $this->assertMatchesRegularExpression(
+            '/\(x0.{1,12}x1\).{1,6}x2/',
+            $atom,
+            'found law must be two-level: ' . json_encode($found[0] ?? [])
+        );
     }
 
     public function testDepthParameterControlsExpressiveness(): void
@@ -77,10 +79,11 @@ class DiscoveryDepth3Test extends TestCase
         // FLAKY-FIX (04.09): B-AS-ARGUMENT parsimony может вернуть × (символ)
         // или mul (имя) — нотация атома недетерминированна при равном score.
         // Тест про ГЛУБИНУ (двухуровневый закон), не про конкретную нотацию.
-        $matched = array_filter($atoms2, fn (string $a): bool =>
-            (bool) preg_match('/\(\(x0.{1,12}x1\)(?:mul|\xc3\x97)x2\)/', $a));
-        $this->assertNotEmpty($matched,
-            'adaptive depth must escalate 2→3: ' . json_encode($atoms2));
+        $matched = array_filter($atoms2, fn (string $a): bool => (bool) preg_match('/\(\(x0.{1,12}x1\)(?:mul|\xc3\x97)x2\)/', $a));
+        $this->assertNotEmpty(
+            $matched,
+            'adaptive depth must escalate 2→3: ' . json_encode($atoms2)
+        );
 
         // Жёсткий предел SEARCH_DEPTH_MAX=2: НЕ выражает двухуровневый
         putenv('SEARCH_DEPTH_MAX=2');
@@ -90,7 +93,10 @@ class DiscoveryDepth3Test extends TestCase
             putenv('SEARCH_DEPTH_MAX');
         }
         $atoms3 = array_map(fn ($c) => $c['atom'] ?? '', $found3);
-        $this->assertNotContains('((x0addx1)mulx2)', $atoms3,
-            'SEARCH_DEPTH_MAX=2 must not express (x0+x1)×x2: ' . json_encode($atoms3));
+        $this->assertNotContains(
+            '((x0addx1)mulx2)',
+            $atoms3,
+            'SEARCH_DEPTH_MAX=2 must not express (x0+x1)×x2: ' . json_encode($atoms3)
+        );
     }
 }

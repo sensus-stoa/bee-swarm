@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * EXP-036 Фаза 1 (29.08): кэш пространства поиска в CHUNK-DIRECT.
@@ -29,7 +29,8 @@ class ChunkCacheTest extends TestCase
 
         // Данные 60×5, y=(x0+x1)*x2*x3/x4 (depth-4 chain)
         mt_srand(42);
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 0; $i < 60; $i++) {
             $x0 = mt_rand(1, 100) / 10;
             $x1 = mt_rand(1, 100) / 10;
@@ -53,8 +54,11 @@ class ChunkCacheTest extends TestCase
 
         // После фикса: вычислений РОВНО столько, сколько уникальных ключей
         // (до фикса: ×3 дубликаты из-за fk3-цикла)
-        $this->assertSame($uniqueKeys, $computations,
-            'mul2 обязан считаться один раз на (chunk, fk1, fk2)');
+        $this->assertSame(
+            $uniqueKeys,
+            $computations,
+            'mul2 обязан считаться один раз на (chunk, fk1, fk2)'
+        );
         $this->assertGreaterThan(0, $computations, 'цепочки должны были строиться');
     }
 
@@ -71,7 +75,8 @@ class ChunkCacheTest extends TestCase
         \BeeSwarm\Core\Grammar::registerReuse('BPx', 'arithmetic');
 
         mt_srand(7);
-        $Xa = []; $ya = [];
+        $Xa = [];
+        $ya = [];
         for ($i = 0; $i < 40; $i++) {
             $x0 = mt_rand(1, 50) / 10;
             $x1 = mt_rand(1, 50) / 10;
@@ -84,7 +89,8 @@ class ChunkCacheTest extends TestCase
 
         // Задача B: ДРУГАя зависимость (x0*x1), те же имена колонок
         mt_srand(7);
-        $Xb = []; $yb = [];
+        $Xb = [];
+        $yb = [];
         for ($i = 0; $i < 40; $i++) {
             $x0 = mt_rand(1, 50) / 10;
             $x1 = mt_rand(1, 50) / 10;
@@ -102,16 +108,22 @@ class ChunkCacheTest extends TestCase
         // ГЛАВНОЕ: результаты не смешиваются (A-вектор не попал в B)
         if ($rb[0]) {
             $predB = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($rb[2], $Xb);
-            $m = 0; $c = 0;
+            $m = 0;
+            $c = 0;
             foreach ($predB as $i => $p) {
-                if ($p === null) continue;
+                if ($p === null) {
+                    continue;
+                }
                 $m += abs($p - $yb[$i]) / (abs($yb[$i]) + 1e-8);
                 $c++;
             }
             $cvB = $m / max(1, $c);
-            $this->assertLessThan(0.10, $cvB,
+            $this->assertLessThan(
+                0.10,
+                $cvB,
                 'задача B: найденная формула обязана решать ЗАДАЧУ B, ' .
-                'не подмешивать векторы задачи A; got cv=' . $cvB);
+                'не подмешивать векторы задачи A; got cv=' . $cvB
+            );
         }
     }
 
@@ -126,7 +138,8 @@ class ChunkCacheTest extends TestCase
         \BeeSwarm\Core\Grammar::registerReuse('BPy', 'arithmetic');
 
         mt_srand(9);
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 0; $i < 30; $i++) {
             $x0 = mt_rand(1, 50) / 10;
             $x1 = mt_rand(1, 50) / 10;

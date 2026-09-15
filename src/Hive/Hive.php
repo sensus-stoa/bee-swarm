@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace BeeSwarm\Hive;
 
 use BeeSwarm\Core\AtomRegistry;
-use BeeSwarm\Hive\LawIsomorphismCompressor;
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\Forager\DataSelfGenerator;
 use BeeSwarm\Forager\Forager;
 use BeeSwarm\Infra\Database;
 use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Text\CorpusVocabulary;
 use BeeSwarm\Text\SentenceRegistry;
-use BeeSwarm\Validation\LawValidator;
 use BeeSwarm\Validation\NullCalibrator;
 
 /**
@@ -22,34 +19,52 @@ use BeeSwarm\Validation\NullCalibrator;
  */
 class Hive
 {
-    /** T1: rate-limit ENERGY_REFUSAL лога (transition-only) */
+    /**
+     * T1: rate-limit ENERGY_REFUSAL лога (transition-only)
+     */
     private float $energyRefusalLastAt = 0.0;
 
-    /** Премортем deleg_f0b2fe04: cooldown 60с вместо bool — флап жив/мёртв не флудит. */
+    /**
+     * Премортем deleg_f0b2fe04: cooldown 60с вместо bool — флап жив/мёртв не флудит.
+     */
     private const ENERGY_REFUSAL_COOLDOWN_S = 60.0;
 
     private float $confirmedPoolLastAt = 0.0;
 
-    /** T5-post-3: CONFIRMED_POOL лог не чаще раза в минуту. */
+    /**
+     * T5-post-3: CONFIRMED_POOL лог не чаще раза в минуту.
+     */
     private const CONFIRMED_POOL_COOLDOWN_S = 60.0;
+
     private PlateauDetector $plateau;
+
     private RecordKeeper $recordKeeper;
 
-    /** DISSIPATION-LOOP Phase 6 (§2.5.4-2.5.6): preservation + penalty. */
+    /**
+     * DISSIPATION-LOOP Phase 6 (§2.5.4-2.5.6): preservation + penalty.
+     */
     private LawRegistry $lawRegistry;
 
-    /** §2.5.3 wiring: contradiction detection (финал контура). */
+    /**
+     * §2.5.3 wiring: contradiction detection (финал контура).
+     */
     private ContradictionDetector $contradictionDetector;
 
-    /** V0.14 WU-1: среда порождает V-задачи из сигналов (закон/противоречие). */
+    /**
+     * V0.14 WU-1: среда порождает V-задачи из сигналов (закон/противоречие).
+     */
     private VerificationTaskSource $verificationTasks;
 
-    /** V0.14 WU-3: эскроу отложенной награды (30/70 split). */
+    /**
+     * V0.14 WU-3: эскроу отложенной награды (30/70 split).
+     */
     private EscrowStore $escrow;
 
     private AtomPenalty $atomPenalty;
 
-    /** §2.5.14 AUTOPHAGY: популяционная медиана + селективная деградация. */
+    /**
+     * §2.5.14 AUTOPHAGY: популяционная медиана + селективная деградация.
+     */
     private AutophagyEngine $autophagyEngine;
 
     private SpawnManager $spawnManager;
@@ -65,10 +80,12 @@ class Hive
     private array $log = [];
 
     private int $tick = 0;
-    private array $lastCandidates = []; // REUSE-TRACKING (08.08)
-    private int $lifetimeAccum = 0; // LIFETIME-METRIC (07.08)
-    private int $lifetimeCount = 0;
 
+    private array $lastCandidates = []; // REUSE-TRACKING (08.08)
+
+    private int $lifetimeAccum = 0; // LIFETIME-METRIC (07.08)
+
+    private int $lifetimeCount = 0;
 
     private const MIN_DATA_POINTS = 10;
 
@@ -83,7 +100,9 @@ class Hive
 
     private array $foragedTasksGlobal = [];
 
-    /** §2.6 Environmental Pressure: governor сложности среды. */
+    /**
+     * §2.6 Environmental Pressure: governor сложности среды.
+     */
     private DifficultyGovernor $difficulty;
 
     private ?int $maxTicks;
@@ -92,16 +111,31 @@ class Hive
      * @var Bee[]
      */
     private array $bees = [];
-    /** MEMORY-GUARD (аудит 05.08): порог MB, default 256. 0 = выключен. */
+
+    /**
+     * MEMORY-GUARD (аудит 05.08): порог MB, default 256. 0 = выключен.
+     */
     private int $memoryGuardMb = 256;
-    /** D_RATIO телеметрия (аудит 05.08 §2.5.8): интервал тиков, default 500 */
+
+    /**
+     * D_RATIO телеметрия (аудит 05.08 §2.5.8): интервал тиков, default 500
+     */
     private int $dRatioInterval = 500;
-    /** D_ACT кольцевой буфер (аудит 05.08): окно, default 500; zero-allocation */
+
+    /**
+     * D_ACT кольцевой буфер (аудит 05.08): окно, default 500; zero-allocation
+     */
     private int $dActWindow = 500;
+
     private int $dActInterval = 100;
+
     private \SplFixedArray $dActBuffer;
+
     private int $dActHead = 0;
-    /** Последний размер пула задач (wakeup-детектор, только РОСТ будит плато) */
+
+    /**
+     * Последний размер пула задач (wakeup-детектор, только РОСТ будит плато)
+     */
     private int $lastTaskCount = 0;
 
     private ?TaskRouter $taskRouter = null;
@@ -114,23 +148,30 @@ class Hive
 
     private ?OverlapTracker $overlapTracker = null;
 
-    /** SPAWN-POOL (27.08): пул рецептов-потомков (genotype). */
+    /**
+     * SPAWN-POOL (27.08): пул рецептов-потомков (genotype).
+     */
     private DormantPool $dormantPool;
 
-    /** SPAWN-POOL Фаза C: сколько поколений линия прожила без прогресса. */
+    /**
+     * SPAWN-POOL Фаза C: сколько поколений линия прожила без прогресса.
+     */
     private array $lineageProgress = [];
 
-    /** Фаза C: стартовая энергия линии при рождении (бонус ≠ прогресс). */
+    /**
+     * Фаза C: стартовая энергия линии при рождении (бонус ≠ прогресс).
+     */
     private array $lineageEnergyBaseline = [];
 
-    /** Фаза C (rev): монотонный счётчик линий — защита от коллапса lineageId. */
+    /**
+     * Фаза C (rev): монотонный счётчик линий — защита от коллапса lineageId.
+     */
     private int $lineageSeq = 0;
 
-    /** Последний ответ (формула) для overlap-трекинга. */
+    /**
+     * Последний ответ (формула) для overlap-трекинга.
+     */
     private ?string $lastAnswerFormula = null;
-
-
-
 
     private LawIsomorphismCompressor $lawCompressor;
 
@@ -316,7 +357,7 @@ class Hive
             $freed = gc_collect_cycles();
             $after = round(memory_get_usage(true) / 1024 / 1024, 1);
             $this->log(
-                "MEM_GUARD: usage=" . round($usage / 1024 / 1024, 1)
+                'MEM_GUARD: usage=' . round($usage / 1024 / 1024, 1)
                 . "MB > limit={$this->memoryGuardMb}MB freed_cycles={$freed} after={$after}MB"
             );
         }
@@ -394,12 +435,17 @@ class Hive
     private function loadPopulation(): ?array
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $rows = $db->query('SELECT grammar, energy FROM bee_persistence WHERE is_alive = 1')->fetchAll(\PDO::FETCH_ASSOC);
-        if (empty($rows)) return null;
+        $rows = $db->query('SELECT grammar, energy FROM bee_persistence WHERE is_alive = 1')
+            ->fetchAll(\PDO::FETCH_ASSOC);
+        if (empty($rows)) {
+            return null;
+        }
         $bees = [];
         foreach ($rows as $row) {
             $g = json_decode($row['grammar'], true);
-            if (is_array($g)) $bees[] = new \BeeSwarm\Hive\Bee($g, (float) $row['energy']);
+            if (is_array($g)) {
+                $bees[] = new \BeeSwarm\Hive\Bee($g, (float) $row['energy']);
+            }
         }
         return $bees ?: null;
     }
@@ -496,14 +542,14 @@ class Hive
                 $this->foragedTasksGlobal = EnvPressure::stampAll($this->foragedTasksGlobal, $this->tick);
                 $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
                 $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
-                $this->log("Forager startup: " . count($foraged) . " tasks, mem={$mem}MB peak={$peak}MB");
+                $this->log('Forager startup: ' . count($foraged) . " tasks, mem={$mem}MB peak={$peak}MB");
             }
         }
 
         // Retrospective validation
-        $this->log("MEM_PRE_RETRO: mem=" . round(memory_get_usage(true)/1024/1024, 1) . "MB peak=" . round(memory_get_peak_usage(true)/1024/1024, 1) . "MB");
+        $this->log('MEM_PRE_RETRO: mem=' . round(memory_get_usage(true) / 1024 / 1024, 1) . 'MB peak=' . round(memory_get_peak_usage(true) / 1024 / 1024, 1) . 'MB');
         $allTasks = $this->getTasks(skipGenerated: true);
-        $this->log("MEM_POST_RETRO: mem=" . round(memory_get_usage(true)/1024/1024, 1) . "MB peak=" . round(memory_get_peak_usage(true)/1024/1024, 1) . "MB tasks=" . count($allTasks));
+        $this->log('MEM_POST_RETRO: mem=' . round(memory_get_usage(true) / 1024 / 1024, 1) . 'MB peak=' . round(memory_get_peak_usage(true) / 1024 / 1024, 1) . 'MB tasks=' . count($allTasks));
         if (! empty($allTasks)) {
             $retro = AtomRegistry::retrospectiveValidate($allTasks);
             if (count($retro['overfit']) > 0) {
@@ -531,7 +577,9 @@ class Hive
 
     // ═══ ОДИН ТИК ═══
 
-    /** SPAWN-POOL: доступ к пулу рецептов (lazy init — безопасно до bootstrap). */
+    /**
+     * SPAWN-POOL: доступ к пулу рецептов (lazy init — безопасно до bootstrap).
+     */
     public function dormantPool(): DormantPool
     {
         if (! isset($this->dormantPool)) {
@@ -541,7 +589,9 @@ class Hive
         return $this->dormantPool;
     }
 
-    /** Фаза C: статистика линий (для телеметрии и карты маршрутов). */
+    /**
+     * Фаза C: статистика линий (для телеметрии и карты маршрутов).
+     */
     public function lineageStats(): array
     {
         $lines = [];
@@ -550,10 +600,15 @@ class Hive
                 $lines[$b->lineageId()] = true;
             }
         }
-        return ['lines' => count($lines), 'stale' => count($this->lineageProgress)];
+        return [
+            'lines' => count($lines),
+            'stale' => count($this->lineageProgress),
+        ];
     }
 
-    /** Фаза C: отметить прогресс линии (discovery или рост энергии). */
+    /**
+     * Фаза C: отметить прогресс линии (discovery или рост энергии).
+     */
     public function noteLineageProgress(string $lineageId): void
     {
         if ($lineageId === '') {
@@ -647,8 +702,7 @@ class Hive
             if ($parents === []) {
                 break; // рой пуст — некому унаследовать
             }
-            $sameLineage = array_filter($parents, fn (Bee $b): bool =>
-                $b->lineageId() !== '' && $b->lineageSector() === $sector);
+            $sameLineage = array_filter($parents, fn (Bee $b): bool => $b->lineageId() !== '' && $b->lineageSector() === $sector);
             if ($sameLineage !== []) {
                 $parents = $sameLineage;
             }
@@ -828,7 +882,10 @@ class Hive
             $rows[] = array_merge(array_values($features), [(float) ($y[$i] ?? 0.0)]);
         }
         $candsForDetect = array_map(
-            static fn (array $c): array => ['formula' => $c['atom'], 'cv' => (float) ($c['cv'] ?? 1.0)],
+            static fn (array $c): array => [
+                'formula' => $c['atom'],
+                'cv' => (float) ($c['cv'] ?? 1.0),
+            ],
             $this->lastCandidates
         );
         $contradiction = $this->contradictionDetector->detect($rows, $candsForDetect);
@@ -839,8 +896,8 @@ class Hive
         $this->log(
             "DISSIPATION: event=CONTRADICTION task={$task['name']} "
             . "formulaA={$a['norm']} formulaB={$b['norm']} "
-            . "cvA=" . number_format($a['cv'], 4) . " cvB=" . number_format($b['cv'], 4)
-            . " diff_rows=" . count($contradiction['diff_rows'])
+            . 'cvA=' . number_format($a['cv'], 4) . ' cvB=' . number_format($b['cv'], 4)
+            . ' diff_rows=' . count($contradiction['diff_rows'])
         );
         // V0.14 WU-1: противоречие — сигнал среды, порождающий research-задачу.
         if (getenv('NO_VERIFY_SPAWN') !== '1') {
@@ -938,7 +995,9 @@ class Hive
         }
     }
 
-    /** Штраф атомам (CULTURE_OPS), входящим в формулу. */
+    /**
+     * Штраф атомам (CULTURE_OPS), входящим в формулу.
+     */
     private function falsifyFormulaAtoms(string $formula): void
     {
         foreach (AtomPenalty::FORMULA_OPS as $op) {
@@ -948,7 +1007,9 @@ class Hive
         }
     }
 
-    /** CV формулы на свежих данных (obsolescence-контракт). */
+    /**
+     * CV формулы на свежих данных (obsolescence-контракт).
+     */
     private function freshCvFor(string $formula, string $domain): float
     {
         $stmt = Database::get()->prepare(
@@ -978,7 +1039,8 @@ class Hive
                     }
                 }
             }
-            $this->dormantPool()->age(50);
+            $this->dormantPool()
+                ->age(50);
             $this->pruneLineages(3);
         }
         // DEAD-CLEANUP (10.08): мёртвые пчёлы накапливались в $this->bees
@@ -1091,7 +1153,8 @@ class Hive
                 // Потолок: удерживаем последние 8000 задач (предотвращает OOM)
                 if (count($this->foragedTasksGlobal) > 8000) {
                     $this->foragedTasksGlobal = array_slice(
-                        $this->foragedTasksGlobal, -8000
+                        $this->foragedTasksGlobal,
+                        -8000
                     );
                 }
                 if ($newCount > 0) {
@@ -1115,7 +1178,7 @@ class Hive
             $firstTasksLogged = true;
             $mem = round(memory_get_usage(true) / 1024 / 1024, 1);
             $peak = round(memory_get_peak_usage(true) / 1024 / 1024, 1);
-            $this->log("MEM_FIRST_TASKS: " . count($tasks) . " tasks, mem={$mem}MB peak={$peak}MB");
+            $this->log('MEM_FIRST_TASKS: ' . count($tasks) . " tasks, mem={$mem}MB peak={$peak}MB");
         }
 
         if (empty($tasks)) {
@@ -1208,7 +1271,8 @@ class Hive
 
         // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
         $gapSpawned = $this->spawnManager->tryGapSpawn(
-            $this->bees, $allOps,
+            $this->bees,
+            $allOps,
             $this->plateau->isPlateau(),
             $this->plateau->getConsecutiveNoDiscovery(),
             $hasNewForagerData,
@@ -1217,7 +1281,7 @@ class Hive
         );
         if ($gapSpawned > 0) {
             $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
-            $this->log("GAP_SPAWN: pop=" . count($this->bees) . " trigger={$trigger}");
+            $this->log('GAP_SPAWN: pop=' . count($this->bees) . " trigger={$trigger}");
             $spawned += $gapSpawned;
         }
 
@@ -1262,20 +1326,37 @@ class Hive
 
             // ЭКСП-018: энергетический баланс по классам |G| (PROFILE=1)
             if (getenv('PROFILE') === '1') {
-                $buckets = [1 => [], 2 => [], 5 => [], 10 => [], 20 => [], 50 => [], 100 => []];
+                $buckets = [
+                    1 => [],
+                    2 => [],
+                    5 => [],
+                    10 => [],
+                    20 => [],
+                    50 => [],
+                    100 => [],
+                ];
                 $keys = array_keys($buckets);
                 foreach ($this->bees as $b) {
-                    if (! $b->isAlive()) continue;
+                    if (! $b->isAlive()) {
+                        continue;
+                    }
                     $g = count($b->grammar());
                     $bucket = 100;
-                    foreach ($keys as $k) { if ($g <= $k) { $bucket = $k; break; } }
+                    foreach ($keys as $k) {
+                        if ($g <= $k) {
+                            $bucket = $k;
+                            break;
+                        }
+                    }
                     $buckets[$bucket][] = $b->energy();
                 }
                 $parts = [];
                 foreach ($buckets as $k => $energies) {
-                    if (empty($energies)) continue;
+                    if (empty($energies)) {
+                        continue;
+                    }
                     $parts[] = "|G|≤{$k}:" . round(array_sum($energies) / count($energies), 2)
-                        . "x" . count($energies);
+                        . 'x' . count($energies);
                 }
                 $this->log('G_BALANCE: ' . implode(' ', $parts));
             }
@@ -1400,7 +1481,11 @@ class Hive
         $allOps = (new Grammar())->all();
         $best = $engine->findBestAtom($data, $allOps);
         if ($best !== null) {
-            $result = $this->recordKeeper->record(['atom' => $best['atom'], 'cv' => $best['error'], 'mode' => 'cloze'], $task, $domain);
+            $result = $this->recordKeeper->record([
+                'atom' => $best['atom'],
+                'cv' => $best['error'],
+                'mode' => 'cloze',
+            ], $task, $domain);
             if ($result['inserted']) {
                 $foundAny = true;
                 $this->log("📖 {$task['name']} -> {$best['atom']} (err=" . round($best['error'], 3) . ')');
@@ -1515,7 +1600,8 @@ class Hive
         static $birthCount = -1;
         if ($birthCount === -1) {
             $db = \BeeSwarm\Infra\Database::get();
-            $birthCount = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")->fetchColumn();
+            $birthCount = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE source = 'birth'")
+                ->fetchColumn();
         }
         if ($birthCount >= 30) {
             return;
@@ -1575,8 +1661,13 @@ class Hive
             return;
         }
         $opMap = [
-            '+' => 'add', '−' => 'sub', '×' => 'mul', '/' => 'div',
-            'max' => 'max', 'min' => 'min', 'sq' => 'sq',
+            '+' => 'add',
+            '−' => 'sub',
+            '×' => 'mul',
+            '/' => 'div',
+            'max' => 'max',
+            'min' => 'min',
+            'sq' => 'sq',
         ];
         $seen = [];
         $walk = function (array $n) use (&$walk, &$seen, $opMap): void {
@@ -1587,8 +1678,12 @@ class Hive
                     \BeeSwarm\Core\Grammar::staticBoostOp($name);
                 }
             }
-            if (isset($n['l'])) { $walk($n['l']); }
-            if (isset($n['r'])) { $walk($n['r']); }
+            if (isset($n['l'])) {
+                $walk($n['l']);
+            }
+            if (isset($n['r'])) {
+                $walk($n['r']);
+            }
         };
         $walk($node);
     }
@@ -1627,7 +1722,9 @@ class Hive
             }
             return;
         }
-        if (! empty($result['cross_domains'])) { $this->log("CROSS_DOMAIN: {$d['atom']}"); }
+        if (! empty($result['cross_domains'])) {
+            $this->log("CROSS_DOMAIN: {$d['atom']}");
+        }
         $foundAny = true;
         // V0.14 WU-2: V-задача несёт capped train-срез (data_json) — исполнитель
         // работает асинхронно из очереди, данные не берутся «из воздуха».
@@ -1686,7 +1783,9 @@ class Hive
                 }
             }
         }
-        if ($this->routedBee && $this->routedBee->isAlive()) $this->routedBee->addToGrammar($d['atom']);
+        if ($this->routedBee && $this->routedBee->isAlive()) {
+            $this->routedBee->addToGrammar($d['atom']);
+        }
         if ($this->taskRouter && $this->routedBee) {
             $this->taskRouter->recordOutcome($task, $this->routedBee, true);
         }
@@ -1701,8 +1800,10 @@ class Hive
         if (($prRow = $prSt->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $this->log(sprintf(
                 'PREREG: %s cv_train=%.4f -> %s cv_test=%.4f',
-                $d['atom'], (float) $prRow['cv_predicted'],
-                $prRow['status'], $d['cv_test'] ?? 9.99
+                $d['atom'],
+                (float) $prRow['cv_predicted'],
+                $prRow['status'],
+                $d['cv_test'] ?? 9.99
             ));
         }
         // LAW-CLASS-REWARD (08.08): награда ТОЛЬКО за первый представитель
@@ -1753,7 +1854,7 @@ class Hive
         $colHint = '';
         if (! empty($task['col_labels']) && count($task['col_labels']) >= 2) {
             $labels = $task['col_labels'];
-            $colHint = ' [' . ($labels[0] ?? '?') . '→' . ($labels[count($labels)-1] ?? '?') . ']';
+            $colHint = ' [' . ($labels[0] ?? '?') . '→' . ($labels[count($labels) - 1] ?? '?') . ']';
         }
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}{$colHint}");
     }
@@ -1784,8 +1885,12 @@ class Hive
         $result = IdleDreamer::tick($tasks, $grammarOps, $epsilon);
         if ($result !== null) {
             $foundAny = false;
-            $this->recordDiscovery($result, ['name' => $result['task_name'] ?? $result['atom']], $result['domain'] ?? 'dream', $foundAny);
-            if ($foundAny) $this->log("DREAM: {$result['atom']} [{$result['domain']}]");
+            $this->recordDiscovery($result, [
+                'name' => $result['task_name'] ?? $result['atom'],
+            ], $result['domain'] ?? 'dream', $foundAny);
+            if ($foundAny) {
+                $this->log("DREAM: {$result['atom']} [{$result['domain']}]");
+            }
         } else {
             usleep(100_000);
         }
@@ -2143,7 +2248,7 @@ class Hive
                 continue;
             }
             $cnt = isset($t['data']) ? count($t['data']) : PHP_INT_MAX;
-            if (!isset($best[$name]) || $cnt > $best[$name][1]) {
+            if (! isset($best[$name]) || $cnt > $best[$name][1]) {
                 $best[$name] = [$t, $cnt];
             }
         }
@@ -2152,7 +2257,7 @@ class Hive
         $skipped = 0;
         $passedCounts = [];
         foreach ($best as $name => [$t, $cnt]) {
-            if (!isset($t['data'])) {
+            if (! isset($t['data'])) {
                 $filtered[] = $t;  // text/semantic — не фильтруем
                 continue;
             }

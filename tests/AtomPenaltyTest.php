@@ -32,7 +32,9 @@ final class AtomPenaltyTest extends TestCase
         Database::reset();
     }
 
-    /** До порога фальсификаций — без штрафа (множитель 1). */
+    /**
+     * До порога фальсификаций — без штрафа (множитель 1).
+     */
     public function testBelowThresholdNoPenalty(): void
     {
         $this->penalty->falsify('sqrt');
@@ -42,7 +44,9 @@ final class AtomPenaltyTest extends TestCase
         self::assertEqualsWithDelta(1.0, $this->penalty->weightMultiplier('sqrt'), 0.0001);
     }
 
-    /** С порога — множитель падает (мягкое затухание). */
+    /**
+     * С порога — множитель падает (мягкое затухание).
+     */
     public function testAtThresholdPenalized(): void
     {
         for ($i = 0; $i < 3; $i++) {
@@ -53,7 +57,9 @@ final class AtomPenaltyTest extends TestCase
         self::assertEqualsWithDelta(0.5, $this->penalty->weightMultiplier('sqrt'), 0.0001);
     }
 
-    /** Graduated: чем больше фальсификаций, тем ниже множитель. */
+    /**
+     * Graduated: чем больше фальсификаций, тем ниже множитель.
+     */
     public function testGraduatedDecay(): void
     {
         for ($i = 0; $i < 5; $i++) {
@@ -63,11 +69,15 @@ final class AtomPenaltyTest extends TestCase
         self::assertEqualsWithDelta(0.25, $this->penalty->weightMultiplier('sqrt'), 0.0001);
         // при пороге (count=3): 1/(1+1) = 0.5 — isPenalized и multiplier согласованы
         $p3 = new AtomPenalty(falsifyThreshold: 3);
-        for ($i = 0; $i < 3; $i++) { $p3->falsify('min'); }
+        for ($i = 0; $i < 3; $i++) {
+            $p3->falsify('min');
+        }
         self::assertEqualsWithDelta(0.5, $p3->weightMultiplier('min'), 0.0001);
     }
 
-    /** Реабилитация: успех декрементирует штраф, не ниже нуля. */
+    /**
+     * Реабилитация: успех декрементирует штраф, не ниже нуля.
+     */
     public function testRehabilitationDecrements(): void
     {
         for ($i = 0; $i < 4; $i++) {
@@ -84,7 +94,9 @@ final class AtomPenaltyTest extends TestCase
         self::assertEqualsWithDelta(1.0, $this->penalty->weightMultiplier('sqrt'), 0.0001);
     }
 
-    /** Cap на penalty_count (анти-бесконечный штраф). */
+    /**
+     * Cap на penalty_count (анти-бесконечный штраф).
+     */
     public function testPenaltyCapped(): void
     {
         $penalty = new AtomPenalty(falsifyThreshold: 3, maxPenalty: 50);
@@ -94,7 +106,9 @@ final class AtomPenaltyTest extends TestCase
         self::assertSame(50, $penalty->penaltyCount('sqrt'));
     }
 
-    /** Реабилитация несуществующего атома не создаёт отрицательных значений. */
+    /**
+     * Реабилитация несуществующего атома не создаёт отрицательных значений.
+     */
     public function testRehabilitateUnknownAtom(): void
     {
         $this->penalty->rehabilitate('unknown_op');

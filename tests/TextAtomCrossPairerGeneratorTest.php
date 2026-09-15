@@ -26,8 +26,11 @@ class TextAtomCrossPairerGeneratorTest extends TestCase
 
         $result = TextAtomCrossPairer::crossPair($atoms, 'text_pairs');
 
-        $this->assertInstanceOf(\Generator::class, $result,
-            'crossPair() must return Generator for lazy evaluation');
+        $this->assertInstanceOf(
+            \Generator::class,
+            $result,
+            'crossPair() must return Generator for lazy evaluation'
+        );
     }
 
     /**
@@ -67,7 +70,9 @@ class TextAtomCrossPairerGeneratorTest extends TestCase
     public function testCrossPairGeneratorEmptyWithOneAtom(): void
     {
         $generator = TextAtomCrossPairer::crossPair(
-            ['preg_match(GI)' => [7.2, 6.8, 7.5]],
+            [
+                'preg_match(GI)' => [7.2, 6.8, 7.5],
+            ],
             'text_pairs'
         );
 
@@ -108,7 +113,9 @@ class TextAtomCrossPairerGeneratorTest extends TestCase
         foreach ($generator as $task) {
             $this->assertIsArray($task);
             $count++;
-            if ($count >= 100) break;
+            if ($count >= 100) {
+                break;
+            }
         }
         $this->assertSame(100, $count, 'Must yield at least 100 tasks from 200 atoms');
     }

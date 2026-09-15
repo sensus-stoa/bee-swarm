@@ -61,7 +61,8 @@ class HiveTest extends TestCase
     public function testLawsTableHasSourceColumns(): void
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $cols = $db->query('PRAGMA table_info(laws)')->fetchAll(\PDO::FETCH_ASSOC);
+        $cols = $db->query('PRAGMA table_info(laws)')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         $names = array_column($cols, 'name');
         $this->assertContains('source_path', $names, 'laws table must have source_path column');
         $this->assertContains('content_sample', $names, 'laws table must have content_sample column');

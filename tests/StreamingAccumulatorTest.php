@@ -142,13 +142,15 @@ class StreamingAccumulatorTest extends TestCase
 
         // 3 файла с одинаковым паттерном → накопятся в одну задачу
         for ($i = 0; $i < 3; $i++) {
-            file_put_contents("{$dir}/src{$i}.csv", ($i) . ',' . ($i+1) . "\n" .
-                ($i+5) . ',' . ($i+6) . "\n" .
-                ($i+10) . ',' . ($i+11) . "\n" .
-                ($i+15) . ',' . ($i+16) . "\n");
+            file_put_contents("{$dir}/src{$i}.csv", ($i) . ',' . ($i + 1) . "\n" .
+                ($i + 5) . ',' . ($i + 6) . "\n" .
+                ($i + 10) . ',' . ($i + 11) . "\n" .
+                ($i + 15) . ',' . ($i + 16) . "\n");
         }
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         $this->assertGreaterThan(0, count($tasks), 'Must produce tasks');
         foreach ($tasks as $t) {
@@ -191,7 +193,9 @@ class StreamingAccumulatorTest extends TestCase
         // Ещё строк для tMin=10
         file_put_contents("{$dir}/more.csv", "price,qty\n60,6\n70,7\n80,8\n90,9\n100,10\n");
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         $this->assertGreaterThan(0, count($tasks), 'Must produce tasks');
         $numTasks = 0;

@@ -18,21 +18,32 @@ class WeightedTaskSelectionTest extends TestCase
     public function testNarrowWeightedHigher(): void
     {
         $tasks = [];
-        $tasks[] = ['name' => 'narrow', 'data' => [[1, 2]]];                    // nFeat=1, weight=1.0
+        $tasks[] = [
+            'name' => 'narrow',
+            'data' => [[1, 2]],
+        ];                    // nFeat=1, weight=1.0
         for ($i = 0; $i < 9; $i++) {
-            $tasks[] = ['name' => "wide_$i", 'data' => [array_fill(0, 10, 0)]]; // nFeat=9, weight≈0.11
+            $tasks[] = [
+                'name' => "wide_{$i}",
+                'data' => [array_fill(0, 10, 0)],
+            ]; // nFeat=9, weight≈0.11
         }
 
         $narrow = 0;
         $trials = 200;
         for ($i = 0; $i < $trials; $i++) {
             $t = $this->weightedPick($tasks);
-            if ($t['name'] === 'narrow') $narrow++;
+            if ($t['name'] === 'narrow') {
+                $narrow++;
+            }
         }
 
         // array_rand: ~20. Weighted: ~100. Порог 30 разделяет.
-        $this->assertGreaterThan(30, $narrow,
-            "Narrow only {$narrow}/{$trials}. Still using array_rand?");
+        $this->assertGreaterThan(
+            30,
+            $narrow,
+            "Narrow only {$narrow}/{$trials}. Still using array_rand?"
+        );
     }
 
     public function testWeightedPickEmpty(): void
@@ -43,7 +54,10 @@ class WeightedTaskSelectionTest extends TestCase
 
     public function testWeightedPickSingle(): void
     {
-        $tasks = [['name' => 'only', 'data' => [[1]]]];
+        $tasks = [[
+            'name' => 'only',
+            'data' => [[1]],
+        ]];
         for ($i = 0; $i < 10; $i++) {
             $this->assertSame('only', $this->weightedPick($tasks)['name']);
         }

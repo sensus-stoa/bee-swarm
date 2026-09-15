@@ -20,6 +20,7 @@ namespace BeeSwarm\Core;
 final class NonConstancyFilter
 {
     public const DEFAULT_RATIO = 0.55;
+
     public const NULL_PERMUTATIONS = 5;
 
     /**
@@ -61,8 +62,15 @@ final class NonConstancyFilter
                 $nullY[] = $y_test[($i * $step) % $nTest];
             }
             $nulls[] = Search::testCv(
-                $name, $X_test, $nullY, $trainStd, $n,
-                $colLabels, $X_train, $extraOps, $opDefs
+                $name,
+                $X_test,
+                $nullY,
+                $trainStd,
+                $n,
+                $colLabels,
+                $X_train,
+                $extraOps,
+                $opDefs
             );
         }
         sort($nulls);

@@ -61,8 +61,10 @@ class GrammarOpsDedupTest extends TestCase
         Database::reset();
         $db = Database::get();
 
-        $total = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
-        $uniq = (int) $db->query('SELECT COUNT(DISTINCT name) FROM grammar_ops')->fetchColumn();
+        $total = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')
+            ->fetchColumn();
+        $uniq = (int) $db->query('SELECT COUNT(DISTINCT name) FROM grammar_ops')
+            ->fetchColumn();
         $this->assertSame($uniq, $total, 'after migration COUNT must equal COUNT(DISTINCT name)');
         $this->assertLessThan(3, $total, 'duplicates must be removed');
     }
@@ -77,7 +79,8 @@ class GrammarOpsDedupTest extends TestCase
         $db->prepare('INSERT OR IGNORE INTO grammar_ops (name, source) VALUES (?,?)')
             ->execute(['dup_op_0', 'test']);
 
-        $cnt = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name='dup_op_0'")->fetchColumn();
+        $cnt = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name='dup_op_0'")
+            ->fetchColumn();
         $this->assertSame(1, $cnt, 'duplicate name must be ignored (UNIQUE)');
     }
 
@@ -87,7 +90,8 @@ class GrammarOpsDedupTest extends TestCase
         Database::reset();
         $db = Database::get();
 
-        $cols = $db->query('PRAGMA index_list(grammar_ops)')->fetchAll(\PDO::FETCH_ASSOC);
+        $cols = $db->query('PRAGMA index_list(grammar_ops)')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         $uniqueIdx = array_filter($cols, fn (array $i): bool => ($i['unique'] ?? 0) === 1);
         $this->assertNotEmpty($uniqueIdx, 'UNIQUE index on grammar_ops must exist after migration');
     }

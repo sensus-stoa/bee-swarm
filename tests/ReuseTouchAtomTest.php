@@ -37,8 +37,11 @@ class ReuseTouchAtomTest extends TestCase
         [$found, , $formula] = Search::find($X, $y, $g, 3, null, 0.2, 0.15);
 
         $this->assertTrue($found);
-        $this->assertStringContainsString('B9', $formula,
-            'B-форма должна победить (exact-shortest): ' . $formula);
+        $this->assertStringContainsString(
+            'B9',
+            $formula,
+            'B-форма должна победить (exact-shortest): ' . $formula
+        );
 
         // Применение в find → reuse зарегистрирован (SET, идемпотентно)
         $stmt = Database::get()->prepare(
@@ -47,10 +50,16 @@ class ReuseTouchAtomTest extends TestCase
         $stmt->execute(['B9']);
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
         $this->assertNotFalse($row, 'B9 должен существовать');
-        $this->assertSame('active', $row['status'],
-            'touchAtom в find: применение → PROMOTED (active)');
-        $this->assertGreaterThanOrEqual(1, (int) $row['reuse_count'],
-            'touchAtom в find: reuse_count ≥ 1');
+        $this->assertSame(
+            'active',
+            $row['status'],
+            'touchAtom в find: применение → PROMOTED (active)'
+        );
+        $this->assertGreaterThanOrEqual(
+            1,
+            (int) $row['reuse_count'],
+            'touchAtom в find: reuse_count ≥ 1'
+        );
     }
 
     public function testNewDomainIncrementsReuseCount(): void
@@ -65,8 +74,11 @@ class ReuseTouchAtomTest extends TestCase
             'SELECT reuse_count FROM grammar_ops WHERE name = ?'
         );
         $stmt->execute(['B7']);
-        $this->assertSame(2, (int) $stmt->fetchColumn(),
-            '2 разных домена = reuse_count 2');
+        $this->assertSame(
+            2,
+            (int) $stmt->fetchColumn(),
+            '2 разных домена = reuse_count 2'
+        );
     }
 
     public function testRepeatedHitSameDomainIsNoOp(): void
@@ -83,10 +95,16 @@ class ReuseTouchAtomTest extends TestCase
         );
         $stmt->execute(['B8']);
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $this->assertSame(1, (int) $row['reuse_count'],
-            '3 хита одного домена = 1 reuse (SET)');
+        $this->assertSame(
+            1,
+            (int) $row['reuse_count'],
+            '3 хита одного домена = 1 reuse (SET)'
+        );
         $domains = json_decode((string) $row['reuse_domains'], true);
-        $this->assertSame(['search'], $domains,
-            'домены — SET, без дублей');
+        $this->assertSame(
+            ['search'],
+            $domains,
+            'домены — SET, без дублей'
+        );
     }
 }

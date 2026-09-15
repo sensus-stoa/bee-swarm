@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\Grammar;
@@ -39,8 +38,6 @@ class DaemonEfficiencyTest extends TestCase
 
     /**
      * Search::find с depth=3 должен иметь верхнюю границу по времени.
-     *
-     * @group disabled — grammar 551 ops, depth=3 = 8B комбинаций, D11 (search perf) needed
      */
     public function testSearchFindDepth3HasTimeBound(): void
     {

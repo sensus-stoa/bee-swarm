@@ -13,7 +13,9 @@ namespace BeeSwarm\Tests;
  */
 class TextAtomCrossPairingTest extends TestCase
 {
-    /** Одиночные значения метрик превращаются в X/y пары */
+    /**
+     * Одиночные значения метрик превращаются в X/y пары
+     */
     public function testSingleValuesBecomeXY(): void
     {
         // Симулируем данные из одного файла: GI=7.2, DQ=6.0, Sleep=5
@@ -41,7 +43,9 @@ class TextAtomCrossPairingTest extends TestCase
         }
     }
 
-    /** <3 точек данных → задача не создаётся */
+    /**
+     * <3 точек данных → задача не создаётся
+     */
     public function testMinimumThreeRowsRequired(): void
     {
         $atoms = [
@@ -57,7 +61,9 @@ class TextAtomCrossPairingTest extends TestCase
         $this->assertEmpty($tasks, 'Less than 3 data points → no tasks');
     }
 
-    /** Таски должны иметь t ≥ tMin=10 для прохождения sufficiency */
+    /**
+     * Таски должны иметь t ≥ tMin=10 для прохождения sufficiency
+     */
     public function testTasksHaveSufficientData(): void
     {
         // Значения с variance > 0 (константы отбрасываются фильтром)

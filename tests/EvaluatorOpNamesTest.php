@@ -33,8 +33,11 @@ class EvaluatorOpNamesTest extends TestCase
     public function testNormalizerKeepsAddStructure(): void
     {
         $n = ExpressionNormalizer::normalize('(x0addx1)');
-        $this->assertStringContainsString('add', $n,
-            'normalize must keep add: ' . $n);
+        $this->assertStringContainsString(
+            'add',
+            $n,
+            'normalize must keep add: ' . $n
+        );
     }
 
     public function testMulAddChainPriority(): void
@@ -44,8 +47,12 @@ class EvaluatorOpNamesTest extends TestCase
         $X = [[10.0, 4.0, 3.0]];
         $r = ExpressionEvaluator::evaluateFormula('(x0mulx1addx2)', $X);
         $this->assertNotNull($r);
-        $this->assertEqualsWithDelta([43.0], $r, 1e-9,
-            'mul must bind before add: ' . json_encode($r));
+        $this->assertEqualsWithDelta(
+            [43.0],
+            $r,
+            1e-9,
+            'mul must bind before add: ' . json_encode($r)
+        );
     }
 
     public function testMixedNotationConsistent(): void

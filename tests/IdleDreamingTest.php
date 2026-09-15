@@ -26,7 +26,12 @@ class IdleDreamingTest extends TestCase
         $y = [3, 7, 11, 15, 19, 7, 5, 9, 15, 10];
 
         $tasks = [
-            ['name' => 'ADD', 'domain' => 'arithmetic', 'X' => $X, 'y' => $y],
+            [
+                'name' => 'ADD',
+                'domain' => 'arithmetic',
+                'X' => $X,
+                'y' => $y,
+            ],
         ];
 
         $dreamer = new IdleDreamer();
@@ -56,7 +61,12 @@ class IdleDreamingTest extends TestCase
         }
 
         $tasks = [
-            ['name' => 'NOISE', 'domain' => 'test', 'X' => $X, 'y' => $y],
+            [
+                'name' => 'NOISE',
+                'domain' => 'test',
+                'X' => $X,
+                'y' => $y,
+            ],
         ];
 
         $dreamer = new IdleDreamer();
@@ -85,7 +95,12 @@ class IdleDreamingTest extends TestCase
         $y = [2.0, 4.0, 6.0, 8.0, 10.0];
 
         $tasks = [
-            ['name' => 'DBL', 'domain' => 'test', 'X' => $X, 'y' => $y],
+            [
+                'name' => 'DBL',
+                'domain' => 'test',
+                'X' => $X,
+                'y' => $y,
+            ],
         ];
 
         $dreamer = new IdleDreamer();
@@ -107,8 +122,18 @@ class IdleDreamingTest extends TestCase
         $y = [3, 7, 11, 15, 19, 7, 5, 9, 15, 10];
 
         $tasks = [
-            ['name' => 'ADD', 'domain' => 'arithmetic', 'X' => $X, 'y' => $y],
-            ['name' => 'NOISE', 'domain' => 'noise', 'X' => [[1, 1], [2, 2]], 'y' => [0, 0]],
+            [
+                'name' => 'ADD',
+                'domain' => 'arithmetic',
+                'X' => $X,
+                'y' => $y,
+            ],
+            [
+                'name' => 'NOISE',
+                'domain' => 'noise',
+                'X' => [[1, 1], [2, 2]],
+                'y' => [0, 0],
+            ],
         ];
 
         $dreamer = new IdleDreamer();

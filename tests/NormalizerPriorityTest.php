@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\ExpressionNormalizer;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\ExpressionNormalizer;
 
 /**
  * NORMALIZER-PRIORITY-BUG (P0, 08.08): a×b+c искажается в (K2+x1×x0).
@@ -17,10 +17,16 @@ class NormalizerPriorityTest extends TestCase
     {
         $result = ExpressionNormalizer::normalize('(x0×K2+x1)');
         // Семантика должна сохраняться: 2x0+x1
-        $this->assertNotSame('(K2+x1×x0)', $result,
-            'структура a×b+c искажена: ' . $result);
-        $this->assertStringContainsString('+', $result,
-            'верхнеуровневый + должен сохраниться: ' . $result);
+        $this->assertNotSame(
+            '(K2+x1×x0)',
+            $result,
+            'структура a×b+c искажена: ' . $result
+        );
+        $this->assertStringContainsString(
+            '+',
+            $result,
+            'верхнеуровневый + должен сохраниться: ' . $result
+        );
     }
 
     public function testNormalizationPreservesSemantics(): void
@@ -35,8 +41,12 @@ class NormalizerPriorityTest extends TestCase
         $this->assertNotNull($orig, 'original must evaluate');
         $this->assertNotNull($normVal, 'normalized must evaluate: ' . $norm);
         for ($i = 0; $i < count($X); $i++) {
-            $this->assertEqualsWithDelta($orig[$i], $normVal[$i], 1e-6,
-                "semantics broken at row {$i}: {$formula} → {$norm}");
+            $this->assertEqualsWithDelta(
+                $orig[$i],
+                $normVal[$i],
+                1e-6,
+                "semantics broken at row {$i}: {$formula} → {$norm}"
+            );
         }
     }
 
@@ -44,7 +54,10 @@ class NormalizerPriorityTest extends TestCase
     {
         // (x0×K2−x1) тоже: верхнеуровневый −
         $result = ExpressionNormalizer::normalize('(x0×K2−x1)');
-        $this->assertStringContainsString('−', $result,
-            'верхнеуровневый − должен сохраниться: ' . $result);
+        $this->assertStringContainsString(
+            '−',
+            $result,
+            'верхнеуровневый − должен сохраниться: ' . $result
+        );
     }
 }

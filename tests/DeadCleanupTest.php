@@ -36,10 +36,16 @@ class DeadCleanupTest extends TestCase
 
         $bees = $ref->getValue($hive);
         $dead = array_filter($bees, fn ($b) => ! $b->isAlive());
-        $this->assertCount(0, $dead,
-            'мёртвые пчёлы удалены из массива после 100 тиков: ' . count($dead) . ' осталось');
-        $this->assertGreaterThan(0, count($bees),
-            'живые пчёлы сохранены (cleanup не вычистил всех)');
+        $this->assertCount(
+            0,
+            $dead,
+            'мёртвые пчёлы удалены из массива после 100 тиков: ' . count($dead) . ' осталось'
+        );
+        $this->assertGreaterThan(
+            0,
+            count($bees),
+            'живые пчёлы сохранены (cleanup не вычистил всех)'
+        );
 
         // CONCERNS deleg_3fd00053: persistence-путь — save → load:
         // мёртвые не возвращаются (is_alive=0 в таблице, load читает живых)
@@ -47,8 +53,11 @@ class DeadCleanupTest extends TestCase
         $load = new \ReflectionMethod(Hive::class, 'loadPopulation');
         $loaded = $load->invoke($hive) ?? [];
         $deadLoaded = array_filter($loaded, fn ($b) => ! $b->isAlive());
-        $this->assertCount(0, $deadLoaded,
-            'мёртвые не восстанавливаются из bee_persistence');
+        $this->assertCount(
+            0,
+            $deadLoaded,
+            'мёртвые не восстанавливаются из bee_persistence'
+        );
         $this->assertGreaterThan(0, count($loaded), 'живые восстанавливаются');
 
         // ОЧИСТКА (11.08): savePopulation пишет в :memory: — без DELETE

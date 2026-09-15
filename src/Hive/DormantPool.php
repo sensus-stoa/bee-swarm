@@ -15,7 +15,9 @@ namespace BeeSwarm\Hive;
  */
 class DormantPool
 {
-    /** @var array<int, array{recipe: array, sector: string, novelty: float, age: int, lineage_id: string, awakened?: true, awakened_at?: int}> */
+    /**
+     * @var array<int, array{recipe: array, sector: string, novelty: float, age: int, lineage_id: string, awakened?: true, awakened_at?: int}>
+     */
     private array $pool = [];
 
     private int $nextId = 1;
@@ -56,13 +58,15 @@ class DormantPool
                 continue;
             }
             $sec = $entry['sector'];
-            $bySector[$sec][] = ['id' => $id] + $entry;
+            $bySector[$sec][] = [
+                'id' => $id,
+            ] + $entry;
         }
 
         $awakened = [];
         $deficit = 0; // сгоревшие квоты для redistribution
         foreach ($sectorQuotas as $sector => $quota) {
-            if (!isset($bySector[$sector])) {
+            if (! isset($bySector[$sector])) {
                 $deficit += $quota;
                 continue;
             }
@@ -87,8 +91,10 @@ class DormantPool
         if ($remaining > 0) {
             $others = [];
             foreach ($this->pool as $id => $entry) {
-                if (!isset($entry['awakened'])) {
-                    $others[] = ['id' => $id] + $entry;
+                if (! isset($entry['awakened'])) {
+                    $others[] = [
+                        'id' => $id,
+                    ] + $entry;
                 }
             }
             usort($others, fn ($a, $b) => $b['novelty'] <=> $a['novelty']);

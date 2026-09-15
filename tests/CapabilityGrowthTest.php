@@ -70,7 +70,12 @@ final class CapabilityGrowthTest extends TestCase
                     2 => array_map(fn ($r) => $r[0] * $r[0], $rows),
                     default => array_map(fn ($r) => (float) max($r[0], 2), $rows),
                 };
-                $tasks[] = ['kind' => 'simple', 'X' => $rows, 'y' => $yRows, 'depth' => 1];
+                $tasks[] = [
+                    'kind' => 'simple',
+                    'X' => $rows,
+                    'y' => $yRows,
+                    'depth' => 1,
+                ];
             } else {
                 // ПОРОГОВЫЕ (ceiling): y = (x0+x1)(x0−x1) — depth 2 compose,
                 // на depth 1 с базовой грамматикой НЕ решается; с рождёнными
@@ -84,7 +89,12 @@ final class CapabilityGrowthTest extends TestCase
                     $rows[] = [$a, $b];
                     $ys[] = $a * $b - $a * $a; // (x0×x1)−x0² — вложенный compose
                 }
-                $tasks[] = ['kind' => 'deep', 'X' => $rows, 'y' => $ys, 'depth' => 2];
+                $tasks[] = [
+                    'kind' => 'deep',
+                    'X' => $rows,
+                    'y' => $ys,
+                    'depth' => 2,
+                ];
             }
         }
         return $tasks;
@@ -96,10 +106,13 @@ final class CapabilityGrowthTest extends TestCase
         foreach ($tasks as $t) {
             // cvTrainMax=0.05: честный потолок — аппроксимации 0.05-0.15 не считаются
             [$found] = \BeeSwarm\Core\Search::find(
-                $t['X'], $t['y'],
+                $t['X'],
+                $t['y'],
                 \BeeSwarm\Core\Grammar::fromOps($grammarOps),
                 min($t['depth'], $depth),
-                null, 0.0, 0.05
+                null,
+                0.0,
+                0.05
             );
             if ($found) {
                 $solved++;
@@ -144,11 +157,13 @@ final class CapabilityGrowthTest extends TestCase
         self::assertGreaterThanOrEqual(
             $s1 + 1,
             $s10,
-            "S₁₀ ($s10) ≥ S₁ ($s1) + 1 — capability growth (протокол §2.5.1)"
+            "S₁₀ ({$s10}) ≥ S₁ ({$s1}) + 1 — capability growth (протокол §2.5.1)"
         );
     }
 
-    /** Эволюция: голодная линия + частичные гипотезы через wiring §2.5.2. */
+    /**
+     * Эволюция: голодная линия + частичные гипотезы через wiring §2.5.2.
+     */
     private function hiveEvolution(): void
     {
         $hive = new Hive(maxTicks: 0, logFile: tempnam(sys_get_temp_dir(), 'capgrow_'));
@@ -156,7 +171,10 @@ final class CapabilityGrowthTest extends TestCase
 
         $p = new \ReflectionProperty(Hive::class, 'lineageProgress');
         $p->setAccessible(true);
-        $p->setValue($hive, ['lineage_0' => 3, 'lineage_1' => 1]);
+        $p->setValue($hive, [
+            'lineage_0' => 3,
+            'lineage_1' => 1,
+        ]);
 
         $m = new \ReflectionMethod(Hive::class, 'runPartialBirthAttempt');
         $m->setAccessible(true);
@@ -168,9 +186,15 @@ final class CapabilityGrowthTest extends TestCase
         foreach ($hypotheses as $k => [$formula, $cv]) {
             $m->invoke(
                 $hive,
-                [[1.0], [2.0]], [2.0, 4.0],
-                ['name' => 'evo_' . $k, 'domain' => 'test_growth'],
-                $cv, 'GRAMMAR', $formula
+                [[1.0], [2.0]],
+                [2.0, 4.0],
+                [
+                    'name' => 'evo_' . $k,
+                    'domain' => 'test_growth',
+                ],
+                $cv,
+                'GRAMMAR',
+                $formula
             );
         }
     }

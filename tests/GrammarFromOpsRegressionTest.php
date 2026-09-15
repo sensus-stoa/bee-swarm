@@ -20,9 +20,9 @@ class GrammarFromOpsRegressionTest extends TestCase
         $allOps = $prop->getValue($g);
 
         foreach ($ops as $op) {
-            $this->assertArrayHasKey($op, $allOps, "Op '$op' missing from fromOps");
+            $this->assertArrayHasKey($op, $allOps, "Op '{$op}' missing from fromOps");
             $fn = $allOps[$op]['fn'] ?? '';
-            $this->assertStringNotContainsString('custom_', $fn, "Op '$op' fn='$fn' — dead custom_*");
+            $this->assertStringNotContainsString('custom_', $fn, "Op '{$op}' fn='{$fn}' — dead custom_*");
         }
     }
 

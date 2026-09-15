@@ -11,7 +11,6 @@ use BeeSwarm\Infra\RngIsolation;
 /**
  * BDD behavioral tests — инварианты пайплайна.
  * Время: ~10 сек на тест.
- * @group slow
  */
 class BehavioralDiversityTest extends TestCase
 {
@@ -43,6 +42,7 @@ class BehavioralDiversityTest extends TestCase
      * Ломалось: srand(42) → array_rand детерминизм.
      */
     private static string $sharedLog = '';
+
     private static ?Hive $sharedHive = null;
 
     /**
@@ -75,8 +75,11 @@ class BehavioralDiversityTest extends TestCase
         // Считаем уникальные формулы
         preg_match_all('/🔍.*->\s*(\S+)\s/', $log, $m);
         $formulas = array_unique($m[1]);
-        $this->assertGreaterThanOrEqual(2, count($formulas),
-            'Only ' . count($formulas) . ' unique formulas. srand poisoning?');
+        $this->assertGreaterThanOrEqual(
+            2,
+            count($formulas),
+            'Only ' . count($formulas) . ' unique formulas. srand poisoning?'
+        );
     }
 
     /**
@@ -84,9 +87,11 @@ class BehavioralDiversityTest extends TestCase
      */
     public function testRngCleanAfterRun(): void
     {
-        $this->assertFalse(method_exists(RngIsolation::class, 'hasUnrestoredGuards')
+        $this->assertFalse(
+            method_exists(RngIsolation::class, 'hasUnrestoredGuards')
             && RngIsolation::hasUnrestoredGuards(),
-            'RNG poisoned after Hive::run()');
+            'RNG poisoned after Hive::run()'
+        );
     }
 
     /**
@@ -98,7 +103,10 @@ class BehavioralDiversityTest extends TestCase
 
         preg_match_all('/\[(\w+)\]/', $log, $m);
         $domains = array_unique($m[1]);
-        $this->assertGreaterThanOrEqual(2, count($domains),
-            'Only ' . count($domains) . ' domains. All logic-only?');
+        $this->assertGreaterThanOrEqual(
+            2,
+            count($domains),
+            'Only ' . count($domains) . ' domains. All logic-only?'
+        );
     }
 }

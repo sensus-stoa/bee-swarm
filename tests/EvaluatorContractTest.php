@@ -27,9 +27,9 @@ class EvaluatorContractTest extends TestCase
                 $aResult = AtomRegistry::apply($op, $a);
                 $match = ($gResult === null && $aResult === null)
                     || (is_numeric($gResult) && is_numeric($aResult)
-                        && abs((float)$gResult - (float)$aResult) < 0.0001);
+                        && abs((float) $gResult - (float) $aResult) < 0.0001);
                 if (! $match) {
-                    $mismatches[] = "$op($a): G=" . ($gResult ?? 'null') . " A=" . ($aResult ?? 'null');
+                    $mismatches[] = "{$op}({$a}): G=" . ($gResult ?? 'null') . ' A=' . ($aResult ?? 'null');
                 }
             }
         }
@@ -46,9 +46,15 @@ class EvaluatorContractTest extends TestCase
         foreach ($ops as $op) {
             // Skip unary and semantic — tested elsewhere
             $unary = $grammar->getUnaryOps();
-            if (in_array($op, $unary, true)) continue;
-            if (in_array($op, Grammar::SEMANTIC_OPS, true)) continue;
-            if (str_starts_with($op, 'K')) continue; // constants
+            if (in_array($op, $unary, true)) {
+                continue;
+            }
+            if (in_array($op, Grammar::SEMANTIC_OPS, true)) {
+                continue;
+            }
+            if (str_starts_with($op, 'K')) {
+                continue;
+            } // constants
 
             foreach ($vals as $a) {
                 foreach ($vals as $b) {
@@ -56,10 +62,10 @@ class EvaluatorContractTest extends TestCase
                     $aResult = AtomRegistry::apply($op, $a, $b);
                     $match = ($gResult === null && $aResult === null)
                         || (is_numeric($gResult) && is_numeric($aResult)
-                            && abs((float)$gResult - (float)$aResult) < 0.0001);
+                            && abs((float) $gResult - (float) $aResult) < 0.0001);
                     if (! $match) {
-                        $mismatches[] = "$op($a,$b): G=" . (is_null($gResult) ? 'null' : $gResult)
-                            . " A=" . (is_null($aResult) ? 'null' : $aResult);
+                        $mismatches[] = "{$op}({$a},{$b}): G=" . ($gResult === null ? 'null' : $gResult)
+                            . ' A=' . ($aResult === null ? 'null' : $aResult);
                     }
                 }
             }
@@ -121,8 +127,8 @@ class EvaluatorContractTest extends TestCase
         foreach ($cases as [$op, $arg, $expected]) {
             $gResult = $grammar2->apply($arg, 0.0, $op);
             $aResult = \BeeSwarm\Core\AtomRegistry::apply($op, $arg);
-            $this->assertEqualsWithDelta($expected, $gResult, 0.0001, "Grammar $op($arg)");
-            $this->assertEqualsWithDelta($expected, $aResult, 0.0001, "AtomRegistry $op($arg)");
+            $this->assertEqualsWithDelta($expected, $gResult, 0.0001, "Grammar {$op}({$arg})");
+            $this->assertEqualsWithDelta($expected, $aResult, 0.0001, "AtomRegistry {$op}({$arg})");
         }
     }
 }

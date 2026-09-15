@@ -29,10 +29,16 @@ class SpawnDetailsTest extends TestCase
         $this->assertGreaterThan(0, $count, 'спавн случился');
         foreach ($details as $d) {
             // фактический ключ: bees[d['child_key']] — ребёнок на месте
-            $this->assertArrayHasKey($d['child_key'], $bees,
-                'child_key указывает на существующего ребёнка!');
-            $this->assertNotEquals($d['parent'], $d['child_key'],
-                'ребёнок ≠ родитель (позиция!)');
+            $this->assertArrayHasKey(
+                $d['child_key'],
+                $bees,
+                'child_key указывает на существующего ребёнка!'
+            );
+            $this->assertNotEquals(
+                $d['parent'],
+                $d['child_key'],
+                'ребёнок ≠ родитель (позиция!)'
+            );
         }
         // плотность: после append без реиндексации ключи {0,2,3...}
         // проверяем: у родителя 2 (mul) — key 2: ребёнок получил новый ключ

@@ -27,8 +27,11 @@ class PopulationPeriodicSaveTest extends TestCase
         $n = (int) Database::get()->query(
             'SELECT COUNT(*) FROM bee_persistence WHERE is_alive = 1'
         )->fetchColumn();
-        $this->assertGreaterThan(0, $n,
-            'популяция сохранена ПЕРИОДИЧЕСКИ (не только shutdown!)');
+        $this->assertGreaterThan(
+            0,
+            $n,
+            'популяция сохранена ПЕРИОДИЧЕСКИ (не только shutdown!)'
+        );
 
         // ИЗОЛЯЦИЯ: savePopulation DELETE-ит таблицу — не загрязняем
         // соседние тесты процесса (:memory: общая!)

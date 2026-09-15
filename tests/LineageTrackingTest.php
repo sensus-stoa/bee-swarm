@@ -5,7 +5,6 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Hive\DormantPool;
 
 /**
  * SPAWN-POOL-INTEGRATION Фаза C (27.08): Lineage Tracking.
@@ -37,13 +36,19 @@ class LineageTrackingTest extends TestCase
         $this->assertNotEmpty($bees, 'bootstrap обязан дать seed-пчёл');
         $parentId = $bees[0]->lineageId();
 
-        $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+        $pool->deposit([
+            'op' => '+',
+            'operand' => 'x0',
+        ], 'ADDITIVE', 0.5);
         $hive->materializeFromPool(1);
 
         $newBee = $hive->getBees()[count($hive->getBees()) - 1];
         $this->assertNotSame('', $newBee->lineageId(), 'lineage id обязателен');
-        $this->assertSame($parentId, $newBee->parentLineageId(),
-            'потомок помнит родительскую линию');
+        $this->assertSame(
+            $parentId,
+            $newBee->parentLineageId(),
+            'потомок помнит родительскую линию'
+        );
     }
 
     public function testLineageStatsCountsLines(): void
@@ -51,7 +56,10 @@ class LineageTrackingTest extends TestCase
         $hive = $this->makeShortHive();
         $pool = $hive->dormantPool();
 
-        $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+        $pool->deposit([
+            'op' => '+',
+            'operand' => 'x0',
+        ], 'ADDITIVE', 0.5);
         $hive->materializeFromPool(2);
 
         $stats = $hive->lineageStats();
@@ -68,13 +76,19 @@ class LineageTrackingTest extends TestCase
         // K=2: линия без прогресса 2 поколения подряд умирает
         $k = 2;
         for ($gen = 0; $gen <= $k; $gen++) {
-            $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+            $pool->deposit([
+                'op' => '+',
+                'operand' => 'x0',
+            ], 'ADDITIVE', 0.5);
             $hive->materializeFromPool(1);
             // НЕ делаем прогресс: ни discovery, ни рост энергии
             $dead = $hive->pruneLineages($k);
             if ($gen === $k) {
-                $this->assertGreaterThan(0, $dead,
-                    "линия без прогресса {$k} поколений обязана быть подрезана");
+                $this->assertGreaterThan(
+                    0,
+                    $dead,
+                    "линия без прогресса {$k} поколений обязана быть подрезана"
+                );
             }
         }
     }
@@ -104,7 +118,10 @@ class LineageTrackingTest extends TestCase
 
         $bonusBefore = $this->bonusOf($hive, 0);
 
-        $pool->deposit(['op' => 'sq', 'operand' => 'x1'], 'POWER', 0.5);
+        $pool->deposit([
+            'op' => 'sq',
+            'operand' => 'x1',
+        ], 'POWER', 0.5);
         $hive->materializeFromPool(1);
 
         // Новая линия (первое появление сектора POWER) получает бонус энергии

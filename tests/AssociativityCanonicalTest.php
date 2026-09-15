@@ -20,23 +20,29 @@ use PHPUnit\Framework\TestCase;
  */
 final class AssociativityCanonicalTest extends TestCase
 {
-    /** Сложение: обе группировки → один канон. */
+    /**
+     * Сложение: обе группировки → один канон.
+     */
     public function testAddAssociativityOneCanon(): void
     {
         $left = ExpressionNormalizer::normalize('((x0+x1)+x2)');
         $right = ExpressionNormalizer::normalize('(x0+(x1+x2))');
-        $this->assertSame($left, $right, "лево=$left право=$right");
+        $this->assertSame($left, $right, "лево={$left} право={$right}");
     }
 
-    /** Умножение: обе группировки → один канон. */
+    /**
+     * Умножение: обе группировки → один канон.
+     */
     public function testMulAssociativityOneCanon(): void
     {
         $left = ExpressionNormalizer::normalize('((x0×x1)×x2)');
         $right = ExpressionNormalizer::normalize('(x0×(x1×x2))');
-        $this->assertSame($left, $right, "лево=$left право=$right");
+        $this->assertSame($left, $right, "лево={$left} право={$right}");
     }
 
-    /** Вычитание: НЕ ассоциативно — группировки обязаны остаться разными. */
+    /**
+     * Вычитание: НЕ ассоциативно — группировки обязаны остаться разными.
+     */
     public function testSubAssociativityNotMerged(): void
     {
         $left = ExpressionNormalizer::normalize('((x0−x1)−x2)');
@@ -44,7 +50,9 @@ final class AssociativityCanonicalTest extends TestCase
         $this->assertNotSame($left, $right, '− не ассоциативно: группировки — разные функции');
     }
 
-    /** Деление: НЕ ассоциативно справа. */
+    /**
+     * Деление: НЕ ассоциативно справа.
+     */
     public function testDivAssociativityNotMerged(): void
     {
         $left = ExpressionNormalizer::normalize('((x0/x1)/x2)');
@@ -52,14 +60,18 @@ final class AssociativityCanonicalTest extends TestCase
         $this->assertNotSame($left, $right, '/ справа-группировка — другая функция');
     }
 
-    /** Идемпотентность: канон ассоциативной цепочки стабилен. */
+    /**
+     * Идемпотентность: канон ассоциативной цепочки стабилен.
+     */
     public function testCanonIdempotentAfterFlatten(): void
     {
         $once = ExpressionNormalizer::normalize('(x0+(x1+(x2+x3)))');
         $this->assertSame($once, ExpressionNormalizer::normalize($once));
     }
 
-    /** Перемешивание группировок (6 перестановок ассоц-цепочки) → один канон. */
+    /**
+     * Перемешивание группировок (6 перестановок ассоц-цепочки) → один канон.
+     */
     public function testAllGroupingsOneCanon(): void
     {
         $canons = [

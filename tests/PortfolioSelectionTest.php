@@ -21,7 +21,11 @@ class PortfolioSelectionTest extends TestCase
             1 => [0, 1, 0, 1, 0],
             2 => [0, 1, 0, 1, 0],
         ];
-        $pnls = [0 => 0.5, 1 => 0.4, 2 => 0.3];
+        $pnls = [
+            0 => 0.5,
+            1 => 0.4,
+            2 => 0.3,
+        ];
         $sel = TradingHive::selectPortfolio($series, $pnls, 10, 0.5);
         $this->assertCount(1, $sel);
     }
@@ -33,7 +37,11 @@ class PortfolioSelectionTest extends TestCase
             1 => [0, 1, 0, 1, 0],   // копия 0 — отбросится
             2 => [1, 0, 0, 0, 1],   // другие дни — независима
         ];
-        $pnls = [0 => 0.5, 1 => 0.4, 2 => 0.3];
+        $pnls = [
+            0 => 0.5,
+            1 => 0.4,
+            2 => 0.3,
+        ];
         $sel = TradingHive::selectPortfolio($series, $pnls, 10, 0.5);
         $this->assertCount(2, $sel);
         $this->assertContains(0, $sel); // лучшая из пары
@@ -48,7 +56,11 @@ class PortfolioSelectionTest extends TestCase
             1 => [1, 0, 0, 0, 0],
             2 => [0, 1, 0, 0, 0],
         ];
-        $pnls = [0 => 0.1, 1 => 0.9, 2 => 0.5];
+        $pnls = [
+            0 => 0.1,
+            1 => 0.9,
+            2 => 0.5,
+        ];
         $sel = TradingHive::selectPortfolio($series, $pnls, 10, 0.5);
         $this->assertSame(1, $sel[0]); // лучшая по PnL — первая
     }

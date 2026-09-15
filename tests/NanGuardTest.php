@@ -19,13 +19,19 @@ class NanGuardTest extends TestCase
 
         // Вектор с NaN
         $nanVec = [NAN, NAN, NAN];
-        $this->assertNotSame(0.0, Search::cv($nanVec, $y),
-            'NaN vector must not be exact match (CV=0)');
+        $this->assertNotSame(
+            0.0,
+            Search::cv($nanVec, $y),
+            'NaN vector must not be exact match (CV=0)'
+        );
 
         // Вектор с INF
         $infVec = [INF, INF, INF];
-        $this->assertNotSame(0.0, Search::cv($infVec, $y),
-            'INF vector must not be exact match (CV=0)');
+        $this->assertNotSame(
+            0.0,
+            Search::cv($infVec, $y),
+            'INF vector must not be exact match (CV=0)'
+        );
     }
 
     public function testSearchFindRejectsNanOverflow(): void
@@ -43,9 +49,12 @@ class NanGuardTest extends TestCase
 
         // Если найден закон — CV должен быть конечным и не NaN-артефактом
         if ($found) {
-            $this->assertTrue(is_finite($cv), "Law CV must be finite, got: " . var_export($cv, true));
+            $this->assertTrue(is_finite($cv), 'Law CV must be finite, got: ' . var_export($cv, true));
         }
-        $this->assertNotSame([true, 0.0], [$found, $cv],
-            'NaN overflow must not produce exact CV=0 law');
+        $this->assertNotSame(
+            [true, 0.0],
+            [$found, $cv],
+            'NaN overflow must not produce exact CV=0 law'
+        );
     }
 }

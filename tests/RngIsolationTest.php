@@ -17,21 +17,29 @@ use BeeSwarm\Infra\RngIsolation;
  */
 class RngIsolationTest extends TestCase
 {
-    /** Save-and-restore: после restore guard закрыт */
+    /**
+     * Save-and-restore: после restore guard закрыт
+     */
     public function testSaveAndRestore(): void
     {
         $guard = RngIsolation::deterministicSeed(42);
 
-        $this->assertTrue(RngIsolation::hasUnrestoredGuards(),
-            'After deterministicSeed(), guard should be active');
+        $this->assertTrue(
+            RngIsolation::hasUnrestoredGuards(),
+            'After deterministicSeed(), guard should be active'
+        );
 
         $guard->restore();
 
-        $this->assertFalse(RngIsolation::hasUnrestoredGuards(),
-            'After restore(), guard should be closed');
+        $this->assertFalse(
+            RngIsolation::hasUnrestoredGuards(),
+            'After restore(), guard should be closed'
+        );
     }
 
-    /** GUARD: assertClean бросает исключение при незакрытых guard'ах */
+    /**
+     * GUARD: assertClean бросает исключение при незакрытых guard'ах
+     */
     public function testAssertCleanThrowsWhenUnrestored(): void
     {
         $guard = RngIsolation::deterministicSeed(42);
@@ -45,7 +53,9 @@ class RngIsolationTest extends TestCase
         }
     }
 
-    /** Несколько вложенных guard'ов отслеживаются корректно */
+    /**
+     * Несколько вложенных guard'ов отслеживаются корректно
+     */
     public function testNestedGuards(): void
     {
         $outer = RngIsolation::deterministicSeed(42);
@@ -55,15 +65,21 @@ class RngIsolationTest extends TestCase
         $this->assertTrue(RngIsolation::hasUnrestoredGuards());
 
         $inner->restore();
-        $this->assertTrue(RngIsolation::hasUnrestoredGuards(),
-            'After inner restore: outer guard still active');
+        $this->assertTrue(
+            RngIsolation::hasUnrestoredGuards(),
+            'After inner restore: outer guard still active'
+        );
 
         $outer->restore();
-        $this->assertFalse(RngIsolation::hasUnrestoredGuards(),
-            'After outer restore: all guards closed');
+        $this->assertFalse(
+            RngIsolation::hasUnrestoredGuards(),
+            'After outer restore: all guards closed'
+        );
     }
 
-    /** early return c ручным restore */
+    /**
+     * early return c ручным restore
+     */
     public function testEarlyReturnStillRestores(): void
     {
         $guard = RngIsolation::deterministicSeed(42);
@@ -72,7 +88,9 @@ class RngIsolationTest extends TestCase
         $this->assertFalse(RngIsolation::hasUnrestoredGuards());
     }
 
-    /** Проверка что tearDown ловит забытый restore — ТОЛЬКО демонстрация */
+    /**
+     * Проверка что tearDown ловит забытый restore — ТОЛЬКО демонстрация
+     */
     public function testForgottenRestoreIsDetected(): void
     {
         $guard = RngIsolation::deterministicSeed(42);

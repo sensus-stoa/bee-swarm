@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,7 +27,9 @@ final class RefusalTaxonomyCompletenessTest extends TestCase
         $this->g = new Grammar();
     }
 
-    /** DATA: пустой вход — отказ ДО перебора, cv sentinel 9.99. */
+    /**
+     * DATA: пустой вход — отказ ДО перебора, cv sentinel 9.99.
+     */
     public function testDataClassOnEmptyInput(): void
     {
         $r = Search::find([], [], $this->g, 2, null, 0.0, 0.15, 1.0);
@@ -35,7 +37,9 @@ final class RefusalTaxonomyCompletenessTest extends TestCase
         self::assertSame('DATA', $r[5]);
     }
 
-    /** DATA: строк меньше tMin (параметр вызывающего, §1.2). */
+    /**
+     * DATA: строк меньше tMin (параметр вызывающего, §1.2).
+     */
     public function testDataClassWhenRowsBelowTMin(): void
     {
         $rows = [[1.0], [2.0], [3.0]];
@@ -44,7 +48,9 @@ final class RefusalTaxonomyCompletenessTest extends TestCase
         self::assertSame('DATA', $r[5]);
     }
 
-    /** DEPTH: исчерпан бюджет на depth<3 — depth-приоритет выше budget (документировано). */
+    /**
+     * DEPTH: исчерпан бюджет на depth<3 — depth-приоритет выше budget (документировано).
+     */
     public function testDepthClassOnTinyBudgetAtDepth2(): void
     {
         $rows = [[1.0, 2.0]];

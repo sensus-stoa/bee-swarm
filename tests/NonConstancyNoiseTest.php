@@ -30,9 +30,11 @@ class NonConstancyNoiseTest extends TestCase
 
         [$found] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
 
-        $this->assertFalse($found,
+        $this->assertFalse(
+            $found,
             'шум со знакопеременным y НЕ должен давать законы (псевдозакон '
-            . '(x0/R+x0) CV=0.028 — shift-артефакт, ЭКСП-026: 260/260 на MOEX!)');
+            . '(x0/R+x0) CV=0.028 — shift-артефакт, ЭКСП-026: 260/260 на MOEX!)'
+        );
     }
 
     public function testRealLawWithSignedYNotRejected(): void
@@ -54,9 +56,11 @@ class NonConstancyNoiseTest extends TestCase
 
         [$found, $cv] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
 
-        $this->assertTrue($found,
+        $this->assertTrue(
+            $found,
             'реальный закон y=x0+x1+ε со знакопеременным y ДОЛЖЕН быть найден '
-            . '(null-фильтр не должен резать сигнал: cv=' . round($cv, 4) . ')');
+            . '(null-фильтр не должен резать сигнал: cv=' . round($cv, 4) . ')'
+        );
         $this->assertLessThan(0.15, $cv, 'реальный закон: CV < 0.15');
     }
 }

@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * уязвим к выборочным корреляциям малых выборок (unlucky seed).
  * Лечение: закон становится DURABLE только после повторного открытия
  * на ДРУГИХ данных (другой task fingerprint). Повтор на тех же данных
-# поднимает usage_count, но не confirmed_count.
+ * # поднимает usage_count, но не confirmed_count.
  *
  * Прецедент seed=99: corr(x1,noise)=0.33 на одной выборке, −0.31..−0.04 на
  * свежих — формула с мусорной колонкой обязана остаться unconfirmed.
@@ -48,7 +48,11 @@ final class RediscoveryConfirmationTest extends TestCase
 
     private function task(string $name, string $fingerprint): array
     {
-        return ['name' => $name, 'domain' => 'test_conf', 'fingerprint' => $fingerprint];
+        return [
+            'name' => $name,
+            'domain' => 'test_conf',
+            'fingerprint' => $fingerprint,
+        ];
     }
 
     private function confirmedCount(string $formula, string $domain): int
@@ -71,7 +75,9 @@ final class RediscoveryConfirmationTest extends TestCase
         return (int) ($stmt->fetchColumn() ?: 0);
     }
 
-    /** Первое открытие: usage=1, confirmed=0 (не durable). */
+    /**
+     * Первое открытие: usage=1, confirmed=0 (не durable).
+     */
     public function testFirstDiscoveryUnconfirmed(): void
     {
         $r = $this->keeper->record(
@@ -81,11 +87,16 @@ final class RediscoveryConfirmationTest extends TestCase
         );
         self::assertTrue($r['inserted']);
         self::assertSame(1, $this->usageCount('(K2×x0)', 'test_conf'));
-        self::assertSame(0, $this->confirmedCount('(K2×x0)', 'test_conf'),
-            'первое открытие не может быть durable (T5-post)');
+        self::assertSame(
+            0,
+            $this->confirmedCount('(K2×x0)', 'test_conf'),
+            'первое открытие не может быть durable (T5-post)'
+        );
     }
 
-    /** Повтор на ТЕХ ЖЕ данных: usage растёт, confirmed НЕ растёт. */
+    /**
+     * Повтор на ТЕХ ЖЕ данных: usage растёт, confirmed НЕ растёт.
+     */
     public function testSameDataRepeatDoesNotConfirm(): void
     {
         $this->keeper->record($this->discovery('fp_A'), $this->task('t1', 'fp_A'), 'test_conf');
@@ -93,22 +104,32 @@ final class RediscoveryConfirmationTest extends TestCase
         $this->keeper->record($this->discovery('fp_A'), $this->task('t3', 'fp_A'), 'test_conf');
 
         self::assertSame(3, $this->usageCount('(K2×x0)', 'test_conf'));
-        self::assertSame(0, $this->confirmedCount('(K2×x0)', 'test_conf'),
-            'повтор на тех же данных — не подтверждение (unlucky-seed защита)');
+        self::assertSame(
+            0,
+            $this->confirmedCount('(K2×x0)', 'test_conf'),
+            'повтор на тех же данных — не подтверждение (unlucky-seed защита)'
+        );
     }
 
-    /** Повтор на ДРУГИХ данных: confirmed=1 → durable. */
+    /**
+     * Повтор на ДРУГИХ данных: confirmed=1 → durable.
+     */
     public function testNewDataRepeatConfirms(): void
     {
         $this->keeper->record($this->discovery('fp_A'), $this->task('t1', 'fp_A'), 'test_conf');
         $this->keeper->record($this->discovery('fp_B'), $this->task('t2', 'fp_B'), 'test_conf');
 
         self::assertSame(2, $this->usageCount('(K2×x0)', 'test_conf'));
-        self::assertSame(1, $this->confirmedCount('(K2×x0)', 'test_conf'),
-            'переоткрытие на новых данных = подтверждение (durable)');
+        self::assertSame(
+            1,
+            $this->confirmedCount('(K2×x0)', 'test_conf'),
+            'переоткрытие на новых данных = подтверждение (durable)'
+        );
     }
 
-    /** Durable-гейт: confirmedLaws() возвращает только подтверждённые. */
+    /**
+     * Durable-гейт: confirmedLaws() возвращает только подтверждённые.
+     */
     public function testConfirmedLawsFiltersUnconfirmed(): void
     {
         $this->keeper->record($this->discovery('fp_A'), $this->task('t1', 'fp_A'), 'test_conf');

@@ -17,27 +17,39 @@ namespace BeeSwarm\Core;
  */
 class ExpressionNormalizer
 {
-    /** Коммутативные бинарные операции — операнды сортируются. */
+    /**
+     * Коммутативные бинарные операции — операнды сортируются.
+     */
     private const COMMUTATIVE = ['+', '×', 'max', 'min'];
 
-    /** Все бинарные операторы (длинные первыми для парсинга). */
+    /**
+     * Все бинарные операторы (длинные первыми для парсинга).
+     */
     private const BINARY_OPS = ['max', 'min', 'add', 'sub', 'mul', 'div', '×', '−', '/', '+'];
     // EVALUATOR-OP-NAMES (08.08): add/sub/mul/div — имена операций Search;
     // без них heldout слеп к композициям ((x0addx1) → 9.99 → REFUTED)
 
-    /** R-префиксы (reduce-атомы из Search::find) — длинные первыми. */
+    /**
+     * R-префиксы (reduce-атомы из Search::find) — длинные первыми.
+     */
     private const R_PREFIXES = ['range', 'norm', 'max', 'min', '×', '−', '/', '+'];
 
-    /** Unary-суффиксы в L1-unary форме: ((x0+x1)sq). */
+    /**
+     * Unary-суффиксы в L1-unary форме: ((x0+x1)sq).
+     */
     private const UNARY_SUFFIXES = ['sqrt', 'parity', 'log2', 'abs', 'neg', 'inv', 'sq'];
 
     /**
      * Каноническая форма выражения.
      */
-    /** Премортем deleg_f0b2fe04 И3: мемоизация — normalize в канон-дедупе на каждом тике. */
+    /**
+     * Премортем deleg_f0b2fe04 И3: мемоизация — normalize в канон-дедупе на каждом тике.
+     */
     private const NORM_CACHE_MAX = 4096;
 
-    /** @var array<string, string> */
+    /**
+     * @var array<string, string>
+     */
     private static array $normalizeCache = [];
 
     public static function normalize(string $expr): string
@@ -70,9 +82,7 @@ class ExpressionNormalizer
     /**
      * Восстановить плейсхолдеры в атомах (JSON/R-атомы) после парсинга.
      *
-     * @param array $node
      * @param array<string, string> $map
-     * @return array
      */
     public static function restoreAtoms(array $node, array $map): array
     {
@@ -150,7 +160,11 @@ class ExpressionNormalizer
                 }
                 $parsed = self::parse($inner, $extraOps);
                 if ($parsed !== null) {
-                    return ['op' => $suffix, 'l' => $parsed, 'r' => null];
+                    return [
+                        'op' => $suffix,
+                        'l' => $parsed,
+                        'r' => null,
+                    ];
                 }
             }
         }
@@ -162,7 +176,11 @@ class ExpressionNormalizer
             if ($parsed === null) {
                 return null;
             }
-            return ['op' => 'sq', 'l' => $parsed, 'r' => null];
+            return [
+                'op' => 'sq',
+                'l' => $parsed,
+                'r' => null,
+            ];
         }
 
         // Атом: нет внешних скобок. НО если внутри есть оператор верхнего
@@ -175,11 +193,17 @@ class ExpressionNormalizer
                 [$op, $left, $right] = $split;
                 return [
                     'op' => $op,
-                    'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
-                    'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
+                    'l' => self::parse($left, $extraOps) ?? [
+                        'atom' => $left,
+                    ],
+                    'r' => self::parse($right, $extraOps) ?? [
+                        'atom' => $right,
+                    ],
                 ];
             }
-            return ['atom' => $expr];
+            return [
+                'atom' => $expr,
+            ];
         }
 
         // Внутренность внешних скобок
@@ -201,8 +225,12 @@ class ExpressionNormalizer
             [$op, $left, $right] = $split;
             return [
                 'op' => $op,
-                'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
-                'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
+                'l' => self::parse($left, $extraOps) ?? [
+                    'atom' => $left,
+                ],
+                'r' => self::parse($right, $extraOps) ?? [
+                    'atom' => $right,
+                ],
             ];
         }
 
@@ -211,7 +239,9 @@ class ExpressionNormalizer
         // Или с суффиксом: "(x0+x0)²" → ²-квадрат (SEARCH-TOP-K 05.08)
         if ((str_starts_with($inner, '(') && str_ends_with($inner, ')'))
             || mb_substr($inner, -1, 1) === '²') {
-            return self::parse($inner) ?? ['atom' => $inner];
+            return self::parse($inner) ?? [
+                'atom' => $inner,
+            ];
         }
         // Unary-суффикс внутри внешних скобок: "((x0+x1)sq)" → sq("(x0+x1)")
         foreach (self::UNARY_SUFFIXES as $suffix) {
@@ -219,7 +249,11 @@ class ExpressionNormalizer
                 && str_ends_with(substr($inner, 0, -strlen($suffix)), ')')) {
                 $parsed = self::parse(substr($inner, 0, -strlen($suffix)));
                 if ($parsed !== null) {
-                    return ['op' => $suffix, 'l' => $parsed, 'r' => null];
+                    return [
+                        'op' => $suffix,
+                        'l' => $parsed,
+                        'r' => null,
+                    ];
                 }
             }
         }
@@ -227,17 +261,18 @@ class ExpressionNormalizer
         // (например, "speed_max+x0" — max внутри слова) → атом С исходными
         // скобками, чтобы не потерять структуру (CONCERNS Ф1 05.08)
         if (preg_match('/[+×−\/]|max|min/', $inner)) {
-            return ['atom' => $expr];
+            return [
+                'atom' => $expr,
+            ];
         }
         // Атом в избыточных скобках: (x0) → x0
-        return ['atom' => $inner];
+        return [
+            'atom' => $inner,
+        ];
     }
 
     /**
      * Упрощение AST: тавтологии, тождества, сортировка коммутативных операндов.
-     *
-     * @param array $node
-     * @return array
      */
     private static function simplify(array $node): array
     {
@@ -266,7 +301,11 @@ class ExpressionNormalizer
             return $simplified;
         }
 
-        return ['op' => $op, 'l' => $l, 'r' => $r];
+        return [
+            'op' => $op,
+            'l' => $l,
+            'r' => $r,
+        ];
     }
 
     /**
@@ -358,14 +397,24 @@ class ExpressionNormalizer
         if ($op === '×' && $sawZero) {
             // нули и единицы поглощены; если никаких других листьев — всё 0
             if ($kept === []) {
-                return ['atom' => $sawOne ? '0' : '0'];
+                return [
+                    'atom' => $sawOne ? '0' : '0',
+                ];
             }
             // 0 × x = 0 — но только если 0 был именно листом (константа), а не колонкой "0"
-            return ['op' => $op, 'l' => ['atom' => '0'], 'r' => self::flattenTree(self::rebuildKept($op, $kept))];
+            return [
+                'op' => $op,
+                'l' => [
+                    'atom' => '0',
+                ],
+                'r' => self::flattenTree(self::rebuildKept($op, $kept)),
+            ];
         }
         if ($kept === []) {
             // + : все листья были 0 → 0; × : все 1 → 1
-            return ['atom' => $op === '×' ? '1' : '0'];
+            return [
+                'atom' => $op === '×' ? '1' : '0',
+            ];
         }
         if (count($kept) === 1) {
             return $kept[0];
@@ -374,28 +423,39 @@ class ExpressionNormalizer
         return self::rebuildKept($op, $kept);
     }
 
-    /** Лево-свёрнутая пересборка отсортированных листьев. */
+    /**
+     * Лево-свёрнутая пересборка отсортированных листьев.
+     */
     private static function rebuildKept(string $op, array $kept): array
     {
         usort($kept, fn (array $a, array $b): int => strcmp(self::render($a), self::render($b)));
         $acc = $kept[0];
         $count = count($kept);
         for ($i = 1; $i < $count; $i++) {
-            $acc = ['op' => $op, 'l' => $acc, 'r' => $kept[$i]];
+            $acc = [
+                'op' => $op,
+                'l' => $acc,
+                'r' => $kept[$i],
+            ];
         }
         return $acc;
     }
+
     private static function applyTautology(string $op, array $l, array $r): ?array
     {
         if (self::render($l) !== self::render($r)) {
             return null;
         }
         return match ($op) {
-            '−' => ['atom' => '0'],
+            '−' => [
+                'atom' => '0',
+            ],
             // T2-review (deleg_79f23159): 0/0 = NaN, НЕ 1. Гард нулевых операндов:
             // если обе стороны резолвились в 0 — деление неопределено, не схлопываем.
             '/' => (is_numeric(self::render($l)) && (float) self::render($l) === 0.0)
-                ? null : ['atom' => '1'],
+                ? null : [
+                    'atom' => '1',
+                ],
             'max', 'min' => $l,
             default => null,
         };
@@ -485,7 +545,9 @@ class ExpressionNormalizer
         }
         if ($op === '/') {
             if ($lIsZero && ! $rIsZero) {
-                return ['atom' => '0']; // 0/x→0 (x≠0; деление на 0 не трогаем)
+                return [
+                    'atom' => '0',
+                ]; // 0/x→0 (x≠0; деление на 0 не трогаем)
             }
             if ($rIsOne) {
                 return $l; // (x/1)→x — T2 правая идентичность
@@ -493,7 +555,9 @@ class ExpressionNormalizer
         }
         if ($op === '×') {
             if ($lIsZero || $rIsZero) {
-                return ['atom' => '0'];
+                return [
+                    'atom' => '0',
+                ];
             }
             if ($lIsOne) {
                 return $r;
@@ -516,9 +580,8 @@ class ExpressionNormalizer
     }
 
     /**
-     * @param array $node
+     * @internal используется LawIsomorphismCompressor (канонизация шаблонов)
      */
-    /** @internal используется LawIsomorphismCompressor (канонизация шаблонов) */
     public static function render(array $node): string
     {
         if (isset($node['atom'])) {

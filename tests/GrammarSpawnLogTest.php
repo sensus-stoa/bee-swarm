@@ -34,8 +34,11 @@ class GrammarSpawnLogTest extends TestCase
         $log = (string) file_get_contents($logFile);
         unlink($logFile);
 
-        $this->assertStringContainsString('GRAMMAR_SPAWN', $log,
-            'спавн логирует грамматику (verify_1_3!)');
+        $this->assertStringContainsString(
+            'GRAMMAR_SPAWN',
+            $log,
+            'спавн логирует грамматику (verify_1_3!)'
+        );
 
         // ИЗОЛЯЦИЯ: periodic-save пишет bee_persistence — не загрязняем
         // соседние тесты процесса (:memory: общая!)

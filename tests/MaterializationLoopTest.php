@@ -6,7 +6,6 @@ namespace BeeSwarm\Tests;
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\DormantPool;
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Hive\ResourceScheduler;
 
 /**
  * SPAWN-POOL-INTEGRATION Фаза B (27.08): Materialization Loop.
@@ -16,7 +15,9 @@ use BeeSwarm\Hive\ResourceScheduler;
  */
 class MaterializationLoopTest extends TestCase
 {
-    /** Hive с выключенным bootstrap-сканированием (быстрый) */
+    /**
+     * Hive с выключенным bootstrap-сканированием (быстрый)
+     */
     private function makeShortHive(): Hive
     {
         putenv('FORAGER_SOURCES=:');
@@ -41,7 +42,10 @@ class MaterializationLoopTest extends TestCase
 
         // 5 рецептов в пул
         for ($i = 0; $i < 5; $i++) {
-            $pool->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+            $pool->deposit([
+                'op' => '+',
+                'operand' => 'x0',
+            ], 'ADDITIVE', 0.5);
         }
 
         // Материализуем 3
@@ -58,8 +62,14 @@ class MaterializationLoopTest extends TestCase
         $hive = $this->makeShortHive();
         $pool = $hive->dormantPool();
 
-        $pool->deposit(['op' => 'sq', 'operand' => 'x1'], 'POWER', 0.9);
-        $pool->deposit(['op' => '/', 'operand' => 'x2'], 'RATIO', 0.8);
+        $pool->deposit([
+            'op' => 'sq',
+            'operand' => 'x1',
+        ], 'POWER', 0.9);
+        $pool->deposit([
+            'op' => '/',
+            'operand' => 'x2',
+        ], 'RATIO', 0.8);
 
         $hive->materializeFromPool(2);
 

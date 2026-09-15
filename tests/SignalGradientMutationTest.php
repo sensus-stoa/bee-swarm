@@ -192,8 +192,10 @@ class SignalGradientMutationTest extends TestCase
         try {
             $bee = new Bee(['+', '×'], 10.0);
             $bee->signalHint('(x0maxx1)', 5);
-            $this->assertNull($bee->signalPreferredOps(5),
-                'TTL=0: hint must be disabled immediately (age 0 > TTL 0)');
+            $this->assertNull(
+                $bee->signalPreferredOps(5),
+                'TTL=0: hint must be disabled immediately (age 0 > TTL 0)'
+            );
         } finally {
             putenv('SIGNAL_GRADIENT_TTL');
         }
@@ -208,8 +210,10 @@ class SignalGradientMutationTest extends TestCase
     {
         $bee = new Bee(['+', '×'], 10.0);
         $bee->signalHint('(x0maxx1)', 100);
-        $this->assertNull($bee->signalPreferredOps(0, 10),
-            'negative age (tick reset / missing tick) must not resurrect hint');
+        $this->assertNull(
+            $bee->signalPreferredOps(0, 10),
+            'negative age (tick reset / missing tick) must not resurrect hint'
+        );
     }
 
     /**
@@ -229,15 +233,20 @@ class SignalGradientMutationTest extends TestCase
 
         $hits = 0;
         for ($i = 0; $i < $n; $i++) {
-            $mutated = GrammarMutator::mutate(['+', '×'], $available, null, 1.0, ['max' => 2.0]);
+            $mutated = GrammarMutator::mutate(['+', '×'], $available, null, 1.0, [
+                'max' => 2.0,
+            ]);
             $newOps = array_diff($mutated, ['+', '×']);
             if ($newOps !== [] && in_array('max', $newOps, true)) {
                 $hits++;
             }
         }
         $share = $hits / $n;
-        $this->assertLessThan(0.42, $share,
-            "null weights + hint must stay uniform: share={$share} (uniform≈0.33, boosted≈0.5)");
+        $this->assertLessThan(
+            0.42,
+            $share,
+            "null weights + hint must stay uniform: share={$share} (uniform≈0.33, boosted≈0.5)"
+        );
     }
 
     /**

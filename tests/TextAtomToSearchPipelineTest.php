@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
 use BeeSwarm\Core\TextAtomCrossPairer;
@@ -79,13 +78,16 @@ class TextAtomToSearchPipelineTest extends TestCase
         foreach ($crossTasks as $task) {
             $data = $task['data'];
             $n = count($data);
-            if ($n < 10) continue;
+            if ($n < 10) {
+                continue;
+            }
 
             $X = array_map(fn ($r) => array_slice($r, 0, -1), $data);
             $y = array_column($data, count($data[0]) - 1);
 
             $results = $engine->discover(
-                $X, $y,
+                $X,
+                $y,
                 array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'min', 'max', 'abs', 'neg', 'sq', 'sqrt']),
                 0.5,
                 ['feature', 'target'],

@@ -25,10 +25,14 @@ class TextAtomCrossPairer
     {
         // Filter out constant atoms (variance≈0 — no signal for law discovery)
         $atoms = array_filter($atoms, function (array $values): bool {
-            if (count($values) < 2) return false;
+            if (count($values) < 2) {
+                return false;
+            }
             $mean = array_sum($values) / count($values);
             $variance = 0.0;
-            foreach ($values as $v) { $variance += ($v - $mean) ** 2; }
+            foreach ($values as $v) {
+                $variance += ($v - $mean) ** 2;
+            }
             return $variance > 0.0001;
         });
 
@@ -41,14 +45,18 @@ class TextAtomCrossPairer
 
         foreach ($names as $featureName) {
             foreach ($names as $targetName) {
-                if ($featureName === $targetName) continue;
+                if ($featureName === $targetName) {
+                    continue;
+                }
 
                 $rows = self::alignRows(
                     $atoms[$featureName],
                     $atoms[$targetName]
                 );
 
-                if (count($rows) < 3) continue;
+                if (count($rows) < 3) {
+                    continue;
+                }
 
                 yield [
                     'name' => "txt_pair_{$featureName}_to_{$targetName}",
@@ -69,7 +77,9 @@ class TextAtomCrossPairer
     private static function alignRows(array $features, array $targets): array
     {
         $n = min(count($features), count($targets));
-        if ($n < 3) return [];
+        if ($n < 3) {
+            return [];
+        }
 
         $rows = [];
         for ($i = 0; $i < $n; $i++) {

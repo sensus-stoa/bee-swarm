@@ -13,7 +13,9 @@ use BeeSwarm\Core\YellowBallFilter;
  */
 class YellowBallFilterTest extends TestCase
 {
-    /** train CV < 0.01 но held-out CV > 0.05 → YELLOW */
+    /**
+     * train CV < 0.01 но held-out CV > 0.05 → YELLOW
+     */
     public function testSuspiciousCVDifferenceDetected(): void
     {
         $filter = new YellowBallFilter('test_task');
@@ -26,7 +28,9 @@ class YellowBallFilterTest extends TestCase
         $this->assertCount(2, $result['valid']);
     }
 
-    /** train и held-out CV оба низкие → VALID */
+    /**
+     * train и held-out CV оба низкие → VALID
+     */
     public function testHonestLowCVPasses(): void
     {
         $filter = new YellowBallFilter('test');
@@ -39,7 +43,9 @@ class YellowBallFilterTest extends TestCase
         $this->assertCount(3, $result['valid'], 'Consistent low CV must pass');
     }
 
-    /** <3 held-out проверок → недостаточно данных */
+    /**
+     * <3 held-out проверок → недостаточно данных
+     */
     public function testInsufficientHeldOutBlocksEvaluation(): void
     {
         $filter = new YellowBallFilter('test');

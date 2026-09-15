@@ -22,13 +22,17 @@ namespace BeeSwarm\Core;
  */
 final class LawShape
 {
-    /** Инвариант формы: канон с замаскированными листьями. */
+    /**
+     * Инвариант формы: канон с замаскированными листьями.
+     */
     public static function of(string $formula): string
     {
         return self::mask(ExpressionNormalizer::normalize($formula));
     }
 
-    /** Law-distance: 0 = одна форма (form-invariant), 1 = разные. */
+    /**
+     * Law-distance: 0 = одна форма (form-invariant), 1 = разные.
+     */
     public static function distance(string $a, string $b): int
     {
         return self::of($a) === self::of($b) ? 0 : 1;

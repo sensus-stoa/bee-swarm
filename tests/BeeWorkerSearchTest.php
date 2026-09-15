@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Bee;
@@ -12,7 +11,9 @@ use BeeSwarm\Hive\BeeWorker;
  */
 class BeeWorkerSearchTest extends TestCase
 {
-    /** handleTask с валидными данными вызывает Search::find и возвращает результат */
+    /**
+     * handleTask с валидными данными вызывает Search::find и возвращает результат
+     */
     public function testHandleTaskSearchesForLaw(): void
     {
         $bee = new Bee(['add', 'mul', 'sq', 'sqrt', 'max', 'min', 'sub', 'div']);
@@ -22,7 +23,7 @@ class BeeWorkerSearchTest extends TestCase
         $task = json_encode([
             'name' => 'ADD',
             'data' => [[1, 2, 3], [3, 4, 7], [5, 6, 11], [7, 8, 15], [9, 10, 19],
-                       [2, 5, 7], [4, 1, 5], [6, 3, 9], [8, 7, 15], [10, 0, 10]],
+                [2, 5, 7], [4, 1, 5], [6, 3, 9], [8, 7, 15], [10, 0, 10]],
         ]);
 
         $result = $worker->handleTask($task);
@@ -31,7 +32,9 @@ class BeeWorkerSearchTest extends TestCase
         $this->assertArrayHasKey('discovery', $result, 'Result must include discovery');
     }
 
-    /** handleTask списывает энергию за поиск (даже если закон найден — chargeSearch до reward) */
+    /**
+     * handleTask списывает энергию за поиск (даже если закон найден — chargeSearch до reward)
+     */
     public function testHandleTaskChangesEnergy(): void
     {
         $bee = new Bee(['add']);

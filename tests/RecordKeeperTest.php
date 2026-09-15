@@ -23,8 +23,17 @@ class RecordKeeperTest extends TestCase
         $keeper->preloadKnown();
 
         $result = $keeper->record(
-            ['atom' => '(x0 / x1)', 'cv' => 0.001, 'mode' => 'search', 'class' => 'IDENTITY'],
-            ['name' => 'ratio_identity', 'content' => '', 'col_labels' => []],
+            [
+                'atom' => '(x0 / x1)',
+                'cv' => 0.001,
+                'mode' => 'search',
+                'class' => 'IDENTITY',
+            ],
+            [
+                'name' => 'ratio_identity',
+                'content' => '',
+                'col_labels' => [],
+            ],
             'arithmetic'
         );
 
@@ -46,8 +55,16 @@ class RecordKeeperTest extends TestCase
         $keeper->preloadKnown();
 
         $result = $keeper->record(
-            ['atom' => '(x0 + x1)', 'cv' => 0.05, 'mode' => 'search'],
-            ['name' => 'sum_empirical', 'content' => '', 'col_labels' => []],
+            [
+                'atom' => '(x0 + x1)',
+                'cv' => 0.05,
+                'mode' => 'search',
+            ],
+            [
+                'name' => 'sum_empirical',
+                'content' => '',
+                'col_labels' => [],
+            ],
             'arithmetic'
         );
 
@@ -69,14 +86,32 @@ class RecordKeeperTest extends TestCase
         $keeper->preloadKnown();
 
         $keeper->record(
-            ['atom' => '(x0 * x1)', 'cv' => 0.0, 'mode' => 'search', 'class' => 'IDENTITY'],
-            ['name' => 'dedup_test', 'content' => '', 'col_labels' => []],
+            [
+                'atom' => '(x0 * x1)',
+                'cv' => 0.0,
+                'mode' => 'search',
+                'class' => 'IDENTITY',
+            ],
+            [
+                'name' => 'dedup_test',
+                'content' => '',
+                'col_labels' => [],
+            ],
             'arithmetic'
         );
 
         $result2 = $keeper->record(
-            ['atom' => '(x0 * x1)', 'cv' => 0.0, 'mode' => 'compose', 'class' => 'IDENTITY'],
-            ['name' => 'dedup_test', 'content' => '', 'col_labels' => []],
+            [
+                'atom' => '(x0 * x1)',
+                'cv' => 0.0,
+                'mode' => 'compose',
+                'class' => 'IDENTITY',
+            ],
+            [
+                'name' => 'dedup_test',
+                'content' => '',
+                'col_labels' => [],
+            ],
             'arithmetic'
         );
 

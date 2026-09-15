@@ -56,7 +56,10 @@ final class HiveEnergyRefusalTest extends TestCase
         $method->setAccessible(true);
 
         $foundAny = false;
-        $task = ['name' => 'test_task', 'domain' => 'test'];
+        $task = [
+            'name' => 'test_task',
+            'domain' => 'test',
+        ];
         // routedBee у fresh-улья null (не было тиков) → гвард сработает
         $method->invokeArgs($hive, [$task, [[1.0, 2.0]], [1.0], 'test', &$foundAny]);
 
@@ -80,7 +83,10 @@ final class HiveEnergyRefusalTest extends TestCase
 
         $method = new \ReflectionMethod(Hive::class, 'doDiscoverTick');
         $method->setAccessible(true);
-        $task = ['name' => 'osc', 'domain' => 'test'];
+        $task = [
+            'name' => 'osc',
+            'domain' => 'test',
+        ];
         $foundAny = false;
 
         // Эпизод 1: мёртвая (routedBee=null) → лог
@@ -99,7 +105,9 @@ final class HiveEnergyRefusalTest extends TestCase
         self::assertSame(2, $count, "осцилляция обязана дать 2 лога, получено {$count}");
     }
 
-    /** Rate-limit: повторный отказ БЕЗ восстановления не флудит (1 строка на эпизод). */
+    /**
+     * Rate-limit: повторный отказ БЕЗ восстановления не флудит (1 строка на эпизод).
+     */
     public function testEnergyRefusalRateLimitedWithinEpisode(): void
     {
         Database::setPath(':memory:');
@@ -108,7 +116,10 @@ final class HiveEnergyRefusalTest extends TestCase
 
         $method = new \ReflectionMethod(Hive::class, 'doDiscoverTick');
         $method->setAccessible(true);
-        $task = ['name' => 'flood', 'domain' => 'test'];
+        $task = [
+            'name' => 'flood',
+            'domain' => 'test',
+        ];
         $foundAny = false;
 
         for ($i = 0; $i < 5; $i++) {

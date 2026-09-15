@@ -12,7 +12,6 @@ use BeeSwarm\Core\Grammar;
  */
 class GrammarBirthReuseTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         // GRAMMAR-BIRTH: не засорять общую :memory: БД — иначе
@@ -27,10 +26,16 @@ class GrammarBirthReuseTest extends TestCase
         $g->add('Btest1', 'birth', '((x0+x1))', 'physics');
 
         $row = $this->fetchBirth('Btest1');
-        $this->assertEquals('physics', $row['birth_domain'] ?? null,
-            'birth domain must be recorded');
-        $this->assertEquals(0, (int) ($row['reuse_count'] ?? 0),
-            'reuse starts at 0');
+        $this->assertEquals(
+            'physics',
+            $row['birth_domain'] ?? null,
+            'birth domain must be recorded'
+        );
+        $this->assertEquals(
+            0,
+            (int) ($row['reuse_count'] ?? 0),
+            'reuse starts at 0'
+        );
     }
 
     public function testReuseIncrementsAndTracksDomains(): void

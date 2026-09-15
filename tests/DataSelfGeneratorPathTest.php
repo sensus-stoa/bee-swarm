@@ -10,13 +10,19 @@ use BeeSwarm\Forager\DataSelfGenerator;
  */
 class DataSelfGeneratorPathTest extends TestCase
 {
-    /** Путь передаётся и используется */
+    /**
+     * Путь передаётся и используется
+     */
     public function testPathIsInjectable(): void
     {
         $tmp = tempnam(sys_get_temp_dir(), 'metrics_');
         $rows = [];
         for ($i = 0; $i < 15; $i++) {
-            $rows[] = json_encode(['date' => "2026-01-{$i}", 'sleep' => 7.0 + $i*0.1, 'energy' => 7.0 - $i*0.05]);
+            $rows[] = json_encode([
+                'date' => "2026-01-{$i}",
+                'sleep' => 7.0 + $i * 0.1,
+                'energy' => 7.0 - $i * 0.05,
+            ]);
         }
         file_put_contents($tmp, implode("\n", $rows) . "\n");
 
@@ -27,7 +33,9 @@ class DataSelfGeneratorPathTest extends TestCase
         unlink($tmp);
     }
 
-    /** Конструктор должен хранить путь */
+    /**
+     * Конструктор должен хранить путь
+     */
     public function testConstructorStoresPath(): void
     {
         $gen = new DataSelfGenerator('/custom/path/metrics.jsonl');
@@ -35,7 +43,9 @@ class DataSelfGeneratorPathTest extends TestCase
         $this->assertEquals('/custom/path/metrics.jsonl', $prop->getValue($gen));
     }
 
-    /** Без пути — fallback на дефолтный */
+    /**
+     * Без пути — fallback на дефолтный
+     */
     public function testDefaultPathFallback(): void
     {
         $gen = new DataSelfGenerator();

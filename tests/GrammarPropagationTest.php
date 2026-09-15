@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\GrammarMutator;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Hive\GrammarMutator;
 
 /**
  * GRAMMAR-PROPAGATION (ЭКСП-012): культурная эволюция.
@@ -22,8 +22,11 @@ class GrammarPropagationTest extends TestCase
         $g->boostOp('add');
         $g->boostOp('add');
 
-        $this->assertGreaterThanOrEqual($before + 2, $g->usageCount('add'),
-            'boostOp must increase usage_count');
+        $this->assertGreaterThanOrEqual(
+            $before + 2,
+            $g->usageCount('add'),
+            'boostOp must increase usage_count'
+        );
     }
 
     public function testWeightedMutationPrefersBoostedOps(): void
@@ -40,11 +43,23 @@ class GrammarPropagationTest extends TestCase
         $g->boostOp('add');
 
         $allOps = ['add', 'sub', 'mul', 'min', 'max'];
-        $added = ['add' => 0, 'sub' => 0, 'mul' => 0, 'min' => 0, 'max' => 0];
+        $added = [
+            'add' => 0,
+            'sub' => 0,
+            'mul' => 0,
+            'min' => 0,
+            'max' => 0,
+        ];
         $grammar = ['sub'];
 
         // Веса: 'add' бустнут до 6, остальные 1
-        $weights = ['add' => 6, 'sub' => 1, 'mul' => 1, 'min' => 1, 'max' => 1];
+        $weights = [
+            'add' => 6,
+            'sub' => 1,
+            'mul' => 1,
+            'min' => 1,
+            'max' => 1,
+        ];
         mt_srand(123);
         for ($i = 0; $i < 200; $i++) {
             $mutated = GrammarMutator::mutate($grammar, $allOps, $weights);
@@ -57,10 +72,16 @@ class GrammarPropagationTest extends TestCase
         }
 
         // Бустнутый 'add' должен добавляться чаще, чем 'min'/'max' (без буста)
-        $this->assertGreaterThan($added['min'], $added['add'],
-            'boosted op must be added more often than unboosted');
-        $this->assertGreaterThan($added['max'], $added['add'],
-            'boosted op must be added more often than unboosted');
+        $this->assertGreaterThan(
+            $added['min'],
+            $added['add'],
+            'boosted op must be added more often than unboosted'
+        );
+        $this->assertGreaterThan(
+            $added['max'],
+            $added['add'],
+            'boosted op must be added more often than unboosted'
+        );
     }
 
     public function testDiscoveryBoostsGrammarOps(): void

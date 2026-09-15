@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\TaskRouter;
 use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\TaskRouter;
 
 /**
  * Story S1.4-FRONTIER: Frontier Priority Booster
@@ -14,14 +14,19 @@ use BeeSwarm\Hive\Bee;
  */
 class FrontierPriorityTest extends TestCase
 {
-    /** Задача с best_CV в frontier-диапазоне получает бонус */
+    /**
+     * Задача с best_CV в frontier-диапазоне получает бонус
+     */
     public function testFrontierTaskGetsBonus(): void
     {
         $bees = [new Bee(['add', 'mul'], 10.0)];
         $router = new TaskRouter($bees, 0);
 
-        $task = ['name' => 'FRONTIER_TEST', 'data' => [[1,2,3], [3,4,7], [5,6,11]],
-                 'best_cv' => 0.05];
+        $task = [
+            'name' => 'FRONTIER_TEST',
+            'data' => [[1, 2, 3], [3, 4, 7], [5, 6, 11]],
+            'best_cv' => 0.05,
+        ];
 
         $weight = $router->computeWeight($task, $bees[0]);
         // Базовый вес = (wins+1)/(total+1) = 0.5 для новой пчелы
@@ -29,14 +34,24 @@ class FrontierPriorityTest extends TestCase
         $this->assertGreaterThan(0.5, $weight, 'Frontier task must get weight boost');
     }
 
-    /** Задача с best_CV вне диапазона не получает бонус */
+    /**
+     * Задача с best_CV вне диапазона не получает бонус
+     */
     public function testNonFrontierTaskNoBonus(): void
     {
         $bees = [new Bee(['add', 'mul'], 10.0)];
         $router = new TaskRouter($bees, 0);
 
-        $frontierTask = ['name' => 'F', 'data' => [[1,2,3]], 'best_cv' => 0.05];
-        $normalTask = ['name' => 'N', 'data' => [[1,2,3]], 'best_cv' => 0.5];
+        $frontierTask = [
+            'name' => 'F',
+            'data' => [[1, 2, 3]],
+            'best_cv' => 0.05,
+        ];
+        $normalTask = [
+            'name' => 'N',
+            'data' => [[1, 2, 3]],
+            'best_cv' => 0.5,
+        ];
 
         $frontierWeight = $router->computeWeight($frontierTask, $bees[0]);
         $normalWeight = $router->computeWeight($normalTask, $bees[0]);

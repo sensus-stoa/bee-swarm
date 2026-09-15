@@ -41,7 +41,9 @@ final class CappedConfirmedWiringTest extends TestCase
         )->execute([$formula, $formula, $domain, $usage, $confirmed]);
     }
 
-    /** RED: capped ВКЛЮЧАЕТ confirmed-закон (durable влияет на культуру). */
+    /**
+     * RED: capped ВКЛЮЧАЕТ confirmed-закон (durable влияет на культуру).
+     */
     public function testCappedIncludesConfirmedLaw(): void
     {
         $this->insertLaw('(x0×K2)', usage: 1, confirmed: 1);
@@ -50,17 +52,24 @@ final class CappedConfirmedWiringTest extends TestCase
         self::assertContains('(x0×K2)', $capped, 'durable закон входит в культуру');
     }
 
-    /** RED: capped НЕ включает unconfirmed-закон (unlucky-seed не влияет). */
+    /**
+     * RED: capped НЕ включает unconfirmed-закон (unlucky-seed не влияет).
+     */
     public function testCappedExcludesUnconfirmedLaw(): void
     {
         $this->insertLaw('(x0+K1)', usage: 9, confirmed: 0);
         $g = new Grammar();
         $capped = $g->capped(50);
-        self::assertNotContains('(x0+K1)', $capped,
-            'unconfirmed закон не влияет на weightedPick (T5-post-2)');
+        self::assertNotContains(
+            '(x0+K1)',
+            $capped,
+            'unconfirmed закон не влияет на weightedPick (T5-post-2)'
+        );
     }
 
-    /** Смешанный случай: только confirmed попадают в топ. */
+    /**
+     * Смешанный случай: только confirmed попадают в топ.
+     */
     public function testCappedTopFromConfirmedOnly(): void
     {
         $this->insertLaw('(x0+K1)', usage: 100, confirmed: 0);  // высокий usage, unlucky
@@ -71,7 +80,9 @@ final class CappedConfirmedWiringTest extends TestCase
         self::assertNotContains('(x0+K1)', $top, 'unlucky-seed не в топе');
     }
 
-    /** Legacy: у старых законов confirmed_count может быть NULL → трактуются как 0. */
+    /**
+     * Legacy: у старых законов confirmed_count может быть NULL → трактуются как 0.
+     */
     public function testNullConfirmedTreatedAsUnconfirmed(): void
     {
         Database::get()->exec(
@@ -83,7 +94,9 @@ final class CappedConfirmedWiringTest extends TestCase
         self::assertNotContains('(x0/K1)', $capped, 'NULL confirmed = unconfirmed');
     }
 
-    /** Презентация: presentable() возвращает только durable. */
+    /**
+     * Презентация: presentable() возвращает только durable.
+     */
     public function testPresentableOnlyConfirmed(): void
     {
         $this->insertLaw('(x0×K2)', usage: 1, confirmed: 1, domain: 'test_pres');
@@ -95,7 +108,9 @@ final class CappedConfirmedWiringTest extends TestCase
         self::assertNotContains('(x0+K1)', $formulas);
     }
 
-    /** Дедуп НЕ меняется: preloadKnown видит ВСЕ законы (вкл. unconfirmed). */
+    /**
+     * Дедуп НЕ меняется: preloadKnown видит ВСЕ законы (вкл. unconfirmed).
+     */
     public function testPreloadKnownSeesAll(): void
     {
         $this->insertLaw('(x0×K2)', usage: 1, confirmed: 1, domain: 'test_dedup');

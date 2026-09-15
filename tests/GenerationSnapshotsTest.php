@@ -46,10 +46,16 @@ class GenerationSnapshotsTest extends TestCase
         $last = end($rows);
         $this->assertGreaterThanOrEqual(0, (float) $last['gen']);
         $this->assertGreaterThanOrEqual(0.0, (float) $last['diversity']);
-        $this->assertLessThanOrEqual(1.0, (float) $last['diversity'],
-            'diversity ∈ [0,1]');
-        $this->assertGreaterThanOrEqual(1, (int) $last['avg_g'],
-            'avg |G| ≥ 1 (пчелы с непустой грамматикой)');
+        $this->assertLessThanOrEqual(
+            1.0,
+            (float) $last['diversity'],
+            'diversity ∈ [0,1]'
+        );
+        $this->assertGreaterThanOrEqual(
+            1,
+            (int) $last['avg_g'],
+            'avg |G| ≥ 1 (пчелы с непустой грамматикой)'
+        );
         $this->assertGreaterThanOrEqual(1, (int) $last['unique_grammars']);
         $this->assertGreaterThanOrEqual(0, (int) $last['alive']);
     }

@@ -13,7 +13,6 @@ use BeeSwarm\Core\Grammar;
  */
 class GrammarBirthWiringTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         // GRAMMAR-BIRTH: не засорять общую :memory: БД — иначе
@@ -59,7 +58,8 @@ class GrammarBirthWiringTest extends TestCase
 
         // B-атом в grammar_ops и вычисляется (внутренний механизм)
         $db = \BeeSwarm\Infra\Database::get();
-        $cnt = $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name = 'Bfloor'")->fetchColumn();
+        $cnt = $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name = 'Bfloor'")
+            ->fetchColumn();
         $this->assertEquals(1, (int) $cnt, 'born atom must be in grammar_ops');
 
         $vals = [];

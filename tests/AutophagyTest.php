@@ -85,7 +85,9 @@ final class AutophagyTest extends TestCase
         $this->assertNotContains('B3', $g);
     }
 
-    /** F2 (agent-review): BW-имя компрессора распознаётся как B-атом. */
+    /**
+     * F2 (agent-review): BW-имя компрессора распознаётся как B-атом.
+     */
     public function testBWNamedAtomUtilityRecognized(): void
     {
         // BW-атом С богатым законом (cv=0.0): при правильном токен-матчинге
@@ -101,7 +103,9 @@ final class AutophagyTest extends TestCase
         $this->assertContains('BW7a7aee', $bee->grammar());
     }
 
-    /** F1 (agent-review): ВСЕ utility нулевые (int-0/float-0) — деградация работает. */
+    /**
+     * F1 (agent-review): ВСЕ utility нулевые (int-0/float-0) — деградация работает.
+     */
     public function testAllZeroUtilitiesStillDegrades(): void
     {
         // laws пуста (холодный старт), атомы active: util=0.0 у всех
@@ -115,7 +119,9 @@ final class AutophagyTest extends TestCase
         $this->assertCount(2, $degraded);
     }
 
-    /** H1/H4 (premortem): candidate-атом (непроверенный frontier) не деградируется. */
+    /**
+     * H1/H4 (premortem): candidate-атом (непроверенный frontier) не деградируется.
+     */
     public function testCandidateStatusAtomNotDegraded(): void
     {
         // BCand: source=birth, status=candidate (RCB двухфазность) —
@@ -130,7 +136,9 @@ final class AutophagyTest extends TestCase
         $this->assertContains('BCand', $bee->grammar());
     }
 
-    /** Популяционная медиана: переданный агрегат управляет гейтом. */
+    /**
+     * Популяционная медиана: переданный агрегат управляет гейтом.
+     */
     public function testPopulationMedianGate(): void
     {
         // B1 с законом cv=0.01 → util 0.99; B2 беззаконный → 0.

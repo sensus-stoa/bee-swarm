@@ -17,12 +17,13 @@ class IntegrationLawTest extends TestCase
      */
     public function testFindsAddLaw(): void
     {
-        $X = [[1,2],[3,4],[5,6],[7,8],[9,10],[2,5],[4,1],[6,3],[8,7],[10,0]];
-        $y = [3,7,11,15,19,7,5,9,15,10];
+        $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [2, 5], [4, 1], [6, 3], [8, 7], [10, 0]];
+        $y = [3, 7, 11, 15, 19, 7, 5, 9, 15, 10];
 
         $engine = new DiscoveryEngine();
         $results = $engine->discover(
-            $X, $y,
+            $X,
+            $y,
             array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul']),
             0.01,
             ['x0', 'x1'],
@@ -38,12 +39,13 @@ class IntegrationLawTest extends TestCase
      */
     public function testFindsMulLaw(): void
     {
-        $X = [[1],[2],[3],[4],[5],[6],[7],[8],[9],[10]];
-        $y = [2,4,6,8,10,12,14,16,18,20];
+        $X = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]];
+        $y = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
 
         $engine = new DiscoveryEngine();
         $results = $engine->discover(
-            $X, $y,
+            $X,
+            $y,
             array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'sq']),
             0.01,
             ['x0'],

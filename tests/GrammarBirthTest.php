@@ -15,7 +15,6 @@ use BeeSwarm\Core\Grammar;
  */
 class GrammarBirthTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         // GRAMMAR-BIRTH: не засорять общую :memory: БД — иначе

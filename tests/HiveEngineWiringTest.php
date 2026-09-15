@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
-use BeeSwarm\Core\Search;
 use BeeSwarm\Hive\DiscoveryEngine;
 
 /**
@@ -25,7 +23,8 @@ class HiveEngineWiringTest extends TestCase
 
         $engine = new DiscoveryEngine();
         $results = $engine->discover(
-            $X, $y,
+            $X,
+            $y,
             array_merge(Grammar::baseOpNames(), ['add', 'mul', 'sub', 'div']),
             0.01,
             ['x0', 'x1']

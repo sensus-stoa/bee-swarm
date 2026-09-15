@@ -16,28 +16,40 @@ namespace BeeSwarm\Trading;
 final class TradingHive
 {
     public const START_ENERGY = 1.0;
+
     public const COST = 0.002;       // 0.2% за цикл (вход+выход)
+
     public static float $costOverride = -1.0; // микро-ад: 0.0007 и т.п.
+
     public static int $levCap = 100; // потолок плеча (устойчивый отбор: 3)
 
     private static function cost(): float
     {
         return self::$costOverride >= 0 ? self::$costOverride : self::COST;
     }
+
     public const T_SCALE = 0.3;      // масштаб t-статистики в энергию
+
     public const REPRO_ENERGY = 3.0; // порог размножения (накопили вдвое)
+
     public const POP_CAP = 12000;     // потолок популяции (жёсткий отбор)
+
     public const ATOMS = ['r2', 'r5', 'r10', 'r20', 'r40', 'vol', 'mom', 'zs', 'streak', 'pos20', 'brk20', 'regime'];
+
     public const EXT_ATOMS = [
         'fund5', 'taker5', 'oi_chg5', 'fng',
         'body', 'uwick', 'lwick', 'engulf', 'doji', 'impulse', 'gapmin', 'gapmax', // свечи Гусева/Бегса
         'vix5', 'ndq5', 'dxy5', 'trends', 'dvol', 'month', 'dow', // макро/внимание/календарь
         'relstr5', 'amihud', 'volz', 'rank20', // межрыночные: rank среди монет (О'Нил)
     ];
+
     public const HOLDS = [2, 3, 5, 10, 20];
 
-    /** @var list<array{genome: array, energy: float, alive: bool, conf?: float, calib?: float, journal?: array{deals: array, feats: array}}> */
+    /**
+     * @var list<array{genome: array, energy: float, alive: bool, conf?: float, calib?: float, journal?: array{deals: array, feats: array}}>
+     */
     private array $pop = [];
+
     private int $popSize;
 
     public function __construct(int $popSize = 100)
@@ -61,7 +73,10 @@ final class TradingHive
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
                     'calib' => 0.5,
-                    'journal' => ['deals' => [], 'feats' => []],
+                    'journal' => [
+                        'deals' => [],
+                        'feats' => [],
+                    ],
                     'alive' => true,
                 ];
             }
@@ -72,7 +87,10 @@ final class TradingHive
                     'energy' => self::START_ENERGY,
                     'conf' => 0.0,
                     'calib' => 0.5,
-                    'journal' => ['deals' => [], 'feats' => []],
+                    'journal' => [
+                        'deals' => [],
+                        'feats' => [],
+                    ],
                     'alive' => true,
                 ];
             }
@@ -117,9 +135,13 @@ final class TradingHive
                 }
                 // ЖУРНАЛ копится через поколения (ограничим 300 последних сделок)
                 $bee['journal']['deals'] = array_slice(
-                    array_merge($bee['journal']['deals'], $pnls), -300);
+                    array_merge($bee['journal']['deals'], $pnls),
+                    -300
+                );
                 $bee['journal']['feats'] = array_slice(
-                    array_merge($bee['journal']['feats'], $td['entryFeats']), -300);
+                    array_merge($bee['journal']['feats'], $td['entryFeats']),
+                    -300
+                );
                 // ДООБУЧЕНИЕ (каждые 5 поколений) по НАКОПЛЕННОМУ журналу
                 if ($g % 5 === 4) {
                     // обучаем ветку, давшую больше всего сделок
@@ -191,8 +213,22 @@ final class TradingHive
                     continue;
                 }
                 if ($bee['energy'] >= self::REPRO_ENERGY) {
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'journal' => $bee['journal'], 'alive' => true];
-                    $next[] = ['genome' => self::mutate($bee['genome'], 0.3), 'energy' => self::START_ENERGY, 'conf' => $bee['conf'] * 0.8, 'calib' => $bee['calib'], 'journal' => $bee['journal'], 'alive' => true];
+                    $next[] = [
+                        'genome' => self::mutate($bee['genome'], 0.3),
+                        'energy' => self::START_ENERGY,
+                        'conf' => $bee['conf'] * 0.8,
+                        'calib' => $bee['calib'],
+                        'journal' => $bee['journal'],
+                        'alive' => true,
+                    ];
+                    $next[] = [
+                        'genome' => self::mutate($bee['genome'], 0.3),
+                        'energy' => self::START_ENERGY,
+                        'conf' => $bee['conf'] * 0.8,
+                        'calib' => $bee['calib'],
+                        'journal' => $bee['journal'],
+                        'alive' => true,
+                    ];
                 } else {
                     $next[] = $bee;
                 }
@@ -228,10 +264,12 @@ final class TradingHive
             }
             // CALLBACK: прогресс поколения
             if ($onGen !== null) {
-                $alive = count(array_filter($this->pop, fn($b) => $b['alive']));
+                $alive = count(array_filter($this->pop, fn ($b) => $b['alive']));
                 $totalEnergy = 0;
                 foreach ($this->pop as $b) {
-                    if ($b['alive']) $totalEnergy += $b['energy'];
+                    if ($b['alive']) {
+                        $totalEnergy += $b['energy'];
+                    }
                 }
                 $onGen($g, $generations, $alive, count($this->pop), $totalEnergy);
             }
@@ -268,16 +306,23 @@ final class TradingHive
                 $total += $bee['energy'];
             }
         }
-        return ['survivors' => $out, 'total_energy' => $total];
+        return [
+            'survivors' => $out,
+            'total_energy' => $total,
+        ];
     }
 
-    /** Доступные плечи (с учётом потолка устойчивости) */
+    /**
+     * Доступные плечи (с учётом потолка устойчивости)
+     */
     private static function levChoices(): array
     {
         return array_values(array_filter([1, 2, 3, 5, 10, 20, 50, 100], fn ($l) => $l <= self::$levCap));
     }
 
-    /** Доля входов A, совпавших со входами B (ниша-штраф) */
+    /**
+     * Доля входов A, совпавших со входами B (ниша-штраф)
+     */
     public static function nicheOverlap(array $a, array $b): float
     {
         if ($a === []) {
@@ -293,7 +338,9 @@ final class TradingHive
         return $hit / count($a);
     }
 
-    /** Фактор энергии за занятость ниши: 1.0 (свободна) → 0.2 (занята) */
+    /**
+     * Фактор энергии за занятость ниши: 1.0 (свободна) → 0.2 (занята)
+     */
     public static function nichePenalty(float $overlap): float
     {
         return max(0.2, 1.0 - 0.8 * $overlap);
@@ -331,7 +378,9 @@ final class TradingHive
         return $selected;
     }
 
-    /** Pearson-корреляция двух рядов (выравнивание по длине) */
+    /**
+     * Pearson-корреляция двух рядов (выравнивание по длине)
+     */
     private static function pearson(array $a, array $b): float
     {
         $n = min(count($a), count($b));
@@ -362,7 +411,9 @@ final class TradingHive
         return $cov / sqrt($va * $vb);
     }
 
-    /** Распаковка окна: list<float> или ['ret'=>..., 'ext'=>...] */
+    /**
+     * Распаковка окна: list<float> или ['ret'=>..., 'ext'=>...]
+     */
     private static function unpackWindow(mixed $win): array
     {
         if (is_array($win) && isset($win['ret'])) {
@@ -371,7 +422,9 @@ final class TradingHive
         return [$win, []];
     }
 
-    /** @return array{branches:list<array>,conf...}: пчела = набор ВЕТОК (каждая со своей стороной) */
+    /**
+     * @return array{branches:list<array>,conf...}: пчела = набор ВЕТОК (каждая со своей стороной)
+     */
     private static function randomGenome(): array
     {
         $nBranches = rand(1, 2); // стартуем с 1-2 веток — универсальность растёт эволюцией
@@ -379,10 +432,14 @@ final class TradingHive
         for ($b = 0; $b < $nBranches; $b++) {
             $branches[] = self::randomBranch();
         }
-        return ['branches' => $branches];
+        return [
+            'branches' => $branches,
+        ];
     }
 
-    /** Одна ветка: условия + сторона + выход (бык/медведь/флэт-ветка) */
+    /**
+     * Одна ветка: условия + сторона + выход (бык/медведь/флэт-ветка)
+     */
     private static function randomBranch(): array
     {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
@@ -431,7 +488,9 @@ final class TradingHive
         ];
     }
 
-    /** @param array $g геном — мутирует случайную ВЕТКУ; ветки добавляются/удаляются */
+    /**
+     * @param array $g геном — мутирует случайную ВЕТКУ; ветки добавляются/удаляются
+     */
     private static function mutate(array $g, float $p): array
     {
         if ($g['branches'] !== []) {
@@ -449,7 +508,9 @@ final class TradingHive
         return $g;
     }
 
-    /** Мутация одной ветки (условия, сторона, выход) */
+    /**
+     * Мутация одной ветки (условия, сторона, выход)
+     */
     private static function mutateBranch(array $b, float $p): array
     {
         $allAtoms = array_merge(self::ATOMS, self::EXT_ATOMS);
@@ -523,7 +584,7 @@ final class TradingHive
             }
         }
         // === EXIT conditions mutation (независимо от entry!) ===
-        if (!isset($b['exit_conds'])) {
+        if (! isset($b['exit_conds'])) {
             $b['exit_conds'] = [];
             $b['exit_logics'] = [];
         }
@@ -574,7 +635,9 @@ final class TradingHive
         return $b;
     }
 
-    /** Волатильность n дней (std) */
+    /**
+     * Волатильность n дней (std)
+     */
     private static function volN(array $ret, int $i, int $n): float
     {
         if ($i < $n) {
@@ -592,7 +655,9 @@ final class TradingHive
         return sqrt($v / $n);
     }
 
-    /** Серия знаков: длина текущей серии одного знака (со знаком) */
+    /**
+     * Серия знаков: длина текущей серии одного знака (со знаком)
+     */
     private static function streak(array $ret, int $i): float
     {
         if ($i < 2) {
@@ -610,7 +675,9 @@ final class TradingHive
         return $sign * $len;
     }
 
-    /** Признак атома по ПРОШЛЫМ дням (лаг — без текущего дня) */
+    /**
+     * Признак атома по ПРОШЛЫМ дням (лаг — без текущего дня)
+     */
     private static function feat(string $atom, array $ret, int $i): float
     {
         return match ($atom) {
@@ -629,7 +696,9 @@ final class TradingHive
         };
     }
 
-    /** Позиция цены в n-дневном диапазоне (0=низ, 1=верх) */
+    /**
+     * Позиция цены в n-дневном диапазоне (0=низ, 1=верх)
+     */
     private static function posInRange(array $ret, int $i, int $n): float
     {
         if ($i < $n) {
@@ -646,7 +715,9 @@ final class TradingHive
         return ($mx - $mn) > 1e-9 ? ($c - $mn) / ($mx - $mn) : 0.5;
     }
 
-    /** Пробой канала: (cum20 − max прошлых 20д) / σ20 — в сигмах (Turtle/Джонс) */
+    /**
+     * Пробой канала: (cum20 − max прошлых 20д) / σ20 — в сигмах (Turtle/Джонс)
+     */
     private static function breakout20(array $ret, int $i): float
     {
         if ($i < 45) {
@@ -667,7 +738,9 @@ final class TradingHive
         return $sig > 1e-9 ? ($cum - $mxPrev) / $sig : 0.0;
     }
 
-    /** Режим: z-скор 200-дневного тренда */
+    /**
+     * Режим: z-скор 200-дневного тренда
+     */
     private static function regime200(array $ret, int $i): float
     {
         if ($i < 210) {
@@ -681,7 +754,9 @@ final class TradingHive
         return $sig > 1e-9 ? $cum / ($sig * sqrt(200)) : 0.0;
     }
 
-    /** Сделки + признаки/дни/ветка на входе (для обучения и ниш) */
+    /**
+     * Сделки + признаки/дни/ветка на входе (для обучения и ниш)
+     */
     private static function tradeDeals(array $g, array $ret, array $ext = []): array
     {
         $n = count($ret);
@@ -747,7 +822,7 @@ final class TradingHive
                     }
                 }
                 // === EXIT CONDITIONS: проверяем exit_conds на каждой свече ===
-                if (!empty($activeBranch['exit_conds'] ?? []) && self::branchSignal($activeBranch, $ret, $ext, $i, 'exit')) {
+                if (! empty($activeBranch['exit_conds'] ?? []) && self::branchSignal($activeBranch, $ret, $ext, $i, 'exit')) {
                     $cur -= self::cost() * $activeBranch['lots'] * ($activeBranch['lev'] ?? 1);
                     $deals[] = $cur;
                     $cur = 0.0;
@@ -783,10 +858,18 @@ final class TradingHive
                 }
             }
         }
-        return ['deals' => $deals, 'entryFeats' => $entryFeats, 'entryDays' => $entryDays, 'entryBranches' => $entryBranches, 'liquidations' => $liquidations];
+        return [
+            'deals' => $deals,
+            'entryFeats' => $entryFeats,
+            'entryDays' => $entryDays,
+            'entryBranches' => $entryBranches,
+            'liquidations' => $liquidations,
+        ];
     }
 
-    /** Условия ветки выполнены? */
+    /**
+     * Условия ветки выполнены?
+     */
     private static function branchSignal(array $branch, array $ret, array $ext, int $i, string $type = 'entry'): bool
     {
         $conds = $type === 'exit' ? ($branch['exit_conds'] ?? []) : $branch['conds'];
@@ -817,7 +900,9 @@ final class TradingHive
         return $sig === true;
     }
 
-    /** Совместимость: старый геном (conds+side) → одна ветка */
+    /**
+     * Совместимость: старый геном (conds+side) → одна ветка
+     */
     private static function legacyBranch(array $g): array
     {
         return [
@@ -906,12 +991,18 @@ final class TradingHive
         }
         // добавляем фильтр только при хорошем разделении (защита от переобучения)
         if ($bestAtom !== null && $bestAcc >= 0.65) {
-            $branch['conds'][] = ['atom' => $bestAtom, 'op' => $bestOp, 'threshold' => $bestThr];
+            $branch['conds'][] = [
+                'atom' => $bestAtom,
+                'op' => $bestOp,
+                'threshold' => $bestThr,
+            ];
             $branch['logics'][] = 'AND';
         }
     }
 
-    /** t-статистика сделок: mean/std×√N (шёпот: слабый эффект накапливается) */
+    /**
+     * t-статистика сделок: mean/std×√N (шёпот: слабый эффект накапливается)
+     */
     private static function tStat(array $deals): float
     {
         $n = count($deals);

@@ -106,6 +106,21 @@ class SignalGradientMutationTest extends TestCase
     }
 
     /**
+     * Agent-review F5-хвост: минус-формы на каноне U+2212 бустятся так же
+     * (связка known-список ↔ канонизатор). ASCII '-' в системе не существует
+     * (ExpressionNormalizer BINARY_OPS), но контракт фиксируем тестом.
+     */
+    public function testMinusOpOnUnicodeCanonIsBoosted(): void
+    {
+        $bee = new Bee(['+', '×'], 10.0);
+        $bee->signalHint('(x0−x1)', 3);
+        $ops = $bee->signalPreferredOps(3);
+        $this->assertIsArray($ops, 'минус-форма даёт preference');
+        $this->assertSame(['−'], array_keys($ops), 'канон минуса = U+2212');
+        $this->assertEqualsWithDelta(2.0, $ops['−'], 0.001, 'полный bias на свежем hint');
+    }
+
+    /**
      * WU-2: default TTL из env SIGNAL_GRADIENT_TTL (default 10).
      */
     public function testSignalHintDefaultTtlFromEnv(): void

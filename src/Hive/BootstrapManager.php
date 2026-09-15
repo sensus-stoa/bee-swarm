@@ -55,12 +55,21 @@ class BootstrapManager
 
         return [
             // ЭКСП-017/022: SEED_ENERGY + SEED_REWARD env — голод/дефицит наград
-            new Bee($g1, (float) (getenv('SEED_ENERGY') ?: '10.0'),
-                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')),
-            new Bee($g2, (float) (getenv('SEED_ENERGY') ?: '10.0'),
-                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')),
-            new Bee($g3, (float) (getenv('SEED_ENERGY') ?: '10.0'),
-                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')),
+            new Bee(
+                $g1,
+                (float) (getenv('SEED_ENERGY') ?: '10.0'),
+                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')
+            ),
+            new Bee(
+                $g2,
+                (float) (getenv('SEED_ENERGY') ?: '10.0'),
+                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')
+            ),
+            new Bee(
+                $g3,
+                (float) (getenv('SEED_ENERGY') ?: '10.0'),
+                discoveryReward: (float) (getenv('SEED_REWARD') ?: '2.0')
+            ),
         ];
     }
 

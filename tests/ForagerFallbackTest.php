@@ -10,7 +10,9 @@ namespace BeeSwarm\Tests;
  */
 class ForagerFallbackTest extends TestCase
 {
-    /** Проверяет что Hive не падает без FORAGER_SOURCES */
+    /**
+     * Проверяет что Hive не падает без FORAGER_SOURCES
+     */
     public function testHiveConstructsWithoutForagerSources(): void
     {
         $oldEnv = getenv('FORAGER_SOURCES');
@@ -20,7 +22,9 @@ class ForagerFallbackTest extends TestCase
             $hive = new \BeeSwarm\Hive\Hive(maxTicks: 1);
             $this->assertInstanceOf(\BeeSwarm\Hive\Hive::class, $hive);
         } finally {
-            if ($oldEnv !== false) putenv("FORAGER_SOURCES={$oldEnv}");
+            if ($oldEnv !== false) {
+                putenv("FORAGER_SOURCES={$oldEnv}");
+            }
         }
     }
 }

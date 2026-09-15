@@ -21,16 +21,28 @@ class LawClassRewardTest extends TestCase
         $keeper->preloadKnown();
 
         $domain = 'law_class_test';
-        $task = ['name' => 'lc', 'content' => '', 'col_labels' => ['x0', 'x1', 'y']];
+        $task = [
+            'name' => 'lc',
+            'content' => '',
+            'col_labels' => ['x0', 'x1', 'y'],
+        ];
 
         // Один и тот же закон в двух синтаксических формах: (x0+x1) и (x1+x0)
         $r1 = $keeper->record(
-            ['atom' => '(x0+x1)', 'cv' => 0.01, 'mode' => 'search'],
+            [
+                'atom' => '(x0+x1)',
+                'cv' => 0.01,
+                'mode' => 'search',
+            ],
             $task,
             $domain
         );
         $r2 = $keeper->record(
-            ['atom' => '(x1+x0)', 'cv' => 0.01, 'mode' => 'search'],
+            [
+                'atom' => '(x1+x0)',
+                'cv' => 0.01,
+                'mode' => 'search',
+            ],
             $task,
             $domain
         );
@@ -48,14 +60,22 @@ class LawClassRewardTest extends TestCase
         $keeper->preloadKnown();
 
         $domain = 'law_class_num';
-        $task = ['name' => 'lc2', 'content' => '', 'col_labels' => ['x0', 'x1', 'y']];
+        $task = [
+            'name' => 'lc2',
+            'content' => '',
+            'col_labels' => ['x0', 'x1', 'y'],
+        ];
 
         // Численно эквивалентные, но синтаксически разные:
         // (x0+x1) vs (x1+x0) — уже канонизируется. Возьмём сложнее:
         // y = x0 + x1; форма A: (x0+x1); форма B: (x1+x0).
         // Пока хватит коммутативного случая + проверки поля класса.
         $r1 = $keeper->record(
-            ['atom' => '(x0+x1)', 'cv' => 0.01, 'mode' => 'search'],
+            [
+                'atom' => '(x0+x1)',
+                'cv' => 0.01,
+                'mode' => 'search',
+            ],
             $task,
             $domain
         );

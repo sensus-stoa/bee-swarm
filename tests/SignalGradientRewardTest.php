@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Bee;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Hive\Bee;
 
 /**
  * Story S1.6-GRADIENT: Signal Gradient Reward
  *
  * Три зоны: ОТКРЫТИЕ (+2.0) / СИГНАЛ (+0.5) / ШУМ (0).
- * @group slow
  */
 class SignalGradientRewardTest extends TestCase
 {
@@ -26,8 +25,12 @@ class SignalGradientRewardTest extends TestCase
 
         $bee->rewardDiscovery();
 
-        $this->assertEqualsWithDelta(12.0, $bee->energy(), 0.001,
-            'rewardDiscovery must give +2.0 energy');
+        $this->assertEqualsWithDelta(
+            12.0,
+            $bee->energy(),
+            0.001,
+            'rewardDiscovery must give +2.0 energy'
+        );
     }
 
     /**
@@ -40,13 +43,19 @@ class SignalGradientRewardTest extends TestCase
         $bee = new Bee(Grammar::baseOpNames(), 10.0);
 
         // Метод должен существовать
-        $this->assertTrue(method_exists($bee, 'rewardSignal'),
-            'Bee must have rewardSignal() method');
+        $this->assertTrue(
+            method_exists($bee, 'rewardSignal'),
+            'Bee must have rewardSignal() method'
+        );
 
         $before = $bee->energy();
         $bee->rewardSignal();
-        $this->assertEqualsWithDelta(10.5, $bee->energy(), 0.001,
-            'rewardSignal must give +0.5 energy');
+        $this->assertEqualsWithDelta(
+            10.5,
+            $bee->energy(),
+            0.001,
+            'rewardSignal must give +0.5 energy'
+        );
     }
 
     /**
@@ -54,7 +63,9 @@ class SignalGradientRewardTest extends TestCase
      */
     public function testNullFloorAvailable(): void
     {
-        $this->assertTrue(method_exists(\BeeSwarm\Validation\NullCalibrator::class, 'getNullFloor'),
-            'NullCalibrator must expose null_floor for signal zone');
+        $this->assertTrue(
+            method_exists(\BeeSwarm\Validation\NullCalibrator::class, 'getNullFloor'),
+            'NullCalibrator must expose null_floor for signal zone'
+        );
     }
 }

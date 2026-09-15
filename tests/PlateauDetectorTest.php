@@ -187,7 +187,9 @@ class PlateauDetectorTest extends TestCase
         // а не каждый тик (было: 8 событий на один выход, липкий wasPlateau).
         $d = new PlateauDetector(3, 0);
         // 3 тика без открытий → плато
-        $d->tick(false); $d->tick(false); $d->tick(false);
+        $d->tick(false);
+        $d->tick(false);
+        $d->tick(false);
         $this->assertTrue($d->isPlateau());
         // Выход: открытие + discovery-rich фаза (открытия каждый тик)
         $d->tick(true);   // consecutive -> 0

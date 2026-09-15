@@ -11,7 +11,9 @@ use BeeSwarm\Hive\Hive;
  */
 class HiveEnergyLoopTest extends TestCase
 {
-    /** Пчёлы тикают каждый цикл — энергия падает */
+    /**
+     * Пчёлы тикают каждый цикл — энергия падает
+     */
     public function testBeesLoseEnergyOnTick(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'hel_');
@@ -26,7 +28,9 @@ class HiveEnergyLoopTest extends TestCase
         unlink($logFile);
     }
 
-    /** При E ≤ 0 пчела умирает — DEATH в логе */
+    /**
+     * При E ≤ 0 пчела умирает — DEATH в логе
+     */
     public function testBeeDiesAtZeroEnergy(): void
     {
         // Пчела с энергией 0.01 — SHRINK (08.08): E<3 → тик 0.001 → смерть через 10 тиков
@@ -37,7 +41,9 @@ class HiveEnergyLoopTest extends TestCase
         $this->assertFalse($bee->isAlive(), 'Bee with E≤0 must be dead');
     }
 
-    /** Энергия падает от тиков в Hive */
+    /**
+     * Энергия падает от тиков в Hive
+     */
     public function testHiveEnergyDropsFromTicks(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'hel_');

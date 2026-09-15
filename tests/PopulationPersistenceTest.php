@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Hive;
 use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\Database;
 
 class PopulationPersistenceTest extends TestCase
@@ -60,7 +60,7 @@ class PopulationPersistenceTest extends TestCase
         $bees = $hive->getBees();
         $this->assertCount(3, $bees, 'cold start must create 3 seed bees');
         $hasPlus = (bool) array_filter($bees, fn (Bee $b) => in_array('+', $b->grammar()));
-        $hasMul  = (bool) array_filter($bees, fn (Bee $b) => in_array('×', $b->grammar()));
+        $hasMul = (bool) array_filter($bees, fn (Bee $b) => in_array('×', $b->grammar()));
         $this->assertTrue($hasPlus, 'at least one seed bee must have + in grammar');
         $this->assertTrue($hasMul, 'at least one seed bee must have × in grammar');
     }

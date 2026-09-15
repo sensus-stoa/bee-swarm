@@ -26,8 +26,11 @@ class ReuseCriterionBirthTest extends TestCase
     public function testBirthCreatesCandidate(): void
     {
         Grammar::staticAdd('BC1', 'birth', '(x0addx1)', 'foraged_test');
-        $this->assertSame('candidate', $this->statusOf('BC1'),
-            'новый B-атом рождается как кандидат (двухфазное рождение)');
+        $this->assertSame(
+            'candidate',
+            $this->statusOf('BC1'),
+            'новый B-атом рождается как кандидат (двухфазное рождение)'
+        );
     }
 
     public function testLegacyAtomsAreActive(): void
@@ -36,8 +39,11 @@ class ReuseCriterionBirthTest extends TestCase
         Database::get()->prepare(
             'INSERT OR IGNORE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, ?, ?, ?)'
         )->execute(['BC2', 'birth', '(x0subx1)', 'foraged_test']);
-        $this->assertSame('active', $this->statusOf('BC2'),
-            'атомы без status (легаси) — active по умолчанию');
+        $this->assertSame(
+            'active',
+            $this->statusOf('BC2'),
+            'атомы без status (легаси) — active по умолчанию'
+        );
     }
 
     public function testReusePromotesToActive(): void
@@ -45,7 +51,10 @@ class ReuseCriterionBirthTest extends TestCase
         Grammar::staticAdd('BC3', 'birth', '(x0mulx1)', 'foraged_test');
         $this->assertSame('candidate', $this->statusOf('BC3'));
         Grammar::registerReuse('BC3', 'foraged_b');
-        $this->assertSame('active', $this->statusOf('BC3'),
-            'reuse≥1 → PROMOTED → status=active');
+        $this->assertSame(
+            'active',
+            $this->statusOf('BC3'),
+            'reuse≥1 → PROMOTED → status=active'
+        );
     }
 }

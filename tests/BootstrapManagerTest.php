@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\BootstrapManager;
 use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\BootstrapManager;
 
 /**
  * Story D14 Phase 1: BootstrapManager — извлечение bootstrap() из Hive.

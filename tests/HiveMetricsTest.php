@@ -4,14 +4,15 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Hive\Bee;
 
 /**
  * Story S1-WIRE Phase 5: Metrics — generation tracking, diversity, evolution_stats
  */
 class HiveMetricsTest extends TestCase
 {
-    /** Hive отслеживает число поколений */
+    /**
+     * Hive отслеживает число поколений
+     */
     public function testHiveTracksGenerations(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'hme_');
@@ -24,7 +25,9 @@ class HiveMetricsTest extends TestCase
         unlink($logFile);
     }
 
-    /** Jaccard diversity измеримо */
+    /**
+     * Jaccard diversity измеримо
+     */
     public function testJaccardDiversity(): void
     {
         // Hive::jaccard уже существует (private static)
@@ -38,7 +41,9 @@ class HiveMetricsTest extends TestCase
         $this->assertEqualsWithDelta(0.5, $diversity, 0.01, 'Jaccard must be correct');
     }
 
-    /** После spawn'а популяция растёт */
+    /**
+     * После spawn'а популяция растёт
+     */
     public function testPopulationGrowsAfterSpawn(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'hme_');

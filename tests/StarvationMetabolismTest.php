@@ -18,8 +18,12 @@ class StarvationMetabolismTest extends TestCase
 
         $bee->tick();
         // Тик-стоимость: 0.01 × 0.1 = 0.001
-        $this->assertEqualsWithDelta(2.0 - 0.001, $bee->energy(), 1e-9,
-            'starving bee must pay 0.1× tick cost');
+        $this->assertEqualsWithDelta(
+            2.0 - 0.001,
+            $bee->energy(),
+            1e-9,
+            'starving bee must pay 0.1× tick cost'
+        );
     }
 
     public function testWellFedBeePaysFullTickCost(): void
@@ -27,8 +31,12 @@ class StarvationMetabolismTest extends TestCase
         $bee = new Bee(['+'], 5.0); // E ≥ 3.0 — сытая
 
         $bee->tick();
-        $this->assertEqualsWithDelta(5.0 - 0.01, $bee->energy(), 1e-9,
-            'well-fed bee must pay full tick cost');
+        $this->assertEqualsWithDelta(
+            5.0 - 0.01,
+            $bee->energy(),
+            1e-9,
+            'well-fed bee must pay full tick cost'
+        );
     }
 
     public function testStarvationExtendsLifetime(): void
@@ -41,8 +49,11 @@ class StarvationMetabolismTest extends TestCase
             $ticks++;
         }
         // 3.0 / 0.001 = 3000 тиков (без starvation было бы 300)
-        $this->assertGreaterThan(1000, $ticks,
-            'starvation must extend lifetime: ' . $ticks . ' ticks');
+        $this->assertGreaterThan(
+            1000,
+            $ticks,
+            'starvation must extend lifetime: ' . $ticks . ' ticks'
+        );
     }
 
     public function testStarvingBeeDoesNotAutophagy(): void
@@ -51,8 +62,11 @@ class StarvationMetabolismTest extends TestCase
         // §2.5.14: autophagy заменил hungerMutate, вход 3≤E<5.
         $bee = new Bee(['+'], 2.5);
         $g = $bee->grammar();
-        $this->assertSame([], $bee->autophagy(),
-            'starving bee must NOT autophagy (hibernation)');
+        $this->assertSame(
+            [],
+            $bee->autophagy(),
+            'starving bee must NOT autophagy (hibernation)'
+        );
         $this->assertSame($g, $bee->grammar());
     }
 

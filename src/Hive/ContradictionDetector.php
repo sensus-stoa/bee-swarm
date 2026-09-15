@@ -73,8 +73,16 @@ final class ContradictionDetector
                 return [
                     'diff_rows' => $diffRows,
                     'candidates' => [
-                        ['formula' => $a['formula'], 'norm' => $norms[$i], 'cv' => $a['cv']],
-                        ['formula' => $b['formula'], 'norm' => $norms[$j], 'cv' => $b['cv']],
+                        [
+                            'formula' => $a['formula'],
+                            'norm' => $norms[$i],
+                            'cv' => $a['cv'],
+                        ],
+                        [
+                            'formula' => $b['formula'],
+                            'norm' => $norms[$j],
+                            'cv' => $b['cv'],
+                        ],
                     ],
                     'task_fingerprint' => md5(json_encode(array_slice($task[0] ?? [], 0, -1))),
                 ];
@@ -84,7 +92,9 @@ final class ContradictionDetector
         return null;
     }
 
-    /** Коммутативные близнецы не дают противоречия: (x0×x1) и (x1×x0) — одна формула. */
+    /**
+     * Коммутативные близнецы не дают противоречия: (x0×x1) и (x1×x0) — одна формула.
+     */
     private function sameFormula(string $fa, string $fb): bool
     {
         return ExpressionNormalizer::normalize($fa) === ExpressionNormalizer::normalize($fb);

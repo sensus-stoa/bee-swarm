@@ -12,9 +12,13 @@ namespace BeeSwarm\Hive;
 class SpawnManager
 {
     private int $spawnCount = 0;
+
     private int $gapSpawnCount = 0;  // S1.2 Phase 4: separate from regular spawns
+
     private int $generation = 0;
+
     private int $generationStartPop = 0;
+
     private bool $gapSpawnFired = false;  // S1.2 Phase 4: cooldown
 
     /**

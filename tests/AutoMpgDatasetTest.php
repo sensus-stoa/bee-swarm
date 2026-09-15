@@ -10,6 +10,7 @@ use BeeSwarm\Hive\DiscoveryEngine;
 class AutoMpgDatasetTest extends TestCase
 {
     private array $X = [];
+
     private array $y = [];
 
     protected function setUp(): void
@@ -26,14 +27,20 @@ class AutoMpgDatasetTest extends TestCase
         }
         foreach (file($file) as $line) {
             $line = trim($line);
-            if ($line === '') continue;
+            if ($line === '') {
+                continue;
+            }
             $parts = preg_split('/\s+/', $line, 9);
-            if (count($parts) < 8) continue;
-            $mpg    = (float) $parts[0];
-            $disp   = (float) $parts[2];
-            $hp     = (float) $parts[3];
+            if (count($parts) < 8) {
+                continue;
+            }
+            $mpg = (float) $parts[0];
+            $disp = (float) $parts[2];
+            $hp = (float) $parts[3];
             $weight = (float) $parts[4];
-            if ($hp === 0.0) continue;
+            if ($hp === 0.0) {
+                continue;
+            }
             $this->X[] = [$hp, $weight, $disp];
             $this->y[] = $mpg;
         }
@@ -46,7 +53,8 @@ class AutoMpgDatasetTest extends TestCase
 
         $engine = new DiscoveryEngine();
         $results = $engine->discover(
-            $this->X, $this->y,
+            $this->X,
+            $this->y,
             array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'min', 'max', 'abs', 'neg', 'sq', 'sqrt']),
             0.3,
             ['horsepower', 'weight', 'displacement'],
@@ -66,7 +74,8 @@ class AutoMpgDatasetTest extends TestCase
 
         $engine = new DiscoveryEngine();
         $results = $engine->discover(
-            $this->X, $this->y,
+            $this->X,
+            $this->y,
             array_merge(Grammar::baseOpNames(), ['add', 'sub', 'mul', 'div', 'min', 'max', 'abs', 'neg', 'sq', 'sqrt']),
             0.3,
             ['horsepower', 'weight', 'displacement'],

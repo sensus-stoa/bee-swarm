@@ -19,6 +19,7 @@ class DataSelfGenerator
         $this->metricsPath = $metricsPath
             ?? (getenv('METRICS_PATH') ?: getenv('HOME') . '/metrics.jsonl');
     }
+
     /**
      * Генерирует задачи из metrics.jsonl — все комбинации метрик.
      * Исправлено: пары с реальными данными.

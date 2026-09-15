@@ -37,8 +37,11 @@ class BirthSourceFilterTest extends TestCase
         $this->invokeBirth('(x0addx1)', 'arithmetic');
         $this->invokeBirth('(x0addx1)', 'logic');
         $this->invokeBirth('(x0addx1)', 'dream');
-        $this->assertSame($before, $this->countBirths(),
-            'base/мусор-домены (arithmetic/logic/dream) не должны рождать B-атомы');
+        $this->assertSame(
+            $before,
+            $this->countBirths(),
+            'base/мусор-домены (arithmetic/logic/dream) не должны рождать B-атомы'
+        );
     }
 
     /**
@@ -54,12 +57,18 @@ class BirthSourceFilterTest extends TestCase
         foreach ($birth as $d) {
             $this->invokeBirth('(x0addx1)', $d);
         }
-        $this->assertSame($before + count($birth), $this->countBirths(),
-            'allow-list домены должны рожать: ' . json_encode($birth));
+        $this->assertSame(
+            $before + count($birth),
+            $this->countBirths(),
+            'allow-list домены должны рожать: ' . json_encode($birth)
+        );
         foreach ($noBirth as $d) {
             $this->invokeBirth('(x0addx1)', $d);
         }
-        $this->assertSame($before + count($birth), $this->countBirths(),
-            'заблокированные домены НЕ должны рожать: ' . json_encode($noBirth));
+        $this->assertSame(
+            $before + count($birth),
+            $this->countBirths(),
+            'заблокированные домены НЕ должны рожать: ' . json_encode($noBirth)
+        );
     }
 }

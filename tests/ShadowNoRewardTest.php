@@ -18,31 +18,47 @@ class ShadowNoRewardTest extends TestCase
     {
         $bee = new Bee(['+'], 10.0);
         $bee->rewardDiscovery(1.0, 'abs'); // тень: простой атом, CV≈0
-        $this->assertEqualsWithDelta(10.0, $bee->energy(), 1e-9,
-            'shadow atom (abs) must not feed');
+        $this->assertEqualsWithDelta(
+            10.0,
+            $bee->energy(),
+            1e-9,
+            'shadow atom (abs) must not feed'
+        );
     }
 
     public function testComposedLawFeeds(): void
     {
         $bee = new Bee(['+'], 10.0);
         $bee->rewardDiscovery(1.0, '(x0addx1)'); // составной закон
-        $this->assertEqualsWithDelta(12.0, $bee->energy(), 1e-9,
-            'composed law must feed (default reward 2.0)');
+        $this->assertEqualsWithDelta(
+            12.0,
+            $bee->energy(),
+            1e-9,
+            'composed law must feed (default reward 2.0)'
+        );
     }
 
     public function testConstantCompositionDoesNotFeed(): void
     {
         $bee = new Bee(['+'], 10.0);
         $bee->rewardDiscovery(1.0, '×(min)', hasFeatures: false); // без фич — мусор
-        $this->assertEqualsWithDelta(10.0, $bee->energy(), 1e-9,
-            'constant composition (×(min)) must not feed');
+        $this->assertEqualsWithDelta(
+            10.0,
+            $bee->energy(),
+            1e-9,
+            'constant composition (×(min)) must not feed'
+        );
     }
 
     public function testFeatureLawFeeds(): void
     {
         $bee = new Bee(['+'], 10.0);
         $bee->rewardDiscovery(1.0, '(x0addx1)'); // закон с фичами
-        $this->assertEqualsWithDelta(12.0, $bee->energy(), 1e-9,
-            'feature law must feed');
+        $this->assertEqualsWithDelta(
+            12.0,
+            $bee->energy(),
+            1e-9,
+            'feature law must feed'
+        );
     }
 }

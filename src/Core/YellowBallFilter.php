@@ -13,7 +13,9 @@ class YellowBallFilter
 {
     private string $taskName;
 
-    /** @var list<array{train: float, heldOut: float}> */
+    /**
+     * @var list<array{train: float, heldOut: float}>
+     */
     private array $candidates = [];
 
     public function __construct(string $taskName)
@@ -23,7 +25,10 @@ class YellowBallFilter
 
     public function addCandidate(float $trainCv, float $heldOutCv): void
     {
-        $this->candidates[] = ['train' => $trainCv, 'heldOut' => $heldOutCv];
+        $this->candidates[] = [
+            'train' => $trainCv,
+            'heldOut' => $heldOutCv,
+        ];
     }
 
     /**
@@ -32,7 +37,11 @@ class YellowBallFilter
     public function evaluate(int $heldOutRequired = 3): array
     {
         if (count($this->candidates) < $heldOutRequired) {
-            return ['ready' => false, 'yellow' => [], 'valid' => []];
+            return [
+                'ready' => false,
+                'yellow' => [],
+                'valid' => [],
+            ];
         }
 
         $yellow = [];
@@ -47,6 +56,10 @@ class YellowBallFilter
             }
         }
 
-        return ['ready' => true, 'yellow' => $yellow, 'valid' => $valid];
+        return [
+            'ready' => true,
+            'yellow' => $yellow,
+            'valid' => $valid,
+        ];
     }
 }

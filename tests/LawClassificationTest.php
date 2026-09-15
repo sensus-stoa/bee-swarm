@@ -18,7 +18,7 @@ class LawClassificationTest extends TestCase
     public function testAddLawIsEmpiricalWithoutSplit(): void
     {
         $X = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10],
-              [2, 5], [4, 1], [6, 3], [8, 7], [10, 0]];
+            [2, 5], [4, 1], [6, 3], [8, 7], [10, 0]];
         $y = [3, 7, 11, 15, 19, 7, 5, 9, 15, 10];
 
         $g = Grammar::fromOps(array_merge(Grammar::baseOpNames(), ['add']));
@@ -37,7 +37,8 @@ class LawClassificationTest extends TestCase
     public function testSplitProducesDifferentCv(): void
     {
         // Данные с известным законом ADD (x0+x1=y) + шум
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 0; $i < 20; $i++) {
             $x0 = (float) ($i + 1);
             $x1 = (float) ($i * 2 + 3);
@@ -72,8 +73,12 @@ class LawClassificationTest extends TestCase
 
         $this->assertCount(6, $result); // контракт find() расширен: [5]=диагноз §3.3
         if ($result[0]) {
-            $this->assertEqualsWithDelta($result[1], $result[3], 0.001,
-                'Without split, cv_train == cv_test');
+            $this->assertEqualsWithDelta(
+                $result[1],
+                $result[3],
+                0.001,
+                'Without split, cv_train == cv_test'
+            );
         }
     }
 }

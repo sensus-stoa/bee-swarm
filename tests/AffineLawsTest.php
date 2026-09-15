@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * AFFINE-LAWS (ЭКСП-012, рецензия протокола): CV = std(pred/y)/mean(pred/y)

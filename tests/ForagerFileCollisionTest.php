@@ -24,7 +24,7 @@ class ForagerFileCollisionTest extends TestCase
         // Файл A: 3 колонки (lambda, W, L) — 12 строк (tMin=10)
         $little = "lambda,W_hours,L_tasks\n";
         for ($i = 1; $i <= 12; $i++) {
-            $little .= "{$i}," . ($i + 1) . "," . ($i * ($i + 1)) . "\n";
+            $little .= "{$i}," . ($i + 1) . ',' . ($i * ($i + 1)) . "\n";
         }
         file_put_contents("{$this->tmpDir}/little.csv", $little);
         // Файл B: 3 колонки (p, n, speedup) — ДРУГИЕ имена, 12 строк
@@ -53,7 +53,9 @@ class ForagerFileCollisionTest extends TestCase
     public function testFilesWithSameColumnCountDoNotMix(): void
     {
         $forager = new Forager();
-        $tasks = $forager->scanWithAccumulator([$this->tmpDir => 1]);
+        $tasks = $forager->scanWithAccumulator([
+            $this->tmpDir => 1,
+        ]);
 
         // Каждая задача должна содержать строки ТОЛЬКО из одного файла
         $this->assertNotEmpty($tasks, 'tasks must be created');

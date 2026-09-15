@@ -24,7 +24,9 @@ class TradingBeesTest extends TestCase
         return $r;
     }
 
-    /** RED: на чистом шуме отбор НЕ обогащает (диагностика давления) */
+    /**
+     * RED: на чистом шуме отбор НЕ обогащает (диагностика давления)
+     */
     public function testNoiseExtinction(): void
     {
         $windows = [
@@ -36,12 +38,17 @@ class TradingBeesTest extends TestCase
         // ПЛЕЧО-ЛОТЕРЕЯ: маржин-колл обрезает вниз (−0.8), выигрыш не обрезан —
         // на чистом шуме это физическая инфляция энергии (усечённое распределение).
         // Порог 150 = старт + шум + плечо-хвосты (без плеча было ≤120).
-        $this->assertLessThanOrEqual(150.0, $res['total_energy'],
+        $this->assertLessThanOrEqual(
+            150.0,
+            $res['total_energy'],
             'на чистом шуме энергия не создаётся системно (≤ старт + шум + плечо-хвосты): '
-            . round($res['total_energy'], 1));
+            . round($res['total_energy'], 1)
+        );
     }
 
-    /** RED: встроенный BNB-эффект рой находит ТОРГУЯ (OOS-PnL > 0) */
+    /**
+     * RED: встроенный BNB-эффект рой находит ТОРГУЯ (OOS-PnL > 0)
+     */
     public function testEmbeddedEffectFound(): void
     {
         // train: шум; test: шум + BNB-подобный эффект (r5-перегрев → 20 дней вниз)
@@ -79,16 +86,22 @@ class TradingBeesTest extends TestCase
                 $bestG = $bee['genome'];
             }
         }
-        $this->assertGreaterThan(0.0, $best,
-            'встроенный эффект должен быть найден торговлей: лучший OOS-PnL > 0');
+        $this->assertGreaterThan(
+            0.0,
+            $best,
+            'встроенный эффект должен быть найден торговлей: лучший OOS-PnL > 0'
+        );
         // СТРОГОСТЬ: эффект найден СИЛЬНО (закон сохранения энергии не даёт
         // суммарной энергии расти — честная метрика: чистый PnL лучшей пчелы)
         $bestClean = 0.0;
         foreach ($res['survivors'] as $b) {
             $bestClean = max($bestClean, $b['clean_pnl']);
         }
-        $this->assertGreaterThan(1.0, $bestClean,
+        $this->assertGreaterThan(
+            1.0,
+            $bestClean,
             'эффект должен дать чистый PnL > 1.0 у лучшей пчелы (best_clean='
-            . round($bestClean, 2) . ')');
+            . round($bestClean, 2) . ')'
+        );
     }
 }

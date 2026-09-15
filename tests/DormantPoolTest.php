@@ -17,7 +17,11 @@ class DormantPoolTest extends TestCase
         $pool = new DormantPool();
         $this->assertSame(0, $pool->size());
 
-        $id = $pool->deposit(['op' => '−', 'i' => 1, 'j' => 2], 'DIFF', 0.8);
+        $id = $pool->deposit([
+            'op' => '−',
+            'i' => 1,
+            'j' => 2,
+        ], 'DIFF', 0.8);
         $this->assertSame(1, $pool->size());
         $this->assertIsInt($id);
     }
@@ -27,17 +31,26 @@ class DormantPoolTest extends TestCase
         $pool = new DormantPool();
         // 5 DIFF, 3 PRODUCT, 2 RATIO
         for ($i = 0; $i < 5; $i++) {
-            $pool->deposit(['op' => '−'], 'DIFF', 0.5 + $i * 0.1);
+            $pool->deposit([
+                'op' => '−',
+            ], 'DIFF', 0.5 + $i * 0.1);
         }
         for ($i = 0; $i < 3; $i++) {
-            $pool->deposit(['op' => '×'], 'PRODUCT', 0.6 + $i * 0.1);
+            $pool->deposit([
+                'op' => '×',
+            ], 'PRODUCT', 0.6 + $i * 0.1);
         }
         for ($i = 0; $i < 2; $i++) {
-            $pool->deposit(['op' => '/'], 'RATIO', 0.7);
+            $pool->deposit([
+                'op' => '/',
+            ], 'RATIO', 0.7);
         }
 
         // Квота: DIFF=2, PRODUCT=1 → awaken 3
-        $awakened = $pool->awaken(10, ['DIFF' => 2, 'PRODUCT' => 1]);
+        $awakened = $pool->awaken(10, [
+            'DIFF' => 2,
+            'PRODUCT' => 1,
+        ]);
         $this->assertCount(3, $awakened);
 
         // Проверяем секторы
@@ -49,11 +62,19 @@ class DormantPoolTest extends TestCase
     public function testAwakenTakesHighestNovelty(): void
     {
         $pool = new DormantPool();
-        $pool->deposit(['op' => '−'], 'DIFF', 0.3); // low novelty
-        $pool->deposit(['op' => '−'], 'DIFF', 0.9); // high novelty
-        $pool->deposit(['op' => '−'], 'DIFF', 0.6); // medium
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.3); // low novelty
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.9); // high novelty
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.6); // medium
 
-        $awakened = $pool->awaken(1, ['DIFF' => 1]);
+        $awakened = $pool->awaken(1, [
+            'DIFF' => 1,
+        ]);
         $this->assertCount(1, $awakened);
         $this->assertEqualsWithDelta(0.9, $awakened[0]['novelty'], 0.001);
     }
@@ -61,7 +82,9 @@ class DormantPoolTest extends TestCase
     public function testAgeRemovesOldEntries(): void
     {
         $pool = new DormantPool();
-        $pool->deposit(['op' => '−'], 'DIFF', 0.5);
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.5);
         $this->assertSame(1, $pool->size());
 
         // Age 5 раз — maxAge=3 → удалится
@@ -74,8 +97,12 @@ class DormantPoolTest extends TestCase
     public function testAwakenedNotAged(): void
     {
         $pool = new DormantPool();
-        $pool->deposit(['op' => '−'], 'DIFF', 0.9);
-        $pool->awaken(1, ['DIFF' => 1]); // пометить как awakened
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.9);
+        $pool->awaken(1, [
+            'DIFF' => 1,
+        ]); // пометить как awakened
 
         // Age не должен удалить awakened
         for ($i = 0; $i < 20; $i++) {
@@ -87,9 +114,15 @@ class DormantPoolTest extends TestCase
     public function testSectorCounts(): void
     {
         $pool = new DormantPool();
-        $pool->deposit(['op' => '−'], 'DIFF', 0.5);
-        $pool->deposit(['op' => '−'], 'DIFF', 0.6);
-        $pool->deposit(['op' => '×'], 'PRODUCT', 0.7);
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.5);
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.6);
+        $pool->deposit([
+            'op' => '×',
+        ], 'PRODUCT', 0.7);
 
         $counts = $pool->sectorCounts();
         $this->assertSame(2, $counts['DIFF']);
@@ -101,10 +134,15 @@ class DormantPoolTest extends TestCase
         $pool = new DormantPool();
         // 3 DIFF, 0 POWER
         for ($i = 0; $i < 3; $i++) {
-            $pool->deposit(['op' => '−'], 'DIFF', 0.5 + $i * 0.1);
+            $pool->deposit([
+                'op' => '−',
+            ], 'DIFF', 0.5 + $i * 0.1);
         }
         // Квота: DIFF=2, POWER=2 (нет POWER в пуле → deficit=2 → redistribution)
-        $awakened = $pool->awaken(10, ['DIFF' => 2, 'POWER' => 2]);
+        $awakened = $pool->awaken(10, [
+            'DIFF' => 2,
+            'POWER' => 2,
+        ]);
         // 2 DIFF + 1 redistribution (остаток из DIFF) = 3
         $this->assertCount(3, $awakened);
     }
@@ -113,8 +151,12 @@ class DormantPoolTest extends TestCase
     {
         // timeout=1 секунда для теста
         $pool = new DormantPool(1);
-        $pool->deposit(['op' => '−'], 'DIFF', 0.9);
-        $pool->awaken(1, ['DIFF' => 1]);
+        $pool->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.9);
+        $pool->awaken(1, [
+            'DIFF' => 1,
+        ]);
         $this->assertSame(1, $pool->size());
 
         // Ждём 2 секунды → awakened timeout

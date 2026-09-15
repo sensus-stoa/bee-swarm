@@ -26,8 +26,12 @@ class ReuseRewardTest extends TestCase
         $b = $this->beeWithEnergy(10.0);
         $b->rewardDiscovery(1.0, '((x0B5x1)mulx2)', true);
         // 2.0 × 1.5 (reuse-бонус) = 3.0
-        $this->assertEqualsWithDelta(13.0, $b->energy(), 0.0001,
-            'закон с B-атомом кормит ×1.5');
+        $this->assertEqualsWithDelta(
+            13.0,
+            $b->energy(),
+            0.0001,
+            'закон с B-атомом кормит ×1.5'
+        );
     }
 
     public function testShadowWithBAtomGetsNoReward(): void
@@ -37,8 +41,12 @@ class ReuseRewardTest extends TestCase
         // NO-REWARD-FOR-NONBUILDERS срабатывает ДО начисления
         $b = $this->beeWithEnergy(10.0);
         $b->rewardDiscovery(1.0, 'B5', true);
-        $this->assertEqualsWithDelta(10.0, $b->energy(), 0.0001,
-            'тень с B-атомом: бонус не применяется (гейт до начисления)');
+        $this->assertEqualsWithDelta(
+            10.0,
+            $b->energy(),
+            0.0001,
+            'тень с B-атомом: бонус не применяется (гейт до начисления)'
+        );
     }
 
     public function testTransferAtomGetsDoubleBonus(): void
@@ -53,8 +61,12 @@ class ReuseRewardTest extends TestCase
         $b = $this->beeWithEnergy(10.0);
         $b->rewardDiscovery(1.0, '((x0B4x1)mulx2)', true);
         // 2.0 × 2.0 (transfer: 2 реальных домена, search исключён!) = 4.0
-        $this->assertEqualsWithDelta(14.0, $b->energy(), 0.0001,
-            'transfer-атом (2 реальных домена) кормит ×2.0');
+        $this->assertEqualsWithDelta(
+            14.0,
+            $b->energy(),
+            0.0001,
+            'transfer-атом (2 реальных домена) кормит ×2.0'
+        );
     }
 
     public function testSearchOnlyAtomGetsBaseBonus(): void
@@ -67,15 +79,23 @@ class ReuseRewardTest extends TestCase
 
         $b = $this->beeWithEnergy(10.0);
         $b->rewardDiscovery(1.0, '((x0B3x1)mulx2)', true);
-        $this->assertEqualsWithDelta(13.0, $b->energy(), 0.0001,
-            'search+1 реальный домен = ×1.5 (не transfer!)');
+        $this->assertEqualsWithDelta(
+            13.0,
+            $b->energy(),
+            0.0001,
+            'search+1 реальный домен = ×1.5 (не transfer!)'
+        );
     }
 
     public function testPlainLawNoBonus(): void
     {
         $b = $this->beeWithEnergy(10.0);
         $b->rewardDiscovery(1.0, '((x0+x1)×x2)', true);
-        $this->assertEqualsWithDelta(12.0, $b->energy(), 0.0001,
-            'закон без B-атома — стандартный reward');
+        $this->assertEqualsWithDelta(
+            12.0,
+            $b->energy(),
+            0.0001,
+            'закон без B-атома — стандартный reward'
+        );
     }
 }

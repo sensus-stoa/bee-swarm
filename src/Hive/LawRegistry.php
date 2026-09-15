@@ -28,7 +28,9 @@ final class LawRegistry
     ) {
     }
 
-    /** Зарегистрировать закон с поколением открытия. */
+    /**
+     * Зарегистрировать закон с поколением открытия.
+     */
     public function register(string $formula, string $domain, int $generation): void
     {
         Database::get()->prepare(
@@ -46,11 +48,13 @@ final class LawRegistry
         return $stmt->fetchColumn() !== false;
     }
 
-    /** Односторонний state-переход (премортем З2c/З5): LOSS/OBSOLETE фиксируется. */
+    /**
+     * Односторонний state-переход (премортем З2c/З5): LOSS/OBSOLETE фиксируется.
+     */
     private function markAuditState(string $formula, string $domain, string $state): void
     {
         Database::get()->prepare(
-            "UPDATE law_generations SET audit_state = ? WHERE formula = ? AND domain = ?"
+            'UPDATE law_generations SET audit_state = ? WHERE formula = ? AND domain = ?'
         )->execute([$state, $formula, $domain]);
     }
 

@@ -53,8 +53,11 @@ class RecipeGenerationTest extends TestCase
         $recipes = $bee->emitRecipes(10);
 
         foreach ($recipes as $r) {
-            $this->assertNotContains($r['op'], ['sq', 'sqrt'],
-                'оп вне грамматики пчелы недопустим');
+            $this->assertNotContains(
+                $r['op'],
+                ['sq', 'sqrt'],
+                'оп вне грамматики пчелы недопустим'
+            );
         }
     }
 
@@ -66,10 +69,16 @@ class RecipeGenerationTest extends TestCase
 
         foreach ($recipes as $r) {
             $json = json_encode($r);
-            $this->assertLessThan(200, strlen((string) $json),
-                'генотип обязан быть крошечным (<200 байт)');
-            $this->assertArrayNotHasKey('vector', $r,
-                'генотип не содержит phenotype-данных');
+            $this->assertLessThan(
+                200,
+                strlen((string) $json),
+                'генотип обязан быть крошечным (<200 байт)'
+            );
+            $this->assertArrayNotHasKey(
+                'vector',
+                $r,
+                'генотип не содержит phenotype-данных'
+            );
         }
     }
 
@@ -93,10 +102,14 @@ class RecipeGenerationTest extends TestCase
 
         // Наполняем пул: 8 DIFF + 2 PRODUCT
         for ($i = 0; $i < 8; $i++) {
-            $pool->deposit(['op' => '−'], 'DIFF', 0.1 * $i);
+            $pool->deposit([
+                'op' => '−',
+            ], 'DIFF', 0.1 * $i);
         }
         for ($i = 0; $i < 2; $i++) {
-            $pool->deposit(['op' => '×'], 'PRODUCT', 0.9);
+            $pool->deposit([
+                'op' => '×',
+            ], 'PRODUCT', 0.9);
         }
 
         // Контракт: quotas распределяют budget по секторам; floor+max(1)
@@ -108,8 +121,11 @@ class RecipeGenerationTest extends TestCase
 
         $this->assertLessThanOrEqual($pool->size() + 0, count($awakened));
         $sectors = array_column($awakened, 'sector');
-        $this->assertContains('PRODUCT', $sectors,
-            'высокая novelty гарантирует материализацию независимо от размера сектора');
+        $this->assertContains(
+            'PRODUCT',
+            $sectors,
+            'высокая novelty гарантирует материализацию независимо от размера сектора'
+        );
         // DIFF не монополизирует: PRODUCT присутствует несмотря на 8-vs-2
         $this->assertContains('DIFF', $sectors);
     }

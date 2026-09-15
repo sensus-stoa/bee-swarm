@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * SEARCH-L2L1 (09.08, ЭКСП-022d): L3 = L2 op L1 — композиции второго
@@ -37,8 +37,10 @@ class SearchL2L1Test extends TestCase
         // валидны — это two-level law.
         $hasChunk = preg_match('/B[A-Za-z0-9]+/', $formula) === 1;
         $hasMul = str_contains($formula, 'mul') || str_contains($formula, '×');
-        $this->assertTrue($hasChunk || $hasMul,
-            'formula must combine levels; got: ' . $formula);
+        $this->assertTrue(
+            $hasChunk || $hasMul,
+            'formula must combine levels; got: ' . $formula
+        );
     }
 
     public function testL2PlusFeatureFound(): void

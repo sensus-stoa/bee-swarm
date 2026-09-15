@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Hive;
 use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\Hive;
 use BeeSwarm\Hive\SpawnManager;
-use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Infra\Database;
+use BeeSwarm\Infra\PlateauDetector;
 
 /**
  * GRAMMAR-DEGRADATION (P1, 06.08): монокультура |G|=1 самоподдерживается —
@@ -58,8 +58,14 @@ class GrammarDegradationTest extends TestCase
         // Уникальных грамматик: 1 (все 'add') → diversity низкая
         $sm = new SpawnManager();
         $bees = $hive->getBees();
-        $spawned = $sm->tryGapSpawn($bees, ['+', '×', '−', '/', 'min', 'max'],
-            true, 500, false, 50);
+        $spawned = $sm->tryGapSpawn(
+            $bees,
+            ['+', '×', '−', '/', 'min', 'max'],
+            true,
+            500,
+            false,
+            50
+        );
 
         $this->assertGreaterThan(0, $spawned, 'gap-spawn must fire on plateau');
         // GAP_SPAWN при монокультуре ОБЯЗАН родить seed-разнообразие
@@ -69,14 +75,20 @@ class GrammarDegradationTest extends TestCase
             $grammars[] = implode(',', $bee->grammar());
         }
         $unique = count(array_unique($grammars));
-        $this->assertGreaterThanOrEqual(3, $unique,
+        $this->assertGreaterThanOrEqual(
+            3,
+            $unique,
             'gap-spawn must force seed diversity on monoculture; got: '
-            . json_encode($grammars));
+            . json_encode($grammars)
+        );
         // Среди уникальных должны быть +, ×, min (seed-набор)
         $joined = implode('|', $grammars);
         foreach (['+', '×', 'min'] as $seedOp) {
-            $this->assertStringContainsString($seedOp, $joined,
-                "seed op {$seedOp} must appear in gap-spawn result");
+            $this->assertStringContainsString(
+                $seedOp,
+                $joined,
+                "seed op {$seedOp} must appear in gap-spawn result"
+            );
         }
     }
 
@@ -94,7 +106,10 @@ class GrammarDegradationTest extends TestCase
             }
         }
 
-        $this->assertGreaterThan(0, $grew,
-            'with |G|=1, mutation must add operators at least sometimes');
+        $this->assertGreaterThan(
+            0,
+            $grew,
+            'with |G|=1, mutation must add operators at least sometimes'
+        );
     }
 }

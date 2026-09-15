@@ -12,7 +12,9 @@ use BeeSwarm\Hive\TaskRouter;
  */
 class HiveTaskRoutingTest extends TestCase
 {
-    /** Hive при run() использует TaskRouter для выбора пчелы */
+    /**
+     * Hive при run() использует TaskRouter для выбора пчелы
+     */
     public function testHiveCanRouteTasksToBees(): void
     {
         $logFile = tempnam(sys_get_temp_dir(), 'hrt_');
@@ -27,7 +29,9 @@ class HiveTaskRoutingTest extends TestCase
         unlink($logFile);
     }
 
-    /** TaskRouter получает задачи и распределяет их по пчёлам */
+    /**
+     * TaskRouter получает задачи и распределяет их по пчёлам
+     */
     public function testTaskRouterDistributesNonUniformly(): void
     {
         $bees = [
@@ -37,7 +41,10 @@ class HiveTaskRoutingTest extends TestCase
         ];
         $router = new TaskRouter($bees, 0); // 0 exploration — сразу exploitation
 
-        $task = ['name' => 'ADD', 'data' => [[1, 2, 3], [3, 4, 7]]];
+        $task = [
+            'name' => 'ADD',
+            'data' => [[1, 2, 3], [3, 4, 7]],
+        ];
 
         // Записываем успех для bee[0] на этом fingerprint
         $router->recordOutcome($task, $bees[0], true);

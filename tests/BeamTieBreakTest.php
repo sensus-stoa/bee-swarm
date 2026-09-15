@@ -40,8 +40,11 @@ class BeamTieBreakTest extends TestCase
             }
 
             $this->assertTrue($found, 'law must be found with beam');
-            $this->assertStringContainsString('B4', $formula,
-                'B-form must win beam tie: ' . $formula);
+            $this->assertStringContainsString(
+                'B4',
+                $formula,
+                'B-form must win beam tie: ' . $formula
+            );
         } finally {
             \BeeSwarm\Infra\Database::get()->prepare(
                 'DELETE FROM grammar_ops WHERE name = ? AND source = ?'

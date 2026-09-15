@@ -13,7 +13,9 @@ namespace BeeSwarm\Infra;
 class GlobalStateGuard
 {
     private static ?string $savedMemoryLimit = null;
+
     private static ?int $savedErrorReporting = null;
+
     private static ?string $savedTimezone = null;
 
     public static function snapshot(): void

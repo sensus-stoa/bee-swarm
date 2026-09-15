@@ -5,14 +5,15 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Hive\GrammarMutator;
 
 /**
  * Story S1-WIRE Phase 4: Spawn loop — E≥15 → new bee with mutated grammar
  */
 class HiveSpawnLoopTest extends TestCase
 {
-    /** При E ≥ 15 пчела spawn'ит потомка */
+    /**
+     * При E ≥ 15 пчела spawn'ит потомка
+     */
     public function testBeeCanSpawn(): void
     {
         $bee = new Bee(['add', 'mul', 'sq', 'sqrt', 'max', 'min', 'sub', 'div'], 15.0);
@@ -24,7 +25,9 @@ class HiveSpawnLoopTest extends TestCase
         $this->assertEqualsWithDelta(7.0, $child->energy(), 0.001, 'Child starts with E=7.0');
     }
 
-    /** SPAWN логируется в Hive когда пчела достигает E≥15 */
+    /**
+     * SPAWN логируется в Hive когда пчела достигает E≥15
+     */
     public function testHiveSpawnLogsWhenEnergyHigh(): void
     {
         // Run bootstrap to get bees, then manually raise energy and tick
@@ -56,7 +59,9 @@ class HiveSpawnLoopTest extends TestCase
         unlink($logFile);
     }
 
-    /** Грамматика потомка отличается от родительской */
+    /**
+     * Грамматика потомка отличается от родительской
+     */
     public function testChildGrammarDiffersFromParent(): void
     {
         $parent = new Bee(['add', 'mul', 'sq', 'sqrt', 'max', 'min', 'sub', 'div'], 15.0);

@@ -96,7 +96,10 @@ class GapSpawnTest extends TestCase
         $bees = $this->liveBees();
 
         $this->assertSame(1, $sm->tryGapSpawn($bees, ['+'], true, 20, false, 2));
-        $this->assertSame(0, $sm->tryGapSpawn($bees, ['+'], true, 999, false, 2),
-            'Cooldown: only one gap-spawn per plateau period');
+        $this->assertSame(
+            0,
+            $sm->tryGapSpawn($bees, ['+'], true, 999, false, 2),
+            'Cooldown: only one gap-spawn per plateau period'
+        );
     }
 }

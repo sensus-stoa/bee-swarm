@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Grammar;
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\AtomRegistry;
 
 /**
@@ -46,7 +44,8 @@ class NullCalibrationTest extends TestCase
 
         // §0.7: FPR_system = 0 — ни одного ложного открытия
         $this->assertSame(
-            0, $falseDiscoveries,
+            0,
+            $falseDiscoveries,
             "FPR_system must be 0, got {$falseDiscoveries} false discoveries on shuffled data"
         );
     }

@@ -39,7 +39,9 @@ final class LawRegistryTest extends TestCase
         )->execute(['law_' . md5($formula), $formula, 'test_pres', $generation]);
     }
 
-    /** RED: register пишет закон с поколением открытия. */
+    /**
+     * RED: register пишет закон с поколением открытия.
+     */
     public function testRegisterStoresGeneration(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -49,7 +51,9 @@ final class LawRegistryTest extends TestCase
         self::assertSame(2, $registry->generationOf('(x0×K2)', 'test_pres'));
     }
 
-    /** RED: аудит до порога поколений — пусто (ещё рано). */
+    /**
+     * RED: аудит до порога поколений — пусто (ещё рано).
+     */
     public function testAuditBeforeThresholdReturnsEmpty(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -58,7 +62,9 @@ final class LawRegistryTest extends TestCase
         self::assertSame([], $registry->audit(currentGeneration: 10, eps: 0.15));
     }
 
-    /** RED: закон жив и CV подтверждается → нет LOSS. */
+    /**
+     * RED: закон жив и CV подтверждается → нет LOSS.
+     */
     public function testAliveLawNoLoss(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -75,7 +81,9 @@ final class LawRegistryTest extends TestCase
         self::assertSame([], $losses);
     }
 
-    /** RED: закон исчез из reservoir → LOSS-событие. */
+    /**
+     * RED: закон исчез из reservoir → LOSS-событие.
+     */
     public function testVanishedLawLoss(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -95,7 +103,9 @@ final class LawRegistryTest extends TestCase
         self::assertSame('LOSS', $losses[0]['event']);
     }
 
-    /** RED: закон жив, но CV не подтверждается на свежих данных → LOSS. */
+    /**
+     * RED: закон жив, но CV не подтверждается на свежих данных → LOSS.
+     */
     public function testDeadCVLoss(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -113,7 +123,9 @@ final class LawRegistryTest extends TestCase
         self::assertArrayHasKey('evidence', $losses[0]);
     }
 
-    /** LOSS-событие несёт атрибуцию (formula, domain, generation, evidence). */
+    /**
+     * LOSS-событие несёт атрибуцию (formula, domain, generation, evidence).
+     */
     public function testLossEventAttribution(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);

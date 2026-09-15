@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * BINARY-B-ATOMS (P0, 08.08): рождённый атом арности 2 применяется
@@ -35,8 +35,11 @@ class SearchBinaryAtomTest extends TestCase
         $this->assertLessThan(0.10, $cvTest, "cv_test must pass; got {$cvTest}");
         // Победитель может быть обычным add (parsimony: короче) —
         // важна ДОСТУПНОСТЬ Bpair в L2 (reuse-детектор по всем кандидатам)
-        $this->assertStringContainsString('²', $formula,
-            'squared law expected; got: ' . $formula);
+        $this->assertStringContainsString(
+            '²',
+            $formula,
+            'squared law expected; got: ' . $formula
+        );
     }
 
     public function testBinaryAtomEvaluates(): void
@@ -44,9 +47,13 @@ class SearchBinaryAtomTest extends TestCase
         // B(x0,x1) с definition (x0+x1): evaluateFormula уже поддерживает
         // строку [x0, x1] — проверяем применение к паре
         $res = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(
-            '(x0+x1)', [[2.0, 3.0], [5.0, 1.0]]
+            '(x0+x1)',
+            [[2.0, 3.0], [5.0, 1.0]]
         );
-        $this->assertSame([5.0, 6.0], $res,
-            'binary definition must evaluate with both features');
+        $this->assertSame(
+            [5.0, 6.0],
+            $res,
+            'binary definition must evaluate with both features'
+        );
     }
 }

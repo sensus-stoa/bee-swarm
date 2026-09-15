@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Hive;
 use BeeSwarm\Hive\Bee;
+use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\PlateauDetector;
 
 /**

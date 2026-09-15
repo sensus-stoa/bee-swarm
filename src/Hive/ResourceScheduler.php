@@ -14,10 +14,14 @@ namespace BeeSwarm\Hive;
  */
 class ResourceScheduler
 {
-    /** @var array<string, float> базовые квоты секторов (сумма = 1.0) */
+    /**
+     * @var array<string, float> базовые квоты секторов (сумма = 1.0)
+     */
     private array $baseQuotas;
 
-    /** @var int максимальное число materialized bees за tick */
+    /**
+     * @var int максимальное число materialized bees за tick
+     */
     private int $maxMaterialized;
 
     public function __construct(array $baseQuotas = [], int $maxMaterialized = 50)

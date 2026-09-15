@@ -23,7 +23,8 @@ class MemoryDbTest extends TestCase
 
         // Запись/чтение работают
         $db->exec("INSERT INTO laws (name, formula, cv, domain) VALUES ('MEM_TEST', 'x', 0, 'test')");
-        $val = $db->query("SELECT name FROM laws WHERE name = 'MEM_TEST'")->fetchColumn();
+        $val = $db->query("SELECT name FROM laws WHERE name = 'MEM_TEST'")
+            ->fetchColumn();
         $this->assertSame('MEM_TEST', $val);
         $db->exec("DELETE FROM laws WHERE name = 'MEM_TEST'");
     }
@@ -53,7 +54,8 @@ class MemoryDbTest extends TestCase
     {
         Database::reset();
         $db = Database::get();
-        $ops = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
+        $ops = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')
+            ->fetchColumn();
         if ($ops > 0) {
             $sample = array_slice($db->query('SELECT name, source FROM grammar_ops LIMIT 6')->fetchAll(), 0, 6);
             foreach ($sample as $r) {

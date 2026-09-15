@@ -28,7 +28,9 @@ final class ObsolescenceCheckTest extends TestCase
         Database::reset();
     }
 
-    /** До порога recheck — пусто. */
+    /**
+     * До порога recheck — пусто.
+     */
     public function testBeforeRecheckThresholdEmpty(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -43,7 +45,9 @@ final class ObsolescenceCheckTest extends TestCase
         self::assertSame([], $result);
     }
 
-    /** CV подтверждается (низкий) → не OBSOLETE. */
+    /**
+     * CV подтверждается (низкий) → не OBSOLETE.
+     */
     public function testHealthyLawNotObsolete(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -58,7 +62,9 @@ final class ObsolescenceCheckTest extends TestCase
         self::assertSame([], $result);
     }
 
-    /** CV сломался (> eps) на свежих данных → OBSOLETE-флаг с CV. */
+    /**
+     * CV сломался (> eps) на свежих данных → OBSOLETE-флаг с CV.
+     */
     public function testBrokenCVObsolete(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);
@@ -76,7 +82,9 @@ final class ObsolescenceCheckTest extends TestCase
         self::assertEqualsWithDelta(0.42, $result[0]['cv'], 0.0001);
     }
 
-    /** Молодой закон (< recheckEvery поколений) не перепроверяется. */
+    /**
+     * Молодой закон (< recheckEvery поколений) не перепроверяется.
+     */
     public function testYoungLawSkipped(): void
     {
         $registry = new LawRegistry(preserveCheckGen: 15, eps: 0.15);

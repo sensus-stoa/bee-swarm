@@ -52,7 +52,9 @@ class TextAtomCrossPairerTest extends TestCase
     {
         $tasks = iterator_to_array(
             TextAtomCrossPairer::crossPair(
-                ['preg_match(GI)' => [7.2, 6.8]],
+                [
+                    'preg_match(GI)' => [7.2, 6.8],
+                ],
                 'text_pairs'
             ),
             false

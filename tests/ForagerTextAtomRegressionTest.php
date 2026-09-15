@@ -25,7 +25,7 @@ class ForagerTextAtomRegressionTest extends TestCase
      */
     public function testPregMatchWithoutCaptureGroupsReturnsNonNumeric(): void
     {
-        $result = AtomRegistry::applyTextAtom('preg_match', "акты тут и акты там", 'акты');
+        $result = AtomRegistry::applyTextAtom('preg_match', 'акты тут и акты там', 'акты');
         $this->assertIsArray($result);
         $this->assertNotEmpty($result);
         // Без capturing groups — результат содержит пустые массивы
@@ -64,7 +64,7 @@ class ForagerTextAtomRegressionTest extends TestCase
     public function testNonNumericResultUsesCount(): void
     {
         // Симулируем 5 вхождений preg_match(акты) в одном файле
-        $content = "акты акты акты акты акты";
+        $content = 'акты акты акты акты акты';
         $result = AtomRegistry::applyTextAtom('preg_match', $content, 'акты');
 
         // Логика из StreamingAccumulator (после фикса):

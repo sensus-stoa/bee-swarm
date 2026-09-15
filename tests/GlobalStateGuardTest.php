@@ -30,8 +30,10 @@ class GlobalStateGuardTest extends TestCase
             $targetMb += 64;  // коллизия с текущим значением — сдвигаем
         }
         $target = $targetMb . 'M';
-        $this->assertNotFalse(ini_set('memory_limit', $target),
-            "Precondition: ini_set({$target}) must succeed (usage {$usageMb}MB)");
+        $this->assertNotFalse(
+            ini_set('memory_limit', $target),
+            "Precondition: ini_set({$target}) must succeed (usage {$usageMb}MB)"
+        );
 
         try {
             GlobalStateGuard::assertClean();

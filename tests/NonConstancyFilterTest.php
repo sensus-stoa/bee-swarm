@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\NonConstancyFilter;
 use BeeSwarm\Core\Search;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +31,15 @@ class NonConstancyFilterTest extends TestCase
     private function tFor(string $formula, array $X, array $y): float
     {
         return Search::testCv(
-            $formula, $X, $y, Search::stddev($y), count($y), null, $X, [], []
+            $formula,
+            $X,
+            $y,
+            Search::stddev($y),
+            count($y),
+            null,
+            $X,
+            [],
+            []
         );
     }
 

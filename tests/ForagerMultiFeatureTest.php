@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager\Forager;
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
+use BeeSwarm\Forager\Forager;
 
 /**
  * MULTI-FEATURE-TASKS (05.08, ЭКСП-006): all-pairs даёт nFeat=1 —
@@ -46,7 +46,9 @@ class ForagerMultiFeatureTest extends TestCase
     public function testTripleColumnTaskCreated(): void
     {
         $forager = new Forager();
-        $tasks = $forager->scanWithAccumulator([$this->tmpDir => 1]);
+        $tasks = $forager->scanWithAccumulator([
+            $this->tmpDir => 1,
+        ]);
 
         $hasTriple = false;
         foreach ($tasks as $task) {
@@ -63,7 +65,9 @@ class ForagerMultiFeatureTest extends TestCase
     public function testLittleLawDiscoverableFromTripleTask(): void
     {
         $forager = new Forager();
-        $tasks = $forager->scanWithAccumulator([$this->tmpDir => 1]);
+        $tasks = $forager->scanWithAccumulator([
+            $this->tmpDir => 1,
+        ]);
 
         $triple = null;
         foreach ($tasks as $task) {

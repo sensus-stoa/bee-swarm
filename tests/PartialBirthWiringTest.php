@@ -49,16 +49,23 @@ final class PartialBirthWiringTest extends TestCase
     {
         $m = new \ReflectionMethod(Hive::class, 'runPartialBirthAttempt');
         $m->setAccessible(true);
-        $m->invoke($this->hive, $X, $y, ['name' => $taskName, 'domain' => 'test_pb'], $cv, $diagnosis, $formula);
+        $m->invoke($this->hive, $X, $y, [
+            'name' => $taskName,
+            'domain' => 'test_pb',
+        ], $cv, $diagnosis, $formula);
     }
 
-    /** RED: частичная гипотеза при голодной линии + diagnosis GRAMMAR → PARTIAL-BIRTH. */
+    /**
+     * RED: частичная гипотеза при голодной линии + diagnosis GRAMMAR → PARTIAL-BIRTH.
+     */
     public function testPartialBirthEmittedOnFailedTaskWithFormula(): void
     {
         // Голод линии (гейт 4): lineageProgress stale > 0
         $p = new \ReflectionProperty(Hive::class, 'lineageProgress');
         $p->setAccessible(true);
-        $p->setValue($this->hive, ['lineage_0' => 3]);
+        $p->setValue($this->hive, [
+            'lineage_0' => 3,
+        ]);
 
         // Частичная гипотеза: 2 терминала, короткая, cv < 0.5 (все гейты пройдены)
         $X = [[1.0], [2.0], [3.0], [4.0]];
@@ -80,12 +87,16 @@ final class PartialBirthWiringTest extends TestCase
         self::assertSame(1, (int) $n, 'рождённый атом попадает в grammar_ops как candidate');
     }
 
-    /** RED: точная формула (n=2, cv=0) → рождение происходит (гейт cv<0.5, не exact-исключение). */
+    /**
+     * RED: точная формула (n=2, cv=0) → рождение происходит (гейт cv<0.5, не exact-исключение).
+     */
     public function testGatesFilterGarbage(): void
     {
         $p = new \ReflectionProperty(Hive::class, 'lineageProgress');
         $p->setAccessible(true);
-        $p->setValue($this->hive, ['lineage_0' => 1]);
+        $p->setValue($this->hive, [
+            'lineage_0' => 1,
+        ]);
 
         // cv=0.9 → гейт 2 (cv >= 0.5 → false)
         $this->invokeWiring([[1.0], [2.0]], [1.0, 2.0], 'pb2', 0.9, 'GRAMMAR');
@@ -101,18 +112,24 @@ final class PartialBirthWiringTest extends TestCase
         // сытая линия (stale=0) → гейт 4
         $p2 = new \ReflectionProperty(Hive::class, 'lineageProgress');
         $p2->setAccessible(true);
-        $p2->setValue($this->hive, ['lineage_0' => 0]);
+        $p2->setValue($this->hive, [
+            'lineage_0' => 0,
+        ]);
         $this->invokeWiring([[1.0], [2.0], [3.0], [4.0]], [2.0, 4.0, 6.0, 8.0], 'pb4', 0.3, 'GRAMMAR');
         $log = (string) file_get_contents($this->logFile);
         self::assertSame(0, substr_count($log, 'PARTIAL-BIRTH'), 'сытая линия не рождает');
     }
 
-    /** RED: атом с повторным открытием → RCB PROMOTED (двухфазность). */
+    /**
+     * RED: атом с повторным открытием → RCB PROMOTED (двухфазность).
+     */
     public function testBirthAtomIsCandidateNotActive(): void
     {
         $p = new \ReflectionProperty(Hive::class, 'lineageProgress');
         $p->setAccessible(true);
-        $p->setValue($this->hive, ['lineage_0' => 2]);
+        $p->setValue($this->hive, [
+            'lineage_0' => 2,
+        ]);
 
         $this->invokeWiring([[1.0], [2.0], [3.0], [4.0]], [2.0, 4.0, 6.0, 8.0], 'pb5', 0.3, 'GRAMMAR');
 

@@ -56,7 +56,10 @@ final class ContradictionWiringTest extends TestCase
         $p->setAccessible(true);
         $cands = [];
         foreach ($formulas as $i => $f) {
-            $cands[] = ['atom' => $f, 'cv' => $i === 0 ? 0.001 : 0.002];
+            $cands[] = [
+                'atom' => $f,
+                'cv' => $i === 0 ? 0.001 : 0.002,
+            ];
         }
         $p->setValue($this->hive, $cands);
     }
@@ -65,10 +68,14 @@ final class ContradictionWiringTest extends TestCase
     {
         $m = new \ReflectionMethod(Hive::class, 'runContradictionCheck');
         $m->setAccessible(true);
-        $m->invoke($this->hive, ['name' => $taskName], $X, $y);
+        $m->invoke($this->hive, [
+            'name' => $taskName,
+        ], $X, $y);
     }
 
-    /** RED: два exact-кандидата разных формул → DISSIPATION: event=CONTRADICTION. */
+    /**
+     * RED: два exact-кандидата разных формул → DISSIPATION: event=CONTRADICTION.
+     */
     public function testContradictionLoggedOnTwoExactFormulas(): void
     {
         // two candidates: (x0×K2) и (x0+K2) — структурно разные, оба exact
@@ -86,7 +93,9 @@ final class ContradictionWiringTest extends TestCase
         );
     }
 
-    /** RED: один кандидат (или два одинаковых) → противоречия нет. */
+    /**
+     * RED: один кандидат (или два одинаковых) → противоречия нет.
+     */
     public function testNoContradictionWithoutDivergence(): void
     {
         $this->lastCandidates(['(x0×K2)']); // один кандидат
@@ -99,7 +108,9 @@ final class ContradictionWiringTest extends TestCase
         self::assertStringNotContainsString('event=CONTRADICTION', $log);
     }
 
-    /** Observation-контракт: противоречие не мешает записи закона. */
+    /**
+     * Observation-контракт: противоречие не мешает записи закона.
+     */
     public function testDiscoveryNotBlockedByContradiction(): void
     {
         $this->lastCandidates(['(x0×K2)', '(x0+K2)']);
@@ -107,8 +118,16 @@ final class ContradictionWiringTest extends TestCase
         $X = [[1.0], [2.0], [3.0]];
         $y = [2.0, 4.0, 6.0];
         $this->invokeDiscovery(
-            ['atom' => '(x0×K2)', 'cv' => 0.001, 'class' => 'EMPIRICAL'],
-            ['name' => 'cw3', 'domain' => 'test_contra3', 'fingerprint' => 'fp_1'],
+            [
+                'atom' => '(x0×K2)',
+                'cv' => 0.001,
+                'class' => 'EMPIRICAL',
+            ],
+            [
+                'name' => 'cw3',
+                'domain' => 'test_contra3',
+                'fingerprint' => 'fp_1',
+            ],
             'test_contra3',
             $foundAny,
             $X,

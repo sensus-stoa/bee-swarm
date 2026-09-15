@@ -9,11 +9,11 @@ declare(strict_types=1);
  * HTTP requests arrive via RoadRunner relay (pipes).
  */
 
-use Spiral\RoadRunner\Http\PSR7Worker;
-use Nyholm\Psr7\Factory\Psr17Factory;
-use Nyholm\Psr7\Response;
 use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\BeeWorker;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Spiral\RoadRunner\Http\PSR7Worker;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -38,22 +38,27 @@ while (true) {
             break;
         }
 
-        $uri = $request->getUri()->getPath();
+        $uri = $request->getUri()
+            ->getPath();
 
         if ($uri === '/status') {
             $body = json_encode($beeWorker->status(), JSON_UNESCAPED_UNICODE);
-            $response = new Response(200, ['Content-Type' => 'application/json'], (string) $body);
+            $response = new Response(200, [
+                'Content-Type' => 'application/json',
+            ], (string) $body);
         } elseif ($uri === '/task' && $request->getMethod() === 'POST') {
             $rawBody = (string) $request->getBody();
             $result = $beeWorker->handleTask($rawBody);
-            $response = new Response(200, ['Content-Type' => 'application/json'], json_encode($result));
+            $response = new Response(200, [
+                'Content-Type' => 'application/json',
+            ], json_encode($result));
         } else {
             $response = new Response(404, [], 'Not Found');
         }
 
         $psrWorker->respond($response);
     } catch (\Throwable $e) {
-        error_log("Bee worker error: " . $e->getMessage());
+        error_log('Bee worker error: ' . $e->getMessage());
         $psrWorker->respond(new Response(500, [], 'Internal error'));
     }
 }

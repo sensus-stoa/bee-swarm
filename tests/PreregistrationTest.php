@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\Hive;
-use BeeSwarm\Infra\PlateauDetector;
 use BeeSwarm\Infra\Database;
+use BeeSwarm\Infra\PlateauDetector;
 
 /**
  * S2.1 self-model, юнит 1: PREREGISTRATION — гипотеза фиксируется
@@ -62,7 +62,8 @@ class PreregistrationTest extends TestCase
         // PENDING = гипотеза до heldout, после прогона она финализируется)
         $statuses = array_column($rows, 'status');
         $this->assertContains(
-            'CONFIRMED', $statuses,
+            'CONFIRMED',
+            $statuses,
             'at least one confirmed; got: ' . implode(',', $statuses)
         );
     }

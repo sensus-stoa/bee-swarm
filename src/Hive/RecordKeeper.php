@@ -13,7 +13,9 @@ use BeeSwarm\Infra\Database;
  */
 class RecordKeeper
 {
-    /** @var array<string, true> */
+    /**
+     * @var array<string, true>
+     */
     private array $knownLaws = [];
 
     /**
@@ -22,15 +24,21 @@ class RecordKeeper
      * @param string $domain
      * @return array{inserted: bool, cross_domains: list<string>, key: string}
      */
-    /** T5-post-3: операторы, получающие культурный вес от durable-законов. */
+    /**
+     * T5-post-3: операторы, получающие культурный вес от durable-законов.
+     */
     // 'sq' НЕ в списке: квадрат в канон-форме записывается как (x*x), токена 'sq'
     // нет, а str_contains('sq') ловил бы 'sqrt' (двойной буст, self-check 05.09).
     private const CULTURE_OPS = ['+', '×', '−', '/', 'max', 'min', 'sqrt'];
 
-    /** ЭКСП-014: cap против заморозки грамматики (квадратичный отрыв базовых ops). */
+    /**
+     * ЭКСП-014: cap против заморозки грамматики (квадратичный отрыв базовых ops).
+     */
     private const MAX_CULTURE_WEIGHT = 50;
 
-    /** T5-post-4: cap набора виденных fingerprint'ов на закон. */
+    /**
+     * T5-post-4: cap набора виденных fingerprint'ов на закон.
+     */
     private const SEEN_FP_CAP = 10;
 
     public function record(array $d, array $task, string $domain): array

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Forager\StreamingAccumulator;
 use BeeSwarm\Forager\SemanticFactInserter;
+use BeeSwarm\Forager\StreamingAccumulator;
 
 /**
  * FORAGER-ENV-PARAMS (09.08): параметризация аккумулятора для FIN-EXP-001.
@@ -53,7 +53,9 @@ class ForagerEnvParamsTest extends TestCase
         fclose($f);
 
         $acc = new StreamingAccumulator($this->csvStrategy(), new SemanticFactInserter());
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
@@ -85,7 +87,9 @@ class ForagerEnvParamsTest extends TestCase
         putenv('FORAGER_MAX_ROWS=500');
         try {
             $acc = new StreamingAccumulator($this->csvStrategy(), new SemanticFactInserter());
-            $tasks = $acc->scan([$dir => 1]);
+            $tasks = $acc->scan([
+                $dir => 1,
+            ]);
         } finally {
             putenv('FORAGER_MAX_ROWS');
         }
@@ -118,7 +122,9 @@ class ForagerEnvParamsTest extends TestCase
         fclose($f);
 
         $acc = new StreamingAccumulator($this->csvStrategy(), new SemanticFactInserter());
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
@@ -151,7 +157,9 @@ class ForagerEnvParamsTest extends TestCase
         putenv('FORAGER_MAX_COLS=6');
         try {
             $acc = new StreamingAccumulator($this->csvStrategy(), new SemanticFactInserter());
-            $tasks = $acc->scan([$dir => 1]);
+            $tasks = $acc->scan([
+                $dir => 1,
+            ]);
         } finally {
             putenv('FORAGER_MAX_COLS');
         }
@@ -182,7 +190,9 @@ class ForagerEnvParamsTest extends TestCase
         putenv('MAX_ARITY=2');
         try {
             $acc = new StreamingAccumulator($this->csvStrategy(), new SemanticFactInserter());
-            $tasks = $acc->scan([$dir => 1]);
+            $tasks = $acc->scan([
+                $dir => 1,
+            ]);
         } finally {
             putenv('FORAGER_COMBO_CAP');
             putenv('MAX_ARITY');

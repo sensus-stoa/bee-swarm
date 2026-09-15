@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * PARSIMONY-SELECTION (P0, из gplearn): штраф за сложность при выборе
@@ -49,7 +49,8 @@ class ParsimonySelectionTest extends TestCase
         // CONCERNS (deleg_4f6357bd): testRatio=0 не был покрыт.
         // Parsimony работает через score=cv+λ·len в выборе bestCv.
         mt_srand(42);
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($i = 0; $i < 20; $i++) {
             $x = 0.1 + 4.9 * $i / 19;
             $u1 = mt_rand(1, 999999) / 1000000.0;
@@ -74,7 +75,10 @@ class ParsimonySelectionTest extends TestCase
         // Регрессия: чистые законы по-прежнему находятся
         $X = [];
         $y = [];
-        for ($i = 1; $i <= 20; $i++) { $X[] = [(float) $i]; $y[] = 2.0 * $i; }
+        for ($i = 1; $i <= 20; $i++) {
+            $X[] = [(float) $i];
+            $y[] = 2.0 * $i;
+        }
         $g = Grammar::fromOps(Grammar::baseOpNames());
         [$found, , , $cvTest] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
         $this->assertTrue($found);

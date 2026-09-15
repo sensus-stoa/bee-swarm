@@ -16,8 +16,12 @@ class DomainSatietyTest extends TestCase
     {
         $bee = new Bee(['+'], 10.0);
         $bee->registerClass('alpha');
-        $this->assertEqualsWithDelta(1.5, $bee->discoveryMultiplier('alpha'), 1e-9,
-            'first class in domain must be boosted ×1.5');
+        $this->assertEqualsWithDelta(
+            1.5,
+            $bee->discoveryMultiplier('alpha'),
+            1e-9,
+            'first class in domain must be boosted ×1.5'
+        );
     }
 
     public function testSatiatedDomainRewardDiminished(): void
@@ -27,12 +31,20 @@ class DomainSatietyTest extends TestCase
         foreach (['a', 'a', 'a'] as $d) {
             $bee->registerClass($d);
         }
-        $this->assertEqualsWithDelta(1.0, $bee->discoveryMultiplier('a'), 1e-9,
-            'K classes = normal reward');
+        $this->assertEqualsWithDelta(
+            1.0,
+            $bee->discoveryMultiplier('a'),
+            1e-9,
+            'K classes = normal reward'
+        );
         // 4-й класс — насыщение
         $bee->registerClass('a');
-        $this->assertEqualsWithDelta(0.1, $bee->discoveryMultiplier('a'), 1e-9,
-            'beyond K classes = satiety ×0.1');
+        $this->assertEqualsWithDelta(
+            0.1,
+            $bee->discoveryMultiplier('a'),
+            1e-9,
+            'beyond K classes = satiety ×0.1'
+        );
     }
 
     public function testSatietyIsPerDomain(): void
@@ -42,13 +54,25 @@ class DomainSatietyTest extends TestCase
         $bee->registerClass('alpha');
         $bee->registerClass('alpha');
         $bee->registerClass('alpha');
-        $this->assertEqualsWithDelta(0.1, $bee->discoveryMultiplier('alpha'), 1e-9,
-            'satiated domain');
-        $this->assertEqualsWithDelta(1.0, $bee->discoveryMultiplier('beta'), 1e-9,
-            'unvisited domain = normal');
+        $this->assertEqualsWithDelta(
+            0.1,
+            $bee->discoveryMultiplier('alpha'),
+            1e-9,
+            'satiated domain'
+        );
+        $this->assertEqualsWithDelta(
+            1.0,
+            $bee->discoveryMultiplier('beta'),
+            1e-9,
+            'unvisited domain = normal'
+        );
         $bee->registerClass('beta');
-        $this->assertEqualsWithDelta(1.5, $bee->discoveryMultiplier('beta'), 1e-9,
-            'fresh domain first class boosted');
+        $this->assertEqualsWithDelta(
+            1.5,
+            $bee->discoveryMultiplier('beta'),
+            1e-9,
+            'fresh domain first class boosted'
+        );
     }
 
     public function testBoundaryClasses(): void

@@ -102,7 +102,7 @@ class AtomProvider
 
                 $vec = [];
                 $valid = true;
-                $checkInterval = max(10, (int)($n / 5));  // check every 20% of rows
+                $checkInterval = max(10, (int) ($n / 5));  // check every 20% of rows
 
                 foreach ($X as $i => $row) {
                     $v1 = self::applyToRow($inner, $nFeat, $row);

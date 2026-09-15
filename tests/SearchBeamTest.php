@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * SEARCH-BEAM-OPT (ЭКСП-019): мягкий beam — L2 из top-K + random-хвоста.
@@ -108,7 +108,10 @@ class SearchBeamTest extends TestCase
         Search::find($X, $y, $g, 2, null, 0.2, 0.15);
         $fullTime = microtime(true) - $t0;
 
-        $this->assertLessThan($fullTime * 0.8, $beamTime,
-            "beam must be faster: beam={$beamTime}s full={$fullTime}s");
+        $this->assertLessThan(
+            $fullTime * 0.8,
+            $beamTime,
+            "beam must be faster: beam={$beamTime}s full={$fullTime}s"
+        );
     }
 }

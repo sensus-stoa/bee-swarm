@@ -19,7 +19,9 @@ class QueryEngineTest extends TestCase
         $this->engine = new QueryEngine();
     }
 
-    /** lawsByDomain возвращает законы для указанного домена */
+    /**
+     * lawsByDomain возвращает законы для указанного домена
+     */
     public function testLawsByDomain(): void
     {
         // S1.10: :memory: БД пустая — self-seed вместо накопленного мусора
@@ -36,7 +38,9 @@ class QueryEngineTest extends TestCase
         Database::get()->exec("DELETE FROM laws WHERE name = 'ARITH_LAW'");
     }
 
-    /** topAtoms возвращает наиболее часто используемые атомы */
+    /**
+     * topAtoms возвращает наиболее часто используемые атомы
+     */
     public function testTopAtoms(): void
     {
         $atoms = $this->engine->topAtoms(5);
@@ -44,7 +48,9 @@ class QueryEngineTest extends TestCase
         $this->assertLessThanOrEqual(5, count($atoms));
     }
 
-    /** systemHealth возвращает агрегированное состояние */
+    /**
+     * systemHealth возвращает агрегированное состояние
+     */
     public function testSystemHealth(): void
     {
         $health = $this->engine->systemHealth();
@@ -53,24 +59,30 @@ class QueryEngineTest extends TestCase
         $this->assertArrayHasKey('active_domains', $health);
     }
 
-    /** queryReadOnly блокирует write-операции */
+    /**
+     * queryReadOnly блокирует write-операции
+     */
     public function testReadOnlyBlocksWrite(): void
     {
         $this->expectException(\RuntimeException::class);
         $this->engine->query("INSERT INTO laws (name) VALUES ('test')");
     }
 
-    /** REPLACE INTO тоже блокируется */
+    /**
+     * REPLACE INTO тоже блокируется
+     */
     public function testReplaceBlocked(): void
     {
         $this->expectException(\RuntimeException::class);
         $this->engine->query("REPLACE INTO laws (name, formula) VALUES ('x', 'y')");
     }
 
-    /** SELECT без write-ключей проходит свободно */
+    /**
+     * SELECT без write-ключей проходит свободно
+     */
     public function testSelectPasses(): void
     {
-        $result = $this->engine->query("SELECT COUNT(*) as cnt FROM laws");
+        $result = $this->engine->query('SELECT COUNT(*) as cnt FROM laws');
         $this->assertIsArray($result);
         $this->assertArrayHasKey('cnt', $result[0]);
     }

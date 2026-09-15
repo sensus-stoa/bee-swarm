@@ -9,7 +9,9 @@ use BeeSwarm\Knowledge\ConceptRegistry;
 
 class Grammar
 {
-    /** @var string[]|null кэш unary ops (GRAMMAR-BIRTH, 06.08) */
+    /**
+     * @var string[]|null кэш unary ops (GRAMMAR-BIRTH, 06.08)
+     */
     private ?array $unaryOpsCache = null;
 
     public const BASE_OPS = [
@@ -257,7 +259,7 @@ class Grammar
     public function usageCount(string $op): int
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $v = $db->query("SELECT usage_count FROM grammar_ops WHERE name = " . $db->quote($op))->fetchColumn();
+        $v = $db->query('SELECT usage_count FROM grammar_ops WHERE name = ' . $db->quote($op))->fetchColumn();
         return $v === false ? 0 : (int) $v;
     }
 

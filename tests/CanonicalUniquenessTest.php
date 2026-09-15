@@ -25,31 +25,41 @@ use PHPUnit\Framework\TestCase;
  */
 final class CanonicalUniquenessTest extends TestCase
 {
-    /** A-covered: инфиксный self-tautology max — один канон. */
+    /**
+     * A-covered: инфиксный self-tautology max — один канон.
+     */
     public function testMaxSelfTautologyCollapses(): void
     {
         $this->assertSame('x0', ExpressionNormalizer::normalize('(x0maxx0)'));
     }
 
-    /** A-covered: min аналог. */
+    /**
+     * A-covered: min аналог.
+     */
     public function testMinSelfTautologyCollapses(): void
     {
         $this->assertSame('x0', ExpressionNormalizer::normalize('(x0minx0)'));
     }
 
-    /** B: (x0−0) → x0 — правая нулевая идентичность вычитания (RED). */
+    /**
+     * B: (x0−0) → x0 — правая нулевая идентичность вычитания (RED).
+     */
     public function testSubZeroRightIdentityCollapses(): void
     {
         $this->assertSame('x0', ExpressionNormalizer::normalize('(x0−0)'));
     }
 
-    /** B: (x0/1) → x0 — правая единичная идентичность деления (RED). */
+    /**
+     * B: (x0/1) → x0 — правая единичная идентичность деления (RED).
+     */
     public function testDivOneRightIdentityCollapses(): void
     {
         $this->assertSame('x0', ExpressionNormalizer::normalize('(x0/1)'));
     }
 
-    /** Идемпотентность канона после новых правил (питфолл 05.08). */
+    /**
+     * Идемпотентность канона после новых правил (питфолл 05.08).
+     */
     public function testNormalizeIdempotentOnNewRules(): void
     {
         foreach (['(x0−0)', '(x0/1)', '(x0maxx0)'] as $expr) {
@@ -62,7 +72,9 @@ final class CanonicalUniquenessTest extends TestCase
         }
     }
 
-    /** T2-review (deleg_79f23159): 0/0 НЕ схлопывается в 1 — математически NaN. */
+    /**
+     * T2-review (deleg_79f23159): 0/0 НЕ схлопывается в 1 — математически NaN.
+     */
     public function testZeroOverZeroDoesNotCollapseToOne(): void
     {
         // ((x0−x0)/(x0−x0)): оба операнда резолвятся в 0, 0/0 ≠ 1
@@ -73,13 +85,17 @@ final class CanonicalUniquenessTest extends TestCase
         );
     }
 
-    /** 0/x → 0 (валидный случай, остаётся). */
+    /**
+     * 0/x → 0 (валидный случай, остаётся).
+     */
     public function testZeroOverNonZeroCollapses(): void
     {
         $this->assertSame('0', ExpressionNormalizer::normalize('(0/x0)'));
     }
 
-    /** LawShape K-константы за K9 (premortem deleg_f0b2fe04): K10/K11/K20 — все C. */
+    /**
+     * LawShape K-константы за K9 (premortem deleg_f0b2fe04): K10/K11/K20 — все C.
+     */
     public function testLawShapeKConstantsBeyondNineStable(): void
     {
         $this->assertSame(0, LawShape::distance('K10×x0', 'K11×x0'), 'K10 и K11 — одна форма (C)');
@@ -87,14 +103,18 @@ final class CanonicalUniquenessTest extends TestCase
         $this->assertSame('(C×*)', LawShape::of('K10×x0'), 'маска K10 стабильна, не C0');
     }
 
-    /** LawShape: атомы с цифрами не сливаются (review concern 2, регресс). */
+    /**
+     * LawShape: атомы с цифрами не сливаются (review concern 2, регресс).
+     */
     public function testLawShapeDigitsInsideAtomsNotMerged(): void
     {
         $this->assertSame(1, LawShape::distance('c2_5', 'c3_7'));
         $this->assertSame(1, LawShape::distance('Rnormx12', 'Rnormx13'));
     }
 
-    /** НЕ схлопываются (некоммутативные — правильное поведение, 05.08): */
+    /**
+     * НЕ схлопываются (некоммутативные — правильное поведение, 05.08):
+     */
     public function testNonCommutativeNotMerged(): void
     {
         self::assertNotSame(

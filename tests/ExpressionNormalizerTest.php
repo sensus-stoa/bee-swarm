@@ -123,7 +123,7 @@ class ExpressionNormalizerTest extends TestCase
         foreach (['(x0+x1)', '((x0−x1))²', '(Rmaxx0+x1)', '({"date": "2026-01-17"}+x0)', '(День−День²)'] as $expr) {
             $once = ExpressionNormalizer::normalize($expr);
             $twice = ExpressionNormalizer::normalize($once);
-            $this->assertSame($once, $twice, "normalize must be idempotent for: $expr");
+            $this->assertSame($once, $twice, "normalize must be idempotent for: {$expr}");
         }
     }
 
@@ -185,8 +185,11 @@ class ExpressionNormalizerTest extends TestCase
         // разбираться по-другому; идемпотентность сохраняется
         $a = ExpressionNormalizer::normalize('((x0+x1)sq)');
         $this->assertSame($a, ExpressionNormalizer::normalize($a), 'Unary suffix must be idempotent');
-        $this->assertSame($a, ExpressionNormalizer::normalize('((x1+x0)sq)'),
-            'Commutative variant of unary-wrapped expression must normalize equally');
+        $this->assertSame(
+            $a,
+            ExpressionNormalizer::normalize('((x1+x0)sq)'),
+            'Commutative variant of unary-wrapped expression must normalize equally'
+        );
     }
 
     public function testRDivisionTautologyCollapses(): void

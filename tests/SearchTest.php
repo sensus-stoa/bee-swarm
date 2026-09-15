@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Core\Grammar;
@@ -187,8 +186,8 @@ class SearchTest extends TestCase
         $X = [[7.0], [5.0], [9.0]];
         $y = [2.0, 0.0, 4.0];
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
-        $this->assertTrue($ok, "Should find (x0-Rminx0), got cv=$cv formula=$formula");
-        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv formula=$formula");
+        $this->assertTrue($ok, "Should find (x0-Rminx0), got cv={$cv} formula={$formula}");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got {$cv} formula={$formula}");
     }
 
     /**
@@ -203,10 +202,10 @@ class SearchTest extends TestCase
         // y = (x0 - 5) / 4
         $X = [[7.0], [5.0], [9.0]];
         $range = 4.0;
-        $y = [(7.0-5.0)/$range, (5.0-5.0)/$range, (9.0-5.0)/$range];
+        $y = [(7.0 - 5.0) / $range, (5.0 - 5.0) / $range, (9.0 - 5.0) / $range];
         [$ok, $cv] = Search::find($X, $y, $g, 2);
-        $this->assertTrue($ok, "Should find min-max normalization, got cv=$cv");
-        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv");
+        $this->assertTrue($ok, "Should find min-max normalization, got cv={$cv}");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got {$cv}");
     }
 
     /**
@@ -225,13 +224,13 @@ class SearchTest extends TestCase
         ];
         $sum0 = 12.0;
         $y = [
-            3.0/$sum0 + 10.0,
-            4.0/$sum0 + 20.0,
-            5.0/$sum0 + 30.0,
+            3.0 / $sum0 + 10.0,
+            4.0 / $sum0 + 20.0,
+            5.0 / $sum0 + 30.0,
         ];
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);
-        $this->assertTrue($ok, "Should find reduce+feature combination, got cv=$cv formula=$formula");
-        $this->assertLessThan(0.001, $cv, "CV should be ~0, got $cv formula=$formula");
+        $this->assertTrue($ok, "Should find reduce+feature combination, got cv={$cv} formula={$formula}");
+        $this->assertLessThan(0.001, $cv, "CV should be ~0, got {$cv} formula={$formula}");
     }
 
     /**
@@ -244,7 +243,7 @@ class SearchTest extends TestCase
         $X = [[7], [5], [9]];  // int, не float
         $y = [2.0, 0.0, 4.0];  // y = x0 - min(x0) = x0 - 5
         [$ok, $cv] = Search::find($X, $y, $g, 2);
-        $this->assertTrue($ok, "Should find reduce on int column, got cv=$cv");
+        $this->assertTrue($ok, "Should find reduce on int column, got cv={$cv}");
         $this->assertLessThan(0.001, $cv);
     }
 
@@ -258,7 +257,7 @@ class SearchTest extends TestCase
         $X = [[2.0, 5.0], [3.0, 5.0], [5.0, 5.0]];
         $y = [0.2, 0.3, 0.5];  // y = x0 / sum(x0) = x0/10
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2, ['price', 'qty']);
-        $this->assertTrue($ok, "Should find pattern, got cv=$cv formula=$formula");
+        $this->assertTrue($ok, "Should find pattern, got cv={$cv} formula={$formula}");
         $this->assertStringContainsString('price', $formula, 'Formula must use label "price" not x0');
         $this->assertStringNotContainsString('x0', $formula, 'Formula must NOT contain x0 when labels provided');
     }
@@ -272,7 +271,7 @@ class SearchTest extends TestCase
         $X = [[7.0], [5.0], [9.0]];
         $y = [2.0, 0.0, 4.0];
         [$ok, $cv, $formula] = Search::find($X, $y, $g, 2);  // без labels
-        $this->assertTrue($ok, "Should find pattern, got cv=$cv formula=$formula");
+        $this->assertTrue($ok, "Should find pattern, got cv={$cv} formula={$formula}");
         $this->assertStringContainsString('x0', $formula, 'Default feature name must be x0');
     }
 }

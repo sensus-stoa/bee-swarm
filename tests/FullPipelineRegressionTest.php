@@ -17,7 +17,6 @@ use BeeSwarm\Infra\PlateauDetector;
  * - nFeat=0 задачи → фильтр не работал
  *
  * Запускать: vendor/bin/phpunit tests/FullPipelineRegressionTest.php
- * @group slow
  */
 class FullPipelineRegressionTest extends TestCase
 {
@@ -49,8 +48,11 @@ class FullPipelineRegressionTest extends TestCase
             'SELECT COUNT(*) FROM laws'
         )->fetchColumn();
 
-        $this->assertGreaterThanOrEqual(3, (int) $laws,
-            "Expected ≥3 laws. Got {$laws}. srand(42)? scanWithAccumulator?");
+        $this->assertGreaterThanOrEqual(
+            3,
+            (int) $laws,
+            "Expected ≥3 laws. Got {$laws}. srand(42)? scanWithAccumulator?"
+        );
     }
 
     /**
@@ -64,8 +66,11 @@ class FullPipelineRegressionTest extends TestCase
             'SELECT COUNT(DISTINCT domain) FROM laws'
         )->fetchColumn();
 
-        $this->assertGreaterThanOrEqual(2, (int) $domains,
-            "Expected ≥2 domains. Got {$domains}. All logic-only?");
+        $this->assertGreaterThanOrEqual(
+            2,
+            (int) $domains,
+            "Expected ≥2 domains. Got {$domains}. All logic-only?"
+        );
     }
 
     /**
@@ -79,8 +84,11 @@ class FullPipelineRegressionTest extends TestCase
         $ref = new \ReflectionMethod(Hive::class, 'getTasks');
         $tasks = $ref->invoke($hive);
 
-        $this->assertLessThan(500, count($tasks),
-            'Task pool bloated: ' . count($tasks) . ' tasks. MAX_CROSS_PAIR=2000?');
+        $this->assertLessThan(
+            500,
+            count($tasks),
+            'Task pool bloated: ' . count($tasks) . ' tasks. MAX_CROSS_PAIR=2000?'
+        );
     }
 
     /**
@@ -96,14 +104,19 @@ class FullPipelineRegressionTest extends TestCase
 
         $zeroFeat = 0;
         foreach ($tasks as $t) {
-            if (! isset($t['data'][0]) || ! is_array($t['data'][0])) continue;
+            if (! isset($t['data'][0]) || ! is_array($t['data'][0])) {
+                continue;
+            }
             if (count($t['data'][0]) - 1 < 1) {
                 $zeroFeat++;
             }
         }
 
-        $this->assertEquals(0, $zeroFeat,
-            "Found {$zeroFeat} tasks with nFeat=0. Filter regression?");
+        $this->assertEquals(
+            0,
+            $zeroFeat,
+            "Found {$zeroFeat} tasks with nFeat=0. Filter regression?"
+        );
     }
 
     /**
@@ -118,8 +131,11 @@ class FullPipelineRegressionTest extends TestCase
             fn ($b) => $b->isAlive()
         ));
 
-        $this->assertGreaterThan(0, $alive,
-            'All bees dead after 25 ticks');
+        $this->assertGreaterThan(
+            0,
+            $alive,
+            'All bees dead after 25 ticks'
+        );
     }
 
     private function runHive(int $maxTicks): Hive

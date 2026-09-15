@@ -27,7 +27,13 @@ class LawValidatorEpsilonTest extends TestCase
         }
 
         // Кандидат с CV=0.03 — выше дефолта, ниже кастомного
-        $weakCandidate = ['atom' => 'x0', 'cv' => 0.03, 'name' => 't1', 'atom_raw' => 'x0', 'mode' => 'discover'];
+        $weakCandidate = [
+            'atom' => 'x0',
+            'cv' => 0.03,
+            'name' => 't1',
+            'atom_raw' => 'x0',
+            'mode' => 'discover',
+        ];
 
         // Дефолтный порог 0.01 — кандидат НЕ проходит
         $resultDefault = LawValidator::validate([$weakCandidate], $X, $y);

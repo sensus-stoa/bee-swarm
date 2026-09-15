@@ -23,15 +23,20 @@ class ReuseCriterionForgettingTest extends TestCase
         )->execute();
 
         $hive = new \BeeSwarm\Hive\Hive(
-            new \BeeSwarm\Infra\PlateauDetector(50, 0), null,
-            maxTicks: 1, logFile: tempnam(sys_get_temp_dir(), 'fgt_')
+            new \BeeSwarm\Infra\PlateauDetector(50, 0),
+            null,
+            maxTicks: 1,
+            logFile: tempnam(sys_get_temp_dir(), 'fgt_')
         );
         $hive->run();
 
         $exists = Database::get()->prepare('SELECT COUNT(*) FROM grammar_ops WHERE name = ?');
         $exists->execute(['FC1']);
-        $this->assertSame(0, (int) $exists->fetchColumn(),
-            'кандидат без reuse за порог тиков удаляется (забвение)');
+        $this->assertSame(
+            0,
+            (int) $exists->fetchColumn(),
+            'кандидат без reuse за порог тиков удаляется (забвение)'
+        );
     }
 
     public function testFreshCandidateIsNotForgotten(): void
@@ -40,15 +45,20 @@ class ReuseCriterionForgettingTest extends TestCase
         Grammar::staticAdd('FC2', 'birth', '(x0addx1)', 'foraged_test');
 
         $hive = new \BeeSwarm\Hive\Hive(
-            new \BeeSwarm\Infra\PlateauDetector(50, 0), null,
-            maxTicks: 1, logFile: tempnam(sys_get_temp_dir(), 'fgt_')
+            new \BeeSwarm\Infra\PlateauDetector(50, 0),
+            null,
+            maxTicks: 1,
+            logFile: tempnam(sys_get_temp_dir(), 'fgt_')
         );
         $hive->run();
 
         $exists = Database::get()->prepare('SELECT COUNT(*) FROM grammar_ops WHERE name = ?');
         $exists->execute(['FC2']);
-        $this->assertSame(1, (int) $exists->fetchColumn(),
-            'свежий кандидат (0 часов) не удаляется забвением');
+        $this->assertSame(
+            1,
+            (int) $exists->fetchColumn(),
+            'свежий кандидат (0 часов) не удаляется забвением'
+        );
     }
 
     public function testActiveAtomIsNotForgotten(): void
@@ -60,14 +70,19 @@ class ReuseCriterionForgettingTest extends TestCase
         )->execute();
 
         $hive = new \BeeSwarm\Hive\Hive(
-            new \BeeSwarm\Infra\PlateauDetector(50, 0), null,
-            maxTicks: 1, logFile: tempnam(sys_get_temp_dir(), 'fgt_')
+            new \BeeSwarm\Infra\PlateauDetector(50, 0),
+            null,
+            maxTicks: 1,
+            logFile: tempnam(sys_get_temp_dir(), 'fgt_')
         );
         $hive->run();
 
         $exists = Database::get()->prepare('SELECT COUNT(*) FROM grammar_ops WHERE name = ?');
         $exists->execute(['FA1']);
-        $this->assertSame(1, (int) $exists->fetchColumn(),
-            'активные атомы (reuse>0) не забываются — процедурная память');
+        $this->assertSame(
+            1,
+            (int) $exists->fetchColumn(),
+            'активные атомы (reuse>0) не забываются — процедурная память'
+        );
     }
 }

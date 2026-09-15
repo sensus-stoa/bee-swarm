@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 /**
  * GRAMMAR-BIRTH фаза 2 (RED-2): B-атомы в unary pool —
@@ -14,7 +14,6 @@ use BeeSwarm\Core\Grammar;
  */
 class GrammarBirthSearchTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         // GRAMMAR-BIRTH: не засорять общую :memory: БД — иначе
@@ -42,7 +41,10 @@ class GrammarBirthSearchTest extends TestCase
 
         $this->assertTrue($found, 'law must be found via born atom');
         $this->assertLessThan(0.10, $cvTest, "cv_test must pass; got {$cvTest}");
-        $this->assertStringContainsString('Bfloor', $formula,
-            "formula must use the born atom; got: {$formula}");
+        $this->assertStringContainsString(
+            'Bfloor',
+            $formula,
+            "formula must use the born atom; got: {$formula}"
+        );
     }
 }

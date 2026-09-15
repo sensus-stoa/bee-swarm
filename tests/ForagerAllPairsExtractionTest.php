@@ -50,7 +50,9 @@ class ForagerAllPairsExtractionTest extends TestCase
         }
         file_put_contents("{$dir}/data.txt", $content);
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);
@@ -110,7 +112,9 @@ class ForagerAllPairsExtractionTest extends TestCase
         $content = "1 10 100 1000\n2 20 200 2000\n3 30 300 3000\n4 40 400 4000\n5 50 500 5000\n6 60 600 6000\n7 70 700 7000\n8 80 800 8000\n9 90 900 9000\n10 100 1000 10000\n";
         file_put_contents("{$dir}/edge.txt", $content);
 
-        $tasks = $acc->scan([$dir => 1]);
+        $tasks = $acc->scan([
+            $dir => 1,
+        ]);
 
         array_map('unlink', glob("{$dir}/*"));
         rmdir($dir);

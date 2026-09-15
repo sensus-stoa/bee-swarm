@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Hive;
 
-use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Text\SentenceRegistry;
 
 /**
@@ -74,7 +73,10 @@ class ClozeEngine
         }
 
         if ($bestAtom && $bestError < 0.5) {
-            return ['atom' => $bestAtom, 'error' => $bestError];
+            return [
+                'atom' => $bestAtom,
+                'error' => $bestError,
+            ];
         }
 
         return null;

@@ -66,7 +66,10 @@ class BeeWorker
         $nCols = count($data[0]);
         foreach ($data as $row) {
             if (count($row) !== $nCols) {
-                return ['accepted' => false, 'error' => 'inconsistent row lengths'];
+                return [
+                    'accepted' => false,
+                    'error' => 'inconsistent row lengths',
+                ];
             }
         }
 
@@ -88,7 +91,10 @@ class BeeWorker
 
         // 0.15 — единый порог (05.08, CONCERNS B: рассинхрон с Search::find/DiscoveryEngine)
         if ($found && $cv <= 0.15) {
-            $result['discovery'] = ['formula' => $formula, 'cv' => $cv];
+            $result['discovery'] = [
+                'formula' => $formula,
+                'cv' => $cv,
+            ];
             $this->discoveries++;
             $this->bee->rewardDiscovery();
         }

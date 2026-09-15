@@ -22,7 +22,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class LawShapeTest extends TestCase
 {
-    /** Scale-пара: 2x и 3x — одна форма (масштаб не меняет структуру). */
+    /**
+     * Scale-пара: 2x и 3x — одна форма (масштаб не меняет структуру).
+     */
     public function testScaleLawsShareShape(): void
     {
         $this->assertSame(
@@ -32,7 +34,9 @@ final class LawShapeTest extends TestCase
         );
     }
 
-    /** Структурная пара: x² и x — разные формы. */
+    /**
+     * Структурная пара: x² и x — разные формы.
+     */
     public function testSquareVsLinearDiffer(): void
     {
         $this->assertNotSame(
@@ -42,13 +46,17 @@ final class LawShapeTest extends TestCase
         );
     }
 
-    /** Унарная форма: sqrt(x) и x — разные. */
+    /**
+     * Унарная форма: sqrt(x) и x — разные.
+     */
     public function testUnaryDiffers(): void
     {
         $this->assertNotSame(LawShape::of('sqrt(x0)'), LawShape::of('x0'));
     }
 
-    /** Композиция: (2x)² и (3x)² — одна форма ((*)²-структура с конст-масштабом). */
+    /**
+     * Композиция: (2x)² и (3x)² — одна форма ((*)²-структура с конст-масштабом).
+     */
     public function testComposedScaleShareShape(): void
     {
         $this->assertSame(
@@ -57,14 +65,18 @@ final class LawShapeTest extends TestCase
         );
     }
 
-    /** Law-distance: same shape → 0, разные → 1 (пока бинарная метрика). */
+    /**
+     * Law-distance: same shape → 0, разные → 1 (пока бинарная метрика).
+     */
     public function testLawDistanceBinary(): void
     {
         $this->assertSame(0, LawShape::distance('K2×x0', '(K3×x0)'));
         $this->assertSame(1, LawShape::distance('x0', '(x0×x0)'));
     }
 
-    /** Инвариант не теряет НЕкоммутативную структуру: x−y и x/y — разные формы. */
+    /**
+     * Инвариант не теряет НЕкоммутативную структуру: x−y и x/y — разные формы.
+     */
     public function testNonCommutativeStructureKept(): void
     {
         $this->assertNotSame(LawShape::of('(x0−x1)'), LawShape::of('(x0/x1)'));

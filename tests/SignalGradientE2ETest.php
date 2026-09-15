@@ -17,7 +17,6 @@ use BeeSwarm\Infra\PlateauDetector;
  * улей застревал на logic-дублях и не доходил до foraged за 25 тиков).
  * Теперь: FORAGER_SOURCES и CORPUS_DIRS = tests/fixtures/forager,
  * maxTicks=50 — детерминированная среда.
- * @group slow
  */
 class SignalGradientE2ETest extends TestCase
 {
@@ -64,7 +63,10 @@ class SignalGradientE2ETest extends TestCase
 
         // Должны быть открытия из foraged-домена
         $foragedDiscoveries = substr_count($log, '[foraged]');
-        $this->assertGreaterThan(0, $foragedDiscoveries,
-            "Expected ≥1 foraged discovery. Got {$foragedDiscoveries}. Pipeline broken?");
+        $this->assertGreaterThan(
+            0,
+            $foragedDiscoveries,
+            "Expected ≥1 foraged discovery. Got {$foragedDiscoveries}. Pipeline broken?"
+        );
     }
 }

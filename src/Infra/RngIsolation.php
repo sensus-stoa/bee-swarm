@@ -26,10 +26,13 @@ namespace BeeSwarm\Infra;
  */
 class RngIsolation
 {
-    /** @var array<int, self> active unrestored guards */
+    /**
+     * @var array<int, self> active unrestored guards
+     */
     private static array $activeGuards = [];
 
     private int $savedSeed;
+
     private int $guardId;
 
     private function __construct(int $savedSeed)

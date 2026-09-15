@@ -1486,8 +1486,12 @@ class Hive
                 // WU-1: сигнал направляет мутацию — ops последней signal-формы
                 // получают повышенный вес при следующем add/replace. Гейт
                 // foundAny=false уже снаружи: при законе сигнал не применяется.
-                $this->routedBee->signalHint($lastFormula ?? '', $this->tick);
-                $this->log("SIGNAL: best_CV=" . round($searchCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
+                // agent-review F4: null-formula НЕ затирает свежий hint пустой
+                // строкой (перезапись — только реальной формой).
+                if ($lastFormula !== null && $lastFormula !== '') {
+                    $this->routedBee->signalHint($lastFormula, $this->tick);
+                }
+                $this->log('SIGNAL: best_CV=' . round($searchCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
             }
         }
     }

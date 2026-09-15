@@ -108,6 +108,10 @@ class Hive
 
     private ?Bee $routedBee = null;
 
+    /** §S1.7-NOVELTY WU-1: seen-фингерпринты instance'а (было: static в doTick —
+     * process-lifetime, течёт между Hive-объектами в одном процессе). */
+    private array $seenFingerprints = [];
+
     private ?OverlapTracker $overlapTracker = null;
 
     /** SPAWN-POOL (27.08): пул рецептов-потомков (genotype). */
@@ -1143,10 +1147,12 @@ class Hive
 
             // §S1.7-NOVELTY: reward bee for exploring new fingerprint
             // NO_NOVELTY=1 — тестовый флаг (детерминизм энергетики)
-            static $seenFingerprints = [];
+            // $fp !== '' — F5-хвост: isset НЕ гвардит пустой ключ (ключ ''
+            // отсутствует → isset false → бонус). Пустой fp = нет fingerprint
+            // (не «новая задача») — novelty не выдаётся.
             $fp = $this->taskRouter->fingerprint($task);
-            if (getenv('NO_NOVELTY') !== '1' && ! isset($seenFingerprints[$fp])) {
-                $seenFingerprints[$fp] = true;
+            if (getenv('NO_NOVELTY') !== '1' && $fp !== '' && ! isset($this->seenFingerprints[$fp])) {
+                $this->seenFingerprints[$fp] = true;
                 $this->routedBee->rewardNovelty();
                 $this->log("NOVELTY: bee#{$beeIdx} new fingerprint");
             }

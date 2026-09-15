@@ -1196,7 +1196,9 @@ class Hive
 
         // D17: SpawnManager handles spawning + generation tracking
         $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
-        [$spawned, $spawnDetails] = $this->spawnManager->trySpawn($this->bees, $allOps);
+        // S1.6-GRADIENT WU-2: тик роя нужен для TTL-затухания signal-hint
+        // при мутации spawn'а (default 0 = hint вечен — дыра wiring)
+        [$spawned, $spawnDetails] = $this->spawnManager->trySpawn($this->bees, $allOps, $this->tick);
 
         // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
         $gapSpawned = $this->spawnManager->tryGapSpawn(
@@ -1481,6 +1483,10 @@ class Hive
             $nullFloor = NullCalibrator::getNullFloor($X, $y, Grammar::fromOps($grammarOps));
             if ($searchCv <= $nullFloor) {
                 $this->routedBee->rewardSignal();
+                // WU-1: сигнал направляет мутацию — ops последней signal-формы
+                // получают повышенный вес при следующем add/replace. Гейт
+                // foundAny=false уже снаружи: при законе сигнал не применяется.
+                $this->routedBee->signalHint($lastFormula ?? '', $this->tick);
                 $this->log("SIGNAL: best_CV=" . round($searchCv, 4) . " zone=({$cvTrainMax}..{$nullFloor}]");
             }
         }

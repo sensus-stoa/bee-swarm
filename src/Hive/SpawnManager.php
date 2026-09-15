@@ -164,7 +164,7 @@ class SpawnManager
             if (! $bee->isAlive()) {
                 continue;
             }
-            $child = $bee->spawn($allOps);
+            $child = $bee->spawn($allOps, $tick);
             if ($child !== null) {
                 $childKey = count($bees);
                 $bees[] = $child;

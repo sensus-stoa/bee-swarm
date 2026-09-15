@@ -89,6 +89,15 @@ class Bee
     private array $degradedLifetime = [];
 
     /**
+     * S1.6-GRADIENT WU-1/WU-2: последняя signal-форма + тик её получения.
+     * Не наследуется при spawn (границы версии: наследование hint —
+     * отдельная эволюционная механика).
+     *
+     * @var array{0: string, 1: int}|null [formula, tick]
+     */
+    private ?array $signalHint = null;
+
+    /**
      * @param string[] $grammar initial grammar operations
      * @param float $energy starting energy (default 10.0 per protocol)
      * @param float|null $tickCost energy cost per tick (default: DEFAULT_TICK_COST)
@@ -413,6 +422,64 @@ class Bee
         $this->energy += 0.5;
     }
 
+    /**
+     * S1.6-GRADIENT WU-1: запомнить последнюю signal-форму.
+     * Форма — на языке роя (инфикс, напр. '(x0maxx1)'). Тик — для WU-2 TTL.
+     */
+    public function signalHint(string $formula, int $tick = 0): void
+    {
+        if (! $this->isAlive()) return;
+        $this->signalHint = [$formula, $tick];
+    }
+
+    /**
+     * S1.6-GRADIENT WU-2: множители последней signal-формы с ГЛАДКИМ
+     * затуханием. Возраст hint = currentTick − hintTick; пока возраст ≤ TTL
+     * (env SIGNAL_GRADIENT_TTL, default 10) возвращается карта op ⇒ multiplier,
+     * линейно вычитаемый от SIGNAL_GRADIENT_BIAS (возраст 0) до 1.0
+     * (возраст == TTL) — «вычитание веса, не обнуление». Несвежий/отсутствующий/
+     * без известных ops → null (мутация слепая).
+     *
+     * @return array<string,float>|null op ⇒ весовой множитель (≥1.0)
+     */
+    public function signalPreferredOps(int $currentTick = 0, ?int $ttl = null): ?array
+    {
+        if ($this->signalHint === null) {
+            return null;
+        }
+        [$formula, $hintTick] = $this->signalHint;
+        // PHP-falsy гвард (premortem H2): '0' — falsy строка, ?: подставил бы
+        // default 10, ломая operational rollback. TTL=0 = hint отключён.
+        $raw = getenv('SIGNAL_GRADIENT_TTL');
+        $ttl = $ttl ?? ($raw !== false ? (int) $raw : 10);
+        if ($ttl <= 0) {
+            return null; // TTL=0: сигнал выключен целиком
+        }
+        $age = $currentTick - $hintTick;
+        // Отрицательный возраст = рассинхрон часов (default currentTick=0 /
+        // потерянный тик — premortem H4): невалидный вызов → слепая мутация.
+        if ($age < 0 || $age > $ttl) {
+            return null;
+        }
+        // Джиттер-гвард: биас 0.0 = выкл (вес 0 = запрет op — недопустимо)
+        $bias = max(1.0001, (float) (getenv('SIGNAL_GRADIENT_BIAS') ?: '2.0'));
+        // Гладкое затухание: multiplier = 1 + (bias−1)×(1 − age/TTL)
+        $multiplier = $bias;
+        if ($ttl > 0 && $age > 0) {
+            $multiplier = 1.0 + ($bias - 1.0) * (1.0 - $age / $ttl);
+        }
+        // Известные операторы внутри инфиксной формы: '+' '×' '−' '/' 'min' 'max' 'sq'
+        $known = ['+', '×', '−', '/', 'min', 'max', 'sq'];
+        $ops = [];
+        foreach ($known as $op) {
+            if (str_contains($formula, $op)) {
+                $ops[$op] = $multiplier;
+            }
+        }
+
+        return $ops === [] ? null : $ops;
+    }
+
     public function isAlive(): bool
     {
         return $this->energy > 1e-12;
@@ -422,9 +489,10 @@ class Bee
      * Spawn child with mutated grammar AND mutated energy params. Protocol §2.2 + §2.1-эво.
      *
      * @param string[] $available all possible grammar operations
+     * @param int $currentTick S1.6-GRADIENT WU-2: тик роя для TTL signal-hint
      * @return self|null child Bee or null if spawn conditions not met
      */
-    public function spawn(array $available): ?self
+    public function spawn(array $available, int $currentTick = 0): ?self
     {
         if (! $this->isAlive() || $this->energy < self::SPAWN_THRESHOLD) {
             return null;
@@ -437,7 +505,11 @@ class Bee
             // GRAMMAR-PROPAGATION (ЭКСП-012/016): weights + уровень культуры
             $weights = getenv('PROPAGATION') === '0' ? null : \BeeSwarm\Core\Grammar::weightsFromDb();
             $culture = (float) (getenv('CULTURE_LEVEL') ?: '1.0');
-            $childGrammar = GrammarMutator::mutate($this->grammar, $available, $weights, $culture);
+            // S1.6-GRADIENT WU-1/WU-2: мутация грамматики ребёнка потребляет
+            // signal-hint родителя с TTL по тику роя (это НЕ наследование hint —
+            // ребёнок получает только грамматику, сам hint у него null)
+            $preferred = $this->signalPreferredOps($currentTick);
+            $childGrammar = GrammarMutator::mutate($this->grammar, $available, $weights, $culture, $preferred);
         }
 
         // Mutate energy params (±MUTATION_RANGE within bounds)

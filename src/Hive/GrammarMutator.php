@@ -21,13 +21,13 @@ class GrammarMutator
      * @param string[] $grammar current grammar
      * @param string[] $available all possible operations
      * @param array<string,float>|null $weights op → weight (null = uniform)
+     * @param float $p доля культурного выбора (0.0 = uniform, 1.0 = weights)
+     * @param array<string,float>|null $preferred S1.6-GRADIENT: op ⇒ множитель
+     *        веса для ops последней signal-формы при add/replace (null = слепая).
+     *        Предпочтение НЕ гарантирует выбор (иначе эксплорация вырождается).
      * @return string[] mutated grammar
      */
-    /**
-     * @param array<string,float>|null $weights op → weight
-     * @param float $p доля культурного выбора (0.0 = uniform, 1.0 = weights)
-     */
-    public static function mutate(array $grammar, array $available, ?array $weights = null, float $p = 1.0): array
+    public static function mutate(array $grammar, array $available, ?array $weights = null, float $p = 1.0, ?array $preferred = null): array
     {
         $grammar = array_values($grammar);
         $available = array_values(array_unique($available));
@@ -52,7 +52,7 @@ class GrammarMutator
 
         switch ($action) {
             case 'add':
-                $grammar[] = self::pickOp($missing, $weights, $p);
+                $grammar[] = self::pickOp($missing, $weights, $p, $preferred);
                 break;
             case 'remove':
                 $idx = array_rand($grammar);
@@ -60,15 +60,17 @@ class GrammarMutator
                 break;
             case 'replace':
                 $idx = array_rand($grammar);
-                $grammar[$idx] = self::pickOp($missing, $weights, $p);
+                $grammar[$idx] = self::pickOp($missing, $weights, $p, $preferred);
                 break;
         }
 
         return array_values($grammar);
     }
 
-    private static function pickOp(array $ops, ?array $weights, float $p = 1.0): string
+    private static function pickOp(array $ops, ?array $weights, float $p = 1.0, ?array $preferred = null): string
     {
+        $weights = self::applySignalBoost($ops, $weights, $preferred);
+
         // ЭКСП-016: с вероятностью (1-p) — uniform (exploration)
         if ($weights === null || mt_rand(0, 1000000) / 1000000.0 >= $p) {
             return $ops[array_rand($ops)];
@@ -85,5 +87,38 @@ class GrammarMutator
             }
         }
         return $ops[array_rand($ops)];
+    }
+
+    /**
+     * S1.6-GRADIENT: preferred — карта op ⇒ множитель веса. Применяется
+     * только при реальном пересечении с $ops — иначе исходное распределение
+     * (null = uniform, культурные веса) неискажённое.
+     *
+     * @param string[] $ops
+     * @param array<string,float>|null $weights
+     * @param array<string,float>|null $preferred op ⇒ множитель
+     * @return array<string,float>|null
+     */
+    private static function applySignalBoost(array $ops, ?array $weights, ?array $preferred): ?array
+    {
+        if ($preferred === null || $preferred === []) {
+            return $weights;
+        }
+        // Premortem H3: $weights=null означает «пропагация выключена» —
+        // uniform-ветка pickOp обязана сохраниться. Boost применяем ТОЛЬКО
+        // к ненулевым культурным весам, null не материализуем.
+        if ($weights === null) {
+            return null;
+        }
+        $boosted = $weights;
+        $applied = false;
+        foreach ($ops as $op) {
+            if (isset($preferred[$op])) {
+                $boosted[$op] = ($weights[$op] ?? 1.0) * $preferred[$op];
+                $applied = true;
+            }
+        }
+
+        return $applied ? $boosted : $weights;
     }
 }

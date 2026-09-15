@@ -53,6 +53,7 @@ class DiscoveryEngine
             $sClass = 'EMPIRICAL';
             $lastDiagnosis = null;
             $lastFormula = null;
+            $lastFormulaCv = null;
             for ($d = $depth; $d <= $maxDepth; $d++) {
                 [$sFound, $sCv, $sFormula, $sCvTest, $sClass, $sDiagnosis] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
                 $lastDiagnosis = $sDiagnosis;

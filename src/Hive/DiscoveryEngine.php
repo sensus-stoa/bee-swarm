@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Hive;
 
+use BeeSwarm\Certification\EnsembleCertifier;
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
@@ -114,6 +115,13 @@ class DiscoveryEngine
                 $d['class'] = 'EMPIRICAL';
             }
         }
+        unset($d);
+
+        // V0.11 WU-4: perturbed ensemble certification (§1.9). Хук ПОСЛЕ
+        // ранних return'ов (DATA-гвард выше) — живой путь только с X/y.
+        // ENSEMBLE_K>0 включает (default 0 = off, v1.6), NO_ENSEMBLE=1
+        // обходит; выключенное поведение — ноль вызовов certify().
+        EnsembleCertifier::runEnsembleCertification($found, $X, $y);
 
         // §2.5.2 wiring: лучшая кандидатная формула поиска (даже не принятая) —
         // сырьё для partialBirth (Grammar Ceiling Break). Лучший = минимальный cv.

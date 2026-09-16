@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Hive;
 
+use BeeSwarm\Certification\EnsembleCertifier;
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Forager\Forager;
@@ -1563,6 +1564,15 @@ class Hive
             $this->runPartialBirthAttempt($X, $y, $task, $searchCv, $diagnosis, $lastFormula);
         }
         foreach ($candidates as $d) {
+            // V0.11 F2 (agent-review): демоушен потребляется здесь — кандидат
+            // с UNSTABLE_CERTIFICATE/NO_CONSENSUS не записывается как закон.
+            // ENSEMBLE off (нет вердикта) → гейт прозрачен (v1.6).
+            if (! EnsembleCertifier::shouldRecordCandidate($d)) {
+                $this->log('ENSEMBLE_DEMOTE task=' . ($task['name'] ?? '?')
+                    . ' candidate=' . (string) ($d['atom'] ?? '?')
+                    . ' verdict=' . (string) ($d['ensemble_verdict'] ?? '?'));
+                continue;
+            }
             $this->recordDiscovery($d, $task, $domain, $foundAny, $X, $y);
         }
 

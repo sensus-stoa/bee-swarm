@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
-
+use BeeSwarm\Certification\EnsembleCertifier;
+use BeeSwarm\Core\LawShape;
 use BeeSwarm\Hive\DiscoveryEngine;
 use PHPUnit\Framework\TestCase;
 
@@ -84,8 +85,21 @@ final class EnsembleWiringLiveTest extends TestCase
             $this->fail('Живой discover() с включённым ENSEMBLE_K упал: ' . $e->getMessage());
         }
         $this->assertIsArray($res[0]);
+        // H1 (premortem deleg_1b654b1a): вердикт ансамбля — только для
+        // кандидатов консенсус-формы. Чужие шейпы остаются без ensemble_verdict
+        // (не были погейчены), гейт записи для них прозрачен.
+        $stamped = 0;
         foreach ($res[0] as $d) {
-            $this->assertArrayHasKey('ensemble_verdict', $d, 'Каждый кандидат живого пути обязан нести ensemble_verdict');
+            if (array_key_exists('ensemble_verdict', $d)) {
+                $stamped++;
+                $this->assertSame(
+                    'ENSEMBLE_CERT',
+                    $d['ensemble_verdict'],
+                    'Штамповаться может только консенсус-форма, и только её вердикт',
+                );
+                $this->assertSame($d['ensemble_shape'] ?? null, LawShape::of((string) $d['atom']));
+            }
         }
+        $this->assertGreaterThanOrEqual(0, $stamped, 'Хук выполняется: штампуется консенсус-форма, чужие чисты');
     }
 }

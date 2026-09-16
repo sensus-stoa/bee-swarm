@@ -172,6 +172,8 @@ final class MetricPreflight
     /**
      * FACTOR из env (параметр (C)); '0' = выключено, мусор/negative → default.
      * PHP-falsy гвард: getenv строки '0' фальси — сравнение !== false.
+     * F7 (agent-review): negative → DEFAULT (не DISABLED): опечатка знака
+     * в env не должна молча выключать доменный гейт.
      */
     private static function factor(): float
     {
@@ -179,10 +181,10 @@ final class MetricPreflight
         if ($f === false || $f === '') {
             return self::DEFAULT_GATE_FACTOR;
         }
-        if (! is_numeric($f)) {
+        if (! is_numeric($f) || (float) $f < 0.0) {
             return self::DEFAULT_GATE_FACTOR;
         }
 
-        return (float) $f; // 0.0 легален = выключено; negative клампится вызывающим сравнением
+        return (float) $f; // 0.0 легален = выключено
     }
 }

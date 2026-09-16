@@ -129,12 +129,15 @@ final class ContradictionEngine
         }
 
         // Пре-регистрация ДО ре-поиска (прозрачность против подгонки).
+        // H5 (premortem): cfg['grammar'] (грамматика пчелы-носителя) приоритетнее
+        // базовой — иначе зеркальный тест сравнивает несравнимое.
         self::log($logFile, 'PRE_REGISTER: гипотеза инверсии — если кандидат зеркальный закон, '
             . 'find(−y) даст cv_инв < 0.5 × cv_исход (' . ($candidate['cv'] ?? 'n/a') . ') '
             . 'И corr(pred_инв, y) > +0.7. ' . gmdate('c'));
 
         $negY = array_map(static fn (float $v): float => -$v, $y);
-        $res = Search::find($X, $negY, new Grammar(), (int) ($cfg['depth'] ?? 2), null, 0.0,
+        $grammar = isset($cfg['grammar']) && $cfg['grammar'] instanceof Grammar ? $cfg['grammar'] : new Grammar();
+        $res = Search::find($X, $negY, $grammar, (int) ($cfg['depth'] ?? 2), null, 0.0,
             (float) ($cfg['gate'] ?? 0.15), (float) ($cfg['budget'] ?? 15.0), null);
         $invertedCv = (bool) $res[0] ? (float) $res[1] : null;
         $invertedFormula = (bool) $res[0] ? (string) $res[2] : null;
@@ -167,21 +170,42 @@ final class ContradictionEngine
      */
     private static function inversionVerdict(array $candidate, ?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile): object
     {
-        $srcCv = (float) ($candidate['cv'] ?? INF);
+        // H-fix (ретро-ревью): candidate без 'cv' давал srcCv=INF → 0.5*INF=INF →
+        // cv-ветка гипотезы автопроходила (проба). Без известного исходного cv
+        // гипотеза «cv_инв < 0.5·cv_исход» НЕВЫРАЗИМА → подтверждение невозможно.
+        if (! isset($candidate['cv']) || ! is_numeric($candidate['cv'])) {
+            return self::anomalyVerdict($candidate, $invertedCv, $invertedCorr, $invertedFormula, $logFile, 'missing_source_cv');
+        }
+        $srcCv = (float) $candidate['cv'];
         $confirmed = $invertedCv !== null && $invertedCorr !== null
             && $invertedCv < 0.5 * $srcCv
             && $invertedCorr > 0.7;
 
-        $class = $confirmed ? 'INVERTED_LAW' : 'ANOMALY';
-        $out = (object) ['class' => $class, 'inverted_cv' => $invertedCv,
+        return $confirmed
+            ? self::invertedLawVerdict($invertedCv, $invertedCorr, $invertedFormula, $logFile)
+            : self::anomalyVerdict($candidate, $invertedCv, $invertedCorr, $invertedFormula, $logFile, 'hypothesis_refuted');
+    }
+
+    /** @param array<string, mixed> $candidate */
+    private static function anomalyVerdict(array $candidate, ?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile, string $reason): object
+    {
+        $out = (object) ['class' => 'ANOMALY', 'inverted_cv' => $invertedCv,
             'inverted_corr' => $invertedCorr, 'inverted_formula' => $invertedFormula,
-            'verdict_line' => $confirmed
-                ? 'INVARIANT (via inversion): исходный кандидат был зеркалом закона'
+            'verdict_line' => $reason === 'missing_source_cv'
+                ? 'ANOMALY: исходный cv неизвестен — гипотеза невыразима (метрическая слепота)'
                 : 'ANOMALY: противоречие устойчиво, инверсия не подтвердила гипотезу (метрическая слепота)'];
-        if ($class === 'ANOMALY') {
-            self::flagMetricBlindness($candidate, abs((float) ($candidate['corr'] ?? 0)), (string) ($candidate['domain'] ?? 'unknown'), $logFile);
-        }
-        self::log($logFile, 'INVERT_RESULT ' . $class . ' cv_инв=' . ($invertedCv !== null ? round($invertedCv, 4) : 'null')
+        self::flagMetricBlindness($candidate, abs((float) ($candidate['corr'] ?? 0)), (string) ($candidate['domain'] ?? 'unknown'), $logFile);
+        self::log($logFile, 'INVERT_RESULT ANOMALY reason=' . $reason);
+
+        return $out;
+    }
+
+    private static function invertedLawVerdict(?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile): object
+    {
+        $out = (object) ['class' => 'INVERTED_LAW', 'inverted_cv' => $invertedCv,
+            'inverted_corr' => $invertedCorr, 'inverted_formula' => $invertedFormula,
+            'verdict_line' => 'INVARIANT (via inversion): исходный кандидат был зеркалом закона'];
+        self::log($logFile, 'INVERT_RESULT INVERTED_LAW cv_инв=' . ($invertedCv !== null ? round($invertedCv, 4) : 'null')
             . ' corr=' . ($invertedCorr !== null ? round($invertedCorr, 3) : 'null')
             . ' формула=' . ($invertedFormula ?? 'none'));
 

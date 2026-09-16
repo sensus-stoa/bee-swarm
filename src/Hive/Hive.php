@@ -2285,13 +2285,25 @@ class Hive
             // §1.2 INSUFFICIENT_DATA): таргет с CV(y) ниже гейта не различается
             // rel-метрикой — задача не попадает в очередь. Гейт задачи =
             // последний столбец data. FACTOR=0 → v1.6.
+            // H3 (premortem deleg_b07cd09e): data есть, но строки не массивы →
+            // yTarget пуст → METRIC_DOMAIN маскирует data-quality баг. Различаем:
+            // пустой yTarget при непустых data = MALFORMED_DATA skip (не metric).
             $yTarget = [];
             foreach ($t['data'] as $row) {
                 if (is_array($row)) {
                     $yTarget[] = (float) ($row[$nFeat] ?? 0.0);
                 }
             }
+            if ($yTarget === []) {
+                $this->log("MALFORMED_DATA_FILTERED: {$name} rows=" . count($t['data']) . ' (строки не массивы — data-quality)');
+                $preflightSkipped++;
+                continue;
+            }
             $gateEps = $this->getEpsilon($this->taskRouter !== null ? $this->taskRouter->fingerprint($t) : '') ?? 0.15;
+            // H2-примечание: getEpsilon только читает кэш (калибровка триггерится
+            // только в discover-пути) — мутирующего вызова здесь нет (FP premortem).
+            // Неоткалиброванный fp → fallback 0.15: консервативный отказ в
+            // сторону безопасности (тот же дефолт, что и до калибровки).
             $verdict = MetricPreflight::check($gateEps, $yTarget);
             if (! $verdict->passes) {
                 $this->log("METRIC_DOMAIN_PREFLIGHT: {$name} gate={$gateEps} cv_y="

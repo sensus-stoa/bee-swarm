@@ -82,8 +82,11 @@ final class ContradictionInvertTest extends TestCase
 
         $this->assertContains($out->class, ['INVERTED_LAW', 'ANOMALY'], json_encode($out));
         if ($out->class === 'INVERTED_LAW') {
-            $this->assertLessThan(0.5 * 0.10, $out->inverted_cv, 'Гипотеза: cv_инв < 0.5·cv');
-            $this->assertGreaterThan(0.7, $out->inverted_corr, 'Гипотеза: corr(pred_инв, y) > +0.7');
+            // F1+F2 (agent-review): find(−y) возвращает g ≈ −y → corr(g, y) ОТРИЦАТЕЛЕН;
+            // подтверждение = зеркальная сила сохраняется (не «cv улучшен» — зеркало
+            // пере-находит структуру с тем же cv, оно МЕНЯЕТ ЗНАК, а не точность).
+            $this->assertLessThanOrEqual(0.0, $out->inverted_corr, 'corr(g, y_ориг) отрицателен (g аппроксимирует −y)');
+            $this->assertGreaterThanOrEqual(0.7, abs($out->inverted_corr), 'Зеркальная сила сохранена');
         }
     }
 

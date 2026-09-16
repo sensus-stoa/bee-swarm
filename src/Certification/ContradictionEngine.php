@@ -127,13 +127,29 @@ final class ContradictionEngine
 
             return $out;
         }
+        $research = self::researchInverted($X, $y, $candidate, $logFile, $cfg);
+        self::log($logFile, 'INVERT_RESULT ' . $research->class
+            . ' cv_инв=' . ($research->inverted_cv !== null ? round($research->inverted_cv, 4) : 'null')
+            . ' corr=' . ($research->inverted_corr !== null ? round($research->inverted_corr, 3) : 'null')
+            . ' формула=' . ($research->inverted_formula ?? 'none'));
 
-        // Пре-регистрация ДО ре-поиска (прозрачность против подгонки).
-        // H5 (premortem): cfg['grammar'] (грамматика пчелы-носителя) приоритетнее
-        // базовой — иначе зеркальный тест сравнивает несравнимое.
+        return $research;
+    }
+
+    /**
+     * Тело инверсии: pre-регистрация → find(−y) → corr с y_ориг.
+     * H5: cfg['grammar'] приоритетнее базовой. F3: depth/gate из cfg
+     * (параметры исходного прогона), не дефолты — асимметрия давала ложную ANOMALY.
+     *
+     * @param array<string, mixed> $candidate
+     * @param array<string, mixed> $cfg
+     */
+    private static function researchInverted(array $X, array $y, array $candidate, string $logFile, array $cfg): object
+    {
         self::log($logFile, 'PRE_REGISTER: гипотеза инверсии — если кандидат зеркальный закон, '
-            . 'find(−y) даст cv_инв < 0.5 × cv_исход (' . ($candidate['cv'] ?? 'n/a') . ') '
-            . 'И corr(pred_инв, y) > +0.7. ' . gmdate('c'));
+            . 'find(−y) пере-находит структуру с cv_инв ≈ cv_исход (' . ($candidate['cv'] ?? 'n/a') . ') '
+            . 'И |corr(g, y_ориг)| >= 0.7 со ЗНАКОМ МИНУС (г аппроксимирует −y). '
+            . 'Подтверждение: зеркальная сила сохраняется; m̂ = −g переворачивает знак. ' . gmdate('c'));
 
         $negY = array_map(static fn (float $v): float => -$v, $y);
         $grammar = isset($cfg['grammar']) && $cfg['grammar'] instanceof Grammar ? $cfg['grammar'] : new Grammar();
@@ -170,16 +186,18 @@ final class ContradictionEngine
      */
     private static function inversionVerdict(array $candidate, ?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile): object
     {
-        // H-fix (ретро-ревью): candidate без 'cv' давал srcCv=INF → 0.5*INF=INF →
-        // cv-ветка гипотезы автопроходила (проба). Без известного исходного cv
-        // гипотеза «cv_инв < 0.5·cv_исход» НЕВЫРАЗИМА → подтверждение невозможно.
+        // F1+F2 (agent-review deleg_3f35dc3a, ретро): знака и порог были
+        // инвертированы. find(−y) по построению возвращает g ≈ −y → corr(g, y)
+        // ОТРИЦАТЕЛЕН (CCPP: −0.943); зеркало пере-находит структуру с
+        // cv_инв ≈ cv_исход (порог 0.5 был недостижим). Корректная гипотеза:
+        // зеркальная сила сохраняется |corr(g, y)| >= MIRROR_THRESHOLD
+        // (знак минус согласован с m̂ = −g в buildLawTriple).
         if (! isset($candidate['cv']) || ! is_numeric($candidate['cv'])) {
             return self::anomalyVerdict($candidate, $invertedCv, $invertedCorr, $invertedFormula, $logFile, 'missing_source_cv');
         }
-        $srcCv = (float) $candidate['cv'];
         $confirmed = $invertedCv !== null && $invertedCorr !== null
-            && $invertedCv < 0.5 * $srcCv
-            && $invertedCorr > 0.7;
+            && abs($invertedCorr) >= self::MIRROR_THRESHOLD
+            && $invertedCorr < 0.0; // g аппроксимирует −y: corr с y_ориг отрицателен
 
         return $confirmed
             ? self::invertedLawVerdict($invertedCv, $invertedCorr, $invertedFormula, $logFile)

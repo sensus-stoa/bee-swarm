@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BeeSwarm\Hive;
 
 use BeeSwarm\Certification\EnsembleCertifier;
+use BeeSwarm\Certification\MetricPreflight;
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Forager\Forager;
@@ -2266,6 +2267,7 @@ class Hive
         $filtered = [];
         $skipped = 0;
         $passedCounts = [];
+        $preflightSkipped = 0;
         foreach ($best as $name => [$t, $cnt]) {
             if (! isset($t['data'])) {
                 $filtered[] = $t;  // text/semantic — не фильтруем
@@ -2273,16 +2275,37 @@ class Hive
             }
             $nFeat = is_array($t['data'][0] ?? null) ? max(1, count($t['data'][0]) - 1) : 1;
             $tMin = max(self::MIN_DATA_POINTS, $nFeat * 5);
-            if ($cnt >= $tMin) {
-                $filtered[] = $t;
-                $passedCounts[] = "{$name}({$cnt})";
-            } else {
+            if ($cnt < $tMin) {
                 $this->log("INSUFFICIENT_FILTERED: {$name} t={$cnt} < tMin={$tMin}");
                 $skipped++;
+                continue;
             }
+
+            // V0.12 WU-2 (§1.10): Metric-Domain pre-flight ДО поиска (паттерн
+            // §1.2 INSUFFICIENT_DATA): таргет с CV(y) ниже гейта не различается
+            // rel-метрикой — задача не попадает в очередь. Гейт задачи =
+            // последний столбец data. FACTOR=0 → v1.6.
+            $yTarget = [];
+            foreach ($t['data'] as $row) {
+                if (is_array($row)) {
+                    $yTarget[] = (float) ($row[$nFeat] ?? 0.0);
+                }
+            }
+            $gateEps = $this->getEpsilon($this->taskRouter !== null ? $this->taskRouter->fingerprint($t) : '') ?? 0.15;
+            $verdict = MetricPreflight::check($gateEps, $yTarget);
+            if (! $verdict->passes) {
+                $this->log("METRIC_DOMAIN_PREFLIGHT: {$name} gate={$gateEps} cv_y="
+                    . ($verdict->cv_y !== null ? round($verdict->cv_y, 4) : 'null')
+                    . ' r2_floor=' . ($verdict->r2_floor !== null ? round($verdict->r2_floor, 2) : 'null'));
+                $preflightSkipped++;
+                continue;
+            }
+
+            $filtered[] = $t;
+            $passedCounts[] = "{$name}({$cnt})";
         }
-        if ($skipped > 0) {
-            $this->log("PRE_FILTER: skipped {$skipped} insufficient, passed " . count($passedCounts));
+        if ($skipped > 0 || $preflightSkipped > 0) {
+            $this->log("PRE_FILTER: skipped {$skipped} insufficient + {$preflightSkipped} metric-domain, passed " . count($passedCounts));
         }
 
         // E1-FIX Phase 4b: узкие задачи (меньше колонок) → выше шанс открытия → в начало

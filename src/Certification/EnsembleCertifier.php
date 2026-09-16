@@ -129,14 +129,13 @@ final class EnsembleCertifier
             }
             $cShape = isset($c['atom']) && is_string($c['atom']) && $c['atom'] !== ''
                 ? LawShape::of($c['atom']) : null;
-            $c['ensemble_verdict'] = match (true) {
-                $out['verdict'] === 'ENSEMBLE_CERT' && $cShape !== null && $cShape === $out['shape'] => 'ENSEMBLE_CERT',
-                $out['verdict'] === 'NO_CONSENSUS' => 'NO_CONSENSUS',
-                default => 'UNSTABLE_CERTIFICATE',
-            };
-            if ($c['ensemble_verdict'] === 'ENSEMBLE_CERT') {
-                $c['ensemble_shape'] = $out['shape'];
-                if ($out['ensemble_anchor'] !== null) {
+            // H1 (premortem deleg_1b654b1a): вердикт ансамбля относится ТОЛЬКО
+            // к консенсус-форме. Чужая форма не штампуется UNSTABLE (не была
+            // погейчена) — остаётся без вердикта, гейт записи прозрачен (v1.6).
+            if ($cShape !== null && $cShape === $out['shape']) {
+                $c['ensemble_verdict'] = $out['verdict'];
+                if ($out['verdict'] === 'ENSEMBLE_CERT' && $out['ensemble_anchor'] !== null) {
+                    $c['ensemble_shape'] = $out['shape'];
                     $c['ensemble_anchor'] = $out['ensemble_anchor']['m_hat'];
                     $c['ensemble_anchor_ci'] = [$out['ensemble_anchor']['ci_lo'], $out['ensemble_anchor']['ci_hi']];
                 }
@@ -226,13 +225,7 @@ final class EnsembleCertifier
     private static function normalizeConfig(array $config): array
     {
         $k = max(1, (int) ($config['k'] ?? 25));
-        // Операторский override бюджета (env, как ENSEMBLE_K): боевой default
-        // 300s/член; тесты/wiring ставят ENSEMBLE_BUDGET_SEC (wall-clock-класс:
-        // null/члены на шуме жгут ВЕСЬ budget_sec — питфолл SelfDiagnosis).
-        $budget = (float) ($config['budget_sec'] ?? 300.0);
-        if (! isset($config['budget_sec']) && ($envB = getenv('ENSEMBLE_BUDGET_SEC')) !== false && $envB !== '' && is_numeric($envB)) {
-            $budget = (float) $envB;
-        }
+        $budget = self::resolveBudget($config);
         // F8 (agent-review deleg_258f3c12): пустая gate_grid → modulo by zero.
         $gateGrid = $config['gate_grid'] ?? self::GATE_GRID;
         if ($gateGrid === [] || ! is_array($gateGrid)) {
@@ -252,6 +245,29 @@ final class EnsembleCertifier
             'null_k' => (int) ($config['null_k'] ?? $k),
             'null_seed_base' => (int) ($config['null_seed_base'] ?? self::NULL_SEED_BASE),
         ];
+    }
+
+    /**
+     * Бюджет члена: config > env-override (ENSEMBLE_BUDGET_SEC, операторский
+     * канал как ENSEMBLE_K) > боевой default 300s.
+     *
+     * H5 (premortem deleg_1b654b1a): budget=0 в Search::find = БЕСКОНЕЧНЫЙ
+     * бюджет (deadline=INF), не «мгновенный timeout» — env '0'/отрицательное
+     * → зависание сертификации (второй D1). Гард: env принимает только >0.
+     *
+     * @param array<string, mixed> $config
+     */
+    private static function resolveBudget(array $config): float
+    {
+        if (isset($config['budget_sec'])) {
+            return (float) $config['budget_sec'];
+        }
+        $envB = getenv('ENSEMBLE_BUDGET_SEC');
+        if ($envB !== false && $envB !== '' && is_numeric($envB) && (float) $envB > 0.0) {
+            return (float) $envB;
+        }
+
+        return 300.0;
     }
 
     /**
@@ -337,6 +353,15 @@ final class EnsembleCertifier
     }
 
     /**
+     * Минимальная абсолютная поддержка консенсуса: foundN < MIN_FOUND →
+     * ансамбль не состоялся (H2, premortem deleg_1b654b1a: rec=1.0 при
+     * foundN=1 — «консенсус из одного» не сертификат, а удача прогона;
+     * зеркально null foundN<2 → rec=0, чтобы вердикт не зависел от удачи
+     * единичной null-перестановки).
+     */
+    private const MIN_FOUND = 2;
+
+    /**
      * Запись результата члена (массив + лог).
      *
      * @param array<int> $Xb
@@ -406,9 +431,11 @@ final class EnsembleCertifier
         for ($p = 1; $p <= $cfg['null_ensembles']; $p++) {
             $permSeed = $cfg['null_seed_base'] + $p;
             $yNull = self::permuteY($y, $permSeed);
-            $members = self::runMembers($X, $yNull, $trainIdx, $grammar, $nullCfg, $permSeed * 100, 'NENS' . $p);
+            $members = self::runMembers($X, $yNull, $trainIdx, $grammar, $nullCfg, $permSeed * 1000, 'NENS' . $p);
             [$foundN, , $topCount] = self::tallyMembers($members);
-            $rec = $foundN > 0 ? $topCount / $foundN : 0.0;
+            // H2 (premortem): null foundN<2 — рецидив из одного члена не
+            // статистика, rec=0 (ансамбль null не состоялся).
+            $rec = $foundN >= self::MIN_FOUND ? $topCount / $foundN : 0.0;
             $maxRec = max($maxRec, $rec);
         }
 
@@ -483,7 +510,7 @@ final class EnsembleCertifier
      * @param list<float> $pred
      * @param list<float> $tailY
      */
-    private static function ratioCv(array $pred, array $tailY): float
+    private static function ratioCv(array $pred, array $tailY): ?float
     {
         $ratio = [];
         foreach ($pred as $i => $pv) {
@@ -495,8 +522,11 @@ final class EnsembleCertifier
             }
             $ratio[] = $pv / $tailY[$i];
         }
-        if (count($ratio) < 2) {
-            return 9.99;
+        if (count($ratio) < 3) {
+            // H3 (premortem deleg_1b654b1a): <3 представимых строк — cv по
+            // 1-2 точкам всегда ~0 (var вырожден), гейт (b) авто-CERT шума.
+            // Нет данных → нет сертификации: null → UNSTABLE в finalVerdict.
+            return null;
         }
         $mean = array_sum($ratio) / count($ratio);
         if (abs($mean) < 1e-8) {
@@ -621,7 +651,8 @@ final class EnsembleCertifier
      */
     private static function finalVerdict(float $recurrence, int $foundN, ?float $cvH, ?float $nullMax, bool $hasShape): string
     {
-        if (! $hasShape || $foundN === 0) {
+        if (! $hasShape || $foundN < self::MIN_FOUND) {
+            // H2 (premortem): foundN<2 — «консенсус из одного» не ансамбль.
             return 'NO_CONSENSUS';
         }
         if ($recurrence < self::UNSTABLE_GATE) {

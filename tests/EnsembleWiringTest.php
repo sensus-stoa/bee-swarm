@@ -130,11 +130,10 @@ final class EnsembleWiringTest extends TestCase
         $candidates = [$candidate];
         EnsembleCertifier::runEnsembleCertification($candidates, $X, $y, ['k' => 2, 'depth' => 2, 'budget_sec' => 10.0]);
 
-        $this->assertContains(
-            $candidates[0]['ensemble_verdict'],
-            ['NO_CONSENSUS', 'UNSTABLE_CERTIFICATE'],
-            'Кандидат не от формы данных обязан быть понижен',
-        );
+        // H1 (premortem deleg_1b654b1a): вердикт относится только к
+        // консенсус-форме. Чужая форма НЕ штампуется (не была погейчена —
+        // ансамбль о ней ничего не знает), гейт записи для неё прозрачен.
+        $this->assertArrayNotHasKey('ensemble_verdict', $candidates[0], 'Чужой шейп не получает чужой вердикт');
     }
 
     /**

@@ -50,12 +50,11 @@ final class VerificationTaskSource
      * verification_tasks (persist глушит сбой: наблюдатель-контракт, сбой
      * не роняет discovery).
      */
-    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint, array $sliceRows = []): array
+    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint, array $sliceRows = [], ?float $epsilon = null): array
     {
         // Канон-ключ: cross-table инвариант (fake-LOSS урок) — все писатели
         // V-задач и laws обязаны использовать одну нормализацию формулы.
         $canon = ExpressionNormalizer::normalize($lawFormula);
-        $shape = LawShape::of($canon);
         $lawId = $this->resolveLawId($canon, $domain);
         // Премортем #3 (10.09): в живом пути хук стоит после record → miss =
         // канон-дрейф между писателями. Молчание = таски-сироты без сигнала.
@@ -63,20 +62,22 @@ final class VerificationTaskSource
             error_log("VTS resolve miss: law_id=0 formula={$canon} domain={$domain}");
         }
         $dataJson = $sliceRows === [] ? null : json_encode($sliceRows);
+        $epsilon = $this->guardEpsilon($epsilon);
 
         $stmt = Database::get()->prepare(
             'INSERT OR IGNORE INTO verification_tasks
-             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain, data_json)
-             VALUES (?,?,?,?,?,?,?,?,?)'
+             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain, data_json, epsilon)
+             VALUES (?,?,?,?,?,?,?,?,?,?)'
         );
 
         return $this->persistLawTasks($stmt, [
             'law_id' => $lawId,
             'law_formula' => $canon,
-            'law_shape' => $shape,
+            'law_shape' => LawShape::of($canon),
             'fingerprint' => $fingerprint,
             'domain' => $domain,
             'data_json' => $dataJson,
+            'epsilon' => $epsilon,
         ]);
     }
 
@@ -97,6 +98,21 @@ final class VerificationTaskSource
         }
 
         return $tasks;
+    }
+
+    /**
+     * V0.16 WU-2 (verifier-eps-parity): inequality-guard спеки — порог
+     * верификатора не может превышать калибровку открывателя. Malformed
+     * epsilon (≤0, не-finite) клампится к ghost-пути (NULL → константа на
+     * исполнителе), не автопроход (?? INF класс 16.09).
+     */
+    private function guardEpsilon(?float $epsilon): ?float
+    {
+        if ($epsilon !== null && (! is_finite($epsilon) || $epsilon <= 0.0)) {
+            return null;
+        }
+
+        return $epsilon;
     }
 
     /**
@@ -131,6 +147,7 @@ final class VerificationTaskSource
                 $task['law_id'], $task['law_formula'], $task['law_shape'],
                 $task['kind'], $task['resample_seed'], $task['target_sign'],
                 $task['fingerprint'], $task['domain'], $task['data_json'],
+                $task['epsilon'],
             ]);
         } catch (\PDOException $e) {
             // Премортем #4: контекст в строке — grep-уемость при write-contention.

@@ -273,8 +273,18 @@ class Database
             status TEXT DEFAULT 'pending',
             created_at TEXT DEFAULT (datetime('now')),
             data_json TEXT DEFAULT NULL,
+            epsilon REAL DEFAULT NULL,
             UNIQUE(law_formula, domain, kind, resample_seed, formula_b)
         )");
+        // V0.16 WU-2 (verifier-eps-parity): epsilon калибровки открывателя
+        // доставляется в V-задачу колонкой (executor без ссылки на Hive;
+        // персистентно к рестартам). Ghost-задача (fingerprint='') → NULL.
+        // Agent-review F3 + premortem H3: голый catch(PDOException) глотал
+        // lock/busy/IO как «column exists» → тихая смерть миграции → рантайм-
+        // фейлы INSERT'ов. PRAGMA-хелпер + fail-loud ALTER.
+        if (! self::columnExists($db, 'verification_tasks', 'epsilon')) {
+            $db->exec('ALTER TABLE verification_tasks ADD COLUMN epsilon REAL DEFAULT NULL');
+        }
         // V0.14 WU-3 (verification-economy): эскроу отложенной награды.
         // 70% награды за закон держится здесь до консенсуса V-задач:
         // settle → выплата носителю, burn → сгорание (dissip-фонд).
@@ -436,5 +446,23 @@ class Database
             created_at TEXT DEFAULT (datetime('now'))
         )");
         $db->exec('CREATE INDEX IF NOT EXISTS idx_overlap_pair ON overlap_log(bee_a, bee_b)');
+    }
+
+    /**
+     * V0.16 (verifier-eps-parity): структурная проверка колонки через PRAGMA
+     * (вместо try/catch на ALTER — ошибка миграции не глотается).
+     * Несуществующая таблица → пустой PRAGMA-ответ → false.
+     */
+    public static function columnExists(\PDO $db, string $table, string $column): bool
+    {
+        $stmt = $db->prepare("PRAGMA table_info({$table})");
+        $stmt->execute();
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $col) {
+            if (($col['name'] ?? '') === $column) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

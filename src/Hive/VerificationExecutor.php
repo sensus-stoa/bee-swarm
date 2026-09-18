@@ -401,7 +401,7 @@ final class VerificationExecutor
         $guard = $this->applySearchEnv($beam);
         try {
             $engine = new DiscoveryEngine();
-            $cvMax = (float) (getenv('VVERIFY_CV_TRAIN_MAX') ?: (string) self::CV_TRAIN_MAX);
+            $cvMax = $this->resolveCvMax($vtask); // V0.16: env → epsilon → константа
             [$cands] = $engine->discover($X, $y, $grammar->all(), $cvMax);
         } finally {
             $guard();
@@ -420,6 +420,32 @@ final class VerificationExecutor
         }
 
         return [(string) $best['atom'], $bestCv];
+    }
+
+    /**
+     * V0.16 WU-1 (verifier-eps-parity): приоритет порога поиска исполнителя.
+     *
+     * env VVERIFY_CV_TRAIN_MAX задан → env (операторский override; PHP-falsy
+     * гвард `!== false` — '0' это заданный порог 0.0, старый `?:` подменял
+     * ноль константой). Не задан → epsilon домена из V-задачи (та же
+     * калибровка, что у открывателя — WU-5 V0.14: зона partial
+     * cv∈[0.05, eps] была неподтверждаема). Ghost-задача (колонка NULL /
+     * пустой fingerprint) → константа CV_TRAIN_MAX.
+     *
+     * @param array $vtask строка verification_tasks (SELECT * вкл. epsilon)
+     */
+    private function resolveCvMax(array $vtask): float
+    {
+        $env = getenv('VVERIFY_CV_TRAIN_MAX');
+        if ($env !== false && is_numeric($env)) {
+            return (float) $env;
+        }
+        $eps = $vtask['epsilon'] ?? null;
+        if (is_numeric($eps)) {
+            return (float) $eps;
+        }
+
+        return self::CV_TRAIN_MAX;
     }
 
     private function shapeMatches(string $expectedShape, string $formula): bool

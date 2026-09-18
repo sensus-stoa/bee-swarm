@@ -1749,11 +1749,16 @@ class Hive
                 }
                 $sliceRows[] = array_merge(array_values($features), [(float) ($y[$i] ?? 0.0)]);
             }
+            // V0.16 WU-2 (verifier-eps-parity): V-задача несёт калибровку
+            // открывателя (тот же fingerprint → тот же кэш → порог верификатора
+            // == порогу открытия). Ghost-fp → NULL → константа на исполнителе.
+            $vFp = (string) ($task['fingerprint'] ?? '');
             $this->verificationTasks->spawnForLaw(
                 $d['atom'],
                 $domain,
-                (string) ($task['fingerprint'] ?? ''),
-                $sliceRows
+                $vFp,
+                $sliceRows,
+                $vFp === '' ? null : $this->getEpsilon($vFp)
             );
         }
         // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений

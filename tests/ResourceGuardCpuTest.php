@@ -71,6 +71,11 @@ class ResourceGuardCpuTest extends TestCase
     /**
      * После фикса: sleep адаптируется к процессной нагрузке.
      * На idle системе с низким лимитом — sleep должен уменьшаться до минимума.
+     *
+     * V0.17: sleep-адаптация зависит от usleep-ритма и процессного CPU
+     * (wall-clock-класс; автор-комментарий: «флаки paratest»).
+         *
+     * @group slow
      */
     public function testSleepAdaptsToProcessLoad(): void
     {

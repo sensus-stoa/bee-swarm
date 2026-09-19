@@ -12,6 +12,15 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <groups>
+        <!-- V0.17: slow = wall-clock-class (budgetSec/usleep as working resource
+             of the assertion). Fast run does not include them; slow runs
+             separately, serial: phpunit with group slow (CLI group option
+             removes slow from this exclude: PHPUnit Merger array_diff). -->
+        <exclude>
+            <group>slow</group>
+        </exclude>
+    </groups>
     <php>
         <ini name="error_reporting" value="E_ALL"/>
         <ini name="display_errors" value="1"/>

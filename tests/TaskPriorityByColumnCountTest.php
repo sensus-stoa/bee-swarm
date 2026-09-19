@@ -13,6 +13,32 @@ use BeeSwarm\Hive\Hive;
  */
 class TaskPriorityByColumnCountTest extends TestCase
 {
+    private string $prevPreflightFactor = '';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Interact-fail ремонт (V0.17, 19.09): фикстура E1-FIX 4b (04.08) на
+        // constant-y (array_fill). V0.12 preflight (16.09, §1.10) позже стал
+        // отказывать cv_y=0 (METRIC_DOMAIN) — 3 из 4 задач фильтровались ДО
+        // сортировки, контракт теста («порядок nFeat ASC») стал недостижим.
+        // PREFLIGHT_GATE_FACTOR=0 восстанавливает исходный домен фикстуры
+        // (preflight off = v1.6), ассерты сортировки не ослаблены.
+        $prev = getenv('PREFLIGHT_GATE_FACTOR');
+        $this->prevPreflightFactor = $prev === false ? '' : (string) $prev;
+        putenv('PREFLIGHT_GATE_FACTOR=0');
+    }
+
+    protected function tearDown(): void
+    {
+        if ($this->prevPreflightFactor === '') {
+            putenv('PREFLIGHT_GATE_FACTOR');
+        } else {
+            putenv('PREFLIGHT_GATE_FACTOR=' . $this->prevPreflightFactor);
+        }
+        parent::tearDown();
+    }
+
     /**
      * RED: Задачи сортируются по nFeat ASC.
      * Узкие (2 колонки) → раньше широких (5 колонок).

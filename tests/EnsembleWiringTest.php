@@ -75,6 +75,10 @@ final class EnsembleWiringTest extends TestCase
      * Живой путь: короткая сертификация (K=2) через публичный контракт
      * runEnsembleCertification с записью вердикта в кандидата. Путь вызова
      * из discover() — после ранних return'ов, до compose (X/y живые там).
+     *
+     * V0.17: budgetSec — рабочий ресурс verdict+anchor (wall-clock-класс).
+         *
+     * @group slow
      */
     public function testRunEnsembleCertificationAttachesVerdict(): void
     {
@@ -126,9 +130,19 @@ final class EnsembleWiringTest extends TestCase
             // y не зависит от кандидата (x0+x1): члены разойдутся по формам
             $y[] = $x2 * $x2 + 0.001 * $x0;
         }
-        $candidate = ['atom' => '(x0+x1)', 'cv' => 0.01, 'cv_test' => 0.0, 'mode' => 'search', 'class' => 'EMPIRICAL'];
+        $candidate = [
+            'atom' => '(x0+x1)',
+            'cv' => 0.01,
+            'cv_test' => 0.0,
+            'mode' => 'search',
+            'class' => 'EMPIRICAL',
+        ];
         $candidates = [$candidate];
-        EnsembleCertifier::runEnsembleCertification($candidates, $X, $y, ['k' => 2, 'depth' => 2, 'budget_sec' => 10.0]);
+        EnsembleCertifier::runEnsembleCertification($candidates, $X, $y, [
+            'k' => 2,
+            'depth' => 2,
+            'budget_sec' => 10.0,
+        ]);
 
         // H1 (premortem deleg_1b654b1a): вердикт относится только к
         // консенсус-форме. Чужая форма НЕ штампуется (не была погейчена —
@@ -147,14 +161,22 @@ final class EnsembleWiringTest extends TestCase
     {
         $this->setEnv('2');
         $this->assertFalse(
-            EnsembleCertifier::shouldRecordCandidate(['ensemble_verdict' => 'UNSTABLE_CERTIFICATE']),
+            EnsembleCertifier::shouldRecordCandidate([
+                'ensemble_verdict' => 'UNSTABLE_CERTIFICATE',
+            ]),
             'UNSTABLE кандидат не записывается как закон (CCPP-защита Demo #2)',
         );
-        $this->assertFalse(EnsembleCertifier::shouldRecordCandidate(['ensemble_verdict' => 'NO_CONSENSUS']));
-        $this->assertTrue(EnsembleCertifier::shouldRecordCandidate(['ensemble_verdict' => 'ENSEMBLE_CERT']));
+        $this->assertFalse(EnsembleCertifier::shouldRecordCandidate([
+            'ensemble_verdict' => 'NO_CONSENSUS',
+        ]));
+        $this->assertTrue(EnsembleCertifier::shouldRecordCandidate([
+            'ensemble_verdict' => 'ENSEMBLE_CERT',
+        ]));
         // ENSEMBLE off: вердикта нет — поведение v1.6 (запись без гейта).
         $this->assertTrue(
-            EnsembleCertifier::shouldRecordCandidate(['atom' => '(x0×x1)']),
+            EnsembleCertifier::shouldRecordCandidate([
+                'atom' => '(x0×x1)',
+            ]),
             'Кандидат без ensemble_verdict (off) проходит как в v1.6',
         );
     }

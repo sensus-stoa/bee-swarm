@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
-use BeeSwarm\Certification\EnsembleCertifier;
+
 use BeeSwarm\Core\LawShape;
 use BeeSwarm\Hive\DiscoveryEngine;
 use PHPUnit\Framework\TestCase;
@@ -61,6 +61,12 @@ final class EnsembleWiringLiveTest extends TestCase
         return [$X, $y];
     }
 
+    /**
+     * V0.17: ENSEMBLE_BUDGET_SEC + эскалация живого discover() — найденное
+     * зависит от wall-clock (wall-clock-класс).
+         *
+     * @group slow
+     */
     public function testDiscoverHooksEnsembleOnFoundCandidates(): void
     {
         putenv('SWARM_DB_PATH=:memory:');

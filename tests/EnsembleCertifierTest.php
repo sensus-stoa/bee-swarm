@@ -41,6 +41,18 @@ final class EnsembleCertifierTest extends TestCase
         putenv('NO_BIRTH=1');
         putenv('SEARCH_NO_PREREG=1');
         putenv('SEARCH_BEAM_K=0');
+        // V0.17 WU-2c (19.09): изоляция от cross-test pollution. Serial-прогон
+        // slow-группы = ОДИН процесс, Database::get() singleton шарится между
+        // тестами. BD-фикстура (BehavioralDiversityTest, сид 777) пишет законы
+        // в laws + атомы в grammar_ops; Grammar-конструктор тянет grammar_ops →
+        // перебор certify идёт с ЧУЖИМИ атомами (11→13 ops) → три члена
+        // found=false → NO_CONSENSUS (clean1/2/3; run1b GREEN — рандом-сид BD
+        // не рождал атомов). Матрица изоляции: соло GREEN, BD+Certifier RED,
+        // Anchor+Certifier GREEN, Search-проба после BD-прогона GREEN.
+        // Полная чистка schema-таблиц BD-протечки.
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->exec('DELETE FROM laws');
+        $db->exec("DELETE FROM grammar_ops WHERE source = 'discovered'");
         $this->logFile = (string) tempnam(sys_get_temp_dir(), 'ens_cert_');
     }
 
@@ -73,6 +85,11 @@ final class EnsembleCertifierTest extends TestCase
         return [$X, $y];
     }
 
+    /**
+     * V0.17: budgetSec — рабочий ресурс foundN → verdict (wall-clock-класс).
+     *
+     * @group slow
+     */
     public function testExactLawGetsEnsembleCert(): void
     {
         [$X, $y] = $this->syntheticData();
@@ -177,6 +194,9 @@ final class EnsembleCertifierTest extends TestCase
      * МЕДЛЕННЫЙ тест (wall-clock-класс, питфолл budgetSec): полная механика
      * с null-гейтом. Держится последним, помечен @group slow — в -p8 гоняется
      * наравне, но бюджет ограничен (null 2×2, не дефолт 5×5).
+     * V0.17: budgetSec — рабочий ресурс foundN → verdict (wall-clock-класс).
+     *
+     * @group slow
      */
     public function testFullGatesWithNullEnsembleSmall(): void
     {
@@ -184,10 +204,17 @@ final class EnsembleCertifierTest extends TestCase
         $out = EnsembleCertifier::certify(
             $X,
             $y,
-            ['k' => 3, 'depth' => 2, 'test_ratio' => 0.2, 'budget_sec' => 5.0,
-                'gate_grid' => [0.05, 0.1], 'bootstrap_frac' => 0.8,
-                'null_ensembles' => 2, 'null_k' => 2,
-                'log_file' => $this->logFile],
+            [
+                'k' => 3,
+                'depth' => 2,
+                'test_ratio' => 0.2,
+                'budget_sec' => 5.0,
+                'gate_grid' => [0.05, 0.1],
+                'bootstrap_frac' => 0.8,
+                'null_ensembles' => 2,
+                'null_k' => 2,
+                'log_file' => $this->logFile,
+            ],
         );
 
         $this->assertSame('ENSEMBLE_CERT', $out['verdict'], json_encode($out));
@@ -201,6 +228,8 @@ final class EnsembleCertifierTest extends TestCase
      * поэтому проверка через members основного ансамбля невозможна; пинним
      * контракт конфига: null_k=1 x null_ensembles=1 = 1 null-член, его
      * рецидив на однозначном шуме 0/1 (не 5 членов, как до фикса).
+         *
+     * @group slow
      */
     public function testNullKIsLive(): void
     {
@@ -208,10 +237,17 @@ final class EnsembleCertifierTest extends TestCase
         $out = EnsembleCertifier::certify(
             $X,
             $y,
-            ['k' => 3, 'depth' => 2, 'test_ratio' => 0.2, 'budget_sec' => 5.0,
-                'gate_grid' => [0.05], 'bootstrap_frac' => 0.8,
-                'null_ensembles' => 1, 'null_k' => 1,
-                'log_file' => $this->logFile],
+            [
+                'k' => 3,
+                'depth' => 2,
+                'test_ratio' => 0.2,
+                'budget_sec' => 5.0,
+                'gate_grid' => [0.05],
+                'bootstrap_frac' => 0.8,
+                'null_ensembles' => 1,
+                'null_k' => 1,
+                'log_file' => $this->logFile,
+            ],
         );
 
         $this->assertSame('ENSEMBLE_CERT', $out['verdict'], json_encode($out));

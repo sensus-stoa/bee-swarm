@@ -17,6 +17,11 @@ use BeeSwarm\Infra\PlateauDetector;
  * - nFeat=0 задачи → фильтр не работал
  *
  * Запускать: vendor/bin/phpunit tests/FullPipelineRegressionTest.php
+ *
+ * V0.17: все тесты found-зависимы через живой Hive (CPU-guard tick:1116
+ * load>0.7 → early return → меньше discovery) — wall-clock-класс.
+ *
+ * @group slow
  */
 class FullPipelineRegressionTest extends TestCase
 {

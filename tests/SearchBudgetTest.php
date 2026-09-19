@@ -17,6 +17,9 @@ class SearchBudgetTest extends TestCase
     /**
      * find с budgetSec=1s на 12 фичах возвращается за <5s
      * (раньше: >15 мин, таймаут).
+     * V0.17: budgetSec=1s — сам wall-clock-механизм ассерта (TIMEOUT-класс).
+         *
+     * @group slow
      */
     public function testFindWithBudgetReturnsInTime(): void
     {

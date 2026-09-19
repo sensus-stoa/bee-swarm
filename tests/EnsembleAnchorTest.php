@@ -68,6 +68,11 @@ final class EnsembleAnchorTest extends TestCase
         return [$X, $y];
     }
 
+    /**
+     * V0.17: budgetSec — рабочий ресурс verdict+anchor (wall-clock-класс).
+         *
+     * @group slow
+     */
     public function testCertifyPublishesEnsembleAnchor(): void
     {
         [$X, $y] = $this->anchorDomain();

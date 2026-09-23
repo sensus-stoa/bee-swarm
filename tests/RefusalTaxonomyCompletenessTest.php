@@ -49,14 +49,16 @@ final class RefusalTaxonomyCompletenessTest extends TestCase
     }
 
     /**
-     * DEPTH: исчерпан бюджет на depth<3 — depth-приоритет выше budget (документировано).
+     * WALLCLOCK_CAP: wall-clock-исчерпание бюджета на depth<3 — диагноз
+     * различает, КАКОЙ гейт сработал (V0.18: DEPTH только от diagnoseFailure
+     * после полного перебора; таймаут = WALLCLOCK_CAP, не маска).
      */
-    public function testDepthClassOnTinyBudgetAtDepth2(): void
+    public function testWallclockCapOnTinyBudgetAtDepth2(): void
     {
         $rows = [[1.0, 2.0]];
         $r = Search::find($rows, [1.0], $this->g, 2, null, 0.0, 0.15, 0.0001);
         self::assertFalse($r[0]);
-        self::assertSame('DEPTH', $r[5]);
+        self::assertSame('WALLCLOCK_CAP', $r[5]);
     }
 
     /**

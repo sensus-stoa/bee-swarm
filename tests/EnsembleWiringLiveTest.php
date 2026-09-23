@@ -24,6 +24,12 @@ final class EnsembleWiringLiveTest extends TestCase
         foreach (['ENSEMBLE_K', 'NO_ENSEMBLE', 'ENSEMBLE_BUDGET_SEC', 'SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
             putenv($k);
         }
+        // PHPUnit <env force=true> ставит env один раз на старте процесса;
+        // putenv($k) выше снимает переменную ДО КОНЦА ПРОЦЕССА — все
+        // последующие классы в этом воркере получают getenv()=false и
+        // TestCase-гвард скипает их (678 скипов, 23.09). Восстановить.
+        putenv('SWARM_DB_PATH=:memory:');
+        putenv('SEARCH_BEAM_K=10');
     }
 
     public function testDiscoverDoesNotCertifyWhenEnsembleKZero(): void

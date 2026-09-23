@@ -230,6 +230,8 @@ class AtomRegistry
      * процесса видят расширенный кер-пул (13/16 ops вместо 11) — сид-свипы
      * и инварианты умирают в зависимости от порядка классов. Прод-код не
      * вызывает; только тесты в setUp/tearDown.
+     *
+     * @internal test-isolation only; prod code must not call
      */
     public static function resetDiscoveredAtoms(): void
     {

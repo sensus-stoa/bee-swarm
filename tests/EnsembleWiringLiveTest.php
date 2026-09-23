@@ -21,7 +21,7 @@ final class EnsembleWiringLiveTest extends TestCase
 {
     protected function tearDown(): void
     {
-        foreach (['ENSEMBLE_K', 'NO_ENSEMBLE', 'ENSEMBLE_BUDGET_SEC', 'SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
+        foreach (['ENSEMBLE_K', 'NO_ENSEMBLE', 'ENSEMBLE_BUDGET_TICKS', 'SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
             putenv($k);
         }
         // PHPUnit <env force=true> ставит env один раз на старте процесса;
@@ -68,10 +68,9 @@ final class EnsembleWiringLiveTest extends TestCase
     }
 
     /**
-     * V0.17: ENSEMBLE_BUDGET_SEC + эскалация живого discover() — найденное
-     * зависит от wall-clock (wall-clock-класс).
-         *
-     * @group slow
+     * Живой discover() с ENSEMBLE_K=2: хук диспатчит сертификацию.
+     * V0.18 WU-3: ENSEMBLE_BUDGET_TICKS=500 — тик-детерминизм вместо
+     * wall-clock (V0.17-класс ушёл); не slow.
      */
     public function testDiscoverHooksEnsembleOnFoundCandidates(): void
     {
@@ -83,7 +82,7 @@ final class EnsembleWiringLiveTest extends TestCase
         putenv('ENSEMBLE_K=2');
         // Wall-clock-гвард (дефект первого suite-прогона): certify с дефолтом
         // 300s/член на -p8 замерял воркер на 22+ мин. Override бюджета.
-        putenv('ENSEMBLE_BUDGET_SEC=3');
+        putenv('ENSEMBLE_BUDGET_TICKS=500');
         [$X, $y] = $this->liveDomain();
         $de = new DiscoveryEngine();
         // depth=1: Search найдёт фичу/атом с cv<=0.05 на аффинном таргете не

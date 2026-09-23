@@ -277,8 +277,15 @@ final class EnsembleCertifier
             }
         }
         $envT = getenv('ENSEMBLE_BUDGET_TICKS');
-        if ($envT !== false && $envT !== '' && is_numeric($envT) && (int) $envT > 0) {
-            return [0.0, (int) $envT];
+        if ($envT !== false && $envT !== '') {
+            if (is_numeric($envT) && (string) (int) $envT === ltrim($envT, '+') && (int) $envT > 0) {
+                return [0.0, (int) $envT];
+            }
+            // Criterion-audit deleg_6fcba1f2: '0.5' (is_numeric, но нецелое)
+            // или мусор → молча упасть в sec/default = «оператор не понимает,
+            // что получит». Явный warning (INC-2/INC-6 класс: тихие каналы).
+            error_log('[EnsembleCertifier] ENSEMBLE_BUDGET_TICKS=' . var_export($envT, true)
+                . ' rejected (expect positive int); falling through to legacy sec/default');
         }
 
         // Секунды (legacy): config > env > default 300s.
@@ -405,6 +412,10 @@ final class EnsembleCertifier
             'cv_train' => $res[1],
             'formula' => $formula,
             'wall_sec' => $wall,
+            // V0.18 WU-3 (criterion-audit C2): причина отказа члена
+            // (TICKS_EXHAUSTED / NOISE / DEPTH / WALLCLOCK_CAP) — ассерты
+            // бюджета пинят её, а не «шум не фити».
+            'diag' => $res[5] ?? null,
             'shape' => $formula !== null ? LawShape::of($formula) : null,
         ];
         self::log($cfg, "{$tag} m{$memberNo} theta={$theta} found=" . var_export($found, true)

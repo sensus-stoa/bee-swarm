@@ -167,8 +167,8 @@ final class EnsembleCertifier
 
     /**
      * @param array<string, mixed> $config k, depth, test_ratio, budget_sec,
-     *   gate_grid, bootstrap_frac, split_seed, log_file, null_ensembles,
-     *   null_k, null_seed_base
+     *   budget_ticks, gate_grid, bootstrap_frac, split_seed, log_file,
+     *   null_ensembles, null_k, null_seed_base
      * @return array{verdict: string, shape: ?string, recurrence: float,
      *   members: list<array<string, mixed>>, ensemble_cv_h: ?float,
      *   null_max_recurrence: ?float, cv_h_median: ?float,
@@ -225,7 +225,7 @@ final class EnsembleCertifier
     private static function normalizeConfig(array $config): array
     {
         $k = max(1, (int) ($config['k'] ?? 25));
-        $budget = self::resolveBudget($config);
+        [$budget, $budgetTicks] = self::resolveMemberBudget($config);
         // F8 (agent-review deleg_258f3c12): пустая gate_grid → modulo by zero.
         $gateGrid = $config['gate_grid'] ?? self::GATE_GRID;
         if ($gateGrid === [] || ! is_array($gateGrid)) {
@@ -237,6 +237,7 @@ final class EnsembleCertifier
             'depth' => (int) ($config['depth'] ?? 3),
             'test_ratio' => (float) ($config['test_ratio'] ?? 0.2),
             'budget_sec' => $budget,
+            'budget_ticks' => $budgetTicks,
             'gate_grid' => $gateGrid,
             'bootstrap_frac' => (float) ($config['bootstrap_frac'] ?? 0.8),
             'split_seed' => (int) ($config['split_seed'] ?? 42),
@@ -248,26 +249,48 @@ final class EnsembleCertifier
     }
 
     /**
-     * Бюджет члена: config > env-override (ENSEMBLE_BUDGET_SEC, операторский
-     * канал как ENSEMBLE_K) > боевой default 300s.
+     * Бюджет члена ансамбля, два канала (V0.18 WU-3):
+     *   тики — config['budget_ticks'] > env ENSEMBLE_BUDGET_TICKS >
+     *          боевой default 300 (калибровка 23.09: 300s-эквивалент 400
+     *          тиков на worst-фазе, запас 25%; TICK_BUDGET_calibration.md);
+     *   секунды (legacy, переходный период) — config['budget_sec'] >
+     *          env ENSEMBLE_BUDGET_SEC > default 300s.
+     * Тики приоритетнее: если задан тиковый канал, sec-канал игнорируется
+     * (оператор ставит ОДИН канал и знает, что получит — дизайн-вопрос 4).
      *
      * H5 (premortem deleg_1b654b1a): budget=0 в Search::find = БЕСКОНЕЧНЫЙ
      * бюджет (deadline=INF), не «мгновенный timeout» — env '0'/отрицательное
      * → зависание сертификации (второй D1). Гард: env принимает только >0.
+     * INC-6 (premortem deleg_1908be04): старые env-скрипты с ENSEMBLE_BUDGET_SEC
+     * не должны молча откатывать certify к дефолту — sec-канал остаётся валидным.
      *
      * @param array<string, mixed> $config
+     * @return array{0: float, 1: ?int} [budgetSec, budgetTicks]
      */
-    private static function resolveBudget(array $config): float
+    private static function resolveMemberBudget(array $config): array
     {
+        // Тики: config > env > null (нет тикового канала).
+        if (array_key_exists('budget_ticks', $config)) {
+            $ct = $config['budget_ticks'];
+            if (is_numeric($ct) && (int) $ct > 0) {
+                return [0.0, (int) $ct];
+            }
+        }
+        $envT = getenv('ENSEMBLE_BUDGET_TICKS');
+        if ($envT !== false && $envT !== '' && is_numeric($envT) && (int) $envT > 0) {
+            return [0.0, (int) $envT];
+        }
+
+        // Секунды (legacy): config > env > default 300s.
         if (isset($config['budget_sec'])) {
-            return (float) $config['budget_sec'];
+            return [(float) $config['budget_sec'], null];
         }
         $envB = getenv('ENSEMBLE_BUDGET_SEC');
         if ($envB !== false && $envB !== '' && is_numeric($envB) && (float) $envB > 0.0) {
-            return (float) $envB;
+            return [(float) $envB, null];
         }
 
-        return 300.0;
+        return [300.0, null];
     }
 
     /**
@@ -347,7 +370,7 @@ final class EnsembleCertifier
             $yb[] = $y[$oi];
         }
         $t0 = microtime(true);
-        $res = Search::find($Xb, $yb, $grammar, $cfg['depth'], null, 0.0, $theta, $cfg['budget_sec'], null);
+        $res = Search::find($Xb, $yb, $grammar, $cfg['depth'], null, 0.0, $theta, $cfg['budget_sec'], null, $cfg['budget_ticks']);
         $guard->restore();
         return self::memberRecord($memberNo, $seed, $theta, $Xb, $res, (int) round((microtime(true) - $t0) * 10) / 10, $cfg, $tag);
     }
@@ -604,13 +627,22 @@ final class EnsembleCertifier
         return self::anchorQuartiles($ratios);
     }
 
-    /** Квартили ratio-распределения (m̂ = медиана). @param list<float> $ratios */
+    /**
+     * Квартили ratio-распределения (m̂ = медиана).
+     *
+     * @param list<float> $ratios
+     */
     private static function anchorQuartiles(array $ratios): array
     {
         $cnt = count($ratios);
         $q = fn (float $p): float => $ratios[(int) min($cnt - 1, (int) floor($p * $cnt))];
 
-        return ['m_hat' => $q(0.5), 'ci_lo' => $q(0.25), 'ci_hi' => $q(0.75), 'n' => $cnt];
+        return [
+            'm_hat' => $q(0.5),
+            'ci_lo' => $q(0.25),
+            'ci_hi' => $q(0.75),
+            'n' => $cnt,
+        ];
     }
 
     /**

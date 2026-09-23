@@ -33,6 +33,20 @@ final class EnsembleTickBudgetTest extends TestCase
         putenv('NO_BIRTH=1');
         putenv('SEARCH_NO_PREREG=1');
         putenv('SEARCH_BEAM_K=0');
+        // Изоляция грамматики (23.09): живые-Hive тесты раньше по процессу
+        // рождают birth-опы (mul(sq) и пр.) в ОБЩЕЙ :memory: Database ->
+        // 16 ops вместо 11 -> Search глубже -> DEPTH вместо find. Чистим
+        // birth-опы; база/семантика восстанавливаются bootstrap'ом.
+        // Чистим ВСЮ grammar_ops: культура/boost/discovered строки живого
+        // Hive того же процесса расширяют грамматику (13+ ops) -> L2-пул
+        // slice(0,40) выталкивает compose-пары -> ENSEMBLE фейлы. В соло БД
+        // пуста — реплицируем именно это состояние.
+        \BeeSwarm\Infra\Database::run('DELETE FROM grammar_ops');
+        \BeeSwarm\Core\ExpressionEvaluator::clearDefCache();
+        \BeeSwarm\Core\AtomRegistry::clearDefCache();
+        // Text-атомы (match_label(GI) и пр.) живут в static-реестре процесса
+        // и переживают DELETE FROM grammar_ops — чистить и их.
+        \BeeSwarm\Core\AtomRegistry::resetDiscoveredAtoms();
         $this->logFile = (string) tempnam(sys_get_temp_dir(), 'ens_tick_');
     }
 
@@ -159,10 +173,9 @@ final class EnsembleTickBudgetTest extends TestCase
     /**
      * Боевой домен: тик-бюджет не мешает находить (found-члены остаются).
      *
-     * 62s соло (k=5 × compose 200 строк) — по прецеденту EnsembleCertifierTest
-     * (testExactLawGetsEnsembleCert @group slow) не гружу fast-прогон.
-     *
-     * @group slow
+     * 62s соло (k=5 × compose 200 строк): тик-детерминированный вердикт —
+     * в fast (юзер-челлендж «опять fast/slow?»: длительность — не основание
+     * для slow; slow = только недетерминизм). -p8 терпит +60s.
      */
     public function testTickBudgetDoesNotBreakExactLaw(): void
     {
@@ -191,9 +204,7 @@ final class EnsembleTickBudgetTest extends TestCase
      * только явным env/config оператора; молчаливая смена секунды→тики
      * нарушила бы «оператор понимает, что получит».
      *
-     * 37s соло (k=3, compose 200 строк) — @group slow по той же причине.
-     *
-     * @group slow
+     * 37s соло (k=3, compose 200 строк) — в fast по той же причине.
      */
     public function testZeroOrGarbageTicksFallThrough(): void
     {

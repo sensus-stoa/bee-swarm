@@ -7,7 +7,6 @@ namespace BeeSwarm\Certification;
 use BeeSwarm\Core\ExpressionEvaluator;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
-use BeeSwarm\Core\LawShape;
 
 /**
  * V0.13 WU-1 (§1.11 v1.7-draft): Contradiction-Derived Certification.
@@ -36,10 +35,14 @@ use BeeSwarm\Core\LawShape;
  */
 final class ContradictionEngine
 {
-    /** Минимальная зеркальная сила (|corr| ниже — не «закон в зеркале»). */
+    /**
+     * Минимальная зеркальная сила (|corr| ниже — не «закон в зеркале»).
+     */
     public const MIRROR_THRESHOLD = 0.7;
 
-    /** Минимальная ensemble-устойчивость (ниже — шум, не устойчивое противоречие). */
+    /**
+     * Минимальная ensemble-устойчивость (ниже — шум, не устойчивое противоречие).
+     */
     public const STABILITY_GATE = 0.5;
 
     /**
@@ -70,9 +73,13 @@ final class ContradictionEngine
             && abs($corr) >= self::MIRROR_THRESHOLD;
 
         if (! $isMirror) {
-            return (object) ['class' => 'NOT_CONTRADICTION', 'mirror_strength' => abs($corr),
-                'action' => 'NONE', 'pre_registered_hypothesis' => '',
-                'reason' => self::notContradictionReason($found, $recurrence, $signOk, $corr)];
+            return (object) [
+                'class' => 'NOT_CONTRADICTION',
+                'mirror_strength' => abs($corr),
+                'action' => 'NONE',
+                'pre_registered_hypothesis' => '',
+                'reason' => self::notContradictionReason($found, $recurrence, $signOk, $corr),
+            ];
         }
 
         return (object) [
@@ -90,7 +97,9 @@ final class ContradictionEngine
         ];
     }
 
-    /** Причина отказа от классификации (для лога — partition T1 честность). */
+    /**
+     * Причина отказа от классификации (для лога — partition T1 честность).
+     */
     private static function notContradictionReason(bool $found, float $recurrence, bool $signOk, float $corr): string
     {
         if (! $found) {
@@ -121,8 +130,13 @@ final class ContradictionEngine
     {
         // Анти-зацикливание (INVERT_MAX=1): кандидат уже из инверсии → skip.
         if (! empty($candidate['inverted'])) {
-            $out = (object) ['class' => 'SKIP_ALREADY_INVERTED', 'inverted_cv' => null,
-                'inverted_corr' => null, 'inverted_formula' => null, 'verdict_line' => 'already inverted'];
+            $out = (object) [
+                'class' => 'SKIP_ALREADY_INVERTED',
+                'inverted_cv' => null,
+                'inverted_corr' => null,
+                'inverted_formula' => null,
+                'verdict_line' => 'already inverted',
+            ];
             self::log($logFile, 'INVERT_RESULT SKIP_ALREADY_INVERTED');
 
             return $out;
@@ -153,8 +167,17 @@ final class ContradictionEngine
 
         $negY = array_map(static fn (float $v): float => -$v, $y);
         $grammar = isset($cfg['grammar']) && $cfg['grammar'] instanceof Grammar ? $cfg['grammar'] : new Grammar();
-        $res = Search::find($X, $negY, $grammar, (int) ($cfg['depth'] ?? 2), null, 0.0,
-            (float) ($cfg['gate'] ?? 0.15), (float) ($cfg['budget'] ?? 15.0), null);
+        $res = Search::find(
+            $X,
+            $negY,
+            $grammar,
+            (int) ($cfg['depth'] ?? 2),
+            null,
+            0.0,
+            (float) ($cfg['gate'] ?? 0.15),
+            (float) ($cfg['budget'] ?? 15.0),
+            null
+        );
         $invertedCv = (bool) $res[0] ? (float) $res[1] : null;
         $invertedFormula = (bool) $res[0] ? (string) $res[2] : null;
         $invertedCorr = $invertedFormula !== null
@@ -204,14 +227,20 @@ final class ContradictionEngine
             : self::anomalyVerdict($candidate, $invertedCv, $invertedCorr, $invertedFormula, $logFile, 'hypothesis_refuted');
     }
 
-    /** @param array<string, mixed> $candidate */
+    /**
+     * @param array<string, mixed> $candidate
+     */
     private static function anomalyVerdict(array $candidate, ?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile, string $reason): object
     {
-        $out = (object) ['class' => 'ANOMALY', 'inverted_cv' => $invertedCv,
-            'inverted_corr' => $invertedCorr, 'inverted_formula' => $invertedFormula,
+        $out = (object) [
+            'class' => 'ANOMALY',
+            'inverted_cv' => $invertedCv,
+            'inverted_corr' => $invertedCorr,
+            'inverted_formula' => $invertedFormula,
             'verdict_line' => $reason === 'missing_source_cv'
                 ? 'ANOMALY: исходный cv неизвестен — гипотеза невыразима (метрическая слепота)'
-                : 'ANOMALY: противоречие устойчиво, инверсия не подтвердила гипотезу (метрическая слепота)'];
+                : 'ANOMALY: противоречие устойчиво, инверсия не подтвердила гипотезу (метрическая слепота)',
+        ];
         self::flagMetricBlindness($candidate, abs((float) ($candidate['corr'] ?? 0)), (string) ($candidate['domain'] ?? 'unknown'), $logFile);
         self::log($logFile, 'INVERT_RESULT ANOMALY reason=' . $reason);
 
@@ -220,9 +249,13 @@ final class ContradictionEngine
 
     private static function invertedLawVerdict(?float $invertedCv, ?float $invertedCorr, ?string $invertedFormula, string $logFile): object
     {
-        $out = (object) ['class' => 'INVERTED_LAW', 'inverted_cv' => $invertedCv,
-            'inverted_corr' => $invertedCorr, 'inverted_formula' => $invertedFormula,
-            'verdict_line' => 'INVARIANT (via inversion): исходный кандидат был зеркалом закона'];
+        $out = (object) [
+            'class' => 'INVERTED_LAW',
+            'inverted_cv' => $invertedCv,
+            'inverted_corr' => $invertedCorr,
+            'inverted_formula' => $invertedFormula,
+            'verdict_line' => 'INVARIANT (via inversion): исходный кандидат был зеркалом закона',
+        ];
         self::log($logFile, 'INVERT_RESULT INVERTED_LAW cv_инв=' . ($invertedCv !== null ? round($invertedCv, 4) : 'null')
             . ' corr=' . ($invertedCorr !== null ? round($invertedCorr, 3) : 'null')
             . ' формула=' . ($invertedFormula ?? 'none'));
@@ -273,7 +306,9 @@ final class ContradictionEngine
             . ' → METRIC-FAMILY очередь (v1.5b): данные содержат зеркальную структуру, не выразимую прямо');
     }
 
-    /** Сброс реестра флагов (для тестов — static state = test poison; прецедент EnvPressure::resetAdmission). */
+    /**
+     * Сброс реестра флагов (для тестов — static state = test poison; прецедент EnvPressure::resetAdmission).
+     */
     public static function resetBlindnessFlags(): void
     {
         self::$blindnessFlags = [];
@@ -294,9 +329,15 @@ final class ContradictionEngine
     {
         $mHat = $signChannel === 'inverted' ? -$anchorOnTaskY : $anchorOnTaskY;
 
-        return ['shape' => $shape, 'm_hat' => $mHat, 'sign' => $signChannel];
+        return [
+            'shape' => $shape,
+            'm_hat' => $mHat,
+            'sign' => $signChannel,
+        ];
     }
 
-    /** @var array<string, true> */
+    /**
+     * @var array<string, true>
+     */
     private static array $blindnessFlags = [];
 }

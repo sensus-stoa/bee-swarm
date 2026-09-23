@@ -65,21 +65,37 @@ final class MetricPreflight
     {
         $factor = self::factor();
         if ($factor <= 0.0) {
-            return (object) ['passes' => true, 'status' => 'DISABLED', 'cv_y' => null,
-                'factor' => $factor, 'r2_floor' => null, 'note' => 'pre-flight off (v1.6)'];
+            return (object) [
+                'passes' => true,
+                'status' => 'DISABLED',
+                'cv_y' => null,
+                'factor' => $factor,
+                'r2_floor' => null,
+                'note' => 'pre-flight off (v1.6)',
+            ];
         }
         $cv = self::cvOfTarget($y);
         if ($cv === null) {
-            return (object) ['passes' => false, 'status' => 'METRIC_DOMAIN', 'cv_y' => $cv,
-                'factor' => $factor, 'r2_floor' => null,
-                'note' => 'CV(y) не определён (константа/mean≈0/мало данных): ratio-CV вырожден'];
+            return (object) [
+                'passes' => false,
+                'status' => 'METRIC_DOMAIN',
+                'cv_y' => $cv,
+                'factor' => $factor,
+                'r2_floor' => null,
+                'note' => 'CV(y) не определён (константа/mean≈0/мало данных): ratio-CV вырожден',
+            ];
         }
         if ($cv <= 1e-12) {
             // Константный таргет: ratio-CV вырожден при любом гейте (проба
             // WU-1: деление на cv=0 в r2_floor). Отказ без публикации R².
-            return (object) ['passes' => false, 'status' => 'METRIC_DOMAIN', 'cv_y' => 0.0,
-                'factor' => $factor, 'r2_floor' => null,
-                'note' => 'CV(y)=0: вырожденный ratio-CV, домен несертифицируем'];
+            return (object) [
+                'passes' => false,
+                'status' => 'METRIC_DOMAIN',
+                'cv_y' => 0.0,
+                'factor' => $factor,
+                'r2_floor' => null,
+                'note' => 'CV(y)=0: вырожденный ratio-CV, домен несертифицируем',
+            ];
         }
 
         return self::domainVerdict($gateEps, $cv, $factor);
@@ -97,15 +113,30 @@ final class MetricPreflight
             // Граница R² из §1.10: лучший возможный R² при этом гейте.
             // Гейт допускает предикторы с R² вплоть до r2_floor — если оно
             // отрицательно, «сертификат» не отличает даже уровень таргета.
-            return (object) ['passes' => true, 'status' => 'PASS', 'cv_y' => $cv,
-                'factor' => $factor, 'r2_floor' => $r2Floor,
-                'note' => 'гейт различим: R2_floor=' . round($r2Floor, 3)];
+            return (object) [
+                'passes' => true,
+                'status' => 'PASS',
+                'cv_y' => $cv,
+                'factor' => $factor,
+                'r2_floor' => $r2Floor,
+                'note' => 'гейт различим: R2_floor=' . round($r2Floor, 3),
+            ];
         }
 
-        return (object) ['passes' => false, 'status' => 'METRIC_DOMAIN', 'cv_y' => $cv,
-            'factor' => $factor, 'r2_floor' => $r2Floor,
-            'note' => sprintf('гейт %.4f >= %.4f=FACTOR*CV(y)=%.4f: R2_floor=%.2f — сертификат-мусор зона',
-                $gateEps, $factor * $cv, $cv, $r2Floor)];
+        return (object) [
+            'passes' => false,
+            'status' => 'METRIC_DOMAIN',
+            'cv_y' => $cv,
+            'factor' => $factor,
+            'r2_floor' => $r2Floor,
+            'note' => sprintf(
+                'гейт %.4f >= %.4f=FACTOR*CV(y)=%.4f: R2_floor=%.2f — сертификат-мусор зона',
+                $gateEps,
+                $factor * $cv,
+                $cv,
+                $r2Floor
+            ),
+        ];
     }
 
     /**
@@ -122,7 +153,12 @@ final class MetricPreflight
     {
         $n = min(count($pred), count($y));
         if ($n < 3) {
-            return (object) ['sign_ok' => false, 'scale_ok' => false, 'corr' => 0.0, 'scale_ratio' => 0.0];
+            return (object) [
+                'sign_ok' => false,
+                'scale_ok' => false,
+                'corr' => 0.0,
+                'scale_ratio' => 0.0,
+            ];
         }
         // Pearson corr(pred,y) по первым n парам
         $mp = array_sum(array_slice($pred, 0, $n)) / $n;
@@ -145,8 +181,12 @@ final class MetricPreflight
         $signOk = $corr > 0.0;
         $scaleOk = $scaleRatio >= 0.1 && $scaleRatio <= 10.0;
 
-        return (object) ['sign_ok' => $signOk, 'scale_ok' => $scaleOk,
-            'corr' => $corr, 'scale_ratio' => $scaleRatio];
+        return (object) [
+            'sign_ok' => $signOk,
+            'scale_ok' => $scaleOk,
+            'corr' => $corr,
+            'scale_ratio' => $scaleRatio,
+        ];
     }
 
     /**
@@ -159,7 +199,9 @@ final class MetricPreflight
         return ($gates['sign_ok'] && $gates['scale_ok']) ? 'PASS' : 'UNSTABLE_CERTIFICATE';
     }
 
-    /** Медиана (сорт-версия; n всегда ≥1 от вызывающего). @param list<float> $a */
+    /**
+     * Медиана (сорт-версия; n всегда ≥1 от вызывающего). @param list<float> $a
+     */
     private static function medianOf(array $a): float
     {
         sort($a);

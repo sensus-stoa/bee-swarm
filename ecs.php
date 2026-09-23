@@ -4,9 +4,14 @@ declare(strict_types=1);
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
-    ->withPaths([__DIR__ . '/src', __DIR__ . '/tests', __DIR__ . '/agenda.php', __DIR__ . '/public'])
+    // USER (23.09): «нам и не нужен ecs в тестах» — ecs только на рабочий код.
+    // Побочный эффект (23.09): GeneralPhpdocAnnotationRemove счищал хвостовой
+    // @group slow из class-docblock -> тесты тихо уезжали в fast (b89a5d9-питфолл);
+    // на tests больше не действует.
+    ->withPaths([__DIR__ . '/src', __DIR__ . '/agenda.php', __DIR__ . '/public'])
     ->withSkip([
         __DIR__ . '/vendor',
+        __DIR__ . '/tests',
     ])
     // PSR-12 + Common + Clean Code
     ->withPreparedSets(
@@ -18,4 +23,9 @@ return ECSConfig::configure()
     ->withSkip([
         \PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer::class => null,
         \PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer::class => null,
+        // 23.09: @group slow — исполняемая аннотация phpunit (гейт -p8),
+        // GeneralPhpdocAnnotationRemove счищает хвостовой тег -> тесты тихо
+        // уезжали в fast (b89a5d9-питфолл). Аналог in-code: standalone
+        // docblock ecs резал, внутри общего — тоже режет этой версией.
+        \PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer::class,
     ]);

@@ -74,9 +74,8 @@ final class EnsembleAnchorTest extends TestCase
     }
 
     /**
-     * V0.17: budgetSec — рабочий ресурс verdict+anchor (wall-clock-класс).
-         *
-     * @group slow
+     * V0.18 WU-3: budgetTicks=100 > полного d=2 перебора члена (11-14 тиков
+     * на 200-строчном домене, проба 23.09) — вердикт детерминирован, не slow.
      */
     public function testCertifyPublishesEnsembleAnchor(): void
     {
@@ -88,7 +87,7 @@ final class EnsembleAnchorTest extends TestCase
                 'k' => 5,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 15.0,
+                'budget_ticks' => 100,
                 'gate_grid' => [0.05],
                 'null_ensembles' => 0,
                 'log_file' => $this->logFile,

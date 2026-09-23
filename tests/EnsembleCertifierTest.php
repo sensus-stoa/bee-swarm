@@ -91,9 +91,9 @@ final class EnsembleCertifierTest extends TestCase
     }
 
     /**
-     * V0.17: budgetSec — рабочий ресурс foundN → verdict (wall-clock-класс).
-     *
-     * @group slow
+     * V0.18 WU-3: budgetTicks=100 — полный d=2 перебор compose-домена =
+     * 11-14 тиков (проба 23.09) → бюджет не исчерпывается, вердикт
+     * детерминирован данными. Wall-clock-класс ушёл — не slow.
      */
     public function testExactLawGetsEnsembleCert(): void
     {
@@ -105,7 +105,7 @@ final class EnsembleCertifierTest extends TestCase
                 'k' => 5,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 10.0,
+                'budget_ticks' => 100,
                 'gate_grid' => [0.05, 0.1],
                 'bootstrap_frac' => 0.8,
                 'log_file' => $this->logFile,
@@ -132,7 +132,7 @@ final class EnsembleCertifierTest extends TestCase
                 'k' => 5,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 10.0,
+                'budget_ticks' => 100,
                 'gate_grid' => [0.05, 0.1],
                 'bootstrap_frac' => 0.8,
                 'null_ensembles' => 0,
@@ -160,7 +160,7 @@ final class EnsembleCertifierTest extends TestCase
                 'k' => 3,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 10.0,
+                'budget_ticks' => 100,
                 'gate_grid' => [0.05],
                 'bootstrap_frac' => 0.8,
                 'log_file' => $this->logFile,
@@ -196,12 +196,10 @@ final class EnsembleCertifierTest extends TestCase
     }
 
     /**
-     * МЕДЛЕННЫЙ тест (wall-clock-класс, питфолл budgetSec): полная механика
-     * с null-гейтом. Держится последним, помечен @group slow — в -p8 гоняется
-     * наравне, но бюджет ограничен (null 2×2, не дефолт 5×5).
-     * V0.17: budgetSec — рабочий ресурс foundN → verdict (wall-clock-класс).
-     *
-     * @group slow
+     * Полная механика с null-гейтом (null 2×2, не дефолт 5×5).
+     * V0.18 WU-3: budgetTicks=50 > полного d=2 перебора члена (11-14 тиков,
+     * проба 23.09) → вердикт детерминирован данными, не бюджетом.
+     * V0.17 wall-clock-класс ушёл — не slow.
      */
     public function testFullGatesWithNullEnsembleSmall(): void
     {
@@ -213,7 +211,7 @@ final class EnsembleCertifierTest extends TestCase
                 'k' => 3,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 5.0,
+                'budget_ticks' => 50,
                 'gate_grid' => [0.05, 0.1],
                 'bootstrap_frac' => 0.8,
                 'null_ensembles' => 2,
@@ -233,8 +231,7 @@ final class EnsembleCertifierTest extends TestCase
      * поэтому проверка через members основного ансамбля невозможна; пинним
      * контракт конфига: null_k=1 x null_ensembles=1 = 1 null-член, его
      * рецидив на однозначном шуме 0/1 (не 5 членов, как до фикса).
-         *
-     * @group slow
+     * V0.18 WU-3: budgetTicks — вердикт детерминирован, не slow.
      */
     public function testNullKIsLive(): void
     {
@@ -246,7 +243,7 @@ final class EnsembleCertifierTest extends TestCase
                 'k' => 3,
                 'depth' => 2,
                 'test_ratio' => 0.2,
-                'budget_sec' => 5.0,
+                'budget_ticks' => 50,
                 'gate_grid' => [0.05],
                 'bootstrap_frac' => 0.8,
                 'null_ensembles' => 1,

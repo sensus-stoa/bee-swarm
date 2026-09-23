@@ -82,9 +82,8 @@ final class EnsembleWiringTest extends TestCase
      * runEnsembleCertification с записью вердикта в кандидата. Путь вызова
      * из discover() — после ранних return'ов, до compose (X/y живые там).
      *
-     * V0.17: budgetSec — рабочий ресурс verdict+anchor (wall-clock-класс).
-         *
-     * @group slow
+     * V0.18 WU-3: budgetTicks=100 > полного d=2 перебора члена — вердикт
+     * детерминирован, не slow.
      */
     public function testRunEnsembleCertificationAttachesVerdict(): void
     {
@@ -109,7 +108,7 @@ final class EnsembleWiringTest extends TestCase
         EnsembleCertifier::runEnsembleCertification($candidates, $X, $y, [
             'k' => 2,
             'depth' => 2,
-            'budget_sec' => 10.0,
+            'budget_ticks' => 100,
         ]);
 
         $this->assertArrayHasKey('ensemble_verdict', $candidates[0], 'Сертификация обязана дописать вердикт в кандидата');
@@ -147,7 +146,7 @@ final class EnsembleWiringTest extends TestCase
         EnsembleCertifier::runEnsembleCertification($candidates, $X, $y, [
             'k' => 2,
             'depth' => 2,
-            'budget_sec' => 10.0,
+            'budget_ticks' => 100,
         ]);
 
         // H1 (premortem deleg_1b654b1a): вердикт относится только к

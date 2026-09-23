@@ -124,9 +124,13 @@ final class EnsembleTickBudgetTest extends TestCase
             $elapsed,
             "2 тика/член должны исчерпываться быстро, получили {$elapsed}s"
         );
-        // Все члены не нашли (бюджет съеден) — foundN=0 → NO_CONSENSUS.
+        // C2 (criterion-audit): ассерт на МЕХАНИКУ бюджета (diag члена =
+        // тиковое исчерпание), не на «шум не фити». Спурный find на шуме
+        // 0.15-гейте возможен конструктивно (σ|r|≈0.19 на n=30); спасает
+        // детерминизм: seed 9 фиксирован, за 2 тика accept-цикл не успевает.
         foreach ($out['members'] as $m) {
-            $this->assertFalse($m['found'], 'тик-бюджет 2 не может найти закон на шуме 20 фич');
+            $this->assertFalse($m['found'], 'за 2 тика не находится (детерминизм seed 9)');
+            $this->assertSame('TICKS_EXHAUSTED', $m['diag'], 'член остановлен тик-бюджетом, diag=' . ($m['diag'] ?? 'null'));
         }
     }
 
@@ -181,6 +185,12 @@ final class EnsembleTickBudgetTest extends TestCase
      * H5-гвард (бюджет=0 = INF) распространяется на тики: env '0'/мусор →
      * fallback на следующий канал (не 0).
      *
+     * Осознанный fall-through (criterion-audit C1, deleg_6fcba1f2): при
+     * отсутствии валидного тикового канала дефолт = LEGACY [300s, null]
+     * (300 секунд, не тики). Переходный период: тик-default 300 вводится
+     * только явным env/config оператора; молчаливая смена секунды→тики
+     * нарушила бы «оператор понимает, что получит».
+     *
      * 37s соло (k=3, compose 200 строк) — @group slow по той же причине.
      *
      * @group slow
@@ -190,8 +200,8 @@ final class EnsembleTickBudgetTest extends TestCase
         putenv('ENSEMBLE_BUDGET_TICKS=0');
         [$X, $y] = $this->affordableDomain();
         // Если бы '0' прошёл как тик-бюджет → каждый член мгновенно
-        // TICKS_EXHAUSTED → NO_CONSENSUS. Гард должен провалиться на default
-        // (300) и дать ENSEMBLE_CERT.
+        // TICKS_EXHAUSTED → NO_CONSENSUS. Гард должен провалиться на legacy
+        // default (300 SECONDS) и дать ENSEMBLE_CERT.
         $out = EnsembleCertifier::certify($X, $y, [
             'k' => 3,
             'depth' => 2,

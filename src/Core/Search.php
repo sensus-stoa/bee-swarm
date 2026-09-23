@@ -83,6 +83,20 @@ class Search
     public const T_MIN_BASE = 10;
 
     /**
+     * V0.18-TICK-BUDGET: env kill-switch (wall-clock поверх тиков).
+     * Default off — тики основная метрика, wall-clock операторский стоп.
+     */
+    private const ENV_WALLCLOCK_CAP = 'SEARCH_WALLCLOCK_CAP_S';
+
+    /**
+     * V0.18-TICK-BUDGET: диагнозы исчерпания бюджета (риск 3 стори —
+     * раздвоение ответственности двойной метрики).
+     */
+    private const DIAG_TICKS = 'TICKS_EXHAUSTED';
+
+    private const DIAG_WALLCLOCK = 'WALLCLOCK_CAP';
+
+    /**
      * §3.3 Само-модель незнания: диагноз причины отказа.
      *
      * Приоритет категорий (Е): DATA > DEPTH > GRAMMAR > NOISE — диагноз
@@ -120,11 +134,19 @@ class Search
      *   проверять $res[0] (found) ДО чтения score/expr (9.99 = sentinel!).
      *   Семантика: бюджет = тотальный wall-clock (как timeout PySR 30s).
      */
-    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0, ?int $tMin = null): array
+    public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0, ?int $tMin = null, ?int $budgetTicks = null): array
     {
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
+        // V0.18-TICK-BUDGET: тиковая метрика бюджета. Тик = граница фазы
+        // перебора или порция кандидатов (инкременты в существующих чек-
+        // точках, паттерн &31/&15). budgetTicks=null → тикового лимита нет
+        // (legacy: callers с одним budgetSec работают как раньше);
+        // budgetTicks=0 → явный лимит (ноль работы), НЕ «выключено» —
+        // env-каналы гвардятся >0 (H5 V0.11).
+        $deadline = $budgetSec > 0.0 ? $p0 + $budgetSec : INF;
+        $ticks = 0;
         // EXP-036 ревью deleg_1408a6cc BLOCK-фикс: static $mul2Cache
         // persists между вызовами find() → вектор задачи A подмешивается
         // в задачу B (тихая порча, cacheKey не содержит данных). Кэш
@@ -132,9 +154,20 @@ class Search
         // работает, между задачами — ноль риска.
         self::$mul2Cache = [];
         self::$__prof = [['START', $p0]];
-        $deadline = $budgetSec > 0.0 ? $p0 + $budgetSec : INF;
+        // V0.18: wall-clock kill-switch поверх тиков (default off —
+        // тики основная метрика). Diagnosis WALLCLOCK_CAP различим.
+        $capEnv = getenv(self::ENV_WALLCLOCK_CAP);
+        $wallCap = ($capEnv !== false && $capEnv !== '' && is_numeric($capEnv) && (float) $capEnv > 0.0)
+            ? (float) $capEnv : INF;
+        $wallDeadline = $p0 + $wallCap;
+        if ($ticks >= $budgetTicks && $budgetTicks !== null) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+        }
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+        }
+        if (microtime(true) > $wallDeadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
         }
         $n = count($y);
         if ($n === 0 || empty($X) || empty($X[0])) {
@@ -155,8 +188,14 @@ class Search
         // L0: Features
         $feats = [];
         for ($i = 0; $i < $nFeat; $i++) {
+            if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+            }
             if (microtime(true) > $deadline) {
-                return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+            }
+            if (microtime(true) > $wallDeadline) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
             }
             $col = array_column($X, $i);
             $fname = $featName($i);
@@ -184,8 +223,14 @@ class Search
         }
         $rawFeatKeys = array_keys($feats);
         foreach ($rawFeatKeys as $fname) {
+            if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+            }
             if (microtime(true) > $deadline) {
-                return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+            }
+            if (microtime(true) > $wallDeadline) {
+                return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
             }
             if (! isset($rawFeatNames[$fname])) {
                 continue;
@@ -439,8 +484,14 @@ class Search
         }
 
         // L2: combinations of (L1 + L1² + L1-unary)
+        if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+        }
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+        }
+        if (microtime(true) > $wallDeadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
         }
         $l2Keys = [];
         if ($depth >= 2) {
@@ -459,8 +510,16 @@ class Search
                 $quickN = min($n, max(4, (int) ($n * 0.25)));
                 $scored = [];
                 foreach ($pool as $pname) {
-                    if ((++$checkCount & 31) === 0 && microtime(true) > $deadline) {
-                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+                    if ((++$checkCount & 31) === 0) {
+                        if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+                            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+                        }
+                        if (microtime(true) > $deadline) {
+                            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                        }
+                        if (microtime(true) > $wallDeadline) {
+                            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                        }
                     }
                     $pv = $exprs[$pname];
                     $r = [];
@@ -591,8 +650,16 @@ class Search
             $l2l1Ops = array_slice($ops, 0, 50);
             $l2l1Count = 0;
             foreach ($l1Top as $l1name) {
-                if ((++$l2l1Count & 15) === 0 && microtime(true) > $deadline) {
-                    return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+                if ((++$l2l1Count & 15) === 0) {
+                    if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+                    }
+                    if (microtime(true) > $deadline) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                    }
+                    if (microtime(true) > $wallDeadline) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                    }
                 }
                 // EXP-036 ф1 (29.08): B-формы комбинируются ТОЛЬКО с сырыми
                 // фичами (heat-семантика: chunk×κ×A/d — все raw). R-производные
@@ -632,8 +699,14 @@ class Search
             self::$__prof[] = ['L3', microtime(true)];
         }
         // L3: L2 / constant (для MIN = (...)/2)
+        if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+        }
         if (microtime(true) > $deadline) {
-            return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+        }
+        if (microtime(true) > $wallDeadline) {
+            return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
         }
         if (getenv('SEARCH_DEBUG') === '1') {
             $bvec = '(x0BPf474x1)';
@@ -853,8 +926,16 @@ class Search
                 if ($l3idx >= $l3FilterK) {
                     continue;
                 }
-                if ((++$l3Count & 31) === 0 && microtime(true) > $deadline) {
-                    return [false, 9.99, 'none', 9.99, 'TIMEOUT', $depth < 3 ? 'DEPTH' : 'TIMEOUT'];
+                if ((++$l3Count & 31) === 0) {
+                    if (++$ticks >= $budgetTicks && $budgetTicks !== null) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_TICKS];
+                    }
+                    if (microtime(true) > $deadline) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                    }
+                    if (microtime(true) > $wallDeadline) {
+                        return [false, 9.99, 'none', 9.99, 'TIMEOUT', self::DIAG_WALLCLOCK];
+                    }
                 }
 
                 foreach ($constKeys as $ck) {
@@ -869,7 +950,8 @@ class Search
                 // EXP-035: L2 / фича — переменный делитель (heat /d).
                 // Взрыв-гвард: time-based (deadline), не количественная —
                 // иначе нужный l2 (B×x2 за топ-50) отрезается.
-                if (microtime(true) < $deadline) {
+                // V0.18: тиковый аналог «остался бюджет» (было time-based).
+                if (($budgetTicks === null || $ticks < $budgetTicks) && microtime(true) < $deadline && microtime(true) < $wallDeadline) {
                     // SEMANTIC GUARD v2 (EXP-035): L2/фича — только для
                     // ПЕРСПЕКТИВНЫХ l2: |corr(l2,y)|>0.3 или l2name имеет B-атом.
                     $l2vec = $exprs[$l2name];

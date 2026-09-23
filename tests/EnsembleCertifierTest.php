@@ -61,6 +61,11 @@ final class EnsembleCertifierTest extends TestCase
         foreach (['NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
             putenv($k);
         }
+        // PHPUnit <env force=true> ставит env один раз на старте процесса;
+        // putenv($k) выше снимает переменную ДО КОНЦА ПРОЦЕССА — все
+        // последующие классы в этом воркере получают getenv()=false и
+        // TestCase-гвард скипает их (678 скипов, 23.09). Восстановить.
+        putenv('SEARCH_BEAM_K=10');
         if ($this->logFile !== '' && is_file($this->logFile)) {
             unlink($this->logFile);
         }

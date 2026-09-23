@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
@@ -8,61 +9,49 @@ use BeeSwarm\Core\Search;
 
 /**
  * SEARCH-BUDGET (19.08.2026, PYSR-BENCHMARK фаза 2):
- * Search::find должен уметь останавливаться по времени.
+ * Search::find должен уметь останавливаться.
  * ЭКСП-027: systematic без бюджета на 12 фичах → >15 мин (EXIT=124).
  * PySR всегда с timeout — сравнение некорректно без бюджета.
+ *
+ * V0.18 WU-3 (23.09): механика останова — ТИКИ (детерминизм), wall-clock
+ * остаётся kill-switch-ом. По букве стори: «T тиков возвращаются за
+ * конечное предсказуемое число операций» + ОДИН wall-clock smoke-тест
+ * kill-switch-ветки (fast, @group slow не нужен).
  */
-class SearchBudgetTest extends TestCase
+final class SearchBudgetTest extends TestCase
 {
     /**
-     * find с budgetSec=1s на 12 фичах возвращается за <5s
-     * (раньше: >15 мин, таймаут).
-     * V0.17: budgetSec=1s — сам wall-clock-механизм ассерта (TIMEOUT-класс).
-         *
-     * @group slow
+     * find с budgetTicks=5 на тяжёлом домене (20 фич шума) возвращается
+     * с TICKS_EXHAUSTED за предсказуемо конечное время: тики = детерминизм.
+     * Фикстура в окне исчерпания (калибровка WU-2: полные переборы таких
+     * доменов > 50 тиков, 5 тиков = ранняя остановка на порционной границе).
      */
-    public function testFindWithBudgetReturnsInTime(): void
+    public function testTickBudgetReturnsDeterministically(): void
     {
-        // 12 фич × 106 строк — как WINE frozen split (ЭКСП-027)
         $X = [];
         $y = [];
-        $rng = mt_rand(1, 999999);
         mt_srand(42);
-        for ($i = 0; $i < 106; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $row = [];
-            for ($f = 0; $f < 12; $f++) {
-                $row[] = mt_rand() / mt_getrandmax() * 10.0;
+            for ($f = 0; $f < 20; $f++) {
+                $row[] = mt_rand() / mt_getrandmax() * 2 ** ($f % 12);
             }
             $X[] = $row;
             $y[] = mt_rand() / mt_getrandmax() * 5.0;
         }
 
         $g = new Grammar();
-        $start = microtime(true);
-        $res = Search::find($X, $y, $g, 2, null, 0.0, 0.15, 1.0); // budget=1s
-        $elapsed = microtime(true) - $start;
+        $res = Search::find($X, $y, $g, 2, null, 0.0, 0.15, 0.0, null, 5);
 
-        // Ключевая проверка: find ВЕРНУЛСЯ (раньше: >15 мин, EXIT=124!)
-        // и вернул TIMEOUT-класс (бюджет сработал).
-        // elapsed в paratest = wall-clock с ожиданием CPU — жёсткий порог
-        // невозможен (конкуренция -p8: 74-86s при budget=1s, 03.09),
-        // поэтому: <120s = порядок величины (0.1% от прежних >15 мин).
-        $this->assertLessThan(
-            120.0,
-            $elapsed,
-            "find с budget=1s вернулся за {$elapsed}s (должен <120s, раньше >15 мин!)"
-        );
         $this->assertIsArray($res, 'find вернул массив');
-        $this->assertCount(6, $res, 'backward-compatible: [found, cv, formula, cvTest, class]');
-        $this->assertSame(
-            'TIMEOUT',
-            $res[4],
-            "класс результата TIMEOUT (бюджет сработал), получен: {$res[4]}"
-        );
+        $this->assertCount(6, $res, 'backward-compatible shape');
+        $this->assertFalse($res[0], '5 тиков на шуме 20 фич не находят закон');
+        $this->assertSame('TICKS_EXHAUSTED', $res[5], 'диагноз = тиковое исчерпание, получен: ' . ($res[5] ?? 'null'));
     }
 
     /**
-     * budgetSec=0 (default) — поведение не изменилось (без лимита).
+     * Default-поведение не изменилось: без budgetTicks (null) и budgetSec=0
+     * перебор не лимитирован (легитимный found на простом законе).
      */
     public function testDefaultBudgetZeroNoLimit(): void
     {
@@ -72,5 +61,39 @@ class SearchBudgetTest extends TestCase
 
         $res = Search::find($X, $y, $g, 2);
         $this->assertTrue($res[0], 'простой закон (y=2x0) найден без бюджета');
+    }
+
+    /**
+     * Wall-clock kill-switch smoke: SEARCH_WALLCLOCK_CAP_S отсекает даже
+     * без тиков (INC-2: тик ≠ секунда; кап = абсолютный страхующий стоп).
+     * fast-тест (smoke), kill-switch срабатывает на первых фазах.
+     */
+    public function testWallclockCapKillSwitch(): void
+    {
+        $prev = getenv('SEARCH_WALLCLOCK_CAP_S');
+        putenv('SEARCH_WALLCLOCK_CAP_S=2');
+        try {
+            $X = [];
+            $y = [];
+            mt_srand(42);
+            for ($i = 0; $i < 30; $i++) {
+                $row = [];
+                for ($f = 0; $f < 20; $f++) {
+                    $row[] = mt_rand() / mt_getrandmax() * 2 ** ($f % 12);
+                }
+                $X[] = $row;
+                $y[] = mt_rand() / mt_getrandmax() * 5.0;
+            }
+            $g = new Grammar();
+            $res = Search::find($X, $y, $g, 3, null, 0.0, 0.15, 0.0);
+            $this->assertFalse($res[0], 'kill-switch останавливает перебор');
+            $this->assertSame('WALLCLOCK_CAP', $res[5], 'диагноз = wall-clock кап, получен: ' . ($res[5] ?? 'null'));
+        } finally {
+            if ($prev === false) {
+                putenv('SEARCH_WALLCLOCK_CAP_S');
+            } else {
+                putenv('SEARCH_WALLCLOCK_CAP_S=' . $prev);
+            }
+        }
     }
 }

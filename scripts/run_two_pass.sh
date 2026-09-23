@@ -110,8 +110,13 @@ echo "$SLOW_TAIL" | tail -3
 # ---- Summary ----
 # Парсинг по ^Tests: N (финальная строка phpunit): «OK (N tests...)» не матчится
 # при skipped-прогонах («OK, but some tests were skipped!» — лов run 1)
+# GREEN-вариант печатает «OK (N tests, ...)" без ^Tests: строки (та — только
+# в FAIL/skip-вариантах). Парсим оба формата (23.09: run2 green=NO n=? —
+# ложный RED из-за однобокого парсера).
 FAST_N=$(echo "$FAST_TAIL" | grep -oP '^Tests: \K[0-9]+' | head -1)
+[ -z "$FAST_N" ] && FAST_N=$(echo "$FAST_TAIL" | grep -oP 'OK \(\K[0-9]+' | head -1)
 SLOW_N=$(echo "$SLOW_TAIL" | grep -oP '^Tests: \K[0-9]+' | head -1)
+[ -z "$SLOW_N" ] && SLOW_N=$(echo "$SLOW_TAIL" | grep -oP 'OK \(\K[0-9]+' | head -1)
 # Red-детекция: ^FAILURES | ^ERRORS | ^WARNINGS! | Errors: N>0 в итоговой строке.
 # review#1 (HIGH): error-only падение печатает «ERRORS!» и «Errors: 1.» ВНУТРИ
 # строки ^Tests: — голый ^Errors: мёртв, FALSE-GREEN. Парсим оба источника.
@@ -121,13 +126,16 @@ SLOW_RED=$(echo "$SLOW_TAIL" | grep -cE '^FAILURES|^ERRORS|^WARNINGS|Errors: [1-
 # ⚠️ bash-приоритет: (A + C == 0 ? 1 : 0) парсится как ((A+C)==0)?1:0 —
 # гвард-надбавка ЗАТИРАЕТ red (поймано clean2: FAILURES! → green=YES).
 # Только скобки вокруг сравнения.
-FAST_GUARD=$(echo "$FAST_TAIL" | grep -cE '^Tests:')
-SLOW_GUARD=$(echo "$SLOW_TAIL" | grep -cE '^Tests:')
+# Гвард: итоговая строка существует в ЛЮБОМ формате: ^Tests: N (FAIL/skip)
+# или OK (N tests (GREEN; 23.09: run2/run3 false-RED из-за однобокого гварда).
+FAST_GUARD=$(echo "$FAST_TAIL" | grep -cE '^Tests:|OK \([0-9]+ tests')
+SLOW_GUARD=$(echo "$SLOW_TAIL" | grep -cE '^Tests:|OK \([0-9]+ tests')
 if [ "$FAST_GUARD" -eq 0 ]; then FAST_RED=$((FAST_RED + 1)); fi
 if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Инвариант fast+slow=total (review#3): enforced, не печать. total — снимок
 # 19.09 (1084); при изменении числа тестов обновить (гейт при расхождении).
-TOTAL_EXPECTED=1084
+# Снимок 23.09 (bd78571): fast 1086 (ETB slow-маркеры сняты → в fast) + slow 11
+TOTAL_EXPECTED=1097
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

@@ -514,8 +514,12 @@ class Hive
         }
 
         // SPAWN-POOL (27.08): пул рецептов. Лимит из env (OOM-защита).
-        $maxDormant = max(1000, (int) (getenv('DORMANT_POOL_MAX') ?: '50000'));
-        $this->dormantPool = new DormantPool(300);
+        // DORMANT-CONFIG (24.09, premortem И-5): $maxDormant был мёртв —
+        // вычислялся и выбрасывался; теперь течёт в capacity DormantPool.
+        // PHP-falsy гвард: env '0' — строка, ?: молча подставил бы default.
+        $maxRaw = getenv('DORMANT_POOL_MAX');
+        $maxDormant = max(1000, (int) ($maxRaw !== false ? $maxRaw : '50000'));
+        $this->dormantPool = new DormantPool(300, $maxDormant);
 
         // Create TaskRouter with the population
         if ($this->taskRouter === null && ! empty($this->bees)) {
@@ -591,8 +595,10 @@ class Hive
     public function dormantPool(): DormantPool
     {
         if (! isset($this->dormantPool)) {
-            $maxDormant = max(1000, (int) (getenv('DORMANT_POOL_MAX') ?: '50000'));
-            $this->dormantPool = new DormantPool(300);
+            // DORMANT-CONFIG (24.09): capacity из env (см. bootstrap).
+            $maxRaw = getenv('DORMANT_POOL_MAX');
+            $maxDormant = max(1000, (int) ($maxRaw !== false ? $maxRaw : '50000'));
+            $this->dormantPool = new DormantPool(300, $maxDormant);
         }
         return $this->dormantPool;
     }

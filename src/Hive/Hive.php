@@ -432,6 +432,24 @@ class Hive
             }
             error_log('[bee_swarm] savePopulation failed: ' . $e->getMessage());
         }
+
+        // DORMANT-PERSIST (24.09): пул — часть состояния роя, материализуется
+        // той же точкой сохранения (restore-тест зовёт savePopulation напрямую;
+        // shutdown/ритм-100 идут через этот метод).
+        $this->saveDormantPoolSafe();
+    }
+
+    /**
+     * DORMANT-PERSIST: save пула без исключений наружу — сбой не валит
+     * сохранение пчёл (уже закоммичено выше, своя транзакция в saveToDb).
+     */
+    private function saveDormantPoolSafe(): void
+    {
+        try {
+            $this->dormantPool->saveToDb();
+        } catch (\Throwable $e) {
+            error_log('[bee_swarm] dormant_pool save failed: ' . $e->getMessage());
+        }
     }
 
     private function loadPopulation(): ?array
@@ -457,7 +475,7 @@ class Hive
         $this->bootstrap();
         // POPULATION-PERSISTENCE: сохранить популяцию при shutdown
         register_shutdown_function(function (): void {
-            $this->savePopulation();
+            $this->savePopulation(); // внутри — и dormant-pool (DORMANT-PERSIST)
         });
 
         // maxTicks=0: bootstrap только, без тиков (детерминированная проверка E₀)
@@ -520,6 +538,18 @@ class Hive
         $maxRaw = getenv('DORMANT_POOL_MAX');
         $maxDormant = max(1000, (int) ($maxRaw !== false ? $maxRaw : '50000'));
         $this->dormantPool = new DormantPool(300, $maxDormant);
+        // DORMANT-PERSIST (24.09, triage R4): восстановить dormant-рецепты
+        // после рестарта (load БЕЗ DELETE — таблица = источник истины между
+        // save'ами; save ниже перезаписывает целиком). Fail-safe: битая
+        // строка не валит bootstrap.
+        try {
+            $restoredPool = $this->dormantPool->loadFromDb();
+            if ($restoredPool > 0) {
+                $this->log('DORMANT_POOL_RESTORE: ' . $restoredPool . ' recipes loaded');
+            }
+        } catch (\Throwable $e) {
+            $this->log('DORMANT_POOL_RESTORE failed: ' . $e->getMessage());
+        }
 
         // Create TaskRouter with the population
         if ($this->taskRouter === null && ! empty($this->bees)) {
@@ -568,7 +598,15 @@ class Hive
                 $this->log('RETRO_OVERFIT: removed ' . count($retro['overfit']) . ' laws');
             }
             $this->log('Retrospective: ' . count($retro['passed']) . ' passed, '
-                . count($retro['overfit']) . ' overfit removed');
+                . count($retro['overfit']) . ' overfit removed'
+                . sprintf(' (ratio=%.2f)', $retro['removed_ratio'] ?? 0.0));
+            // RETRO-QUARANTINE (24.09): алерт при массовом удалении за проход
+            // (>20%) — вероятный дрейф корпуса, законы восстановимы из
+            // laws_quarantine.
+            if (! empty($retro['alert'])) {
+                $this->log('RETRO_QUARANTINE_ALERT: removed_ratio=' . sprintf('%.2f', $retro['removed_ratio'])
+                    . ' — проверьте FORAGER_SOURCES на дрейф; восстановление: laws_quarantine');
+            }
         }
 
         // Corpus
@@ -1086,6 +1124,15 @@ class Hive
         // (13 дней на ноуте!). Теперь: каждые 100 тиков сохраняем — теряем ≤100.
         if ($this->tick % 100 === 0 && $this->tick > 0) {
             $this->savePopulation();
+        }
+        // DORMANT-PERSIST (24.09): тот же ритм, что bee_persistence —
+        // pkill -9 терял не только пчёл, но и dormant-потомство.
+        if ($this->tick % 100 === 0 && $this->tick > 0) {
+            try {
+                $this->dormantPool->saveToDb();
+            } catch (\Throwable $e) {
+                $this->log('DORMANT_POOL_SAVE failed: ' . $e->getMessage());
+            }
         }
         // S1.5 фаза 2 (11.08): MONOCULTURE ALARM — diversity < порога
         // (env MONOCULTURE_ALARM_DIVERSITY, default 0.34): сжатие грамматики.

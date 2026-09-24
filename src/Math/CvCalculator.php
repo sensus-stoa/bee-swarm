@@ -21,9 +21,13 @@ class CvCalculator
             return 9.99;
         }
 
-        // Exact match
+        // Exact match — eps ОТНОСИТЕЛЬНЫЙ, единый с Search::cv (L1 unify,
+        // EXP-036 SCALE-INVARIANCE): abs-eps 1e-4 отвергал точный закон
+        // 10·f(x) с остатком ≤1e-3 (K3 kill-кейс) → два источника истины
+        // (Search принимал, LawValidator/retrospectiveValidate отвергали).
+        // 1e-4·max(1,|y_i|) инвариантен к масштабу y.
         for ($i = 0; $i < $n; $i++) {
-            if (abs($vec[$i] - $y[$i]) > 0.0001) {
+            if (abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
                 break;
             }
             if ($i === $n - 1) {

@@ -11,6 +11,15 @@ class Search
      */
     private const PARSIMONY_LAMBDA = 5e-5;
 
+    /**
+     * Y_MAX-AMND (24.09, premortem И-2): потолок абсолютной компоненты
+     * допуска. Относительный eps 0.0001*|y| при |y|~1e6 даёт ~100 абс.
+     * единиц — закон с аддитивным bias нефальсифицируем exact-check'ом.
+     * Клэмп: eps растёт с масштабом только до Y_MAX; семантика EXP-036
+     * ниже потолка не меняется.
+     */
+    private const Y_MAX_EXACT = 1000000.0;
+
     public static function cv(array $vec, array $y, float $shift = 0.0): float
     {
         $n = count($vec);
@@ -20,7 +29,7 @@ class Search
             // SCALE-INVARIANCE (EXP-036 2.5, 29.08): eps ОТНОСИТЕЛЬНЫЙ —
             // abs-eps 1e-4 отвергал точный закон 10·f(x) c остатком ≤1e-3
             // (K3 kill-test). 1e-4·max(1,|y_i|) инвариантен к масштабу y.
-            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
+            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
                 $exact = false;
                 break;
             }
@@ -1061,7 +1070,7 @@ class Search
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
                 // EXP-035: null (ноль-делитель в L2/фича) — не точный закон
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
                     $exact = false;
                     break;
                 }
@@ -1107,7 +1116,7 @@ class Search
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
+                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
                     $exact = false;
                     break;
                 }

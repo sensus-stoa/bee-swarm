@@ -11,6 +11,13 @@ namespace BeeSwarm\Math;
 class CvCalculator
 {
     /**
+     * Y_MAX-AMND (24.09): потолок абсолютной компоненты допуска.
+     * Имя unified с Search::Y_MAX_EXACT (criterion-audit YMAX#2: одна
+     * формула — одно имя, grep-аудит); значение 1e6 в обоих классах.
+     */
+    private const Y_MAX_EXACT = 1000000.0;
+
+    /**
      * CV = σ(ratios) / |mean(ratios)|, где ratio[i] = vec[i] / y[i].
      * CV=0 означает точное совпадение с точностью до константного множителя.
      */
@@ -27,7 +34,7 @@ class CvCalculator
         // (Search принимал, LawValidator/retrospectiveValidate отвергали).
         // 1e-4·max(1,|y_i|) инвариантен к масштабу y.
         for ($i = 0; $i < $n; $i++) {
-            if (abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, abs($y[$i]))) {
+            if (abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
                 break;
             }
             if ($i === $n - 1) {

@@ -88,6 +88,38 @@ class Database
     {
         $db = self::$instance;
         $db->exec(sprintf(self::LAWS_DDL, 'laws'));
+
+        // RETRO-QUARANTINE (24.09, premortem И-1): overfit-законы не
+        // удаляются молча — переносятся в карантин (полная строка laws +
+        // quarantined_at; восстановимо, метрика removed_ratio считается
+        // по проходу ретро). DDL по прецеденту laws_migrated (sprintf LAWS_DDL).
+        $db->exec(sprintf(self::LAWS_DDL, 'laws_quarantine'));
+        // Idempotent migration (V0.16-прецедент columnExists): Database::reset
+        // в тестах повторно гоняет migrate в одном процессе — голый ALTER
+        // падает 'duplicate column name' на втором прогоне.
+        if (! self::columnExists($db, 'laws_quarantine', 'quarantined_at')) {
+            $db->exec("ALTER TABLE laws_quarantine ADD COLUMN quarantined_at TEXT DEFAULT (datetime('now'))");
+        }
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_quarantine_name ON laws_quarantine (name)');
+        // criterion-audit RQ#1: уникальность ключа карантина — повторное
+        // выучивание + повторный overfit обновляет строку (INSERT OR REPLACE
+        // в валидаторе), дублей нет; крэш между INSERT и DELETE невозможен
+        // (атомарная пара в транзакции валидатора).
+        $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quarantine_name_formula ON laws_quarantine (name, formula)');
+
+        // DORMANT-PERSIST (24.09, triage R4): dormant-рецепты переживают
+        // рестарт демона (прецедент bee_persistence). pool_id — исходный id
+        // из пула (nextId продолжается за max(pool_id) при load).
+        $db->exec('CREATE TABLE IF NOT EXISTS dormant_pool (
+            pool_id INTEGER PRIMARY KEY,
+            recipe TEXT NOT NULL,
+            sector TEXT NOT NULL,
+            novelty REAL NOT NULL DEFAULT 0.0,
+            age INTEGER NOT NULL DEFAULT 0,
+            lineage_id TEXT DEFAULT \'\',
+            awakened INTEGER NOT NULL DEFAULT 0,
+            awakened_at INTEGER DEFAULT NULL
+        )');
         // S1.11: Add source_path + content_sample to existing laws table
         try {
             $db->exec('ALTER TABLE laws ADD COLUMN source_path TEXT DEFAULT \'\'');

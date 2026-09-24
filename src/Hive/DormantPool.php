@@ -193,6 +193,77 @@ class DormantPool
         unset($this->pool[$id]);
     }
 
+    /**
+     * DORMANT-PERSIST (24.09, triage R4): материализовать пул в dormant_pool
+     * (полная замена — состояние пула = источник истины на момент save;
+     * прецедент savePopulation). Возвращает число записанных строк.
+     */
+    public function saveToDb(): int
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $db->beginTransaction();
+        try {
+            $db->exec('DELETE FROM dormant_pool');
+            $stmt = $db->prepare(
+                'INSERT INTO dormant_pool (pool_id, recipe, sector, novelty, age, lineage_id, awakened, awakened_at)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+            );
+            $n = 0;
+            foreach ($this->pool as $id => $entry) {
+                $stmt->execute([
+                    $id, json_encode($entry['recipe']), $entry['sector'], $entry['novelty'],
+                    $entry['age'], $entry['lineage_id'],
+                    isset($entry['awakened']) ? 1 : 0, $entry['awakened_at'] ?? null,
+                ]);
+                $n++;
+            }
+            $db->commit();
+
+            return $n;
+        } catch (\Throwable $e) {
+            $db->rollBack();
+            throw $e;
+        }
+    }
+
+    /**
+     * DORMANT-PERSIST: восстановить пул из dormant_pool. nextId
+     * продолжается за max(pool_id) — id не переиспользуются (remove() чужих
+     * записей невозможен). Возвращает число восстановленных записей.
+     */
+    public function loadFromDb(): int
+    {
+        $db = \BeeSwarm\Infra\Database::get();
+        $rows = $db->query('SELECT pool_id, recipe, sector, novelty, age, lineage_id, awakened, awakened_at FROM dormant_pool ORDER BY pool_id')
+            ->fetchAll(\PDO::FETCH_ASSOC);
+
+        $maxId = 0;
+        foreach ($rows as $row) {
+            $recipe = json_decode($row['recipe'], true);
+            if (! is_array($recipe)) {
+                continue; // битая строка не валит рестарт (fail-safe, как loadPopulation)
+            }
+            $entry = [
+                'recipe' => $recipe,
+                'sector' => $row['sector'],
+                'novelty' => (float) $row['novelty'],
+                'age' => (int) $row['age'],
+                'lineage_id' => $row['lineage_id'],
+            ];
+            if ((int) $row['awakened'] === 1) {
+                $entry['awakened'] = true;
+                // NULL-awakened_at при awakened=1 save'ом не создаётся;
+                // fallback time() — допустимая аппроксимация (criterion-audit DP#3)
+                $entry['awakened_at'] = $row['awakened_at'] !== null ? (int) $row['awakened_at'] : time();
+            }
+            $this->pool[(int) $row['pool_id']] = $entry;
+            $maxId = max($maxId, (int) $row['pool_id']);
+        }
+        $this->nextId = max($this->nextId, $maxId + 1);
+
+        return count($this->pool);
+    }
+
     public function size(): int
     {
         return count($this->pool);

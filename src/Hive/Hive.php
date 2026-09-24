@@ -487,12 +487,18 @@ class Hive
         $this->log('DATA_BOOTSTRAP_CORPUS: metrics.jsonl, Obsidian vault');
         $this->log('DATA_BOOTSTRAP_GRAMMAR: BASE_OPS + SEMANTIC_OPS');
 
-        // POPULATION-PERSISTENCE (P0, 06.08): восстановление популяции
+        // POPULATION-PERSISTENCE (P0, 06.08): восстановление популяции.
+        // P1-RESTORE-ROUTER (24.09): RESTORE НЕ делает ранний return —
+        // проваливается в общий init. Раньше TaskRouter/OverlapTracker/
+        // dormantPool/preloadKnown/heldout/retro создавались ТОЛЬКО ниже
+        // RESTORE-return → после рестарта демона с непустой
+        // bee_persistence taskRouter=null навсегда → ENERGY_REFUSAL на
+        // каждый тик (bugs/bug-restore-no-taskrouter.md). Гварды === null
+        // ниже защищают от двойного создания; cold-start ветка остаётся.
         $restored = $this->loadPopulation();
         if ($restored !== null) {
             $this->bees = $restored;
             $this->log('RESTORE: ' . count($this->bees) . ' bees loaded from DB');
-            return;
         }
 
         // §0.6: Bootstrap Phase — cold start with seed population
@@ -517,7 +523,7 @@ class Hive
         }
 
         // §2.5: Log initial generation 0
-        if ($this->spawnManager->getGeneration() === 0 && ! empty($this->bees)) {
+        if (! isset($restored) && $this->spawnManager->getGeneration() === 0 && ! empty($this->bees)) {
             $this->log('GEN: 0 pop=' . count($this->bees) . ' (bootstrap)');
         }
 

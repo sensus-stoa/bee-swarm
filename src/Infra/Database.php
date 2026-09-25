@@ -107,6 +107,17 @@ class Database
         // (атомарная пара в транзакции валидатора).
         $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quarantine_name_formula ON laws_quarantine (name, formula)');
 
+        // V0.15 WU-2: предсказательные классы эквивалентности. NULL = закон
+        // без класса (закон без конгруэнтной пары не обязан его иметь).
+        // Idempotent (columnExists-прецедент V0.16): повторный migrate в одном
+        // процессе не падает 'duplicate column name'.
+        if (! self::columnExists($db, 'laws', 'class_id')) {
+            $db->exec('ALTER TABLE laws ADD COLUMN class_id TEXT DEFAULT NULL');
+        }
+        if (! self::columnExists($db, 'laws', 'class_domain_json')) {
+            $db->exec('ALTER TABLE laws ADD COLUMN class_domain_json TEXT DEFAULT NULL');
+        }
+
         // DORMANT-PERSIST (24.09, triage R4): dormant-рецепты переживают
         // рестарт демона (прецедент bee_persistence). pool_id — исходный id
         // из пула (nextId продолжается за max(pool_id) при load).

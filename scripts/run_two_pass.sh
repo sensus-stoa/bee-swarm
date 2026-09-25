@@ -135,7 +135,8 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Инвариант fast+slow=total (review#3): enforced, не печать. total — снимок
 # 19.09 (1084); при изменении числа тестов обновить (гейт при расхождении).
 # Снимок 23.09 (bd78571): fast 1086 (ETB slow-маркеры сняты → в fast) + slow 11
-TOTAL_EXPECTED=1120
+# Снимок 25.09 (V0.15): +13 congruence-тестов (Detector 3, RKCong 4, Escrow 3, Report 3)
+TOTAL_EXPECTED=1133
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

@@ -1960,14 +1960,37 @@ class Hive
         $result = IdleDreamer::tick($tasks, $grammarOps, $epsilon);
         if ($result !== null) {
             $foundAny = false;
-            $this->recordDiscovery($result, [
-                'name' => $result['task_name'] ?? $result['atom'],
-            ], $result['domain'] ?? 'dream', $foundAny);
+            $this->recordDreamDiscovery($result);
             if ($foundAny) {
                 $this->log("DREAM: {$result['atom']} [{$result['domain']}]");
             }
         } else {
             usleep(100_000);
+        }
+    }
+
+    /**
+     * DREAM-CONGRUENCE (29.09): запись dream-открытия. Task несёт data
+     * (срез задачи) + fingerprint — детектор конгруэнтности (дыра А),
+     * LawClassifier (дыра Б) и V-спавн работают как в search-пути.
+     * Fingerprint рассчитывается TaskRouter'ом (T5-post-3 контракт).
+     *
+     * @param array<string, mixed> $result
+     */
+    private function recordDreamDiscovery(array $result): void
+    {
+        $foundAny = false;
+        $taskFp = $this->taskRouter !== null
+            ? $this->taskRouter->fingerprint(['data' => $result['data'] ?? [], 'content' => ''])
+            : '';
+        $this->recordDiscovery($result, [
+            'name' => $result['task_name'] ?? $result['atom'],
+            'data' => $result['data'] ?? [],
+            'fingerprint' => $taskFp,
+        ], $result['domain'] ?? 'dream', $foundAny, $result['X'] ?? null, $result['y'] ?? null);
+        // foundAny — локальный для reflection-вызова теста idleDreamTick.
+        if ($foundAny) {
+            return;
         }
     }
 

@@ -31,6 +31,39 @@ final class LawShape
     }
 
     /**
+     * VERIF-COLLABEL-PARITY (08.10): перевод доменных имён колонок в generic xN.
+     *
+     * Конвенция — ТОЧНАЯ инверсия Search::testCv:1427-1434 (домен→xN там же):
+     * map label→"x{i}", uksort по длине DESC (longest-first), str_replace.
+     * Без longest-first 'q' съедает префикс 'q_lo' → 'x0_lo'.
+     *
+     * Применяется к КАНОНУ (normalize → toGeneric → mask): spawnForLaw
+     * пишет law_shape = of(toGeneric(canon, labels)) — паритет масок с
+     * generic-путём V0.14 WU-5.
+     *
+     * @param array<int, string>|null $colLabels позиция → имя колонки
+     */
+    public static function toGeneric(string $formula, ?array $colLabels): string
+    {
+        if ($colLabels === null || $colLabels === []) {
+            return $formula;
+        }
+        $map = [];
+        foreach ($colLabels as $i => $label) {
+            if (! is_string($label) || $label === '' || $label === "x{$i}") {
+                continue;
+            }
+            $map[$label] = "x{$i}";
+        }
+        if ($map === []) {
+            return $formula;
+        }
+        uksort($map, static fn (string $a, string $b): int => strlen($b) <=> strlen($a));
+
+        return (string) str_replace(array_keys($map), array_values($map), $formula);
+    }
+
+    /**
      * Law-distance: 0 = одна форма (form-invariant), 1 = разные.
      */
     public static function distance(string $a, string $b): int

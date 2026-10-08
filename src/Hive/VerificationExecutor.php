@@ -154,7 +154,16 @@ final class VerificationExecutor
      */
     private function anchorGate(array $vtask, string $formula, float $cv, array $X, array $y): array
     {
-        $ratio = $this->anchorRatio($formula, (string) $vtask['law_formula'], $X, $y);
+        // VERIF-COLLABEL-PARITY (08.10): anchor-статистика считается на
+        // ресемпл-срезе (generic xN-матрица) — доменный law_formula там
+        // не вычислим (evalAtom понимает только xN → ratio null → вечный
+        // inconclusive foraged-законов). Читаем generic-канон; ghost-задача
+        // (колонка NULL — legacy до миграции) → доменный fallback.
+        $lawFormula = (string) ($vtask['law_formula_generic'] ?? '');
+        if ($lawFormula === '') {
+            $lawFormula = (string) $vtask['law_formula'];
+        }
+        $ratio = $this->anchorRatio($formula, $lawFormula, $X, $y);
         if ($ratio === null) {
             $this->logTask('VINCONCLUSIVE', $vtask, "anchor_unevaluable formula={$formula}");
 

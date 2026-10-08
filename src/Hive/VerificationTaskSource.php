@@ -50,35 +50,69 @@ final class VerificationTaskSource
      * verification_tasks (persist глушит сбой: наблюдатель-контракт, сбой
      * не роняет discovery).
      */
-    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint, array $sliceRows = [], ?float $epsilon = null): array
+    public function spawnForLaw(string $lawFormula, string $domain, string $fingerprint, array $sliceRows = [], ?float $epsilon = null, ?array $colLabels = null): array
     {
         // Канон-ключ: cross-table инвариант (fake-LOSS урок) — все писатели
         // V-задач и laws обязаны использовать одну нормализацию формулы.
         $canon = ExpressionNormalizer::normalize($lawFormula);
         $lawId = $this->resolveLawId($canon, $domain);
-        // Премортем #3 (10.09): в живом пути хук стоит после record → miss =
-        // канон-дрейф между писателями. Молчание = таски-сироты без сигнала.
-        if ($lawId === 0) {
-            error_log("VTS resolve miss: law_id=0 formula={$canon} domain={$domain}");
-        }
-        $dataJson = $sliceRows === [] ? null : json_encode($sliceRows);
-        $epsilon = $this->guardEpsilon($epsilon);
+        $this->logResolveMiss($lawId, $canon, $domain);
 
         $stmt = Database::get()->prepare(
             'INSERT OR IGNORE INTO verification_tasks
-             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain, data_json, epsilon)
-             VALUES (?,?,?,?,?,?,?,?,?,?)'
+             (law_id, law_formula, law_formula_generic, law_shape, kind, resample_seed, target_sign, fingerprint, domain, data_json, epsilon)
+             VALUES (?,?,?,?,?,?,?,?,?,?,?)'
         );
 
-        return $this->persistLawTasks($stmt, [
+        return $this->persistLawTasks($stmt, $this->lawTaskBase(
+            $lawId,
+            $canon,
+            $colLabels,
+            $fingerprint,
+            $domain,
+            $this->encodeSlice($sliceRows),
+            $this->guardEpsilon($epsilon)
+        ));
+    }
+
+    /**
+     * VERIF-COLLABEL-PARITY (08.10): generic-канон = перевод имён колонок
+     * в xN (конвенция Search::testCv). law_shape — маска GENERIC-формы
+     * (паритет с ресемпл-срезом исполнителя); law_formula остаётся
+     * доменным (join-ключ laws/escrow). Без labels — прежний контракт.
+     *
+     * @return array<string, mixed>
+     */
+    private function lawTaskBase(int $lawId, string $canon, ?array $colLabels, string $fingerprint, string $domain, ?string $dataJson, ?float $epsilon): array
+    {
+        $generic = LawShape::toGeneric($canon, $colLabels);
+
+        return [
             'law_id' => $lawId,
             'law_formula' => $canon,
-            'law_shape' => LawShape::of($canon),
+            'law_formula_generic' => $generic,
+            'law_shape' => LawShape::of($generic),
             'fingerprint' => $fingerprint,
             'domain' => $domain,
             'data_json' => $dataJson,
             'epsilon' => $epsilon,
-        ]);
+        ];
+    }
+
+    /**
+     * Премортем #3 (10.09): в живом пути хук стоит после record → miss =
+     * канон-дрейф между писателями. Молчание = таски-сироты без сигнала.
+     */
+    private function logResolveMiss(int $lawId, string $canon, string $domain): void
+    {
+        if ($lawId === 0) {
+            error_log("VTS resolve miss: law_id=0 formula={$canon} domain={$domain}");
+        }
+    }
+
+    private function encodeSlice(array $sliceRows): ?string
+    {
+        return $sliceRows === [] ? null : json_encode($sliceRows);
     }
 
     /**
@@ -143,8 +177,11 @@ final class VerificationTaskSource
     private function persist(\PDOStatement $stmt, array $task): void
     {
         try {
+            // ПОРЯДОК = порядок плейсхолдеров INSERT (питфолл 05.09: перепутанный
+            // порядок молча пишет данные в чужие колонки).
             $stmt->execute([
-                $task['law_id'], $task['law_formula'], $task['law_shape'],
+                $task['law_id'], $task['law_formula'], $task['law_formula_generic'],
+                $task['law_shape'],
                 $task['kind'], $task['resample_seed'], $task['target_sign'],
                 $task['fingerprint'], $task['domain'], $task['data_json'],
                 $task['epsilon'],
@@ -159,34 +196,45 @@ final class VerificationTaskSource
      * CONTRADICTION-сигнал → research-задача: обе гипотезы противоречия
      * уезжают в одну задачу для исполнителя WU-2.
      */
-    public function spawnInvertedResearch(string $formulaA, string $formulaB, string $domain): void
+    public function spawnInvertedResearch(string $formulaA, string $formulaB, string $domain, ?array $colLabels = null): void
     {
         $canonA = ExpressionNormalizer::normalize($formulaA);
         $canonB = ExpressionNormalizer::normalize($formulaB);
+        // VERIF-COLLABEL-PARITY (08.10): второй писатель law_shape — та же
+        // конвенция generic-маски, что и spawnForLaw (пацанс-аудит WU-5).
+        $genericA = LawShape::toGeneric($canonA, $colLabels);
 
-        // formula_b в UNIQUE: две пары противоречий с одним canonA, но разными
-        // альтернативами — разные задачи (находка ревью #2, 10.09).
-        $stmt = Database::get()->prepare(
-            'INSERT OR IGNORE INTO verification_tasks
-             (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, formula_a, formula_b, domain)
-             VALUES (?,?,?,?,?,?,?,?,?,?)'
-        );
         try {
-            $stmt->execute([
-                0,
-                $canonA,
-                LawShape::of($canonA),
-                self::KIND_INVERTED_RESEARCH,
-                0,
-                self::SIGN_INVERTED,
-                '',
-                $canonA,
-                $canonB,
-                $domain,
-            ]);
+            $this->persistResearchTask($canonA, $canonB, $genericA, $domain);
         } catch (\PDOException $e) {
             error_log('VTS research spawn failed: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * formula_b в UNIQUE: две пары противоречий с одним canonA, но разными
+     * альтернативами — разные задачи (находка ревью #2, 10.09).
+     */
+    private function persistResearchTask(string $canonA, string $canonB, string $genericA, string $domain): void
+    {
+        $stmt = Database::get()->prepare(
+            'INSERT OR IGNORE INTO verification_tasks
+             (law_id, law_formula, law_formula_generic, law_shape, kind, resample_seed, target_sign, fingerprint, formula_a, formula_b, domain)
+             VALUES (?,?,?,?,?,?,?,?,?,?,?)'
+        );
+        $stmt->execute([
+            0,
+            $canonA,
+            $genericA,
+            LawShape::of($genericA),
+            self::KIND_INVERTED_RESEARCH,
+            0,
+            self::SIGN_INVERTED,
+            '',
+            $canonA,
+            $canonB,
+            $domain,
+        ]);
     }
 
     /**

@@ -1424,13 +1424,12 @@ class Search
         // (4 → 3+1) и exact-проверял 1 точку — зашумлённые данные всегда 9.99.
         // CV формулы напрямую по ВСЕМ тестовым точкам через ExpressionEvaluator.
         // Метки колонок (colLabels: 'feature') → xN: evaluator понимает x0..x3.
+        // TESTCV-TOGENERIC-DEDUP (08.10): единый источник конвенции —
+        // LawShape::toGeneric (гварды numeric/empty/xN внутри). Дубль здесь
+        // (до 08.10) дрейфовал бы от переводчика и молча вернул P0
+        // all-VREFUTED (triage audit MED-1 VERIF-COLLABEL-PARITY).
         if (! empty($colLabels)) {
-            $map = [];
-            foreach ($colLabels as $i => $label) {
-                $map[(string) $label] = "x{$i}";
-            }
-            uksort($map, fn (string $a, string $b): int => strlen($b) <=> strlen($a));
-            $name = str_replace(array_keys($map), array_values($map), $name);
+            $name = \BeeSwarm\Core\LawShape::toGeneric($name, $colLabels);
         }
         // CONCERNS (deleg_6ee92a50): R-статистики фиксируются по TRAIN
         // (константы модели), иначе R-подгонка пересчитывает их на тесте и

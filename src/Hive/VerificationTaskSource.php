@@ -112,7 +112,7 @@ final class VerificationTaskSource
 
     private function encodeSlice(array $sliceRows): ?string
     {
-        return $sliceRows === [] ? null : json_encode($sliceRows);
+        return $sliceRows === [] ? null : (string) json_encode($sliceRows);
     }
 
     /**

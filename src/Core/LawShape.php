@@ -50,9 +50,18 @@ final class LawShape
         }
         $map = [];
         foreach ($colLabels as $i => $label) {
-            if (! is_string($label) || $label === '' || $label === "x{$i}") {
+            // TESTCV-TOGENERIC-DEDUP (08.10): numeric-строка ('5') проходит
+            // is_string, но PHP int-cast превращает ключ '5' в int → needle
+            // '(Kx0+x1)' из '(K5+feat)' (порча K-константы). Пустая метка даёт
+            // хвостовой needle '' (str_replace стирает все позиции). Обе —
+            // skip: конвенция переводит ТОЛЬКО строковые имена колонок.
+            if (! is_string($label) || $label === '' || is_numeric($label) || $label === "x{$i}") {
                 continue;
             }
+            // ПРЕДУСЛОВИЕ инъективности (triage premortem Х2, 08.10): метка
+            // вида xN на ЧУЖОЙ позиции (feat на i=1 при занятом x1) схлопнет
+            // две колонки в один placeholder — колонки датасета с именами
+            // xN обязаны стоять на своих позициях (инвариант ingestion).
             $map[$label] = "x{$i}";
         }
         if ($map === []) {

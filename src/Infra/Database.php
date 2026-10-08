@@ -328,6 +328,14 @@ class Database
         if (! self::columnExists($db, 'verification_tasks', 'epsilon')) {
             $db->exec('ALTER TABLE verification_tasks ADD COLUMN epsilon REAL DEFAULT NULL');
         }
+        // VERIF-COLLABEL-PARITY (08.10): generic-канон закона в V-задаче.
+        // law_formula остаётся доменным (join-ключ laws/escrow — fake-LOSS
+        // урок), anchor-гейт исполнителя считает по generic-версии
+        // (evalAtom понимает только xN). Fail-loud ALTER (V0.16-прецедент:
+        // голый catch глотал lock/busy как «column exists»).
+        if (! self::columnExists($db, 'verification_tasks', 'law_formula_generic')) {
+            $db->exec('ALTER TABLE verification_tasks ADD COLUMN law_formula_generic TEXT DEFAULT NULL');
+        }
         // V0.14 WU-3 (verification-economy): эскроу отложенной награды.
         // 70% награды за закон держится здесь до консенсуса V-задач:
         // settle → выплата носителю, burn → сгорание (dissip-фонд).

@@ -956,7 +956,11 @@ class Hive
             $this->verificationTasks->spawnInvertedResearch(
                 $a['norm'],
                 $b['norm'],
-                $task['domain'] ?? 'unknown'
+                $task['domain'] ?? 'unknown',
+                // VERIF-COLLABEL-PARITY (08.10): та же конвенция масок, что и
+                // spawnForLaw (пацанс-аудит WU-5 — второй писатель law_shape).
+                isset($task['col_labels']) && is_array($task['col_labels'])
+                    ? $task['col_labels'] : null
             );
         }
     }
@@ -1817,7 +1821,11 @@ class Hive
                 $domain,
                 $vFp,
                 $sliceRows,
-                $vFp === '' ? null : $this->getEpsilon($vFp)
+                $vFp === '' ? null : $this->getEpsilon($vFp),
+                // VERIF-COLLABEL-PARITY (08.10): labels задачи → generic-маска
+                // law_shape (foraged-путь: закон доменный, ресемпл-срез generic).
+                isset($task['col_labels']) && is_array($task['col_labels'])
+                    ? $task['col_labels'] : null
             );
         }
         // DISSIPATION-LOOP Phase 6 (§2.5.4): закон попадает в реестр поколений

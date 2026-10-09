@@ -153,6 +153,64 @@ hidden weakness.
 
 Full series: EXP-027..028, EXP-036 in the experiment journal.
 
+## Why PHP (and why not)
+
+The honest answer: PHP is the author's production stack, and the protocol is
+deliberately language-agnostic (§0.2 — "does not prescribe a specific
+implementation"). Every criterion is a portable script.
+
+The measured part: on the task class this system targets (small-N physical
+data, depth ≤ 3 grammar, verification-heavy workload), the search is not the
+bottleneck — verification is. On the shared benchmark, Bee Swarm ran ~37 s
+per seed at 20/20 while PySR took 60 s at 19/20 (EXP-036). For billion-row
+datasets, a Julia/C++ port of the *search layer* would indeed win — the
+protocol text welcomes exactly that; the criteria, gates, and null machinery
+are what make results trustworthy, and they are portable by design.
+
+This is a boundary statement, not a denial: for 10⁷-row raw throughput, use
+PySR. For deciding whether what anything found is an invariant or an
+artifact — that is the part that does not care about the language.
+
+## This is not a refusal machine
+
+A fair worry: requiring CV→0 on stochastic real-world data might produce a
+system that answers NOISE to everything outside school physics. Measured
+evidence says otherwise:
+
+- **Dissipation ladder (§1.19):** the system does not just refuse noise —
+  it *measures how much noise a law tolerates* before dying (pilot d* = 0.40,
+  byte margin decaying linearly). Tolerance is a number, not a dogma.
+- **Blind transition detection on real noisy data (§1.20):** validated on
+  8 years of published French nuclear grid events (46,141 rows) — the 2023
+  output halving was detected at −4.5σ with zero false alarms in quiet-year
+  controls. The machine distinguishes regime change from noise on messy
+  real-world data.
+- **AUTO-MPG:** PySR's R² = 0.708 predictive structure is reported as genuine
+  — the refusal is about *certification* (invariant vs approximation), not
+  about pretending structure does not exist.
+
+## Terminology map
+
+The metaphors name mechanisms; every poetic term maps to a protocol section
+and a standard concept:
+
+| Term used here | Standard concept | Protocol |
+|----------------|------------------|----------|
+| bees, hive | island-model population of autonomous agents | §2.1–2.4 |
+| hunger mutations | energy-budget-driven mutation rate | §2.1, §2.5.14 |
+| grammar birth / atoms | automatically defined functions (Koza ADF) | §1.4.1, §3.8 |
+| cultural transfer | cross-domain operator reuse | §3.2, §3.8 |
+| refusal taxonomy | structured rejection with diagnosis | §2.5.15 |
+| escrow / delayed reward | verification-gated reward settlement | §2.2, V0.14 |
+| dissipation ladder | measured noise tolerance / death threshold | §1.19 |
+| two-part code gate | MDL / minimum description length certification | §1.14 |
+| monoculture alarm | population diversity monitoring | §2.5.8 |
+
+The maps go one way only: the poetic names are the API of the running system
+(log lines, DB tables, test names), so the code and the protocol speak the
+same language. Nothing is hidden behind the metaphors — each one resolves to
+a numbered, script-verifiable section.
+
 ## Architecture (v4)
 
 ```

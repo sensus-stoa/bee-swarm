@@ -6,30 +6,95 @@
 > hallucinate — and **reuse their discoveries as building blocks across domains**
 > (cultural transfer, statistically proven).
 
+## The refusal showcase
+
+The system's defining property is not what it finds — it is what it refuses to
+certify. Two measured cases:
+
+**260 market laws, all rejected.** We pointed the swarm at MOEX stock data
+(8 tickers, 2018–2024 train, 2025–2026 out-of-sample). It surfaced 260 foraged
+"laws" — every single one passed the internal held-out check (CV 0.03–0.15).
+Then the null-calibration layer ran the same formulas against shuffled
+targets: identical scores. **Verdict: zero of the 260 have predictive power.**
+94% were constant artifacts of the grammar (hardcoded `K1≡1.0`-class
+constants dressed up by affine normalization), the rest horizon-overlap
+tautologies (`ret1 ⊂ ret5`). The swarm was not fooled — the question was
+wrong, and the verification layer caught it. Honest refusal *is* a result.
+
+**AUTO-MPG: approximation ≠ invariant.** On the classic regression benchmark,
+PySR (SOTA symbolic regression) finds genuine predictive structure
+(R² = 0.708, below the null band). Bee Swarm **refuses** to certify it: the
+pre-registered invariant criterion (CV→0 on held-out) is not met. Approximation
+and invariant discovery are different tasks; conflating them is how discovery
+systems hallucinate.
+
 ## Protocol
 
-**DOI: [10.5281/zenodo.21810056](https://doi.org/10.5281/zenodo.21810056)** — CV→0 Autonomous Evolution Protocol v1.4 (four stages, every criterion falsifiable by script).
+**DOI: [10.5281/zenodo.23212766](https://doi.org/10.5281/zenodo.23212766)** —
+CV→0 Autonomous Evolution Protocol **v1.9** (published Oct 2026; four stages,
+every criterion falsifiable by script; dissipation ladder, blind transition
+detection, contradiction classifier). Concept line:
+[10.5281/zenodo.21810055](https://doi.org/10.5281/zenodo.21810055).
 
-Experiment journal: `Benchmarks/experiments-log.md` (EXP-001..026, honest logs including null results).
+Experiment journal: `Benchmarks/experiments-log.md` (EXP-001..039, honest logs
+including null results and retracted methodology).
 
 ## What the system does
 
-- **CV→0 criterion:** an expression is a law iff the coefficient of variation of `expression/target` on held-out data → 0. Not approximation — invariance.
-- **Structural refusal:** diagnoses WHY it cannot find a law: `GRAMMAR` / `DATA` / `NOISE` / `DEPTH`. It never guesses.
-- **Null-calibration:** thresholds calibrated against shuffled permutations until FPR = 0 (empirically: 0/100 on noise).
-- **GRAMMAR-BIRTH:** successful composite formulas are elevated to grammar operators (`B{hash} => definition`). Grammar evolves bottom-up from verified discoveries.
-- **CULTURAL TRANSFER (proven, EXP-022o/r/t):** operators born in domain A are systematically reused in domain B — 67% of A-atoms reused (180 reuse events), random-matched controls: 0/30. Fisher exact p ≈ 1.08×10⁻⁵. Reuse is registered at the point of application (touchAtom), rewarded in the energy economy (REUSE-REWARD ×1.5 reuse, ×2.0 cross-domain transfer), candidates are forgotten if unused (24h TTL).
-- **Honesty filters on input (S1.5):** position-artifact features (|corr(x, row-index)| > 0.99 — "laws about row numbers") and duplicate columns (|corr| > 0.99) are excluded before search.
-- **Population dynamics:** energy lifecycle (tick/search costs, discovery rewards, heritable params), spawn with mutated grammar, hunger mutations at E<5, gap-spawn on plateau, population persistence, generation snapshots + monoculture alarm.
+- **CV→0 criterion:** an expression is a law iff the coefficient of variation
+  of `expression/target` on held-out data → 0. Not approximation — invariance.
+- **Structural refusal:** diagnoses WHY it cannot find a law:
+  `GRAMMAR` / `DATA` / `NOISE` / `DEPTH`. It never guesses.
+- **Null-calibration:** thresholds calibrated against shuffled permutations;
+  measured FPR = 0 on noise (0/100) and the 260-law case above.
+- **Two-part code certification (§1.14):** a law must compress held-out data
+  better than its own description costs; degenerate "laws" fail byte economics.
+- **GRAMMAR-BIRTH:** successful composite formulas are elevated to grammar
+  operators (`B{hash} => definition`). Grammar evolves bottom-up from verified
+  discoveries.
+- **CULTURAL TRANSFER (proven, EXP-022o/r/t):** operators born in domain A are
+  systematically reused in domain B — 67% of A-atoms reused (180 reuse
+  events), random-matched controls: 0/30. Fisher exact p ≈ 1.08×10⁻⁵. Reuse is
+  registered at the point of application (touchAtom), rewarded in the energy
+  economy (REUSE-REWARD ×1.5 reuse, ×2.0 cross-domain transfer), candidates
+  are forgotten if unused (24h TTL).
+- **Language emergence, formalized (§3.8, VERIFY-2-8):** the compressor
+  distills isomorphic laws from two domains into one atom (max−min over the
+  heat/diffusion molecule); the atom then solves a third domain that raw
+  search of the same budget cannot solve at all (raw depth-2 structurally
+  impossible vs with-atom depth-3 exact, cv≈0).
+- **Dissipation ladder (§1.19):** the death threshold d* of a law is measured
+  — how much of the signal may be replaced by noise before the structure dies
+  (pilot: d* = 0.40, byte margin decays linearly). Law↔noise symmetry is
+  byte-measurable in both directions (chaotizer: XOR-encrypted laws read as
+  noise, key restores them bit-for-bit).
+- **Blind transition detection (§1.20):** a three-channel consensus detector
+  (frozen-law bias / signflip collapse / replication consistency) flags entry
+  into an unknown regime without knowing its law. Validated on 8 years of
+  published French nuclear grid events (46,141 rows): the 2023 output
+  halving detected at −4.5σ, zero false alarms in quiet-year controls;
+  per-unit records confirm the curtailment mechanics the national aggregate
+  masks.
+- **Honesty filters on input (S1.5):** position-artifact features
+  (|corr(x, row-index)| > 0.99 — "laws about row numbers") and duplicate
+  columns are excluded before search.
+- **Population dynamics:** energy lifecycle (tick/search costs, discovery
+  rewards, heritable params), spawn with mutated grammar, hunger mutations at
+  E<5, gap-spawn on plateau, escrow-based delayed rewards (anti-grazing:
+  rewards settle only after independent verification), generation snapshots +
+  monoculture alarm.
 
-## Stage status (11.08.2026)
+## Stage status (09.10.2026)
 
 | Stage | Status |
 |-------|--------|
-| 0 — Reliable invariant extraction | ✅ 9/9 verify PASS, FPR=0/100 (shuffle), honest NOISE refusals (soduku, MOEX: 260/260 pseudo-laws caught by null-filter) |
-| 1 — Living population | 🔧 prod running 7 days (GEN 2726+, 514 discoveries, plateau cycles), verify_1_* on 13.08 after deploy |
-| 2 — Understanding | 🟡 transfer proven (Fisher 1e-5); boundaries/hierarchy mapped to stories |
-| 3 — Autonomy | specification ready |
+| 0 — Reliable invariant extraction | ✅ 9/9 verify PASS, FPR=0 on noise, honest NOISE refusals; two-part code gate + dissipation ladder + blind transition detection shipped (v1.9) |
+| 1 — Living population | ✅ verify_1_* suite passed 13.08 (escrow economy, ensemble certification, verifier-eps parity); continuous prod run paused, resumable |
+| 2 — Understanding | 🔧 ladder in progress: §3.8 language emergence formalized as measurement (6 tests, closed 09.10); next: form invariance, self-model of ignorance |
+| 3 — Autonomy | specification ready (gated: verification machinery is immutable to the swarm — proposals never touch the referee) |
+
+Test suite: **1183/1183** two-pass (fast 1174 parallel + slow 9 serial),
+psalm clean.
 
 ## Quick start
 
@@ -37,10 +102,10 @@ Experiment journal: `Benchmarks/experiments-log.md` (EXP-001..026, honest logs i
 php scripts/verify/verify_all.php --stage=0 --log=logs/agenda.log
 ```
 
-Tests (TDD, in-memory DB isolation, paratest -p3):
+Tests (TDD, in-memory DB isolation, two-pass: fast parallel + slow serial):
 
 ```bash
-vendor/bin/paratest -p3 tests/   # 710 tests, ~7 min
+bash scripts/run_two_pass.sh   # 1183 tests
 ```
 
 Daemon:
@@ -64,20 +129,29 @@ Methodology and full series: EXP-008..011 in the experiment journal.
 
 ## Comparison with PySR (SOTA symbolic regression, Julia)
 
-EXP-027 (25.08.2026): same data, same frozen splits (60/40, seed 1..20),
-same grammar (+, −, ×, /, sq, sqrt), same metrics (CV_train/CV_holdout):
+EXP-027/036 (Aug–Sep 2026): same data, same frozen splits (60/40, seed 1..20),
+same grammar (+, −, ×, /, sq, sqrt), same metrics (CV_train/CV_holdout),
+PySR at default strength (populations=31 — an earlier weakened-rival run was
+retracted):
 
 | Dataset | PySR (20 seeds) | Bee Swarm (20 seeds) |
 |---------|-----------------|----------------------|
-| WINE | CV_H median 0.0485 (20/20) | CV_H median **0.047** (20/20) |
+| WINE | CV_H median 0.0485 (20/20) | CV_H median **0.047** (20/20) — parity |
+| heat | 19/20 | **20/20** — parity (1 discordant, McNemar n.s.) |
+| gravity | 0/20 | **6/20** — Bee win |
+| relmass | 16/20 | **20/20** — Bee advantage |
+| dot, kinetic | **18/20, 16/20** | 0/20 — PySR win (SUM-composition gap, mapped to stories) |
 | AUTO-MPG | CV_H 0.175, R²=0.708 (approximation) | **refusal** (0/100 null accepted, FPR=0) |
+| null control (100 noise sets) | — | **0 laws** (FPR=0) |
 
 Interpretation: approximation and invariant discovery are distinct tasks.
 PySR finds genuine predictive structure on MPG (below null q05=0.346), but it
-does not satisfy the pre-registered invariant criterion (CV_H≤0.10).
-CV→0 refuses to promote an approximation to an invariant.
+does not satisfy the pre-registered invariant criterion (CV_H≤0.10). CV→0
+refuses to promote an approximation to an invariant. Losses are reported
+symmetrically: the SUM-composition gap is an open engineering item, not a
+hidden weakness.
 
-Full series: EXP-027..028 in the experiment journal.
+Full series: EXP-027..028, EXP-036 in the experiment journal.
 
 ## Architecture (v4)
 
@@ -89,9 +163,12 @@ agenda.php → Hive::run()
 ├── Bee (energy lifecycle §2.1, heritable energy params)
 ├── Search::find (CV→0, held-out, affine-shift, honesty gates S1.5)
 ├── DiscoveryEngine (candidate pipeline)
+├── SeasonScheduler (phase-based budget allocation, EXP-039)
 ├── GrammarMutator (spawn mutation + propagation weights)
 ├── Grammar (BASE_OPS + dynamic ops + B-atoms birth + reuse tracking)
 ├── NullCalibrator (permutation null-calibration)
+├── Certification/ (EnsembleCertifier: structural certificates, §1.9)
+├── VerificationExecutor (independent law verification, escrow-settled)
 ├── OverlapTracker (§1.8)
 ├── PlateauDetector + SpawnManager (gap-spawn, generation snapshots)
 ├── RecordKeeper (laws DB, dedup, cross-domain)

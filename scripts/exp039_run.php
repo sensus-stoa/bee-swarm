@@ -205,6 +205,11 @@ $makePool = function (int $round) use ($seed, $heatRows, $enbRows, $enbPath, $la
 
 for ($t = 1; $t <= $maxTicks; $t++) {
     if ($t === 1 || $t % $refillEvery === 0) {
+        // FIX-R1 (review 09.10): reseed перед каждым refill — refill-срезы
+        // детерминированы (seed, round), НЕ зависят от mt_rand-потреблений
+        // Hive (array_rand в doDiscoverTick ест поток по-разному в A vs B/C/D).
+        // C4: порядок задач одинаков между режимами по построению.
+        mt_srand($seed * 100000 + $round);
         $poolProp->setValue($hive, $makePool($round));
         $round++;
     }
@@ -216,6 +221,22 @@ for ($t = 1; $t <= $maxTicks; $t++) {
     }
     if ($t % 5000 === 0) {
         file_put_contents($logFile, '[' . date('H:i:s') . "] EXP039: tick={$t}\n", FILE_APPEND);
+        // FIX-R2 (premortem 09.10): промежуточный чекпоинт — краш на тике N
+        // не теряет прогресс (P1/ledger пишутся в отдельный partial-JSON).
+        try {
+            $partialCert = (int) Database::get()->query(
+                "SELECT COUNT(*) FROM laws WHERE escrow_status = 'PAID'"
+            )->fetchColumn();
+            file_put_contents(
+                preg_replace('/\.json$/', '.partial.json', $outPath),
+                json_encode([
+                    'mode' => $mode, 'seed' => $seed, 'budget' => $budget,
+                    'ticks_done' => $t, 'P1_certified_invariants' => $partialCert,
+                ], JSON_PRETTY_PRINT)
+            );
+        } catch (\Throwable $e) {
+            file_put_contents($logFile, '[' . date('H:i:s') . "] EXP039 CHECKPOINT FAIL: {$e->getMessage()}\n", FILE_APPEND);
+        }
     }
 }
 $hive->savePopulation();

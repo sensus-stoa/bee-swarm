@@ -85,6 +85,7 @@ class Hive
     private float $exp039CumPrevMetab = 0.0;
     private float $exp039CumSearch = 0.0;
     private float $exp039CumPrevSearch = 0.0;
+    private bool $exp039HasNewForagerData = false;
 
     private Forager $forager;
 
@@ -1111,7 +1112,50 @@ class Hive
         // артефакт. Флаг exp039MetabDone гасит повторный вызов в explore-пути.
         $exp039MetabDone = false;
         if ($this->seasonScheduler !== null) {
-            $this->runMetabolismAndSpawn(false);
+            // FIX-R3 (review 09.10): фон до forager-scan → hasNewForagerData ещё
+            // не вычислен. Сохраняем решение: forager-scan перенесён ИЗ middle
+            // doTick В начало (до гейта), фактический флаг идёт в tryGapSpawn.
+            $hasNewForagerData = false;
+            if (
+                ! empty($this->foragerSources)
+                && ($this->tick % $this->foragerScanInterval === 0 || $this->plateau->justEnteredPlateau())
+            ) {
+                $foraged = $this->forager->scanWithAccumulator($this->foragerSources);
+                if (! empty($foraged)) {
+                    [$foraged, , $rLogsTick] = EnvPressure::admitAll($foraged, microtime(true));
+                    foreach ($rLogsTick as $rl) {
+                        $this->log($rl);
+                    }
+                    $existingNames = [];
+                    foreach ($this->foragedTasksGlobal as $t2) {
+                        $existingNames[$t2['name'] ?? ''] = true;
+                    }
+                    $newCount = 0;
+                    foreach ($foraged as $t2) {
+                        $name = $t2['name'] ?? '';
+                        if (isset($existingNames[$name])) {
+                            continue;
+                        }
+                        $existingNames[$name] = true;
+                        $this->foragedTasksGlobal[] = EnvPressure::stamp($t2, $this->tick);
+                        $newCount++;
+                    }
+                    if (count($this->foragedTasksGlobal) > 8000) {
+                        $this->foragedTasksGlobal = array_slice($this->foragedTasksGlobal, -8000);
+                    }
+                    if ($newCount > 0) {
+                        $this->log("FORAGER: {$newCount} new tasks, pool=" . count($this->foragedTasksGlobal));
+                    }
+                    if ($this->forager->hasNewContent()) {
+                        $hasNewForagerData = true;
+                        $this->log('FORAGER_NEW_TASK: ' . $this->forager->getNewTaskCount()
+                            . ' tasks, ' . $this->forager->getNewDomainCount() . ' domains');
+                        $this->forager->markContentConsumed();
+                    }
+                }
+            }
+            $this->exp039HasNewForagerData = $hasNewForagerData;
+            $this->runMetabolismAndSpawn($hasNewForagerData);
             $exp039MetabDone = true;
 
             // FIX 4 (09.10): non-explore операции исполняются ДО empty-tasks
@@ -1278,10 +1322,12 @@ class Hive
         // (age >= K тиков) выбрасываются из пула, лог MISSED_OPPORTUNITY.
         $this->collectTimeouts($this->tick);
 
-        // Forager scan
+        // Forager scan (штатный путь; в EXP-039 режиме скан исполнен в начале
+        // тика — FIX-R3, второй скан исказил бы счётчики/поток задач)
         $hasNewForagerData = false;
         if (
-            ! empty($this->foragerSources)
+            $this->seasonScheduler === null
+            && ! empty($this->foragerSources)
             && ($this->tick % $this->foragerScanInterval === 0 || $this->plateau->justEnteredPlateau())
         ) {
             $foraged = $this->forager->scanWithAccumulator($this->foragerSources);

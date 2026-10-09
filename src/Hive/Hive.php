@@ -1105,6 +1105,47 @@ class Hive
 
     private function doTick(): void
     {
+        // EXP-039 FIX (09.10): энергетический фон (метаболизм/autophagy/спавн)
+        // исполняется КАЖДЫЙ тик ДО любых ранних return (empty-pool, CPU-guard).
+        // Без этого тики с пустым пулом не старят пчёл → демографический
+        // артефакт. Флаг exp039MetabDone гасит повторный вызов в explore-пути.
+        $exp039MetabDone = false;
+        if ($this->seasonScheduler !== null) {
+            $this->runMetabolismAndSpawn(false);
+            $exp039MetabDone = true;
+
+            // FIX 4 (09.10): non-explore операции исполняются ДО empty-tasks
+            // check — иначе пустой пул (после consumeTask) убивает dream/verify/
+            // rest-тики целиком (smoke B: 0 dream / 0 verify за 2000 тиков).
+            // rest и unknown — return сразу; dream/verify — операция + return.
+            $exp039Total = (int) (getenv('EXP039_TICKS') !== false ? getenv('EXP039_TICKS') : '40000');
+            $exp039Attempts0 = $this->seasonScheduler->attemptsFor($this->tick, $exp039Total);
+            $this->seasonScheduler->noteTick(
+                $this->tick,
+                $exp039Total,
+                $exp039Attempts0 * (float) (getenv('EXP039_COST') !== false ? getenv('EXP039_COST') : '0.1')
+            );
+            if ($exp039Attempts0 === 0) {
+                $exp039Roll0 = $this->seasonScheduler->roll($this->tick);
+                if ($exp039Roll0 === 'dream') {
+                    $this->exp039DreamTick();
+                } elseif ($exp039Roll0 === 'verify') {
+                    $exp039Domains0 = getenv('EXP039_DOMAINS');
+                    if ($exp039Domains0 !== false) {
+                        foreach (explode(',', $exp039Domains0) as $exp039Dom0) {
+                            $exp039Dom0 = trim($exp039Dom0);
+                            if ($exp039Dom0 !== '') {
+                                $this->runPendingVerificationTasks($exp039Dom0, 6);
+                            }
+                        }
+                    }
+                }
+                // rest и любой unknown: только метаболизм (уже исполнен)
+
+                return;
+            }
+        }
+
         // EXP-039: pop-ledger каждые 50 тиков (аддендум A3, report-only).
         // В начале тика: все ранние return (empty-pool, CPU-guard) не теряют
         // телеметрию; драйвер зовёт doTick напрямую (паттерн WU-5) — run()
@@ -1297,7 +1338,9 @@ class Hive
         }
 
         if (empty($tasks)) {
-            usleep(1_000_000);
+            if ($this->seasonScheduler === null) {
+                usleep(1_000_000);
+            }
             return;
         }
 
@@ -1310,38 +1353,15 @@ class Hive
         }
         $this->lastTaskCount = $currentTaskCount;
 
-        // EXP-039: фазовый гейт (PREREG_ADDENDUM_BUDGET A5). Non-explore фазы
-        // исполняют метаболизм/спавн (общий фон всех конфигураций — иначе
-        // демографический артефакт) + свою операцию (dream|verify), БЕЗ
-        // потребления задач и explore-поиска. Без env — гейт мёртв.
+        // EXP-039: фазовый гейт перенесён в начало doTick (FIX 4, 09.10) —
+        // non-explore тики не зависят от empty-pools check. Здесь остаётся
+        // только fall-through для explore-тиков (attempts >= 1).
         $exp039Attempts = 1;
         if ($this->seasonScheduler !== null) {
             $exp039Total = (int) (getenv('EXP039_TICKS') !== false ? getenv('EXP039_TICKS') : '40000');
             $exp039Attempts = $this->seasonScheduler->attemptsFor($this->tick, $exp039Total);
-            $this->seasonScheduler->noteTick(
-                $this->tick,
-                $exp039Total,
-                $exp039Attempts * (float) (getenv('EXP039_COST') !== false ? getenv('EXP039_COST') : '0.1')
-            );
             if ($exp039Attempts === 0) {
-                $this->runMetabolismAndSpawn($hasNewForagerData);
-                $exp039Roll = $this->seasonScheduler->roll($this->tick);
-                if ($exp039Roll === 'dream') {
-                    $this->exp039DreamTick();
-                } elseif ($exp039Roll === 'verify') {
-                    $exp039Domains = getenv('EXP039_DOMAINS');
-                    if ($exp039Domains !== false) {
-                        foreach (explode(',', $exp039Domains) as $exp039Dom) {
-                            $exp039Dom = trim($exp039Dom);
-                            if ($exp039Dom !== '') {
-                                $this->runPendingVerificationTasks($exp039Dom, 6);
-                            }
-                        }
-                    }
-                }
-                usleep($this->plateau->getSleepUs());
-
-                return;
+                return; // уже исполнено в начале тика; страховка от двойного noteTick
             }
         }
 
@@ -1371,9 +1391,12 @@ class Hive
             }
         }
 
-        // EXP-039 (code motion V1.10): тело перенесено в runMetabolismAndSpawn()
-        // (единый путь для explore/dream/verify/rest-тиков).
-        $this->runMetabolismAndSpawn($hasNewForagerData);
+        // EXP-039 (code motion V1.10): тело перенесено в runMetabolismAndSpawn().
+        // В EXP-039 режиме фон уже исполнен в начале тика — здесь только
+        // обычный (неэкспериментальный) путь.
+        if (! $exp039MetabDone) {
+            $this->runMetabolismAndSpawn($hasNewForagerData);
+        }
 
         $data = $task['data'] ?? [];
         $domain = $task['domain'] ?? 'unknown';
@@ -1519,7 +1542,9 @@ class Hive
             $this->log("PROFILE: tick={$this->tick} TICK_MS={$tickMs} SEARCH_MS={$searchMs} task=" . (isset($task) ? 'yes' : 'no'));
         }
 
-        usleep($this->plateau->getSleepUs());
+        if ($this->seasonScheduler === null) {
+            usleep($this->plateau->getSleepUs());
+        }
     }
 
     /**
@@ -2087,6 +2112,34 @@ class Hive
      * Вызывается когда foundAny=false за тик. Пытается найти закон через
      * расширенный compose (все grammar ops) на всех доступных задачах.
      */
+    /**
+     * EXP-039: dream-тик фазы (prereg §2 dream-доля). Тот же механизм
+     * idleDreamTick (кросс-доменный compose), но вызывается ПЛАНОВО по
+     * фазовому роллу, а не при foundAny=false. Метаболизм уже исполнен
+     * в начале тика (FIX 09.10).
+     */
+    private function exp039DreamTick(): void
+    {
+        // Требуется живая пчела для вознаграждения (контракт idleDreamTick)
+        if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            $bees = $this->bees;
+            foreach ($bees as $bee) {
+                if ($bee->isAlive()) {
+                    $rbP = new \ReflectionProperty(self::class, 'routedBee');
+                    $rbP->setAccessible(true);
+                    $rbP->setValue($this, $bee);
+                    break;
+                }
+            }
+        }
+        if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+            $this->log('ENERGY_REFUSAL: exp039-dream skipped, no live bee');
+
+            return;
+        }
+        $this->idleDreamTick();
+    }
+
     private function idleDreamTick(): void
     {
         // Требуется живая пчела для вознаграждения

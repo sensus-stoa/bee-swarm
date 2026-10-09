@@ -79,6 +79,12 @@ mt_srand($seed);
 
 $tasks = [];
 
+// FIX 5 (09.10): consumeTask удаляет задачу из пула ПОСЛЕ первого выбора —
+// без вариантов пул из 2 задач исчерпывается за 2 тика, остальные тики
+// пусты (smoke B: 2 ROUTE за 2000 тиков). Делаем EXP039_POOL_TASKS вариантов
+// каждой задачи с разными срезами строк (разные fingerprints).
+$poolTasks = max(2, (int) (getenv('EXP039_POOL_TASKS') ?: '12'));
+
 // heat: закон T_out = T_env + P_therm / (m·c) — синтетика, 4 фичи.
 // Диапазон T_env 5-45 подобран так, чтобы cv_y ≈ 0.44 > 2×гейт (0.15):
 // metric-preflight (§1.10) отсекает задачи с gate ≥ 0.5·cv_y — при
@@ -92,14 +98,7 @@ for ($i = 0; $i < 400; $i++) {
     $y = $x3 + $x0 / ($x1 * $x2);
     $heatRows[] = [$x0, $x1, $x2, $x3, round($y, 6)];
 }
-$tasks[] = [
-    'name' => "foraged_heat_s{$seed}",
-    'data' => $heatRows,
-    'domain' => 'heat',
-    'content' => "EXP039 heat synthetic, seed {$seed}",
-    'source_path' => 'exp039_synthetic',
-    'col_labels' => ['P_therm', 'm', 'c', 'T_env', 'T_out'],
-];
+// (инжекция пула — в тик-цикле, makePool FIX 6)
 
 // energy_efficiency (UCI ENB2012): heating/cooling load здания, 8 фич.
 // CV(y) = 0.387 → preflight PASS (gate 0.15 < 0.5·0.387). CCPP отклонён:
@@ -114,30 +113,18 @@ if (is_readable($enbPath)) {
     if ($isHeader) {
         array_shift($lines);
     }
-    $nCols = count($labels);
+    // FIX 7 (09.10): явная проекция X1..X5 (cols 0-4) + Y1 (col 8).
+    // slice(0,7) давал y=X7 (среда) → METRIC_DOMAIN. 5 фич → tMin=25 < 30 cap.
     foreach ($lines as $ln) {
         $v = array_map('floatval', str_getcsv($ln));
-        if (count($v) === $nCols) {
-            // cap 6 фич: doTick cap-30 строк, tMin=nFeat*5 — 8+ колонок =
-            // вечный INSUFFICIENT_DATA (прод-ограничение, урок WU-5)
-            $enbRows[] = array_slice($v, 0, min($nCols, 7));
+        if (count($v) === count($labels)) {
+            $enbRows[] = [$v[0], $v[1], $v[2], $v[3], $v[4], $v[8]];
         }
     }
+    $labels = ['X1', 'X2', 'X3', 'X4', 'X5', 'Y1'];
 }
 if (count($enbRows) >= 100) {
-    // одинаковая процедура выборки (seed уже задан) — все режимы видят одни и те же строки
-    $enbSlice = [];
-    for ($i = 0; $i < 200; $i++) {
-        $enbSlice[] = $enbRows[mt_rand(0, count($enbRows) - 1)];
-    }
-    $tasks[] = [
-        'name' => "foraged_enb_s{$seed}",
-        'data' => $enbSlice,
-        'domain' => 'enb',
-        'content' => "EXP039 energy_efficiency slice, seed {$seed}",
-        'source_path' => $enbPath,
-        'col_labels' => $labels,
-    ];
+
 } else {
     fwrite(STDERR, "WARN: energy_efficiency unavailable ({$enbPath}), heat-only\n");
 }
@@ -173,7 +160,54 @@ $tickProp->setAccessible(true);
 $verifyEvery = 10;
 
 $pathOpenings = [];
+// FIX 6 (09.10): без forager пул исчерпывается consumeTask'ом за ~30 тиков.
+// Refill каждые 50 тиков: свежие срезы строк, имена с номером раунда
+// (novelty/fingerprint честные). Детерминировано seed'ом — C4 соблюдён.
+$refillEvery = max(10, (int) (getenv('EXP039_REFILL_EVERY') ?: '50'));
+$round = 0;
+$makePool = function (int $round) use ($seed, $heatRows, $enbRows, $enbPath, $labels, $poolTasks): array {
+    $out = [];
+    for ($v = 0; $v < $poolTasks; $v++) {
+        $hr = [];
+        for ($i = 0; $i < 100; $i++) {
+            $x0 = mt_rand(20, 120) / 1.0;
+            $x1 = mt_rand(5, 40) / 4.0;
+            $x2 = 4186.0;
+            $x3 = mt_rand(5, 45);
+            $hr[] = [$x0, $x1, $x2, $x3, round($x3 + $x0 / ($x1 * $x2), 6)];
+        }
+        $out[] = [
+            'name' => "foraged_heat_s{$seed}_r{$round}_v{$v}",
+            'data' => $hr,
+            'domain' => 'heat',
+            'content' => "EXP039 heat synthetic, seed {$seed} round {$round} variant {$v}",
+            'source_path' => 'exp039_synthetic',
+            'col_labels' => ['P_therm', 'm', 'c', 'T_env', 'T_out'],
+        ];
+        if (! empty($enbRows)) {
+            $er = [];
+            for ($i = 0; $i < 100; $i++) {
+                $er[] = $enbRows[mt_rand(0, count($enbRows) - 1)];
+            }
+            $out[] = [
+                'name' => "foraged_enb_s{$seed}_r{$round}_v{$v}",
+                'data' => $er,
+                'domain' => 'enb',
+                'content' => "EXP039 energy_efficiency, seed {$seed} round {$round} variant {$v}",
+                'source_path' => $enbPath,
+                'col_labels' => $labels,
+            ];
+        }
+    }
+
+    return $out;
+};
+
 for ($t = 1; $t <= $maxTicks; $t++) {
+    if ($t === 1 || $t % $refillEvery === 0) {
+        $poolProp->setValue($hive, $makePool($round));
+        $round++;
+    }
     $tickProp->setValue($hive, $t);
     $doTick->invoke($hive);
     if ($mode === 'A' && $t % $verifyEvery === 0) {

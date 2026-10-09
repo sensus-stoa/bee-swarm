@@ -143,11 +143,19 @@ final class SeasonScheduler
      */
     public function attemptsFor(int $tick, int $totalTicks): int
     {
-        if ($this->budget <= 0.0 || $this->mode === 'A') {
+        // mode A: uniform, все тики explore по 1 попытке (гейта нет).
+        if ($this->mode === 'A') {
             return 1;
         }
+        // Фазовые режимы: ролл решает explore(1+) или другая операция(0).
+        // budget=0 (smoke/A-эталон) → Governor-добор выключен, но РОЛЛ ЖИВЁТ
+        // (иначе фазовая механика не исполняется вовсе — поймано smoke 09.10:
+        // budget=0 делал все тики explore, B не отличался от A).
         if ($this->roll($tick) !== 'explore' || $this->exhausted) {
             return 0;
+        }
+        if ($this->budget <= 0.0) {
+            return 1;
         }
         $target = $this->proRata($tick, $totalTicks) + $this->deficit;
         if ($this->spent >= $target) {

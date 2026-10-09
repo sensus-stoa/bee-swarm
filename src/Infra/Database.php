@@ -497,6 +497,23 @@ class Database
             created_at TEXT DEFAULT (datetime('now'))
         )");
         $db->exec('CREATE INDEX IF NOT EXISTS idx_overlap_pair ON overlap_log(bee_a, bee_b)');
+
+        // S2.2-TER (§3.2.2): form_registry - «закон о законах». Отдельная
+        // таблица (прецедент law_generations/escrow: DDL laws не трогать).
+        // form_hash = FormHash::of (LawShape после раскрытия birth-слов);
+        // статусы: observed → invariant (>=3 домена, params >=10x в паре,
+        // cv <= 0.15 все — конъюнкция стори, prereg 10.10).
+        $db->exec("CREATE TABLE IF NOT EXISTS form_registry (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            form_hash TEXT NOT NULL UNIQUE,
+            form_template TEXT NOT NULL,
+            domains TEXT NOT NULL,
+            params TEXT NOT NULL,
+            cvs TEXT NOT NULL,
+            laws TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'observed',
+            found_at TEXT DEFAULT (datetime('now'))
+        )");
     }
 
     /**

@@ -8,6 +8,7 @@ use BeeSwarm\Certification\EnsembleCertifier;
 use BeeSwarm\Certification\MetricPreflight;
 use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Hive\FormRegistry;
 use BeeSwarm\Forager\Forager;
 use BeeSwarm\Infra\Database;
 use BeeSwarm\Infra\PlateauDetector;
@@ -2047,6 +2048,10 @@ class Hive
             $domain,
             $this->spawnManager->getGeneration()
         );
+        // S2.2-TER (§3.2.2): форма закона → form_registry (наблюдатель после
+        // lawRegistry; дубли отсечены inserted=false выше — хук видит только
+        // НОВЫЕ законы). k_est-прокси считается на срезе открытия.
+        $this->registerFormInvariance($d, $domain, $X, $y);
         // GRAMMAR-PROPAGATION (ЭКСП-012): успех → вес операторов формулы.
         // ТОЛЬКО для реальных законов: тавтологии (CV=0.0000) бустятся
         // не должны — иначе культурная эволюция усиливает мусор (B<A в A/B).
@@ -2150,6 +2155,93 @@ class Hive
             $colHint = ' [' . ($labels[0] ?? '?') . '→' . ($labels[count($labels) - 1] ?? '?') . ']';
         }
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}{$colHint}");
+    }
+
+    /**
+     * S2.2-TER (§3.2.2): форма НОВОГО закона → form_registry (наблюдатель;
+     * отказ реестра не ломает discovery). Форма = FormHash (LawShape после
+     * раскрытия birth-слов). Параметр-прокси формы: mean(y / pred_base),
+     * pred_base = формула с единичными константами (scale-invariance:
+     * k невидим в каноне — извлекается пост-фактум на данных, развилка 4).
+     */
+    private function registerFormInvariance(array $d, string $domain, ?array $X, ?array $y): void
+    {
+        try {
+            $formula = (string) $d['atom'];
+            $cv = is_numeric($d['cv'] ?? null) ? (float) $d['cv'] : null;
+            if ($cv === null) {
+                return; // честный отказ: форма без cv не регистрируется
+            }
+            $params = $this->formParamProxy($formula, $X, $y);
+            if ($params === []) {
+                // H1 (deleg_839e61a4): домен без идентифицируемого параметра
+                // НЕ пишет строку - пустой params в paramsAll отравляет
+                // minPairRatio (null навсегда), форма никогда не станет
+                // инвариантом. Честный отказ лучше тихой смерти.
+                return;
+            }
+            FormRegistry::register(
+                \BeeSwarm\Core\FormHash::of($formula),
+                $domain,
+                $cv,
+                $params,
+                (string) ($d['name'] ?? $formula),
+                $formula
+            );
+        } catch (\Throwable $e) {
+            // H10 (deleg_839e61a4): skipped-диагностика с атрибуцией -
+            // без formula/domain слепой лог не лечится.
+            $this->log('FORM_REGISTRY: skipped - ' . $e->getMessage()
+                . ' formula=' . substr((string) ($d['atom'] ?? '?'), 0, 60)
+                . ' domain=' . $domain);
+        }
+    }
+
+    /**
+     * Параметр-прокси формы: mean(y/pred) при pred = формула с единичными
+     * константами (unit-coefficient base). Нет данных / нет предсказаний →
+     * [] (домен без параметра — ratio-гейт честно не сравнит).
+     *
+     * @return array<string, float>
+     */
+    private function formParamProxy(string $formula, ?array $X, ?array $y): array
+    {
+        if ($X === null || $y === null || $X === [] || count($X) !== count($y)) {
+            return [];
+        }
+        // K1/K2 → 1: числовые литералы уже единичные, K-константы замещаем.
+        // \b-границы (H4, deleg_839e61a4): '3K12' → '31' без них (склейка
+        // токенов, которую FormHash-тесты явно покрывают).
+        $baseFormula = preg_replace('/\bK\d+\b/', '1', $formula) ?? $formula;
+        $preds = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($baseFormula, $X);
+        if (! is_array($preds)) {
+            return [];
+        }
+        $ratios = [];
+        $n = 0;
+        foreach ($preds as $i => $p) {
+            if (is_numeric($p) && abs((float) $p) > 1e-12) {
+                $ratios[] = (float) $y[$i] / (float) $p;
+                $n++;
+            }
+        }
+        if ($n === 0) {
+            return [];
+        }
+        // Median, not mean (И3, premortem deleg_839e61a4): a single near-
+        // zero pred (1e-11 passes the 1e-12 element guard) explodes the
+        // MEAN into a huge k_est -> poisoned params -> false invariant.
+        // Median is robust to one outlier; probes gave exact 1/5/25.
+        sort($ratios);
+        $mid = intdiv($n, 2);
+        $k = abs($n % 2 === 1 ? $ratios[$mid] : ($ratios[$mid - 1] + $ratios[$mid]) / 2.0);
+        // H2 (deleg_839e61a4): near-zero k_est (mixed-sign pred) makes the
+        // pairwise ratio explode -> false invariant. Unidentifiable param.
+        if ($k < 1e-9) {
+            return [];
+        }
+
+        return ['k_est' => $k];
     }
 
     /**

@@ -71,6 +71,21 @@ class Hive
 
     private SpawnManager $spawnManager;
 
+    /**
+     * EXP-039: фазовый scheduler (null = обычный режим, нулевой код-путь).
+     * Создаётся в конструкторе при env EXP039_MODE (см. SeasonScheduler).
+     */
+    private ?SeasonScheduler $seasonScheduler = null;
+
+    /**
+     * EXP-039: кумулятивные счётчики диссипации для pop-ledger
+     * (метаболизм — в runMetabolismAndSpawn, search — в doDiscoverTick).
+     */
+    private float $exp039CumMetab = 0.0;
+    private float $exp039CumPrevMetab = 0.0;
+    private float $exp039CumSearch = 0.0;
+    private float $exp039CumPrevSearch = 0.0;
+
     private Forager $forager;
 
     private array $foragerSources;
@@ -209,6 +224,17 @@ class Hive
         $this->maxTicks = $maxTicks;
         // §2.6 Environmental Pressure: governor читает уровень из env_state.
         $this->difficulty = new DifficultyGovernor();
+
+        // EXP-039 (SeasonScheduler): env-флаг — изоляция эксперимента
+        // (аддендум A8). Без env — scheduler не создаётся, прод не тронут.
+        $expMode = getenv('EXP039_MODE');
+        if ($expMode !== false && $expMode !== '' && in_array($expMode, ['A', 'B', 'C', 'D'], true)) {
+            $this->seasonScheduler = new SeasonScheduler(
+                $expMode,
+                (int) (getenv('EXP039_SEED') !== false ? getenv('EXP039_SEED') : '777'),
+                (float) (getenv('EXP039_BUDGET') !== false ? getenv('EXP039_BUDGET') : '0.0'),
+            );
+        }
 
         $sources = getenv('FORAGER_SOURCES');
         if ($sources) {
@@ -1079,6 +1105,30 @@ class Hive
 
     private function doTick(): void
     {
+        // EXP-039: pop-ledger каждые 50 тиков (аддендум A3, report-only).
+        // В начале тика: все ранние return (empty-pool, CPU-guard) не теряют
+        // телеметрию; драйвер зовёт doTick напрямую (паттерн WU-5) — run()
+        // не единственный вход. Счётчики диссипации кумулятивные с прошлого
+        // ledger — срез корректен независимо от числа исполненных тиков.
+        if ($this->seasonScheduler !== null && $this->tick % 50 === 0 && $this->tick > 0) {
+            $sumE = 0.0;
+            $alive = 0;
+            foreach ($this->bees as $bee) {
+                if ($bee->isAlive()) {
+                    $alive++;
+                    $sumE += $bee->energy();
+                }
+            }
+            $this->seasonScheduler->ledger(
+                $this->tick,
+                $sumE,
+                $alive,
+                $this->exp039CumMetab - $this->exp039CumPrevMetab,
+                $this->exp039CumSearch - $this->exp039CumPrevSearch,
+            );
+            $this->exp039CumPrevMetab = $this->exp039CumMetab;
+            $this->exp039CumPrevSearch = $this->exp039CumSearch;
+        }
         // EXP-034 (27.08): SPAWN-POOL B-ветка. Env SPWN_POOL=1 активирует
         // ресурсно-ограниченный спавн: пчёлы с discovery рожают рецепты,
         // топ-K материализуется по квотам секторов каждые SPAWN_POOL_EVERY тиков.
@@ -1260,6 +1310,41 @@ class Hive
         }
         $this->lastTaskCount = $currentTaskCount;
 
+        // EXP-039: фазовый гейт (PREREG_ADDENDUM_BUDGET A5). Non-explore фазы
+        // исполняют метаболизм/спавн (общий фон всех конфигураций — иначе
+        // демографический артефакт) + свою операцию (dream|verify), БЕЗ
+        // потребления задач и explore-поиска. Без env — гейт мёртв.
+        $exp039Attempts = 1;
+        if ($this->seasonScheduler !== null) {
+            $exp039Total = (int) (getenv('EXP039_TICKS') !== false ? getenv('EXP039_TICKS') : '40000');
+            $exp039Attempts = $this->seasonScheduler->attemptsFor($this->tick, $exp039Total);
+            $this->seasonScheduler->noteTick(
+                $this->tick,
+                $exp039Total,
+                $exp039Attempts * (float) (getenv('EXP039_COST') !== false ? getenv('EXP039_COST') : '0.1')
+            );
+            if ($exp039Attempts === 0) {
+                $this->runMetabolismAndSpawn($hasNewForagerData);
+                $exp039Roll = $this->seasonScheduler->roll($this->tick);
+                if ($exp039Roll === 'dream') {
+                    $this->exp039DreamTick();
+                } elseif ($exp039Roll === 'verify') {
+                    $exp039Domains = getenv('EXP039_DOMAINS');
+                    if ($exp039Domains !== false) {
+                        foreach (explode(',', $exp039Domains) as $exp039Dom) {
+                            $exp039Dom = trim($exp039Dom);
+                            if ($exp039Dom !== '') {
+                                $this->runPendingVerificationTasks($exp039Dom, 6);
+                            }
+                        }
+                    }
+                }
+                usleep($this->plateau->getSleepUs());
+
+                return;
+            }
+        }
+
         // Route via TaskRouter if population exists, else random
         $this->routedBee = null;
         $task = $this->weightedPick($tasks);
@@ -1286,146 +1371,9 @@ class Hive
             }
         }
 
-        // §2.1: Energy loop — tick all bees, log deaths
-        foreach ($this->bees as $i => $bee) {
-            if (! $bee->isAlive()) {
-                continue;
-            }
-            $bee->tick();
-            // §2.1: energy must not go negative — floor at 0
-            if ($bee->energy() < 0.0) {
-                $ref = new \ReflectionProperty(Bee::class, 'energy');
-                $ref->setValue($bee, 0.0);
-            }
-            // §2.5.14 AUTOPHAGY (замена §S1.5-HUNGER): селективная деградация
-            // при 3≤E<5 (SHRINK: E<3 — спячка). Атомы → общий пул, ΔE=+0.5/атом.
-            // Граница окна ДОЛЖНА совпадать с гейтом в Bee::autophagy()
-            // (>=5.0 return []) — расхождение даёт мёртвую ветку при расширении.
-            // Популяционная медиана utility кандидатов — один расчёт на тик
-            // (не на пчелу/итерацию), протокол §2.5.14 «population median».
-            $autophagyMedian = null;
-            foreach ($this->bees as $b) {
-                if ($b->isAlive() && $b->energy() >= 3.0 && $b->energy() < 5.0) {
-                    $autophagyMedian = $this->autophagyEngine->populationMedian(
-                        array_map(fn (Bee $hb): array => $hb->grammar(), array_filter($this->bees, fn (Bee $hb): bool => $hb->isAlive()))
-                    );
-                    break;
-                }
-            }
-            if ($bee->isAlive() && $bee->energy() >= 3.0 && $bee->energy() < 5.0) {
-                $degraded = $bee->autophagy($autophagyMedian);
-                if ($degraded !== []) {
-                    $this->log("AUTOPHAGY: bee#{$i} degraded=" . implode(',', $degraded) . " E={$bee->energy()}");
-                }
-            }
-            if (! $bee->isAlive()) {
-                // LIFETIME-METRIC (07.08): lifespan = tick смерти − tick рождения
-                $life = $this->tick - $bee->getBirthTick();
-                // IEEE-754: после 1000 тиков E≈1e-13 — смерть логгируем как 0
-                $this->log("DEATH: bee#{$i} energy=" . max(0.0, $bee->energy()) . " life={$life}");
-                $this->lifetimeAccum += $life;
-                $this->lifetimeCount++;
-            }
-        }
-
-        // D17: SpawnManager handles spawning + generation tracking
-        $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
-        // S1.6-GRADIENT WU-2: тик роя нужен для TTL-затухания signal-hint
-        // при мутации spawn'а (default 0 = hint вечен — дыра wiring)
-        [$spawned, $spawnDetails] = $this->spawnManager->trySpawn($this->bees, $allOps, $this->tick);
-
-        // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
-        $gapSpawned = $this->spawnManager->tryGapSpawn(
-            $this->bees,
-            $allOps,
-            $this->plateau->isPlateau(),
-            $this->plateau->getConsecutiveNoDiscovery(),
-            $hasNewForagerData,
-            $this->plateau->getThreshold(),
-            $this->tick,
-        );
-        if ($gapSpawned > 0) {
-            $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
-            $this->log('GAP_SPAWN: pop=' . count($this->bees) . " trigger={$trigger}");
-            $spawned += $gapSpawned;
-        }
-
-        // D_ACT (аудит 05.08): событие тика = mutation (спавн) | plateau_exit.
-        // EVENT_CONTRADICTION (S1.8) и EVENT_GRAMMAR_DIAGNOSIS — будущие стори.
-        $dActEvent = $spawned > 0 || $this->plateau->justExitedPlateau();
-        $this->recordDActivity($dActEvent);
-        if ($this->dActInterval > 0 && $this->tick % $this->dActInterval === 0) {
-            $this->logDActivity();
-        }
-
-        if ($spawned > 0) {
-            $this->log("SPAWN: +{$spawned} pop=" . count($this->bees));
-            // VERIFY_1_2/1_3 (15.08): SPAWN-детали в формате verify-скриптов:
-            // SPAWN: bee#N from parent M + GRAMMAR_SPAWN parent=N child=M
-            // parent_size=X child_size=Y (изоляция грамматик проверяема!).
-            foreach ($spawnDetails as $d) {
-                $childIdx = $d['child_key'];
-                if ($d['parent'] === null) {
-                    $this->log("SPAWN: bee#{$childIdx} from seed");
-                    $this->log('GRAMMAR_SPAWN parent=seed child=' . $childIdx
-                        . ' parent_size=0 child_size=' . count($d['child_grammar']));
-                } else {
-                    $this->log("SPAWN: bee#{$childIdx} from parent {$d['parent']}");
-                    $this->log('GRAMMAR_SPAWN parent=' . $d['parent'] . ' child=' . $childIdx
-                        . ' parent_size=' . count($d['parent_grammar'])
-                        . ' child_size=' . count($d['child_grammar']));
-                }
-            }
-            $diversity = SpawnManager::computeDiversity($this->bees);
-            $avgG = SpawnManager::avgGrammarSize($this->bees);
-            $uniqueCount = count(array_unique(array_map(
-                fn (Bee $b) => implode(',', $b->grammar()),
-                array_filter($this->bees, fn (Bee $b) => $b->isAlive())
-            )));
-            $avgLife = $this->lifetimeCount > 0
-                ? (int) round($this->lifetimeAccum / $this->lifetimeCount) : 0;
-            $this->lifetimeAccum = 0;
-            $this->lifetimeCount = 0;
-            $this->log("GEN: {$this->spawnManager->getGeneration()} pop=" . count($this->bees)
-                . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG} avg_lifetime={$avgLife}");
-
-            // ЭКСП-018: энергетический баланс по классам |G| (PROFILE=1)
-            if (getenv('PROFILE') === '1') {
-                $buckets = [
-                    1 => [],
-                    2 => [],
-                    5 => [],
-                    10 => [],
-                    20 => [],
-                    50 => [],
-                    100 => [],
-                ];
-                $keys = array_keys($buckets);
-                foreach ($this->bees as $b) {
-                    if (! $b->isAlive()) {
-                        continue;
-                    }
-                    $g = count($b->grammar());
-                    $bucket = 100;
-                    foreach ($keys as $k) {
-                        if ($g <= $k) {
-                            $bucket = $k;
-                            break;
-                        }
-                    }
-                    $buckets[$bucket][] = $b->energy();
-                }
-                $parts = [];
-                foreach ($buckets as $k => $energies) {
-                    if (empty($energies)) {
-                        continue;
-                    }
-                    $parts[] = "|G|≤{$k}:" . round(array_sum($energies) / count($energies), 2)
-                        . 'x' . count($energies);
-                }
-                $this->log('G_BALANCE: ' . implode(' ', $parts));
-            }
-        }
+        // EXP-039 (code motion V1.10): тело перенесено в runMetabolismAndSpawn()
+        // (единый путь для explore/dream/verify/rest-тиков).
+        $this->runMetabolismAndSpawn($hasNewForagerData);
 
         $data = $task['data'] ?? [];
         $domain = $task['domain'] ?? 'unknown';
@@ -1529,6 +1477,41 @@ class Hive
             }
         }
 
+        // EXP-039: Governor top-up (аддендум A3) — добор explore-попыток
+        // до pro-rata+banking цели. Только для тиков с attempts>1 (не A,
+        // не исчерпанный бюджет). Каждая добор-попытка = полный цикл:
+        // weightedPick+consume+route+discover (task pool одинаковый с A).
+        if ($this->seasonScheduler !== null) {
+            $exp039Total = (int) (getenv('EXP039_TICKS') !== false ? getenv('EXP039_TICKS') : '40000');
+            $exp039Cost = (float) (getenv('EXP039_COST') !== false ? getenv('EXP039_COST') : '0.1');
+            $exp039Extra = max(0, $this->seasonScheduler->attemptsFor($this->tick, $exp039Total) - 1);
+            for ($exp039I = 0; $exp039I < $exp039Extra; $exp039I++) {
+                $exp039Tasks = $this->getTasks();
+                if (empty($exp039Tasks)) {
+                    break;
+                }
+                $exp039Task = $this->weightedPick($exp039Tasks);
+                $this->consumeTask($exp039Task['name'] ?? '');
+                $this->routedBee = $this->taskRouter ? $this->taskRouter->route($exp039Task) : null;
+                if ($this->routedBee === null || ! $this->routedBee->isAlive()) {
+                    break;
+                }
+                $exp039Data = $exp039Task['data'] ?? [];
+                $exp039Domain = $exp039Task['domain'] ?? 'unknown';
+                if ($exp039Domain === 'foraged_semantic' || empty($exp039Data)) {
+                    break;
+                }
+                if (count($exp039Data) > 30) {
+                    $exp039Keys = array_rand($exp039Data, 30);
+                    $exp039Data = array_values(array_map(fn ($k) => $exp039Data[$k], $exp039Keys));
+                }
+                $exp039X = array_map(fn ($r) => array_slice($r, 0, -1), $exp039Data);
+                $exp039Y = array_column($exp039Data, count($exp039Data[0]) - 1);
+                $exp039Found = false;
+                $this->doDiscoverTick($exp039Task, $exp039X, $exp039Y, $exp039Domain, $exp039Found);
+            }
+        }
+
         // ЭКСП-018: Colony Economics Profile (PROFILE=1)
         if (getenv('PROFILE') === '1') {
             $tickMs = (int) round((microtime(true) - $profT0) * 1000);
@@ -1537,6 +1520,160 @@ class Hive
         }
 
         usleep($this->plateau->getSleepUs());
+    }
+
+    /**
+     * EXP-039 (V1.10 code motion): энергетический фон тика — метаболизм,
+     * autophagy, спавн, генерационная телеметрия. Выполняется ОДИН раз за
+     * тик во ВСЕХ конфигурациях (explore/dream/verify/rest) — иначе фазовые
+     * конфигурации получают демографический артефакт (псевдо-бессмертие).
+     *
+     * @param bool $hasNewForagerData флаг свежих forager-данных (gap-spawn)
+     */
+    private function runMetabolismAndSpawn(bool $hasNewForagerData): void
+    {
+            // §2.1: Energy loop — tick all bees, log deaths
+            foreach ($this->bees as $i => $bee) {
+                if (! $bee->isAlive()) {
+                    continue;
+                }
+                $bee->tick();
+                // EXP-039: кумулятивный учёт метаболизма (pop-ledger)
+                $this->exp039CumMetab += $bee->tickCost();
+                // §2.1: energy must not go negative — floor at 0
+                if ($bee->energy() < 0.0) {
+                    $ref = new \ReflectionProperty(Bee::class, 'energy');
+                    $ref->setValue($bee, 0.0);
+                }
+                // §2.5.14 AUTOPHAGY (замена §S1.5-HUNGER): селективная деградация
+                // при 3≤E<5 (SHRINK: E<3 — спячка). Атомы → общий пул, ΔE=+0.5/атом.
+                // Граница окна ДОЛЖНА совпадать с гейтом в Bee::autophagy()
+                // (>=5.0 return []) — расхождение даёт мёртвую ветку при расширении.
+                // Популяционная медиана utility кандидатов — один расчёт на тик
+                // (не на пчелу/итерацию), протокол §2.5.14 «population median».
+                $autophagyMedian = null;
+                foreach ($this->bees as $b) {
+                    if ($b->isAlive() && $b->energy() >= 3.0 && $b->energy() < 5.0) {
+                        $autophagyMedian = $this->autophagyEngine->populationMedian(
+                            array_map(fn (Bee $hb): array => $hb->grammar(), array_filter($this->bees, fn (Bee $hb): bool => $hb->isAlive()))
+                        );
+                        break;
+                    }
+                }
+                if ($bee->isAlive() && $bee->energy() >= 3.0 && $bee->energy() < 5.0) {
+                    $degraded = $bee->autophagy($autophagyMedian);
+                    if ($degraded !== []) {
+                        $this->log("AUTOPHAGY: bee#{$i} degraded=" . implode(',', $degraded) . " E={$bee->energy()}");
+                    }
+                }
+                if (! $bee->isAlive()) {
+                    // LIFETIME-METRIC (07.08): lifespan = tick смерти − tick рождения
+                    $life = $this->tick - $bee->getBirthTick();
+                    // IEEE-754: после 1000 тиков E≈1e-13 — смерть логгируем как 0
+                    $this->log("DEATH: bee#{$i} energy=" . max(0.0, $bee->energy()) . " life={$life}");
+                    $this->lifetimeAccum += $life;
+                    $this->lifetimeCount++;
+                }
+            }
+
+            // D17: SpawnManager handles spawning + generation tracking
+            $allOps = array_merge(array_keys(Grammar::BASE_OPS), Grammar::SEMANTIC_OPS);
+            // S1.6-GRADIENT WU-2: тик роя нужен для TTL-затухания signal-hint
+            // при мутации spawn'а (default 0 = hint вечен — дыра wiring)
+            [$spawned, $spawnDetails] = $this->spawnManager->trySpawn($this->bees, $allOps, $this->tick);
+
+            // S1.2 Phase 4: Gap-Triggered Spawn — размножение при долгом PLATEAU
+            $gapSpawned = $this->spawnManager->tryGapSpawn(
+                $this->bees,
+                $allOps,
+                $this->plateau->isPlateau(),
+                $this->plateau->getConsecutiveNoDiscovery(),
+                $hasNewForagerData,
+                $this->plateau->getThreshold(),
+                $this->tick,
+            );
+            if ($gapSpawned > 0) {
+                $trigger = $hasNewForagerData ? 'new_data' : 'fallback';
+                $this->log('GAP_SPAWN: pop=' . count($this->bees) . " trigger={$trigger}");
+                $spawned += $gapSpawned;
+            }
+
+            // D_ACT (аудит 05.08): событие тика = mutation (спавн) | plateau_exit.
+            // EVENT_CONTRADICTION (S1.8) и EVENT_GRAMMAR_DIAGNOSIS — будущие стори.
+            $dActEvent = $spawned > 0 || $this->plateau->justExitedPlateau();
+            $this->recordDActivity($dActEvent);
+            if ($this->dActInterval > 0 && $this->tick % $this->dActInterval === 0) {
+                $this->logDActivity();
+            }
+
+            if ($spawned > 0) {
+                $this->log("SPAWN: +{$spawned} pop=" . count($this->bees));
+                // VERIFY_1_2/1_3 (15.08): SPAWN-детали в формате verify-скриптов:
+                // SPAWN: bee#N from parent M + GRAMMAR_SPAWN parent=N child=M
+                // parent_size=X child_size=Y (изоляция грамматик проверяема!).
+                foreach ($spawnDetails as $d) {
+                    $childIdx = $d['child_key'];
+                    if ($d['parent'] === null) {
+                        $this->log("SPAWN: bee#{$childIdx} from seed");
+                        $this->log('GRAMMAR_SPAWN parent=seed child=' . $childIdx
+                            . ' parent_size=0 child_size=' . count($d['child_grammar']));
+                    } else {
+                        $this->log("SPAWN: bee#{$childIdx} from parent {$d['parent']}");
+                        $this->log('GRAMMAR_SPAWN parent=' . $d['parent'] . ' child=' . $childIdx
+                            . ' parent_size=' . count($d['parent_grammar'])
+                            . ' child_size=' . count($d['child_grammar']));
+                    }
+                }
+                $diversity = SpawnManager::computeDiversity($this->bees);
+                $avgG = SpawnManager::avgGrammarSize($this->bees);
+                $uniqueCount = count(array_unique(array_map(
+                    fn (Bee $b) => implode(',', $b->grammar()),
+                    array_filter($this->bees, fn (Bee $b) => $b->isAlive())
+                )));
+                $avgLife = $this->lifetimeCount > 0
+                    ? (int) round($this->lifetimeAccum / $this->lifetimeCount) : 0;
+                $this->lifetimeAccum = 0;
+                $this->lifetimeCount = 0;
+                $this->log("GEN: {$this->spawnManager->getGeneration()} pop=" . count($this->bees)
+                    . " unique={$uniqueCount} diversity={$diversity} avg|G|={$avgG} avg_lifetime={$avgLife}");
+
+                // ЭКСП-018: энергетический баланс по классам |G| (PROFILE=1)
+                if (getenv('PROFILE') === '1') {
+                    $buckets = [
+                        1 => [],
+                        2 => [],
+                        5 => [],
+                        10 => [],
+                        20 => [],
+                        50 => [],
+                        100 => [],
+                    ];
+                    $keys = array_keys($buckets);
+                    foreach ($this->bees as $b) {
+                        if (! $b->isAlive()) {
+                            continue;
+                        }
+                        $g = count($b->grammar());
+                        $bucket = 100;
+                        foreach ($keys as $k) {
+                            if ($g <= $k) {
+                                $bucket = $k;
+                                break;
+                            }
+                        }
+                        $buckets[$bucket][] = $b->energy();
+                    }
+                    $parts = [];
+                    foreach ($buckets as $k => $energies) {
+                        if (empty($energies)) {
+                            continue;
+                        }
+                        $parts[] = "|G|≤{$k}:" . round(array_sum($energies) / count($energies), 2)
+                            . 'x' . count($energies);
+                    }
+                    $this->log('G_BALANCE: ' . implode(' ', $parts));
+                }
+            }
     }
 
     private function doClozeTick(array $task, array $data, string $domain, bool &$foundAny): void
@@ -1602,6 +1739,8 @@ class Hive
         // D14 Wiring: engine-based discovery (replaces inline Search + Heldout + Compose)
         if ($this->routedBee) {
             $this->routedBee->chargeSearch();
+            // EXP-039: кумулятивный учёт search-расхода (pop-ledger)
+            $this->exp039CumSearch += $this->routedBee->searchCost();
         }
         $grammarOps = array_merge(Grammar::baseOpNames(), $this->routedBee->grammar());
         $colLabels = $task['col_labels'] ?? null;

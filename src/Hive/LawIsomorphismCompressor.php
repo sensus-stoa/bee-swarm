@@ -188,7 +188,7 @@ final class LawIsomorphismCompressor
         return $node;
     }
 
-    private function atomExists(string $fingerprint): bool
+    private static function atomExists(string $fingerprint): bool
     {
         $stmt = Database::get()->prepare('SELECT COUNT(*) FROM grammar_ops WHERE name = ?');
         $stmt->execute([self::atomName($fingerprint)]);
@@ -210,6 +210,86 @@ final class LawIsomorphismCompressor
     /**
      * @param array<int, array{name: string, formula: string, domain: string, canonical: string}> $laws
      */
+/**
+     * M1-EXT (EXP-040, HANDOFF_M1_EXT_SUBTREE): суб-деревья глубины <= maxDepth
+     * из дерева кандидата. Возвращает список формул (render) без дублей.
+     * Терминалы и атомы не возвращаются (нет структуры = нет изоморфизма).
+     */
+    public static function extractSubTrees(string $formula, int $maxDepth): array
+    {
+        $birthOps = \BeeSwarm\Core\ExpressionEvaluator::birthOpNames();
+        $tree = \BeeSwarm\Core\ExpressionNormalizer::parse($formula, $birthOps);
+        if ($tree === null || isset($tree['atom'])) {
+            return [];
+        }
+        $out = [];
+        $walk = function (array $node, int $depth) use (&$walk, &$out, $maxDepth): void {
+            if (isset($node['atom']) || $depth > $maxDepth) {
+                return;
+            }
+            $out[] = \BeeSwarm\Core\ExpressionNormalizer::render($node);
+            foreach ([$node['l'] ?? null, $node['r'] ?? null] as $arg) {
+                if (is_array($arg)) {
+                    $walk($arg, $depth + 1);
+                }
+            }
+        };
+        $walk($tree, 1);
+        // Корень НЕ удаляем: для однооператорной формулы (x0×x3) корень —
+        // единственное структурное под-дерево (M1-EXT fix: array_shift
+        // опустошал extract для коротких форм). Полная формула как sub —
+        // легитимна (она же кандидат-кусок более крупной задачи).
+        return array_values(array_unique($out));
+    }
+
+    /**
+     * M1-EXT: рождение слов из суб-деревьев кандидатов одной задачи
+     * (intra-task). Группа = fingerprint; порог minOccurrences
+     * (анти-мусор, HANDOFF 4). Слово NOT пишется в laws — только
+     * grammar_ops source='birth' status='candidate'.
+     *
+     * @param array<string> $candidates формулы кандидатов (любого cv)
+     */
+    public static function compressCandidateSubTrees(array $candidates, string $task, int $maxDepth = 3, int $minOccurrences = 3): int
+    {
+        $groups = [];
+        foreach ($candidates as $formula) {
+            // distinct-кандидаты: одна форма трижды ВНУТРИ одного кандидата =
+            // 1 вхождение (анти-мусор PREREG п.4: слово должно жить в >=3
+            // РАЗНЫХ кандидатах, иначе один dot-кандидат родит слово сам из себя)
+            $seenInThis = [];
+            foreach (self::extractSubTrees($formula, $maxDepth) as $sub) {
+                $canonical = self::canonize($sub);
+                if ($canonical === null || isset($canonical['atom'])) {
+                    continue;
+                }
+                $fp = \BeeSwarm\Core\ExpressionNormalizer::fingerprint($canonical);
+                $seenInThis[$fp] = true;
+                $groups[$fp][$canonical] = ($groups[$fp][$canonical] ?? 0) + 1;
+            }
+            foreach (array_keys($seenInThis) as $fp) {
+                $groups[$fp]['__cand__'] = ($groups[$fp]['__cand__'] ?? 0) + 1;
+            }
+        }
+        $db = \BeeSwarm\Infra\Database::get();
+        $born = 0;
+        foreach ($groups as $fp => $forms) {
+            $candCount = (int) ($forms['__cand__'] ?? 0);
+            unset($forms['__cand__']);
+            if ($candCount < $minOccurrences || self::atomExists($fp)) {
+                continue;
+            }
+            $definition = (string) array_key_first($forms);
+            $name = self::atomName($fp);
+            $stmt = $db->prepare(
+                "INSERT INTO grammar_ops (name, source, definition, status) VALUES (?, 'birth', ?, 'candidate')"
+            );
+            $stmt->execute([$name, $definition]);
+            $born++;
+        }
+        return $born;
+    }
+
     private function birthAtom(string $fingerprint, array $laws): void
     {
         $db = Database::get();

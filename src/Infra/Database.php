@@ -514,6 +514,23 @@ class Database
             status TEXT NOT NULL DEFAULT 'observed',
             found_at TEXT DEFAULT (datetime('now'))
         )");
+
+        // S2.3-IGNORANCE (§3.3): failed_attempts — персистентная память
+        // отказов discovery. Append-only audit trail (S1.10 дух): первый
+        // отказ fingerprint фиксируется, повторы — INSERT OR IGNORE;
+        // retention нет, история не переписывается. Отдельная таблица
+        // (прецедент form_registry: DDL laws не трогать).
+        $db->exec("CREATE TABLE IF NOT EXISTS failed_attempts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            task_fingerprint TEXT NOT NULL UNIQUE,
+            task_name TEXT NOT NULL,
+            domain TEXT NOT NULL,
+            diagnosis TEXT NOT NULL,
+            cv_best REAL,
+            evidence TEXT,
+            tick INTEGER,
+            created_at TEXT DEFAULT (datetime('now'))
+        )");
     }
 
     /**

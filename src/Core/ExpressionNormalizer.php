@@ -207,6 +207,36 @@ class ExpressionNormalizer
         }
 
         // Внутренность внешних скобок
+        // PAIRED-STRIP GUARD (M1-EXT, EXP-040): strip внешних скобок ТОЛЬКО
+        // если они реально парные (первая '(' закрывается последней ')').
+        // Иначе (x0×x3)+(x1×x4) срезается до x0×x3)+(x1×x4 и парсер
+        // склеивает (x1×x4))+(x2 в атом (найдено в EXP-040 M1-EXT dig).
+        $paired = false;
+        if (str_starts_with($expr, '(') && str_ends_with($expr, ')')) {
+            $d = 0;
+            $paired = true;
+            for ($i = 0, $L = strlen($expr); $i < $L; $i++) {
+                if ($expr[$i] === '(') { $d++; }
+                elseif ($expr[$i] === ')') { $d--; if ($d === 0 && $i < $L - 1) { $paired = false; break; } }
+                elseif ($d < 0) { $paired = false; break; }
+            }
+        }
+        if (! $paired) {
+            // НЕпарные внешние скобки: оператор верхнего уровня снаружи скобок —
+            // разбить по нему (та же логика, что в атом-ветке выше)
+            $split = self::findTopOperator($expr, ['+', '−'])
+                ?? self::findTopOperator($expr, array_merge(['max', 'min'], $extraOps))
+                ?? self::findTopOperator($expr, ['mul', 'div', '×', '÷', '/']);
+            if ($split !== null) {
+                [$op, $left, $right] = $split;
+                return [
+                    'op' => $op,
+                    'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
+                    'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
+                ];
+            }
+            return ['atom' => $expr];
+        }
         $inner = substr($expr, 1, -1);
 
         // Вложенные скобки — рекурсивно разбиваем по оператору верхнего уровня.

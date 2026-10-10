@@ -33,16 +33,18 @@ def load_feynman(path):
     return np.array(X, dtype=float), np.array(y, dtype=float)
 
 def load_wine(path):
-    """Same loader semantics as bee_benchmark_v3.php loadWine:
-    class-in-first-column wine.data (178 rows)."""
+    """FIXED per review: y = alcohol (col 1), X = cols 2..13 — the SAME
+    continuous task as bee_benchmark_v3.php loadWine and EXP-028 pysr_benchmark.
+    The first run mistakenly used y = class (col 0): a 3-level target,
+    out of scope for ratio-CV per protocol 1.13."""
     X, y = [], []
     for line in open(path):
         parts = line.strip().split(',')
-        if len(parts) < 5:
+        if len(parts) < 14:
             continue
         vals = [float(p) for p in parts]
-        y.append(vals[0])       # class (1.0/2.0/3.0) -> treated as continuous target per EXP-036 protocol
-        X.append(vals[1:])
+        y.append(vals[1])
+        X.append(vals[2:14])
     return np.array(X, dtype=float), np.array(y, dtype=float)
 
 def cv_ratio(pred, y):

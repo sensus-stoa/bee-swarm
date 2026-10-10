@@ -1834,6 +1834,19 @@ class Hive
             // §3.3 Само-модель незнания: отказ с диагнозом — в production-лог
             $this->log("FAILED task={$task['name']} reason={$diagnosis} evidence=cvBest=" . number_format($bestCv, 4));
 
+            // §3.3 S2.3: отказ с диагнозом — в персистентную память
+            // (failed_attempts, append-only dedup по fingerprint).
+            // Наблюдатель: ДО partialBirth, порядок §2.5.2 не меняется.
+            FailedAttemptRegistry::record(
+                (string) ($task['fingerprint'] ?? ''),
+                (string) ($task['name'] ?? ''),
+                $domain,
+                $diagnosis,
+                $bestCv,
+                $lastFormula,
+                $this->tick
+            );
+
             // §2.5.2 wiring (Grammar Ceiling Break): лучшая кандидатная формула
             // при отказе → partialBirth (гейты фильтруют мусор)
             $this->runPartialBirthAttempt($X, $y, $task, $searchCv, $diagnosis, $lastFormula);

@@ -1,0 +1,84 @@
+{
+    "verdict": "PASS",
+    "meta": {
+        "env": "V28_ENV {\"SWARM_DB_PATH\":\":memory:\",\"SEARCH_BEAM_K\":\"10 (bootstrap\\/raw-d2 forced to 0; raw-matched\\/with-atom\\/control: matched beam)\",\"SEARCH_DEPTH_MAX\":\"4\",\"NO_BIRTH\":\"unset\",\"BINARY_B_CAP\":\"3\",\"nA\":30,\"nC\":40,\"heldout_ratio\":0.4}",
+        "born2": 1,
+        "secs": {
+            "raw": 0.8,
+            "raw_matched": 2.1,
+            "atom_birth": 0,
+            "atom": 6
+        }
+    },
+    "a": {
+        "pass": true,
+        "atom": "BW9cd6e101849a9df4792adc2e96040d50",
+        "definition": "((x0maxx1)−(x0minx1))",
+        "source_domains": [
+            "v28_heat",
+            "v28_osmo"
+        ],
+        "source_laws": 2,
+        "law_a": {
+            "found": true,
+            "cv": 0,
+            "formula": "((x0maxx1)−(x0minx1))"
+        },
+        "law_b": {
+            "found": true,
+            "cv": 0,
+            "formula": "((x0maxx1)−(x0minx1))"
+        }
+    },
+    "b": {
+        "pass": true,
+        "status": "candidate",
+        "raw_domain_c": {
+            "found": false,
+            "cv": 9.99,
+            "diag": "DEPTH",
+            "secs": 0.8
+        },
+        "with_atom": {
+            "found": true,
+            "cv": 0,
+            "formula": "((((x1BW9cd6e101849a9df4792adc2e96040d50x2)×x0)×x3)/x4)",
+            "secs": 6
+        },
+        "raw_matched_domain_c": {
+            "found": false,
+            "cv": 9.99,
+            "formula": "none",
+            "secs": 2.1,
+            "depth": 3,
+            "beam": "10"
+        },
+        "atom_birth_secs": 0
+    },
+    "v": {
+        "pass": true,
+        "reuse_count": 2,
+        "reuse_domains": [
+            "search",
+            "v28_conduct"
+        ],
+        "status_after": "active"
+    },
+    "g": {
+        "meta_cv": 0,
+        "coalition_cv": 0,
+        "coalition_max_cv": 0,
+        "heldout_rows": 12,
+        "pass": true
+    },
+    "c": {
+        "pass": true,
+        "random_atom": {
+            "name": "R28ca433f",
+            "definition": "(x0+x0)maxx0"
+        },
+        "found": false,
+        "cv": 9.99,
+        "secs": 5.2
+    }
+}

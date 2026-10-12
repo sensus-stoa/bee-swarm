@@ -154,7 +154,38 @@ class LanguageVerify28Test extends TestCase
     {
         $rep = $this->report();
 
-        $this->assertSame('PASS', $rep['verdict'], 'верdict: ' . json_encode(array_map(fn ($k) => $rep[$k]['pass'] ?? null, ['a', 'b', 'v', 'g'])));
+        $this->assertSame('PASS', $rep['verdict'], 'верdict: ' . json_encode(array_map(fn ($k) => $rep[$k]['pass'] ?? null, ['a', 'b', 'v', 'g', 'c'])));
+    }
+
+    // ═══ R1b: budget-matched raw arm (owner gate, CHECKPOINT 2.1 п.6) ═══
+
+    public function testRawMatchedArmReported(): void
+    {
+        $rep = $this->report();
+
+        $this->assertArrayHasKey(
+            'raw_matched_domain_c',
+            $rep['b'],
+            'R1b: raw на конфигурации with-atom обязан быть в отчёте: ' . json_encode(array_keys($rep['b']))
+        );
+        $this->assertSame(3, $rep['b']['raw_matched_domain_c']['depth'], 'R1b: depth = 3, как у with-atom');
+        $this->assertGreaterThanOrEqual(0.0, (float) $rep['meta']['secs']['raw_matched']);
+        $this->assertArrayHasKey('atom_birth_secs', $rep['b'], 'R1b: цена рождения атома учитывается отдельно');
+        $this->assertGreaterThanOrEqual(0.0, (float) $rep['b']['atom_birth_secs']);
+    }
+
+    // ═══ R1c: специфичность — случайный атом не решает домен C ═══
+
+    public function testRandomAtomDoesNotSolveDomainC(): void
+    {
+        $rep = $this->report();
+
+        $this->assertArrayHasKey('c', $rep, 'R1c: секция контроля специфичности: ' . json_encode(array_keys($rep)));
+        $this->assertNotSame('', $rep['c']['random_atom']['definition'], 'R1c: контрольный атом зарегистрирован');
+        $this->assertTrue(
+            $rep['c']['pass'],
+            'R1c: случайный атом НЕ должен решать домен C (иначе with-atom результат не специфичен): ' . json_encode($rep['c'])
+        );
     }
 
     // ═══ защита: прогон уничтожает словарь birth — персистентная БД запрещена ═══

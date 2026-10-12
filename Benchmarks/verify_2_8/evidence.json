@@ -1,0 +1,73 @@
+{
+  "experiment_id": "VERIFY-2-8",
+  "title": "Language emergence (protocol par.3.8): meta-law compiled from 2 domains, atom reused in a 3rd; R1b budget-matched raw arm + R1c random-atom specificity control",
+  "code_commit": "8620e0e2d2e909587cae2203d979126c6f408c94",
+  "code_repo": "public GitHub repository of the engine (name on request)",
+  "data_hashes": {
+    "report_json_sha256": "3e8cfdee3b407b3b47ecd5c87168813a9dcb5acb64852f3e55b28f8625a6279c",
+    "fixture": "synthetic in-code (LCG seeds 11/22/33; domains A/B/C), no external datasets"
+  },
+  "execution_environment": {
+    "php": "8.2.29",
+    "os": "Linux 6.1.0-41-amd64",
+    "host": "dev desktop (point-check; full suite runs on the dedicated runner laptop)",
+    "suite_note": "LanguageVerify28Test 8/8 GREEN, 35 assertions (targeted run); full 1210-test suite on runner laptop before release tag"
+  },
+  "run_timestamp": "2026-10-13",
+  "verifier": {
+    "command": "php scripts/verify_2_8.php",
+    "exit_code": 0,
+    "verdict": "PASS",
+    "report_path": "Benchmarks/verify_2_8/report.json",
+    "report_sha256": "3e8cfdee3b407b3b47ecd5c87168813a9dcb5acb64852f3e55b28f8625a6279c"
+  },
+  "baseline": {
+    "raw_depth2": {
+      "found": false,
+      "cv": 9.99,
+      "diag": "DEPTH",
+      "secs": 0.8
+    },
+    "raw_matched_depth3_beam10": {
+      "found": false,
+      "cv": 9.99,
+      "formula": "none",
+      "secs": 2.1,
+      "depth": 3,
+      "beam": "10"
+    },
+    "random_atom_control": {
+      "pass": true,
+      "random_atom": {
+        "name": "R28ca433f",
+        "definition": "(x0+x0)maxx0"
+      },
+      "found": false,
+      "cv": 9.99,
+      "secs": 5.2
+    },
+    "reading": "raw fails at BOTH configs; with-atom solves exact; random atom does not solve -> atom-specific ENABLES (config parity, cost parity NOT claimed: with-atom 6s vs raw_matched 2.2s, atom_birth 0.0s)"
+  },
+  "resources": {
+    "wall_seconds": {
+      "raw": 0.8,
+      "raw_matched": 2.1,
+      "atom_birth": 0,
+      "atom": 6
+    },
+    "note": "wall-clock per block from report meta; peak memory not yet recorded (planned before release tag)"
+  },
+  "limitations": [
+    "synthetic fixture domains only (heat/diffusion-class molecule)",
+    "single-author system; not independently reproduced (V1.10-INDEPENDENT-IMPL open)",
+    "criterion v1.6 mean-form parity; A19 caveat applies to empirical data",
+    "reuse record in the fixture is invoked via Grammar::registerReuse (same public contract as live Hive::registerReuseOps), not observed from the production daemon",
+    "equal depth/beam = config parity; total cost of atom birth reported separately, cost parity not claimed"
+  ],
+  "evidence_status": "EXPERIMENTALLY_VERIFIED",
+  "independent_replication": {
+    "status": "NONE",
+    "attempts": [],
+    "rule": "automation does NOT raise this status; only an external attempt with artifacts"
+  }
+}

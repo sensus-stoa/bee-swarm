@@ -182,10 +182,13 @@ final class LanguageVerify28
         [$trainB, $trainYB] = self::trainSlice($xb, $yb);
         $lawA = self::solveBootstrap($trainA, $trainYA, self::DOM_A, 'law_v28_heat');
         $lawB = self::solveBootstrap($trainB, $trainYB, self::DOM_B, 'law_v28_osmo');
+        $tC = microtime(true);
         (new LawIsomorphismCompressor())->compress([self::DOM_A, self::DOM_B]);
+        $atomBirthSecsBootstrap = round(microtime(true) - $tC, 3);
         return [
             'lawA' => $lawA,
             'lawB' => $lawB,
+            'atomBirthSecsBootstrap' => $atomBirthSecsBootstrap,
             'atom' => self::readAtom(),
         ];
     }
@@ -231,7 +234,7 @@ final class LanguageVerify28
         // the definition, so registerReuse by name stays consistent)
         $tB = microtime(true);
         $born2 = (new LawIsomorphismCompressor())->compress([self::DOM_A, self::DOM_B]);
-        $atomBirthSecs = round(microtime(true) - $tB, 1);
+        $atomBirthSecs = round(microtime(true) - $tB, 3);
         $atom = self::readAtom();
         // restore caller's beam for the with-atom run (live profile)
         putenv('SEARCH_BEAM_K=' . ($beamOrig === false ? '10' : $beamOrig));
@@ -350,7 +353,7 @@ final class LanguageVerify28
 
         return self::$lastReport = [
             'verdict' => ($aPass && $bPass && $vPass && $gPass && $cPass) ? 'PASS' : 'FAIL',
-            'meta' => self::reportMeta($contrast),
+            'meta' => self::reportMeta($contrast, $boot),
             'a' => self::reportSectionA($boot, $atom, $aPass),
             // status AT MEASUREMENT TIME (candidate: reuse happens later, in v)
             'b' => self::reportSectionB($contrast, $atom['status']),
@@ -370,7 +373,7 @@ final class LanguageVerify28
     /**
      * Report meta: env facts + idempotent-compress fact + timings.
      */
-    private static function reportMeta(array $contrast): array
+    private static function reportMeta(array $contrast, array $boot = []): array
     {
         return [
             'env' => self::envFactsLine(),
@@ -379,8 +382,15 @@ final class LanguageVerify28
                 'raw' => $contrast['rawSecs'],
                 'raw_matched' => $contrast['rawMatchedSecs'],
                 'atom_birth' => $contrast['atomBirthSecs'],
+                'atom_birth_bootstrap' => (float) ($boot['atomBirthSecsBootstrap'] ?? 0.0),
                 'atom' => $contrast['atomSecs'],
             ],
+            // Observability (release gates, owner CHECKPOINT 13.10):
+            'peak_mem_bytes' => memory_get_peak_usage(true),
+            // CV 9.99 is the engine's NOT_FOUND sentinel: no candidate passed
+            // the exact criterion. It is NOT a measured coefficient of
+            // variation. raw/raw_matched/control rows report it when found=false.
+            'cv_9_99_meaning' => 'NOT_FOUND sentinel (no candidate passed), not a measured CV',
         ];
     }
 

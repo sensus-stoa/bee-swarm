@@ -33,6 +33,12 @@ class ExpressionEvaluator
      * @var array<string,array|null> кэш definition по имени атома
      */
     private static array $defCache = [];
+    // PARSE-CACHE (12.10, phpspy): evaluateFormula парсил формулу на КАЖДЫЙ
+    // вызов (ExpressionNormalizer::parse — горячий кадр во всех воркерах
+    // suite; ensemble null-gate оценивает те же формулы десятки раз).
+    // AST read-only (evalNode не мутирует) — шар безопасен, как defCache.
+    private const PARSE_CACHE_MAX = 1024;
+    private static array $parseCache = [];
 
     public static function clearDefCache(): void
     {
@@ -77,13 +83,22 @@ class ExpressionEvaluator
         // → вся culture-цепочка умирает на heldout!)
         $bNames = self::birthOpNames();
         $allExtraOps = array_merge($extraOps, $bNames);
-        [$protected, $map] = ExpressionNormalizer::protect($formula);
-        $node = ExpressionNormalizer::parse($protected, $allExtraOps);
-        if ($node === null) {
-            return null;
-        }
-        if (! empty($map)) {
-            $node = ExpressionNormalizer::restoreAtoms($node, $map);
+        $cacheKey = $formula . "|" . count($allExtraOps) . "|" . (empty($allExtraOps) ? "" : md5(serialize($allExtraOps)));
+        if (isset(self::$parseCache[$cacheKey])) {
+            $node = self::$parseCache[$cacheKey];
+        } else {
+            [$protected, $map] = ExpressionNormalizer::protect($formula);
+            $node = ExpressionNormalizer::parse($protected, $allExtraOps);
+            if ($node === null) {
+                return null;
+            }
+            if (! empty($map)) {
+                $node = ExpressionNormalizer::restoreAtoms($node, $map);
+            }
+            if (count(self::$parseCache) >= self::PARSE_CACHE_MAX) {
+                self::$parseCache = [];
+            }
+            self::$parseCache[$cacheKey] = $node;
         }
         // CONCERNS (deleg_6ee92a50): переданные stats (по TRAIN) имеют приоритет
         // — R-атомы = константы модели, не пересчитываются по тестовой выборке

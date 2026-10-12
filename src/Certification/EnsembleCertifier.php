@@ -35,6 +35,13 @@ use BeeSwarm\Infra\RngIsolation;
  */
 final class EnsembleCertifier
 {
+    // VERDICT-CACHE (12.10, phpspy): certify гонялся на КАЖДОМ тике для того
+    // же fingerprint (120 тиков x null-gate = 6m40s на wiring-тест). Члены
+    // детерминированы (seedBase) -> вердикт per-fp детерминирован -> кэш.
+    // Прецедент: Hive::epsilonCache. Первый вызов считает, повторы возвращают.
+    private const VERDICT_CACHE_MAX = 16;
+    private static array $verdictCache = [];
+
     /**
      * Прод-гейт-сетка θ (порядок фиксирован, цикл по члену).
      */
@@ -183,9 +190,39 @@ final class EnsembleCertifier
         if (count($y) < 2 || $X === [] || count($X) !== count($y)) {
             return self::result('NO_CONSENSUS', null, 0.0, [], null, null, null, null, 0, (int) ($config['k'] ?? 25), 0);
         }
+        // VERDICT-CACHE: члены детерминированы (seedBase) -> вердикт per-fp
+        // детерминирован. Ключ = данные + нормализованный конфиг.
+        $vfp = hash('sha256', serialize([$X, $y, self::normalizeConfig($config)]));
+        if (isset(self::$verdictCache[$vfp])) {
+            return self::$verdictCache[$vfp];
+        }
+        $out = self::certifyUncached($X, $y, $config);
+        // OOM-гигиена (12.10, f9/f10 premortem): воркер умирал по памяти —
+        // 2 queued-теста уходили в skip. Кэшируем БЕЗ members (диагностика,
+        // самый тяжёлый элемент) и с малым потолком. Вызовы с уникальными
+        // данными (тесты) = cache-miss = полный result.
+        if (count(self::$verdictCache) >= self::VERDICT_CACHE_MAX) {
+            self::$verdictCache = [];
+        }
+        $cached = $out;
+        unset($cached['members']);
+        self::$verdictCache[$vfp] = $cached;
+        return $out;
+    }
+
+    private static function certifyUncached(array $X, array $y, array $config): array
+    {
+        if (count($y) < 2 || $X === [] || count($X) !== count($y)) {
+            return self::result('NO_CONSENSUS', null, 0.0, [], null, null, null, null, 0, (int) ($config['k'] ?? 25), 0);
+        }
         $cfg = self::normalizeConfig($config);
         [$trainIdx, $tailX, $tailY] = self::splitRows($X, $y, $cfg['test_ratio'], $cfg['split_seed']);
+        // BASE_OPS-GRAMMAR (12.10, leaf-profile): члены не должны гонять
+        // semantic/custom-путь applyCustom (checkFact + definition-lookup на
+        // каждый ряд x кандидата — 65% листьев профиля). Прецедент:
+        // NullCalibrator (грамматика = BASE_OPS, §OOM-guard).
         $grammar = new Grammar();
+        $grammar->restrictTo(["+", "×", "−", "/", "sq", "sqrt"]);
         $members = self::runMembers($X, $y, $trainIdx, $grammar, $cfg, 1000, 'ENS');
         [$foundN, $topShape, $topCount] = self::tallyMembers($members);
         $recurrence = $foundN > 0 ? $topCount / $foundN : 0.0;
@@ -234,7 +271,10 @@ final class EnsembleCertifier
 
         return [
             'k' => $k,
-            'depth' => (int) ($config['depth'] ?? 3),
+            // MEMBER-DEPTH (12.10, phpspy): члены бегали depth=3 — ГЛУБЖЕ
+            // самой discovery (1-2 тика) — 6-12s на certify × тики = тяжёлый
+            // хвост suite. Члены зеркалят глубину задачи; прод = 3 (канон).
+            'depth' => (int) ($config['depth'] ?? (getenv('ENSEMBLE_MEMBER_DEPTH') ?: 3)),
             'test_ratio' => (float) ($config['test_ratio'] ?? 0.2),
             'budget_sec' => $budget,
             'budget_ticks' => $budgetTicks,
@@ -242,7 +282,10 @@ final class EnsembleCertifier
             'bootstrap_frac' => (float) ($config['bootstrap_frac'] ?? 0.8),
             'split_seed' => (int) ($config['split_seed'] ?? 42),
             'log_file' => (string) ($config['log_file'] ?? ''),
-            'null_ensembles' => (int) ($config['null_ensembles'] ?? 5),
+            // TEST-BUDGET (12.10, phpspy): null-gate = null_ensembles × null_k
+            // поисков — доминирующийCost suite (234/234 сэмплов). Прод-канон 5
+            // не тронут; тесты режут через ENSEMBLE_NULL_ENSEMBLES.
+            'null_ensembles' => (int) ($config['null_ensembles'] ?? (getenv('ENSEMBLE_NULL_ENSEMBLES') ?: 5)),
             'null_k' => (int) ($config['null_k'] ?? $k),
             'null_seed_base' => (int) ($config['null_seed_base'] ?? self::NULL_SEED_BASE),
         ];
@@ -317,7 +360,7 @@ final class EnsembleCertifier
             );
         }
         $guard = RngIsolation::deterministicSeed($splitSeed);
-        mt_srand($splitSeed);
+        mt_srand($splitSeed); // srand-guard: RngIsolation::deterministicSeed выше, restore ниже
         $order = range(0, $n - 1);
         for ($i = $n - 1; $i > 0; $i--) {
             $j = mt_rand(0, $i);
@@ -362,7 +405,7 @@ final class EnsembleCertifier
     private static function runOneMember(array $X, array $y, array $trainIdx, Grammar $grammar, array $cfg, int $seed, int $memberNo, string $tag): array
     {
         $guard = RngIsolation::deterministicSeed($seed);
-        mt_srand($seed);
+        mt_srand($seed); // srand-guard: RngIsolation::deterministicSeed выше, restore ниже
         $cnt = count($trainIdx);
         $boot = [];
         $nBoot = (int) round($cnt * $cfg['bootstrap_frac']);
@@ -482,7 +525,7 @@ final class EnsembleCertifier
     private static function permuteY(array $y, int $permSeed): array
     {
         $guard = RngIsolation::deterministicSeed($permSeed);
-        mt_srand($permSeed);
+        mt_srand($permSeed); // srand-guard: RngIsolation::deterministicSeed выше, restore ниже
         $perm = range(0, count($y) - 1);
         for ($i = count($y) - 1; $i > 0; $i--) {
             $j = mt_rand(0, $i);

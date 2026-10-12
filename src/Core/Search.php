@@ -162,6 +162,9 @@ class Search
         // сбрасывается на КАЖДЫЙ вызов — внутри одного вызова дедуп
         // работает, между задачами — ноль риска.
         self::$mul2Cache = [];
+        // M1-EXT v2 WU-1: participation-карта живёт В ПРЕДЕЛАХ вызова (урок
+        // EXP-036: static-кэш между find() = cross-call pollution).
+        self::$beamPairParticipations = [];
         self::$__prof = [['START', $p0]];
         // V0.18: wall-clock kill-switch поверх тиков (default off —
         // тики основная метрика). Diagnosis WALLCLOCK_CAP различим.
@@ -389,7 +392,17 @@ class Search
                         $r = $grammar->apply($va[$i], $vb[$i], $op);
                         $vec[] = $r ?? 0.0;
                     }
-                    $exprs["({$featKeys[$a]}$op{$featKeys[$b]})"] = $vec;
+                    $pairName = "({$featKeys[$a]}$op{$featKeys[$b]})";
+                    $exprs[$pairName] = $vec;
+                    // STRUCTURAL RAW-PAIR CLASS (11.10): генератор ДЕКЛАРИРУЕТ
+                    // свои формы — никаких регексов-распознавателей (урок
+                    // «регекс под каждый закон» — тупик, owner 11.10).
+                    // $l1PairwiseKeys = полный класс pairwise-форм (вкл. ²-фичи),
+                    // из него собирается raw-pair pool (WU-2).
+                    $l1PairwiseKeys[] = $pairName;
+                    // пара операндов декларируется генератором (для
+                    // feature-разнообразия квот writer'а, EXPANDING GATES 12.10)
+                    $l1PairwiseMap[$pairName] = [$featKeys[$a], $featKeys[$b]];
                 }
                 // B-AS-ARGUMENT: B(фича, фича) в L1-pairwise
                 foreach ($bornBinary as $bbName => $bbDef) {
@@ -505,8 +518,33 @@ class Search
         $l2Keys = [];
         if ($depth >= 2) {
             $checkCount = 0;
+            // M1-EXT v2 WU-2 (10.10): raw×raw pair-формы НЕ режутся срезом.
+            // Дебаг проб 8-18: срез по порядку генерации отрезал (x2×x3)
+            // (индекс 596 из 5398) — сумма двух произведений не строилась
+            // вообще (SUM-дефицит EXP-040: dot/kinetic 0/20). Pure pair-формы
+            // конечны: O(nFeat²·ops) (~532 на 6 фичах) — безопасно по памяти.
+            // Срез остаётся ТОЛЬКО для R/K-производных и унарных (их тысячи).
+            // ⚠️ Без WU-1 (ограничение сборки) пул шире = квадратичный взрыв.
+            // FIX 11.10 v2 (DiscoveryDepth3 regression, bisect4-7): raw-pair
+            // merge меняет L2-freeze состав на эскалационных прогонах (depth
+            // стартует 2 → d=3 наследует другой L2L1-вход). WU-2 цель = чистый
+            // depth-2 verify (EXP-040-EXT dot). Гейт: depth==2 И не эскалация
+            // (SEARCH_ESCALATED ставит DiscoveryEngine при d>firstDepth).
+            // FIX 11.10 v3 (LanguageVerify28, bisect_lang): WU-2 меняет выдачу
+            // на ЛЮБОМ depth-2 пути → v2.8-компрессор не собирает ожидаемый
+            // атом. Канон §0.6: verify-величина, не механизм — SEARCH_RAWPAIR_POOL
+            // (default OFF), verify-прогон ставит =1. Включение в прод — после
+            // dual-review и решения owner.
+            // STRUCTURAL RAW-PAIR CLASS (11.10): rawPairKeys = ТОЧНО то, что
+            // сгенерировал L1-pairwise ($l1PairwiseKeys) — без регексов.
+            // Гейт: RAWPAIR=1 (verify, §0.6) + depth==2 + не эскалация.
+            $rawPairKeys = getenv('SEARCH_RAWPAIR_POOL') === '1'
+                && $depth === 2 && (int) (getenv('SEARCH_ESCALATED') ?: '0') === 0
+                ? ($l1PairwiseKeys ?? [])
+                : [];
             $pool = array_merge(
                 array_slice($l1Keys, 0, 40),
+                $rawPairKeys,
                 array_slice($l1Sq, 0, 30),
                 array_slice($l1Unary, 0, 30)
             );
@@ -556,14 +594,187 @@ class Search
                     }
                     return strlen($a['n']) <=> strlen($b['n']);
                 });
+                // M1-EXT v2 WU-1 (10.10): multi-descriptor beam — «не выкидывать
+                // цветы, лететь на ближайший» (owner). Один сенсор (quick-cv
+                // одиночки) физически не видит композиционные цветки: произведение
+                // плохое само, но сумма с ним точная (проба 18). Дескрипторы:
+                //   top-K cv (есть) + top-K коротких + ROTATION-квота форм,
+                //   ещё не участвовавших в сборке пар (новый сенсор «свежесть»)
+                //   + random-хвост (есть).
+                // Детерминизм: внутри квоты сортировка (cv, name) — как ORDER BY
+                // formula в компрессоре (rev deleg_3302236f п.2).
                 $top = array_slice($scored, 0, $beamK);
                 $rest = array_slice($scored, $beamK);
+                // Дескриптор «короткость»: top-K по strlen среди rest.
+                usort($rest, function (array $a, array $b): int {
+                    $len = strlen($a['n']) <=> strlen($b['n']);
+                    if ($len !== 0) {
+                        return $len;
+                    }
+                    return $a['cv'] <=> $b['cv'];
+                });
+                $shortK = (int) (getenv('SEARCH_BEAM_SHORT_K') ?: '10');
+                $shortTail = array_slice($rest, 0, $shortK);
+                // Дескриптор «свежесть» (rotation): формы без участия в сборке.
+                // Participations копятся в самом pair-цикле ниже; до него все rest
+                // «свежие» — квота берёт cv-ранжированные свежие (детерминизм).
+                $usedParticipations = self::$beamPairParticipations;
+                $freshTail = [];
+                if (getenv('SEARCH_BEAM_ROTATION') !== '0') {
+                    $rotK = (int) (getenv('SEARCH_BEAM_ROTATION_K') ?: '10');
+                    $restByCv = $rest;
+                    usort($restByCv, fn (array $a, array $b): int => $a['cv'] <=> $b['cv']);
+                    foreach ($restByCv as $cand) {
+                        if (count($freshTail) >= $rotK) {
+                            break;
+                        }
+                        if (! isset($usedParticipations[$cand['n']])) {
+                            $freshTail[] = $cand;
+                        }
+                    }
+                }
                 shuffle($rest);
                 $randTail = array_slice($rest, 0, $beamRand);
-                $pool = array_map(fn (array $x): string => $x['n'], array_merge($top, $randTail));
+                // M1-EXT v2 WU-1b (10.10, пробы probe_dump/sim_ladder): corr-сенсор
+                // в beam-пул. Композиционные родители (x1×x4) имеют cv-ранг 766/1318,
+                // но corr-ранг 1-3/72 — cv физически не видит родителей сумм-законов.
+                // Квота: top-M по |corr| среди rest, БЕЗ порога (ранжирование, не гейт —
+                // нечего подгонять), R/K исключены (урок P8). corr на тех же 30 строках.
+                // КЛАСС-КВОТА (trace_sigtail 23:10): единая квота M=15 на полном пуле
+                // (~1300 форм с sq-композитами) вытесняет raw-pair ((x0−x3))² сигнала
+                // выше → (x1×x4) выпадает → лестница умирает. Слоты: 8 raw-pair
+                // (лестница dot: сумма двух произведений) + 7 прочих raw.
+                $signalTail = [];
+                if (getenv('SEARCH_BEAM_SIGNAL_QUOTA') !== '0') {
+                    $sigK = (int) (getenv('SEARCH_BEAM_SIGNAL_K') ?: '15');
+                    $sigPairK = (int) (getenv('SEARCH_BEAM_SIGNAL_PAIR_K') ?: '8');
+                    $m30s = min($n, 30);
+                    $meanYs = array_sum(array_slice($y, 0, $m30s)) / $m30s;
+                    $sigCands = [];
+                    foreach ($scored as $sc) {
+                        // по всем $scored (не только rest): top-cv родитель может быть
+                        // и сигнальным; dedup ниже съест двойника.
+                        $k = $sc['n'];
+                        if (preg_match('/[RK]/', preg_replace('/\d+/', '', $k)) === 1
+                            || ! isset($exprs[$k])) {
+                            continue;
+                        }
+                        $v = $exprs[$k];
+                        $meanV = array_sum(array_slice($v, 0, $m30s)) / $m30s;
+                        $cov = 0.0; $varV = 0.0; $varY = 0.0;
+                        for ($qi = 0; $qi < $m30s; $qi++) {
+                            $dv = $v[$qi] - $meanV; $dy = $y[$qi] - $meanYs;
+                            $cov += $dv * $dy; $varV += $dv * $dv; $varY += $dy * $dy;
+                        }
+                        $c = ($varV > 1e-12 && $varY > 1e-12) ? abs($cov / sqrt($varV * $varY)) : 0.0;
+                        // STRUCTURAL pair-class: член $l1PairwiseKeys (генератор
+                        // декларирует) — покрывает ²-формы без регексов.
+                        $isPair = in_array($k, $l1PairwiseKeys, true);
+                        $sigCands[] = ['n' => $k, 'corr' => $c, 'cv' => $sc['cv'], 'pair' => $isPair];
+                    }
+                    usort($sigCands, fn (array $a, array $b): int => [$b['corr'], $a['cv']] <=> [$a['corr'], $b['cv']]);
+                    $pairSlots = 0; $otherSlots = 0;
+                    foreach ($sigCands as $sc2) {
+                        if ($sc2['pair']) {
+                            if ($pairSlots >= $sigPairK) {
+                                continue;
+                            }
+                            $pairSlots++;
+                        } else {
+                            if ($otherSlots >= $sigK - $sigPairK) {
+                                continue;
+                            }
+                            $otherSlots++;
+                        }
+                        $signalTail[] = ['n' => $sc2['n']];
+                        if (getenv('TRACE_V') === '1') {
+                            fwrite(STDERR, '[BP] ' . ($sc2['pair'] ? 'PAIR' : 'oth ') . ' ' . $sc2['n'] . ' corr=' . round($sc2['corr'], 3) . PHP_EOL);
+                        }
+                        if ($pairSlots >= $sigPairK && $otherSlots >= $sigK - $sigPairK) {
+                            break;
+                        }
+                    }
+                }
+                $seen = [];
+                $pool = [];
+                foreach (array_merge($top, $shortTail, $freshTail, $signalTail, $randTail) as $entry) {
+                    if (! isset($seen[$entry['n']])) {
+                        $seen[$entry['n']] = true;
+                        $pool[] = $entry['n'];
+                    }
+                }
+            } else {
+                // M1-EXT v2 WU-1 (beam=0): оператор отключил beam — НЕ отключает
+                // память. Pair-space квадратичен (проба 18: pool 600 → OOM 8G),
+                // поэтому beam-off путь ограничен POOL_CAP (детерминированно:
+                // те же top-40 + raw-pair + производные, подрезка по (len, name)).
+                // raw-pair держим первыми — это единственный источник композиций
+                // сумм (WU-2 критерий).
+                $poolCap = (int) (getenv('SEARCH_POOL_CAP') ?: '200');
+                if (count($pool) > $poolCap) {
+                    $ranked = $pool;
+                    usort($ranked, function (string $a, string $b): int {
+                        $isPairA = preg_match('/^\(x\d+[^x\d]+x\d+\)$/', $a) === 1 ? 0 : 1;
+                        $isPairB = preg_match('/^\(x\d+[^x\d]+x\d+\)$/', $b) === 1 ? 0 : 1;
+                        if ($isPairA !== $isPairB) {
+                            return $isPairA <=> $isPairB; // raw-pair первыми
+                        }
+                        $len = strlen($a) <=> strlen($b);
+                        return $len !== 0 ? $len : ($a <=> $b);
+                    });
+                    $pool = array_slice($ranked, 0, $poolCap);
+                }
             }
             // B-AS-ARGUMENT (09.08): bornBinary прочитан ДО L1 (см. выше) —
             // здесь только применение к парам pool-элементов
+            // M1-EXT v2 WU-4c (10.10): READ trail marks — дорога прошлого роя
+            // стартует следующий вылет (стигмергия, sim_swarm PASS2 20/20).
+            // Метка = ФОРМУЛА (не вектор): re-evaluate на СВОИХ X — «signal must
+            // replicate» (WU-D4); чтение top-K по (uses DESC, corr DESC).
+            // Мерж в ПУЛ pair-loop: метка⊕родитель = полный закон (ядро 18/20).
+            // TRAIL_MARKS=1 управляет записью и чтением (единый флаг verify).
+            // FIX 11.10 (suite-hang): read ТОЛЬКО на beam-пути ($beamK > 0).
+            // На beam=0 + depth≥3 (ансамблевые члены, L2L1) инжект L2-форм
+            // в pair-пул умножает и без того предельный L2L1-перебор
+            // (l2Keys=218900, worker crash 53 мин CPU). Метки задуманы для
+            // verify-пути (beam=10, EXP-040-EXT прогон) — там и работают.
+            $trailReadCount = 0;
+            if (getenv('TRAIL_MARKS') === '1' && $beamK > 0) {
+                $scopeKeyR = 'sha1:' . sha1(json_encode(['labels' => $colLabels]));
+                $readK = (int) (getenv('TRAIL_READ_K') ?: '5');
+                $stmtR = \BeeSwarm\Infra\Database::get()->prepare(
+                    'SELECT formula FROM trail_marks WHERE fingerprint = ?
+                     ORDER BY uses DESC, corr DESC LIMIT ?'
+                );
+                $stmtR->execute([$scopeKeyR, $readK]);
+                foreach ($stmtR->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                    $mf = $row['formula'];
+                    if (! isset($exprs[$mf])) {
+                        $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($mf, $X);
+                        if ($mv === null) {
+                            continue; // не вычислима на этом сплите — дорога мимо
+                        }
+                        $okM = true;
+                        foreach ($mv as $mvv) {
+                            if ($mvv === null || ! is_finite($mvv)) {
+                                $okM = false;
+                                break;
+                            }
+                        }
+                        if (! $okM) {
+                            continue;
+                        }
+                        $exprs[$mf] = $mv;
+                    }
+                    if (! in_array($mf, $pool, true)) {
+                        $pool[] = $mf; // метки ПЕРВЫМИ (после current pool — dedup ниже не нужен, пул уже построен)
+                        $trailReadCount++;
+                    }
+                }
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    fwrite(STDERR, '[SD-TRAIL] injected=' . $trailReadCount . PHP_EOL);
+                }
+            }
             if (getenv('SEARCH_PROFILE') === '1') {
                 self::$__prof[] = ['L2PAIRS', microtime(true)];
             }
@@ -572,6 +783,11 @@ class Search
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
                     $vb = $exprs[$pool[$b]];
+                    // M1-EXT v2 WU-1: участие в сборке пары = износ «свежести».
+                    // Следующие beam-вызовы (L2-freeze WU-3) видят этих родителей
+                    // как «проверенные» — rotation-квота отдаёт слоты свежим.
+                    self::$beamPairParticipations[$pool[$a]] = true;
+                    self::$beamPairParticipations[$pool[$b]] = true;
                     foreach ($ops as $op) {
                         $vec = [];
                         for ($i = 0; $i < $n; $i++) {
@@ -625,6 +841,63 @@ class Search
                 return $a['cv'] <=> $b['cv'];
             });
             $kept = array_slice($scored2, 0, $l2BeamK);
+            // M1-EXT v2 WU-3 (10.10): сигнальная квота в L2-freeze.
+            // «Отсекаем только когда нашли ближайший запах» (owner 10.10):
+            // композиционный цветок плох по cv одиночки, но несёт положительную
+            // корреляцию с y (сигнал §0.5.1 — лучше шума ≠ лучше нуля).
+            // Квота: top-N по |corr(vec,y)| среди НЕ-kept форм (corr на тех же
+            // 30 строках quick-режима; NOISE-гвард corr<0.15 — не плодить мусор).
+            if (getenv('SEARCH_L2_SIGNAL_QUOTA') !== '0') {
+                $quotaK = (int) (getenv('SEARCH_L2_SIGNAL_K') ?: '10');
+                $keptNames0 = array_map(fn (array $x): string => $x['n'], $kept);
+                $keptSet0 = array_flip($keptNames0);
+                // R/K-формы исключены из сигнальной квоты (урок P8): идеальная
+                // corr на 30 строках = подгонка констант, не запах. Только raw.
+                $rest2 = array_values(array_filter($l2Keys, fn (string $k): bool => ! isset($keptSet0[$k]) && isset($exprs[$k])
+                    && preg_match('/[RK]/', preg_replace('/\d+/', '', $k)) !== 1));
+                $signal2 = [];
+                foreach ($rest2 as $k2) {
+                    $v2 = $exprs[$k2];
+                    $m30 = min($n, 30);
+                    $meanV = array_sum(array_slice($v2, 0, $m30)) / $m30;
+                    $meanY = array_sum(array_slice($y, 0, $m30)) / $m30;
+                    $cov = 0.0; $varV = 0.0; $varY = 0.0;
+                    for ($qi = 0; $qi < $m30; $qi++) {
+                        $dv = $v2[$qi] - $meanV; $dy = $y[$qi] - $meanY;
+                        $cov += $dv * $dy; $varV += $dv * $dv; $varY += $dy * $dy;
+                    }
+                    $corr = ($varV > 1e-12 && $varY > 1e-12) ? abs($cov / sqrt($varV * $varY)) : 0.0;
+                    if ($corr >= 0.15) {
+                        $signal2[] = ['n' => $k2, 'corr' => $corr];
+                    }
+                }
+                usort($signal2, fn (array $a, array $b): int => $b['corr'] <=> $a['corr']);
+                // CLASS-AWARE QUOTA (11.10 v2): слоты по КЛАССУ формы, класс —
+                // структурный (топ-оператор '+' + '×' внутри = sum-of-products
+                // семейство; покрывает dot- и kinetic-ступени БЕЗ регексов).
+                // Ночная «клевета» на класс-квоту — артефакт kinetic-CSV в
+                // verify-скрипте; на чистых данных не тестировалась.
+                // Слоты: 5 sum-of-products + 5 прочих raw.
+                $stairSlots = 0; $otherSlots2 = 0;
+                foreach ($signal2 as $s2) {
+                    $isSumProd = str_contains($s2['n'], '+') && str_contains($s2['n'], '×');
+                    if ($isSumProd) {
+                        if ($stairSlots >= 5) {
+                            continue;
+                        }
+                        $stairSlots++;
+                    } else {
+                        if ($otherSlots2 >= $quotaK - 5) {
+                            continue;
+                        }
+                        $otherSlots2++;
+                    }
+                    $kept[] = ['n' => $s2['n'], 'cv' => 9.99, 'b' => false];
+                    if ($stairSlots >= 5 && $otherSlots2 >= $quotaK - 5) {
+                        break;
+                    }
+                }
+            }
             $keptNames = array_map(fn (array $x): string => $x['n'], $kept);
             // Заморозка: удаляем неперспективные векторы из памяти (RAM)
             $keepSet = array_flip($keptNames);
@@ -757,6 +1030,32 @@ class Search
                     return $a['cv'] <=> $b['cv'];
                 });
                 $kept3 = array_slice($scored3, 0, $l3BeamK);
+                // M1-EXT v2 WU-3b (10.10): сигнальная квота в L3-freeze (та же логика:
+                // композиционный цветок плох по cv, жив по corr; без неё сумма умирает
+                // во второй заморозке до меток — трасса 10.10).
+                $keptSetP = array_flip(array_map(fn (array $x): string => $x['n'], $kept3));
+                $rest3 = array_values(array_filter($l2Keys, fn (string $k): bool => ! isset($keptSetP[$k]) && isset($exprs[$k])
+                    && preg_match('/[RK]/', preg_replace('/\d+/', '', $k)) !== 1));
+                $signal3 = [];
+                $m30b = min($n, 30);
+                $meanYb = array_sum(array_slice($y, 0, $m30b)) / $m30b;
+                foreach ($rest3 as $k3) {
+                    $v3 = $exprs[$k3];
+                    $meanV3 = array_sum(array_slice($v3, 0, $m30b)) / $m30b;
+                    $cov3 = 0.0; $varV3 = 0.0; $varY3 = 0.0;
+                    for ($qi3 = 0; $qi3 < $m30b; $qi3++) {
+                        $dv3 = $v3[$qi3] - $meanV3; $dy3 = $y[$qi3] - $meanYb;
+                        $cov3 += $dv3 * $dy3; $varV3 += $dv3 * $dv3; $varY3 += $dy3 * $dy3;
+                    }
+                    $corr3 = ($varV3 > 1e-12 && $varY3 > 1e-12) ? abs($cov3 / sqrt($varV3 * $varY3)) : 0.0;
+                    if ($corr3 >= 0.3) {
+                        $signal3[] = ['n' => $k3, 'corr' => $corr3];
+                    }
+                }
+                usort($signal3, fn (array $a, array $b): int => $b['corr'] <=> $a['corr']);
+                foreach (array_slice($signal3, 0, (int) (getenv('SEARCH_L2_SIGNAL_K') ?: '10')) as $s3) {
+                    $kept3[] = ['n' => $s3['n'], 'cv' => 9.99, 'b' => false];
+                }
                 $keepSet = array_flip(array_map(fn (array $x): string => $x['n'], $kept3));
                 $bKeySet = array_flip($bKeys ?? []);
                 foreach ($l2Keys as $pname) {
@@ -1111,6 +1410,13 @@ class Search
         $pCv = microtime(true);
         // testCv каждого (дёшево), лучший по тесту = закон.
         $plausible = [];
+        // M1-EXT v2 WU-3 (10.10): сигнальные формы — лучше шума, хуже гейта.
+        // §0.5.1: сигнал = «здесь что-то есть» — компас, не диплом. Собираются
+        // ВМЕСТЕ с plausible (те же данные), потолок SIGNAL_CV_CEILING.
+        $signalForms = [];
+        $stairForms = [];
+        $petalForms = []; // WU-4c FIX 11.10: ступени лестницы (corr-класс, без cv-окна)
+        $signalCeiling = (float) (getenv('SIGNAL_CV_CEILING') ?: '6.0');
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact
         foreach ($exprs as $name => $vec) {
             $exact = true;
@@ -1147,6 +1453,68 @@ class Search
             $cv = self::cv($vec, $y, $affineShift);
             if ($cv < $bestCvSeen) {
                 $bestCvSeen = $cv;
+            }
+            // Урок P8 (10.10): R-подгонки (Rmin/Rmax/Rsum/K-константы) дают
+            // низкий cv на ЛЮБОМ y — это null-подгонки, не запахи. Метим только
+            // raw-структуры (xN-терминалы, нет R/K в имени) — они единственные,
+            // чей сигнал переносится между сидами одного домена.
+            $isRawStructure = preg_match('/[RK]/', preg_replace('/\d+/', '', $name)) !== 1; // R/K-ключи = null-подгонки (урок P8)
+            if ($cv >= $cvTrainMax && $cv < $signalCeiling && $isRawStructure
+                && (str_contains($name, '×') || str_contains($name, '+'))) {
+                // WU-4b (10.10): corr метки нужен ДЛЯ РЕЙТИНГА чтения (консенсус
+                // (uses DESC, corr DESC) — симуляция sim_swarm_debug: без corr
+                // чтение = лотерея при равных uses, пчёлы теряют law-дороги).
+                $m30m = min($n, 30);
+                $meanVm = array_sum(array_slice($vec, 0, $m30m)) / $m30m;
+                $meanYm = array_sum(array_slice($y, 0, $m30m)) / $m30m;
+                $covM = 0.0; $varVM = 0.0; $varYM = 0.0;
+                for ($qm = 0; $qm < $m30m; $qm++) {
+                    $dvM = $vec[$qm] - $meanVm; $dyM = $y[$qm] - $meanYm;
+                    $covM += $dvM * $dyM; $varVM += $dvM * $dvM; $varYM += $dyM * $dyM;
+                }
+                $corrM = ($varVM > 1e-12 && $varYM > 1e-12) ? abs($covM / sqrt($varVM * $varYM)) : 0.0;
+                $signalForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrM];
+            }
+            // WU-4c FIX 11.10 (verify_dot20 0/20, trace-цепочка): СТУПЕНИ лестницы
+            // ((xa×xb)+(xc×xd)) на реальном фикстуре имеют ПОЛНЫЙ cv 9-15 (y
+            // пересекает ноль → ratio-cv взрыв) → потолок 6.0 отсекает их из
+            // signalForms → за 20 вылетов ноль ступеней в метках → лестница не
+            // стартует. corr-сенсор видит ступени отлично (0.83+) — собираем
+            // ступени ОТДЕЛЬНО по corr (без cv-окна): это дороги, не законы.
+            if ($isRawStructure
+                && preg_match('/^\(\(x\d+×x\d+\)\+\(x\d+×x\d+\)\)$/', $name) === 1) {
+                $m30s2 = min($n, 30);
+                $meanVs = array_sum(array_slice($vec, 0, $m30s2)) / $m30s2;
+                $meanYs2 = array_sum(array_slice($y, 0, $m30s2)) / $m30s2;
+                $covS = 0.0; $varVS = 0.0; $varYS = 0.0;
+                for ($qs = 0; $qs < $m30s2; $qs++) {
+                    $dvS = $vec[$qs] - $meanVs; $dyS = $y[$qs] - $meanYs2;
+                    $covS += $dvS * $dyS; $varVS += $dvS * $dvS; $varYS += $dyS * $dyS;
+                }
+                $corrS = ($varVS > 1e-12 && $varYS > 1e-12) ? abs($covS / sqrt($varVS * $varYS)) : 0.0;
+                if ($corrS >= 0.5) {
+                    $stairForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrS];
+                }
+            }
+            // PETAL COLLECTOR (12.10, синтез с CV0 §1.15/§1.17): голые лепестки
+            // (pairwise ×-формы) — та же участь, что ступени 11.10: полный cv
+            // взрывается на zero-crossing (T1 (x0×x1²) cv >> потолка) → cv-окно
+            // их не пропускает, а stair-коллектор матчит только композиции.
+            // Порога НЕТ — writer-квота (топ-2 на second-operand группу)
+            // отберёт представителей; use-time (CV-ранг/приёмка) фильтрует.
+            if ($isRawStructure
+                && ! str_contains($name, '+')
+                && isset($l1PairwiseMap[$name])) {
+                $m30p = min($n, 30);
+                $meanVp = array_sum(array_slice($vec, 0, $m30p)) / $m30p;
+                $meanYp = array_sum(array_slice($y, 0, $m30p)) / $m30p;
+                $covP = 0.0; $varVP = 0.0; $varYP = 0.0;
+                for ($qp = 0; $qp < $m30p; $qp++) {
+                    $dvP = $vec[$qp] - $meanVp; $dyP = $y[$qp] - $meanYp;
+                    $covP += $dvP * $dyP; $varVP += $dvP * $dvP; $varYP += $dyP * $dyP;
+                }
+                $corrP = ($varVP > 1e-12 && $varYP > 1e-12) ? abs($covP / sqrt($varVP * $varYP)) : 0.0;
+                $petalForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrP];
             }
             if ($cv < $cvTrainMax) {
                 $plausible[] = [
@@ -1391,7 +1759,110 @@ class Search
         if ($found && is_string($bestName) && preg_match('/(BW[0-9a-f]+|B\d+)/', $bestName, $m) === 1) {
             \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
         }
+
+        // M1-EXT v2 WU-4 (10.10): дорожная память — сигнальная форма переживает
+        // find(). TRAIL_MARKS=1 (default off = verify-величина, §0.6-канон).
+        // Запись: топ-5 непрошедших форм из $plausible, отсортированных по cv
+        // (крупные структуры: только с '×' ИЛИ '+' — одиночные фичи не метки).
+        // «Signal must replicate» (WU-D4): uses++ при повторной записи того же
+        // fingerprint+formula; uses>=3 без подтверждения гейтом — дорога
+        // зарастает (DELETE, §2.5.14-логика). Fail-loud (без try/catch):
+        // молчаливая смерть стигмергии = тихий регресс к амнезии.
+        if (getenv('TRAIL_MARKS') === '1' && ! $found && (! empty($signalForms) || ! empty($stairForms))) {
+            // Ступени ПЕРВЫМИ (лестница: следующая пчела строит из них закон)
+            self::writeTrailMarks($colLabels, array_merge($stairForms, $petalForms, $signalForms), $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap);
+        }
+
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
+    }
+
+    /**
+     * M1-EXT v2 WU-4: запись дорожных меток (стигмергия между вылетами).
+     *
+     * @param list<array{cv: float, name: string}> $plausible сигнальные формы (cv в [гейт, потолок))
+     * @param list<array<string, mixed>>|null $colLabels
+     */
+    private static function writeTrailMarks(?array $colLabels, array $plausible, float $cvTrainMax, float $bestCvSeen, array $pairwiseKeys = [], array $pairwiseMap = []): void
+    {
+        if (empty($plausible) || ($bestCvSeen !== INF && $bestCvSeen >= self::NOISE_CV_FLOOR * 8)) {
+            return; // чистый шум — дороги не метим (NOISE-гвард)
+        }
+        // Scope = ТОЛЬКО labels (стабилен между сидами одного домена).
+        // n (число plausible) в scope НЕ входит — он плавает от сида к сиду.
+        $scopeKey = 'sha1:' . sha1(json_encode(['labels' => $colLabels]));
+        $db = \BeeSwarm\Infra\Database::get();
+        // WU-4b writer v2 (12.10, residual-протокол): CLASS COVERAGE —
+        // 3 лестницы (sum-of-products) + 2 лепестка (чистое произведение
+        // pairwise-фич). Урок: глобальный top-5 оставляет голые компоненты
+        // (x0×x1²) незамеченными — против полного y их corr ~0.55 теряется
+        // за лестницами 0.86, а без них residual-лестница не собирается
+        // (kinetic seed 1: 15 меток, ни одной голой T-формы).
+        usort($plausible, fn (array $a, array $b): int => ($b['corr'] ?? 0) <=> ($a['corr'] ?? 0));
+        // WU-4b writer v3 (12.10, ГЕЙТЫ = ПОКРЫТИЕ, не пороги — owner,
+        // синтез с CV0_Protocol §1.15/§1.17): скалярный corr-гейт 0.5
+        // убивал T1 (x0×x1², corr 0.22) — истинный член kinetic-закона.
+        // Гейт = структурное покрытие: 3 лестницы + топ-1 лепесток на каждую
+        // группу ВТОРОГО ОПЕРАНДА (x1² ≠ x1 — разные группы). Use-time
+        // (стигмергия/приёмка) фильтрует нулём домена — write-time пишет
+        // дороги без порогов (Принижин: структура живёт, если несёт сигнал
+        // относительно нуля; ноль измеряется на use-time).
+        $marks = [];
+        $stairN = 0;
+        $petalSeen = [];   // полный второй операнд ('x1²' != 'x1') => отмечен
+        foreach ($plausible as $cand) {
+            $name = $cand['name'];
+            $isStair = str_contains($name, '+') && str_contains($name, '×');
+            $isPetal = ! str_contains($name, '+') && isset($pairwiseMap[$name]);
+            if ($isStair && $stairN < 3) {
+                $stairN++;
+                $marks[] = [$name, $cand['corr'] ?? 0.0];
+                continue;
+            }
+            if ($isPetal) {
+                $second = (string) ($pairwiseMap[$name][1] ?? '');
+                // топ-2 на группу: в kinetic x1²-группе лучший по corr —
+                // (x0²×x1²) 0.379 (искажённый x0²-вариант), а истинный член —
+                // (x0×x1²) 0.221; use-time (CV-ранг) отбросит искажение,
+                // write-time обязан дать ОБА представителя группы
+                if ($second !== '' && ($petalSeen[$second] ?? 0) < 2) {
+                    $petalSeen[$second] = ($petalSeen[$second] ?? 0) + 1;
+                    $marks[] = [$name, $cand['corr'] ?? 0.0];
+                }
+                continue;
+            }
+        }
+        if ($marks === []) {
+            return;
+        }
+        // WU-4b: uses++ при повторной записи; uses>=2 → kind='replicated'
+        // (дорога подтверждена второй пчелой — «signal must replicate», WU-D4);
+        // corr хранится максимумом (консенсус по лучшему наблюдению).
+        $ins = $db->prepare(
+            'INSERT INTO trail_marks (fingerprint, formula, kind, corr, uses, mark_tick)
+             VALUES (?, ?, ?, ?, 1, 0)
+             ON CONFLICT(fingerprint, formula) DO UPDATE SET
+               uses = uses + 1,
+               corr = MAX(corr, excluded.corr),
+               kind = CASE WHEN uses + 1 >= 2 THEN \'replicated\' ELSE kind END'
+        );
+        foreach ($marks as [$formula, $corr]) {
+            $ins->execute([$scopeKey, $formula, 'uncalibrated', $corr]);
+        }
+        // Зарастание (аутофагия §2.5.14): ТОЛЬКО неподтверждённые метки стираются
+        // (uses>7 без репликации — 3x запас к 2-проходной репликации).
+        // Ранее: DELETE WHERE uses>6 без разбора kind — при рое 20 пчёл
+        // подтверждённая метка (uses=20) стиралась (симуляция sim_swarm).
+        $db->exec("DELETE FROM trail_marks WHERE kind = 'uncalibrated' AND uses > 7");
+        // Потолок replicated на fingerprint (владелец 10.10: «односторонние законы
+        // домена слишком частые»): держим топ-32 по трафику uses, хвост — наружу.
+        $db->prepare(
+            "DELETE FROM trail_marks
+             WHERE kind = 'replicated' AND fingerprint = ? AND id NOT IN (
+               SELECT id FROM trail_marks
+               WHERE kind = 'replicated' AND fingerprint = ?
+               ORDER BY uses DESC, corr DESC LIMIT 32
+             )"
+        )->execute([$scopeKey, $scopeKey]);
     }
 
     private static function preregisterExact(string $formula): void
@@ -1521,6 +1992,17 @@ class Search
     private static array $mul2Cache = [];
 
     private static array $mul2Unique = [];
+
+    /**
+     * M1-EXT v2 WU-1 (10.10): participation-карта beam-rotation.
+     * Ключ = имя формы, значение = true, если форма уже учаовала в собранной
+     * L2-паре В ЭТОМ вызове find(). Сбрасывается на каждый find() (как
+     * $mul2Cache — урок EXP-036: cross-call pollution). ROTATION-квота пулит
+     * формы, которых НЕТ в карте («свежие дороги»).
+     *
+     * @var array<string, true>
+     */
+    private static array $beamPairParticipations = [];
 
     public static function resetMul2Counter(): void
     {

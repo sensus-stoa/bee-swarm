@@ -69,7 +69,7 @@ final class EnsembleWiringLiveTest extends TestCase
 
     /**
      * Живой discover() с ENSEMBLE_K=2: хук диспатчит сертификацию.
-     * V0.18 WU-3: ENSEMBLE_BUDGET_TICKS=500 — тик-детерминизм вместо
+     * V0.18 WU-3: ENSEMBLE_BUDGET_TICKS=30 — тик-детерминизм вместо
      * wall-clock (V0.17-класс ушёл); не slow.
      */
     public function testDiscoverHooksEnsembleOnFoundCandidates(): void
@@ -78,11 +78,12 @@ final class EnsembleWiringLiveTest extends TestCase
         putenv('FORAGER_SOURCES=:');
         putenv('NO_BIRTH=1');
         putenv('SEARCH_NO_PREREG=1');
-        putenv('SEARCH_BEAM_K=0');
+        putenv('SEARCH_BEAM_K=10');
+        putenv('SEARCH_DEPTH_MAX=2');
         putenv('ENSEMBLE_K=2');
         // Wall-clock-гвард (дефект первого suite-прогона): certify с дефолтом
         // 300s/член на -p8 замерял воркер на 22+ мин. Override бюджета.
-        putenv('ENSEMBLE_BUDGET_TICKS=500');
+        putenv('ENSEMBLE_BUDGET_TICKS=30');
         [$X, $y] = $this->liveDomain();
         $de = new DiscoveryEngine();
         // depth=1: Search найдёт фичу/атом с cv<=0.05 на аффинном таргете не

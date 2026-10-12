@@ -55,6 +55,12 @@ class NullCalibrator
         if (empty($X) || empty($y) || count($y) < 2) {
             return self::FALLBACK_EPSILON;
         }
+        // TEST-BUDGET (12.10, phpspy): калибровка = nPerms поисков; в suite
+        // это тяжёлый хвост (calibrateEpsilon на каждый fingerprint-тик).
+        // NULL_CALIBRATOR_PERMS режет бюджет в тестах; прод = 100 (канон §0.7).
+        if ($nPerms === self::DEFAULT_PERMS) {
+            $nPerms = max(1, (int) (getenv("NULL_CALIBRATOR_PERMS") ?: self::DEFAULT_PERMS));
+        }
 
         $bestCvs = [];
         $nActual = 0;

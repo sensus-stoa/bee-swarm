@@ -86,6 +86,12 @@ abstract class TestCase extends BaseTestCase
         foreach (array_diff_key(getenv(), $this->envSnapshot) as $k => $v) {
             putenv($k);
         }
+        // MEMORY-ДЕТЕКТОР (12.10, dmesg OOM 15.4GB): воркер-утечка видна здесь,
+        // а не по тихой смерти от ядра. Порог — только сигнал в error_log.
+        $mem = memory_get_usage(true);
+        if ($mem > 1_000_000_000) {
+            error_log(sprintf('[test][MEM] %.2f GB before restore — утечка в этом тесте/воркере', $mem / 1e9));
+        }
         \BeeSwarm\Infra\RngIsolation::assertClean();
         // ИЗОЛЯЦИЯ (15.08): periodic-save (doTick каждые 100 тиков) пишет
         // bee_persistence — без очистки следующий тест процесса видит

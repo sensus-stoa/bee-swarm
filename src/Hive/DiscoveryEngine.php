@@ -130,6 +130,9 @@ class DiscoveryEngine
 
         // §2.5.2 wiring: лучшая кандидатная формула поиска (даже не принятая) —
         // сырьё для partialBirth (Grammar Ceiling Break). Лучший = минимальный cv.
+        // ENV-HYGIENE (agent-review 12.10): флаг эскалации не должен переживать
+        // discover() — иначе глушит raw-pair pool последующих независимых find().
+        putenv('SEARCH_ESCALATED');
         return [$found, $bestCv, $searchCv, $lastDiagnosis ?? null, $lastFormula ?? null];
     }
 }

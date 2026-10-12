@@ -311,7 +311,7 @@ for ($seed = 1; $seed <= $nSeeds; $seed++) {
         implode(' | ', array_map(fn($k) => strlen($k) > 60 ? substr($k, 0, 57) . '...' : $k, array_keys($basis))));
 }
 echo sprintf("RESIDUAL RESULT [%s]: %d/%d PASS, avg flights %.1f\n", $fixture, $found, $nSeeds, $nSeeds > 0 ? $flightSum / max(1, $found) : 0);
-if ($argv[3] ?? '' === 'debug') {
+if (($argv[3] ?? '') === 'debug') {
 $stmt = $db->prepare('SELECT formula FROM trail_marks');
 $stmt->execute();
 $allMarks = $stmt->fetchAll(PDO::FETCH_COLUMN);

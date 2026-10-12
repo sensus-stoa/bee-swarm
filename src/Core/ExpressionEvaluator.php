@@ -38,6 +38,7 @@ class ExpressionEvaluator
     // suite; ensemble null-gate оценивает те же формулы десятки раз).
     // AST read-only (evalNode не мутирует) — шар безопасен, как defCache.
     private const PARSE_CACHE_MAX = 1024;
+    private const DEF_CACHE_MAX = 4096;
     private static array $parseCache = [];
 
     public static function clearDefCache(): void
@@ -66,6 +67,11 @@ class ExpressionEvaluator
         }
         if (! empty($map)) {
             $node = ExpressionNormalizer::restoreAtoms($node, $map);
+        }
+        if (count(self::$defCache) >= self::DEF_CACHE_MAX) {
+            // OOM-ГИГИЕНА (12.10, dmesg): defCache был без потолка — воркер
+            // suite раздувался до 15.4GB RSS, ядро убивало, queued-тесты в skip.
+            self::$defCache = [];
         }
         self::$defCache[$atom] = $node;
         return $node;

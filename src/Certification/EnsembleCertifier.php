@@ -222,7 +222,12 @@ final class EnsembleCertifier
         // каждый ряд x кандидата — 65% листьев профиля). Прецедент:
         // NullCalibrator (грамматика = BASE_OPS, §OOM-guard).
         $grammar = new Grammar();
-        $grammar->restrictTo(["+", "×", "−", "/", "sq", "sqrt"]);
+        // RECALL-FIX (12.10, premortem #3): BASE_OPS-only ослеплял членов на
+        // born-атомы — закон через рождённую операцию не воспроизводился
+        // членами → NO_CONSENSUS на подлинных законах (регрессия recall).
+        // Члены видят тот же язык, что discovery: BASE_OPS + born-опы из БД.
+        $bornOps = \BeeSwarm\Core\ExpressionEvaluator::birthOpNames();
+        $grammar->restrictTo(array_merge(["+", "×", "−", "/", "sq", "sqrt"], $bornOps));
         $members = self::runMembers($X, $y, $trainIdx, $grammar, $cfg, 1000, 'ENS');
         [$foundN, $topShape, $topCount] = self::tallyMembers($members);
         $recurrence = $foundN > 0 ? $topCount / $foundN : 0.0;

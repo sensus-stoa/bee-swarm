@@ -22,12 +22,37 @@ abstract class TestCase extends BaseTestCase
     {
         // ENV-СНАПШОТ: до guard-а, чтобы утечки предыдущего теста не влияли
         // на сам guard (SWARM_DB_PATH-течь блокировала 214 тестов).
+        // FORENSICS f18 (12.10): PHPUnit global-state restore обнуляет статические
+        // свойства классов — включая $workerEnv (он в снапшоте как null до
+        // первого ??=). ??= перезахватывает env; если в этот момент среда
+        // стёрта wipe-циклом прошлого теста, пустой базлайн ФИКСИРУЕТСЯ и
+        // tearDown стирает ВСЮ среду воркера (f17: 324 skip, f18: 2 skip,
+        // [trip] dbPath=false). Гейт: базлайн без SWARM_DB_PATH невалиден —
+        // переснимаем; если невалиден и текущий env — пустой базлайн,
+        // деструктивные циклы tearDown отключаются (см. гейт ниже).
         self::$workerEnv ??= getenv();
+        if (! isset(self::$workerEnv['SWARM_DB_PATH'])) {
+            $fresh = getenv();
+            self::$workerEnv = isset($fresh['SWARM_DB_PATH']) ? $fresh : [];
+        }
         $this->envSnapshot = self::$workerEnv;
         // GUARD: prevent test leakage into production DB
         // :memory: — in-memory test DB (S1.10); test-пути — файловые тестовые БД
         $dbPath = getenv('SWARM_DB_PATH');
         if ($dbPath !== ':memory:' && (! $dbPath || ! str_contains($dbPath, 'test'))) {
+            // FORENSICS 12.10 (f17=324 skip, junit-logger не пишет message):
+            // логируем жертву и значение guard-переменной в момент скипа.
+            error_log(
+                sprintf(
+                    "[trip] %s %s::%s dbPath=%s\n",
+                    date('H:i:s'),
+                    static::class,
+                    $this->name(),
+                    var_export($dbPath, true)
+                ),
+                3,
+                '/tmp/guard_trips.log'
+            );
             $this->markTestSkipped(
                 'SWARM_DB_PATH must point to a test database (:memory: or test path). ' .
                 'Run with phpunit.xml or set SWARM_DB_PATH=:memory:'
@@ -79,12 +104,52 @@ abstract class TestCase extends BaseTestCase
      */
     protected function tearDown(): void
     {
-        // ENV-РЕСТОР: вернуть снапшот, снять переменные, которых не было.
-        foreach ($this->envSnapshot as $k => $v) {
-            putenv($k . "=" . $v);
+        // FORENSICS 12.10: ловим отравителя — env ≠ baseline на входе в tearDown.
+        // FORAGER_SOURCES исключён: его же ставит setUp (fixtures).
+        // Пустой envSnapshot (невалидный базлайн) — сравнивать не с чем, шум.
+        $nowEnv = getenv();
+        if ($this->envSnapshot !== [] && $nowEnv != $this->envSnapshot) {
+            $diff = [];
+            foreach ($this->envSnapshot as $k => $v) {
+                if ($k === 'FORAGER_SOURCES') {
+                    continue;
+                }
+                $cur = $nowEnv[$k] ?? null;
+                if ($cur !== $v) {
+                    $diff[] = $k . ': ' . var_export($v, true) . ' -> ' . var_export($cur, true);
+                }
+            }
+            foreach (array_diff_key($nowEnv, $this->envSnapshot) as $k => $v) {
+                if ($k === 'FORAGER_SOURCES') {
+                    continue;
+                }
+                $diff[] = $k . ': (none) -> ' . var_export($v, true);
+            }
+            if ($diff !== []) {
+                error_log(
+                    sprintf(
+                        "[poison] %s %s::%s %s\n",
+                        date('H:i:s'),
+                        static::class,
+                        $this->name(),
+                        implode('; ', $diff)
+                    ),
+                    3,
+                    '/tmp/guard_trips.log'
+                );
+            }
         }
-        foreach (array_diff_key(getenv(), $this->envSnapshot) as $k => $v) {
-            putenv($k);
+        // ENV-РЕСТОР: вернуть снапшот, снять переменные, которых не было.
+        // ГЕЙТ f18: пустой envSnapshot (невалидный базлайн) + wipe-цикл =
+        // ПОЛНОЕ СТИРАНИЕ среды воркера (array_diff_key(getenv(), []) = всё).
+        // Невалидный базлайн → restore/wipe отключены, среда не трогается.
+        if ($this->envSnapshot !== []) {
+            foreach ($this->envSnapshot as $k => $v) {
+                putenv($k . "=" . $v);
+            }
+            foreach (array_diff_key(getenv(), $this->envSnapshot) as $k => $v) {
+                putenv($k);
+            }
         }
         // MEMORY-ДЕТЕКТОР (12.10, dmesg OOM 15.4GB): воркер-утечка видна здесь,
         // а не по тихой смерти от ядра. Порог — только сигнал в error_log.

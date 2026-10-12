@@ -3,8 +3,10 @@
 > PHP implementation of the CV→0 Autonomous Evolution Protocol: a population of
 > bees (autonomous agents) that discover mathematical invariants through
 > evolutionary search, evolve their own grammar bottom-up, refuse to
-> hallucinate — and **reuse their discoveries as building blocks across domains**
-> (cultural transfer, statistically proven).
+> hallucinate — and **reuse their discoveries as building blocks across
+> domains** (cross-domain operator reuse measured with matched controls;
+> single-word transfer measured on synthetic molecule pairs, significance
+> testing pending).
 
 ## The refusal showcase
 
@@ -30,14 +32,15 @@ systems hallucinate.
 
 ## Protocol
 
-**DOI: [10.5281/zenodo.23212766](https://doi.org/10.5281/zenodo.23212766)** —
-CV→0 Autonomous Evolution Protocol **v1.9** (published Oct 2026; four stages,
+**DOI: [10.5281/zenodo.23287007](https://doi.org/10.5281/zenodo.23287007)** —
+CV→0 Autonomous Evolution Protocol **v2.1** (canonical, md+pdf; four stages,
 every criterion falsifiable by script; dissipation ladder, blind transition
-detection, contradiction classifier). Concept line:
+detection, contradiction classifier, criterion-validity annex). Concept line:
 [10.5281/zenodo.21810055](https://doi.org/10.5281/zenodo.21810055).
 
-Experiment journal: `Benchmarks/experiments-log.md` (EXP-001..039, honest logs
-including null results and retracted methodology).
+Experiment journal: `Benchmarks/experiments-log.md` (honest logs including
+null results and retracted methodology; living registry of stories and
+experiments is maintained in the project docs tree).
 
 ## What the system does
 
@@ -52,17 +55,29 @@ including null results and retracted methodology).
 - **GRAMMAR-BIRTH:** successful composite formulas are elevated to grammar
   operators (`B{hash} => definition`). Grammar evolves bottom-up from verified
   discoveries.
-- **CULTURAL TRANSFER (proven, EXP-022o/r/t):** operators born in domain A are
+- **CULTURAL TRANSFER (measured):** operators born in domain A are
   systematically reused in domain B — 67% of A-atoms reused (180 reuse
-  events), random-matched controls: 0/30. Fisher exact p ≈ 1.08×10⁻⁵. Reuse is
-  registered at the point of application (touchAtom), rewarded in the energy
-  economy (REUSE-REWARD ×1.5 reuse, ×2.0 cross-domain transfer), candidates
-  are forgotten if unused (24h TTL).
+  events, EXP-022 series), random-matched controls: 0/30. Fisher exact
+  p ≈ 1.08×10⁻⁵ (historical series). Reuse is registered at the point of
+  application (touchAtom), rewarded in the energy economy (REUSE-REWARD ×1.5
+  reuse, ×2.0 cross-domain transfer), candidates are forgotten if unused
+  (24h TTL). Single-word molecule transfer (birth in domain A, solve in
+  domain B, ×3.8 faster, cold-birth control): ONTOGENY B1→T1→T2, n=5 per
+  arm, controls included, no significance test yet.
 - **Language emergence, formalized (§3.8, VERIFY-2-8):** the compressor
   distills isomorphic laws from two domains into one atom (max−min over the
-  heat/diffusion molecule); the atom then solves a third domain that raw
-  search of the same budget cannot solve at all (raw depth-2 structurally
-  impossible vs with-atom depth-3 exact, cv≈0).
+  heat/diffusion molecule); the atom then solves a third domain. Measured
+  at matched search configuration (R1b): raw search fails at depth 2 AND at
+  depth 3 with the same beam (cv = 9.99 sentinel, see below), with-atom
+  depth 3 solves exact (cv = 0). Random-atom control (R1c): a random
+  arity-2 atom does not solve the domain — the effect is atom-specific.
+  Cost parity is NOT claimed: the with-atom run is slower (6.1 s vs 2.1 s
+  raw-matched); the atom ENABLES, it does not accelerate. Atom-birth cost
+  is timed separately (bootstrap mint 0.001 s). The demonstration is a
+  self-contained fixture run (`php scripts/verify_2_8.php`, clean-clone
+  verified); the reuse record inside it is written via the same public
+  contract the live daemon uses (`Grammar::registerReuse`), invoked by the
+  fixture — daemon-mode observation is not part of this demo.
 - **Dissipation ladder (§1.19):** the death threshold d* of a law is measured
   — how much of the signal may be replaced by noise before the structure dies
   (pilot: d* = 0.40, byte margin decays linearly). Law↔noise symmetry is
@@ -81,22 +96,34 @@ including null results and retracted methodology).
 - **Population dynamics:** energy lifecycle (tick/search costs, discovery
   rewards, heritable params), spawn with mutated grammar, hunger mutations at
   E<5, gap-spawn on plateau, escrow-based delayed rewards (anti-grazing:
-  rewards settle only after independent verification), generation snapshots +
-  monoculture alarm.
+  rewards settle only after independent verification; the verification
+  executor is implemented and unit-verified, daemon-loop wiring is open —
+  verification currently advances via driver scripts), generation snapshots
+  + monoculture alarm.
 
-## Stage status (09.10.2026)
+## Stage status (13.10.2026)
 
 | Stage | Status |
 |-------|--------|
-| 0 — Reliable invariant extraction | ✅ 9/9 verify PASS, FPR=0 on noise, honest NOISE refusals; two-part code gate + dissipation ladder + blind transition detection shipped (v1.9) |
-| 1 — Living population | ✅ verify_1_* suite passed 13.08 (escrow economy, ensemble certification, verifier-eps parity); continuous prod run paused, resumable |
-| 2 — Understanding | 🔧 ladder in progress: §3.8 language emergence formalized as measurement (6 tests, closed 09.10); next: form invariance, self-model of ignorance |
+| 0 — Reliable invariant extraction | ✅ 9/9 verify PASS, FPR=0 on noise, honest NOISE refusals; two-part code gate + dissipation ladder + blind transition detection shipped; criterion made baseline-relative (A19) after EXP-040 diagnoses |
+| 1 — Living population | ✅ verify_1_* suite passed 13.08; continuous prod run paused, resumable |
+| 2 — Understanding | 🔧 ladder in progress: §3.8 language emergence (09.10), §3.2.2 form invariance (10.10), §3.3 self-model of ignorance (10.10) closed; open: boundary honesty, explain endpoint, active data request, verification-tick wiring |
 | 3 — Autonomy | specification ready (gated: verification machinery is immutable to the swarm — proposals never touch the referee) |
 
-Test suite: **1183/1183** two-pass (fast 1174 parallel + slow 9 serial),
-psalm clean.
+Test suite: **1224** two-pass (fast 1213 parallel + slow 11 serial),
+psalm clean. Snapshot per `scripts/run_two_pass.sh` TOTAL_EXPECTED.
 
 ## Quick start
+
+One-command language-emergence demonstration (§3.8, self-contained fixture,
+in-memory DB, no network; committed report and evidence at
+`Benchmarks/verify_2_8/`):
+
+```bash
+php scripts/verify_2_8.php
+```
+
+Full verify ladder:
 
 ```bash
 php scripts/verify/verify_all.php --stage=0 --log=logs/agenda.log
@@ -105,7 +132,7 @@ php scripts/verify/verify_all.php --stage=0 --log=logs/agenda.log
 Tests (TDD, in-memory DB isolation, two-pass: fast parallel + slow serial):
 
 ```bash
-bash scripts/run_two_pass.sh   # 1183 tests
+bash scripts/run_two_pass.sh   # 1224 tests
 ```
 
 Daemon:
@@ -113,6 +140,10 @@ Daemon:
 ```bash
 php agenda.php   # see DEPLOY.md
 ```
+
+Note: `CV 9.99` in any report row with `found=false` is the engine's
+NOT_FOUND sentinel (no candidate passed the exact criterion), not a
+measured coefficient of variation.
 
 ## Comparison with gplearn (symbolic regression baseline)
 
@@ -138,11 +169,17 @@ retracted):
 |---------|-----------------|----------------------|
 | WINE | CV_H median 0.0485 (20/20) | CV_H median **0.047** (20/20) — parity |
 | heat | 19/20 | **20/20** — parity (1 discordant, McNemar n.s.) |
-| gravity | 0/20 | **6/20** — Bee win |
-| relmass | 16/20 | **20/20** — Bee advantage |
-| dot, kinetic | **18/20, 16/20** | 0/20 — PySR win (SUM-composition gap, mapped to stories) |
+| gravity | 0/20 | ~~6/20~~ — **VOID** (exact-floor artifact: constant passed as "exact"; bug fixed 12.10, rerun pending) |
+| relmass | 16/20 | ~~20/20~~ — **VOID** (ratio-CV criterion invalid at low σ_rel; baseline-relative criterion A19 adopted, rerun pending) |
+| dot, kinetic | **18/20, 16/20** | 0/20 at depth 3 — PySR win, gap since closed: M1-EXT v3 residual ladder reaches **20/20 both** (cvH=0; report in `Benchmarks/EXP040_M1EXT2_REPORT.md`, run artifacts being re-materialized) |
 | AUTO-MPG | CV_H 0.175, R²=0.708 (approximation) | **refusal** (0/100 null accepted, FPR=0) |
 | null control (100 noise sets) | — | **0 laws** (FPR=0) |
+
+EXP-040 criterion diagnoses (Oct 2026): the absolute ratio-CV threshold 0.10
+is invalid on low-σ_rel empirical data (constant-model null FPR 0.99); the
+certification criterion is now baseline-relative (A19). The four starred
+empirical cells above are VOID for that reason; heat/dot/kinetic/wine/airfoil
+comparisons remain valid.
 
 Interpretation: approximation and invariant discovery are distinct tasks.
 PySR finds genuine predictive structure on MPG (below null q05=0.346), but it
@@ -221,12 +258,12 @@ agenda.php → Hive::run()
 ├── Bee (energy lifecycle §2.1, heritable energy params)
 ├── Search::find (CV→0, held-out, affine-shift, honesty gates S1.5)
 ├── DiscoveryEngine (candidate pipeline)
-├── SeasonScheduler (phase-based budget allocation, EXP-039)
+├── SeasonScheduler (phase-based budget allocation, EXP-039; scheduler merged, experiment parked)
 ├── GrammarMutator (spawn mutation + propagation weights)
 ├── Grammar (BASE_OPS + dynamic ops + B-atoms birth + reuse tracking)
 ├── NullCalibrator (permutation null-calibration)
 ├── Certification/ (EnsembleCertifier: structural certificates, §1.9)
-├── VerificationExecutor (independent law verification, escrow-settled)
+├── VerificationExecutor (independent law verification, escrow-settled; implemented, daemon-loop wiring open)
 ├── OverlapTracker (§1.8)
 ├── PlateauDetector + SpawnManager (gap-spawn, generation snapshots)
 ├── RecordKeeper (laws DB, dedup, cross-domain)

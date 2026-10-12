@@ -27,5 +27,6 @@
         <env name="SWARM_DB_PATH" value=":memory:" force="true"/>
         <env name="SEARCH_DEPTH_MAX" value="2" force="true"/>
         <env name="SEARCH_BEAM_K" value="10" force="true"/>
+        <env name="NULL_CALIBRATOR_PERMS" value="5" force="true"/>
     </php>
 </phpunit>

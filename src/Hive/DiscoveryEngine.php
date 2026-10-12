@@ -56,6 +56,11 @@ class DiscoveryEngine
             $lastFormula = null;
             $lastFormulaCv = null;
             for ($d = $depth; $d <= $maxDepth; $d++) {
+                // M1-EXT v2 FIX 11.10: флаг эскалации для Search — raw-pair
+                // merge (WU-2) применяется только на не-эскалационных вылетах
+                // (чистый depth-2 verify); иначе другой L2-freeze состав
+                // портит L2L1-вход следующих глубин (DiscoveryDepth3 регрессия).
+                putenv('SEARCH_ESCALATED=' . ($d > $depth ? '1' : '0'));
                 [$sFound, $sCv, $sFormula, $sCvTest, $sClass, $sDiagnosis] = Search::find($X, $y, $searchGrammar, $d, $colLabels, $testRatio, $cvThreshold);
                 $lastDiagnosis = $sDiagnosis;
                 // CONCERNS deleg_ceef5093: «нашёл хоть что-то» — слабый критерий.

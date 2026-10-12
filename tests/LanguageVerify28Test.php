@@ -42,6 +42,10 @@ class LanguageVerify28Test extends TestCase
 
     protected function tearDown(): void
     {
+        // ENV-ТЕЧЬ (12.10, suite 214 skip): testRefusesToRunOnPersistentDatabase
+        // ставит /tmp/v28_guard_forbidden.db — без восстановления весь хвост
+        // очереди paratest-воркера скипается по TestCase-guard.
+        putenv("SWARM_DB_PATH=:memory:");
         // Дублирующая чистка (прецедент deleg_3302236f): BW-атомы и законы
         // фикстуры не переживают тест даже при раннем исключении.
         $this->cleanup();

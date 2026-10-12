@@ -8,8 +8,22 @@ use PHPUnit\Framework\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    /** ENV-снапшот (12.10): утечки putenv между тестами одного воркера
+     * paratest — класс бага (214 skip + 4 fail инцидентов: LanguageVerify28
+     * SWARM_DB_PATH, Ensemble-флаги). tearDown восстанавливает весь env. */
+    private array $envSnapshot = [];
+    /** WORKER-BASELINE (12.10, фикс ядовитого снапшота): снапшот per-test
+     * наследовал яд от FATAL-теста (tearDown не бежит) и рестор
+     * распространял отраву на хвост воркера (60 skip в junit9). Базлайн
+     * снимается ОДИН раз на процесс — чистое bootstrap-состояние. */
+    private static ?array $workerEnv = null;
+
     protected function setUp(): void
     {
+        // ENV-СНАПШОТ: до guard-а, чтобы утечки предыдущего теста не влияли
+        // на сам guard (SWARM_DB_PATH-течь блокировала 214 тестов).
+        self::$workerEnv ??= getenv();
+        $this->envSnapshot = self::$workerEnv;
         // GUARD: prevent test leakage into production DB
         // :memory: — in-memory test DB (S1.10); test-пути — файловые тестовые БД
         $dbPath = getenv('SWARM_DB_PATH');
@@ -23,12 +37,19 @@ abstract class TestCase extends BaseTestCase
 
         // ИЗОЛЯЦИЯ (15.08, CONCERNS deleg_2eb385c7): DELETE и в setUp —
         // защита от фатала ПРЕДЫДУЩЕГО теста (tearDown мог не выполниться!)
-        try {
-            Database::get()->exec('DELETE FROM bee_persistence');
-        } catch (\Throwable $e) {
-            // нет таблицы — легитимно; остальное — видно
-            if (! str_contains($e->getMessage(), 'no such table')) {
-                error_log('[test] bee_persistence cleanup: ' . $e->getMessage());
+        // FULL STATE ISOLATION (12.10, f9/f10 premortem): search-состояние
+        // (laws, grammar_ops=B-атомы, marks, prereg) живёт в :memory: ОДНОГО
+        // воркера и течёт между тестами — flaky-класс (SearchRawPairPool,
+        // L3L1 HeatConduction: standalone OK, paratest FAIL). bee_persistence
+        // чистился, остальное — нет. Порядок: потомки после родителей.
+        foreach (['trail_marks', 'preregistrations', 'laws', 'grammar_ops', 'knowledge_graph', 'bee_persistence'] as $tbl) {
+            try {
+                Database::get()->exec("DELETE FROM {$tbl}");
+            } catch (\Throwable $e) {
+                // нет таблицы — легитимно; остальное — видно
+                if (! str_contains($e->getMessage(), 'no such table')) {
+                    error_log("[test] {$tbl} cleanup: " . $e->getMessage());
+                }
             }
         }
 
@@ -58,6 +79,13 @@ abstract class TestCase extends BaseTestCase
      */
     protected function tearDown(): void
     {
+        // ENV-РЕСТОР: вернуть снапшот, снять переменные, которых не было.
+        foreach ($this->envSnapshot as $k => $v) {
+            putenv($k . "=" . $v);
+        }
+        foreach (array_diff_key(getenv(), $this->envSnapshot) as $k => $v) {
+            putenv($k);
+        }
         \BeeSwarm\Infra\RngIsolation::assertClean();
         // ИЗОЛЯЦИЯ (15.08): periodic-save (doTick каждые 100 тиков) пишет
         // bee_persistence — без очистки следующий тест процесса видит

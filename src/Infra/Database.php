@@ -428,6 +428,41 @@ class Database
             created_at TEXT DEFAULT (datetime(\'now\'))
         )');
 
+        // M1-EXT v2 WU-4 (10.10): trail marks — дорожная память роя (стигмергия).
+        // Сигнальная форма (лучше null-класса, не прошедшая гейт) переживает
+        // find() — следующий вылет на том же fingerprint стартует с меток.
+        // kind: 'uncalibrated' | 'signal' | 'replicated' (uses>=2, WU-D4 стык).
+        // Износ: uses инкрементится при ЧТЕНИИ метки; uses>3 без replication
+        // — метка стирается (дорога зарастает, §2.5.14-логика).
+        // Fail-loud DDL (урок 18.09: голый catch на DDL = тихая смерть миграции).
+        $db->exec('CREATE TABLE IF NOT EXISTS trail_marks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            fingerprint TEXT NOT NULL,
+            formula TEXT NOT NULL,
+            kind TEXT NOT NULL DEFAULT \'uncalibrated\',
+            corr REAL NOT NULL DEFAULT 0,
+            uses INTEGER NOT NULL DEFAULT 0,
+            mark_tick INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT DEFAULT (datetime(\'now\')),
+            UNIQUE(fingerprint, formula)
+        )');
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_trail_marks_fp ON trail_marks (fingerprint)');
+        // M1-EXT v2 WU-4b (10.10): corr нужен для рейтинга консенсуса чтения
+        // (uses DESC, corr DESC). Fail-loud миграция старых installs: проверка
+        // PRAGMA + ALTER, БЕЗ try/catch (урок 18.09: голый catch на миграции =
+        // тихая смерть). Новая таблица выше уже содержит corr — ALTER не нужен.
+        $cols = $db->query('PRAGMA table_info(trail_marks)')->fetchAll();
+        $hasCorr = false;
+        foreach ($cols as $c) {
+            if (($c['name'] ?? '') === 'corr') {
+                $hasCorr = true;
+                break;
+            }
+        }
+        if (! $hasCorr) {
+            $db->exec('ALTER TABLE trail_marks ADD COLUMN corr REAL NOT NULL DEFAULT 0');
+        }
+
         // POPULATION-PERSISTENCE (06.08, P0): сохранение пчёл при перезапуске
         $db->exec("CREATE TABLE IF NOT EXISTS bee_persistence (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

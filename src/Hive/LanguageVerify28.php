@@ -214,10 +214,24 @@ final class LanguageVerify28
         $t0 = microtime(true);
         $raw = Search::find($xc, $yc, self::numericGrammar(), 2, null, 0.0, self::CV_EXACT, 60.0);
         $rawSecs = round(microtime(true) - $t0, 1);
+        // R1b: budget-matched raw arm - SAME search configuration as the
+        // with-atom run (depth 3, same beam). Equal depth/beam is CONFIG
+        // parity, not cost parity: the atom-birth cost is timed separately
+        // and reported (owner gate, CHECKPOINT 2.1 item 6).
+        $beamMatched = ($beamOrig === false ? '10' : $beamOrig);
+        putenv('SEARCH_BEAM_K=' . $beamMatched);
+        $t2 = microtime(true);
+        $rawMatched = Search::find($xc, $yc, self::numericGrammar(), 3, null, 0.0, self::CV_EXACT, 60.0);
+        $rawMatchedSecs = round(microtime(true) - $t2, 1);
+        // R1c: specificity control - BW atom still absent at this point; a
+        // random atom must NOT solve domain C at the same matched config.
+        $control = self::runRandomAtomControl($xc, $yc);
         // atom back: compress() re-mins it from the two fixture laws
         // (removeBirthAtoms deleted it; BW name is a deterministic hash of
         // the definition, so registerReuse by name stays consistent)
+        $tB = microtime(true);
         $born2 = (new LawIsomorphismCompressor())->compress([self::DOM_A, self::DOM_B]);
+        $atomBirthSecs = round(microtime(true) - $tB, 1);
         $atom = self::readAtom();
         // restore caller's beam for the with-atom run (live profile)
         putenv('SEARCH_BEAM_K=' . ($beamOrig === false ? '10' : $beamOrig));
@@ -228,9 +242,14 @@ final class LanguageVerify28
             'res' => $res,
             'raw' => $raw,
             'rawSecs' => $rawSecs,
+            'rawMatched' => $rawMatched,
+            'rawMatchedSecs' => $rawMatchedSecs,
+            'beamMatched' => $beamMatched,
+            'control' => $control,
             'born2' => $born2,
             'atom' => $atom,
             'atomSecs' => $atomSecs,
+            'atomBirthSecs' => $atomBirthSecs,
         ];
     }
 
@@ -257,6 +276,64 @@ final class LanguageVerify28
     }
 
     /**
+     * R1c: specificity control (owner gate, CHECKPOINT 2.1).
+     * Registers ONE deterministic random arity-2 birth atom (LCG seed 777,
+     * evaluable on 5 columns, canon-checked non-isomorphic to the fixture
+     * law) and re-searches domain C at the SAME matched config (depth 3,
+     * matched beam; BW atoms are absent at this point in runContrast).
+     * Expectation: NOT found. If a random atom solves C, the with-atom
+     * result is not atom-specific and the report fails loud. The control
+     * atom is deleted and definition caches cleared afterwards.
+     *
+     * @return array{found: bool, cv: float, formula: string, secs: float, atom: array{name: string, definition: string}, specificity: bool}
+     */
+    private static function runRandomAtomControl(array $xc, array $yc): array
+    {
+        $rng = self::rng(777);
+        $ops = ['+', '×', '−', '/', 'max', 'min'];
+        $pick = static function () use ($rng, $ops): string {
+            return $ops[(int) floor($rng() * count($ops))];
+        };
+        $definition = '(x' . ((int) floor($rng() * 3)) . $pick()
+            . 'x' . ((int) floor($rng() * 3)) . ')' . $pick()
+            . 'x' . ((int) floor($rng() * 3));
+        // non-isomorphism guard vs the fixture law (belt-and-braces: the
+        // terminal counts differ by construction, so a collision would
+        // mean a canonize defect - fail-safe redefinition)
+        $lawRow = \BeeSwarm\Infra\Database::run(
+            'SELECT formula FROM laws WHERE domain = ? LIMIT 1',
+            [self::DOM_A]
+        )->fetch(\PDO::FETCH_ASSOC);
+        $lawCanon = is_array($lawRow) ? LawIsomorphismCompressor::canonize((string) $lawRow['formula']) : null;
+        if ($lawCanon !== null && LawIsomorphismCompressor::canonize($definition) === $lawCanon) {
+            $definition = '(x0+x1)';
+        }
+        $name = 'R28' . substr(md5($definition), 0, 6);
+        $stmt = \BeeSwarm\Infra\Database::get()->prepare(
+            "INSERT INTO grammar_ops (name, source, definition, status) VALUES (?, 'birth', ?, 'candidate')"
+        );
+        $stmt->execute([$name, $definition]);
+        ExpressionEvaluator::clearDefCache();
+        AtomRegistry::clearDefCache();
+        $t = microtime(true);
+        $res = Search::find($xc, $yc, self::numericGrammar(), 3, null, 0.0, self::CV_EXACT, 60.0);
+        $secs = round(microtime(true) - $t, 1);
+        $del = \BeeSwarm\Infra\Database::get()->prepare('DELETE FROM grammar_ops WHERE name = ?');
+        $del->execute([$name]);
+        ExpressionEvaluator::clearDefCache();
+        AtomRegistry::clearDefCache();
+        $found = (bool) ($res[0] ?? false);
+        return [
+            'found' => $found,
+            'cv' => is_numeric($res[1] ?? null) ? (float) $res[1] : 9.99,
+            'formula' => is_string($res[2] ?? null) ? (string) $res[2] : '',
+            'secs' => $secs,
+            'atom' => ['name' => $name, 'definition' => $definition],
+            'specificity' => ! $found,
+        ];
+    }
+
+    /**
      * Phase 4: report assembly + verdict conjunction.
      */
     private static function buildReport(array $boot, array $contrast, array $reuse, array $parity): array
@@ -268,9 +345,11 @@ final class LanguageVerify28
         $bPass = self::contrastPass($contrast);
         $vPass = $reuse['done'] && in_array(self::DOM_C, $atomAfter['reuse_domains'], true) && $atomAfter['reuse_count'] >= 1;
         $gPass = $parity['coalition_cv'] < 0.1 && $parity['meta_cv'] <= $parity['coalition_cv'];
+        // R1c: specificity gate - a random atom must NOT solve domain C.
+        $cPass = (bool) ($contrast['control']['specificity'] ?? false);
 
         return self::$lastReport = [
-            'verdict' => ($aPass && $bPass && $vPass && $gPass) ? 'PASS' : 'FAIL',
+            'verdict' => ($aPass && $bPass && $vPass && $gPass && $cPass) ? 'PASS' : 'FAIL',
             'meta' => self::reportMeta($contrast),
             'a' => self::reportSectionA($boot, $atom, $aPass),
             // status AT MEASUREMENT TIME (candidate: reuse happens later, in v)
@@ -284,6 +363,7 @@ final class LanguageVerify28
             'g' => $parity + [
                 'pass' => $gPass,
             ],
+            'c' => self::reportSectionC($contrast['control'] ?? []),
         ];
     }
 
@@ -297,6 +377,8 @@ final class LanguageVerify28
             'born2' => $contrast['born2'],
             'secs' => [
                 'raw' => $contrast['rawSecs'],
+                'raw_matched' => $contrast['rawMatchedSecs'],
+                'atom_birth' => $contrast['atomBirthSecs'],
                 'atom' => $contrast['atomSecs'],
             ],
         ];
@@ -357,6 +439,29 @@ final class LanguageVerify28
                 'formula' => is_string($res[2]) ? $res[2] : '',
                 'secs' => $contrast['atomSecs'],
             ],
+            'raw_matched_domain_c' => [
+                'found' => (bool) $contrast['rawMatched'][0],
+                'cv' => is_numeric($contrast['rawMatched'][1]) ? (float) $contrast['rawMatched'][1] : 9.99,
+                'formula' => is_string($contrast['rawMatched'][2] ?? null) ? (string) $contrast['rawMatched'][2] : '',
+                'secs' => $contrast['rawMatchedSecs'],
+                'depth' => 3,
+                'beam' => $contrast['beamMatched'],
+            ],
+            'atom_birth_secs' => $contrast['atomBirthSecs'],
+        ];
+    }
+
+    /**
+     * Report section c: random-atom specificity control (R1c).
+     */
+    private static function reportSectionC(array $control): array
+    {
+        return [
+            'pass' => (bool) ($control['specificity'] ?? false),
+            'random_atom' => $control['atom'] ?? ['name' => '', 'definition' => ''],
+            'found' => (bool) ($control['found'] ?? false),
+            'cv' => is_numeric($control['cv'] ?? null) ? (float) $control['cv'] : 9.99,
+            'secs' => (float) ($control['secs'] ?? 0.0),
         ];
     }
 
@@ -568,7 +673,7 @@ final class LanguageVerify28
         $get = static fn (string $k): string => getenv($k) !== false ? (string) getenv($k) : 'unset';
         return 'V28_ENV ' . json_encode([
             'SWARM_DB_PATH' => $get('SWARM_DB_PATH'),
-            'SEARCH_BEAM_K' => $get('SEARCH_BEAM_K') . ' (bootstrap/raw forced to 0)',
+            'SEARCH_BEAM_K' => $get('SEARCH_BEAM_K') . ' (bootstrap/raw-d2 forced to 0; raw-matched/with-atom/control: matched beam)',
             'SEARCH_DEPTH_MAX' => $get('SEARCH_DEPTH_MAX'),
             'NO_BIRTH' => $get('NO_BIRTH'),
             'BINARY_B_CAP' => $get('BINARY_B_CAP'),

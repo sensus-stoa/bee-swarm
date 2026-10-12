@@ -12,24 +12,30 @@ class Search
     private const PARSIMONY_LAMBDA = 5e-5;
 
     /**
-     * Y_MAX-AMND (24.09, premortem И-2): потолок абсолютной компоненты
-     * допуска. Относительный eps 0.0001*|y| при |y|~1e6 даёт ~100 абс.
-     * единиц — закон с аддитивным bias нефальсифицируем exact-check'ом.
-     * Клэмп: eps растёт с масштабом только до Y_MAX; семантика EXP-036
-     * ниже потолка не меняется.
+     * A19 (master map row 172, EXP-040 FPR 0.99): baseline-relative
+     * certification. Кандидат сертифицируется только если его CV меньше
+     * CV тривиальной модели mean(y) (§1.7/§1.2) на том же scored set
+     * в BASELINE_RATIO_MAX раз. 0.5 = «<<» (вдвое лучше среднего);
+     * pilot-calibrated — A19.4 перекалибровка может уточнить.
+     * Y_MAX-кап exact-допуска живёт в CvCalculator (A19.3, единый источник).
      */
-    private const Y_MAX_EXACT = 1000000.0;
+    private const BASELINE_RATIO_MAX = 0.5;
 
     public static function cv(array $vec, array $y, float $shift = 0.0): float
     {
         $n = count($vec);
         $exact = true;
+        // NaN/INF — артефакт, не закон (бейзлайн 05.08: R× переполнение)
+        // SCALE-INVARIANCE (EXP-036 2.5, 29.08): eps ОТНОСИТЕЛЬНЫЙ —
+        // abs-eps 1e-4 отвергал точный закон 10·f(x) c остатком ≤1e-3
+        // (K3 kill-test).
+        // A19.3 (BUG-EXP040-EXACT-FLOOR): нижний этаж допуска привязан к
+        // масштабу ДАТАСЕТА (max|y|), не к 1.0 — abs-floor 1e-4 на y~1e-9
+        // делал «exact» любую мелкую предикцию (константа x8 ≡ G).
+        // Единый источник толерантности: CvCalculator::isExactPair (L1).
+        $exactMaxAbs = \BeeSwarm\Math\CvCalculator::exactScaleMaxAbs($y);
         for ($i = 0; $i < $n; $i++) {
-            // NaN/INF — артефакт, не закон (бейзлайн 05.08: R× переполнение)
-            // SCALE-INVARIANCE (EXP-036 2.5, 29.08): eps ОТНОСИТЕЛЬНЫЙ —
-            // abs-eps 1e-4 отвергал точный закон 10·f(x) c остатком ≤1e-3
-            // (K3 kill-test). 1e-4·max(1,|y_i|) инвариантен к масштабу y.
-            if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
+            if ($vec[$i] === null || ! \BeeSwarm\Math\CvCalculator::isExactPair((float) $vec[$i], (float) $y[$i], $exactMaxAbs)) {
                 $exact = false;
                 break;
             }
@@ -1368,12 +1374,15 @@ class Search
         }
         // Evaluate FEATURES first (fast path)
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact (10.08: было после — undefined в features-цикле!)
+        $exactMaxAbs = \BeeSwarm\Math\CvCalculator::exactScaleMaxAbs($y);
         foreach ($feats as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
                 // EXP-035: null (ноль-делитель в L2/фича) — не точный закон
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
+                // A19.3 (BUG-EXP040-EXACT-FLOOR): scale-aware tol, единый
+                // источник CvCalculator::isExactPair
+                if ($vec[$i] === null || ! \BeeSwarm\Math\CvCalculator::isExactPair((float) $vec[$i], (float) $y[$i], $exactMaxAbs)) {
                     $exact = false;
                     break;
                 }
@@ -1422,11 +1431,14 @@ class Search
         $petalForms = []; // WU-4c FIX 11.10: ступени лестницы (corr-класс, без cv-окна)
         $signalCeiling = (float) (getenv('SIGNAL_CV_CEILING') ?: '6.0');
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact
+        $exactMaxAbsExprs = \BeeSwarm\Math\CvCalculator::exactScaleMaxAbs($y);
         foreach ($exprs as $name => $vec) {
             $exact = true;
             for ($i = 0; $i < $n; $i++) {
                 // NaN/INF не могут быть законом (артефакт переполнения R×)
-                if ($vec[$i] === null || ! is_finite($vec[$i]) || abs($vec[$i] - $y[$i]) > 0.0001 * max(1.0, min(abs($y[$i]), self::Y_MAX_EXACT))) {
+                // A19.3 (BUG-EXP040-EXACT-FLOOR): scale-aware tol, единый
+                // источник CvCalculator::isExactPair
+                if ($vec[$i] === null || ! \BeeSwarm\Math\CvCalculator::isExactPair((float) $vec[$i], (float) $y[$i], $exactMaxAbsExprs)) {
                     $exact = false;
                     break;
                 }
@@ -1665,6 +1677,16 @@ class Search
                 $bestTestName = null;
                 $bestTestTrainCv = 9.99;
                 $X_train_cv = array_slice($X, 0, $splitIdx);
+                // A19: baseline mean(y_train) на ТОМ ЖЕ heldout (§1.7) —
+                // сдвиг из ТОГО ЖЕ источника, что и testCv (AR-1 dedup:
+                // affineShiftFor(y_test), не дубль формулы).
+                $yTrainCv = array_slice($y, 0, $splitIdx);
+                $baselineMean = array_sum($yTrainCv) / max(1, count($yTrainCv));
+                $cvBaselineHeldout = self::cv(
+                    array_fill(0, count($y_test), $baselineMean),
+                    $y_test,
+                    self::affineShiftFor($y_test)
+                );
                 // NON-CONSTANCY (10.08, ЭКСП-026/MOEX): константные псевдозаконы
                 // проходят CV через shift: знакопеременный y → shift=min(y)−1 →
                 // ratio сглаживается → (x0/R+x0) на ШУМЕ CV=0.028 < 0.15.
@@ -1744,7 +1766,28 @@ class Search
             $prUpd->execute([$status, $preregIds[$bestName]]);
         }
 
-        $found = $bestCv < $cvTrainMax && isset($bestName) && $cv_test < $cvTrainMax;
+        // A19: baseline-relative certification (§1.7-семантика, master map
+        // row 172). CV кандидата обязан быть существенно меньше CV тривиальной
+        // модели mean(y) на ТОМ ЖЕ множестве, где считался его CV: heldout
+        // при testRatio>0 ($cvBaselineHeldout), иначе train (общий сдвиг
+        // $affineShift train-канала). Точная форма (cv==0.0 — после A19.3
+        // честная) проходит автоматически. Абсолютный cvTrainMax остаётся
+        // верхним гейтом (CA-1: сознательный верхний предохранитель; снимается
+        // отдельным WU после σ_rel-калибровки). A19_GATE=0 — диагностический
+        // kill-switch (default ON; выключается только для бисекции).
+        // AR-2 (deleg_0591ab9b): не-конечный baseline (знаменатель-вырождение
+        // на heldout) — самый СТРОГИЙ исход: отказ (кроме exact), не вакуумный
+        // `cv < 0.5·INF` (класс 16.09: INF-fallback автопроход).
+        $compressionOk = true;
+        if (isset($bestName) && getenv('A19_GATE') !== '0') {
+            $cvBaseline = isset($cvBaselineHeldout)
+                ? $cvBaselineHeldout
+                : self::trivialBaselineCvTrain($y, $affineShift);
+            $compressionOk = $cv_test <= 0.0
+                || (is_finite($cvBaseline) && $cv_test < self::BASELINE_RATIO_MAX * $cvBaseline);
+        }
+
+        $found = $bestCv < $cvTrainMax && isset($bestName) && $cv_test < $cvTrainMax && $compressionOk;
         if (! $found) {
             $cv_train = 9.99;
             $cv_test = 9.99;
@@ -1923,12 +1966,40 @@ class Search
 
         // AFFINE-LAWS (CONCERNS deleg_9cf56711): тот же shift, что в train —
         // иначе знакопеременная цель в held-out даёт ложный отказ (found=false
-        // при testRatio≥0.3, когда ноль попадает в тест)
-        $minY = min($y_test);
-        $maxY = max($y_test);
-        $affineShift = ($minY < 0 && $maxY > 0) ? $minY - 1.0 : 0.0;
+        // при testRatio≥0.3, когда ноль попадает в тест). AR-1 (deleg_0591ab9b):
+        // единый источник shift-правила — A19-baseline обязан считать тем же
+        // сдвигом, что и кандидат (same-metric).
+        return self::cv($vec, $y_test, self::affineShiftFor($y_test));
+    }
 
-        return self::cv($vec, $y_test, $affineShift);
+    /**
+     * A19 (AR-1 dedup): сдвиг ratio-канала для среза цели —
+     * min(y)−1 при знакопеременном срезе, иначе 0. Один источник
+     * для testCv (кандидат) и heldout-baseline (mean-модель) —
+     * otherwise дрейф двух копий формулы молча ломает same-metric.
+     */
+    private static function affineShiftFor(array $ySlice): float
+    {
+        $minY = min($ySlice);
+        $maxY = max($ySlice);
+
+        return ($minY < 0 && $maxY > 0) ? $minY - 1.0 : 0.0;
+    }
+
+    /**
+     * A19: CV тривиальной модели mean(y) (§1.7/§1.2) на train-множестве —
+     * путь testRatio=0 (CV кандидата тоже train). $affineShift — общий
+     * сдвиг train-канала find() (min(y)−1 при знакопеременной цели).
+     */
+    private static function trivialBaselineCvTrain(array $y, float $affineShift): float
+    {
+        $m = count($y);
+        if ($m < 2) {
+            return 9.99;
+        }
+        $mean = array_sum($y) / $m;
+
+        return self::cv(array_fill(0, $m, $mean), $y, $affineShift);
     }
 
     /**

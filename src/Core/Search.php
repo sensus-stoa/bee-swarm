@@ -145,6 +145,10 @@ class Search
      */
     public static function find(array $X, array $y, Grammar $grammar, int $depth = 2, ?array $colLabels = null, float $testRatio = 0.0, float $cvTrainMax = 0.15, float $budgetSec = 0.0, ?int $tMin = null, ?int $budgetTicks = null): array
     {
+        // EXPLICIT INIT (agent-review 12.10): позиционная передача в
+        // типизированные параметры writeTrailMarks — инвариант без автовивификации.
+        $l1PairwiseKeys = [];
+        $l1PairwiseMap = [];
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);

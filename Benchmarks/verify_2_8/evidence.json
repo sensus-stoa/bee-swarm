@@ -1,10 +1,10 @@
 {
   "experiment_id": "VERIFY-2-8",
   "title": "Language emergence (protocol par.3.8): meta-law compiled from 2 domains, atom reused in a 3rd; R1b budget-matched raw arm + R1c random-atom specificity control",
-  "code_commit": "8620e0e2d2e909587cae2203d979126c6f408c94",
+  "code_commit": "will-be-this-commit (see git log -1 for final sha)",
   "code_repo": "public GitHub repository of the engine (name on request)",
   "data_hashes": {
-    "report_json_sha256": "3e8cfdee3b407b3b47ecd5c87168813a9dcb5acb64852f3e55b28f8625a6279c",
+    "report_json_sha256": "276909a0ee5fe7f9f839bf4f2f91a27597f313ec60623c6e2607ddbcdcc2f4ea",
     "fixture": "synthetic in-code (LCG seeds 11/22/33; domains A/B/C), no external datasets"
   },
   "execution_environment": {
@@ -19,7 +19,7 @@
     "exit_code": 0,
     "verdict": "PASS",
     "report_path": "Benchmarks/verify_2_8/report.json",
-    "report_sha256": "3e8cfdee3b407b3b47ecd5c87168813a9dcb5acb64852f3e55b28f8625a6279c"
+    "report_sha256": "276909a0ee5fe7f9f839bf4f2f91a27597f313ec60623c6e2607ddbcdcc2f4ea"
   },
   "baseline": {
     "raw_depth2": {
@@ -46,23 +46,26 @@
       "cv": 9.99,
       "secs": 5.2
     },
-    "reading": "raw fails at BOTH configs; with-atom solves exact; random atom does not solve -> atom-specific ENABLES (config parity, cost parity NOT claimed: with-atom 6s vs raw_matched 2.2s, atom_birth 0.0s)"
+    "reading": "raw fails at BOTH configs (depth2/beam0 and depth3/beam10); with-atom solves exact cv=0; random atom does not solve -> atom-specific ENABLES at matched config. Cost parity NOT claimed: with-atom 6.1s vs raw_matched 2.1s, atom_birth 0.0s (bootstrap mint 0.001s). CV 9.99 = engine NOT_FOUND sentinel (no candidate passed), not a measured CV."
   },
   "resources": {
     "wall_seconds": {
       "raw": 0.8,
       "raw_matched": 2.1,
       "atom_birth": 0,
-      "atom": 6
+      "atom_birth_bootstrap": 0.001,
+      "atom": 6.1
     },
-    "note": "wall-clock per block from report meta; peak memory not yet recorded (planned before release tag)"
+    "note": "wall-clock per block from report meta; peak memory not yet recorded (planned before release tag)",
+    "peak_mem_bytes": 299905024
   },
   "limitations": [
     "synthetic fixture domains only (heat/diffusion-class molecule)",
     "single-author system; not independently reproduced (V1.10-INDEPENDENT-IMPL open)",
     "criterion v1.6 mean-form parity; A19 caveat applies to empirical data",
     "reuse record in the fixture is invoked via Grammar::registerReuse (same public contract as live Hive::registerReuseOps), not observed from the production daemon",
-    "equal depth/beam = config parity; total cost of atom birth reported separately, cost parity not claimed"
+    "equal depth/beam = config parity; total cost of atom birth reported separately, cost parity not claimed",
+    "CV 9.99 in report rows with found=false is the NOT_FOUND sentinel, not a measured value"
   ],
   "evidence_status": "EXPERIMENTALLY_VERIFIED",
   "independent_replication": {

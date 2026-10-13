@@ -58,3 +58,8 @@ evidence file).
 Full two-pass suite on the dedicated runner machine: 1226 tests,
 0 failures (fast 1217 parallel + slow 9 serial). Targeted LanguageVerify28 suite:
 8/8 tests, 35 assertions.
+
+## References
+
+- Protocol (CV>0 Autonomous Evolution Protocol, latest version): https://doi.org/10.5281/zenodo.21810055
+- This release on Zenodo (all versions, including Erratum 1): https://doi.org/10.5281/zenodo.23338479

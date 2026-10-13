@@ -18,6 +18,19 @@ abstract class TestCase extends BaseTestCase
      * снимается ОДИН раз на процесс — чистое bootstrap-состояние. */
     private static ?array $workerEnv = null;
 
+    /**
+     * FULL STATE ISOLATION opt-out (13.10, release-finalization finding):
+     * per-test DELETE of laws/grammar_ops (below) wipes shared-state classes.
+     * FullPipelineRegressionTest runs ONE Hive per CLASS (setUpBeforeClass)
+     * and asserts on that shared run from its test methods - per-test delete
+     * erased its discoveries (0 laws), breaking the slow pass since 12.10
+     * (introduced by e5c8138 suite hygiene; slow pass was not re-run until
+     * 13.10). Shared-Hive classes opt out explicitly; their own
+     * setUpBeforeClass does the isolation (it deletes laws + ALL grammar_ops
+     * before reseeding), and leakage OUT is contained by other tests' setUp.
+     */
+    protected bool $skipFullStateIsolation = false;
+
     protected function setUp(): void
     {
         // ENV-СНАПШОТ: до guard-а, чтобы утечки предыдущего теста не влияли
@@ -67,13 +80,15 @@ abstract class TestCase extends BaseTestCase
         // воркера и течёт между тестами — flaky-класс (SearchRawPairPool,
         // L3L1 HeatConduction: standalone OK, paratest FAIL). bee_persistence
         // чистился, остальное — нет. Порядок: потомки после родителей.
-        foreach (['trail_marks', 'preregistrations', 'laws', 'grammar_ops', 'knowledge_graph', 'bee_persistence'] as $tbl) {
-            try {
-                Database::get()->exec("DELETE FROM {$tbl}");
-            } catch (\Throwable $e) {
-                // нет таблицы — легитимно; остальное — видно
-                if (! str_contains($e->getMessage(), 'no such table')) {
-                    error_log("[test] {$tbl} cleanup: " . $e->getMessage());
+        if (! $this->skipFullStateIsolation) {
+            foreach (['trail_marks', 'preregistrations', 'laws', 'grammar_ops', 'knowledge_graph', 'bee_persistence'] as $tbl) {
+                try {
+                    Database::get()->exec("DELETE FROM {$tbl}");
+                } catch (\Throwable $e) {
+                    // нет таблицы — легитимно; остальное — видно
+                    if (! str_contains($e->getMessage(), 'no such table')) {
+                        error_log("[test] {$tbl} cleanup: " . $e->getMessage());
+                    }
                 }
             }
         }

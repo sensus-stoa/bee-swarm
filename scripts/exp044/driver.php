@@ -128,8 +128,8 @@ function gen_family(array $p, string $path): void {
     }
     $f = fopen($path, 'w'); foreach ($rows as $r2) { fputcsv($f, $r2); } fclose($f);
 }
-function run_task(array $X, array $y, array $Xe, array $ye, BeeSwarm\Core\Grammar $g, array $labels, string $domain, PDO $db, bool $birth, float $budget): array {
-    $res = flights_with_budget($X, $y, $g, $labels, 3, $budget, 3, true);
+function run_task(array $X, array $y, array $Xe, array $ye, BeeSwarm\Core\Grammar $g, array $labels, string $domain, PDO $db, bool $birth, bool $trail, float $budget): array {
+    $res = flights_with_budget($X, $y, $g, $labels, 3, $budget, 3, $trail);
     $cvE = null;
     if ($res['found']) { $cvE = cv_eval($res['formula'], $Xe, $ye); }
     $certified = ($res['found'] && $cvE !== null && $cvE <= 0.10);
@@ -194,17 +194,23 @@ if ($arm === 'shuffled') {
         $stM->execute([$m['fingerprint'], $m['formula'], $m['kind'], $m['corr'], $m['uses'], $m['mark_tick']]); $nMarks++;
     }
     BeeSwarm\Core\ExpressionEvaluator::clearDefCache(); BeeSwarm\Core\AtomRegistry::clearDefCache();
-    // ASSERTS: cultural state volume matches WARM; definitions actually differ
+    // v4 ASSERTS: cultural state volume matches WARM; definitions actually differ; marks NON-EMPTY and content-identical
+    $warmRows = $exp['trail_marks'] ?? [];
+    $importedRows = $db->query('SELECT fingerprint, formula, kind, corr, uses, mark_tick FROM trail_marks')->fetchAll(PDO::FETCH_ASSOC);
     $asserts = [
         'atoms_count_matches_warm' => (count(born_atoms($db)) === count($exp['atoms'] ?? [])),
-        'trail_marks_match_warm' => ((count($exp['trail_marks'] ?? [])) === $nMarks),
+        'trail_marks_nonempty' => (count($warmRows) > 0),
+        'trail_marks_count_matches_warm' => (count($warmRows) === $nMarks),
+        'trail_marks_content_identical' => (md5(json_encode($importedRows)) === md5(json_encode($warmRows))),
         'definitions_differ' => $differs,
     ];
     if (in_array(false, $asserts, true)) { fwrite(STDERR, 'SHUFFLED ASSERT FAIL: ' . json_encode($asserts) . "\n"); exit(4); }
 }
 $culture = born_atoms($db);
 $stCounts = state_counts($db);
-file_put_contents("$outDir/culture_{$arm}_s$seed.json", json_encode(['arm' => $arm, 'seed' => $seed, 'atoms' => $culture, 'state' => $stCounts], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+// v4 fix #2: export ALL trail marks rows (SHUFFLED imports them; empty marks = failure condition for the assert)
+$trailRows = $db->query('SELECT fingerprint, formula, kind, corr, uses, mark_tick FROM trail_marks')->fetchAll(PDO::FETCH_ASSOC);
+file_put_contents("$outDir/culture_{$arm}_s$seed.json", json_encode(['arm' => $arm, 'seed' => $seed, 'atoms' => $culture, 'trail_marks' => $trailRows, 'state' => $stCounts], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 // ---- task runner: TEST families + frozen null-controls ----
 $results = []; $nullResults = [];
@@ -213,7 +219,7 @@ foreach ($params['test'] as $h) {
     if (! is_file($csv)) { gen_family($h, $csv); }
     [$X, $y] = parse_csv($csv);
     [$Xt, $yt, $Xe, $ye] = split_eval($X, $y, $h['seed']);
-    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $h['id'], $db, ! $noBirth, $TEST_BUDGET_S);
+    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $h['id'], $db, ! $noBirth, $trail, $TEST_BUDGET_S);
     $r = array_merge(['id' => $h['id'], 'class' => $h['class'] ?? '', 'kind' => 'hidden'], $r);
     $results[] = $r;
 }
@@ -223,17 +229,24 @@ foreach (($params['nulls'] ?? []) as $n) {
     if (! is_file($csv)) { gen_family($n, $csv); }
     [$X, $y] = parse_csv($csv);
     [$Xt, $yt, $Xe, $ye] = split_eval($X, $y, $n['seed']);
-    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $n['id'], $db, ! $noBirth, $TEST_BUDGET_S);
+    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $n['id'], $db, ! $noBirth, $trail, $TEST_BUDGET_S);
     $r = array_merge(['id' => $n['id'], 'kind' => 'null'], $r);
     $nullResults[] = $r;
 }
 $nullCert = count(array_filter($nullResults, function ($r) { return $r['certified']; }));
 $nullTotal = count($nullResults);
 $certified = count(array_filter($results, function ($r) { return $r['certified']; }));
+// v4 fix #1 assert: FIXED must leave ZERO trail marks
+$fixedNoMarks = true;
+if ($arm === 'fixed') {
+    $fixedNoMarks = ((int) $db->query('SELECT COUNT(*) FROM trail_marks')->fetchColumn() === 0);
+    if (! $fixedNoMarks) { fwrite(STDERR, "FIXED ASSERT FAIL: trail marks present after fixed run\n"); exit(5); }
+}
 $summary = ['arm' => $arm, 'seed' => $seed,
             'certified_families' => $certified, 'of' => count($results),
             'fpr_certified_nulls' => $nullCert, 'fpr_denominator' => $nullTotal,
             'fpr' => $nullTotal > 0 ? round($nullCert / $nullTotal, 4) : null,
+            'fixed_no_trail_marks_assert' => $arm === 'fixed' ? $fixedNoMarks : null,
             'train' => $trainLog, 'results' => $results, 'null_results' => $nullResults,
             'culture_size' => count($culture), 'state' => $stCounts];
 file_put_contents("$outDir/results_{$arm}_s$seed.json", json_encode($summary, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));

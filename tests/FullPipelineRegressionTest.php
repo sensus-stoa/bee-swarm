@@ -37,6 +37,16 @@ use BeeSwarm\Infra\PlateauDetector;
 class FullPipelineRegressionTest extends TestCase
 {
     /**
+     * Shared-Hive class: ONE pipeline run per CLASS (setUpBeforeClass, 15
+     * ticks), test methods assert on that shared run. The base TestCase
+     * per-test FULL STATE ISOLATION (12.10) deletes laws/grammar_ops and
+     * would erase the shared discoveries before every assertion - opt out
+     * (13.10). This class performs its own isolation in setUpBeforeClass:
+     * DELETE laws + DELETE ALL grammar_ops + cache resets + mt_srand(777).
+     */
+    protected bool $skipFullStateIsolation = true;
+
+    /**
      * Главный инвариант: ≥3 открытий за 15 тиков на чистой БД.
      */
     private static ?Hive $sharedHive = null;

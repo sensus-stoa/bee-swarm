@@ -4,6 +4,8 @@ For visitors arriving from Show HN, Habr, or the release page.
 
 ## Run the demo (1 command)
 
+Requirements: PHP >= 8.1 with the `pdo_sqlite` extension.
+
 ```bash
 composer install && php scripts/verify_2_8.php
 ```

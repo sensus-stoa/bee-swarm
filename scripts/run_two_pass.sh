@@ -64,7 +64,7 @@ chmod +x /tmp/v017_watch.sh" || { echo "SSH FAIL (watcher create)"; exit 1; }
 # ---- PASS 1: fast ----
 echo "[PASS 1/2] fast: paratest -p8 (xml excludes slow)"
 rm -f "$FLAGF"
-ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/paratest -p8 tests/ --configuration phpunit.xml --no-progress > $FAST_LOG 2>&1 < /dev/null &"
+ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/paratest -p8 tests/ --configuration phpunit.xml --no-progress --log-junit $LOGDIR/fast_junit.xml > $FAST_LOG 2>&1 < /dev/null &"
 sleep 3
 if ! ssh -o ConnectTimeout=10 laptop "grep -q 'Configuration:' $FAST_LOG 2>/dev/null"; then
     echo "FAIL: paratest не стартовал"  # review#2a: ssh-exit обязан абортить ЛОКАЛЬНЫЙ скрипт
@@ -87,7 +87,7 @@ echo "$FAST_TAIL" | tail -3
 # ---- PASS 2: slow (serial) ----
 echo "[PASS 2/2] slow: phpunit --group slow (serial)"
 rm -f "$FLAGS"
-ssh -o ConnectTimeout=10 laptop "rm -f $FLAGS; cd ~/.bee_swarm && setsid nohup vendor/bin/phpunit tests/ --configuration phpunit.xml --no-progress --group slow > $SLOW_LOG 2>&1 < /dev/null &"
+ssh -o ConnectTimeout=10 laptop "rm -f $FLAGS; cd ~/.bee_swarm && setsid nohup vendor/bin/phpunit tests/ --configuration phpunit.xml --no-progress --group slow --log-junit $LOGDIR/slow_junit.xml > $SLOW_LOG 2>&1 < /dev/null &"
 sleep 3
 if ! ssh -o ConnectTimeout=10 laptop "grep -q 'Configuration:' $SLOW_LOG 2>/dev/null"; then
     echo "FAIL: phpunit не стартовал"  # review#2a

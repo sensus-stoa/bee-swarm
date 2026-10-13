@@ -123,11 +123,17 @@ in-memory DB, no network; committed report and evidence at
 php scripts/verify_2_8.php
 ```
 
-Full verify ladder:
+This is the self-contained participant path - everything it needs is in the
+repository.
 
-```bash
-php scripts/verify/verify_all.php --stage=0 --log=logs/agenda.log
-```
+The full verify ladder (`php scripts/verify/verify_all.php --stage=0`) audits
+an EXISTING database of discoveries: it requires a locally populated DB from
+a prior daemon run and will report `FAIL: no discoveries` on a fresh clone.
+It is a maintainer tool, not a visitor demo.
+
+Requirements: PHP >= 8.1 with the `pdo_sqlite` extension (the verify demo
+uses SQLite in-memory). Tests additionally need `dom`, `mbstring`, `tokenizer`,
+`xml`, `xmlwriter` (PHPUnit).
 
 Tests (TDD, in-memory DB isolation, two-pass: fast parallel + slow serial):
 

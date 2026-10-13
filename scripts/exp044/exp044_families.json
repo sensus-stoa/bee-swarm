@@ -1,0 +1,93 @@
+{
+    "_comment": "EXP-044 freeze v1: train D1-D8, sealed test H1-H6. Generated 2026-10-13. Do not edit.",
+    "train": [
+        {
+            "id": "D1_purediff",
+            "class": "purediff",
+            "seed": 800
+        },
+        {
+            "id": "D2_purediff",
+            "class": "purediff",
+            "seed": 801
+        },
+        {
+            "id": "D3_ratio",
+            "class": "ratio",
+            "seed": 802
+        },
+        {
+            "id": "D4_product",
+            "class": "pureprod",
+            "seed": 803
+        },
+        {
+            "id": "D5_sq",
+            "class": "power",
+            "seed": 804
+        },
+        {
+            "id": "D6_diffprod",
+            "class": "diffprod",
+            "seed": 805
+        },
+        {
+            "id": "D7_noisydiff",
+            "class": "purediff",
+            "seed": 806,
+            "noise": 0.04
+        },
+        {
+            "id": "D8_flux",
+            "class": "flux",
+            "seed": 807
+        }
+    ],
+    "test": [
+        {
+            "id": "H1_flux",
+            "seed": 1864180,
+            "class": "flux"
+        },
+        {
+            "id": "H2_fluxmut",
+            "seed": 3007135,
+            "class": "flux",
+            "perm": [
+                1,
+                0,
+                3,
+                2,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        },
+        {
+            "id": "H3_ratio",
+            "seed": 16624920,
+            "class": "ratio"
+        },
+        {
+            "id": "H4_power",
+            "seed": 1169653,
+            "class": "power"
+        },
+        {
+            "id": "H5_noisyflux",
+            "seed": 6628886,
+            "class": "flux",
+            "noise": 0.04
+        },
+        {
+            "id": "H6_decoy",
+            "seed": 2509158,
+            "class": "pureprod"
+        }
+    ]
+}

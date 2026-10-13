@@ -16,6 +16,8 @@ into one self-named grammar atom, and that atom solving a third domain that
 raw search cannot solve at the same depth and beam. A random atom does not
 solve it.
 
+The protocol this repository implements: https://doi.org/10.5281/zenodo.21810055
+
 ## Read the evidence before the claims
 
 - `Benchmarks/verify_2_8/report.json` - the raw measurement (all costs, all

@@ -11,7 +11,7 @@
     "php": "8.2.29",
     "os": "Linux 6.1.0-41-amd64",
     "host": "dev desktop (point-check; full suite runs on the dedicated runner laptop)",
-    "suite_note": "LanguageVerify28Test 8/8 GREEN, 35 assertions (targeted run); full 1210-test suite on runner laptop before release tag"
+    "suite_note": "LanguageVerify28Test 8/8 GREEN, 35 assertions (targeted); full two-pass suite 1226 tests GREEN on runner laptop (rc6, fast 1217 + slow 9, invariant 1226/1226); cross-class isolation check 13/13 in one process"
   },
   "run_timestamp": "2026-10-13",
   "verifier": {
@@ -56,7 +56,7 @@
       "atom_birth_bootstrap": 0.001,
       "atom": 6.1
     },
-    "note": "wall-clock per block from report meta; peak memory not yet recorded (planned before release tag)",
+    "note": "peak_mem_bytes recorded in report meta (~286 MB); wall-clock per block in meta.secs; cost parity not claimed (with-atom 6.1 s vs raw-matched 2.1 s)",
     "peak_mem_bytes": 299905024
   },
   "limitations": [

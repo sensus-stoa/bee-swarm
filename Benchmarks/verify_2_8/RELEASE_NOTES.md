@@ -1,4 +1,4 @@
-# Release notes: verify-2-8-v1.0.0 (release candidate)
+# Release notes: verify-2-8-v1.0.0
 
 ## What this release demonstrates
 
@@ -55,6 +55,6 @@ evidence file).
 
 ## Verification
 
-Full two-pass suite on the dedicated runner machine: expected 1224 tests,
-0 failures (fast parallel + slow serial). Targeted LanguageVerify28 suite:
+Full two-pass suite on the dedicated runner machine: 1226 tests,
+0 failures (fast 1217 parallel + slow 9 serial). Targeted LanguageVerify28 suite:
 8/8 tests, 35 assertions.

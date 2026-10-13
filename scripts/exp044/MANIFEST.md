@@ -1,14 +1,14 @@
-# EXP-044 FREEZE MANIFEST v2 (2026-10-13, post-review repair)
-Supersedes v1. code_commit: b463bd0 (driver v2: все 7 fixes ревью; см. EXP044_FREEZE_READINESS.md)
-
-arms: warm / warm_noculture / cold / shuffled / fixed (fixed = NO_BIRTH + trail off; deviation D1: slots не гейтятся)
-criterion: certification = found AND cv_eval <= 0.10 на withheld 40% (rows, не видевшие движок); engine cv = selection only
-budget: wall 90s/семья TEST (все вылеты), 60s/семья TRAIN, <=3 вылета; evals/energy N/A (Search-direct, deviation D2)
-culture provenance: автоматическая (record law -> LawIsomorphismCompressor::compress -> B-атом); ручных инъекций нет
-ablation P4 (DEV, multi-flight): neither FAIL / trail_only FAIL / op_only FAIL / both SOLVED (flight 2, cv=0)
-smoke matrix (DEV, seed 1, 5 arms): все 5 рук отработали без фаталов; результаты в /tmp/exp044_out_s/
+# EXP-044 FREEZE MANIFEST v3 (2026-10-14 00:42 MSK, финальный)
+v3 = единственный действующий манифест (v2 сохранён как MANIFEST_v2.md; prereg v2.2 и amendment v2.3 неизменны).
+code_commit: 6a5a928
+driver: v3 (все 7 fixes ревью + условия owner: полный strip warm_noculture, SHUFFLED переносит метки с asserts, birth только после cv_eval, frozen null-контроли)
+DEV-smoke matrix v3 (seed 1): 5 рук завершены без фаталов; FPR=0 у всех (24 null-задачи... 4 null-задачи × 5 рук = 20, 0 сертификаций); asserts SHUFFLED green (объём совпадает, определения различаются); warm_noculture state после strip = {laws:0, birth:0, marks:0} (COLD-эквивалентность).
+Наблюдение (не баг): warm 1/2 vs fixed 2/2 на raw-разрешимых семьях — beam-вариативность с культурой; фаза C на 6 сидах измерит распределение.
 
 sha256:
-  scripts/exp044/driver.php            f7c03b81fc357b90655d66cc5c8e90b2302d47e7c1a6b1df42b5904f3b18b8a1
-  scripts/exp044/gen_families.php      caa9b5f01df2b6cbfc6f28b86b8ee2c41b119168e6658f14cac06e44dfb15353
-  scripts/exp044/exp044_families.json  5280eb6096a5a018c9da2ec8fc05639a2a314ca99bc5ce8554a6fc2943b2f55e
+  scripts/exp044/driver.php            349efe88203d3eec84baf510e388edbaf6dfbe1d19ade91ba4b72d6570bcd8ce
+  scripts/exp044/gen_families.php      6b317e5aa4d464ec4e0e5049f7bf9dfe7b16d94d8a91252624c6a4545bfb4a50
+  scripts/exp044/exp044_families.json  b8353016b4679c0676b3d4437d8d173fd75a570cc73ced1d59fb77be31e8fb3c
+  scripts/exp044/MANIFEST_v2.md        f7dcadb087e4be265839314eb3ee4aa1b7aef4e8346aa425d0fb1a17b0314c94
+
+Phase C (после OK owner): 5 рук × 6 seeds × (H1-H6 + 12 nulls) на runner-ноуте, ≈6-9h; отчёт = per-family + nulls + FPR + t_first_found + ресурсы.

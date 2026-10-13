@@ -89,5 +89,259 @@
             "seed": 2509158,
             "class": "pureprod"
         }
+    ],
+    "nulls": [
+        {
+            "id": "H1_flux_null1",
+            "class": "flux",
+            "seed": 12563420,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H1_flux_null2",
+            "class": "flux",
+            "seed": 13953330,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H2_fluxmut_null1",
+            "class": "flux",
+            "seed": 10656819,
+            "null_shuffle": true,
+            "perm": [
+                1,
+                0,
+                3,
+                2,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H2_fluxmut_null2",
+            "class": "flux",
+            "seed": 7294106,
+            "null_shuffle": true,
+            "perm": [
+                1,
+                0,
+                3,
+                2,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H3_ratio_null1",
+            "class": "ratio",
+            "seed": 1104716,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H3_ratio_null2",
+            "class": "ratio",
+            "seed": 6516734,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H4_power_null1",
+            "class": "power",
+            "seed": 14841866,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H4_power_null2",
+            "class": "power",
+            "seed": 9237568,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H5_noisyflux_null1",
+            "class": "flux",
+            "seed": 9835329,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0.04
+        },
+        {
+            "id": "H5_noisyflux_null2",
+            "class": "flux",
+            "seed": 14338158,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0.04
+        },
+        {
+            "id": "H6_decoy_null1",
+            "class": "pureprod",
+            "seed": 6574187,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        },
+        {
+            "id": "H6_decoy_null2",
+            "class": "pureprod",
+            "seed": 77535,
+            "null_shuffle": true,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": null
+        }
     ]
 }

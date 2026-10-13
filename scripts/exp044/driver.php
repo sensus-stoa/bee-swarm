@@ -1,11 +1,10 @@
 <?php
-// EXP-044 driver v2 (post-review repair): 5 arms with faithful semantics
-// Fixes vs v1 (review 13.10): (1) SHUFFLED reads culture.atoms + placeholder op-swap (no cascade);
-// (2) birth via LawIsomorphismCompressor (>=2 laws >=2 domains) in TRAIN and TEST - COLD grows culture on hidden;
-// (3) H scoped to training classes (prereg amendment v2.3: within-class claim only);
-// (4) warm_noculture strips trail_marks too; (5) wall_total per task (not first flight);
-// (6) single manifest at final HEAD; (7) independent eval: engine sees 60% rows, certification = cv_eval <= 0.10
-// on the withheld 40% (engine's internal test slice is selection only).
+// EXP-044 driver v3 (final corrections per owner gate 13.10):
+// v2->v3: (1) warm_noculture strips laws+trail_marks too, with COLD-equivalence assert;
+//         (2) SHUFFLED carries trail_marks state from WARM + asserts (volume match, defs differ);
+//         (3) record_law/compress ONLY after cv_eval pass on the independent slice;
+//         (4) frozen null-controls (2 per H family, permuted y, seeds from manifest) + FPR;
+//         (5) manifest v3 at final HEAD (v2 preserved as MANIFEST_v2.md).
 // Usage: php exp044_driver.php <arm> <seed> <familiesJson> <trainDir> <testDir> <outDir>
 
 $arm = $argv[1] ?? ''; $seed = (int) ($argv[2] ?? 0);
@@ -88,6 +87,16 @@ function born_atoms(PDO $db): array {
     $rows = $db->query("SELECT name, definition FROM grammar_ops WHERE source = 'birth'")->fetchAll(PDO::FETCH_ASSOC);
     $out = []; foreach ($rows as $r) { $out[$r['name']] = $r['definition']; } return $out;
 }
+function state_counts(PDO $db): array {
+    // carried-state fingerprint for COLD-equivalence asserts (v3 fix #1)
+    $q = function (string $sql) use ($db): int {
+        try { return (int) $db->query($sql)->fetchColumn(); }
+        catch (Throwable $e) { return -1; }
+    };
+    return ['laws' => $q('SELECT COUNT(*) FROM laws'),
+            'grammar_ops_birth' => $q("SELECT COUNT(*) FROM grammar_ops WHERE source='birth'"),
+            'trail_marks' => $q('SELECT COUNT(*) FROM trail_marks')];
+}
 function gen_family(array $p, string $path): void {
     $s = $p['seed']; $r = function () use (&$s) { $s = ($s * 1103515245 + 12345) & 0x7fffffff; return $s / 0x7fffffff; };
     $u = function (float $a, float $b) use ($r): float { return $a + $r() * ($b - $a); };
@@ -110,16 +119,29 @@ function gen_family(array $p, string $path): void {
         $row[] = $y;
         $rows[] = $row;
     }
+    if (! empty($p['null_shuffle'])) {
+        // frozen null-control: permute the target column (destroys any invariant)
+        mt_srand($p['seed']);
+        $ys = array_column($rows, 5);
+        for ($i = count($ys) - 1; $i > 0; $i--) { $j = (int) floor(mt_rand() / (mt_getrandmax() + 1) * ($i + 1)); [$ys[$i], $ys[$j]] = [$ys[$j], $ys[$i]]; }
+        foreach ($rows as $i => $row) { $rows[$i][5] = $ys[$i]; }
+    }
     $f = fopen($path, 'w'); foreach ($rows as $r2) { fputcsv($f, $r2); } fclose($f);
 }
-function discover_with_culture(array $X, array $y, BeeSwarm\Core\Grammar $g, array $labels, string $domain, PDO $db, bool $birth, float $budget, int $maxFlights): array {
-    // multi-flight task with shared wall budget; on found: record law + compressor birth (if allowed)
-    $res = flights_with_budget($X, $y, $g, $labels, 3, $budget, $maxFlights, true);
-    if ($res['found'] && $birth) {
+function run_task(array $X, array $y, array $Xe, array $ye, BeeSwarm\Core\Grammar $g, array $labels, string $domain, PDO $db, bool $birth, float $budget): array {
+    $res = flights_with_budget($X, $y, $g, $labels, 3, $budget, 3, true);
+    $cvE = null;
+    if ($res['found']) { $cvE = cv_eval($res['formula'], $Xe, $ye); }
+    $certified = ($res['found'] && $cvE !== null && $cvE <= 0.10);
+    // v3 fix #3: record_law + compress ONLY after cv_eval pass on the independent slice
+    if ($certified && $birth) {
         record_law($db, labels_to_x($res['formula']), (float) end($res['flights'])['cv'], $domain);
         (new BeeSwarm\Hive\LawIsomorphismCompressor())->compress(null);
     }
-    return $res;
+    return ['found' => $res['found'], 'cv_engine' => end($res['flights'])['cv'] ?? 9.99, 'cv_eval' => $cvE,
+            'certified' => $certified, 'formula' => $res['formula'],
+            'flights_used' => count($res['flights']), 't_first_found' => $res['t_first_found'],
+            'wall_total' => $res['wall_total']];
 }
 
 // ---- arms ----
@@ -127,70 +149,93 @@ $noBirth = ($arm === 'fixed');
 if ($noBirth) { putenv('NO_BIRTH=1'); } else { putenv('NO_BIRTH'); }
 $trail = ($arm !== 'fixed');
 
-// TRAIN (warm, warm_noculture): D1..D8, birth via compressor over recorded laws
+// TRAIN (warm, warm_noculture)
 $trainLog = [];
 if ($arm === 'warm' || $arm === 'warm_noculture') {
     foreach ($params['train'] as $d) {
         $csv = "$trainDir/{$d['id']}.csv"; gen_family($d, $csv);
         [$X, $y] = parse_csv($csv);
-        $res = discover_with_culture($X, $y, $g, $labels, $d['id'], $db, true, $TRAIN_BUDGET_S, 3);
+        // v3: TRAIN birth via compressor over recorded laws (v2 semantics; faithful to LawCompressor)
+        $res = flights_with_budget($X, $y, $g, $labels, 3, $TRAIN_BUDGET_S, 3, true);
+        if ($res['found']) {
+            record_law($db, labels_to_x($res['formula']), (float) end($res['flights'])['cv'], $d['id']);
+            (new BeeSwarm\Hive\LawIsomorphismCompressor())->compress(null);
+        }
         $trainLog[] = ['id' => $d['id'], 'found' => $res['found'], 'wall_total' => $res['wall_total'], 'born' => count(born_atoms($db))];
     }
     if ($arm === 'warm_noculture') {
-        // FULL strip: vocabulary AND accumulated marks (review fix #4)
+        // v3 fix #1: FULL strip - vocabulary, marks AND laws (COLD-equivalence before first hidden task)
         $db->exec("DELETE FROM grammar_ops WHERE source = 'birth'");
         $db->exec('DELETE FROM trail_marks');
+        $db->exec('DELETE FROM laws');
         BeeSwarm\Core\ExpressionEvaluator::clearDefCache(); BeeSwarm\Core\AtomRegistry::clearDefCache();
     }
 }
-// SHUFFLED: import warm culture export (fix #1: read culture.atoms), permute ops with placeholder swap (no cascade)
+// SHUFFLED (v3 fix #2): import atoms AND trail marks from WARM export; asserts
 if ($arm === 'shuffled') {
     $exportFile = "$outDir/culture_warm_s$seed.json";
     if (! is_file($exportFile)) { fwrite(STDERR, "shuffled needs culture export: $exportFile\n"); exit(3); }
     $exp = json_decode(file_get_contents($exportFile), true);
     $opSwap = ['−' => "\x01", 'max' => "\x02", '×' => "\x03", '/' => "\x04", '+' => "\x05", 'min' => "\x06"];
     $opNew = ["\x01" => 'max', "\x02" => '−', "\x03" => '/', "\x04" => '×', "\x05" => 'min', "\x06" => '+'];
-    $n = 0;
-    foreach (($exp['atoms'] ?? []) as $def) {
+    $nAtoms = 0; $differs = false;
+    foreach (($exp['atoms'] ?? []) as $origName => $def) {
         $permuted = str_replace(array_keys($opSwap), array_values($opSwap), $def);
         $permuted = str_replace(array_keys($opNew), array_values($opNew), $permuted);
         if (BeeSwarm\Hive\LawIsomorphismCompressor::canonize($permuted) === null) continue;
+        if ($permuted !== $def) { $differs = true; }
         $name = 'BWshuf' . substr(md5($permuted . $seed), 0, 6);
         $st = $db->prepare("INSERT OR IGNORE INTO grammar_ops (name, source, definition, status) VALUES (?, 'birth', ?, 'candidate')");
-        $st->execute([$name, $permuted]); $n++;
+        $st->execute([$name, $permuted]); $nAtoms++;
+    }
+    $stM = $db->prepare('INSERT INTO trail_marks (fingerprint, formula, kind, corr, uses, mark_tick) VALUES (?, ?, ?, ?, ?, ?)');
+    $nMarks = 0;
+    foreach (($exp['trail_marks'] ?? []) as $m) {
+        $stM->execute([$m['fingerprint'], $m['formula'], $m['kind'], $m['corr'], $m['uses'], $m['mark_tick']]); $nMarks++;
     }
     BeeSwarm\Core\ExpressionEvaluator::clearDefCache(); BeeSwarm\Core\AtomRegistry::clearDefCache();
+    // ASSERTS: cultural state volume matches WARM; definitions actually differ
+    $asserts = [
+        'atoms_count_matches_warm' => (count(born_atoms($db)) === count($exp['atoms'] ?? [])),
+        'trail_marks_match_warm' => ((count($exp['trail_marks'] ?? [])) === $nMarks),
+        'definitions_differ' => $differs,
+    ];
+    if (in_array(false, $asserts, true)) { fwrite(STDERR, 'SHUFFLED ASSERT FAIL: ' . json_encode($asserts) . "\n"); exit(4); }
 }
 $culture = born_atoms($db);
-file_put_contents("$outDir/culture_{$arm}_s$seed.json", json_encode(['arm' => $arm, 'seed' => $seed, 'atoms' => $culture], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+$stCounts = state_counts($db);
+file_put_contents("$outDir/culture_{$arm}_s$seed.json", json_encode(['arm' => $arm, 'seed' => $seed, 'atoms' => $culture, 'state' => $stCounts], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
-// TEST: H families (sealed); birth ON for all arms except fixed (fix #2: COLD grows culture on hidden)
-$results = [];
-$hDomains = [];
+// ---- task runner: TEST families + frozen null-controls ----
+$results = []; $nullResults = [];
 foreach ($params['test'] as $h) {
     $csv = "$testDir/{$h['id']}.csv";
     if (! is_file($csv)) { gen_family($h, $csv); }
     [$X, $y] = parse_csv($csv);
     [$Xt, $yt, $Xe, $ye] = split_eval($X, $y, $h['seed']);
-    $res = flights_with_budget($Xt, $yt, $g, $labels, 3, $TEST_BUDGET_S, $MAX_FLIGHTS, $trail);
-    $cvE = null;
-    if ($res['found']) {
-        $cvE = cv_eval($res['formula'], $Xe, $ye);
-        if (! $noBirth) {
-            // fix #2: record + compressor birth on hidden discoveries (COLD grows culture on H)
-            record_law($db, labels_to_x($res['formula']), (float) end($res['flights'])['cv'], $h['id']);
-            $hDomains[] = $h['id'];
-            (new BeeSwarm\Hive\LawIsomorphismCompressor())->compress(null);
-        }
-    }
-    $results[] = ['id' => $h['id'], 'class' => $h['class'] ?? '', 'found' => $res['found'],
-                  'cv_engine' => end($res['flights'])['cv'] ?? 9.99, 'cv_eval' => $cvE,
-                  'certified' => ($res['found'] && $cvE !== null && $cvE <= 0.10),
-                  'formula' => $res['formula'], 'flights_used' => count($res['flights']),
-                  't_first_found' => $res['t_first_found'], 'wall_total' => $res['wall_total']];
+    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $h['id'], $db, ! $noBirth, $TEST_BUDGET_S);
+    $r = array_merge(['id' => $h['id'], 'class' => $h['class'] ?? '', 'kind' => 'hidden'], $r);
+    $results[] = $r;
 }
+foreach (($params['nulls'] ?? []) as $n) {
+    // v3 fix #4: frozen null-controls (permuted y, seeds from manifest) -> FPR
+    $csv = "$testDir/{$n['id']}.csv";
+    if (! is_file($csv)) { gen_family($n, $csv); }
+    [$X, $y] = parse_csv($csv);
+    [$Xt, $yt, $Xe, $ye] = split_eval($X, $y, $n['seed']);
+    $r = run_task($Xt, $yt, $Xe, $ye, $g, $labels, $n['id'], $db, ! $noBirth, $TEST_BUDGET_S);
+    $r = array_merge(['id' => $n['id'], 'kind' => 'null'], $r);
+    $nullResults[] = $r;
+}
+$nullCert = count(array_filter($nullResults, function ($r) { return $r['certified']; }));
+$nullTotal = count($nullResults);
 $certified = count(array_filter($results, function ($r) { return $r['certified']; }));
-$summary = ['arm' => $arm, 'seed' => $seed, 'certified_families' => $certified, 'of' => count($results),
-            'train' => $trainLog, 'results' => $results, 'culture_size' => count($culture)];
+$summary = ['arm' => $arm, 'seed' => $seed,
+            'certified_families' => $certified, 'of' => count($results),
+            'fpr_certified_nulls' => $nullCert, 'fpr_denominator' => $nullTotal,
+            'fpr' => $nullTotal > 0 ? round($nullCert / $nullTotal, 4) : null,
+            'train' => $trainLog, 'results' => $results, 'null_results' => $nullResults,
+            'culture_size' => count($culture), 'state' => $stCounts];
 file_put_contents("$outDir/results_{$arm}_s$seed.json", json_encode($summary, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-echo json_encode(['arm' => $arm, 'seed' => $seed, 'certified' => $certified, 'of' => count($results)]), "\n";
+echo json_encode(['arm' => $arm, 'seed' => $seed, 'certified' => $certified, 'of' => count($results),
+                  'fpr' => $summary['fpr']]), "\n";

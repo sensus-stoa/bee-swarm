@@ -30,5 +30,17 @@ foreach (['H1_flux', 'H2_fluxmut', 'H3_ratio', 'H4_power', 'H5_noisyflux', 'H6_d
     }
     $out['test'][] = $p;
 }
+// v3: frozen null-controls - 2 per H family, y-permuted with dedicated seeds
+$nulls = [];
+foreach ($out['test'] as $h) {
+    for ($k = 1; $k <= 2; $k++) {
+        $nulls[] = ['id' => $h['id'] . '_null' . $k, 'class' => $h['class'],
+                    'seed' => hexdec(substr(md5('EXP044NULL' . $h['id'] . $k), 0, 6)),
+                    'null_shuffle' => true,
+                    'perm' => $h['perm'] ?? [0,1,2,3,4], 'scale' => $h['scale'] ?? [1,1,1,1,1],
+                    'noise' => $h['noise'] ?? null];
+    }
+}
+$out['nulls'] = $nulls;
 file_put_contents(__DIR__ . '/exp044_families.json', json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 echo "exp044_families.json written\n";

@@ -83,7 +83,9 @@ final class RouteGenome
         } elseif ((float) $bf < self::BUDGET_MIN || (float) $bf > self::BUDGET_MAX) {
             $errors[] = 'budget_fraction out of [' . self::BUDGET_MIN . ',' . self::BUDGET_MAX . ']';
         }
-        if (isset($g['max_steps']) && (! is_int($g['max_steps']) || $g['max_steps'] < 1 || $g['max_steps'] > self::MAX_ACTIONS)) {
+        if (! isset($g['max_steps']) || ! is_int($g['max_steps']) || $g['max_steps'] < 1 || $g['max_steps'] > self::MAX_ACTIONS) {
+            // Обязателен (ревью deleg_1cae7b13): отсутствие молча исполняло
+            // только первое действие (run() default = 1).
             $errors[] = 'max_steps must be int 1..' . self::MAX_ACTIONS;
         }
 

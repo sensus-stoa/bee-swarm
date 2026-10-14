@@ -1,6 +1,6 @@
 # EXP-044 FREEZE MANIFEST v4 (2026-10-14 01:20 MSK, final semantic gate PASSED)
 v4 = действующий манифест (v3 -> MANIFEST_v3.md сохранён бы при следующем изменении; v2 в MANIFEST_v2.md).
-code_commit: ab942a1
+code_commit: c04af1f (driver v4; коммит манифеста — df67228/последующие docs)
 driver: v4 (final gate fixes: run_task передаёт $trail — FIXED реально NO_TRAIL с assert 0 меток; WARM экспортирует ВСЕ trail marks rows; SHUFFLED импортирует их с asserts non-empty/count/content-identical)
 smoke v4 (DEV, seed 1): warm 1/2 fpr0 / shuffled 1/2 fpr0 (16 меток WARM перенесено, content identical, атомы различаются) / fixed 2/2 fpr0 no-marks-assert TRUE
 

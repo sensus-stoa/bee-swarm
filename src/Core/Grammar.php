@@ -102,6 +102,27 @@ class Grammar
         return true;
     }
 
+    /**
+     * EXP-045 Route Heredity: route-local атом БЕЗ записи в grammar_ops.
+     * Отличие от add(): ноль обращений к БД — атом живёт только в этом
+     * инстансе Grammar (изоляция маршрутов от глобального словаря,
+     * урок EXP-044: инъекция словаря = смена направления поиска).
+     */
+    public function addLocal(string $name, ?string $definition = null): bool
+    {
+        if (isset($this->ops[$name])) {
+            return false;
+        }
+        $this->ops[$name] = [
+            'fn' => 'custom_' . $name,
+            'symbol' => $name,
+        ];
+        if ($definition) {
+            $this->ops[$name]['definition'] = $definition;
+        }
+        return true;
+    }
+
     public function reloadFromDb(): void
     {
         $db = Database::get();

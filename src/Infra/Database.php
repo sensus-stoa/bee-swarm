@@ -463,6 +463,35 @@ class Database
             $db->exec('ALTER TABLE trail_marks ADD COLUMN corr REAL NOT NULL DEFAULT 0');
         }
 
+        // EXP-045 Route Heredity (14.10): реестр геномов маршрутов + история
+        // вылетов. Genome = программа действий НАД примитивами Search; ядро
+        // не трогается. Idempotent, паттерн trail_marks. Scope-изоляция
+        // (урок M1-EXT runtime-механизма над общими таблицами): run_id +
+        // task_fp в каждом событии истории.
+        $db->exec('CREATE TABLE IF NOT EXISTS route_genome (
+            id TEXT PRIMARY KEY,
+            parent_id TEXT NOT NULL,
+            generation INTEGER NOT NULL DEFAULT 0,
+            genome_json TEXT NOT NULL,
+            created_tick INTEGER NOT NULL DEFAULT 0
+        )');
+        $db->exec('CREATE TABLE IF NOT EXISTS route_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            run_id TEXT NOT NULL,
+            task_fp TEXT NOT NULL,
+            route_id TEXT NOT NULL,
+            seq INTEGER NOT NULL DEFAULT 0,
+            op TEXT NOT NULL,
+            knobs TEXT NOT NULL,
+            found INTEGER NOT NULL DEFAULT 0,
+            cv_exposed REAL,
+            l_train REAL,
+            l_valid REAL,
+            wall_s REAL NOT NULL DEFAULT 0,
+            created_tick INTEGER NOT NULL DEFAULT 0
+        )');
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_route_history_run ON route_history (run_id, task_fp)');
+
         // POPULATION-PERSISTENCE (06.08, P0): сохранение пчёл при перезапуске
         $db->exec("CREATE TABLE IF NOT EXISTS bee_persistence (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

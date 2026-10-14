@@ -128,6 +128,32 @@ class RouteExecutorIsolationTest extends TestCase
         $this->assertTrue(RouteExecutor::shouldActivate($noCert, ['flights_done' => 2, 'certified' => false]));
     }
 
+    public function test_expand_local_atoms_end_to_end(): void
+    {
+        $born = RouteExecutor::localBirth('(x0×x1)');
+        $this->assertNotNull($born);
+        $name = $born['name'];
+        // Склеенный формат Search (без пробелов), включая вложенный операнд
+        $this->assertSame('(x0×x1)', RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [$name => $born['definition']]));
+        $this->assertSame('(((x0−x1)×x2))', RouteExecutor::expandLocalAtoms('(((x0−x1)' . $name . 'x2))', [$name => $born['definition']]));
+        // Развёрнутая форма оценима внешним evaluator'ом (блокер-3 закрыт)
+        mt_srand(11);
+        $X = []; $y = [];
+        for ($r = 0; $r < 20; $r++) {
+            $a = mt_rand(10, 50) / 10.0;
+            $b = mt_rand(10, 50) / 10.0;
+            $X[] = [$a, $b];
+            $y[] = $a * $b;
+        }
+        $L = RouteExecutor::computeL(
+            RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [$name => $born['definition']]),
+            $X,
+            $y,
+        );
+        $this->assertNotNull($L, 'раскрытая формула обязана оцениваться');
+        $this->assertLessThan(0.01, $L);
+    }
+
     public function test_inherit_must_be_resolved(): void
     {
         $g = RouteGenome::create('route_inh00001', 'route_parent0', 1, ['kind' => 'INHERIT'],

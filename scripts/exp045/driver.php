@@ -125,19 +125,27 @@ function split_eval(array $X, array $y, int $seed): array
 function labels_to_x(string $formula): string
 {
     $out = $formula;
+    // RL-имена прячутся (sha1-гекс содержит 'c0'-подстроки), метки заменяются
+    // ПРОСТОЙ заменой (склеенные 'c0minc2' конвертируются), имена возвращаются.
+    $kept = [];
+    $out = (string) preg_replace_callback('/RL[0-9a-f]{8}/', function ($m) use (&$kept) {
+        $key = "\x00" . count($kept) . "\x00";
+        $kept[$key] = $m[0];
+
+        return $key;
+    }, $out);
     $pairs = [];
     foreach (range(0, 4) as $i) { $pairs[] = ['c' . $i, 'x' . $i]; }
     usort($pairs, fn ($a, $b) => strlen($b[0]) <=> strlen($a[0]));
     foreach ($pairs as [$c, $x]) { $out = str_replace($c, $x, $out); }
 
-    return $out;
+    return strtr($out, $kept);
 }
 
-/** Независимая сертификация на withheld-срезе (строгий критерий, = exp044). */
-function cv_eval(string $formulaC, array $Xe, array $ye): ?float
+/** Независимая сертификация на withheld-срезе, x-пространство (строгий критерий, = exp044). */
+function cert_x(string $formulaX, array $Xe, array $ye): ?float
 {
-    $f = labels_to_x($formulaC);
-    $vals = BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($f, $Xe);
+    $vals = BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($formulaX, $Xe);
     if (! is_array($vals) || count($vals) !== count($ye)) { return null; }
     $ratios = [];
     foreach ($vals as $i => $p) {
@@ -150,6 +158,11 @@ function cv_eval(string $formulaC, array $Xe, array $ye): ?float
     $std = sqrt($var / count($ratios));
 
     return $mean != 0.0 ? $std / abs($mean) : null;
+}
+
+function cv_eval(string $formulaC, array $Xe, array $ye): ?float
+{
+    return cert_x(labels_to_x($formulaC), $Xe, $ye);
 }
 
 /** Базовый канал: вылеты с выключенными метками (гигиена baseline). */
@@ -174,17 +187,38 @@ function baseline_flights(array $X, array $y, float $budget): array
         'best_cv' => $bestCv, 'wall_total' => round(microtime(true) - $t0, 1)];
 }
 
-/** Лучшая ЧАСТИЧНАЯ гипотеза базового канала (экспозиция = cv < eps). */
+/** Лучшая ЧАСТИЧНАЯ гипотеза базового канала. Failure-возврат Search несёт
+ * лучшую plausible-форму (r[2]) при принудительном cv=9.99 — экспозиция =
+ * факт реального имени, качество судит computeL (блокер-2 ревью). */
 function baseline_partial_L(array $bl, array $Xt, array $yt): ?float
 {
     if ($bl['found']) { return null; } // сертификация — не «частичная гипотеза»
     foreach (array_reverse($bl['flights']) as $fl) {
         $fC = (string) $fl['formula'];
-        if ($fC === '' || $fC === 'none' || $fl['cv'] >= 0.10) { continue; }
+        if ($fC === '' || $fC === 'none') { continue; }
         return RouteExecutor::computeL(labels_to_x($fC), $Xt, $yt);
     }
 
     return null;
+}
+
+/** Персистенция генома и истории вылетов (блокер-4 ревью: таблицы были мёртвыми). */
+function persist_genome(PDO $db, array $g): void
+{
+    static $st = null;
+    $st ??= $db->prepare('INSERT OR REPLACE INTO route_genome (id, parent_id, generation, genome_json, created_tick) VALUES (?,?,?,?,?)');
+    $st->execute([$g['id'], $g['parent_id'], $g['generation'], json_encode($g), (int) ($g['lineage']['born_tick'] ?? 0)]);
+}
+
+function persist_history(PDO $db, string $runId, string $taskFp, string $routeId, array $records): void
+{
+    static $st = null;
+    $st ??= $db->prepare('INSERT INTO route_history (run_id, task_fp, route_id, seq, op, knobs, found, cv_exposed, l_train, l_valid, wall_s, created_tick) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)');
+    foreach ($records as $rec) {
+        $st->execute([$runId, $taskFp, $routeId, (int) $rec['seq'], (string) $rec['op'],
+            (string) $rec['knobs'], (int) $rec['found'], $rec['cv_exposed'],
+            $rec['l_train'], $rec['l_valid'], (float) $rec['wall_s'], 0]);
+    }
 }
 
 // ---- популяция маршрутов по рукам ----
@@ -236,6 +270,12 @@ foreach ($params['tasks'] as $tIdx => $t) {
     [$X, $y, $Xe, $ye] = split_eval($Xall, $yall, $t['seed'] + $seed);
     $taskFp = 'sha1:' . sha1(json_encode(['labels' => $labels, 'id' => $t['id']]));
 
+    // Trail-гигиена задачи (ревью deleg_1cae7b13): метки живут в :memory:
+    // весь процесс, read-scope = labels-only (одинаков для всех задач) —
+    // без очистки USE_MARKS читает дороги ПРЕДЫДУЩИХ задач, ломая контраст
+    // noinherit (популяция сброшена, дорожная память — нет).
+    $db->exec('DELETE FROM trail_marks');
+
     // ---- канал baseline (80%) ----
     $blBudget = $TASK_BUDGET * $BASELINE_SHARE;
     $bl = baseline_flights($X, $y, $blBudget);
@@ -283,21 +323,32 @@ foreach ($params['tasks'] as $tIdx => $t) {
         foreach ($population as $g) {
             if ($routeWall >= $channelBudget - 0.5) { break; }
             if (! $ledger->get($g['id'])) { $ledger->register($g); }
+            persist_genome($db, $g);
             if ($ledger->isRevoked($g['id'])) { continue; }
             if (! RouteExecutor::shouldActivate($g, $baselineState)) {
                 $routeRows[] = ['id' => $g['id'], 'activated' => false];
                 continue;
             }
-            $share = min((float) $g['budget_fraction'], $channelBudget - $routeWall) * $TASK_BUDGET;
+            // ЕДИНИЦЫ ОДНИ (блокер-1 ревью): доля × бюджет задачи vs остаток канала в секундах.
+            $share = min((float) $g['budget_fraction'] * $TASK_BUDGET, $channelBudget - $routeWall);
             if ($share < 1.0) { continue; } // слишком малая доля — пропустить, не убивать популяцию
             $res = RouteExecutor::run($g, $X, $y, $labels, $share, 0.10);
             $routeWall += $res['wall'];
-            $rcv = $res['found'] ? cv_eval((string) $res['cert_formula'], $Xe, $ye) : null;
+            persist_history($db, $RUN_ID, $taskFp, $g['id'], $res['records']);
+            // Независимая сертификация с раскрытием route-local атомов (блокер-3):
+            // evaluator не знает RL-имена — расширяем до инфикса до оценки.
+            $rcv = null;
+            if ($res['found']) {
+                $fx = RouteExecutor::expandLocalAtoms(labels_to_x((string) $res['cert_formula']), $res['local_atoms']);
+                $rcv = cert_x($fx, $Xe, $ye);
+            }
             $rCert = $res['found'] && $rcv !== null && $rcv <= 0.10;
             $routeCertifiedAny = $routeCertifiedAny || $rCert;
+            // Win-семантика спеки: сертификация, КОТОРОЙ НЕТ у baseline (ревью).
+            $routeWinCert = $rCert && ! $blCertified;
             $Lroute = $res['best_L_valid'];
             $delta = ($Lbase !== null && $Lroute !== null) ? $Lbase - $Lroute : 0.0;
-            $ledger->recordOutcome($g['id'], $taskFp, $delta, $rCert, $res['wall'], $res['unspent']);
+            $ledger->recordOutcome($g['id'], $taskFp, $delta, $routeWinCert, $res['wall'], $res['unspent']);
             $routeRows[] = ['id' => $g['id'], 'parent' => $g['parent_id'], 'generation' => $g['generation'],
                 'activated' => true, 'delta' => round($delta, 4), 'certified' => $rCert,
                 'best_L_valid' => $Lroute !== null ? round($Lroute, 4) : null,

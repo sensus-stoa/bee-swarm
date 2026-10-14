@@ -53,7 +53,6 @@ class RouteBudgetTest extends TestCase
         // Жёсткий кап потребовал бы proc-изоляции — вне минимального скоупа
         // EXP-045; перелёт фиксируется как метрика (route_wall_share в отчёте).
         $this->assertLessThanOrEqual($channel * 1.6 + 0.5, $wall, 'мягкий кап канала (гранула фазы)');
-        $this->assertEqualsWithDelta($res['wall'], $res['wall'], 1e-12);
         $this->assertGreaterThanOrEqual(0.0, $res['unspent']);
         $this->assertTrue($res['stop'] === 'budget_exhausted' || $res['stop'] === 'actions_done');
     }

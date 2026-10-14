@@ -36,7 +36,10 @@ final class RouteExecutor
 
     /** Beam-пресеты = связки реальных env-ручек (см. RouteGenome::BEAM_PRESETS). */
     private const BEAM_KNOBS = [
-        'default' => [], // beam off: pool-путь, raw-pair первыми (runtime-дефолт Search)
+        // Явный beam-off: пустая строка → (int)('' ?: '0') = 0 независимо от
+        // ambient-env (phpunit.xml force-ставит SEARCH_BEAM_K=10 — пресет
+        // обязан задавать СВОЮ семантику, а не наследовать окружение).
+        'default' => ['SEARCH_BEAM_K' => '', 'L2_BEAM_K' => ''],
         'beam10' => ['SEARCH_BEAM_K' => '10', 'L2_BEAM_K' => '40'],
         'beam40' => ['SEARCH_BEAM_K' => '40', 'L2_BEAM_K' => '80'],
         'narrow5' => ['SEARCH_BEAM_K' => '5', 'L2_BEAM_K' => '10'],
@@ -101,7 +104,7 @@ final class RouteExecutor
         $firstL = null;
         $stop = 'actions_done';
 
-        foreach (array_slice($genome['actions'], 0, max(1, (int) $genome['max_steps'])) as $seq => $action) {
+        foreach (array_slice($genome['actions'], 0, max(1, (int) ($genome['max_steps'] ?? count($genome['actions'])))) as $seq => $action) {
             $remain = $channelBudgetSec - (microtime(true) - $t0);
             if ($remain < self::MIN_FLIGHT_SEC) {
                 $stop = 'budget_exhausted';
@@ -133,6 +136,12 @@ final class RouteExecutor
                 (string) $action['beam'], $depth, $marksK, $remain, $eps, $localAtoms);
             $wall = microtime(true) - $a0;
             [$foundFlight, $cvExposed, $formulaC, $formulaX] = $r;
+            // Route-local атомы живут только в Grammar-инстансе вылета: внешний
+            // оценщик (ExpressionEvaluator) их не видит (ревью deleg_1cae7b13,
+            // блокер-3). Разворачиваем (A atom B) → инфикс до любой оценки L.
+            if ($formulaX !== null) {
+                $formulaX = self::expandLocalAtoms($formulaX, $localAtoms);
+            }
             $lValid = $formulaX !== null ? self::computeL($formulaX, self::tailX($X), self::tailY($y)) : null;
             $lTrain = $formulaX !== null ? self::computeL($formulaX, self::headX($X), self::headY($y)) : null;
             if ($foundFlight) {
@@ -212,15 +221,14 @@ final class RouteExecutor
             $r = Search::find($X, $y, $g, $depth, $labels, self::TEST_RATIO, $eps, $remainSec);
             $found = (bool) $r[0];
             $cv = is_numeric($r[1]) ? (float) $r[1] : 9.99;
-            $formulaC = is_string($r[2] ?? null) && $r[2] !== 'none' ? (string) $r[2] : null;
-            // Экспозиция частичной гипотезы = тот же гейт, что у движка
-            // (Search возвращает лучшую plausible-форму только при cv < eps).
-            if (! $found && ($cv >= $eps || $formulaC === null)) {
-                $formulaC = null;
-            }
+            // НЕ найдено: cv_train принудительно 9.99 (Search.php failure-путь),
+            // НО r[2] несёт ЛУЧШУЮ plausible-форму — это и есть частичная
+            // гипотеза. Экспозиция = факт реального имени, качество судит
+            // computeL (ревью deleg_1cae7b13, блокер-2).
+            $formulaC = is_string($r[2] ?? null) && $r[2] !== 'none' && $r[2] !== '' ? (string) $r[2] : null;
             $formulaX = $formulaC !== null ? self::labelsToX($formulaC, $labels) : null;
 
-            return [$found, $found ? $cv : ($formulaC !== null ? $cv : null), $formulaC, $formulaX];
+            return [$found, $found ? $cv : null, $formulaC, $formulaX];
         } finally {
             foreach ($snapshot as $k => $v) {
                 if ($v === null) {
@@ -251,17 +259,18 @@ final class RouteExecutor
         if (preg_match('/[RK]/', preg_replace('/\d+/', '', $formulaX)) === 1) {
             return null; // R/K null-подгонки (урок P8)
         }
-        if (preg_match_all('/[A-Za-z][A-Za-z0-9]*/', $formulaX, $m) === 1) {
-            foreach ($m[0] as $tok) {
-                if (preg_match('/^x\d+$/', $tok) === 1) {
-                    continue;
-                }
-                if (in_array($tok, ['min', 'max', 'sq'], true)) {
-                    continue;
-                }
-
-                return null; // неизвестный токен = не base-грамматика
-            }
+        // Склеенные формы '(x0minx1)' дают ОДИН токен (ревью deleg_1cae7b13):
+        // режем формулу на разрешённые фрагменты base-грамматики и требуем
+        // пустой буквенный остаток. Длинные фрагменты первыми ('inverse' до
+        // 'inv', 'sqrt' до 'sq').
+        $rest = (string) preg_replace('/x\d+/', ' ', $formulaX);
+        $rest = (string) preg_replace('/pow\d*/', ' ', $rest);
+        $fragments = ['inverse', 'parity', 'sqrt', 'log2', 'abs', 'min', 'max', 'neg', 'inv', 'sq'];
+        foreach ($fragments as $frag) {
+            $rest = str_replace($frag, ' ', $rest);
+        }
+        if (preg_match('/[A-Za-z]/', $rest) === 1) {
+            return null; // неизвестный буквенный токен = не base-грамматика
         }
         preg_match_all('/x(\d+)/', $formulaX, $fm);
         $feats = array_values(array_unique($fm[1]));
@@ -354,6 +363,125 @@ final class RouteExecutor
     }
 
     /**
+     * Разворачивание route-local атомов до инфикса: "(A RLname B)" →
+     * дерево определения с a→A, b→B. Нужен потому, что
+     * ExpressionEvaluator::definition() резолвит атомы ТОЛЬКО из grammar_ops
+     * (ревью deleg_1cae7b13, блокер-3) — route-local атомы вне БД.
+     * Многократный проход покрывает формулы с несколькими атомами; вложенные
+     * операнды обрабатываются скобочно-балансным сканом. Определения
+     * RL-свободны (birth-гейт запрещает оборачивание атомов).
+     *
+     * @param array<string,string> $localAtoms name => ExpressionTree JSON
+     */
+    public static function expandLocalAtoms(string $formulaX, array $localAtoms): string
+    {
+        $out = $formulaX;
+        for ($iter = 0; $iter < 8; $iter++) {
+            $changed = false;
+            foreach ($localAtoms as $name => $definition) {
+                $pos = strpos($out, $name);
+                if ($pos === false) {
+                    continue;
+                }
+                // Открытие пары: идём влево от атома, первый несбалансированный '('
+                $depth = 0;
+                $open = -1;
+                for ($i = $pos - 1; $i >= 0; $i--) {
+                    $ch = $out[$i];
+                    if ($ch === ')') {
+                        $depth++;
+                    } elseif ($ch === '(') {
+                        if ($depth > 0) {
+                            $depth--;
+                        } else {
+                            $open = $i;
+                            break;
+                        }
+                    }
+                }
+                if ($open === -1) {
+                    continue; // атом вне пары — нечего разворачивать
+                }
+                // Закрытие пары: идём вправо, первый несбалансированный ')'
+                $depth = 0;
+                $close = -1;
+                $len = strlen($out);
+                $end = $pos + strlen($name);
+                for ($j = $end; $j < $len; $j++) {
+                    $ch = $out[$j];
+                    if ($ch === '(') {
+                        $depth++;
+                    } elseif ($ch === ')') {
+                        if ($depth > 0) {
+                            $depth--;
+                        } else {
+                            $close = $j;
+                            break;
+                        }
+                    }
+                }
+                if ($close === -1) {
+                    continue;
+                }
+                $a = trim(substr($out, $open + 1, $pos - ($open + 1)));
+                $b = trim(substr($out, $end, $close - $end));
+                $tree = json_decode($definition, true);
+                if (! is_array($tree)) {
+                    continue;
+                }
+                $expanded = self::renderTree($tree, $a, $b);
+                if ($expanded === null) {
+                    continue;
+                }
+                $out = substr($out, 0, $open) . $expanded . substr($out, $close + 1);
+                $changed = true;
+            }
+            if (! $changed) {
+                break;
+            }
+        }
+
+        return $out;
+    }
+
+    /** Рендер дерева (ExpressionTree-формат) в инфикс Search с a/b → операнды. */
+    private static function renderTree(array|string|float|null $node, string $a, string $b): ?string
+    {
+        if (is_string($node)) {
+            if ($node === 'a') {
+                return $a;
+            }
+            if ($node === 'b') {
+                return $b;
+            }
+
+            return is_numeric($node) ? $node : null;
+        }
+        if (is_int($node) || is_float($node)) {
+            return (string) $node;
+        }
+        if (! is_array($node)) {
+            return null;
+        }
+        $op = $node['op'] ?? '';
+        if (in_array($op, ['sq', 'abs', 'sqrt'], true)) {
+            $arg = self::renderTree($node['arg'] ?? null, $a, $b);
+            if ($arg === null) {
+                return null;
+            }
+
+            return '(' . $arg . $op . ')';
+        }
+        $l = self::renderTree($node['left'] ?? null, $a, $b);
+        $r = self::renderTree($node['right'] ?? null, $a, $b);
+        if ($l === null || $r === null) {
+            return null;
+        }
+
+        return '(' . $l . $op . $r . ')';
+    }
+
+    /**
      * L(f) = RMSE(f,y)/RMSE(mean(y),y) на срезе. null = формула неоценима
      * (NaN/Inf/несовпадение длины) — считается «нет сигнала», не нулём.
      *
@@ -424,10 +552,21 @@ final class RouteExecutor
         return array_slice($X, 0, $split);
     }
 
-    /** Формула в label-пространстве → x-пространство (длинные метки первыми). */
+    /** Формула в label-пространстве → x-пространство.
+     * Порядок критичен: (1) RL-имена (sha1-гекс содержит 'c0'-подстроки)
+     * прячутся плейсхолдерами; (2) метки заменяются ПРОСТОЙ заменой —
+     * склеенные формы 'c0minc2' обязаны конвертироваться (boundary-lookaround
+     * их ломал, ревью-фикс-регрессия); (3) имена возвращаются. */
     private static function labelsToX(string $formula, array $labels): string
     {
         $out = $formula;
+        $kept = [];
+        $out = (string) preg_replace_callback('/RL[0-9a-f]{8}/', static function (array $m) use (&$kept): string {
+            $key = "\x00" . count($kept) . "\x00";
+            $kept[$key] = $m[0];
+
+            return $key;
+        }, $out);
         $indexed = [];
         foreach ($labels as $i => $label) {
             if (is_string($label) && $label !== "x{$i}") {
@@ -439,6 +578,6 @@ final class RouteExecutor
             $out = str_replace($label, $x, $out);
         }
 
-        return $out;
+        return strtr($out, $kept);
     }
 }

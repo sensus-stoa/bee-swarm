@@ -201,6 +201,27 @@ class ExpressionNormalizer
                     ],
                 ];
             }
+            // MOL-001 (15.10): birth-операторы в склеенных B-формах (x0BWTOKx1)
+            // — верхний оператор из extraOps. Раньше атом-ветка возвращала
+            // цельный склеенный атом → молекулярные definition не парсились
+            // → T₂ неисполним в чистой БД (PROBE-1 NESTED_EXECUTION FAIL).
+            // Тир ПОСЛЕ +− и ×÷: B-применение связывает сильнее (рекурсия
+            // через атом-ветку корректно восстанавливает приоритеты).
+            if (! empty($extraOps)) {
+                $split = self::findTopOperator($expr, $extraOps);
+                if ($split !== null) {
+                    [$op, $left, $right] = $split;
+                    return [
+                        'op' => $op,
+                        'l' => self::parse($left, $extraOps) ?? [
+                            'atom' => $left,
+                        ],
+                        'r' => self::parse($right, $extraOps) ?? [
+                            'atom' => $right,
+                        ],
+                    ];
+                }
+            }
             return [
                 'atom' => $expr,
             ];

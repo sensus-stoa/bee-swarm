@@ -404,7 +404,10 @@ if ($mode === 'probe') {
     $dbBoth = "$outDir/db_probe_both_r$r.sqlite";
     @unlink($dbBoth);
     putenv("SWARM_DB_PATH=$dbBoth");
+    // singleton переживает putenv — сброс обязателен (иначе пробы читают
+    // предыдущую БД фазы; тот же класс, что R4-тесты)
     require_once $AUTOLOAD;
+    BeeSwarm\Infra\Database::reset();
     $db = BeeSwarm\Infra\Database::get();
     $db->prepare("INSERT OR REPLACE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, 'birth', ?, 'p')")->execute([$t1['name'], $t1['definition']]);
     $db->prepare("INSERT OR REPLACE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, 'birth', ?, 'p')")->execute([$t2['name'], $t2['definition']]);
@@ -424,7 +427,7 @@ if ($mode === 'probe') {
     $dbNoT1 = "$outDir/db_probe_noT1_r$r.sqlite";
     @unlink($dbNoT1);
     putenv("SWARM_DB_PATH=$dbNoT1");
-    BeeSwarm\Infra\Database::reset(); // сброс singleton — иначе старая БД
+    BeeSwarm\Infra\Database::reset();
     $db2 = BeeSwarm\Infra\Database::get();
     $db2->prepare("INSERT OR REPLACE INTO grammar_ops (name, source, definition, birth_domain) VALUES (?, 'birth', ?, 'p')")->execute([$t2['name'], $t2['definition']]);
     $vNo = BeeSwarm\Core\ExpressionEvaluator::evaluateFormula(p1_labels_to_x($t2['definition']), $X);

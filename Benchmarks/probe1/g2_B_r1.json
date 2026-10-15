@@ -1,0 +1,58 @@
+{
+    "phase": "G2",
+    "arm": "B",
+    "replicate": "1",
+    "register": [
+        "BW5737967f9b4ecb628fd48d7d82502f40"
+    ],
+    "reg_count": 1,
+    "laws": [
+        {
+            "task": "G2A",
+            "formula": "((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0\u2212x2))",
+            "cv": 0
+        },
+        {
+            "task": "G2B",
+            "formula": "((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0\u2212x2))",
+            "cv": 0
+        }
+    ],
+    "T2": {
+        "name": "BW59baeae13abe8cbdfae0c823ff207db2",
+        "definition": "((x0\u2212x1)+x0BW5737967f9b4ecb628fd48d7d82502f40x1)",
+        "arity": 2,
+        "tokens": 50,
+        "contains_T1": true
+    },
+    "flight_log": [
+        {
+            "id": "G2A",
+            "found": true,
+            "certified": true,
+            "flights": 2,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "cands": 18436,
+            "wall": 46.2,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))"
+        },
+        {
+            "id": "G2B",
+            "found": true,
+            "certified": true,
+            "flights": 2,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "cands": 18436,
+            "wall": 43.6,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))"
+        }
+    ],
+    "wall": 89.9,
+    "mem_peak": 4194304
+}

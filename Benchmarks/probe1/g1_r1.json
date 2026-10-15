@@ -1,0 +1,58 @@
+{
+    "phase": "G1",
+    "replicate": "1",
+    "laws": [
+        {
+            "task": "G1F1",
+            "formula": "((x0+x1)\/(x0\u2212x1))",
+            "cv": 0
+        },
+        {
+            "task": "G1F2",
+            "formula": "((x0+x1)\/(x0\u2212x1))",
+            "cv": 0
+        }
+    ],
+    "atoms": [
+        {
+            "name": "BW5737967f9b4ecb628fd48d7d82502f40",
+            "definition": "((x0+x1)\/(x0\u2212x1))",
+            "arity": 2,
+            "tokens": 19
+        }
+    ],
+    "flight_log": [
+        {
+            "id": "G1F1",
+            "found": true,
+            "certified": true,
+            "flights": 2,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "cands": 15959,
+            "wall": 1.2,
+            "formula": "((c0+c1)\/(c0\u2212c1))",
+            "n_rows": 48,
+            "n_feat": 5
+        },
+        {
+            "id": "G1F2",
+            "found": true,
+            "certified": true,
+            "flights": 2,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "cands": 15959,
+            "wall": 1.2,
+            "formula": "((c0+c1)\/(c0\u2212c1))",
+            "n_rows": 48,
+            "n_feat": 5
+        }
+    ],
+    "wall": 2.4,
+    "mem_peak": 4194304
+}

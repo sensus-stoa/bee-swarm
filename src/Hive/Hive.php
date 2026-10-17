@@ -2482,6 +2482,23 @@ class Hive
             return;
         }
         $base = $this->routedBee->discoveryReward() * $multiplier;
+        // ESCROW-ORPHAN-DEPOSITS WU-2 (17.10, prereg A'): deposit-time probe.
+        // Депозит без VERIFICATION-задач — мёртвый капитал: settle/burn
+        // достижимы только через исполнителя. Причины сиротства (все):
+        // спавн подавлен (NO_*_SPAWN/кэп) или VTS persist failure.
+        // Проба здесь, в past-grace ветке (grace-законы не депонируют —
+        // питфолл prereg); семантика сироты — один источник с детектором
+        // (EscrowOrphanDetector::hasVerificationTasks, fake-LOSS урок).
+        if (! (new EscrowOrphanDetector())->hasVerificationTasks($canonFormula, $domain)) {
+            $this->routedBee->rewardDiscovery($multiplier, $formulaStr, $hasFeatures);
+            // base в логе (dual-review 17.10): paid=100% без суммы не
+            // аудируется; nodeposit ≡ grace по механике выплаты (тот же
+            // вызов — гварды grace наследуются) и ФИНАЛЕН, без recourse:
+            // settle/burn проводить нечего (премортем 17.10).
+            $this->log("ESCROW: nodeposit law={$canonFormula} [{$domain}] reason=no-vtasks paid=100% base=" . number_format($base, 4));
+
+            return;
+        }
         $immediate = $base * (1.0 - $ratio);
         $this->routedBee->chargePartialReward($immediate);
         $this->escrow->deposit(

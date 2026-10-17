@@ -36,6 +36,19 @@ use PHPUnit\Framework\TestCase;
  * (prod-faithful параметр среды, восстанавливается в tearDown — diag9:
  * MAX=2 → no_form, MAX=3/4 → VCONFIRMED).
  */
+/**
+ * Живое EPS-parity обнаружение (реальные полёты Hive).
+ *
+ * @group slow
+ *
+ * EVO-FIX-001 (16.10): перенос в slow-группу. Тест wall-sensitive (полёты
+ * с budgetSec): при параллельном контеншне fast-пасса полёт получает другой
+ * временной срез → кандидат с взрывающимся vec → PHP fatal внутри
+ * Search::cvSingle (Search.php:62, деление на вырожденную статистику) —
+ * 3/3 fast-пассов погибли, соло и single-file paratest зелёные. Прецедент:
+ * V0.17 SLOW-GROUP WU-2 (бюджетные тесты контеншн-чувствительны).
+ * Search не менялся (рамка owner); контейнер — классификация теста.
+ */
 final class VerificationEpsParityLiveTest extends TestCase
 {
     /**

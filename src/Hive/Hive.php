@@ -35,6 +35,12 @@ class Hive
     private float $confirmedPoolLastAt = 0.0;
 
     /**
+     * DREAM-HARDENING WU-1: dream-спавны текущего тика (окно для
+     * DREAM_SPAWN_MAX_PER_TICK). Ресет в doTick.
+     */
+    private int $dreamSpawnsThisTick = 0;
+
+    /**
      * T5-post-3: CONFIRMED_POOL лог не чаще раза в минуту.
      */
     private const CONFIRMED_POOL_COOLDOWN_S = 60.0;
@@ -1107,6 +1113,8 @@ class Hive
 
     private function doTick(): void
     {
+        // DREAM-HARDENING WU-1: per-tick окно счётчика dream-спавнов.
+        $this->dreamSpawnsThisTick = 0;
         // EXP-039 FIX (09.10): энергетический фон (метаболизм/autophagy/спавн)
         // исполняется КАЖДЫЙ тик ДО любых ранних return (empty-pool, CPU-guard).
         // Без этого тики с пустым пулом не старят пчёл → демографический
@@ -1986,7 +1994,11 @@ class Hive
         $walk($node);
     }
 
-    private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny, ?array $X = null, ?array $y = null): void
+    // DREAM-HARDENING WU-1: isDream=true ТОЛЬКО из recordDreamDiscovery — все
+    // dream-пути обязаны идти через него (F6; premortem 17.10: дефолтный false
+    // выводит спавн из-под NO_DREAM_SPAWN/кэпа молча). Dream-источники:
+    // doTick:1523 (foundAny-fallback) и exp039DreamTick — сходятся в idleDreamTick.
+    private function recordDiscovery(array $d, array $task, string $domain, bool &$foundAny, ?array $X = null, ?array $y = null, bool $isDream = false): void
     {
         $result = $this->recordKeeper->record($d, $task, $domain);
         // T5-post-3 (премортем И2): confirm возможен ТОЛЬКО на повторе (inserted=false),
@@ -2028,7 +2040,26 @@ class Hive
         // работает асинхронно из очереди, данные не берутся «из воздуха».
         // cap 30 строк (эхо демона: array_rand 30 на горячем пути). Guard $X/$y:
         // dream-путь зовёт recordDiscovery без данных (foreach на null = warnings).
-        if (getenv('NO_VERIFY_SPAWN') !== '1' && $X !== null && $y !== null) {
+        // DREAM-HARDENING WU-1 (17.10, premortem H2 — V-шторм страховка):
+        // отдельный тормоз dream-спавна. NO_VERIFY_SPAWN глушит search+dream
+        // вместе; здесь — только dream-ветка. Открытие и закон живут, гасится
+        // только спавн. Гвард === '1' (getenv PHP-falsy trap: '0' не глушит).
+        // Единый сайт спавна закона (урок F6).
+        // Причина подавления — В ЛОГЕ (premortem 17.10: без reason=легаси
+        // NO_VERIFY_SPAWN даёт тихий блок: grep DREAM_SPAWN_SKIP пустой =
+        // ложная уверенность, что dream-спавн жив).
+        if ($isDream && getenv('NO_DREAM_SPAWN') === '1') {
+            $this->log("DREAM_SPAWN_SKIP: {$d['atom']} [{$domain}] reason=NO_DREAM_SPAWN");
+        } elseif ($isDream && getenv('NO_VERIFY_SPAWN') === '1') {
+            $this->log("DREAM_SPAWN_SKIP: {$d['atom']} [{$domain}] reason=NO_VERIFY_SPAWN");
+        } elseif (
+            getenv('NO_VERIFY_SPAWN') !== '1'
+            && $X !== null && $y !== null
+            && ! ($isDream && $this->dreamSpawnCapReached((string) $d['atom'], $domain))
+        ) {
+            if ($isDream) {
+                ++$this->dreamSpawnsThisTick;
+            }
             $sliceRows = [];
             foreach ($X as $i => $features) {
                 if ($i >= 30) {
@@ -2168,6 +2199,41 @@ class Hive
             $colHint = ' [' . ($labels[0] ?? '?') . '→' . ($labels[count($labels) - 1] ?? '?') . ']';
         }
         $this->log("🔍 {$task['name']} -> {$d['atom']} (CV={$cvFmt}) [{$domain}]{$srcHint}{$colHint}");
+    }
+
+    /**
+     * DREAM-HARDENING WU-1: достигнут ли per-tick кэп dream-спавна
+     * (true = спавн гасится, лог DREAM_SPAWN_CAP; открытие и закон живут).
+     *
+     * Контракты (dual-review 17.10):
+     * - DREAM_SPAWN_MAX_PER_TICK: unset/''/'0'/не-числовое (int-каст → 0)
+     *   = off — прецедент PREFLIGHT_GATE_FACTOR. Жёсткий ноль dream-спавна
+     *   = NO_DREAM_SPAWN=1, не '0' здесь.
+     * - Счётчик считает ПОПЫТКИ спавна (spawn-call), не материализованные
+     *   строки: INSERT OR IGNORE дедуп и глушение PDO в persist дают
+     *   недоспавн, не переспавн — безопасное направление.
+     * - Окно per-tick: ресет первой строкой doTick (до любых ранних return);
+     *   вне doTick (reflection-тесты, replay-скрипты без тика) счётчик течёт —
+     *   там per-tick вырождается в per-process, значение видно в CAP-логе
+     *   (used=). RoadRunner-воркеры сделали бы лимит cap×воркеров — демон
+     *   однопоточен по дизайну.
+     * - Порядок short-circuit в elseif значим: вызов только после
+     *   NO_VERIFY_SPAWN!=='1' и $X/$y non-null → CAP-лог только для реальных
+     *   кандидатов спавна (покрыто тестом testDreamSpawnCapPerTick).
+     */
+    private function dreamSpawnCapReached(string $atom, string $domain): bool
+    {
+        $raw = getenv('DREAM_SPAWN_MAX_PER_TICK');
+        if ($raw === false || $raw === '' || (int) $raw <= 0) {
+            return false;
+        }
+        $cap = (int) $raw;
+        if ($this->dreamSpawnsThisTick < $cap) {
+            return false;
+        }
+        $this->log("DREAM_SPAWN_CAP: {$atom} [{$domain}] cap={$cap} used={$this->dreamSpawnsThisTick}");
+
+        return true;
     }
 
     /**
@@ -2334,11 +2400,13 @@ class Hive
         $taskFp = $this->taskRouter !== null
             ? $this->taskRouter->fingerprint(['data' => $result['data'] ?? [], 'content' => ''])
             : '';
+        // DREAM-HARDENING WU-1: isDream=true — dream-ветка (тормоза спавна
+        // NO_DREAM_SPAWN / DREAM_SPAWN_MAX_PER_TICK применяются только здесь).
         $this->recordDiscovery($result, [
             'name' => $result['task_name'] ?? $result['atom'],
             'data' => $result['data'] ?? [],
             'fingerprint' => $taskFp,
-        ], $result['domain'] ?? 'dream', $foundAny, $result['X'] ?? null, $result['y'] ?? null);
+        ], $result['domain'] ?? 'dream', $foundAny, $result['X'] ?? null, $result['y'] ?? null, true);
         // foundAny — локальный для reflection-вызова теста idleDreamTick.
         if ($foundAny) {
             return;

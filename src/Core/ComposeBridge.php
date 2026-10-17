@@ -58,12 +58,20 @@ final class ComposeBridge
     ];
 
     /**
-     * Унарные опы, чей суффикс ЖИВЁТ в normalize (f1n-матрица 29.09:
-     * только 'sq' проходит normalize без TypeError). Остальные унарные
-     * (sqrt/abs/... даже с суффикс-парсингом) fail-closed → null.
+     * Унарные опы, чей суффикс ЖИВЁТ в normalize/eval (WU-3a 16.10: generic
+     * unary-гвард в simplify/render снял TypeError; WU-3b 16.10: мост
+     * расширен на весь класс — round-trip матрица ComposeBridgeUnaryMatrixTest:
+     * parse+normalize+eval без исключений и null).
+     * sq несёт исторический '²'-канон (golden-совместимость существующих форм).
      */
     private const SUFFIXED_UNARY = [
         'sq' => '²',
+        'sqrt' => 'sqrt',
+        'parity' => 'parity',
+        'log2' => 'log2',
+        'abs' => 'abs',
+        'neg' => 'neg',
+        'inv' => 'inv',
     ];
 
     /**

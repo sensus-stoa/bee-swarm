@@ -332,7 +332,12 @@ class ExpressionNormalizer
         }
 
         $op = $node['op'];
-        if ($op === 'sq') {
+        // DREAM-HARDENING WU-3a (prereg 29.09): unary-узлы (sq/abs/sqrt/
+        // parity/log2/neg/inv) не имеют правого операнда — раньше спец-ветка
+        // была только у 'sq', остальные падали TypeError в бинарном l/r-пути
+        // (мост сужен до sq, унарный compose-класс мёртв для dream-пути).
+        // Generic-гвард: r отсутствует/null → бинарная логика не применяется.
+        if (! isset($node['r']) || $node['r'] === null) {
             $node['l'] = self::simplify($node['l']);
             return $node;
         }
@@ -637,6 +642,15 @@ class ExpressionNormalizer
     {
         if (isset($node['atom'])) {
             return $node['atom'];
+        }
+        // DREAM-HARDENING WU-3a: unary-узлы рендерятся суффикс-формой
+        // ((expr)op); sq сохраняет исторический ²-канон (golden-совместимость
+        // существующих канонов — ничего не меняется для sq-форм).
+        if (! isset($node['r']) || $node['r'] === null) {
+            if ($node['op'] === 'sq') {
+                return '(' . self::render($node['l']) . ')²';
+            }
+            return '(' . self::render($node['l']) . ')' . $node['op'];
         }
         if ($node['op'] === 'sq') {
             return '(' . self::render($node['l']) . ')²';

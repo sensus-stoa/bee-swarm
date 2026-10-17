@@ -319,6 +319,11 @@ class Database
             epsilon REAL DEFAULT NULL,
             UNIQUE(law_formula, domain, kind, resample_seed, formula_b)
         )");
+        // ESCROW-ORPHAN-DEPOSITS WU-2 (17.10): probe payDiscovery/детектор
+        // ищут по (law_formula, domain) — без индекса это SCAN на прод-объёме
+        // (премортем 17.10). IF NOT EXISTS — идемпотентно на живых БД.
+        $db->exec("CREATE INDEX IF NOT EXISTS idx_verification_tasks_formula_domain
+            ON verification_tasks (law_formula, domain)");
         // V0.16 WU-2 (verifier-eps-parity): epsilon калибровки открывателя
         // доставляется в V-задачу колонкой (executor без ссылки на Hive;
         // персистентно к рестартам). Ghost-задача (fingerprint='') → NULL.

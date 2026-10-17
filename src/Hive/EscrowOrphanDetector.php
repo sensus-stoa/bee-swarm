@@ -38,6 +38,26 @@ final class EscrowOrphanDetector
     }
 
     /**
+     * ESCROW-ORPHAN-DEPOSITS WU-2: есть ли у закона VERIFICATION-задачи
+     * (kind <> inverted_research — та же семантика, что у orphans()).
+     * Deposit-time probe для payDiscovery: проверка на момент выплаты
+     * устойчива к ЛЮБЫМ причинам сиротства (спавн подавлен / VTS persist
+     * failure / будущие), в отличие от флага из спавн-блока (open question
+     * prereg решён).
+     */
+    public function hasVerificationTasks(string $lawFormula, string $domain): bool
+    {
+        $stmt = ($this->pdo ?? Database::get())->prepare(
+            'SELECT 1 FROM verification_tasks
+             WHERE law_formula = ? AND domain = ? AND (kind IS NULL OR kind <> ?)
+             LIMIT 1'
+        );
+        $stmt->execute([$lawFormula, $domain, VerificationTaskSource::KIND_INVERTED_RESEARCH]);
+
+        return $stmt->fetchColumn() !== false;
+    }
+
+    /**
      * @return list<array{law_formula: string, domain: string, amount: float, carrier: string, updated_at: string}>
      */
     public function orphans(): array
@@ -50,7 +70,7 @@ final class EscrowOrphanDetector
                    SELECT 1 FROM verification_tasks v
                    WHERE v.law_formula = e.law_formula
                      AND v.domain = e.domain
-                     AND v.kind <> ?
+                     AND (v.kind IS NULL OR v.kind <> ?)
                )
              ORDER BY e.domain, e.law_formula'
         );

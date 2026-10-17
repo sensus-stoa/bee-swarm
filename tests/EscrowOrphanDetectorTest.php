@@ -64,43 +64,34 @@ final class EscrowOrphanDetectorTest extends TestCase
     }
 
     /**
-     * Пин болезни (преждевременный GREEN — состояние существует СЕГОДНЯ):
-     * NO_DREAM_SPAWN=1 + past-grace → закон записан, V-задач 0, депозит
-     * создан (amount>0, holding). WU-2 перевернёт этот пин в RED-базу фикса.
+     * Канара сиротства (WU-2, premortem 17.10): сирота создаётся ПРЯМОЙ
+     * ИНЪЕКЦИЕЙ escrow-строки (мимо публичного пути — после фикса A'
+     * подавленный спавн депозит больше не создаёт). Канара обязана
+     * пережить лечение: будущая регрессия, снова разрешающая депозит
+     * без спавна задач, ловится здесь.
      */
-    public function testOrphanStateExistsToday(): void
+    public function testDetectorSeesInjectedOrphan(): void
     {
-        putenv('NO_DREAM_SPAWN=1');
-        $this->dreamTick();
-
-        self::assertSame(6, $this->lawCount('domI'), 'dream-открытие = 6-й закон домена (past-grace)');
-        self::assertSame(0, $this->queueCount('domI'), 'спавн подавлен');
-        $holding = Database::get()->prepare(
-            "SELECT COUNT(*), COALESCE(MAX(amount), 0) FROM law_escrow
-             WHERE domain = ? AND status = 'holding'"
-        );
-        $holding->execute(['domI']);
-        [$cnt, $maxAmount] = $holding->fetch(\PDO::FETCH_NUM);
-        self::assertSame(1, (int) $cnt, 'депозит создан (болезнь: holding без задач)');
-        self::assertGreaterThan(0.0, (float) $maxAmount, 'депозит ненулевой');
-    }
-
-    /**
-     * WU-1 RED (prereg): детектор видит сироту.
-     * Прогноз до реализации: Error — Class EscrowOrphanDetector not found.
-     */
-    public function testDetectorSeesOrphan(): void
-    {
-        putenv('NO_DREAM_SPAWN=1');
-        $this->dreamTick();
+        // updated_at явный (dual-review 17.10: канары не полагаются на DDL-дефолты)
+        Database::get()->prepare(
+            'INSERT INTO law_escrow (law_formula, domain, amount, carrier, status, updated_at)
+             VALUES (?, ?, ?, ?, ?, datetime(\'now\'))'
+        )->execute(['((x0−x1))²', 'domCan', 2.5, 'bee0', 'holding']);
 
         $detector = new \BeeSwarm\Hive\EscrowOrphanDetector();
         $orphans = $detector->orphans();
         self::assertCount(1, $orphans, 'ровно один висячий депозит');
-        self::assertSame('domI', $orphans[0]['domain']);
-        self::assertNotSame('', $orphans[0]['law_formula']);
-        self::assertGreaterThan(0.0, $orphans[0]['amount']);
-        self::assertNotSame('', $orphans[0]['carrier'], 'carrier атрибутирован');
+        self::assertSame('((x0−x1))²', $orphans[0]['law_formula']);
+        self::assertSame('domCan', $orphans[0]['domain']);
+        self::assertSame(2.5, $orphans[0]['amount']);
+        self::assertSame('bee0', $orphans[0]['carrier'], 'carrier атрибутирован');
+        self::assertNotSame('', $orphans[0]['updated_at']);
+        // Кросс-согласие предикатов (premortem 17.10): детектор-сирота ==
+        // probe-false на тех же данных — иначе детектор и фикс разойдутся.
+        self::assertFalse(
+            $detector->hasVerificationTasks('((x0−x1))²', 'domCan'),
+            'probe согласен с детектором на сироте'
+        );
     }
 
     /**
@@ -138,27 +129,23 @@ final class EscrowOrphanDetectorTest extends TestCase
      * Anti-маскировка (dual-review 17.10, medium): research-задача
      * (inverted_research, law_id=0) пишет тот же law_formula — детектор
      * обязан продолжать видеть сироту. Сирота = нет VERIFICATION-задач.
+     * Инъекция escrow (канара переживает фикс A', premortem 17.10).
      */
     public function testResearchTasksDoNotMaskOrphan(): void
     {
-        putenv('NO_DREAM_SPAWN=1');
-        $this->dreamTick();
-
-        $get = Database::get()->prepare(
-            "SELECT law_formula FROM law_escrow WHERE domain = ? AND status = 'holding'"
-        );
-        $get->execute(['domI']);
-        $canon = (string) $get->fetchColumn();
-        self::assertNotSame('', $canon, 'сирота создана (пререквизит)');
+        Database::get()->prepare(
+            'INSERT INTO law_escrow (law_formula, domain, amount, carrier, status, updated_at)
+             VALUES (?, ?, ?, ?, ?, datetime(\'now\'))'
+        )->execute(['((x0−x1))²', 'domCan', 1.5, 'bee0', 'holding']);
         Database::get()->prepare(
             'INSERT INTO verification_tasks
              (law_id, law_formula, law_shape, kind, resample_seed, target_sign, fingerprint, domain)
              VALUES (0, ?, ?, ?, 0, -1, ?, ?)'
-        )->execute([$canon, '*', 'inverted_research', '', 'domI']);
+        )->execute(['((x0−x1))²', '*', 'inverted_research', '', 'domCan']);
 
         $orphans = (new \BeeSwarm\Hive\EscrowOrphanDetector())->orphans();
         self::assertCount(1, $orphans, 'research-задача НЕ маскирует сироту');
-        self::assertSame('domI', $orphans[0]['domain']);
+        self::assertSame('domCan', $orphans[0]['domain']);
     }
 
     /**
@@ -223,14 +210,6 @@ final class EscrowOrphanDetectorTest extends TestCase
         $m = new \ReflectionMethod(Hive::class, 'idleDreamTick');
         $m->setAccessible(true);
         $m->invokeArgs($this->hive, []);
-    }
-
-    private function lawCount(string $domain): int
-    {
-        $stmt = Database::get()->prepare('SELECT COUNT(*) FROM laws WHERE domain = ?');
-        $stmt->execute([$domain]);
-
-        return (int) $stmt->fetchColumn();
     }
 
     /**

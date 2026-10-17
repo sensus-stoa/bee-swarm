@@ -138,7 +138,11 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 25.09 (V0.15): +13 congruence-тестов (Detector 3, RKCong 4, Escrow 3, Report 3)
 # Снимок 11.10 (M1-EXT v2): +9 trail-memory тестов (TrailMarks 3, RawPairPool 1, сворм/лесница — probe-скрипты вне suite; +5 прочих с 1210-снимка)
 # Снимок 12.10 (A19): +5 baseline-compression/exact-floor тестов (BaselineCompressionGateTest)
-TOTAL_EXPECTED=1267
+# Снимок 17.10 (DREAM-HARDENING WU-3a/3b + WU-2): +7 (NormalizerUnaryBridge 1,
+# ComposeBridgeUnaryMatrix 3, LawClassifierFormulaHash 3); declared 1307
+# (1299 была stale на −2 ещё до — инвариант 16-17.10 красный, поднято до факта)
+# Снимок 17.10 (DREAM-HARDENING WU-1): +3 DreamSpawnGuardTest → declared 1310
+TOTAL_EXPECTED=1310
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

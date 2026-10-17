@@ -1,0 +1,598 @@
+{
+    "meta": {
+        "manifest": "CHECKPOINT_B_MANIFEST.md",
+        "php": "8.2.29",
+        "codec_c": "gzencode level 9 (deflate; ext-zstd отсутствует)",
+        "wordcodec": "CHECKPOINT A (src/Core/WordCodec.php)",
+        "t2_canon": "BW59baeae13abe8cbdfae0c823ff207db2 = ((x0−x2)+x0BW5737967f9b4ecb628fd48d7d82502f40x1), источник tests/MolRoundtripTest.php:30-34 (28013c9)",
+        "started": "2026-10-15T19:06:41+00:00"
+    },
+    "REGULAR": {
+        "dict": {
+            "words": 7,
+            "bytes": 5528,
+            "def_nodes": [
+                15,
+                9,
+                7,
+                7,
+                7,
+                7,
+                5
+            ],
+            "encode_wall_ms": 1.638503
+        },
+        "size": {
+            "encode_wall_ms": 2.243697,
+            "word_reuse": {
+                "BW2abeef27a60298581a93ad04c396d504": 35,
+                "BW5737967f9b4ecb628fd48d7d82502f40": 35,
+                "BW3ae2fcd9d5c290a014f5642d574b28f9": 18,
+                "BWf9531d9457b6f011c337d14300857a61": 10
+            },
+            "word_reuse_summary": {
+                "distinct_words_used": 4,
+                "total_refs": 98,
+                "max_reuse": 35,
+                "dict_words_unused_in_test": 3
+            },
+            "decode_wall_ms": 0.440431,
+            "exec_wall_original_ms": 50.660331,
+            "exec_wall_decoded_ms": 56.486048,
+            "ram_peak_mb": 8,
+            "b_wall_ms": 0.322639,
+            "c_wall_ms": 0.258676,
+            "totals": {
+                "n_programs": 14,
+                "a_total": 13289,
+                "b_total": 3819,
+                "b_table_nodes": 225,
+                "c_total": 758,
+                "d_dict_bytes": 5528,
+                "d_genomes_total": 10240,
+                "d_total": 15768
+            },
+            "per_program": [
+                {
+                    "nodes": 15,
+                    "formula": "(((x5−x0)+(x5×x0))×((x1+x2)/(x1−x2)))",
+                    "a_bytes": 250,
+                    "d_genome_bytes": 199
+                },
+                {
+                    "nodes": 17,
+                    "formula": "(((x2/(x2+x4))−(x4−x2))×((x0+x4)/(x0−x4)))",
+                    "a_bytes": 284,
+                    "d_genome_bytes": 185
+                },
+                {
+                    "nodes": 25,
+                    "formula": "((((x4/(x4+x3))−(x3−x4))+((x4−x3)×(x4+x3)))+((x2+x1)/(x2−x1)))",
+                    "a_bytes": 418,
+                    "d_genome_bytes": 286
+                },
+                {
+                    "nodes": 25,
+                    "formula": "((((x0−x4)+(x0×x2))×((x5/(x5+x4))−(x4−x5)))+((x0−x4)+(x0×x4)))",
+                    "a_bytes": 420,
+                    "d_genome_bytes": 315
+                },
+                {
+                    "nodes": 31,
+                    "formula": "(((((x3+x5)/(x3−x5))×((x4−x1)+(x4×x1)))+((x0+x3)/(x0−x3)))×((x1+x0)/(x1−x0)))",
+                    "a_bytes": 519,
+                    "d_genome_bytes": 404
+                },
+                {
+                    "nodes": 31,
+                    "formula": "(((((x4−x2)+(x4×x2))+((x3−x4)+(x3×x0)))+((x3−x2)+(x3×x1)))+((x1−x0)×(x1+x0)))",
+                    "a_bytes": 520,
+                    "d_genome_bytes": 430
+                },
+                {
+                    "nodes": 47,
+                    "formula": "(((((((x2−x4)×(x2+x4))+((x5+x2)/(x5−x2)))+((x3+x5)/(x3−x5)))+((x0−x1)+(x0×x1)))×((x3+x4)/(x3−x4)))+((x5+x4)/(x5−x4)))",
+                    "a_bytes": 787,
+                    "d_genome_bytes": 607
+                },
+                {
+                    "nodes": 49,
+                    "formula": "(((((((x3/(x3+x1))−(x1−x3))+((x4−x3)×(x4+x3)))+((x5−x4)+(x5×x1)))×((x5+x3)/(x5−x3)))×((x3−x5)×(x3+x5)))×((x1−x0)+(x1×x0)))",
+                    "a_bytes": 826,
+                    "d_genome_bytes": 623
+                },
+                {
+                    "nodes": 65,
+                    "formula": "(((((((((x1−x3)×(x1+x3))+((x5/(x5+x2))−(x2−x5)))+((x5−x0)+(x5×x0)))+((x1−x5)+(x1×x2)))×((x2+x5)/(x2−x5)))×((x2+x1)/(x2−x1)))×((x2+x1)/(x2−x1)))×((x5−x1)+(x5×x1)))",
+                    "a_bytes": 1095,
+                    "d_genome_bytes": 842
+                },
+                {
+                    "nodes": 63,
+                    "formula": "(((((((((x3−x4)+(x3×x5))+((x4−x3)×(x4+x3)))+((x0−x2)+(x0×x3)))+((x2+x4)/(x2−x4)))+((x2−x1)×(x2+x1)))+((x3−x2)+(x3×x0)))×((x3−x4)+(x3×x0)))×((x3−x4)×(x3+x4)))",
+                    "a_bytes": 1061,
+                    "d_genome_bytes": 854
+                },
+                {
+                    "nodes": 91,
+                    "formula": "((((((((((((x3−x2)×(x3+x2))+((x2−x4)×(x2+x4)))+((x0+x4)/(x0−x4)))+((x2+x5)/(x2−x5)))×((x4+x5)/(x4−x5)))+((x2−x4)+(x2×x4)))+((x2−x1)×(x2+x1)))+((x1/(x1+x0))−(x0−x1)))+((x3/(x3+x2))−(x2−x3)))+((x3−x1)+(x3×x1)))+((x5+x0)/(x5−x0)))",
+                    "a_bytes": 1530,
+                    "d_genome_bytes": 1131
+                },
+                {
+                    "nodes": 87,
+                    "formula": "((((((((((((x5−x0)+(x5×x0))×((x5−x3)×(x5+x3)))×((x1+x2)/(x1−x2)))+((x2+x0)/(x2−x0)))+((x4+x3)/(x4−x3)))+((x5+x2)/(x5−x2)))+((x0−x3)+(x0×x3)))+((x4+x5)/(x4−x5)))×((x5+x0)/(x5−x0)))×((x5−x0)+(x5×x2)))+((x1−x4)+(x1×x0)))",
+                    "a_bytes": 1463,
+                    "d_genome_bytes": 1162
+                },
+                {
+                    "nodes": 121,
+                    "formula": "((((((((((((((((x1−x4)×(x1+x4))×((x0/(x0+x4))−(x4−x0)))×((x2+x3)/(x2−x3)))×((x1−x5)×(x1+x5)))×((x4−x5)+(x4×x5)))+((x2−x5)+(x2×x5)))×((x5−x4)+(x5×x4)))+((x2−x5)+(x2×x5)))+((x0+x5)/(x0−x5)))+((x0−x2)+(x0×x2)))×((x4+x5)/(x4−x5)))×((x2−x4)+(x2×x3)))+((x2+x0)/(x2−x0)))+((x0+x2)/(x0−x2)))×((x3−x1)×(x3+x1)))",
+                    "a_bytes": 2042,
+                    "d_genome_bytes": 1602
+                },
+                {
+                    "nodes": 123,
+                    "formula": "((((((((((((((((x5/(x5+x4))−(x4−x5))+((x5−x3)+(x5×x3)))+((x1+x5)/(x1−x5)))×((x1/(x1+x0))−(x0−x1)))+((x2−x4)×(x2+x4)))+((x4+x0)/(x4−x0)))×((x3+x5)/(x3−x5)))+((x3−x1)+(x3×x1)))×((x1−x4)+(x1×x4)))+((x1−x3)×(x1+x3)))+((x2−x1)+(x2×x1)))+((x5+x0)/(x5−x0)))×((x1−x5)+(x1×x2)))×((x1+x0)/(x1−x0)))×((x2−x5)+(x2×x5)))",
+                    "a_bytes": 2074,
+                    "d_genome_bytes": 1600
+                }
+            ],
+            "ratios": {
+                "d_vs_a": 1.187,
+                "d_vs_b": 4.129,
+                "d_vs_c": 20.802,
+                "d_genomes_vs_a": 0.771
+            }
+        },
+        "count": {
+            "prefixes": [
+                {
+                    "n": 2,
+                    "a": 1073,
+                    "b": 560,
+                    "c": 178,
+                    "d": 6334,
+                    "d_genomes": 806
+                },
+                {
+                    "n": 4,
+                    "a": 2147,
+                    "b": 955,
+                    "c": 257,
+                    "d": 7127,
+                    "d_genomes": 1599
+                },
+                {
+                    "n": 8,
+                    "a": 4361,
+                    "b": 1662,
+                    "c": 381,
+                    "d": 8665,
+                    "d_genomes": 3137
+                },
+                {
+                    "n": 16,
+                    "a": 8618,
+                    "b": 2747,
+                    "c": 578,
+                    "d": 11878,
+                    "d_genomes": 6350
+                },
+                {
+                    "n": 32,
+                    "a": 17149,
+                    "b": 4390,
+                    "c": 920,
+                    "d": 18460,
+                    "d_genomes": 12932
+                },
+                {
+                    "n": 64,
+                    "a": 34281,
+                    "b": 7091,
+                    "c": 1495,
+                    "d": 31340,
+                    "d_genomes": 25812
+                }
+            ],
+            "break_even": {
+                "A": 64,
+                "B": null,
+                "C": null
+            },
+            "marginal_bytes_per_program": {
+                "a": 535.4,
+                "d": 402.5,
+                "d_genomes_only": 402.5
+            }
+        }
+    },
+    "RANDOM": {
+        "dict": {
+            "words": 0,
+            "bytes": 88,
+            "def_nodes": [],
+            "encode_wall_ms": 0.856914
+        },
+        "size": {
+            "encode_wall_ms": 0.25898,
+            "word_reuse": [],
+            "word_reuse_summary": {
+                "distinct_words_used": 0,
+                "total_refs": 0,
+                "max_reuse": 0,
+                "dict_words_unused_in_test": 0
+            },
+            "decode_wall_ms": 0.115409,
+            "exec_wall_original_ms": 43.301298,
+            "exec_wall_decoded_ms": 43.709118,
+            "ram_peak_mb": 8,
+            "b_wall_ms": 0.234276,
+            "c_wall_ms": 0.527674,
+            "totals": {
+                "n_programs": 14,
+                "a_total": 11559,
+                "b_total": 5191,
+                "b_table_nodes": 308,
+                "c_total": 978,
+                "d_dict_bytes": 88,
+                "d_genomes_total": 11559,
+                "d_total": 11647
+            },
+            "per_program": [
+                {
+                    "nodes": 11,
+                    "formula": "((((x2+K1)−x5)−x0)×(x1−x0))",
+                    "a_bytes": 185,
+                    "d_genome_bytes": 185
+                },
+                {
+                    "nodes": 11,
+                    "formula": "((x1×((x1/x3)×x5))×(x3+x2))",
+                    "a_bytes": 181,
+                    "d_genome_bytes": 181
+                },
+                {
+                    "nodes": 17,
+                    "formula": "(((x4−x1)×(x1/(((x1−x1)×x2)−(x5×x2))))/x1)",
+                    "a_bytes": 286,
+                    "d_genome_bytes": 286
+                },
+                {
+                    "nodes": 17,
+                    "formula": "((x0×(x1×K1))/((x3+x0)−(x4−(x2−(x4+x4)))))",
+                    "a_bytes": 285,
+                    "d_genome_bytes": 285
+                },
+                {
+                    "nodes": 27,
+                    "formula": "((x4/x5)+(((x5×x1)−x2)×(((x1/x4)−K1)×(((x5+x2)+(x1×K1))+(x2−x0)))))",
+                    "a_bytes": 452,
+                    "d_genome_bytes": 452
+                },
+                {
+                    "nodes": 25,
+                    "formula": "(((((x0+K1)/x2)−(x1/((x3−x5)×x2)))−((K1+K1)+x5))/((x3+x3)+x3))",
+                    "a_bytes": 416,
+                    "d_genome_bytes": 416
+                },
+                {
+                    "nodes": 35,
+                    "formula": "((((((x1+x4)×x2)−x1)/x5)/(((x5/x1)/x0)+x4))×(((((K1×x0)−x5)+(x3×x2))×(x0−x1))+(x4/x0)))",
+                    "a_bytes": 585,
+                    "d_genome_bytes": 585
+                },
+                {
+                    "nodes": 39,
+                    "formula": "((((x3+x2)×x5)−((x2−x3)−x1))+(((K1+x0)−((K1×x3)+(K1×x5)))×((((x4×x5)×((x2−x0)/(x0−x4)))×x5)/x4)))",
+                    "a_bytes": 659,
+                    "d_genome_bytes": 659
+                },
+                {
+                    "nodes": 57,
+                    "formula": "(((x5+((((x2/x3)×K1)−((x5−x1)/((x4+x5)/(x2+K1))))+(K1×x5)))−(((x1+x1)×((K1−K1)+x4))×((x0×(((x0/x4)×x2)×x2))+(((x5−K1)×(x4+x4))×(x3×x4)))))+x4)",
+                    "a_bytes": 957,
+                    "d_genome_bytes": 957
+                },
+                {
+                    "nodes": 57,
+                    "formula": "((x4+((K1+((x0×x1)×x5))/((K1+x1)−x1)))+((((((x0−x3)/(x1×x3))/x3)×((x1+x1)×x1))−(((x0×K1)/x0)+((x4−(x2/x3))×K1)))×(((x1/x5)+((x0×x5)−x3))/x5)))",
+                    "a_bytes": 956,
+                    "d_genome_bytes": 956
+                },
+                {
+                    "nodes": 83,
+                    "formula": "((((((K1×x5)×((x3−x4)/x1))−((x4/((x2−x4)/(x2+x3)))−K1))/((x3×(x2/x4))×(((((x4/x0)/x2)/(x2+K1))−x2)×(((((x5×x1)+x1)−(K1/x2))−(K1+K1))×(x0×K1)))))/(((x2/x2)−x4)−x3))+(((K1×x1)−x0)−((x5+(x5+K1))×((x3/x5)×x4))))",
+                    "a_bytes": 1399,
+                    "d_genome_bytes": 1399
+                },
+                {
+                    "nodes": 81,
+                    "formula": "(((((x5+(K1×K1))×((K1/K1)−x1))+(x1+((x0×(x0−K1))×((((K1×K1)−x0)+x2)/x1))))−(((x0+x5)+((((x1+x2)−x0)×((x3/x0)/((x0×x5)−x0)))×(x4/x1)))×(((x4/x0)×K1)+((x0/x4)−x1))))×((((x3−x5)−x5)×(x4×x2))/((x2/x1)×x4)))",
+                    "a_bytes": 1365,
+                    "d_genome_bytes": 1365
+                },
+                {
+                    "nodes": 113,
+                    "formula": "(((((x2/((x3−x1)−K1))×(((x0×K1)/x1)/x2))+((K1+K1)×x4))/((((((x4−x2)/(x3×x3))−x2)−(((K1×x5)×x2)×x5))×((x1+x1)+((((x5−x3)+(x4+(x1−x5)))×(((x1/(x3×x2))+x5)−(x2−(((x4/x3)×(x3−x3))/(((x3/x1)×K1)−x4)))))/((x1−x3)+(x3/K1)))))+((x3/x3)−x5)))−((K1/(x0×(x4−(x2−x5))))+((x2×x2)−((x2×x2)−x2))))",
+                    "a_bytes": 1912,
+                    "d_genome_bytes": 1912
+                },
+                {
+                    "nodes": 115,
+                    "formula": "((((((x2×x0)+(K1+x5))+((x5/K1)−x4))−(((((x3/((x5+x1)+x2))−((x3+x5)×x5))+((x5/x4)×x2))/((x4/(((x2×K1)−(x0+(x1×x3)))+K1))/(((x5+K1)/(x2/x5))+x5)))×(((x5/x2)+x4)+x2)))+((((x4−x1)−x5)+x1)+x4))×((((x1/(x5+x2))×x0)/((x2+x3)+x0))+(x2+(((x2×K1)+((x0+((((x4−x4)×x3)/x3)−K1))×K1))/(x0+(x2+x0))))))",
+                    "a_bytes": 1921,
+                    "d_genome_bytes": 1921
+                }
+            ],
+            "ratios": {
+                "d_vs_a": 1.008,
+                "d_vs_b": 2.244,
+                "d_vs_c": 11.909,
+                "d_genomes_vs_a": 1
+            }
+        },
+        "count": {
+            "prefixes": [
+                {
+                    "n": 2,
+                    "a": 839,
+                    "b": 472,
+                    "c": 162,
+                    "d": 927,
+                    "d_genomes": 839
+                },
+                {
+                    "n": 4,
+                    "a": 1743,
+                    "b": 878,
+                    "c": 253,
+                    "d": 1831,
+                    "d_genomes": 1743
+                },
+                {
+                    "n": 8,
+                    "a": 3446,
+                    "b": 1664,
+                    "c": 405,
+                    "d": 3534,
+                    "d_genomes": 3446
+                },
+                {
+                    "n": 16,
+                    "a": 6900,
+                    "b": 3232,
+                    "c": 664,
+                    "d": 6988,
+                    "d_genomes": 6900
+                },
+                {
+                    "n": 32,
+                    "a": 13734,
+                    "b": 5936,
+                    "c": 1141,
+                    "d": 13822,
+                    "d_genomes": 13734
+                },
+                {
+                    "n": 64,
+                    "a": 27649,
+                    "b": 11130,
+                    "c": 2050,
+                    "d": 27737,
+                    "d_genomes": 27649
+                }
+            ],
+            "break_even": {
+                "A": null,
+                "B": null,
+                "C": null
+            },
+            "marginal_bytes_per_program": {
+                "a": 434.8,
+                "d": 434.8,
+                "d_genomes_only": 434.8
+            }
+        }
+    },
+    "REAL": {
+        "dict": {
+            "words": 0,
+            "bytes": 88,
+            "def_nodes": [],
+            "encode_wall_ms": 0.149588
+        },
+        "size": {
+            "encode_wall_ms": 0.018586,
+            "word_reuse": [],
+            "word_reuse_summary": {
+                "distinct_words_used": 0,
+                "total_refs": 0,
+                "max_reuse": 0,
+                "dict_words_unused_in_test": 0
+            },
+            "decode_wall_ms": 0.006799,
+            "exec_wall_original_ms": 1.993159,
+            "exec_wall_decoded_ms": 1.962132,
+            "ram_peak_mb": 10,
+            "b_wall_ms": 0.020406,
+            "c_wall_ms": 0.028388,
+            "totals": {
+                "n_programs": 4,
+                "a_total": 523,
+                "b_total": 299,
+                "b_table_nodes": 20,
+                "c_total": 129,
+                "d_dict_bytes": 88,
+                "d_genomes_total": 523,
+                "d_total": 611
+            },
+            "per_program": [
+                {
+                    "nodes": 7,
+                    "formula": "(((x0+x1)×x2)+x3)",
+                    "a_bytes": 113,
+                    "d_genome_bytes": 113
+                },
+                {
+                    "nodes": 9,
+                    "formula": "((x0×(x1/R+x1))/(x2×x2))",
+                    "a_bytes": 149,
+                    "d_genome_bytes": 149
+                },
+                {
+                    "nodes": 9,
+                    "formula": "((x0+K2)−((x0×R)+x0))",
+                    "a_bytes": 147,
+                    "d_genome_bytes": 147
+                },
+                {
+                    "nodes": 7,
+                    "formula": "((x0+x1)/(x0−x1))",
+                    "a_bytes": 114,
+                    "d_genome_bytes": 114
+                }
+            ],
+            "ratios": {
+                "d_vs_a": 1.168,
+                "d_vs_b": 2.043,
+                "d_vs_c": 4.736,
+                "d_genomes_vs_a": 1
+            }
+        },
+        "count": {
+            "prefixes": [
+                {
+                    "n": 2,
+                    "a": 262,
+                    "b": 177,
+                    "c": 98,
+                    "d": 350,
+                    "d_genomes": 262
+                },
+                {
+                    "n": 4,
+                    "a": 523,
+                    "b": 299,
+                    "c": 129,
+                    "d": 611,
+                    "d_genomes": 523
+                },
+                {
+                    "n": 8,
+                    "a": 523,
+                    "b": 299,
+                    "c": 129,
+                    "d": 611,
+                    "d_genomes": 523
+                },
+                {
+                    "n": 16,
+                    "a": 523,
+                    "b": 299,
+                    "c": 129,
+                    "d": 611,
+                    "d_genomes": 523
+                },
+                {
+                    "n": 32,
+                    "a": 523,
+                    "b": 299,
+                    "c": 129,
+                    "d": 611,
+                    "d_genomes": 523
+                },
+                {
+                    "n": 64,
+                    "a": 523,
+                    "b": 299,
+                    "c": 129,
+                    "d": 611,
+                    "d_genomes": 523
+                }
+            ],
+            "break_even": {
+                "A": null,
+                "B": null,
+                "C": null
+            },
+            "marginal_bytes_per_program": {
+                "a": 0,
+                "d": 0,
+                "d_genomes_only": 0
+            }
+        },
+        "train": [
+            {
+                "formula": "((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))",
+                "source": "Benchmarks/EXP040_M1EXT2_REPORT.md kinetic dot",
+                "family": "kinetic",
+                "numeric": "full"
+            },
+            {
+                "formula": "(((x0×x2)×x1)/x3)",
+                "source": "EvoFamily/Benchmarks/EXP039_molecule.md (до вложения)",
+                "family": "molecular-pre",
+                "numeric": "full"
+            },
+            {
+                "formula": "((x0×x3)+((x1×x4)+(x2×x5)))",
+                "source": "Benchmarks/EXP040_M1EXT2_REPORT.md kinetic",
+                "family": "kinetic",
+                "numeric": "full"
+            },
+            {
+                "formula": "((x0+x1)+(x0−x2))",
+                "source": "Benchmarks/V011_ENSEMBLE_calibration_run5.md",
+                "family": "ensemble",
+                "numeric": "full"
+            },
+            {
+                "formula": "((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))",
+                "source": "Benchmarks/probe1/g2_B_r1.json G2A (канон post-MOL-001)",
+                "family": "molecular",
+                "numeric": "full"
+            }
+        ],
+        "test": [
+            {
+                "formula": "(((x0+x1)×x2)+x3)",
+                "source": "Benchmarks/experiments-log.md",
+                "family": "misc",
+                "numeric": "full"
+            },
+            {
+                "formula": "((x0×(x1/R+x1))/(x2×x2))",
+                "source": "Benchmarks/V011_ENSEMBLE_calibration_run5.md",
+                "family": "ensemble",
+                "numeric": "structural-only"
+            },
+            {
+                "formula": "((x0+K2)−((x0×R)+x0))",
+                "source": "Benchmarks/experiments-log.md",
+                "family": "misc",
+                "numeric": "structural-only"
+            },
+            {
+                "formula": "((x0+x1)/(x0−x1))",
+                "source": "Benchmarks/probe1/g1_r1.json G1F1",
+                "family": "sdr",
+                "numeric": "full"
+            }
+        ]
+    },
+    "semantic_errors": 0,
+    "numeric_skipped_structural_only": 4,
+    "wall_total_s": 1.42,
+    "ram_peak_mb_total": 10,
+    "verdicts": {
+        "H1_lossless_heredity": "PASS",
+        "H2_structural_compression": "FAIL (D>=A на REGULAR)",
+        "H2_note_vs_B": "D>=B — преимущество хранения против DAG не подтверждено",
+        "H2_note_vs_C": "D>=C — преимущество хранения против gzip не подтверждено",
+        "H3_complexity_scaling": "FAIL на REGULAR (0.720 → 0.772)",
+        "H4_no_automatic_advantage": "RANDOM: D=11647 B=5191 C=978 A=11559 (dict=88); REAL: D=611 B=299 C=129 A=523 (dict=88)",
+        "H5_cost": "см. walls/RAM в raw.json; trade-off документирован"
+    }
+}

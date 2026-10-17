@@ -1,0 +1,97 @@
+{
+    "format": "genome001",
+    "version": 1,
+    "dictionary": [
+        {
+            "name": "BW5737967f9b4ecb628fd48d7d82502f40",
+            "arity": 2,
+            "genome": {
+                "op": "/",
+                "l": {
+                    "op": "+",
+                    "l": {
+                        "atom": "x0"
+                    },
+                    "r": {
+                        "atom": "x1"
+                    }
+                },
+                "r": {
+                    "op": "−",
+                    "l": {
+                        "atom": "x0"
+                    },
+                    "r": {
+                        "atom": "x1"
+                    }
+                }
+            }
+        },
+        {
+            "name": "BW59baeae13abe8cbdfae0c823ff207db2",
+            "arity": 3,
+            "genome": {
+                "op": "+",
+                "l": {
+                    "op": "−",
+                    "l": {
+                        "atom": "x0"
+                    },
+                    "r": {
+                        "atom": "x2"
+                    }
+                },
+                "r": {
+                    "op": "BW5737967f9b4ecb628fd48d7d82502f40",
+                    "l": {
+                        "atom": "x0"
+                    },
+                    "r": {
+                        "atom": "x1"
+                    }
+                }
+            }
+        }
+    ],
+    "genomes": {
+        "law_x": {
+            "word": "BW59baeae13abe8cbdfae0c823ff207db2",
+            "args": [
+                {
+                    "atom": "x0"
+                },
+                {
+                    "atom": "x1"
+                },
+                {
+                    "atom": "x2"
+                }
+            ]
+        },
+        "t1_plain": {
+            "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+            "args": [
+                {
+                    "atom": "x0"
+                },
+                {
+                    "atom": "x1"
+                }
+            ]
+        },
+        "t2_definition": {
+            "word": "BW59baeae13abe8cbdfae0c823ff207db2",
+            "args": [
+                {
+                    "atom": "x0"
+                },
+                {
+                    "atom": "x1"
+                },
+                {
+                    "atom": "x2"
+                }
+            ]
+        }
+    }
+}

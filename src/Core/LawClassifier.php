@@ -5,35 +5,34 @@ declare(strict_types=1);
 namespace BeeSwarm\Core;
 
 /**
- * LAW-CLASS (08.08): pred-векторный класс закона.
- * Численно эквивалентные формулы на данных (одинаковый предсказанный
- * вектор) — ОДИН класс. Награда только за первый представитель класса:
- * сотни приближений одного закона перестают быть «бесконечной едой».
+ * LAW-CLASS (08.08): класс закона для второй линии награды.
+ * Награда только за первый представитель класса: сотни приближений
+ * одного закона перестают быть «бесконечной едой».
+ *
+ * DREAM-HARDENING WU-2 (16.10, prereg 29.09): сигнатура = hash(канонической
+ * формулы). Раньше хэш квантовал pred/(|y|·1e-4) — был data-зависим: одна
+ * формула на двух срезах одного домена давала разные классы (фрагментация,
+ * вторая линия деградировала до «всегда новый класс»).
+ *
+ * После WU-2 law_class — чисто СИНТАКСИЧЕСКАЯ линия: численно эквивалентные,
+ * но синтаксически разные формы (раскрытие скобок и т.п.) дают разные
+ * классы — их предиктивная эквивалентность остаётся зоной CongruenceDetector
+ * (первая линия, data-зависим по дизайну).
+ *
+ * Домен в классе не участвует: вызов в Hive уже скоуплен
+ * `WHERE domain = ? AND law_class = ?` (open question prereg №1 решён
+ * живым кодом). Сигнатура (X, y) сохранена для совместимости единственного
+ * вызова — данные больше не читаются.
  */
 final class LawClassifier
 {
-    /**
-     * Квантование: относительная точность 1e-4 (масштаб-инвариантно).
-     */
-    private const QUANT = 1e-4;
-
     public static function hash(string $formula, array $X, array $y): string
     {
-        $pred = ExpressionEvaluator::evaluateFormula($formula, $X);
-        if ($pred === null || count($pred) !== count($y)) {
+        $canonical = ExpressionNormalizer::normalize($formula);
+        if ($canonical === '') {
             return '';
         }
 
-        $key = [];
-        foreach ($pred as $i => $v) {
-            if (! is_finite((float) $v)) {
-                return '';
-            }
-            $scale = max(abs((float) $y[$i]), 1e-9);
-            $q = (int) round((float) $v / ($scale * self::QUANT));
-            $key[] = $q;
-        }
-
-        return md5(implode(',', $key));
+        return md5($canonical);
     }
 }

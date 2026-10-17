@@ -142,7 +142,8 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # ComposeBridgeUnaryMatrix 3, LawClassifierFormulaHash 3); declared 1307
 # (1299 была stale на −2 ещё до — инвариант 16-17.10 красный, поднято до факта)
 # Снимок 17.10 (DREAM-HARDENING WU-1): +3 DreamSpawnGuardTest → declared 1310
-TOTAL_EXPECTED=1310
+# Снимок 17.10 (ESCROW-ORPHAN-DEPOSITS WU-1): +4 EscrowOrphanDetectorTest → declared 1314
+TOTAL_EXPECTED=1314
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

@@ -212,7 +212,14 @@ class Forager
         $fpParts = [];
         foreach ($paths as $p) {
             try {
-                $fpParts[] = $p . ':' . filesize($p);
+                // WU-3 warnings-fix (17.10): filesize() на директории/битой записи
+                // НЕ бросает — эмитит E_WARNING и возвращает false, try/catch
+                // здесь no-op (pitfall #5 ловил бросающий SplFileInfo::getSize).
+                // is_file гасит систематический случай (директории), @ — гонку
+                // исчезновения файла; строка "path:" совпадает со старым
+                // fail-форматом → fingerprint-дельта нулевая.
+                $size = is_file($p) ? @filesize($p) : false;
+                $fpParts[] = $p . ':' . ($size === false ? '' : $size);
             } catch (\Throwable) {
                 $fpParts[] = $p;
             }

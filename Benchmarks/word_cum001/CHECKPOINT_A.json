@@ -1,0 +1,211 @@
+{
+    "scenario": "WORD-CUM-001 CHECKPOINT A",
+    "dictionary": [
+        {
+            "name": "BW5737967f9b4ecb628fd48d7d82502f40",
+            "definition": "((x0+x1)/(x0−x1))"
+        }
+    ],
+    "parent": {
+        "genome": {
+            "op": "+",
+            "l": {
+                "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+                "args": [
+                    {
+                        "atom": "x0"
+                    },
+                    {
+                        "atom": "x1"
+                    }
+                ]
+            },
+            "r": {
+                "op": "×",
+                "l": {
+                    "atom": "x2"
+                },
+                "r": {
+                    "atom": "x3"
+                }
+            }
+        },
+        "w1_ref": {
+            "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+            "args": [
+                {
+                    "atom": "x0"
+                },
+                {
+                    "atom": "x1"
+                }
+            ]
+        }
+    },
+    "chain": {
+        "mut1_outside": {
+            "path": [
+                "r",
+                "l"
+            ],
+            "change": "x2→x5",
+            "genome": {
+                "op": "+",
+                "l": {
+                    "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+                    "args": [
+                        {
+                            "atom": "x0"
+                        },
+                        {
+                            "atom": "x1"
+                        }
+                    ]
+                },
+                "r": {
+                    "op": "×",
+                    "l": {
+                        "atom": "x5"
+                    },
+                    "r": {
+                        "atom": "x3"
+                    }
+                }
+            },
+            "ref_preserved": true
+        },
+        "mut2_on_child": {
+            "path": [
+                "r",
+                "r"
+            ],
+            "change": "x3→x1",
+            "genome": {
+                "op": "+",
+                "l": {
+                    "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+                    "args": [
+                        {
+                            "atom": "x0"
+                        },
+                        {
+                            "atom": "x1"
+                        }
+                    ]
+                },
+                "r": {
+                    "op": "×",
+                    "l": {
+                        "atom": "x5"
+                    },
+                    "r": {
+                        "atom": "x1"
+                    }
+                }
+            },
+            "both_inherited": true
+        }
+    },
+    "clean_process": {
+        "ok": true,
+        "matches_local": true,
+        "values": [
+            -3.1428571428571432,
+            2.523809523809524,
+            -1.6428571428571428,
+            3.181818181818182,
+            14.2,
+            -3.08695652173913,
+            -8.4,
+            1.6451612903225807,
+            -11.857142857142856,
+            -4.999999999999999,
+            null,
+            null
+        ]
+    },
+    "reencode_empirics": {
+        "mutation_outside_word": {
+            "ref_restored": true,
+            "args_same": true
+        },
+        "mutation_inside_word": {
+            "ref_lost": true,
+            "content_preserved_raw": true
+        }
+    },
+    "arg_mutation": {
+        "genome": {
+            "op": "+",
+            "l": {
+                "word": "BW5737967f9b4ecb628fd48d7d82502f40",
+                "args": [
+                    {
+                        "atom": "x4"
+                    },
+                    {
+                        "atom": "x1"
+                    }
+                ]
+            },
+            "r": {
+                "op": "×",
+                "l": {
+                    "atom": "x2"
+                },
+                "r": {
+                    "atom": "x3"
+                }
+            }
+        },
+        "ref_name_preserved": true,
+        "new_arg": "x4",
+        "values": [
+            11.42,
+            10.309999999999999,
+            9.73,
+            2.5,
+            10.309999999999999,
+            15.170000000000002,
+            6.74,
+            0.6000000000000001,
+            11.15,
+            0.56,
+            1,
+            null
+        ]
+    },
+    "refusals": {
+        "arity": "word BW5737967f9b4ecb628fd48d7d82502f40: arity mismatch: 1 != 2",
+        "missing": "unknown word: BWdeadbeefdeadbeefdeadbeefdeadbeef",
+        "mutated_broken_ref": "word BW5737967f9b4ecb628fd48d7d82502f40: arity mismatch: 1 != 2"
+    },
+    "values_parent": [
+        9.277142857142856,
+        13.833809523809522,
+        9.087142857142858,
+        6.681818181818182,
+        25.509999999999998,
+        13.083043478260873,
+        -0.6600000000000001,
+        3.2451612903225806,
+        0.2928571428571445,
+        -3.439999999999999,
+        null,
+        null
+    ],
+    "values_off2": [
+        -3.1428571428571432,
+        2.523809523809524,
+        -1.6428571428571428,
+        3.181818181818182,
+        14.2,
+        -3.08695652173913,
+        -8.4,
+        1.6451612903225807,
+        -11.857142857142856,
+        -4.999999999999999,
+        null,
+        null
+    ]
+}

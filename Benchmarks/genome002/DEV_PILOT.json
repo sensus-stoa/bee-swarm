@@ -1,0 +1,271 @@
+{
+    "checks": [],
+    "ok": true,
+    "replicas": {
+        "T-ens": {
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "r"
+                ],
+                "detail": "−→/"
+            },
+            "parent_rmse": 1.66,
+            "target_rmse": 0.093,
+            "dict_words": 0,
+            "parent_genome_refs": 0,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 23,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 1,
+                        "noop": 6,
+                        "invalid": 0
+                    },
+                    "useful_new": 1,
+                    "useful_by_op": {
+                        "op_swap": 1,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 480,
+                    "wall_ms": 20.9
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 23,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 1,
+                        "noop": 6,
+                        "invalid": 0
+                    },
+                    "useful_new": 1,
+                    "useful_by_op": {
+                        "op_swap": 1,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 480,
+                    "wall_ms": 22.8
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 14,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 0,
+                        "noop": 16,
+                        "invalid": 0
+                    },
+                    "useful_new": 0,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 280,
+                    "wall_ms": 0.5
+                }
+            }
+        },
+        "T-kin": {
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "r"
+                ],
+                "detail": "+→×"
+            },
+            "parent_rmse": 65.6255,
+            "target_rmse": 0.2334,
+            "dict_words": 1,
+            "parent_genome_refs": 1,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 19,
+                        "reuse_shape": 3,
+                        "improved_not_novel": 2,
+                        "useful_new": 6,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 6,
+                    "useful_by_op": {
+                        "op_swap": 4,
+                        "atom_swap": 2,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 600,
+                    "wall_ms": 45.7
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 8,
+                        "reuse_shape": 1,
+                        "improved_not_novel": 1,
+                        "useful_new": 6,
+                        "noop": 14,
+                        "invalid": 0
+                    },
+                    "useful_new": 6,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 5,
+                        "drop": 1
+                    },
+                    "ref_attempts": 15,
+                    "ref_useful": 5,
+                    "eval_calls": 320,
+                    "wall_ms": 18.5
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 17,
+                        "reuse_shape": 2,
+                        "improved_not_novel": 0,
+                        "useful_new": 4,
+                        "noop": 7,
+                        "invalid": 0
+                    },
+                    "useful_new": 4,
+                    "useful_by_op": {
+                        "op_swap": 1,
+                        "atom_swap": 2,
+                        "splice": 1,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 460,
+                    "wall_ms": 0.7
+                }
+            }
+        },
+        "T-misc1": {
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "l",
+                    "l"
+                ],
+                "detail": "+→×"
+            },
+            "parent_rmse": 10.6113,
+            "target_rmse": 0.2572,
+            "dict_words": 1,
+            "parent_genome_refs": 0,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 22,
+                        "reuse_shape": 1,
+                        "improved_not_novel": 1,
+                        "useful_new": 6,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 6,
+                    "useful_by_op": {
+                        "op_swap": 3,
+                        "atom_swap": 0,
+                        "splice": 1,
+                        "drop": 2
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 600,
+                    "wall_ms": 28.6
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 22,
+                        "reuse_shape": 1,
+                        "improved_not_novel": 1,
+                        "useful_new": 6,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 6,
+                    "useful_by_op": {
+                        "op_swap": 3,
+                        "atom_swap": 0,
+                        "splice": 1,
+                        "drop": 2
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 600,
+                    "wall_ms": 29
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 14,
+                        "reuse_shape": 4,
+                        "improved_not_novel": 0,
+                        "useful_new": 8,
+                        "noop": 4,
+                        "invalid": 0
+                    },
+                    "useful_new": 8,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 2,
+                        "splice": 5,
+                        "drop": 1
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 520,
+                    "wall_ms": 0.6
+                }
+            }
+        }
+    },
+    "any_improvement_seen": true,
+    "any_b_refs": true,
+    "exceptions": 0
+}

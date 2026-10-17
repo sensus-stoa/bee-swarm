@@ -1,0 +1,693 @@
+{
+    "meta": {
+        "manifest": "Benchmarks/genome002/MANIFEST.md",
+        "php": "8.2.29",
+        "attempts_per_arm_per_replica": 500,
+        "started": "2026-10-15T19:47:58+00:00"
+    },
+    "replicas": {
+        "T-ens": {
+            "target": {
+                "id": "T-ens",
+                "formula": "((x0+x1)+(x0−x2))",
+                "source": "V011_ENSEMBLE_calibration_run5.md"
+            },
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "r"
+                ],
+                "detail": "−→/"
+            },
+            "parent_rmse_held": 1.50364,
+            "target_rmse_held": 0.06995,
+            "dict_words": 0,
+            "dict_bytes": 88,
+            "parent_genome_bytes": 112,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 369,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 12,
+                        "useful_new": 2,
+                        "noop": 117,
+                        "invalid": 0
+                    },
+                    "useful_new": 2,
+                    "useful_by_op": {
+                        "op_swap": 1,
+                        "atom_swap": 1,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 7660,
+                    "wall_ms": 335.2
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 369,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 12,
+                        "useful_new": 2,
+                        "noop": 117,
+                        "invalid": 0
+                    },
+                    "useful_new": 2,
+                    "useful_by_op": {
+                        "op_swap": 1,
+                        "atom_swap": 1,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 7660,
+                    "wall_ms": 328.7
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 1.6600190675932038,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 221,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 0,
+                        "noop": 279,
+                        "invalid": 0
+                    },
+                    "useful_new": 0,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 4420,
+                    "wall_ms": 4
+                }
+            }
+        },
+        "T-kin": {
+            "target": {
+                "id": "T-kin",
+                "formula": "((x0×x3)+((x1×x4)+(x2×x5)))",
+                "source": "EXP040_M1EXT2_REPORT.md (binding 4 колонки: x5→x3)"
+            },
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "r"
+                ],
+                "detail": "+→×"
+            },
+            "parent_rmse_held": 23.26864,
+            "target_rmse_held": 0.23958,
+            "dict_words": 1,
+            "dict_bytes": 753,
+            "parent_genome_bytes": 178,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 290,
+                        "reuse_shape": 14,
+                        "improved_not_novel": 156,
+                        "useful_new": 40,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 40,
+                    "useful_by_op": {
+                        "op_swap": 12,
+                        "atom_swap": 6,
+                        "splice": 8,
+                        "drop": 14
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 768.3
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 165,
+                        "reuse_shape": 26,
+                        "improved_not_novel": 87,
+                        "useful_new": 67,
+                        "noop": 155,
+                        "invalid": 0
+                    },
+                    "useful_new": 67,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 61,
+                        "drop": 6
+                    },
+                    "ref_attempts": 270,
+                    "ref_useful": 61,
+                    "eval_calls": 6900,
+                    "wall_ms": 330.6
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 65.62551553711505,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 225,
+                        "reuse_shape": 9,
+                        "improved_not_novel": 54,
+                        "useful_new": 48,
+                        "noop": 164,
+                        "invalid": 0
+                    },
+                    "useful_new": 48,
+                    "useful_by_op": {
+                        "op_swap": 8,
+                        "atom_swap": 4,
+                        "splice": 19,
+                        "drop": 17
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 6720,
+                    "wall_ms": 11
+                }
+            }
+        },
+        "T-misc1": {
+            "target": {
+                "id": "T-misc1",
+                "formula": "(((x0+x1)×x2)+x3)",
+                "source": "Benchmarks/experiments-log.md"
+            },
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "l",
+                    "l"
+                ],
+                "detail": "+→×"
+            },
+            "parent_rmse_held": 13.58436,
+            "target_rmse_held": 0.28884,
+            "dict_words": 1,
+            "dict_bytes": 581,
+            "parent_genome_bytes": 114,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 293,
+                        "reuse_shape": 15,
+                        "improved_not_novel": 155,
+                        "useful_new": 37,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 37,
+                    "useful_by_op": {
+                        "op_swap": 7,
+                        "atom_swap": 1,
+                        "splice": 16,
+                        "drop": 13
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 471.2
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 291,
+                        "reuse_shape": 11,
+                        "improved_not_novel": 155,
+                        "useful_new": 43,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 43,
+                    "useful_by_op": {
+                        "op_swap": 7,
+                        "atom_swap": 1,
+                        "splice": 22,
+                        "drop": 13
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 477.5
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 10.611265317479173,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 175,
+                        "reuse_shape": 30,
+                        "improved_not_novel": 93,
+                        "useful_new": 50,
+                        "noop": 152,
+                        "invalid": 0
+                    },
+                    "useful_new": 50,
+                    "useful_by_op": {
+                        "op_swap": 3,
+                        "atom_swap": 5,
+                        "splice": 35,
+                        "drop": 7
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 6960,
+                    "wall_ms": 9
+                }
+            }
+        },
+        "T-mol": {
+            "target": {
+                "id": "T-mol",
+                "formula": "(((x0×x2)×x1)/x3)",
+                "source": "EXP039_molecule.md (до вложения)"
+            },
+            "damage": {
+                "kind": "drop",
+                "path": [
+                    "l",
+                    "l"
+                ],
+                "detail": "drop@2"
+            },
+            "parent_rmse_held": 18.17409,
+            "target_rmse_held": 0.19369,
+            "dict_words": 1,
+            "dict_bytes": 582,
+            "parent_genome_bytes": 80,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 18.35279506204642,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 498,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 2,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 2,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 2,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 342.7
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 18.35279506204642,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 496,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 4,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 4,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 4,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 348.5
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 18.35279506204642,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 333,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 0,
+                        "noop": 167,
+                        "invalid": 0
+                    },
+                    "useful_new": 0,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 6660,
+                    "wall_ms": 7.8
+                }
+            }
+        },
+        "T-t2l": {
+            "target": {
+                "id": "T-t2l",
+                "formula": "((x0−x2)+((x0+x1)/(x0−x1)))",
+                "source": "g2-закон в развёрнутой форме (post-MOL-001)"
+            },
+            "damage": {
+                "kind": "op_swap",
+                "path": [
+                    "r"
+                ],
+                "detail": "/→−"
+            },
+            "parent_rmse_held": 12.3363,
+            "target_rmse_held": 0.09019,
+            "dict_words": 1,
+            "dict_bytes": 753,
+            "parent_genome_bytes": 184,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 11.25958342327657,
+                    "buckets": {
+                        "incorrect": 30,
+                        "correct_flat": 238,
+                        "reuse_shape": 1,
+                        "improved_not_novel": 174,
+                        "useful_new": 57,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 57,
+                    "useful_by_op": {
+                        "op_swap": 10,
+                        "atom_swap": 12,
+                        "splice": 13,
+                        "drop": 22
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 747.9
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 11.25958342327657,
+                    "buckets": {
+                        "incorrect": 37,
+                        "correct_flat": 228,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 177,
+                        "useful_new": 58,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 58,
+                    "useful_by_op": {
+                        "op_swap": 10,
+                        "atom_swap": 12,
+                        "splice": 14,
+                        "drop": 22
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 721.6
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 11.25958342327657,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 161,
+                        "reuse_shape": 6,
+                        "improved_not_novel": 118,
+                        "useful_new": 50,
+                        "noop": 165,
+                        "invalid": 0
+                    },
+                    "useful_new": 50,
+                    "useful_by_op": {
+                        "op_swap": 11,
+                        "atom_swap": 3,
+                        "splice": 14,
+                        "drop": 22
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 6700,
+                    "wall_ms": 11.6
+                }
+            }
+        },
+        "T-kin2": {
+            "target": {
+                "id": "T-kin2",
+                "formula": "((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))",
+                "source": "EXP040 kinetic dot (4 колонки)"
+            },
+            "damage": {
+                "kind": "drop",
+                "path": [
+                    "l",
+                    "r"
+                ],
+                "detail": "drop@2"
+            },
+            "parent_rmse_held": 26.87436,
+            "target_rmse_held": 0.83098,
+            "dict_words": 2,
+            "dict_bytes": 1635,
+            "parent_genome_bytes": 163,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 29.983436997903432,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 463,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 17,
+                        "useful_new": 20,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 20,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 4,
+                        "splice": 12,
+                        "drop": 4
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 1032.5
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 29.983436997903432,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 392,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 93,
+                        "useful_new": 15,
+                        "noop": 0,
+                        "invalid": 0
+                    },
+                    "useful_new": 15,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 2,
+                        "splice": 8,
+                        "drop": 5
+                    },
+                    "ref_attempts": 80,
+                    "ref_useful": 0,
+                    "eval_calls": 10000,
+                    "wall_ms": 959.2
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 29.983436997903432,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 342,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 0,
+                        "noop": 158,
+                        "invalid": 0
+                    },
+                    "useful_new": 0,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 6840,
+                    "wall_ms": 10.8
+                }
+            }
+        },
+        "T-ens2": {
+            "target": {
+                "id": "T-ens2",
+                "formula": "(((x0−x1)×(x0+x1))+x2)",
+                "source": "REGULAR-мотив M2+смещение (форма корпуса, не test REAL)"
+            },
+            "damage": {
+                "kind": "drop",
+                "path": [],
+                "detail": "drop@0"
+            },
+            "parent_rmse_held": 5.63768,
+            "target_rmse_held": 0.0924,
+            "dict_words": 1,
+            "dict_bytes": 754,
+            "parent_genome_bytes": 13,
+            "arms": {
+                "A": {
+                    "arm": "A",
+                    "parent_rmse": 10.059567309053694,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 318,
+                        "reuse_shape": 6,
+                        "improved_not_novel": 36,
+                        "useful_new": 1,
+                        "noop": 139,
+                        "invalid": 0
+                    },
+                    "useful_new": 1,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 1,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 7220,
+                    "wall_ms": 119.2
+                },
+                "B": {
+                    "arm": "B",
+                    "parent_rmse": 10.059567309053694,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 318,
+                        "reuse_shape": 6,
+                        "improved_not_novel": 36,
+                        "useful_new": 1,
+                        "noop": 139,
+                        "invalid": 0
+                    },
+                    "useful_new": 1,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 1,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 7220,
+                    "wall_ms": 118.4
+                },
+                "C": {
+                    "arm": "C",
+                    "parent_rmse": 10.059567309053694,
+                    "buckets": {
+                        "incorrect": 0,
+                        "correct_flat": 361,
+                        "reuse_shape": 0,
+                        "improved_not_novel": 0,
+                        "useful_new": 0,
+                        "noop": 139,
+                        "invalid": 0
+                    },
+                    "useful_new": 0,
+                    "useful_by_op": {
+                        "op_swap": 0,
+                        "atom_swap": 0,
+                        "splice": 0,
+                        "drop": 0
+                    },
+                    "ref_attempts": 0,
+                    "ref_useful": 0,
+                    "eval_calls": 7220,
+                    "wall_ms": 9.3
+                }
+            }
+        }
+    },
+    "totals": {
+        "useful_new": {
+            "A": 159,
+            "B": 190,
+            "C": 148
+        },
+        "improved_any": 1996,
+        "wins_B_vs_A": 4,
+        "wins_B_vs_C": 6,
+        "reuse_shape_B": 43,
+        "ref_attempts_B": 350,
+        "ref_useful_B": 61,
+        "eval_calls": {
+            "A": 64880,
+            "B": 61780,
+            "C": 45520
+        },
+        "wall_ms": {
+            "A": 3817,
+            "B": 3284.5000000000005,
+            "C": 63.5
+        },
+        "ram_peak_mb": 10,
+        "wall_total_s": 7.21
+    },
+    "verdict": "FAIL (преимущество B не подтверждено: B=190 A=159 C=148; победы реплик B>A: 4/7, B>C: 6/7)",
+    "cost_per_useful": {
+        "A": 408,
+        "B": 325,
+        "C": 308
+    }
+}

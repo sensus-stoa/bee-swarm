@@ -108,6 +108,7 @@ final class RouteExecutor
         float $channelBudgetSec,
         float $eps,
         array $localAtoms = [],
+        int $marksMode = 1,
     ): array {
         $cond = $genome['condition'];
         if (($cond['kind'] ?? '') === 'INHERIT') {
@@ -179,10 +180,11 @@ final class RouteExecutor
                 $marksK,
                 $remain,
                 $eps,
-                $localAtoms
+                $localAtoms,
+                $marksMode
             );
             $wall = microtime(true) - $a0;
-            [$foundFlight, $cvExposed, $formulaC, $formulaX] = $r;
+            [$foundFlight, $cvExposed, $formulaC, $formulaX, $trailFlight] = $r;
             // Route-local атомы живут только в Grammar-инстансе вылета: внешний
             // оценщик (ExpressionEvaluator) их не видит (ревью deleg_1cae7b13,
             // блокер-3). Разворачиваем (A atom B) → инфикс до любой оценки L.
@@ -212,6 +214,8 @@ final class RouteExecutor
                 'l_train' => $lTrain,
                 'l_valid' => $lValid,
                 'wall_s' => round($wall, 3),
+                // EXP-045 LOOP PROBE: событийная телеметрия trail-marks вылета
+                'trail' => $trailFlight,
             ];
         }
 
@@ -242,8 +246,19 @@ final class RouteExecutor
      *
      * @return array{TRAIL_MARKS:string, TRAIL_READ_K:string}
      */
-    public static function marksKnobs(int $marksK): array
+    public static function marksKnobs(int $marksK, int $marksMode = 1): array
     {
+        if ($marksMode === 0) {
+            // EXP-045 LOOP PROBE (P1): негатив-контроль — ОБЕ стороны петли
+            // выключены явно ('0': гейты Search ==='1' ложны — write и read
+            // мертвы by construction; ambient-unset недостаточен, поскольку
+            // ЭТОТ метод перезаписывает ambient).
+            return [
+                'TRAIL_MARKS' => '0',
+                'TRAIL_READ_K' => '0',
+            ];
+        }
+
         return [
             'TRAIL_MARKS' => '1',
             'TRAIL_READ_K' => (string) max(0, $marksK),
@@ -269,6 +284,7 @@ final class RouteExecutor
         float $remainSec,
         float $eps,
         array $localAtoms,
+        int $marksMode = 1,
     ): array {
         $snapshot = [];
         foreach (self::MANAGED_KNOBS as $k) {
@@ -286,7 +302,7 @@ final class RouteExecutor
             // изолирована (S2), task-start DELETE в драйвере (driver.php:277).
             // USE_MARKS управляет ТОЛЬКО чтением — TRAIL_READ_K='0' читает
             // честный ноль (фикс fallback '0'?:'5' в Search::find).
-            foreach (self::marksKnobs($marksK) as $k => $v) {
+            foreach (self::marksKnobs($marksK, $marksMode) as $k => $v) {
                 putenv($k . '=' . $v);
             }
             $g = Grammar::fromOps($presetOps);
@@ -303,7 +319,18 @@ final class RouteExecutor
             $formulaC = is_string($r[2] ?? null) && $r[2] !== 'none' && $r[2] !== '' ? (string) $r[2] : null;
             $formulaX = $formulaC !== null ? self::labelsToX($formulaC, $labels) : null;
 
-            return [$found, $found ? $cv : null, $formulaC, $formulaX];
+            return [$found, $found ? $cv : null, $formulaC, $formulaX, [
+                // EXP-045 LOOP PROBE: событийная телеметрия этого find'а
+                // (last-call семантика Search; сброс — в начале find).
+                // ЧИСЛОВОЙ индекс 4 — контракт P5: деструктуризация в run()
+                // позиционная; смешанный ключ 'trail' дал Undefined key 4
+                // и null-телеметрию (поймано самопроверкой пробы, campaign-stop).
+                'written' => Search::$lastTrailWritten,
+                'writer_input' => Search::$lastTrailWriterInput,
+                'read_fetched' => Search::$lastTrailReadFetched,
+                'read_injected' => Search::$lastTrailReadInjected,
+                'read_attempts' => Search::$lastTrailReadAttempts,
+            ]];
         } finally {
             foreach ($snapshot as $k => $v) {
                 if ($v === null) {

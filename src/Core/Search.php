@@ -155,6 +155,12 @@ class Search
         // типизированные параметры writeTrailMarks — инвариант без автовивификации.
         $l1PairwiseKeys = [];
         $l1PairwiseMap = [];
+        // EXP-045 LOOP PROBE: сброс событийной телеметрии trail-marks (per-find).
+        self::$lastTrailWritten = [];
+        self::$lastTrailWriterInput = null;
+        self::$lastTrailReadFetched = [];
+        self::$lastTrailReadInjected = [];
+        self::$lastTrailReadAttempts = null;
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
@@ -763,6 +769,8 @@ class Search
             // verify-пути (beam=10, EXP-040-EXT прогон) — там и работают.
             $trailReadCount = 0;
             if (getenv('TRAIL_MARKS') === '1' && $beamK > 0) {
+                // EXP-045 LOOP PROBE: стадия attempts (вход в read-блок)
+                self::$lastTrailReadAttempts = 1;
                 $scopeKeyR = 'sha1:' . sha1(json_encode([
                     'labels' => $colLabels,
                 ]));
@@ -777,7 +785,10 @@ class Search
                      ORDER BY uses DESC, corr DESC LIMIT ?'
                 );
                 $stmtR->execute([$scopeKeyR, $readK]);
-                foreach ($stmtR->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+                $rowsR = $stmtR->fetchAll(\PDO::FETCH_ASSOC);
+                // EXP-045 LOOP PROBE: стадия fetched (строки из БД ДО фильтров)
+                self::$lastTrailReadFetched = array_column($rowsR, 'formula');
+                foreach ($rowsR as $row) {
                     $mf = $row['formula'];
                     if (! isset($exprs[$mf])) {
                         $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($mf, $X);
@@ -799,6 +810,8 @@ class Search
                     if (! in_array($mf, $pool, true)) {
                         $pool[] = $mf; // метки ПЕРВЫМИ (после current pool — dedup ниже не нужен, пул уже построен)
                         $trailReadCount++;
+                        // EXP-045 LOOP PROBE: стадия injected (факт входа в пул)
+                        self::$lastTrailReadInjected[] = $mf;
                     }
                 }
                 if (getenv('SEARCH_DEBUG') === '1') {
@@ -1907,7 +1920,10 @@ class Search
         // молчаливая смерть стигмергии = тихий регресс к амнезии.
         if (getenv('TRAIL_MARKS') === '1' && ! $found && (! empty($signalForms) || ! empty($stairForms))) {
             // Ступени ПЕРВЫМИ (лестница: следующая пчела строит из них закон)
-            self::writeTrailMarks($colLabels, array_merge($stairForms, $petalForms, $signalForms), $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap);
+            // EXP-045 LOOP PROBE: writer_input — наблюдение входа в writer (P3).
+            $plausibleForMarks = array_merge($stairForms, $petalForms, $signalForms);
+            self::$lastTrailWriterInput = ['candidates' => count($plausibleForMarks), 'eligible' => null, 'written' => null, 'reason' => null];
+            self::writeTrailMarks($colLabels, $plausibleForMarks, $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap);
         }
 
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
@@ -1922,6 +1938,10 @@ class Search
     private static function writeTrailMarks(?array $colLabels, array $plausible, float $cvTrainMax, float $bestCvSeen, array $pairwiseKeys = [], array $pairwiseMap = []): void
     {
         if (empty($plausible) || ($bestCvSeen !== INF && $bestCvSeen >= self::NOISE_CV_FLOOR * 8)) {
+            // EXP-045 LOOP PROBE: стадии writer_input при отсеве (P3)
+            self::$lastTrailWriterInput['eligible'] = 0;
+            self::$lastTrailWriterInput['written'] = 0;
+            self::$lastTrailWriterInput['reason'] = 'noise_guard';
             return; // чистый шум — дороги не метим (NOISE-гвард)
         }
         // Scope = ТОЛЬКО labels (стабилен между сидами одного домена).
@@ -1971,6 +1991,10 @@ class Search
             }
         }
         if ($marks === []) {
+            // EXP-045 LOOP PROBE: кандидаты были, coverage-гейты отобрали ноль (P3)
+            self::$lastTrailWriterInput['eligible'] = 0;
+            self::$lastTrailWriterInput['written'] = 0;
+            self::$lastTrailWriterInput['reason'] = 'no_coverage';
             return;
         }
         // WU-4b: uses++ при повторной записи; uses>=2 → kind='replicated'
@@ -1987,6 +2011,10 @@ class Search
         foreach ($marks as [$formula, $corr]) {
             $ins->execute([$scopeKey, $formula, 'uncalibrated', $corr]);
         }
+        // EXP-045 LOOP PROBE: стадии eligible/written + список записанных формул
+        self::$lastTrailWritten = array_column($marks, 0);
+        self::$lastTrailWriterInput['eligible'] = count($marks);
+        self::$lastTrailWriterInput['written'] = count($marks);
         // Зарастание (аутофагия §2.5.14): ТОЛЬКО неподтверждённые метки стираются
         // (uses>7 без репликации — 3x запас к 2-проходной репликации).
         // Ранее: DELETE WHERE uses>6 без разбора kind — при рое 20 пчёл
@@ -2170,6 +2198,15 @@ class Search
      * @var array<string, true>
      */
     private static array $beamPairParticipations = [];
+
+    // EXP-045 D4 LOOP PROBE (18.10): событийная телеметрия trail-marks.
+    // Last-call семантика: сброс в начале find(), RouteExecutor фиксирует
+    // per-flight сразу после возврата find() (контракт prereg §0.4-P5).
+    public static array $lastTrailWritten = [];
+    public static ?array $lastTrailWriterInput = null;
+    public static array $lastTrailReadFetched = [];
+    public static array $lastTrailReadInjected = [];
+    public static ?int $lastTrailReadAttempts = null;
 
     public static function resetMul2Counter(): void
     {

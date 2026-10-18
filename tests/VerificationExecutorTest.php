@@ -220,4 +220,38 @@ final class VerificationExecutorTest extends TestCase
         $m->setAccessible(true);
         $m->invoke($this->hive, $domain, $limit);
     }
+
+    /**
+     * VERIF-TICK-WIRING регресс (suite-инцидент 17.10): memory-кап не
+     * применяется без реального хедрума. Формально-больше-занятого мало:
+     * воркер с usage 502MB + кап 512M = 10MB хедрума → неловимый фатал
+     * «Allowed memory size exhausted» (упавший -p8 воркер
+     * LifetimeMetricTest; тот же страйкл ждёт жирный прод-демон).
+     * Контракт: кап применяется только если usage × 2 < cap.
+     */
+    public function testMemoryCapSkippedWithoutRealHeadroom(): void
+    {
+        $prevLimit = ini_get('memory_limit');
+        ini_set('memory_limit', '-1');
+        $ballast = str_repeat('x', 40 * 1024 * 1024);
+        try {
+            $usageMb = (int) ceil(memory_get_usage(true) / 1048576);
+            $capMb = (int) ceil($usageMb * 1.5); // usage ∈ (cap/2, cap)
+            putenv('VVERIFY_MEMORY_LIMIT=' . $capMb . 'M');
+            $executor = new VerificationExecutor();
+            $m = new \ReflectionMethod(VerificationExecutor::class, 'applySearchEnv');
+            $m->setAccessible(true);
+            $restore = $m->invoke($executor, '10');
+            self::assertSame(
+                '-1',
+                (string) ini_get('memory_limit'),
+                "кап {$capMb}M при usage {$usageMb}M (< 2×usage) не должен применяться — хедрум фиктивен"
+            );
+            $restore();
+        } finally {
+            unset($ballast);
+            putenv('VVERIFY_MEMORY_LIMIT');
+            ini_set('memory_limit', (string) $prevLimit);
+        }
+    }
 }

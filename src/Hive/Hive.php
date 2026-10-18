@@ -115,6 +115,16 @@ class Hive
     private const MIN_DATA_POINTS = 10;
 
     /**
+     * VERIF-TICK-WIRING: потолок доменов в одном sweep (thundering herd).
+     */
+    private const VSWEEP_DOMAIN_LIMIT = 8;
+
+    /**
+     * VERIF-TICK-WIRING: лимит задач на домен (паритет с EXP039-веткой).
+     */
+    private const VSWEEP_TASK_LIMIT = 6;
+
+    /**
      * @var array<string, float> fingerprint to epsilon_null (V0: Runtime Null-Calibration)
      */
     private array $epsilonCache = [];
@@ -1197,6 +1207,16 @@ class Hive
 
                 return;
             }
+        }
+
+        // VERIF-TICK-WIRING (WU-0b route-transfer, 17.10): прод-путь —
+        // исполнитель V-задач в живом тике. Гвард seasonScheduler === null:
+        // EXP039-режим имеет собственный verify-сайт (roll-ветка выше с
+        // EXP039_DOMAINS) — второй сайт не появляется (урок F6). Размещение
+        // ДО early-return (empty-pool/CPU-guard) — урок EXP-039 FIX 4:
+        // пустой пул не должен убивать non-explore операции.
+        if ($this->seasonScheduler === null) {
+            $this->runVerificationSweep();
         }
 
         // EXP-039: pop-ledger каждые 50 тиков (аддендум A3, report-only).
@@ -2524,6 +2544,36 @@ class Hive
         $this->settleEscrowFor($domain);
 
         return $executed;
+    }
+
+    /**
+     * VERIF-TICK-WIRING: sweep pending V-задач по доменам очереди.
+     * Пробный SELECT дёшев (потолок LIMIT), executor+settle вызывается
+     * ТОЛЬКО для доменов с pending-задачами и ТОЛЬКО отсюда (единый сайт,
+     * урок F6; EXP039-ветка — отдельный экспериментальный сайт). Гвард
+     * двойного исполнения — статус задачи: pending → терминальный,
+     * повторный sweep исполненную задачу не выберет.
+     */
+    private function runVerificationSweep(): void
+    {
+        $domains = Database::get()->query(
+            "SELECT DISTINCT domain FROM verification_tasks WHERE status = 'pending' LIMIT " . self::VSWEEP_DOMAIN_LIMIT
+        )->fetchAll(\PDO::FETCH_COLUMN);
+        foreach ($domains as $domain) {
+            try {
+                $executed = $this->runPendingVerificationTasks((string) $domain, self::VSWEEP_TASK_LIMIT);
+            } catch (\Throwable $e) {
+                // Agent-review D1: сбой инфраструктуры (SQLITE_BUSY и т.п.)
+                // не убивает тик — философия исполнителя (сбой ≠ вердикт, F6)
+                // на уровне wiring: домен пропускается до следующего тика.
+                $this->log('VSWEEP_ERROR: domain=' . $domain . ' ' . $e->getMessage());
+
+                continue;
+            }
+            if ($executed > 0) {
+                $this->log("VSWEEP: domain={$domain} executed={$executed}");
+            }
+        }
     }
 
     /**

@@ -161,6 +161,8 @@ class Search
         self::$lastTrailReadFetched = [];
         self::$lastTrailReadInjected = [];
         self::$lastTrailReadAttempts = null;
+        self::$lastTrailReadWide = null;
+        self::$lastTrailReadPoolSkip = null;
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
@@ -782,33 +784,86 @@ class Search
                 $readK = ($trk === false || $trk === '') ? 5 : max(0, (int) $trk);
                 $stmtR = \BeeSwarm\Infra\Database::get()->prepare(
                     'SELECT formula FROM trail_marks WHERE fingerprint = ?
-                     ORDER BY uses DESC, corr DESC LIMIT ?'
+                     ORDER BY uses DESC, corr DESC LIMIT 200'
                 );
-                $stmtR->execute([$scopeKeyR, $readK]);
-                $rowsR = $stmtR->fetchAll(\PDO::FETCH_ASSOC);
-                // EXP-045 LOOP PROBE: стадия fetched (строки из БД ДО фильтров)
-                self::$lastTrailReadFetched = array_column($rowsR, 'formula');
-                foreach ($rowsR as $row) {
+                $stmtR->execute([$scopeKeyR]);
+                $rowsAll = $stmtR->fetchAll(\PDO::FETCH_ASSOC);
+                self::$lastTrailReadWide = count($rowsAll); // LOOP PROBE v5: широкий fetch
+                // EXP-045 LOOP PROBE v3 (DOT VALUE PROBE): reader-side fit ranking —
+                // «signal must replicate» доведён до конца (WU-4c: re-evaluate на
+                // СВОИХ X). Живой урок двух итераций: junk-гибриды вытесняют
+                // истинные ступени и по uses (v1), и по глобальному corr внутри
+                // класса (v2). Единственная честная ранжировка — fit метки на
+                // данных читателя: |Pearson(values, y)|, ступени ceil(K/2) слотов.
+                // Интервенция пред-регистрирована (DOT_VALUE_PROBE v3) до прогона.
+                $nY = count($y);
+                $meanY = array_sum($y) / max(1, $nY);
+                $candR = [];
+                foreach ($rowsAll as $row) {
                     $mf = $row['formula'];
-                    if (! isset($exprs[$mf])) {
-                        $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($mf, $X);
-                        if ($mv === null) {
-                            continue; // не вычислима на этом сплите — дорога мимо
+                    // Дедуп — против ПАРНОГО пула ($pool), не против $exprs!
+                    // $exprs содержит ВСЕ оценённые скорером кандидаты (599-601
+                    // за вылет) — метки почти всегда там уже есть, и старый
+                    // дедуп isset($exprs) глушил инъекцию ценных композитов во
+                    // ВСЕХ трёх итерациях (поймано: fetched=0 при written=25).
+                    if (in_array($mf, $pool, true)) {
+                        continue; // уже в парном пуле — инъекция не нужна
+                    }
+                    $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($mf, $X);
+                    if ($mv === null) {
+                        continue; // не вычислима на этом сплите — дорога мимо
+                    }
+                    $okM = true;
+                    $sumV = 0.0;
+                    foreach ($mv as $mvv) {
+                        if ($mvv === null || ! is_finite($mvv)) {
+                            $okM = false;
+                            break;
                         }
-                        $okM = true;
-                        foreach ($mv as $mvv) {
-                            if ($mvv === null || ! is_finite($mvv)) {
-                                $okM = false;
-                                break;
-                            }
-                        }
-                        if (! $okM) {
+                        $sumV += $mvv;
+                    }
+                    if (! $okM || $nY === 0 || count($mv) !== $nY) {
+                        continue;
+                    }
+                    $meanV = $sumV / $nY;
+                    $cov = 0.0;
+                    $v1 = 0.0;
+                    $v2 = 0.0;
+                    foreach ($mv as $i => $val) {
+                        $d1 = $val - $meanV;
+                        $d2 = $y[$i] - $meanY;
+                        $cov += $d1 * $d2;
+                        $v1 += $d1 * $d1;
+                        $v2 += $d2 * $d2;
+                    }
+                    $fit = ($v1 > 1e-12 && $v2 > 1e-12) ? abs($cov / sqrt($v1 * $v2)) : 0.0;
+                    $candR[] = ['f' => $mf, 'v' => $mv, 'fit' => $fit,
+                        'stair' => str_contains($mf, '+') && str_contains($mf, '×')];
+                }
+                self::$lastTrailReadPoolSkip = count($rowsAll) - count($candR); // LOOP PROBE v5: pool/eval-отсев
+                usort($candR, fn (array $a, array $b): int => $b['fit'] <=> $a['fit']);
+                $quotaStairs = (int) ceil($readK / 2);
+                $selR = [];
+                $nStair = 0;
+                foreach ($candR as $c) {
+                    if (count($selR) >= $readK) {
+                        break;
+                    }
+                    if ($c['stair']) {
+                        if ($nStair >= $quotaStairs) {
                             continue;
                         }
-                        $exprs[$mf] = $mv;
+                        $nStair++;
                     }
+                    $selR[] = $c;
+                }
+                // EXP-045 LOOP PROBE: стадия fetched (эффективный набор после ранжирования)
+                self::$lastTrailReadFetched = array_column($selR, 'f');
+                foreach ($selR as $c) {
+                    $mf = $c['f'];
+                    $exprs[$mf] = $c['v'];
                     if (! in_array($mf, $pool, true)) {
-                        $pool[] = $mf; // метки ПЕРВЫМИ (после current pool — dedup ниже не нужен, пул уже построен)
+                        $pool[] = $mf;
                         $trailReadCount++;
                         // EXP-045 LOOP PROBE: стадия injected (факт входа в пул)
                         self::$lastTrailReadInjected[] = $mf;
@@ -2207,6 +2262,8 @@ class Search
     public static array $lastTrailReadFetched = [];
     public static array $lastTrailReadInjected = [];
     public static ?int $lastTrailReadAttempts = null;
+    public static ?int $lastTrailReadWide = null;
+    public static ?int $lastTrailReadPoolSkip = null;
 
     public static function resetMul2Counter(): void
     {

@@ -75,7 +75,10 @@ $raw = json_decode((string) file_get_contents(dirname(__DIR__, 2) . '/Benchmarks
 $inhSource = [];
 foreach ($raw['results'] as $st) {
     if ($st['arm'] === 'A' && $st['w'] === 1 && $st['mode'] === 'inherited') {
-        $inhSource[$st['rep']] = ['pops' => $st['pops'], 'dict' => $st['dict']];
+        $inhSource[$st['rep']] = [
+            'pops' => $st['pops'],
+            'dict' => $st['dict'],
+        ];
     }
 }
 ksort($inhSource);
@@ -89,7 +92,12 @@ function initCell(string $init, int $rep, array $tasks, array $w2, array $inhSou
         $evals = 0;
         $pops = WordCumTransition::reevaluate($src['pops'], $tasks, 2, WordCumTransition::fitnessHash(2, $w2), 'A', $src['dict'], $evals, 10 ** 9);
 
-        return ['dict' => $src['dict'], 'pops' => $pops, 'evals' => $evals, 'note' => 'carried W1-end, re-evaluated (FIX-1)'];
+        return [
+            'dict' => $src['dict'],
+            'pops' => $pops,
+            'evals' => $evals,
+            'note' => 'carried W1-end, re-evaluated (FIX-1)',
+        ];
     }
     // FRESH-GENERIC: случайные программы, словарь из них (без истинных формул W2)
     $rng = new Random\Randomizer(new Random\Engine\Mt19937(BASE_SEED + 555 * $rep));
@@ -98,7 +106,9 @@ function initCell(string $init, int $rep, array $tasks, array $w2, array $inhSou
     for ($i = 0; $i < 20; $i++) {
         $randomAsts[] = GenomeBenchmarkLib::randomProgram(12 + ($i % 3) * 4, $rng);
     }
-    $provDict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $p): array => ['ast' => $p['ast']], $randomAsts));
+    $provDict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $p): array => [
+        'ast' => $p['ast'],
+    ], $randomAsts));
     $kept = [];
     foreach ($randomAsts as $p) {
         try {
@@ -120,17 +130,32 @@ function initCell(string $init, int $rep, array $tasks, array $w2, array $inhSou
             }
         }
     }
-    $dict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $p): array => ['ast' => $p['ast']], $kept));
+    $dict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $p): array => [
+        'ast' => $p['ast'],
+    ], $kept));
     $pops = [[], []];
     for ($i = 0; $i < 20; $i++) {
         $ast = $kept[$i]['ast'];
-        $pops[$i < 10 ? 0 : 1][] = ['g' => WordCodec::encode($ast, $dict), 'lin' => 'rnd-' . $i, 'chain' => 0, 'train' => null, 'valid' => null];
+        $pops[$i < 10 ? 0 : 1][] = [
+            'g' => WordCodec::encode($ast, $dict),
+            'lin' => 'rnd-' . $i,
+            'chain' => 0,
+            'train' => null,
+            'valid' => null,
+        ];
     }
 
-    return ['dict' => $dict, 'pops' => $pops, 'evals' => 0, 'note' => 'random programs (generic)' . ($codecSkipped > 0 ? "; skipped={$codecSkipped}" : '')];
+    return [
+        'dict' => $dict,
+        'pops' => $pops,
+        'evals' => 0,
+        'note' => 'random programs (generic)' . ($codecSkipped > 0 ? "; skipped={$codecSkipped}" : ''),
+    ];
 }
 
-/** Оценка кандидата на train+valid W2 (20 строк). */
+/**
+ * Оценка кандидата на train+valid W2 (20 строк).
+ */
 function evalCandidate(array $g, array $dict, array $task): ?array
 {
     try {
@@ -144,10 +169,19 @@ function evalCandidate(array $g, array $dict, array $task): ?array
         return null;
     }
 
-    return ['g' => $g, 'lin' => '', 'chain' => 0, 'train' => $train, 'valid' => $valid, 'ast' => $ast];
+    return [
+        'g' => $g,
+        'lin' => '',
+        'chain' => 0,
+        'train' => $train,
+        'valid' => $valid,
+        'ast' => $ast,
+    ];
 }
 
-/** Отбор: TRAIN-ONLY или ROBUST (0.5·train + 0.5·valid, заморожено). */
+/**
+ * Отбор: TRAIN-ONLY или ROBUST (0.5·train + 0.5·valid, заморожено).
+ */
 function select(array $pops, string $selection, int $elite): array
 {
     $newPops = [];
@@ -168,7 +202,9 @@ function select(array $pops, string $selection, int $elite): array
     return $newPops;
 }
 
-/** Прогон ячейки: 5 поколений, полная инструментация + final-test динамика. */
+/**
+ * Прогон ячейки: 5 поколений, полная инструментация + final-test динамика.
+ */
 function runCell(string $init, string $selection, int $rep, array $tasks, array $inhSource, array $w2, array $finalTask, float $thetaFloor): array
 {
     $seedBase = BASE_SEED + 10007 * $rep;
@@ -179,7 +215,12 @@ function runCell(string $init, string $selection, int $rep, array $tasks, array 
     $attempts = 0;
     $elite = $selection === 'TRAIN-ONLY' ? 5 : 5; // элита 5 в обоих вариантах (варьируется только сигнал)
     $theta = 0.0; // на задачу ниже
-    $stats = ['offspring' => 0, 'final_improved' => 0, 'final_improved_selected' => 0, 'chain_nodes' => []];
+    $stats = [
+        'offspring' => 0,
+        'final_improved' => 0,
+        'final_improved_selected' => 0,
+        'chain_nodes' => [],
+    ];
     $finalCurve = [];
     $prevFinalBest = null;
     $prevSelectedLin = [];
@@ -222,7 +263,12 @@ function runCell(string $init, string $selection, int $rep, array $tasks, array 
                 $cand['parent_lin'] = $best['lin'];
                 $cand['chain'] = $improved ? $best['chain'] + 1 : 1;
                 if ($cand['chain'] >= 2) {
-                    $stats['chain_nodes'][] = ['lin' => $cand['lin'], 'root' => strtok($cand['lin'], '/'), 'chain' => $cand['chain'], 'gen' => $gen];
+                    $stats['chain_nodes'][] = [
+                        'lin' => $cand['lin'],
+                        'root' => strtok($cand['lin'], '/'),
+                        'chain' => $cand['chain'],
+                        'gen' => $gen,
+                    ];
                 }
                 $offspring[$ti][] = $cand;
             }
@@ -282,7 +328,9 @@ function runCell(string $init, string $selection, int $rep, array $tasks, array 
     $wall = (hrtime(true) - $t0) / 1e6;
 
     return [
-        'init' => $init, 'selection' => $selection, 'rep' => $rep,
+        'init' => $init,
+        'selection' => $selection,
+        'rep' => $rep,
         'init_note' => $initData['note'],
         'final_curve' => $finalCurve,
         'final_best' => $prevFinalBest ?? null,
@@ -308,11 +356,14 @@ foreach (['INHERITED', 'FRESH-GENERIC'] as $init) {
         $slice = array_slice($cells, -REPS);
         $fb = array_map(static fn ($x) => $x['final_best'], $slice);
         sort($fb);
-        echo sprintf("%s | %s: final_best_med=%s evals=%d wall=%dms\n",
-            $init, $selection,
+        echo sprintf(
+            "%s | %s: final_best_med=%s evals=%d wall=%dms\n",
+            $init,
+            $selection,
             $fb[0] === null ? 'null' : round($fb[intdiv(count($fb), 2)], 4),
             array_sum(array_column($slice, 'evals')),
-            (int) array_sum(array_column($slice, 'wall_ms')));
+            (int) array_sum(array_column($slice, 'wall_ms'))
+        );
     }
 }
 $wall = round((hrtime(true) - $t0) / 1e9, 1);
@@ -320,6 +371,15 @@ echo "wall={$wall}s\n";
 
 file_put_contents(
     dirname(__DIR__, 2) . '/Benchmarks/word_cum001/DIAG002.json',
-    json_encode(['conf' => ['gens' => GENS, 'attempts' => ATTEMPTS_PER_GEN, 'reps' => REPS, 'robust_weight' => ROBUST_VALID_WEIGHT], 'wall_s' => $wall, 'cells' => $cells], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+    json_encode([
+        'conf' => [
+            'gens' => GENS,
+            'attempts' => ATTEMPTS_PER_GEN,
+            'reps' => REPS,
+            'robust_weight' => ROBUST_VALID_WEIGHT,
+        ],
+        'wall_s' => $wall,
+        'cells' => $cells,
+    ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
 );
 echo "written: Benchmarks/word_cum001/DIAG002.json\n";

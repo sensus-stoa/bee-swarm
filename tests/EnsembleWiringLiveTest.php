@@ -21,7 +21,7 @@ final class EnsembleWiringLiveTest extends TestCase
 {
     protected function tearDown(): void
     {
-        foreach (['ENSEMBLE_K', 'NO_ENSEMBLE', 'ENSEMBLE_BUDGET_TICKS', 'SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
+        foreach (['ENSEMBLE_K', 'NO_ENSEMBLE', 'ENSEMBLE_BUDGET_TICKS', 'ENSEMBLE_MEMBER_DEPTH', 'SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
             putenv($k);
         }
         // PHPUnit <env force=true> ставит env один раз на старте процесса;
@@ -50,7 +50,11 @@ final class EnsembleWiringLiveTest extends TestCase
     }
 
     /**
-     * Данные аффинного домена (WU-3-фикстура, сжатая для скорости live-пути).
+     * Данные (WU-3-фикстура). TEST-HYGIENE (fast2min): было y=5·x0·x1+100 —
+     * неаффинный таргет заставлял лестницу эскалации depth-1(fail)→depth-2
+     * (комбинаторный compose-поиск) → 3:25 на один тест. Аффинный точный
+     * y=5·x0 находится на depth-1 → контракт хука (found → certify → штамп)
+     * сохранён и усилен (found гарантирован, не «может быть пуст»).
      */
     private function liveDomain(): array
     {
@@ -61,7 +65,7 @@ final class EnsembleWiringLiveTest extends TestCase
             $x0 = 80 + mt_rand() / mt_getrandmax() * 70;
             $x1 = 80 + mt_rand() / mt_getrandmax() * 70;
             $X[] = [$x0, $x1];
-            $y[] = 5 * $x0 * $x1 + 100;
+            $y[] = 5 * $x0;
         }
 
         return [$X, $y];
@@ -83,7 +87,12 @@ final class EnsembleWiringLiveTest extends TestCase
         putenv('ENSEMBLE_K=2');
         // Wall-clock-гвард (дефект первого suite-прогона): certify с дефолтом
         // 300s/член на -p8 замерял воркер на 22+ мин. Override бюджета.
-        putenv('ENSEMBLE_BUDGET_TICKS=30');
+        // TEST-HYGIENE (fast2min): члены искали на дефолтном depth 3
+        // (ENSEMBLE_MEMBER_DEPTH) — depth-3 compose на 80 строках = минуты.
+        // Depth 1 на аффинной фикстуре находит (y=5·x0) → консенсус реально
+        // штампуется (контракт сильнее: CERT-ветка исполняется) + 5 тиков.
+        putenv('ENSEMBLE_BUDGET_TICKS=5');
+        putenv('ENSEMBLE_MEMBER_DEPTH=1');
         [$X, $y] = $this->liveDomain();
         $de = new DiscoveryEngine();
         // depth=1: Search найдёт фичу/атом с cv<=0.05 на аффинном таргете не

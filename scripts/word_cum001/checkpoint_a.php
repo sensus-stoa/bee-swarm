@@ -13,8 +13,8 @@ require dirname(__DIR__, 2) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/genome001/corpus_lib.php';
 require dirname(__DIR__) . '/genome002/evolve_lib.php';
 
-use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\WordCodecException;
 use BeeSwarm\Infra\Database;
 
@@ -25,7 +25,9 @@ ExpressionEvaluator::resetCaches();
 const W1_NAME = 'BW5737967f9b4ecb628fd48d7d82502f40';
 const W1_DEF = '((x0+x1)/(x0−x1))';
 
-$dict = WordCodec::buildDictionary([W1_NAME => W1_DEF], [W1_NAME]);
+$dict = WordCodec::buildDictionary([
+    W1_NAME => W1_DEF,
+], [W1_NAME]);
 $parentAst = WordCodec::parseDefinition('(((x0+x1)/(x0−x1))+(x2×x3))');
 $parent = WordCodec::encode($parentAst, $dict);
 
@@ -55,21 +57,36 @@ $eval = static function (array $g) use ($dict, $rows): array {
 
 $out = [
     'scenario' => 'WORD-CUM-001 CHECKPOINT A',
-    'dictionary' => [['name' => W1_NAME, 'definition' => W1_DEF]],
+    'dictionary' => [[
+        'name' => W1_NAME,
+        'definition' => W1_DEF,
+    ]],
     'parent' => [
         'genome' => $parent,
         'w1_ref' => $parent['l'],
     ],
     'chain' => [
-        'mut1_outside' => ['path' => ['r', 'l'], 'change' => 'x2→x5', 'genome' => $off1, 'ref_preserved' => json_encode($off1['l']) === json_encode($parent['l'])],
-        'mut2_on_child' => ['path' => ['r', 'r'], 'change' => 'x3→x1', 'genome' => $off2, 'both_inherited' => $off2['r']['l']['atom'] === 'x5' && $off2['r']['r']['atom'] === 'x1' && json_encode($off2['l']) === json_encode($parent['l'])],
+        'mut1_outside' => [
+            'path' => ['r', 'l'],
+            'change' => 'x2→x5',
+            'genome' => $off1,
+            'ref_preserved' => json_encode($off1['l']) === json_encode($parent['l']),
+        ],
+        'mut2_on_child' => [
+            'path' => ['r', 'r'],
+            'change' => 'x3→x1',
+            'genome' => $off2,
+            'both_inherited' => $off2['r']['l']['atom'] === 'x5' && $off2['r']['r']['atom'] === 'x1' && json_encode($off2['l']) === json_encode($parent['l']),
+        ],
     ],
     'clean_process' => (static function () use ($dict, $off2, $rows): array {
         $envelope = [
             'db' => tempnam(sys_get_temp_dir(), 'wordcum_art_') . '.sqlite',
             'genome' => 'child',
             'rows' => $rows,
-            'bundle' => json_decode(WordCodec::serializeBundle($dict, ['child' => $off2]), true),
+            'bundle' => json_decode(WordCodec::serializeBundle($dict, [
+                'child' => $off2,
+            ]), true),
         ];
         $envFile = tempnam(sys_get_temp_dir(), 'wordcum_art_env_') . '.json';
         file_put_contents($envFile, json_encode($envelope, JSON_UNESCAPED_UNICODE));
@@ -91,11 +108,21 @@ $out = [
             }
         }
 
-        return ['ok' => $res['ok'] ?? false, 'matches_local' => $same, 'values' => $res['values'] ?? null];
+        return [
+            'ok' => $res['ok'] ?? false,
+            'matches_local' => $same,
+            'values' => $res['values'] ?? null,
+        ];
     })(),
     'reencode_empirics' => [
-        'mutation_outside_word' => ['ref_restored' => isset($reEncOutside['l']['word']), 'args_same' => json_encode($reEncOutside['l'] ?? []) === json_encode($parent['l'])],
-        'mutation_inside_word' => ['ref_lost' => ! isset($reEncInside['l']['word']), 'content_preserved_raw' => ($reEncInside['l']['l']['l']['atom'] ?? null) === 'x4'],
+        'mutation_outside_word' => [
+            'ref_restored' => isset($reEncOutside['l']['word']),
+            'args_same' => json_encode($reEncOutside['l'] ?? []) === json_encode($parent['l']),
+        ],
+        'mutation_inside_word' => [
+            'ref_lost' => ! isset($reEncInside['l']['word']),
+            'content_preserved_raw' => ($reEncInside['l']['l']['l']['atom'] ?? null) === 'x4',
+        ],
     ],
     'arg_mutation' => [
         'genome' => $argMut,
@@ -106,13 +133,37 @@ $out = [
     'refusals' => (static function () use ($dict, $parent): array {
         $r = [];
         try {
-            WordCodec::decode(['op' => '+', 'l' => ['word' => W1_NAME, 'args' => [['atom' => 'x0']]], 'r' => ['atom' => 'x1']], $dict);
+            WordCodec::decode([
+                'op' => '+',
+                'l' => [
+                    'word' => W1_NAME,
+                    'args' => [[
+                        'atom' => 'x0',
+                    ]],
+                ],
+                'r' => [
+                    'atom' => 'x1',
+                ],
+            ], $dict);
             $r['arity'] = 'NO-THROW';
         } catch (WordCodecException $e) {
             $r['arity'] = $e->getMessage();
         }
         try {
-            WordCodec::decode(['op' => '+', 'l' => ['word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]], 'r' => ['atom' => 'x1']], $dict);
+            WordCodec::decode([
+                'op' => '+',
+                'l' => [
+                    'word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef',
+                    'args' => [[
+                        'atom' => 'x0',
+                    ], [
+                        'atom' => 'x1',
+                    ]],
+                ],
+                'r' => [
+                    'atom' => 'x1',
+                ],
+            ], $dict);
             $r['missing'] = 'NO-THROW';
         } catch (WordCodecException $e) {
             $r['missing'] = $e->getMessage();

@@ -21,7 +21,9 @@ use BeeSwarm\Core\Search;
 
 BeeSwarm\Infra\Database::get();
 
-/** Детерминированная noise-фикстура (перебор исчерпывает бюджет). */
+/**
+ * Детерминированная noise-фикстура (перебор исчерпывает бюджет).
+ */
 function fx(int $nFeat, int $rows, int $seed): array
 {
     $X = [];
@@ -42,7 +44,7 @@ function fx(int $nFeat, int $rows, int $seed): array
 $g = new Grammar();
 $g->restrictTo(['add', 'sub', 'mul', 'div', 'sq']);
 
-echo "START: beam=0 prod-like rows=30 php=" . PHP_VERSION . "\n";
+echo 'START: beam=0 prod-like rows=30 php=' . PHP_VERSION . "\n";
 
 foreach ([100, 1000, 5000] as $t) {
     for ($rep = 0; $rep < 3; $rep++) {

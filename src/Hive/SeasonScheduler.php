@@ -18,7 +18,9 @@ namespace BeeSwarm\Hive;
 final class SeasonScheduler
 {
     public const TICKS_PER_PHASE = 2500;
+
     public const PHASES_PER_YEAR = 8;
+
     public const MAX_ATTEMPTS = 4;
 
     /**
@@ -28,14 +30,54 @@ final class SeasonScheduler
      * (prereg §4) → равномерный микс.
      */
     public const PHASES = [
-        ['explore' => 0.2, 'dream' => 0.4, 'verify' => 0.2, 'rest' => 0.2],
-        ['explore' => 0.6, 'dream' => 0.1, 'verify' => 0.2, 'rest' => 0.1],
-        ['explore' => 0.4, 'dream' => 0.0, 'verify' => 0.4, 'rest' => 0.2],
-        ['explore' => 0.3, 'dream' => 0.0, 'verify' => 0.5, 'rest' => 0.2],
-        ['explore' => 0.1, 'dream' => 0.0, 'verify' => 0.7, 'rest' => 0.2],
-        ['explore' => 0.1, 'dream' => 0.0, 'verify' => 0.5, 'rest' => 0.4],
-        ['explore' => 0.1, 'dream' => 0.5, 'verify' => 0.0, 'rest' => 0.4],
-        ['explore' => 0.25, 'dream' => 0.25, 'verify' => 0.25, 'rest' => 0.25],
+        [
+            'explore' => 0.2,
+            'dream' => 0.4,
+            'verify' => 0.2,
+            'rest' => 0.2,
+        ],
+        [
+            'explore' => 0.6,
+            'dream' => 0.1,
+            'verify' => 0.2,
+            'rest' => 0.1,
+        ],
+        [
+            'explore' => 0.4,
+            'dream' => 0.0,
+            'verify' => 0.4,
+            'rest' => 0.2,
+        ],
+        [
+            'explore' => 0.3,
+            'dream' => 0.0,
+            'verify' => 0.5,
+            'rest' => 0.2,
+        ],
+        [
+            'explore' => 0.1,
+            'dream' => 0.0,
+            'verify' => 0.7,
+            'rest' => 0.2,
+        ],
+        [
+            'explore' => 0.1,
+            'dream' => 0.0,
+            'verify' => 0.5,
+            'rest' => 0.4,
+        ],
+        [
+            'explore' => 0.1,
+            'dream' => 0.5,
+            'verify' => 0.0,
+            'rest' => 0.4,
+        ],
+        [
+            'explore' => 0.25,
+            'dream' => 0.25,
+            'verify' => 0.25,
+            'rest' => 0.25,
+        ],
     ];
 
     /**
@@ -44,21 +86,48 @@ final class SeasonScheduler
      * Settle=(7+0)/2. Значения захардкожены, сверены с PHASES тестом.
      */
     public const PHASES_D = [
-        ['explore' => 0.5, 'dream' => 0.05, 'verify' => 0.3, 'rest' => 0.15],
-        ['explore' => 0.2, 'dream' => 0.0, 'verify' => 0.6, 'rest' => 0.2],
-        ['explore' => 0.1, 'dream' => 0.25, 'verify' => 0.25, 'rest' => 0.4],
-        ['explore' => 0.225, 'dream' => 0.325, 'verify' => 0.225, 'rest' => 0.225],
+        [
+            'explore' => 0.5,
+            'dream' => 0.05,
+            'verify' => 0.3,
+            'rest' => 0.15,
+        ],
+        [
+            'explore' => 0.2,
+            'dream' => 0.0,
+            'verify' => 0.6,
+            'rest' => 0.2,
+        ],
+        [
+            'explore' => 0.1,
+            'dream' => 0.25,
+            'verify' => 0.25,
+            'rest' => 0.4,
+        ],
+        [
+            'explore' => 0.225,
+            'dream' => 0.325,
+            'verify' => 0.225,
+            'rest' => 0.225,
+        ],
     ];
 
-    /** @var array<int, array<string, float>> активная таблица пропорций */
+    /**
+     * @var array<int, array<string, float>> активная таблица пропорций
+     */
     private array $phases;
 
     private float $spent = 0.0;
+
     private float $deficit = 0.0;
+
     private bool $exhausted = false;
 
-    /** @var list<array<string, float|int>> */
+    /**
+     * @var list<array<string, float|int>>
+     */
     private array $ledgerRows = [];
+
     private ?float $prevSumEnergy = null;
 
     /**
@@ -212,13 +281,17 @@ final class SeasonScheduler
         ];
     }
 
-    /** @return list<array<string, float|int>> */
+    /**
+     * @return list<array<string, float|int>>
+     */
     public function ledgerRows(): array
     {
         return $this->ledgerRows;
     }
 
-    /** @return list<array<string, float>> пропорции (для драйвера/анализатора) */
+    /**
+     * @return list<array<string, float>> пропорции (для драйвера/анализатора)
+     */
     public function activePhases(): array
     {
         return $this->phases;

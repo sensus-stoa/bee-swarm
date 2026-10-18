@@ -43,6 +43,12 @@ $depth = (int) ($argv[3] ?? 2);
 $res = Search::find($X, $y, $g, $depth, $header, 0.0, 0.15, 90.0);
 $dt = microtime(true) - $t0;
 
-printf("%s rows=%d: found=%s cv=%.5f formula=%s (%.1fs)\n",
-    basename($csvPath), count($rows),
-    $res[0] ? 'YES' : 'no', (float) ($res[1] ?? -1), (string) ($res[2] ?? '-'), $dt);
+printf(
+    "%s rows=%d: found=%s cv=%.5f formula=%s (%.1fs)\n",
+    basename($csvPath),
+    count($rows),
+    $res[0] ? 'YES' : 'no',
+    (float) ($res[1] ?? -1),
+    (string) ($res[2] ?? '-'),
+    $dt
+);

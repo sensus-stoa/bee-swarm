@@ -18,34 +18,58 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use BeeSwarm\Certification\ContradictionEngine;
-use BeeSwarm\Certification\MetricPreflight;
 
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 foreach (['SWARM_DB_PATH', 'FORAGER_SOURCES'] as $k) {
     echo "ENV {$k}=" . (getenv($k) === false ? 'LOST' : getenv($k)) . "\n";
 }
-echo "START verify_1_11 " . gmdate('c') . "\n";
+echo 'START verify_1_11 ' . gmdate('c') . "\n";
 
 $failures = [];
 $logFile = (string) tempnam(sys_get_temp_dir(), 'verify_1_11_');
 
 // ── (a) Контракт детектора (unit-уровень, CCPP-артефакт) ────────────────────
-$candidate = ['atom' => '((x0/Rminx0)−Rrangex3)', 'found' => true, 'corr' => -0.947, 'cv' => 0.013];
-$ens = (object) ['recurrence' => 1.0];
-$cg = (object) ['sign_ok' => false, 'scale_ok' => true, 'corr' => -0.947];
+$candidate = [
+    'atom' => '((x0/Rminx0)−Rrangex3)',
+    'found' => true,
+    'corr' => -0.947,
+    'cv' => 0.013,
+];
+$ens = (object) [
+    'recurrence' => 1.0,
+];
+$cg = (object) [
+    'sign_ok' => false,
+    'scale_ok' => true,
+    'corr' => -0.947,
+];
 $verdict = ContradictionEngine::detect($candidate, $ens, $cg);
 if ($verdict->class !== 'CONTRADICTION' || $verdict->action !== 'INVERT_AND_RESEARCH') {
     $failures[] = '(a) детектор не классифицировал CCPP-артефакт: ' . $verdict->class;
 } else {
-    echo "(a) детект CCPP-артефакта: CONTRADICTION mirror=" . round($verdict->mirror_strength, 3) . " — OK\n";
+    echo '(a) детект CCPP-артефакта: CONTRADICTION mirror=' . round($verdict->mirror_strength, 3) . " — OK\n";
 }
 
 // Отрицательные кейсы (двойной барьер)
 $neg = [];
-$neg[] = ContradictionEngine::detect(['found' => true, 'corr' => 0.9], $ens, (object) ['sign_ok' => true, 'corr' => 0.9])->class;
-$neg[] = ContradictionEngine::detect($candidate, (object) ['recurrence' => 0.04], $cg)->class;
-$neg[] = ContradictionEngine::detect(['found' => true, 'corr' => -0.5], $ens, (object) ['sign_ok' => false, 'corr' => -0.5])->class;
+$neg[] = ContradictionEngine::detect([
+    'found' => true,
+    'corr' => 0.9,
+], $ens, (object) [
+    'sign_ok' => true,
+    'corr' => 0.9,
+])->class;
+$neg[] = ContradictionEngine::detect($candidate, (object) [
+    'recurrence' => 0.04,
+], $cg)->class;
+$neg[] = ContradictionEngine::detect([
+    'found' => true,
+    'corr' => -0.5,
+], $ens, (object) [
+    'sign_ok' => false,
+    'corr' => -0.5,
+])->class;
 if ($neg !== ['NOT_CONTRADICTION', 'NOT_CONTRADICTION', 'NOT_CONTRADICTION']) {
     $failures[] = '(a) двойной барьер дыряв: ' . json_encode($neg);
 } else {
@@ -58,11 +82,14 @@ if ($neg !== ['NOT_CONTRADICTION', 'NOT_CONTRADICTION', 'NOT_CONTRADICTION']) {
 // neither является REFUSED-классом — таксономия {DATA,DEPTH,GRAMMAR,NOISE,TIMEOUT,
 // ENERGY} + METRIC-DOMAIN (подкласс GRAMMAR, V0.12) сохраняется.
 $inversionClasses = ['INVERTED_LAW', 'ANOMALY', 'SKIP_ALREADY_INVERTED'];
-echo "(b) T1 partition: CONTRADICTION = вердикт-путь (исходы " . implode('|', $inversionClasses)
+echo '(b) T1 partition: CONTRADICTION = вердикт-путь (исходы ' . implode('|', $inversionClasses)
     . "), REFUSED-таксономия не расширяется — полнота сохранена — OK\n";
 
 // ── (c) Инверсия ограничена 1 повтором ──────────────────────────────────────
-$skip = ContradictionEngine::invertAndResearch([], [], ['inverted' => true, 'atom' => 'x'], $logFile, []);
+$skip = ContradictionEngine::invertAndResearch([], [], [
+    'inverted' => true,
+    'atom' => 'x',
+], $logFile, []);
 if ($skip->class !== 'SKIP_ALREADY_INVERTED') {
     $failures[] = '(c) анти-зацикливание сломано: ' . $skip->class;
 } else {
@@ -71,7 +98,9 @@ if ($skip->class !== 'SKIP_ALREADY_INVERTED') {
 
 // ── (d) Идемпотентность флага ───────────────────────────────────────────────
 ContradictionEngine::resetBlindnessFlags();
-$cand = ['atom' => '((x0+x1)+(x0−x2))'];
+$cand = [
+    'atom' => '((x0+x1)+(x0−x2))',
+];
 ContradictionEngine::flagMetricBlindness($cand, 0.94, 'ccpp', $logFile);
 ContradictionEngine::flagMetricBlindness($cand, 0.94, 'ccpp', $logFile);
 $count = substr_count((string) file_get_contents($logFile), 'METRIC_BLINDNESS_FLAG');

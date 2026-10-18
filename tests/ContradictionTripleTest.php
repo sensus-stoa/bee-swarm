@@ -22,13 +22,21 @@ final class ContradictionTripleTest extends TestCase
     {
         // Инвертированный закон: anchor на −y дал m̂_inv = 2.0 → на y: m̂ = −2.0
         $out = ContradictionEngine::buildLawTriple('(*×*)', 2.0, 'inverted');
-        $this->assertSame(['shape' => '(*×*)', 'm_hat' => -2.0, 'sign' => 'inverted'], $out);
+        $this->assertSame([
+            'shape' => '(*×*)',
+            'm_hat' => -2.0,
+            'sign' => 'inverted',
+        ], $out);
     }
 
     public function testTripleSerializationDirect(): void
     {
         $out = ContradictionEngine::buildLawTriple('(C×*)', 0.5, 'direct');
-        $this->assertSame(['shape' => '(C×*)', 'm_hat' => 0.5, 'sign' => 'direct'], $out);
+        $this->assertSame([
+            'shape' => '(C×*)',
+            'm_hat' => 0.5,
+            'sign' => 'direct',
+        ], $out);
     }
 
     public function testInvertedAnchorNegation(): void

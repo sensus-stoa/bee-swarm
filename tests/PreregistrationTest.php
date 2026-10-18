@@ -32,17 +32,22 @@ class PreregistrationTest extends TestCase
         putenv('NO_NOVELTY=1');
         // Изоляция: только base-задачи (forager с page_034 — нестабилен)
         putenv('FORAGER_SOURCES=' . sys_get_temp_dir() . '/prereg_empty');
+        // TEST-HYGIENE (fast2min): 15 пустых тиков × 1с сна — срезано (поиски base-задач остаются: они дают discovery → preregistration).
+        putenv('EMPTY_POOL_SLEEP_US=0');
         @mkdir(sys_get_temp_dir() . '/prereg_empty');
         try {
             $hive = new Hive(
                 plateau: new PlateauDetector(50, plateauSleepUs: 0),
-                maxTicks: 15,
+                // TEST-HYGIENE (fast2min): probe 17.10 — первый PREREG-маркер на тике 2-3;
+                // 5 тиков покрывают оба ассерта (12789 строк на 15 тиках).
+                maxTicks: 5,
                 logFile: $logFile,
             );
             $hive->run();
         } finally {
             putenv('NO_NOVELTY');
             putenv('FORAGER_SOURCES');
+            putenv('EMPTY_POOL_SLEEP_US');
         }
 
         $rows = Database::get()->query(
@@ -74,16 +79,21 @@ class PreregistrationTest extends TestCase
         $logFile = tempnam(sys_get_temp_dir(), 'pr2_');
         putenv('NO_NOVELTY=1');
         putenv('FORAGER_SOURCES=' . sys_get_temp_dir() . '/prereg_empty');
+        // TEST-HYGIENE (fast2min): 15 пустых тиков × 1с сна — срезано (поиски base-задач остаются: они дают discovery → preregistration).
+        putenv('EMPTY_POOL_SLEEP_US=0');
         try {
             $hive = new Hive(
                 plateau: new PlateauDetector(50, plateauSleepUs: 0),
-                maxTicks: 15,
+                // TEST-HYGIENE (fast2min): probe 17.10 — первый PREREG-маркер на тике 2-3;
+                // 5 тиков покрывают оба ассерта (12789 строк на 15 тиках).
+                maxTicks: 5,
                 logFile: $logFile,
             );
             $hive->run();
         } finally {
             putenv('NO_NOVELTY');
             putenv('FORAGER_SOURCES');
+            putenv('EMPTY_POOL_SLEEP_US');
         }
 
         $log = file_get_contents($logFile);

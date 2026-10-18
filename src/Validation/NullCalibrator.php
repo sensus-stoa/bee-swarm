@@ -59,7 +59,7 @@ class NullCalibrator
         // это тяжёлый хвост (calibrateEpsilon на каждый fingerprint-тик).
         // NULL_CALIBRATOR_PERMS режет бюджет в тестах; прод = 100 (канон §0.7).
         if ($nPerms === self::DEFAULT_PERMS) {
-            $nPerms = max(1, (int) (getenv("NULL_CALIBRATOR_PERMS") ?: self::DEFAULT_PERMS));
+            $nPerms = max(1, (int) (getenv('NULL_CALIBRATOR_PERMS') ?: self::DEFAULT_PERMS));
         }
 
         $bestCvs = [];

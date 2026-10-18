@@ -15,15 +15,17 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 const MAX_Z_PER_TEMPLATE = 16;
 const DEDUP_RHO = 0.999;
 const BUDGET_SEC = 30.0;
 const N_SEEDS = 20;
 
-/** Загрузка CSV: все колонки float, последняя = target */
+/**
+ * Загрузка CSV: все колонки float, последняя = target
+ */
 function loadCsvC(string $path): array
 {
     $X = [];
@@ -257,15 +259,30 @@ function percentileC(array $a, int $p): float
 
 $base = __DIR__ . '/..';
 $tasks = [
-    'feynman_heat' => ['file' => 'data/feynman_heat_conduction.csv', 'kind' => 'csv'],
-    'feynman_dot' => ['file' => 'data/feynman_dot_product.csv', 'kind' => 'csv'],
-    'wine' => ['file' => 'wine.data', 'kind' => 'wine'],
-    'airfoil' => ['file' => 'data/airfoil_selfnoise.csv', 'kind' => 'csv'],
-    'energy' => ['file' => 'data/energy_efficiency.csv', 'kind' => 'csv'],
+    'feynman_heat' => [
+        'file' => 'data/feynman_heat_conduction.csv',
+        'kind' => 'csv',
+    ],
+    'feynman_dot' => [
+        'file' => 'data/feynman_dot_product.csv',
+        'kind' => 'csv',
+    ],
+    'wine' => [
+        'file' => 'wine.data',
+        'kind' => 'wine',
+    ],
+    'airfoil' => [
+        'file' => 'data/airfoil_selfnoise.csv',
+        'kind' => 'csv',
+    ],
+    'energy' => [
+        'file' => 'data/energy_efficiency.csv',
+        'kind' => 'csv',
+    ],
 ];
 
 echo "=== EXP-030: Culture as Semantic Compression ===\n";
-echo "templates: SUB/MUL, K=" . MAX_Z_PER_TEMPLATE . "/template, dedup ρ>" . DEDUP_RHO . "\n";
+echo 'templates: SUB/MUL, K=' . MAX_Z_PER_TEMPLATE . '/template, dedup ρ>' . DEDUP_RHO . "\n";
 
 foreach ($tasks as $name => $t) {
     $file = $base . '/' . $t['file'];
@@ -294,7 +311,10 @@ foreach ($tasks as $name => $t) {
         $prov = [];
         $zCols = [];
         $zi = 0;
-        foreach (['SUB' => $subTerms, 'MUL' => $mulTerms] as $tpl => $terms) {
+        foreach ([
+            'SUB' => $subTerms,
+            'MUL' => $mulTerms,
+        ] as $tpl => $terms) {
             foreach ($terms as $term) {
                 $vec = [];
                 $ci = array_column($Xtr, $term['i']);
@@ -302,7 +322,11 @@ foreach ($tasks as $name => $t) {
                 foreach ($ci as $k => $_) {
                     $vec[] = ($tpl === 'SUB') ? ($ci[$k] - $cj[$k]) : ($ci[$k] * $cj[$k]);
                 }
-                $prov["z{$zi}"] = ['op' => $tpl, 'a' => "x{$term['i']}", 'b' => "x{$term['j']}"];
+                $prov["z{$zi}"] = [
+                    'op' => $tpl,
+                    'a' => "x{$term['i']}",
+                    'b' => "x{$term['j']}",
+                ];
                 $zCols["z{$zi}"] = $vec;
                 $zi++;
             }

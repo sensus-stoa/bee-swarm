@@ -28,7 +28,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class ContradictionDetectTest extends TestCase
 {
-    /** CCPP-артефакт Demo#2: зеркальный устойчивый кандидат. */
+    /**
+     * CCPP-артефакт Demo#2: зеркальный устойчивый кандидат.
+     */
     private function ccppCandidate(): array
     {
         return [
@@ -41,12 +43,20 @@ final class ContradictionDetectTest extends TestCase
 
     private function ensembleResult(float $recurrence): object
     {
-        return (object) ['recurrence' => $recurrence, 'verdict' => $recurrence >= 0.5 ? 'ENSEMBLE_CERT' : 'UNSTABLE_CERTIFICATE'];
+        return (object) [
+            'recurrence' => $recurrence,
+            'verdict' => $recurrence >= 0.5 ? 'ENSEMBLE_CERT' : 'UNSTABLE_CERTIFICATE',
+        ];
     }
 
     private function coGates(float $corr): object
     {
-        return (object) ['sign_ok' => $corr > 0.0, 'scale_ok' => true, 'corr' => $corr, 'scale_ratio' => 0.15];
+        return (object) [
+            'sign_ok' => $corr > 0.0,
+            'scale_ok' => true,
+            'corr' => $corr,
+            'scale_ratio' => 0.15,
+        ];
     }
 
     public function testCcppArtifactTriggersContradiction(): void

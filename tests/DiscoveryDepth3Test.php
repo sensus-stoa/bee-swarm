@@ -61,8 +61,7 @@ class DiscoveryDepth3Test extends TestCase
         // ЕЙ, а не факторизованной. Контракт: закон двухуровневый (L1⊕L1)
         // ИЛИ сумма двух продуктов — оба cv=0 на фикстуре.
         $atoms = array_map(fn ($c) => $c['atom'] ?? '', $found);
-        $twoLevel = array_filter($atoms, fn (string $a): bool =>
-            (bool) (preg_match('/\(x0.{1,12}x1\).{1,6}x2/', $a)
+        $twoLevel = array_filter($atoms, fn (string $a): bool => (bool) (preg_match('/\(x0.{1,12}x1\).{1,6}x2/', $a)
                 || preg_match('/\(x\d+.{1,8}x2\).{1,6}\(x\d+.{1,8}x2\)/', $a)));
         $this->assertNotEmpty($twoLevel, 'two-level law family expected: ' . json_encode($atoms));
     }

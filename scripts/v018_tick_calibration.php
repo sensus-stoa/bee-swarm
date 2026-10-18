@@ -71,7 +71,9 @@ function csvFixture(string $path, int $targetCol): array
     return [$X, $y];
 }
 
-/** Прогон одного (fixture, depth, budgetTicks). Возвращает [sec, found, diag, ticks?]. */
+/**
+ * Прогон одного (fixture, depth, budgetTicks). Возвращает [sec, found, diag, ticks?].
+ */
 function probe(array $X, array $y, int $depth, int $budgetTicks): array
 {
     $g = new Grammar();
@@ -97,8 +99,16 @@ echo $line;
 
 // Матрица: {fixture, depth, ticks[]}
 $cases = [
-    ['noise d=2 nFeat=5', fn (): array => noiseFixture(5, 40), 2],
-    ['noise d=3 nFeat=8', fn (): array => noiseFixture(8, 40), 3],
+    [
+        'noise d=2 nFeat=5',
+        fn (): array => noiseFixture(5, 40),
+        2,
+    ],
+    [
+        'noise d=3 nFeat=8',
+        fn (): array => noiseFixture(8, 40),
+        3,
+    ],
 ];
 $ticksSet = [100, 1000, 5000, 20000];
 

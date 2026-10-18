@@ -61,7 +61,9 @@ ExpressionEvaluator::resetCaches();
 
 // ── Мир: ключи и пакеты ────────────────────────────────────────────────
 
-/** Alpha-ключи задач мира. $withFinal=false для birth-gate (A3). */
+/**
+ * Alpha-ключи задач мира. $withFinal=false для birth-gate (A3).
+ */
 function worldLawKeys(array $world, bool $withFinal): array
 {
     $keys = [];
@@ -79,7 +81,9 @@ function worldLawKeys(array $world, bool $withFinal): array
     return $keys;
 }
 
-/** Стартовый пакет: seed-AST (train-законы + binding-варианты), словарь, пул. */
+/**
+ * Стартовый пакет: seed-AST (train-законы + binding-варианты), словарь, пул.
+ */
 function freshPackage(array $world, int $rep, int $w): array
 {
     $seedAsts = [];
@@ -88,7 +92,9 @@ function freshPackage(array $world, int $rep, int $w): array
         $seedAsts[] = $ast;
         $seedAsts[] = GenomeEvolveLib::instantiateShape($ast, new Random\Randomizer(new Random\Engine\Mt19937(BASE_SEED + 100 * $w + 17 * $ti + $rep)));
     }
-    $dict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $a): array => ['ast' => $a], $seedAsts));
+    $dict = GenomeBenchmarkLib::extractDictionary(array_map(static fn (array $a): array => [
+        'ast' => $a,
+    ], $seedAsts));
     // чистота стартового пакета (A6, owner §6): слова != целые формы FINAL-задач
     // (train-законы в словаре = легитимное prior-знание, симметричное всем рукам)
     $finalKeys = [];
@@ -98,12 +104,20 @@ function freshPackage(array $world, int $rep, int $w): array
     $dict = array_values(array_filter($dict, static function (array $e) use ($finalKeys, $dict): bool {
         return ! isset($finalKeys[GenomeBenchmarkLib::alphaCanonicalKey(WordCodec::decodeDefinition($e, $dict))]);
     }));
-    $pool = array_map(static fn (array $e): array => ['ast' => WordCodec::decodeDefinition($e, $dict)], $dict);
+    $pool = array_map(static fn (array $e): array => [
+        'ast' => WordCodec::decodeDefinition($e, $dict),
+    ], $dict);
 
-    return ['seedAsts' => $seedAsts, 'dict' => $dict, 'pool' => $pool];
+    return [
+        'seedAsts' => $seedAsts,
+        'dict' => $dict,
+        'pool' => $pool,
+    ];
 }
 
-/** Proper-subtree кандидаты (4..12 узлов, глубина ≥1 — целая форма не кандидат). */
+/**
+ * Proper-subtree кандидаты (4..12 узлов, глубина ≥1 — целая форма не кандидат).
+ */
 function subtreeCandidates(array $ast): array
 {
     $out = [];
@@ -126,7 +140,9 @@ function subtreeCandidates(array $ast): array
     return $out;
 }
 
-/** Alpha-ключи словаря (duplicate-check birth-gate, A3). */
+/**
+ * Alpha-ключи словаря (duplicate-check birth-gate, A3).
+ */
 function dictAlphaKeys(array $dict): array
 {
     $keys = [];
@@ -137,7 +153,9 @@ function dictAlphaKeys(array $dict): array
     return $keys;
 }
 
-/** Стартовая популяция задачи: 10 живых повреждённых копий seed-закона. */
+/**
+ * Стартовая популяция задачи: 10 живых повреждённых копий seed-закона.
+ */
 function seedPopulation(array $task, array $seedAst, int $seed): array
 {
     $rowsAll = array_merge($task['train'], $task['held']);
@@ -147,7 +165,14 @@ function seedPopulation(array $task, array $seedAst, int $seed): array
         for ($s = 0; $s < 20; $s++) {
             $cand = GenomeEvolveLib::damageParent($seedAst, $seed + 97 * $i + $s);
             if (GenomeEvolveLib::rmse($cand['ast'], $rowsAll, $yAll) !== null) {
-                $pop[] = ['ast' => $cand['ast'], 'g' => null, 'lin' => $seed . '-t' . $i, 'chain' => 0, 'train' => null, 'valid' => null];
+                $pop[] = [
+                    'ast' => $cand['ast'],
+                    'g' => null,
+                    'lin' => $seed . '-t' . $i,
+                    'chain' => 0,
+                    'train' => null,
+                    'valid' => null,
+                ];
 
                 break;
             }
@@ -163,11 +188,20 @@ function initInstance(string $arm, array $world, int $rep, int $w, string $mode,
 {
     $package = freshPackage($world, $rep, $w);
     $state = [
-        'arm' => $arm, 'rep' => $rep, 'w' => $w, 'mode' => $mode,
-        'dict' => $package['dict'], 'pool' => $package['pool'],
-        'gen' => 0, 'evals' => 0, 'attempts' => 0,
-        'improved' => 0, 'births' => [], 'word_usage' => [],
-        'rootChainMax' => [], 'genBestValid' => [],
+        'arm' => $arm,
+        'rep' => $rep,
+        'w' => $w,
+        'mode' => $mode,
+        'dict' => $package['dict'],
+        'pool' => $package['pool'],
+        'gen' => 0,
+        'evals' => 0,
+        'attempts' => 0,
+        'improved' => 0,
+        'births' => [],
+        'word_usage' => [],
+        'rootChainMax' => [],
+        'genBestValid' => [],
         'birthChecks' => 0,
     ];
     $fitnessHash = WordCumTransition::fitnessHash($w, $world);
@@ -256,10 +290,14 @@ function advanceInstance(array $state, array $world, array $conf, array $lawKeys
                 try {
                     if ($arm === 'D') {
                         $r = GenomeEvolveLib::mutateAst($best['ast'], $rng, $state['pool']);
-                        $mut = $r['noop'] ? null : ['ast' => $r['ast']];
+                        $mut = $r['noop'] ? null : [
+                            'ast' => $r['ast'],
+                        ];
                     } else {
                         $r = GenomeEvolveLib::mutateGenome($best['g'], $rng, $state['dict']);
-                        $mut = $r['noop'] ? null : ['g' => $r['genome']];
+                        $mut = $r['noop'] ? null : [
+                            'g' => $r['genome'],
+                        ];
                     }
                 } catch (Throwable) {
                     $mut = null;
@@ -279,7 +317,14 @@ function advanceInstance(array $state, array $world, array $conf, array $lawKeys
                 $improved = $best['valid'] !== null && $valid < $best['valid'] - $theta;
                 $chain = $improved ? $best['chain'] + 1 : 1;
                 $lin = $best['lin'] . '/g' . $gen . 'o' . $o;
-                $ind = ['ast' => $arm === 'D' ? $ast : null, 'g' => $arm === 'D' ? null : $mut['g'], 'lin' => $lin, 'chain' => $chain, 'train' => $train, 'valid' => $valid];
+                $ind = [
+                    'ast' => $arm === 'D' ? $ast : null,
+                    'g' => $arm === 'D' ? null : $mut['g'],
+                    'lin' => $lin,
+                    'chain' => $chain,
+                    'train' => $train,
+                    'valid' => $valid,
+                ];
                 $offspring[$ti][] = $ind;
                 if ($improved) {
                     $state['improved']++;
@@ -389,19 +434,31 @@ function advanceInstance(array $state, array $world, array $conf, array $lawKeys
                     continue;
                 }
                 $entry = WordCodec::makeEntry('BW' . md5($k), $canonical, $state['dict']);
-                $windowCandidates[] = ['entry' => $entry, 'alpha' => substr(md5($k), 0, 8), 'gen' => $gen, 'nodes' => WordCodec::nodesCount($entry['genome'])];
+                $windowCandidates[] = [
+                    'entry' => $entry,
+                    'alpha' => substr(md5($k), 0, 8),
+                    'gen' => $gen,
+                    'nodes' => WordCodec::nodesCount($entry['genome']),
+                ];
             }
         }
         // инъекция собственных рождений: B → словарь, D → пул (C — снаружи, перестановка)
         if ($arm === 'B') {
             foreach ($windowCandidates as $wc) {
                 $state['dict'][] = $wc['entry'];
-                $state['births'][] = ['gen' => $wc['gen'], 'alpha' => $wc['alpha'], 'name' => $wc['entry']['name'], 'nodes' => $wc['nodes']];
+                $state['births'][] = [
+                    'gen' => $wc['gen'],
+                    'alpha' => $wc['alpha'],
+                    'name' => $wc['entry']['name'],
+                    'nodes' => $wc['nodes'],
+                ];
             }
         }
         if ($arm === 'D') {
             foreach ($windowCandidates as $wc) {
-                $state['pool'][] = ['ast' => WordCodec::decodeDefinition($wc['entry'], $state['dict'])];
+                $state['pool'][] = [
+                    'ast' => WordCodec::decodeDefinition($wc['entry'], $state['dict']),
+                ];
             }
         }
     }
@@ -409,7 +466,9 @@ function advanceInstance(array $state, array $world, array $conf, array $lawKeys
     return [$state, $windowCandidates];
 }
 
-/** Финальный тест: однократный, НЕ дебетует пул (A3). */
+/**
+ * Финальный тест: однократный, НЕ дебетует пул (A3).
+ */
 function finalShot(array $state, array $world, int $seedBase): ?float
 {
     $finalTask = WordCumWorlds::task($world['tasks']['final'][0]['formula'], $seedBase + 424242);
@@ -439,7 +498,9 @@ $t0 = hrtime(true);
 $results = [];
 $nWindows = intdiv($conf['gens'] + GENS_PER_WINDOW - 1, GENS_PER_WINDOW);
 
-/** Полный прогон инстанса — руки без межрепликовой синхронизации (A/B/D). */
+/**
+ * Полный прогон инстанса — руки без межрепликовой синхронизации (A/B/D).
+ */
 function runFull(string $arm, array $world, int $rep, int $wi, string $mode, ?array $carry, array $conf, array $lawKeys, int $seedBase): array
 {
     $state = initInstance($arm, $world, $rep, $wi, $mode, $carry, $seedBase);
@@ -464,7 +525,9 @@ function runFull(string $arm, array $world, int $rep, int $wi, string $mode, ?ar
     return $state;
 }
 
-/** C: window-lockstep — рождения переставляются между независимыми линиями (A4). */
+/**
+ * C: window-lockstep — рождения переставляются между независимыми линиями (A4).
+ */
 function runCLockstep(string $arm, array $world, int $wi, string $mode, array $carryStore, array $conf, array $lawKeys): array
 {
     $states = [];
@@ -502,7 +565,13 @@ function runCLockstep(string $arm, array $world, int $wi, string $mode, array $c
                     break;
                 }
                 $states[$r]['dict'][] = $wc['entry'];
-                $states[$r]['births'][] = ['gen' => $wc['gen'], 'alpha' => $wc['alpha'], 'name' => $wc['entry']['name'], 'nodes' => $wc['nodes'], 'shuffled_from' => $donor];
+                $states[$r]['births'][] = [
+                    'gen' => $wc['gen'],
+                    'alpha' => $wc['alpha'],
+                    'name' => $wc['entry']['name'],
+                    'nodes' => $wc['nodes'],
+                    'shuffled_from' => $donor,
+                ];
             }
         }
     }
@@ -535,30 +604,45 @@ foreach ($conf['worlds'] as $wi) {
                 $carry = $mode === 'inherited' ? ($carryStore[$arm][$rep] ?? null) : null;
                 $state = runFull($arm, $world, $rep, $wi, $mode, $carry, $conf, $lawKeys, $seedBase);
                 $carryStore[$arm][$rep] = [
-                    'dict' => $state['dict'], 'pool' => $state['pool'], 'pops' => $state['pops'],
+                    'dict' => $state['dict'],
+                    'pool' => $state['pool'],
+                    'pops' => $state['pops'],
                     'retentionRows' => [
                         0 => WordCumWorlds::task($world['tasks']['train'][0]['formula'], $seedBase + 31),
                         1 => WordCumWorlds::task($world['tasks']['train'][1]['formula'], $seedBase + 32),
                     ],
                 ];
                 $results[] = $state;
-                echo sprintf("W%d rep%d %s[%s]: maxchain=%d chains=%d improved=%d births=%d dict=%d evals=%d final=%s\n",
-                    $wi, $rep, $arm, $mode,
+                echo sprintf(
+                    "W%d rep%d %s[%s]: maxchain=%d chains=%d improved=%d births=%d dict=%d evals=%d final=%s\n",
+                    $wi,
+                    $rep,
+                    $arm,
+                    $mode,
                     $state['rootChainMax'] === [] ? 0 : max($state['rootChainMax']),
                     count(array_filter($state['rootChainMax'], static fn ($l): bool => $l >= 3)),
-                    $state['improved'], count($state['births']), count($state['dict']), $state['evals'],
-                    $state['final'] === null ? 'null' : round($state['final'], 4));
+                    $state['improved'],
+                    count($state['births']),
+                    count($state['dict']),
+                    $state['evals'],
+                    $state['final'] === null ? 'null' : round($state['final'], 4)
+                );
             }
             if ($wi > 0) {
                 for ($rep = 0; $rep < $conf['reps']; $rep++) {
                     $seedBase = BASE_SEED + 10007 * $rep;
                     $state = runFull($arm, $world, $rep, $wi, 'restart', null, $conf, $lawKeys, $seedBase);
                     $results[] = $state;
-                    echo sprintf("W%d rep%d %s[rst]: maxchain=%d improved=%d evals=%d final=%s\n",
-                        $wi, $rep, $arm,
+                    echo sprintf(
+                        "W%d rep%d %s[rst]: maxchain=%d improved=%d evals=%d final=%s\n",
+                        $wi,
+                        $rep,
+                        $arm,
                         $state['rootChainMax'] === [] ? 0 : max($state['rootChainMax']),
-                        $state['improved'], $state['evals'],
-                        $state['final'] === null ? 'null' : round($state['final'], 4));
+                        $state['improved'],
+                        $state['evals'],
+                        $state['final'] === null ? 'null' : round($state['final'], 4)
+                    );
                 }
             }
             continue;
@@ -569,28 +653,42 @@ foreach ($conf['worlds'] as $wi) {
             $rep = $state['rep'];
             $seedBase = BASE_SEED + 10007 * $rep;
             $carryStore['C'][$rep] = [
-                'dict' => $state['dict'], 'pool' => $state['pool'], 'pops' => $state['pops'],
+                'dict' => $state['dict'],
+                'pool' => $state['pool'],
+                'pops' => $state['pops'],
                 'retentionRows' => [
                     0 => WordCumWorlds::task($world['tasks']['train'][0]['formula'], $seedBase + 31),
                     1 => WordCumWorlds::task($world['tasks']['train'][1]['formula'], $seedBase + 32),
                 ],
             ];
             $results[] = $state;
-            echo sprintf("W%d rep%d C[%s]: maxchain=%d chains=%d improved=%d births=%d(shuf) dict=%d evals=%d final=%s\n",
-                $wi, $rep, $mode,
+            echo sprintf(
+                "W%d rep%d C[%s]: maxchain=%d chains=%d improved=%d births=%d(shuf) dict=%d evals=%d final=%s\n",
+                $wi,
+                $rep,
+                $mode,
                 $state['rootChainMax'] === [] ? 0 : max($state['rootChainMax']),
                 count(array_filter($state['rootChainMax'], static fn ($l): bool => $l >= 3)),
-                $state['improved'], count($state['births']), count($state['dict']), $state['evals'],
-                $state['final'] === null ? 'null' : round($state['final'], 4));
+                $state['improved'],
+                count($state['births']),
+                count($state['dict']),
+                $state['evals'],
+                $state['final'] === null ? 'null' : round($state['final'], 4)
+            );
         }
         if ($wi > 0) {
             foreach (runCLockstep('C', $world, $wi, 'restart', [], $conf, $lawKeys) as $state) {
                 $results[] = $state;
-                echo sprintf("W%d rep%d C[rst]: maxchain=%d improved=%d births=%d(shuf) evals=%d final=%s\n",
-                    $wi, $state['rep'],
+                echo sprintf(
+                    "W%d rep%d C[rst]: maxchain=%d improved=%d births=%d(shuf) evals=%d final=%s\n",
+                    $wi,
+                    $state['rep'],
                     $state['rootChainMax'] === [] ? 0 : max($state['rootChainMax']),
-                    $state['improved'], count($state['births']), $state['evals'],
-                    $state['final'] === null ? 'null' : round($state['final'], 4));
+                    $state['improved'],
+                    count($state['births']),
+                    $state['evals'],
+                    $state['final'] === null ? 'null' : round($state['final'], 4)
+                );
             }
         }
     }
@@ -599,5 +697,9 @@ $wall = round((hrtime(true) - $t0) / 1e9, 1);
 echo "wall={$wall}s\n";
 
 $outFile = dirname(__DIR__, 2) . '/Benchmarks/word_cum001/' . ($isDev ? 'DEV.json' : 'checkpoint_raw.json');
-file_put_contents($outFile, json_encode(['conf' => $conf, 'wall_s' => $wall, 'results' => $results], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+file_put_contents($outFile, json_encode([
+    'conf' => $conf,
+    'wall_s' => $wall,
+    'results' => $results,
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 echo 'written: ', $outFile, "\n";

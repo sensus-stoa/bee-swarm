@@ -93,12 +93,20 @@ final class DreamCongruenceTest extends TestCase
 
     private static function taskPlusSq(string $domain): array
     {
-        return ['name' => 'dream_sq', 'domain' => $domain, 'data' => self::rowsPlusSq(0.0)];
+        return [
+            'name' => 'dream_sq',
+            'domain' => $domain,
+            'data' => self::rowsPlusSq(0.0),
+        ];
     }
 
     private static function taskMinusSq(string $domain): array
     {
-        return ['name' => 'dream_minus', 'domain' => $domain, 'data' => self::rowsMinusSq(0.0)];
+        return [
+            'name' => 'dream_minus',
+            'domain' => $domain,
+            'data' => self::rowsMinusSq(0.0),
+        ];
     }
 
     private function setPool(array $tasks): void
@@ -144,7 +152,10 @@ final class DreamCongruenceTest extends TestCase
             json_encode([
                 'members' => [$classId ?? $formula],
                 'split_at' => null,
-                'domain' => ['0' => [0.0, 40.0], '1' => [0.0, 40.0]],
+                'domain' => [
+                    '0' => [0.0, 40.0],
+                    '1' => [0.0, 40.0],
+                ],
             ]),
         ]);
     }
@@ -246,7 +257,7 @@ final class DreamCongruenceTest extends TestCase
             $infix = \BeeSwarm\Core\ComposeBridge::toInfix((string) $f['atom'])
                 ?? (string) $f['atom'];
             $vec = ExpressionEvaluator::evaluateFormula($infix, $X);
-            self::assertNotNull($vec, "compose-атом вычислим после моста: {$f['atom']} -> $infix");
+            self::assertNotNull($vec, "compose-атом вычислим после моста: {$f['atom']} -> {$infix}");
         }
     }
 

@@ -40,9 +40,10 @@ class TrailMarksTest extends TestCase
         // Тот же расчёт, что в Search::writeTrailMarks: ТОЛЬКО labels.
         // n (число строк/plausible) в scope НЕ входит — плавает между сидами
         // (решение сессии 10.10, комментарий в writeTrailMarks).
-        return 'sha1:' . sha1(json_encode(['labels' => explode(',', self::DOMAIN_FINGERPRINT)]));
+        return 'sha1:' . sha1(json_encode([
+            'labels' => explode(',', self::DOMAIN_FINGERPRINT),
+        ]));
     }
-
 
     protected function setUp(): void
     {

@@ -29,7 +29,7 @@ $ticks = $full ? 50 : 15;
 $errors = [];
 
 // ── TEST 1: RNG clean baseline ──────────────────────────
-echo "[SMOKE] RNG clean baseline... ";
+echo '[SMOKE] RNG clean baseline... ';
 if (RngIsolation::hasUnrestoredGuards()) {
     echo "FAIL (unrestored RNG guards at startup!)\n";
     $errors[] = 'Unrestored RNG guards at baseline';
@@ -38,7 +38,7 @@ if (RngIsolation::hasUnrestoredGuards()) {
 }
 
 // ── TEST 2: TaskGenerator restore RNG ──────────────────
-echo "[SMOKE] TaskGenerator RNG restore... ";
+echo '[SMOKE] TaskGenerator RNG restore... ';
 $gen = new TaskGenerator();
 $gen->createComposeTasks();
 if (RngIsolation::hasUnrestoredGuards()) {
@@ -75,7 +75,7 @@ try {
 }
 
 // ── TEST 4: RNG clean after full run ───────────────────
-echo "[SMOKE] RNG clean after run... ";
+echo '[SMOKE] RNG clean after run... ';
 if (RngIsolation::hasUnrestoredGuards()) {
     echo "FAIL (unrestored RNG guards after Hive::run()!)\n";
     $errors[] = 'Unrestored RNG guards after full Hive run — srand() leak in tick loop';
@@ -84,7 +84,7 @@ if (RngIsolation::hasUnrestoredGuards()) {
 }
 
 // ── TEST 5: Discoveries made ───────────────────────────
-echo "[SMOKE] Discoveries in log... ";
+echo '[SMOKE] Discoveries in log... ';
 $discoveries = substr_count($log, '🔍');
 echo "{$discoveries} discovery(s) ";
 
@@ -98,7 +98,7 @@ if ($full && $discoveries < 2) {
 }
 
 // ── TEST 6: Bee population alive ───────────────────────
-echo "[SMOKE] Bee population... ";
+echo '[SMOKE] Bee population... ';
 $bees = $hive->getBees();
 $alive = count(array_filter($bees, fn ($b) => $b->isAlive()));
 if ($alive === 0) {
@@ -111,7 +111,7 @@ if ($alive === 0) {
 // ── RESULT ─────────────────────────────────────────────
 echo "\n" . str_repeat('=', 50) . "\n";
 if (empty($errors)) {
-    echo "SMOKE TEST: PASS ✓ (mode: " . ($full ? 'full' : 'quick') . ", {$ticks} ticks)\n";
+    echo 'SMOKE TEST: PASS ✓ (mode: ' . ($full ? 'full' : 'quick') . ", {$ticks} ticks)\n";
     exit(0);
 } else {
     echo "SMOKE TEST: FAIL ✗\n";

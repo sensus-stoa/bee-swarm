@@ -15,12 +15,18 @@ namespace BeeSwarm\Hive;
 final class RouteMutator
 {
     public const TYPE_REPLACE = 0;
+
     public const TYPE_SWAP = 1;
+
     public const TYPE_CONDITION = 2;
+
     public const TYPE_BUDGET = 3;
+
     public const TYPE_SHORTEN = 4;
 
-    /** Штраф сложности маршрута в score (Ledger). */
+    /**
+     * Штраф сложности маршрута в score (Ledger).
+     */
     public const COMPLEXITY_PENALTY = 0.05;
 
     /**
@@ -89,7 +95,9 @@ final class RouteMutator
         return $child;
     }
 
-    /** @return array<string,mixed> */
+    /**
+     * @return array<string,mixed>
+     */
     public static function randomAction(): array
     {
         $op = RouteGenome::ACTION_OPS[array_rand(RouteGenome::ACTION_OPS)];
@@ -103,23 +111,37 @@ final class RouteMutator
             ];
         }
         if ($op === 'USE_MARKS') {
-            return ['op' => 'USE_MARKS', 'k' => mt_rand(1, 10)];
+            return [
+                'op' => 'USE_MARKS',
+                'k' => mt_rand(1, 10),
+            ];
         }
 
-        return ['op' => 'LOCAL_BIRTH'];
+        return [
+            'op' => 'LOCAL_BIRTH',
+        ];
     }
 
-    /** @return array{kind:string,flights?:int} */
+    /**
+     * @return array{kind:string,flights?:int}
+     */
     public static function randomCondition(): array
     {
         if (mt_rand(0, 1) === 0) {
-            return ['kind' => 'ALWAYS'];
+            return [
+                'kind' => 'ALWAYS',
+            ];
         }
 
-        return ['kind' => 'NO_CERT_AFTER', 'flights' => mt_rand(1, 5)];
+        return [
+            'kind' => 'NO_CERT_AFTER',
+            'flights' => mt_rand(1, 5),
+        ];
     }
 
-    /** Случайный стартовый геном (рука B RANDOM и посев популяции C). */
+    /**
+     * Случайный стартовый геном (рука B RANDOM и посев популяции C).
+     */
     public static function randomGenome(int $tick = 0, string $taskFp = ''): array
     {
         $n = mt_rand(1, 3);

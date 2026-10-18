@@ -20,10 +20,14 @@ use BeeSwarm\Infra\Database;
  */
 final class HivePersistenceRouterTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $envKeys = ['NO_BASE_TASKS', 'FORAGER_SOURCES', 'NO_NOVELTY', 'SPWN_POOL', 'DISSIPATION_ACCEL_TICKS', 'CORPUS_DIRS'];
 
     protected function setUp(): void

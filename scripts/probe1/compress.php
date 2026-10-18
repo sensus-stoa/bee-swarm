@@ -8,7 +8,10 @@
 // Harness-решение: компрессор = subprocess, как и полёты.
 
 $dbPath = $argv[1] ?? '';
-if ($dbPath === '') { fwrite(STDERR, "usage: compress.php <db.sqlite>\n"); exit(2); }
+if ($dbPath === '') {
+    fwrite(STDERR, "usage: compress.php <db.sqlite>\n");
+    exit(2);
+}
 putenv('SWARM_DB_PATH=' . $dbPath);
 require __DIR__ . '/../../vendor/autoload.php';
 $born = (new BeeSwarm\Hive\LawIsomorphismCompressor())->compress(null);

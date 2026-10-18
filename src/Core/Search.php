@@ -671,19 +671,30 @@ class Search
                         }
                         $v = $exprs[$k];
                         $meanV = array_sum(array_slice($v, 0, $m30s)) / $m30s;
-                        $cov = 0.0; $varV = 0.0; $varY = 0.0;
+                        $cov = 0.0;
+                        $varV = 0.0;
+                        $varY = 0.0;
                         for ($qi = 0; $qi < $m30s; $qi++) {
-                            $dv = $v[$qi] - $meanV; $dy = $y[$qi] - $meanYs;
-                            $cov += $dv * $dy; $varV += $dv * $dv; $varY += $dy * $dy;
+                            $dv = $v[$qi] - $meanV;
+                            $dy = $y[$qi] - $meanYs;
+                            $cov += $dv * $dy;
+                            $varV += $dv * $dv;
+                            $varY += $dy * $dy;
                         }
                         $c = ($varV > 1e-12 && $varY > 1e-12) ? abs($cov / sqrt($varV * $varY)) : 0.0;
                         // STRUCTURAL pair-class: член $l1PairwiseKeys (генератор
                         // декларирует) — покрывает ²-формы без регексов.
                         $isPair = in_array($k, $l1PairwiseKeys, true);
-                        $sigCands[] = ['n' => $k, 'corr' => $c, 'cv' => $sc['cv'], 'pair' => $isPair];
+                        $sigCands[] = [
+                            'n' => $k,
+                            'corr' => $c,
+                            'cv' => $sc['cv'],
+                            'pair' => $isPair,
+                        ];
                     }
                     usort($sigCands, fn (array $a, array $b): int => [$b['corr'], $a['cv']] <=> [$a['corr'], $b['cv']]);
-                    $pairSlots = 0; $otherSlots = 0;
+                    $pairSlots = 0;
+                    $otherSlots = 0;
                     foreach ($sigCands as $sc2) {
                         if ($sc2['pair']) {
                             if ($pairSlots >= $sigPairK) {
@@ -696,7 +707,9 @@ class Search
                             }
                             $otherSlots++;
                         }
-                        $signalTail[] = ['n' => $sc2['n']];
+                        $signalTail[] = [
+                            'n' => $sc2['n'],
+                        ];
                         if (getenv('TRACE_V') === '1') {
                             fwrite(STDERR, '[BP] ' . ($sc2['pair'] ? 'PAIR' : 'oth ') . ' ' . $sc2['n'] . ' corr=' . round($sc2['corr'], 3) . PHP_EOL);
                         }
@@ -750,8 +763,15 @@ class Search
             // verify-пути (beam=10, EXP-040-EXT прогон) — там и работают.
             $trailReadCount = 0;
             if (getenv('TRAIL_MARKS') === '1' && $beamK > 0) {
-                $scopeKeyR = 'sha1:' . sha1(json_encode(['labels' => $colLabels]));
-                $readK = (int) (getenv('TRAIL_READ_K') ?: '5');
+                $scopeKeyR = 'sha1:' . sha1(json_encode([
+                    'labels' => $colLabels,
+                ]));
+                // EXP-045 v1.1: TRAIL_READ_K='0' честно читает ноль (USE_MARKS
+                // управляет read; '0' — falsy в PHP, старый `?: '5'` тихо
+                // подменял ноль пятёркой). Unset/'' → 5 (verify-канон EXP-040
+                // без изменений).
+                $trk = getenv('TRAIL_READ_K');
+                $readK = ($trk === false || $trk === '') ? 5 : max(0, (int) $trk);
                 $stmtR = \BeeSwarm\Infra\Database::get()->prepare(
                     'SELECT formula FROM trail_marks WHERE fingerprint = ?
                      ORDER BY uses DESC, corr DESC LIMIT ?'
@@ -871,14 +891,22 @@ class Search
                     $m30 = min($n, 30);
                     $meanV = array_sum(array_slice($v2, 0, $m30)) / $m30;
                     $meanY = array_sum(array_slice($y, 0, $m30)) / $m30;
-                    $cov = 0.0; $varV = 0.0; $varY = 0.0;
+                    $cov = 0.0;
+                    $varV = 0.0;
+                    $varY = 0.0;
                     for ($qi = 0; $qi < $m30; $qi++) {
-                        $dv = $v2[$qi] - $meanV; $dy = $y[$qi] - $meanY;
-                        $cov += $dv * $dy; $varV += $dv * $dv; $varY += $dy * $dy;
+                        $dv = $v2[$qi] - $meanV;
+                        $dy = $y[$qi] - $meanY;
+                        $cov += $dv * $dy;
+                        $varV += $dv * $dv;
+                        $varY += $dy * $dy;
                     }
                     $corr = ($varV > 1e-12 && $varY > 1e-12) ? abs($cov / sqrt($varV * $varY)) : 0.0;
                     if ($corr >= 0.15) {
-                        $signal2[] = ['n' => $k2, 'corr' => $corr];
+                        $signal2[] = [
+                            'n' => $k2,
+                            'corr' => $corr,
+                        ];
                     }
                 }
                 usort($signal2, fn (array $a, array $b): int => $b['corr'] <=> $a['corr']);
@@ -888,7 +916,8 @@ class Search
                 // Ночная «клевета» на класс-квоту — артефакт kinetic-CSV в
                 // verify-скрипте; на чистых данных не тестировалась.
                 // Слоты: 5 sum-of-products + 5 прочих raw.
-                $stairSlots = 0; $otherSlots2 = 0;
+                $stairSlots = 0;
+                $otherSlots2 = 0;
                 foreach ($signal2 as $s2) {
                     $isSumProd = str_contains($s2['n'], '+') && str_contains($s2['n'], '×');
                     if ($isSumProd) {
@@ -902,7 +931,11 @@ class Search
                         }
                         $otherSlots2++;
                     }
-                    $kept[] = ['n' => $s2['n'], 'cv' => 9.99, 'b' => false];
+                    $kept[] = [
+                        'n' => $s2['n'],
+                        'cv' => 9.99,
+                        'b' => false,
+                    ];
                     if ($stairSlots >= 5 && $otherSlots2 >= $quotaK - 5) {
                         break;
                     }
@@ -1052,19 +1085,31 @@ class Search
                 foreach ($rest3 as $k3) {
                     $v3 = $exprs[$k3];
                     $meanV3 = array_sum(array_slice($v3, 0, $m30b)) / $m30b;
-                    $cov3 = 0.0; $varV3 = 0.0; $varY3 = 0.0;
+                    $cov3 = 0.0;
+                    $varV3 = 0.0;
+                    $varY3 = 0.0;
                     for ($qi3 = 0; $qi3 < $m30b; $qi3++) {
-                        $dv3 = $v3[$qi3] - $meanV3; $dy3 = $y[$qi3] - $meanYb;
-                        $cov3 += $dv3 * $dy3; $varV3 += $dv3 * $dv3; $varY3 += $dy3 * $dy3;
+                        $dv3 = $v3[$qi3] - $meanV3;
+                        $dy3 = $y[$qi3] - $meanYb;
+                        $cov3 += $dv3 * $dy3;
+                        $varV3 += $dv3 * $dv3;
+                        $varY3 += $dy3 * $dy3;
                     }
                     $corr3 = ($varV3 > 1e-12 && $varY3 > 1e-12) ? abs($cov3 / sqrt($varV3 * $varY3)) : 0.0;
                     if ($corr3 >= 0.3) {
-                        $signal3[] = ['n' => $k3, 'corr' => $corr3];
+                        $signal3[] = [
+                            'n' => $k3,
+                            'corr' => $corr3,
+                        ];
                     }
                 }
                 usort($signal3, fn (array $a, array $b): int => $b['corr'] <=> $a['corr']);
                 foreach (array_slice($signal3, 0, (int) (getenv('SEARCH_L2_SIGNAL_K') ?: '10')) as $s3) {
-                    $kept3[] = ['n' => $s3['n'], 'cv' => 9.99, 'b' => false];
+                    $kept3[] = [
+                        'n' => $s3['n'],
+                        'cv' => 9.99,
+                        'b' => false,
+                    ];
                 }
                 $keepSet = array_flip(array_map(fn (array $x): string => $x['n'], $kept3));
                 $bKeySet = array_flip($bKeys ?? []);
@@ -1483,13 +1528,22 @@ class Search
                 $m30m = min($n, 30);
                 $meanVm = array_sum(array_slice($vec, 0, $m30m)) / $m30m;
                 $meanYm = array_sum(array_slice($y, 0, $m30m)) / $m30m;
-                $covM = 0.0; $varVM = 0.0; $varYM = 0.0;
+                $covM = 0.0;
+                $varVM = 0.0;
+                $varYM = 0.0;
                 for ($qm = 0; $qm < $m30m; $qm++) {
-                    $dvM = $vec[$qm] - $meanVm; $dyM = $y[$qm] - $meanYm;
-                    $covM += $dvM * $dyM; $varVM += $dvM * $dvM; $varYM += $dyM * $dyM;
+                    $dvM = $vec[$qm] - $meanVm;
+                    $dyM = $y[$qm] - $meanYm;
+                    $covM += $dvM * $dyM;
+                    $varVM += $dvM * $dvM;
+                    $varYM += $dyM * $dyM;
                 }
                 $corrM = ($varVM > 1e-12 && $varYM > 1e-12) ? abs($covM / sqrt($varVM * $varYM)) : 0.0;
-                $signalForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrM];
+                $signalForms[] = [
+                    'cv' => $cv,
+                    'name' => $name,
+                    'corr' => $corrM,
+                ];
             }
             // WU-4c FIX 11.10 (verify_dot20 0/20, trace-цепочка): СТУПЕНИ лестницы
             // ((xa×xb)+(xc×xd)) на реальном фикстуре имеют ПОЛНЫЙ cv 9-15 (y
@@ -1502,14 +1556,23 @@ class Search
                 $m30s2 = min($n, 30);
                 $meanVs = array_sum(array_slice($vec, 0, $m30s2)) / $m30s2;
                 $meanYs2 = array_sum(array_slice($y, 0, $m30s2)) / $m30s2;
-                $covS = 0.0; $varVS = 0.0; $varYS = 0.0;
+                $covS = 0.0;
+                $varVS = 0.0;
+                $varYS = 0.0;
                 for ($qs = 0; $qs < $m30s2; $qs++) {
-                    $dvS = $vec[$qs] - $meanVs; $dyS = $y[$qs] - $meanYs2;
-                    $covS += $dvS * $dyS; $varVS += $dvS * $dvS; $varYS += $dyS * $dyS;
+                    $dvS = $vec[$qs] - $meanVs;
+                    $dyS = $y[$qs] - $meanYs2;
+                    $covS += $dvS * $dyS;
+                    $varVS += $dvS * $dvS;
+                    $varYS += $dyS * $dyS;
                 }
                 $corrS = ($varVS > 1e-12 && $varYS > 1e-12) ? abs($covS / sqrt($varVS * $varYS)) : 0.0;
                 if ($corrS >= 0.5) {
-                    $stairForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrS];
+                    $stairForms[] = [
+                        'cv' => $cv,
+                        'name' => $name,
+                        'corr' => $corrS,
+                    ];
                 }
             }
             // PETAL COLLECTOR (12.10, синтез с CV0 §1.15/§1.17): голые лепестки
@@ -1524,18 +1587,46 @@ class Search
                 $m30p = min($n, 30);
                 $meanVp = array_sum(array_slice($vec, 0, $m30p)) / $m30p;
                 $meanYp = array_sum(array_slice($y, 0, $m30p)) / $m30p;
-                $covP = 0.0; $varVP = 0.0; $varYP = 0.0;
+                $covP = 0.0;
+                $varVP = 0.0;
+                $varYP = 0.0;
                 for ($qp = 0; $qp < $m30p; $qp++) {
-                    $dvP = $vec[$qp] - $meanVp; $dyP = $y[$qp] - $meanYp;
-                    $covP += $dvP * $dyP; $varVP += $dvP * $dvP; $varYP += $dyP * $dyP;
+                    $dvP = $vec[$qp] - $meanVp;
+                    $dyP = $y[$qp] - $meanYp;
+                    $covP += $dvP * $dyP;
+                    $varVP += $dvP * $dvP;
+                    $varYP += $dyP * $dyP;
                 }
                 $corrP = ($varVP > 1e-12 && $varYP > 1e-12) ? abs($covP / sqrt($varVP * $varYP)) : 0.0;
-                $petalForms[] = ['cv' => $cv, 'name' => $name, 'corr' => $corrP];
+                $petalForms[] = [
+                    'cv' => $cv,
+                    'name' => $name,
+                    'corr' => $corrP,
+                ];
             }
             if ($cv < $cvTrainMax) {
+                // psalm-фикс (18.10) + латентный баг: marks-цикл читает
+                // $cand['corr'] ?? 0.0 — без ключа все метки несли corr=0.0
+                // и рейтинг чтения (uses DESC, corr DESC) был мёртв. corr —
+                // тот же 30-row Pearson, что у signal/stair/petal армов.
+                $m30pl = min($n, 30);
+                $meanVpl = array_sum(array_slice($vec, 0, $m30pl)) / $m30pl;
+                $meanYpl = array_sum(array_slice($y, 0, $m30pl)) / $m30pl;
+                $covPl = 0.0;
+                $varVPl = 0.0;
+                $varYPl = 0.0;
+                for ($qpl = 0; $qpl < $m30pl; $qpl++) {
+                    $dvPl = $vec[$qpl] - $meanVpl;
+                    $dyPl = $y[$qpl] - $meanYpl;
+                    $covPl += $dvPl * $dyPl;
+                    $varVPl += $dvPl * $dvPl;
+                    $varYPl += $dyPl * $dyPl;
+                }
+                $corrPl = ($varVPl > 1e-12 && $varYPl > 1e-12) ? abs($covPl / sqrt($varVPl * $varYPl)) : 0.0;
                 $plausible[] = [
                     'cv' => $cv,
                     'name' => $name,
+                    'corr' => $corrPl,
                 ];
             }
         }
@@ -1780,9 +1871,8 @@ class Search
         // `cv < 0.5·INF` (класс 16.09: INF-fallback автопроход).
         $compressionOk = true;
         if (isset($bestName) && getenv('A19_GATE') !== '0') {
-            $cvBaseline = isset($cvBaselineHeldout)
-                ? $cvBaselineHeldout
-                : self::trivialBaselineCvTrain($y, $affineShift);
+            $cvBaseline = $cvBaselineHeldout
+                ?? self::trivialBaselineCvTrain($y, $affineShift);
             $compressionOk = $cv_test <= 0.0
                 || (is_finite($cvBaseline) && $cv_test < self::BASELINE_RATIO_MAX * $cvBaseline);
         }
@@ -1826,7 +1916,7 @@ class Search
     /**
      * M1-EXT v2 WU-4: запись дорожных меток (стигмергия между вылетами).
      *
-     * @param list<array{cv: float, name: string}> $plausible сигнальные формы (cv в [гейт, потолок))
+     * @param list<array{cv: float, name: string, corr: float}> $plausible сигнальные формы (cv в [гейт, потолок); corr = 30-row Pearson — рейтинг чтения меток)
      * @param list<array<string, mixed>>|null $colLabels
      */
     private static function writeTrailMarks(?array $colLabels, array $plausible, float $cvTrainMax, float $bestCvSeen, array $pairwiseKeys = [], array $pairwiseMap = []): void
@@ -1836,7 +1926,9 @@ class Search
         }
         // Scope = ТОЛЬКО labels (стабилен между сидами одного домена).
         // n (число plausible) в scope НЕ входит — он плавает от сида к сиду.
-        $scopeKey = 'sha1:' . sha1(json_encode(['labels' => $colLabels]));
+        $scopeKey = 'sha1:' . sha1(json_encode([
+            'labels' => $colLabels,
+        ]));
         $db = \BeeSwarm\Infra\Database::get();
         // WU-4b writer v2 (12.10, residual-протокол): CLASS COVERAGE —
         // 3 лестницы (sum-of-products) + 2 лепестка (чистое произведение

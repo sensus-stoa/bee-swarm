@@ -13,7 +13,9 @@ use BeeSwarm\Hive\RouteGenome;
  */
 class RouteBudgetTest extends TestCase
 {
-    /** @return array{0:list<list<float>>,1:list<float>} */
+    /**
+     * @return array{0:list<list<float>>,1:list<float>}
+     */
     private function easyTask(): array
     {
         mt_srand(42);
@@ -34,14 +36,36 @@ class RouteBudgetTest extends TestCase
         return [$X, $y];
     }
 
-    public function test_channel_cap_respected(): void
+    public function testChannelCapRespected(): void
     {
         [$X, $y] = $this->easyTask();
-        $g = RouteGenome::create('route_budg0001', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'base', 'beam' => 'beam40'],
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'diffprod', 'beam' => 'beam10'],
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'ratio', 'beam' => 'default'],
-            ['op' => 'FLIGHT', 'depth' => 2, 'grammar' => 'base', 'beam' => 'narrow5'],
+        $g = RouteGenome::create('route_budg0001', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'base',
+                'beam' => 'beam40',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'diffprod',
+                'beam' => 'beam10',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'ratio',
+                'beam' => 'default',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 2,
+                'grammar' => 'base',
+                'beam' => 'narrow5',
+            ],
         ], 0.2, 4);
         $channel = 3.0;
         $t0 = microtime(true);
@@ -59,11 +83,18 @@ class RouteBudgetTest extends TestCase
         $this->assertTrue($res['stop'] === 'budget_exhausted' || $res['stop'] === 'actions_done');
     }
 
-    public function test_easy_task_found_and_unspent_positive(): void
+    public function testEasyTaskFoundAndUnspentPositive(): void
     {
         [$X, $y] = $this->easyTask();
-        $g = RouteGenome::create('route_budg0002', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
+        $g = RouteGenome::create('route_budg0002', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
         ], 0.2, 1);
         $res = RouteExecutor::run($g, $X, $y, ['c0', 'c1', 'c2', 'c3', 'c4'], 15.0, 0.10);
         $this->assertTrue($res['found'], 'pureprod y=c0×c3 обязан найтись на depth 1');
@@ -80,13 +111,30 @@ class RouteBudgetTest extends TestCase
         $this->assertLessThan(0.1, $res['best_L_valid']);
     }
 
-    public function test_budget_exhaustion_stops_actions(): void
+    public function testBudgetExhaustionStopsActions(): void
     {
         [$X, $y] = $this->easyTask();
-        $g = RouteGenome::create('route_budg0003', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'base', 'beam' => 'beam40'],
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'base', 'beam' => 'beam40'],
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'base', 'beam' => 'beam40'],
+        $g = RouteGenome::create('route_budg0003', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'base',
+                'beam' => 'beam40',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'base',
+                'beam' => 'beam40',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'base',
+                'beam' => 'beam40',
+            ],
         ], 0.2, 3);
         $res = RouteExecutor::run($g, $X, $y, null, 1.05, 0.10);
         $this->assertLessThanOrEqual(3, count($res['records']));
@@ -97,13 +145,30 @@ class RouteBudgetTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $res['unspent']);
     }
 
-    public function test_max_steps_truncates_actions(): void
+    public function testMaxStepsTruncatesActions(): void
     {
         [$X, $y] = $this->easyTask();
-        $g = RouteGenome::create('route_budg0004', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
+        $g = RouteGenome::create('route_budg0004', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
         ], 0.2, 2);
         $res = RouteExecutor::run($g, $X, $y, null, 30.0, 0.10);
         $this->assertSame('actions_done', $res['stop']);
@@ -111,7 +176,7 @@ class RouteBudgetTest extends TestCase
         $this->assertCount(2, $flights, 'max_steps усекает список действий');
     }
 
-    public function test_compute_l_sanity(): void
+    public function testComputeLSanity(): void
     {
         // L(идеальная форма) << L(константа)
         mt_srand(9);

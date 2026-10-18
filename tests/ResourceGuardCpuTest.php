@@ -74,7 +74,7 @@ class ResourceGuardCpuTest extends TestCase
      *
      * V0.17: sleep-адаптация зависит от usleep-ритма и процессного CPU
      * (wall-clock-класс; автор-комментарий: «флаки paratest»).
-         *
+     *
      * @group slow
      */
     public function testSleepAdaptsToProcessLoad(): void

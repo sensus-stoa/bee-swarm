@@ -6,7 +6,6 @@ declare(strict_types=1);
  * GENOME-001 CHECKPOINT B: SVG-графики из ЗАМОРОЖЕННЫХ сырых данных
  * (checkpoint_b_raw.json). Пост-обработка, не повторное измерение.
  */
-
 $raw = json_decode((string) file_get_contents(dirname(__DIR__, 2) . '/Benchmarks/genome001/checkpoint_b_raw.json'), true, 512, JSON_THROW_ON_ERROR);
 
 function svgPolyline(array $pts, string $color, string $dash = ''): string

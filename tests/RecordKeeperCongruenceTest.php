@@ -242,14 +242,32 @@ class RecordKeeperCongruenceTest extends TestCase
     public function testJoinExistingClassByCarrierClassId(): void
     {
         $keeper = $this->keeper();
-        $keeper->record(['atom' => 'x0', 'cv' => 0.01, 'mode' => 'search'], [
-            'name' => 'j1', 'fingerprint' => 'fp-1', 'data' => $this->posRows(60, 0.0),
+        $keeper->record([
+            'atom' => 'x0',
+            'cv' => 0.01,
+            'mode' => 'search',
+        ], [
+            'name' => 'j1',
+            'fingerprint' => 'fp-1',
+            'data' => $this->posRows(60, 0.0),
         ], 'domJ');
-        $keeper->record(['atom' => '(x0max(x0−x0))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'j2', 'fingerprint' => 'fp-2', 'data' => $this->posRows(60, 2.0),
+        $keeper->record([
+            'atom' => '(x0max(x0−x0))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'j2',
+            'fingerprint' => 'fp-2',
+            'data' => $this->posRows(60, 2.0),
         ], 'domJ');
-        $r3 = $keeper->record(['atom' => '(x0min(x0+x0))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'j3', 'fingerprint' => 'fp-3', 'data' => $this->posRows(60, 4.0),
+        $r3 = $keeper->record([
+            'atom' => '(x0min(x0+x0))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'j3',
+            'fingerprint' => 'fp-3',
+            'data' => $this->posRows(60, 4.0),
         ], 'domJ');
 
         $this->assertFalse($r3['inserted'], 'третья форма входит в существующий класс');
@@ -270,24 +288,50 @@ class RecordKeeperCongruenceTest extends TestCase
     public function testAbsorbAfterSplitPreservesSplitState(): void
     {
         $keeper = $this->keeper();
-        $keeper->record(['atom' => 'x0', 'cv' => 0.01, 'mode' => 'search'], [
-            'name' => 'k1', 'fingerprint' => 'fp-1', 'data' => $this->posRows(60, 0.0),
+        $keeper->record([
+            'atom' => 'x0',
+            'cv' => 0.01,
+            'mode' => 'search',
+        ], [
+            'name' => 'k1',
+            'fingerprint' => 'fp-1',
+            'data' => $this->posRows(60, 0.0),
         ], 'domK');
-        $keeper->record(['atom' => '(x0max(x0−x0))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'k2', 'fingerprint' => 'fp-2', 'data' => $this->posRows(60, 2.0),
+        $keeper->record([
+            'atom' => '(x0max(x0−x0))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'k2',
+            'fingerprint' => 'fp-2',
+            'data' => $this->posRows(60, 2.0),
         ], 'domK');
-        $keeper->record(['atom' => '(x0max(x0−x0))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'k3', 'fingerprint' => 'fp-3', 'data' => $this->negRows(60),
+        $keeper->record([
+            'atom' => '(x0max(x0−x0))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'k3',
+            'fingerprint' => 'fp-3',
+            'data' => $this->negRows(60),
         ], 'domK'); // CLASS-SPLIT
-        $r4 = $keeper->record(['atom' => '(x0min(x0+x0))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'k4', 'fingerprint' => 'fp-4', 'data' => $this->posRows(60, 4.0),
+        $r4 = $keeper->record([
+            'atom' => '(x0min(x0+x0))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'k4',
+            'fingerprint' => 'fp-4',
+            'data' => $this->posRows(60, 4.0),
         ], 'domK');
 
         $this->assertFalse($r4['inserted'], 'поглощение после сплита работает');
         $json = json_decode((string) Database::get()->query("SELECT class_domain_json FROM laws WHERE domain='domK' AND formula='x0'")->fetchColumn(), true);
         // R1/MED-1 (re-audit): ассерты ЗНАЧЕНИЙ, не ключей — ключ с null
         // маскировал бы деградацию split_at через ??.
-        $this->assertSame(['index' => 0], $json['split_at'] ?? 'missing', 'split_at точное значение (сплит на первом негативе)');
+        $this->assertSame([
+            'index' => 0,
+        ], $json['split_at'] ?? 'missing', 'split_at точное значение (сплит на первом негативе)');
         $this->assertIsArray($json['domain'] ?? null);
         $this->assertLessThan(1.5, $json['domain']['0'][0] ?? 99, 'bounds аккумулированы: min покрыл позитивный домен');
         $this->assertGreaterThan(35.0, $json['domain']['0'][1] ?? 0, 'bounds: max ~39');
@@ -309,8 +353,14 @@ class RecordKeeperCongruenceTest extends TestCase
                 "INSERT INTO laws (name, formula, cv, domain, found_at, class_id) VALUES ('bad{$k}', 'bad{$k}', 0.5, 'domW', ?, 'bad{$k}')"
             )->execute([sprintf('2026-09-25 10:0%d:00', $k - 1)]);
         }
-        $r = $keeper->record(['atom' => '(x0min(x0+x1))', 'cv' => 0.02, 'mode' => 'search'], [
-            'name' => 'w9', 'fingerprint' => 'fp-9', 'data' => $this->rowsAB(60, 1.0),
+        $r = $keeper->record([
+            'atom' => '(x0min(x0+x1))',
+            'cv' => 0.02,
+            'mode' => 'search',
+        ], [
+            'name' => 'w9',
+            'fingerprint' => 'fp-9',
+            'data' => $this->rowsAB(60, 1.0),
         ], 'domW');
 
         $this->assertTrue($r['inserted'], 'окно исчерпано — форма не проверена, встаёт');

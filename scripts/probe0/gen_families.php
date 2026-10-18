@@ -22,7 +22,10 @@
 //                     H6 pureprod (HI) + HN1,HN2 nulls, × 4 реплики
 
 $outDir = $argv[1] ?? '';
-if ($outDir === '') { fwrite(STDERR, "usage: gen_families.php <outDir>\n"); exit(2); }
+if ($outDir === '') {
+    fwrite(STDERR, "usage: gen_families.php <outDir>\n");
+    exit(2);
+}
 @mkdir($outDir, 0777, true);
 
 $seedOf = fn (string $key): int => (int) hexdec(substr(md5($key), 0, 7));
@@ -36,49 +39,95 @@ $allPerms = array_merge($early, $late);
 // DEV: 4 EARLY (sanity: A решает) + 4 LATE (headroom: A структурно отрицательна)
 $dev = [];
 foreach ($early as $i => $perm) {
-    $dev[] = ['id' => 'DEVE' . ($i + 1), 'class' => 'sdr', 'zone' => 'early',
-        'seed' => $seedOf("PROBE0DEVE{$i}"), 'perm' => $perm, 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0];
+    $dev[] = [
+        'id' => 'DEVE' . ($i + 1),
+        'class' => 'sdr',
+        'zone' => 'early',
+        'seed' => $seedOf("PROBE0DEVE{$i}"),
+        'perm' => $perm,
+        'scale' => [1, 1, 1, 1, 1],
+        'noise' => 0.0,
+    ];
 }
 foreach ($late as $i => $perm) {
-    $dev[] = ['id' => 'DEVH' . ($i + 1), 'class' => 'sdr', 'zone' => 'late',
-        'seed' => $seedOf("PROBE0DEVH{$i}"), 'perm' => $perm, 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0];
+    $dev[] = [
+        'id' => 'DEVH' . ($i + 1),
+        'class' => 'sdr',
+        'zone' => 'late',
+        'seed' => $seedOf("PROBE0DEVH{$i}"),
+        'perm' => $perm,
+        'scale' => [1, 1, 1, 1, 1],
+        'noise' => 0.0,
+    ];
 }
-file_put_contents("$outDir/dev.json", json_encode(['replicates' => ['1' => $dev]], JSON_PRETTY_PRINT));
+file_put_contents("{$outDir}/dev.json", json_encode([
+    'replicates' => [
+        '1' => $dev,
+    ],
+], JSON_PRETTY_PRINT));
 
 // Discovery: EARLY-раскладки (законы сертифицируемы → атом)
-$discovery = ['replicates' => []];
+$discovery = [
+    'replicates' => [],
+];
 for ($r = 1; $r <= 4; $r++) {
     $tasks = [];
     foreach ([0, 1] as $i) {
-        $tasks[] = ['id' => 'F' . ($i + 1), 'class' => 'sdr',
-            'seed' => $seedOf("PROBE0F{$r}{$i}"), 'perm' => $early[($r + $i) % 4],
-            'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0];
+        $tasks[] = [
+            'id' => 'F' . ($i + 1),
+            'class' => 'sdr',
+            'seed' => $seedOf("PROBE0F{$r}{$i}"),
+            'perm' => $early[($r + $i) % 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+        ];
     }
     $discovery['replicates'][(string) $r] = $tasks;
 }
-file_put_contents("$outDir/discovery.json", json_encode($discovery, JSON_PRETTY_PRINT));
+file_put_contents("{$outDir}/discovery.json", json_encode($discovery, JSON_PRETTY_PRINT));
 
 // H (sealed): HR = sdr LATE; HI = нерелевантные классы; nulls
-$h = ['replicates' => []];
+$h = [
+    'replicates' => [],
+];
 for ($r = 1; $r <= 4; $r++) {
     $tasks = [];
     foreach ([0, 1] as $i) {
-        $tasks[] = ['id' => 'H' . ($i + 1), 'class' => 'sdr', 'zone' => 'late',
-            'seed' => $seedOf("PROBE0H{$r}{$i}"), 'perm' => $late[($i + $r) % 4],
-            'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => false];
+        $tasks[] = [
+            'id' => 'H' . ($i + 1),
+            'class' => 'sdr',
+            'zone' => 'late',
+            'seed' => $seedOf("PROBE0H{$r}{$i}"),
+            'perm' => $late[($i + $r) % 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => false,
+        ];
     }
     foreach (['flux', 'ratio', 'composition', 'pureprod'] as $i => $class) {
-        $tasks[] = ['id' => 'H' . ($i + 3), 'class' => $class,
-            'seed' => $seedOf("PROBE0H{$r}" . ($i + 2)), 'perm' => $allPerms[($i + 2 + $r) % 8],
-            'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => false];
+        $tasks[] = [
+            'id' => 'H' . ($i + 3),
+            'class' => $class,
+            'seed' => $seedOf("PROBE0H{$r}" . ($i + 2)),
+            'perm' => $allPerms[($i + 2 + $r) % 8],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => false,
+        ];
     }
     foreach (['sdr', 'flux'] as $i => $class) {
-        $tasks[] = ['id' => 'HN' . ($i + 1), 'class' => $class,
-            'seed' => $seedOf("PROBE0HN{$r}{$i}"), 'perm' => $allPerms[($i + $r) % 8],
-            'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => true];
+        $tasks[] = [
+            'id' => 'HN' . ($i + 1),
+            'class' => $class,
+            'seed' => $seedOf("PROBE0HN{$r}{$i}"),
+            'perm' => $allPerms[($i + $r) % 8],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => true,
+        ];
     }
     $h['replicates'][(string) $r] = $tasks;
 }
-$hPath = "$outDir/h_sealed.json";
+$hPath = "{$outDir}/h_sealed.json";
 file_put_contents($hPath, json_encode($h, JSON_PRETTY_PRINT));
 echo 'dev.json + discovery.json written; h_sealed.json written (SHA256 ' . hash_file('sha256', $hPath) . ")\n";

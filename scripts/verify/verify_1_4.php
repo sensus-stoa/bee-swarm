@@ -8,7 +8,6 @@ declare(strict_types=1);
  * Проверяет: распределение не равномерно (разные пчёлы получают разное число задач).
  * Упрощённый χ²-аналог: считаем ROUTE на пчелу, проверяем что не все равны.
  */
-
 $logFile = $argv[1] ?? null;
 if (! $logFile || ! file_exists($logFile)) {
     echo "SKIP: No log file\nUsage: php verify_1_4.php <agenda.log>\n";
@@ -22,7 +21,7 @@ $routes = [];
 foreach ($lines as $line) {
     // ROUTE: task -> bee#0
     if (preg_match('/ROUTE:\s+task\s+->\s+bee#(\d+)/', $line, $m)) {
-        $beeIdx = (int)$m[1];
+        $beeIdx = (int) $m[1];
         $routes[$beeIdx] = ($routes[$beeIdx] ?? 0) + 1;
     }
 }

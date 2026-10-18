@@ -322,8 +322,8 @@ class Database
         // ESCROW-ORPHAN-DEPOSITS WU-2 (17.10): probe payDiscovery/детектор
         // ищут по (law_formula, domain) — без индекса это SCAN на прод-объёме
         // (премортем 17.10). IF NOT EXISTS — идемпотентно на живых БД.
-        $db->exec("CREATE INDEX IF NOT EXISTS idx_verification_tasks_formula_domain
-            ON verification_tasks (law_formula, domain)");
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_verification_tasks_formula_domain
+            ON verification_tasks (law_formula, domain)');
         // V0.16 WU-2 (verifier-eps-parity): epsilon калибровки открывателя
         // доставляется в V-задачу колонкой (executor без ссылки на Hive;
         // персистентно к рестартам). Ghost-задача (fingerprint='') → NULL.
@@ -456,7 +456,8 @@ class Database
         // (uses DESC, corr DESC). Fail-loud миграция старых installs: проверка
         // PRAGMA + ALTER, БЕЗ try/catch (урок 18.09: голый catch на миграции =
         // тихая смерть). Новая таблица выше уже содержит corr — ALTER не нужен.
-        $cols = $db->query('PRAGMA table_info(trail_marks)')->fetchAll();
+        $cols = $db->query('PRAGMA table_info(trail_marks)')
+            ->fetchAll();
         $hasCorr = false;
         foreach ($cols as $c) {
             if (($c['name'] ?? '') === 'corr') {

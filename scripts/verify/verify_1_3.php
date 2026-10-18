@@ -13,7 +13,6 @@ declare(strict_types=1);
  *
  * Пока грамматики не логируются при spawn — SKIP.
  */
-
 $logFile = $argv[1] ?? null;
 if (! $logFile || ! file_exists($logFile)) {
     echo "SKIP: No log file\nUsage: php verify_1_3.php <agenda.log>\n";

@@ -8,7 +8,6 @@ declare(strict_types=1);
  * Показывает: механизмы роя (популяция, мутация, отбор, элитизм) решают
  * комбинаторную задачу, если заменить геном/фитнес.
  */
-
 const N_CITIES = 20;
 const POP_SIZE = 60;
 const GENERATIONS = 2000;
@@ -49,7 +48,9 @@ function greedyRoute(array $cities): array
 {
     $n = count($cities);
     $route = [mt_rand(0, $n - 1)];
-    $visited = [$route[0] => true];
+    $visited = [
+        $route[0] => true,
+    ];
     while (count($route) < $n) {
         $last = $route[count($route) - 1];
         $best = null;
@@ -168,13 +169,13 @@ $bestEver = PHP_FLOAT_MAX;
 $bestRoute = null;
 $stagnation = 0;
 
-echo "TSP DEMO: " . N_CITIES . " городов, pop=" . POP_SIZE . ", gens=" . GENERATIONS . "\n";
+echo 'TSP DEMO: ' . N_CITIES . ' городов, pop=' . POP_SIZE . ', gens=' . GENERATIONS . "\n";
 echo str_repeat('-', 60) . "\n";
-printf("%-10s | %-14s | %-14s | %s\n", "Gen", "Best", "Mean", "Greedy");
+printf("%-10s | %-14s | %-14s | %s\n", 'Gen', 'Best', 'Mean', 'Greedy');
 echo str_repeat('-', 60) . "\n";
 
 $greedyLen = routeLength(greedyRoute($cities), $cities);
-printf("%-10s | %-14s | %-14s | %.2f\n", "start", "—", "—", $greedyLen);
+printf("%-10s | %-14s | %-14s | %.2f\n", 'start', '—', '—', $greedyLen);
 
 for ($gen = 0; $gen <= GENERATIONS; $gen++) {
     // Фитнес
@@ -205,7 +206,7 @@ for ($gen = 0; $gen <= GENERATIONS; $gen++) {
         }
         $pop = $newPop;
         if ($gen % 50 === 0) {
-            printf("%-10s | %-14.2f | %-14s | %.2f (restart)\n", "R", $bestEver, "—", $greedyLen);
+            printf("%-10s | %-14.2f | %-14s | %.2f (restart)\n", 'R', $bestEver, '—', $greedyLen);
         }
         continue;
     }
@@ -255,6 +256,10 @@ for ($gen = 0; $gen <= GENERATIONS; $gen++) {
 }
 
 echo str_repeat('-', 60) . "\n";
-printf("ИТОГ: best=%.2f (жадный: %.2f, случайный≈%.2f)\n",
-    $bestEver, $greedyLen, routeLength(randomRoute(), $cities));
-echo "Маршрут: " . implode('-', $bestRoute) . "\n";
+printf(
+    "ИТОГ: best=%.2f (жадный: %.2f, случайный≈%.2f)\n",
+    $bestEver,
+    $greedyLen,
+    routeLength(randomRoute(), $cities)
+);
+echo 'Маршрут: ' . implode('-', $bestRoute) . "\n";

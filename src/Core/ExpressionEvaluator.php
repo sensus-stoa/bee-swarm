@@ -33,12 +33,15 @@ class ExpressionEvaluator
      * @var array<string,array|null> кэш definition по имени атома
      */
     private static array $defCache = [];
+
     // PARSE-CACHE (12.10, phpspy): evaluateFormula парсил формулу на КАЖДЫЙ
     // вызов (ExpressionNormalizer::parse — горячий кадр во всех воркерах
     // suite; ensemble null-gate оценивает те же формулы десятки раз).
     // AST read-only (evalNode не мутирует) — шар безопасен, как defCache.
     private const PARSE_CACHE_MAX = 1024;
+
     private const DEF_CACHE_MAX = 4096;
+
     private static array $parseCache = [];
 
     public static function clearDefCache(): void
@@ -89,7 +92,7 @@ class ExpressionEvaluator
         // → вся culture-цепочка умирает на heldout!)
         $bNames = self::birthOpNames();
         $allExtraOps = array_merge($extraOps, $bNames);
-        $cacheKey = $formula . "|" . count($allExtraOps) . "|" . (empty($allExtraOps) ? "" : md5(serialize($allExtraOps)));
+        $cacheKey = $formula . '|' . count($allExtraOps) . '|' . (empty($allExtraOps) ? '' : md5(serialize($allExtraOps)));
         if (isset(self::$parseCache[$cacheKey])) {
             $node = self::$parseCache[$cacheKey];
         } else {

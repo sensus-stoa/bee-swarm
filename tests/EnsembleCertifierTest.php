@@ -41,6 +41,12 @@ final class EnsembleCertifierTest extends TestCase
         putenv('NO_BIRTH=1');
         putenv('SEARCH_NO_PREREG=1');
         putenv('SEARCH_BEAM_K=0');
+        // TEST-HYGIENE (fast2min): члены ансамбля на дефолтном depth 3 +
+        // неограниченный тик-бюджет → 2:23. Depth 2 достаточен для закона
+        // фикстуры (x0*x1 + x0*x2 — depth-2 compose), бюджет 100 = полный
+        // свип (11-14 тиков, проба 23.09) — вердикт детерминирован данными.
+        putenv('ENSEMBLE_MEMBER_DEPTH=2');
+        putenv('ENSEMBLE_BUDGET_TICKS=100');
         // V0.17 WU-2c (19.09): изоляция от cross-test pollution. Serial-прогон
         // slow-группы = ОДИН процесс, Database::get() singleton шарится между
         // тестами. BD-фикстура (BehavioralDiversityTest, сид 777) пишет законы
@@ -58,7 +64,7 @@ final class EnsembleCertifierTest extends TestCase
 
     protected function tearDown(): void
     {
-        foreach (['NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K'] as $k) {
+        foreach (['NO_BIRTH', 'SEARCH_NO_PREREG', 'SEARCH_BEAM_K', 'ENSEMBLE_MEMBER_DEPTH', 'ENSEMBLE_BUDGET_TICKS'] as $k) {
             putenv($k);
         }
         // PHPUnit <env force=true> ставит env один раз на старте процесса;
@@ -76,10 +82,13 @@ final class EnsembleCertifierTest extends TestCase
      */
     private function syntheticData(): array
     {
+        // TEST-HYGIENE (fast2min): было n=200 — per-tick стоимость поиска ∝
+        // строкам (cv/apply на каждом кандидате), полный свип = минуты.
+        // n=40 ≥ tMin(3 фич)=15 — фильтр проходит, закон остаётся точным.
         mt_srand(777);
         $X = [];
         $y = [];
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 40; $i++) {
             $x0 = mt_rand() / mt_getrandmax() * 10;
             $x1 = mt_rand() / mt_getrandmax() * 10;
             $x2 = mt_rand() / mt_getrandmax() * 10;

@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 // ── Замороженные константы ──
 const LAMBDA_C = 0.01;   // complexity penalty
@@ -198,7 +198,9 @@ function retrieveTopK(
     return array_slice($cands, 0, $k);
 }
 
-/** Раскрытие z-формулы */
+/**
+ * Раскрытие z-формулы
+ */
 function expandZV2(string $formula, array $prov): string
 {
     krsort($prov);
@@ -215,8 +217,8 @@ $base = __DIR__ . '/..';
 [$Xall, $yall] = loadHeatV2($base . '/data/feynman_heat_conduction.csv');
 
 echo "=== EXP-031-v2: Contextual Cultural Retrieval ===\n";
-echo "R = ΔCV - λC - μD + ηP | λ=" . LAMBDA_C . " μ=" . MU_D . " η=" . ETA_P
-    . " K=" . K_TOP . " B=" . B_HYP . " cycles=" . CYCLES . "\n";
+echo 'R = ΔCV - λC - μD + ηP | λ=' . LAMBDA_C . ' μ=' . MU_D . ' η=' . ETA_P
+    . ' K=' . K_TOP . ' B=' . B_HYP . ' cycles=' . CYCLES . "\n";
 
 $cvsAll = [];
 for ($s = 1; $s <= SEEDS_V2; $s++) {
@@ -239,20 +241,28 @@ for ($s = 1; $s <= SEEDS_V2; $s++) {
             $cvsAll[] = $cvTe0;
             continue;
         }
-        $log[] = "base NONE/CV>0.10";
+        $log[] = 'base NONE/CV>0.10';
     } else {
-        $log[] = "base no-find";
+        $log[] = 'base no-find';
     }
 
     // ── Циклы retrieval ──
     // Текущие hypotheses: e_pred = лучшее приближение y из найденного (или mean)
     $meanY = array_sum($ytr) / count($ytr);
-    $hyps = [['pred' => array_fill(0, count($ytr), $meanY), 'formula' => "{$meanY}", 'cv' => INF]];
+    $hyps = [[
+        'pred' => array_fill(0, count($ytr), $meanY),
+        'formula' => "{$meanY}",
+        'cv' => INF,
+    ]];
     if ($res0[0] && $res0[1] < 9.0) {
         $st = ExpressionEvaluator::collectStats($res0[2], $Xtr);
         $bp = ExpressionEvaluator::evaluateFormula($res0[2], $Xtr, $st);
         if ($bp !== null) {
-            $hyps = [['pred' => $bp, 'formula' => $res0[2], 'cv' => $res0[1]]];
+            $hyps = [[
+                'pred' => $bp,
+                'formula' => $res0[2],
+                'cv' => $res0[1],
+            ]];
         }
     }
 
@@ -273,8 +283,17 @@ for ($s = 1; $s <= SEEDS_V2; $s++) {
                     // Новый candidate: гипотеза op z
                     // pred уже посчитан внутри retrieveTopK как bestPred
                     $newFormula = "({$hyp['formula']}{$t['op']}{$t['expanded']})";
-                    $newHyps[] = ['pred' => $t['pred'], 'formula' => $newFormula, 'cv' => $hyp['cv'] - $t['delta']];
-                    $provChain[] = ['zn' => "z{$cycle}{$hi}_" . $t['i'] . '_' . $t['j'], 'tpl' => $tpl, 'i' => $t['i'], 'j' => $t['j']];
+                    $newHyps[] = [
+                        'pred' => $t['pred'],
+                        'formula' => $newFormula,
+                        'cv' => $hyp['cv'] - $t['delta'],
+                    ];
+                    $provChain[] = [
+                        'zn' => "z{$cycle}{$hi}_" . $t['i'] . '_' . $t['j'],
+                        'tpl' => $tpl,
+                        'i' => $t['i'],
+                        'j' => $t['j'],
+                    ];
                     $activatedVecs[] = $t['pred']; // D(z,A) растёт
                     $stepFound = true;
                 }
@@ -324,7 +343,7 @@ for ($s = 1; $s <= SEEDS_V2; $s++) {
 
 $accepted = array_filter($cvsAll, fn ($c) => $c <= 0.10);
 echo "\n=== ИТОГ EXP-031-v2 ===\n";
-echo "success=" . count($accepted) . '/' . SEEDS_V2 . "\n";
+echo 'success=' . count($accepted) . '/' . SEEDS_V2 . "\n";
 if ($accepted) {
     sort($accepted);
     echo 'CV_H: ' . implode(', ', array_map(fn ($c) => round($c, 4), $accepted)) . "\n";

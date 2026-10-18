@@ -13,8 +13,8 @@ require dirname(__DIR__, 2) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/genome001/corpus_lib.php';
 require __DIR__ . '/evolve_lib.php';
 
-use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Infra\Database;
 
 putenv('SWARM_DB_PATH=:memory:');
@@ -23,12 +23,14 @@ ExpressionEvaluator::resetCaches();
 
 $ATTEMPTS = 500;
 $T0 = hrtime(true);
-$raw = ['meta' => [
-    'manifest' => 'Benchmarks/genome002/MANIFEST.md',
-    'php' => PHP_VERSION,
-    'attempts_per_arm_per_replica' => $ATTEMPTS,
-    'started' => date('c'),
-]];
+$raw = [
+    'meta' => [
+        'manifest' => 'Benchmarks/genome002/MANIFEST.md',
+        'php' => PHP_VERSION,
+        'attempts_per_arm_per_replica' => $ATTEMPTS,
+        'started' => date('c'),
+    ],
+];
 
 $targets = GenomeEvolveLib::targetLaws();
 $replicas = [];
@@ -43,7 +45,10 @@ foreach ($targets as $i => $t) {
         $dictAlphaKeys[GenomeBenchmarkLib::alphaCanonicalKey(WordCodec::decodeDefinition($e, $dict))] = $e['name'];
     }
     GenomeEvolveLib::$dictAlphaKeys = $dictAlphaKeys;
-    $pool = array_map(static fn (array $e): array => ['ast' => WordCodec::decodeDefinition($e, $dict), 'slots' => []], $dict);
+    $pool = array_map(static fn (array $e): array => [
+        'ast' => WordCodec::decodeDefinition($e, $dict),
+        'slots' => [],
+    ], $dict);
 
     $task = GenomeEvolveLib::makeTask($t['formula'], 20261020 + 1000 + $i);
     $parent = null;
@@ -84,12 +89,27 @@ foreach ($targets as $i => $t) {
 }
 
 // ── Агрегаты и вердикт (манифест §1) ────────────────────────────────────
-$tot = ['A' => 0, 'B' => 0, 'C' => 0];
-$winsB = ['A' => 0, 'C' => 0];
+$tot = [
+    'A' => 0,
+    'B' => 0,
+    'C' => 0,
+];
+$winsB = [
+    'A' => 0,
+    'C' => 0,
+];
 $reuseB = 0;
 $improvedAny = 0;
-$evalCalls = ['A' => 0, 'B' => 0, 'C' => 0];
-$wall = ['A' => 0.0, 'B' => 0.0, 'C' => 0.0];
+$evalCalls = [
+    'A' => 0,
+    'B' => 0,
+    'C' => 0,
+];
+$wall = [
+    'A' => 0.0,
+    'B' => 0.0,
+    'C' => 0.0,
+];
 $refUseful = 0;
 $refAttempts = 0;
 foreach ($replicas as $r) {

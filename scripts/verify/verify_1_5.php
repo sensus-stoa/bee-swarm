@@ -7,7 +7,6 @@ declare(strict_types=1);
  *
  * Проверяет: generation tracking активен, diversity > 0.
  */
-
 $logFile = $argv[1] ?? null;
 if (! $logFile || ! file_exists($logFile)) {
     echo "SKIP: No log file\nUsage: php verify_1_5.php <agenda.log>\n";
@@ -23,16 +22,16 @@ foreach ($lines as $line) {
     // GEN: 1 pop=4 unique=3 diversity=0.25 avg|G|=12
     if (preg_match('/GEN:\s+(\d+)\s+pop=(\d+)\s+unique=(\d+)\s+diversity=([\d.]+)\s+avg\|G\|=([\d.]+)/', $line, $m)) {
         $gens[] = [
-            'gen' => (int)$m[1],
-            'pop' => (int)$m[2],
-            'unique' => (int)$m[3],
-            'diversity' => (float)$m[4],
-            'avgSize' => (float)$m[5],
+            'gen' => (int) $m[1],
+            'pop' => (int) $m[2],
+            'unique' => (int) $m[3],
+            'diversity' => (float) $m[4],
+            'avgSize' => (float) $m[5],
         ];
     }
 }
 
-echo "Generations: " . count($gens) . "\n";
+echo 'Generations: ' . count($gens) . "\n";
 
 if (count($gens) < 2) {
     echo "PENDING: Need ≥2 generations for dynamics check\n";

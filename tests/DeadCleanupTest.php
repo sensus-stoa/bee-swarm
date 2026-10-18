@@ -14,6 +14,13 @@ class DeadCleanupTest extends TestCase
 {
     public function testDeadBeesRemovedFromArray(): void
     {
+        // TEST-HYGIENE (fast2min): 105 тиков нужны по семантике (cleanup на
+        // tick%100===0), но дефолтный forager-фолбэк (500MB) + base-кормушка
+        // (поиск ~1-2с/тик) делали файл 2:50. Голодная среда: тики дешёвые,
+        // метаболизм/смерть/cleanup живут. Не из phpunit.xml — снятие ок.
+        putenv('FORAGER_SOURCES=:');
+        putenv('EMPTY_POOL_SLEEP_US=0');
+        putenv('NO_BASE_TASKS=1');
         // Улей с убитой пчелой (E=0) — после тика 100 она удаляется
         $logFile = tempnam(sys_get_temp_dir(), 'dead_');
         $hive = new Hive(
@@ -32,6 +39,9 @@ class DeadCleanupTest extends TestCase
         $prop = new \ReflectionProperty(Hive::class, 'maxTicks');
         $prop->setValue($hive, 105);
         $hive->run();
+        putenv('FORAGER_SOURCES');
+        putenv('EMPTY_POOL_SLEEP_US');
+        putenv('NO_BASE_TASKS');
         unlink($logFile);
 
         $bees = $ref->getValue($hive);

@@ -21,41 +21,110 @@
 // L1×фичу → вне L2-пула (урок PROBE-0 A1-бис).
 
 $outDir = $argv[1] ?? '';
-if ($outDir === '') { fwrite(STDERR, "usage: gen_families.php <outDir>\n"); exit(2); }
+if ($outDir === '') {
+    fwrite(STDERR, "usage: gen_families.php <outDir>\n");
+    exit(2);
+}
 @mkdir($outDir, 0777, true);
 
 $seedOf = fn (string $key): int => (int) hexdec(substr(md5($key), 0, 7));
 
 // G1: sdr EARLY (строгие раскладки — некоммутативность /) × 4 реплики
-$g1 = ['replicates' => []];
+$g1 = [
+    'replicates' => [],
+];
 for ($r = 1; $r <= 4; $r++) {
     $g1['replicates'][(string) $r] = [
-        ['id' => 'G1F1', 'class' => 'sdr', 'seed' => $seedOf("PROBE1G1{$r}1"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0],
-        ['id' => 'G1F2', 'class' => 'sdr', 'seed' => $seedOf("PROBE1G1{$r}2"), 'perm' => [0, 1, 3, 2, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0],
+        [
+            'id' => 'G1F1',
+            'class' => 'sdr',
+            'seed' => $seedOf("PROBE1G1{$r}1"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+        ],
+        [
+            'id' => 'G1F2',
+            'class' => 'sdr',
+            'seed' => $seedOf("PROBE1G1{$r}2"),
+            'perm' => [0, 1, 3, 2, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+        ],
     ];
 }
-file_put_contents("$outDir/g1.json", json_encode($g1, JSON_PRETTY_PRINT));
+file_put_contents("{$outDir}/g1.json", json_encode($g1, JSON_PRETTY_PRINT));
 
 // G2: 2 задачи ОДНОГО композиционного класса, идентичная perm (слоты!), разные сиды
-$g2 = ['replicates' => []];
+$g2 = [
+    'replicates' => [],
+];
 for ($r = 1; $r <= 4; $r++) {
     $g2['replicates'][(string) $r] = [
-        ['id' => 'G2A', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1G2{$r}a"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0],
-        ['id' => 'G2B', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1G2{$r}b"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0],
+        [
+            'id' => 'G2A',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1G2{$r}a"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+        ],
+        [
+            'id' => 'G2B',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1G2{$r}b"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+        ],
     ];
 }
-file_put_contents("$outDir/g2.json", json_encode($g2, JSON_PRETTY_PRINT));
+file_put_contents("{$outDir}/g2.json", json_encode($g2, JSON_PRETTY_PRINT));
 
 // G3: новые экземпляры того же класса (D₃ зафиксирован ДО G2-прогонов) + nulls
-$g3 = ['replicates' => []];
+$g3 = [
+    'replicates' => [],
+];
 for ($r = 1; $r <= 4; $r++) {
     $g3['replicates'][(string) $r] = [
-        ['id' => 'H1', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1H{$r}1"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => false],
-        ['id' => 'H2', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1H{$r}2"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => false],
-        ['id' => 'HN1', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1HN{$r}1"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => true],
-        ['id' => 'HN2', 'class' => 'sdrplusdiff', 'seed' => $seedOf("PROBE1HN{$r}2"), 'perm' => [0, 1, 2, 3, 4], 'scale' => [1, 1, 1, 1, 1], 'noise' => 0.0, 'null_shuffle' => true],
+        [
+            'id' => 'H1',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1H{$r}1"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => false,
+        ],
+        [
+            'id' => 'H2',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1H{$r}2"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => false,
+        ],
+        [
+            'id' => 'HN1',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1HN{$r}1"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => true,
+        ],
+        [
+            'id' => 'HN2',
+            'class' => 'sdrplusdiff',
+            'seed' => $seedOf("PROBE1HN{$r}2"),
+            'perm' => [0, 1, 2, 3, 4],
+            'scale' => [1, 1, 1, 1, 1],
+            'noise' => 0.0,
+            'null_shuffle' => true,
+        ],
     ];
 }
-file_put_contents("$outDir/g3.json", json_encode($g3, JSON_PRETTY_PRINT));
+file_put_contents("{$outDir}/g3.json", json_encode($g3, JSON_PRETTY_PRINT));
 echo "g1.json + g2.json + g3.json written\n";
 echo "Класс СОЗНАТЕЛЬНО композиционный (DEV-гейт механики) — открытая документация.\n";

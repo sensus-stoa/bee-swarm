@@ -23,7 +23,10 @@ const LAW_X = '((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))';
 const T1_PLAIN = '((x0+x1)/(x0−x1))'; // та же функция БЕЗ born-op application
 
 $birth = [T1_NAME, T2_NAME];
-$entries = WordCodec::buildDictionary([T1_NAME => T1_DEF, T2_NAME => T2_DEF], $birth);
+$entries = WordCodec::buildDictionary([
+    T1_NAME => T1_DEF,
+    T2_NAME => T2_DEF,
+], $birth);
 
 $genomes = [
     'law_x' => WordCodec::encode(WordCodec::parseDefinition(LAW_X, $birth), $entries),
@@ -65,4 +68,4 @@ foreach ($genomes as $name => $g) {
     };
     $line($name, $src, $g);
 }
-echo "written: Benchmarks/genome001/genome001_bundle.json (" . strlen($bundle) . " bytes, rows=" . count($rows) . " в тестовом envelope, не в бандле)\n";
+echo 'written: Benchmarks/genome001/genome001_bundle.json (' . strlen($bundle) . ' bytes, rows=' . count($rows) . " в тестовом envelope, не в бандле)\n";

@@ -21,10 +21,16 @@ use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\WordCodecException;
 use BeeSwarm\Infra\Database;
 
-/** @noinspection PhpUnusedParameterInspection параметры для единообразия ответа */
+/**
+ * @noinspection PhpUnusedParameterInspection параметры для единообразия ответа
+ */
 function fail(string $class, string $message): never
 {
-    echo json_encode(['ok' => false, 'error_class' => $class, 'error' => $message], JSON_UNESCAPED_UNICODE) . "\n";
+    echo json_encode([
+        'ok' => false,
+        'error_class' => $class,
+        'error' => $message,
+    ], JSON_UNESCAPED_UNICODE) . "\n";
     exit(3);
 }
 
@@ -59,7 +65,10 @@ try {
     foreach ((array) ($env['rows'] ?? []) as $row) {
         $values[] = ExpressionEvaluator::evalNode($ast, (array) $row, [], []);
     }
-    echo json_encode(['ok' => true, 'values' => $values], JSON_UNESCAPED_UNICODE) . "\n";
+    echo json_encode([
+        'ok' => true,
+        'values' => $values,
+    ], JSON_UNESCAPED_UNICODE) . "\n";
     exit(0);
 } catch (WordCodecException $e) {
     fail('WordCodecException', $e->getMessage());

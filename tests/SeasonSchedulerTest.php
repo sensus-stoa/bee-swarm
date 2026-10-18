@@ -55,16 +55,56 @@ final class SeasonSchedulerTest extends TestCase
         $p = SeasonScheduler::PHASES;
         $this->assertCount(8, $p);
         // PREREG §2: значения из prereg, не из хендоффа
-        $this->assertSame(['explore' => 0.2, 'dream' => 0.4, 'verify' => 0.2, 'rest' => 0.2], $p[0]);
-        $this->assertSame(['explore' => 0.6, 'dream' => 0.1, 'verify' => 0.2, 'rest' => 0.1], $p[1]);
-        $this->assertSame(['explore' => 0.4, 'dream' => 0.0, 'verify' => 0.4, 'rest' => 0.2], $p[2]);
-        $this->assertSame(['explore' => 0.3, 'dream' => 0.0, 'verify' => 0.5, 'rest' => 0.2], $p[3]);
-        $this->assertSame(['explore' => 0.1, 'dream' => 0.0, 'verify' => 0.7, 'rest' => 0.2], $p[4]);
+        $this->assertSame([
+            'explore' => 0.2,
+            'dream' => 0.4,
+            'verify' => 0.2,
+            'rest' => 0.2,
+        ], $p[0]);
+        $this->assertSame([
+            'explore' => 0.6,
+            'dream' => 0.1,
+            'verify' => 0.2,
+            'rest' => 0.1,
+        ], $p[1]);
+        $this->assertSame([
+            'explore' => 0.4,
+            'dream' => 0.0,
+            'verify' => 0.4,
+            'rest' => 0.2,
+        ], $p[2]);
+        $this->assertSame([
+            'explore' => 0.3,
+            'dream' => 0.0,
+            'verify' => 0.5,
+            'rest' => 0.2,
+        ], $p[3]);
+        $this->assertSame([
+            'explore' => 0.1,
+            'dream' => 0.0,
+            'verify' => 0.7,
+            'rest' => 0.2,
+        ], $p[4]);
         // фазы 5/6: autophagy-доля исполняется как rest (аддендум A5)
-        $this->assertSame(['explore' => 0.1, 'dream' => 0.0, 'verify' => 0.5, 'rest' => 0.4], $p[5]);
-        $this->assertSame(['explore' => 0.1, 'dream' => 0.5, 'verify' => 0.0, 'rest' => 0.4], $p[6]);
+        $this->assertSame([
+            'explore' => 0.1,
+            'dream' => 0.0,
+            'verify' => 0.5,
+            'rest' => 0.4,
+        ], $p[5]);
+        $this->assertSame([
+            'explore' => 0.1,
+            'dream' => 0.5,
+            'verify' => 0.0,
+            'rest' => 0.4,
+        ], $p[6]);
         // фаза 7: settlement выпадает → равномерный микс (аддендум A5)
-        $this->assertSame(['explore' => 0.25, 'dream' => 0.25, 'verify' => 0.25, 'rest' => 0.25], $p[7]);
+        $this->assertSame([
+            'explore' => 0.25,
+            'dream' => 0.25,
+            'verify' => 0.25,
+            'rest' => 0.25,
+        ], $p[7]);
         // суммы долей = 1 для каждой фазы
         foreach ($p as $i => $ph) {
             $this->assertEqualsWithDelta(1.0, array_sum($ph), 1e-9, "phase {$i}");
@@ -94,7 +134,12 @@ final class SeasonSchedulerTest extends TestCase
         $s = new SeasonScheduler('B', 777);
         $phase = 1;
         $start = $phase * SeasonScheduler::TICKS_PER_PHASE;
-        $counts = ['explore' => 0, 'dream' => 0, 'verify' => 0, 'rest' => 0];
+        $counts = [
+            'explore' => 0,
+            'dream' => 0,
+            'verify' => 0,
+            'rest' => 0,
+        ];
         for ($t = $start; $t < $start + SeasonScheduler::TICKS_PER_PHASE; $t++) {
             $counts[$s->roll($t)]++;
         }

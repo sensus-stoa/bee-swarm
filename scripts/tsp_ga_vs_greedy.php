@@ -6,7 +6,6 @@ declare(strict_types=1);
  * Цель: найти инстанс, где эволюция (популяция + кроссовер + меметика)
  * находит бассейн ЛУЧШЕ, чем 2-opt от жадного старта.
  */
-
 const N = 20;
 const POP = 40;
 const GENS = 300;
@@ -41,7 +40,9 @@ function greedy(array $c): array
 {
     $n = count($c);
     $r = [mt_rand(0, $n - 1)];
-    $v = [$r[0] => true];
+    $v = [
+        $r[0] => true,
+    ];
     while (count($r) < $n) {
         $last = $r[count($r) - 1];
         $best = null;
@@ -188,12 +189,19 @@ for ($seed = 1; $seed <= 10; $seed++) {
     for ($t = 0; $t < 3; $t++) {
         $gaBest = min($gaBest, gaMemetic($c, 1000 + $seed * 10 + $t));
     }
-    $win = $gaBest < $o - 0.01 ? "GA WINS" : ($gaBest < $o + 0.01 ? "=" : "2opt");
-    if ($win === "GA WINS") {
+    $win = $gaBest < $o - 0.01 ? 'GA WINS' : ($gaBest < $o + 0.01 ? '=' : '2opt');
+    if ($win === 'GA WINS') {
         $gaWins++;
     }
-    printf("%-4d | %6.2f | %6.2f      | %6.2f    | %s | %s\n",
-        $seed, $g, $o, $gaBest, $gaBest < $o ? "yes" : "no", $win);
+    printf(
+        "%-4d | %6.2f | %6.2f      | %6.2f    | %s | %s\n",
+        $seed,
+        $g,
+        $o,
+        $gaBest,
+        $gaBest < $o ? 'yes' : 'no',
+        $win
+    );
 }
 echo str_repeat('-', 60) . "\n";
-echo "GA побед: $gaWins/10\n";
+echo "GA побед: {$gaWins}/10\n";

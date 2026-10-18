@@ -23,7 +23,9 @@ use BeeSwarm\Infra\Database;
  */
 final class DormantPoolCapacityTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
     protected function setUp(): void
@@ -60,11 +62,16 @@ final class DormantPoolCapacityTest extends TestCase
     {
         $pool = new DormantPool(300, 3);
         foreach ([0.9, 0.8, 0.7, 0.95] as $i => $novelty) {
-            $pool->deposit(['op' => '×', 'i' => $i], 'X', $novelty);
+            $pool->deposit([
+                'op' => '×',
+                'i' => $i,
+            ], 'X', $novelty);
         }
 
         $this->assertSame(3, $pool->size(), 'capacity ограничивает размер пула');
-        $novelties = array_column($pool->awaken(3, ['X' => 3]), 'novelty');
+        $novelties = array_column($pool->awaken(3, [
+            'X' => 3,
+        ]), 'novelty');
         sort($novelties);
         $this->assertSame([0.8, 0.9, 0.95], $novelties, 'вытеснен резидент 0.7, топ-3 сохранены');
     }
@@ -76,12 +83,20 @@ final class DormantPoolCapacityTest extends TestCase
     public function testWorstArrivalEvictsItself(): void
     {
         $pool = new DormantPool(300, 2);
-        $pool->deposit(['op' => '×'], 'X', 0.9);
-        $pool->deposit(['op' => '×'], 'X', 0.8);
-        $pool->deposit(['op' => '×'], 'X', 0.1);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.9);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.8);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.1);
 
         $this->assertSame(2, $pool->size());
-        $novelties = array_column($pool->awaken(2, ['X' => 2]), 'novelty');
+        $novelties = array_column($pool->awaken(2, [
+            'X' => 2,
+        ]), 'novelty');
         sort($novelties);
         $this->assertSame([0.8, 0.9], $novelties, 'приход 0.1 вытеснен, резиденты целы');
     }
@@ -96,16 +111,28 @@ final class DormantPoolCapacityTest extends TestCase
     public function testAwakenedPinnedBeyondCapacity(): void
     {
         $pool = new DormantPool(300, 2);
-        $pool->deposit(['op' => '×'], 'X', 0.9);
-        $pool->deposit(['op' => '×'], 'X', 0.8);
-        $pinned = $pool->awaken(1, ['X' => 1]);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.9);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.8);
+        $pinned = $pool->awaken(1, [
+            'X' => 1,
+        ]);
         $this->assertCount(1, $pinned, 'санити: 0.9 pinned');
 
-        $pool->deposit(['op' => '×'], 'X', 0.7); // перелив: не-awakened min = 0.7 (приход сам)
-        $pool->deposit(['op' => '×'], 'X', 0.85); // перелив: min merit = 0.8 (резидент)
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.7); // перелив: не-awakened min = 0.7 (приход сам)
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.85); // перелив: min merit = 0.8 (резидент)
 
         $this->assertSame(2, $pool->size(), 'total-capacity: pinned занимает ёмкость');
-        $novelties = array_column($pool->awaken(10, ['X' => 10]), 'novelty');
+        $novelties = array_column($pool->awaken(10, [
+            'X' => 10,
+        ]), 'novelty');
         $this->assertSame([0.85], $novelties, 'awaken возвращает только не-awakened; 0.9 pinned выжил оба вытеснения');
     }
 
@@ -144,14 +171,22 @@ final class DormantPoolCapacityTest extends TestCase
     public function testAllPinnedOverflowSelfEvicts(): void
     {
         $pool = new DormantPool(300, 1);
-        $pool->deposit(['op' => '×'], 'X', 0.9);
-        $pinned = $pool->awaken(1, ['X' => 1]);
+        $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.9);
+        $pinned = $pool->awaken(1, [
+            'X' => 1,
+        ]);
         $this->assertCount(1, $pinned, 'санити: единственный резидент pinned');
 
-        $id = $pool->deposit(['op' => '×'], 'X', 0.5);
+        $id = $pool->deposit([
+            'op' => '×',
+        ], 'X', 0.5);
 
         $this->assertSame(1, $pool->size(), 'total-capacity при all-pinned: newcomer self-evicted');
-        $novelties = array_column($pool->awaken(10, ['X' => 10]), 'novelty');
+        $novelties = array_column($pool->awaken(10, [
+            'X' => 10,
+        ]), 'novelty');
         $this->assertSame([], $novelties, 'awaken видит только не-awakened; pinned 0.9 цел');
         unset($id); // self-evicted id не гарантирует запись (PHPDoc deposit)
     }

@@ -68,8 +68,6 @@ class IdleDreamer
      * числовые. F2 (agent-review 29.09): txt-задачи с >=2 колонками
      * проходят широтный фильтр → PHP 8 coercion ('foo'+0=0, warning)
      * даёт одинаковые нулевые векторы всем формам → ложная конгруэнтность.
-     *
-     * @param array $data
      */
     private static function isDreamable(array $data): bool
     {
@@ -82,8 +80,6 @@ class IdleDreamer
      * F2-гвард: все ячейки данных числовые (int/float/numeric-string).
      * Текстовые задачи не доходят до compose — PHP-коэрция тихо превращает
      * слова в нули и порождает ложные конгруэнтности.
-     *
-     * @param array $data
      */
     private static function numericRows(array $data): bool
     {

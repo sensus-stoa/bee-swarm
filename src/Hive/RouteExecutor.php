@@ -20,7 +20,9 @@ use BeeSwarm\Core\Search;
  * Изоляция (EXP-044):
  *  - route-local атомы (LOCAL_BIRTH) живут ТОЛЬКО в Grammar инстансе вылета
  *    (Grammar::addLocal — ноль записей в grammar_ops);
- *  - baseline-вылеты всегда без TRAIL_MARKS; route-канал управляет своими.
+ *  - baseline-вылеты (вне исполнителя: driver.php baseline_flights) всегда
+ *    без TRAIL_MARKS; route-канал всегда ПИШЕТ метки (v1.1 write-on,
+ *    REPORT.md §3.1), USE_MARKS управляет только чтением (TRAIL_READ_K).
  *
  * Метрика прогресса L(f) = RMSE(f,y)/RMSE(mean_train,y) — PySR-style loss,
  * считается ВНЕШНЕ на внутреннем valid-хвосте (testRatio=0.2-срез движка,
@@ -28,24 +30,44 @@ use BeeSwarm\Core\Search;
  */
 final class RouteExecutor
 {
-    /** Внутренний valid-хвост = тот же сплит, что держит движок (testRatio=0.2). */
+    /**
+     * Внутренний valid-хвост = тот же сплит, что держит движок (testRatio=0.2).
+     */
     private const TEST_RATIO = 0.2;
 
-    /** Env-ручки, которыми управляет исполнитель (снапшот+восстановление). */
+    /**
+     * Env-ручки, которыми управляет исполнитель (снапшот+восстановление).
+     */
     private const MANAGED_KNOBS = ['SEARCH_BEAM_K', 'L2_BEAM_K', 'TRAIL_MARKS', 'TRAIL_READ_K'];
 
-    /** Beam-пресеты = связки реальных env-ручек (см. RouteGenome::BEAM_PRESETS). */
+    /**
+     * Beam-пресеты = связки реальных env-ручек (см. RouteGenome::BEAM_PRESETS).
+     */
     private const BEAM_KNOBS = [
         // Явный beam-off: пустая строка → (int)('' ?: '0') = 0 независимо от
         // ambient-env (phpunit.xml force-ставит SEARCH_BEAM_K=10 — пресет
         // обязан задавать СВОЮ семантику, а не наследовать окружение).
-        'default' => ['SEARCH_BEAM_K' => '', 'L2_BEAM_K' => ''],
-        'beam10' => ['SEARCH_BEAM_K' => '10', 'L2_BEAM_K' => '40'],
-        'beam40' => ['SEARCH_BEAM_K' => '40', 'L2_BEAM_K' => '80'],
-        'narrow5' => ['SEARCH_BEAM_K' => '5', 'L2_BEAM_K' => '10'],
+        'default' => [
+            'SEARCH_BEAM_K' => '',
+            'L2_BEAM_K' => '',
+        ],
+        'beam10' => [
+            'SEARCH_BEAM_K' => '10',
+            'L2_BEAM_K' => '40',
+        ],
+        'beam40' => [
+            'SEARCH_BEAM_K' => '40',
+            'L2_BEAM_K' => '80',
+        ],
+        'narrow5' => [
+            'SEARCH_BEAM_K' => '5',
+            'L2_BEAM_K' => '10',
+        ],
     ];
 
-    /** Минимальный остаток канала, при котором ещё имеет смысл стартовать вылет. */
+    /**
+     * Минимальный остаток канала, при котором ещё имеет смысл стартовать вылет.
+     */
     private const MIN_FLIGHT_SEC = 1.0;
 
     /**
@@ -94,7 +116,7 @@ final class RouteExecutor
 
         $t0 = microtime(true);
         $n = count($y);
-        $labels = $labels ?? array_map(fn (int $i): string => "x{$i}", range(0, count($X[0] ?? []) - 1));
+        $labels ??= array_map(fn (int $i): string => "x{$i}", range(0, count($X[0] ?? []) - 1));
         $records = [];
         $pendingMarksK = 0;
         $found = false;
@@ -113,15 +135,30 @@ final class RouteExecutor
             $op = $action['op'];
             if ($op === 'USE_MARKS') {
                 $pendingMarksK = (int) $action['k'];
-                $records[] = ['seq' => $seq, 'op' => 'USE_MARKS', 'knobs' => 'k=' . $pendingMarksK,
-                    'found' => 0, 'cv_exposed' => null, 'l_train' => null, 'l_valid' => null, 'wall_s' => 0.0];
+                $records[] = [
+                    'seq' => $seq,
+                    'op' => 'USE_MARKS',
+                    'knobs' => 'k=' . $pendingMarksK,
+                    'found' => 0,
+                    'cv_exposed' => null,
+                    'l_train' => null,
+                    'l_valid' => null,
+                    'wall_s' => 0.0,
+                ];
                 continue;
             }
             if ($op === 'LOCAL_BIRTH') {
                 $born = self::localBirth($bestFormulaX);
-                $records[] = ['seq' => $seq, 'op' => 'LOCAL_BIRTH',
+                $records[] = [
+                    'seq' => $seq,
+                    'op' => 'LOCAL_BIRTH',
                     'knobs' => $born !== null ? ('atom=' . $born['name']) : 'rejected',
-                    'found' => 0, 'cv_exposed' => null, 'l_train' => null, 'l_valid' => null, 'wall_s' => 0.0];
+                    'found' => 0,
+                    'cv_exposed' => null,
+                    'l_train' => null,
+                    'l_valid' => null,
+                    'wall_s' => 0.0,
+                ];
                 if ($born !== null) {
                     $localAtoms[$born['name']] = $born['definition'];
                 }
@@ -132,8 +169,18 @@ final class RouteExecutor
             $marksK = $pendingMarksK;
             $pendingMarksK = 0;
             $a0 = microtime(true);
-            $r = self::flight($X, $y, $labels, (array) RouteGenome::GRAMMAR_PRESETS[$action['grammar']],
-                (string) $action['beam'], $depth, $marksK, $remain, $eps, $localAtoms);
+            $r = self::flight(
+                $X,
+                $y,
+                $labels,
+                (array) RouteGenome::GRAMMAR_PRESETS[$action['grammar']],
+                (string) $action['beam'],
+                $depth,
+                $marksK,
+                $remain,
+                $eps,
+                $localAtoms
+            );
             $wall = microtime(true) - $a0;
             [$foundFlight, $cvExposed, $formulaC, $formulaX] = $r;
             // Route-local атомы живут только в Grammar-инстансе вылета: внешний
@@ -155,11 +202,17 @@ final class RouteExecutor
                     $bestFormulaX = $formulaX;
                 }
             }
-            $records[] = ['seq' => $seq, 'op' => 'FLIGHT',
+            $records[] = [
+                'seq' => $seq,
+                'op' => 'FLIGHT',
                 'knobs' => 'd=' . $depth . ';g=' . $action['grammar'] . ';b=' . $action['beam']
                     . ($marksK > 0 ? ';marks=' . $marksK : ''),
-                'found' => $foundFlight ? 1 : 0, 'cv_exposed' => $cvExposed,
-                'l_train' => $lTrain, 'l_valid' => $lValid, 'wall_s' => round($wall, 3)];
+                'found' => $foundFlight ? 1 : 0,
+                'cv_exposed' => $cvExposed,
+                'l_train' => $lTrain,
+                'l_valid' => $lValid,
+                'wall_s' => round($wall, 3),
+            ];
         }
 
         $wall = microtime(true) - $t0;
@@ -176,6 +229,24 @@ final class RouteExecutor
             'unspent' => max(0.0, $channelBudgetSec - $wall),
             'local_atoms' => $localAtoms,
             'stop' => $stop,
+        ];
+    }
+
+    /**
+     * ENV-ручки меток для вылета. v1.1 write-on (REPORT.md §3.1):
+     * запись всегда on — route-канал накапливает дорогу независимо от
+     * USE_MARKS (БД руки изолирована, task-start DELETE в драйвере);
+     * USE_MARKS управляет ТОЛЬКО чтением через TRAIL_READ_K. '0' —
+     * честный ноль чтения: Search::find различает '0' и unset
+     * (unset = verify-канон EXP-040, default 5).
+     *
+     * @return array{TRAIL_MARKS:string, TRAIL_READ_K:string}
+     */
+    public static function marksKnobs(int $marksK): array
+    {
+        return [
+            'TRAIL_MARKS' => '1',
+            'TRAIL_READ_K' => (string) max(0, $marksK),
         ];
     }
 
@@ -208,11 +279,15 @@ final class RouteExecutor
             foreach (self::BEAM_KNOBS[$beam] ?? [] as $k => $v) {
                 putenv($k . '=' . $v);
             }
-            if ($marksK > 0) {
-                putenv('TRAIL_MARKS=1');
-                putenv('TRAIL_READ_K=' . $marksK);
-            } else {
-                putenv('TRAIL_MARKS'); // baseline-гигиена: чтение меток выключено
+            // EXP-045 v1.1 write-on (REPORT.md §3.1, dev_run1 причина 1):
+            // маршрут [FLIGHT, USE_MARKS, FLIGHT] не накапливал дорогу —
+            // первый вылет не писал (TRAIL_MARKS снимался целиком), третий
+            // читал пустую таблицу. Write в route-канале всегда on: БД руки
+            // изолирована (S2), task-start DELETE в драйвере (driver.php:277).
+            // USE_MARKS управляет ТОЛЬКО чтением — TRAIL_READ_K='0' читает
+            // честный ноль (фикс fallback '0'?:'5' в Search::find).
+            foreach (self::marksKnobs($marksK) as $k => $v) {
+                putenv($k . '=' . $v);
             }
             $g = Grammar::fromOps($presetOps);
             foreach ($localAtoms as $name => $definition) {
@@ -277,7 +352,9 @@ final class RouteExecutor
         if (count($feats) < 1 || count($feats) > 2) {
             return null; // бинарный контракт (a,b)
         }
-        $map = ['x' . $feats[0] => 'a'];
+        $map = [
+            'x' . $feats[0] => 'a',
+        ];
         if (count($feats) === 2) {
             $map['x' . $feats[1]] = 'b';
         }
@@ -301,7 +378,10 @@ final class RouteExecutor
             return null;
         }
 
-        return ['name' => 'RL' . substr(sha1($definition), 0, 8), 'definition' => $definition];
+        return [
+            'name' => 'RL' . substr(sha1($definition), 0, 8),
+            'definition' => $definition,
+        ];
     }
 
     /**
@@ -335,7 +415,10 @@ final class RouteExecutor
                         return null;
                     }
 
-                    return ['op' => $op, 'arg' => $arg];
+                    return [
+                        'op' => $op,
+                        'arg' => $arg,
+                    ];
                 }
                 $left = self::toExprTree($node['l'] ?? null, $map);
                 $right = self::toExprTree($node['r'] ?? null, $map);
@@ -343,7 +426,11 @@ final class RouteExecutor
                     return null;
                 }
 
-                return ['op' => $op, 'left' => $left, 'right' => $right];
+                return [
+                    'op' => $op,
+                    'left' => $left,
+                    'right' => $right,
+                ];
             }
 
             return null;
@@ -444,7 +531,9 @@ final class RouteExecutor
         return $out;
     }
 
-    /** Рендер дерева (ExpressionTree-формат) в инфикс Search с a/b → операнды. */
+    /**
+     * Рендер дерева (ExpressionTree-формат) в инфикс Search с a/b → операнды.
+     */
     private static function renderTree(array|string|float|null $node, string $a, string $b): ?string
     {
         if (is_string($node)) {
@@ -520,7 +609,9 @@ final class RouteExecutor
         return $rmseF / $rmseB;
     }
 
-    /** @param list<float> $y @return list<float> */
+    /**
+     * @param list<float> $y @return list<float>
+     */
     private static function tailY(array $y): array
     {
         $split = (int) floor(count($y) * (1.0 - self::TEST_RATIO));
@@ -528,7 +619,9 @@ final class RouteExecutor
         return array_slice($y, $split);
     }
 
-    /** @param list<float> $y @return list<float> */
+    /**
+     * @param list<float> $y @return list<float>
+     */
     private static function headY(array $y): array
     {
         $split = (int) floor(count($y) * (1.0 - self::TEST_RATIO));
@@ -536,7 +629,9 @@ final class RouteExecutor
         return array_slice($y, 0, $split);
     }
 
-    /** @param list<list<float>> $X @return list<list<float>> */
+    /**
+     * @param list<list<float>> $X @return list<list<float>>
+     */
     private static function tailX(array $X): array
     {
         $split = (int) floor(count($X) * (1.0 - self::TEST_RATIO));
@@ -544,7 +639,9 @@ final class RouteExecutor
         return array_slice($X, $split);
     }
 
-    /** @param list<list<float>> $X @return list<list<float>> */
+    /**
+     * @param list<list<float>> $X @return list<list<float>>
+     */
     private static function headX(array $X): array
     {
         $split = (int) floor(count($X) * (1.0 - self::TEST_RATIO));

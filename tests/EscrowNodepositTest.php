@@ -25,7 +25,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class EscrowNodepositTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
     protected function setUp(): void
@@ -160,8 +162,16 @@ final class EscrowNodepositTest extends TestCase
             ['hive' => $hive, 'log' => $log, 'bee' => $bee] = $this->buildHive(5, 'domI');
             $before = $bee->energy();
             $foundAny = false;
-            $d = ['atom' => '(x0+K2)', 'cv' => 0.001, 'class' => 'EMPIRICAL'];
-            $task = ['name' => 'search_nodeposit', 'domain' => 'domI', 'fingerprint' => 'fp_snp'];
+            $d = [
+                'atom' => '(x0+K2)',
+                'cv' => 0.001,
+                'class' => 'EMPIRICAL',
+            ];
+            $task = [
+                'name' => 'search_nodeposit',
+                'domain' => 'domI',
+                'fingerprint' => 'fp_snp',
+            ];
             $m = new \ReflectionMethod(Hive::class, 'recordDiscovery');
             $m->setAccessible(true);
             $m->invokeArgs($hive, [$d, $task, 'domI', &$foundAny, [[1.0], [2.0], [3.0]], [2.0, 4.0, 6.0]]);
@@ -203,14 +213,21 @@ final class EscrowNodepositTest extends TestCase
                 json_encode([
                     'members' => [$formula],
                     'split_at' => null,
-                    'domain' => ['0' => [0.0, 40.0], '1' => [0.0, 40.0]],
+                    'domain' => [
+                        '0' => [0.0, 40.0],
+                        '1' => [0.0, 40.0],
+                    ],
                 ]),
             ]);
         }
         $pool = new \ReflectionProperty(Hive::class, 'foragedTasksGlobal');
         $pool->setAccessible(true);
         $pool->setValue($hive, [
-            ['name' => 'dream_minus', 'domain' => $domain, 'data' => self::rowsMinusSq()],
+            [
+                'name' => 'dream_minus',
+                'domain' => $domain,
+                'data' => self::rowsMinusSq(),
+            ],
         ]);
         $bees = new \ReflectionProperty(Hive::class, 'bees');
         $bees->setAccessible(true);
@@ -221,7 +238,11 @@ final class EscrowNodepositTest extends TestCase
         $rb->setAccessible(true);
         $rb->setValue($hive, $first);
 
-        return ['hive' => $hive, 'log' => $log, 'bee' => $first];
+        return [
+            'hive' => $hive,
+            'log' => $log,
+            'bee' => $first,
+        ];
     }
 
     private function dreamTick(Hive $hive): void

@@ -331,7 +331,10 @@ final class LanguageVerify28
             'cv' => is_numeric($res[1] ?? null) ? (float) $res[1] : 9.99,
             'formula' => is_string($res[2] ?? null) ? (string) $res[2] : '',
             'secs' => $secs,
-            'atom' => ['name' => $name, 'definition' => $definition],
+            'atom' => [
+                'name' => $name,
+                'definition' => $definition,
+            ],
             'specificity' => ! $found,
         ];
     }
@@ -468,7 +471,10 @@ final class LanguageVerify28
     {
         return [
             'pass' => (bool) ($control['specificity'] ?? false),
-            'random_atom' => $control['atom'] ?? ['name' => '', 'definition' => ''],
+            'random_atom' => $control['atom'] ?? [
+                'name' => '',
+                'definition' => '',
+            ],
             'found' => (bool) ($control['found'] ?? false),
             'cv' => is_numeric($control['cv'] ?? null) ? (float) $control['cv'] : 9.99,
             'secs' => (float) ($control['secs'] ?? 0.0),

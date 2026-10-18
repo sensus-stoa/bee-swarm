@@ -46,10 +46,12 @@ $tables = $pdo->query(
 printf("ESCROW ORPHANS (holding без V-задач) — %s\n", date('Y-m-d H:i:s'));
 printf("DB: %s\n", $real);
 if (! in_array('law_escrow', $tables, true) || ! in_array('verification_tasks', $tables, true)) {
-    printf("schema: tables в БД %d; law_escrow=%s verification_tasks=%s — escrow-схемы нет, сирот нет по построению (БД не инициализирована текущим движком)\n",
+    printf(
+        "schema: tables в БД %d; law_escrow=%s verification_tasks=%s — escrow-схемы нет, сирот нет по построению (БД не инициализирована текущим движком)\n",
         count($pdo->query("SELECT name FROM sqlite_master WHERE type = 'table'")->fetchAll()),
         in_array('law_escrow', $tables, true) ? 'yes' : 'MISSING',
-        in_array('verification_tasks', $tables, true) ? 'yes' : 'MISSING');
+        in_array('verification_tasks', $tables, true) ? 'yes' : 'MISSING'
+    );
     printf("count: 0\n");
     exit(3); // schema-missing ≠ здорово (dual-review 17.10); 0 — только чистая полная схема
 }

@@ -6,7 +6,6 @@ namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\RouteGenome;
 use BeeSwarm\Hive\RouteLedger;
-use BeeSwarm\Hive\RouteMutator;
 
 /**
  * EXP-045 S4: quota-account — учёт исходов, revoke неудачников, скоринг.
@@ -15,11 +14,25 @@ class RouteLedgerTest extends TestCase
 {
     private function genome(string $id): array
     {
-        return RouteGenome::create($id, '', 0, ['kind' => 'ALWAYS'],
-            [['op' => 'FLIGHT', 'depth' => 2, 'grammar' => 'base', 'beam' => 'default']], 0.2, 1);
+        return RouteGenome::create(
+            $id,
+            '',
+            0,
+            [
+                'kind' => 'ALWAYS',
+            ],
+            [[
+                'op' => 'FLIGHT',
+                'depth' => 2,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ]],
+            0.2,
+            1
+        );
     }
 
-    public function test_outcome_updates_record(): void
+    public function testOutcomeUpdatesRecord(): void
     {
         $l = new RouteLedger();
         $l->register($this->genome('route_aaaa1111'));
@@ -32,7 +45,7 @@ class RouteLedgerTest extends TestCase
         $this->assertFalse($l->isRevoked('route_aaaa1111'));
     }
 
-    public function test_revoke_after_two_fails(): void
+    public function testRevokeAfterTwoFails(): void
     {
         $l = new RouteLedger();
         $l->register($this->genome('route_bbbb2222'));
@@ -43,7 +56,7 @@ class RouteLedgerTest extends TestCase
         $this->assertSame([], $l->active(), 'отозванный теряет право на ресурс');
     }
 
-    public function test_certified_run_is_win_even_with_small_delta(): void
+    public function testCertifiedRunIsWinEvenWithSmallDelta(): void
     {
         $l = new RouteLedger();
         $l->register($this->genome('route_cccc3333'));
@@ -53,18 +66,35 @@ class RouteLedgerTest extends TestCase
         $this->assertSame(0, $g['record']['fails']);
     }
 
-    public function test_score_prefers_higher_delta_and_penalizes_complexity(): void
+    public function testScorePrefersHigherDeltaAndPenalizesComplexity(): void
     {
         $l = new RouteLedger();
         $short = $this->genome('route_dddd4444');
         $l->register($short);
         $l->recordOutcome('route_dddd4444', 't', 0.20, false, 1.0, 0.0);
 
-        $long = RouteGenome::create('route_eeee5555', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
-            ['op' => 'USE_MARKS', 'k' => 3],
-            ['op' => 'LOCAL_BIRTH'],
-            ['op' => 'FLIGHT', 'depth' => 3, 'grammar' => 'diffprod', 'beam' => 'beam40'],
+        $long = RouteGenome::create('route_eeee5555', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
+            [
+                'op' => 'USE_MARKS',
+                'k' => 3,
+            ],
+            [
+                'op' => 'LOCAL_BIRTH',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 3,
+                'grammar' => 'diffprod',
+                'beam' => 'beam40',
+            ],
         ], 0.2, 4);
         $l->register($long);
         $l->recordOutcome('route_eeee5555', 't', 0.20, false, 1.0, 0.0);
@@ -76,7 +106,7 @@ class RouteLedgerTest extends TestCase
         );
     }
 
-    public function test_top_for_reproduction_requires_tasks_seen(): void
+    public function testTopForReproductionRequiresTasksSeen(): void
     {
         $l = new RouteLedger();
         $fresh = $this->genome('route_ffff6666'); // ноль наблюдений
@@ -91,7 +121,7 @@ class RouteLedgerTest extends TestCase
         }
     }
 
-    public function test_export_shape(): void
+    public function testExportShape(): void
     {
         $l = new RouteLedger();
         $l->register($this->genome('route_aaaa8888'));
@@ -103,7 +133,7 @@ class RouteLedgerTest extends TestCase
         $this->assertCount(2, $exp['outcomes']['route_aaaa8888']);
     }
 
-    public function test_unknown_route_rejected(): void
+    public function testUnknownRouteRejected(): void
     {
         $l = new RouteLedger();
         $this->expectException(\InvalidArgumentException::class);

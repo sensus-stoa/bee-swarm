@@ -147,7 +147,11 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 17.10 (WU-2 dual-review): +1 search-path nodeposit-пин → declared 1317
 # Снимок 17.10 (VERIF-TICK-WIRING): +5 VerificationTickWiringTest → declared 1322
 # Снимок 17.10 (VERIF-TICK-WIRING D1-цепочка): +1 хедрум-гвард капа (VerificationExecutorTest) → declared 1323
-TOTAL_EXPECTED=1323
+# Снимок 18.10 (EXP-045 v1.1 write-on): +3 RouteExecutorWriteOnTest → declared 1326
+# Снимок 18.10 (TEST-HYGIENE fast2min): +1 HiveEmptyPoolSleepTest, +1 LanguageVerify28GuardTest,
+# -8 LanguageVerify28Test (cert-пайплайн вынесен в scripts/verify_2_8.php, решение owner) → declared 1321
+# Снимок 18.10 (dual-review M1): +1 testGarbageEnvFallsBackToDefault (EMPTY_POOL_SLEEP_US парсинг) → declared 1322
+TOTAL_EXPECTED=1322
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

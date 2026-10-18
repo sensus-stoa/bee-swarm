@@ -32,18 +32,23 @@ use BeeSwarm\Core\Search;
 use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\Database;
 
-function loadHeat(string $path): array {
-    $X = []; $y = [];
+function loadHeat(string $path): array
+{
+    $X = [];
+    $y = [];
     foreach (file($path) as $line) {
         $p = array_map('floatval', explode(',', trim($line)));
-        if (count($p) < 6) continue;
+        if (count($p) < 6) {
+            continue;
+        }
         $X[] = array_slice($p, 0, 5);
         $y[] = $p[5];
     }
     return [$X, $y];
 }
 
-function splitData(array $X, array $y, int $seed): array {
+function splitData(array $X, array $y, int $seed): array
+{
     mt_srand($seed);
     $n = count($y);
     $idx = range(0, $n - 1);
@@ -63,11 +68,14 @@ function splitData(array $X, array $y, int $seed): array {
 }
 
 [$Xall, $yall] = loadHeat('/home/ninjacat/.bee_swarm/data/feynman_heat_conduction.csv');
-echo "данных: ", count($yall), " строк\n";
+echo 'данных: ', count($yall), " строк\n";
 
-$successA = 0; $successB = 0;
-$memA = []; $memB = [];
-$timeA = 0.0; $timeB = 0.0;
+$successA = 0;
+$successB = 0;
+$memA = [];
+$memB = [];
+$timeA = 0.0;
+$timeB = 0.0;
 $formulasB = [];
 
 for ($seed = 1; $seed <= 20; $seed++) {
@@ -83,16 +91,22 @@ for ($seed = 1; $seed <= 20; $seed++) {
     $okA = false;
     if ($rA[0] && $rA[2] !== 'none') {
         $pred = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($rA[2], $Xte);
-        $mism = 0; $m = 0;
+        $mism = 0;
+        $m = 0;
         foreach ($pred as $i => $p) {
-            if ($p === null) { $mism++; continue; }
+            if ($p === null) {
+                $mism++;
+                continue;
+            }
             $den = abs($yte[$i]) + 1e-8;
             $m += abs(($p - $yte[$i]) / $den);
         }
         $cvH = $m / max(1, count($yte));
         $okA = $cvH <= 0.10;
     }
-    if ($okA) $successA++;
+    if ($okA) {
+        $successA++;
+    }
     $memA[] = memory_get_peak_usage(true);
 
     // ── B: partialBirth → CHUNK-DIRECT ──
@@ -101,15 +115,22 @@ for ($seed = 1; $seed <= 20; $seed++) {
     $hive = new Hive(maxTicks: 0, logFile: '/tmp/e035p4.log');
     $hive->run();
     // голод линии → гейт пропускает частичную гипотезу
-    $hive->dormantPool()->deposit(['op' => '+', 'operand' => 'x0'], 'ADDITIVE', 0.5);
+    $hive->dormantPool()
+        ->deposit([
+            'op' => '+',
+            'operand' => 'x0',
+        ], 'ADDITIVE', 0.5);
     $hive->materializeFromPool(1);
     $hive->pruneLineages(50);
     $hive->pruneLineages(50);
 
     // Частичная гипотеза: лучший SUB из пар сырых фич (как рой находит
     // T2−T1 — разность температур), CV на train как гейт
-    $bestSub = null; $bestCv = PHP_FLOAT_MAX;
-    foreach ($Xtr as $i => $row) { break; }
+    $bestSub = null;
+    $bestCv = PHP_FLOAT_MAX;
+    foreach ($Xtr as $i => $row) {
+        break;
+    }
     // перебор всех SUB(xi,xj) пар — простая эмуляция discovery частичной формы
     $pairs = [];
     for ($a = 0; $a < 5; $a++) {
@@ -118,8 +139,13 @@ for ($seed = 1; $seed <= 20; $seed++) {
             // CV против y — rank по relative spread
             $mean = array_sum($vec) / count($vec);
             $var = 0.0;
-            foreach ($vec as $v) $var += ($v - $mean) ** 2;
-            $pairs[] = ['f' => '(x' . $a . '−x' . $b . ')', 'spread' => sqrt($var / count($vec))];
+            foreach ($vec as $v) {
+                $var += ($v - $mean) ** 2;
+            }
+            $pairs[] = [
+                'f' => '(x' . $a . '−x' . $b . ')',
+                'spread' => sqrt($var / count($vec)),
+            ];
         }
     }
     usort($pairs, fn ($p, $q) => $q['spread'] <=> $p['spread']);
@@ -130,37 +156,50 @@ for ($seed = 1; $seed <= 20; $seed++) {
     $bName = $hive->partialBirth($partial, 0.35, 'arithmetic', 1.0);
     $okB = false;
     if ($bName !== false && $bName !== null && $bName !== '') {
-            Grammar::registerReuse($bName, 'arithmetic');
-            $gB = new Grammar();
-            $gB->restrictTo(['+', '×', '−', '/', 'sq', $bName]);
-            $rB = Search::find($Xtr, $ytr, $gB, 3, null, 0.0, 0.15, 60.0);
-            if ($rB[0] && $rB[2] !== 'none') {
-                $pred = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($rB[2], $Xte);
-                $m = 0; $nulls = 0;
-                foreach ($pred as $i => $p) {
-                    if ($p === null) { $nulls++; continue; }
-                    $den = abs($yte[$i]) + 1e-8;
-                    $m += abs(($p - $yte[$i]) / $den);
+        Grammar::registerReuse($bName, 'arithmetic');
+        $gB = new Grammar();
+        $gB->restrictTo(['+', '×', '−', '/', 'sq', $bName]);
+        $rB = Search::find($Xtr, $ytr, $gB, 3, null, 0.0, 0.15, 60.0);
+        if ($rB[0] && $rB[2] !== 'none') {
+            $pred = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($rB[2], $Xte);
+            $m = 0;
+            $nulls = 0;
+            foreach ($pred as $i => $p) {
+                if ($p === null) {
+                    $nulls++;
+                    continue;
                 }
-                $cvH = $m / max(1, count($yte) - $nulls);
-                $okB = $cvH <= 0.10;
-                if ($okB) $formulasB[$seed] = $rB[2] . " (cvH=" . number_format($cvH, 4) . ")";
+                $den = abs($yte[$i]) + 1e-8;
+                $m += abs(($p - $yte[$i]) / $den);
             }
+            $cvH = $m / max(1, count($yte) - $nulls);
+            $okB = $cvH <= 0.10;
+            if ($okB) {
+                $formulasB[$seed] = $rB[2] . ' (cvH=' . number_format($cvH, 4) . ')';
+            }
+        }
     }
-    if ($okB) $successB++;
+    if ($okB) {
+        $successB++;
+    }
     $memB[] = memory_get_peak_usage(true);
     $timeB += microtime(true) - $t0;
-    echo "seed $seed: A=", $okA ? '1' : '0', " B=", $okB ? '1' : '0',
-        " partial=$partial\n";
+    echo "seed {$seed}: A=", $okA ? '1' : '0', ' B=', $okB ? '1' : '0',
+    " partial={$partial}\n";
 }
 
 $memPeakA = max($memA) / 1048576;
 $memPeakB = max($memB) / 1048576;
 echo "\n=== ИТОГ EXP-035 фаза 4 ===\n";
-echo "A (baseline depth3): $successA/20, peak mem " . round($memPeakA) . "MB, time " . round($timeA, 1) . "s\n";
-echo "B (CHUNK-DIRECT):    $successB/20, peak mem " . round($memPeakB) . "MB, time " . round($timeB, 1) . "s\n";
+echo "A (baseline depth3): {$successA}/20, peak mem " . round($memPeakA) . 'MB, time ' . round($timeA, 1) . "s\n";
+echo "B (CHUNK-DIRECT):    {$successB}/20, peak mem " . round($memPeakB) . 'MB, time ' . round($timeB, 1) . "s\n";
 echo "PySR (историч.):     18/20\n";
-foreach ($formulasB as $s => $f) echo "  B seed $s: $f\n";
-if ($successB >= 1) { echo "\n=== ФАЗА 4: PASS (≥1/20) ===\n"; exit(0); }
+foreach ($formulasB as $s => $f) {
+    echo "  B seed {$s}: {$f}\n";
+}
+if ($successB >= 1) {
+    echo "\n=== ФАЗА 4: PASS (≥1/20) ===\n";
+    exit(0);
+}
 echo "\n=== ФАЗА 4: FAIL ===\n";
 exit(1);

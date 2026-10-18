@@ -65,7 +65,10 @@ for ($i = 0; $i < 5; $i++) {
         $X[] = $row;
         $y[] = mt_rand(0, 1000) / 1000.0;
     }
-    $domains[] = ['X' => $X, 'y' => $y];
+    $domains[] = [
+        'X' => $X,
+        'y' => $y,
+    ];
 }
 
 $result = AtomRegistry::runNullCalibration($domains, 200);
@@ -92,5 +95,8 @@ function generateDomain(string $name, callable $fn, int $n, int $features = 2): 
         $X[] = array_map('floatval', $args);
         $y[] = (float) $fn(...$args);
     }
-    return ['X' => $X, 'y' => $y];
+    return [
+        'X' => $X,
+        'y' => $y,
+    ];
 }

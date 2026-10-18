@@ -52,15 +52,14 @@ with open(LOG, "w", encoding="utf-8") as log:
         print(line, flush=True)
         log.write(line + "\n")
         results.append((name, status, elapsed))
-
-total = time.time() - total_start
-summary = f"\n=== ИТОГ: {len(files)} файлов, {total:.0f}s total, {len(slow)} медленных/зависших ==="
-print(summary)
-log.write(summary + "\n")
-if slow:
-    for name, t in sorted(slow, key=lambda x: -x[1]):
-        line = f"  SLOW/HANG: {name} ({t:.0f}s)"
-        print(line)
-        log.write(line + "\n")
-else:
-    print("  Все файлы в пределах лимита.")
+    total = time.time() - total_start
+    summary = f"\n=== ИТОГ: {len(files)} файлов, {total:.0f}s total, {len(slow)} медленных/зависших ==="
+    print(summary)
+    log.write(summary + "\n")
+    if slow:
+        for name, t in sorted(slow, key=lambda x: -x[1]):
+            line = f"  SLOW/HANG: {name} ({t:.0f}s)"
+            print(line)
+            log.write(line + "\n")
+    else:
+        print("  Все файлы в пределах лимита.")

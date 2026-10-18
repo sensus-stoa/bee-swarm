@@ -30,7 +30,9 @@ final class EvoFix001Test extends TestCase
     private function dictionary(): array
     {
         return WordCodec::buildDictionary(
-            [self::W1_NAME => self::W1_DEF],
+            [
+                self::W1_NAME => self::W1_DEF,
+            ],
             [self::W1_NAME]
         );
     }
@@ -55,9 +57,34 @@ final class EvoFix001Test extends TestCase
         $genome = [
             'word' => self::W1_NAME,
             'args' => [
-                ['word' => self::W1_NAME, 'args' => [['atom' => 'x3'], ['atom' => 'x2'], ['atom' => 'x0']]],
-                ['atom' => 'x1'],
-                ['op' => '×', 'l' => ['op' => '−', 'l' => ['atom' => 'x2'], 'r' => ['atom' => 'x1']], 'r' => ['atom' => 'x5']],
+                [
+                    'word' => self::W1_NAME,
+                    'args' => [[
+                        'atom' => 'x3',
+                    ], [
+                        'atom' => 'x2',
+                    ], [
+                        'atom' => 'x0',
+                    ]],
+                ],
+                [
+                    'atom' => 'x1',
+                ],
+                [
+                    'op' => '×',
+                    'l' => [
+                        'op' => '−',
+                        'l' => [
+                            'atom' => 'x2',
+                        ],
+                        'r' => [
+                            'atom' => 'x1',
+                        ],
+                    ],
+                    'r' => [
+                        'atom' => 'x5',
+                    ],
+                ],
             ],
         ];
         $decoded = WordCodec::decode($genome, $dict);
@@ -80,7 +107,18 @@ final class EvoFix001Test extends TestCase
     public function testFix2DirectCycleRejected(): void
     {
         // W→W: определение ссылается само на себя
-        $dict = [['name' => self::W1_NAME, 'arity' => 2, 'genome' => ['word' => self::W1_NAME, 'args' => [['atom' => 'x0'], ['atom' => 'x1']]]]];
+        $dict = [[
+            'name' => self::W1_NAME,
+            'arity' => 2,
+            'genome' => [
+                'word' => self::W1_NAME,
+                'args' => [[
+                    'atom' => 'x0',
+                ], [
+                    'atom' => 'x1',
+                ]],
+            ],
+        ]];
         try {
             WordCodec::decodeDefinition($dict[0], $dict);
             self::fail('прямой цикл W→W должен отклоняться');
@@ -93,8 +131,36 @@ final class EvoFix001Test extends TestCase
     {
         // W1→W2→W1: косвенный цикл через определения
         $dict = [
-            ['name' => 'BWa1', 'arity' => 2, 'genome' => ['word' => 'BWb2', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]]],
-            ['name' => 'BWb2', 'arity' => 2, 'genome' => ['op' => '+', 'l' => ['word' => 'BWa1', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]], 'r' => ['atom' => 'K1']]],
+            [
+                'name' => 'BWa1',
+                'arity' => 2,
+                'genome' => [
+                    'word' => 'BWb2',
+                    'args' => [[
+                        'atom' => 'x0',
+                    ], [
+                        'atom' => 'x1',
+                    ]],
+                ],
+            ],
+            [
+                'name' => 'BWb2',
+                'arity' => 2,
+                'genome' => [
+                    'op' => '+',
+                    'l' => [
+                        'word' => 'BWa1',
+                        'args' => [[
+                            'atom' => 'x0',
+                        ], [
+                            'atom' => 'x1',
+                        ]],
+                    ],
+                    'r' => [
+                        'atom' => 'K1',
+                    ],
+                ],
+            ],
         ];
         try {
             WordCodec::decodeDefinition($dict[0], $dict);
@@ -110,12 +176,39 @@ final class EvoFix001Test extends TestCase
         $genome = [
             'word' => self::W1_NAME,
             'args' => [
-                ['word' => self::W1_NAME, 'args' => [['atom' => 'x3'], ['atom' => 'x2'], ['atom' => 'x0']]],
-                ['atom' => 'x1'],
-                ['op' => '×', 'l' => ['op' => '−', 'l' => ['atom' => 'x2'], 'r' => ['atom' => 'x1']], 'r' => ['atom' => 'x5']],
+                [
+                    'word' => self::W1_NAME,
+                    'args' => [[
+                        'atom' => 'x3',
+                    ], [
+                        'atom' => 'x2',
+                    ], [
+                        'atom' => 'x0',
+                    ]],
+                ],
+                [
+                    'atom' => 'x1',
+                ],
+                [
+                    'op' => '×',
+                    'l' => [
+                        'op' => '−',
+                        'l' => [
+                            'atom' => 'x2',
+                        ],
+                        'r' => [
+                            'atom' => 'x1',
+                        ],
+                    ],
+                    'r' => [
+                        'atom' => 'x5',
+                    ],
+                ],
             ],
         ];
-        $bundle = WordCodec::serializeBundle($dict, ['nested' => $genome]);
+        $bundle = WordCodec::serializeBundle($dict, [
+            'nested' => $genome,
+        ]);
         $rows = $this->rows();
         $envelope = [
             'db' => tempnam(sys_get_temp_dir(), 'evofix_') . '.sqlite',
@@ -160,7 +253,12 @@ final class EvoFix001Test extends TestCase
     {
         $dict = $this->dictionary();
         try {
-            WordCodec::decode(['word' => self::W1_NAME, 'args' => [['atom' => 'x0']]], $dict);
+            WordCodec::decode([
+                'word' => self::W1_NAME,
+                'args' => [[
+                    'atom' => 'x0',
+                ]],
+            ], $dict);
             self::fail('арность 1 != 3 должна отклоняться');
         } catch (WordCodecException $e) {
             self::assertStringContainsString('arity mismatch', $e->getMessage());
@@ -193,7 +291,16 @@ final class EvoFix001Test extends TestCase
             $pop = [];
             for ($i = 0; $i < 4; $i++) {
                 $ast = WordCodec::parseDefinition('(x0×x1)+(x2+x' . $i . ')');
-                $pop[] = ['ast' => $ast, 'g' => null, 'lin' => 'old-' . $ti . '-' . $i, 'chain' => 0, 'train' => 0.001, 'valid' => 0.001, 'world_id' => 0, 'fitness_hash' => 'old-world-hash'];
+                $pop[] = [
+                    'ast' => $ast,
+                    'g' => null,
+                    'lin' => 'old-' . $ti . '-' . $i,
+                    'chain' => 0,
+                    'train' => 0.001,
+                    'valid' => 0.001,
+                    'world_id' => 0,
+                    'fitness_hash' => 'old-world-hash',
+                ];
             }
             $pops[$ti] = $pop;
         }
@@ -222,6 +329,10 @@ final class EvoFix001Test extends TestCase
         // защитный гард: сравнение особей с разными fitness_hash запрещено
         require_once dirname(__DIR__) . '/scripts/word_cum001/transition.php';
         $this->expectException(\RuntimeException::class);
-        \WordCumTransition::assertComparable([['fitness_hash' => 'a'], ['fitness_hash' => 'b']]);
+        \WordCumTransition::assertComparable([[
+            'fitness_hash' => 'a',
+        ], [
+            'fitness_hash' => 'b',
+        ]]);
     }
 }

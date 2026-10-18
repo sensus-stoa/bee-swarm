@@ -12,7 +12,6 @@ declare(strict_types=1);
  *
  * Env-шапка (канон 31.08): :memory:, пустые источники, beam 10.
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=10');
@@ -21,7 +20,6 @@ putenv('BINARY_B_CAP=3');
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 use BeeSwarm\Core\Search;
-use BeeSwarm\Math\CvCalculator;
 
 $laws = [
     'dot' => fn (array $x): float => $x[0] * $x[3] + $x[1] * $x[4] + $x[2] * $x[5],
@@ -61,13 +59,32 @@ foreach ($laws as $lname => $f) {
             $trueVec[] = $a * $f($X[$i]);
             $nearVec[] = $yi * (1.0 + 1.0e-15);
         }
-        $rows[] = ['law' => $lname, 'scale' => $a, 'kind' => 'true', 'cv' => Search::cv($trueVec, $y)];
-        $rows[] = ['law' => $lname, 'scale' => $a, 'kind' => 'near', 'cv' => Search::cv($nearVec, $y)];
-        $rows[] = ['law' => $lname, 'scale' => $a, 'kind' => 'const', 'cv' => Search::cv($constVec, $y)];
+        $rows[] = [
+            'law' => $lname,
+            'scale' => $a,
+            'kind' => 'true',
+            'cv' => Search::cv($trueVec, $y),
+        ];
+        $rows[] = [
+            'law' => $lname,
+            'scale' => $a,
+            'kind' => 'near',
+            'cv' => Search::cv($nearVec, $y),
+        ];
+        $rows[] = [
+            'law' => $lname,
+            'scale' => $a,
+            'kind' => 'const',
+            'cv' => Search::cv($constVec, $y),
+        ];
     }
 }
 
-$agg = ['true' => [0, 0], 'near' => [0, 0], 'const' => [0, 0]];
+$agg = [
+    'true' => [0, 0],
+    'near' => [0, 0],
+    'const' => [0, 0],
+];
 $badTrue = [];
 $badConst = [];
 foreach ($rows as $r) {

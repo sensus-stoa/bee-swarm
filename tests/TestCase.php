@@ -12,6 +12,7 @@ abstract class TestCase extends BaseTestCase
      * paratest — класс бага (214 skip + 4 fail инцидентов: LanguageVerify28
      * SWARM_DB_PATH, Ensemble-флаги). tearDown восстанавливает весь env. */
     private array $envSnapshot = [];
+
     /** WORKER-BASELINE (12.10, фикс ядовитого снапшота): снапшот per-test
      * наследовал яд от FATAL-теста (tearDown не бежит) и рестор
      * распространял отраву на хвост воркера (60 skip в junit9). Базлайн
@@ -160,7 +161,7 @@ abstract class TestCase extends BaseTestCase
         // Невалидный базлайн → restore/wipe отключены, среда не трогается.
         if ($this->envSnapshot !== []) {
             foreach ($this->envSnapshot as $k => $v) {
-                putenv($k . "=" . $v);
+                putenv($k . '=' . $v);
             }
             foreach (array_diff_key(getenv(), $this->envSnapshot) as $k => $v) {
                 putenv($k);

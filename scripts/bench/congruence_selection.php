@@ -16,7 +16,6 @@ declare(strict_types=1);
  *
  * Env-шапка (31.08).
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=20');
@@ -45,7 +44,7 @@ $g = new Grammar();
 [$ok, $cv, $formula, $cvTest, $class] = Search::find($X, $y, $g, 2);
 $canon = \BeeSwarm\Core\ExpressionNormalizer::normalize((string) $formula);
 echo '  found: ' . $formula . ' | canon: ' . $canon . "\n";
-echo '  cv=' . number_format((float) $cv, 5) . ' cvTest=' . number_format((float) $cvTest, 5) . " class=$class\n";
+echo '  cv=' . number_format((float) $cv, 5) . ' cvTest=' . number_format((float) $cvTest, 5) . " class={$class}\n";
 $exp1 = ($ok && $cv < EPS_TEST && $cvTest < EPS_TEST);
 echo '  вердикт: ' . ($exp1 ? 'PASS — истинная форма найдена и принята' : 'FAIL') . "\n\n";
 
@@ -61,8 +60,8 @@ for ($i = 0; $i < 12; $i++) {
 }
 $g = new Grammar();
 [$ok, $cv, $formula, $cvTest, $class] = Search::find($X, $y, $g, 2);
-echo '  found: ' . $formula . " | cv=" . number_format((float) $cv, 5)
-    . ' cvTest=' . number_format((float) $cvTest, 5) . " class=$class\n";
+echo '  found: ' . $formula . ' | cv=' . number_format((float) $cv, 5)
+    . ' cvTest=' . number_format((float) $cvTest, 5) . " class={$class}\n";
 // Критерий: что бы ни выбрал beam, cvTest-гейт не должен принять форму с проваленным переносом
 $exp2 = ! $ok || (float) $cvTest < EPS_TEST;
 echo '  вердикт: ' . ($exp2 ? 'PASS — gate не принял перенос-провальные формы'
@@ -82,12 +81,12 @@ for ($i = 0; $i < 40; $i++) {
 $g = new Grammar();
 $g->restrictTo(['+', '−', '×', '/']);
 [$ok, $cv, $formula, $cvTest, $class] = Search::find($X, $y, $g, 2);
-echo '  found: ' . $formula . " | cv=" . number_format((float) $cv, 5)
-    . ' cvTest=' . number_format((float) $cvTest, 5) . " class=$class\n";
+echo '  found: ' . $formula . ' | cv=' . number_format((float) $cv, 5)
+    . ' cvTest=' . number_format((float) $cvTest, 5) . " class={$class}\n";
 // Формула не должна включать x1 (истина зависит только от x0)
 $usesX1 = str_contains((string) $formula, 'x1');
 $exp3 = $ok && ! $usesX1 && (float) $cvTest < EPS_TEST;
-echo '  вердикт: ' . ($exp3 ? 'PASS — мусорная колонка не втянута' : "FAIL — x1 втянута или провал") . "\n\n";
+echo '  вердикт: ' . ($exp3 ? 'PASS — мусорная колонка не втянута' : 'FAIL — x1 втянута или провал') . "\n\n";
 
 // ── Сводка ──
 echo "=== Сводка T5 ===\n";

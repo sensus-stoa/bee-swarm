@@ -15,17 +15,23 @@ require dirname(__DIR__, 2) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/genome001/corpus_lib.php';
 require __DIR__ . '/evolve_lib.php';
 
-use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Infra\Database;
 
 putenv('SWARM_DB_PATH=:memory:');
 Database::reset();
 ExpressionEvaluator::resetCaches();
 
-$out = ['checks' => [], 'ok' => false];
+$out = [
+    'checks' => [],
+    'ok' => false,
+];
 $fail = static function (string $check) use (&$out): void {
-    $out['checks'][] = ['ok' => false, 'check' => $check];
+    $out['checks'][] = [
+        'ok' => false,
+        'check' => $check,
+    ];
     echo 'Pilot check FAILED: ', $check, "\n";
 };
 
@@ -46,7 +52,10 @@ foreach (array_slice($targets, 0, 3) as $ri => $t) {
         $dictAlphaKeys[GenomeBenchmarkLib::alphaCanonicalKey(WordCodec::decodeDefinition($e, $dict))] = $e['name'];
     }
     GenomeEvolveLib::$dictAlphaKeys = $dictAlphaKeys;
-    $pool = array_map(static fn (array $e): array => ['ast' => WordCodec::decodeDefinition($e, $dict), 'slots' => []], $dict);
+    $pool = array_map(static fn (array $e): array => [
+        'ast' => WordCodec::decodeDefinition($e, $dict),
+        'slots' => [],
+    ], $dict);
     $alpha = GenomeBenchmarkLib::alphaCanonicalKey($targetAst);
     if (isset($dictAlphaKeys[$alpha])) {
         $fail("P2: {$t['id']} коллидирует со словом {$dictAlphaKeys[$alpha]}");
@@ -126,7 +135,7 @@ foreach (array_slice($targets, 0, 3) as $ri => $t) {
             if ($sum !== $attempts) {
                 $fail("P4: {$t['id']}/{$arm} сумма вёдер {$sum} != {$attempts}");
             }
-            echo "  {$arm}: useful_new={$res['useful_new']} buckets=" . json_encode($res['buckets']) . " by_op=" . json_encode($res['useful_by_op']) . "\n";
+            echo "  {$arm}: useful_new={$res['useful_new']} buckets=" . json_encode($res['buckets']) . ' by_op=' . json_encode($res['useful_by_op']) . "\n";
         } catch (Throwable $e) {
             $exceptions++;
             $fail("P4: {$t['id']}/{$arm} исключение: {$e->getMessage()}");
@@ -138,6 +147,6 @@ $out['any_improvement_seen'] = $anyImprove;
 $out['any_b_refs'] = $anyRef;
 $out['exceptions'] = $exceptions;
 $out['ok'] = $exceptions === 0 && $anyRef && count($out['checks']) === 0;
-echo 'pilot ok=', var_export($out['ok'], true), " anyImprove=", var_export($anyImprove, true), "\n";
+echo 'pilot ok=', var_export($out['ok'], true), ' anyImprove=', var_export($anyImprove, true), "\n";
 file_put_contents(dirname(__DIR__, 2) . '/Benchmarks/genome002/DEV_PILOT.json', json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 exit($out['ok'] ? 0 : 1);

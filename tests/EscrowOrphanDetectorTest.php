@@ -44,7 +44,11 @@ final class EscrowOrphanDetectorTest extends TestCase
         $pool = new \ReflectionProperty(Hive::class, 'foragedTasksGlobal');
         $pool->setAccessible(true);
         $pool->setValue($this->hive, [
-            ['name' => 'dream_minus', 'domain' => 'domI', 'data' => self::rowsMinusSq()],
+            [
+                'name' => 'dream_minus',
+                'domain' => 'domI',
+                'data' => self::rowsMinusSq(),
+            ],
         ]);
         $this->injectRoutedBee();
     }
@@ -184,7 +188,10 @@ final class EscrowOrphanDetectorTest extends TestCase
                 json_encode([
                     'members' => [$formula],
                     'split_at' => null,
-                    'domain' => ['0' => [0.0, 40.0], '1' => [0.0, 40.0]],
+                    'domain' => [
+                        '0' => [0.0, 40.0],
+                        '1' => [0.0, 40.0],
+                    ],
                 ]),
             ]);
         }

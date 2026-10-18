@@ -20,7 +20,6 @@ declare(strict_types=1);
  *
  * Env-шапка (31.08): изолированная БД, без forager, beam=10, cap=3.
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=10');
@@ -37,7 +36,13 @@ const TP_TASKS = 10;
 const ROWS = 30;
 const CV_EPS = 0.15;
 
-$layers = ['L0_search_false' => 0, 'L1_nonconstancy' => 0, 'L2_oot_sample' => 0, 'L3_null_calib' => 0, 'TP' => 0];
+$layers = [
+    'L0_search_false' => 0,
+    'L1_nonconstancy' => 0,
+    'L2_oot_sample' => 0,
+    'L3_null_calib' => 0,
+    'TP' => 0,
+];
 $classHistogram = [];
 
 // === Шумовые задачи: uniform noise, seed фиксирован ===
@@ -80,7 +85,7 @@ for ($t = 0; $t < NOISE_TASKS; $t++) {
     }
     // Кандидат с cv_test < 0.15 на чистом шуме = FP НАШЁЛСЯ (L2 не сработал)
     $layers['L3_null_calib']++;
-    echo "FP: task=$t formula=$formula cv=" . number_format($cv, 4) . " cv_test=" . number_format((float) $cvTest, 4) . " class=$class\n";
+    echo "FP: task={$t} formula={$formula} cv=" . number_format($cv, 4) . ' cv_test=' . number_format((float) $cvTest, 4) . " class={$class}\n";
 }
 
 // === TP-контроль: выразимые законы обязаны пройти ===
@@ -107,7 +112,7 @@ for ($t = 0; $t < TP_TASKS; $t++) {
     if ($ok && ($cvTest === null || $cvTest < CV_EPS)) {
         $tpCount++;
     } else {
-        $tpFail[] = "task=$t ok=" . var_export($ok, true) . ' cv=' . number_format((float) $cv, 3) . ' cvTest=' . var_export($cvTest, true);
+        $tpFail[] = "task={$t} ok=" . var_export($ok, true) . ' cv=' . number_format((float) $cv, 3) . ' cvTest=' . var_export($cvTest, true);
     }
 }
 

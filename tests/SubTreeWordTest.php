@@ -17,8 +17,8 @@ final class SubTreeWordTest extends TestCase
     protected function setUp(): void
     {
         $db = \BeeSwarm\Infra\Database::get();
-        $db->exec("DELETE FROM grammar_ops");
-        $db->exec("DELETE FROM laws");
+        $db->exec('DELETE FROM grammar_ops');
+        $db->exec('DELETE FROM laws');
     }
 
     private function compressor(): LawIsomorphismCompressor
@@ -85,7 +85,9 @@ final class SubTreeWordTest extends TestCase
             '(x0×x3)+x9',
         ];
         $born = LawIsomorphismCompressor::compressCandidateSubTrees(
-            $candidates, 'dot', minOccurrences: 3
+            $candidates,
+            'dot',
+            minOccurrences: 3
         );
         $this->assertSame(0, $born);
         $db = \BeeSwarm\Infra\Database::get();
@@ -113,6 +115,6 @@ final class SubTreeWordTest extends TestCase
         // definition парсится и применимо: evaluate через ExpressionEvaluator
         $def = $ops[0]['definition'];
         $tree = ExpressionNormalizer::parse($def);
-        $this->assertNotNull($tree, "definition должен парситься: $def");
+        $this->assertNotNull($tree, "definition должен парситься: {$def}");
     }
 }

@@ -35,7 +35,7 @@ else
 fi
 
 # ── GATE 2: Syntax check ─────────────────────────────
-STAGED=$(git diff --cached --name-only 2>/dev/null | grep "\.php$" || true)
+STAGED=$(git diff --cached --name-only --diff-filter=d 2>/dev/null | grep "\.php$" || true)
 if [ -n "$STAGED" ]; then
     for f in $STAGED; do
         if ! php -l "$f" 2>/dev/null | grep -q "No syntax errors"; then

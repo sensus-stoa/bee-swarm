@@ -35,7 +35,9 @@ namespace BeeSwarm\Core;
  */
 final class WordCodec
 {
-    /** Коммутативные операторы (символьные + имена Search). born-op имена сюда не входят. */
+    /**
+     * Коммутативные операторы (символьные + имена Search). born-op имена сюда не входят.
+     */
     private const COMMUTATIVE = ['+', '×', 'max', 'min', 'add', 'mul'];
 
     public const BUNDLE_FORMAT = 'genome001';
@@ -107,7 +109,12 @@ final class WordCodec
         $existing = self::withDefs($existingEntries);
         $genome = self::encodeNode($defAst, self::indexEntries($existing), self::orderedEntries($existing));
 
-        return ['name' => $name, 'arity' => $arity, 'genome' => $genome, 'def' => $defAst];
+        return [
+            'name' => $name,
+            'arity' => $arity,
+            'genome' => $genome,
+            'def' => $defAst,
+        ];
     }
 
     // ── Encode / Decode ────────────────────────────────────────────────
@@ -381,11 +388,20 @@ final class WordCodec
     {
         $dict = [];
         foreach ($entries as $e) {
-            $dict[] = ['name' => (string) $e['name'], 'arity' => (int) $e['arity'], 'genome' => $e['genome']];
+            $dict[] = [
+                'name' => (string) $e['name'],
+                'arity' => (int) $e['arity'],
+                'genome' => $e['genome'],
+            ];
         }
 
         return (string) json_encode(
-            ['format' => self::BUNDLE_FORMAT, 'version' => self::BUNDLE_VERSION, 'dictionary' => $dict, 'genomes' => $genomes],
+            [
+                'format' => self::BUNDLE_FORMAT,
+                'version' => self::BUNDLE_VERSION,
+                'dictionary' => $dict,
+                'genomes' => $genomes,
+            ],
             JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
         );
     }
@@ -414,7 +430,11 @@ final class WordCodec
             if (! is_array($e) || ! isset($e['name'], $e['arity'], $e['genome']) || ! is_array($e['genome'])) {
                 throw new WordCodecException('bundle: malformed entry');
             }
-            $entries[] = ['name' => (string) $e['name'], 'arity' => (int) $e['arity'], 'genome' => $e['genome']];
+            $entries[] = [
+                'name' => (string) $e['name'],
+                'arity' => (int) $e['arity'],
+                'genome' => $e['genome'],
+            ];
         }
         $genomes = $data['genomes'] ?? [];
         if (! is_array($genomes)) {
@@ -526,12 +546,13 @@ final class WordCodec
 
     /**
      * @param array<string, array> $byName
-     * @param list<string>         $active
      */
     private static function encodeNode(array $node, array $byName, array $ordered): array
     {
         if (isset($node['atom'])) {
-            return ['atom' => (string) $node['atom']];
+            return [
+                'atom' => (string) $node['atom'],
+            ];
         }
         foreach ($ordered as $entry) {
             $binding = [];
@@ -545,13 +566,20 @@ final class WordCodec
                     $args[] = self::encodeNode($binding[$slot], $byName, $ordered);
                 }
 
-                return ['word' => (string) $entry['name'], 'args' => $args];
+                return [
+                    'word' => (string) $entry['name'],
+                    'args' => $args,
+                ];
             }
         }
         $l = isset($node['l']) && is_array($node['l']) ? self::encodeNode($node['l'], $byName, $ordered) : null;
         $r = isset($node['r']) && is_array($node['r']) ? self::encodeNode($node['r'], $byName, $ordered) : null;
 
-        return ['op' => (string) ($node['op'] ?? ''), 'l' => $l, 'r' => $r];
+        return [
+            'op' => (string) ($node['op'] ?? ''),
+            'l' => $l,
+            'r' => $r,
+        ];
     }
 
     /**
@@ -666,7 +694,9 @@ final class WordCodec
     private static function decodeNode(array $genome, array $byName, array $active, bool $expandApps): array
     {
         if (isset($genome['atom'])) {
-            return ['atom' => (string) $genome['atom']];
+            return [
+                'atom' => (string) $genome['atom'],
+            ];
         }
         if (isset($genome['word'])) {
             return self::decodeWordRef($genome, $byName, $active, $expandApps);
@@ -683,7 +713,11 @@ final class WordCodec
             return self::applyWord($op, [$l, $r], $byName, $active, $expandApps);
         }
 
-        return ['op' => $op, 'l' => $l, 'r' => $r];
+        return [
+            'op' => $op,
+            'l' => $l,
+            'r' => $r,
+        ];
     }
 
     /**
@@ -793,22 +827,34 @@ final class WordCodec
         if (isset($node['atom'])) {
             $name = (string) $node['atom'];
 
-            return array_key_exists($name, $map) ? self::cloneNode($map[$name]) : ['atom' => $name];
+            return array_key_exists($name, $map) ? self::cloneNode($map[$name]) : [
+                'atom' => $name,
+            ];
         }
         $l = isset($node['l']) && is_array($node['l']) ? self::substitute($node['l'], $map) : null;
         $r = isset($node['r']) && is_array($node['r']) ? self::substitute($node['r'], $map) : null;
 
-        return ['op' => (string) $node['op'], 'l' => $l, 'r' => $r];
+        return [
+            'op' => (string) $node['op'],
+            'l' => $l,
+            'r' => $r,
+        ];
     }
 
     private static function cloneNode(array $node): array
     {
         if (isset($node['atom'])) {
-            return ['atom' => (string) $node['atom']];
+            return [
+                'atom' => (string) $node['atom'],
+            ];
         }
         $l = isset($node['l']) && is_array($node['l']) ? self::cloneNode($node['l']) : null;
         $r = isset($node['r']) && is_array($node['r']) ? self::cloneNode($node['r']) : null;
 
-        return ['op' => (string) $node['op'], 'l' => $l, 'r' => $r];
+        return [
+            'op' => (string) $node['op'],
+            'l' => $l,
+            'r' => $r,
+        ];
     }
 }

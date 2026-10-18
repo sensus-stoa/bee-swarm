@@ -24,10 +24,14 @@ use BeeSwarm\Infra\Database;
  */
 final class RetroQuarantineTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $envKeys = ['FORAGER_SOURCES', 'CORPUS_DIRS', 'NO_BASE_TASKS'];
 
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
     protected function setUp(): void
@@ -81,10 +85,12 @@ final class RetroQuarantineTest extends TestCase
 
         $this->assertContains('TEST_RETRO_GARBAGE::abs', $result['overfit'], 'санити: закон определён как overfit');
 
-        $inLaws = $db->query("SELECT COUNT(*) FROM laws WHERE name='TEST_RETRO_GARBAGE'")->fetchColumn();
+        $inLaws = $db->query("SELECT COUNT(*) FROM laws WHERE name='TEST_RETRO_GARBAGE'")
+            ->fetchColumn();
         $this->assertSame(0, (int) $inLaws, 'overfit-закон покидает laws');
 
-        $q = $db->query("SELECT name, formula, domain, quarantined_at FROM laws_quarantine WHERE name='TEST_RETRO_GARBAGE'")->fetchAll(\PDO::FETCH_ASSOC);
+        $q = $db->query("SELECT name, formula, domain, quarantined_at FROM laws_quarantine WHERE name='TEST_RETRO_GARBAGE'")
+            ->fetchAll(\PDO::FETCH_ASSOC);
         $this->assertCount(1, $q, 'overfit-закон присутствует в laws_quarantine ровно одной строкой');
         $this->assertSame('abs', $q[0]['formula'], 'кварантинная строка несёт формулу (восстановимо)');
         $this->assertNotSame('', (string) $q[0]['quarantined_at'], 'кварантинная строка снабжена временем');
@@ -156,7 +162,8 @@ final class RetroQuarantineTest extends TestCase
         AtomRegistry::retrospectiveValidate([$garbageTask]);
         AtomRegistry::retrospectiveValidate([$garbageTask]); // рестарт #2
 
-        $count = (int) $db->query("SELECT COUNT(*) FROM laws_quarantine WHERE name='TEST_RETRO_GARBAGE'")->fetchColumn();
+        $count = (int) $db->query("SELECT COUNT(*) FROM laws_quarantine WHERE name='TEST_RETRO_GARBAGE'")
+            ->fetchColumn();
         $this->assertSame(1, $count, 'повторная ретро не плодит дубли в карантине');
     }
 
@@ -197,11 +204,14 @@ final class RetroQuarantineTest extends TestCase
         $this->logs[] = $log2;
         (new \BeeSwarm\Hive\Hive(maxTicks: 0, logFile: $log2))->run();
 
-        $this->exec("rm -rf " . escapeshellarg($driftDir));
+        $this->exec('rm -rf ' . escapeshellarg($driftDir));
 
-        $addInLaws = (int) $db->query("SELECT COUNT(*) FROM laws WHERE name='ADD' AND formula='add'")->fetchColumn();
-        $orphanInLaws = (int) $db->query("SELECT COUNT(*) FROM laws WHERE name='TEST_ORPHAN'")->fetchColumn();
-        $quarantined = (int) $db->query('SELECT COUNT(*) FROM laws_quarantine')->fetchColumn();
+        $addInLaws = (int) $db->query("SELECT COUNT(*) FROM laws WHERE name='ADD' AND formula='add'")
+            ->fetchColumn();
+        $orphanInLaws = (int) $db->query("SELECT COUNT(*) FROM laws WHERE name='TEST_ORPHAN'")
+            ->fetchColumn();
+        $quarantined = (int) $db->query('SELECT COUNT(*) FROM laws_quarantine')
+            ->fetchColumn();
 
         $this->assertSame(1, $addInLaws, 'base-закон ADD пережил рестарт на мутировавшем корпусе');
         $this->assertSame(1, $orphanInLaws, 'орфан-закон пережил рестарт (skip ≠ удаление)');

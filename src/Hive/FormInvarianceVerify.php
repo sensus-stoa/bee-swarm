@@ -8,7 +8,6 @@ use BeeSwarm\Core\ExpressionEvaluator;
 use BeeSwarm\Core\FormHash;
 use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
-use BeeSwarm\Hive\LawIsomorphismCompressor;
 use BeeSwarm\Infra\Database;
 
 /**
@@ -74,7 +73,10 @@ final class FormInvarianceVerify
 
         $bootAtoms = self::bootstrapFluxAtom();
         $invariants = self::runPowerClass();
-        $flux = $bootAtoms !== null ? self::runFluxClass() : ['ok' => false, 'why' => 'no atom born'];
+        $flux = $bootAtoms !== null ? self::runFluxClass() : [
+            'ok' => false,
+            'why' => 'no atom born',
+        ];
         if ($flux['ok'] ?? false) {
             $invariants = max($invariants, (int) $flux['invariants']);
         }
@@ -90,7 +92,10 @@ final class FormInvarianceVerify
         return [
             'pass' => $pass,
             'invariants' => $invariants,
-            'power' => ['ok' => true, 'invariants' => $invariants],
+            'power' => [
+                'ok' => true,
+                'invariants' => $invariants,
+            ],
             'flux' => $flux,
             'fpr' => $fpr,
             'env' => $envFacts,
@@ -181,7 +186,8 @@ final class FormInvarianceVerify
             $stmt->execute(['law_v22b_boot_' . $dom, (string) $res[2], (float) $res[1], $dom]);
         }
         (new LawIsomorphismCompressor())->compress(['dA', 'dB']);
-        $row = $db->query("SELECT name FROM grammar_ops WHERE source='birth' LIMIT 1")->fetch(\PDO::FETCH_ASSOC);
+        $row = $db->query("SELECT name FROM grammar_ops WHERE source='birth' LIMIT 1")
+            ->fetch(\PDO::FETCH_ASSOC);
 
         return is_array($row) ? (string) $row['name'] : null;
     }
@@ -200,7 +206,8 @@ final class FormInvarianceVerify
                 self::recordViaHiveHook('pow' . $i, (string) $res[2], (float) $res[1], $X, $y, 'law_v22b_pow' . $i);
             }
         }
-        return (int) $db->query("SELECT COUNT(*) FROM form_registry WHERE status='invariant'")->fetchColumn();
+        return (int) $db->query("SELECT COUNT(*) FROM form_registry WHERE status='invariant'")
+            ->fetchColumn();
     }
 
     /**
@@ -212,7 +219,10 @@ final class FormInvarianceVerify
     {
         $atom = (string) Database::get()->query("SELECT name FROM grammar_ops WHERE source='birth' LIMIT 1")->fetchColumn();
         if ($atom === '') {
-            return ['ok' => false, 'why' => 'no atom'];
+            return [
+                'ok' => false,
+                'why' => 'no atom',
+            ];
         }
         $found = 0;
         foreach (self::KAPPA_VALS as $i => $kappa) {
@@ -224,11 +234,20 @@ final class FormInvarianceVerify
             }
         }
         if ($found === 0) {
-            return ['ok' => false, 'why' => 'no flux domain solved', 'atom' => $atom];
+            return [
+                'ok' => false,
+                'why' => 'no flux domain solved',
+                'atom' => $atom,
+            ];
         }
         $invariants = (int) Database::get()->query("SELECT COUNT(*) FROM form_registry WHERE status='invariant'")->fetchColumn();
 
-        return ['ok' => true, 'invariants' => $invariants, 'atom' => $atom, 'found' => $found];
+        return [
+            'ok' => true,
+            'invariants' => $invariants,
+            'atom' => $atom,
+            'found' => $found,
+        ];
     }
 
     /**
@@ -256,7 +275,10 @@ final class FormInvarianceVerify
         }
         $invariants = (int) Database::get()->query("SELECT COUNT(*) FROM form_registry WHERE status='invariant'")->fetchColumn() - $invBaseline;
 
-        return ['invariants' => $invariants, 'found' => $found];
+        return [
+            'invariants' => $invariants,
+            'found' => $found,
+        ];
     }
 
     /**
@@ -280,7 +302,11 @@ final class FormInvarianceVerify
         $hive->run();
         $m = new \ReflectionMethod(\BeeSwarm\Hive\Hive::class, 'registerFormInvariance');
         $m->setAccessible(true);
-        $m->invoke($hive, ['atom' => $formula, 'cv' => $cv, 'name' => $lawName], $domain, $X, $y);
+        $m->invoke($hive, [
+            'atom' => $formula,
+            'cv' => $cv,
+            'name' => $lawName,
+        ], $domain, $X, $y);
         if (is_file($logFile)) {
             unlink($logFile);
         }

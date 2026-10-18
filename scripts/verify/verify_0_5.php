@@ -10,7 +10,6 @@ declare(strict_types=1);
  * 2. Нет открытий во время PLATEAU (проверяет emoji и текст)
  * 3. Нет зазора > 2×P между последовательными PLATEAU без открытий
  */
-
 $logFile = $argv[1] ?? null;
 if (! $logFile || ! file_exists($logFile)) {
     echo "SKIP: No log file\nUsage: php verify_0_5.php <agenda.log>\n";
@@ -18,7 +17,10 @@ if (! $logFile || ! file_exists($logFile)) {
 }
 
 $lines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-if (! $lines) { echo "SKIP: Empty log\n"; exit(0); }
+if (! $lines) {
+    echo "SKIP: Empty log\n";
+    exit(0);
+}
 
 const P = 50;
 $plateauEntries = 0;
@@ -75,9 +77,13 @@ $pass = $hasPlateau && $noDiscoveryInPlateau;
 
 if (! $pass) {
     $reasons = [];
-    if (! $hasPlateau) $reasons[] = "no plateau entries";
-    if (! $noDiscoveryInPlateau) $reasons[] = "{$discoveriesInPlateau} discoveries during plateau";
-    echo "FAIL: " . implode('; ', $reasons) . "\n";
+    if (! $hasPlateau) {
+        $reasons[] = 'no plateau entries';
+    }
+    if (! $noDiscoveryInPlateau) {
+        $reasons[] = "{$discoveriesInPlateau} discoveries during plateau";
+    }
+    echo 'FAIL: ' . implode('; ', $reasons) . "\n";
     exit(1);
 }
 

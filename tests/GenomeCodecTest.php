@@ -26,9 +26,13 @@ use BeeSwarm\Infra\Database;
 final class GenomeCodecTest extends TestCase
 {
     private const T1_NAME = 'BW5737967f9b4ecb628fd48d7d82502f40';
+
     private const T1_DEF = '((x0+x1)/(x0−x1))';
+
     private const T2_NAME = 'BW59baeae13abe8cbdfae0c823ff207db2';
+
     private const T2_DEF = '((x0−x2)+x0BW5737967f9b4ecb628fd48d7d82502f40x1)';
+
     private const LAW_X = '((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))';
 
     protected function tearDown(): void
@@ -44,7 +48,9 @@ final class GenomeCodecTest extends TestCase
         parent::tearDown();
     }
 
-    /** Независимые входы (паттерн MolRoundtripTest::inputs). */
+    /**
+     * Независимые входы (паттерн MolRoundtripTest::inputs).
+     */
     private function inputs(int $n = 12): array
     {
         mt_srand(4242);
@@ -56,7 +62,9 @@ final class GenomeCodecTest extends TestCase
         return $X;
     }
 
-    /** Оракул закона чистой арифметикой (независим от движка). */
+    /**
+     * Оракул закона чистой арифметикой (независим от движка).
+     */
     private function lawValues(array $X): array
     {
         $out = [];
@@ -70,7 +78,10 @@ final class GenomeCodecTest extends TestCase
     private function dictionary(): array
     {
         return WordCodec::buildDictionary(
-            [self::T1_NAME => self::T1_DEF, self::T2_NAME => self::T2_DEF],
+            [
+                self::T1_NAME => self::T1_DEF,
+                self::T2_NAME => self::T2_DEF,
+            ],
             [self::T1_NAME, self::T2_NAME]
         );
     }
@@ -84,7 +95,9 @@ final class GenomeCodecTest extends TestCase
         ExpressionEvaluator::resetCaches();
     }
 
-    /** @return list<float|null> */
+    /**
+     * @return list<float|null>
+     */
     private function evalAstRows(array $ast, array $rows): array
     {
         $out = [];
@@ -341,7 +354,9 @@ final class GenomeCodecTest extends TestCase
             WordCodec::parseDefinition(self::LAW_X, [self::T1_NAME, self::T2_NAME]),
             $entries
         );
-        $bundle = WordCodec::serializeBundle($entries, ['law' => $law]);
+        $bundle = WordCodec::serializeBundle($entries, [
+            'law' => $law,
+        ]);
 
         $dbFile = tempnam(sys_get_temp_dir(), 'genome001_') . '.sqlite';
         @unlink($dbFile);
@@ -391,7 +406,9 @@ final class GenomeCodecTest extends TestCase
             'db' => tempnam(sys_get_temp_dir(), 'genome001_sub_') . '.sqlite',
             'genome' => 'law',
             'rows' => $X,
-            'bundle' => json_decode(WordCodec::serializeBundle($entries, ['law' => $law]), true),
+            'bundle' => json_decode(WordCodec::serializeBundle($entries, [
+                'law' => $law,
+            ]), true),
         ];
         $envFile = tempnam(sys_get_temp_dir(), 'genome001_env_') . '.json';
         file_put_contents($envFile, json_encode($envelope, JSON_UNESCAPED_UNICODE));
@@ -422,7 +439,12 @@ final class GenomeCodecTest extends TestCase
             'genome' => 'corrupt',
             'rows' => [[1.0, 2.0, 3.0]],
             'bundle' => json_decode(
-                WordCodec::serializeBundle($entries, ['corrupt' => ['word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef', 'args' => []]]),
+                WordCodec::serializeBundle($entries, [
+                    'corrupt' => [
+                        'word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef',
+                        'args' => [],
+                    ],
+                ]),
                 true
             ),
         ];
@@ -450,7 +472,14 @@ final class GenomeCodecTest extends TestCase
     public function testUnknownWordRefusalInProcess(): void
     {
         $entries = $this->dictionary();
-        $genome = ['word' => 'BWunknown0000000000000000000000ff', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]];
+        $genome = [
+            'word' => 'BWunknown0000000000000000000000ff',
+            'args' => [[
+                'atom' => 'x0',
+            ], [
+                'atom' => 'x1',
+            ]],
+        ];
         try {
             WordCodec::decode($genome, $entries);
             self::fail('decode: неизвестное слово должно отказывать');
@@ -469,8 +498,36 @@ final class GenomeCodecTest extends TestCase
     {
         // (a) {word}-ссылочный цикл A→B→A при decodeDefinition
         $cyclic = [
-            ['name' => 'A', 'arity' => 2, 'genome' => ['word' => 'B', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]]],
-            ['name' => 'B', 'arity' => 2, 'genome' => ['op' => '+', 'l' => ['word' => 'A', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]], 'r' => ['atom' => 'K1']]],
+            [
+                'name' => 'A',
+                'arity' => 2,
+                'genome' => [
+                    'word' => 'B',
+                    'args' => [[
+                        'atom' => 'x0',
+                    ], [
+                        'atom' => 'x1',
+                    ]],
+                ],
+            ],
+            [
+                'name' => 'B',
+                'arity' => 2,
+                'genome' => [
+                    'op' => '+',
+                    'l' => [
+                        'word' => 'A',
+                        'args' => [[
+                            'atom' => 'x0',
+                        ], [
+                            'atom' => 'x1',
+                        ]],
+                    ],
+                    'r' => [
+                        'atom' => 'K1',
+                    ],
+                ],
+            ],
         ];
         try {
             WordCodec::decodeDefinition($cyclic[0], $cyclic);
@@ -479,7 +536,18 @@ final class GenomeCodecTest extends TestCase
             self::assertStringContainsString('cyclic word dependency', $e->getMessage());
         }
         // (b) self-reference
-        $self = [['name' => 'A', 'arity' => 2, 'genome' => ['word' => 'A', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]]]];
+        $self = [[
+            'name' => 'A',
+            'arity' => 2,
+            'genome' => [
+                'word' => 'A',
+                'args' => [[
+                    'atom' => 'x0',
+                ], [
+                    'atom' => 'x1',
+                ]],
+            ],
+        ]];
         try {
             WordCodec::decodeDefinition($self[0], $self);
             self::fail('self-reference должен отказывать');
@@ -490,7 +558,10 @@ final class GenomeCodecTest extends TestCase
         $an = 'BWaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1';
         $bn = 'BWbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb2';
         try {
-            WordCodec::buildDictionary([$an => 'x0' . $bn . 'x1', $bn => 'x0' . $an . 'x1'], [$an, $bn]);
+            WordCodec::buildDictionary([
+                $an => 'x0' . $bn . 'x1',
+                $bn => 'x0' . $an . 'x1',
+            ], [$an, $bn]);
             self::fail('определенческий цикл должен отказывать (validateDictionary)');
         } catch (WordCodecException $e) {
             self::assertStringContainsString('cyclic dictionary', $e->getMessage());
@@ -502,7 +573,14 @@ final class GenomeCodecTest extends TestCase
         $entries = $this->dictionary();
         // (a) decode: ссылка с неверным числом аргументов
         try {
-            WordCodec::decode(['word' => self::T2_NAME, 'args' => [['atom' => 'x0'], ['atom' => 'x1']]], $entries);
+            WordCodec::decode([
+                'word' => self::T2_NAME,
+                'args' => [[
+                    'atom' => 'x0',
+                ], [
+                    'atom' => 'x1',
+                ]],
+            ], $entries);
             self::fail('арность 2 != 3 должна отказывать');
         } catch (WordCodecException $e) {
             self::assertStringContainsString('arity mismatch', $e->getMessage());

@@ -5,7 +5,6 @@ declare(strict_types=1);
  * Проба A19-gate на heldout-пути (testRatio=0.2, как DiscoveryEngine):
  * точные законы y=x0+x1, y=x0*x1, шумная линейка, метрик-домен.
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=10');
@@ -41,7 +40,7 @@ foreach ($cases as $name => $f) {
     $g = Grammar::fromOps(Grammar::baseOpNames());
     [$found, $cv, $formula, $cvTest, $class, $diag] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
     echo $name, ': found=', var_export($found, true), ' cv=', var_export($cv, true),
-        ' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' diag=', var_export($diag, true), PHP_EOL;
+    ' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' diag=', var_export($diag, true), PHP_EOL;
 }
 
 // Шумная линейная задача (должна остаться found: модель существенно лучше среднего)
@@ -55,4 +54,4 @@ for ($i = 0; $i < 30; $i++) {
 $g = Grammar::fromOps(Grammar::baseOpNames());
 [$found, $cv, $formula, $cvTest, $class, $diag] = Search::find($X, $y, $g, 2, null, 0.2, 0.15);
 echo 'linear-noisy: found=', var_export($found, true), ' cv=', var_export($cv, true),
-    ' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' diag=', var_export($diag, true), PHP_EOL;
+' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' diag=', var_export($diag, true), PHP_EOL;

@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 const BUDGET = 30.0;
 const N_SEEDS = 20;
@@ -56,7 +56,9 @@ function splitC(array $X, array $y, int $seed): array
     ];
 }
 
-/** CV с AFFINE-shift (как в cv()) */
+/**
+ * CV с AFFINE-shift (как в cv())
+ */
 function cvR(array $pred, array $y): float
 {
     $eps = 1e-9;
@@ -105,7 +107,12 @@ function genCandidates(array $Xtr): array
                     $vec[] = $v;
                 }
                 if ($ok) {
-                    $out[] = ['op' => $op, 'i' => $i, 'j' => $j, 'vec' => $vec];
+                    $out[] = [
+                        'op' => $op,
+                        'i' => $i,
+                        'j' => $j,
+                        'vec' => $vec,
+                    ];
                 }
             }
         }
@@ -113,7 +120,9 @@ function genCandidates(array $Xtr): array
     return $out;
 }
 
-/** Score(z | residual r): min по операторам применённым к r */
+/**
+ * Score(z | residual r): min по операторам применённым к r
+ */
 function scoreVsResidual(array $z, array $r): float
 {
     $best = INF;
@@ -152,7 +161,7 @@ $base = __DIR__ . '/..';
 [$X, $y] = loadHeat($base . '/data/feynman_heat_conduction.csv');
 
 echo "=== EXP-031: Top-K Residual Cultural Retrieval (heat only) ===\n";
-echo "K=" . TOP_K . ", max_steps=2, budget=" . BUDGET . "s/seed, seeds=" . N_SEEDS . "\n";
+echo 'K=' . TOP_K . ', max_steps=2, budget=' . BUDGET . 's/seed, seeds=' . N_SEEDS . "\n";
 
 $cvsAll = [];
 for ($s = 1; $s <= N_SEEDS; $s++) {
@@ -266,7 +275,7 @@ for ($s = 1; $s <= N_SEEDS; $s++) {
             $pTe = ExpressionEvaluator::evaluateFormula($resN[2], $XteExt, $statsN);
             $cvTe = ($pTe !== null && count($pTe) === count($yte)) ? cvR($pTe, $yte) : 9.99;
             $stepLog[] = "s{$step}: {$resN[2]} → CV_H=" . round($cvTe, 4)
-                . " [" . implode(',', array_slice($zDescs, 0, 2, true)) . "]";
+                . ' [' . implode(',', array_slice($zDescs, 0, 2, true)) . ']';
 
             if ($cvTe <= 0.10) {
                 echo "  seed {$s}: ИНВАРИАНТ через культуру (шаг {$step}): CV_H={$cvTe}\n";
@@ -279,7 +288,7 @@ for ($s = 1; $s <= N_SEEDS; $s++) {
                 $currentBestPred = $pTe ?? $currentBestPred;
             }
         } else {
-            $stepLog[] = "s{$step}: поиск без находки (" . $resN[4] . ")";
+            $stepLog[] = "s{$step}: поиск без находки (" . $resN[4] . ')';
         }
     }
 
@@ -298,8 +307,8 @@ echo "\n=== ИТОГ ===\n";
 $vals = array_values($cvsAll);
 sort($vals);
 $med = $vals[intdiv(count($vals), 2)];
-echo "success=" . count($accepted) . "/" . N_SEEDS . "\n";
+echo 'success=' . count($accepted) . '/' . N_SEEDS . "\n";
 if ($accepted) {
-    echo "CV_H найденных: " . implode(', ', array_map(fn ($c) => round($c, 4), $accepted)) . "\n";
+    echo 'CV_H найденных: ' . implode(', ', array_map(fn ($c) => round($c, 4), $accepted)) . "\n";
 }
 echo ($accepted ? count($accepted) >= 8 ? '✅ МЕХАНИЗМ ЖИЗНЕСПОСОБЕН' : '⚠️ частичный' : '❌ conditional retrieval не сработал') . "\n";

@@ -17,19 +17,29 @@ namespace BeeSwarm\Hive;
  */
 final class RouteLedger
 {
-    /** Неудачных запусков до отзыва ресурса. */
+    /**
+     * Неудачных запусков до отзыва ресурса.
+     */
     public const REVOKE_AFTER_FAILS = 2;
 
-    /** Порог значимого улучшения L_valid. */
+    /**
+     * Порог значимого улучшения L_valid.
+     */
     public const WIN_DELTA = 0.05;
 
-    /** @var array<string,array<string,mixed>> id => genome */
+    /**
+     * @var array<string,array<string,mixed>> id => genome
+     */
     private array $routes = [];
 
-    /** @var array<string,bool> */
+    /**
+     * @var array<string,bool>
+     */
     private array $revoked = [];
 
-    /** @var array<string,list<array{task_fp:string, delta:float, certified:bool, wall:float, unspent:float}>> */
+    /**
+     * @var array<string,list<array{task_fp:string, delta:float, certified:bool, wall:float, unspent:float}>>
+     */
     private array $outcomes = [];
 
     public function register(array $genome): void
@@ -58,7 +68,10 @@ final class RouteLedger
             throw new \InvalidArgumentException("unknown route {$id}");
         }
         $win = $delta > self::WIN_DELTA || $routeCertified;
-        $g = &$this->routes[$id];
+        // psalm-фикс (18.10): &$this->routes[$id] (property reference) не
+        // анализируется psalm'ом (321). Семантика та же: мутация локальной
+        // копии + write-back ДО revoke (revoke читает уже обновлённый record).
+        $g = $this->routes[$id];
         $g['record']['tasks_seen']++;
         $g['record']['delta_L_valid_sum'] += $delta;
         if ($win) {
@@ -68,8 +81,14 @@ final class RouteLedger
         }
         $g['record']['wall_sum'] += $wall;
         $g['record']['unspent_quota'] += $unspent;
-        $this->outcomes[$id][] = ['task_fp' => $taskFp, 'delta' => $delta,
-            'certified' => $routeCertified, 'wall' => $wall, 'unspent' => $unspent];
+        $this->routes[$id] = $g;
+        $this->outcomes[$id][] = [
+            'task_fp' => $taskFp,
+            'delta' => $delta,
+            'certified' => $routeCertified,
+            'wall' => $wall,
+            'unspent' => $unspent,
+        ];
         // Неудачный маршрут теряет право на дальнейшие ресурсы (спека §5).
         if ($g['record']['fails'] >= self::REVOKE_AFTER_FAILS) {
             $this->revoke($id);
@@ -86,7 +105,9 @@ final class RouteLedger
         return isset($this->revoked[$id]);
     }
 
-    /** @return list<array<string,mixed>> */
+    /**
+     * @return list<array<string,mixed>>
+     */
     public function active(): array
     {
         $out = [];
@@ -99,7 +120,9 @@ final class RouteLedger
         return $out;
     }
 
-    /** @return list<array<string,mixed>> */
+    /**
+     * @return list<array<string,mixed>>
+     */
     public function all(): array
     {
         return array_values($this->routes);
@@ -133,10 +156,15 @@ final class RouteLedger
         return array_slice(array_values($cands), 0, $k);
     }
 
-    /** @return array{routes:list, revoked:list<string>, outcomes:array} */
+    /**
+     * @return array{routes:list, revoked:list<string>, outcomes:array}
+     */
     public function export(): array
     {
-        return ['routes' => array_values($this->routes),
-            'revoked' => array_keys($this->revoked), 'outcomes' => $this->outcomes];
+        return [
+            'routes' => array_values($this->routes),
+            'revoked' => array_keys($this->revoked),
+            'outcomes' => $this->outcomes,
+        ];
     }
 }

@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 const SEEDS = 20;
 const BUDGET = 30.0;
@@ -27,34 +27,111 @@ const HOPS = 2;
 
 // ── Реальный граф из 529 законов ──
 $GRAPH = [
-    '−' => ['/' => 0.478, '+' => 0.087, 'Rrange' => 0.087],
-    '/' => ['Rmin' => 0.182, 'R+' => 0.182, '+' => 0.182, 'Rmax' => 0.159, '−' => 0.068, 'max' => 0.068],
-    'R+' => ['+' => 0.889, '−' => 0.111],
-    'R×' => ['/' => 1.0],
-    '+' => ['/' => 0.273, 'R+' => 0.182, '×' => 0.091, 'max' => 0.091],
-    'Rmax' => ['−' => 0.5, '+' => 0.5],
-    '×' => ['/' => 0.2, '×' => 0.1, '+' => 0.1, '−' => 0.1, 'max' => 0.1, 'sq' => 0.1, 'min' => 0.1],
-    'min' => ['+' => 0.125, '×' => 0.125, '−' => 0.125, '/' => 0.125, 'max' => 0.125, 'sq' => 0.125],
-    'max' => ['+' => 0.2, '/' => 0.2, '×' => 0.1, 'min' => 0.1, 'sq' => 0.1],
-    'sq' => ['max' => 0.143, '/' => 0.143, '+' => 0.143, '−' => 0.143, '×' => 0.143, 'min' => 0.143],
-    'Rmin' => ['−' => 0.5, '+' => 0.5],
-    'add' => ['max' => 0.2, '+' => 0.2, '−' => 0.1, 'sq' => 0.1, '×' => 0.1, 'min' => 0.1, '/' => 0.1],
-    'mul' => ['+' => 0.125, '−' => 0.125, 'max' => 0.125, 'sq' => 0.125, 'add' => 0.125, '/' => 0.125, '×' => 0.125, 'min' => 0.125],
+    '−' => [
+        '/' => 0.478,
+        '+' => 0.087,
+        'Rrange' => 0.087,
+    ],
+    '/' => [
+        'Rmin' => 0.182,
+        'R+' => 0.182,
+        '+' => 0.182,
+        'Rmax' => 0.159,
+        '−' => 0.068,
+        'max' => 0.068,
+    ],
+    'R+' => [
+        '+' => 0.889,
+        '−' => 0.111,
+    ],
+    'R×' => [
+        '/' => 1.0,
+    ],
+    '+' => [
+        '/' => 0.273,
+        'R+' => 0.182,
+        '×' => 0.091,
+        'max' => 0.091,
+    ],
+    'Rmax' => [
+        '−' => 0.5,
+        '+' => 0.5,
+    ],
+    '×' => [
+        '/' => 0.2,
+        '×' => 0.1,
+        '+' => 0.1,
+        '−' => 0.1,
+        'max' => 0.1,
+        'sq' => 0.1,
+        'min' => 0.1,
+    ],
+    'min' => [
+        '+' => 0.125,
+        '×' => 0.125,
+        '−' => 0.125,
+        '/' => 0.125,
+        'max' => 0.125,
+        'sq' => 0.125,
+    ],
+    'max' => [
+        '+' => 0.2,
+        '/' => 0.2,
+        '×' => 0.1,
+        'min' => 0.1,
+        'sq' => 0.1,
+    ],
+    'sq' => [
+        'max' => 0.143,
+        '/' => 0.143,
+        '+' => 0.143,
+        '−' => 0.143,
+        '×' => 0.143,
+        'min' => 0.143,
+    ],
+    'Rmin' => [
+        '−' => 0.5,
+        '+' => 0.5,
+    ],
+    'add' => [
+        'max' => 0.2,
+        '+' => 0.2,
+        '−' => 0.1,
+        'sq' => 0.1,
+        '×' => 0.1,
+        'min' => 0.1,
+        '/' => 0.1,
+    ],
+    'mul' => [
+        '+' => 0.125,
+        '−' => 0.125,
+        'max' => 0.125,
+        'sq' => 0.125,
+        'add' => 0.125,
+        '/' => 0.125,
+        '×' => 0.125,
+        'min' => 0.125,
+    ],
 ];
 
 // ── Утилиты ──
-function loadHeat(string $path): array {
-    $X = []; $y = [];
+function loadHeat(string $path): array
+{
+    $X = [];
+    $y = [];
     foreach (file($path) as $line) {
         $p = array_map('floatval', explode(',', trim($line)));
-        if (count($p) < 6) continue;
+        if (count($p) < 6) {
+            continue;
+        }
         $X[] = array_slice($p, 0, 5);
         $y[] = $p[5];
     }
     return [$X, $y];
 }
 
-function split(array $X, array $y, int $seed): array {
+function split(array $X, array $y, int $seed): array
+{
     mt_srand($seed);
     $n = count($y);
     $idx = range(0, $n - 1);
@@ -66,42 +143,55 @@ function split(array $X, array $y, int $seed): array {
     $tr = array_slice($idx, 0, $nTr);
     $te = array_slice($idx, $nTr);
     return [
-        array_map(fn($i) => $X[$i], $tr),
-        array_map(fn($i) => $y[$i], $tr),
-        array_map(fn($i) => $X[$i], $te),
-        array_map(fn($i) => $y[$i], $te),
+        array_map(fn ($i) => $X[$i], $tr),
+        array_map(fn ($i) => $y[$i], $tr),
+        array_map(fn ($i) => $X[$i], $te),
+        array_map(fn ($i) => $y[$i], $te),
     ];
 }
 
-function cvShift(array $pred, array $y): float {
+function cvShift(array $pred, array $y): float
+{
     $eps = 1e-9;
     $shift = min(min($pred), min($y)) - 1.0;
     $ratio = [];
     foreach ($pred as $i => $p) {
         $den = abs($y[$i] - $shift) + $eps;
-        if ($den < $eps) return INF;
+        if ($den < $eps) {
+            return INF;
+        }
         $ratio[] = abs(($p - $shift) / ($y[$i] - $shift));
     }
     $m = array_sum($ratio) / count($ratio);
-    if (abs($m) < $eps) return INF;
+    if (abs($m) < $eps) {
+        return INF;
+    }
     $var = 0.0;
-    foreach ($ratio as $r) $var += ($r - $m) ** 2;
+    foreach ($ratio as $r) {
+        $var += ($r - $m) ** 2;
+    }
     return sqrt($var / count($ratio)) / abs($m);
 }
 
-function medianA(array $a): float {
-    sort($a); $n = count($a); $mid = intdiv($n, 2);
+function medianA(array $a): float
+{
+    sort($a);
+    $n = count($a);
+    $mid = intdiv($n, 2);
     return $n % 2 === 1 ? $a[$mid] : ($a[$mid - 1] + $a[$mid]) / 2;
 }
 
-function percentileA(array $a, int $p): float {
-    sort($a); $n = count($a);
+function percentileA(array $a, int $p): float
+{
+    sort($a);
+    $n = count($a);
     $idx = (int) ceil($p / 100 * $n) - 1;
     return $a[max(0, min($n - 1, $idx))];
 }
 
 // ── Генерация B-атомов (все пары × 4 ops + inverse) ──
-function genBAtoms(array $Xtr): array {
+function genBAtoms(array $Xtr): array
+{
     $nFeat = count($Xtr[0]);
     $n = count($Xtr);
     $atoms = [];
@@ -119,10 +209,20 @@ function genBAtoms(array $Xtr): array {
                         '/' => (abs($cj[$k]) > 1e-12) ? $ci[$k] / $cj[$k] : NAN,
                         '+' => $ci[$k] + $cj[$k],
                     };
-                    if (!is_finite($v)) { $ok = false; break; }
+                    if (! is_finite($v)) {
+                        $ok = false;
+                        break;
+                    }
                     $vec[] = $v;
                 }
-                if ($ok) $atoms[] = ['op' => $op, 'i' => $i, 'j' => $j, 'vec' => $vec];
+                if ($ok) {
+                    $atoms[] = [
+                        'op' => $op,
+                        'i' => $i,
+                        'j' => $j,
+                        'vec' => $vec,
+                    ];
+                }
             }
         }
     }
@@ -132,16 +232,27 @@ function genBAtoms(array $Xtr): array {
         $vec = [];
         $ok = true;
         for ($k = 0; $k < $n; $k++) {
-            if (abs($ci[$k]) < 1e-12) { $ok = false; break; }
+            if (abs($ci[$k]) < 1e-12) {
+                $ok = false;
+                break;
+            }
             $vec[] = 1.0 / $ci[$k];
         }
-        if ($ok) $atoms[] = ['op' => 'inv', 'i' => $i, 'j' => -1, 'vec' => $vec];
+        if ($ok) {
+            $atoms[] = [
+                'op' => 'inv',
+                'i' => $i,
+                'j' => -1,
+                'vec' => $vec,
+            ];
+        }
     }
     return $atoms;
 }
 
 // ── Cheap screening: ΔLoss для каждого B-атома ──
-function screenAtoms(array $atoms, array $ePred, array $y): array {
+function screenAtoms(array $atoms, array $ePred, array $y): array
+{
     $cvE = cvShift($ePred, $y);
     foreach ($atoms as &$a) {
         $bestDelta = -INF;
@@ -156,10 +267,15 @@ function screenAtoms(array $atoms, array $ePred, array $y): array {
                     '+' => $ev + $zv,
                     '−' => $ev - $zv,
                 };
-                if (!is_finite($v)) { $ok = false; break; }
+                if (! is_finite($v)) {
+                    $ok = false;
+                    break;
+                }
                 $pred[] = $v;
             }
-            if (!$ok) continue;
+            if (! $ok) {
+                continue;
+            }
             $cv = cvShift($pred, $y);
             if ($cv < $cvE && ($cvE - $cv) > $bestDelta) {
                 $bestDelta = $cvE - $cv;
@@ -167,38 +283,54 @@ function screenAtoms(array $atoms, array $ePred, array $y): array {
         }
         $a['delta'] = is_finite($bestDelta) ? $bestDelta : -INF;
     }
-    usort($atoms, fn($a, $b) => $b['delta'] <=> $a['delta']);
+    usort($atoms, fn ($a, $b) => $b['delta'] <=> $a['delta']);
     return $atoms;
 }
 
 // ── Graph prior: после op, какие ops наиболее вероятны? ──
-function graphPrior(string $lastOp, array $graph): array {
-    if (!isset($graph[$lastOp])) return ['×' => 0.5, '/' => 0.3, '+' => 0.1, '−' => 0.1];
+function graphPrior(string $lastOp, array $graph): array
+{
+    if (! isset($graph[$lastOp])) {
+        return [
+            '×' => 0.5,
+            '/' => 0.3,
+            '+' => 0.1,
+            '−' => 0.1,
+        ];
+    }
     return $graph[$lastOp];
 }
 
 // ═══ 4 РЕЖИМА ═══
 
-function modeA(array $Xtr, array $ytr, array $Xte, array $yte): float {
+function modeA(array $Xtr, array $ytr, array $Xte, array $yte): float
+{
     // Random symbolic search (baseline)
     $g = new Grammar();
     $g->restrictTo(['+', '×', '−', '/', 'sq', 'sqrt']);
     $res = Search::find($Xtr, $ytr, $g, 3, null, 0.0, 0.15, BUDGET);
-    if (!$res[0] || $res[1] >= 9.0) return 9.99;
+    if (! $res[0] || $res[1] >= 9.0) {
+        return 9.99;
+    }
     $st = ExpressionEvaluator::collectStats($res[2], $Xtr);
     $pTe = ExpressionEvaluator::evaluateFormula($res[2], $Xte, $st);
     return ($pTe !== null && count($pTe) === count($yte)) ? cvShift($pTe, $yte) : 9.99;
 }
 
-function modeB(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): float {
+function modeB(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): float
+{
     // Operator graph only (EXP-032 контроль)
     $seedOps = ['−', '×', '/'];
     $activated = [];
-    foreach ($seedOps as $op) $activated[$op] = 1.0;
+    foreach ($seedOps as $op) {
+        $activated[$op] = 1.0;
+    }
     for ($h = 0; $h < HOPS; $h++) {
         $new = $activated;
         foreach ($activated as $op => $act) {
-            if (!isset($graph[$op])) continue;
+            if (! isset($graph[$op])) {
+                continue;
+            }
             foreach ($graph[$op] as $nb => $w) {
                 $new[$nb] = max($new[$nb] ?? 0.0, $act * ALPHA * $w);
             }
@@ -213,13 +345,16 @@ function modeB(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): fl
             $filtered[] = $a;
         }
     }
-    if (empty($filtered)) return 9.99;
+    if (empty($filtered)) {
+        return 9.99;
+    }
     // Top-K по random score (graph не даёт task-specific ranking!)
     $filtered = array_slice($filtered, 0, TOP_K_ATOMS);
     return expandAndSearch($filtered, $Xtr, $ytr, $Xte, $yte);
 }
 
-function modeC(array $Xtr, array $ytr, array $Xte, array $yte): float {
+function modeC(array $Xtr, array $ytr, array $Xte, array $yte): float
+{
     // Residual-guided only (без graph prior)
     $atoms = genBAtoms($Xtr);
     $meanY = array_fill(0, count($ytr), array_sum($ytr) / count($ytr));
@@ -228,7 +363,8 @@ function modeC(array $Xtr, array $ytr, array $Xte, array $yte): float {
     return expandAndSearch($top, $Xtr, $ytr, $Xte, $yte);
 }
 
-function modeD(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): float {
+function modeD(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): float
+{
     // Residual + operator graph (D = C + graph prior)
     $atoms = genBAtoms($Xtr);
     $meanY = array_fill(0, count($ytr), array_sum($ytr) / count($ytr));
@@ -243,19 +379,24 @@ function modeD(array $Xtr, array $ytr, array $Xte, array $yte, array $graph): fl
         }
         $a['score'] = $a['delta'] * (1.0 + 0.5 * $boost); // prior boost 50%
     }
-    usort($screened, fn($a, $b) => $b['score'] <=> $a['score']);
+    usort($screened, fn ($a, $b) => $b['score'] <=> $a['score']);
     $top = array_slice($screened, 0, TOP_K_ATOMS);
     return expandAndSearch($top, $Xtr, $ytr, $Xte, $yte);
 }
 
-function expandAndSearch(array $atoms, array $Xtr, array $ytr, array $Xte, array $yte): float {
-    if (empty($atoms)) return 9.99;
+function expandAndSearch(array $atoms, array $Xtr, array $ytr, array $Xte, array $yte): float
+{
+    if (empty($atoms)) {
+        return 9.99;
+    }
     // Расширяем X: добавляем top atoms как колонки
     $nFeat = count($Xtr[0]);
     $XtrExt = [];
     foreach ($Xtr as $k => $row) {
         $r = $row;
-        foreach ($atoms as $a) { $r[] = $a['vec'][$k]; }
+        foreach ($atoms as $a) {
+            $r[] = $a['vec'][$k];
+        }
         $XtrExt[] = $r;
     }
     $XteExt = [];
@@ -279,7 +420,9 @@ function expandAndSearch(array $atoms, array $Xtr, array $ytr, array $Xte, array
     $g = new Grammar();
     $g->restrictTo(['+', '×', '−', '/', 'sq', 'sqrt']);
     $res = Search::find($XtrExt, $ytr, $g, 3, null, 0.0, 0.15, BUDGET);
-    if (!$res[0] || $res[1] >= 9.0) return 9.99;
+    if (! $res[0] || $res[1] >= 9.0) {
+        return 9.99;
+    }
     $st = ExpressionEvaluator::collectStats($res[2], $XtrExt);
     $pTe = ExpressionEvaluator::evaluateFormula($res[2], $XteExt, $st);
     return ($pTe !== null && count($pTe) === count($yte)) ? cvShift($pTe, $yte) : 9.99;
@@ -291,9 +434,14 @@ $base = __DIR__ . '/..';
 
 echo "=== EXP-033: Residual-Guided Grounded Graph (heat) ===\n";
 echo "4 modes: A(random) B(graph-only) C(residual-only) D(residual+graph)\n";
-echo "seeds=" . SEEDS . " budget=" . BUDGET . "s K=" . TOP_K_ATOMS . "\n\n";
+echo 'seeds=' . SEEDS . ' budget=' . BUDGET . 's K=' . TOP_K_ATOMS . "\n\n";
 
-$results = ['A' => [], 'B' => [], 'C' => [], 'D' => []];
+$results = [
+    'A' => [],
+    'B' => [],
+    'C' => [],
+    'D' => [],
+];
 for ($s = 1; $s <= SEEDS; $s++) {
     [$Xtr, $ytr, $Xte, $yte] = split($Xall, $yall, $s);
 
@@ -318,10 +466,10 @@ for ($s = 1; $s <= SEEDS; $s++) {
 echo "\n=== ИТОГ EXP-033 ===\n";
 foreach (['A', 'B', 'C', 'D'] as $mode) {
     $cvs = $results[$mode];
-    $acc = count(array_filter($cvs, fn($c) => $c <= 0.10));
+    $acc = count(array_filter($cvs, fn ($c) => $c <= 0.10));
     echo "  Mode {$mode}: success={$acc}/" . SEEDS
-        . " median=" . round(medianA($cvs), 4)
-        . " q05=" . round(percentileA($cvs, 5), 4)
-        . " q95=" . round(percentileA($cvs, 95), 4) . "\n";
+        . ' median=' . round(medianA($cvs), 4)
+        . ' q05=' . round(percentileA($cvs, 5), 4)
+        . ' q95=' . round(percentileA($cvs, 95), 4) . "\n";
 }
 echo "\nDONE\n";

@@ -42,7 +42,10 @@ class LawClassifierFormulaHashTest extends TestCase
             $y[] = ($x0 + $x1) + fmod($i * 0.07, 3.0);
         }
 
-        return ['X' => $X, 'y' => $y];
+        return [
+            'X' => $X,
+            'y' => $y,
+        ];
     }
 
     public function testSameFormulaTwoSlicesSameLawClass(): void

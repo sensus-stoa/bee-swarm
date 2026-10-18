@@ -11,7 +11,6 @@ declare(strict_types=1);
  * Использование: php scripts/verify/verify_all.php [--log=agenda.log]
  * Exit 0 = STAGE 0 PASS, Exit 1 = FAIL
  */
-
 $scriptDir = __DIR__;
 $logFile = null;
 
@@ -72,10 +71,10 @@ foreach ($scripts as $script => $args) {
 }
 
 echo "\n=== STAGE 0 RESULT ===\n";
-echo "Passed: " . count($passed) . "/" . count($scripts) . "\n";
+echo 'Passed: ' . count($passed) . '/' . count($scripts) . "\n";
 
 if (! empty($failed)) {
-    echo "Failed: " . implode(', ', $failed) . "\n";
+    echo 'Failed: ' . implode(', ', $failed) . "\n";
 }
 
 if ($blocked) {

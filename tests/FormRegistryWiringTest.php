@@ -41,7 +41,11 @@ class FormRegistryWiringTest extends TestCase
         $m = new \ReflectionMethod(Hive::class, 'registerFormInvariance');
         $m->setAccessible(true);
         // dream-path shape: no data at all
-        $m->invoke($hive, ['atom' => '(x0+K1)sq', 'cv' => 0.05, 'name' => 'law_x'], 'dreamDom', null, null);
+        $m->invoke($hive, [
+            'atom' => '(x0+K1)sq',
+            'cv' => 0.05,
+            'name' => 'law_x',
+        ], 'dreamDom', null, null);
         $n = (int) Database::get()->query('SELECT COUNT(*) FROM form_registry')->fetchColumn();
         $this->assertSame(0, $n);
     }

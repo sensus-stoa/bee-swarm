@@ -23,7 +23,7 @@ use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\QueryEngine;
 
 $engine = new QueryEngine();
-$laws = $engine->query("SELECT domain, name, formula, cv FROM laws WHERE cv IS NOT NULL");
+$laws = $engine->query('SELECT domain, name, formula, cv FROM laws WHERE cv IS NOT NULL');
 
 $failures = 0;
 $total = count($laws);

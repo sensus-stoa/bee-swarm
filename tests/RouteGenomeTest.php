@@ -18,30 +18,43 @@ class RouteGenomeTest extends TestCase
             'route_deadbeef',
             '',
             0,
-            ['kind' => 'NO_CERT_AFTER', 'flights' => 2],
             [
-                ['op' => 'FLIGHT', 'depth' => 2, 'grammar' => 'base', 'beam' => 'default'],
-                ['op' => 'USE_MARKS', 'k' => 5],
-                ['op' => 'LOCAL_BIRTH'],
+                'kind' => 'NO_CERT_AFTER',
+                'flights' => 2,
+            ],
+            [
+                [
+                    'op' => 'FLIGHT',
+                    'depth' => 2,
+                    'grammar' => 'base',
+                    'beam' => 'default',
+                ],
+                [
+                    'op' => 'USE_MARKS',
+                    'k' => 5,
+                ],
+                [
+                    'op' => 'LOCAL_BIRTH',
+                ],
             ],
             0.2,
             3,
         );
     }
 
-    public function test_valid_genome_passes(): void
+    public function testValidGenomePasses(): void
     {
         $this->assertSame([], RouteGenome::validate($this->validGenome()));
     }
 
-    public function test_unknown_action_op_rejected(): void
+    public function testUnknownActionOpRejected(): void
     {
         $g = $this->validGenome();
         $g['actions'][0]['op'] = 'FREE_PHP_CODE';
         $this->assertNotSame([], RouteGenome::validate($g));
     }
 
-    public function test_budget_fraction_bounds(): void
+    public function testBudgetFractionBounds(): void
     {
         $g = $this->validGenome();
         $g['budget_fraction'] = 0.5;
@@ -52,21 +65,23 @@ class RouteGenomeTest extends TestCase
         $this->assertSame([], RouteGenome::validate($g));
     }
 
-    public function test_unknown_condition_kind_rejected(): void
+    public function testUnknownConditionKindRejected(): void
     {
         $g = $this->validGenome();
-        $g['condition'] = ['kind' => 'ALWAYS_BIRTH_ATOMS'];
+        $g['condition'] = [
+            'kind' => 'ALWAYS_BIRTH_ATOMS',
+        ];
         $this->assertNotSame([], RouteGenome::validate($g));
     }
 
-    public function test_unknown_grammar_preset_rejected(): void
+    public function testUnknownGrammarPresetRejected(): void
     {
         $g = $this->validGenome();
         $g['actions'][0]['grammar'] = 'magic_diff';
         $this->assertNotSame([], RouteGenome::validate($g));
     }
 
-    public function test_all_five_mutations_produce_valid_genomes(): void
+    public function testAllFiveMutationsProduceValidGenomes(): void
     {
         mt_srand(2045);
         foreach ([
@@ -89,14 +104,25 @@ class RouteGenomeTest extends TestCase
         }
     }
 
-    public function test_shorten_single_action_kills_route(): void
+    public function testShortenSingleActionKillsRoute(): void
     {
-        $g = RouteGenome::create('route_cafe01', '', 0, ['kind' => 'ALWAYS'],
-            [['op' => 'LOCAL_BIRTH']], 0.1, 1);
+        $g = RouteGenome::create(
+            'route_cafe01',
+            '',
+            0,
+            [
+                'kind' => 'ALWAYS',
+            ],
+            [[
+                'op' => 'LOCAL_BIRTH',
+            ]],
+            0.1,
+            1
+        );
         $this->assertNull(RouteMutator::mutate($g, RouteMutator::TYPE_SHORTEN));
     }
 
-    public function test_swap_preserves_action_multiset(): void
+    public function testSwapPreservesActionMultiset(): void
     {
         mt_srand(2046);
         $g = $this->validGenome();
@@ -109,7 +135,7 @@ class RouteGenomeTest extends TestCase
         $this->assertSame($opsBefore, $opsAfter);
     }
 
-    public function test_budget_mutation_clamped(): void
+    public function testBudgetMutationClamped(): void
     {
         mt_srand(2047);
         $g = $this->validGenome();
@@ -122,7 +148,7 @@ class RouteGenomeTest extends TestCase
         }
     }
 
-    public function test_id_deterministic_under_seed(): void
+    public function testIdDeterministicUnderSeed(): void
     {
         mt_srand(9001);
         $a = RouteMutator::newId();

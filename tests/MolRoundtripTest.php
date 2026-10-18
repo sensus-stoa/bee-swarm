@@ -26,14 +26,19 @@ use BeeSwarm\Infra\Database;
 class MolRoundtripTest extends TestCase
 {
     private const T1_NAME = 'BW5737967f9b4ecb628fd48d7d82502f40';
+
     private const T1_DEF = '((x0+x1)/(x0−x1))';
+
     private const T2_NAME = 'BW59baeae13abe8cbdfae0c823ff207db2';
+
     // КОРРЕКТНЫЙ канон T₂ (post-MOL-001): слоты молекулы НЕ переименовываются
     // (до фикса renameTerminals по рангу появления портил (x0−x2) → (x0−x1),
     // т.к. парсер не видел слоты внутри склеенного атома)
     private const T2_DEF = '((x0−x2)+x0BW5737967f9b4ecb628fd48d7d82502f40x1)';
+
     // ИСКАЖЁННЫЙ канон (pre-fix артефакт PROBE-1) — для теста ремонта
     private const T2_DEF_CORRUPTED = '((x0−x1)+x0BW5737967f9b4ecb628fd48d7d82502f40x1)';
+
     private const LAW_X = '((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))';
 
     private array $birthNames;
@@ -59,7 +64,9 @@ class MolRoundtripTest extends TestCase
         parent::tearDown();
     }
 
-    /** Независимые входы (3 колонки достаточно: x0,x1,x2). */
+    /**
+     * Независимые входы (3 колонки достаточно: x0,x1,x2).
+     */
     private function inputs(int $n = 12): array
     {
         mt_srand(4242);
@@ -151,8 +158,8 @@ class MolRoundtripTest extends TestCase
         for ($i = 0; $i < count($lawVals); $i++) {
             $this->assertIsNumeric($lawEngine[$i]);
             $this->assertIsNumeric($t2Vals[$i]);
-            $this->assertEqualsWithDelta($lawVals[$i], (float) $lawEngine[$i], 1e-9 * max(1.0, abs($lawVals[$i])), "law vs engine-law, row $i");
-            $this->assertEqualsWithDelta($lawVals[$i], (float) $t2Vals[$i], 1e-9 * max(1.0, abs($lawVals[$i])), "law vs T₂, row $i");
+            $this->assertEqualsWithDelta($lawVals[$i], (float) $lawEngine[$i], 1e-9 * max(1.0, abs($lawVals[$i])), "law vs engine-law, row {$i}");
+            $this->assertEqualsWithDelta($lawVals[$i], (float) $t2Vals[$i], 1e-9 * max(1.0, abs($lawVals[$i])), "law vs T₂, row {$i}");
         }
     }
 
@@ -163,15 +170,22 @@ class MolRoundtripTest extends TestCase
         $ast = ExpressionNormalizer::parse(self::T2_DEF, $this->birthNames);
         $atoms = [];
         $walk = function (array|string|null $node) use (&$walk, &$atoms): void {
-            if ($node === null || is_string($node)) { return; }
-            if (isset($node['atom'])) { $atoms[] = $node['atom']; return; }
+            if ($node === null || is_string($node)) {
+                return;
+            }
+            if (isset($node['atom'])) {
+                $atoms[] = $node['atom'];
+                return;
+            }
             foreach (['l', 'r'] as $k) {
-                if (isset($node[$k]) && is_array($node[$k])) { $walk($node[$k]); }
+                if (isset($node[$k]) && is_array($node[$k])) {
+                    $walk($node[$k]);
+                }
             }
         };
         $walk($ast);
         foreach ($atoms as $a) {
-            $this->assertMatchesRegularExpression('/^x\d+$/', (string) $a, "терминал '$a' — не формальная переменная (склейка?)");
+            $this->assertMatchesRegularExpression('/^x\d+$/', (string) $a, "терминал '{$a}' — не формальная переменная (склейка?)");
         }
     }
 
@@ -185,9 +199,12 @@ class MolRoundtripTest extends TestCase
 
         // перестановка колонок: закон в терминах (a,b,c) = (col1, col0, col2)
         mt_srand(777);
-        $Xa = []; $Xb = [];
+        $Xa = [];
+        $Xb = [];
         for ($i = 0; $i < 10; $i++) {
-            $c0 = mt_rand(10, 30) / 10; $c1 = mt_rand(40, 60) / 10; $c2 = mt_rand(30, 70) / 10;
+            $c0 = mt_rand(10, 30) / 10;
+            $c1 = mt_rand(40, 60) / 10;
+            $c2 = mt_rand(30, 70) / 10;
             $Xa[] = [$c0, $c1, $c2];           // привязка A: x0=c0, x1=c1, x2=c2
             $Xb[] = [$c1, $c0, $c2];           // привязка B: колонки переставлены
         }
@@ -200,7 +217,7 @@ class MolRoundtripTest extends TestCase
         $this->assertIsArray($vA);
         $this->assertIsArray($vB);
         for ($i = 0; $i < 10; $i++) {
-            $this->assertEqualsWithDelta($vA[$i], $vB[$i], 1e-9 * max(1.0, abs((float) $vA[$i])), "rename/permute, row $i");
+            $this->assertEqualsWithDelta($vA[$i], $vB[$i], 1e-9 * max(1.0, abs((float) $vA[$i])), "rename/permute, row {$i}");
         }
     }
 
@@ -210,7 +227,7 @@ class MolRoundtripTest extends TestCase
     {
         $dbFile = tempnam(sys_get_temp_dir(), 'mol001_') . '.sqlite';
         @unlink($dbFile);
-        putenv("SWARM_DB_PATH=$dbFile");
+        putenv("SWARM_DB_PATH={$dbFile}");
         Database::reset();
         try {
             $db = Database::get();
@@ -223,7 +240,7 @@ class MolRoundtripTest extends TestCase
             $this->assertIsArray($v, 'T₂ вычисляется в чистой БД с обеими зависимостями');
             $expected = $this->lawValues($X);
             for ($i = 0; $i < 6; $i++) {
-                $this->assertEqualsWithDelta($expected[$i], (float) $v[$i], 1e-9 * max(1.0, abs($expected[$i])), "clean DB, row $i");
+                $this->assertEqualsWithDelta($expected[$i], (float) $v[$i], 1e-9 * max(1.0, abs($expected[$i])), "clean DB, row {$i}");
             }
         } finally {
             // восстановление окружения: иначе static-кэш birthOpNames и
@@ -238,7 +255,7 @@ class MolRoundtripTest extends TestCase
     {
         $dbFile = tempnam(sys_get_temp_dir(), 'mol001_') . '.sqlite';
         @unlink($dbFile);
-        putenv("SWARM_DB_PATH=$dbFile");
+        putenv("SWARM_DB_PATH={$dbFile}");
         Database::reset();
         try {
             $db = Database::get();
@@ -275,11 +292,11 @@ class MolRoundtripTest extends TestCase
             $ast = ExpressionNormalizer::parse($form, []);
             $this->assertNotNull($ast);
             $rendered = ExpressionNormalizer::render($ast);
-            $this->assertSame($expectedRender, $rendered, "render ненnested '$form' не изменился");
+            $this->assertSame($expectedRender, $rendered, "render ненnested '{$form}' не изменился");
             $this->assertSame(
                 ExpressionNormalizer::fingerprint($expectedFp),
                 ExpressionNormalizer::fingerprint($rendered),
-                "fingerprint '$form' стабилен",
+                "fingerprint '{$form}' стабилен",
             );
         }
     }

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 use BeeSwarm\Infra\Database;
 
 Database::setPath(getenv('SWARM_DB_PATH') ?: tempnam(sys_get_temp_dir(), 'cult_') . '.db');
@@ -93,9 +93,21 @@ function findLaw3(array $X, array $y, int $depth = 3, float $budgetSec = 30.0): 
     $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;
     if ($res === null) {
-        return ['found' => false, 'cv' => 9.99, 'formula' => 'NONE', 'class' => 'NONE', 'time_s' => round($elapsed, 2)];
+        return [
+            'found' => false,
+            'cv' => 9.99,
+            'formula' => 'NONE',
+            'class' => 'NONE',
+            'time_s' => round($elapsed, 2),
+        ];
     }
-    return ['found' => $res[0], 'cv' => $res[1], 'formula' => $res[2], 'class' => $res[4], 'time_s' => round($elapsed, 2)];
+    return [
+        'found' => $res[0],
+        'cv' => $res[1],
+        'formula' => $res[2],
+        'class' => $res[4],
+        'time_s' => round($elapsed, 2),
+    ];
 }
 
 function runTask3(string $name, array $X, array $y, int $depth): void
@@ -116,11 +128,11 @@ function runTask3(string $name, array $X, array $y, int $depth): void
         $cvs[] = $cvTe;
     }
     $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
-    $cls = implode('/', array_map(fn ($k, $v) => "$k:$v", array_keys($classes), $classes));
+    $cls = implode('/', array_map(fn ($k, $v) => "{$k}:{$v}", array_keys($classes), $classes));
     echo "  {$name} (depth {$depth}): med=" . round(median3($cvs), 4)
-        . " q05=" . round(percentile3($cvs, 5), 4)
-        . " q95=" . round(percentile3($cvs, 95), 4)
-        . "  success=" . count($accepted) . "/20  classes:{$cls}\n";
+        . ' q05=' . round(percentile3($cvs, 5), 4)
+        . ' q95=' . round(percentile3($cvs, 95), 4)
+        . '  success=' . count($accepted) . "/20  classes:{$cls}\n";
 }
 
 // Фаза A: атомы

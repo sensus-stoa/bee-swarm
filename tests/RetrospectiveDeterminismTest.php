@@ -30,10 +30,14 @@ use BeeSwarm\Infra\Database;
  */
 final class RetrospectiveDeterminismTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $envKeys = ['FORAGER_SOURCES', 'CORPUS_DIRS', 'NO_BASE_TASKS'];
 
     protected function setUp(): void

@@ -19,20 +19,26 @@ final class RouteGenome
 {
     public const ACTION_OPS = ['FLIGHT', 'USE_MARKS', 'LOCAL_BIRTH'];
 
-    /** Именованные подмножества BASE_OPS (Grammar::baseOpNames). */
+    /**
+     * Именованные подмножества BASE_OPS (Grammar::baseOpNames).
+     */
     public const GRAMMAR_PRESETS = [
         'base' => ['+', '×', '−', '/', 'min', 'max', 'sq'],
         'diffprod' => ['−', '×', '+'],
         'ratio' => ['×', '/'],
     ];
 
-    /** Связки реальных env-ручек Search (см. RouteExecutor::BEAM_KNOBS). */
+    /**
+     * Связки реальных env-ручек Search (см. RouteExecutor::BEAM_KNOBS).
+     */
     public const BEAM_PRESETS = ['default', 'beam10', 'beam40', 'narrow5'];
 
     public const CONDITION_KINDS = ['ALWAYS', 'NO_CERT_AFTER', 'INHERIT'];
 
     public const BUDGET_MIN = 0.05;
+
     public const BUDGET_MAX = 0.30;
+
     public const MAX_ACTIONS = 6;
 
     /**
@@ -93,7 +99,6 @@ final class RouteGenome
     }
 
     /**
-     * @param mixed $a
      * @return list<string>
      */
     private static function validateAction(mixed $a, string $idx): array
@@ -149,7 +154,10 @@ final class RouteGenome
             'actions' => $actions,
             'budget_fraction' => $budgetFraction,
             'max_steps' => $maxSteps,
-            'lineage' => ['born_task_fp' => $bornTaskFp, 'born_tick' => $bornTick],
+            'lineage' => [
+                'born_task_fp' => $bornTaskFp,
+                'born_tick' => $bornTick,
+            ],
             'record' => [
                 'tasks_seen' => 0,
                 'delta_L_valid_sum' => 0.0,

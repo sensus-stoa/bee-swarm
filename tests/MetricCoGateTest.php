@@ -20,7 +20,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class MetricCoGateTest extends TestCase
 {
-    /** CCPP-дегенерат: pred ≈ −65 константа-антикоррелят (пост-хок Demo#2). */
+    /**
+     * CCPP-дегенерат: pred ≈ −65 константа-антикоррелят (пост-хок Demo#2).
+     */
     private function ccppDegeneratePred(array $y): array
     {
         return array_map(fn (float $v): float => -0.15 * $v - 3.0, $y);
@@ -69,9 +71,18 @@ final class MetricCoGateTest extends TestCase
     public function testVerdictOfCoGates(): void
     {
         // Совместно с V0.11: провал ко-гейта → UNSTABLE_CERTIFICATE
-        $this->assertSame('UNSTABLE_CERTIFICATE', MetricPreflight::verdictOfCoGates(['sign_ok' => false, 'scale_ok' => true]));
-        $this->assertSame('UNSTABLE_CERTIFICATE', MetricPreflight::verdictOfCoGates(['sign_ok' => true, 'scale_ok' => false]));
-        $this->assertSame('PASS', MetricPreflight::verdictOfCoGates(['sign_ok' => true, 'scale_ok' => true]));
+        $this->assertSame('UNSTABLE_CERTIFICATE', MetricPreflight::verdictOfCoGates([
+            'sign_ok' => false,
+            'scale_ok' => true,
+        ]));
+        $this->assertSame('UNSTABLE_CERTIFICATE', MetricPreflight::verdictOfCoGates([
+            'sign_ok' => true,
+            'scale_ok' => false,
+        ]));
+        $this->assertSame('PASS', MetricPreflight::verdictOfCoGates([
+            'sign_ok' => true,
+            'scale_ok' => true,
+        ]));
     }
 
     public function testCcppArtifactIntegral(): void

@@ -208,9 +208,6 @@ final class LawIsomorphismCompressor
     }
 
     /**
-     * @param array<int, array{name: string, formula: string, domain: string, canonical: string}> $laws
-     */
-/**
      * M1-EXT (EXP-040, HANDOFF_M1_EXT_SUBTREE): суб-деревья глубины <= maxDepth
      * из дерева кандидата. Возвращает список формул (render) без дублей.
      * Терминалы и атомы не возвращаются (нет структуры = нет изоморфизма).
@@ -260,7 +257,10 @@ final class LawIsomorphismCompressor
             $seenInThis = [];
             foreach (self::extractSubTrees($formula, $maxDepth) as $sub) {
                 $canonical = self::canonize($sub);
-                if ($canonical === null || isset($canonical['atom'])) {
+                // psalm-фикс (18.10): isset($canonical['atom']) на СТРОКЕ —
+                // мёртвый остаток до-рефакторной эпохи (canonize возвращал
+                // массив); строковый offset 'atom' всегда false.
+                if ($canonical === null) {
                     continue;
                 }
                 $fp = \BeeSwarm\Core\ExpressionNormalizer::fingerprint($canonical);

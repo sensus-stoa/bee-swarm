@@ -40,7 +40,6 @@ mt_srand($seed);
 require __DIR__ . '/../../vendor/autoload.php';
 
 use BeeSwarm\Hive\RouteExecutor;
-use BeeSwarm\Hive\RouteGenome;
 use BeeSwarm\Hive\RouteLedger;
 use BeeSwarm\Hive\RouteMutator;
 
@@ -53,9 +52,9 @@ function gen_family(array $p, string $path): void
 {
     $s = $p['seed'];
     $r = function () use (&$s) {
-        $s = ($s * 1103515245 + 12345) & 0x7fffffff;
+        $s = ($s * 1103515245 + 12345) & 0x7FFFFFFF;
 
-        return $s / 0x7fffffff;
+        return $s / 0x7FFFFFFF;
     };
     $u = function (float $a, float $b) use ($r): float {
         return $a + $r() * ($b - $a);
@@ -64,17 +63,27 @@ function gen_family(array $p, string $path): void
     for ($i = 0; $i < 200; $i++) {
         $c = [$u(1, 3), $u(2, 5), $u(3, 7), $u(0.5, 2), $u(0, 9)];
         switch ($p['class']) {
-            case 'flux': $y = 2.0 * ($c[2] - $c[1]) * $c[0] / $c[3]; break;
-            case 'diffprod': $y = 1.5 * ($c[1] - $c[0]) * $c[0]; break;
-            case 'ratio': $y = ($c[0] * $c[1]) / $c[3]; break;
-            case 'composition': $y = ($c[0] - $c[1]) * ($c[0] - $c[1]) + $c[2] * $c[3]; break;
-            case 'power': $y = $c[0] * $c[0] + $c[1] * $c[2]; break;
-            case 'pureprod': $y = $c[0] * $c[3]; break;
+            case 'flux': $y = 2.0 * ($c[2] - $c[1]) * $c[0] / $c[3];
+                break;
+            case 'diffprod': $y = 1.5 * ($c[1] - $c[0]) * $c[0];
+                break;
+            case 'ratio': $y = ($c[0] * $c[1]) / $c[3];
+                break;
+            case 'composition': $y = ($c[0] - $c[1]) * ($c[0] - $c[1]) + $c[2] * $c[3];
+                break;
+            case 'power': $y = $c[0] * $c[0] + $c[1] * $c[2];
+                break;
+            case 'pureprod': $y = $c[0] * $c[3];
+                break;
             default: $y = 0.0;
         }
-        if (! empty($p['noise'])) { $y *= 1 + ($r() - 0.5) * $p['noise']; }
+        if (! empty($p['noise'])) {
+            $y *= 1 + ($r() - 0.5) * $p['noise'];
+        }
         $row = [];
-        foreach ($p['perm'] as $src) { $row[] = $c[$src]; }
+        foreach ($p['perm'] as $src) {
+            $row[] = $c[$src];
+        }
         $row[] = $y;
         $rows[] = $row;
     }
@@ -85,19 +94,26 @@ function gen_family(array $p, string $path): void
             $j = (int) floor(mt_rand() / (mt_getrandmax() + 1) * ($i + 1));
             [$ys[$i], $ys[$j]] = [$ys[$j], $ys[$i]];
         }
-        foreach ($rows as $i => $row) { $rows[$i][5] = $ys[$i]; }
+        foreach ($rows as $i => $row) {
+            $rows[$i][5] = $ys[$i];
+        }
     }
     $f = fopen($path, 'w');
-    foreach ($rows as $r2) { fputcsv($f, $r2); }
+    foreach ($rows as $r2) {
+        fputcsv($f, $r2);
+    }
     fclose($f);
 }
 
 function parse_csv(string $path): array
 {
-    $X = []; $y = [];
+    $X = [];
+    $y = [];
     foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
         $v = str_getcsv($line);
-        if (count($v) < 6 || ! is_numeric($v[0])) { continue; }
+        if (count($v) < 6 || ! is_numeric($v[0])) {
+            continue;
+        }
         $X[] = array_map('floatval', array_slice($v, 0, 5));
         $y[] = (float) $v[5];
     }
@@ -105,19 +121,31 @@ function parse_csv(string $path): array
     return [$X, $y];
 }
 
-/** Независимый 60/40 сплит по сиду (withheld 40% engine не видит). */
+/**
+ * Независимый 60/40 сплит по сиду (withheld 40% engine не видит).
+ */
 function split_eval(array $X, array $y, int $seed): array
 {
-    $n = count($y); $idx = range(0, $n - 1);
+    $n = count($y);
+    $idx = range(0, $n - 1);
     mt_srand($seed);
     for ($i = $n - 1; $i > 0; $i--) {
         $j = (int) floor(mt_rand() / (mt_getrandmax() + 1) * ($i + 1));
         [$idx[$i], $idx[$j]] = [$idx[$j], $idx[$i]];
     }
     $k = (int) floor($n * 0.6);
-    $Xt = []; $yt = []; $Xe = []; $ye = [];
-    foreach (array_slice($idx, 0, $k) as $i) { $Xt[] = $X[$i]; $yt[] = $y[$i]; }
-    foreach (array_slice($idx, $k) as $i) { $Xe[] = $X[$i]; $ye[] = $y[$i]; }
+    $Xt = [];
+    $yt = [];
+    $Xe = [];
+    $ye = [];
+    foreach (array_slice($idx, 0, $k) as $i) {
+        $Xt[] = $X[$i];
+        $yt[] = $y[$i];
+    }
+    foreach (array_slice($idx, $k) as $i) {
+        $Xe[] = $X[$i];
+        $ye[] = $y[$i];
+    }
 
     return [$Xt, $yt, $Xe, $ye];
 }
@@ -135,26 +163,38 @@ function labels_to_x(string $formula): string
         return $key;
     }, $out);
     $pairs = [];
-    foreach (range(0, 4) as $i) { $pairs[] = ['c' . $i, 'x' . $i]; }
+    foreach (range(0, 4) as $i) {
+        $pairs[] = ['c' . $i, 'x' . $i];
+    }
     usort($pairs, fn ($a, $b) => strlen($b[0]) <=> strlen($a[0]));
-    foreach ($pairs as [$c, $x]) { $out = str_replace($c, $x, $out); }
+    foreach ($pairs as [$c, $x]) {
+        $out = str_replace($c, $x, $out);
+    }
 
     return strtr($out, $kept);
 }
 
-/** Независимая сертификация на withheld-срезе, x-пространство (строгий критерий, = exp044). */
+/**
+ * Независимая сертификация на withheld-срезе, x-пространство (строгий критерий, = exp044).
+ */
 function cert_x(string $formulaX, array $Xe, array $ye): ?float
 {
     $vals = BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($formulaX, $Xe);
-    if (! is_array($vals) || count($vals) !== count($ye)) { return null; }
+    if (! is_array($vals) || count($vals) !== count($ye)) {
+        return null;
+    }
     $ratios = [];
     foreach ($vals as $i => $p) {
-        if ($ye[$i] == 0.0 || ! is_numeric($p) || ! is_finite((float) $p)) { return null; }
+        if ($ye[$i] == 0.0 || ! is_numeric($p) || ! is_finite((float) $p)) {
+            return null;
+        }
         $ratios[] = (float) $p / $ye[$i];
     }
     $mean = array_sum($ratios) / count($ratios);
     $var = 0.0;
-    foreach ($ratios as $rv) { $var += ($rv - $mean) ** 2; }
+    foreach ($ratios as $rv) {
+        $var += ($rv - $mean) ** 2;
+    }
     $std = sqrt($var / count($ratios));
 
     return $mean != 0.0 ? $std / abs($mean) : null;
@@ -165,26 +205,52 @@ function cv_eval(string $formulaC, array $Xe, array $ye): ?float
     return cert_x(labels_to_x($formulaC), $Xe, $ye);
 }
 
-/** Базовый канал: вылеты с выключенными метками (гигиена baseline). */
+/**
+ * Базовый канал: вылеты с выключенными метками (гигиена baseline).
+ */
 function baseline_flights(array $X, array $y, float $budget): array
 {
-    $t0 = microtime(true); $flights = []; $found = false; $tFound = null; $formula = ''; $bestCv = 9.99;
+    $t0 = microtime(true);
+    $flights = [];
+    $found = false;
+    $tFound = null;
+    $formula = '';
+    $bestCv = 9.99;
     $g = BeeSwarm\Core\Grammar::fromOps(array_keys(BeeSwarm\Core\Grammar::BASE_OPS));
     for ($f = 1; $f <= 3; $f++) {
         $remain = $budget - (microtime(true) - $t0);
-        if ($remain < 2.0) { break; }
+        if ($remain < 2.0) {
+            break;
+        }
         putenv('TRAIL_MARKS');
         $r = BeeSwarm\Core\Search::find($X, $y, $g, min(2 + $f - 1, 3), ['c0', 'c1', 'c2', 'c3', 'c4'], 0.2, 0.10, $remain);
-        $flights[] = ['f' => $f, 'found' => (bool) $r[0],
+        $flights[] = [
+            'f' => $f,
+            'found' => (bool) $r[0],
             'cv' => is_numeric($r[1]) ? (float) $r[1] : 9.99,
-            'formula' => is_string($r[2] ?? null) ? (string) $r[2] : ''];
-        if ($r[0]) { $found = true; $tFound = round(microtime(true) - $t0, 1); $formula = (string) $r[2]; $bestCv = 0.0; break; }
-        if (is_numeric($r[1]) && $r[1] < $bestCv) { $bestCv = (float) $r[1]; }
+            'formula' => is_string($r[2] ?? null) ? (string) $r[2] : '',
+        ];
+        if ($r[0]) {
+            $found = true;
+            $tFound = round(microtime(true) - $t0, 1);
+            $formula = (string) $r[2];
+            $bestCv = 0.0;
+            break;
+        }
+        if (is_numeric($r[1]) && $r[1] < $bestCv) {
+            $bestCv = (float) $r[1];
+        }
     }
     putenv('TRAIL_MARKS');
 
-    return ['flights' => $flights, 'found' => $found, 't_first_found' => $tFound, 'formula' => $formula,
-        'best_cv' => $bestCv, 'wall_total' => round(microtime(true) - $t0, 1)];
+    return [
+        'flights' => $flights,
+        'found' => $found,
+        't_first_found' => $tFound,
+        'formula' => $formula,
+        'best_cv' => $bestCv,
+        'wall_total' => round(microtime(true) - $t0, 1),
+    ];
 }
 
 /** Лучшая ЧАСТИЧНАЯ гипотеза базового канала. Failure-возврат Search несёт
@@ -192,17 +258,23 @@ function baseline_flights(array $X, array $y, float $budget): array
  * факт реального имени, качество судит computeL (блокер-2 ревью). */
 function baseline_partial_L(array $bl, array $Xt, array $yt): ?float
 {
-    if ($bl['found']) { return null; } // сертификация — не «частичная гипотеза»
+    if ($bl['found']) {
+        return null;
+    } // сертификация — не «частичная гипотеза»
     foreach (array_reverse($bl['flights']) as $fl) {
         $fC = (string) $fl['formula'];
-        if ($fC === '' || $fC === 'none') { continue; }
+        if ($fC === '' || $fC === 'none') {
+            continue;
+        }
         return RouteExecutor::computeL(labels_to_x($fC), $Xt, $yt);
     }
 
     return null;
 }
 
-/** Персистенция генома и истории вылетов (блокер-4 ревью: таблицы были мёртвыми). */
+/**
+ * Персистенция генома и истории вылетов (блокер-4 ревью: таблицы были мёртвыми).
+ */
 function persist_genome(PDO $db, array $g): void
 {
     static $st = null;
@@ -227,9 +299,12 @@ function seedPopulation(int $n): array
     $pop = [];
     for ($i = 0; $i < $n; $i++) {
         $g = RouteMutator::randomGenome();
-        //DEV-посев: NO_CERT_AFTER-условия дают маршрутам шанс сработать на плато baseline
+        // DEV-посев: NO_CERT_AFTER-условия дают маршрутам шанс сработать на плато baseline
         if ($g['condition']['kind'] === 'ALWAYS' && mt_rand(0, 2) === 0) {
-            $g['condition'] = ['kind' => 'NO_CERT_AFTER', 'flights' => mt_rand(1, 2)];
+            $g['condition'] = [
+                'kind' => 'NO_CERT_AFTER',
+                'flights' => mt_rand(1, 2),
+            ];
         }
         $pop[] = $g;
     }
@@ -268,7 +343,10 @@ foreach ($params['tasks'] as $tIdx => $t) {
     gen_family($t, $csv);
     [$Xall, $yall] = parse_csv($csv);
     [$X, $y, $Xe, $ye] = split_eval($Xall, $yall, $t['seed'] + $seed);
-    $taskFp = 'sha1:' . sha1(json_encode(['labels' => $labels, 'id' => $t['id']]));
+    $taskFp = 'sha1:' . sha1(json_encode([
+        'labels' => $labels,
+        'id' => $t['id'],
+    ]));
 
     // Trail-гигиена задачи (ревью deleg_1cae7b13): метки живут в :memory:
     // весь процесс, read-scope = labels-only (одинаков для всех задач) —
@@ -281,7 +359,10 @@ foreach ($params['tasks'] as $tIdx => $t) {
     $bl = baseline_flights($X, $y, $blBudget);
     $cvE = $bl['found'] ? cv_eval($bl['formula'], $Xe, $ye) : null;
     $blCertified = $bl['found'] && $cvE !== null && $cvE <= 0.10;
-    $baselineState = ['flights_done' => count($bl['flights']), 'certified' => $blCertified];
+    $baselineState = [
+        'flights_done' => count($bl['flights']),
+        'certified' => $blCertified,
+    ];
     $Lbase = baseline_partial_L($bl, array_slice($X, (int) floor(count($y) * 0.8)), array_slice($y, (int) floor(count($y) * 0.8)));
 
     // ---- канал маршрутов (20%) ----
@@ -298,7 +379,14 @@ foreach ($params['tasks'] as $tIdx => $t) {
                 $g = $g0;
                 $g['id'] = RouteMutator::newId(); // новое «тело», та же структура
                 $g['parent_id'] = '';
-                $g['record'] = ['tasks_seen' => 0, 'delta_L_valid_sum' => 0.0, 'wins' => 0, 'fails' => 0, 'wall_sum' => 0.0, 'unspent_quota' => 0.0];
+                $g['record'] = [
+                    'tasks_seen' => 0,
+                    'delta_L_valid_sum' => 0.0,
+                    'wins' => 0,
+                    'fails' => 0,
+                    'wall_sum' => 0.0,
+                    'unspent_quota' => 0.0,
+                ];
                 $population[] = $g;
             }
         } elseif ($arm === 'shuffled') {
@@ -306,7 +394,14 @@ foreach ($params['tasks'] as $tIdx => $t) {
             foreach ($frozenSeed as $g0) {
                 $g = $g0;
                 $g['id'] = RouteMutator::newId();
-                $g['record'] = ['tasks_seen' => 0, 'delta_L_valid_sum' => 0.0, 'wins' => 0, 'fails' => 0, 'wall_sum' => 0.0, 'unspent_quota' => 0.0];
+                $g['record'] = [
+                    'tasks_seen' => 0,
+                    'delta_L_valid_sum' => 0.0,
+                    'wins' => 0,
+                    'fails' => 0,
+                    'wall_sum' => 0.0,
+                    'unspent_quota' => 0.0,
+                ];
                 $population[] = $g;
             }
         } else { // evolved: живая популяция ledger'а
@@ -321,17 +416,28 @@ foreach ($params['tasks'] as $tIdx => $t) {
 
         $channelBudget = $TASK_BUDGET * (1.0 - $BASELINE_SHARE);
         foreach ($population as $g) {
-            if ($routeWall >= $channelBudget - 0.5) { break; }
-            if (! $ledger->get($g['id'])) { $ledger->register($g); }
+            if ($routeWall >= $channelBudget - 0.5) {
+                break;
+            }
+            if (! $ledger->get($g['id'])) {
+                $ledger->register($g);
+            }
             persist_genome($db, $g);
-            if ($ledger->isRevoked($g['id'])) { continue; }
+            if ($ledger->isRevoked($g['id'])) {
+                continue;
+            }
             if (! RouteExecutor::shouldActivate($g, $baselineState)) {
-                $routeRows[] = ['id' => $g['id'], 'activated' => false];
+                $routeRows[] = [
+                    'id' => $g['id'],
+                    'activated' => false,
+                ];
                 continue;
             }
             // ЕДИНИЦЫ ОДНИ (блокер-1 ревью): доля × бюджет задачи vs остаток канала в секундах.
             $share = min((float) $g['budget_fraction'] * $TASK_BUDGET, $channelBudget - $routeWall);
-            if ($share < 1.0) { continue; } // слишком малая доля — пропустить, не убивать популяцию
+            if ($share < 1.0) {
+                continue;
+            } // слишком малая доля — пропустить, не убивать популяцию
             $res = RouteExecutor::run($g, $X, $y, $labels, $share, 0.10);
             $routeWall += $res['wall'];
             persist_history($db, $RUN_ID, $taskFp, $g['id'], $res['records']);
@@ -349,11 +455,19 @@ foreach ($params['tasks'] as $tIdx => $t) {
             $Lroute = $res['best_L_valid'];
             $delta = ($Lbase !== null && $Lroute !== null) ? $Lbase - $Lroute : 0.0;
             $ledger->recordOutcome($g['id'], $taskFp, $delta, $routeWinCert, $res['wall'], $res['unspent']);
-            $routeRows[] = ['id' => $g['id'], 'parent' => $g['parent_id'], 'generation' => $g['generation'],
-                'activated' => true, 'delta' => round($delta, 4), 'certified' => $rCert,
+            $routeRows[] = [
+                'id' => $g['id'],
+                'parent' => $g['parent_id'],
+                'generation' => $g['generation'],
+                'activated' => true,
+                'delta' => round($delta, 4),
+                'certified' => $rCert,
                 'best_L_valid' => $Lroute !== null ? round($Lroute, 4) : null,
-                'wall' => round($res['wall'], 2), 'unspent' => round($res['unspent'], 2),
-                'stop' => $res['stop'], 'actions' => count($res['records'])];
+                'wall' => round($res['wall'], 2),
+                'unspent' => round($res['unspent'], 2),
+                'stop' => $res['stop'],
+                'actions' => count($res['records']),
+            ];
         }
 
         // Межзадачное наследование: размножение только у evolved (shuffled/noinherit —
@@ -361,22 +475,42 @@ foreach ($params['tasks'] as $tIdx => $t) {
         if ($arm === 'evolved') {
             $parents = $ledger->topForReproduction(3);
             foreach ($parents as $p) {
-                if (count($ledger->active()) >= $POP_N + 4) { break; }
+                if (count($ledger->active()) >= $POP_N + 4) {
+                    break;
+                }
                 $type = mt_rand(0, 4);
                 $child = RouteMutator::mutate($p, $type);
-                if ($child !== null) { $ledger->register($child); }
+                if ($child !== null) {
+                    $ledger->register($child);
+                }
             }
         }
     }
 
-    $row = ['id' => $t['id'], 'class' => $t['class'], 'null' => $isNull,
-        'baseline' => ['found' => $bl['found'], 'certified' => $blCertified, 'cv_eval' => $cvE,
-            'formula' => $bl['formula'], 'best_cv' => $bl['best_cv'], 'L_partial' => $Lbase,
-            'wall' => $bl['wall_total'], 'flights' => count($bl['flights'])],
-        'routes' => $routeRows, 'route_certified' => $routeCertifiedAny,
+    $row = [
+        'id' => $t['id'],
+        'class' => $t['class'],
+        'null' => $isNull,
+        'baseline' => [
+            'found' => $bl['found'],
+            'certified' => $blCertified,
+            'cv_eval' => $cvE,
+            'formula' => $bl['formula'],
+            'best_cv' => $bl['best_cv'],
+            'L_partial' => $Lbase,
+            'wall' => $bl['wall_total'],
+            'flights' => count($bl['flights']),
+        ],
+        'routes' => $routeRows,
+        'route_certified' => $routeCertifiedAny,
         'route_wall_share' => round($routeWall / max(0.001, $TASK_BUDGET), 3),
-        'certified_any' => $blCertified || $routeCertifiedAny];
-    if ($isNull) { $nullResults[] = $row; } else { $taskResults[] = $row; }
+        'certified_any' => $blCertified || $routeCertifiedAny,
+    ];
+    if ($isNull) {
+        $nullResults[] = $row;
+    } else {
+        $taskResults[] = $row;
+    }
     fwrite(STDERR, "[{$RUN_ID}] {$t['id']} blFound=" . var_export($bl['found'], true)
         . ' blCert=' . var_export($blCertified, true)
         . ' routeCert=' . var_export($routeCertifiedAny, true)
@@ -390,12 +524,20 @@ $blCertN = count(array_filter($taskResults, fn ($r) => $r['baseline']['certified
 $routeCertN = count(array_filter($taskResults, fn ($r) => $r['route_certified']));
 $fpr = count(array_filter($nullResults, fn ($r) => $r['certified_any']));
 $out = [
-    'run_id' => $RUN_ID, 'arm' => $arm, 'seed' => $seed,
-    'task_budget' => $TASK_BUDGET, 'pop_n' => $POP_N,
-    'tasks' => $taskResults, 'nulls' => $nullResults,
-    'summary' => ['tasks' => $taskN, 'baseline_certified' => $blCertN,
-        'route_certified' => $routeCertN, 'any_certified' => count(array_filter($taskResults, fn ($r) => $r['certified_any'])),
-        'fpr_nulls' => $fpr . '/' . count($nullResults)],
+    'run_id' => $RUN_ID,
+    'arm' => $arm,
+    'seed' => $seed,
+    'task_budget' => $TASK_BUDGET,
+    'pop_n' => $POP_N,
+    'tasks' => $taskResults,
+    'nulls' => $nullResults,
+    'summary' => [
+        'tasks' => $taskN,
+        'baseline_certified' => $blCertN,
+        'route_certified' => $routeCertN,
+        'any_certified' => count(array_filter($taskResults, fn ($r) => $r['certified_any'])),
+        'fpr_nulls' => $fpr . '/' . count($nullResults),
+    ],
     'population_export' => $isRouteArm ? $ledger->export() : null,
 ];
 $outPath = $outDir . '/results_' . $arm . '_' . $seed . '.json';

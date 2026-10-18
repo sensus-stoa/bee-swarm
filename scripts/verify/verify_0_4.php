@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use BeeSwarm\Core\QueryEngine;
 
 $engine = new QueryEngine();
-$laws = $engine->query("SELECT domain, name, formula FROM laws");
+$laws = $engine->query('SELECT domain, name, formula FROM laws');
 
 $trivial = 0;
 foreach ($laws as $law) {
@@ -42,13 +42,13 @@ foreach ($laws as $law) {
 
     // Algebraic identity patterns (from AtomRegistry::isTrivial)
     $patterns = [
-        '/^[+−]\([^,]+,\s*0\)$/'         => '+0/−0',
-        '/^[×*]\([^,]+,\s*1\)$/'         => '×1',
-        '/^[÷\/]\([^,]+,\s*1\)$/'        => '/1',
-        '/^neg\(neg\(.+\)\)$/'           => 'neg(neg)',
-        '/^inv\(inv\(.+\)\)$/'           => 'inv(inv)',
-        '/^abs\(abs\(.+\)\)$/'           => 'abs(abs)',
-        '/^sq\(sqrt\(.+\)\)$/'           => 'sq(sqrt)',
+        '/^[+−]\([^,]+,\s*0\)$/' => '+0/−0',
+        '/^[×*]\([^,]+,\s*1\)$/' => '×1',
+        '/^[÷\/]\([^,]+,\s*1\)$/' => '/1',
+        '/^neg\(neg\(.+\)\)$/' => 'neg(neg)',
+        '/^inv\(inv\(.+\)\)$/' => 'inv(inv)',
+        '/^abs\(abs\(.+\)\)$/' => 'abs(abs)',
+        '/^sq\(sqrt\(.+\)\)$/' => 'sq(sqrt)',
     ];
 
     $matched = false;
@@ -63,7 +63,7 @@ foreach ($laws as $law) {
 }
 
 $pass = $trivial === 0;
-echo "Laws checked: " . count($laws) . "\n";
+echo 'Laws checked: ' . count($laws) . "\n";
 echo "Trivial: {$trivial}\n";
 echo $pass ? "PASS: No trivial laws\n" : "FAIL: {$trivial} trivial laws\n";
 exit($pass ? 0 : 1);

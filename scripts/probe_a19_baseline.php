@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 use BeeSwarm\Core\Grammar;
@@ -26,5 +27,5 @@ foreach ($cases as $name => [$kind, $tr]) {
     $g = Grammar::fromOps(Grammar::baseOpNames());
     [$found, $cv, $formula, $cvTest, $class, $diag] = Search::find($X, $y, $g, 1, null, $tr, 0.10);
     echo $name, ': found=', var_export($found, true), ' cv=', var_export($cv, true),
-         ' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' class=', $class, ' diag=', var_export($diag, true), PHP_EOL;
+    ' cvTest=', var_export($cvTest, true), ' formula=', $formula, ' class=', $class, ' diag=', var_export($diag, true), PHP_EOL;
 }

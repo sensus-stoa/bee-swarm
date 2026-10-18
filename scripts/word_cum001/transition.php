@@ -13,12 +13,13 @@ declare(strict_types=1);
  * Подключается и из evolution.php, и из тестов (EvoFix001Test).
  */
 
-use BeeSwarm\Core\ExpressionEvaluator;
 use BeeSwarm\Core\WordCodec;
 
 final class WordCumTransition
 {
-    /** Хеш fitness-данных мира: id + все формулы (train/valid/final). */
+    /**
+     * Хеш fitness-данных мира: id + все формулы (train/valid/final).
+     */
     public static function fitnessHash(int $w, array $world): string
     {
         $parts = [(string) $w];

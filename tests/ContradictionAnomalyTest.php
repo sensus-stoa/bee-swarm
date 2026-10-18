@@ -34,7 +34,9 @@ final class ContradictionAnomalyTest extends TestCase
 
     public function testFlagLoggedOnce(): void
     {
-        $candidate = ['atom' => '((x0/Rminx0)−Rrangex3)'];
+        $candidate = [
+            'atom' => '((x0/Rminx0)−Rrangex3)',
+        ];
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'ccpp', $this->logFile);
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'ccpp', $this->logFile);
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'ccpp', $this->logFile);
@@ -45,7 +47,9 @@ final class ContradictionAnomalyTest extends TestCase
 
     public function testFlagDistinctDomainsBothLogged(): void
     {
-        $candidate = ['atom' => '((x0/Rminx0)−Rrangex3)'];
+        $candidate = [
+            'atom' => '((x0/Rminx0)−Rrangex3)',
+        ];
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'ccpp', $this->logFile);
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'airfoil', $this->logFile);
 
@@ -57,7 +61,9 @@ final class ContradictionAnomalyTest extends TestCase
     public function testFlagCarriesFingerprintFields(): void
     {
         // Флаг несёт фидометрию для дизайна метрики v1.5b: shape, |corr|, домен
-        $candidate = ['atom' => '((x0/Rminx0)−Rrangex3)'];
+        $candidate = [
+            'atom' => '((x0/Rminx0)−Rrangex3)',
+        ];
         ContradictionEngine::flagMetricBlindness($candidate, 0.947, 'ccpp', $this->logFile);
         $log = (string) file_get_contents($this->logFile);
 

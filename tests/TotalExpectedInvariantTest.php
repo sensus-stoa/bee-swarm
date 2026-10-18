@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Инвариант-гейт для run_two_pass.sh: TOTAL_EXPECTED должен равняться
  * фактическому числу объявленных тестов (--list-tests). Прецедент 29.09:
  * константа 1133 (25.09) отстала — 3 env-skips 25.09 выполняются сейчас +
- 4 новых DreamCongruence → фактический total 1140. Прогон зелёный
+ * 4 новых DreamCongruence → фактический total 1140. Прогон зелёный
  * (fast OK 1131 + slow OK 9), инвариант NO — ложная тревога от stale-константы.
  *
  * Тест держит раскладку под контролем: падает, если fast+slow != list-tests,

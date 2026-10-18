@@ -33,8 +33,9 @@ use BeeSwarm\Infra\Database;
  */
 final class EscrowOrphanDetector
 {
-    public function __construct(private readonly ?\PDO $pdo = null)
-    {
+    public function __construct(
+        private readonly ?\PDO $pdo = null
+    ) {
     }
 
     /**

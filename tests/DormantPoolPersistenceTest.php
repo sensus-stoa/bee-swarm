@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Hive\Bee;
 use BeeSwarm\Hive\DormantPool;
 use BeeSwarm\Hive\Hive;
 use BeeSwarm\Infra\Database;
@@ -22,7 +21,9 @@ use BeeSwarm\Infra\Database;
  */
 final class DormantPoolPersistenceTest extends TestCase
 {
-    /** @var list<string> */
+    /**
+     * @var list<string>
+     */
     private array $logs = [];
 
     protected function setUp(): void
@@ -60,8 +61,16 @@ final class DormantPoolPersistenceTest extends TestCase
     {
         $hive = $this->bootstrappedHive();
         $pool = $this->poolOf($hive);
-        $id1 = $pool->deposit(['op' => '×', 'i' => 1, 'j' => 2], 'PRODUCT', 0.9, 'L1');
-        $id2 = $pool->deposit(['op' => '+', 'i' => 3, 'j' => 4], 'SUM', 0.5, 'L2');
+        $id1 = $pool->deposit([
+            'op' => '×',
+            'i' => 1,
+            'j' => 2,
+        ], 'PRODUCT', 0.9, 'L1');
+        $id2 = $pool->deposit([
+            'op' => '+',
+            'i' => 3,
+            'j' => 4,
+        ], 'SUM', 0.5, 'L2');
 
         $hive->savePopulation();
 
@@ -83,8 +92,15 @@ final class DormantPoolPersistenceTest extends TestCase
     public function testLoadRestoresEntriesAndNextId(): void
     {
         $pool = new DormantPool(300, 0);
-        $id1 = $pool->deposit(['op' => '×', 'i' => 1, 'j' => 2], 'PRODUCT', 0.9, 'L1');
-        $id2 = $pool->deposit(['op' => '+', 'i' => 3], 'SUM', 0.5);
+        $id1 = $pool->deposit([
+            'op' => '×',
+            'i' => 1,
+            'j' => 2,
+        ], 'PRODUCT', 0.9, 'L1');
+        $id2 = $pool->deposit([
+            'op' => '+',
+            'i' => 3,
+        ], 'SUM', 0.5);
         $pool->remove($id2); // gap в id — nextId обязан продолжиться с id2+1
 
         $pool->saveToDb();
@@ -94,7 +110,9 @@ final class DormantPoolPersistenceTest extends TestCase
         $this->assertSame(1, $loaded, 'восстановлена 1 живая запись');
 
         $this->assertSame(1, $fresh->size());
-        $after = $fresh->deposit(['op' => '−'], 'DIFF', 0.7);
+        $after = $fresh->deposit([
+            'op' => '−',
+        ], 'DIFF', 0.7);
         $this->assertGreaterThan($id1, $after, 'nextId продолжается за max сохранённым id (id не переиспользуются)');
     }
 
@@ -114,9 +132,14 @@ final class DormantPoolPersistenceTest extends TestCase
         $hive1 = new Hive(maxTicks: 0, logFile: $log1);
         $hive1->run();
         $pool1 = $this->poolOf($hive1);
-        $pool1->deposit(['op' => '×', 'i' => 9], 'PRODUCT', 0.95, 'LX');
+        $pool1->deposit([
+            'op' => '×',
+            'i' => 9,
+        ], 'PRODUCT', 0.95, 'LX');
         // pinned: awaken с timeout, который ещё не истёк
-        $pool1->awaken(1, ['PRODUCT' => 1]);
+        $pool1->awaken(1, [
+            'PRODUCT' => 1,
+        ]);
         $hive1->savePopulation();
 
         $log2 = (string) tempnam(sys_get_temp_dir(), 'dp_b_');
@@ -126,7 +149,9 @@ final class DormantPoolPersistenceTest extends TestCase
 
         $pool2 = $this->poolOf($hive2);
         $this->assertSame(1, $pool2->size(), 'после рестарта пул восстановлен (раньше терялся)');
-        $seen = $pool2->awaken(10, ['PRODUCT' => 10]);
+        $seen = $pool2->awaken(10, [
+            'PRODUCT' => 10,
+        ]);
         $this->assertSame([], $seen, 'восстановленная запись pinned (awakened-флаг пережил рестарт) — не ре-awaken');
     }
 

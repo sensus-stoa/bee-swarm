@@ -17,7 +17,6 @@ declare(strict_types=1);
  * D = 4 квартала. Задачи: heat-синтетика (seeded) + CCPP (данные).
  * C4: порядок задач определяется ТОЛЬКО seed (одинаков для всех режимов).
  */
-
 if ($argc < 6) {
     fwrite(STDERR, "usage: php exp039_run.php <mode> <seed> <budget> <ticks> <out.json>\n");
     exit(1);
@@ -165,7 +164,7 @@ $pathOpenings = [];
 // (novelty/fingerprint честные). Детерминировано seed'ом — C4 соблюдён.
 $refillEvery = max(10, (int) (getenv('EXP039_REFILL_EVERY') ?: '50'));
 $round = 0;
-$makePool = function (int $round) use ($seed, $heatRows, $enbRows, $enbPath, $labels, $poolTasks): array {
+$makePool = function (int $round) use ($seed, $enbRows, $enbPath, $labels, $poolTasks): array {
     $out = [];
     for ($v = 0; $v < $poolTasks; $v++) {
         $hr = [];
@@ -230,8 +229,11 @@ for ($t = 1; $t <= $maxTicks; $t++) {
             file_put_contents(
                 preg_replace('/\.json$/', '.partial.json', $outPath),
                 json_encode([
-                    'mode' => $mode, 'seed' => $seed, 'budget' => $budget,
-                    'ticks_done' => $t, 'P1_certified_invariants' => $partialCert,
+                    'mode' => $mode,
+                    'seed' => $seed,
+                    'budget' => $budget,
+                    'ticks_done' => $t,
+                    'P1_certified_invariants' => $partialCert,
                 ], JSON_PRETTY_PRINT)
             );
         } catch (\Throwable $e) {
@@ -244,9 +246,12 @@ $hive->savePopulation();
 // ── 3. Результат: метрики + леджер (анализ — в exp039_analyze.php) ──
 $db = Database::get();
 
-$certified = (int) $db->query("SELECT COUNT(*) FROM laws WHERE escrow_status = 'PAID'")->fetchColumn();
-$confirmed = (int) $db->query('SELECT COUNT(*) FROM laws WHERE confirmed_count >= 1')->fetchColumn();
-$totalLaws = (int) $db->query('SELECT COUNT(*) FROM laws')->fetchColumn();
+$certified = (int) $db->query("SELECT COUNT(*) FROM laws WHERE escrow_status = 'PAID'")
+    ->fetchColumn();
+$confirmed = (int) $db->query('SELECT COUNT(*) FROM laws WHERE confirmed_count >= 1')
+    ->fetchColumn();
+$totalLaws = (int) $db->query('SELECT COUNT(*) FROM laws')
+    ->fetchColumn();
 
 // P1-бис: списки certified-законов (для гипергеометрии между прогонами)
 $certList = [];

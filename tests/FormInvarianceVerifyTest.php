@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Hive\FormInvarianceVerify;
-use BeeSwarm\Infra\Database;
 use PHPUnit\Framework\TestCase;
 
 /**

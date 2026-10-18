@@ -28,7 +28,9 @@ final class GenomeBenchmarkLib
 
     public const SEED_RANDOM_TRAIN = 20261017;
 
-    /** Мотивы REGULAR (манифест §1). */
+    /**
+     * Мотивы REGULAR (манифест §1).
+     */
     private const MOTIFS = [
         '((x0+x1)/(x0−x1))',
         '((x0−x1)×(x0+x1))',
@@ -37,7 +39,9 @@ final class GenomeBenchmarkLib
         '((x0/(x0+x1))−(x1−x0))',
     ];
 
-    /** Параметры извлечения словаря (манифест §3). */
+    /**
+     * Параметры извлечения словаря (манифест §3).
+     */
     public const EXTRACT_MIN_NODES = 4;
 
     public const EXTRACT_MIN_PROGRAMS = 2;
@@ -70,7 +74,9 @@ final class GenomeBenchmarkLib
             }
             $binding = [];
             foreach (array_values($slots) as $j => $slot) {
-                $binding['x' . $slot] = ['atom' => $pool[$cols[$j]]];
+                $binding['x' . $slot] = [
+                    'atom' => $pool[$cols[$j]],
+                ];
             }
             $instance = self::substituteAlpha($motif, $binding);
             if ($acc === null) {
@@ -79,7 +85,11 @@ final class GenomeBenchmarkLib
                 continue;
             }
             $op = self::float01($rng) < 0.6 ? '+' : '×';
-            $acc = ['op' => $op, 'l' => $acc, 'r' => $instance];
+            $acc = [
+                'op' => $op,
+                'l' => $acc,
+                'r' => $instance,
+            ];
         }
 
         return self::pack($acc);
@@ -96,11 +106,17 @@ final class GenomeBenchmarkLib
             if ($n <= 1) {
                 $atom = self::float01($rng) < 0.85 ? 'x' . $rng->getInt(0, 5) : 'K1';
 
-                return ['atom' => $atom];
+                return [
+                    'atom' => $atom,
+                ];
             }
             $op = ['+', '−', '×', '/'][$rng->getInt(0, 3)];
             $l = $rng->getInt(1, $n - 1);
-            return ['op' => $op, 'l' => $build($l), 'r' => $build($n - 1 - $l)];
+            return [
+                'op' => $op,
+                'l' => $build($l),
+                'r' => $build($n - 1 - $l),
+            ];
         };
         $ast = $build(max(2, $targetNodes));
 
@@ -116,15 +132,60 @@ final class GenomeBenchmarkLib
     public static function realCorpus(): array
     {
         return [
-            ['formula' => '((x0+x1)/(x0−x1))', 'source' => 'Benchmarks/probe1/g1_r1.json G1F1', 'family' => 'sdr', 'numeric' => 'full'],
-            ['formula' => '((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))', 'source' => 'Benchmarks/probe1/g2_B_r1.json G2A (канон post-MOL-001)', 'family' => 'molecular', 'numeric' => 'full'],
-            ['formula' => '((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))', 'source' => 'Benchmarks/EXP040_M1EXT2_REPORT.md kinetic dot', 'family' => 'kinetic', 'numeric' => 'full'],
-            ['formula' => '((x0×x3)+((x1×x4)+(x2×x5)))', 'source' => 'Benchmarks/EXP040_M1EXT2_REPORT.md kinetic', 'family' => 'kinetic', 'numeric' => 'full'],
-            ['formula' => '((x0+x1)+(x0−x2))', 'source' => 'Benchmarks/V011_ENSEMBLE_calibration_run5.md', 'family' => 'ensemble', 'numeric' => 'full'],
-            ['formula' => '(((x0+x1)×x2)+x3)', 'source' => 'Benchmarks/experiments-log.md', 'family' => 'misc', 'numeric' => 'full'],
-            ['formula' => '(((x0×x2)×x1)/x3)', 'source' => 'EvoFamily/Benchmarks/EXP039_molecule.md (до вложения)', 'family' => 'molecular-pre', 'numeric' => 'full'],
-            ['formula' => '((x0×(x1/R+x1))/(x2×x2))', 'source' => 'Benchmarks/V011_ENSEMBLE_calibration_run5.md', 'family' => 'ensemble', 'numeric' => 'structural-only'],
-            ['formula' => '((x0+K2)−((x0×R)+x0))', 'source' => 'Benchmarks/experiments-log.md', 'family' => 'misc', 'numeric' => 'structural-only'],
+            [
+                'formula' => '((x0+x1)/(x0−x1))',
+                'source' => 'Benchmarks/probe1/g1_r1.json G1F1',
+                'family' => 'sdr',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '((x0BW5737967f9b4ecb628fd48d7d82502f40x1)+(x0−x2))',
+                'source' => 'Benchmarks/probe1/g2_B_r1.json G2A (канон post-MOL-001)',
+                'family' => 'molecular',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))',
+                'source' => 'Benchmarks/EXP040_M1EXT2_REPORT.md kinetic dot',
+                'family' => 'kinetic',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '((x0×x3)+((x1×x4)+(x2×x5)))',
+                'source' => 'Benchmarks/EXP040_M1EXT2_REPORT.md kinetic',
+                'family' => 'kinetic',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '((x0+x1)+(x0−x2))',
+                'source' => 'Benchmarks/V011_ENSEMBLE_calibration_run5.md',
+                'family' => 'ensemble',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '(((x0+x1)×x2)+x3)',
+                'source' => 'Benchmarks/experiments-log.md',
+                'family' => 'misc',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '(((x0×x2)×x1)/x3)',
+                'source' => 'EvoFamily/Benchmarks/EXP039_molecule.md (до вложения)',
+                'family' => 'molecular-pre',
+                'numeric' => 'full',
+            ],
+            [
+                'formula' => '((x0×(x1/R+x1))/(x2×x2))',
+                'source' => 'Benchmarks/V011_ENSEMBLE_calibration_run5.md',
+                'family' => 'ensemble',
+                'numeric' => 'structural-only',
+            ],
+            [
+                'formula' => '((x0+K2)−((x0×R)+x0))',
+                'source' => 'Benchmarks/experiments-log.md',
+                'family' => 'misc',
+                'numeric' => 'structural-only',
+            ],
         ];
     }
 
@@ -143,7 +204,7 @@ final class GenomeBenchmarkLib
         $stats = [];
         foreach ($trainPrograms as $pi => $prog) {
             $seenInProgram = [];
-            self::walkShapes($prog['ast'], static function (array $shape) use (&$stats, &$seenInProgram, $pi): void {
+            self::walkShapes($prog['ast'], static function (array $shape) use (&$stats, &$seenInProgram): void {
                 $key = self::alphaCanonicalKey($shape);
                 if (! isset($seenInProgram[$key])) {
                     $seenInProgram[$key] = true;
@@ -163,7 +224,12 @@ final class GenomeBenchmarkLib
             if (! self::atomsAllowed($s['shape'])) {
                 continue;
             }
-            $candidates[] = ['key' => $key, 'shape' => $s['shape'], 'nodes' => $s['nodes'], 'programs' => $s['programs']];
+            $candidates[] = [
+                'key' => $key,
+                'shape' => $s['shape'],
+                'nodes' => $s['nodes'],
+                'programs' => $s['programs'],
+            ];
         }
         usort($candidates, static function (array $a, array $b): int {
             return [$b['nodes'], $b['programs'], $a['key']] <=> [$a['nodes'], $a['programs'], $b['key']];
@@ -186,7 +252,9 @@ final class GenomeBenchmarkLib
 
     // ── Представления A / B / C (манифест §4) ──────────────────────────
 
-    /** A: json-байты AST. */
+    /**
+     * A: json-байты AST.
+     */
     public static function astBytes(array $ast): int
     {
         return strlen(json_encode($ast, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
@@ -234,12 +302,20 @@ final class GenomeBenchmarkLib
         foreach ($programs as $p) {
             $roots[] = $intern($p['ast']);
         }
-        $bytes = strlen(json_encode(['t' => $table, 'r' => $roots], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+        $bytes = strlen(json_encode([
+            't' => $table,
+            'r' => $roots,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
 
-        return ['bytes' => $bytes, 'table_nodes' => count($table)];
+        return [
+            'bytes' => $bytes,
+            'table_nodes' => count($table),
+        ];
     }
 
-    /** C: gzip-9 конкатенации A-сериализаций (whole-corpus baseline). */
+    /**
+     * C: gzip-9 конкатенации A-сериализаций (whole-corpus baseline).
+     */
     public static function gzipCorpusBytes(array $programs): int
     {
         $parts = [];
@@ -271,7 +347,9 @@ final class GenomeBenchmarkLib
         return $rows;
     }
 
-    /** Построчный evalNode: list<float|null>. */
+    /**
+     * Построчный evalNode: list<float|null>.
+     */
     public static function evalAst(array $ast, array $rows): array
     {
         $out = [];
@@ -282,7 +360,9 @@ final class GenomeBenchmarkLib
         return $out;
     }
 
-    /** Сравнение векторов: null-паттерн обязан совпадать, значения 1e-9 relative. */
+    /**
+     * Сравнение векторов: null-паттерн обязан совпадать, значения 1e-9 relative.
+     */
     public static function vectorsEqual(array $a, array $b): bool
     {
         if (count($a) !== count($b)) {
@@ -306,16 +386,24 @@ final class GenomeBenchmarkLib
 
     // ── Вспомогательное ────────────────────────────────────────────────
 
-    /** PHP 8.2: у Randomizer нет float-методов — float из getInt (детерминировано). */
+    /**
+     * PHP 8.2: у Randomizer нет float-методов — float из getInt (детерминировано).
+     */
     private static function float01(object $rng): float
     {
         return $rng->getInt(0, 1000000) / 1000000.0;
     }
 
-    /** @return array{ast: array, nodes: int, formula: string} */
+    /**
+     * @return array{ast: array, nodes: int, formula: string}
+     */
     public static function pack(array $ast): array
     {
-        return ['ast' => $ast, 'nodes' => WordCodec::nodesCount($ast), 'formula' => ExpressionNormalizer::render($ast)];
+        return [
+            'ast' => $ast,
+            'nodes' => WordCodec::nodesCount($ast),
+            'formula' => ExpressionNormalizer::render($ast),
+        ];
     }
 
     /**
@@ -328,7 +416,9 @@ final class GenomeBenchmarkLib
         if (isset($node['atom'])) {
             $name = (string) $node['atom'];
 
-            return isset($binding[$name]) ? self::cloneAst($binding[$name]) : ['atom' => $name];
+            return isset($binding[$name]) ? self::cloneAst($binding[$name]) : [
+                'atom' => $name,
+            ];
         }
 
         return [
@@ -341,7 +431,9 @@ final class GenomeBenchmarkLib
     public static function cloneAst(array $node): array
     {
         if (isset($node['atom'])) {
-            return ['atom' => (string) $node['atom']];
+            return [
+                'atom' => (string) $node['atom'],
+            ];
         }
 
         return [
@@ -369,10 +461,14 @@ final class GenomeBenchmarkLib
                         ++$next;
                     }
 
-                    return ['atom' => $map[$a]];
+                    return [
+                        'atom' => $map[$a],
+                    ];
                 }
 
-                return ['atom' => $a];
+                return [
+                    'atom' => $a,
+                ];
             }
 
             return [
@@ -399,7 +495,7 @@ final class GenomeBenchmarkLib
             $l = isset($n['l']) && is_array($n['l']) ? $key($n['l']) : '';
             $r = isset($n['r']) && is_array($n['r']) ? $key($n['r']) : '';
             $op = (string) $n['op'];
-            if ($r === '' ) {
+            if ($r === '') {
                 return '(' . $op . ' ' . $l . ')';
             }
             if (in_array($op, ['+', '×', 'max', 'min'], true) && strcmp($l, $r) > 0) {
@@ -412,7 +508,9 @@ final class GenomeBenchmarkLib
         return $key($canon);
     }
 
-    /** Атомы shape — только xN/K1/K2 (манифест §3 п.2). */
+    /**
+     * Атомы shape — только xN/K1/K2 (манифест §3 п.2).
+     */
     public static function atomsAllowed(array $node): bool
     {
         if (isset($node['atom'])) {

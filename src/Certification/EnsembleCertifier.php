@@ -40,6 +40,7 @@ final class EnsembleCertifier
     // детерминированы (seedBase) -> вердикт per-fp детерминирован -> кэш.
     // Прецедент: Hive::epsilonCache. Первый вызов считает, повторы возвращают.
     private const VERDICT_CACHE_MAX = 16;
+
     private static array $verdictCache = [];
 
     /**
@@ -227,7 +228,7 @@ final class EnsembleCertifier
         // членами → NO_CONSENSUS на подлинных законах (регрессия recall).
         // Члены видят тот же язык, что discovery: BASE_OPS + born-опы из БД.
         $bornOps = \BeeSwarm\Core\ExpressionEvaluator::birthOpNames();
-        $grammar->restrictTo(array_merge(["+", "×", "−", "/", "sq", "sqrt"], $bornOps));
+        $grammar->restrictTo(array_merge(['+', '×', '−', '/', 'sq', 'sqrt'], $bornOps));
         $members = self::runMembers($X, $y, $trainIdx, $grammar, $cfg, 1000, 'ENS');
         [$foundN, $topShape, $topCount] = self::tallyMembers($members);
         $recurrence = $foundN > 0 ? $topCount / $foundN : 0.0;

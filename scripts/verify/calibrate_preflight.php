@@ -26,7 +26,7 @@ putenv('FORAGER_SOURCES=:');
 foreach (['SWARM_DB_PATH', 'FORAGER_SOURCES'] as $k) {
     echo "ENV {$k}=" . (getenv($k) === false ? 'LOST' : getenv($k)) . "\n";
 }
-echo "START calibrate_preflight " . gmdate('c') . "\n";
+echo 'START calibrate_preflight ' . gmdate('c') . "\n";
 
 const EPS = 0.15;
 
@@ -75,11 +75,26 @@ function realY(string $path, int $targetCol, int $cols, int $n): array
 
 $D = __DIR__ . '/../../data';
 $domains = [
-    ['dot_exact', fn (): array => realY("{$D}/feynman_dot_product.csv", 6, 7, 200)],
-    ['kinetic_exact', fn (): array => realY("{$D}/feynman_kinetic_energy.csv", 4, 5, 200)],
-    ['kinetic_noise5', fn (): array => realY("{$D}/feynman_kinetic_energy_noise5.csv", 4, 5, 200)],
-    ['ccpp', fn (): array => realY("{$D}/CCPP_data.csv", 4, 5, 200)],
-    ['airfoil', fn (): array => realY("{$D}/airfoil_selfnoise.csv", 5, 6, 200)],
+    [
+        'dot_exact',
+        fn (): array => realY("{$D}/feynman_dot_product.csv", 6, 7, 200),
+    ],
+    [
+        'kinetic_exact',
+        fn (): array => realY("{$D}/feynman_kinetic_energy.csv", 4, 5, 200),
+    ],
+    [
+        'kinetic_noise5',
+        fn (): array => realY("{$D}/feynman_kinetic_energy_noise5.csv", 4, 5, 200),
+    ],
+    [
+        'ccpp',
+        fn (): array => realY("{$D}/CCPP_data.csv", 4, 5, 200),
+    ],
+    [
+        'airfoil',
+        fn (): array => realY("{$D}/airfoil_selfnoise.csv", 5, 6, 200),
+    ],
 ];
 
 echo "\n=== Фактические CV(y) доменов ===\n";
@@ -90,20 +105,20 @@ foreach ($domains as [$name, $fn]) {
 }
 
 echo "\n=== Sweep FACTOR × CV(y) (ε=0.15): граница REFUSAL→PASS при CV* = ε/F ===\n";
-printf("%-6s %-8s", 'FACTOR', 'CV*');
+printf('%-6s %-8s', 'FACTOR', 'CV*');
 foreach (['0.05', '0.10', '0.20', '0.30', '0.50', '1.00'] as $cv) {
-    printf(" %-7s", "CV={$cv}");
+    printf(' %-7s', "CV={$cv}");
 }
 echo "\n";
 
 $factors = [0.3, 0.4, 0.5, 0.6, 0.7];
 $boundary = [];
 foreach ($factors as $f) {
-    printf("%-6.2f %-8.4f", $f, EPS / $f);
+    printf('%-6.2f %-8.4f', $f, EPS / $f);
     foreach ([0.05, 0.10, 0.20, 0.30, 0.50, 1.00] as $cv) {
         $y = $cv === 0.05 && false ? [] : yWithCv($cv);
         $st = MetricPreflight::check(EPS, $y)->status;
-        printf(" %-7s", $st === 'PASS' ? 'PASS' : 'REFUS');
+        printf(' %-7s', $st === 'PASS' ? 'PASS' : 'REFUS');
         $boundary[$f][$cv] = $st === 'PASS';
     }
     echo "\n";
@@ -115,11 +130,11 @@ $cvOf = [];
 foreach ($domains as [$name, $fn]) {
     $y = $fn();
     $cvOf[$name] = MetricPreflight::cvOfTarget($y);
-    printf("%-16s", $name);
+    printf('%-16s', $name);
     foreach ($factors as $f) {
         putenv("PREFLIGHT_GATE_FACTOR={$f}");
         $st = $cvOf[$name] === null ? 'null' : MetricPreflight::check(EPS, $y)->status;
-        printf(" %-8s", $st === 'PASS' ? 'PASS' : ($st === 'DISABLED' ? 'off' : 'REFUS'));
+        printf(' %-8s', $st === 'PASS' ? 'PASS' : ($st === 'DISABLED' ? 'off' : 'REFUS'));
     }
     putenv('PREFLIGHT_GATE_FACTOR');
     echo "\n";

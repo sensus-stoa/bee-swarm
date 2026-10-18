@@ -6,7 +6,6 @@ declare(strict_types=1);
  * tolerance vs pre-existing). Конфиг = bee_benchmark_v3 runTask (depth 3, 30s).
  * Использование: php scripts/probe_cell_one.php <csv-путь> [seed] [depth] [budget]
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=10');
@@ -62,7 +61,7 @@ foreach ($ytr as $v) {
 }
 $std = sqrt($var / count($ytr));
 echo 'TARGET: n=', $n, ' y_min=', min($y), ' y_max=', max($y), ' mean=', round($mean, 6), ' std=', round($std, 6),
-    ' sigma_rel=', round($std / abs($mean), 4), PHP_EOL;
+' sigma_rel=', round($std / abs($mean), 4), PHP_EOL;
 
 $g = new Grammar();
 $g->restrictTo(['+', '×', '−', '/', 'sq', 'sqrt']);
@@ -73,7 +72,7 @@ if ($res === null) {
 }
 [$found, $cv, $formula, $cvTest, $class] = $res;
 echo 'RESULT: found=', var_export($found, true), ' cv_train=', var_export($cv, true),
-    ' cv_test=', var_export($cvTest, true), ' class=', $class, ' formula=', $formula, PHP_EOL;
+' cv_test=', var_export($cvTest, true), ' class=', $class, ' formula=', $formula, PHP_EOL;
 
 // Если найдено — holdout как в раннере
 if ($found === true && $cv < 9.0) {

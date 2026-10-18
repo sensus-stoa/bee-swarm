@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
+use BeeSwarm\Core\AtomRegistry;
 use BeeSwarm\Core\ComposeBridge;
 use BeeSwarm\Core\ExpressionEvaluator;
 use BeeSwarm\Core\ExpressionNormalizer;
-use BeeSwarm\Core\AtomRegistry;
 
 /**
  * DREAM-HARDENING WU-3b (prereg 29.09): round-trip матрица по ВСЕМ унарным

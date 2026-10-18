@@ -55,7 +55,9 @@ final class MetricPreflightRouterTest extends TestCase
         }
     }
 
-    /** CCPP-класс: 200 строк, таргет с CV≈0.0376 (5 фич). */
+    /**
+     * CCPP-класс: 200 строк, таргет с CV≈0.0376 (5 фич).
+     */
     private function lowCvTask(): array
     {
         mt_srand(2024);
@@ -75,7 +77,9 @@ final class MetricPreflightRouterTest extends TestCase
         ];
     }
 
-    /** Проверка интеграции через публичный контракт Hive: доступ к фильтру. */
+    /**
+     * Проверка интеграции через публичный контракт Hive: доступ к фильтру.
+     */
     public function testFilterInsufficientAppliesPreflight(): void
     {
         putenv('PREFLIGHT_GATE_FACTOR=0.5');

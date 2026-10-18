@@ -121,14 +121,16 @@ foreach ($realProgs as $i => $p) {
 // ── Фазы измерений ──────────────────────────────────────────────────────
 
 $ramBefore = memory_get_peak_usage(true);
-$raw = ['meta' => [
-    'manifest' => 'CHECKPOINT_B_MANIFEST.md',
-    'php' => PHP_VERSION,
-    'codec_c' => 'gzencode level 9 (deflate; ext-zstd отсутствует)',
-    'wordcodec' => 'CHECKPOINT A (src/Core/WordCodec.php)',
-    't2_canon' => 'BW59baeae13abe8cbdfae0c823ff207db2 = ((x0−x2)+x0BW5737967f9b4ecb628fd48d7d82502f40x1), источник tests/MolRoundtripTest.php:30-34 (28013c9)',
-    'started' => date('c'),
-]];
+$raw = [
+    'meta' => [
+        'manifest' => 'CHECKPOINT_B_MANIFEST.md',
+        'php' => PHP_VERSION,
+        'codec_c' => 'gzencode level 9 (deflate; ext-zstd отсутствует)',
+        'wordcodec' => 'CHECKPOINT A (src/Core/WordCodec.php)',
+        't2_canon' => 'BW59baeae13abe8cbdfae0c823ff207db2 = ((x0−x2)+x0BW5737967f9b4ecb628fd48d7d82502f40x1), источник tests/MolRoundtripTest.php:30-34 (28013c9)',
+        'started' => date('c'),
+    ],
+];
 $semanticErrors = 0;
 $numericSkipped = 0;
 
@@ -279,7 +281,11 @@ function runCorpus(string $name, array $train, array $sizeTest, array $countTest
 
     // ── COUNT-ось: кумулятивные тоталы + break-even ──
     $prefixes = [];
-    $breakEven = ['A' => null, 'B' => null, 'C' => null];
+    $breakEven = [
+        'A' => null,
+        'B' => null,
+        'C' => null,
+    ];
     foreach ($countN as $n) {
         $subset = array_slice($countTest, 0, $n);
         $a = array_sum(array_map(static fn (array $p): int => GenomeBenchmarkLib::astBytes($p['ast']), $subset));
@@ -290,14 +296,28 @@ function runCorpus(string $name, array $train, array $sizeTest, array $countTest
         $d = $out['dict']['bytes'] + $dGen;
         $b = GenomeBenchmarkLib::dagBytes($subset)['bytes'];
         $c = GenomeBenchmarkLib::gzipCorpusBytes($subset);
-        $prefixes[] = ['n' => $n, 'a' => $a, 'b' => $b, 'c' => $c, 'd' => $d, 'd_genomes' => $dGen];
-        foreach (['A' => $a, 'B' => $b, 'C' => $c] as $X => $xt) {
+        $prefixes[] = [
+            'n' => $n,
+            'a' => $a,
+            'b' => $b,
+            'c' => $c,
+            'd' => $d,
+            'd_genomes' => $dGen,
+        ];
+        foreach ([
+            'A' => $a,
+            'B' => $b,
+            'C' => $c,
+        ] as $X => $xt) {
             if ($breakEven[$X] === null && $d < $xt) {
                 $breakEven[$X] = $n;
             }
         }
     }
-    $out['count'] = ['prefixes' => $prefixes, 'break_even' => $breakEven];
+    $out['count'] = [
+        'prefixes' => $prefixes,
+        'break_even' => $breakEven,
+    ];
 
     // маржинальная стоимость: эмпирическая производная на последнем удвоении
     $last = $prefixes[count($prefixes) - 1];
@@ -330,8 +350,18 @@ $raw['RANDOM'] = runCorpus('RANDOM', $randomTrain, $randomSize, $randomCount, $r
 echo "== REAL ==\n";
 // REAL: одна ось (корпус мал) — size-набор = весь test, count = N-префиксы по test
 $raw['REAL'] = runCorpus('REAL', $realTrain, $realTest, $realTest, ['n/a'], $countN);
-$raw['REAL']['train'] = array_map(static fn (array $p): array => ['formula' => $p['formula'], 'source' => $p['source'], 'family' => $p['family'], 'numeric' => $p['numeric']], $realTrain);
-$raw['REAL']['test'] = array_map(static fn (array $p): array => ['formula' => $p['formula'], 'source' => $p['source'], 'family' => $p['family'], 'numeric' => $p['numeric']], $realTest);
+$raw['REAL']['train'] = array_map(static fn (array $p): array => [
+    'formula' => $p['formula'],
+    'source' => $p['source'],
+    'family' => $p['family'],
+    'numeric' => $p['numeric'],
+], $realTrain);
+$raw['REAL']['test'] = array_map(static fn (array $p): array => [
+    'formula' => $p['formula'],
+    'source' => $p['source'],
+    'family' => $p['family'],
+    'numeric' => $p['numeric'],
+], $realTest);
 $raw['semantic_errors'] = $semanticErrors;
 $raw['numeric_skipped_structural_only'] = $numericSkipped;
 $raw['wall_total_s'] = round((hrtime(true) - $T0) / 1e9, 2);
@@ -365,8 +395,16 @@ $verdicts['H3_complexity_scaling'] = ($avgLast < $avgFirst)
     : sprintf('FAIL на REGULAR (%.3f → %.3f)', $avgFirst, $avgLast);
 $verdicts['H4_no_automatic_advantage'] = sprintf(
     'RANDOM: D=%d B=%d C=%d A=%d (dict=%d); REAL: D=%d B=%d C=%d A=%d (dict=%d)',
-    $ran['d_total'], $ran['b_total'], $ran['c_total'], $ran['a_total'], $ran['d_dict_bytes'],
-    $rea['d_total'], $rea['b_total'], $rea['c_total'], $rea['a_total'], $rea['d_dict_bytes']
+    $ran['d_total'],
+    $ran['b_total'],
+    $ran['c_total'],
+    $ran['a_total'],
+    $ran['d_dict_bytes'],
+    $rea['d_total'],
+    $rea['b_total'],
+    $rea['c_total'],
+    $rea['a_total'],
+    $rea['d_dict_bytes']
 );
 $raw['verdicts'] = $verdicts;
 
@@ -391,19 +429,40 @@ foreach (['REGULAR', 'RANDOM', 'REAL'] as $cn) {
 file_put_contents($outDir . '/checkpoint_b_count.csv', $csv);
 
 // ── stdout-сводка ──
-printf("dict: REGULAR %d слов/%d B; RANDOM %d слов/%d B; REAL %d слов/%d B\n",
-    $raw['REGULAR']['dict']['words'], $raw['REGULAR']['dict']['bytes'],
-    $raw['RANDOM']['dict']['words'], $raw['RANDOM']['dict']['bytes'],
-    $raw['REAL']['dict']['words'], $raw['REAL']['dict']['bytes']);
+printf(
+    "dict: REGULAR %d слов/%d B; RANDOM %d слов/%d B; REAL %d слов/%d B\n",
+    $raw['REGULAR']['dict']['words'],
+    $raw['REGULAR']['dict']['bytes'],
+    $raw['RANDOM']['dict']['words'],
+    $raw['RANDOM']['dict']['bytes'],
+    $raw['REAL']['dict']['words'],
+    $raw['REAL']['dict']['bytes']
+);
 foreach (['REGULAR', 'RANDOM', 'REAL'] as $cn) {
     $s = $raw[$cn]['size']['totals'];
-    printf("%s SIZE: A=%d B=%d C=%d D=%d (dict %d) | D/A=%.3f D/B=%.3f D/C=%.3f | break-even A=%s B=%s C=%s\n",
-        $cn, $s['a_total'], $s['b_total'], $s['c_total'], $s['d_total'], $s['d_dict_bytes'],
-        $raw[$cn]['size']['ratios']['d_vs_a'], $raw[$cn]['size']['ratios']['d_vs_b'], $raw[$cn]['size']['ratios']['d_vs_c'],
-        $raw[$cn]['count']['break_even']['A'] ?? 'never', $raw[$cn]['count']['break_even']['B'] ?? 'never', $raw[$cn]['count']['break_even']['C'] ?? 'never');
+    printf(
+        "%s SIZE: A=%d B=%d C=%d D=%d (dict %d) | D/A=%.3f D/B=%.3f D/C=%.3f | break-even A=%s B=%s C=%s\n",
+        $cn,
+        $s['a_total'],
+        $s['b_total'],
+        $s['c_total'],
+        $s['d_total'],
+        $s['d_dict_bytes'],
+        $raw[$cn]['size']['ratios']['d_vs_a'],
+        $raw[$cn]['size']['ratios']['d_vs_b'],
+        $raw[$cn]['size']['ratios']['d_vs_c'],
+        $raw[$cn]['count']['break_even']['A'] ?? 'never',
+        $raw[$cn]['count']['break_even']['B'] ?? 'never',
+        $raw[$cn]['count']['break_even']['C'] ?? 'never'
+    );
 }
-printf("semantic_errors=%d numeric_skipped=%d wall=%.1fs ram_peak=%dMB\n",
-    $semanticErrors, $numericSkipped, $raw['wall_total_s'], $raw['ram_peak_mb_total']);
+printf(
+    "semantic_errors=%d numeric_skipped=%d wall=%.1fs ram_peak=%dMB\n",
+    $semanticErrors,
+    $numericSkipped,
+    $raw['wall_total_s'],
+    $raw['ram_peak_mb_total']
+);
 foreach ($verdicts as $k => $v) {
     echo $k, ': ', (is_string($v) ? $v : json_encode($v, JSON_UNESCAPED_UNICODE)), "\n";
 }

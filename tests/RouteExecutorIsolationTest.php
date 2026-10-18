@@ -15,7 +15,9 @@ use BeeSwarm\Infra\Database;
  */
 class RouteExecutorIsolationTest extends TestCase
 {
-    /** @return array{0:list<list<float>>,1:list<float>} */
+    /**
+     * @return array{0:list<list<float>>,1:list<float>}
+     */
     private function task(): array
     {
         mt_srand(77);
@@ -41,7 +43,7 @@ class RouteExecutorIsolationTest extends TestCase
         return ['c0', 'c1', 'c2', 'c3', 'c4'];
     }
 
-    public function test_local_birth_accepts_two_feature_form(): void
+    public function testLocalBirthAcceptsTwoFeatureForm(): void
     {
         $born = RouteExecutor::localBirth('(x0×x1)');
         $this->assertNotNull($born);
@@ -54,7 +56,7 @@ class RouteExecutorIsolationTest extends TestCase
         $this->assertEqualsWithDelta(6.0, $g->apply(3.0, 2.0, $born['name']), 1e-12);
     }
 
-    public function test_local_birth_unary_sq_form(): void
+    public function testLocalBirthUnarySqForm(): void
     {
         $born = RouteExecutor::localBirth('((x0+x1)sq)');
         $this->assertNotNull($born, 'sq-суффикс должен парситься');
@@ -63,7 +65,7 @@ class RouteExecutorIsolationTest extends TestCase
         $this->assertEqualsWithDelta(25.0, $g->apply(3.0, 2.0, $born['name']), 1e-12);
     }
 
-    public function test_local_birth_gates(): void
+    public function testLocalBirthGates(): void
     {
         // 3 разные фичи — бинарный контракт (a,b) нарушен
         $this->assertNull(RouteExecutor::localBirth('((x0−x1)×x2)'));
@@ -77,13 +79,23 @@ class RouteExecutorIsolationTest extends TestCase
         $this->assertNull(RouteExecutor::localBirth(null));
     }
 
-    public function test_env_hygiene_after_run(): void
+    public function testEnvHygieneAfterRun(): void
     {
         putenv('SEARCH_BEAM_K=33');
         [$X, $y] = $this->task();
-        $g = RouteGenome::create('route_hyge0001', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'beam10'],
-            ['op' => 'USE_MARKS', 'k' => 2],
+        $g = RouteGenome::create('route_hyge0001', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'beam10',
+            ],
+            [
+                'op' => 'USE_MARKS',
+                'k' => 2,
+            ],
         ], 0.2, 2);
         try {
             $res = RouteExecutor::run($g, $X, $y, $this->labels(), 10.0, 0.10);
@@ -95,50 +107,109 @@ class RouteExecutorIsolationTest extends TestCase
         }
     }
 
-    public function test_grammar_ops_unchanged_by_route_run(): void
+    public function testGrammarOpsUnchangedByRouteRun(): void
     {
         $db = Database::get();
-        $before = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
+        $before = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')
+            ->fetchColumn();
         [$X, $y] = $this->task();
-        $g = RouteGenome::create('route_iso00001', '', 0, ['kind' => 'ALWAYS'], [
-            ['op' => 'FLIGHT', 'depth' => 1, 'grammar' => 'base', 'beam' => 'default'],
-            ['op' => 'LOCAL_BIRTH'],
-            ['op' => 'FLIGHT', 'depth' => 2, 'grammar' => 'base', 'beam' => 'default'],
+        $g = RouteGenome::create('route_iso00001', '', 0, [
+            'kind' => 'ALWAYS',
+        ], [
+            [
+                'op' => 'FLIGHT',
+                'depth' => 1,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
+            [
+                'op' => 'LOCAL_BIRTH',
+            ],
+            [
+                'op' => 'FLIGHT',
+                'depth' => 2,
+                'grammar' => 'base',
+                'beam' => 'default',
+            ],
         ], 0.2, 3);
         $res = RouteExecutor::run($g, $X, $y, $this->labels(), 15.0, 0.10);
-        $after = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')->fetchColumn();
+        $after = (int) $db->query('SELECT COUNT(*) FROM grammar_ops')
+            ->fetchColumn();
         $this->assertSame($before, $after, 'S2: маршрут не пишет в grammar_ops');
         foreach (array_keys($res['local_atoms']) as $atomName) {
-            $row = $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name = '{$atomName}'")->fetchColumn();
+            $row = $db->query("SELECT COUNT(*) FROM grammar_ops WHERE name = '{$atomName}'")
+                ->fetchColumn();
             $this->assertSame(0, (int) $row, 'route-local атом не утёк в глобальный словарь');
         }
     }
 
-    public function test_should_activate_semantics(): void
+    public function testShouldActivateSemantics(): void
     {
-        $always = RouteGenome::create('route_alw00001', '', 0, ['kind' => 'ALWAYS'],
-            [['op' => 'LOCAL_BIRTH']], 0.1, 1);
-        $this->assertTrue(RouteExecutor::shouldActivate($always, ['flights_done' => 0, 'certified' => true]));
+        $always = RouteGenome::create(
+            'route_alw00001',
+            '',
+            0,
+            [
+                'kind' => 'ALWAYS',
+            ],
+            [[
+                'op' => 'LOCAL_BIRTH',
+            ]],
+            0.1,
+            1
+        );
+        $this->assertTrue(RouteExecutor::shouldActivate($always, [
+            'flights_done' => 0,
+            'certified' => true,
+        ]));
 
-        $noCert = RouteGenome::create('route_noc00001', '', 0, ['kind' => 'NO_CERT_AFTER', 'flights' => 2],
-            [['op' => 'LOCAL_BIRTH']], 0.1, 1);
-        $this->assertFalse(RouteExecutor::shouldActivate($noCert, ['flights_done' => 1, 'certified' => false]));
-        $this->assertFalse(RouteExecutor::shouldActivate($noCert, ['flights_done' => 3, 'certified' => true]),
-            'baseline сертифицировал — маршрут не активируется');
-        $this->assertTrue(RouteExecutor::shouldActivate($noCert, ['flights_done' => 2, 'certified' => false]));
+        $noCert = RouteGenome::create(
+            'route_noc00001',
+            '',
+            0,
+            [
+                'kind' => 'NO_CERT_AFTER',
+                'flights' => 2,
+            ],
+            [[
+                'op' => 'LOCAL_BIRTH',
+            ]],
+            0.1,
+            1
+        );
+        $this->assertFalse(RouteExecutor::shouldActivate($noCert, [
+            'flights_done' => 1,
+            'certified' => false,
+        ]));
+        $this->assertFalse(
+            RouteExecutor::shouldActivate($noCert, [
+                'flights_done' => 3,
+                'certified' => true,
+            ]),
+            'baseline сертифицировал — маршрут не активируется'
+        );
+        $this->assertTrue(RouteExecutor::shouldActivate($noCert, [
+            'flights_done' => 2,
+            'certified' => false,
+        ]));
     }
 
-    public function test_expand_local_atoms_end_to_end(): void
+    public function testExpandLocalAtomsEndToEnd(): void
     {
         $born = RouteExecutor::localBirth('(x0×x1)');
         $this->assertNotNull($born);
         $name = $born['name'];
         // Склеенный формат Search (без пробелов), включая вложенный операнд
-        $this->assertSame('(x0×x1)', RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [$name => $born['definition']]));
-        $this->assertSame('(((x0−x1)×x2))', RouteExecutor::expandLocalAtoms('(((x0−x1)' . $name . 'x2))', [$name => $born['definition']]));
+        $this->assertSame('(x0×x1)', RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [
+            $name => $born['definition'],
+        ]));
+        $this->assertSame('(((x0−x1)×x2))', RouteExecutor::expandLocalAtoms('(((x0−x1)' . $name . 'x2))', [
+            $name => $born['definition'],
+        ]));
         // Развёрнутая форма оценима внешним evaluator'ом (блокер-3 закрыт)
         mt_srand(11);
-        $X = []; $y = [];
+        $X = [];
+        $y = [];
         for ($r = 0; $r < 20; $r++) {
             $a = mt_rand(10, 50) / 10.0;
             $b = mt_rand(10, 50) / 10.0;
@@ -146,7 +217,9 @@ class RouteExecutorIsolationTest extends TestCase
             $y[] = $a * $b;
         }
         $L = RouteExecutor::computeL(
-            RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [$name => $born['definition']]),
+            RouteExecutor::expandLocalAtoms('(x0' . $name . 'x1)', [
+                $name => $born['definition'],
+            ]),
             $X,
             $y,
         );
@@ -154,10 +227,21 @@ class RouteExecutorIsolationTest extends TestCase
         $this->assertLessThan(0.01, $L);
     }
 
-    public function test_inherit_must_be_resolved(): void
+    public function testInheritMustBeResolved(): void
     {
-        $g = RouteGenome::create('route_inh00001', 'route_parent0', 1, ['kind' => 'INHERIT'],
-            [['op' => 'LOCAL_BIRTH']], 0.1, 1);
+        $g = RouteGenome::create(
+            'route_inh00001',
+            'route_parent0',
+            1,
+            [
+                'kind' => 'INHERIT',
+            ],
+            [[
+                'op' => 'LOCAL_BIRTH',
+            ]],
+            0.1,
+            1
+        );
         [$X, $y] = $this->task();
         $this->expectException(\InvalidArgumentException::class);
         RouteExecutor::run($g, $X, $y, $this->labels(), 5.0, 0.10);

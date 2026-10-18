@@ -16,7 +16,9 @@ $unaryOps = ['sq', 'abs', 'neg', 'inv', 'sqrt', 'log2', 'parity'];
 
 function combinations(int $n, int $k): int
 {
-    if ($k < 0 || $k > $n) return 0;
+    if ($k < 0 || $k > $n) {
+        return 0;
+    }
     $r = 1;
     for ($i = 0; $i < $k; $i++) {
         $r = (int) ($r * ($n - $i) / ($i + 1));
@@ -43,8 +45,15 @@ foreach ([2, 3, 7, 12] as $nFeat) {
     $total = $l0 + $l1 + $l2;
     $vcBound = (int) floor(log($total, 2));
 
-    printf("nFeat=%2d | L0=%5d | L1=%6d | L2≈%8d | N_total≈%9d | VCdim≤%5d\n",
-        $nFeat, $l0, $l1, $l2, $total, $vcBound);
+    printf(
+        "nFeat=%2d | L0=%5d | L1=%6d | L2≈%8d | N_total≈%9d | VCdim≤%5d\n",
+        $nFeat,
+        $l0,
+        $l1,
+        $l2,
+        $total,
+        $vcBound
+    );
 }
 
 echo str_repeat('-', 60) . "\n";

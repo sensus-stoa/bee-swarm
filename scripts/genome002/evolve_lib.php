@@ -34,8 +34,15 @@ final class GenomeEvolveLib
 {
     public const MASTER_SEED = 20261020;
 
-    /** Веса классов мутаций (одинаковы для всех рук, манифест §4). */
-    public const OP_WEIGHTS = ['op_swap' => 0.30, 'atom_swap' => 0.30, 'splice' => 0.25, 'drop' => 0.15];
+    /**
+     * Веса классов мутаций (одинаковы для всех рук, манифест §4).
+     */
+    public const OP_WEIGHTS = [
+        'op_swap' => 0.30,
+        'atom_swap' => 0.30,
+        'splice' => 0.25,
+        'drop' => 0.15,
+    ];
 
     private const BASE_OPS = ['+', '−', '×', '/'];
 
@@ -51,20 +58,50 @@ final class GenomeEvolveLib
     public static function targetLaws(): array
     {
         return [
-            ['id' => 'T-ens', 'formula' => '((x0+x1)+(x0−x2))', 'source' => 'V011_ENSEMBLE_calibration_run5.md'],
-            ['id' => 'T-kin', 'formula' => '((x0×x3)+((x1×x4)+(x2×x5)))', 'source' => 'EXP040_M1EXT2_REPORT.md (binding 4 колонки: x5→x3)'],
-            ['id' => 'T-misc1', 'formula' => '(((x0+x1)×x2)+x3)', 'source' => 'Benchmarks/experiments-log.md'],
-            ['id' => 'T-mol', 'formula' => '(((x0×x2)×x1)/x3)', 'source' => 'EXP039_molecule.md (до вложения)'],
+            [
+                'id' => 'T-ens',
+                'formula' => '((x0+x1)+(x0−x2))',
+                'source' => 'V011_ENSEMBLE_calibration_run5.md',
+            ],
+            [
+                'id' => 'T-kin',
+                'formula' => '((x0×x3)+((x1×x4)+(x2×x5)))',
+                'source' => 'EXP040_M1EXT2_REPORT.md (binding 4 колонки: x5→x3)',
+            ],
+            [
+                'id' => 'T-misc1',
+                'formula' => '(((x0+x1)×x2)+x3)',
+                'source' => 'Benchmarks/experiments-log.md',
+            ],
+            [
+                'id' => 'T-mol',
+                'formula' => '(((x0×x2)×x1)/x3)',
+                'source' => 'EXP039_molecule.md (до вложения)',
+            ],
             // T-t1 ((x0+x1)/(x0−x1)) ИСКЛЮЧЕНА из целей: её alpha-ключ = M1-мотиву
             // train-корпуса → коллидирует со словом словаря (гигиена req 8,
             // манифест §2; выбывание зафиксировано ДО прогона)
-            ['id' => 'T-t2l', 'formula' => '((x0−x2)+((x0+x1)/(x0−x1)))', 'source' => 'g2-закон в развёрнутой форме (post-MOL-001)'],
-            ['id' => 'T-kin2', 'formula' => '((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))', 'source' => 'EXP040 kinetic dot (4 колонки)'],
-            ['id' => 'T-ens2', 'formula' => '(((x0−x1)×(x0+x1))+x2)', 'source' => 'REGULAR-мотив M2+смещение (форма корпуса, не test REAL)'],
+            [
+                'id' => 'T-t2l',
+                'formula' => '((x0−x2)+((x0+x1)/(x0−x1)))',
+                'source' => 'g2-закон в развёрнутой форме (post-MOL-001)',
+            ],
+            [
+                'id' => 'T-kin2',
+                'formula' => '((x0×(x1×x1))+((x0×(x2×x2))+(x0×(x3×x3))))',
+                'source' => 'EXP040 kinetic dot (4 колонки)',
+            ],
+            [
+                'id' => 'T-ens2',
+                'formula' => '(((x0−x1)×(x0+x1))+x2)',
+                'source' => 'REGULAR-мотив M2+смещение (форма корпуса, не test REAL)',
+            ],
         ];
     }
 
-    /** Данные задачи: 12 train + 8 heldout строк, 6 колонок, y = закон+шум. */
+    /**
+     * Данные задачи: 12 train + 8 heldout строк, 6 колонок, y = закон+шум.
+     */
     public static function makeTask(string $formula, int $seed): array
     {
         $ast = WordCodec::parseDefinition($formula, ['BW5737967f9b4ecb628fd48d7d82502f40', 'BW59baeae13abe8cbdfae0c823ff207db2']);
@@ -95,7 +132,14 @@ final class GenomeEvolveLib
         [$train, $yTrain] = $build(12);
         [$held, $yHeld] = $build(8);
 
-        return ['ast' => $ast, 'train' => $train, 'held' => $held, 'y_train' => $yTrain, 'y_held' => $yHeld, 'formula' => $formula];
+        return [
+            'ast' => $ast,
+            'train' => $train,
+            'held' => $held,
+            'y_train' => $yTrain,
+            'y_held' => $yHeld,
+            'formula' => $formula,
+        ];
     }
 
     // ── Родители: одно повреждение, ОДИН логический сайт для трёх рук ──
@@ -172,10 +216,19 @@ final class GenomeEvolveLib
             $detail = $old . '→' . $new;
         } else {
             $detail = 'drop@' . count($path);
-            $ref = ['atom' => 'x' . $rng->getInt(0, 5)];
+            $ref = [
+                'atom' => 'x' . $rng->getInt(0, 5),
+            ];
         }
 
-        return ['ast' => $ast, 'damage' => ['kind' => $kind, 'path' => $path, 'detail' => $detail]];
+        return [
+            'ast' => $ast,
+            'damage' => [
+                'kind' => $kind,
+                'path' => $path,
+                'detail' => $detail,
+            ],
+        ];
     }
 
     // ── Мутации (req 5: сопоставимые, uniform) ─────────────────────────
@@ -221,7 +274,12 @@ final class GenomeEvolveLib
         switch ($op) {
             case 'op_swap':
                 if ($opSites === []) {
-                    return ['ast' => $ast, 'op' => $op, 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'ast' => $ast,
+                        'op' => $op,
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $opSites[$rng->getInt(0, count($opSites) - 1)];
                 $apply($site, static function (&$node) use ($rng): void {
@@ -229,20 +287,40 @@ final class GenomeEvolveLib
                     $node['op'] = $ops[$rng->getInt(0, count($ops) - 1)];
                 });
 
-                return ['ast' => $ast, 'op' => $op, 'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'), 'noop' => false];
+                return [
+                    'ast' => $ast,
+                    'op' => $op,
+                    'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'),
+                    'noop' => false,
+                ];
             case 'atom_swap':
                 if ($atomSites === []) {
-                    return ['ast' => $ast, 'op' => $op, 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'ast' => $ast,
+                        'op' => $op,
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $atomSites[$rng->getInt(0, count($atomSites) - 1)];
                 $apply($site, static function (&$node) use ($rng): void {
                     $node['atom'] = 'x' . $rng->getInt(0, 5);
                 });
 
-                return ['ast' => $ast, 'op' => $op, 'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'), 'noop' => false];
+                return [
+                    'ast' => $ast,
+                    'op' => $op,
+                    'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'),
+                    'noop' => false,
+                ];
             case 'splice':
                 if ($allSites === [] || $pool === []) {
-                    return ['ast' => $ast, 'op' => $op, 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'ast' => $ast,
+                        'op' => $op,
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $allSites[$rng->getInt(0, count($allSites) - 1)];
                 $shape = $pool[$rng->getInt(0, count($pool) - 1)];
@@ -250,17 +328,34 @@ final class GenomeEvolveLib
                     $node = GenomeEvolveLib::instantiateShape($shape['ast'], $rng);
                 });
 
-                return ['ast' => $ast, 'op' => $op, 'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'), 'noop' => false];
+                return [
+                    'ast' => $ast,
+                    'op' => $op,
+                    'site_kind' => $op === 'op_swap' ? 'op' : ($op === 'atom_swap' ? 'atom' : 'any'),
+                    'noop' => false,
+                ];
             default: // drop
                 if ($allSites === []) {
-                    return ['ast' => $ast, 'op' => 'drop', 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'ast' => $ast,
+                        'op' => 'drop',
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $allSites[$rng->getInt(0, count($allSites) - 1)];
                 $apply($site, static function (&$node) use ($rng): void {
-                    $node = ['atom' => 'x' . $rng->getInt(0, 5)];
+                    $node = [
+                        'atom' => 'x' . $rng->getInt(0, 5),
+                    ];
                 });
 
-                return ['ast' => $ast, 'op' => 'drop', 'site_kind' => 'any', 'noop' => false];
+                return [
+                    'ast' => $ast,
+                    'op' => 'drop',
+                    'site_kind' => 'any',
+                    'noop' => false,
+                ];
         }
     }
 
@@ -277,7 +372,7 @@ final class GenomeEvolveLib
         $atomSites = [];
         $refSites = [];
         $allSites = [];
-        $walk = static function (array $node, array $path) use (&$walk, &$opSites, &$atomSites, &$refSites, &$allSites, $entries): void {
+        $walk = static function (array $node, array $path) use (&$walk, &$opSites, &$atomSites, &$refSites, &$allSites): void {
             if (isset($node['atom'])) {
                 $atomSites[] = $path;
                 $allSites[] = $path;
@@ -317,7 +412,11 @@ final class GenomeEvolveLib
                 // базовые op-узлы → другая базовая операция; word-ref → другое слово той же арности
                 $sites = array_merge($opSites, $refSites);
                 if ($sites === []) {
-                    return ['genome' => $genome, 'op' => $op, 'noop' => true];
+                    return [
+                        'genome' => $genome,
+                        'op' => $op,
+                        'noop' => true,
+                    ];
                 }
                 $site = $sites[$rng->getInt(0, count($sites) - 1)];
                 $siteKind = in_array($site, $refSites) ? 'ref' : 'op';
@@ -340,20 +439,40 @@ final class GenomeEvolveLib
                     $node['op'] = $ops[$rng->getInt(0, count($ops) - 1)];
                 });
 
-                return ['genome' => $genome, 'op' => $op, 'site_kind' => $siteKind, 'noop' => false];
+                return [
+                    'genome' => $genome,
+                    'op' => $op,
+                    'site_kind' => $siteKind,
+                    'noop' => false,
+                ];
             case 'atom_swap':
                 if ($atomSites === []) {
-                    return ['genome' => $genome, 'op' => $op, 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'genome' => $genome,
+                        'op' => $op,
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $atomSites[$rng->getInt(0, count($atomSites) - 1)];
                 $apply($site, static function (&$node) use ($rng): void {
                     $node['atom'] = 'x' . $rng->getInt(0, 5);
                 });
 
-                return ['genome' => $genome, 'op' => $op, 'site_kind' => 'atom', 'noop' => false];
+                return [
+                    'genome' => $genome,
+                    'op' => $op,
+                    'site_kind' => 'atom',
+                    'noop' => false,
+                ];
             case 'splice':
                 if ($allSites === [] || $entries === []) {
-                    return ['genome' => $genome, 'op' => $op, 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'genome' => $genome,
+                        'op' => $op,
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $allSites[$rng->getInt(0, count($allSites) - 1)];
                 $siteKind = in_array($site, $refSites) ? 'ref' : 'any';
@@ -363,26 +482,50 @@ final class GenomeEvolveLib
                     $arity = (int) $byName[$name]['arity'];
                     $args = [];
                     for ($i = 0; $i < $arity; $i++) {
-                        $args[] = ['atom' => 'x' . $rng->getInt(0, 5)];
+                        $args[] = [
+                            'atom' => 'x' . $rng->getInt(0, 5),
+                        ];
                     }
-                    $node = ['word' => $name, 'args' => $args];
+                    $node = [
+                        'word' => $name,
+                        'args' => $args,
+                    ];
                 });
 
-                return ['genome' => $genome, 'op' => $op, 'site_kind' => $siteKind, 'noop' => false];
+                return [
+                    'genome' => $genome,
+                    'op' => $op,
+                    'site_kind' => $siteKind,
+                    'noop' => false,
+                ];
             default: // drop
                 if ($allSites === []) {
-                    return ['genome' => $genome, 'op' => 'drop', 'site_kind' => 'none', 'noop' => true];
+                    return [
+                        'genome' => $genome,
+                        'op' => 'drop',
+                        'site_kind' => 'none',
+                        'noop' => true,
+                    ];
                 }
                 $site = $allSites[$rng->getInt(0, count($allSites) - 1)];
                 $apply($site, static function (&$node) use ($rng): void {
-                    $node = ['atom' => 'x' . $rng->getInt(0, 5)];
+                    $node = [
+                        'atom' => 'x' . $rng->getInt(0, 5),
+                    ];
                 });
 
-                return ['genome' => $genome, 'op' => 'drop', 'site_kind' => 'any', 'noop' => false];
+                return [
+                    'genome' => $genome,
+                    'op' => 'drop',
+                    'site_kind' => 'any',
+                    'noop' => false,
+                ];
         }
     }
 
-    /** Shape → инстанс со случайной инъективной привязкой слотов к x0..x3. */
+    /**
+     * Shape → инстанс со случайной инъективной привязкой слотов к x0..x3.
+     */
     public static function instantiateShape(array $shapeAst, object $rng): array
     {
         $slots = WordCodec::slotIndices($shapeAst);
@@ -393,7 +536,9 @@ final class GenomeEvolveLib
         }
         $binding = [];
         foreach (array_values($slots) as $j => $slot) {
-            $binding['x' . $slot] = ['atom' => 'x' . $cols[$j % 6]];
+            $binding['x' . $slot] = [
+                'atom' => 'x' . $cols[$j % 6],
+            ];
         }
 
         return GenomeBenchmarkLib::substituteAlpha($shapeAst, $binding);
@@ -401,7 +546,9 @@ final class GenomeEvolveLib
 
     // ── Фитнес и вёдра ─────────────────────────────────────────────────
 
-    /** rmse по строкам; null если хоть одна строка не вычислима (некорректен). */
+    /**
+     * rmse по строкам; null если хоть одна строка не вычислима (некорректен).
+     */
     public static function rmse(array $ast, array $rows, array $y): ?float
     {
         $sse = 0.0;
@@ -416,7 +563,9 @@ final class GenomeEvolveLib
         return sqrt($sse / count($rows));
     }
 
-    /** Функциональный ключ: структура + атомы as-is, коммутативные сортируются. */
+    /**
+     * Функциональный ключ: структура + атомы as-is, коммутативные сортируются.
+     */
     public static function functionKey(array $node): string
     {
         $key = static function (array $n) use (&$key): string {
@@ -455,7 +604,9 @@ final class GenomeEvolveLib
 
     // ── Рука C: DAG с in-place мутацией общих узлов ────────────────────
 
-    /** Hash-cons таблицы (как GenomeBenchmarkLib::dagBytes, но возвращает структуру). */
+    /**
+     * Hash-cons таблицы (как GenomeBenchmarkLib::dagBytes, но возвращает структуру).
+     */
     public static function dagBuild(array $ast): array
     {
         $ids = [];
@@ -483,7 +634,10 @@ final class GenomeEvolveLib
         };
         $root = $intern($ast);
 
-        return ['table' => $table, 'root' => $root];
+        return [
+            'table' => $table,
+            'root' => $root,
+        ];
     }
 
     /**
@@ -499,28 +653,58 @@ final class GenomeEvolveLib
         // сайты: узлы таблицы, достижимые из root (все таблицы достижимы — таблица строилась от root)
         $n = count($table);
         if ($n === 0) {
-            return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => true];
+            return [
+                'table' => $table,
+                'root' => $dag['root'],
+                'op' => $op,
+                'noop' => true,
+            ];
         }
         $id = $rng->getInt(0, $n - 1);
         switch ($op) {
             case 'op_swap':
                 if ($table[$id][0] !== 'o') {
-                    return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => true];
+                    return [
+                        'table' => $table,
+                        'root' => $dag['root'],
+                        'op' => $op,
+                        'noop' => true,
+                    ];
                 }
                 $ops = array_values(array_diff(['+', '−', '×', '/'], [$table[$id][1]]));
                 $table[$id][1] = $ops[$rng->getInt(0, count($ops) - 1)];
 
-                return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => false];
+                return [
+                    'table' => $table,
+                    'root' => $dag['root'],
+                    'op' => $op,
+                    'noop' => false,
+                ];
             case 'atom_swap':
                 if ($table[$id][0] !== 'a') {
-                    return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => true];
+                    return [
+                        'table' => $table,
+                        'root' => $dag['root'],
+                        'op' => $op,
+                        'noop' => true,
+                    ];
                 }
                 $table[$id][1] = 'x' . $rng->getInt(0, 5);
 
-                return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => false];
+                return [
+                    'table' => $table,
+                    'root' => $dag['root'],
+                    'op' => $op,
+                    'noop' => false,
+                ];
             case 'splice':
                 if ($pool === []) {
-                    return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => true];
+                    return [
+                        'table' => $table,
+                        'root' => $dag['root'],
+                        'op' => $op,
+                        'noop' => true,
+                    ];
                 }
                 $shape = $pool[$rng->getInt(0, count($pool) - 1)];
                 $inst = self::instantiateShape($shape['ast'], $rng);
@@ -544,20 +728,34 @@ final class GenomeEvolveLib
                 unset($e);
                 $table[$id] = $table[$map[$sub['root']]];
 
-                return ['table' => $table, 'root' => $dag['root'], 'op' => $op, 'noop' => false];
+                return [
+                    'table' => $table,
+                    'root' => $dag['root'],
+                    'op' => $op,
+                    'noop' => false,
+                ];
             default: // drop
                 $table[$id] = ['a', 'x' . $rng->getInt(0, 5)];
 
-                return ['table' => $table, 'root' => $dag['root'], 'op' => 'drop', 'noop' => false];
+                return [
+                    'table' => $table,
+                    'root' => $dag['root'],
+                    'op' => 'drop',
+                    'noop' => false,
+                ];
         }
     }
 
-    /** DAG → эквивалентный AST (для ключей новизны; hash-cons после мутаций может дублировать узлы). */
+    /**
+     * DAG → эквивалентный AST (для ключей новизны; hash-cons после мутаций может дублировать узлы).
+     */
     public static function dagToAst(array $table, int $id): array
     {
         $e = $table[$id];
         if ($e[0] === 'a') {
-            return ['atom' => (string) $e[1]];
+            return [
+                'atom' => (string) $e[1],
+            ];
         }
 
         return [
@@ -567,7 +765,9 @@ final class GenomeEvolveLib
         ];
     }
 
-    /** Исполнение DAG: построчно. */
+    /**
+     * Исполнение DAG: построчно.
+     */
     public static function evalDagRows(array $dag, array $rows): array
     {
         $table = $dag['table'];
@@ -606,7 +806,9 @@ final class GenomeEvolveLib
         return $out;
     }
 
-    /** DAG → rmse (null = некорректен). */
+    /**
+     * DAG → rmse (null = некорректен).
+     */
     public static function rmseDag(array $dag, array $rows, array $y): ?float
     {
         $vals = self::evalDagRows($dag, $rows);
@@ -639,12 +841,25 @@ final class GenomeEvolveLib
     ): array {
         $parentRmse = self::rmse($parentAst, array_merge($task['train'], $task['held']), array_merge($task['y_train'], $task['y_held']));
         $parentRmseHeld = self::rmse($parentAst, $task['held'], $task['y_held']);
-        $buckets = ['incorrect' => 0, 'correct_flat' => 0, 'reuse_shape' => 0, 'improved_not_novel' => 0, 'useful_new' => 0, 'noop' => 0, 'invalid' => 0];
+        $buckets = [
+            'incorrect' => 0,
+            'correct_flat' => 0,
+            'reuse_shape' => 0,
+            'improved_not_novel' => 0,
+            'useful_new' => 0,
+            'noop' => 0,
+            'invalid' => 0,
+        ];
         $seen = [];
         $seen['f:' . self::functionKey($parentAst)] = true;
         $parentKey = self::functionKey($parentAst);
         $evalCalls = 0;
-        $usefulByOp = ['op_swap' => 0, 'atom_swap' => 0, 'splice' => 0, 'drop' => 0];
+        $usefulByOp = [
+            'op_swap' => 0,
+            'atom_swap' => 0,
+            'splice' => 0,
+            'drop' => 0,
+        ];
         $refAttempts = 0;
         $refUseful = 0;
         $t = hrtime(true);
@@ -706,7 +921,10 @@ final class GenomeEvolveLib
             $evalCalls += count($rowsAll);
             // корректность: все 20 строк конечны
             if ($arm === 'C') {
-                $rmseAll = self::rmseDag(['table' => $res['table'], 'root' => $res['root']], $rowsAll, $yAll);
+                $rmseAll = self::rmseDag([
+                    'table' => $res['table'],
+                    'root' => $res['root'],
+                ], $rowsAll, $yAll);
             } else {
                 $rmseAll = self::rmse($childAst, $rowsAll, $yAll);
             }
@@ -721,7 +939,10 @@ final class GenomeEvolveLib
             $childKey = 'f:' . self::functionKey($childAst);
             // улучшение: ТОЛЬКО held-out (req 7)
             if ($arm === 'C') {
-                $rmseHeld = self::rmseDag(['table' => $res['table'], 'root' => $res['root']], $task['held'], $task['y_held']);
+                $rmseHeld = self::rmseDag([
+                    'table' => $res['table'],
+                    'root' => $res['root'],
+                ], $task['held'], $task['y_held']);
             } else {
                 $rmseHeld = self::rmse($childAst, $task['held'], $task['y_held']);
             }
@@ -774,7 +995,9 @@ final class GenomeEvolveLib
         ];
     }
 
-    /** Alpha-ключи словаря (req 8: reuse-детектор) — заполняется бенчмарком. */
+    /**
+     * Alpha-ключи словаря (req 8: reuse-детектор) — заполняется бенчмарком.
+     */
     public static array $dictAlphaKeys = [];
 
     // ── Train-семейство реплики (манифест §2) ──────────────────────────
@@ -800,7 +1023,10 @@ final class GenomeEvolveLib
             $key = GenomeBenchmarkLib::alphaCanonicalKey($node);
             if ($depth >= 1 && $nodes >= 4 && ! isset($seen[$key])) {
                 $seen[$key] = true;
-                $shapes[] = ['ast' => GenomeBenchmarkLib::cloneAst($node), 'nodes' => $nodes];
+                $shapes[] = [
+                    'ast' => GenomeBenchmarkLib::cloneAst($node),
+                    'nodes' => $nodes,
+                ];
             }
             foreach (['l', 'r'] as $k) {
                 if (isset($node[$k]) && is_array($node[$k])) {
@@ -815,7 +1041,9 @@ final class GenomeEvolveLib
         $programs = [];
         foreach ($top as $sh) {
             foreach ([0, 1] as $j) {
-                $programs[] = ['ast' => self::instantiateShape($sh['ast'], $rng)];
+                $programs[] = [
+                    'ast' => self::instantiateShape($sh['ast'], $rng),
+                ];
             }
         }
 

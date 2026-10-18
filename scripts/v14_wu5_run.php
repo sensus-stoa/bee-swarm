@@ -24,7 +24,6 @@ declare(strict_types=1);
  * Env: WU5_POOL_TASKS (default 8), WU5_ROWS_PER_TASK (default 60),
  *      VERIFY_EVERY (default 10), WU5_VERIFY_LIMIT (default 6).
  */
-
 if ($argc < 4) {
     fwrite(STDERR, "usage: php v14_wu5_run.php <csv> <domain> <ticks> [seedIdx]\n");
     exit(1);
@@ -177,9 +176,15 @@ foreach ($db->query(
     "SELECT name, formula, cv, usage_count, confirmed_count, escrow_status
      FROM laws WHERE domain = '{$domain}' ORDER BY usage_count DESC LIMIT 15"
 ) as $r) {
-    printf("  %-16s %-28s cv=%.4f usage=%d conf=%d esc=%s\n",
-        (string) $r['name'], (string) $r['formula'], (float) $r['cv'],
-        (int) $r['usage_count'], (int) $r['confirmed_count'], (string) $r['escrow_status']);
+    printf(
+        "  %-16s %-28s cv=%.4f usage=%d conf=%d esc=%s\n",
+        (string) $r['name'],
+        (string) $r['formula'],
+        (float) $r['cv'],
+        (int) $r['usage_count'],
+        (int) $r['confirmed_count'],
+        (string) $r['escrow_status']
+    );
 }
 echo "-- verification_tasks --\n";
 foreach ($db->query(
@@ -202,6 +207,7 @@ foreach ($db->query(
     printf("  %-8s %-10s %s\n", $r['name'], (string) $r['source'], (string) $r['definition']);
 }
 echo "-- population --\n";
-$alive = (int) $db->query('SELECT COUNT(*) FROM bee_persistence WHERE is_alive = 1')->fetchColumn();
+$alive = (int) $db->query('SELECT COUNT(*) FROM bee_persistence WHERE is_alive = 1')
+    ->fetchColumn();
 echo "  alive={$alive}\n";
 echo "LOG: {$logFile}\n";

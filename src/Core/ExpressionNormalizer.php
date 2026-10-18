@@ -237,9 +237,18 @@ class ExpressionNormalizer
             $d = 0;
             $paired = true;
             for ($i = 0, $L = strlen($expr); $i < $L; $i++) {
-                if ($expr[$i] === '(') { $d++; }
-                elseif ($expr[$i] === ')') { $d--; if ($d === 0 && $i < $L - 1) { $paired = false; break; } }
-                elseif ($d < 0) { $paired = false; break; }
+                if ($expr[$i] === '(') {
+                    $d++;
+                } elseif ($expr[$i] === ')') {
+                    $d--;
+                    if ($d === 0 && $i < $L - 1) {
+                        $paired = false;
+                        break;
+                    }
+                } elseif ($d < 0) {
+                    $paired = false;
+                    break;
+                }
             }
         }
         if (! $paired) {
@@ -252,11 +261,17 @@ class ExpressionNormalizer
                 [$op, $left, $right] = $split;
                 return [
                     'op' => $op,
-                    'l' => self::parse($left, $extraOps) ?? ['atom' => $left],
-                    'r' => self::parse($right, $extraOps) ?? ['atom' => $right],
+                    'l' => self::parse($left, $extraOps) ?? [
+                        'atom' => $left,
+                    ],
+                    'r' => self::parse($right, $extraOps) ?? [
+                        'atom' => $right,
+                    ],
                 ];
             }
-            return ['atom' => $expr];
+            return [
+                'atom' => $expr,
+            ];
         }
         $inner = substr($expr, 1, -1);
 

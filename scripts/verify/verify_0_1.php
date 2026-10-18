@@ -15,7 +15,7 @@ use BeeSwarm\Core\QueryEngine;
 $engine = new QueryEngine();
 
 // Все законы должны иметь held-out CV
-$laws = $engine->query("SELECT name, formula, cv FROM laws");
+$laws = $engine->query('SELECT name, formula, cv FROM laws');
 $discoveries = 0;
 $withoutCV = 0;
 
@@ -44,10 +44,16 @@ $pass = ($withoutCV === 0) && ($overfitCount === 0) && ($discoveries > 0);
 
 if (! $pass) {
     $reasons = [];
-    if ($withoutCV > 0) $reasons[] = "{$withoutCV} laws without CV";
-    if ($overfitCount > 0) $reasons[] = "{$overfitCount} OVERFIT events";
-    if ($discoveries === 0) $reasons[] = "no discoveries";
-    echo "FAIL: " . implode(', ', $reasons) . "\n";
+    if ($withoutCV > 0) {
+        $reasons[] = "{$withoutCV} laws without CV";
+    }
+    if ($overfitCount > 0) {
+        $reasons[] = "{$overfitCount} OVERFIT events";
+    }
+    if ($discoveries === 0) {
+        $reasons[] = 'no discoveries';
+    }
+    echo 'FAIL: ' . implode(', ', $reasons) . "\n";
     exit(1);
 }
 

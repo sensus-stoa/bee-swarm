@@ -18,19 +18,19 @@ use BeeSwarm\Core\QueryEngine;
 
 $engine = new QueryEngine();
 
-$total = (int) ($engine->query("SELECT COUNT(*) as cnt FROM overlap_log")[0]['cnt'] ?? 0);
+$total = (int) ($engine->query('SELECT COUNT(*) as cnt FROM overlap_log')[0]['cnt'] ?? 0);
 
 // Каноническая группировка + подсчёт УНИКАЛЬНЫХ задач (не reassignment-событий)
 $measured = $engine->query(
-    "SELECT MIN(bee_a, bee_b) as a, MAX(bee_a, bee_b) as b,
+    'SELECT MIN(bee_a, bee_b) as a, MAX(bee_a, bee_b) as b,
             COUNT(DISTINCT task) as shared
      FROM overlap_log
      GROUP BY a, b
-     HAVING shared >= 10"
+     HAVING shared >= 10'
 );
 
 echo "Overlap records: {$total}\n";
-echo "Measured pairs (≥10 shared tasks): " . count($measured) . "\n";
+echo 'Measured pairs (≥10 shared tasks): ' . count($measured) . "\n";
 
 if ($total === 0) {
     echo "PENDING: OverlapTracker wired — waiting for task reassignments to accumulate.\n";

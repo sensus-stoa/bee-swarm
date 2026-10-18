@@ -20,7 +20,7 @@ use BeeSwarm\Core\QueryEngine;
 $engine = new QueryEngine();
 
 $laws = $engine->query(
-    "SELECT domain, name, formula, cv FROM laws WHERE cv IS NOT NULL ORDER BY domain, name, cv"
+    'SELECT domain, name, formula, cv FROM laws WHERE cv IS NOT NULL ORDER BY domain, name, cv'
 );
 
 // Группируем по задаче
@@ -61,7 +61,7 @@ foreach ($multiEntry as $key => $entries) {
 }
 
 $pass = $violations === 0;
-echo "Compared " . count($multiEntry) . " tasks with ≥2 formulas\n";
+echo 'Compared ' . count($multiEntry) . " tasks with ≥2 formulas\n";
 echo "Violations: {$violations}\n";
 echo $pass ? "PASS: Simplest formula chosen for each task\n" : "FAIL: {$violations} parsimony violations\n";
 exit($pass ? 0 : 1);

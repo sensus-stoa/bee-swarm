@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace BeeSwarm\Tests;
 
 use BeeSwarm\Certification\ContradictionEngine;
-use BeeSwarm\Certification\MetricPreflight;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -55,7 +54,9 @@ final class ContradictionInvertTest extends TestCase
         }
     }
 
-    /** Синтетика с зеркальным законом, выражаемым грамматикой на −y. */
+    /**
+     * Синтетика с зеркальным законом, выражаемым грамматикой на −y.
+     */
     private function mirrorDomain(): array
     {
         mt_srand(333);
@@ -77,13 +78,22 @@ final class ContradictionInvertTest extends TestCase
         [$X, $y] = $this->mirrorDomain();
         // Исходный кандидат: грамматика нашла мусор с положительной корреляцией невозможна —
         // берём candidate с cv (не exact), corr<0, устойчивый
-        $candidate = ['atom' => '((x0hasx0²)−(x0×x1))', 'found' => true, 'corr' => -0.95, 'cv' => 0.10];
+        $candidate = [
+            'atom' => '((x0hasx0²)−(x0×x1))',
+            'found' => true,
+            'corr' => -0.95,
+            'cv' => 0.10,
+        ];
         $out = ContradictionEngine::invertAndResearch(
             $X,
             $y,
             $candidate,
             $this->logFile,
-            ['gate' => 0.15, 'depth' => 2, 'budget' => 15.0],
+            [
+                'gate' => 0.15,
+                'depth' => 2,
+                'budget' => 15.0,
+            ],
         );
 
         $this->assertContains($out->class, ['INVERTED_LAW', 'ANOMALY'], json_encode($out));
@@ -99,9 +109,18 @@ final class ContradictionInvertTest extends TestCase
     public function testInversionHypothesisLoggedBeforeResearch(): void
     {
         [$X, $y] = $this->mirrorDomain();
-        $candidate = ['atom' => '((x0hasx0²)−(x0×x1))', 'found' => true, 'corr' => -0.95, 'cv' => 0.10];
+        $candidate = [
+            'atom' => '((x0hasx0²)−(x0×x1))',
+            'found' => true,
+            'corr' => -0.95,
+            'cv' => 0.10,
+        ];
         // Лог фиксирует гипотезу ДО записи результата ре-поиска (порядок строк)
-        ContradictionEngine::invertAndResearch($X, $y, $candidate, $this->logFile, ['gate' => 0.15, 'depth' => 2, 'budget' => 15.0]);
+        ContradictionEngine::invertAndResearch($X, $y, $candidate, $this->logFile, [
+            'gate' => 0.15,
+            'depth' => 2,
+            'budget' => 15.0,
+        ]);
         $log = (string) file_get_contents($this->logFile);
         $hypoPos = strpos($log, 'PRE_REGISTER');
         $resPos = strpos($log, 'INVERT_RESULT');
@@ -116,8 +135,18 @@ final class ContradictionInvertTest extends TestCase
         // INVERT_MAX=1: повторный вызов на инвертированном результате не инвертирует снова
         // (контракт: метод принимает флаг already_inverted или кандидат несёт пометку).
         [$X, $y] = $this->mirrorDomain();
-        $candidate = ['atom' => '(x0×x1)', 'found' => true, 'corr' => -0.95, 'cv' => 0.02, 'inverted' => true];
-        $out = ContradictionEngine::invertAndResearch($X, $y, $candidate, $this->logFile, ['gate' => 0.15, 'depth' => 2, 'budget' => 15.0]);
+        $candidate = [
+            'atom' => '(x0×x1)',
+            'found' => true,
+            'corr' => -0.95,
+            'cv' => 0.02,
+            'inverted' => true,
+        ];
+        $out = ContradictionEngine::invertAndResearch($X, $y, $candidate, $this->logFile, [
+            'gate' => 0.15,
+            'depth' => 2,
+            'budget' => 15.0,
+        ]);
 
         $this->assertSame('SKIP_ALREADY_INVERTED', $out->class, 'Анти-зацикливание: инверсия инверсии = исходная задача');
     }

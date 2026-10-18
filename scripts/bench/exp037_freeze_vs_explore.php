@@ -27,7 +27,6 @@ declare(strict_types=1);
  * Env-шапка (31.08): изолированная БД, beam=10, cap=3.
  * Свежая БД + bootstrap 3 seed + forager на реальных CSV.
  */
-
 putenv('SWARM_DB_PATH=' . sys_get_temp_dir() . '/exp037_' . getmypid() . '.db');
 putenv('FORAGER_SOURCES=');
 putenv('SEARCH_BEAM_K=10');
@@ -40,9 +39,8 @@ putenv('CULTURE_LEVEL=1.0');
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use BeeSwarm\Core\Grammar;
-use BeeSwarm\Infra\Database;
 use BeeSwarm\Hive\Hive;
+use BeeSwarm\Infra\Database;
 
 const TICKS = 1800;          // ~15 мин при 500ms
 const SLICE_EVERY = 150;     // 12 срезов
@@ -99,7 +97,8 @@ for ($part = 0; $part < TICKS / SLICE_EVERY; $part++) {
     $m1 = count($rows) > 0 ? $cultureCount / count($rows) : 0.0;
 
     // M2: durable rate
-    $total = (int) $db->query('SELECT COUNT(*) FROM laws')->fetchColumn();
+    $total = (int) $db->query('SELECT COUNT(*) FROM laws')
+        ->fetchColumn();
     $confirmed = (int) $db->query(
         'SELECT COUNT(*) FROM laws WHERE COALESCE(confirmed_count,0) >= 1'
     )->fetchColumn();
@@ -140,7 +139,13 @@ for ($part = 0; $part < TICKS / SLICE_EVERY; $part++) {
 
     echo sprintf(
         "[%4d] M1=%.2f M2=%.2f M3=%d M4=%d M5=%d top3=%s\n",
-        $totalRun, $m1, $m2, $m3, $m4, $m5, implode(',', $slices[count($slices) - 1]['top3'])
+        $totalRun,
+        $m1,
+        $m2,
+        $m3,
+        $m4,
+        $m5,
+        implode(',', $slices[count($slices) - 1]['top3'])
     );
 }
 
@@ -177,7 +182,14 @@ echo 'H2 (разведка жива):    ', $h2 ? 'ПОДТВЕРЖДЕНА' : '
 // Сохраняем срезы для experiments-log
 file_put_contents(
     sys_get_temp_dir() . '/exp037_slices.json',
-    json_encode(['slices' => $slices, 'verdict' => ['h1' => $h1, 'h0' => $h0, 'h2' => $h2]], JSON_PRETTY_PRINT)
+    json_encode([
+        'slices' => $slices,
+        'verdict' => [
+            'h1' => $h1,
+            'h0' => $h0,
+            'h2' => $h2,
+        ],
+    ], JSON_PRETTY_PRINT)
 );
 echo "\nСрезы: " . sys_get_temp_dir() . "/exp037_slices.json\n";
 echo "Лог: {$logFile}\n";

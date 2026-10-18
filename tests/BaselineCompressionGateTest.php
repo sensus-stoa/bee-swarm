@@ -138,7 +138,7 @@ final class BaselineCompressionGateTest extends TestCase
 
         $this->assertFalse(
             $found,
-            "константа x0 на y~1e-9 не сертифицируется (A19.2+A19.3); got cv=" . var_export($cv, true) . " formula={$formula}"
+            'константа x0 на y~1e-9 не сертифицируется (A19.2+A19.3); got cv=' . var_export($cv, true) . " formula={$formula}"
         );
     }
 

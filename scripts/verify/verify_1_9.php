@@ -23,7 +23,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use BeeSwarm\Certification\EnsembleCertifier;
 use BeeSwarm\Core\ExpressionNormalizer;
-use BeeSwarm\Core\LawShape;
 
 // ── env-шапка bench-класса + факт в стартовую строку ─────────────────────────
 putenv('SWARM_DB_PATH=:memory:');
@@ -37,9 +36,11 @@ $envKeys = ['SWARM_DB_PATH', 'FORAGER_SOURCES', 'NO_BIRTH', 'SEARCH_NO_PREREG', 
 foreach ($envKeys as $k) {
     echo "ENV {$k}=" . (getenv($k) === false ? 'LOST' : getenv($k)) . "\n";
 }
-echo "START verify_1_9 " . gmdate('c') . "\n";
+echo 'START verify_1_9 ' . gmdate('c') . "\n";
 
-/** @return array{X: list<list<float>>, y: list<float>, labels: list<string>} */
+/**
+ * @return array{X: list<list<float>>, y: list<float>, labels: list<string>}
+ */
 function loadCsv(string $path, int $targetCol, int $maxRows): array
 {
     $raw = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -79,18 +80,38 @@ function loadCsv(string $path, int $targetCol, int $maxRows): array
         array_keys($labels),
     );
 
-    return ['X' => $X, 'y' => $y, 'labels' => $labels];
+    return [
+        'X' => $X,
+        'y' => $y,
+        'labels' => $labels,
+    ];
 }
 
-/** Прогон одного домена → строка вердикта. */
+/**
+ * Прогон одного домена → строка вердикта.
+ */
 function runDomain(string $name, string $path, int $targetCol, int $maxRows, bool $quick, ?string $note = null): array
 {
     $d = loadCsv($path, $targetCol, $maxRows);
     $cfg = $quick
-        ? ['k' => 3, 'depth' => 3, 'test_ratio' => 0.2, 'budget_sec' => 20.0,
-            'gate_grid' => [0.05, 0.10, 0.15], 'null_ensembles' => 2, 'null_k' => 2]
-        : ['k' => 8, 'depth' => 3, 'test_ratio' => 0.2, 'budget_sec' => 25.0,
-            'gate_grid' => [0.05, 0.075, 0.10, 0.125, 0.15], 'null_ensembles' => 2, 'null_k' => 3];
+        ? [
+            'k' => 3,
+            'depth' => 3,
+            'test_ratio' => 0.2,
+            'budget_sec' => 20.0,
+            'gate_grid' => [0.05, 0.10, 0.15],
+            'null_ensembles' => 2,
+            'null_k' => 2,
+        ]
+        : [
+            'k' => 8,
+            'depth' => 3,
+            'test_ratio' => 0.2,
+            'budget_sec' => 25.0,
+            'gate_grid' => [0.05, 0.075, 0.10, 0.125, 0.15],
+            'null_ensembles' => 2,
+            'null_k' => 3,
+        ];
     $cfg['log_file'] = sys_get_temp_dir() . "/v011_wu5_{$name}.log";
 
     $t0 = microtime(true);
@@ -149,7 +170,11 @@ foreach ($cases as [$name, $path, $target, $note]) {
         $results[$name] = runDomain($name, $path, $target, $maxRows, $quick, $note);
     } catch (Throwable $e) {
         echo "ERROR {$name}: " . $e->getMessage() . "\n";
-        $results[$name] = ['name' => $name, 'verdict' => 'ERROR', 'note' => $e->getMessage()];
+        $results[$name] = [
+            'name' => $name,
+            'verdict' => 'ERROR',
+            'note' => $e->getMessage(),
+        ];
     }
 }
 
@@ -160,10 +185,16 @@ $expectCert = ['feynman_dot', 'feynman_kinetic', 'kinetic_noise5', 'coulomb_nois
 $expectRefuse = ['airfoil', 'ccpp_degenerate'];
 $failures = [];
 foreach ($results as $r) {
-    printf("%-18s %-22s %-5s %-6s %-7s %-7s %s\n",
-        $r['name'], $r['verdict'] ?? '?',
-        $r['recurrence'] ?? '-', $r['cv_h'] ?? '-', $r['null_max'] ?? '-', $r['anchor'] ?? '-',
-        $r['note'] ?? '');
+    printf(
+        "%-18s %-22s %-5s %-6s %-7s %-7s %s\n",
+        $r['name'],
+        $r['verdict'] ?? '?',
+        $r['recurrence'] ?? '-',
+        $r['cv_h'] ?? '-',
+        $r['null_max'] ?? '-',
+        $r['anchor'] ?? '-',
+        $r['note'] ?? ''
+    );
     $v = $r['verdict'] ?? 'ERROR';
     if (in_array($r['name'], $expectCert, true) && $v !== 'ENSEMBLE_CERT') {
         $failures[] = "{$r['name']}: ожидался ENSEMBLE_CERT, получен {$v}";

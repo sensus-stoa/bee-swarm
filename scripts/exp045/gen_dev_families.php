@@ -45,7 +45,11 @@ for ($i = 0; $i < 2; $i++) {
     ];
 }
 
-$out = ['_prefix' => $prefix, '_seal' => $seal, 'tasks' => $tasks];
+$out = [
+    '_prefix' => $prefix,
+    '_seal' => $seal,
+    'tasks' => $tasks,
+];
 file_put_contents($outPath, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 echo ($seal ? 'SEALED' : 'DEV') . ' families written: ' . $outPath . ' (' . count($tasks) . " tasks)\n";
 if ($seal) {

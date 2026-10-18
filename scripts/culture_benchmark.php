@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
 use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 use BeeSwarm\Infra\Database;
 
 // ═══ ФАЗА A: рождение атомов из «прошлых задач» ═══
@@ -52,7 +52,8 @@ function phaseA(): void
         }
     }
 
-    $cnt = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE source='birth'")->fetchColumn();
+    $cnt = (int) $db->query("SELECT COUNT(*) FROM grammar_ops WHERE source='birth'")
+        ->fetchColumn();
     echo "  B-атомов в БД: {$cnt}\n";
 }
 
@@ -178,7 +179,12 @@ function findLaw2(array $X, array $y, int $depth = 3, float $budgetSec = 30.0): 
     $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;
     if ($res === null) {
-        return ['found' => false, 'cv' => 9.99, 'formula' => 'NONE', 'time_s' => round($elapsed, 2)];
+        return [
+            'found' => false,
+            'cv' => 9.99,
+            'formula' => 'NONE',
+            'time_s' => round($elapsed, 2),
+        ];
     }
     return [
         'found' => $res[0],
@@ -194,18 +200,54 @@ function findLaw2(array $X, array $y, int $depth = 3, float $budgetSec = 30.0): 
 function phaseB(): void
 {
     $tasks = [
-        'wine' => ['file' => 'wine.data', 'kind' => 'wine'],
-        'auto-mpg' => ['file' => 'auto-mpg.data', 'kind' => 'mpg'],
-        'feynman_gravity' => ['file' => 'data/feynman_gravity.csv', 'kind' => 'csv'],
-        'feynman_kinetic' => ['file' => 'data/feynman_kinetic_energy.csv', 'kind' => 'csv'],
-        'feynman_dot' => ['file' => 'data/feynman_dot_product.csv', 'kind' => 'csv'],
-        'feynman_heat' => ['file' => 'data/feynman_heat_conduction.csv', 'kind' => 'csv'],
-        'feynman_relmass' => ['file' => 'data/feynman_relativistic_mass.csv', 'kind' => 'csv'],
-        'feynman_kinetic_noise5' => ['file' => 'data/feynman_kinetic_energy_noise5.csv', 'kind' => 'csv'],
-        'feynman_coulomb_noise15' => ['file' => 'data/feynman_coulomb_noise15.csv', 'kind' => 'csv'],
-        'concrete' => ['file' => 'data/concrete_strength.csv', 'kind' => 'csv'],
-        'airfoil' => ['file' => 'data/airfoil_selfnoise.csv', 'kind' => 'csv'],
-        'energy' => ['file' => 'data/energy_efficiency.csv', 'kind' => 'csv'],
+        'wine' => [
+            'file' => 'wine.data',
+            'kind' => 'wine',
+        ],
+        'auto-mpg' => [
+            'file' => 'auto-mpg.data',
+            'kind' => 'mpg',
+        ],
+        'feynman_gravity' => [
+            'file' => 'data/feynman_gravity.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_kinetic' => [
+            'file' => 'data/feynman_kinetic_energy.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_dot' => [
+            'file' => 'data/feynman_dot_product.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_heat' => [
+            'file' => 'data/feynman_heat_conduction.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_relmass' => [
+            'file' => 'data/feynman_relativistic_mass.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_kinetic_noise5' => [
+            'file' => 'data/feynman_kinetic_energy_noise5.csv',
+            'kind' => 'csv',
+        ],
+        'feynman_coulomb_noise15' => [
+            'file' => 'data/feynman_coulomb_noise15.csv',
+            'kind' => 'csv',
+        ],
+        'concrete' => [
+            'file' => 'data/concrete_strength.csv',
+            'kind' => 'csv',
+        ],
+        'airfoil' => [
+            'file' => 'data/airfoil_selfnoise.csv',
+            'kind' => 'csv',
+        ],
+        'energy' => [
+            'file' => 'data/energy_efficiency.csv',
+            'kind' => 'csv',
+        ],
     ];
 
     echo "\n=== ФАЗА B: 12 задач × 20 seeds (с B-атомами!) ===\n";
@@ -237,9 +279,9 @@ function phaseB(): void
         }
         $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
         echo "  {$name}: med=" . round(median2($cvs), 4)
-            . " q05=" . round(percentile2($cvs, 5), 4)
-            . " q95=" . round(percentile2($cvs, 95), 4)
-            . "  success=" . count($accepted) . "/20\n";
+            . ' q05=' . round(percentile2($cvs, 5), 4)
+            . ' q95=' . round(percentile2($cvs, 95), 4)
+            . '  success=' . count($accepted) . "/20\n";
     }
 }
 

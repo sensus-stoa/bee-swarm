@@ -18,9 +18,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use BeeSwarm\Core\Search;
-use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\ExpressionEvaluator;
+use BeeSwarm\Core\Grammar;
+use BeeSwarm\Core\Search;
 
 const SEEDS = 20;
 const BUDGET = 30.0;
@@ -33,19 +33,101 @@ const HOPS = 2;     // количество hops
 // MUL→DIV: часто полезно (произведение / что-то)
 // SUB→DIV: иногда полезно
 $GRAPH = [
-    '/' => ['+' => 0.182, '−' => 0.068, 'max' => 0.068, 'Rmax' => 0.159, 'Rmin' => 0.182, 'R+' => 0.182],
-    '+' => ['/' => 0.273, '×' => 0.091, 'max' => 0.091, 'R+' => 0.182, 'add' => 0.091],
-    '−' => ['+' => 0.087, '/' => 0.478, 'Rrange' => 0.087],
-    'R+' => ['+' => 0.889, '−' => 0.111],
-    'max' => ['+' => 0.2, '×' => 0.1, 'min' => 0.1, '/' => 0.2, 'sq' => 0.1, 'mul' => 0.1, 'add' => 0.1, '−' => 0.1],
-    '×' => ['×' => 0.1, '+' => 0.1, '−' => 0.1, 'max' => 0.1, 'sq' => 0.1, '/' => 0.2, 'min' => 0.1, 'add' => 0.1, 'mul' => 0.1],
-    'min' => ['+' => 0.125, '×' => 0.125, '−' => 0.125, '/' => 0.125, 'max' => 0.125, 'sq' => 0.125, 'mul' => 0.125, 'add' => 0.125],
-    'Rmax' => ['−' => 0.5, '+' => 0.5],
-    'sq' => ['max' => 0.143, '/' => 0.143, '+' => 0.143, '−' => 0.143, 'add' => 0.143, '×' => 0.143, 'min' => 0.143],
-    'Rmin' => ['−' => 0.5, '+' => 0.5],
-    'add' => ['−' => 0.1, 'sq' => 0.1, '×' => 0.1, 'min' => 0.1, 'mul' => 0.1, 'max' => 0.2, '+' => 0.2, '/' => 0.1],
-    'mul' => ['+' => 0.125, '−' => 0.125, 'max' => 0.125, 'sq' => 0.125, 'add' => 0.125, '/' => 0.125, '×' => 0.125, 'min' => 0.125],
-    'R×' => ['/' => 1],
+    '/' => [
+        '+' => 0.182,
+        '−' => 0.068,
+        'max' => 0.068,
+        'Rmax' => 0.159,
+        'Rmin' => 0.182,
+        'R+' => 0.182,
+    ],
+    '+' => [
+        '/' => 0.273,
+        '×' => 0.091,
+        'max' => 0.091,
+        'R+' => 0.182,
+        'add' => 0.091,
+    ],
+    '−' => [
+        '+' => 0.087,
+        '/' => 0.478,
+        'Rrange' => 0.087,
+    ],
+    'R+' => [
+        '+' => 0.889,
+        '−' => 0.111,
+    ],
+    'max' => [
+        '+' => 0.2,
+        '×' => 0.1,
+        'min' => 0.1,
+        '/' => 0.2,
+        'sq' => 0.1,
+        'mul' => 0.1,
+        'add' => 0.1,
+        '−' => 0.1,
+    ],
+    '×' => [
+        '×' => 0.1,
+        '+' => 0.1,
+        '−' => 0.1,
+        'max' => 0.1,
+        'sq' => 0.1,
+        '/' => 0.2,
+        'min' => 0.1,
+        'add' => 0.1,
+        'mul' => 0.1,
+    ],
+    'min' => [
+        '+' => 0.125,
+        '×' => 0.125,
+        '−' => 0.125,
+        '/' => 0.125,
+        'max' => 0.125,
+        'sq' => 0.125,
+        'mul' => 0.125,
+        'add' => 0.125,
+    ],
+    'Rmax' => [
+        '−' => 0.5,
+        '+' => 0.5,
+    ],
+    'sq' => [
+        'max' => 0.143,
+        '/' => 0.143,
+        '+' => 0.143,
+        '−' => 0.143,
+        'add' => 0.143,
+        '×' => 0.143,
+        'min' => 0.143,
+    ],
+    'Rmin' => [
+        '−' => 0.5,
+        '+' => 0.5,
+    ],
+    'add' => [
+        '−' => 0.1,
+        'sq' => 0.1,
+        '×' => 0.1,
+        'min' => 0.1,
+        'mul' => 0.1,
+        'max' => 0.2,
+        '+' => 0.2,
+        '/' => 0.1,
+    ],
+    'mul' => [
+        '+' => 0.125,
+        '−' => 0.125,
+        'max' => 0.125,
+        'sq' => 0.125,
+        'add' => 0.125,
+        '/' => 0.125,
+        '×' => 0.125,
+        'min' => 0.125,
+    ],
+    'R×' => [
+        '/' => 1,
+    ],
 ];
 
 // ── Fingerprint задачи → начальная активация ──
@@ -78,8 +160,12 @@ function taskFingerprint(array $Xtr, array $ytr): array
         $col = array_column($Xtr, $f);
         $inc = $dec = 0;
         for ($i = 1; $i < $n; $i++) {
-            if ($col[$i] > $col[$i - 1]) $inc++;
-            if ($col[$i] < $col[$i - 1]) $dec++;
+            if ($col[$i] > $col[$i - 1]) {
+                $inc++;
+            }
+            if ($col[$i] < $col[$i - 1]) {
+                $dec++;
+            }
         }
         $monoScore += abs($inc - $dec) / max(1, $inc + $dec);
     }
@@ -127,7 +213,9 @@ function spreadActivation(array $graph, array $seedOps, int $hops, float $alpha)
     for ($h = 0; $h < $hops; $h++) {
         $newAct = $activation;
         foreach ($activation as $op => $act) {
-            if (!isset($graph[$op])) continue;
+            if (! isset($graph[$op])) {
+                continue;
+            }
             foreach ($graph[$op] as $neighbor => $weight) {
                 $newAct[$neighbor] = max($newAct[$neighbor] ?? 0.0, $act * $alpha * $weight);
             }
@@ -155,12 +243,19 @@ function oneStepGain(array $ePred, array $zVec, array $y): float
                 '+' => $ev + $zv,
                 '−' => $ev - $zv,
             };
-            if (!is_finite($v)) { $ok = false; break; }
+            if (! is_finite($v)) {
+                $ok = false;
+                break;
+            }
             $pred[] = $v;
         }
-        if (!$ok) continue;
+        if (! $ok) {
+            continue;
+        }
         $cv = cvShiftV2($pred, $y);
-        if ($cv < $bestCv) $bestCv = $cv;
+        if ($cv < $bestCv) {
+            $bestCv = $cv;
+        }
     }
     return $bestCv;
 }
@@ -172,22 +267,31 @@ function cvShiftV2(array $pred, array $y): float
     $ratio = [];
     foreach ($pred as $i => $p) {
         $den = abs($y[$i] - $shift) + $eps;
-        if ($den < $eps) return INF;
+        if ($den < $eps) {
+            return INF;
+        }
         $ratio[] = abs(($p - $shift) / ($y[$i] - $shift));
     }
     $m = array_sum($ratio) / count($ratio);
-    if (abs($m) < $eps) return INF;
+    if (abs($m) < $eps) {
+        return INF;
+    }
     $var = 0.0;
-    foreach ($ratio as $r) $var += ($r - $m) ** 2;
+    foreach ($ratio as $r) {
+        $var += ($r - $m) ** 2;
+    }
     return sqrt($var / count($ratio)) / abs($m);
 }
 
 function loadHeatV3(string $path): array
 {
-    $X = []; $y = [];
+    $X = [];
+    $y = [];
     foreach (file($path) as $line) {
         $p = array_map('floatval', explode(',', trim($line)));
-        if (count($p) < 6) continue;
+        if (count($p) < 6) {
+            continue;
+        }
         $X[] = array_slice($p, 0, 5);
         $y[] = $p[5];
     }
@@ -207,10 +311,10 @@ function splitV3(array $X, array $y, int $seed): array
     $tr = array_slice($idx, 0, $nTr);
     $te = array_slice($idx, $nTr);
     return [
-        array_map(fn($i) => $X[$i], $tr),
-        array_map(fn($i) => $y[$i], $tr),
-        array_map(fn($i) => $X[$i], $te),
-        array_map(fn($i) => $y[$i], $te),
+        array_map(fn ($i) => $X[$i], $tr),
+        array_map(fn ($i) => $y[$i], $tr),
+        array_map(fn ($i) => $X[$i], $te),
+        array_map(fn ($i) => $y[$i], $te),
     ];
 }
 
@@ -220,7 +324,7 @@ $base = __DIR__ . '/..';
 
 echo "=== EXP-032: Spreading Activation PoC (heat) ===\n";
 echo "graph: 13 nodes from 529 real laws (−→/ .478, R+→+ .889, ×→/ .2, R×→/ 1.0)\n";
-echo "hops=" . HOPS . " alpha=" . ALPHA . " K=" . TOP_K . " seeds=" . SEEDS . "\n\n";
+echo 'hops=' . HOPS . ' alpha=' . ALPHA . ' K=' . TOP_K . ' seeds=' . SEEDS . "\n\n";
 
 // Fingerprint один раз (на полных данных — для seed-ops)
 [$fpX, $fpY] = loadHeatV3($base . '/data/feynman_heat_conduction.csv');
@@ -230,7 +334,7 @@ echo "fingerprint: max_corr={$fp['max_corr']} mono={$fp['mono']} ratio={$fp['rat
 // Seed ops: MULTIPLICATIVE + RATIO (fingerprint говорит: corr высокий, ratio есть)
 $seedOps = ['−', '×', '/'];
 $activated = spreadActivation($GRAPH, $seedOps, HOPS, ALPHA);
-echo "activated ops: ";
+echo 'activated ops: ';
 foreach (array_slice($activated, 0, 6, true) as $op => $act) {
     echo "{$op}({$act}) ";
 }
@@ -248,7 +352,9 @@ for ($s = 1; $s <= SEEDS; $s++) {
     for ($i = 0; $i < $nFeat; $i++) {
         for ($j = $i + 1; $j < $nFeat; $j++) {
             foreach ($activated as $op => $act) {
-                if ($act < 0.1) continue; // порог активации
+                if ($act < 0.1) {
+                    continue;
+                } // порог активации
                 $ci = array_column($Xtr, $i);
                 $cj = array_column($Xtr, $j);
                 $vec = [];
@@ -261,11 +367,22 @@ for ($s = 1; $s <= SEEDS; $s++) {
                         'ADD' => $v + $cj[$k],
                         default => NAN,
                     };
-                    if (!is_finite($val)) { $ok = false; break; }
+                    if (! is_finite($val)) {
+                        $ok = false;
+                        break;
+                    }
                     $vec[] = $val;
                 }
-                if (!$ok) continue;
-                $cands[] = ['op' => $op, 'i' => $i, 'j' => $j, 'vec' => $vec, 'act' => $act];
+                if (! $ok) {
+                    continue;
+                }
+                $cands[] = [
+                    'op' => $op,
+                    'i' => $i,
+                    'j' => $j,
+                    'vec' => $vec,
+                    'act' => $act,
+                ];
             }
         }
     }
@@ -275,7 +392,7 @@ for ($s = 1; $s <= SEEDS; $s++) {
     foreach ($cands as &$c) {
         $c['gain'] = oneStepGain($meanY, $c['vec'], $ytr);
     }
-    usort($cands, fn($a, $b) => $a['gain'] <=> $b['gain']);
+    usort($cands, fn ($a, $b) => $a['gain'] <=> $b['gain']);
     $topCands = array_slice($cands, 0, TOP_K);
 
     // Расширяем X: добавляем top-K z-колонки
@@ -311,7 +428,7 @@ for ($s = 1; $s <= SEEDS; $s++) {
     $g->restrictTo(['+', '×', '−', '/', 'sq', 'sqrt']);
     $res = Search::find($XtrExt, $ytr, $g, 3, null, 0.0, 0.15, BUDGET);
 
-    if (!$res[0] || $res[1] >= 9.0) {
+    if (! $res[0] || $res[1] >= 9.0) {
         $cvsAll[] = 9.99;
         echo "  seed {$s}: NONE\n";
         continue;
@@ -331,13 +448,13 @@ for ($s = 1; $s <= SEEDS; $s++) {
     }
 }
 
-$accepted = array_filter($cvsAll, fn($c) => $c <= 0.10);
+$accepted = array_filter($cvsAll, fn ($c) => $c <= 0.10);
 echo "\n=== ИТОГ EXP-032 ===\n";
-echo "success=" . count($accepted) . "/" . SEEDS . "\n";
+echo 'success=' . count($accepted) . '/' . SEEDS . "\n";
 if ($accepted) {
     sort($accepted);
-    echo "CV_H: " . implode(', ', array_map(fn($c) => round($c, 4), $accepted)) . "\n";
-    echo "formulas: " . implode(' | ', array_unique($bestFormulas)) . "\n";
+    echo 'CV_H: ' . implode(', ', array_map(fn ($c) => round($c, 4), $accepted)) . "\n";
+    echo 'formulas: ' . implode(' | ', array_unique($bestFormulas)) . "\n";
 }
 $verdict = count($accepted) >= 10 ? '✅ МЕХАНИЗМ РАБОТАЕТ' : (count($accepted) >= 5 ? '⚠️ ЧАСТИЧНО' : '❌ НЕ РАБОТАЕТ');
 echo $verdict . "\n";

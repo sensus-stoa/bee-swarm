@@ -30,7 +30,9 @@ $g->restrictTo(array_merge($config['ops'], $config['register_ops'] ?? []));
 
 [$X, $y] = $config['data'];
 $r = BeeSwarm\Core\Search::find(
-    $X, $y, $g,
+    $X,
+    $y,
+    $g,
     (int) $config['depth'],
     $config['labels'],
     (float) ($config['test_ratio'] ?? 0.2),

@@ -67,7 +67,9 @@ function loadMpg(string $path): array
     return [$X, $y];
 }
 
-/** Frozen split: тот же seed 42, 60/40, как в Python-скрипте */
+/**
+ * Frozen split: тот же seed 42, 60/40, как в Python-скрипте
+ */
 function cvRatio(array $pred, array $y): float
 {
     $eps = 1e-9;
@@ -119,7 +121,11 @@ function findLaw(array $X, array $y, int $depth = 2, float $budgetSec = 60.0): ?
     $res = Search::find($X, $y, $g, $depth, null, 0.0, 0.15, $budgetSec);
     $elapsed = microtime(true) - $start;
     if ($res === null) {
-        return ['formula' => 'NONE', 'cv' => 9.99, 'time_s' => round($elapsed, 2)];
+        return [
+            'formula' => 'NONE',
+            'cv' => 9.99,
+            'time_s' => round($elapsed, 2),
+        ];
     }
     // Search::find → позиционный [found, cv, formula, cvTest, class]
     return [
@@ -138,7 +144,7 @@ function runWine(): void
     [$Xtr, $ytr, $Xte, $yte] = frozenSplit($X, $y);
 
     echo "=== WINE (frozen split 60/40, seed 42) ===\n";
-    echo "train: " . count($Xtr) . " rows, holdout: " . count($Xte) . " rows\n";
+    echo 'train: ' . count($Xtr) . ' rows, holdout: ' . count($Xte) . " rows\n";
 
     // Поиск на TRAIN
     $found = findLaw($Xtr, $ytr);
@@ -155,7 +161,7 @@ function runWine(): void
     $predTe = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($found['formula'], $Xte, $stats);
     if ($predTe !== null && count($predTe) === count($yte)) {
         $cvTe = cvRatio($predTe, $yte);
-        echo "  CV_holdout: " . round($cvTe, 4) . "\n";
+        echo '  CV_holdout: ' . round($cvTe, 4) . "\n";
     } else {
         echo "  CV_holdout: N/A (evaluateFormula вернул null/неверную длину)\n";
     }
@@ -184,17 +190,17 @@ function runWineSeeds(int $nSeeds = 20): void
         $r2s[] = corr2($predTe, $yte);
         $times[] = $found['time_s'];
         echo "  seed {$s}: " . ($found['found'] === true ? $found['formula'] : 'REFUSE')
-            . "  CV_H=" . round($cvTe, 4) . "  (" . ($found['time_s'] ?? 0) . "s)\n";
+            . '  CV_H=' . round($cvTe, 4) . '  (' . ($found['time_s'] ?? 0) . "s)\n";
     }
     $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
-    echo "  CV_H median: " . round(median($cvs), 4) . "  q05: " . round(percentile($cvs, 5), 4)
-        . "  q95: " . round(percentile($cvs, 95), 4) . "  q25: " . round(percentile($cvs, 25), 4)
-        . "  q75: " . round(percentile($cvs, 75), 4) . "\n";
-    echo "  success rate (CV_H<=0.10): " . count($accepted) . "/{$nSeeds}\n";
+    echo '  CV_H median: ' . round(median($cvs), 4) . '  q05: ' . round(percentile($cvs, 5), 4)
+        . '  q95: ' . round(percentile($cvs, 95), 4) . '  q25: ' . round(percentile($cvs, 25), 4)
+        . '  q75: ' . round(percentile($cvs, 75), 4) . "\n";
+    echo '  success rate (CV_H<=0.10): ' . count($accepted) . "/{$nSeeds}\n";
     if ($r2s) {
-        echo "  R² median (найденные): " . round(median($r2s), 3) . "\n";
+        echo '  R² median (найденные): ' . round(median($r2s), 3) . "\n";
     }
-    echo "  время median: " . round(median($times), 1) . "s\n";
+    echo '  время median: ' . round(median($times), 1) . "s\n";
 }
 
 function median(array $a): float
@@ -257,11 +263,11 @@ function runTask(string $name, array $X, array $y, int $nSeeds = 20): void
         $times[] = $found['time_s'];
     }
     $accepted = array_filter($cvs, fn ($c) => $c <= 0.10);
-    echo "  CV_H med=" . round(median($cvs), 4) . " q05=" . round(percentile($cvs, 5), 4)
-        . " q95=" . round(percentile($cvs, 95), 4)
-        . "  success=" . count($accepted) . "/{$nSeeds}"
-        . ($r2s ? "  R2=" . round(median($r2s), 3) : "")
-        . "  t=" . round(median($times), 1) . "s\n";
+    echo '  CV_H med=' . round(median($cvs), 4) . ' q05=' . round(percentile($cvs, 5), 4)
+        . ' q95=' . round(percentile($cvs, 95), 4)
+        . '  success=' . count($accepted) . "/{$nSeeds}"
+        . ($r2s ? '  R2=' . round(median($r2s), 3) : '')
+        . '  t=' . round(median($times), 1) . "s\n";
 }
 
 function runAllTasks(): void
@@ -331,7 +337,7 @@ function runMpgNull(int $nRuns = 100): void
     $rate = $foundCount / $nRuns;
     echo "  null: найдено законов на shuffle: {$foundCount}/{$nRuns} (FPR={$rate})\n";
     if ($cvs) {
-        echo "  CV найденных (null): " . implode(', ', array_map(fn ($c) => round($c, 3), array_slice($cvs, 0, 10))) . "...\n";
+        echo '  CV найденных (null): ' . implode(', ', array_map(fn ($c) => round($c, 3), array_slice($cvs, 0, 10))) . "...\n";
     }
 }
 

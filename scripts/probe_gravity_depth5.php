@@ -10,7 +10,6 @@ declare(strict_types=1);
  *
  * env-шапка: :memory:, пустые источники, beam 10.
  */
-
 putenv('SWARM_DB_PATH=:memory:');
 putenv('FORAGER_SOURCES=:');
 putenv('SEARCH_BEAM_K=10');
@@ -54,8 +53,8 @@ if ($res === null) {
 }
 [$found, $cv, $formula, $cvTest, $class] = $res;
 echo 'RESULT: found=', var_export($found, true), ' cv_train=', var_export($cv, true),
-    ' cv_test=', var_export($cvTest, true), ' class=', $class,
-    ' formula=', $formula, ' time=', round($elapsed, 1), 's', PHP_EOL;
+' cv_test=', var_export($cvTest, true), ' class=', $class,
+' formula=', $formula, ' time=', round($elapsed, 1), 's', PHP_EOL;
 
 // Критерий A19.3: формула НЕ голая константа-колонка (x8) при found
 if ($found) {

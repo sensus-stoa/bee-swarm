@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeeSwarm\Tests;
 
-use BeeSwarm\Core\ExpressionEvaluator;
 use BeeSwarm\Core\WordCodec;
 use BeeSwarm\Core\WordCodecException;
 
@@ -40,10 +39,14 @@ final class WordCum001Test extends TestCase
 
     private function dictionary(): array
     {
-        return WordCodec::buildDictionary([self::W1_NAME => self::W1_DEF], [self::W1_NAME]);
+        return WordCodec::buildDictionary([
+            self::W1_NAME => self::W1_DEF,
+        ], [self::W1_NAME]);
     }
 
-    /** Геном parent: W1-ref + бинарные операции. */
+    /**
+     * Геном parent: W1-ref + бинарные операции.
+     */
     private function parentGenome(): array
     {
         $ast = WordCodec::parseDefinition('(((x0+x1)/(x0−x1))+(x2×x3))');
@@ -51,7 +54,9 @@ final class WordCum001Test extends TestCase
         return WordCodec::encode($ast, $this->dictionary());
     }
 
-    /** Минимальная локальная мутация узла генома по пути (atom-swap). */
+    /**
+     * Минимальная локальная мутация узла генома по пути (atom-swap).
+     */
     private function atomSwapAt(array $genome, array $path, string $newAtom): array
     {
         $ref = &$genome;
@@ -144,7 +149,9 @@ final class WordCum001Test extends TestCase
         $dict = $this->dictionary();
         $parent = $this->parentGenome();
         $off2 = $this->atomSwapAt($this->atomSwapAt($parent, ['r', 'l'], 'x5'), ['r', 'r'], 'x1');
-        $bundle = WordCodec::serializeBundle($dict, ['child' => $off2]);
+        $bundle = WordCodec::serializeBundle($dict, [
+            'child' => $off2,
+        ]);
         $rows = \GenomeBenchmarkLib::evalRows();
         $envelope = [
             'db' => tempnam(sys_get_temp_dir(), 'wordcum_') . '.sqlite',
@@ -228,14 +235,38 @@ final class WordCum001Test extends TestCase
         $dict = $this->dictionary();
         // неверная арность
         try {
-            WordCodec::decode(['op' => '+', 'l' => ['word' => self::W1_NAME, 'args' => [['atom' => 'x0']]], 'r' => ['atom' => 'x1']], $dict);
+            WordCodec::decode([
+                'op' => '+',
+                'l' => [
+                    'word' => self::W1_NAME,
+                    'args' => [[
+                        'atom' => 'x0',
+                    ]],
+                ],
+                'r' => [
+                    'atom' => 'x1',
+                ],
+            ], $dict);
             self::fail('арность 1 != 2 должна отказывать');
         } catch (WordCodecException $e) {
             self::assertStringContainsString('arity mismatch', $e->getMessage());
         }
         // отсутствующее слово
         try {
-            WordCodec::decode(['op' => '+', 'l' => ['word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef', 'args' => [['atom' => 'x0'], ['atom' => 'x1']]], 'r' => ['atom' => 'x1']], $dict);
+            WordCodec::decode([
+                'op' => '+',
+                'l' => [
+                    'word' => 'BWdeadbeefdeadbeefdeadbeefdeadbeef',
+                    'args' => [[
+                        'atom' => 'x0',
+                    ], [
+                        'atom' => 'x1',
+                    ]],
+                ],
+                'r' => [
+                    'atom' => 'x1',
+                ],
+            ], $dict);
             self::fail('неизвестное слово должно отказывать');
         } catch (WordCodecException $e) {
             self::assertStringContainsString('unknown word', $e->getMessage());

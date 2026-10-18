@@ -354,12 +354,17 @@ final class VerificationExecutor
         // Повышение memory_limit валидно только если cap ВЫШЕ текущего
         // потребления: PHP отклоняет установку лимита ниже уже занятого
         // (warning "Failed to set memory limit", 13.09: usage 857M > cap 512M
-        // в -p8 воркере). Кап = защита от OOM-роста, не обрезок занятого.
+        // в -p8 воркере). VERIF-TICK-WIRING (17.10): кап требует РЕАЛЬНЫЙ
+        // хедрум (usage × 2 < cap) — формально-больше-занятого мало: воркер
+        // с usage 502MB + кап 512M = 10MB хедрума → неловимый фатал
+        // «Allowed memory size exhausted» (упавший -p8 воркер
+        // LifetimeMetricTest; тот же страйкл — жирному прод-демону).
+        // Кап = защита от OOM-роста, не обрезок занятого.
         $curLimitRaw = ini_get('memory_limit');
         $curLimitBytes = $this->limitToBytes(is_string($curLimitRaw) ? $curLimitRaw : '-1');
         $capBytes = $this->limitToBytes((string) $memCap);
         $curUsage = memory_get_usage(true);
-        if ($capBytes > 0 && $capBytes > $curUsage
+        if ($capBytes > 0 && $capBytes > $curUsage * 2
             && ($curLimitBytes < 0 || $capBytes > $curLimitBytes)) {
             ini_set('memory_limit', (string) $memCap);
         }

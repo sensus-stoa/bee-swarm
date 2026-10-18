@@ -145,7 +145,9 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 17.10 (ESCROW-ORPHAN-DEPOSITS WU-1): +4 EscrowOrphanDetectorTest → declared 1314
 # Снимок 17.10 (ESCROW-ORPHAN-DEPOSITS WU-2): +3 EscrowNodepositTest −1 (пин-тесты болезни слиты в инъекционную канару) → declared 1316
 # Снимок 17.10 (WU-2 dual-review): +1 search-path nodeposit-пин → declared 1317
-TOTAL_EXPECTED=1317
+# Снимок 17.10 (VERIF-TICK-WIRING): +5 VerificationTickWiringTest → declared 1322
+# Снимок 17.10 (VERIF-TICK-WIRING D1-цепочка): +1 хедрум-гвард капа (VerificationExecutorTest) → declared 1323
+TOTAL_EXPECTED=1323
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

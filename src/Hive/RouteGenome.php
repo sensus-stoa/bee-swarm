@@ -31,7 +31,7 @@ final class RouteGenome
     /**
      * Связки реальных env-ручек Search (см. RouteExecutor::BEAM_KNOBS).
      */
-    public const BEAM_PRESETS = ['default', 'beam10', 'beam40', 'narrow5'];
+    public const BEAM_PRESETS = ['default', 'beam10', 'beam40', 'narrow5', 'beam10nl'];
 
     public const CONDITION_KINDS = ['ALWAYS', 'NO_CERT_AFTER', 'INHERIT'];
 

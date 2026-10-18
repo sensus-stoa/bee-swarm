@@ -27,10 +27,10 @@ $arm = $argv[1] ?? '';
 $seed = (int) ($argv[2] ?? 0);
 $famJson = $argv[3] ?? '';
 $outDir = $argv[4] ?? '/tmp/exp045_probe_out';
-$taskSet = $argv[5] ?? 'families'; // 'families' (D4+DN) | 'dot' (DOT+DNN — польза)
-if (! in_array($arm, ['on', 'off'], true) || ! in_array($taskSet, ['families', 'dot'], true)
+$taskSet = $argv[5] ?? 'families'; // 'families' | 'dot' | 'dot4' (глубина)
+if (! in_array($arm, ['on', 'off'], true) || ! in_array($taskSet, ['families', 'dot', 'dot4'], true)
     || ($taskSet === 'families' && ! is_file($famJson))) {
-    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir> [taskSet:families|dot]\n");
+    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir> [taskSet:families|dot|dot4]\n");
     exit(2);
 }
 @mkdir($outDir, 0777, true);
@@ -159,6 +159,43 @@ function dot_null(int $seed): array
     return [$X, $y];
 }
 
+// DOT4 DEPTH PROBE (prereg DOT4_DEPTH_PROBE.md): 4-членный закон — дерево
+// глубины 4, недостижим поиском (depth-2: max 2-term; depth-3: L2⊕фича).
+// Собирается только цепочкой: 2-term метки → 3-term метки → mark⊕product.
+function dot4_task(int $seed): array
+{
+    $s = $seed;
+    $r = function () use (&$s) {
+        $s = ($s * 1103515245 + 12345) & 0x7FFFFFFF;
+
+        return $s / 0x7FFFFFFF;
+    };
+    $u = function (float $a, float $b) use ($r): float {
+        return $a + $r() * ($b - $a);
+    };
+    $X = [];
+    $y = [];
+    for ($i = 0; $i < 200; $i++) {
+        $row = [$u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2)];
+        $X[] = $row;
+        $y[] = $row[0] * $row[3] + $row[1] * $row[4] + $row[2] * $row[5] + $row[3] * $row[5];
+    }
+
+    return [$X, $y];
+}
+
+function dot4_null(int $seed): array
+{
+    [$X, $y] = dot4_task($seed);
+    mt_srand($seed);
+    for ($i = count($y) - 1; $i > 0; $i--) {
+        $j = (int) floor(mt_rand() / (mt_getrandmax() + 1) * ($i + 1));
+        [$y[$i], $y[$j]] = [$y[$j], $y[$i]];
+    }
+
+    return [$X, $y];
+}
+
 // ---- лестница (prereg §1: [FLIGHT beam10, USE_MARKS, FLIGHT, USE_MARKS, FLIGHT]) ----
 
 function ladder_genome(int $i): array
@@ -206,6 +243,11 @@ if ($taskSet === 'dot') {
     [$Xn, $yn] = dot_null($seed + 7);
     $jobs[] = ['id' => 'DOT', 'n' => 8, 'X' => $Xd, 'y' => $yd, 'is_null' => false];
     $jobs[] = ['id' => 'DNN', 'n' => 2, 'X' => $Xn, 'y' => $yn, 'is_null' => true];
+} elseif ($taskSet === 'dot4') {
+    [$Xd, $yd] = dot4_task($seed);
+    [$Xn, $yn] = dot4_null($seed + 13);
+    $jobs[] = ['id' => 'DOT4', 'n' => 8, 'X' => $Xd, 'y' => $yd, 'is_null' => false];
+    $jobs[] = ['id' => 'DN4', 'n' => 2, 'X' => $Xn, 'y' => $yn, 'is_null' => true];
 } else {
     $params = json_decode(file_get_contents($famJson), true);
     $byId = [];
@@ -331,12 +373,12 @@ $out = [
     'seed' => $seed,
     'task_set' => $taskSet,
     'channel_sec' => $CHANNEL_SEC,
-    'ladders' => $taskSet === 'dot' ? ['DOT' => 8, 'DNN' => 2] : $LADDERS,
+    'ladders' => $taskSet === 'dot' ? ['DOT' => 8, 'DNN' => 2] : ($taskSet === 'dot4' ? ['DOT4' => 8, 'DN4' => 2] : $LADDERS),
     'selfchecks' => $selfchecks,
     'fuse' => $fuse,
     'tasks' => $tasksOut,
 ];
-$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . ($taskSet === 'dot' ? '_dot' : '') . '.json';
+$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . ($taskSet === 'families' ? '' : '_' . $taskSet) . '.json';
 file_put_contents($outPath, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 echo 'DONE ', $out['run_id'],
 ': m3_loops=', array_sum(array_map(fn ($t) => count($t['m3_loops']), $tasksOut)),

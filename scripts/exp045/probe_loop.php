@@ -36,6 +36,10 @@ if (! in_array($arm, ['on', 'off'], true) || ! in_array($taskSet, ['families', '
 @mkdir($outDir, 0777, true);
 
 putenv('SWARM_DB_PATH=:memory:');
+// EXP-040-конфиг паритета: RAWPAIR-пул — источник продуктов в pair-пуле
+// (в EXP-040 EXT 19/20 продукты приходили через SEARCH_RAWPAIR_POOL=1;
+// без него пар-пул не имеет родителей для mark⊕parent).
+putenv('SEARCH_RAWPAIR_POOL=1');
 mt_srand($seed);
 
 $marksMode = $arm === 'on' ? 1 : 0;
@@ -166,11 +170,11 @@ function ladder_genome(int $i): array
         'budget_fraction' => 0.30, // валидируется схемой; probe'ом НЕ применяется (P8)
         'max_steps' => 5,
         'actions' => [
-            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
             ['op' => 'USE_MARKS', 'k' => 5],
-            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
             ['op' => 'USE_MARKS', 'k' => 5],
-            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
         ],
     ];
     $errors = RouteGenomeValidator($g);

@@ -798,6 +798,22 @@ class Search
                 // Интервенция пред-регистрирована (DOT_VALUE_PROBE v3) до прогона.
                 $nY = count($y);
                 $meanY = array_sum($y) / max(1, $nY);
+                // LOOP PROBE v6 (КОРЕНЬ нулевой пользы, найден eval-check харнесом):
+                // метки хранятся в LABEL-пространстве (c0×c3 — имена скорера),
+                // а evaluateFormula требует x-пространство (атомы xN позиционные)
+                // и НЕ принимает labels → без конверсии EVAL_NULL у ВСЕХ меток →
+                // инъекция мертва во всех итерациях (и в исходном WU-4c: 19/20
+                // EXP-040 шли через RAWPAIR-merge, не через инъекцию). Конвенция
+                // конверсии = testCv/labels_to_x: longest-first str_replace.
+                $labToX = [];
+                if ($colLabels !== null) {
+                    foreach ($colLabels as $ci => $cl) {
+                        if (is_string($cl) && $cl !== '') {
+                            $labToX[$cl] = 'x' . $ci;
+                        }
+                    }
+                    uksort($labToX, fn (string $a, string $b): int => strlen($b) <=> strlen($a));
+                }
                 $candR = [];
                 foreach ($rowsAll as $row) {
                     $mf = $row['formula'];
@@ -809,7 +825,11 @@ class Search
                     if (in_array($mf, $pool, true)) {
                         continue; // уже в парном пуле — инъекция не нужна
                     }
-                    $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($mf, $X);
+                    $xmf = $mf;
+                    foreach ($labToX as $cl => $xv) {
+                        $xmf = str_replace($cl, $xv, $xmf);
+                    }
+                    $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($xmf, $X);
                     if ($mv === null) {
                         continue; // не вычислима на этом сплите — дорога мимо
                     }
@@ -863,7 +883,13 @@ class Search
                     $mf = $c['f'];
                     $exprs[$mf] = $c['v'];
                     if (! in_array($mf, $pool, true)) {
-                        $pool[] = $mf;
+                        // МЕТКИ ПЕРВЫМИ (замысел WU-4c; комментарий выше) — но
+                        // pool[] = дописывал их в КОНЕЦ: при пуле ~46 элементов
+                        // и бюджете полёта ~5s пар-луп не доходил до хвоста —
+                        // mark⊕parent не сочинялся (диагноз DOT-пробы v5).
+                        // array_unshift: метки в голове пула → их пары
+                        // композирируются первыми и попадают в бюджет.
+                        $pool = array_merge([$mf], $pool);
                         $trailReadCount++;
                         // EXP-045 LOOP PROBE: стадия injected (факт входа в пул)
                         self::$lastTrailReadInjected[] = $mf;
@@ -1106,6 +1132,23 @@ class Search
             fwrite(STDERR, '[SD-POST-L2L1] bvec exprs: ' . (isset($exprs[$bvec]) ? 'YES' : 'NO')
                 . ' target: ' . (isset($exprs['((x0BPf474x1)×x2)']) ? 'YES' : 'NO')
                 . ' l2Keys=' . count($l2Keys) . PHP_EOL);
+            // LOOP PROBE v5: топ kept-имён после L2-beam — поиск закона пробы
+            $lawProbe = ['c0×c3)+(c1×c4', 'c2×c5'];
+            foreach ($lawProbe as $lp) {
+                $hits = array_values(array_filter($l2Keys, fn (string $k): bool => str_contains($k, $lp)));
+                fwrite(STDERR, '[SD-LAW] "' . $lp . '" in l2Keys: ' . count($hits)
+                    . (count($hits) > 0 ? ' | ' . implode(' ;; ', array_slice(array_map(fn ($h) => substr($h, 0, 60), $hits), 0, 3)) : '')
+                    . PHP_EOL);
+            }
+            // LOOP PROBE v5b: пар-луповский взгляд — ступени в $pool? закон в $exprs?
+            $poolStairs = array_filter($pool, fn (string $p): bool => str_contains($p, '+') && str_contains($p, '×'));
+            $lawFull = '(((c0×c3)+(c1×c4))+(c2×c5))';
+            fwrite(STDERR, '[SD-PAIR] pool_n=' . count($pool)
+                . ' pool_stairs=' . count($poolStairs)
+                . ' pool_marksamples=' . (int) in_array('((c0×c3)+(c1×c4))', $pool, true)
+                . ',' . (int) in_array('(c2×c5)', $pool, true)
+                . ' law_in_exprs=' . (isset($exprs[$lawFull]) ? 'YES' : 'NO')
+                . PHP_EOL);
         }
         if ($depth >= 3) {
             // EXP-035 (27.08): L2 ÷ ФИЧА — heat-законы κ(T2−T1)A/d требуют

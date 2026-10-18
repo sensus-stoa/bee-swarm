@@ -63,6 +63,15 @@ final class RouteExecutor
             'SEARCH_BEAM_K' => '5',
             'L2_BEAM_K' => '10',
         ],
+        // EXP-045 D4 LOOP PROBE v5 (19.10): beam10 БЕЗ L2-freeze — конфигурация
+        // verify-пути EXP-040 (verify_residual.php:21 — только SEARCH_BEAM_K=10),
+        // в которой инъекция меток ВЫЖИВАЕТ: L2-freeze пересобирает пул из
+        // l2Keys (композиты-метки не l2Keys → выпадают до пар-лупа; корень
+        // нулевой пользы dev_run1/2 и DOT-пробы, найден телеметрией v5).
+        'beam10nl' => [
+            'SEARCH_BEAM_K' => '10',
+            'L2_BEAM_K' => '',
+        ],
     ];
 
     /**

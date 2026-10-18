@@ -330,6 +330,8 @@ final class RouteExecutor
                 'read_fetched' => Search::$lastTrailReadFetched,
                 'read_injected' => Search::$lastTrailReadInjected,
                 'read_attempts' => Search::$lastTrailReadAttempts,
+                'read_wide' => Search::$lastTrailReadWide,
+                'read_poolskip' => Search::$lastTrailReadPoolSkip,
             ]];
         } finally {
             foreach ($snapshot as $k => $v) {

@@ -27,8 +27,10 @@ $arm = $argv[1] ?? '';
 $seed = (int) ($argv[2] ?? 0);
 $famJson = $argv[3] ?? '';
 $outDir = $argv[4] ?? '/tmp/exp045_probe_out';
-if (! in_array($arm, ['on', 'off'], true) || ! is_file($famJson)) {
-    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir>\n");
+$taskSet = $argv[5] ?? 'families'; // 'families' (D4+DN) | 'dot' (DOT+DNN — польза)
+if (! in_array($arm, ['on', 'off'], true) || ! in_array($taskSet, ['families', 'dot'], true)
+    || ($taskSet === 'families' && ! is_file($famJson))) {
+    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir> [taskSet:families|dot]\n");
     exit(2);
 }
 @mkdir($outDir, 0777, true);
@@ -115,6 +117,44 @@ function parse_csv(string $path): array
     return [$X, $y];
 }
 
+// ---- DOT VALUE PROBE (prereg DOT_VALUE_PROBE.md): локальный генератор ----
+// y = x0·x3 + x1·x4 + x2·x5 — depth-2 без меток НЕ собирается (EXP-040
+// baseline 0/20), mark⊕parent собирает. LCG тот же стиль, детерминизм по сиду.
+
+function dot_task(int $seed): array
+{
+    $s = $seed;
+    $r = function () use (&$s) {
+        $s = ($s * 1103515245 + 12345) & 0x7FFFFFFF;
+
+        return $s / 0x7FFFFFFF;
+    };
+    $u = function (float $a, float $b) use ($r): float {
+        return $a + $r() * ($b - $a);
+    };
+    $X = [];
+    $y = [];
+    for ($i = 0; $i < 200; $i++) {
+        $row = [$u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2), $u(-2, 2)];
+        $X[] = $row;
+        $y[] = $row[0] * $row[3] + $row[1] * $row[4] + $row[2] * $row[5];
+    }
+
+    return [$X, $y];
+}
+
+function dot_null(int $seed): array
+{
+    [$X, $y] = dot_task($seed);
+    mt_srand($seed);
+    for ($i = count($y) - 1; $i > 0; $i--) {
+        $j = (int) floor(mt_rand() / (mt_getrandmax() + 1) * ($i + 1));
+        [$y[$i], $y[$j]] = [$y[$j], $y[$i]];
+    }
+
+    return [$X, $y];
+}
+
 // ---- лестница (prereg §1: [FLIGHT beam10, USE_MARKS, FLIGHT, USE_MARKS, FLIGHT]) ----
 
 function ladder_genome(int $i): array
@@ -156,26 +196,42 @@ function trail_dump(): array
 
 // ---- прогон ----
 
-$params = json_decode(file_get_contents($famJson), true);
-$byId = [];
-foreach ($params['tasks'] as $t) {
-    $byId[$t['id']] = $t;
+$jobs = [];
+if ($taskSet === 'dot') {
+    [$Xd, $yd] = dot_task($seed);
+    [$Xn, $yn] = dot_null($seed + 7);
+    $jobs[] = ['id' => 'DOT', 'n' => 8, 'X' => $Xd, 'y' => $yd, 'is_null' => false];
+    $jobs[] = ['id' => 'DNN', 'n' => 2, 'X' => $Xn, 'y' => $yn, 'is_null' => true];
+} else {
+    $params = json_decode(file_get_contents($famJson), true);
+    $byId = [];
+    foreach ($params['tasks'] as $t) {
+        $byId[$t['id']] = $t;
+    }
+    foreach (['D4', 'DN1', 'DN2'] as $taskId) {
+        $spec = $byId[$taskId];
+        $tmpCsv = tempnam(sys_get_temp_dir(), 'probe_') . '.csv';
+        gen_family($spec, $tmpCsv);
+        [$X, $y] = parse_csv($tmpCsv);
+        unlink($tmpCsv);
+        $jobs[] = ['id' => $taskId, 'n' => $LADDERS[$taskId] ?? 2, 'X' => $X, 'y' => $y,
+            'is_null' => $taskId !== 'D4'];
+    }
 }
-$labels = ['c0', 'c1', 'c2', 'c3', 'c4'];
+$labelsUnused = null; // labels вычисляются per-task по ширине X (см. цикл выше)
 
 $selfchecks = ['off_trail_empty' => true, 'counter_db_match' => true];
 $fuse = ['triggered' => false, 'where' => []];
 $tasksOut = [];
 
-foreach (['D4', 'DN1', 'DN2'] as $taskId) {
-    $spec = $byId[$taskId];
-    $tmpCsv = tempnam(sys_get_temp_dir(), 'probe_') . '.csv';
-    gen_family($spec, $tmpCsv);
-    [$X, $y] = parse_csv($tmpCsv);
-    unlink($tmpCsv);
+foreach ($jobs as $job) {
+    $taskId = $job['id'];
+    $X = $job['X'];
+    $y = $job['y'];
+    $labels = array_map(fn (int $i): string => "c{$i}", range(0, count($X[0]) - 1));
 
     Database::get()->exec('DELETE FROM trail_marks');
-    $nLadders = $LADDERS[$taskId] ?? 2;
+    $nLadders = $job['n'];
     $writtenBy = [];   // formula => первый route_index, записавший её
     $loops = [];       // M3: перекрёстные звенья (r2>r1, та же формула)
     $selfLoops = 0;
@@ -248,7 +304,7 @@ foreach (['D4', 'DN1', 'DN2'] as $taskId) {
         ];
 
         // FPR-предохранитель: found на null-задаче (консервативный суперсет сертификации)
-        if ($taskId !== 'D4' && $res['found']) {
+        if ($job['is_null'] && $res['found']) {
             $fuse['triggered'] = true;
             $fuse['where'][] = ['task' => $taskId, 'route_index' => $i, 'seed' => $seed];
         }
@@ -265,17 +321,18 @@ foreach (['D4', 'DN1', 'DN2'] as $taskId) {
 }
 
 $out = [
-    'run_id' => 'probe_' . $arm . '_' . $seed,
+    'run_id' => 'probe_' . $arm . '_' . $seed . ($taskSet === 'dot' ? '_dot' : ''),
     'arm' => $arm,
     'marks_mode' => $marksMode,
     'seed' => $seed,
+    'task_set' => $taskSet,
     'channel_sec' => $CHANNEL_SEC,
-    'ladders' => $LADDERS,
+    'ladders' => $taskSet === 'dot' ? ['DOT' => 8, 'DNN' => 2] : $LADDERS,
     'selfchecks' => $selfchecks,
     'fuse' => $fuse,
     'tasks' => $tasksOut,
 ];
-$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . '.json';
+$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . ($taskSet === 'dot' ? '_dot' : '') . '.json';
 file_put_contents($outPath, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 echo 'DONE ', $out['run_id'],
 ': m3_loops=', array_sum(array_map(fn ($t) => count($t['m3_loops']), $tasksOut)),

@@ -2096,6 +2096,14 @@ class Search
             'labels' => $colLabels,
         ]));
         $db = \BeeSwarm\Infra\Database::get();
+        if (self::trailAblation('write')) {
+            // ШАГ III абляция: writer выключен, свип-слои продолжают тикать.
+            self::$lastTrailWriterInput['eligible'] = 0;
+            self::$lastTrailWriterInput['written'] = 0;
+            self::$lastTrailWriterInput['reason'] = 'ablate_write';
+            self::sweepTrailMarks($db, $scopeKey, $colLabels, $X, $y);
+            return;
+        }
         if (empty($plausible) || ($bestCvSeen !== INF && $bestCvSeen >= self::NOISE_CV_FLOOR * 8)) {
             // EXP-045 LOOP PROBE: стадии writer_input при отсеве (P3).
             // Sweep продолжает работать и на noise-вылетах — τ течёт всегда.
@@ -2132,27 +2140,33 @@ class Search
         $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $flight = self::$trailFlightNo;
         $evictedIds = [];
-        foreach ($rows as $row) {
-            $age = $flight - max((int) $row['mark_tick'], (int) $row['last_activity_tick']);
-            $tau = $row['state'] === 'CONFIRMED' ? self::TRAIL_TAU_CONFIRMED : self::TRAIL_TAU_UNCALIBRATED;
-            if ($age > $tau) {
-                self::evictMark($db, $scopeKey, $row);
-                $evictedIds[] = (int) $row['id'];
+        if (! self::trailAblation('tau')) {
+            foreach ($rows as $row) {
+                $age = $flight - max((int) $row['mark_tick'], (int) $row['last_activity_tick']);
+                $tau = $row['state'] === 'CONFIRMED' ? self::TRAIL_TAU_CONFIRMED : self::TRAIL_TAU_UNCALIBRATED;
+                if ($age > $tau) {
+                    self::evictMark($db, $scopeKey, $row);
+                    $evictedIds[] = (int) $row['id'];
+                }
             }
         }
         // NMD (§4): только PERSISTED — CONFIRMED-инфраструктура живёт по τ.
-        $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
-        foreach ($rows as $row) {
-            if ($row['state'] !== 'PERSISTED' || in_array((int) $row['id'], $evictedIds, true)) {
-                continue;
-            }
-            $res = \BeeSwarm\Core\TrailAdmission::classify((string) $row['formula'], $labelsToX, $X, $y);
-            if ($res['eval'] !== \BeeSwarm\Core\TrailAdmission::EVAL_OK) {
-                self::evictMark($db, $scopeKey, $row);
-                $evictedIds[] = (int) $row['id'];
+        if (! self::trailAblation('nmd')) {
+            $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
+            foreach ($rows as $row) {
+                if ($row['state'] !== 'PERSISTED' || in_array((int) $row['id'], $evictedIds, true)) {
+                    continue;
+                }
+                $res = \BeeSwarm\Core\TrailAdmission::classify((string) $row['formula'], $labelsToX, $X, $y);
+                if ($res['eval'] !== \BeeSwarm\Core\TrailAdmission::EVAL_OK) {
+                    self::evictMark($db, $scopeKey, $row);
+                    $evictedIds[] = (int) $row['id'];
+                }
             }
         }
-        self::enforceTrailCapacity($db, $scopeKey);
+        if (! self::trailAblation('slots')) {
+            self::enforceTrailCapacity($db, $scopeKey);
+        }
     }
 
     /**
@@ -2386,6 +2400,21 @@ class Search
             return;
         }
         self::$trailFlightNo++;
+    }
+
+    /**
+     * ШАГ III (спека §6-III): по-слойные kill-switch абляции. TRAIL_ABLATE =
+     * CSV 'write,tau,slots,nmd'; unset/'' = full v4 (все слои активны).
+     * Атрибуция слоёв — НЕ каузальность (спека §0-3).
+     */
+    public static function trailAblation(string $layer): bool
+    {
+        $raw = getenv('TRAIL_ABLATE');
+        if ($raw === false || trim($raw) === '') {
+            return false;
+        }
+
+        return in_array($layer, array_map('trim', explode(',', strtolower($raw))), true);
     }
 
     /**

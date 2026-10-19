@@ -153,7 +153,8 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 18.10 (dual-review M1): +1 testGarbageEnvFallsBackToDefault (EMPTY_POOL_SLEEP_US парсинг) → declared 1322
 # Снимок 19.10 (EXP-045 Road v4 WU): +3 TrailMarksV4SchemaTest, +14 TrailAdmissionTest, +15 TrailMarksV4Test → declared 1354
 # Снимок 19.10 (dual-review deleg_231f9459 фиксы): +1 markInLaw, +1 confirmed-below-cap, +1 petal-only → declared 1357
-TOTAL_EXPECTED=1357
+# Снимок 19.10 (ШАГ III ablation WU): +6 TrailAblationTest → declared 1363
+TOTAL_EXPECTED=1363
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

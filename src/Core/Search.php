@@ -92,6 +92,24 @@ class Search
      *  в тексте критерия само-модели незнания. */
     private const NOISE_CV_FLOOR = 0.5;
 
+    // ROAD V4 (19.10, спека §2): окно admission per flight + класс-баланс.
+    private const TRAIL_ADMIT_PER_FLIGHT = 5;
+
+    private const TRAIL_ADMIT_STAIR = 3;
+
+    private const TRAIL_ADMIT_OTHER = 2;
+
+    // ROAD V4 (19.10, спека §3): per-class ёмкости мест (per fingerprint).
+    private const TRAIL_CAP_CLASS = 6;
+
+    private const TRAIL_CAP_CONFIRMED = 12;
+
+    // ROAD V4 (19.10, спека §5): τ выветривания в вылетах (refresh — только
+    // cross-route injection и confirm; перезапись НЕ продлевает).
+    private const TRAIL_TAU_UNCALIBRATED = 3;
+
+    private const TRAIL_TAU_CONFIRMED = 20;
+
     /** §1.2 tMin base = 10 — Hive-маршрутизация вычисляет
      *  max(10, nFeat×5) и передаёт в find() (pre-filter на уровне
      *  маршрутизации, §1.2). */
@@ -163,6 +181,11 @@ class Search
         self::$lastTrailReadAttempts = null;
         self::$lastTrailReadWide = null;
         self::$lastTrailReadPoolSkip = null;
+        self::$lastTrailEvalStats = [];
+        // ROAD V4: τ-clock — каждый вылет двигает счётчик (спека §5).
+        if (getenv('TRAIL_MARKS') === '1') {
+            self::advanceTrailFlight();
+        }
         // ЭКСП-018b: микро-профиль Search (SEARCH_PROFILE=1)
         SearchProfiler::registerShutdown();
         $p0 = microtime(true);
@@ -857,8 +880,12 @@ class Search
                         $v2 += $d2 * $d2;
                     }
                     $fit = ($v1 > 1e-12 && $v2 > 1e-12) ? abs($cov / sqrt($v1 * $v2)) : 0.0;
-                    $candR[] = ['f' => $mf, 'v' => $mv, 'fit' => $fit,
-                        'stair' => str_contains($mf, '+') && str_contains($mf, '×')];
+                    $candR[] = [
+                        'f' => $mf,
+                        'v' => $mv,
+                        'fit' => $fit,
+                        'stair' => str_contains($mf, '+') && str_contains($mf, '×'),
+                    ];
                 }
                 self::$lastTrailReadPoolSkip = count($rowsAll) - count($candR); // LOOP PROBE v5: pool/eval-отсев
                 usort($candR, fn (array $a, array $b): int => $b['fit'] <=> $a['fit']);
@@ -898,6 +925,9 @@ class Search
                 if (getenv('SEARCH_DEBUG') === '1') {
                     fwrite(STDERR, '[SD-TRAIL] injected=' . $trailReadCount . PHP_EOL);
                 }
+                // ROAD V4 §1: инъекция метки чужим маршрутом (r2 > birth_route) —
+                // read_cross_count++ и refresh τ (самочтение исключено гардом WHERE).
+                self::countTrailCrossReads($scopeKeyR, $selR);
             }
             if (getenv('SEARCH_PROFILE') === '1') {
                 self::$__prof[] = ['L2PAIRS', microtime(true)];
@@ -1654,6 +1684,7 @@ class Search
                     'cv' => $cv,
                     'name' => $name,
                     'corr' => $corrM,
+                    'vec' => $vec,
                 ];
             }
             // WU-4c FIX 11.10 (verify_dot20 0/20, trace-цепочка): СТУПЕНИ лестницы
@@ -1683,6 +1714,7 @@ class Search
                         'cv' => $cv,
                         'name' => $name,
                         'corr' => $corrS,
+                        'vec' => $vec,
                     ];
                 }
             }
@@ -1713,6 +1745,7 @@ class Search
                     'cv' => $cv,
                     'name' => $name,
                     'corr' => $corrP,
+                    'vec' => $vec,
                 ];
             }
             if ($cv < $cvTrainMax) {
@@ -2008,32 +2041,48 @@ class Search
             \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
         }
 
-        // M1-EXT v2 WU-4 (10.10): дорожная память — сигнальная форма переживает
-        // find(). TRAIL_MARKS=1 (default off = verify-величина, §0.6-канон).
-        // Запись: топ-5 непрошедших форм из $plausible, отсортированных по cv
-        // (крупные структуры: только с '×' ИЛИ '+' — одиночные фичи не метки).
-        // «Signal must replicate» (WU-D4): uses++ при повторной записи того же
-        // fingerprint+formula; uses>=3 без подтверждения гейтом — дорога
-        // зарастает (DELETE, §2.5.14-логика). Fail-loud (без try/catch):
+        // M1-EXT v2 WU-4 → ROAD V4 (19.10, спека WU_ROAD_V4_SPEC.md §2):
+        // дорожная память — competitive admission. TRAIL_MARKS=1 (default off
+        // = verify-величина, §0.6-канон). За вылет выживают ≤5 кандидатов
+        // (≤3 stair + ≤2 прочих) по admission-proxy; перезапись НЕ продлевает
+        // τ и НЕ подтверждает (спека §1/§5). Fail-loud (без try/catch):
         // молчаливая смерть стигмергии = тихий регресс к амнезии.
-        if (getenv('TRAIL_MARKS') === '1' && ! $found && (! empty($signalForms) || ! empty($stairForms))) {
+        if (getenv('TRAIL_MARKS') === '1' && $found && isset($bestName)) {
+            // ROAD V4 §1/§2: PERSISTED→CONFIRMED по участию в found-законе
+            self::confirmTrailMarks($colLabels, $bestName);
+        }
+        if (getenv('TRAIL_MARKS') === '1' && ! $found
+            && (! empty($signalForms) || ! empty($stairForms) || ! empty($petalForms))) {
+            // Ревью deleg_231f9459: petalForms в гейте — petal-only вылеты
+            // пишут (класс petal рождается сам, union спеки §2) и свипают.
             // Ступени ПЕРВЫМИ (лестница: следующая пчела строит из них закон)
             // EXP-045 LOOP PROBE: writer_input — наблюдение входа в writer (P3).
             $plausibleForMarks = array_merge($stairForms, $petalForms, $signalForms);
-            self::$lastTrailWriterInput = ['candidates' => count($plausibleForMarks), 'eligible' => null, 'written' => null, 'reason' => null];
-            self::writeTrailMarks($colLabels, $plausibleForMarks, $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap);
+            self::$lastTrailWriterInput = [
+                'candidates' => count($plausibleForMarks),
+                'eligible' => null,
+                'written' => null,
+                'reason' => null,
+            ];
+            self::writeTrailMarks($colLabels, $plausibleForMarks, $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap, $X, $y);
         }
 
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
     }
 
     /**
-     * M1-EXT v2 WU-4: запись дорожных меток (стигмергия между вылетами).
+     * M1-EXT v2 WU-4 → ROAD V4 (19.10, спека WU_ROAD_V4_SPEC.md §2): запись
+     * дорожных меток = competitive admission. Кандидаты конвертируются
+     * label→x, классифицируются EVAL (§4), ранжируются по admission-proxy
+     * (|Pearson(values, y)|) и проходят класс-баланс + ghost-правила (§1).
+     * Перезапись НЕ продлевает τ и НЕ подтверждает (written_count —
+     * телеметрия; спека §1/§5). Uses демотирован: аутофагия-DELETE сняты,
+     * выживание решают capacity/τ/NMD (sweep), не частота.
      *
-     * @param list<array{cv: float, name: string, corr: float}> $plausible сигнальные формы (cv в [гейт, потолок); corr = 30-row Pearson — рейтинг чтения меток)
+     * @param list<array{cv: float, name: string, corr: float, vec?: list<float>}> $plausible кандидаты (corr = 30-row Pearson — рейтинг чтения; vec — уже посчитанный поиском вектор)
      * @param list<array<string, mixed>>|null $colLabels
      */
-    private static function writeTrailMarks(?array $colLabels, array $plausible, float $cvTrainMax, float $bestCvSeen, array $pairwiseKeys = [], array $pairwiseMap = []): void
+    private static function writeTrailMarks(?array $colLabels, array $plausible, float $cvTrainMax, float $bestCvSeen, array $pairwiseKeys = [], array $pairwiseMap = [], array $X = [], array $y = []): void
     {
         if (empty($plausible) || ($bestCvSeen !== INF && $bestCvSeen >= self::NOISE_CV_FLOOR * 8)) {
             // EXP-045 LOOP PROBE: стадии writer_input при отсеве (P3)
@@ -2043,91 +2092,354 @@ class Search
             return; // чистый шум — дороги не метим (NOISE-гвард)
         }
         // Scope = ТОЛЬКО labels (стабилен между сидами одного домена).
-        // n (число plausible) в scope НЕ входит — он плавает от сида к сиду.
         $scopeKey = 'sha1:' . sha1(json_encode([
             'labels' => $colLabels,
         ]));
         $db = \BeeSwarm\Infra\Database::get();
-        // WU-4b writer v2 (12.10, residual-протокол): CLASS COVERAGE —
-        // 3 лестницы (sum-of-products) + 2 лепестка (чистое произведение
-        // pairwise-фич). Урок: глобальный top-5 оставляет голые компоненты
-        // (x0×x1²) незамеченными — против полного y их corr ~0.55 теряется
-        // за лестницами 0.86, а без них residual-лестница не собирается
-        // (kinetic seed 1: 15 меток, ни одной голой T-формы).
-        usort($plausible, fn (array $a, array $b): int => ($b['corr'] ?? 0) <=> ($a['corr'] ?? 0));
-        // WU-4b writer v3 (12.10, ГЕЙТЫ = ПОКРЫТИЕ, не пороги — owner,
-        // синтез с CV0_Protocol §1.15/§1.17): скалярный corr-гейт 0.5
-        // убивал T1 (x0×x1², corr 0.22) — истинный член kinetic-закона.
-        // Гейт = структурное покрытие: 3 лестницы + топ-1 лепесток на каждую
-        // группу ВТОРОГО ОПЕРАНДА (x1² ≠ x1 — разные группы). Use-time
-        // (стигмергия/приёмка) фильтрует нулём домена — write-time пишет
-        // дороги без порогов (Принижин: структура живёт, если несёт сигнал
-        // относительно нуля; ноль измеряется на use-time).
-        $marks = [];
-        $stairN = 0;
-        $petalSeen = [];   // полный второй операнд ('x1²' != 'x1') => отмечен
-        foreach ($plausible as $cand) {
-            $name = $cand['name'];
-            $isStair = str_contains($name, '+') && str_contains($name, '×');
-            $isPetal = ! str_contains($name, '+') && isset($pairwiseMap[$name]);
-            if ($isStair && $stairN < 3) {
-                $stairN++;
-                $marks[] = [$name, $cand['corr'] ?? 0.0];
-                continue;
-            }
-            if ($isPetal) {
-                $second = (string) ($pairwiseMap[$name][1] ?? '');
-                // топ-2 на группу: в kinetic x1²-группе лучший по corr —
-                // (x0²×x1²) 0.379 (искажённый x0²-вариант), а истинный член —
-                // (x0×x1²) 0.221; use-time (CV-ранг) отбросит искажение,
-                // write-time обязан дать ОБА представителя группы
-                if ($second !== '' && ($petalSeen[$second] ?? 0) < 2) {
-                    $petalSeen[$second] = ($petalSeen[$second] ?? 0) + 1;
-                    $marks[] = [$name, $cand['corr'] ?? 0.0];
-                }
-                continue;
-            }
-        }
-        if ($marks === []) {
-            // EXP-045 LOOP PROBE: кандидаты были, coverage-гейты отобрали ноль (P3)
+        if (empty($plausible) || ($bestCvSeen !== INF && $bestCvSeen >= self::NOISE_CV_FLOOR * 8)) {
+            // EXP-045 LOOP PROBE: стадии writer_input при отсеве (P3).
+            // Sweep продолжает работать и на noise-вылетах — τ течёт всегда.
             self::$lastTrailWriterInput['eligible'] = 0;
             self::$lastTrailWriterInput['written'] = 0;
-            self::$lastTrailWriterInput['reason'] = 'no_coverage';
+            self::$lastTrailWriterInput['reason'] = 'noise_guard';
+            self::sweepTrailMarks($db, $scopeKey, $colLabels, $X, $y);
             return;
         }
-        // WU-4b: uses++ при повторной записи; uses>=2 → kind='replicated'
-        // (дорога подтверждена второй пчелой — «signal must replicate», WU-D4);
-        // corr хранится максимумом (консенсус по лучшему наблюдению).
-        $ins = $db->prepare(
-            'INSERT INTO trail_marks (fingerprint, formula, kind, corr, uses, mark_tick)
-             VALUES (?, ?, ?, ?, 1, 0)
+        $ranked = self::rankTrailCandidates($plausible, $colLabels, $X, $y);
+        self::$lastTrailWriterInput['eligible'] = count($ranked);
+        self::$lastTrailWriterInput['reason'] = 'eval';
+        $admitted = self::selectTrailAdmission($ranked, $scopeKey, $db);
+        self::persistTrailAdmission($db, $scopeKey, $admitted);
+        self::$lastTrailWritten = array_column($admitted, 'name');
+        self::$lastTrailWriterInput['written'] = count($admitted);
+        self::sweepTrailMarks($db, $scopeKey, $colLabels, $X, $y);
+    }
+
+    /**
+     * ROAD V4 §4/§5: периодический свип — τ-выветривание + NMD + capacity.
+     * τ: refresh ТОЛЬКО cross-route injection/confirm (last_activity_tick);
+     * перезапись written_count НЕ продлевает (спека §5). NMD: PERSISTED с
+     * появившимися структурными поломками (тем же EVAL-критерием, §4).
+     * Порядок: τ → NMD → capacity (освободившиеся слоты переиспользуются).
+     *
+     * @param list<list<float>> $X
+     * @param list<float> $y
+     */
+    private static function sweepTrailMarks(\PDO $db, string $scopeKey, ?array $colLabels, array $X, array $y): void
+    {
+        $stmt = $db->prepare('SELECT id, formula, class, state, mark_tick, last_activity_tick, confirm_count, fit_last FROM trail_marks WHERE fingerprint = ?');
+        $stmt->execute([$scopeKey]);
+        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $flight = self::$trailFlightNo;
+        $evictedIds = [];
+        foreach ($rows as $row) {
+            $age = $flight - max((int) $row['mark_tick'], (int) $row['last_activity_tick']);
+            $tau = $row['state'] === 'CONFIRMED' ? self::TRAIL_TAU_CONFIRMED : self::TRAIL_TAU_UNCALIBRATED;
+            if ($age > $tau) {
+                self::evictMark($db, $scopeKey, $row);
+                $evictedIds[] = (int) $row['id'];
+            }
+        }
+        // NMD (§4): только PERSISTED — CONFIRMED-инфраструктура живёт по τ.
+        $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
+        foreach ($rows as $row) {
+            if ($row['state'] !== 'PERSISTED' || in_array((int) $row['id'], $evictedIds, true)) {
+                continue;
+            }
+            $res = \BeeSwarm\Core\TrailAdmission::classify((string) $row['formula'], $labelsToX, $X, $y);
+            if ($res['eval'] !== \BeeSwarm\Core\TrailAdmission::EVAL_OK) {
+                self::evictMark($db, $scopeKey, $row);
+                $evictedIds[] = (int) $row['id'];
+            }
+        }
+        self::enforceTrailCapacity($db, $scopeKey);
+    }
+
+    /**
+     * ROAD V4 §3: per-class ёмкости (stair/petal/unary_binary/other ≤ 6) +
+     * confirmed ≤ 12 per fingerprint. Вытеснение функциональное: низший
+     * fit_last НЕ-CONFIRMED; CONFIRMED вытесняется последним в классе
+     * (возрастная защита earned), в confirmed-cap — низший fit_last.
+     */
+    private static function enforceTrailCapacity(\PDO $db, string $scopeKey): void
+    {
+        foreach (['stair', 'petal', 'unary_binary', 'other'] as $cls) {
+            $stmt = $db->prepare('SELECT id, formula, class, state, confirm_count, fit_last FROM trail_marks
+                 WHERE fingerprint = ? AND class = ? ORDER BY fit_last ASC');
+            $stmt->execute([$scopeKey, $cls]);
+            $members = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $excess = count($members) - self::TRAIL_CAP_CLASS;
+            if ($excess <= 0) {
+                continue;
+            }
+            $nonConfirmed = array_values(array_filter($members, fn (array $m): bool => $m['state'] !== 'CONFIRMED'));
+            $confirmed = array_values(array_filter($members, fn (array $m): bool => $m['state'] === 'CONFIRMED'));
+            $victims = array_slice(array_merge($nonConfirmed, $confirmed), 0, $excess);
+            foreach ($victims as $row) {
+                self::evictMark($db, $scopeKey, $row);
+            }
+        }
+        $stmt = $db->prepare('SELECT id, formula, class, state, confirm_count, fit_last FROM trail_marks
+             WHERE fingerprint = ? AND state = \'CONFIRMED\' ORDER BY fit_last ASC');
+        $stmt->execute([$scopeKey]);
+        $confirmedAll = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        // РЕВЬЮ deleg_231f9459 BLOCK: отрицательная длина array_slice
+        // («N от конца») эвиктила здоровых CONFIRMED при count 7..11.
+        $excess = count($confirmedAll) - self::TRAIL_CAP_CONFIRMED;
+        if ($excess > 0) {
+            foreach (array_slice($confirmedAll, 0, $excess) as $row) {
+                self::evictMark($db, $scopeKey, $row);
+            }
+        }
+    }
+
+    /**
+     * CONFIRMED/PERSISTED → EVICTED (спека §1): строка удаляется, томстон
+     * {evict_count++, confirm_count=max, fit_last} — в trail_ghosts. Двойная
+     * выселка одной формулы инкрементит, не плодит строки (UNIQUE).
+     *
+     * @param array<string, mixed> $row
+     */
+    private static function evictMark(\PDO $db, string $scopeKey, array $row): void
+    {
+        $db->prepare(
+            'INSERT INTO trail_ghosts (fingerprint, formula, evict_count, confirm_count, fit_last)
+             VALUES (?, ?, 1, ?, ?)
              ON CONFLICT(fingerprint, formula) DO UPDATE SET
+               evict_count = evict_count + 1,
+               confirm_count = MAX(confirm_count, excluded.confirm_count),
+               fit_last = excluded.fit_last'
+        )->execute([$scopeKey, $row['formula'], (int) $row['confirm_count'], (float) $row['fit_last']]);
+        $db->prepare('DELETE FROM trail_marks WHERE id = ?')
+            ->execute([(int) $row['id']]);
+    }
+
+    /**
+     * Конверсия + EVAL-классификация + ранжирование по proxy (спека §2/§4).
+     * Векторы кандидатов уже посчитаны поиском ($exprs) — пере-оценки нет.
+     *
+     * @param list<array<string, mixed>> $plausible
+     * @return list<array<string, mixed>> EVAL_OK кандидаты, proxy DESC
+     */
+    private static function rankTrailCandidates(array $plausible, ?array $colLabels, array $X, array $y): array
+    {
+        $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
+        self::$lastTrailEvalStats = [];
+        $ranked = [];
+        $seen = [];
+        foreach ($plausible as $cand) {
+            $name = (string) ($cand['name'] ?? '');
+            if ($name === '' || isset($seen[$name])) {
+                continue; // дедуп: stair/petal/signal-arms пересекаются
+            }
+            $seen[$name] = true;
+            $vec = $cand['vec'] ?? null;
+            $res = is_array($vec)
+                ? \BeeSwarm\Core\TrailAdmission::classifyWithVec($name, $labelsToX, $vec, $y)
+                : \BeeSwarm\Core\TrailAdmission::classify($name, $labelsToX, $X, $y);
+            $key = $res['eval'];
+            self::$lastTrailEvalStats[$key] = (self::$lastTrailEvalStats[$key] ?? 0) + 1;
+            if ($key !== \BeeSwarm\Core\TrailAdmission::EVAL_OK) {
+                continue; // смерть с причиной (§4)
+            }
+            $res['name'] = $name;
+            $res['corr'] = (float) ($cand['corr'] ?? 0.0);
+            $res['class'] = \BeeSwarm\Core\TrailAdmission::classOf($res['xform']);
+            $ranked[] = $res;
+        }
+        usort($ranked, fn (array $a, array $b): int => $b['proxy'] <=> $a['proxy']);
+        $alarm = self::$lastTrailEvalStats[\BeeSwarm\Core\TrailAdmission::EVAL_LABEL_UNRESOLVABLE] ?? 0;
+        if ($alarm > 0 && getenv('SEARCH_DEBUG') === '1') {
+            fwrite(STDERR, '[TRAIL-ALARM] LABEL_UNRESOLVABLE=' . $alarm . ' (label-space leak, спека §4)' . PHP_EOL);
+        }
+        return $ranked;
+    }
+
+    /**
+     * Окно admission: ≤5 за вылет (≤3 stair + ≤2 прочих) + ghost-правила
+     * (спека §1): confirm_count>0 → fast-track CONFIRMED (заработанное τ
+     * сохранено); evict_count≥2 ∧ confirm_count=0 → admit только при
+     * proxy > class-median fit_last живых членов класса (ghost-налог).
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @return list<array<string, mixed>>
+     */
+    private static function selectTrailAdmission(array $ranked, string $scopeKey, \PDO $db): array
+    {
+        $medians = self::classFitMedians($db, $scopeKey);
+        $admitted = [];
+        $stairN = 0;
+        $otherN = 0;
+        foreach ($ranked as $c) {
+            if (count($admitted) >= self::TRAIL_ADMIT_PER_FLIGHT) {
+                break;
+            }
+            $isStair = $c['class'] === 'stair';
+            if ($isStair ? $stairN >= self::TRAIL_ADMIT_STAIR : $otherN >= self::TRAIL_ADMIT_OTHER) {
+                continue;
+            }
+            $ghost = self::ghostOf($db, $scopeKey, $c['name']);
+            $evict = (int) ($ghost['evict_count'] ?? 0);
+            $confirm = (int) ($ghost['confirm_count'] ?? 0);
+            if ($evict >= 2 && $confirm === 0 && ! ($c['proxy'] > ($medians[$c['class']] ?? 0.0))) {
+                continue; // ghost-налог (спека §1): repeat-evictee платит медианой класса
+            }
+            $c['fast_track'] = $confirm > 0;
+            $c['ghost_evict'] = $evict;
+            if ($isStair) {
+                $stairN++;
+            } else {
+                $otherN++;
+            }
+            $admitted[] = $c;
+        }
+        return $admitted;
+    }
+
+    /**
+     * INSERT меток state machine (спека §1): рождение = mark_tick/birth_route/
+     * last_activity = текущий вылет; ghost-паспорт (evict_count) переносится.
+     * ON CONFLICT (перезапись тем же маршрутом): written_count++/uses++
+     * (телеметрия), corr = максимум, fit_last обновляется, state/kind
+     * сохраняются — τ и подтверждение перезаписью НЕ трогаются.
+     *
+     * @param list<array<string, mixed>> $admitted
+     */
+    private static function persistTrailAdmission(\PDO $db, string $scopeKey, array $admitted): void
+    {
+        if ($admitted === []) {
+            return;
+        }
+        $flight = self::$trailFlightNo;
+        $ins = $db->prepare(
+            'INSERT INTO trail_marks (fingerprint, formula, kind, corr, uses, mark_tick,
+                class, state, written_count, read_cross_count, confirm_count, fit_last,
+                birth_route, last_activity_tick, evict_count)
+             VALUES (?, ?, ?, ?, 1, ?, ?, ?, 1, 0, 0, ?, ?, ?, ?)
+             ON CONFLICT(fingerprint, formula) DO UPDATE SET
+               written_count = written_count + 1,
                uses = uses + 1,
                corr = MAX(corr, excluded.corr),
-               kind = CASE WHEN uses + 1 >= 2 THEN \'replicated\' ELSE kind END'
+               fit_last = excluded.fit_last,
+               class = excluded.class,
+               state = CASE WHEN trail_marks.state = \'CONFIRMED\' THEN \'CONFIRMED\' ELSE \'PERSISTED\' END,
+               kind = CASE WHEN trail_marks.state = \'CONFIRMED\' THEN \'replicated\' ELSE \'uncalibrated\' END'
         );
-        foreach ($marks as [$formula, $corr]) {
-            $ins->execute([$scopeKey, $formula, 'uncalibrated', $corr]);
+        foreach ($admitted as $c) {
+            $state = $c['fast_track'] ? 'CONFIRMED' : 'PERSISTED';
+            $ins->execute([$scopeKey, $c['name'], $state === 'CONFIRMED' ? 'replicated' : 'uncalibrated',
+                $c['corr'], $flight, $c['class'], $state, $c['proxy'], $flight, $flight, $c['ghost_evict']]);
         }
-        // EXP-045 LOOP PROBE: стадии eligible/written + список записанных формул
-        self::$lastTrailWritten = array_column($marks, 0);
-        self::$lastTrailWriterInput['eligible'] = count($marks);
-        self::$lastTrailWriterInput['written'] = count($marks);
-        // Зарастание (аутофагия §2.5.14): ТОЛЬКО неподтверждённые метки стираются
-        // (uses>7 без репликации — 3x запас к 2-проходной репликации).
-        // Ранее: DELETE WHERE uses>6 без разбора kind — при рое 20 пчёл
-        // подтверждённая метка (uses=20) стиралась (симуляция sim_swarm).
-        $db->exec("DELETE FROM trail_marks WHERE kind = 'uncalibrated' AND uses > 7");
-        // Потолок replicated на fingerprint (владелец 10.10: «односторонние законы
-        // домена слишком частые»): держим топ-32 по трафику uses, хвост — наружу.
-        $db->prepare(
-            "DELETE FROM trail_marks
-             WHERE kind = 'replicated' AND fingerprint = ? AND id NOT IN (
-               SELECT id FROM trail_marks
-               WHERE kind = 'replicated' AND fingerprint = ?
-               ORDER BY uses DESC, corr DESC LIMIT 32
-             )"
-        )->execute([$scopeKey, $scopeKey]);
+    }
+
+    /**
+     * @return array{evict_count: int, confirm_count: int, fit_last: float}|null
+     */
+    private static function ghostOf(\PDO $db, string $scopeKey, string $formula): ?array
+    {
+        $stmt = $db->prepare('SELECT evict_count, confirm_count, fit_last FROM trail_ghosts WHERE fingerprint = ? AND formula = ?');
+        $stmt->execute([$scopeKey, $formula]);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $row === false ? null : $row;
+    }
+
+    /**
+     * Медиана fit_last живых членов класса (ghost-налог, спека §1).
+     *
+     * @return array<string, float>
+     */
+    private static function classFitMedians(\PDO $db, string $scopeKey): array
+    {
+        $stmt = $db->prepare('SELECT class, fit_last FROM trail_marks WHERE fingerprint = ?');
+        $stmt->execute([$scopeKey]);
+        $byClass = [];
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $r) {
+            $byClass[$r['class']][] = (float) $r['fit_last'];
+        }
+        $medians = [];
+        foreach ($byClass as $cls => $fits) {
+            sort($fits);
+            $n = count($fits);
+            $medians[$cls] = $n % 2 === 1
+                ? $fits[intdiv($n, 2)]
+                : ($fits[($n / 2) - 1] + $fits[$n / 2]) / 2.0;
+        }
+        return $medians;
+    }
+
+    /**
+     * ROAD V4 §5: τ-clock вылетов. Ленивая инициализация от MAX(mark_tick,
+     * last_activity_tick)+1 — счётчик продолжает историю БД после рестарта
+     * процесса (иначе старые метки получают отрицательный возраст и вечно
+     * живут). Коллизии мульти-процесса допустимы: только слегка неточат τ.
+     */
+    private static function advanceTrailFlight(): void
+    {
+        if (! self::$trailFlightInitialized) {
+            $row = \BeeSwarm\Infra\Database::get()->query(
+                'SELECT MAX(mark_tick) AS mt, MAX(last_activity_tick) AS la FROM trail_marks'
+            )->fetch(\PDO::FETCH_ASSOC);
+            self::$trailFlightNo = max((int) ($row['mt'] ?? 0), (int) ($row['la'] ?? 0)) + 1;
+            self::$trailFlightInitialized = true;
+
+            return;
+        }
+        self::$trailFlightNo++;
+    }
+
+    /**
+     * ROAD V4 §1: инъекция метки чужим маршрутом — read_cross_count++ и
+     * refresh τ (last_activity_tick = вылет читателя). Самочтение исключено
+     * дважды: структурно (write после found-определения того же вылета) и
+     * гардом WHERE birth_route < flight.
+     *
+     * @param list<array<string, mixed>> $selected выбранные read-блоком метки ('f' => формула)
+     */
+    private static function countTrailCrossReads(string $scopeKey, array $selected): void
+    {
+        if ($selected === []) {
+            return;
+        }
+        $flight = self::$trailFlightNo;
+        $upd = \BeeSwarm\Infra\Database::get()->prepare(
+            'UPDATE trail_marks SET read_cross_count = read_cross_count + 1, last_activity_tick = ?
+             WHERE fingerprint = ? AND formula = ? AND birth_route < ?'
+        );
+        foreach ($selected as $c) {
+            $upd->execute([$flight, $scopeKey, (string) $c['f'], $flight]);
+        }
+    }
+
+    /**
+     * ROAD V4 §1/§2: PERSISTED→CONFIRMED по участию в found-законе —
+     * подстрока формы метки (label- или x-пространство) в формуле закона.
+     * Самочтение: только метки, рождённые ДО этого вылета (birth_route <
+     * flight). Спурийный junk не участвует в найденном законе → не
+     * подтверждается (валюта выживания §2), τ умирает дёшево.
+     */
+    private static function confirmTrailMarks(?array $colLabels, string $lawFormula): void
+    {
+        $scopeKey = 'sha1:' . sha1(json_encode([
+            'labels' => $colLabels,
+        ]));
+        $db = \BeeSwarm\Infra\Database::get();
+        $flight = self::$trailFlightNo;
+        $stmt = $db->prepare('SELECT id, formula, birth_route FROM trail_marks WHERE fingerprint = ? AND birth_route < ?');
+        $stmt->execute([$scopeKey, $flight]);
+        $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
+        $upd = $db->prepare('UPDATE trail_marks SET confirm_count = confirm_count + 1, state = \'CONFIRMED\', kind = \'replicated\', last_activity_tick = ? WHERE id = ?');
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+            $xform = (string) $row['formula'];
+            foreach ($labelsToX as $cl => $xv) {
+                $xform = str_replace($cl, $xv, $xform);
+            }
+            if (! \BeeSwarm\Core\TrailAdmission::markInLaw($lawFormula, $xform)
+                && ! \BeeSwarm\Core\TrailAdmission::markInLaw($lawFormula, (string) $row['formula'])) {
+                continue; // не участвует в найденном законе (спека §2)
+            }
+            $upd->execute([$flight, (int) $row['id']]);
+        }
     }
 
     private static function preregisterExact(string $formula): void
@@ -2301,12 +2613,27 @@ class Search
     // Last-call семантика: сброс в начале find(), RouteExecutor фиксирует
     // per-flight сразу после возврата find() (контракт prereg §0.4-P5).
     public static array $lastTrailWritten = [];
+
     public static ?array $lastTrailWriterInput = null;
+
     public static array $lastTrailReadFetched = [];
+
     public static array $lastTrailReadInjected = [];
+
     public static ?int $lastTrailReadAttempts = null;
+
     public static ?int $lastTrailReadWide = null;
+
     public static ?int $lastTrailReadPoolSkip = null;
+
+    // ROAD V4 (19.10, спека §4): death-rate breakdown admission per flight.
+    public static array $lastTrailEvalStats = [];
+
+    // ROAD V4 τ-clock (спека §5): счётчик вылетов; ленивая инициализация от
+    // MAX(mark_tick, last_activity_tick)+1 — переживает рестарт процесса.
+    public static int $trailFlightNo = 0;
+
+    public static bool $trailFlightInitialized = false;
 
     public static function resetMul2Counter(): void
     {

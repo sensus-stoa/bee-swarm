@@ -154,8 +154,8 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 19.10 (EXP-045 Road v4 WU): +3 TrailMarksV4SchemaTest, +14 TrailAdmissionTest, +15 TrailMarksV4Test → declared 1354
 # Снимок 19.10 (dual-review deleg_231f9459 фиксы): +1 markInLaw, +1 confirmed-below-cap, +1 petal-only → declared 1357
 # Снимок 19.10 (ШАГ III ablation WU): +6 TrailAblationTest → declared 1363
-# 20.10: TrailFixTest (сид-102 фикс #1) PARKНУТ вне tests/ (вновь в tests/ — OOM, причина не выяснена; верификация fix #1 DISCONFIRMED) → канон остаётся 1363
-TOTAL_EXPECTED=1363
+# Снимок 20.10 (сид-102 fix #1 v2, параллельная сессия): +3 TrailFixTest в tests/ → declared 1366 (TrailFixTest 3/3 на fix v2; раннер 1363 был ошибочным откатом)
+TOTAL_EXPECTED=1366
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

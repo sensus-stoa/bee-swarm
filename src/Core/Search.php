@@ -173,6 +173,15 @@ class Search
         // типизированные параметры writeTrailMarks — инвариант без автовивификации.
         $l1PairwiseKeys = [];
         $l1PairwiseMap = [];
+        // сид-102 fix #1 v2 (20.10): сырые произведения — атомы языка. Полный
+        // класс $l1PairwiseKeys (7896 форм на DOT: 48 ключей × 7 опов) в
+        // append'е взрывает pair-луп (pool 47→7903, ~62M пар, столл/OOM —
+        // probe Run A 20.10). Append TRAIL_FIX=pool берёт ТОЛЬКО этот класс.
+        $l1ProductKeys = [];
+        // Ревью deleg_6d761503 fix-now №1: класс квадратичен по числу raw-фич
+        // (C(n,2)) — на широких данных повторит взрыв v1. Кап срезает по
+        // порядку генерации; на сид-102 (6 фич) не активен (15 < 64).
+        self::$lastPoolFixAppended = [];
         // EXP-045 LOOP PROBE: сброс событийной телеметрии trail-marks (per-find).
         self::$lastTrailWritten = [];
         self::$lastTrailWriterInput = null;
@@ -441,6 +450,9 @@ class Search
                     // $l1PairwiseKeys = полный класс pairwise-форм (вкл. ²-фичи),
                     // из него собирается raw-pair pool (WU-2).
                     $l1PairwiseKeys[] = $pairName;
+                    if ($op === '×' && isset($rawFeatNames[$featKeys[$a]]) && isset($rawFeatNames[$featKeys[$b]])) {
+                        $l1ProductKeys[] = $pairName;
+                    }
                     // пара операндов декларируется генератором (для
                     // feature-разнообразия квот writer'а, EXPANDING GATES 12.10)
                     $l1PairwiseMap[$pairName] = [$featKeys[$a], $featKeys[$b]];
@@ -756,6 +768,39 @@ class Search
                         $seen[$entry['n']] = true;
                         $pool[] = $entry['n'];
                     }
+                }
+                // WU fix #1 (сид-102, DIAGNOSIS.md): raw products — атомы языка.
+                // TRAIL_FIX=pool — rawPair безусловно в пуле (A/B-able).
+                // Ревью deleg_6d761503 fix-now №1: класс квадратичен по raw-фичам —
+                // кап срезает по порядку генерации (сид-102: 15 < 64, не активен).
+                $products = count($l1ProductKeys) > self::TRAIL_FIX_MAX_PRODUCTS
+                    ? array_slice($l1ProductKeys, 0, self::TRAIL_FIX_MAX_PRODUCTS)
+                    : $l1ProductKeys;
+                self::$lastPoolFixAppended = [];
+                if (self::trailFix('pool')) {
+                    foreach ($products as $rk) {
+                        if (! isset($seen[$rk]) && isset($exprs[$rk])) {
+                            $seen[$rk] = true;
+                            $pool[] = $rk;
+                            self::$lastPoolFixAppended[] = $rk;
+                        }
+                    }
+                }
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    // Диагностика сид-102 (HANDOFF_SEED102.md): состав
+                    // append-источников в момент pool-merge. v2: полный дамп
+                    // l1PK (338KB/строку) заменён флагами — членство (c2×c5)
+                    // установлено (Run A: генератор полон, 7896 форм).
+                    fwrite(STDERR, '[DIAG] merge: depth=' . $depth
+                        . ' esc=' . (string) (getenv('SEARCH_ESCALATED') ?: '0')
+                        . ' l1PK_n=' . count($l1PairwiseKeys)
+                        . ' prod_n=' . count($l1ProductKeys)
+                        . ' rawPair_n=' . count($rawPairKeys)
+                        . ' c2c5_in_l1PK=' . var_export(in_array('(c2×c5)', $l1PairwiseKeys, true), true)
+                        . ' exprs_c2c5=' . var_export(isset($exprs['(c2×c5)']), true)
+                        . ' fixAppended_n=' . count(self::$lastPoolFixAppended)
+                        . ' fixAppended=[' . implode(',', self::$lastPoolFixAppended) . ']'
+                        . ' pool_n=' . count($pool) . PHP_EOL);
                 }
             } else {
                 // M1-EXT v2 WU-1 (beam=0): оператор отключил beam — НЕ отключает
@@ -1077,6 +1122,10 @@ class Search
         }
 
         if (getenv('SEARCH_DEBUG') === '1') {
+            $inPool2 = in_array('((c1×c4)+(c0×c3))', $pool, true);
+            $inPoolP = in_array('(c2×c5)', $pool, true);
+            $bothPool = ($inPool2 && $inPoolP) ? ' BOTH-IN-POOL' : '';
+            fwrite(STDERR, '[DIAG] pool: term2=' . var_export($inPool2, true) . ' prod=' . var_export($inPoolP, true) . $bothPool . ' pool_n=' . count($pool) . ' fixAppended=' . count(self::$lastPoolFixAppended) . PHP_EOL);
             fwrite(STDERR, '[SD-BEAM] l2Keys after beam=' . count($l2Keys)
                 . ' exprs=' . count($exprs)
                 . ' mem=' . round(memory_get_usage(true) / 1048576) . 'MB'
@@ -2418,6 +2467,21 @@ class Search
     }
 
     /**
+     * WU fix #1/#5 (сид-102): по-фиксовые kill-switch. TRAIL_FIX = CSV
+     * 'pool,inject'; unset/'' = прежнее поведение (A/B-able). Зеркало
+     * trailAblation(): фикс включается флагом, не меняет дефолт.
+     */
+    public static function trailFix(string $what): bool
+    {
+        $raw = getenv('TRAIL_FIX');
+        if ($raw === false || trim($raw) === '') {
+            return false;
+        }
+
+        return in_array($what, array_map('trim', explode(',', strtolower($raw))), true);
+    }
+
+    /**
      * ROAD V4 §1: инъекция метки чужим маршрутом — read_cross_count++ и
      * refresh τ (last_activity_tick = вылет читателя). Самочтение исключено
      * дважды: структурно (write после found-определения того же вылета) и
@@ -2657,6 +2721,13 @@ class Search
 
     // ROAD V4 (19.10, спека §4): death-rate breakdown admission per flight.
     public static array $lastTrailEvalStats = [];
+
+    // WU fix #1 (сид-102): raw products, добавленные в пул по TRAIL_FIX=pool.
+    public static array $lastPoolFixAppended = [];
+
+    // WU fix #1 (ревью deleg_6d761503 fix-now №1): кап класса продуктов
+    // (квадратичен по raw-фичам; сид-102 = 15, не активен).
+    private const TRAIL_FIX_MAX_PRODUCTS = 64;
 
     // ROAD V4 τ-clock (спека §5): счётчик вылетов; ленивая инициализация от
     // MAX(mark_tick, last_activity_tick)+1 — переживает рестарт процесса.

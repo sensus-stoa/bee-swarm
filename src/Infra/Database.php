@@ -468,6 +468,38 @@ class Database
         if (! $hasCorr) {
             $db->exec('ALTER TABLE trail_marks ADD COLUMN corr REAL NOT NULL DEFAULT 0');
         }
+        // EXP-045 ROAD V4 (19.10, спека WU_ROAD_V4_SPEC.md §1): state machine
+        // меток (CANDIDATE→PERSISTED→CONFIRMED→EVICTED). kind остаётся
+        // совместимым алиасом state; uses демотирован в телеметрию. Fail-loud
+        // (без try/catch — урок 18.09: голый catch на миграции = тихая смерть).
+        foreach ([
+            ['class', "TEXT NOT NULL DEFAULT 'other'"],
+            ['state', "TEXT NOT NULL DEFAULT 'PERSISTED'"],
+            ['written_count', 'INTEGER NOT NULL DEFAULT 0'],
+            ['read_cross_count', 'INTEGER NOT NULL DEFAULT 0'],
+            ['confirm_count', 'INTEGER NOT NULL DEFAULT 0'],
+            ['fit_last', 'REAL NOT NULL DEFAULT 0'],
+            ['birth_route', 'INTEGER NOT NULL DEFAULT 0'],
+            ['last_activity_tick', 'INTEGER NOT NULL DEFAULT 0'],
+            ['evict_count', 'INTEGER NOT NULL DEFAULT 0'],
+        ] as $v4col) {
+            if (! self::columnExists($db, 'trail_marks', $v4col[0])) {
+                $db->exec('ALTER TABLE trail_marks ADD COLUMN ' . $v4col[0] . ' ' . $v4col[1]);
+            }
+        }
+        // Томстоны выселенных (ghost ledger §1): ре-адмиссия читает паспорт
+        // {evict_count, confirm_count, fit_last}; повторная выселка одной
+        // формулы инкрементит evict_count (UNIQUE), не плодит строки.
+        $db->exec('CREATE TABLE IF NOT EXISTS trail_ghosts (
+            fingerprint TEXT NOT NULL,
+            formula TEXT NOT NULL,
+            evict_count INTEGER NOT NULL DEFAULT 0,
+            confirm_count INTEGER NOT NULL DEFAULT 0,
+            fit_last REAL NOT NULL DEFAULT 0,
+            updated_at TEXT DEFAULT (datetime(\'now\')),
+            UNIQUE(fingerprint, formula)
+        )');
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_trail_ghosts_fp ON trail_ghosts (fingerprint)');
 
         // EXP-045 Route Heredity (14.10): реестр геномов маршрутов + история
         // вылетов. Genome = программа действий НАД примитивами Search; ядро

@@ -9,6 +9,9 @@ use BeeSwarm\Infra\Database;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * СТАТУС 20.10: OOM-Killed при прогоне даже в облегчённом виде (причина не выяснена — инфра-вопрос);
+ * фикс #1 DISCONFIRMED (0/8 на on/102). Не возвращать в tests/ до pair-лупа profiling.
+ * WU_ROAD_V4_SPEC §6 / HANDOFF_SEED102.md.
  * WU fix #1 (EXP-045 сид-102, DIAGNOSIS.md рафинаж): raw products — атомы
  * языка — обязаны быть в pair-пуле БЕЗУСЛОВНО. Beam-path pool (top-K по
  * quick-cv) выпадал '(c2×c5)' на сиде-102 → mark⊕parent пара 2-term ⊕

@@ -2582,6 +2582,55 @@ class Search
     }
 
     /**
+     * EXP-064: the write-side cluster diversity (the owner 17.11, the mirror
+     * of selectReadDiverse). The input = the ranked rows (the proxy-desc order
+     * already applied by rankTrailCandidates). The pass 1 = the greedy over
+     * the marks whose touched-column set is DISJOINT from the already-selected
+     * (the representatives of the different niches go to the head of the
+     * queue); the pass 2 = the rest, the proxy order preserved. The admission
+     * caps/ghost rules are untouched — the ORDER is the only change, so the
+     * cap-walk sees the diverse representatives before the family exhausts
+     * the slots. The flag TRAIL_WRITE_DIVERSITY gates the call site (the
+     * default off = the identity).
+     *
+     * @param list<array<string, mixed>> $ranked
+     * @return list<array<string, mixed>>
+     */
+    public static function orderWriteDiverse(array $ranked): array
+    {
+        // Гейт — внутри метода (одна точка входа, чистая функция тестируема);
+        // call-site в rankTrailCandidates вызывает безусловно.
+        if (getenv('TRAIL_WRITE_DIVERSITY') !== '1') {
+            return $ranked;
+        }
+        $divOrdered = [];
+        $touchedW = [];
+        $rest = [];
+        foreach ($ranked as $c) {
+            $form = (string) ($c['name'] ?? '');
+            preg_match_all('/[cx](\d+)/', $form, $mmW);
+            $colsW = array_unique($mmW[1]);
+            if ($colsW !== [] && array_intersect($colsW, $touchedW) === []) {
+                $divOrdered[] = $c;
+                foreach ($colsW as $colW) {
+                    // The VALUE = the column itself (the array_intersect
+                    // compares the VALUES — true would coerce to '1' and
+                    // never match '0'/'5'!).
+                    $touchedW[$colW] = $colW;
+                }
+            } else {
+                $rest[] = $c;
+            }
+        }
+        foreach ($divOrdered as $c) {
+            if (str_contains((string) $c['name'], '(c3×c4)') || str_contains((string) $c['name'], '(c0×c2²)')) {
+                fwrite(STDERR, '[WRITE-DIV] head-of-queue: ' . $c['name'] . "\n");
+            }
+        }
+        return array_merge($divOrdered, $rest);
+    }
+
+    /**
      * ROAD V4 §4/§5: периодический свип — τ-выветривание + NMD + capacity.
      * τ: refresh ТОЛЬКО cross-route injection/confirm (last_activity_tick);
      * перезапись written_count НЕ продлевает (спека §5). NMD: PERSISTED с
@@ -2751,28 +2800,7 @@ class Search
         // представители разных ниш встают в голову очереди), pass 2 = остаток
         // по proxy. Капы/ghost-правила НЕ тронуты — меняется только порядок.
         if (getenv('TRAIL_WRITE_DIVERSITY') === '1') {
-            $divOrdered = [];
-            $touchedW = [];
-            $rest = [];
-            foreach ($ranked as $c) {
-                $form = (string) ($c['name'] ?? '');
-                preg_match_all('/[cx](\d+)/', $form, $mmW);
-                $colsW = array_unique($mmW[1]);
-                if ($colsW !== [] && array_intersect($colsW, $touchedW) === []) {
-                    $divOrdered[] = $c;
-                    foreach ($colsW as $colW) {
-                        $touchedW[$colW] = $colW; // VALUE = колонка (не '1'!)
-                    }
-                } else {
-                    $rest[] = $c;
-                }
-            }
-            $ranked = array_merge($divOrdered, $rest);
-            foreach ($divOrdered as $c) {
-                if (str_contains((string) $c['name'], '(c3×c4)') || str_contains((string) $c['name'], '(c0×c2²)')) {
-                    fwrite(STDERR, "[WRITE-DIV] head-of-queue: " . $c['name'] . "\n");
-                }
-            }
+            $ranked = self::orderWriteDiverse($ranked);
         }
         $alarm = self::$lastTrailEvalStats[\BeeSwarm\Core\TrailAdmission::EVAL_LABEL_UNRESOLVABLE] ?? 0;
         if ($alarm > 0 && getenv('SEARCH_DEBUG') === '1') {

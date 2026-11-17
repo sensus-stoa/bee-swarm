@@ -108,11 +108,18 @@ WEOF
 chmod +x /tmp/v017_watch.sh" || { echo "SSH FAIL (watcher create)"; exit 1; }
 
 # ---- PASS 1: fast ----
-echo "[PASS 1/2] fast: paratest -p8 --stop-on-failure (EXP-063: iterate-on-error; см. retraction 2b09fb7-линейка — предыдущий serial-комментарий был сфабрикованным обоснованием непроводившегося эксперимента, отозвано)"
+# EXP-064 (owner 17.11): paratest -p6 --stop-on-failure — падение при первой
+# ошибке (воркер останавливается, suite гаснет), junit-xml пишет КАЖДЫЙ тест
+# (упал — видно какой) + fast.log с деталями фейла. Изоляция per-test уже в
+# инфре: EnvIsolationExtension (env snapshot/restore вокруг каждого теста,
+# воркеры = отдельные процессы с force=true bootstrap-env) + Database::reset()
+# в house TestCase (свежая :memory: per test). Комментарий ниже — история
+# (раньше тут был phpunit serial, что и породило расхождение коммента и кода).
+echo "[PASS 1/2] fast: paratest -p6 --stop-on-failure --log-junit (fail-fast + junit per-test)"
 rm -f "$FLAGF"
-ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/phpunit tests/ --configuration phpunit.xml --exclude-group slow --no-progress --log-junit $LOGDIR/fast_junit.xml > $FAST_LOG 2>&1 < /dev/null &"
+ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/paratest -p6 -c phpunit.xml --stop-on-failure --log-junit $LOGDIR/fast_junit.xml tests/ > $FAST_LOG 2>&1 < /dev/null &"
 sleep 3
-if ! ssh -o ConnectTimeout=10 laptop "grep -q 'Configuration:' $FAST_LOG 2>/dev/null"; then
+if ! ssh -o ConnectTimeout=10 laptop "test -s $FAST_LOG" 2>/dev/null; then
     echo "FAIL: paratest не стартовал"  # review#2a: ssh-exit обязан абортить ЛОКАЛЬНЫЙ скрипт
     exit 1
 fi
@@ -163,11 +170,12 @@ FAST_N=$(echo "$FAST_TAIL" | grep -oP '^Tests: \K[0-9]+' | head -1)
 [ -z "$FAST_N" ] && FAST_N=$(echo "$FAST_TAIL" | grep -oP 'OK \(\K[0-9]+' | head -1)
 SLOW_N=$(echo "$SLOW_TAIL" | grep -oP '^Tests: \K[0-9]+' | head -1)
 [ -z "$SLOW_N" ] && SLOW_N=$(echo "$SLOW_TAIL" | grep -oP 'OK \(\K[0-9]+' | head -1)
-# Red-детекция: ^FAILURES | ^ERRORS | ^WARNINGS! | Errors: N>0 в итоговой строке.
-# review#1 (HIGH): error-only падение печатает «ERRORS!» и «Errors: 1.» ВНУТРИ
-# строки ^Tests: — голый ^Errors: мёртв, FALSE-GREEN. Парсим оба источника.
-FAST_RED=$(echo "$FAST_TAIL" | grep -cE '^FAILURES|^ERRORS|^WARNINGS|Errors: [1-9]')
-SLOW_RED=$(echo "$SLOW_TAIL" | grep -cE '^FAILURES|^ERRORS|^WARNINGS|Errors: [1-9]')
+# Red-детекция: ^FAILURES | ^ERRORS | ^WARNINGS! | Failures:/Errors: N>0 в
+# итоговой строке. review#1 (HIGH): error-only падение печатает «ERRORS!» и
+# «Errors: 1.» ВНУТРИ строки ^Tests: — голый ^Errors: мёртв, FALSE-GREEN.
+# Парсим оба источника + paratest-формат («Failures: 2.» / «Errors: 1.»).
+FAST_RED=$(echo "$FAST_TAIL" | grep -cE '^FAILURES|^ERRORS|^WARNINGS|Failures: [1-9]|Errors: [1-9]')
+SLOW_RED=$(echo "$SLOW_TAIL" | grep -cE '^FAILURES|^ERRORS|^WARNINGS|Failures: [1-9]|Errors: [1-9]')
 # Парсер-гвард (review#3): пустой N = срыв парсинга = не green.
 # ⚠️ bash-приоритет: (A + C == 0 ? 1 : 0) парсится как ((A+C)==0)?1:0 —
 # гвард-надбавка ЗАТИРАЕТ red (поймано clean2: FAILURES! → green=YES).

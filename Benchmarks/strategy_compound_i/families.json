@@ -1,0 +1,207 @@
+{
+    "_prefix": "EXP045DEV",
+    "_class_mapping": {
+        "SUM": [
+            "power",
+            "composition",
+            "dot4"
+        ],
+        "PRODUCT": [
+            "pureprod",
+            "diffprod"
+        ],
+        "RATIO": [
+            "ratio",
+            "flux"
+        ]
+    },
+    "_benchmarks": {
+        "dot": "SUM",
+        "kinetic": "PRODUCT",
+        "heat": "PRODUCT"
+    },
+    "tasks": [
+        {
+            "id": "D1",
+            "class": "flux",
+            "seed": 98311627,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "D2",
+            "class": "diffprod",
+            "seed": 38876643,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "D3",
+            "class": "ratio",
+            "seed": 153578726,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "D4",
+            "class": "composition",
+            "seed": 136064777,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "D5",
+            "class": "power",
+            "seed": 201391943,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "D6",
+            "class": "pureprod",
+            "seed": 201201301,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "DOT4",
+            "class": "dot4",
+            "seed": 211391880,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "RATIO2",
+            "class": "ratio",
+            "seed": 255524303,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        },
+        {
+            "id": "RATIO3",
+            "class": "ratio",
+            "seed": 24898850,
+            "perm": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "scale": [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "noise": 0
+        }
+    ]
+}

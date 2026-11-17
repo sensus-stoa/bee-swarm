@@ -1,0 +1,72 @@
+{
+    "run_id": "strategy_compound_O_303",
+    "phase": "compound",
+    "arm": "O",
+    "seed": 303,
+    "gens_per_stage": 20,
+    "first_cert_tick_D1": 1,
+    "cert_rate_D1": 0.05,
+    "d1_wall": 31.4,
+    "d1_budget": 32,
+    "stages": [
+        {
+            "task": "heat",
+            "class": "PRODUCT",
+            "gens": 20,
+            "certs": 0,
+            "cert_rate": 0,
+            "wall": 31.8,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:57e36405362c443e7a71b28b31c6824632753c2304544647dfc8220cff818163",
+                "sha256:be298682071632b7479ab9f0d1453292e463409551c10ee81488552be8cb0d39",
+                "sha256:568fa0b7091be7e3188960878e09d005ff170b71f9f1f1f3c8fad792b900cd61",
+                "sha256:7cc88001c6b0907f25c351bb9d0737ef0f63c851b1fc0e5cefd033995b8e5928",
+                "sha256:a7bc28499ba72afda14ba7781460653cbb8b4cc6977fbc27f6c9f48ad9218734",
+                "sha256:cd469a8a0a61b1dd299543353deb9290cba9d3f706ad86781e32f88c7fe4af2e",
+                "sha256:5c11f70b2a94b47fb265e8dfdfa291333a31c2ac2af2cf42eb25115eb3e3c6c8",
+                "sha256:44651a3c03b0cc3c9e0fafb82ac42d9eb99174b770de2be102d3a07f8df1b9d5"
+            ]
+        },
+        {
+            "task": "dot",
+            "class": "SUM",
+            "gens": 20,
+            "certs": 1,
+            "cert_rate": 0.05,
+            "wall": 41.9,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:57e36405362c443e7a71b28b31c6824632753c2304544647dfc8220cff818163",
+                "sha256:be298682071632b7479ab9f0d1453292e463409551c10ee81488552be8cb0d39",
+                "sha256:568fa0b7091be7e3188960878e09d005ff170b71f9f1f1f3c8fad792b900cd61",
+                "sha256:7cc88001c6b0907f25c351bb9d0737ef0f63c851b1fc0e5cefd033995b8e5928",
+                "sha256:a7bc28499ba72afda14ba7781460653cbb8b4cc6977fbc27f6c9f48ad9218734",
+                "sha256:cd469a8a0a61b1dd299543353deb9290cba9d3f706ad86781e32f88c7fe4af2e",
+                "sha256:5c11f70b2a94b47fb265e8dfdfa291333a31c2ac2af2cf42eb25115eb3e3c6c8",
+                "sha256:44651a3c03b0cc3c9e0fafb82ac42d9eb99174b770de2be102d3a07f8df1b9d5"
+            ]
+        },
+        {
+            "task": "D1",
+            "class": "RATIO",
+            "gens": 20,
+            "certs": 1,
+            "cert_rate": 0.05,
+            "wall": 322.7,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:57e36405362c443e7a71b28b31c6824632753c2304544647dfc8220cff818163",
+                "sha256:be298682071632b7479ab9f0d1453292e463409551c10ee81488552be8cb0d39",
+                "sha256:568fa0b7091be7e3188960878e09d005ff170b71f9f1f1f3c8fad792b900cd61",
+                "sha256:7cc88001c6b0907f25c351bb9d0737ef0f63c851b1fc0e5cefd033995b8e5928",
+                "sha256:a7bc28499ba72afda14ba7781460653cbb8b4cc6977fbc27f6c9f48ad9218734",
+                "sha256:cd469a8a0a61b1dd299543353deb9290cba9d3f706ad86781e32f88c7fe4af2e",
+                "sha256:5c11f70b2a94b47fb265e8dfdfa291333a31c2ac2af2cf42eb25115eb3e3c6c8",
+                "sha256:44651a3c03b0cc3c9e0fafb82ac42d9eb99174b770de2be102d3a07f8df1b9d5"
+            ]
+        }
+    ],
+    "evolution_overhead_wall": 0.014,
+    "budget_total_wall": 396.4
+}

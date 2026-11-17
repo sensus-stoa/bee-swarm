@@ -1,0 +1,30 @@
+{
+ "seeds": {
+  "301": {
+   "A_on_A": 0.0997,
+   "B_on_B": 0.1766,
+   "immutable_C_on_composite": 0.1736,
+   "verdict": "UNITS_INVALID"
+  },
+  "302": {
+   "A_on_A": 0.0968,
+   "B_on_B": 0.4679,
+   "immutable_C_on_composite": 0.2336,
+   "verdict": "UNITS_INVALID"
+  },
+  "303": {
+   "A_on_A": 0.0762,
+   "B_on_B": 0.581,
+   "immutable_C_on_composite": 0.2689,
+   "verdict": "UNITS_INVALID"
+  }
+ },
+ "design_note": "DEVIATION: union-training on shared inputs is multi-valued (same x -> 3 different y), ill-posed as written; minimal fix = task-tag onehot(3) on the input. The paper density-routing implies region-disjointness implicitly; the standalone pilot makes the region explicit. Counter rows use the A-tag (same features, flipped semantics).",
+ "unit_gate": "A_on_A, B_on_B, immutable_C_on_composite all <= 0.10 required; UNITS_INVALID otherwise (owner 05.11 step 2)",
+ "verdicts_per_seed": [
+  "UNITS_INVALID",
+  "UNITS_INVALID",
+  "UNITS_INVALID"
+ ],
+ "final_verdict": "UNITS_INVALID"
+}

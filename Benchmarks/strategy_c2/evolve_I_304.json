@@ -1,0 +1,3575 @@
+{
+    "run_id": "strategy_evolve_I_304",
+    "phase": "evolve",
+    "arm": "I",
+    "seed": 304,
+    "pool": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "DOT4",
+        "dot",
+        "kinetic",
+        "heat"
+    ],
+    "task_budget": 40,
+    "baseline_share": 0.2,
+    "frozen_params": {
+        "alpha": 0.3,
+        "theta": 0.05,
+        "n_min": 3,
+        "W": 5
+    },
+    "slots": [
+        {
+            "task": "D1",
+            "class": "RATIO",
+            "seed": 304,
+            "baseline": {
+                "found": false,
+                "certified": false,
+                "novel": false,
+                "cv_eval": null,
+                "formula": "",
+                "wall": 10.4
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 0,
+                "actions": 0,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|gate:UNKNOWN",
+                    "route_b2900b5b|gate:UNKNOWN",
+                    "route_8a93f248|gate:UNKNOWN",
+                    "route_2ba51349|gate:UNKNOWN",
+                    "route_0441239d98c9|gate:UNKNOWN",
+                    "route_831c1800c12c|gate:UNKNOWN",
+                    "route_130f9987d48d|gate:UNKNOWN",
+                    "route_d8f63df0fd0f|gate:UNKNOWN"
+                ],
+                "execution_actual": 0,
+                "unspent_total": 1.69,
+                "probe_wall": 30.31,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": false
+        },
+        {
+            "task": "D2",
+            "class": "PRODUCT",
+            "seed": 304,
+            "baseline": {
+                "found": true,
+                "certified": true,
+                "novel": true,
+                "cv_eval": 1.439842789669855e-13,
+                "formula": "((c0\u2212c1)\u00d7(c0minc2))",
+                "wall": 5.4
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 0,
+                "actions": 0,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "UNKNOWN",
+                        "activated": false
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|gate:UNKNOWN",
+                    "route_b2900b5b|gate:UNKNOWN",
+                    "route_8a93f248|gate:UNKNOWN",
+                    "route_2ba51349|gate:UNKNOWN",
+                    "route_0441239d98c9|gate:UNKNOWN",
+                    "route_831c1800c12c|gate:UNKNOWN",
+                    "route_130f9987d48d|gate:UNKNOWN",
+                    "route_d8f63df0fd0f|gate:UNKNOWN"
+                ],
+                "execution_actual": 0,
+                "unspent_total": 1.53,
+                "probe_wall": 30.47,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": true
+        },
+        {
+            "task": "D3",
+            "class": "RATIO",
+            "seed": 304,
+            "baseline": {
+                "found": true,
+                "certified": true,
+                "novel": true,
+                "cv_eval": 0.06332359149684287,
+                "formula": "((c0maxc1)\u00d7(c0/c3))",
+                "wall": 5.2
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 0,
+                "actions": 0,
+                "rows": [],
+                "trace": [],
+                "execution_actual": 0,
+                "unspent_total": 0.43,
+                "probe_wall": 31.57,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": true
+        },
+        {
+            "task": "D4",
+            "class": "SUM",
+            "seed": 304,
+            "baseline": {
+                "found": false,
+                "certified": false,
+                "novel": false,
+                "cv_eval": null,
+                "formula": "",
+                "wall": 10.3
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 0,
+                "actions": 0,
+                "rows": [],
+                "trace": [],
+                "execution_actual": 0,
+                "unspent_total": 0.4,
+                "probe_wall": 31.6,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": false
+        },
+        {
+            "task": "D5",
+            "class": "SUM",
+            "seed": 304,
+            "baseline": {
+                "found": true,
+                "certified": true,
+                "novel": true,
+                "cv_eval": 0.046167146207650916,
+                "formula": "((c0maxc1)\u00d7(c0+c2))",
+                "wall": 5.3
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 0,
+                "actions": 0,
+                "rows": [],
+                "trace": [],
+                "execution_actual": 0,
+                "unspent_total": 0.41,
+                "probe_wall": 31.59,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": true
+        },
+        {
+            "task": "D6",
+            "class": "PRODUCT",
+            "seed": 304,
+            "baseline": {
+                "found": true,
+                "certified": true,
+                "novel": true,
+                "cv_eval": 2.617746333841739e-14,
+                "formula": "(c0\u00d7c3)",
+                "wall": 5.2
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 7.372,
+                "actions": 8,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": true,
+                        "wall": 6.59,
+                        "unspent": 5.41,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": true,
+                        "wall": 0.78,
+                        "unspent": 11.22,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|gate:CLASS_MISMATCH",
+                    "route_b2900b5b|gate:CLASS_MISMATCH",
+                    "route_8a93f248|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_2ba51349|gate:CLASS_MISMATCH",
+                    "route_0441239d98c9|run:LOCAL_BIRTH:rejected;USE_MARKS:k=3;FLIGHT:d=2;g=diffprod;b=beam40;",
+                    "route_831c1800c12c|gate:CLASS_MISMATCH",
+                    "route_130f9987d48d|gate:CLASS_MISMATCH",
+                    "route_d8f63df0fd0f|gate:CLASS_MISMATCH"
+                ],
+                "execution_actual": 7.372,
+                "unspent_total": 14.13,
+                "probe_wall": 10.5,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": true
+        },
+        {
+            "task": "DOT4",
+            "class": "SUM",
+            "seed": 304,
+            "baseline": {
+                "found": false,
+                "certified": false,
+                "novel": false,
+                "cv_eval": null,
+                "formula": "",
+                "wall": 11.4
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 25.517,
+                "actions": 16,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 9.21,
+                        "unspent": 2.79,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 9.41,
+                        "unspent": 2.59,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 5.76,
+                        "unspent": 6.24,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 1.13,
+                        "unspent": 6.48,
+                        "stop": "actions_done"
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_b2900b5b|gate:CLASS_MISMATCH",
+                    "route_8a93f248|gate:CLASS_MISMATCH",
+                    "route_2ba51349|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_0441239d98c9|gate:CLASS_MISMATCH",
+                    "route_831c1800c12c|gate:CLASS_MISMATCH",
+                    "route_130f9987d48d|run:FLIGHT:d=2;g=ratio;b=beam40;FLIGHT:d=2;g=diffprod;b=default;FLIGHT:d=2;g=base;b=beam40",
+                    "route_d8f63df0fd0f|run:LOCAL_BIRTH:rejected;FLIGHT:d=2;g=diffprod;b=default;LOCAL_BIRTH:rejected"
+                ],
+                "execution_actual": 25.517,
+                "unspent_total": 6.48,
+                "probe_wall": 0,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": false
+        },
+        {
+            "task": "dot",
+            "class": "SUM",
+            "seed": 304,
+            "baseline": {
+                "found": false,
+                "certified": false,
+                "novel": false,
+                "cv_eval": null,
+                "formula": "",
+                "wall": 10.7
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 23.092,
+                "actions": 16,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 8.35,
+                        "unspent": 3.65,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 8.44,
+                        "unspent": 3.56,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 5.25,
+                        "unspent": 6.75,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": false,
+                        "certified": false,
+                        "wall": 1.06,
+                        "unspent": 8.91,
+                        "stop": "actions_done"
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_b2900b5b|gate:CLASS_MISMATCH",
+                    "route_8a93f248|gate:CLASS_MISMATCH",
+                    "route_2ba51349|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_0441239d98c9|gate:CLASS_MISMATCH",
+                    "route_831c1800c12c|gate:CLASS_MISMATCH",
+                    "route_130f9987d48d|run:FLIGHT:d=2;g=ratio;b=beam40;FLIGHT:d=2;g=diffprod;b=default;FLIGHT:d=2;g=base;b=beam40",
+                    "route_d8f63df0fd0f|run:LOCAL_BIRTH:rejected;FLIGHT:d=2;g=diffprod;b=default;LOCAL_BIRTH:rejected"
+                ],
+                "execution_actual": 23.092,
+                "unspent_total": 8.91,
+                "probe_wall": 0,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": false
+        },
+        {
+            "task": "kinetic",
+            "class": "PRODUCT",
+            "seed": 304,
+            "baseline": {
+                "found": true,
+                "certified": true,
+                "novel": true,
+                "cv_eval": 3.340372167098959e-14,
+                "formula": "(c0\u00d7c1\u00b2)",
+                "wall": 5.5
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 9.035,
+                "actions": 8,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": true,
+                        "wall": 8.06,
+                        "unspent": 3.94,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": true,
+                        "wall": 0.97,
+                        "unspent": 11.03,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|gate:CLASS_MISMATCH",
+                    "route_b2900b5b|gate:CLASS_MISMATCH",
+                    "route_8a93f248|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_2ba51349|gate:CLASS_MISMATCH",
+                    "route_0441239d98c9|run:LOCAL_BIRTH:rejected;USE_MARKS:k=3;FLIGHT:d=2;g=diffprod;b=beam40;",
+                    "route_831c1800c12c|gate:CLASS_MISMATCH",
+                    "route_130f9987d48d|gate:CLASS_MISMATCH",
+                    "route_d8f63df0fd0f|gate:CLASS_MISMATCH"
+                ],
+                "execution_actual": 9.035,
+                "unspent_total": 22.97,
+                "probe_wall": 0,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": true
+        },
+        {
+            "task": "heat",
+            "class": "PRODUCT",
+            "seed": 304,
+            "baseline": {
+                "found": false,
+                "certified": false,
+                "novel": false,
+                "cv_eval": null,
+                "formula": "",
+                "wall": 10.6
+            },
+            "route": {
+                "ran": true,
+                "budget": 32,
+                "wall": 9.556,
+                "actions": 8,
+                "rows": [
+                    {
+                        "id": "route_664fa013",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_b2900b5b",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_8a93f248",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": false,
+                        "wall": 8.45,
+                        "unspent": 3.55,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_2ba51349",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_0441239d98c9",
+                        "gated_reason": "ACTIVATED",
+                        "activated": true,
+                        "found": true,
+                        "certified": false,
+                        "wall": 1.11,
+                        "unspent": 10.89,
+                        "stop": "actions_done"
+                    },
+                    {
+                        "id": "route_831c1800c12c",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_130f9987d48d",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    },
+                    {
+                        "id": "route_d8f63df0fd0f",
+                        "gated_reason": "CLASS_MISMATCH",
+                        "activated": false
+                    }
+                ],
+                "trace": [
+                    "route_664fa013|gate:CLASS_MISMATCH",
+                    "route_b2900b5b|gate:CLASS_MISMATCH",
+                    "route_8a93f248|run:FLIGHT:d=2;g=base;b=beam10nl;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma;USE_MARKS:k=5;FLIGHT:d=2;g=base;b=beam10nl;ma",
+                    "route_2ba51349|gate:CLASS_MISMATCH",
+                    "route_0441239d98c9|run:LOCAL_BIRTH:rejected;USE_MARKS:k=3;FLIGHT:d=2;g=diffprod;b=beam40;",
+                    "route_831c1800c12c|gate:CLASS_MISMATCH",
+                    "route_130f9987d48d|gate:CLASS_MISMATCH",
+                    "route_d8f63df0fd0f|gate:CLASS_MISMATCH"
+                ],
+                "execution_actual": 9.556,
+                "unspent_total": 22.44,
+                "probe_wall": 0,
+                "attempt_plan": [
+                    {
+                        "genome": {
+                            "id": "route_664fa013",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_b2900b5b",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_8a93f248",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_2ba51349",
+                            "parent_id": "",
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM"
+                            },
+                            "budget_fraction": 0.3,
+                            "max_steps": 5,
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 5
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "grammar": "base",
+                                    "beam": "beam10nl",
+                                    "depth": 2
+                                }
+                            ]
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_0441239d98c9",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:PRODUCT",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "USE_MARKS",
+                                    "k": 3
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_831c1800c12c",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:RATIO",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 1,
+                                    "grammar": "base",
+                                    "beam": "beam10"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam10nl"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_130f9987d48d",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "ratio",
+                                    "beam": "beam40"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "base",
+                                    "beam": "beam40"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    },
+                    {
+                        "genome": {
+                            "id": "route_d8f63df0fd0f",
+                            "parent_id": "",
+                            "generation": 0,
+                            "condition": {
+                                "kind": "CLASS_MATCH:SUM",
+                                "n_min": 3
+                            },
+                            "actions": [
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                },
+                                {
+                                    "op": "FLIGHT",
+                                    "depth": 2,
+                                    "grammar": "diffprod",
+                                    "beam": "default"
+                                },
+                                {
+                                    "op": "LOCAL_BIRTH"
+                                }
+                            ],
+                            "budget_fraction": 0.3,
+                            "max_steps": 3
+                        },
+                        "forcedOn": false
+                    }
+                ]
+            },
+            "novel_cert": false
+        }
+    ],
+    "final_population": [],
+    "evolution_overhead_wall": 0,
+    "summary": {
+        "n_slots": 10,
+        "novel_cert": 5,
+        "mean_route_wall": 7.46
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "run_id": "strategy_compound_S_303",
+    "phase": "compound",
+    "arm": "S",
+    "seed": 303,
+    "gens_per_stage": 20,
+    "first_cert_tick_D1": null,
+    "cert_rate_D1": 0,
+    "d1_wall": 0,
+    "d1_budget": 0,
+    "stages": [
+        {
+            "task": "DN4",
+            "class": "SUM",
+            "gens": 20,
+            "certs": 0,
+            "cert_rate": 0,
+            "wall": 0,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:24df15a772debb008d3854fe8fbc970b8c71a8253a6cbfa6ca69c527529dd5c9",
+                "sha256:599988d0707ef55a317cc33662ebf806cfe9857006c1cdb7542c1d80060557c1",
+                "sha256:12d22e3a9c8f56fca0673541dae3b381630eca9096a7234c22512013a1a81e53",
+                "sha256:3d8b78ca53f36b7143f65e7ccaee286b8455c551c0aa66ff58a0b326ae91c490",
+                "sha256:aac3836bd3502e062e6678e96fe146d9da7d6483da7513c7a1678cdb43f49261",
+                "sha256:db7acd3ce91b92421f5ef07596fe8dd7c04c840358adb3f14ddfb98db3afeef2",
+                "sha256:ec3f0991e421581d57147dac975544bf80d46eb6f7040fc116f0ac9156e76bfa",
+                "sha256:6501aa4f3b0eaf790e2abf6d9ea1fad69c52ab2824022c909e20d39f8c702a0b"
+            ]
+        },
+        {
+            "task": "D1",
+            "class": "RATIO",
+            "gens": 20,
+            "certs": 0,
+            "cert_rate": 0,
+            "wall": 0,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:24df15a772debb008d3854fe8fbc970b8c71a8253a6cbfa6ca69c527529dd5c9",
+                "sha256:599988d0707ef55a317cc33662ebf806cfe9857006c1cdb7542c1d80060557c1",
+                "sha256:12d22e3a9c8f56fca0673541dae3b381630eca9096a7234c22512013a1a81e53",
+                "sha256:3d8b78ca53f36b7143f65e7ccaee286b8455c551c0aa66ff58a0b326ae91c490",
+                "sha256:aac3836bd3502e062e6678e96fe146d9da7d6483da7513c7a1678cdb43f49261",
+                "sha256:db7acd3ce91b92421f5ef07596fe8dd7c04c840358adb3f14ddfb98db3afeef2",
+                "sha256:ec3f0991e421581d57147dac975544bf80d46eb6f7040fc116f0ac9156e76bfa",
+                "sha256:6501aa4f3b0eaf790e2abf6d9ea1fad69c52ab2824022c909e20d39f8c702a0b"
+            ]
+        }
+    ],
+    "evolution_overhead_wall": 0.01,
+    "budget_total_wall": 0
+}

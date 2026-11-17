@@ -1,0 +1,34 @@
+{
+    "run_id": "strategy_compound_F_306",
+    "phase": "compound",
+    "arm": "F",
+    "seed": 306,
+    "gens_per_stage": 20,
+    "first_cert_tick_D1": 1,
+    "cert_rate_D1": 0.05,
+    "d1_wall": 31.1,
+    "d1_budget": 32,
+    "stages": [
+        {
+            "task": "D1",
+            "class": "RATIO",
+            "gens": 20,
+            "certs": 1,
+            "cert_rate": 0.05,
+            "wall": 223.2,
+            "budget": 640,
+            "strategy_snapshot": [
+                "sha256:57e36405362c443e7a71b28b31c6824632753c2304544647dfc8220cff818163",
+                "sha256:be298682071632b7479ab9f0d1453292e463409551c10ee81488552be8cb0d39",
+                "sha256:568fa0b7091be7e3188960878e09d005ff170b71f9f1f1f3c8fad792b900cd61",
+                "sha256:7cc88001c6b0907f25c351bb9d0737ef0f63c851b1fc0e5cefd033995b8e5928",
+                "sha256:261eb8d3db9692802799f771dc15b7b8614134ab9448b312ba8206fa81ca0629",
+                "sha256:6bf50f818b1d9939f84915d132ca380f6407055f393bb3091ec576aea07bb42b",
+                "sha256:3655d5bb28bb2e4e34fa6a19040f1f4b02ef14d6e098006420b9113d5138c587",
+                "sha256:4c575aa6584aa653ae6e418d8bca66f810d4b6eec53ed01d144c828ed1a05105"
+            ]
+        }
+    ],
+    "evolution_overhead_wall": 0.005,
+    "budget_total_wall": 223.2
+}

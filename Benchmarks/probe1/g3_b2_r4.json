@@ -1,0 +1,97 @@
+{
+    "phase": "G3",
+    "arm3": "b2",
+    "replicate": "4",
+    "register": [
+        "BW5737967f9b4ecb628fd48d7d82502f40",
+        "BWcfe6b0cfe523fbf6b6c6f0c49cf372c0"
+    ],
+    "units": [
+        {
+            "found": true,
+            "certified": true,
+            "cv_eval": 9.324262453056723e-15,
+            "cv": 0,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))",
+            "t_first_found": 176.3,
+            "flights": 2,
+            "candidates": 20913,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "wall": 176.3,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "H1",
+            "null": false,
+            "t2_used": false
+        },
+        {
+            "found": true,
+            "certified": true,
+            "cv_eval": 8.978102870229763e-15,
+            "cv": 0,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))",
+            "t_first_found": 154.7,
+            "flights": 2,
+            "candidates": 20913,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "wall": 154.7,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "H2",
+            "null": false,
+            "t2_used": false
+        },
+        {
+            "found": false,
+            "certified": false,
+            "cv_eval": null,
+            "cv": 9.99,
+            "formula": "none",
+            "t_first_found": null,
+            "flights": 3,
+            "candidates": 41858,
+            "diagnoses": [
+                "DEPTH",
+                "DEPTH",
+                "WALLCLOCK_CAP"
+            ],
+            "wall": 314,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "HN1",
+            "null": true,
+            "t2_used": false
+        },
+        {
+            "found": false,
+            "certified": false,
+            "cv_eval": null,
+            "cv": 9.99,
+            "formula": "none",
+            "t_first_found": null,
+            "flights": 3,
+            "candidates": 65711,
+            "diagnoses": [
+                "DEPTH",
+                "DEPTH",
+                "GRAMMAR"
+            ],
+            "wall": 284.7,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "HN2",
+            "null": true,
+            "t2_used": false
+        }
+    ],
+    "certified": 2,
+    "null_certified": 0,
+    "wall": 929.7,
+    "mem_peak": 4194304
+}

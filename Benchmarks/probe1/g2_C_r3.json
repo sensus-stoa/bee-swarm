@@ -1,0 +1,43 @@
+{
+    "phase": "G2",
+    "arm": "C",
+    "replicate": "3",
+    "register": [
+        "BC7156b7e5"
+    ],
+    "reg_count": 1,
+    "laws": [],
+    "T2": null,
+    "flight_log": [
+        {
+            "id": "G2A",
+            "found": false,
+            "certified": false,
+            "flights": 3,
+            "diagnoses": [
+                "?",
+                "?",
+                "?"
+            ],
+            "cands": 58289,
+            "wall": 122,
+            "formula": "(((c0BC7156b7e5(c3\/R+c3))\u2212(c2\/Rminc2))\/c1)"
+        },
+        {
+            "id": "G2B",
+            "found": false,
+            "certified": false,
+            "flights": 3,
+            "diagnoses": [
+                "?",
+                "?",
+                "?"
+            ],
+            "cands": 58286,
+            "wall": 82.3,
+            "formula": "(((c0BC7156b7e5(c2\/R+c2))\/c0)\/c1)"
+        }
+    ],
+    "wall": 204.3,
+    "mem_peak": 4194304
+}

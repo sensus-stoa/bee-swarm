@@ -1,0 +1,39 @@
+{
+    "pilot": "c_decompose_v2",
+    "C_form": "((x0\u00d7x1)+(x3\u00d7x4\u00b2))+x5",
+    "C_self_cv": 4.965068306494546e-17,
+    "T1_decomposition": {
+        "terms": [
+            {
+                "term": "((x0\u00d7x1)+(x3\u00d7x4\u00b2))",
+                "on": "A",
+                "cv": 4.421973294849016,
+                "pass": false
+            },
+            {
+                "term": "x5",
+                "on": "B",
+                "cv": 6.248441783195836,
+                "pass": false
+            }
+        ],
+        "pass": false
+    },
+    "T3_counter": {
+        "cv": 3.973841595837723,
+        "breaks": true
+    },
+    "T2_transplant": {
+        "with_road": {
+            "certs_novel": 45,
+            "first_cert_gen": 1,
+            "distinct_forms": 1
+        },
+        "fresh_road": {
+            "certs_novel": 75,
+            "first_cert_gen": 1,
+            "distinct_forms": 1
+        },
+        "organ_road_marks": 8
+    }
+}

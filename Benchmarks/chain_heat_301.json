@@ -1,0 +1,79 @@
+{
+    "task": "heat@301",
+    "mechanism": "DOT4 chain (8 ladders, road accumulating, 12s each)",
+    "certs": 7,
+    "rows": [
+        {
+            "ladder": 1,
+            "cert": false,
+            "found": false,
+            "cov": 0.667,
+            "form": "((x0\u00d7x1)min(x0+x1))",
+            "wall": 8.1,
+            "road_size_after": 8
+        },
+        {
+            "ladder": 2,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.3,
+            "road_size_after": 8
+        },
+        {
+            "ladder": 3,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.2,
+            "road_size_after": 8
+        },
+        {
+            "ladder": 4,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.2,
+            "road_size_after": 7
+        },
+        {
+            "ladder": 5,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.1,
+            "road_size_after": 6
+        },
+        {
+            "ladder": 6,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.1,
+            "road_size_after": 5
+        },
+        {
+            "ladder": 7,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.1,
+            "road_size_after": 5
+        },
+        {
+            "ladder": 8,
+            "cert": true,
+            "found": true,
+            "cov": 1,
+            "form": "((((((x0\u00d7x1)\u00d7(x0+x2))\u00d7(x0\u00d7x2))/(x0/x2))+(((x0\u00d7x1)\u00d7(x0+",
+            "wall": 8.2,
+            "road_size_after": 5
+        }
+    ]
+}

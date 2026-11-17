@@ -1,0 +1,18 @@
+=== OOM-GUARD: re-exec под systemd-run scope (MemoryMax=6G, CPUQuota=800%) ===
+Running scope as unit: v017-twopass-1793796733.scope
+=== V0.17 TWO-PASS SUITE 15:52 ===
+Logs: /tmp/v017_1793796734
+INVARIANT PRE-FLIGHT: declared=1430 == expected=1430 OK
+[PASS 1/2] fast: phpunit serial (parallel env degraded 31.10)
+Time: 22:32.281, Memory: 1.90 GB
+
+OK (1415 tests, 45576 assertions)
+[PASS 2/2] slow: phpunit --group slow (serial)
+Time: 03:12.036, Memory: 164.00 MB
+
+OK (15 tests, 49 assertions)
+=== SUMMARY 16:18 ===
+fast: green=YES n=1415
+slow: green=YES n=15
+fast+slow=1430 / expected=1430 invariant=YES
+=== TWO-PASS GREEN ===

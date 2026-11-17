@@ -1,0 +1,39 @@
+{
+    "run_id": "strategy_compare2_X_101",
+    "phase": "compare2",
+    "n_slots_per_arm": 100,
+    "novel_cert_counts": {
+        "A": 60,
+        "I": 56,
+        "B": 50
+    },
+    "wilson_lower": {
+        "A": 0.502,
+        "I": 0.4623,
+        "B": 0.4038
+    },
+    "mcnemar": {
+        "A_vs_I_theta_contribution": {
+            "n10": 10,
+            "n01": 6,
+            "p_exact": 0.454498
+        },
+        "I_vs_B_condition_no_theta": {
+            "n10": 6,
+            "n01": 0,
+            "p_exact": 0.03125
+        },
+        "A_vs_B_Q1": {
+            "n10": 10,
+            "n01": 0,
+            "p_exact": 0.001953
+        }
+    },
+    "budget_floor": false,
+    "verdicts": {
+        "H1_Q1_PASS (A>B)": true,
+        "THETA_verdict (A vs I)": "theta_HELPS",
+        "CONDITION_no_theta_PASS (I>B)": true
+    },
+    "design_note": "C2: hand-ladder seeded populations, 3 tasks (dot SUM / D1 RATIO / heat PRODUCT) x 10 seeds; A = CLASS_INTEGRATOR (theta 0.05), I = CLASS_MATCH (no theta); ladder=forced-on form-presence design, Q1 claim = evolution+gate WITH form present"
+}

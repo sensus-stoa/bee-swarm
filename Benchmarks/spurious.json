@@ -1,0 +1,118 @@
+[
+    {
+        "sigma": 0.05,
+        "seed": 401,
+        "direct": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "certs": []
+        },
+        "contour": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "lib": 7,
+            "certs": []
+        }
+    },
+    {
+        "sigma": 0.05,
+        "seed": 402,
+        "direct": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "certs": []
+        },
+        "contour": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "lib": 10,
+            "certs": []
+        }
+    },
+    {
+        "sigma": 0.1,
+        "seed": 401,
+        "direct": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "certs": []
+        },
+        "contour": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "lib": 4,
+            "certs": []
+        }
+    },
+    {
+        "sigma": 0.1,
+        "seed": 402,
+        "direct": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "certs": []
+        },
+        "contour": {
+            "certs_train": 0,
+            "held_pass": 0,
+            "false_certs": 0,
+            "false_rate": null,
+            "lib": 12,
+            "certs": []
+        }
+    },
+    {
+        "controls": [
+            {
+                "control": "shuffled_y",
+                "sigma": 0.1,
+                "seed": 401,
+                "direct": {
+                    "certs_train": 0,
+                    "held_pass": 0,
+                    "false_certs": 0,
+                    "false_rate": null,
+                    "certs": []
+                }
+            },
+            {
+                "control": "sigma0",
+                "sigma": 0,
+                "seed": 401,
+                "direct": {
+                    "certs_train": 0,
+                    "held_pass": 0,
+                    "false_certs": 0,
+                    "false_rate": null,
+                    "certs": []
+                }
+            },
+            {
+                "control": "same_seed_heldout",
+                "sigma": 0.05,
+                "seed": 401,
+                "direct": {
+                    "certs_train": 0,
+                    "held_pass": 0,
+                    "false_certs": 0,
+                    "false_rate": null,
+                    "certs": []
+                }
+            }
+        ]
+    }
+]

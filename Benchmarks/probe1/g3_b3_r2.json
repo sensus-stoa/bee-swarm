@@ -1,0 +1,97 @@
+{
+    "phase": "G3",
+    "arm3": "b3",
+    "replicate": "2",
+    "register": [
+        "BW5737967f9b4ecb628fd48d7d82502f40",
+        "BC2431a961"
+    ],
+    "units": [
+        {
+            "found": true,
+            "certified": true,
+            "cv_eval": 6.0446966606212686e-15,
+            "cv": 0,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))",
+            "t_first_found": 181.6,
+            "flights": 2,
+            "candidates": 20913,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "wall": 181.6,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "H1",
+            "null": false,
+            "t2_used": false
+        },
+        {
+            "found": true,
+            "certified": true,
+            "cv_eval": 9.956478599258855e-15,
+            "cv": 0,
+            "formula": "((c0BW5737967f9b4ecb628fd48d7d82502f40c1)+(c0\u2212c2))",
+            "t_first_found": 184.8,
+            "flights": 2,
+            "candidates": 20913,
+            "diagnoses": [
+                "?",
+                "?"
+            ],
+            "wall": 184.8,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "H2",
+            "null": false,
+            "t2_used": false
+        },
+        {
+            "found": false,
+            "certified": false,
+            "cv_eval": null,
+            "cv": 9.99,
+            "formula": "none",
+            "t_first_found": null,
+            "flights": 3,
+            "candidates": 41857,
+            "diagnoses": [
+                "DEPTH",
+                "DEPTH",
+                "WALLCLOCK_CAP"
+            ],
+            "wall": 301,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "HN1",
+            "null": true,
+            "t2_used": false
+        },
+        {
+            "found": false,
+            "certified": false,
+            "cv_eval": null,
+            "cv": 9.99,
+            "formula": "none",
+            "t_first_found": null,
+            "flights": 3,
+            "candidates": 41857,
+            "diagnoses": [
+                "DEPTH",
+                "DEPTH",
+                "WALLCLOCK_CAP"
+            ],
+            "wall": 303.8,
+            "n_rows": 48,
+            "n_feat": 5,
+            "id": "HN2",
+            "null": true,
+            "t2_used": false
+        }
+    ],
+    "certified": 2,
+    "null_certified": 0,
+    "wall": 971.1,
+    "mem_peak": 4194304
+}

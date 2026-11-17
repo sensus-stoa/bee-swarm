@@ -1,0 +1,112 @@
+{
+    "pilot": "autodecomposition",
+    "task_k": 1,
+    "material": 11,
+    "library": 7,
+    "library_terms": [
+        "x3\u00d7x4\u00b2",
+        "x3",
+        "x5",
+        "x0",
+        "x0\u00d7x1",
+        "x0\u00d7x3",
+        "x4"
+    ],
+    "material_terms": [
+        "(x3\u00d7x4\u00b2)",
+        "(x3+x5)",
+        "((x0+x3)+(x0\u00d7x1))",
+        "(x0\u00d7x1)",
+        "((x0\u00d7x3)+(x0\u00d7x1))",
+        "((x3+x5)+(x0\u00d7x1))",
+        "((x3+x5)+(x0+x3))",
+        "(((x0\u00d7x3)+(x0\u00d7x1))+(x0+x3))",
+        "(((x0+x3)+(x0\u00d7x1))+(x0\u00d7x3))",
+        "(x0+x3)",
+        "(x3+x4)"
+    ],
+    "routing_arms": {
+        "baseline": {
+            "arm": "baseline",
+            "combos": 343,
+            "certs": 6,
+            "best_cv": 4.965068306494546e-17,
+            "best_combo": [
+                "x5",
+                "x3\u00d7x4\u00b2",
+                "x0\u00d7x1"
+            ]
+        },
+        "type_compat": {
+            "arm": "type_compat",
+            "combos": 343,
+            "certs": 6,
+            "best_cv": 4.965068306494546e-17,
+            "best_combo": [
+                "x5",
+                "x3\u00d7x4\u00b2",
+                "x0\u00d7x1"
+            ],
+            "lib_size": 7
+        },
+        "co_occurrence": {
+            "arm": "co_occurrence",
+            "combos": 343,
+            "certs": 6,
+            "best_cv": 4.965068306494546e-17,
+            "best_combo": [
+                "x5",
+                "x3\u00d7x4\u00b2",
+                "x0\u00d7x1"
+            ],
+            "lib_size": 7,
+            "note": "learned classes = warm-up successes"
+        },
+        "random": [
+            {
+                "arm": "random_1",
+                "combos": 343,
+                "certs": 6,
+                "best_cv": 4.965068306494546e-17,
+                "best_combo": [
+                    "x5",
+                    "x3\u00d7x4\u00b2",
+                    "x0\u00d7x1"
+                ],
+                "lib_size": 7
+            },
+            {
+                "arm": "random_2",
+                "combos": 343,
+                "certs": 6,
+                "best_cv": 4.965068306494546e-17,
+                "best_combo": [
+                    "x5",
+                    "x3\u00d7x4\u00b2",
+                    "x0\u00d7x1"
+                ],
+                "lib_size": 7
+            },
+            {
+                "arm": "random_3",
+                "combos": 343,
+                "certs": 6,
+                "best_cv": 4.965068306494546e-17,
+                "best_combo": [
+                    "x5",
+                    "x3\u00d7x4\u00b2",
+                    "x0\u00d7x1"
+                ],
+                "lib_size": 7
+            }
+        ]
+    },
+    "combos_tried": 343,
+    "best_cv": 4.965068306494546e-17,
+    "best_combo": [
+        "x5",
+        "x3\u00d7x4\u00b2",
+        "x0\u00d7x1"
+    ],
+    "merge_certs": 6
+}

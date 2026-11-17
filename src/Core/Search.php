@@ -1126,7 +1126,9 @@ class Search
                 $diversity = getenv('TRAIL_READ_DIVERSITY') === '1';
                 // EXP-062 forensics: the candR composition — is (c3x4) in the
                 // eval-passed candidates at all?
-                $candForms = array_map(fn ($c) => (string) ($c['f'] ?? ($c['name'] ?? '?')), $candR);
+                // 'f' гарантирован конструктором $candR (строки выше) —
+                // мёртвый fallback 'name' удалён (урок psalm: подавление ≠ фикс)
+                $candForms = array_map(fn (array $c): string => (string) $c['f'], $candR);
                 $c3c4In = count(array_filter($candForms, fn ($f) => str_contains($f, '(c3×c4)')));
                 $partialIn = count(array_filter($candForms, fn ($f) => str_contains($f, '(c0×c2²)')));
                 fwrite(STDERR, sprintf("[CANDR] candR=%d c3c4_in=%d partial_in=%d forms=[%s]\n",

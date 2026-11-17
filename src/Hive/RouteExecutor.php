@@ -110,7 +110,7 @@ final class RouteExecutor
      * buffer-level leakage hook lives in the campaign driver).
      *
      * @param array{task_class?:string, yield_t?:float, prev_state?:float, n_obs?:int} $sensorState
-     * @return array{activated:bool, reason:string, state:float}
+     * @return array{activated:bool, reason:string, state:float|null}
      */
     public static function conditionDecision(array $genome, array $sensorState): array
     {
@@ -165,7 +165,8 @@ final class RouteExecutor
      * @param array<string,string> $localAtoms name => definition (ExpressionTree JSON)
      * @return array{activated:bool, records:list<array>, found:bool, cert_formula:?string,
      *               best_L_valid:?float, best_formula_x:?string, first_L_valid:?float,
-     *               wall:float, unspent:float, local_atoms:array<string,string>, stop:string}
+     *               wall:float, unspent:float, local_atoms:array<string,string>, stop:string,
+     *               best_cv_seen:float, partial_form:string}
      */
     public static function run(
         array $genome,
@@ -363,11 +364,12 @@ final class RouteExecutor
 
     /**
      * Один вылет Search::find c env-ручками. Возвращает
-     * [found, cv_exposed|null, formula_c|label-space|null, formula_x|x-space|null].
+     * [found, cv_exposed|null, formula_c|label-space|null, formula_x|x-space|null,
+     *  trail-телеметрия вылета (written/injected/partial/best_cv_seen/...)].
      *
      * @param list<string> $presetOps
      * @param array<string,string> $localAtoms
-     * @return array{0:bool,1:?float,2:?string,3:?string}
+     * @return array{0:bool,1:?float,2:?string,3:?string,4:array<string,mixed>}
      */
     private static function flight(
         array $X,

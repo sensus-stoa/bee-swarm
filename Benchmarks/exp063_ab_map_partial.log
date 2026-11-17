@@ -1,0 +1,1285 @@
+=== EXP063 AB START Tue Nov 17 01:35:58 PM MSK 2026 ===
+[-- ctrl/eval seed 401 start 13:35:58 --]
+[CANDR] candR=1 c3c4_in=0 partial_in=0 forms=[c5]
+[SELR] selR=1 c3c4=0 partial=0 forms=[c5]
+[L2-FORENSICS] pool=42 marks_in_pool=1 injected_total=1 pairs=861 ops=7 marks=[c5] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] ((c0×c1²)+(c0×c2²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0×c1²)+(c0×c2²)) => PASS
+[CANDR] candR=4 c3c4_in=0 partial_in=2 forms=[(c5+(c0×c2²)),(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[SELR] selR=4 c3c4=0 partial=2 forms=[(c5+(c0×c2²)),(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=4 injected_total=4 pairs=990 ops=7 marks=[c5,((c0×c1²)+(c0×c2²)),(c0+c5),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] ((c5+(c0×c2²))+(c0×c1)) => OK
+[CAND-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c1)) => PASS
+[READ-EVAL] ((c0×c1²)+(c0×c2²)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c2,((c5+(c0×c2²))+(c0×c1,(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c2²,((c5+(c0×c2²))+(c0×c1)),(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c1)),((c5+(c0×c2²))+(c0×c2²)),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))+((c5+(c0×c2²))+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c2)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c2²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c2²))+(c0×c1)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c2²))−(c0×c2²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c1)) => PASS
+[READ-EVAL] ((c0×c1²)+(c0×c2²)) => PASS
+[CANDR] candR=8 c3c4_in=0 partial_in=6 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+(c0×c2²))+(c0×c2,((c5+(c0×c2²))+(c0×c1,(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c1)) => PASS
+[READ-EVAL] ((c0×c1²)+(c0×c2²)) => PASS
+[CANDR] candR=8 c3c4_in=0 partial_in=6 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+(c0×c2²))+(c0×c2,((c5+(c0×c2²))+(c0×c1,(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c1)) => PASS
+[READ-EVAL] ((c0×c1²)+(c0×c2²)) => PASS
+[CANDR] candR=8 c3c4_in=0 partial_in=6 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+(c0×c2²))+(c0×c2,((c5+(c0×c2²))+(c0×c1,(c0+c5),((c0×c1²)+(c0×c2²)),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c1)) => PASS
+[CANDR] candR=7 c3c4_in=0 partial_in=5 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+(c0×c2²))+(c0×c2,((c5+(c0×c2²))+(c0×c1,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c,(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(((c5+(c0×c2²))+(c0×c1))�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => OK
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0×c3)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0−c1)) => OK
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0−c1)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0−c1)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0−c1)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+[READ-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => PASS
+[READ-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => PASS
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0−c1)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(((c5+(c0×c2²))+(c0×c,(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0,((c5+((c5+(c0×c2²))+(c,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(((c5+(c0×c2²))+(c0×c1),(c5+(c0×c2²)),(c5+((c5+(c0×c2²))+(c0×,(c0+c5),c5]
+[L2-FORENSICS] pool=44 marks_in_pool=5 injected_total=5 pairs=946 ops=7 marks=[c5,(c0+c5),(c5+((c5+(c0×c2²))+(c0×c2,(c5+(c0×c2²)),(((c5+(c0×c2²))+(c0×c1))�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c5+(c0×c2²))+(c0×c1))−(c0×c1)) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (c5+((c5+(c0×c2²))+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(((c5+(c0×c2²))+(c0×c1))−(c0×c1))) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))−(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((c5+((c5+(c0×c2²))+(c0×c2²)))+(c0×c1)) => DEPTH_EXCEEDED
+RUN_DONE read=ctrl adm=eval seed=401 certs=0 pool_c3c4=0 comp=0 cv_best=0.24241404257416088 | NONE
+[-- ctrl/eval seed 402 start 13:38:26 --]
+[CANDR] candR=1 c3c4_in=0 partial_in=0 forms=[c5]
+[SELR] selR=1 c3c4=0 partial=0 forms=[c5]
+[L2-FORENSICS] pool=36 marks_in_pool=1 injected_total=1 pairs=630 ops=7 marks=[c5] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[CANDR] candR=3 c3c4_in=0 partial_in=1 forms=[(c5+(c0×c2²)),(c0+c5),c5]
+[SELR] selR=3 c3c4=0 partial=1 forms=[(c5+(c0×c2²)),(c0+c5),c5]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[c5,(c0+c5),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=2
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] ((c0+c5)+(c5+(c0×c2²))) => OK
+[CAND-EVAL] ((c5+(c0×c2²))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] ((c5+(c0×c2²))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] ((c5+(c0×c2²))+(c0×c3)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=43 marks_in_pool=5 injected_total=5 pairs=903 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=43 marks_in_pool=5 injected_total=5 pairs=903 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=39 marks_in_pool=5 injected_total=5 pairs=741 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=43 marks_in_pool=5 injected_total=5 pairs=903 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=43 marks_in_pool=5 injected_total=5 pairs=903 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=41 marks_in_pool=5 injected_total=5 pairs=820 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c0+c5)+(c5+(c0×c2²))) => PASS
+[READ-EVAL] ((c5+(c0×c2²))+(c0×c3)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²)),((c5+(c0×c2²))+(c0×c3,(c0+c5),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),((c0+c5)+(c5+(c0×c2²))),((c5+(c0×c2²))+(c0×c3)),(c0+c5),c5]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[c5,(c0+c5),((c5+(c0×c2²))+(c0×c3)),((c0+c5)+(c5+(c0×c2²))),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] (((c0+c5)+(c5+(c0×c2²)))−(c0sqc2)) => LABEL_UNRESOLVABLE
+RUN_DONE read=ctrl adm=eval seed=402 certs=0 pool_c3c4=0 comp=0 cv_best=0.34149080274943716 | NONE
+[-- ctrl/eval seed 403 start 13:40:49 --]
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[c5,(c3×c4²)]
+[SELR] selR=2 c3c4=0 partial=0 forms=[c5,(c3×c4²)]
+[L2-FORENSICS] pool=44 marks_in_pool=2 injected_total=2 pairs=946 ops=7 marks=[(c3×c4²),c5] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[CANDR] candR=4 c3c4_in=0 partial_in=1 forms=[(c5+(c0×c2²)),(c0+c5),c5,(c3×c4²)]
+[SELR] selR=4 c3c4=0 partial=1 forms=[(c5+(c0×c2²)),(c0+c5),c5,(c3×c4²)]
+[L2-FORENSICS] pool=45 marks_in_pool=4 injected_total=4 pairs=990 ops=7 marks=[(c3×c4²),c5,(c0+c5),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=3
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] ((c5+(c0×c2²))−(c0+c2)) => OK
+[CAND-EVAL] ((c5+(c0×c2²))+(c0sqc1)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] ((c5+(c0×c2²))+(c0sqc2)) => LABEL_UNRESOLVABLE
+[CAND-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => OK
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(c0+c5),((c5+(c0×c2²))−(c0+c,((c5+(c0×c2²))−(c0×,c5,(c3×c4²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(c0+c5),((c5+(c0×c2²))−(c0+c2),((c5+(c0×c2²))−(c0×c1,c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,((c5+(c0×c2²))−(c0×c1²,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+((c5+(c0×c2²))−(c0+c2))) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=7 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,((c5+(c0×c2²))−(c0×,c5,(c3×c4²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=7 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,((c5+(c0×c2²))−(c0×,c5,(c3×c4²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=7 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,((c5+(c0×c2²))−(c0×,c5,(c3×c4²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=4 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,((c5+(c0×c2²))−(c0×,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),c5]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[c5,((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=6 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²),c5]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=46 marks_in_pool=5 injected_total=5 pairs=1035 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=45 marks_in_pool=5 injected_total=5 pairs=990 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4
+[CAND-EVAL] (c0×c2²) => OK
+[CAND-EVAL] (c3×c4) => OK
+[CAND-EVAL] (c5+(c0×c2²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => OK
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c1)) => DEPTH_EXCEEDED
+[CAND-EVAL] (((c5+(c0×c2²))−(c0+c2))+(c0+c2)) => DEPTH_EXCEEDED
+[CAND-EVAL] ((((c5+(c0×c2²))−(c0×c1²))+(c0×c1²))+(c5+(c0×c2²))) => DEPTH_EXCEEDED
+[READ-EVAL] (c5+(c0×c2²)) => PASS
+[READ-EVAL] (((c5+(c0×c2²))−(c0×c1²))+(c0×c1²)) => PASS
+[READ-EVAL] ((c5+(c0×c2²))−(c0+c2)) => PASS
+[CANDR] candR=5 c3c4_in=0 partial_in=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0�,(c0+c5),((c5+(c0×c2²))−(c0+c,(c0×c0²)]
+[SELR] selR=5 c3c4=0 partial=3 forms=[(c5+(c0×c2²)),(((c5+(c0×c2²))−(c0×c,(c0+c5),((c5+(c0×c2²))−(c0+c2),(c0×c0²)]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[(c0×c0²),((c5+(c0×c2²))−(c0+c2)),(c0+c5),(((c5+(c0×c2²))−(c0×c1�,(c5+(c0×c2²))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=4

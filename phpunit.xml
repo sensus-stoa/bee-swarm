@@ -21,6 +21,12 @@
             <group>slow</group>
         </exclude>
     </groups>
+    <extensions>
+        <!-- ENV-ISOLATION (30.10, cb7c8b5): putenv глобален процессу, paratest
+             воркер = много классов. Snapshot/restore всего env вокруг каждого
+             теста — изоляция по построению (тест видит чистый bootstrap-env). -->
+        <bootstrap class="BeeSwarm\Tests\EnvIsolationExtension"/>
+    </extensions>
     <php>
         <ini name="error_reporting" value="E_ALL"/>
         <ini name="display_errors" value="1"/>

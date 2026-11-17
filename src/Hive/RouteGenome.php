@@ -35,6 +35,16 @@ final class RouteGenome
 
     public const CONDITION_KINDS = ['ALWAYS', 'NO_CERT_AFTER', 'INHERIT'];
 
+    /** STRATEGY-TRANSFER rev.5: dynamic regulator prefix (state_t = a*state_{t-1} + (1-a)*yield_t). */
+    public const CONDITION_INTEGRATOR_PREFIX = 'CLASS_INTEGRATOR:';
+
+    /** STRATEGY-C2 (owner 04.11): (i) arm — class gate WITHOUT the theta barrier. */
+    public const CONDITION_CLASSMATCH_PREFIX = 'CLASS_MATCH:';
+
+    public const INTEGRATOR_ALPHA_MIN = 0.05;
+    public const INTEGRATOR_ALPHA_MAX = 0.95;
+    public const INTEGRATOR_N_MIN = 1;
+
     public const BUDGET_MIN = 0.05;
 
     public const BUDGET_MAX = 0.30;
@@ -63,16 +73,48 @@ final class RouteGenome
             && (! is_string($g['parent_id']) || preg_match('/^route_[0-9a-f]{4,}$/', $g['parent_id']) !== 1)) {
             $errors[] = 'bad parent_id format';
         }
+        $kindIsIntegrator = is_array($g['condition'] ?? null)
+            && isset($g['condition']['kind'])
+            && is_string($g['condition']['kind'])
+            && (str_starts_with($g['condition']['kind'], self::CONDITION_INTEGRATOR_PREFIX)
+                || str_starts_with($g['condition']['kind'], self::CONDITION_CLASSMATCH_PREFIX));
         if (! is_array($g['condition']) || ! isset($g['condition']['kind'])
-            || ! in_array($g['condition']['kind'], self::CONDITION_KINDS, true)) {
+            || (! in_array($g['condition']['kind'], self::CONDITION_KINDS, true)
+                && ! $kindIsIntegrator)) {
             $errors[] = 'bad condition.kind';
-        } else {
+        } elseif ($kindIsIntegrator) {
             $kind = $g['condition']['kind'];
-            if ($kind === 'NO_CERT_AFTER') {
+            if (! $kindIsIntegrator && $kind === 'NO_CERT_AFTER') {
                 $k = $g['condition']['flights'] ?? null;
                 if (! is_int($k) || $k < 1 || $k > 5) {
                     $errors[] = 'condition.flights must be int 1..5';
                 }
+            }
+        }
+        if ($kindIsIntegrator) {
+            $kindStr = (string) $g['condition']['kind'];
+            $isInt = str_starts_with($kindStr, self::CONDITION_INTEGRATOR_PREFIX);
+            $cls = $isInt
+                ? substr($kindStr, strlen(self::CONDITION_INTEGRATOR_PREFIX))
+                : substr($kindStr, strlen(self::CONDITION_CLASSMATCH_PREFIX));
+            if ($cls === '' || ! preg_match('/^[A-Z]+$/', $cls)) {
+                $errors[] = $isInt ? 'CLASS_INTEGRATOR class must be [A-Z]+' : 'CLASS_MATCH class must be [A-Z]+';
+            }
+            if (str_starts_with($g['condition']['kind'], self::CONDITION_INTEGRATOR_PREFIX)) {
+                foreach (['alpha', 'theta', 'n_min'] as $req) {
+                    if (! isset($g['condition'][$req]) || ! is_numeric($g['condition'][$req])) {
+                        $errors[] = "CLASS_INTEGRATOR requires numeric {$req}";
+                    }
+                }
+            } // CLASS_MATCH: n_min optional (default 1), no alpha/theta
+            if (isset($g['condition']['alpha']) && is_numeric($g['condition']['alpha'])
+                && ($g['condition']['alpha'] < self::INTEGRATOR_ALPHA_MIN
+                    || $g['condition']['alpha'] > self::INTEGRATOR_ALPHA_MAX)) {
+                $errors[] = 'alpha out of range';
+            }
+            if (isset($g['condition']['n_min']) && is_numeric($g['condition']['n_min'])
+                && $g['condition']['n_min'] < self::INTEGRATOR_N_MIN) {
+                $errors[] = 'n_min too small';
             }
         }
         $actions = $g['actions'];

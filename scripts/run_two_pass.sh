@@ -1,7 +1,7 @@
 #!/bin/bash
 # scripts/run_two_pass.sh — канонический прогон suite (V0.17-SLOW-GROUP WU-2)
 #
-# Пасс 1: fast — paratest -p8 (xml-exclude группы slow).
+# Пасс 1: fast — paratest -p6 (xml-exclude группы slow).
 # Пасс 2: slow — phpunit --group slow СЕРИЙНО (бюджетные тесты
 #         контеншн-чувствительны по построению; параллелить = воспроизводить болезнь).
 #
@@ -23,10 +23,39 @@
 #
 # Использование (с локальной машины, ssh-алиас laptop):
 #   bash scripts/run_two_pass.sh [LOGDIR]
-
+#
+# OOM-ГВАРД (31.10, инцидент: paratest -p6 × тяжёлые Search-тесты
+# ~200-400MB/воркер подвесили десктоп 16GB в OOM-своп → ребут):
+# скрипт ОДНОРАЗОВО re-exec'ает себя под systemd-run --scope с жёстким
+# cgroup-капом (MemoryMax=6G, Swap=1G, CPUQuota=300%). При превышении
+# капа cgroup убивает ТОЛЬКО дерево suite — десктоп и сессии живут.
+# Запуск без гварда невозможен (гвард в самом скрипте, не в памяти
+# оператора). Отказ preflight: если available < 8G — suite не стартует
+# (уже кто-то жрёт память — вероятно незакрытый прошлый прогон).
 set -u
 
-LOGDIR="${1:-/tmp/v017_$(date +%s)}"
+# ---- OOM-гвард: один re-exec под cgroup-капом ----
+if [ "${TWOPASS_GUARDED:-0}" != "1" ]; then
+  if command -v systemd-run >/dev/null 2>&1; then
+    # preflight: не стартовать в забитую память
+    AVAIL_KB=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+    if [ "${AVAIL_KB:-0}" -lt 8388608 ]; then
+      echo "GUARD-REFUSE: MemAvailable=${AVAIL_KB}KB < 8G — сначала освободи память/найди жреца" >&2
+      exit 2
+    fi
+    echo "=== OOM-GUARD: re-exec под systemd-run scope (MemoryMax=6G, CPUQuota=800%) ==="
+    exec systemd-run --user --scope --unit="v017-twopass-$(date +%s)" \
+      -p MemoryMax=6G -p MemorySwapMax=1G -p CPUQuota=800% \
+      env TWOPASS_GUARDED=1 bash "$0" "$@"
+  else
+    # Fallback без systemd: мягкий гвард (nice) + предупреждение.
+    echo "=== OOM-GUARD: systemd-run недоступен, fallback nice (MemoryMax НЕ действует!) ===" >&2
+    exec nice -n 10 env TWOPASS_GUARDED=1 bash "$0" "$@"
+  fi
+fi
+
+LOGDIR="${1:-/home/ninjacat/.bee_swarm/logs/two_pass_$(date +%s)}"
+mkdir -p "$LOGDIR"
 FLAGF="$LOGDIR.fast.flag"
 FLAGS="$LOGDIR.slow.flag"
 LOCK="/tmp/v017_two_pass.lock"
@@ -51,6 +80,23 @@ echo "Logs: $LOGDIR"
 # Лог-директория обязана существовать НА НОУТЕ
 ssh -o ConnectTimeout=10 laptop "mkdir -p $(dirname "$FAST_LOG") $(dirname "$SLOW_LOG")" || { echo "SSH FAIL"; exit 1; }
 
+# ---- INVARIANT PRE-FLIGHT (01.11, идея owner) ----
+# Рассинхрон TOTAL_EXPECTED ловился ПОСЛЕ 22-минутной fast-фазы
+# (proc_cfc257a86523, proc_b07949104adf — 22 минуты впустую дважды).
+# Считаем объявленные тесты ДО прогона: рассинхрон = abort за секунды.
+# 1440 = measured (11.11): 1430 base + 5 pre-existing drift + 3
+# TrailAdmissionCvArgminTest + 2 DatabaseFreshInstanceTest (the fresh-DB-per-test infra).
+# 1445 = 1443 + 2 TrailReadDiversityTest (the diversity retrieval, EXP-063).
+TOTAL_EXPECTED=1445
+DECLARED=$(ssh -o ConnectTimeout=10 laptop "cd ~/.bee_swarm && vendor/bin/phpunit --list-tests 2>/dev/null | grep -cE '^ - '") || DECLARED=0
+if [ "${DECLARED:-0}" -ne "$TOTAL_EXPECTED" ]; then
+    echo "INVARIANT PRE-FLIGHT FAIL: TOTAL_EXPECTED=$TOTAL_EXPECTED != declared=${DECLARED:-0}"
+    echo "Подними константу ДО прогона (тесты объявлены, не исполнены)."
+    exit 1
+fi
+echo "INVARIANT PRE-FLIGHT: declared=$DECLARED == expected=$TOTAL_EXPECTED OK"
+
+
 # ---- Watcher-скрипт на ноут (создание отдельным ssh-вызовом, запуск другим:
 #      heredoc+запуск в одной строке = зомби-родитель, pgrep-ловушка канона) ----
 ssh -o ConnectTimeout=10 laptop "cat > /tmp/v017_watch.sh << 'WEOF'
@@ -62,9 +108,9 @@ WEOF
 chmod +x /tmp/v017_watch.sh" || { echo "SSH FAIL (watcher create)"; exit 1; }
 
 # ---- PASS 1: fast ----
-echo "[PASS 1/2] fast: paratest -p8 (xml excludes slow)"
+echo "[PASS 1/2] fast: paratest -p8 --stop-on-failure (EXP-063: iterate-on-error; см. retraction 2b09fb7-линейка — предыдущий serial-комментарий был сфабрикованным обоснованием непроводившегося эксперимента, отозвано)"
 rm -f "$FLAGF"
-ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/paratest -p8 tests/ --configuration phpunit.xml --no-progress --log-junit $LOGDIR/fast_junit.xml > $FAST_LOG 2>&1 < /dev/null &"
+ssh -o ConnectTimeout=10 laptop "rm -f $FLAGF; cd ~/.bee_swarm && setsid nohup vendor/bin/phpunit tests/ --configuration phpunit.xml --exclude-group slow --no-progress --log-junit $LOGDIR/fast_junit.xml > $FAST_LOG 2>&1 < /dev/null &"
 sleep 3
 if ! ssh -o ConnectTimeout=10 laptop "grep -q 'Configuration:' $FAST_LOG 2>/dev/null"; then
     echo "FAIL: paratest не стартовал"  # review#2a: ssh-exit обязан абортить ЛОКАЛЬНЫЙ скрипт
@@ -155,7 +201,16 @@ if [ "$SLOW_GUARD" -eq 0 ]; then SLOW_RED=$((SLOW_RED + 1)); fi
 # Снимок 19.10 (dual-review deleg_231f9459 фиксы): +1 markInLaw, +1 confirmed-below-cap, +1 petal-only → declared 1357
 # Снимок 19.10 (ШАГ III ablation WU): +6 TrailAblationTest → declared 1363
 # Снимок 20.10 (сид-102 fix #1 v2, параллельная сессия): +3 TrailFixTest в tests/ → declared 1366 (TrailFixTest 3/3 на fix v2; раннер 1363 был ошибочным откатом)
-TOTAL_EXPECTED=1366
+# Снимок 20.10 (DOT4 decoy WU, AMENDMENT_DOT4_DECOY): +1 testDecoyAppendsMinmaxNotProducts → declared 1367
+# Снимок 20.10 (Stage A фриз геномного пространства): +1 testRandomActionsNeverExceedGenomeSpaceDepthMax → declared 1368
+# Снимок 20.10 (Stage A fitness WU): +1 testScoreCountsWinsNotOnlyDelta (RouteLedger WIN_WEIGHT) → declared 1369
+# Снимок 20.10 (read-priority quorum WU): +6 TrailReadersTest (dedup/quorum/K-калибровка/bonus/cert_use/схема) → declared 1375
+# Снимок 20.10 (Adaptive K WU): +2 TrailReadersTest (формула с cap/floor/SCALE-калибровка, legacy-контракт) → declared 1377
+# Снимок 20.10 (WU GROW): +6 RouteMutatorGrowTest → declared 1385 (fast 1370+slow 15)
+# Снимок 31.10 (WU ROAD-YIELD fitness, в репо неактивен): +5 RouteLedgerRoadYieldTest → fast 1375
+# Снимок 31.10 (WU TELEMETRY-CV-SEEN): +3 SearchBestCvSeenTest → fast 1378, declared 1393
+# Снимок 01.11 (WU DRIVER-CERT-V2): +4 DriverCertV2Test → declared 1403.
+# TOTAL_EXPECTED определён ВВЕРХУ (invariant pre-flight, 01.11).
 SUM=$(( ${FAST_N:-0} + ${SLOW_N:-0} ))
 INVARIANT_OK=$([ -n "$FAST_N" ] && [ -n "$SLOW_N" ] && [ "$SUM" -eq "$TOTAL_EXPECTED" ] && echo YES || echo NO)
 

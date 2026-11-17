@@ -66,6 +66,34 @@ class RouteLedgerTest extends TestCase
         $this->assertSame(0, $g['record']['fails']);
     }
 
+    /**
+     * Stage A fitness fix (PREREG_STAGE_A_EVOLUTION §2.2-в, флаг owner):
+     * delta ≡ 0 в driver-канале (baseline_partial_L null-semantics —
+     * AUDIT/progress «фитнес-функция структурно мертва») → score БЕЗ wins
+     * не даёт селекционного градиента (все геномы равны, отбор — произвольный).
+     * Novel-cert (wins) — прямой сигнал: сертифицировавший маршрут должен
+     * scoring'иться выше при той же сложности.
+     */
+    public function testScoreCountsWinsNotOnlyDelta(): void
+    {
+        $l = new RouteLedger();
+        $winner = $this->genome('route_ffff6666');
+        $loser = $this->genome('route_aaaa1111');
+        $l->register($winner);
+        $l->register($loser);
+        // Оба: delta=0 (структурный факт канала); winner — novel-cert.
+        $l->recordOutcome('route_ffff6666', 't', 0.0, true, 1.0, 0.0);
+        $l->recordOutcome('route_aaaa1111', 't', 0.0, false, 1.0, 0.0);
+        // ВАЖНО (xdebug-урок): скорить ЛЕДЖЕР-копии ($l->get), не локальные
+        // переменные — record живёт в леджере, локальные копии stale
+        // (wins=0 в копии, созданной до recordOutcome).
+        $this->assertGreaterThan(
+            $l->score($l->get('route_aaaa1111')),
+            $l->score($l->get('route_ffff6666')),
+            'wins (novel-cert) обязаны давать градиент при нулевой дельте'
+        );
+    }
+
     public function testScorePrefersHigherDeltaAndPenalizesComplexity(): void
     {
         $l = new RouteLedger();

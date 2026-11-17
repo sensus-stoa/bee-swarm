@@ -482,6 +482,7 @@ class Database
             ['birth_route', 'INTEGER NOT NULL DEFAULT 0'],
             ['last_activity_tick', 'INTEGER NOT NULL DEFAULT 0'],
             ['evict_count', 'INTEGER NOT NULL DEFAULT 0'],
+            ['cert_use', 'INTEGER NOT NULL DEFAULT 0'],
         ] as $v4col) {
             if (! self::columnExists($db, 'trail_marks', $v4col[0])) {
                 $db->exec('ALTER TABLE trail_marks ADD COLUMN ' . $v4col[0] . ' ' . $v4col[1]);
@@ -500,6 +501,16 @@ class Database
             UNIQUE(fingerprint, formula)
         )');
         $db->exec('CREATE INDEX IF NOT EXISTS idx_trail_ghosts_fp ON trail_ghosts (fingerprint)');
+        // AMENDMENT_STAGE_A read-priority quorum (спека §2.3): distinct readers
+        // per mark (PK дедупит повторные чтения одним маршрутом) — quorum =
+        // COUNT(*) ≥ K ∧ cert_use ≥ 1. cert_use на trail_marks (ниже в v4col).
+        $db->exec('CREATE TABLE IF NOT EXISTS trail_readers (
+            fingerprint TEXT NOT NULL,
+            formula TEXT NOT NULL,
+            reader_tag INTEGER NOT NULL,
+            PRIMARY KEY(fingerprint, formula, reader_tag)
+        )');
+        $db->exec('CREATE INDEX IF NOT EXISTS idx_trail_readers_fp ON trail_readers (fingerprint, formula)');
 
         // EXP-045 Route Heredity (14.10): реестр геномов маршрутов + история
         // вылетов. Genome = программа действий НАД примитивами Search; ядро

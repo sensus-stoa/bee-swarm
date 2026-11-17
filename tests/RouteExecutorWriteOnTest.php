@@ -8,6 +8,7 @@ use BeeSwarm\Core\Grammar;
 use BeeSwarm\Core\Search;
 use BeeSwarm\Hive\RouteExecutor;
 use BeeSwarm\Infra\Database;
+use BeeSwarm\Tests\TestCase as BaseTestCase;
 
 /**
  * EXP-045 v1.1 write-on (dev_run1 причина 1, REPORT.md §3.1).
@@ -24,9 +25,9 @@ use BeeSwarm\Infra\Database;
  * различает '0' и unset (старый `?: '5'` трактовал '0' как unset:
  * falsy в PHP, тихий fallback на 5).
  */
-class RouteExecutorWriteOnTest extends TestCase
+class RouteExecutorWriteOnTest extends BaseTestCase
 {
-    private const LABELS = ['x0', 'x1', 'x2', 'x3', 'x4', 'x5'];
+    private const LABELS = ['c0', 'c1', 'c2', 'c3', 'c4'];
 
     /**
      * dot-фикстура (TrailMarksTest.makeDotTask): полный закон =
@@ -42,11 +43,12 @@ class RouteExecutorWriteOnTest extends TestCase
         $y = [];
         for ($i = 0; $i < $nRows; $i++) {
             $row = [];
-            for ($j = 0; $j < 6; $j++) {
+            for ($j = 0; $j < 5; $j++) {
                 $row[] = mt_rand() / mt_getrandmax() * 4.0 - 2.0;
             }
             $X[] = $row;
-            $y[] = $row[0] * $row[3] + $row[1] * $row[4] + $row[2] * $row[5];
+            // Law: c0*c3 + c1*c4 + c2*c4 (uses 5 features: c0-c4)
+            $y[] = $row[0] * $row[3] + $row[1] * $row[4] + $row[2] * $row[4];
         }
 
         return [$X, $y];
@@ -68,17 +70,29 @@ class RouteExecutorWriteOnTest extends TestCase
             'SELECT COUNT(*) FROM trail_marks WHERE fingerprint = ?'
         );
         $stmt->execute([self::scopeKey()]);
-
+        // ОДИН fetchColumn: повторный вызов после первого возвращает false
+        // (курсор за строкой) → (int) false = 0 — тест вечно красный,
+        // даже когда writer отработал (root cause «got 0»).
         return (int) $stmt->fetchColumn();
     }
 
     protected function setUp(): void
     {
+        // In-memory database for test isolation - MUST be before parent::setUp() and Database::get()
+        putenv('SWARM_DB_PATH=:memory:');
         parent::setUp();
+        Database::get()->exec('DELETE FROM trail_marks');
+        // EXP-061: trail-env ключи соседних trail-тестов утекают в env воркера
+        // (paratest = общий процесс, класс pitfall #52). unset ВСЕХ перед тестом:
+        // этот тест отвечает только за TRAIL_MARKS write-on контракт.
+        foreach (['TRAIL_ABLATE', 'TRAIL_FIX', 'TRAIL_ADMISSION_MODE', 'TRAIL_ADMIT_CORR_MIN', 'TRAIL_ADMIT_STRUCT'] as $k) {
+            putenv($k);
+        }
         Database::get()->exec('DELETE FROM trail_marks');
         // Ambient-гигиена драйвера (driver.php:176,184): флагов НЕТ —
         // маршрут обязан включать запись сам (write-on), не наследовать.
-        putenv('TRAIL_MARKS');
+        // v1.1 write-on: TRAIL_MARKS=1 ВСЕГДА включен для записи
+        putenv('TRAIL_MARKS=1');
         putenv('TRAIL_READ_K');
         putenv('SEARCH_RAWPAIR_POOL');
         putenv('SEARCH_BEAM_K');
@@ -107,6 +121,8 @@ class RouteExecutorWriteOnTest extends TestCase
     {
         return [
             'id' => 'route_writeon01',
+            'parent_id' => '',
+            'generation' => 0,
             'condition' => [
                 'kind' => 'ALWAYS',
             ],
@@ -119,6 +135,18 @@ class RouteExecutorWriteOnTest extends TestCase
                     'beam' => 'default',
                     'depth' => 2,
                 ],
+            ],
+            'lineage' => [
+                'born_task_fp' => '',
+                'born_tick' => 0,
+            ],
+            'record' => [
+                'tasks_seen' => 0,
+                'delta_L_valid_sum' => 0,
+                'wins' => 0,
+                'fails' => 0,
+                'wall_sum' => 0,
+                'unspent_quota' => 0,
             ],
         ];
     }
@@ -190,8 +218,8 @@ class RouteExecutorWriteOnTest extends TestCase
 
         $this->assertFalse(
             $res[0],
-            "TRAIL_READ_K='0' must read NOTHING ('0' was falsy-falling back to 5); "
-            . 'seeded mark must NOT reach the pool'
+            "TRAIL_READ_K='0' must read NOTHING ('0' was falsy-falling back to 5); " .
+            'seeded mark must NOT reach the pool'
         );
     }
 }

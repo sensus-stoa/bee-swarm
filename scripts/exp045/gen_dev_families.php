@@ -44,6 +44,25 @@ for ($i = 0; $i < 2; $i++) {
         'null_shuffle' => true,
     ];
 }
+// PREREG_STAGE_A (флаг owner): DOT4 — 7-я задача (headroom: baseline 8s
+// не сертифицирует — probe_dot4_baseline 20.10; дорога 22/24) + DN4 null.
+$tasks[] = [
+    'id' => ($seal ? 'H' : 'D') . 'OT4',
+    'class' => 'dot4',
+    'seed' => (int) hexdec(substr(md5($prefix . 'DOT4'), 0, 7)),
+    'perm' => [0, 1, 2, 3, 4, 5],
+    'scale' => [1, 1, 1, 1, 1, 1],
+    'noise' => 0.0,
+];
+$tasks[] = [
+    'id' => ($seal ? 'H' : 'D') . 'N4',
+    'class' => 'dot4',
+    'seed' => (int) hexdec(substr(md5($prefix . 'NULL' . 'DN4'), 0, 7)),
+    'perm' => [0, 1, 2, 3, 4, 5],
+    'scale' => [1, 1, 1, 1, 1, 1],
+    'noise' => 0.0,
+    'null_shuffle' => true,
+];
 
 $out = [
     '_prefix' => $prefix,

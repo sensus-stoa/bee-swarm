@@ -21,8 +21,7 @@ Concrete_Readme.txt
 # Внутренние рабочие файлы (не для публичного репо)
 ProductSpecification/
 .agents/
-docs/*
-!docs/EXTERNAL_AUDITS.md
+docs/
 AGENTS.md
 CODE_NAVIGATION.md
 CUBE_CV0_SEMANTIC.md
@@ -44,5 +43,17 @@ outputs/
 .env
 .env.*.local
 
-# python cache
-__pycache__/
+# Временные и одноразовые артефакты
+tmp_upload/
+tmp_sync/
+analyze_trace*.php
+test_manual*.php
+test_debug_run.php
+debug_*.php
+
+# Сырые пилотные датасеты/чекауты (живут только локально)
+battery_b2/
+Benchmarks/bb_pilot/
+Benchmarks/bb_pilot_dbg/
+Benchmarks/buffer1_pilot/
+Benchmarks/h2lite_l1_library.jsonl.bak_polluted

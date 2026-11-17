@@ -28,6 +28,37 @@ final class RouteLedger
     public const WIN_DELTA = 0.05;
 
     /**
+     * Stage A fitness fix (PREREG_STAGE_A_EVOLUTION §2.2-в): вес novel-cert
+     * win'а в score. 1.0 = novel-cert доминирует над маржинальной дельтой
+     * (дельты в driver-канале ≡ 0 — структурно; см. AUDIT).
+     */
+    public const WIN_WEIGHT = 1.0;
+
+    /**
+     * MATERIAL QUALITY (negative selection): штраф за junk в fitness.
+     * Junk (min/max композиции) должен стоить дороже, чем полезное,
+     * чтобы поиск не генерировал его на уровне источника.
+     */
+    public const JUNK_PENALTY = 2.0;
+
+    /**
+     * WU ROAD-YIELD (E1-lite, prereg PREREG_E1LITE_ROADYIELD): вес
+     * эффективности (mean unspent quota, [0..1]). Дорожный маршрут
+     * решает быстрее — переиспользует материал — оставляет бюджет.
+     * Непрерывный член: работает там, где cert=0 (жёсткие задачи).
+     */
+    public const EFFICIENCY_WEIGHT = 0.5;
+
+    /**
+     * WU ROAD-YIELD: вес прямой дорожной пользы (mean topk_useful —
+     * сколько прочитанных меток реально помогли поиску). Evolvednm
+     * физически = 0 (дорога выключена) — селекционный канал пары
+     * evolved/evolvednm. Вклад 0..2 при yield 0..10 (сопоставим с
+     * WIN_WEIGHT=1.0); junk-штраф 2.0 по-прежнему доминирует.
+     */
+    public const ROAD_YIELD_WEIGHT = 0.2;
+
+    /**
      * @var array<string,array<string,mixed>> id => genome
      */
     private array $routes = [];
@@ -63,6 +94,7 @@ final class RouteLedger
         bool $routeCertified,
         float $wall,
         float $unspent,
+        float $roadYield = 0.0,
     ): void {
         if (! isset($this->routes[$id])) {
             throw new \InvalidArgumentException("unknown route {$id}");
@@ -81,6 +113,7 @@ final class RouteLedger
         }
         $g['record']['wall_sum'] += $wall;
         $g['record']['unspent_quota'] += $unspent;
+        $g['record']['road_yield_sum'] = ($g['record']['road_yield_sum'] ?? 0.0) + $roadYield;
         $this->routes[$id] = $g;
         $this->outcomes[$id][] = [
             'task_fp' => $taskFp,
@@ -98,6 +131,13 @@ final class RouteLedger
     public function revoke(string $id): void
     {
         $this->revoked[$id] = true;
+    }
+
+    /** Buffer-1 retention (owner 05.11): cancel a revocation — a genome with
+     * partial-credit survival keeps its line alive despite fails. */
+    public function retain(string $id): void
+    {
+        unset($this->revoked[$id]);
     }
 
     public function isRevoked(string $id): bool
@@ -138,9 +178,24 @@ final class RouteLedger
         $seen = (int) ($genome['record']['tasks_seen'] ?? 0);
         $sum = (float) ($genome['record']['delta_L_valid_sum'] ?? 0.0);
         $mean = $seen > 0 ? $sum / $seen : 0.0;
+        $wins = (int) ($genome['record']['wins'] ?? 0);
         $complexity = is_countable($genome['actions'] ?? null) ? count($genome['actions']) : 0;
+        $junkFraction = (float) ($genome['record']['junk_fraction'] ?? 0.0);
 
-        return $mean - RouteMutator::COMPLEXITY_PENALTY * $complexity;
+        // Stage A fitness fix (PREREG_STAGE_A_EVOLUTION §2.2-в): delta ≡ 0 в
+        // driver-канале → без wins-члена score = −complexity (отбор коротких,
+        // градиента нет). Novel-cert wins — прямой селекционный сигнал.
+        // MATERIAL QUALITY (negative selection): штраф за junk в fitness.
+        // Junk (min/max композиции) должен стоить дороже, чем полезное,
+        // чтобы поиск не генерировал его на уровне источника.
+        $junkPenalty = self::JUNK_PENALTY * $junkFraction;
+        // WU ROAD-YIELD: непрерывные дорожные члены (см. консты выше).
+        // mean по задачам — те же единицы, что $mean (индивидуальный канал).
+        $meanUnspent = $seen > 0 ? (float) ($genome['record']['unspent_quota'] ?? 0.0) / $seen : 0.0;
+        $meanRoadYield = $seen > 0 ? (float) ($genome['record']['road_yield_sum'] ?? 0.0) / $seen : 0.0;
+        return $mean + self::WIN_WEIGHT * $wins - RouteMutator::COMPLEXITY_PENALTY * $complexity - $junkPenalty
+            + self::EFFICIENCY_WEIGHT * $meanUnspent
+            + self::ROAD_YIELD_WEIGHT * $meanRoadYield;
     }
 
     /**

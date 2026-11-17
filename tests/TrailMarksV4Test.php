@@ -273,13 +273,19 @@ class TrailMarksV4Test extends TestCase
     /**
      * Сеанс слабых лестниц с заданными fit_last.
      *
+     * MATERIAL (30.10): производство дороги теперь пишет только чистые структуры
+     * (фильтр обёрток) — давление записи на дорогу снизилось, поэтому eviction
+     * добавляет 2 под-давления сверх капа (cap+2): выселение гарантировано
+     * ЛОКАЛЬНО среди сидов, независимо от потока writer'а. Ассерты не менялись.
+     *
      * @param list<float> $fits
      * @return array<string, float> формула → fit
      */
     private static function seedWeakStairFits(array $fits): array
     {
         $seeded = [];
-        foreach (array_values($fits) as $k => $fit) {
+        $all = array_merge($fits, [0.35, 0.3]);
+        foreach (array_values($all) as $k => $fit) {
             $f = self::weakStair(0, 1 + ($k % 4), 2, 3 + ($k % 3));
             $seeded[$f] = $fit;
             self::seedMark($f, [
@@ -349,6 +355,9 @@ class TrailMarksV4Test extends TestCase
             '((x0×x1)+(x2×x5))', '((x0×x2)+(x2×x5))',
         ];
         self::seedStairFits($forms, [0.8, 0.7, 0.6, 0.5, 0.4]);
+        // MATERIAL (30.10): cap+2 локального давления (writer пишет меньше после
+        // фильтра обёрток) — выселение гарантировано среди сидов.
+        self::seedStairFits(['((x0×x3)+(x2×x5))', '((x0×x5)+(x2×x1))'], [0.45, 0.35]);
         $confirmed = '((x0×x1)+(x2×x3))';
         self::seedMark($confirmed, [
             'class' => 'stair',

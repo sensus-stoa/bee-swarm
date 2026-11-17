@@ -25,6 +25,19 @@ final class RouteMutator
     public const TYPE_SHORTEN = 4;
 
     /**
+     * WU GROW (E1-lite → B++): вставка одного действия из словаря в
+     * случайную позицию. Единственный оператор роста длины: REPLACE/SWAP
+     * сохраняют длину, SHORTEN режет — от сидов 1-3 действий лестница
+     * F-M-F-M-F недостижима. На капе MAX_ACTIONS — fallback в REPLACE
+     * (прецедент SWAP при <2 действиях): null убивал бы линедж зря.
+     */
+    public const TYPE_GROW = 5;
+    /** Kashtan & Alon modularity chain (STRATEGY-TRANSFER prereg rev.5). */
+    public const TYPE_DUPLICATE = 6;
+    public const TYPE_SPECIALIZE = 7;
+    public const TYPE_CO_OPT = 8;
+
+    /**
      * Штраф сложности маршрута в score (Ledger).
      */
     public const COMPLEXITY_PENALTY = 0.05;
@@ -88,12 +101,83 @@ final class RouteMutator
                 array_pop($child['actions']);
                 break;
 
+            case self::TYPE_GROW:
+                if (count($child['actions']) >= RouteGenome::MAX_ACTIONS) {
+                    return self::mutate($genome, self::TYPE_REPLACE, $tick);
+                }
+                $pos = mt_rand(0, count($child['actions']));
+                array_splice($child['actions'], $pos, 0, [self::randomAction()]);
+                $child['actions'] = array_values($child['actions']);
+                $child['max_steps'] = min(RouteGenome::MAX_ACTIONS, (int) $child['max_steps'] + 1);
+                break;
+
+            case self::TYPE_DUPLICATE:
+            case self::TYPE_SPECIALIZE:
+            case self::TYPE_CO_OPT:
+                break; // handled after switch (shared logic below)
+
             default:
                 throw new \InvalidArgumentException("unknown mutation type {$type}");
         }
 
+        // STRATEGY-TRANSFER rev.5: modular chain DUPLICATE/SPECIALIZE/CO_OPT.
+        if ($type === self::TYPE_DUPLICATE) {
+            if (count($child['actions']) >= RouteGenome::MAX_ACTIONS) {
+                return null;
+            }
+            $i = array_rand($child['actions']);
+            $copy = $child['actions'][$i];
+            $copy['duplicated_from'] = $i;
+            $child['actions'][] = $copy;
+
+            return $child;
+        }
+        if ($type === self::TYPE_SPECIALIZE) {
+            // modify ONLY the copied block; original stays untouched
+            $idx = null;
+            foreach ($child['actions'] as $i => $a) {
+                if (isset($a['duplicated_from'])) { $idx = $i; break; }
+            }
+            if ($idx === null) {
+                return null; // SPECIALIZE requires a DUPLICATE copy first
+            }
+            $presets = array_keys(RouteGenome::GRAMMAR_PRESETS);
+            $child['actions'][$idx]['grammar'] = $presets[array_rand($presets)];
+            $beams = RouteGenome::BEAM_PRESETS;
+            $child['actions'][$idx]['beam'] = $beams[array_rand($beams)];
+
+            return $child;
+        }
+        if ($type === self::TYPE_CO_OPT) {
+            // specialized copy enters a NEW context: different position + own budget share
+            $idx = null;
+            foreach ($child['actions'] as $i => $a) {
+                if (isset($a['duplicated_from'])) { $idx = $i; break; }
+            }
+            if ($idx === null) {
+                return null;
+            }
+            $block = $child['actions'][$idx];
+            unset($child['actions'][$idx]);
+            $child['actions'] = array_values($child['actions']);
+            $pos = count($child['actions']) > 0 ? random_int(0, count($child['actions'])) : 0;
+            array_splice($child['actions'], $pos, 0, [$block]);
+            unset($block['duplicated_from']);
+            $child['actions'][$pos] = $block;
+
+            return $child;
+        }
         return $child;
     }
+
+    /**
+     * AUDIT_DEPTH_CHAIN (Stage A фриз геномного пространства {d1, d2}):
+     * depth=3 — road-инертная мёртвая зона (L2L1-перебор сжигает канал,
+     * TIMEOUT мимо writer, written=0 — эмпирика probe_depth_audit).
+     * Схема RouteGenome::validate остаётся 1..3 (выразимость), фриз — на
+     * ГЕНЕРАЦИИ: randomAction/randomGenome не создают d3.
+     */
+    public const GENOME_SPACE_DEPTH_MAX = 2;
 
     /**
      * @return array<string,mixed>
@@ -105,7 +189,7 @@ final class RouteMutator
             $grammar = array_rand(RouteGenome::GRAMMAR_PRESETS);
             return [
                 'op' => 'FLIGHT',
-                'depth' => mt_rand(1, 3),
+                'depth' => mt_rand(1, self::GENOME_SPACE_DEPTH_MAX),
                 'grammar' => $grammar,
                 'beam' => RouteGenome::BEAM_PRESETS[array_rand(RouteGenome::BEAM_PRESETS)],
             ];

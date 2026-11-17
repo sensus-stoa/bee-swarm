@@ -98,6 +98,64 @@ final class RouteExecutor
         throw new \InvalidArgumentException('INHERIT must be resolved by the caller before run()');
     }
 
+    /** STRATEGY-TRANSFER rev.5 R3: exponential-smoothing integrator (pure function). */
+    public static function integrateState(float $prevState, float $yieldT, float $alpha): float
+    {
+        return $alpha * $prevState + (1.0 - $alpha) * $yieldT;
+    }
+
+    /**
+     * CLASS_INTEGRATOR:<K> decision (pure function; temporal independence by
+     * construction: inputs must be computed from data <= t by the caller;
+     * buffer-level leakage hook lives in the campaign driver).
+     *
+     * @param array{task_class?:string, yield_t?:float, prev_state?:float, n_obs?:int} $sensorState
+     * @return array{activated:bool, reason:string, state:float}
+     */
+    public static function conditionDecision(array $genome, array $sensorState): array
+    {
+        $cond = $genome['condition'];
+        $kind = $cond['kind'] ?? '';
+        $cmPrefix = RouteGenome::CONDITION_CLASSMATCH_PREFIX;
+        if (is_string($kind) && str_starts_with($kind, $cmPrefix)) {
+            // STRATEGY-C2 (i) arm: class gate WITHOUT the theta barrier.
+            $class = substr($kind, strlen($cmPrefix));
+            $nMin = max((int) ($cond['n_min'] ?? 1), 1);
+            if ((int) ($sensorState['n_obs'] ?? 0) < $nMin) {
+                return ['activated' => false, 'reason' => 'UNKNOWN', 'state' => null];
+            }
+            if (($sensorState['task_class'] ?? '') !== $class) {
+                return ['activated' => false, 'reason' => 'CLASS_MISMATCH', 'state' => null];
+            }
+
+            return ['activated' => true, 'reason' => 'ACTIVATED', 'state' => null];
+        }
+        $prefix = RouteGenome::CONDITION_INTEGRATOR_PREFIX;
+        if (! is_string($kind) || ! str_starts_with($kind, $prefix)) {
+            throw new \InvalidArgumentException('conditionDecision requires a CLASS_INTEGRATOR genome');
+        }
+        $class = substr($kind, strlen($prefix));
+        $nMin = max((int) ($cond['n_min'] ?? RouteGenome::INTEGRATOR_N_MIN), 1);
+        $alpha = (float) ($cond['alpha'] ?? 0.3);
+        $theta = (float) ($cond['theta'] ?? 0.0);
+        $state = self::integrateState(
+            (float) ($sensorState['prev_state'] ?? 0.0),
+            (float) ($sensorState['yield_t'] ?? 0.0),
+            $alpha
+        );
+        if ((int) ($sensorState['n_obs'] ?? 0) < $nMin) {
+            return ['activated' => false, 'reason' => 'UNKNOWN', 'state' => $state];
+        }
+        if (($sensorState['task_class'] ?? '') !== $class) {
+            return ['activated' => false, 'reason' => 'CLASS_MISMATCH', 'state' => $state];
+        }
+        if ($state > $theta) {
+            return ['activated' => true, 'reason' => 'ACTIVATED', 'state' => $state];
+        }
+
+        return ['activated' => false, 'reason' => 'LOW_STATE', 'state' => $state];
+    }
+
     /**
      * Исполнение маршрута в отведённом канале бюджета.
      *
@@ -119,6 +177,11 @@ final class RouteExecutor
         array $localAtoms = [],
         int $marksMode = 1,
     ): array {
+        // AMENDMENT_STAGE_A §2.3: reader-тег маршрута (runSeq процесса) —
+        // distinct-учёт читателей в trail_readers (quorum).
+        static $runSeq = 0;
+        ++$runSeq;
+        \BeeSwarm\Core\Search::setTrailReaderTag($runSeq);
         $cond = $genome['condition'];
         if (($cond['kind'] ?? '') === 'INHERIT') {
             throw new \InvalidArgumentException('INHERIT must be resolved by the caller before run()');
@@ -134,6 +197,7 @@ final class RouteExecutor
         $bestL = null;
         $bestFormulaX = null;
         $firstL = null;
+        $bestCvSeenRun = 9.99; // WU TELEMETRY-CV-SEEN: агрегат по вылетам
         $stop = 'actions_done';
 
         foreach (array_slice($genome['actions'], 0, max(1, (int) ($genome['max_steps'] ?? count($genome['actions'])))) as $seq => $action) {
@@ -226,6 +290,14 @@ final class RouteExecutor
                 // EXP-045 LOOP PROBE: событийная телеметрия trail-marks вылета
                 'trail' => $trailFlight,
             ];
+            // WU TELEMETRY-CV-SEEN: агрегат лучшего увиденного CV по вылетам.
+            // WU PARTIAL-EVAL: partial-форма СТРОГОГО argmin (tie-break к
+            // первому вылету — тем же правилом, что у min()).
+            if (($trailFlight['best_cv_seen'] ?? 9.99) < $bestCvSeenRun
+                && ($trailFlight['partial_form'] ?? 'none') !== 'none') {
+                $partialFormRun = (string) $trailFlight['partial_form'];
+            }
+            $bestCvSeenRun = min($bestCvSeenRun, $trailFlight['best_cv_seen'] ?? 9.99);
         }
 
         $wall = microtime(true) - $t0;
@@ -238,6 +310,8 @@ final class RouteExecutor
             'best_L_valid' => $bestL,
             'best_formula_x' => $bestFormulaX,
             'first_L_valid' => $firstL,
+            'best_cv_seen' => $bestCvSeenRun,
+            'partial_form' => $partialFormRun ?? 'none',
             'wall' => $wall,
             'unspent' => max(0.0, $channelBudgetSec - $wall),
             'local_atoms' => $localAtoms,
@@ -341,6 +415,12 @@ final class RouteExecutor
                 'read_attempts' => Search::$lastTrailReadAttempts,
                 'read_wide' => Search::$lastTrailReadWide,
                 'read_poolskip' => Search::$lastTrailReadPoolSkip,
+                // WU TELEMETRY-CV-SEEN: лучший CV, увиденный поиском (даже
+                // при отказе — единственный наблюдаемый градиент к cert).
+                'best_cv_seen' => Search::$lastBestCvSeen,
+                // WU PARTIAL-EVAL: имя лучшей формы того же argmin
+                // (last-call статик; 'none' = plausible пуст).
+                'partial_form' => Search::$lastBestFormSeen,
             ]];
         } finally {
             foreach ($snapshot as $k => $v) {

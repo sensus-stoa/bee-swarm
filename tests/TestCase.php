@@ -82,6 +82,13 @@ abstract class TestCase extends BaseTestCase
         // L3L1 HeatConduction: standalone OK, paratest FAIL). bee_persistence
         // чистился, остальное — нет. Порядок: потомки после родителей.
         if (! $this->skipFullStateIsolation) {
+            // EXP-061 infra (owner 11.11): fresh :memory: per test — unknown
+            // tables (a test's own CREATE TABLE) survive the known-table
+            // DELETE list; Database::reset() = a brand-new PDO = an empty
+            // schema, the DDL re-applied by get(). The file-based test paths
+            // survive the reset — the DELETE list below stays complementary.
+            Database::reset();
+            Database::get();
             foreach (['trail_marks', 'preregistrations', 'laws', 'grammar_ops', 'knowledge_graph', 'bee_persistence'] as $tbl) {
                 try {
                     Database::get()->exec("DELETE FROM {$tbl}");

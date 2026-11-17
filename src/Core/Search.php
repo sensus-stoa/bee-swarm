@@ -181,12 +181,29 @@ class Search
         // Ревью deleg_6d761503 fix-now №1: класс квадратичен по числу raw-фич
         // (C(n,2)) — на широких данных повторит взрыв v1. Кап срезает по
         // порядку генерации; на сид-102 (6 фич) не активен (15 < 64).
+        // AMENDMENT_DOT4_DECOY (EXP-045): matched-size контроль — min/max над
+        // raw-парами, тот же кап и те же гейты вставки. Task-агностичный
+        // нерелевантный класс: проверка СПЕЦИФИЧНОСТИ материала пула
+        // (истинные продукты против любого обогащения того же размера).
+        $l1MinmaxKeys = [];
         self::$lastPoolFixAppended = [];
         // EXP-045 LOOP PROBE: сброс событийной телеметрии trail-marks (per-find).
         self::$lastTrailWritten = [];
+        // WU TELEMETRY-CV-SEEN: сброс last-call телеметрии (см. объявление).
+        self::$lastBestCvSeen = 9.99;
+        // WU PARTIAL-EVAL: сброс last-call имени лучшей формы (см. объявление).
+        self::$lastBestFormSeen = 'none';
         self::$lastTrailWriterInput = null;
         self::$lastTrailReadFetched = [];
         self::$lastTrailReadInjected = [];
+        self::$lastTrailConfirmed = [];
+        self::$lastTrailConfirmedSeen = 0;
+        self::$lastTrailRoadShare = 0.0;
+        self::$lastTrailTopKUseful = 0;
+        self::$lastTrailTopKJunk = 0;
+        self::$lastTrailCrossFpReads = 0;
+        self::$lastTrailSimilarityFiltered = 0;
+        self::$lastTrailMaterialFiltered = 0;
         self::$lastTrailReadAttempts = null;
         self::$lastTrailReadWide = null;
         self::$lastTrailReadPoolSkip = null;
@@ -442,7 +459,23 @@ class Search
                         $r = $grammar->apply($va[$i], $vb[$i], $op);
                         $vec[] = $r ?? 0.0;
                     }
+                    // MATERIAL QUALITY (приоритет 2-term sums): увеличиваем вероятность
+                    // генерации простых композиций (2-term) вместо min/max. Min/max
+                    // композиции — junk (не участвуют в успешных сертификациях),
+                    // поэтому их вероятность генерации снижается (mutation bias).
                     $pairName = "({$featKeys[$a]}$op{$featKeys[$b]})";
+                    $is2TermSum = $op === '+' || $op === '×';
+                    $isMinMax = $op === 'min' || $op === 'max';
+                    // Приоритет 2-term sums: добавляем в начало списка (выбираются первыми)
+                    if ($is2TermSum) {
+                        array_unshift($l1PairwiseKeys, $pairName); // приоритет — начало списка
+                    } elseif ($isMinMax) {
+                        // Min/max — пониженный приоритет (добавляем в конец, реже выбирается)
+                        $l1PairwiseKeys[] = $pairName;
+                    } else {
+                        // Прочие операции — нейтральный приоритет
+                        $l1PairwiseKeys[] = $pairName;
+                    }
                     $exprs[$pairName] = $vec;
                     // STRUCTURAL RAW-PAIR CLASS (11.10): генератор ДЕКЛАРИРУЕТ
                     // свои формы — никаких регексов-распознавателей (урок
@@ -452,6 +485,12 @@ class Search
                     $l1PairwiseKeys[] = $pairName;
                     if ($op === '×' && isset($rawFeatNames[$featKeys[$a]]) && isset($rawFeatNames[$featKeys[$b]])) {
                         $l1ProductKeys[] = $pairName;
+                    }
+                    // AMENDMENT_DOT4_DECOY: параллельный класс min/max над raw
+                    // — size/arity-matched, алгебраически ортогонален product-
+                    // законам (сборка закона из min/max невозможна).
+                    if (($op === 'min' || $op === 'max') && isset($rawFeatNames[$featKeys[$a]]) && isset($rawFeatNames[$featKeys[$b]])) {
+                        $l1MinmaxKeys[] = $pairName;
                     }
                     // пара операндов декларируется генератором (для
                     // feature-разнообразия квот writer'а, EXPANDING GATES 12.10)
@@ -776,9 +815,26 @@ class Search
                 $products = count($l1ProductKeys) > self::TRAIL_FIX_MAX_PRODUCTS
                     ? array_slice($l1ProductKeys, 0, self::TRAIL_FIX_MAX_PRODUCTS)
                     : $l1ProductKeys;
+                // Size-matching decoy к pool-fix: декой добавляет СТОЛЬКО ЖЕ
+                // форм, сколько добавил бы продуктовый append на этой задаче
+                // (C(n_raw,2)) — сравнение «специфичный материал vs любой
+                // обогащение того же размера», а не «того же капа 64».
+                $decoyCap = min(count($products), self::TRAIL_FIX_MAX_PRODUCTS);
+                $decoy = count($l1MinmaxKeys) > $decoyCap
+                    ? array_slice($l1MinmaxKeys, 0, $decoyCap)
+                    : $l1MinmaxKeys;
                 self::$lastPoolFixAppended = [];
                 if (self::trailFix('pool')) {
                     foreach ($products as $rk) {
+                        if (! isset($seen[$rk]) && isset($exprs[$rk])) {
+                            $seen[$rk] = true;
+                            $pool[] = $rk;
+                            self::$lastPoolFixAppended[] = $rk;
+                        }
+                    }
+                }
+                if (self::trailFix('decoy')) {
+                    foreach ($decoy as $rk) {
                         if (! isset($seen[$rk]) && isset($exprs[$rk])) {
                             $seen[$rk] = true;
                             $pool[] = $rk;
@@ -795,6 +851,7 @@ class Search
                         . ' esc=' . (string) (getenv('SEARCH_ESCALATED') ?: '0')
                         . ' l1PK_n=' . count($l1PairwiseKeys)
                         . ' prod_n=' . count($l1ProductKeys)
+                        . ' decoy_n=' . count($l1MinmaxKeys)
                         . ' rawPair_n=' . count($rawPairKeys)
                         . ' c2c5_in_l1PK=' . var_export(in_array('(c2×c5)', $l1PairwiseKeys, true), true)
                         . ' exprs_c2c5=' . var_export(isset($exprs['(c2×c5)']), true)
@@ -850,13 +907,89 @@ class Search
                 // без изменений).
                 $trk = getenv('TRAIL_READ_K');
                 $readK = ($trk === false || $trk === '') ? 5 : max(0, (int) $trk);
-                $stmtR = \BeeSwarm\Infra\Database::get()->prepare(
-                    'SELECT formula FROM trail_marks WHERE fingerprint = ?
-                     ORDER BY uses DESC, corr DESC LIMIT 200'
-                );
-                $stmtR->execute([$scopeKeyR]);
+                // CROSS-CONTEXT READS (channel-diff fix): scope control.
+                // TRAIL_SCOPE: 'fingerprint' (legacy, per-route), 'labels' (problem domain, default), 'global' (all).
+                $scopeMode = getenv('TRAIL_SCOPE') ?: 'labels';
+                // EXP-062 layer 3 (the read-capture fix): the read ORDER.
+                // 'uses' (default, legacy) = the rich-get-richer: the
+                // self-propagated contamination entrenches (E60 forensics:
+                // the useful (c3x4) written at l1, never read — the top-5
+                // captured by (c0+c5)/junk). 'corr' = the relevance-first:
+                // ORDER BY corr DESC = the marks ranked by their correlation
+                // with the receiving task's target.
+                $readOrder = getenv('TRAIL_READ_ORDER') ?: 'uses';
+                $orderBy = $readOrder === 'corr' ? 'corr DESC, uses DESC' : 'uses DESC, corr DESC';
+                $db = \BeeSwarm\Infra\Database::get();
+                if ($scopeMode === 'global') {
+                    $stmtR = $db->prepare(
+                        "SELECT formula, state, cert_use FROM trail_marks
+                         ORDER BY {$orderBy} LIMIT 200"
+                    );
+                    $stmtR->execute([]);
+                    $scopeKeyR = '__GLOBAL__'; // scopeKey для countTrailCrossReads
+                } else if ($scopeMode === 'similar') {
+                    // SIMILARITY METRIC (sim(fp_A, fp_B) > τ): читать метки из похожих fp.
+                    // Метрика: n_features, feature_names, noise_est, target_stats.
+                    // Порог τ калибруется в E1-lite (env TRAIL_SIMILARITY_TAU, default 0.7).
+                    $tau = (float) (getenv('TRAIL_SIMILARITY_TAU') ?: '0.7');
+                    $stmtR = $db->prepare(
+                        "SELECT fingerprint, formula, state, cert_use FROM trail_marks
+                         ORDER BY {$orderBy} LIMIT 200"
+                    );
+                    $stmtR->execute([]);
+                    $scopeKeyR = '__SIMILAR__';
+                    $targetLabels = $colLabels ?? [];
+                    $targetStats = self::computeLabelStats($X, $y, $targetLabels);
+                } else {
+                    $scopeKeyR = 'sha1:' . sha1(json_encode([
+                        'labels' => $colLabels,
+                    ]));
+                    $stmtR = $db->prepare(
+                        "SELECT formula, state, cert_use FROM trail_marks WHERE fingerprint = ?
+                         ORDER BY {$orderBy} LIMIT 200"
+                    );
+                    $stmtR->execute([$scopeKeyR]);
+                }
                 $rowsAll = $stmtR->fetchAll(\PDO::FETCH_ASSOC);
                 self::$lastTrailReadWide = count($rowsAll); // LOOP PROBE v5: широкий fetch
+                // AMENDMENT_STAGE_A §2.2-channel-diff (Adaptive K): K растёт с
+                // объёмом дороги (пропорция чтения). roadSize = широкий fetch
+                // (cap 200 — road больше в наших масштабах не бывает).
+                $adaptiveK = self::computeAdaptiveReadK(count($rowsAll));
+                if ($adaptiveK > 0) {
+                    $readK = $adaptiveK;
+                }
+                self::$lastTrailRoadSize = count($rowsAll);
+                self::$lastTrailReadK = $readK;
+                // CROSS-CONTEXT: telemetry — cross-fp reads (global mode: all are cross-fp)
+                self::$lastTrailCrossFpReads = ($scopeMode === 'global') ? count($rowsAll) : 0;
+                // AMENDMENT_STAGE_A §2.3: quorum-карта (distinct readers per mark)
+                $rdrMap = [];
+                if ($scopeMode === 'global') {
+                    $stmtQ = $db->prepare(
+                        'SELECT formula, COUNT(DISTINCT reader_tag) rdr FROM trail_readers
+                         GROUP BY formula'
+                    );
+                    $stmtQ->execute([]);
+                } else {
+                    $stmtQ = $db->prepare(
+                        'SELECT formula, COUNT(DISTINCT reader_tag) rdr FROM trail_readers
+                         WHERE fingerprint = ? GROUP BY formula'
+                    );
+                    $stmtQ->execute([$scopeKeyR]);
+                }
+                foreach ($stmtQ->fetchAll(\PDO::FETCH_ASSOC) as $qr) {
+                    $rdrMap[$qr['formula']] = (int) $qr['rdr'];
+                }
+                $confirmedInRoad = 0;
+                foreach ($rowsAll as $row) {
+                    if (($row['state'] ?? '') === 'CONFIRMED') {
+                        $confirmedInRoad++;
+                    }
+                }
+                self::$lastTrailConfirmedSeen = $confirmedInRoad;
+                self::$lastTrailRoadShare = count($rowsAll) > 0
+                    ? $confirmedInRoad / count($rowsAll) : 0.0;
                 // EXP-045 LOOP PROBE v3 (DOT VALUE PROBE): reader-side fit ranking —
                 // «signal must replicate» доведён до конца (WU-4c: re-evaluate на
                 // СВОИХ X). Живой урок двух итераций: junk-гибриды вытесняют
@@ -883,6 +1016,7 @@ class Search
                     uksort($labToX, fn (string $a, string $b): int => strlen($b) <=> strlen($a));
                 }
                 $candR = [];
+                $similarityFiltered = 0;
                 foreach ($rowsAll as $row) {
                     $mf = $row['formula'];
                     // Дедуп — против ПАРНОГО пула ($pool), не против $exprs!
@@ -893,12 +1027,36 @@ class Search
                     if (in_array($mf, $pool, true)) {
                         continue; // уже в парном пуле — инъекция не нужна
                     }
+                    // SIMILARITY METRIC: фильтр по сходству label space (только 'similar' mode)
+                    // Сравнение labels, на которые ссылается формула, с текущими labels.
+                    if ($scopeMode === 'similar' && isset($targetStats)) {
+                        $markLabels = self::extractFormulaLabels($mf);
+                        if ($markLabels !== []) {
+                            $markStats = self::computeLabelStats($X, $y, $markLabels);
+                            $similarity = self::computeSimilarity($targetStats, $markStats);
+                            if ($similarity < $tau) {
+                                $similarityFiltered++;
+                                continue; // слишком далёкие label spaces — метка мимо
+                            }
+                        }
+                    }
                     $xmf = $mf;
                     foreach ($labToX as $cl => $xv) {
                         $xmf = str_replace($cl, $xv, $xmf);
                     }
+                    // EXP-062 instrument #7: the per-stage fate of the target
+                    // marks in the read-eval loop (the 97%-cull localization).
+                    $dbgTarget = str_contains($mf, '(c3×c4)') || str_contains($mf, '(c0×c2²)');
+                    // LABEL-COMPAT: метки с несуществующими labels (c5 при 5-меточном
+                    // label space) не конвертируются → evaluateFormula NULL. Фильтр:
+                    // после конверсии не должно остаться 'c' + цифра (неконвертированная метка).
+                    if (preg_match('/c[0-9]/', $xmf)) {
+                        if ($dbgTarget) { fwrite(STDERR, "[READ-EVAL] $mf => LABEL_COMPAT_FAIL xmf=$xmf\n"); }
+                        continue; // label space incompatibility — метка мимо
+                    }
                     $mv = \BeeSwarm\Core\ExpressionEvaluator::evaluateFormula($xmf, $X);
                     if ($mv === null) {
+                        if ($dbgTarget) { fwrite(STDERR, "[READ-EVAL] $mf => EVAL_NULL xmf=$xmf\n"); }
                         continue; // не вычислима на этом сплите — дорога мимо
                     }
                     $okM = true;
@@ -911,8 +1069,10 @@ class Search
                         $sumV += $mvv;
                     }
                     if (! $okM || $nY === 0 || count($mv) !== $nY) {
+                        if ($dbgTarget) { fwrite(STDERR, sprintf("[READ-EVAL] %s => LEN_MISMATCH len=%d nY=%d okM=%d\n", $mf, count($mv), $nY, $okM ? 1 : 0)); }
                         continue;
                     }
+                    if ($dbgTarget) { fwrite(STDERR, "[READ-EVAL] $mf => PASS\n"); }
                     $meanV = $sumV / $nY;
                     $cov = 0.0;
                     $v1 = 0.0;
@@ -925,30 +1085,101 @@ class Search
                         $v2 += $d2 * $d2;
                     }
                     $fit = ($v1 > 1e-12 && $v2 > 1e-12) ? abs($cov / sqrt($v1 * $v2)) : 0.0;
+                    $rdr = $rdrMap[$mf] ?? 0;
+                    $cu = (int) ($row['cert_use'] ?? 0);
                     $candR[] = [
                         'f' => $mf,
                         'v' => $mv,
                         'fit' => $fit,
                         'stair' => str_contains($mf, '+') && str_contains($mf, '×'),
+                        'hot' => self::isHotMark($rdr, $cu),
                     ];
                 }
                 self::$lastTrailReadPoolSkip = count($rowsAll) - count($candR); // LOOP PROBE v5: pool/eval-отсев
+                // AMENDMENT_STAGE_A §2.3: hot-бонус ДО сортировки (multiplicative,
+                // READ_PRIORITY_MULT; hot-метки соревнуются в общем пуле).
+                foreach ($candR as $i => $c) {
+                    if (! empty($c['hot'])) {
+                        $candR[$i]['fit'] = self::applyReadPriority((float) $c['fit'], true);
+                    }
+                }
                 usort($candR, fn (array $a, array $b): int => $b['fit'] <=> $a['fit']);
                 $quotaStairs = (int) ceil($readK / 2);
                 $selR = [];
                 $nStair = 0;
-                foreach ($candR as $c) {
-                    if (count($selR) >= $readK) {
-                        break;
-                    }
-                    if ($c['stair']) {
-                        if ($nStair >= $quotaStairs) {
-                            continue;
+                // EXP-062 layer 4 (the petal-quota fix): the stair-quota
+                // starves the petals (the products = the composite's atoms —
+                // the E60/E62 forensics: (c3x4) written at l1, never read —
+                // the quota filled by the stairs/contamination first).
+                // TRAIL_READ_PETAL_QUOTA=off = the petals free (the stairs
+                // still capped). The default = the legacy quota.
+                $petalFree = getenv('TRAIL_READ_PETAL_QUOTA') === 'off';
+                $diversity = getenv('TRAIL_READ_DIVERSITY') === '1';
+                // EXP-062 forensics: the candR composition — is (c3x4) in the
+                // eval-passed candidates at all?
+                $candForms = array_map(fn ($c) => (string) ($c['f'] ?? ($c['name'] ?? '?')), $candR);
+                $c3c4In = count(array_filter($candForms, fn ($f) => str_contains($f, '(c3×c4)')));
+                $partialIn = count(array_filter($candForms, fn ($f) => str_contains($f, '(c0×c2²)')));
+                fwrite(STDERR, sprintf("[CANDR] candR=%d c3c4_in=%d partial_in=%d forms=[%s]\n",
+                    count($candR), $c3c4In, $partialIn, implode(',', array_map(fn ($f) => substr($f, 0, 24), array_slice($candForms, 0, 8)))));
+                if ($diversity) {
+                    // EXP-063 (E62 forensics): the cluster-based retrieval —
+                    // the greedy column-coverage + the corr fill. The control
+                    // (no flag) = the corr order preserved.
+                    $selR = self::selectReadDiverse($candR, $readK);
+                    foreach ($selR as $c) {
+                        if (($c['stair'] ?? false)) {
+                            $nStair++;
                         }
-                        $nStair++;
                     }
-                    $selR[] = $c;
+                } else {
+                    foreach ($candR as $c) {
+                        if (count($selR) >= $readK) {
+                            break;
+                        }
+                        if ($c['stair']) {
+                            if ($nStair >= $quotaStairs) {
+                                continue;
+                            }
+                            $nStair++;
+                        } elseif ($petalFree && $readOrder === 'corr') {
+                            // EXP-062 layer 4: the petals free under the corr-order —
+                            // the products = the composite's atoms (the E60/E62
+                            // forensics: (c3x4) written at l1, never read — the
+                            // quota filled by the stairs/contamination first).
+                        }
+                        $selR[] = $c;
+                    }
                 }
+                // EXP-062 instrument #6: the selR composition — the (c3x4)
+                // survival through the read-selection (the stair-quota +
+                // the readK cap).
+                $selForms = array_map(fn ($c) => (string) ($c['f'] ?? '?'), $selR);
+                $selC3c4 = count(array_filter($selForms, fn ($f) => str_contains($f, '(c3×c4)')));
+                $selPartial = count(array_filter($selForms, fn ($f) => str_contains($f, '(c0×c2²)')));
+                fwrite(STDERR, sprintf("[SELR] selR=%d c3c4=%d partial=%d forms=[%s]\n",
+                    count($selR), $selC3c4, $selPartial, implode(',', array_map(fn ($f) => substr($f, 0, 26), $selForms))));
+                // AMENDMENT_STAGE_A §2.2-channel-diff: material-quality топ-K —
+                // полезные (2-term-sum над продуктами: один '+', '×', без min/max)
+                // против прочего. Диагноз visibility/dilution/junk-generation.
+                $topKUseful = 0;
+                $topKJunk = 0;
+                foreach ($selR as $c) {
+                    $f2 = (string) $c['f'];
+                    $isUseful = substr_count($f2, '+') === 1
+                        && str_contains($f2, '×')
+                        && ! str_contains($f2, 'min')
+                        && ! str_contains($f2, 'max');
+                    if ($isUseful) {
+                        $topKUseful++;
+                    } else {
+                        $topKJunk++;
+                    }
+                }
+                self::$lastTrailTopKUseful = $topKUseful;
+                self::$lastTrailTopKJunk = $topKJunk;
+                // SIMILARITY: telemetry — similarity-filtered marks
+                self::$lastTrailSimilarityFiltered = $similarityFiltered;
                 // EXP-045 LOOP PROBE: стадия fetched (эффективный набор после ранжирования)
                 self::$lastTrailReadFetched = array_column($selR, 'f');
                 foreach ($selR as $c) {
@@ -978,6 +1209,26 @@ class Search
                 self::$__prof[] = ['L2PAIRS', microtime(true)];
             }
             $bornBinary ??= [];
+            // EXP-062 forensics: the pair-loop entry state. The marks-first
+            // injection = array_merge([$mf], $pool) — if the marks are NOT at
+            // the head here, the injection did not reach the pair phase.
+            $marksInPool = 0;
+            $marksList = [];
+            foreach ($pool as $p) {
+                if (in_array($p, self::$lastTrailReadInjected, true)) {
+                    $marksInPool++;
+                    $marksList[] = $p;
+                }
+            }
+            fwrite(STDERR, sprintf(
+                "[L2-FORENSICS] pool=%d marks_in_pool=%d injected_total=%d pairs=%d ops=%d marks=[%s] ops_list=[%s] c3c4_in_pool=%d partial_pos=%d\n",
+                count($pool), $marksInPool, count(self::$lastTrailReadInjected),
+                (int) (count($pool) * (count($pool) - 1) / 2), count($ops),
+                implode(',', array_map(fn ($m) => substr($m, 0, 28), $marksList)),
+                implode(',', $ops),
+                in_array('(c3×c4)', $pool, true) ? 1 : 0,
+                array_search('(c5+(c0×c2²))', $pool, true) === false ? -1 : (int) array_search('(c5+(c0×c2²))', $pool, true)
+            ));
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {
@@ -996,6 +1247,10 @@ class Search
                         $name = "({$pool[$a]}$op{$pool[$b]})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
+                        // EXP-062 collect-all: dump every generated pair name to
+                        // a file for the post-hoc python analysis (which pairs
+                        // reach cv~0 and why the composite is never selected).
+                        file_put_contents('/tmp/l2_pairs_dump.txt', $name . "\n", FILE_APPEND);
                     }
                     // Бинарные born-атомы: B(va, vb)
                     foreach ($bornBinary as $bbName => $bbDef) {
@@ -1665,6 +1920,11 @@ class Search
         $stairForms = [];
         $petalForms = []; // WU-4c FIX 11.10: ступени лестницы (corr-класс, без cv-окна)
         $signalCeiling = (float) (getenv('SIGNAL_CV_CEILING') ?: '6.0');
+        // SELECTION_CEIL (31.10, WU BAR-E3): потолок ТОЛЬКО plausible-входа.
+        // Пусто/не задан → поведение идентично прежнему ($cvTrainMax).
+        $plausibleCeilRaw = getenv('SELECTION_CEIL');
+        $plausibleCeil = ($plausibleCeilRaw !== false && $plausibleCeilRaw !== '' && is_numeric($plausibleCeilRaw))
+            ? (float) $plausibleCeilRaw : $cvTrainMax;
         $bestExact = null; // COMPRESSION-CRITERION: кратчайший exact
         $exactMaxAbsExprs = \BeeSwarm\Math\CvCalculator::exactScaleMaxAbs($y);
         foreach ($exprs as $name => $vec) {
@@ -1704,6 +1964,11 @@ class Search
             $cv = self::cv($vec, $y, $affineShift);
             if ($cv < $bestCvSeen) {
                 $bestCvSeen = $cv;
+                // WU PARTIAL-EVAL: имя строго из argmin ТОГО ЖЕ min, что и
+                // $bestCvSeen (по ВСЕМ формам). Присвоение из $plausible[0]
+                // рассинхронило бы каналы: plausible — подмножество с
+                // потолком $cvTrainMax, а best_cv_seen копится по всем.
+                self::$lastBestFormSeen = $name;
             }
             // Урок P8 (10.10): R-подгонки (Rmin/Rmax/Rsum/K-константы) дают
             // низкий cv на ЛЮБОМ y — это null-подгонки, не запахи. Метим только
@@ -1797,7 +2062,16 @@ class Search
                     'vec' => $vec,
                 ];
             }
-            if ($cv < $cvTrainMax) {
+            if ($cv < $plausibleCeil) {
+                // SELECTION_CEIL (31.10, WU BAR-E3): развязка selection-входа
+                // и cert-порога. Ранее ЕДИНЫЙ $cvTrainMax фильтровал plausible
+                // (:1980), held-out (:2175) и found (:2256) — формы с
+                // train-CV в [eps..] не доходили до held-out теста (бар до
+                // бара; E3: train 0.104/eval 0.0961 терялась). Env поднимает
+                // ТОЛЬКО вход; testCv/found-гейты остаются $cvTrainMax
+                // (абсолютные) — runaway исключён структурно.
+                // TEMPORARY, not biological (reviewer 31.10): относительный
+                // ceil (median×1.2) — следующая строка после кампании.
                 // psalm-фикс (18.10) + латентный баг: marks-цикл читает
                 // $cand['corr'] ?? 0.0 — без ключа все метки несли corr=0.0
                 // и рейтинг чтения (uses DESC, corr DESC) был мёртв. corr —
@@ -1830,6 +2104,9 @@ class Search
             if (preg_match('/(BW[0-9a-f]+|B\d+)/', (string) $bestExact, $m) === 1) {
                 \BeeSwarm\Core\Grammar::registerReuse($m[0], 'search');
             }
+            // WU TELEMETRY-CV-SEEN: EMPIRICAL-путь — ранний return ДО
+            // главного присваивания; exact-закон = CV 0.0 (канон).
+            self::$lastBestCvSeen = 0.0;
             return [true, 0.0, $bestExact, 0.0, 'EMPIRICAL', null];
         }
 
@@ -2070,7 +2347,16 @@ class Search
                 || (is_finite($cvBaseline) && $cv_test < self::BASELINE_RATIO_MAX * $cvBaseline);
         }
 
-        $found = $bestCv < $cvTrainMax && isset($bestName) && $cv_test < $cvTrainMax && $compressionOk;
+        // SELECTION-CEIL (31.10, WU BAR-E3): при testRatio>0 решение о found
+        // принимает held-out (cv_test) + A19 compression; train-CV победителя
+        // НЕ гейт (формы с train в [eps..ceil) обязаны иметь шанс дойти до
+        // held-out — E3: train 0.104/eval 0.0961 терялась). При testRatio=0
+        // train-CV — единственная метрика, бар сохранён. Cert-канон
+        // (eval ≤ 0.10, driver :608) НЕ тронут.
+        $found = isset($bestName)
+            && ($testRatio > 0.0
+                ? ($cv_test < $cvTrainMax && $compressionOk)
+                : ($bestCv < $cvTrainMax && $cv_test < $cvTrainMax && $compressionOk));
         if (! $found) {
             $cv_train = 9.99;
             $cv_test = 9.99;
@@ -2079,6 +2365,9 @@ class Search
         // ЭКСП-018b: TEST-секция (heldout/выбор) аккумулируется при выходе
         SearchProfiler::add(0.0, 0.0, microtime(true) - $pTest);
 
+        // WU TELEMETRY-CV-SEEN: главный путь (found или честный отказ после
+        // прогона форм) — выносим лучший увиденный CV наружу. INF → 9.99.
+        self::$lastBestCvSeen = is_finite($bestCvSeen) ? (float) $bestCvSeen : 9.99;
         $class = $found ? self::classify($cv_train, $cv_test) : 'NONE';
         // §3.3 Само-модель незнания: при неудаче — диагноз причины
         $diagnosis = null;
@@ -2100,20 +2389,45 @@ class Search
             // ROAD V4 §1/§2: PERSISTED→CONFIRMED по участию в found-законе
             self::confirmTrailMarks($colLabels, $bestName);
         }
-        if (getenv('TRAIL_MARKS') === '1' && ! $found
-            && (! empty($signalForms) || ! empty($stairForms) || ! empty($petalForms))) {
-            // Ревью deleg_231f9459: petalForms в гейте — petal-only вылеты
-            // пишут (класс petal рождается сам, union спеки §2) и свипают.
-            // Ступени ПЕРВЫМИ (лестница: следующая пчела строит из них закон)
-            // EXP-045 LOOP PROBE: writer_input — наблюдение входа в writer (P3).
-            $plausibleForMarks = array_merge($stairForms, $petalForms, $signalForms);
-            self::$lastTrailWriterInput = [
-                'candidates' => count($plausibleForMarks),
-                'eligible' => null,
-                'written' => null,
-                'reason' => null,
-            ];
-            self::writeTrailMarks($colLabels, $plausibleForMarks, $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap, $X, $y);
+        // WRITE-ON (v1.1): пишем метки И для found-вылетов, чтобы первый вылет
+        // накапливал дорогу. Используем bestName для found, plausible для !found.
+        if (getenv('TRAIL_MARKS') === '1') {
+            $plausibleForMarks = [];
+            // EXP-062 (owner 11.11, layer 2): TRAIL_ADMIT_SQ_FACTOR=1 = the
+            // AST-level sq-admissibility (sq(atom) under × only; the base-op
+            // whitelist) instead of the blunt ANY-² exclusion. The default
+            // (no flag) = the blunt filter byte-identical.
+            $sqFactor = getenv('TRAIL_ADMIT_SQ_FACTOR') === '1';
+            $admit = $sqFactor
+                ? fn (array $s): bool => self::sqFactorAdmissible((string) $s['name'])
+                : fn (array $s): bool => preg_match('/min|max|sq|²|√/u', (string) $s['name']) !== 1;
+            if ($found && isset($bestName)) {
+                // Для found-вылетов: пишем bestName (найденный закон)
+                $plausibleForMarks[] = ['name' => $bestName, 'proxy' => 1.0, 'class' => 'stair'];
+            }
+            // Для всех вылетов: добавляем plausible формы. MATERIAL (30.10,
+            // PREREG_MATERIAL_PROBE): сигнал-канал остаётся (контракт выживания
+            // сигнала — TrailMarksTest), но гибрид-обёртки НЕ дорожный материал:
+            // проба дала 94% junk → лестница 0/8 found, hand-seed чистых ступеней
+            // → 8/8. Обёртки (min/max/sq/²/√) режутся на ВСЕХ каналах — petal
+            // тащит sq-обёрнутые ×-формы (проба: «(c2²/c4)» мимо signal-фильтра).
+            // bestName найденного закона фильтру не подлежит.
+            // EXP-062: $admit = the blunt filter OR the AST sq-factor check.
+            $cleanSignal = array_filter($signalForms, $admit);
+            $cleanStair = array_filter($stairForms, $admit);
+            $cleanPetal = array_filter($petalForms, $admit);
+            if (! empty($cleanStair) || ! empty($cleanPetal) || ! empty($cleanSignal)) {
+                $plausibleForMarks = array_merge($plausibleForMarks, $cleanStair, $cleanPetal, $cleanSignal);
+            }
+            if (! empty($plausibleForMarks)) {
+                self::$lastTrailWriterInput = [
+                    'candidates' => count($plausibleForMarks),
+                    'eligible' => null,
+                    'written' => null,
+                    'reason' => null,
+                ];
+                self::writeTrailMarks($colLabels, $plausibleForMarks, $cvTrainMax, $bestCvSeen, $l1PairwiseKeys, $l1PairwiseMap, $X, $y);
+            }
         }
 
         return [$found, $cv_train, $bestName ?? 'none', $cv_test, $class, $diagnosis];
@@ -2144,6 +2458,7 @@ class Search
         $scopeKey = 'sha1:' . sha1(json_encode([
             'labels' => $colLabels,
         ]));
+
         $db = \BeeSwarm\Infra\Database::get();
         if (self::trailAblation('write')) {
             // ШАГ III абляция: writer выключен, свип-слои продолжают тикать.
@@ -2165,11 +2480,105 @@ class Search
         $ranked = self::rankTrailCandidates($plausible, $colLabels, $X, $y);
         self::$lastTrailWriterInput['eligible'] = count($ranked);
         self::$lastTrailWriterInput['reason'] = 'eval';
+        // EXP-061 premortem #2: the all-INF flights (the cv-less candidate
+        // sets) fall back to the container order — the count = the detection
+        // metric (>0 = the flight wrote by the list order, not by the cv).
+        self::$lastTrailWriterInput['cv_mode_inf'] = count(array_filter(
+            $ranked, fn (array $c): bool => ($c['cand_cv'] ?? null) === null
+        ));
         $admitted = self::selectTrailAdmission($ranked, $scopeKey, $db);
         self::persistTrailAdmission($db, $scopeKey, $admitted);
         self::$lastTrailWritten = array_column($admitted, 'name');
         self::$lastTrailWriterInput['written'] = count($admitted);
         self::sweepTrailMarks($db, $scopeKey, $colLabels, $X, $y);
+    }
+
+    /**
+     * EXP-062: AST-level sq-admissibility (owner 11.11, layer 2). A form is
+     * admissible iff every sq node = sq(atom) as a DIRECT factor of a × node
+     * and every op = the base whitelist {+, −, ×, /, sq}. min/max/√ and the
+     * unknown route-local ops = banned; the parse failure = not admissible
+     * (the conservative default — the unparseable = the wrapper class).
+     */
+    private static function sqFactorAdmissible(string $name): bool
+    {
+        $node = \BeeSwarm\Core\ExpressionNormalizer::parse($name);
+        if ($node === null) {
+            return false;
+        }
+
+        return self::sqWalk($node, false);
+    }
+
+    private static function sqWalk(array $node, bool $parentIsProduct): bool
+    {
+        if (isset($node['atom'])) {
+            return true;
+        }
+        $op = (string) ($node['op'] ?? '');
+        if (! in_array($op, ['+', '−', '×', '/', 'sq'], true)) {
+            return false; // max/min/√/route-local ops: banned by the whitelist
+        }
+        if ($op === 'sq') {
+            // sq = admissible iff the operand is an ATOM and the parent is ×
+            return $parentIsProduct && isset($node['l']['atom']);
+        }
+        $childProduct = $op === '×';
+        foreach ([$node['l'] ?? null, $node['r'] ?? null] as $child) {
+            if (is_array($child) && ! self::sqWalk($child, $childProduct)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * EXP-063: the cluster-based retrieval (the owner 11.11, layer 3 of the
+     * E60/E62 mechanism). The pass 1 = the greedy column-coverage: each
+     * admitted mark's touched-column set must be DISJOINT from the
+     * already-selected (the cluster diversity — the composite's atoms live
+     * in the DIFFERENT column pairs). The pass 2 = the corr fill to K.
+     * The input = the candR-shaped rows ({name|f, corr, ...}), the corr-desc
+     * sort applied internally. The flag TRAIL_READ_DIVERSITY gates the
+     * wiring at the call site (the default = the legacy corr order).
+     */
+    public static function selectReadDiverse(array $candR, int $readK): array
+    {
+        $sorted = $candR;
+        usort($sorted, fn (array $a, array $b): int => ($b['corr'] ?? 0.0) <=> ($a['corr'] ?? 0.0));
+        $admitted = [];
+        $touched = [];
+        foreach ($sorted as $c) {
+            if (count($admitted) >= $readK) {
+                break;
+            }
+            $form = (string) ($c['name'] ?? $c['f'] ?? '');
+            preg_match_all('/[cx](\d+)/', $form, $mm);
+            $cols = array_unique($mm[1]);
+            if ($cols === []) {
+                continue; // the no-column form: the pass 2 fills
+            }
+            if (array_intersect($cols, $touched) !== []) {
+                continue; // the column overlap = the same cluster = skip
+            }
+            $admitted[] = $c;
+            foreach ($cols as $col) {
+                // The VALUE = the column itself (the array_intersect compares
+                // the VALUES — true would coerce to '1' and never match '0'/'5'!)
+                $touched[$col] = $col;
+            }
+        }
+        foreach ($sorted as $c) {
+            if (count($admitted) >= $readK) {
+                break;
+            }
+            if (! in_array($c, $admitted, true)) {
+                $admitted[] = $c;
+            }
+        }
+
+        return $admitted;
     }
 
     /**
@@ -2301,16 +2710,38 @@ class Search
                 ? \BeeSwarm\Core\TrailAdmission::classifyWithVec($name, $labelsToX, $vec, $y)
                 : \BeeSwarm\Core\TrailAdmission::classify($name, $labelsToX, $X, $y);
             $key = $res['eval'];
+            // EXP-062 forensics: the eval-class of the target forms — WHY does
+            // the clean product (c3×c4) die before the candR?
+            if (str_contains($name, '(c3×c4)') || str_contains($name, '(c0×c2²)')) {
+                fwrite(STDERR, "[CAND-EVAL] $name => $key\n");
+            }
             self::$lastTrailEvalStats[$key] = (self::$lastTrailEvalStats[$key] ?? 0) + 1;
             if ($key !== \BeeSwarm\Core\TrailAdmission::EVAL_OK) {
                 continue; // смерть с причиной (§4)
             }
             $res['name'] = $name;
             $res['corr'] = (float) ($cand['corr'] ?? 0.0);
+            // is_finite hardening (review #1): a float NaN passes is_numeric
+            // and breaks the comparator transitivity — the non-finite = the
+            // cv-less tail semantics.
+            $res['cand_cv'] = isset($cand['cv']) && is_numeric($cand['cv']) && is_finite((float) $cand['cv'])
+                ? (float) $cand['cv'] : null;
             $res['class'] = \BeeSwarm\Core\TrailAdmission::classOf($res['xform']);
             $ranked[] = $res;
         }
-        usort($ranked, fn (array $a, array $b): int => $b['proxy'] <=> $a['proxy']);
+        if (getenv('TRAIL_ADMISSION_MODE') === 'cv_argmin') {
+            // EXP-061 (E60 rev.2 → owner-authorized write-decision): выбор
+            // записи по per-candidate flight cv — argmin первым. E60 механизм:
+            // proxy-порядок + admission-окно хоронили cv-argmin партиал
+            // (c5+(c0×c2²)) под контаминацией (c0+c5). cv-меньшие = хвост
+            // (INF), внутри хвоста — proxy-desc tie-break (review #2/#4);
+            // PHP 8 usort стабилен → равные cv = детерминированный порядок.
+            usort($ranked, fn (array $a, array $b): int =>
+                (($a['cand_cv'] ?? INF) <=> ($b['cand_cv'] ?? INF))
+                ?: (($b['proxy'] ?? 0.0) <=> ($a['proxy'] ?? 0.0)));
+        } else {
+            usort($ranked, fn (array $a, array $b): int => $b['proxy'] <=> $a['proxy']);
+        }
         $alarm = self::$lastTrailEvalStats[\BeeSwarm\Core\TrailAdmission::EVAL_LABEL_UNRESOLVABLE] ?? 0;
         if ($alarm > 0 && getenv('SEARCH_DEBUG') === '1') {
             fwrite(STDERR, '[TRAIL-ALARM] LABEL_UNRESOLVABLE=' . $alarm . ' (label-space leak, спека §4)' . PHP_EOL);
@@ -2333,6 +2764,20 @@ class Search
         $admitted = [];
         $stairN = 0;
         $otherN = 0;
+        // MATERIAL QUALITY (ОБА гейта opt-in, 30.10): дефолт 0.7 безусловно
+        // резал admission всех классов — petals на alternating-фикстурах
+        // (corr≈0) и state-machine тесты V4 падали (7/17, two-pass fast
+        // FAILURES:8). V4-контракт §1: admission живёт на caps+ghost-налоге;
+        // corr/structural гейты — экспериментальные ручки кампаний:
+        //   TRAIL_ADMIT_CORR_MIN  — corr-порог (0 = off, честно даже для
+        //     отрицательных corr); probe_junk гонял 0.5 через env.
+        //   TRAIL_ADMIT_STRUCT=1 — structural 2-term/нормализация фильтр
+        //     (противоречит petal-контракту, включать точечно).
+        $corrMin = (float) (getenv('TRAIL_ADMIT_CORR_MIN') ?: '0');
+        $structFilter = getenv('TRAIL_ADMIT_STRUCT') === '1';
+        if (getenv('SEARCH_DEBUG') === '1') {
+            fwrite(STDERR, '[ADM-DEBUG] ranked=' . count($ranked) . ' corrMin=' . $corrMin . ' structFilter=' . ($structFilter ? '1' : '0') . PHP_EOL);
+        }
         foreach ($ranked as $c) {
             if (count($admitted) >= self::TRAIL_ADMIT_PER_FLIGHT) {
                 break;
@@ -2340,6 +2785,31 @@ class Search
             $isStair = $c['class'] === 'stair';
             if ($isStair ? $stairN >= self::TRAIL_ADMIT_STAIR : $otherN >= self::TRAIL_ADMIT_OTHER) {
                 continue;
+            }
+            // MATERIAL QUALITY: фильтр junk при записи.
+            $formula = (string) $c['name'];
+            $is2TermSum = substr_count($formula, '+') === 1 && str_contains($formula, '×') && ! str_contains($formula, 'min') && ! str_contains($formula, 'max');
+            // UPDATED: также допускаем нормализацию (Rmin, Rmax) и деление/вычитание
+            $hasNormalization = str_contains($formula, 'Rmin') || str_contains($formula, 'Rmax');
+            $hasDivision = str_contains($formula, '/');
+            $hasSubtraction = str_contains($formula, '−');
+            $isValidForm = $is2TermSum || ($hasDivision && $hasNormalization) || ($hasSubtraction && $hasNormalization);
+            $corr = (float) ($c['corr'] ?? 0.0);
+            if (getenv('SEARCH_DEBUG') === '1') {
+                fwrite(STDERR, '[ADM-DEBUG] formula=' . $formula . ' corr=' . $corr . ' isValid=' . ($isValidForm ? '1' : '0') . ' is2Term=' . ($is2TermSum ? '1' : '0') . ' hasNorm=' . ($hasNormalization ? '1' : '0') . ' hasDiv=' . ($hasDivision ? '1' : '0') . ' hasSub=' . ($hasSubtraction ? '1' : '0') . PHP_EOL);
+            }
+            if ($structFilter && ! $isValidForm) {
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    fwrite(STDERR, '[ADM-DEBUG] FILTERED: formula=' . $formula . ' reason=invalid_form' . PHP_EOL);
+                }
+                continue;
+            }
+            if ($corrMin > 0 && $corr < $corrMin) {
+                self::$lastTrailMaterialFiltered++;
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    fwrite(STDERR, '[ADM-DEBUG] FILTERED: formula=' . $formula . ' reason=corr_too_low corr=' . $corr . ' min=' . $corrMin . PHP_EOL);
+                }
+                continue; // слабый сигнал: corr < порога
             }
             $ghost = self::ghostOf($db, $scopeKey, $c['name']);
             $evict = (int) ($ghost['evict_count'] ?? 0);
@@ -2482,10 +2952,19 @@ class Search
     }
 
     /**
-     * ROAD V4 §1: инъекция метки чужим маршрутом — read_cross_count++ и
-     * refresh τ (last_activity_tick = вылет читателя). Самочтение исключено
-     * дважды: структурно (write после found-определения того же вылета) и
-     * гардом WHERE birth_route < flight.
+     * AMENDMENT_STAGE_A §2.3: reader-тег текущего маршрута. Вызывается
+     * RouteExecutor::run на старте маршрута (runSeq процесса).
+     */
+    public static function setTrailReaderTag(int $tag): void
+    {
+        self::$trailReaderTag = $tag;
+    }
+
+    /**
+     * ROAD V4 §1: инъекция метки чужим маршрутом (r2 > birth_route) —
+     * read_cross_count++ и refresh τ (last_activity_tick = вылет читателя).
+     * Самочтение исключено дважды: структурно (write после found-определения
+     * того же вылета) и гардом WHERE birth_route < flight.
      *
      * @param list<array<string, mixed>> $selected выбранные read-блоком метки ('f' => формула)
      */
@@ -2495,12 +2974,20 @@ class Search
             return;
         }
         $flight = self::$trailFlightNo;
-        $upd = \BeeSwarm\Infra\Database::get()->prepare(
+        $db = \BeeSwarm\Infra\Database::get();
+        $upd = $db->prepare(
             'UPDATE trail_marks SET read_cross_count = read_cross_count + 1, last_activity_tick = ?
              WHERE fingerprint = ? AND formula = ? AND birth_route < ?'
         );
+        // AMENDMENT_STAGE_A read-priority quorum (спека §2.3): distinct readers
+        // per mark — PK(fingerprint, formula, reader_tag) дедупит повторные
+        // чтения тем же маршрутом. reader_tag = route-тег от RouteExecutor.
+        $ins = $db->prepare(
+            'INSERT OR IGNORE INTO trail_readers (fingerprint, formula, reader_tag) VALUES (?,?,?)'
+        );
         foreach ($selected as $c) {
             $upd->execute([$flight, $scopeKey, (string) $c['f'], $flight]);
+            $ins->execute([$scopeKey, (string) $c['f'], self::$trailReaderTag]);
         }
     }
 
@@ -2522,6 +3009,7 @@ class Search
         $stmt->execute([$scopeKey, $flight]);
         $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
         $upd = $db->prepare('UPDATE trail_marks SET confirm_count = confirm_count + 1, state = \'CONFIRMED\', kind = \'replicated\', last_activity_tick = ? WHERE id = ?');
+        $confirmed = [];
         foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
             $xform = (string) $row['formula'];
             foreach ($labelsToX as $cl => $xv) {
@@ -2531,8 +3019,170 @@ class Search
                 && ! \BeeSwarm\Core\TrailAdmission::markInLaw($lawFormula, (string) $row['formula'])) {
                 continue; // не участвует в найденном законе (спека §2)
             }
+            $confirmed[] = (string) $row['formula'];
             $upd->execute([$flight, (int) $row['id']]);
         }
+        self::$lastTrailConfirmed = $confirmed;
+    }
+
+    /**
+     * AMENDMENT_STAGE_A read-priority quorum (спека §2.3): инкремент cert_use
+     * у меток, участвовавших в найденном законе маршрута, ПРОШЕДШЕГО
+     * driver-сертификацию (routeCertified = found ∧ cv_eval ≤ 0.10). Вызывается
+     * из RouteExecutor после route-cert. EXP-037 guard: усиление только через
+     * сертификационное использование, не через частоту.
+     */
+    public static function bumpCertUse(?array $colLabels, string $lawFormula): void
+    {
+        if (getenv('TRAIL_MARKS') !== '1' || $lawFormula === '' || $lawFormula === 'none') {
+            return;
+        }
+        $scopeKey = 'sha1:' . sha1(json_encode([
+            'labels' => $colLabels,
+        ]));
+        $db = \BeeSwarm\Infra\Database::get();
+        $stmt = $db->prepare('SELECT id, formula, birth_route FROM trail_marks WHERE fingerprint = ? AND birth_route < ?');
+        $stmt->execute([$scopeKey, self::$trailFlightNo]);
+        $labelsToX = \BeeSwarm\Core\TrailAdmission::labelsToX($colLabels);
+        $upd = $db->prepare('UPDATE trail_marks SET cert_use = cert_use + 1 WHERE id = ?');
+        foreach ($stmt->fetchAll(\PDO::FETCH_ASSOC) as $row) {
+            $xform = (string) $row['formula'];
+            foreach ($labelsToX as $cl => $xv) {
+                $xform = str_replace($cl, $xv, $xform);
+            }
+            if (! \BeeSwarm\Core\TrailAdmission::markInLaw($lawFormula, $xform)
+                && ! \BeeSwarm\Core\TrailAdmission::markInLaw($lawFormula, (string) $row['formula'])) {
+                continue;
+            }
+            $upd->execute([(int) $row['id']]);
+        }
+    }
+
+    /**
+     * AMENDMENT_STAGE_A §2.3: hot-предикат метки (quorum + сертификационное
+     * использование). Публичный pure-метод для TDD.
+     */
+    public static function isHotMark(int $distinctReaders, int $certUse): bool
+    {
+        $k = (int) (getenv('QUORUM_K') ?: '3');
+
+        return $distinctReaders >= $k && $certUse >= 1;
+    }
+
+    /**
+     * AMENDMENT_STAGE_A §2.2-channel-diff (Adaptive K, флаг owner): K растёт
+     * с объёмом дороги — пропорция чтения сохраняется (фиксированный K=5 при
+     * road 120 = полезные топ-5 из 3× пула → dilution). Формула:
+     * K = min(ROAD_READ_CAP, max(3, ceil(road_size / ROAD_READ_SCALE))).
+     * ADAPTIVE_K off → 0 (вызов использует legacy TRAIL_READ_K).
+     */
+    public static function computeAdaptiveReadK(int $roadSize): int
+    {
+        if (getenv('ADAPTIVE_K') !== '1') {
+            return 0; // legacy-режим: вызывающий использует TRAIL_READ_K
+        }
+        $scale = max(1, (int) (getenv('ROAD_READ_SCALE') ?: '8'));
+        $cap = max(3, (int) (getenv('ROAD_READ_CAP') ?: '20'));
+
+        return min($cap, max(3, (int) ceil($roadSize / $scale)));
+    }
+
+    /**
+     * SIMILARITY METRIC: вычисление статистик label space для сравнения fingerprints.
+     * Метрика: n_features, feature_names, noise_est, target_stats.
+     *
+     * @param list<list<float>> $X
+     * @param list<float> $y
+     * @param list<string> $labels
+     * @return array{n_features:int, feature_names:list<string>, noise_est:float, target_stats:array{mean:float, std:float}}
+     */
+    public static function computeLabelStats(array $X, array $y, array $labels): array
+    {
+        $nFeatures = count($labels);
+        $featureNames = $labels;
+        // n_features для similarity должен быть из самой формулы, не из target
+        
+        // Noise estimation: отношение std(y) к mean(|y|) — простая оценка шума
+        $nY = count($y);
+        $meanY = $nY > 0 ? array_sum($y) / $nY : 0.0;
+        $sumSq = 0.0;
+        foreach ($y as $v) {
+            $sumSq += ($v - $meanY) * ($v - $meanY);
+        }
+        $stdY = $nY > 1 ? sqrt($sumSq / ($nY - 1)) : 0.0;
+        $meanAbsY = $nY > 0 ? array_sum(array_map('abs', $y)) / $nY : 1.0;
+        $noiseEst = $meanAbsY > 1e-12 ? $stdY / $meanAbsY : 0.0;
+        
+        // Target stats: mean, std
+        $targetStats = ['mean' => $meanY, 'std' => $stdY];
+        
+        return [
+            'n_features' => $nFeatures,
+            'feature_names' => $featureNames,
+            'noise_est' => $noiseEst,
+            'target_stats' => $targetStats,
+        ];
+    }
+
+    /**
+     * SIMILARITY METRIC: сравнение двух label spaces (similarity > τ).
+     * Метрика: n_features (вес 0.4), feature_names (0.3), noise_est (0.2), target_stats (0.1).
+     *
+     * @param array{n_features:int, feature_names:list<string>, noise_est:float, target_stats:array{mean:float, std:float}} $a
+     * @param array{n_features:int, feature_names:list<string>, noise_est:float, target_stats:array{mean:float, std:float}} $b
+     * @return float similarity ∈ [0, 1]
+     */
+    public static function computeSimilarity(array $a, array $b): float
+    {
+        // n_features similarity: 1.0 если совпадают, иначе линейно (вес 0.2 — меньше влияние)
+        $nFeaturesSim = 1.0 - abs($a['n_features'] - $b['n_features']) / max($a['n_features'], $b['n_features'], 1);
+        
+        // feature_names similarity: Jaccard intersection (вес 0.5 — главный фильтр label mismatch)
+        $aNames = array_flip($a['feature_names']);
+        $bNames = array_flip($b['feature_names']);
+        $intersection = count(array_intersect_key($aNames, $bNames));
+        $union = count($aNames) + count($bNames) - $intersection;
+        $featureNamesSim = $union > 0 ? $intersection / $union : 0.0;
+        
+        // noise_est similarity: 1 - |diff| / max (вес 0.2)
+        $noiseDiff = abs($a['noise_est'] - $b['noise_est']);
+        $noiseMax = max($a['noise_est'], $b['noise_est'], 1e-12);
+        $noiseSim = 1.0 - ($noiseDiff / $noiseMax);
+        
+        // target_stats similarity: 1 - |diff| / (max_std + 1) (вес 0.1)
+        $meanDiff = abs($a['target_stats']['mean'] - $b['target_stats']['mean']);
+        $stdDiff = abs($a['target_stats']['std'] - $b['target_stats']['std']);
+        $targetSim = 1.0 - ($meanDiff + $stdDiff) / (max($a['target_stats']['std'], $b['target_stats']['std'], 1e-12) + 1.0);
+        
+        // Weighted combination (feature_names доминирует для label mismatch)
+        $similarity = 0.2 * $nFeaturesSim + 0.5 * $featureNamesSim + 0.2 * $noiseSim + 0.1 * $targetSim;
+        
+        return max(0.0, min(1.0, $similarity));
+    }
+
+    /**
+     * Извлечение labels из формулы (c0-c5 паттерн).
+     *
+     * @return list<string> уникальные labels, на которые ссылается формула
+     */
+    public static function extractFormulaLabels(string $formula): array
+    {
+        preg_match_all('/c[0-9]+/', $formula, $matches);
+        $labels = array_unique($matches[0] ?? []);
+        sort($labels);
+        
+        return $labels;
+    }
+
+    /**
+     * AMENDMENT_STAGE_A §2.3: hot-бонус к reader-fit (multiplicative).
+     * READ_PRIORITY_MULT env (default 1.5), E1-lite калибрует {1.0, 2.0}.
+     */
+    public static function applyReadPriority(float $fit, bool $hot): float
+    {
+        $mult = (float) (getenv('READ_PRIORITY_MULT') ?: '1.5');
+
+        return $hot ? $fit * $mult : $fit;
     }
 
     private static function preregisterExact(string $formula): void
@@ -2707,11 +3357,48 @@ class Search
     // per-flight сразу после возврата find() (контракт prereg §0.4-P5).
     public static array $lastTrailWritten = [];
 
+    /**
+     * WU TELEMETRY-CV-SEEN (31.10, 0h-check gradient vs step): лучший CV
+     * среди ВСЕХ испробованных форм ($bestCvSeen), вынесенный last-call
+     * статиком (паттерн $lastTrailWritten). Назначение: промежуточные
+     * формы в телеметрии маршрутов — сейчас L пишется только cert-
+     * маршрутам (не-cert = null), gradient vs step неразличимы. found/
+     * селекция НЕ меняются: чистый канал данных. INF → 9.99 (канон
+     * sentinel'а).
+     */
+    public static float $lastBestCvSeen = 9.99;
+
+    /**
+     * WU PARTIAL-EVAL (31.10, ответ рецензенту «affinity = 1/CV»): имя
+     * лучшей plausible-формы последнего find() (last-call, паттерн
+     * $lastBestCvSeen). 'none' = plausible пуст. Закрывает train-eval
+     * gap: не-found маршруты получают eval-CV своей partial-формы
+     * (сейчас имя умирает в diagnoseFailure). found/селекция НЕ меняются.
+     */
+    public static string $lastBestFormSeen = 'none';
+
     public static ?array $lastTrailWriterInput = null;
 
     public static array $lastTrailReadFetched = [];
 
     public static array $lastTrailReadInjected = [];
+
+    /**
+     * AMENDMENT_STAGE_A read-priority quorum (спека §2.3): reader-тег
+     * текущего маршрута (RouteExecutor::runSeq), distinct-учёт в
+     * trail_readers. 0 = вне route-канала (не пишется).
+     */
+    public static int $trailReaderTag = 0;
+    public static array $lastTrailConfirmed = [];
+    public static int $lastTrailConfirmedSeen = 0;
+    public static float $lastTrailRoadShare = 0.0;
+    public static int $lastTrailTopKUseful = 0;
+    public static int $lastTrailTopKJunk = 0;
+    public static int $lastTrailRoadSize = 0;
+    public static int $lastTrailReadK = 0;
+    public static int $lastTrailCrossFpReads = 0;
+    public static int $lastTrailSimilarityFiltered = 0;
+    public static int $lastTrailMaterialFiltered = 0;
 
     public static ?int $lastTrailReadAttempts = null;
 

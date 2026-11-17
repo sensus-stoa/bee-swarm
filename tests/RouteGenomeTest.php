@@ -159,4 +159,35 @@ class RouteGenomeTest extends TestCase
         // но внутри процесса идентификаторы формата и уникальны
         $this->assertMatchesRegularExpression('/^route_[0-9a-f]{4,}$/', $a);
     }
+
+    /**
+     * AUDIT_DEPTH_CHAIN (Stage A фриз геномного пространства): depth=3 —
+     * road-инертная мёртвая зона (L2L1-перебор сжигает канал, TIMEOUT мимо
+     * writer, written=0). Генератор/мутатор НЕ создают depth>2 — иначе
+     * мутации в d3 дают шум, misинтерпретируемый как «эволюция не работает».
+     * Схема validate() остаётся 1..3 (выразимость), фриз — на генерации.
+     */
+    public function testRandomActionsNeverExceedGenomeSpaceDepthMax(): void
+    {
+        mt_srand(777);
+        $maxSeen = 0;
+        $flights = 0;
+        $depths = [];
+        for ($i = 0; $i < 300; $i++) {
+            $a = RouteMutator::randomAction();
+            if (($a['op'] ?? '') === 'FLIGHT') {
+                $flights++;
+                $maxSeen = max($maxSeen, $a['depth']);
+                $depths[$a['depth']] = ($depths[$a['depth']] ?? 0) + 1;
+            }
+        }
+        $this->assertGreaterThan(50, $flights, 'выборка должна накрыть оба depth');
+        $this->assertLessThanOrEqual(RouteMutator::GENOME_SPACE_DEPTH_MAX, $maxSeen,
+            'мутатор/генератор не создают depth>2 (мёртвая зона d3 исключена)');
+        // Регресс пространства (флаг owner): clamp не схлопнул его в один depth —
+        // и d1 (write-only producer), и d2 (full consumer) остаются достижимы.
+        $this->assertArrayHasKey(1, $depths, 'd1 (write-only producer) должен остаться в пространстве');
+        $this->assertArrayHasKey(2, $depths, 'd2 (full consumer) должен остаться в пространстве');
+        $this->assertSame(2, RouteMutator::GENOME_SPACE_DEPTH_MAX, 'фриз Stage A {d1,d2}');
+    }
 }

@@ -28,9 +28,14 @@ $seed = (int) ($argv[2] ?? 0);
 $famJson = $argv[3] ?? '';
 $outDir = $argv[4] ?? '/tmp/exp045_probe_out';
 $taskSet = $argv[5] ?? 'families'; // 'families' | 'dot' | 'dot4' (глубина)
+// PREREG_STEP4_TRANSFER: вариант генома — ladder (канон, дефолт) |
+// shuffled (rotate-left-1: чтение пустой дороги первым действием) |
+// fresh (flights-only, 3×F: тот же полётный бюджет без меток-структуры).
+$variant = $argv[6] ?? 'ladder';
 if (! in_array($arm, ['on', 'off'], true) || ! in_array($taskSet, ['families', 'dot', 'dot4'], true)
+    || ! in_array($variant, ['ladder', 'shuffled', 'fresh'], true)
     || ($taskSet === 'families' && ! is_file($famJson))) {
-    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir> [taskSet:families|dot|dot4]\n");
+    fwrite(STDERR, "usage: probe_loop.php <arm:on|off> <seed> <familiesJson> <outDir> [taskSet:families|dot|dot4] [genome:ladder|shuffled|fresh]\n");
     exit(2);
 }
 @mkdir($outDir, 0777, true);
@@ -228,6 +233,60 @@ function RouteGenomeValidator(array $g): array
     return \BeeSwarm\Hive\RouteGenome::validate($g);
 }
 
+// PREREG_STEP4_TRANSFER §2: контролы переноса (заморожены prereg'ом).
+// shuffled = rotate-left-1 лестницы: [M k5, F, F, M k5, F] — состав и бюджет
+// идентичны, цепочка write→read сломана (первое действие читает пустую
+// дорогу). Специфичный контроль «read-before-write», не general shuffle.
+function shuffled_genome(int $i): array
+{
+    $g = [
+        'id' => 'route_' . substr(sha1('probe_shuffled_' . $i), 0, 8),
+        'parent_id' => '',
+        'condition' => ['kind' => 'ALWAYS'],
+        'budget_fraction' => 0.30,
+        'max_steps' => 5,
+        'actions' => [
+            ['op' => 'USE_MARKS', 'k' => 5],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+            ['op' => 'USE_MARKS', 'k' => 5],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+        ],
+    ];
+    $errors = RouteGenomeValidator($g);
+    if ($errors !== []) {
+        fwrite(STDERR, 'SHUFFLED GENOME INVALID: ' . json_encode($errors) . PHP_EOL);
+        exit(3);
+    }
+
+    return $g;
+}
+
+// fresh = flights-only: [F, F, F], max_steps 3 — тот же полётный бюджет,
+// без USE_MARKS (чистый «больше вычислений», контроль памяти).
+function fresh_genome(int $i): array
+{
+    $g = [
+        'id' => 'route_' . substr(sha1('probe_fresh_' . $i), 0, 8),
+        'parent_id' => '',
+        'condition' => ['kind' => 'ALWAYS'],
+        'budget_fraction' => 0.30,
+        'max_steps' => 3,
+        'actions' => [
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => 2],
+        ],
+    ];
+    $errors = RouteGenomeValidator($g);
+    if ($errors !== []) {
+        fwrite(STDERR, 'FRESH GENOME INVALID: ' . json_encode($errors) . PHP_EOL);
+        exit(3);
+    }
+
+    return $g;
+}
+
 function trail_dump(): array
 {
     return Database::get()
@@ -277,20 +336,34 @@ foreach ($jobs as $job) {
     $labels = array_map(fn (int $i): string => "c{$i}", range(0, count($X[0]) - 1));
 
     Database::get()->exec('DELETE FROM trail_marks');
+    // D2 (transfer prereg): ghosts тоже сбрасываются per-task — иначе
+    // томстоны предыдущей задачи маскируют потерю записи текущей.
+    Database::get()->exec('DELETE FROM trail_ghosts');
     $nLadders = $job['n'];
     $writtenBy = [];   // formula => первый route_index, записавший её
     $loops = [];       // M3: перекрёстные звенья (r2>r1, та же формула)
     $selfLoops = 0;
+    $scV2 = ['written' => 0, 'in_marks' => 0, 'in_ghosts' => 0, 'missing' => []]; // D2
     $laddersOut = [];
 
     for ($i = 0; $i < $nLadders; $i++) {
-        $genome = ladder_genome($i);
+        $genome = match ($variant) {
+            'shuffled' => shuffled_genome($i),
+            'fresh' => fresh_genome($i),
+            default => ladder_genome($i),
+        };
         $res = RouteExecutor::run($genome, $X, $y, $labels, $CHANNEL_SEC, 0.10, [], $marksMode);
 
-        // Самопроверка телеметрии: каждая формула из trail.written обязана
-        // быть в БД сразу после маршрута (свежая запись uses=1 — sweep не
-        // трогает; нарушение = сломанная телеметрия, не механизм).
+        // D2 (transfer prereg): самопроверка телеметрии v2 — разделяет
+        // eviction и потерю записи. written-формула обязана быть в
+        // trail_marks (жива) ИЛИ trail_ghosts (легитимно выселена Road v4:
+        // τ / вытеснение / NMD). Ни там ни там = реальный разрыв телеметрии
+        // (старая v6-era проверка «в live-таблице» давала ложный FAIL на
+        // легитимный eviction — REPORT_STEP4_DOT4.md).
         $dbFormulas = array_column(trail_dump(), 'formula');
+        $ghostFormulas = array_column(Database::get()
+            ->query('SELECT formula FROM trail_ghosts')
+            ->fetchAll(PDO::FETCH_ASSOC), 'formula');
         foreach ($res['records'] as $rec) {
             if (($rec['op'] ?? '') !== 'FLIGHT') {
                 continue;
@@ -301,7 +374,13 @@ foreach ($jobs as $job) {
                 continue;
             }
             foreach ($tr['written'] as $wf) {
-                if (! in_array($wf, $dbFormulas, true)) {
+                $scV2['written']++;
+                if (in_array($wf, $dbFormulas, true)) {
+                    $scV2['in_marks']++;
+                } elseif (in_array($wf, $ghostFormulas, true)) {
+                    $scV2['in_ghosts']++;
+                } else {
+                    $scV2['missing'][] = $wf;
                     $selfchecks['counter_db_match'] = false;
                 }
             }
@@ -363,6 +442,14 @@ foreach ($jobs as $job) {
         'm3_loops' => $loops,
         'm3_self_loops' => $selfLoops,
         'n_written_formulas' => count($writtenBy),
+        // D2: разложение written по состоянию на конец лестницы
+        'selfcheck_v2' => [
+            'written' => $scV2['written'],
+            'in_marks' => $scV2['in_marks'],
+            'in_ghosts' => $scV2['in_ghosts'],
+            'n_missing' => count($scV2['missing']),
+            'missing_sample' => array_slice($scV2['missing'], 0, 5),
+        ],
     ];
 }
 
@@ -372,13 +459,15 @@ $out = [
     'marks_mode' => $marksMode,
     'seed' => $seed,
     'task_set' => $taskSet,
+    'genome_variant' => $variant,
     'channel_sec' => $CHANNEL_SEC,
     'ladders' => $taskSet === 'dot' ? ['DOT' => 8, 'DNN' => 2] : ($taskSet === 'dot4' ? ['DOT4' => 8, 'DN4' => 2] : $LADDERS),
     'selfchecks' => $selfchecks,
     'fuse' => $fuse,
     'tasks' => $tasksOut,
 ];
-$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . ($taskSet === 'families' ? '' : '_' . $taskSet) . '.json';
+$vSuf = $variant === 'ladder' ? '' : '_' . $variant; // ladder = канон (без суффикса, совместимость имён)
+$outPath = $outDir . '/results_probe_' . $arm . '_' . $seed . ($taskSet === 'families' ? '' : '_' . $taskSet) . $vSuf . '.json';
 file_put_contents($outPath, json_encode($out, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 echo 'DONE ', $out['run_id'],
 ': m3_loops=', array_sum(array_map(fn ($t) => count($t['m3_loops']), $tasksOut)),

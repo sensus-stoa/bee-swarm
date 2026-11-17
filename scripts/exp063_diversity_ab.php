@@ -137,6 +137,7 @@ $atoms = $fBest === null ? 0 : preg_match_all('/x\d+/', $fBest);
 $compHit = ($fBest !== null && str_contains($fBest, 'c3×c4') && $atoms > 0) ? 1 : 0;
 
 $row = ['mode' => 'run', 'task' => 'cdeep2_ab', 'read' => $readCfg, 'adm' => $admCfg, 'rungs' => $rungsCfg,
+    'write_div' => getenv('TRAIL_WRITE_DIVERSITY') === '1' ? 'on' : 'off',
     'seed' => $seed, 'ladders' => LADDERS,
     'certs_C_deep2' => $certs, 'cert_form' => $certForm, 'click_ladder' => $clickLadder,
     'f_best' => $fBest, 'cv_best' => $cvBest, 'comp_hit' => $compHit,

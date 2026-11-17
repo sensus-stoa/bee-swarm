@@ -188,6 +188,18 @@ final class RouteExecutor
         }
 
         $t0 = microtime(true);
+        // EXP-065 B1.2 (owner 17.11): TRAIL_BUDGET_MODE=steps — тиковый бюджет
+        // (TRAIL_BUDGET_STEPS на ВЫЛЕТ, per-flight) вместо wall-clock. Тики =
+        // чекпойнты фаз find() (V0.18-TICK-BUDGET) — детерминированы по
+        // построению; wall-clock контеншн-зависим (root cause B1: траектории
+        // расходятся под нагрузкой). channelBudgetSec в steps-режиме
+        // игнорируется (MIN_FLIGHT_SEC-гвард не применяется); runaway-гвард —
+        // ENV_WALLCLOCK_CAP (DIAG различим). Дефолт (флага нет) = legacy
+        // wall-clock байт-в-байт.
+        $stepsMode = getenv('TRAIL_BUDGET_MODE') === 'steps';
+        $stepsPerFlight = $stepsMode
+            ? max(1, (int) (getenv('TRAIL_BUDGET_STEPS') ?: '2000'))
+            : null;
         $n = count($y);
         $labels ??= array_map(fn (int $i): string => "x{$i}", range(0, count($X[0] ?? []) - 1));
         $records = [];
@@ -202,7 +214,7 @@ final class RouteExecutor
 
         foreach (array_slice($genome['actions'], 0, max(1, (int) ($genome['max_steps'] ?? count($genome['actions'])))) as $seq => $action) {
             $remain = $channelBudgetSec - (microtime(true) - $t0);
-            if ($remain < self::MIN_FLIGHT_SEC) {
+            if (! $stepsMode && $remain < self::MIN_FLIGHT_SEC) {
                 $stop = 'budget_exhausted';
                 break;
             }
@@ -251,10 +263,11 @@ final class RouteExecutor
                 (string) $action['beam'],
                 $depth,
                 $marksK,
-                $remain,
+                $stepsMode ? 0.0 : $remain,
                 $eps,
                 $localAtoms,
-                $marksMode
+                $marksMode,
+                $stepsPerFlight
             );
             $wall = microtime(true) - $a0;
             [$foundFlight, $cvExposed, $formulaC, $formulaX, $trailFlight] = $r;
@@ -368,6 +381,7 @@ final class RouteExecutor
         float $eps,
         array $localAtoms,
         int $marksMode = 1,
+        ?int $budgetTicks = null,
     ): array {
         $snapshot = [];
         foreach (self::MANAGED_KNOBS as $k) {
@@ -392,7 +406,7 @@ final class RouteExecutor
             foreach ($localAtoms as $name => $definition) {
                 $g->addLocal($name, $definition);
             }
-            $r = Search::find($X, $y, $g, $depth, $labels, self::TEST_RATIO, $eps, $remainSec);
+            $r = Search::find($X, $y, $g, $depth, $labels, self::TEST_RATIO, $eps, $remainSec, null, $budgetTicks);
             $found = (bool) $r[0];
             $cv = is_numeric($r[1]) ? (float) $r[1] : 9.99;
             // НЕ найдено: cv_train принудительно 9.99 (Search.php failure-путь),

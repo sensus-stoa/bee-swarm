@@ -80,9 +80,21 @@ $labels = array_map(fn (int $i): string => "x{$i}", range(0, WIDTH - 1));
 
 $certs = 0; $certForm = null; $certPass = null;
 $passRows = [];
+$traj = []; // EXP-065 B1.2: fingerprint траектории (детерминизм Д1/Д2)
 for ($p = 1; $p <= $passes; $p++) {
     $salt = 'b1' . $seed . (($arm === 'L') ? '_t' . $attempt : '');
     $res = RouteExecutor::run(ladder($p, $salt), $Xr, $Yreal, $labels, $budget, 0.10, [], 1);
+    foreach (($res['records'] ?? []) as $rec) {
+        if (($rec['op'] ?? '') !== 'FLIGHT') { continue; }
+        $traj[] = [
+            'found' => $rec['found'] ?? 0,
+            'cv' => $rec['cv_exposed'] ?? null,
+            'written' => $rec['trail']['written'] ?? [],
+            'injected' => $rec['trail']['read_injected'] ?? [],
+            'partial' => $rec['trail']['partial_form'] ?? null,
+            'cv_seen' => $rec['trail']['best_cv_seen'] ?? null,
+        ];
+    }
     $writtenDonor = 0; $readDonor = 0;
     foreach (($res['records'] ?? []) as $r) {
         $writtenDonor += donorHits($r['trail']['written'] ?? ($r['written'] ?? []));
@@ -110,6 +122,7 @@ $row = ['mode' => 'run', 'block' => 'B1.1', 'task' => 'pureprod4',
     'read_div' => $arm === 'A0' ? 'off' : 'on',
     'certs' => $certs, 'cert_form' => $certForm, 'cert_pass' => $certPass,
     'pass_records' => $passRows,
+    'traj_sha' => hash('sha256', json_encode($traj, JSON_UNESCAPED_UNICODE)),
     'wall_ms' => (int) round((microtime(true) - $t0) * 1000)];
 file_put_contents($outF, json_encode($row, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
 echo 'RUN_DONE arm=' . $arm . ' seed=' . $seed . ' certs=' . $certs

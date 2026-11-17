@@ -89,7 +89,7 @@ ssh -o ConnectTimeout=10 laptop "mkdir -p $(dirname "$FAST_LOG") $(dirname "$SLO
 # 1445 = 1443 + 2 TrailReadDiversityTest (the diversity retrieval, EXP-063).
 # 1449 = 1445 + 4 TrailWriteDiversityTest (the write-side diversity, EXP-064).
 # 1452 = 1449 + 3 RouteExecutorStepBudgetTest (step-budget mode, EXP-065 B1.2).
-TOTAL_EXPECTED=1452
+TOTAL_EXPECTED=1453
 DECLARED=$(ssh -o ConnectTimeout=10 laptop "cd ~/.bee_swarm && vendor/bin/phpunit --list-tests 2>/dev/null | grep -cE '^ - '") || DECLARED=0
 if [ "${DECLARED:-0}" -ne "$TOTAL_EXPECTED" ]; then
     echo "INVARIANT PRE-FLIGHT FAIL: TOTAL_EXPECTED=$TOTAL_EXPECTED != declared=${DECLARED:-0}"

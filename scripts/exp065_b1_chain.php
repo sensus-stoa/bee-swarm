@@ -77,6 +77,13 @@ $budget = ($arm === 'T') ? 96.0 : 12.0;
 $Xr = genRows($seed, 200);
 $Yreal = array_map('law', $Xr);
 $labels = array_map(fn (int $i): string => "x{$i}", range(0, WIDTH - 1));
+// EXP-065 B1.2 (доказано 17.11): единственный источник недетерминизма —
+// глобальное mt-состояние (beam-ротация shuffle, Search.php:728; при
+// mt_srand(777) 3/3 траектории побайтово идентичны, seed 778 — другой путь).
+// Контракт детерминизма: (task, seed, code, budget) → trajectory.
+// mt_srand от сида задачи — как в driver.php (канон).
+mt_srand($seed);
+putenv('SEARCH_ROTATION_SEED=' . $seed); // сид ротации бима = task seed (детерминизм движка)
 
 $certs = 0; $certForm = null; $certPass = null;
 $passRows = [];
@@ -93,6 +100,15 @@ for ($p = 1; $p <= $passes; $p++) {
             'injected' => $rec['trail']['read_injected'] ?? [],
             'partial' => $rec['trail']['partial_form'] ?? null,
             'cv_seen' => $rec['trail']['best_cv_seen'] ?? null,
+            'wi' => (function () use ($rec): array {
+                $wi = $rec['trail']['writer_input'] ?? null;
+                if (! is_array($wi)) { return []; }
+                $out = [];
+                foreach ($wi as $k => $v) {
+                    $out[$k] = is_array($v) ? count($v) : $v; // счётчики списков
+                }
+                return $out;
+            })(),
         ];
     }
     $writtenDonor = 0; $readDonor = 0;
@@ -123,6 +139,8 @@ $row = ['mode' => 'run', 'block' => 'B1.1', 'task' => 'pureprod4',
     'certs' => $certs, 'cert_form' => $certForm, 'cert_pass' => $certPass,
     'pass_records' => $passRows,
     'traj_sha' => hash('sha256', json_encode($traj, JSON_UNESCAPED_UNICODE)),
+    'traj' => $traj,
+    'pid' => getmypid(),
     'wall_ms' => (int) round((microtime(true) - $t0) * 1000)];
 file_put_contents($outF, json_encode($row, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
 echo 'RUN_DONE arm=' . $arm . ' seed=' . $seed . ' certs=' . $certs

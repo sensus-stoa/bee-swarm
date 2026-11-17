@@ -725,10 +725,19 @@ class Search
                         }
                     }
                 }
+                // EXP-065 B1.2: shuffle под RngIsolation-гвардом — глобальный
+                // Mt19937 общий для всего процесса (doc function.shuffle),
+                // несессионированное состояние = per-process недетерминизм
+                // (доказано: mt_srand(777) → 3/3 идентичные traj_sha, 778 —
+                // другой путь). Сид ротации = SEARCH_ROTATION_SEED (харнес
+                // задаёт = task seed; дефолт 0 — детерминирован всегда).
+                $rotationGuard = \BeeSwarm\Infra\RngIsolation::deterministicSeed(
+                    (int) (getenv('SEARCH_ROTATION_SEED') ?: '0')
+                );
                 shuffle($rest);
+                $rotationGuard->restore();
                 $randTail = array_slice($rest, 0, $beamRand);
                 // M1-EXT v2 WU-1b (10.10, пробы probe_dump/sim_ladder): corr-сенсор
-                // в beam-пул. Композиционные родители (x1×x4) имеют cv-ранг 766/1318,
                 // но corr-ранг 1-3/72 — cv физически не видит родителей сумм-законов.
                 // Квота: top-M по |corr| среди rest, БЕЗ порога (ранжирование, не гейт —
                 // нечего подгонять), R/K исключены (урок P8). corr на тех же 30 строках.
@@ -1229,6 +1238,11 @@ class Search
                 in_array('(c3×c4)', $pool, true) ? 1 : 0,
                 array_search('(c5+(c0×c2²))', $pool, true) === false ? -1 : (int) array_search('(c5+(c0×c2²))', $pool, true)
             ));
+            if (getenv('SEARCH_DUMP_POOL') === '1') {
+                fwrite(STDERR, '[L2-POOL] l1Keys=' . count($l1Keys ?? []) . ' l1Sq=' . count($l1Sq ?? [])
+                    . ' l1Unary=' . count($l1Unary ?? []) . ' featKeys=' . count($featKeys ?? [])
+                    . ' :: ' . implode(' ', $pool) . "\n");
+            }
             for ($a = 0; $a < count($pool); $a++) {
                 $va = $exprs[$pool[$a]];  // hoisted
                 for ($b = $a + 1; $b < count($pool); $b++) {

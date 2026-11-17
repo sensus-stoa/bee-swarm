@@ -1082,3 +1082,917 @@ RUN_DONE arm=T seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
 RUN_DONE arm=A1 seed=502 certs=1 cert_pass=7 form=((x1×x3)×(x0×x2))
 [-- arm A1 seed 502 t0 done rc=0 20:28:04 --]
 === EXP065 B1.1 DONE Tue Nov 17 08:28:04 PM MSK 2026 total=56 ===
+=== EXP065 B1.1 SEQUENTIAL START Wed Nov 18 12:05:45 AM MSK 2026 P=1 ===
+[-- arm A0 seed 502 t0 start 00:05:45 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=46 marks_in_pool=3 injected_total=3 pairs=1035 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=47 marks_in_pool=4 injected_total=4 pairs=1081 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x2−x4),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x2−x4),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x2−x4),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),(x2−x4),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x2−x4),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A0 seed=502 certs=0 cert_pass=none form=NONE
+[-- arm A0 seed 502 t0 done rc=0 00:06:58 --]
+[-- arm A1 seed 502 t0 start 00:06:58 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=46 marks_in_pool=3 injected_total=3 pairs=1035 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(x1×x3),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(x1×x3),(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,(x1×x3),((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(x1×x3),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(x1×x3),(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,(x1×x3),((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=502 certs=1 cert_pass=7 form=((x1×x3)×(x0×x2))
+[-- arm A1 seed 502 t0 done rc=0 00:08:03 --]
+[-- arm A0 seed 503 t0 start 00:08:03 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x2−x4)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x2−x4)]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[(x2−x4),((x0+x2)×(x0×x1)),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((x0+x2)×(x0×x1)),(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4)]
+[SELR] selR=4 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,(x2−x4)]
+[L2-FORENSICS] pool=41 marks_in_pool=4 injected_total=4 pairs=820 ops=7 marks=[(x2−x4),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A0 seed=503 certs=0 cert_pass=none form=NONE
+[-- arm A0 seed 503 t0 done rc=0 00:09:14 --]
+[-- arm A1 seed 503 t0 start 00:09:14 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((x0+x2)×(x0×x1)),(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,((x0+x2)×(x0×x1)),((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4),(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4),(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4),(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),(((x0+x2)×(x0×x1))−(,(((x0+x2)×(x0×x1))−(,((((x0+x2)×(x0×x1))−,(x2−x4),(x3×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),(((x0+x2)×(x0×x1))−(x0,(((x0+x2)×(x0×x1))−(x0,((((x0+x2)×(x0×x1))−(x]
+[L2-FORENSICS] pool=42 marks_in_pool=5 injected_total=5 pairs=861 ops=7 marks=[((((x0+x2)×(x0×x1))−(x0�,(((x0+x2)×(x0×x1))−(x0×,(((x0+x2)×(x0×x1))−(x0×,(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=503 certs=0 cert_pass=none form=NONE
+[-- arm A1 seed 503 t0 done rc=0 00:10:24 --]
+[-- arm A0 seed 504 t0 start 00:10:24 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=44 marks_in_pool=2 injected_total=2 pairs=946 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=46 marks_in_pool=4 injected_total=4 pairs=1035 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),((x0×x2)−(x0−x3)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(((x0×x2)−(x0−x3))+]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=46 marks_in_pool=4 injected_total=4 pairs=1035 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),((x0×x2)−(x0−x3)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(((x0×x2)−(x0−x3))+]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=46 marks_in_pool=4 injected_total=4 pairs=1035 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),((x0×x2)−(x0−x3)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x2)×(x0+x1))+(x0�,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(((x0×x2)−(x0−x3))+]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(((x0+x2)×(x0+x1))+(x0×x,((x0×x2)−(x0−x3)),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0×x]
+[L2-FORENSICS] pool=46 marks_in_pool=4 injected_total=4 pairs=1035 ops=7 marks=[(((x0+x2)×(x0+x1))+(x0×x1),((x0+x2)×(x0+x1)),((x0×x2)−(x0−x3)),(((x0+x2)×(x0+x1))+(x0×x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A0 seed=504 certs=0 cert_pass=none form=NONE
+[-- arm A0 seed 504 t0 done rc=0 00:11:36 --]
+[-- arm A1 seed 504 t0 start 00:11:36 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,(((x0+x2)×(x0+x1))+(x0�,(x1−x5),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,((x0+x1)−(x0×x2)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),(((x0+x2)×(x0+x1))+(x0×x,(x1−x5),((x0+x2)×(x0+x1))]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((x0+x2)×(x0+x1)),(x1−x5),(((x0+x2)×(x0+x1))+(x0×x3),(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x1−x5),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x1−x5),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x1−x5),((x0+x2)×(x0+x1)),(((x0+x2)×(x0+x1))+(x0�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x1−x5),((x0+x2)×(x0+x1)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((x0+x1)−(x0×x2))−,((((x0+x1)−(x0×x2))�,(((x0+x2)×(x0+x1))+(x0�,((((x0+x1)−(x0×x2))�,(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0+x1)−(x0×x2))−(x,(x3−x4),((((x0+x1)−(x0×x2))−(,(((x0+x2)×(x0+x1))+(x0×x,((((x0+x1)−(x0×x2))−(]
+[L2-FORENSICS] pool=47 marks_in_pool=5 injected_total=5 pairs=1081 ops=7 marks=[((((x0+x1)−(x0×x2))−(x1,(((x0+x2)×(x0+x1))+(x0×x3),((((x0+x1)−(x0×x2))−(x1,(x3−x4),(((x0+x1)−(x0×x2))−(x1�] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=504 certs=0 cert_pass=none form=NONE
+[-- arm A1 seed 504 t0 done rc=0 00:12:50 --]
+[-- arm A0 seed 505 t0 start 00:12:50 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),((x0−x3)+(x0×x1))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=47 marks_in_pool=3 injected_total=3 pairs=1081 ops=7 marks=[((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,(((x0−x3)+(x0×x1))+(x,((x0−x3)+(x0×x1))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−((,(((x0−x3)+(x0×x1))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x0−x3)+(x0×x1))+(x0×x,(((x0−x3)+(x0×x1))−((x0,((x0−x3)×(x0×x3)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+((,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+(x,((x0−x3)+(x0×x1))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))−(,(((x0−x3)+(x0×x1))+(((x]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x0−x3)+(x0×x1))+(((x0�,((((x0−x3)+(x0×x1))−((x,(((x0−x3)+(x0×x1))−((x0,((x0−x3)×(x0×x3)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+((,((((x0−x3)+(x0×x1))�]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−((]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x0−x3)+(x0×x1))−((x0,((x0−x3)×(x0×x3)),(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+((]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+((]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−,((((x0−x3)+(x0×x1))�,(((x0−x3)+(x0×x1))+((]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(((x0−x3)+(x0×x1))−]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(,(((((x0−x3)+(x0×x1))�,((((((x0−x3)+(x0×x1)),((x0−x3)×(x0×x3)),(x3−x4)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),((((x0−x3)+(x0×x1))+(((,(((((x0−x3)+(x0×x1))−,((((((x0−x3)+(x0×x1))�,((x0−x3)×(x0×x3))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)×(x0×x3)),((((((x0−x3)+(x0×x1))−(,(((((x0−x3)+(x0×x1))−((,((((x0−x3)+(x0×x1))+(((x0,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A0 seed=505 certs=0 cert_pass=none form=NONE
+[-- arm A0 seed 505 t0 done rc=0 00:14:06 --]
+[-- arm A1 seed 505 t0 start 00:14:06 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x0−x3)+(x0×x1))+(x,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x1−x3),(((x0−x3)+(x0×x1))+(x0�,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2))]
+[L2-FORENSICS] pool=48 marks_in_pool=4 injected_total=4 pairs=1128 ops=7 marks=[((x1−x3)+(x0×x2)),((x0−x3)+(x0×x1)),(((x0−x3)+(x0×x1))+(x0×x,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((x1−x3)+(x0×x2)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((((x1−x3)+(x0×x2))+(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�,((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[((x0−x3)+(x0×x1)),(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),((((x1−x3)+(x0×x2))+(,(x4/x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(x4/x5),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x4/x5),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),(x4/x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(x4/x5),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x4/x5),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),(x4/x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(x4/x5),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x4/x5),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x1−x3),(((x1−x3)+(x0×x2))+((,(((x0−x3)+(x0×x1))+(x,(((x1−x3)+(x0×x2))+(x,((x0−x3)+(x0×x1)),(x4/x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x1−x3),(x4/x5),(((x1−x3)+(x0×x2))+((x0,(((x0−x3)+(x0×x1))+(x0�,(((x1−x3)+(x0×x2))+(x0�]
+[L2-FORENSICS] pool=49 marks_in_pool=5 injected_total=5 pairs=1176 ops=7 marks=[(((x1−x3)+(x0×x2))+(x0×x,(((x0−x3)+(x0×x1))+(x0×x,(((x1−x3)+(x0×x2))+((x0�,(x4/x5),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=505 certs=0 cert_pass=none form=NONE
+[-- arm A1 seed 505 t0 done rc=0 00:15:21 --]
+[-- arm A0 seed 506 t0 start 00:15:21 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x0×x5),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x0×x5),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x0×x5),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3)),(((x0×x3)−(x0+x3))+(x,(((x0×x3)−(x0+x3))×(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x0×x5),((x0×x5)×(x0+x3)),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((x0×x5)×(x0+x3))×(x,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((x0+x3)+(x0×x1)),(((x0×x5)×(x0+x3))/(x0,(((x0×x3)−(x0+x3))×(,((x0×x3)−(x0+x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0×x5)×(x0+x3))×(x0+,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((x0+x3)+(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[((x0+x3)+(x0×x1)),(x0×x5),((x0×x5)×(x0+x3)),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))−(,((x0+x3)+(x0×x1))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((x0×x5)×(x0+x3))×(x0+,((((x0×x5)×(x0+x3))×(x0,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),((x0×x5)×(x0+x3)),(x2−x5),((((x0×x5)×(x0+x3))×(x0+x,(((x0×x5)×(x0+x3))×(x0+x3] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))−(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,(((x0×x5)×(x0+x3))×(x0+,((((x0×x5)×(x0+x3))×(x0,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),((((x0×x5)×(x0+x3))×(x0+x,(((x0×x5)×(x0+x3))×(x0+x3,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((((x0×x5)×(x0+x3))×(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=8 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5),((((x0×x5)×(x0+x3))×(]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=7 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),((x0×x5)×(x0+x3)),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,((((x0×x5)×(x0+x3))×(,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(((((x0×x5)×(x0+x3))×,((((((x0×x5)×(x0+x3))�,(((x0×x5)×(x0+x3))×(x,(x2−x5),(x0×x5)]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(((((x0×x5)×(x0+x3))×(x,((((((x0×x5)×(x0+x3))×(,(((x0×x5)×(x0+x3))×(x0+,(x2−x5),(x0×x5)]
+[L2-FORENSICS] pool=40 marks_in_pool=5 injected_total=5 pairs=780 ops=7 marks=[(x0×x5),(x2−x5),(((x0×x5)×(x0+x3))×(x0+x3,((((((x0×x5)×(x0+x3))×(x0,(((((x0×x5)×(x0+x3))×(x0+] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A0 seed=506 certs=0 cert_pass=none form=NONE
+[-- arm A0 seed 506 t0 done rc=0 00:16:30 --]
+[-- arm A1 seed 506 t0 start 00:16:30 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm A1 seed 506 t0 done rc=0 00:16:38 --]
+[-- arm L seed 502 t0 start 00:16:38 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t0 done rc=0 00:16:47 --]
+[-- arm L seed 502 t1 start 00:16:47 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t1 done rc=0 00:16:56 --]
+[-- arm L seed 502 t2 start 00:16:56 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t2 done rc=0 00:17:05 --]
+[-- arm L seed 502 t3 start 00:17:05 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t3 done rc=0 00:17:14 --]
+[-- arm L seed 502 t4 start 00:17:14 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t4 done rc=0 00:17:23 --]
+[-- arm L seed 502 t5 start 00:17:23 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t5 done rc=0 00:17:32 --]
+[-- arm L seed 502 t6 start 00:17:32 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t6 done rc=0 00:17:41 --]
+[-- arm L seed 502 t7 start 00:17:41 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=502 certs=0 cert_pass=none form=NONE
+[-- arm L seed 502 t7 done rc=0 00:17:50 --]
+[-- arm L seed 503 t0 start 00:17:50 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t0 done rc=0 00:17:58 --]
+[-- arm L seed 503 t1 start 00:17:58 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t1 done rc=0 00:18:07 --]
+[-- arm L seed 503 t2 start 00:18:07 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t2 done rc=0 00:18:15 --]
+[-- arm L seed 503 t3 start 00:18:15 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t3 done rc=0 00:18:24 --]
+[-- arm L seed 503 t4 start 00:18:24 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t4 done rc=0 00:18:32 --]
+[-- arm L seed 503 t5 start 00:18:32 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t5 done rc=0 00:18:41 --]
+[-- arm L seed 503 t6 start 00:18:41 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t6 done rc=0 00:18:49 --]
+[-- arm L seed 503 t7 start 00:18:49 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=503 certs=0 cert_pass=none form=NONE
+[-- arm L seed 503 t7 done rc=0 00:18:58 --]
+[-- arm L seed 504 t0 start 00:18:58 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t0 done rc=0 00:19:07 --]
+[-- arm L seed 504 t1 start 00:19:07 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t1 done rc=0 00:19:16 --]
+[-- arm L seed 504 t2 start 00:19:16 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t2 done rc=0 00:19:25 --]
+[-- arm L seed 504 t3 start 00:19:25 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t3 done rc=0 00:19:34 --]
+[-- arm L seed 504 t4 start 00:19:34 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t4 done rc=0 00:19:42 --]
+[-- arm L seed 504 t5 start 00:19:42 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t5 done rc=0 00:19:51 --]
+[-- arm L seed 504 t6 start 00:19:51 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t6 done rc=0 00:20:00 --]
+[-- arm L seed 504 t7 start 00:20:00 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=504 certs=0 cert_pass=none form=NONE
+[-- arm L seed 504 t7 done rc=0 00:20:10 --]
+[-- arm L seed 505 t0 start 00:20:10 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t0 done rc=0 00:20:19 --]
+[-- arm L seed 505 t1 start 00:20:19 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t1 done rc=0 00:20:28 --]
+[-- arm L seed 505 t2 start 00:20:28 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t2 done rc=0 00:20:37 --]
+[-- arm L seed 505 t3 start 00:20:37 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t3 done rc=0 00:20:46 --]
+[-- arm L seed 505 t4 start 00:20:46 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t4 done rc=0 00:20:55 --]
+[-- arm L seed 505 t5 start 00:20:55 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t5 done rc=0 00:21:04 --]
+[-- arm L seed 505 t6 start 00:21:04 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t6 done rc=0 00:21:13 --]
+[-- arm L seed 505 t7 start 00:21:13 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=505 certs=0 cert_pass=none form=NONE
+[-- arm L seed 505 t7 done rc=0 00:21:22 --]
+[-- arm L seed 506 t0 start 00:21:22 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t0 done rc=0 00:21:31 --]
+[-- arm L seed 506 t1 start 00:21:31 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t1 done rc=0 00:21:39 --]
+[-- arm L seed 506 t2 start 00:21:39 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t2 done rc=0 00:21:48 --]
+[-- arm L seed 506 t3 start 00:21:48 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t3 done rc=0 00:21:56 --]
+[-- arm L seed 506 t4 start 00:21:56 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t4 done rc=0 00:22:05 --]
+[-- arm L seed 506 t5 start 00:22:05 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t5 done rc=0 00:22:13 --]
+[-- arm L seed 506 t6 start 00:22:13 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t6 done rc=0 00:22:21 --]
+[-- arm L seed 506 t7 start 00:22:21 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=L seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm L seed 506 t7 done rc=0 00:22:30 --]
+[-- arm T seed 502 t0 start 00:22:30 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=T seed=502 certs=0 cert_pass=none form=NONE
+[-- arm T seed 502 t0 done rc=0 00:22:39 --]
+[-- arm T seed 503 t0 start 00:22:39 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=37 marks_in_pool=0 injected_total=0 pairs=666 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[((x0×x2)×(x0+x1)),((x0+x2)×(x0×x1)),(x3×x5)]
+[SELR] selR=3 c3c4=0 partial=0 forms=[((x0×x2)×(x0+x1)),(x3×x5),((x0+x2)×(x0×x1))]
+[L2-FORENSICS] pool=40 marks_in_pool=3 injected_total=3 pairs=780 ops=7 marks=[((x0+x2)×(x0×x1)),(x3×x5),((x0×x2)×(x0+x1))] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=T seed=503 certs=0 cert_pass=none form=NONE
+[-- arm T seed 503 t0 done rc=0 00:22:47 --]
+[-- arm T seed 504 t0 start 00:22:47 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=42 marks_in_pool=0 injected_total=0 pairs=861 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x1−x5),((x0+x2)×(x0+x1)),((x0+x1)−(x0×x2))]
+[L2-FORENSICS] pool=45 marks_in_pool=3 injected_total=3 pairs=990 ops=7 marks=[((x0+x1)−(x0×x2)),((x0+x2)×(x0+x1)),(x1−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=T seed=504 certs=0 cert_pass=none form=NONE
+[-- arm T seed 504 t0 done rc=0 00:22:56 --]
+[-- arm T seed 505 t0 start 00:22:56 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=44 marks_in_pool=0 injected_total=0 pairs=946 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x1−x3),((x0−x3)+(x0×x1))]
+[L2-FORENSICS] pool=46 marks_in_pool=2 injected_total=2 pairs=1035 ops=7 marks=[((x0−x3)+(x0×x1)),(x1−x3)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=T seed=505 certs=0 cert_pass=none form=NONE
+[-- arm T seed 505 t0 done rc=0 00:23:05 --]
+[-- arm T seed 506 t0 start 00:23:05 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=35 marks_in_pool=0 injected_total=0 pairs=595 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=4 c3c4_in=0 partial_in=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[SELR] selR=4 c3c4=0 partial=0 forms=[(x2−x5),(x1×x3),((x0+x3)+(x0×x1)),((x0×x3)−(x0+x3))]
+[L2-FORENSICS] pool=39 marks_in_pool=4 injected_total=4 pairs=741 ops=7 marks=[((x0×x3)−(x0+x3)),((x0+x3)+(x0×x1)),(x1×x3),(x2−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=T seed=506 certs=1 cert_pass=1 form=((x1×x3)×(x0×x2))
+[-- arm T seed 506 t0 done rc=0 00:23:14 --]
+[-- arm A1 seed 502 t0 start 00:23:14 --]
+[CANDR] candR=0 c3c4_in=0 partial_in=0 forms=[]
+[SELR] selR=0 c3c4=0 partial=0 forms=[]
+[L2-FORENSICS] pool=43 marks_in_pool=0 injected_total=0 pairs=903 ops=7 marks=[] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=2 c3c4_in=0 partial_in=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[SELR] selR=2 c3c4=0 partial=0 forms=[(x4−x5),((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=45 marks_in_pool=2 injected_total=2 pairs=990 ops=7 marks=[((x0−x2)+(x0×x3)),(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=3 c3c4_in=0 partial_in=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=3 c3c4=0 partial=0 forms=[(x4−x5),(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=46 marks_in_pool=3 injected_total=3 pairs=1035 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=5 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(((x0−x2)+(x0×x3))+(x0�,((x0−x2)+(x0×x3))]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[((x0−x2)+(x0×x3)),(((x0−x2)+(x0×x3))+(x0−,((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(x1×x3),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(x1×x3),(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,(x1×x3),((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+[CANDR] candR=6 c3c4_in=0 partial_in=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(,((((x0−x2)+(x0×x3))+(,(x1×x3),(((x0−x2)+(x0×x3))+(x,((x0−x2)+(x0×x3))]
+[SELR] selR=5 c3c4=0 partial=0 forms=[(x4−x5),((((x0−x2)+(x0×x3))+(x0,((((x0−x2)+(x0×x3))+(x0,(x1×x3),(((x0−x2)+(x0×x3))+(x0�]
+[L2-FORENSICS] pool=48 marks_in_pool=5 injected_total=5 pairs=1128 ops=7 marks=[(((x0−x2)+(x0×x3))+(x0−,(x1×x3),((((x0−x2)+(x0×x3))+(x0�,((((x0−x2)+(x0×x3))+(x0�,(x4−x5)] ops_list=[+,×,−,/,min,max,sq] c3c4_in_pool=0 partial_pos=-1
+RUN_DONE arm=A1 seed=502 certs=1 cert_pass=7 form=((x1×x3)×(x0×x2))
+[-- arm A1 seed 502 t0 done rc=0 00:24:18 --]
+=== EXP065 B1.1 DONE Wed Nov 18 12:24:18 AM MSK 2026 total=56 ===

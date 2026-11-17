@@ -8,7 +8,9 @@ declare(strict_types=1);
 //          ADM  = eval (legacy admission) | cvargmin (TRAIL_ADMISSION_MODE=cv_argmin)
 // CLI (7-positional): php exp063_diversity_ab.php run SEED READ ADM RUNGS OUT
 // RUNGS: decoy (E57/E58: приманки '(x0×x1)','(x3×x4²)','x5') | true (E62-forensics
-// канон: истинные rungs '(x0×x2²)','(x3×x4)','x5' — предпосылка diversity-теста).
+// канон: истинные rungs '(x0×x2²)','(x3×c4)','x5') | partial (ЧАСТИЧНЫЙ сид:
+// '(x0×x2²)','x5' — (x3×c4) должен быть найден; честный тест diversity-retrieval:
+// цель появляется в дороге через FLIGHT/merge, у ранкера есть материал и запас).
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/exp045/cert_utils.php';
 use BeeSwarm\Core\Search;
@@ -75,8 +77,8 @@ $admCfg = (string) $argv[4];    // eval | cvargmin
 $rungsCfg = (string) $argv[5];  // decoy | true
 $outF = (string) $argv[6];
 if (!in_array($readCfg, ['ctrl', 'div'], true) || !in_array($admCfg, ['eval', 'cvargmin'], true)
-    || !in_array($rungsCfg, ['decoy', 'true'], true)) {
-    fwrite(STDERR, "CFG: READ=ctrl|div ADM=eval|cvargmin RUNGS=decoy|true only\n"); exit(4);
+    || !in_array($rungsCfg, ['decoy', 'true', 'partial'], true)) {
+    fwrite(STDERR, "CFG: READ=ctrl|div ADM=eval|cvargmin RUNGS=decoy|true|partial only\n"); exit(4);
 }
 if ($readCfg === 'div') { putenv('TRAIL_READ_DIVERSITY=1'); } else { putenv('TRAIL_READ_DIVERSITY'); putenv('TRAIL_READ_ORDER=uses'); }
 if ($admCfg === 'cvargmin') { putenv('TRAIL_ADMISSION_MODE=cv_argmin'); } else { putenv('TRAIL_ADMISSION_MODE'); }
@@ -86,10 +88,13 @@ $Xr = genRows($seed, 200);
 $Yreal = array_map('compositeLaw', $Xr);
 $labels = array_map(fn (int $i): string => "c{$i}", range(0, WIDTH - 1));
 
-// Сид дороги: decoy = семантика E57/E58 (приманки), true = истинные rungs закона.
+// Сид дороги: decoy = семантика E57/E58 (приманки), true = истинные rungs,
+// partial = только (x0×x2²)+x5 — (x3×c4) ищется, честный тест retrieval.
 $rungSeed = $rungsCfg === 'true'
     ? ['(x0×x2²)', '(x3×x4)', 'x5']
-    : ['(x0×x1)', '(x3×x4²)', 'x5'];
+    : ($rungsCfg === 'partial'
+        ? ['(x0×x2²)', 'x5']
+        : ['(x0×x1)', '(x3×x4²)', 'x5']);
 $wr = writeRungsReflection($rungSeed, $labels, $Xr, $Yreal);
 
 $flights = 0; $certs = 0; $certForm = null; $clickLadder = null;

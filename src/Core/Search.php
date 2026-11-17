@@ -2742,6 +2742,38 @@ class Search
         } else {
             usort($ranked, fn (array $a, array $b): int => $b['proxy'] <=> $a['proxy']);
         }
+        // EXP-064 (owner 17.11, write-side diversity): симметрично
+        // selectReadDiverse — кап-walk адмиссии чисто прокси-жаден, и семейство
+        // контаминации (партиал + его обёртки-отмены, proxy ~0.94) съедает все
+        // 5 слотов до того, как walk дойдёт до структурно иных честных термов
+        // ((c3×c4) proxy 0.459 — 32/32 EVAL_OK, 0 раз written). Фикс: pass 1 =
+        // greedy по НЕПЕРЕСЕКАЮЩИМСЯ наборам колонок (кластерное разнообразие —
+        // представители разных ниш встают в голову очереди), pass 2 = остаток
+        // по proxy. Капы/ghost-правила НЕ тронуты — меняется только порядок.
+        if (getenv('TRAIL_WRITE_DIVERSITY') === '1') {
+            $divOrdered = [];
+            $touchedW = [];
+            $rest = [];
+            foreach ($ranked as $c) {
+                $form = (string) ($c['name'] ?? '');
+                preg_match_all('/[cx](\d+)/', $form, $mmW);
+                $colsW = array_unique($mmW[1]);
+                if ($colsW !== [] && array_intersect($colsW, $touchedW) === []) {
+                    $divOrdered[] = $c;
+                    foreach ($colsW as $colW) {
+                        $touchedW[$colW] = $colW; // VALUE = колонка (не '1'!)
+                    }
+                } else {
+                    $rest[] = $c;
+                }
+            }
+            $ranked = array_merge($divOrdered, $rest);
+            foreach ($divOrdered as $c) {
+                if (str_contains((string) $c['name'], '(c3×c4)') || str_contains((string) $c['name'], '(c0×c2²)')) {
+                    fwrite(STDERR, "[WRITE-DIV] head-of-queue: " . $c['name'] . "\n");
+                }
+            }
+        }
         $alarm = self::$lastTrailEvalStats[\BeeSwarm\Core\TrailAdmission::EVAL_LABEL_UNRESOLVABLE] ?? 0;
         if ($alarm > 0 && getenv('SEARCH_DEBUG') === '1') {
             fwrite(STDERR, '[TRAIL-ALARM] LABEL_UNRESOLVABLE=' . $alarm . ' (label-space leak, спека §4)' . PHP_EOL);

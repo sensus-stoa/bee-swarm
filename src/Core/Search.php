@@ -1354,7 +1354,11 @@ class Search
             // exact-гейт сертифицирует глубину-3 в тот же полёт.
             // OWNER 18.11: всегда-включено, экономно (break на точной
             // связке, cap 300); '0' — только для A/B-сравнений.
-            if (getenv('SEARCH_L2_LOOKAHEAD') !== '0') {
+            // ONLY depth>=3: назначение стадии — сборка глубины-3; на
+            // depth-2 её переранжирование выталкивает stair-промежуточные
+            // из kept → freeze удаляет → material-каналы дороги пустеют
+            // (two-pass 22:44: TrailMaterialQualityTest ×2, TrailMarksTest).
+            if (getenv('SEARCH_L2_LOOKAHEAD') !== '0' && $depth >= 3) {
                 $lookCap = (int) (getenv('SEARCH_L2_LOOKAHEAD_CAP') ?: '300');
                 $lookN = min(count($scored2), $lookCap);
                 $poolC = array_slice($pool, 0, 40);

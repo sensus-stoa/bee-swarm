@@ -1352,8 +1352,10 @@ class Search
             // аффинность к партнёрам (фолдинг: связки решают, не глобальный
             // fitness). Дети с cv≈0 регистрируются в $exprs до collect —
             // exact-гейт сертифицирует глубину-3 в тот же полёт.
-            if (getenv('SEARCH_L2_LOOKAHEAD') === '1') {
-                $lookCap = (int) (getenv('SEARCH_L2_LOOKAHEAD_CAP') ?: '800');
+            // OWNER 18.11: всегда-включено, экономно (break на точной
+            // связке, cap 300); '0' — только для A/B-сравнений.
+            if (getenv('SEARCH_L2_LOOKAHEAD') !== '0') {
+                $lookCap = (int) (getenv('SEARCH_L2_LOOKAHEAD_CAP') ?: '300');
                 $lookN = min(count($scored2), $lookCap);
                 $poolC = array_slice($pool, 0, 40);
                 $m30 = min($n, 30);
@@ -1383,8 +1385,11 @@ class Search
                                     }
                                     $exprs[$childName] = $full;
                                 }
-                                $best = $c; // зафиксировать точную связку
+                                break; // OWNER 18.11: точная связка найдена — перебор партнёров не нужен
                             }
+                        }
+                        if ($best < 0.02) {
+                            break; // и формы тоже (потенциал уже ≈0, в топ не опустится)
                         }
                     }
                     $scored2[$li]['pot'] = $best;

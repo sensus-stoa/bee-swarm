@@ -77,16 +77,17 @@ final class TrailNicheQuotaTest extends TestCase
     }
 
     /**
-     * ПРЕДСКАЗАНИЕ RED (до фикса): certs=0, донор (x1×x3) не written —
-     * дословно как в B1.1-леджере (503/A1: certs=0, 8 проходов).
+     * ПРЕДСКАЗАНИЕ RED (до фикса): certs=0, ни один недостающий донор
+     * ((x1×x2)/(x1×x3)/(x2×x3)) не written — дословно как в B1.1-леджере.
      */
     public function testNicheQuotaCertifiesDarkSeed503(): void
     {
         require_once __DIR__ . '/../scripts/exp045/cert_utils.php';
         $r = $this->runCampaign(503, true);
-        $donorWritten = in_array('(x1×x3)', $r['written'], true);
+        $farDonors = ['(x1×x2)', '(x1×x3)', '(x2×x3)'];
+        $donorWritten = ! empty(array_intersect($farDonors, $r['written']));
         $this->assertSame(1, $r['certs'], 'нишевая квота: тёмный сид 503 должен сертифицироваться');
-        $this->assertSame(1, (int) $donorWritten, 'недостающий донор (x1×x3) обязан попасть в дорогу');
+        $this->assertSame(1, (int) $donorWritten, 'недостающий дальний донор обязан попасть в дорогу');
     }
 
     public function testNicheDeterminismAcrossAmbient(): void

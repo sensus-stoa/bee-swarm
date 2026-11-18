@@ -1162,6 +1162,41 @@ class Search
                         $selR[] = $c;
                     }
                 }
+                // EXP-065 B2.2 (read-side нишевый резерв): selectReadDiverse —
+                // greedy по колонкам; после 2 picks ({0,1,2},{3,5}) все 6
+                // колонок touched → доноры-подмножества ({1,3},{2,3}) скипаются,
+                // corr-заполнение добивает near-miss. Пилот доказал: донор в
+                // пуле = серт. Резерв: последний слот selR → petal с парой,
+                // не покрытой дорогой (пишется write-side нишей квотой).
+                if (getenv('TRAIL_ADMIT_NICHE') === '1' && $selR !== []) {
+                    // «Записан» ≠ «донесён»: инжект рейтинговый (uses/corr),
+                    // донора выдавливает near-miss. Резерв = road petal с
+                    // read_cross_count=0 (записан, ни разу не инжектился в
+                    // пул); долетел → счётчик вырос → очередь идёт к следующему
+                    // голодающему. Канон сидирования: голодание дороги = баг.
+                    $stmtNR = $db->prepare(
+                        "SELECT formula FROM trail_marks
+                         WHERE fingerprint = ? AND class = 'petal' AND read_cross_count = 0
+                         ORDER BY uses DESC LIMIT 10"
+                    );
+                    $stmtNR->execute([$scopeKeyR]);
+                    foreach ($stmtNR->fetchAll(\PDO::FETCH_COLUMN) as $rfNR) {
+                        $inSel = false;
+                        foreach ($selR as $cS) {
+                            if ((string) $cS['f'] === (string) $rfNR) { $inSel = true; break; }
+                        }
+                        if ($inSel) { continue; }
+                        foreach ($candR as $cNR) {
+                            if ((string) $cNR['f'] !== (string) $rfNR) { continue; }
+                            $selR[count($selR) - 1] = $cNR; // резервный слот чтения
+                            $nicheDone = true;
+                            if (getenv('SEARCH_DEBUG') === '1') {
+                                fwrite(STDERR, '[READ-NICHE] slot=' . (count($selR) - 1) . ' donor=' . $rfNR . PHP_EOL);
+                            }
+                            break 2;
+                        }
+                    }
+                }
                 // EXP-062 instrument #6: the selR composition — the (c3x4)
                 // survival through the read-selection (the stair-quota +
                 // the readK cap).
@@ -2777,7 +2812,10 @@ class Search
             $key = $res['eval'];
             // EXP-062 forensics: the eval-class of the target forms — WHY does
             // the clean product (c3×c4) die before the candR?
-            if (str_contains($name, '(c3×c4)') || str_contains($name, '(c0×c2²)')) {
+            // EXP-065 B2.2: цели — доноры без x0-префикса (граница B2).
+            if (str_contains($name, '(c3×c4)') || str_contains($name, '(c0×c2²)')
+                || str_contains($name, '(x1×x3)') || str_contains($name, '(x1×x2)')
+                || str_contains($name, '(x2×x3)')) {
                 fwrite(STDERR, "[CAND-EVAL] $name => $key\n");
             }
             self::$lastTrailEvalStats[$key] = (self::$lastTrailEvalStats[$key] ?? 0) + 1;
@@ -2837,6 +2875,46 @@ class Search
     private static function selectTrailAdmission(array $ranked, string $scopeKey, \PDO $db): array
     {
         $medians = self::classFitMedians($db, $scopeKey);
+        // EXP-065 B2.2: НИШЕВАЯ КВОТА ЗАПИСИ (TRAIL_ADMIT_NICHE=1). Forensics
+        // B2: бим несёт только x0-префиксованные доноры; недостающие доноры
+        // доходят до дороги только если proxy-walk случайно дотянулся
+        // (502 — везение, f11; 503–505 — граница). Пилот: одна ступень
+        // дороги с недостающим донором → серт на проходе 1. Фикс: petal
+        // с непокрытой дорогой парой колонок продвигается в голову ranked
+        // (высший proxy среди непокрытых); покрытые пары не трогаем.
+        // Капы/ghost/material-фильтры НЕ тронуты — меняется только позиция
+        // одного кандидата в очереди. Покрытие = petal-метки дороги.
+        if (getenv('TRAIL_ADMIT_NICHE') === '1') {
+            $covered = [];
+            $stmtN = $db->prepare("SELECT formula FROM trail_marks WHERE fingerprint = ? AND class = 'petal'");
+            $stmtN->execute([$scopeKey]);
+            foreach ($stmtN->fetchAll(\PDO::FETCH_COLUMN) as $rf) {
+                if (preg_match_all('/x(\d+)/', (string) $rf, $mmN) > 0 && count(array_unique($mmN[1])) === 2) {
+                    $uN = array_values(array_unique($mmN[1]));
+                    sort($uN, SORT_NUMERIC);
+                    $covered[$uN[0] . ',' . $uN[1]] = true;
+                }
+            }
+            foreach ($ranked as $iN => $cN) {
+                if (($cN['class'] ?? '') !== \BeeSwarm\Core\TrailAdmission::CLASS_PETAL) {
+                    continue;
+                }
+                if (preg_match_all('/x(\d+)/', (string) $cN['name'], $mmP) > 0 && count(array_unique($mmP[1])) === 2) {
+                    $uP = array_values(array_unique($mmP[1]));
+                    sort($uP, SORT_NUMERIC);
+                    $keyP = $uP[0] . ',' . $uP[1];
+                    if (! isset($covered[$keyP])) {
+                        array_splice($ranked, $iN, 1);
+                        array_unshift($ranked, $cN);
+                        if (getenv('SEARCH_DEBUG') === '1') {
+                            fwrite(STDERR, '[ADM-NICHE] promoted=' . $cN['name'] . ' pair=' . $keyP . PHP_EOL);
+                        }
+                        break;
+                    }
+                    $covered[$keyP] = true; // петаль выше по рангу уже несёт пару
+                }
+            }
+        }
         $admitted = [];
         $stairN = 0;
         $otherN = 0;

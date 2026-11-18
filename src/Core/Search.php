@@ -2815,7 +2815,9 @@ class Search
             // EXP-065 B2.2: цели — доноры без x0-префикса (граница B2).
             if (str_contains($name, '(c3×c4)') || str_contains($name, '(c0×c2²)')
                 || str_contains($name, '(x1×x3)') || str_contains($name, '(x1×x2)')
-                || str_contains($name, '(x2×x3)')) {
+                || str_contains($name, '(x2×x3)')
+                || str_contains($name, '(x0×x1)+(x2×x3)')
+                || str_contains($name, '(x0+x2)')) {
                 fwrite(STDERR, "[CAND-EVAL] $name => $key\n");
             }
             self::$lastTrailEvalStats[$key] = (self::$lastTrailEvalStats[$key] ?? 0) + 1;

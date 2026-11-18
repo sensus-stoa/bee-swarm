@@ -68,6 +68,20 @@ foreach (array_slice($lines, 0, 200) as $line) {
     foreach ($xIdx as $i) { $r[] = (float) $v[$i]; }
     $X[] = $r; $Y[] = (float) $v[count($header) - 1];
 }
+// B3.3-амендмент: дистрактор-колонки (конкуренция за верхушку, условие
+// EXP-065: нерелевантные колонки выдавливают доноров из ranked/пула).
+// Детерминированно от seed; диапазон — как у первой релевантной колонки.
+$nDist = (int) (getenv('B3_DISTRACTORS') ?: '0');
+if ($nDist > 0) {
+    $lo = min(array_column($X, 0)); $hi = max(array_column($X, 0));
+    foreach ($X as $i => $row) {
+        for ($d = 0; $d < $nDist; $d++) {
+            $X[$i][] = $lo + (mt_rand() / mt_getrandmax()) * ($hi - $lo);
+        }
+    }
+    $base = count($labels);
+    for ($d = 0; $d < $nDist; $d++) { $labels[] = 'x' . ($base + $d); }
+}
 
 $nPasses = ($arm === 'T') ? 1 : 8;
 $salt = 'f' . $name . '_' . $arm . (($arm === 'L') ? '_t' . $attempt : '');
@@ -80,9 +94,11 @@ for ($p = 1; $p <= $nPasses; $p++) {
         'condition' => ['kind' => 'ALWAYS'], 'budget_fraction' => 0.30, 'max_steps' => 5,
         'actions' => [
             ['op' => 'USE_MARKS', 'k' => 5],
-            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => (int) (getenv('B3_DEPTH') ?: '2')],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => (string) (getenv('B3_BEAM') ?: 'beam10nl'),
+             'depth' => (int) (getenv('B3_DEPTH') ?: '2')],
             ['op' => 'USE_MARKS', 'k' => 5],
-            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => 'beam10nl', 'depth' => (int) (getenv('B3_DEPTH') ?: '2')],
+            ['op' => 'FLIGHT', 'grammar' => 'base', 'beam' => (string) (getenv('B3_BEAM') ?: 'beam10nl'),
+             'depth' => (int) (getenv('B3_DEPTH') ?: '2')],
         ]];
     $res = RouteExecutor::run($genome, $X, $Y, $labels, 0.001, 0.10, [], 1);
     $wd = 0; $rd = 0;

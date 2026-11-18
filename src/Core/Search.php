@@ -1345,6 +1345,52 @@ class Search
                 }
                 return $a['cv'] <=> $b['cv'];
             });
+            // EXP-066 B3.3 (owner 18.11): ASSEMBLY-POTENTIAL. Мерить форму
+            // не cv-к финальной цели (кирпич глубины-2 честно проигрывает
+            // вырожденным min/max: ранг 476/4536, телескоп exp066), а её
+            // ЛУЧШЕЙ однобуквенной достройкой из пула — локальная
+            // аффинность к партнёрам (фолдинг: связки решают, не глобальный
+            // fitness). Дети с cv≈0 регистрируются в $exprs до collect —
+            // exact-гейт сертифицирует глубину-3 в тот же полёт.
+            if (getenv('SEARCH_L2_LOOKAHEAD') === '1') {
+                $lookCap = (int) (getenv('SEARCH_L2_LOOKAHEAD_CAP') ?: '800');
+                $lookN = min(count($scored2), $lookCap);
+                $poolC = array_slice($pool, 0, 40);
+                $m30 = min($n, 30);
+                $y30 = array_slice($y, 0, $m30);
+                for ($li = 0; $li < $lookN; $li++) {
+                    $pv = $exprs[$scored2[$li]['n']] ?? null;
+                    if ($pv === null) { continue; }
+                    $best = 9.99;
+                    foreach ($poolC as $pn) {
+                        $qv = $exprs[$pn] ?? null;
+                        if ($qv === null) { continue; }
+                        foreach ($ops as $op) {
+                            $v = [];
+                            for ($i = 0; $i < $m30; $i++) {
+                                $r = $grammar->apply($pv[$i], $qv[$i], $op);
+                                $v[] = $r ?? 0.0;
+                            }
+                            $c = self::cv($v, $y30, 0.0);
+                            if ($c < $best) { $best = $c; }
+                            if ($best < 0.02) {
+                                $childName = '(' . $scored2[$li]['n'] . $op . $pn . ')';
+                                if (! isset($exprs[$childName])) {
+                                    $full = [];
+                                    for ($i = 0; $i < $n; $i++) {
+                                        $r = $grammar->apply($pv[$i], $qv[$i], $op);
+                                        $full[] = $r ?? 0.0;
+                                    }
+                                    $exprs[$childName] = $full;
+                                }
+                                $best = $c; // зафиксировать точную связку
+                            }
+                        }
+                    }
+                    $scored2[$li]['pot'] = $best;
+                }
+                usort($scored2, fn (array $a, array $b): int => ($a['pot'] ?? 9.99) <=> ($b['pot'] ?? 9.99));
+            }
             $kept = array_slice($scored2, 0, $l2BeamK);
             // M1-EXT v2 WU-3 (10.10): сигнальная квота в L2-freeze.
             // «Отсекаем только когда нашли ближайший запах» (owner 10.10):
@@ -1385,6 +1431,18 @@ class Search
                     }
                 }
                 usort($signal2, fn (array $a, array $b): int => $b['corr'] <=> $a['corr']);
+                if (getenv('SEARCH_DEBUG') === '1') {
+                    foreach ($signal2 as $zi => $zs) {
+                        if (str_contains($zs['n'], '(x0×x1)+(x2×x3)') || str_contains($zs['n'], '(x2×x3)+(x0×x1)')) {
+                            fwrite(STDERR, '[ZZ-SIGNAL] кирпич pos=' . $zi . '/' . count($signal2)
+                                . ' corr=' . round((float) $zs['corr'], 4) . PHP_EOL);
+                        }
+                    }
+                    foreach (array_slice($signal2, 0, 12) as $zi => $zs) {
+                        fwrite(STDERR, '[ZZ-SIGNAL' . '] top' . $zi . ' corr=' . round((float) $zs['corr'], 4)
+                            . ' n=' . substr($zs['n'], 0, 40) . PHP_EOL);
+                    }
+                }
                 // CLASS-AWARE QUOTA (11.10 v2): слоты по КЛАССУ формы, класс —
                 // структурный (топ-оператор '+' + '×' внутри = sum-of-products
                 // семейство; покрывает dot- и kinetic-ступени БЕЗ регексов).
@@ -1425,6 +1483,14 @@ class Search
                 }
             }
             $l2Keys = $keptNames;
+            if (getenv('SEARCH_DEBUG') === '1' && isset($scored2)) {
+                foreach ($scored2 as $sc) {
+                    if ($sc['n'] === '((x0×x1)+(x2×x3))' || $sc['n'] === '((x2×x3)+(x0×x1))') {
+                        fwrite(STDERR, '[ZZ-BEAM] ' . $sc['n'] . ' cv=' . round((float) $sc['cv'], 4)
+                            . ' kept=' . (in_array($sc['n'], $keptNames, true) ? 'YES' : 'NO') . PHP_EOL);
+                    }
+                }
+            }
         }
 
         if (getenv('SEARCH_DEBUG') === '1') {

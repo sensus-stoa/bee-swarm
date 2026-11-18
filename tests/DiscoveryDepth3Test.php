@@ -60,9 +60,14 @@ class DiscoveryDepth3Test extends TestCase
         // (EXP-040-EXT: sum-of-products = класс d=2). found[0] может быть
         // ЕЙ, а не факторизованной. Контракт: закон двухуровневый (L1⊕L1)
         // ИЛИ сумма двух продуктов — оба cv=0 на фикстуре.
+        // EXP-066 B3.3: assembly-potential (всегда-вкл) выбирает среди
+        // точных форм ИЗОМОРФНУЮ перестановку аргументов ((x0divx1) vs
+        // (x0divx2) — cv=0 обе) — ассерт перестановочно-инвариантен
+        // (канон 18.11: «ассерт не уже механизма»), двухуровневость
+        // (вложенные скобки над двумя x-формами) сохранена.
         $atoms = array_map(fn ($c) => $c['atom'] ?? '', $found);
-        $twoLevel = array_filter($atoms, fn (string $a): bool => (bool) (preg_match('/\(x0.{1,12}x1\).{1,6}x2/', $a)
-                || preg_match('/\(x\d+.{1,8}x2\).{1,6}\(x\d+.{1,8}x2\)/', $a)));
+        $twoLevel = array_filter($atoms, fn (string $a): bool => (bool) (preg_match('/\(x\d+.{1,12}x\d+\).{1,6}x2/', $a)
+                || preg_match('/\(x\d+.{1,8}x\d+\).{1,6}\(x\d+.{1,8}x\d+\)/', $a)));
         $this->assertNotEmpty($twoLevel, 'two-level law family expected: ' . json_encode($atoms));
     }
 

@@ -196,8 +196,12 @@ class RouteExecutorWriteOnTest extends BaseTestCase
     /**
      * Пин фиксации fallback в Search: TRAIL_READ_K='0' при beam>0 обязан
      * читать НОЛЬ меток (LIMIT 0), а не fallback-5. Seed = частичная сумма:
-     * при чтении метка⊕(x2×x5) = полный dot-закон (ядро лестницы EXP-040),
-     * find() находит; при честном нуле чтения закон недостижим на depth-2.
+     * при чтении метка⊕(x2×x4) = полный dot-закон (ядро лестницы EXP-040).
+     *
+     * EXP-066 B3.3: «закон не найден» больше НЕ индикатор честного нуля
+     * чтения — assembly-potential собирает трёхпарные законы (глубина-3)
+     * прямым перебором промежуточных, без дороги. Контракт чтения
+     * проверяется ПРЯМО: read-инжект пуст при READ_K=0.
      */
     public function testSearchReadKZeroIsHonestZero(): void
     {
@@ -216,10 +220,11 @@ class RouteExecutorWriteOnTest extends BaseTestCase
 
         $res = Search::find($X, $y, $g, 2, self::LABELS, 0.2, 0.15, 90.0);
 
-        $this->assertFalse(
-            $res[0],
+        $this->assertSame(
+            [],
+            Search::$lastTrailReadInjected,
             "TRAIL_READ_K='0' must read NOTHING ('0' was falsy-falling back to 5); " .
-            'seeded mark must NOT reach the pool'
+            'no mark may be injected into the pool'
         );
     }
 }

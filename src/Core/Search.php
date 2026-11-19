@@ -1298,10 +1298,12 @@ class Search
                         $name = "({$pool[$a]}$op{$pool[$b]})";
                         $exprs[$name] = $vec;
                         $l2Keys[] = $name;
-                        // EXP-062 collect-all: dump every generated pair name to
-                        // a file for the post-hoc python analysis (which pairs
-                        // reach cv~0 and why the composite is never selected).
-                        file_put_contents('/tmp/l2_pairs_dump.txt', $name . "\n", FILE_APPEND);
+                        // EXP-062 collect-all (19.11: закомментирован целиком —
+                        // debug-дамп на каждую пару убивает прогон; вернуть
+                        // вручную при дебаге)
+                        // if (getenv('EXP062_DUMP') === '1') {
+                        //     file_put_contents('/tmp/l2_pairs_dump.txt', $name . "\n", FILE_APPEND);
+                        // }
                     }
                     // Бинарные born-атомы: B(va, vb)
                     foreach ($bornBinary as $bbName => $bbDef) {

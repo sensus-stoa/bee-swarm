@@ -53,8 +53,8 @@ foreach ($metab as $name => $bySp) {
     $scores[$name] = $v / count($vals);
 }
 arsort($scores);
-$topM = array_slice(array_keys($scores), 0, 3, true);
-echo 'топ-5 по дисперсии: ';
+$topM = array_slice(array_keys($scores), 0, 1, true); // пилот: 1 метаболит (2 фичи) — пул depth-2 квадратичен
+echo "топ-1 по дисперсии: ";
 foreach ($topM as $mn) { echo substr($mn, 0, 18) . '(' . round($scores[$mn], 1) . ') '; }
 echo "\n";
 
@@ -108,17 +108,17 @@ foreach (['BH', 'BO', 'ER'] as $target) {
         $y[] = $rec['y'];
     }
     if (count($y) < 20) { echo "$target: мало строк (" . count($y) . ")\n"; continue; }
-    // ПИЛОТ без движка (Search::find OOM на array_unshift пула — отдельный баг,
-    // фикс на полный прогон). Сигнал = прямые корреляции ниже.
-    /*
+    // ПИЛОТ: движок на 2 фичах (x_i + 1 метаболит).
+    // ЧИСТАЯ ГРАММАТИКА: дефолтный swarm.db несёт 3562 custom-опов из чужих
+    // доменов (semantic/preg_match мусор) — они раздували пул форм в 40x.
+    // Для числового домена нужны только BASE_OPS: изолированная :memory: БД.
+    \BeeSwarm\Infra\Database::setPath(':memory:');
     $grammar = new Grammar();
-    putenv('SWARM_DB_PATH=:memory:');
     putenv('TRAIL_MARKS=0');
-    $res = Search::find($X, $y, $grammar, 2, $labels, 0.3, 0.15, 60.0); // budget 60s
+    $res = Search::find($X, $y, $grammar, 2, $labels, 0.3, 0.15, 540.0); // budget 60s
     $form = $res[2] ?? 'none';
     $cvTest = $res[3] ?? null;
-    printf("%s: движок: %s cv_test=%s\n", $target, $form, is_numeric($cvTest) ? round($cvTest, 4) : var_export($cvTest, true));
-    */
+    printf("%s: движок: %s cv=%s diag=%s\n", $target, $form, is_numeric($cvTest) ? round($cvTest, 4) : var_export($cvTest, true), $res[4] ?? '?');
     // базовый corr x_i-only
     $xs = array_column($X, 0);
     $mo = array_sum($y) / count($y); $mx = array_sum($xs) / count($xs);

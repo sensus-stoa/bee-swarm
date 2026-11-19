@@ -1,0 +1,166 @@
+{
+  "study": {
+    "url": "",
+    "name": "Dysbiotic synthetic gut community",
+    "description": "A 6-species synthetic human gut community was established using the ambr15f fermentation robot. The ambr15f, a high-throughput fermentation robot with two culture stations housing 12 single-use microbioreactors (vessels) each, placed in an anaerobic chamber (A135 Anaerobic workstation with HEPA filter: 10% H2, 10% CO2, 80% N2, 55% humidity), was used for growing the community for 240 hours, without pH control, in an emulated chemostat mode after 4 hours of inoculation.",
+    "embargoExpiresAt": ""
+  },
+  "project": {
+    "name": "Investigating the response of a synthetic human gut community to perturbations",
+    "description": ""
+  },
+  "strains": [
+    "226186",
+    "272559",
+    "411483",
+    "476272",
+    "536231",
+    "591946"
+  ],
+  "timeUnits": "h",
+  "techniques": [
+    {
+      "type": "fc",
+      "label": "",
+      "units": "Cells/mL",
+      "cellTypes": [
+        "total"
+      ],
+      "includeStd": false,
+      "description": "100 \u00b5L of the sample was used for cell counts using Flow Cytometry (FC) with SYBR Green 1 (SG) staining. Dilutions of 1:10 and 1:100 in 0.9% saline was used for the first two time points (0 and 6h) and the later time points (9h onwards) respectively. 25 \u00b5L of 1:100 diluted sample was used for total cell counts by FC where cells were stained using only SG.",
+      "includeDead": false,
+      "includeLive": false,
+      "subjectType": "bioreplicate",
+      "includeTotal": true,
+      "metaboliteIds": [],
+      "includeUnknown": false
+    },
+    {
+      "type": "ph",
+      "label": "",
+      "units": "",
+      "cellTypes": [],
+      "includeStd": false,
+      "description": "",
+      "includeDead": false,
+      "includeLive": false,
+      "subjectType": "bioreplicate",
+      "includeTotal": false,
+      "metaboliteIds": [],
+      "includeUnknown": false
+    },
+    {
+      "type": "16s",
+      "label": "",
+      "units": "Cells/mL",
+      "cellTypes": [],
+      "includeStd": false,
+      "description": "Absolute abundances obtained by multiplying copy-corrected relative abundances with total cell counts from FC (cells/mL). Unknowns are unclassified/ low quality reads or contamination16S gene copy numbers were extracted from rrnDB, version 5.10. \r\n16S gene copy numbers used for this study: B. thetaiotaomicron VPI-5482: 5; B. fragilis NCTC 9343: 6; F. duncaniae: 6; B. hydrogenotrophica DSM 10507: 4; R. intestinalis L1-82: 6; E. coli LF82: 7",
+      "includeDead": false,
+      "includeLive": false,
+      "subjectType": "strain",
+      "includeTotal": false,
+      "metaboliteIds": [],
+      "includeUnknown": true
+    },
+    {
+      "type": "metabolite",
+      "label": "",
+      "units": "mg/L",
+      "cellTypes": [],
+      "includeStd": false,
+      "description": "The key metabolites were quantified using HPLC. NA refers to peak not integrated (missed in data processing)",
+      "includeDead": false,
+      "includeLive": false,
+      "subjectType": "metabolite",
+      "includeTotal": false,
+      "metaboliteIds": [
+        "CHEBI:15361",
+        "CHEBI:15740",
+        "CHEBI:17234",
+        "CHEBI:17272",
+        "CHEBI:17968",
+        "CHEBI:24996",
+        "CHEBI:26806",
+        "CHEBI:27082",
+        "CHEBI:30089",
+        "CHEBI:31011",
+        "CHEBI:48942",
+        "CHEBI:48944"
+      ],
+      "includeUnknown": false
+    }
+  ],
+  "communities": [
+    {
+      "name": "6-species",
+      "strainIdentifiers": [
+        "existing|226186",
+        "existing|272559",
+        "existing|411483",
+        "existing|476272",
+        "existing|536231",
+        "existing|591946"
+      ]
+    }
+  ],
+  "experiments": [
+    {
+      "name": "No perturbations",
+      "publicId": "EMGDB000000093",
+      "description": "Six species grown in microbioreactor in chemostat mode, maintained at 37\u00b0C. Chemostat mode started 4 hours after inoculation.",
+      "bioreplicates": [
+        {
+          "name": "V09",
+          "position": "",
+          "biosampleUrl": ""
+        },
+        {
+          "name": "V10",
+          "position": "",
+          "biosampleUrl": ""
+        },
+        {
+          "name": "V11",
+          "position": "",
+          "biosampleUrl": ""
+        },
+        {
+          "name": "V12",
+          "position": "",
+          "biosampleUrl": ""
+        }
+      ],
+      "communityName": "6-species",
+      "perturbations": [],
+      "timepointCount": 20,
+      "cultivationMode": "chemostat",
+      "compartmentNames": [
+        "WC"
+      ]
+    }
+  ],
+  "compartments": [
+    {
+      "H2": 10.0,
+      "N2": 80.0,
+      "O2": null,
+      "CO2": 10.0,
+      "name": "WC",
+      "volume": 10.0,
+      "pressure": null,
+      "initialPh": 6.47,
+      "mediumUrl": "https://mediadive.dsmz.de/medium/339",
+      "mediumName": "Wilkins-Chalgren Anaerobe Broth (WC)",
+      "dilutionRate": 0.04,
+      "stirringMode": "",
+      "stirringSpeed": 300.0,
+      "inoculumVolume": 1.0,
+      "initialTemperature": 37.0,
+      "inoculumConcentration": null
+    }
+  ],
+  "custom_strains": [],
+  "calculateAverages": true,
+  "calculateGrowthrates": false
+}

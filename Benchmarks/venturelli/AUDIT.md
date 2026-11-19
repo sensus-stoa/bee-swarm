@@ -827,3 +827,39 @@ heuristic-формула уровня 2 аналитика (Y_ABC = Y_pair + Δ)
 (или любой другой оси). Кандидат — Venturelli EV4 (rich 2-12,
 метаболомика широкая) — НО там монокультуры+снимок, пар в явном
 виде нет для inter_ij.
+
+## B7-External: НАЙДЕН ДАТАСЕТ УРОВНЯ 2 — Ho et al. 2024 Nat Microbiol (19.11)
+
+Ho, Nguyen, Sanchez, DeFelice, Huang (Stanford), "Resource competition
+predicts assembly of in vitro gut bacterial communities",
+Nat Microbiol 2024, PMID 38486074. Zenodo 10.5281/zenodo.10408305.
+
+Датасет: 15 видов human gut (E. hospicola Eh, E. faecalis Efe,
+C. symbiosum Csy, B. thetaiotaomicron Bt, C. comes Cc, B. producta Bp,
+C. saccharolyticum Csc, E. faecium Efm, C. hiranonis Chy, E. faecalis
+Efs, C. aerofaciens Cha, B. fragilis Bf, F. prausnitzii Fp,
+B. uniformis Bu, P. distasonis Pd) в mGAM + BHI.
+
+СТРУКТУРА (ровно то, чего не хватало):
+- Монокультуры: 15, metabolomics (T1-T68 x 3 реплики, HILIC Pos+Neg,
+  12176 фич Neg / named 407, В Т.Ч. 35 ПУРИНОВЫХ: Adenine,
+  Hypoxanthine, Inosine, Allantoin, AMP/cAMP, Guanosine,
+  Methylthioadenosine, Guanine, Guanosine-MP, Uridine, CMP,
+  2'-O-Methylguanosine...)
+- Пары: 146 (AssemblyA/B, относительная abundance 16S)
+- Rich-контраст: 110 троек + 29 тетрад + 17 семивидовых! (AssemblyRelAbu:
+  302 treatments с 16S-фракциями)
+- BHI + mGAM два медиа (двухуровневый воспроизводственный контекст)
+
+ЭТО ПЕРВЫЙ ДАТАСЕТ ГДЕ ВСЁ СХОДИТСЯ: pairs + rich-контраст (3,4,7) +
+широкая untargeted химия с идентифицированной пуриновой осью +
+16S-фракции. Авторы сами построили consumer-resource модель и искали
+deviations от mono-прогноза (cross-feeding, pH) — их deviations
+аналог нашего Δ.
+
+ГОТОВНОСТЬ: файлы скачаны (Benchmarks/ho2024/): Metabolomics_HILIC.xlsx
+(37MB), SampleMap.xlsx, mGAM_relative_abundance.xlsx. В план B7-External:
+(a) извлечь purine-пулы mono (T-файлы: расшифровка T1-T68 в SampleMap);
+(b) Δ(pairs) = pair - additive(mono); (c) Δ(rich 3,4,7) vs предсказание
+из пар; (d) тест пуриновой оси: объясняет ли purine-Δ составной остаток
+лучше SCFA/other классов. Null: circular-shift + class-permutation.

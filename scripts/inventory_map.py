@@ -20,7 +20,7 @@ ROOT = os.path.expanduser('~/.bee_swarm')
 OUT_DIR = os.path.join(ROOT, 'docs', 'inventory')
 os.makedirs(OUT_DIR, exist_ok=True)
 
-PHP_DIRS = ['src', 'scripts']
+PHP_DIRS = ['src', 'scripts', 'tests']
 SKIP_DIRS = {'vendor', 'node_modules', '.git', 'Generated'}
 
 

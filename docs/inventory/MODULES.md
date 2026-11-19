@@ -1,8 +1,8 @@
 # Модульный обзор (проход 2)
 
-Автогенерация из docs/inventory/INVENTORY.jsonl.
+Автогенерация из docs/inventory/INVENTORY.jsonl (src + scripts + tests).
 
-## ЯДРО: поиск законов — Search (конвейер/бимы/потенциал), Grammar (грамматика/атомы), ExpressionEvaluator, CvCalculator и др.
+## ЯДРО: поиск законов — Search (конвейер/бимы/потенциал), Grammar (грамматика/атомы), ExpressionEvaluator, CvCalculator
 
 Файлов: 23
 
@@ -30,7 +30,7 @@
 - `src/Core/WordCodecException.php` — Отказ кодека GENOME-001: неизвестное слово, циклическая зависимость, несоответствие арности, malformed-геном. 
 - `src/Core/YellowBallFilter.php` — YellowBallFilter — детектит кандидатов-«жёлтые мячики». Кандидат с train_CV < 0.01 но held-out_CV > 0.05 — шум
 
-## УЛЕЙ: кампании/пчёлы — RouteExecutor (полёты), driver, маршруты, бюджет, дорога (Trail*), телеметрия
+## УЛЕЙ: кампании/пчёлы — RouteExecutor (полёты), driver, маршруты, дорога (Trail*), телеметрия
 
 Файлов: 44
 
@@ -119,7 +119,7 @@
 - `src/Validation/RetrospectiveValidator.php` — RetrospectiveValidator — ретроспективная проверка законов. Вынесено из AtomRegistry (SOLID S).
 - `src/Validation/ValidatorInterface.php` — ValidatorInterface — контракт для валидаторов законов. SOLID I: мелкие интерфейсы для тестируемости.
 
-## БОКОВЫЕ домены: Trading, Text, Math, Knowledge — вспомогательные
+## БОКОВЫЕ домены: Trading, Text, Math, Knowledge
 
 Файлов: 6
 
@@ -130,7 +130,7 @@
 - `src/Trading/LiveExecutor.php` — LiveExecutor — чистые функции боевого исполнителя (тестируемое ядро). Без I/O: сигналы, приоритет плеча, объём
 - `src/Trading/TradingHive.php` — FIN-005 TRADING-BEES (v6, 15.08): пчёлы торгуют, без законов. АРСЕНАЛ: 10 атомов (мультитаймфрейм r2-r40, vol,
 
-## scripts/ (111 файлов, по группам)
+## scripts/ (по группам)
 
 ### bd_* — battery/data-пробники (старый блок B2) (5)
 
@@ -330,3 +330,7 @@
 - `evolution.php` (2026-10-18) — WORD-CUM-001 CHECKPOINT B: минимальный многопоколенный цикл (AMENDMENT v2). Population → Mutation → 
 - `transition.php` (2026-10-18) — WORD-CUM-001 / EVO-FIX-001 FIX-1: целостность fitness при смене мира. transitionReevaluate(): при пе
 - `worlds.php` (2026-10-18) — WORD-CUM-001 CHECKPOINT B: замороженные миры (AMENDMENT v2 §A1-A3, A6). Истинные формулы существуют 
+
+## tests/ (333)
+
+Два-pass-набор: fast (~1441) + slow (15) = 1456 тестов GREEN.

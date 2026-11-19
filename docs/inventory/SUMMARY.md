@@ -1,6 +1,6 @@
 # Инвентарь bee_swarm (проход 1)
 
-Всего PHP-файлов: 250
+Всего PHP-файлов: 583
 
 ## По каталогам
 
@@ -25,6 +25,7 @@
 - src/Text: 2
 - src/Trading: 2
 - src/Validation: 4
+- tests: 333
 
 ## Кандидаты на мусор (нет ссылок, нет классов, старый коммит)
 
@@ -40,6 +41,10 @@
 - scripts/exp066_telescope.php: green: L2-BEAM assembly-potential (SEARCH_L2_LOOKAHEAD=1) — кирпичи выживают, глубина-3 собирается
 - scripts/exp065_b2_pilot.php: green: нишевая квота записи/чтения (TRAIL_ADMIT_NICHE=1) — дорога несёт всех доноров
 - scripts/exp066_feynman.php: EXP-066 B3.2: дискриминирующая рука не найдена в 3 пробах — зато локализован разрез конвейера
+- tests/L2StairQuotaTest.php: green: L2-BEAM assembly-potential (SEARCH_L2_LOOKAHEAD=1) — кирпичи выживают, глубина-3 собирается
+- tests/DiscoveryDepth3Test.php: test: DiscoveryDepth3 — ассерт перестановочно-инвариантен (канон «ассерт не уже механизма»)
+- tests/TrailNicheQuotaTest.php: green: нишевая квота записи/чтения (TRAIL_ADMIT_NICHE=1) — дорога несёт всех доноров
+- tests/RouteExecutorWriteOnTest.php: test: READ_K=0 честный ноль — контракт чтения напрямую (read_injected пуст)
 - src/Hive/driver.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
 - src/Hive/BudgetAccountant.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
 - src/Hive/RouteMutator.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
@@ -71,7 +76,3 @@
 - scripts/boundary_probe.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
 - scripts/probe_shape_sweep.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
 - scripts/bd_triage3.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
-- scripts/island_fc_one.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
-- scripts/DormantPoolCapacityTest.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
-- scripts/exp059_pilot.php: Trail admission: cv-argmin + sq-factor, read diversity; exp060-062 пилоты; retraction-verify 1430/14
-- scripts/exp065_b1_chain.php: green: beam-ротация под RngIsolation-гвардом — детерминизм на уровне движка

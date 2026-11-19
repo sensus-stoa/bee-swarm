@@ -56,7 +56,7 @@ foreach ($strainRows as $r) {
 }
 
 // интервалы per вид
-$build = function (string $sp, array $reps) use ($mk, $sk, $mcols, $scols, $SPECS): array {
+$build = function (string $sp, array $reps, string $mode = 'all') use ($mk, $sk, $mcols, $scols, $SPECS): array {
     $full = $scols[array_search($sp, $SPECS, true)];
     $out = [];
     foreach ($reps as $rep) {
@@ -79,6 +79,8 @@ $build = function (string $sp, array $reps) use ($mk, $sk, $mcols, $scols, $SPEC
                 $feats[$mc] = ($v0 + $v1) / 2;
             }
             if (!$ok) { continue; }
+            if ($mode === 'growth' && $t0 > 21) { continue; }
+            if ($mode === 'stationary' && $t0 < 93) { continue; }
             $out[] = ['rep' => $rep, 't0' => $t0, 'y' => $y, 'feats' => $feats];
         }
     }
@@ -120,6 +122,46 @@ $fitR2 = function (array $rows, array $spec) use ($vec): float {
     }
     if ($sxx < 1e-12 || $syy < 1e-12) { return NAN; }
     return ($sxy / sqrt($sxx * $syy)) ** 2 * (($sxy > 0) ? 1 : 1); // r2
+};
+
+
+// Автокорреляционный контроль: частный R2 формы сверх y_prev
+// rows отсортированы по (rep, t0). y_prev = y предыдущего интервала в той же реплике.
+$partialR2 = function (array $rows, array $spec) use ($vec): float {
+    // построить пары (y_k, y_{k-1}, feat_k)
+    $pairs = [];
+    $n = count($rows);
+    for ($i = 1; $i < $n; $i++) {
+        if ($rows[$i]['rep'] === $rows[$i - 1]['rep']) {
+            $pairs[] = ['y' => $rows[$i]['y'], 'yprev' => $rows[$i - 1]['y'],
+                        'feat' => $vec($spec, [$rows[$i]])[0]];
+        }
+    }
+    $n2 = count($pairs);
+    if ($n2 < 8) { return NAN; }
+    $y = array_column($pairs, 'y'); $yp = array_column($pairs, 'yprev'); $xf = array_column($pairs, 'feat');
+    $my = array_sum($y) / $n2; $mp = array_sum($yp) / $n2; $mx = array_sum($xf) / $n2;
+    // M0: y ~ yprev
+    $sp = 0; $spp = 0; $syy = 0;
+    for ($i = 0; $i < $n2; $i++) { $sp += ($yp[$i]-$mp)*($y[$i]-$my); $spp += ($yp[$i]-$mp)**2; $syy += ($y[$i]-$my)**2; }
+    if ($spp < 1e-12 || $syy < 1e-12) { return NAN; }
+    $b0 = $sp / $spp; $a0 = $my - $b0 * $mp;
+    $sse0 = 0;
+    for ($i = 0; $i < $n2; $i++) { $sse0 += ($y[$i] - ($a0 + $b0*$yp[$i]))**2; }
+    // M1: y ~ yprev + feat
+    // нормальные уравнения 2 фичи
+    $X = []; for ($i=0;$i<$n2;$i++) { $X[] = [1.0, $yp[$i]-$mp, $xf[$i]-$mx]; }
+    $k = 3; $A = array_fill(0,$k,array_fill(0,$k,0.0)); $b2 = array_fill(0,$k,0.0);
+    for ($i=0;$i<$n2;$i++) { for ($p2=0;$p2<$k;$p2++) { $b2[$p2] += $X[$i][$p2]*$y[$i]; for ($q=0;$q<$k;$q++) $A[$p2][$q] += $X[$i][$p2]*$X[$i][$q]; } }
+    for ($p2=0;$p2<$k;$p2++) { $mx2=$p2; for ($q=$p2+1;$q<$k;$q++) if (abs($A[$q][$p2])>abs($A[$mx2][$p2])) $mx2=$q;
+      [$A[$p2],$A[$mx2]]=[$A[$mx2],$A[$p2]]; [$b2[$p2],$b2[$mx2]]=[$b2[$mx2],$b2[$p2]];
+      if (abs($A[$p2][$p2])<1e-12) return NAN;
+      for ($q=$p2+1;$q<$k;$q++) { $f=$A[$q][$p2]/$A[$p2][$p2]; for ($r2=$p2;$r2<$k;$r2++) $A[$q][$r2]-=$f*$A[$p2][$r2]; $b2[$q]-=$f*$b2[$p2]; } }
+    $w = array_fill(0,$k,0.0);
+    for ($p2=$k-1;$p2>=0;$p2--) { $s2=$b2[$p2]; for ($q=$p2+1;$q<$k;$q++) $s2-=$A[$p2][$q]*$w[$q]; $w[$p2]=$s2/$A[$p2][$p2]; }
+    $sse1 = 0;
+    for ($i=0;$i<$n2;$i++) { $pred = 0; for ($p2=0;$p2<$k;$p2++) $pred += $w[$p2]*$X[$i][$p2]; $sse1 += ($y[$i]-$pred)**2; }
+    return $sse0 > 1e-12 ? 1 - $sse1/$sse0 : NAN;
 };
 
 // LODO: фит на 3 репликах (LSQ b) -> R2 на 4-й
@@ -179,35 +221,34 @@ $timeR2 = function (array $rows, array $spec) use ($vec): float {
     return $tot > 1e-12 ? 1 - $sse / $tot : NAN;
 };
 
-// null 1: block-permutation — перемешиваем ЦЕЛЫЕ реплики (связь rep->y рвётся, временная структура внутри реплики сохранена)
-// реализация: сборка rep->(t->y) отдельно от rep->(t->feats); перестановка назначений rep-блоков y
-$nullBlock = function (array $rows, array $spec, int $seed, int $N) use ($lodoR2): array {
+// null 1 (ИСПРАВЛЕН): circular-shift y-ряда внутри каждой реплики.
+// Сохраняет распределение y и автокорреляцию внутри реплики,
+// ломает синхронность y <-> метаболиты. 200 перестановок.
+$nullBlock = function (array $rows, array $spec, int $seed, int $N, float $realLodo) use ($lodoR2): array {
     mt_srand($seed);
-    // rep -> список y в исходном порядке интервалов
     $repY = [];
     foreach ($rows as $r) { $repY[$r['rep']][] = $r['y']; }
-    $reps = array_keys($repY);
-    $count = 0;
+    $count = 0; $valid = 0;
     for ($p = 0; $p < $N; $p++) {
-        // перемешать блоки y между репликами
-        $shuf = $repY;
-        $vals = array_values($repY);
-        shuffle($vals);
-        $shuf = array_combine($reps, $vals);
+        $shifts = [];
+        foreach ($repY as $rep => $ys) { $shifts[$rep] = mt_rand(1, max(1, count($ys) - 1)); }
         $rows2 = [];
         foreach ($rows as $r) {
+            $ys = $repY[$r['rep']];
+            $nY = count($ys);
+            $idx = $r['_idx'] ?? 0;
             $r2 = $r;
-            $r2['y'] = array_shift($shuf[$r['rep']]);
+            $r2['y'] = $ys[($idx + $shifts[$r['rep']]) % $nY];
             $rows2[] = $r2;
         }
-        $r2 = $lodoR2($rows2, $spec);
-        if (is_finite($r2)) { $count++; }
+        $nullLodo = $lodoR2($rows2, $spec);
+        if (is_finite($nullLodo)) { $valid++; if ($nullLodo >= $realLodo) { $count++; } }
     }
-    return [$count, $N];
+    return [$valid ? $count / $valid : 1.0, $N];
 };
 
 // null 2: sign-flip — флип знака отклонения концентрации от среднего по репликам в t-точке
-$nullSign = function (array $rows, array $spec, int $seed, int $N) use ($mk, $mcols, $vec, $lodoR2): array {
+$nullSign = function (array $rows, array $spec, int $seed, int $N, float $realLodo) use ($mk, $mcols, $vec, $lodoR2): array {
     mt_srand($seed);
     // сначала: средняя концентрация по репликам на каждый t (по t0)
     $tMean = [];
@@ -223,7 +264,7 @@ $nullSign = function (array $rows, array $spec, int $seed, int $N) use ($mk, $mc
         }
         $devRows[] = $avg;
     }
-    $count = 0;
+    $count = 0; $valid = 0;
     for ($p = 0; $p < $N; $p++) {
         // флип знака всех dev целиком (per-реплика)
         $flip = (mt_rand() / mt_getrandmax() < 0.5) ? -1 : 1;
@@ -236,10 +277,10 @@ $nullSign = function (array $rows, array $spec, int $seed, int $N) use ($mk, $mc
             $r2['feats'] = $f;
             $rows2[] = $r2;
         }
-        $r2 = $lodoR2($rows2, $spec);
-        if (is_finite($r2)) { $count++; }
+        $nullLodo = $lodoR2($rows2, $spec);
+        if (is_finite($nullLodo)) { $valid++; if ($nullLodo >= $realLodo) { $count++; } }
     }
-    return [$count, $N];
+    return [$valid ? $count / $valid : 1.0, $N];
 };
 
 // --- перебор форм ---
@@ -253,28 +294,40 @@ foreach ($mcols as $m1) {
 printf("форм: %d x видов: %d\n", count($forms), count($SPECS));
 
 $report = [];
-$STATS = ['gate_r2in' => 0, 'gate_lodo' => 0, 'gate_time' => 0, 'gate_pBlock' => 0, 'gate_pSign' => 0];
+$STATS = ['gate_r2in' => 0, 'gate_partial' => 0, 'gate_lodo' => 0, 'gate_time' => 0, 'gate_pBlock' => 0, 'gate_pSign' => 0];
+foreach (['growth' => 21, 'stationary' => 93] as $mode => $tcut) {
+  echo "\n########## РЕЖИМ: $mode (t0<=>$tcut) ##########\n";
 foreach ($SPECS as $sp) {
-    $rows = $build($sp, $REPS);
-    if (count($rows) < 20) { printf("%-30.30s SKIP (n=%d)\n", $sp, count($rows)); continue; }
+    $rows = $build($sp, $REPS, $mode);
+    // индекс внутри блока реплики (для circular-shift)
+    $cnt = [];
+    foreach ($rows as &$r) { $rep = $r['rep']; $r['_idx'] = $cnt[$rep] = ($cnt[$rep] ?? -1) + 1; }
+    unset($r);
+    if (count($rows) < 12) { printf("%-30.30s SKIP (n=%d)\n", $sp, count($rows)); continue; }
     $cands = [];
     foreach ($forms as $spec) {
         $r2in = $fitR2($rows, $spec);
-        if (!is_finite($r2in) || $r2in < 0.15) { continue; }
+        if (!is_finite($r2in) || $r2in < 0.25) { continue; }
+        $STATS['gate_r2in']++;
+        $pr2 = $partialR2($rows, $spec);
+        if (!is_finite($pr2) || $pr2 < 0.05) { continue; }
+        $STATS['gate_partial']++;
         $lodo = $lodoR2($rows, $spec);
         if (!is_finite($lodo) || $lodo <= 0) { continue; }
-        $STATS['gate_r2in']++; $STATS['gate_lodo']++;
-        $tr2 = $timeR2($rows, $spec);
-        if (!is_finite($tr2) || $tr2 <= 0) { continue; }
+        $STATS['gate_lodo']++;
+        $tr2 = NAN; // в per-режим постановке временной holdout не применяется
         $STATS['gate_time']++;
         // null-иерархия для выживших
-        [$c1, ] = $nullBlock($rows, $spec, 424242, 200);
-        $pBlock = $c1 / 200;
+        [$pBlock, ] = $nullBlock($rows, $spec, 424242, 200, $lodo);
+        $DEBUG[$sp][] = sprintf("%s pBlock=%.2f", implode(':', array_slice($spec,1)), $pBlock);
         if ($pBlock >= 0.10) { continue; }
         $STATS['gate_pBlock']++;
-        [$c2, ] = $nullSign($rows, $spec, 777777, 200);
-        $pSign = $c2 / 200;
-        if ($pSign >= 0.10) { continue; }
+        if ($spec[0] === 'lin') {
+            $pSign = NAN; // R2 инвариантен к знаку — sign-flip для lin не информативен
+        } else {
+            [$pSign, ] = $nullSign($rows, $spec, 777777, 200, $lodo);
+            if ($pSign >= 0.10) { continue; }
+        }
         $STATS['gate_pSign']++;
         $cands[] = ['spec' => $spec, 'r2in' => $r2in, 'lodo' => $lodo, 'tr2' => $tr2,
                     'pBlock' => $pBlock, 'pSign' => $pSign];
@@ -298,6 +351,11 @@ foreach ($SPECS as $sp) {
     }
     if ($keep) { $report[$sp] = $keep; }
 }
-echo "\n=== гейты (суммарно по видам, после r2in>0.15) ===\n";
+}
+echo "\n=== гейты (суммарно по видам, после r2in>0.25) ===\n";
+foreach ($DEBUG as $sp => $dbg) {
+  echo $sp, " (", count($dbg), " форм):\n";
+  foreach (array_slice($dbg, 0, 5) as $d) echo "   ", $d, "\n";
+}
 foreach ($STATS as $g => $n) { printf("  %s: %d\n", $g, $n); }
 echo "\nИТОГО видов с сертифицированными формами: ", count($report), "\n";

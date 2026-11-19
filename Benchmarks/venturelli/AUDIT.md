@@ -704,3 +704,44 @@ null + FDR) прошла до сертификации. Это ЗАКОН-КАН
 ПРОВЕРКИ ДАЛЬШЕ (B7.3): знаки коэффициентов (субстрат должен быть "-",
 SCFA-перекрёстное кормление "+"), сопоставление с путями (KEGG per
 вид), синтетическая валидация на датасете №2 (25 видов, 95 сообществ).
+
+## B7-External: аудит Chodkowski & Shade 2024 (mSystems) — ПРИГОДЕН, пуриновая ось ЕСТЬ (19.11)
+
+Источник:github.com/ShadeLab/Paper_Chodkowski_3member_SynCom_2021
+(клонирован, MSData + Supplementary в Benchmarks/chodkowski/).
+
+Система: B. thailandensis + C. subtsugae + P. syringae, chemically-
+mediated SynCom (membrane barrier), стационарная фаза (12.5-45ч).
+7 условий (3 mono + 3 pair + full), 4 био-реплики, 6 временных точек.
+Фичи: 4 режима LC-MS (PolarPos 7432, PolarNeg 4269, NonPolarPos 4752,
+NonPolarNeg 2064) в формате RT/mz, анонимные.
+
+АУДИТ по критериям аналитика:
+1. Метаболомные таблицы ЧИСЛАМИ: PASS (readyForMetaboanalyst CSV)
+2. Идентификация: частичная — 7 BGC-метаболитов (Bactobolin,
+   Capistruin, Melleilactone, Pyochelin, Rhamnolipida, Thailandamide);
+   остальные анонимные m/z
+3. Парные+монокультуры: PASS (18 mono, 18 pair, 6 full)
+4. Композиция full: PASS
+5. Реплики: PASS (3-4 на условие)
+6. Пуриновая ось: ДА — масс-соответствия (<5 mDa) находят:
+   hypoxanthine 135.03 [M] (PolarNeg RT 4.21, 8.77, 3.95),
+   inosine 267.08 [M] (RT 6.90), adenosine 266.09, adenine,
+   guanine, guanosine, xanthosine 297.07, orotic acid 155.04,
+   uridine, cytidine, thymidine, allantoin 157.05.
+   НО: строго uric acid 167.020 [M-] НЕТ (ближайшие 167.035 —
+   другой изомер, Δ15mDa). Это уже НЕ Venturelli EV4-система,
+   здесь проверка НЕ через ур.кислоту, а через ширину пуриновой
+   оси (hypoxanthine/inosine/adenine/guanine = пуриновый salvage).
+
+КЛЮЧЕВОЕ: авторы уже сделали additive-null (pairwise sum vs full
+observed, Exometabolite_analysis*): можно прямо взять их ΔABC и
+проверять наши формы на нём. Но ΔABC у них на анонимных фичах —
+наша задача: (а) выделить пуриновые фичи строго по m/z, (б) проверить
+формы на их Δ, (в) использовать НЕ анонимные: xanthosine/orotic/
+allantoin как пуриновые прокси.
+
+ОСТОРОЖНО: в этом датасете НЕТ роста (стационарная фаза, "maintenance
+competition") — это постановка Δметаболитов, не Δроста. Формы B7.2
+(cV на концентрации vs удельная скорость) тут неприменимы напрямую:
+нужен вариант формы на пул метаболита (перенос формы, не параметров).

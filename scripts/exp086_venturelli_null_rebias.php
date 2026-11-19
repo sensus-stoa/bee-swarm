@@ -32,7 +32,11 @@ require __DIR__ . '/exp070_shared.php';
 error_reporting(E_ALL & ~E_WARNING);
 
 $VEN = __DIR__ . '/../Benchmarks/venturelli';
-$ev3order = ['BH', 'CA', 'BU', 'PC', 'BO', 'BV', 'BT', 'EL', 'FP', 'CH', 'DP', 'ER'];
+$ev3orderAll = ['BH', 'CA', 'BU', 'PC', 'BO', 'BV', 'BT', 'EL', 'FP', 'CH', 'DP', 'ER'];
+// B6.5-A: ER и FP исключены из общего скрининга (33mM acetate — другое условие);
+// их формы условны и не смешиваются с остальными
+$excluded = ['ER', 'FP'];
+$ev3order = array_values(array_diff($ev3orderAll, $excluded));
 
 $xml = file_get_contents('/tmp/ven_s006/twelveSpeciesT3.xml');
 $params = [];
@@ -166,7 +170,7 @@ foreach ($ev3order as $sp) {
         foreach ($metab as $mn => $bySp) {
             $vals = array_values($bySp);
             shuffle($vals);
-            $sh[$mn] = array_combine($ev3order, $vals);
+            $sh[$mn] = array_combine($ev3orderAll, $vals);
         }
         $c = $metrics($buildRows($sp, [$m1], $sh), $vecFn);
         if ($c['corr'] >= $real['corr']) { $p1++; }

@@ -95,6 +95,22 @@ $engineWall = (int) ((microtime(true) - $t0) * 1000);
 fwrite(STDERR, '[MEM] после движка: ' . round(memory_get_usage(true) / 1e6) . "MB peak="
     . round(memory_get_peak_usage(true) / 1e6) . "MB\n");
 
+// B4.1: tolerance-сертификация топ-кандидата через cert_v2 (exp045) —
+// движковый cert требует exact, cert_v2 держит cv<=0.10 на 3 сплитах
+// (dual-channel ratio+MAE). На реальном шуме это правильный гейт.
+$engineCertV2 = null; $engineCertV2Form = '';
+require_once __DIR__ . '/exp045/cert_utils.php';
+$candForm = (string) \BeeSwarm\Core\Search::$lastBestFormSeen;
+if (! $engineCert && $candForm !== '' && $candForm !== 'none') {
+    $labelsX = labels_to_x($candForm);
+    $v2 = cert_v2($labelsX, $Xfull ?: $X, $yfull ?: $y, 42);
+    if (is_array($v2)) {
+        $engineCertV2 = $v2['pass'] ? 1 : 0;
+        $engineCertV2Form = $v2['pass'] ? $candForm : '';
+        if ($v2['pass']) { $engineCert = true; $engineForm = $candForm; }
+    }
+}
+
 // ---------- телескоп: cv-профиль по слоям (реплика B3.2) ----------
 
 function cvf(array $a, array $b, ?int $cap = 30): float
@@ -258,6 +274,7 @@ else { $class = 'grammar-miss'; }
 $row = [
     'task' => $taskId, 'class' => $class, 'n' => $n, 'k' => $k,
     'engine_cert' => $engineCert ? 1 : 0, 'engine_form' => $engineForm, 'engine_wall_ms' => $engineWall,
+    'cert_v2_pass' => $engineCertV2, 'cert_v2_form' => $engineCertV2Form,
     'steps' => $steps,
     'l1_min_cv' => round($l1Min, 4), 'l2_min_cv' => round($l2Min, 4), 'l2_beam_thresh' => round($l2Thresh, 4),
     'l3_min_cv' => round($l3Min, 4), 'exact_children' => $exactChildren, 'best_child' => $bestChild,

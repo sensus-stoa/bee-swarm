@@ -4,10 +4,13 @@
 
 ## По каталогам
 
-- scripts: 82
-- scripts/bench: 3
+- scripts: 67
+- scripts/archive: 15
+- scripts/archive/bench: 1
+- scripts/archive/exp045: 2
+- scripts/bench: 2
 - scripts/exp044: 2
-- scripts/exp045: 28
+- scripts/exp045: 26
 - scripts/genome001: 5
 - scripts/genome002: 3
 - scripts/probe0: 3
@@ -29,6 +32,14 @@
 
 ## Кандидаты на мусор (нет ссылок, нет классов, старый коммит)
 
+- scripts/archive/bench/exp037_freeze_vs_explore.php (, 7KB): (не в git)
+- scripts/archive/exp033_grounded.php (, 13KB): (не в git)
+- scripts/archive/exp035_phase3.php (, 3KB): (не в git)
+- scripts/archive/exp035_phase3b.php (, 3KB): (не в git)
+- scripts/archive/exp035_phase4_heat.php (, 7KB): (не в git)
+- scripts/archive/exp045/probe_eval_check.php (, 3KB): (не в git)
+- scripts/archive/probe_a19_gate_live.php (, 2KB): (не в git)
+- scripts/archive/v14_dashboard_smoke.php (, 1KB): (не в git)
 - scripts/baseline_random.php (2026-08-08, 8KB): security: baseline_random.php (lair-пути) вне репо
 - scripts/diagnose_all_classes.php (2026-08-08, 10KB): security: P0/P1 аудит — удалены внутренние файлы (110), deploy-скрипты с IP, синтетика fixtures, san
 - scripts/diagnose_metrics.php (2026-08-08, 8KB): security: P0/P1 аудит — удалены внутренние файлы (110), deploy-скрипты с IP, синтетика fixtures, san

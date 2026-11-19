@@ -31,6 +31,7 @@ $argvv = array_slice($argv, 1);
 for ($i = 0; $i < count($argvv); $i++) {
     $a = $argvv[$i];
     if ($a === '--steps') { $steps = (int) ($argvv[$i + 1] ?? 5000); $i++; }
+    elseif ($a === '--rows') { $rowsLimit = (int) ($argvv[$i + 1] ?? 200); $i++; }
     elseif ($a === '--gen') { $gen = $argvv[$i + 1] ?? ''; $i++; }
     elseif ($a[0] !== '-') { $pos[] = $a; }
 }
@@ -51,19 +52,31 @@ if ($gen === 'dot42') {
 } else {
     if ($csv === null || ! is_file($csv)) { fwrite(STDERR, "нет данных: $csv\n"); exit(1); }
     $lines = file($csv, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    $header = str_getcsv(array_shift($lines));
-    $labels = array_slice($header, 0, -1);
-    $X = []; $y = [];
-    foreach (array_slice($lines, 0, 200) as $l) {
-        $v = str_getcsv($l);
+    $header = str_getcsv(trim((string) array_shift($lines)));
+    $lim = ($rowsLimit ?? 200) > 0 ? ($rowsLimit ?? 200) : count($lines);
+    foreach (array_slice($lines, 0, $lim) as $l) {
+        $v = str_getcsv(trim((string) $l));
+        if (count($v) < count($header)) { continue; }
         $r = [];
         for ($i = 0; $i < count($header) - 1; $i++) { $r[] = (float) $v[$i]; }
         $X[] = $r; $y[] = (float) $v[count($header) - 1];
     }
+    $labels = array_slice($header, 0, -1);
+}
+// большие n: движок+телескоп на стратифицированном сэмпле (~1500 строк,
+// каждая k-я — детерминизм), финальная перепроверка exact — на ПОЛНЫХ данных
+$Xfull = $X; $yfull = $y; $nFull = count($y);
+if (count($y) > 1500) {
+    $stp = (int) ceil(count($y) / 1500);
+    $X2 = []; $y2 = [];
+    for ($i = 0; $i < count($y); $i += $stp) { $X2[] = $X[$i]; $y2[] = $y[$i]; }
+    $X = $X2; $y = $y2;
+    fwrite(STDERR, '[MEM] сэмпл: ' . count($y) . " из $nFull (шаг $stp)\n");
 }
 $n = count($y);
 $k = count($labels);
 $t0 = microtime(true);
+fwrite(STDERR, '[MEM] после загрузки: ' . round(memory_get_usage(true) / 1e6) . "MB\n");
 
 // ---------- движок (A0-профиль: дорога off, полный бюджет) ----------
 
@@ -79,6 +92,8 @@ $eng = RouteExecutor::run($genome, $X, $y, $labels, 0.001, 0.10, [], 1);
 $engineCert = ! empty($eng['found']);
 $engineForm = (string) ($eng['cert_formula'] ?? ($eng['formula'] ?? ''));
 $engineWall = (int) ((microtime(true) - $t0) * 1000);
+fwrite(STDERR, '[MEM] после движка: ' . round(memory_get_usage(true) / 1e6) . "MB peak="
+    . round(memory_get_peak_usage(true) / 1e6) . "MB\n");
 
 // ---------- телескоп: cv-профиль по слоям (реплика B3.2) ----------
 
@@ -153,19 +168,41 @@ foreach ($l1cv as $nm => $c) {
 }
 $pool = array_values(array_unique(array_merge($pool, $keys, array_map(fn ($nm) => "sq($nm)", $keys), $extra)));
 fwrite(STDERR, '[PROBE-DBG] pool=' . count($pool) . ' (из них |corr|>=0.5: ' . count($extra) . ")\n");
-$born2 = [];
+$born2 = [];   // имя → [родительA, родительB, op] — векторы НЕ храним (n=6433 × 7350 форм = OOM)
+$born2cv = [];
 $pa = count($pool);
 for ($a = 0; $a < $pa; $a++) {
     for ($b = $a + 1; $b < $pa; $b++) {
         foreach ($ops as $op) {
             $nm = "({$pool[$a]}$op{$pool[$b]})";
-            $born2[$nm] = applyOp($l1[$pool[$a]], $l1[$pool[$b]], $op, $n); // полный вектор
+            $born2[$nm] = [$pool[$a], $pool[$b], $op];
+            $born2cv[$nm] = cvf(array_slice(applyOp($l1[$pool[$a]], $l1[$pool[$b]], $op, $m30), 0, $m30), $y30);
         }
     }
 }
-$born2cv = [];
-foreach ($born2 as $nm => $v) { $born2cv[$nm] = cvf(array_slice($v, 0, $m30), $y30); }
 asort($born2cv);
+fwrite(STDERR, '[MEM] после born2cv: ' . round(memory_get_usage(true) / 1e6) . "MB peak="
+    . round(memory_get_peak_usage(true) / 1e6) . "MB\n");
+// полные векторы форм пула (для перепроверки exact на ВСЕХ nFull строках)
+$l1full = [];
+foreach ($pool as $nm) {
+    if (isset($xs[$nm])) { $l1full[$nm] = []; foreach ($Xfull as $r) { $l1full[$nm][] = $r[array_search($nm, $labels, true)]; } }
+    elseif (str_starts_with($nm, 'sq(')) {
+        $base = substr($nm, 3, -1);
+        $l1full[$nm] = applyOp($l1full[$base] ?? array_map(fn ($r) => $r[array_search($base, $labels, true)], $Xfull), $l1full[$base] ?? array_map(fn ($r) => $r[array_search($base, $labels, true)], $Xfull), '×', $nFull);
+    } else {
+        // плоская пара "(a op b)" из сырых
+        $inner = substr($nm, 1, -1);
+        foreach (['+', '×', '−', '/'] as $o) {
+            if (str_contains($inner, $o)) { [$a2, $b2] = explode($o, $inner, 2); $a2 = trim($a2); $b2 = trim($b2); break; }
+        }
+        if (! isset($a2, $b2)) { continue; }
+        $va = []; $vb = [];
+        $ia = array_search($a2, $labels, true); $ib = array_search($b2, $labels, true);
+        foreach ($Xfull as $r) { $va[] = $r[$ia]; $vb[] = $r[$ib]; }
+        $l1full[$nm] = applyOp($va, $vb, $o, $nFull);
+    }
+}
 $l2Min = $born2cv ? reset($born2cv) : 9.99;
 $l2Thresh = $born2cv ? array_values($born2cv)[min(39, count($born2cv) - 1)] : 9.99;
 
@@ -188,20 +225,21 @@ fwrite(STDERR, "[PROBE-DBG] brick born=" . ($brickBorn ? 'YES' : 'NO') . " in_to
 $scored2 = $born2cv; // EXP: без топ-800 — кирпич ранга >800 выпадал (урок I_18_4);
                      // полный перебор born2, 30-строчный быстрый cv + полная перепроверка
 foreach ($scored2 as $nm2 => $cv2) {
+    [$ka, $kb, $op1] = $born2[$nm2]; // векторы лениво: born2 хранит только родителей
     $best = 9.99;
     // EXP: перебор ПОЛНЫЙ — break на первом cv30<0.02 прекращал скан
     // до настоящего точного партнёра (вырожденных почти-точных много)
     foreach ($pool as $pn) {
         foreach ($ops as $op) {
-            $v30 = applyOp($born2[$nm2], $l1[$pn], $op, $m30);
+            $v30 = applyOp(applyOp($l1[$ka], $l1[$kb], $op1, $m30), $l1[$pn], $op, $m30);
             $c = cvf($v30, $y30);
             if ($c < $best) { $best = $c; $bestChild = "($nm2$op$pn)"; }
             if ($c < 0.02) {
-                // перепроверка на ПОЛНОМ векторе: полная точность = машинный
-                // cv (1e-6); cv<0.02 — не exact (урок валидации I_27_6:
-                // «почти-точные» дети движок честно не сертит)
-                $vFull = applyOp($born2[$nm2], $l1[$pn], $op, $n);
-                $cvFull = cvf($vFull, $y, null);
+                // перепроверка на ПОЛНОМ векторе (nFull строк): полная
+                // точность = машинный cv (1e-6); cv<0.02 — не exact
+                // (урок валидации I_27_6: «почти-точные» движок не сертит)
+                $vFull = applyOp(applyOp($l1full[$ka], $l1full[$kb], $op1, $nFull), $l1full[$pn], $op, $nFull);
+                $cvFull = cvf($vFull, $yfull, null);
                 if (abs($cvFull) < 1e-6) { $exactChildren++; }
             }
         }

@@ -1332,3 +1332,27 @@ M0 = mean(mono), M1 = M0 + средний парный остаток. На 1851
   purine-фич.
 - Вывод для B7: парный слой (M1) — сильная базовая линия; M2/M3
   должны бить её на невиданных комбинациях, а не M0.
+
+## B7 этап 2: заморозка датасета и признаков (20.11, ночь)
+
+- Genome stats 25/25 (NCBI assembly_stats.txt): size, GC. Замечание:
+  Ba/theta=B. thetaiotaomicron; современные имена: ER=Agathobacter rectalis,
+  FP=F. duncaniae, PC=Segatella copri, BV=Phocaeicola vulgatus.
+- KEGG KO-профили 25/25: list/organism даёт 400, найдены коды прямым
+  пробом (aae, bfr, bps, ..., pjo). Признаки: M2 (total_KO_genes,
+  distinct_KOs, size, GC) + M3 pre-registered (purine_core 20-KO панель,
+  purine_degradation 7 KO, butyrate 3, sulfate 4).
+- Замороженный датасет: 601 комбинация; holdout = 139 rich>=3 комбинаций
+  (hash-сплит, правило в PREREG); primary outcome = butyrate.
+- ДВЕ правки этапа конструирования (ДО M2/M3, документированы в PREREG):
+  1) M0 = mean(mono), не sum: sum давал −65 mM при rich 10–15 (противоречит
+     дизайну равной плотности); mean воспроизводит сертифицированный
+     Δ(rich) (+6..+23 mM rich 3-15).
+  2) M1-вклад пары = r_ij·4/k²: несмасштабированная Σ r_ij расходилась
+     (−497 mM при rich=25) — плотностный конфликт (пары при f=1/2).
+  Обе правки механические, приняты до любых подгонок M2/M3 и до
+  просмотра holdout-исходов. Sanity после правок: пары residM1=0
+  (точный фит), монотонное улучшение M1 vs M0 по богатству.
+- Готовность: этап 3 = подгонка M2/M3 на train (308 rich>=3 комбинаций),
+  оценка на holdout (139), контроли shuffled-functions / identity /
+  phylogeny. Признаки независимы от исходов (только геномы).

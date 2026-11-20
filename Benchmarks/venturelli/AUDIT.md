@@ -937,3 +937,33 @@ coculture-spent — новая, вписывается в Δ(rich) Clark; (c) п
 на community dynamics — нс, данных недостаточно. Гипотеза owner
 («пуриновая ось ближайший кандидат к синтезу белка») подтверждена
 в spent-постановке с уточнением про подклассы.
+
+## Поиск датасетов для закрытия открытой границы (rich × пурины × композиция) — итог (19.11)
+
+Что искали: метаболомика СООБЩЕСТВ (не mono) + rich-контраст + широкая
+химия. Прошли: Zenodo (6 запросов), Europe PMC (co-culture+metabolomics
+2021-2026, 10282 хитов → фильтр), MetaboLights FTP (2441 исследований
+выше MTBLS3800, titles прочитаны).
+
+НОВЫЕ КАНДИДАТЫ:
+1. Kamrad et al. 2026 (Nat Commun? MRC Cambridge/Patil): 104 ПАРНЫХ
+   co-culture из 15 gut бактерий + proteomics (PXD055395) + targeted
+   metabolomics (Mendeley 8wsm6tkh6n, MRM панель) + cross-fed metabolites.
+   УРОВЕНЬ 3 (механизм): они УЖЕ идентифицировали cross-fed метаболиты
+   — можно сверить с нашим allantoin/ipA-расщеплением. Минус: MRM-панель
+   (не untargeted), нет rich-контраста. Файлы: Mendeley SPA (прямая ссылка
+   не досталась, S3-cache 403) — нужен отдельный заход.
+2. MTBLS12572: SynCom4/SynCom5 rhizosphere (6 аграрных видов) +
+   DROPOUT условия + exometabolome 4 режима LC-MS. Rich-контраст есть
+   (mono->4->5 + dropout), композиционная химия есть; пурины надо
+   проверять по maf; не gut — но механизм не требует gut.
+3. MTBLS9756: pollutant depletion gut communities (Kamrad-компаньон,
+   504 образца anaerobic bacteria) — companion к Kamrad 2026.
+
+ВЕРДИКТ: поиск показал — датасета "pairs + rich + community MS +
+untargeted" с пуринами ПОКА НЕ СУЩЕСТВУЕТ в открытом доступе.
+Оптимальная комбинация из имеющегося:
+  - Перенос (уровень 2) делать на Ho 2024 (есть всё, кроме purine-MS
+    сообщества — но mono-химия есть, можно класс-тест на Δ(pairs/)).
+  - Механизм (уровень 3) — Kamrad 2026 (104 пары, cross-fed ID).
+  - Третья независимая система — MTBLS12572 (dropout SynCom).

@@ -224,3 +224,20 @@ co-culture пары (CocultureSpent) БЕДНЕЕ смеси mono spent
 (SpentMixture) в 90% пар — ресурсный антагонизм композиции,
 средовой аналог Δ(rich) из Clark. Связь с пуриновой осью — открытая
 граница (нет MS coculture-spent).
+
+## Дополнение 19.11 (ночь): инвентарь MetaboLights + три системы в работе
+
+- Скачаны и сохранены все 3244 i_Investigation.txt (Benchmarks/
+  metabolights_inv/, 51MB) — постоянный ресурс поиска. Кластеры:
+  93 pairwise/co-culture, 19 cross-feeding, 53 purine/nucleotide.
+  Лучшее: MTBLS705 (Medlock/Papin 2018, pairwise NMR mouse gut),
+  MTBLS7248 (toxin-defence mutualism), MTBLS14018 (Fuso-Prevotella
+  time-resolved co-culture), MTBLS13223 (uric acid degradation).
+- Уровень 2 на Ho ВЫПОЛНЕН: композиционный антагонизм реплицируется
+  (Δ монотонно −0.10→−0.39 с rich, доля>0 13%→2%), но пуриновая ось
+  на долях нс (n=13). Ось сертифицирована только как spent-выгода.
+- Kamrad 2026 скачан (MOESM3/4): 104 пары, per-species концентрации
+  48 метаболитов; пуринов в панели нет — ось на нём не тестируется,
+  механика «катаболит→выгода» валидируема на AA/SCFA.
+- MTBLS12572 скачан: SynCom dropout, 3236 именованных фич, 103
+  пуриновых — третья система готова к переносу оси.

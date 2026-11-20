@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	CHEBI	DIDEO	ONS	EFO	MS	NCIT	ECTO	PECO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/				http://data.bioontology.org/ontologies/EFO					
+Term Source Version	29	1.0				132					
+Term Source Description	Ontology for Biomedical Investigations	User defined terms				Experimental Factor Ontology					
+INVESTIGATION
+Investigation Identifier	MTBLS2402
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-01-18
+Investigation Public Release Date	2022-01-17
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2402
+Study Title	Improving the Screening Analysis of Pesticide Metabolites in Human Biomonitoring by Combining High-Throughput In Vitro Incubation and Automated LC-HRMS Data Processing
+Study Description	There is a current need to monitor human exposure to a large number of pesticides and other chemicals of emerging concern (CECs). This requires screening analysis with high confidence for these compounds and their metabolites in complex matrices, which is hampered by the fact that no reference standards are available for most metabolites. We address this challenge by a high-throughput workflow based on incubation of pesticides (or other CECs) with human liver S9, followed by solid-phase extraction, liquid chromatography-high-resolution mass spectrometry (LC-HRMS) analysis, and automated data processing to generate a database (retention time, precursor <i>m</i>/<i>z</i>, and MS<sup>2</sup> spectral library) for the annotation in human samples. The metabolite prioritization consists of statistical comparisons and mass defect and <i>m</i>/<i>z</i> range filtering to obtain a subset of probable phase I metabolites, for which molecular formulas and likely metabolic transformation are retrieved. We tested the workflow on 22 pesticides, for which we could determine 91 metabolite molecular formulas which are only partly covered by the literature and/or predicted by <i>in silico</i> metabolization. Our workflow allows for an efficient generation of metabolite reference information, which can be used directly for annotating LC-HRMS data from human samples. A full structure elucidation of individual metabolites can be limited to those being actually present in human samples.
+Study Submission Date	2021-01-18
+Study Public Release Date	2022-01-17
+Study File Name	s_MTBLS2402.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	pesticide	chemicals of emerging concern (CECs)	biomarker	Human Biomonitoring	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	solid-phase micro-extraction	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_25944	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHEBI_59163	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0001586	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHEBI	MTBLS	CHEBI	MTBLS	MTBLS	CHMO	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	34161736
+Study Publication DOI	10.1021/acs.analchem.1c00972
+Study Publication Author List	Huber C, Müller E, Schulze T, Brack W, Krauss M.
+Study Publication Title	Improving the Screening Analysis of Pesticide Metabolites in Human Biomonitoring by Combining High-Throughput <i>In Vitro</i> Incubation and Automated LC-HRMS Data Processing.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Pesticide exposure	Replicate
+Study Factor Type	pesticide exposure	replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/PECO_0007167	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	PECO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2402_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS2402_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Chemicals</strong></p><p>We selected 22 <strong>pesticides </strong>based on their widespread application to cover a wide variety of chemical structures. The selection consisted of pesticides from a broad range of classes, including the herbicide classes phenoxyacetic acids (2,4-dichlorophenoxyacetic acid), pyridines (picolinafen), triazines (atrazine, terbuthylazine, and terbutryn), chloroacetanilides (metolachlor and metazachlor), chloroacetamides (dimethenamid), dinitroanilines (pendimethalin), diphenylethers (bifenox), triazinones (metamitron), oxyacetanilides (flufenacet), carboxamides (diflufenican), and phenylurea derivatives (chlorotoluron and isoproturon); the fungicide classes morpholines (fenpropimorph) and strobilurins (azoxystrobin); and the insecticide classes neonicotinoides (imidacloprid), organophosphates (chlorpyrifos-ethyl and dimethoate), phenylpyrazoles (fipronil), and pyrethroids (cypermethrin). All standards were at least of 97% purity; the vendors are given in <strong>Table S1 </strong>in the paper associated with this study.</p><p><br></p><p><strong>Human Liver S9 Incubation</strong></p><p>We adapted the method for generating phase I metabolites from previous studies in drug discovery<strong>[1]</strong> and kinetic profiling of metabolic reactions.<strong>[2]</strong> The experiment was performed in 96-well plates, 1 plate containing 3 replicates of the incubation of<strong> 22 pesticides</strong>, 6 negative <strong>control replicates (</strong>i.e., S9 and the coenzyme without the addition of a pesticide), aqueous solutions of each <strong>pesticide standard</strong>, and 2 sample <strong>blanks </strong>(for setup, see the Figure S1 in the paper associated with this study). A working solution with a concentration of 1 mg/mL in methanol was prepared for each pesticide. On each well of the plate representing an incubation or a standard control, 2.1 μL of each standard working solution were spiked into 200 μL of 0.05 M TRIS buffer (pH 7.4). Subsequently, 20 μL of the pooled <strong>human liver S9 </strong>mix (Sekisui Xenotech Xtreme, LLC, Kansas City, USA; containing 200 pooled human liver S9 fractions of mixed gender at a concentration of 20 mg/mL) were added to the wells. The well plate was placed into an incubator (neoLab neoMix 7- 0921, Heidelberg, Germany) and incubated for 5 min, after which 15 μL of 20 mM reduced nicotinamide adenine dinucleotide phosphate (NADPH) solution was added. The incubation was performed for 3 h at 37.5°C under constant shaking and stopped by the addition of ice-cold methanol (1:1 incubation volume).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Hu M, Müller E, Schymanski EL, Ruttkies C, Schulze T, Brack W, Krauss M. Performance of combined fragmentation and retention prediction for the identification of organic micropollutants by LC-HRMS. Anal Bioanal Chem. 2018 Mar;410(7):1931-1941. doi: 10.1007/s00216-018-0857-5. Epub 2018 Jan 30. PMID: 29380019.</p><p><strong>[2]</strong> Johanning K, Hancock G, Escher B, Adekola A, Bernhard MJ, Cowan-Ellsberry C, Domoradzki J, Dyer S, Eickhoff C, Embry M, Erhardt S, Fitzsimmons P, Halder M, Hill J, Holden D, Johnson R, Rutishauser S, Segner H, Schultz I, Nichols J. Assessment of metabolic stability using the rainbow trout (Oncorhynchus mykiss) liver S9 fraction. Curr Protoc Toxicol. 2012 Aug;Chapter 14:Unit 14.10.1-28. doi: 10.1002/0471140856.tx1410s53. PMID: 22896006.</p><p><strong>[3] </strong>Lopardo L, Cummins A, Rydevik A, Kasprzyk-Hordern B. New Analytical Framework for Verification of Biomarkers of Exposure to Chemicals Combining Human Biomonitoring and Water Fingerprinting. Anal Chem. 2017 Jul 5;89(13):7232-7239. doi: 10.1021/acs.analchem.7b01527. Epub 2017 Jun 12. PMID: 28548845</p>	<p><strong>Sample Cleanup Procedure</strong></p><p>After incubation, the organic phase was removed under a gentle nitrogen stream. A 96-well plate SPE cartridge (Phenomenex Strata-X microelution well plate, 40 mg of sorbent) was conditioned with 200 μL of methanol, followed by 200 μL of LC−MS-grade water before the full volume of the samples was loaded. The cartridges were washed with 200 μL of water and eluted with 40 μL of methanol, and the eluates were diluted with 400 μL of water. Additionally, all wells of the collection plate were spiked with 10 μL of a mixture of isotope-labeled standards (nominal concentration 40 ng/mL in methanol, see <strong>Table S2 </strong>in the paper associated with this study).</p>	<p>The LC system consisted of an UltiMate LPG-3400 quaternary pump, a WPS-3000 autosampler, and a TCC-3000 SD column oven (Thermo Scientific). A polar embedded C18 column (Synergi Polar-RP, 100 mm × 3 mm, ×2.5 μm, 100 Å particle size, Phenomenex) held at a temperature of 40 °C and a flow rate of 0.4 mL/min was used. A ternary gradient of water, methanol, acetonitrile, and a mixture of isopropanol and acetone (50:50) for the final rinsing step was used. The full gradient program can be found in Figure S2. All samples were injected with a volume of 50 μL. For generating a complete spectral library of all metabolic features, a second measurement of one replicate of each pesticide was performed, applying an inclusion list for dd-MS2 acquisition. For better chromatographic separation of isomeric metabolites, we used a BEH C18 column (1.7 μm 2.1 mm × 100 mm, Waters) at 50°C and a flow rate of 0.3 mL/min. We applied a water/methanol gradient with 100/0 at 0 min, 0/100 at 15 min, 0/100 at 21 min, 100/0 at 22 min, and100/0 at 30 min. For positive mode analysis, we added 0.1% formic acid and 0.2% of 1 M ammonium formate, and for negative mode, we added 1% of 1 M ammonium carbonate to the eluents.</p>	<p>Detection was performed using a QExactive Plus instrument (Thermo Scientific) equipped with a heated electrospray ionization (ESI) source in positive and negative ionization modes. Full scan analysis was performed with a nominal resolving power of 70,000 (at m/z 200) in the profile mode combined with a dd-MS2 acquisition (nominal resolving power of 35,000) of the 3 most intense ions of each scan, including a dynamic exclusion of 6 s. The isolation window was set to 1.0 m/z, and stepped normalized collision energies of 30 and 55 were used. Further MS2 information was generated by a second measurement with an inclusion list containing all ions of interest for which no MS2 spectra had been acquired in the previous run. Here, two separate experiments with the collision energies of 30 and 55 were used. For quality assurance and control of the LC−HRMS analyses, see <strong>Section S3 </strong>in the paper associated with this study. For testing the detection rate of a spectral library match with samples containing human matrices, reference standards of five known human metabolites, also observed in the S9 approach (carboxy-fenpropimorph, imidacloprid-urea, 2-hydroxy-atrazine, 2-hydroxy-terbuthylazine, and desethyl-terbuthylazine) were spiked into a pooled human urine sample at 10 and 100 ng/mL. The sample was analyzed with the same method as the one used for the S9 incubation.</p>	<p>All <strong>raw </strong>mass spectra were converted to <strong>mzML </strong>format and centroided using <strong>ProteoWizard22 v3.0.18265</strong> and the vendor library.</p>	<p>Feature detection, alignment and retention-time correction was performed using <strong>XCMS </strong>version<strong> 3.8.23</strong>. The parameters of XCMS were optimized by the IPO approach. All features were componentized using <strong>CAMERA</strong>. Mean intensity values in the samples were compared to the injection and sample blanks. Features with a higher mean intensity in the blanks were removed. For filtering tentative metabolite features, fold changes with all other incubates and the negative control samples were calculated. Features with an m/z value &gt; +50 mu to the parent pesticide were removed since they are more likely to occur from conjugation, which was not the focus of this study. For mass defect filtering, features with a mass defect shift of &gt; −100 mmu and &gt; +50 mmu were removed. Mean group intensities after S9 incubation were compared to the intensities in the measurement of the pure pesticide standard at the same concentration. Features with a higher intensity in the latter were removed. For all remaining features, tandem mass spectra were extracted and a molecular formula was assigned using <strong>GenForm</strong>.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huber	Müller	Schulze	Brack	Krauss
+Study Person First Name	Carolin	Erik	Tobias	Werner	Martin
+Study Person Mid Initials					
+Study Person Email	carolin-elisabeth.huber@ufz.de	erik.mueller@ufz.de	tobias.schulze@ufz.de	werner.brack@ufz.de	martin.krauss@ufz.de
+Study Person Phone					
+Study Person Fax					
+Study Person Address	Permoßer Straße 15, 04318 Leipzig	Permoßer Straße 15, 04318 Leipzig	Permoserstraße 15, 04318 Leipzig, Germany	Permoserstraße 15, 04318 Leipzig, Germany	Permoserstraße 15 - 04318 Leipzig, Germany
+Study Person Affiliation	Helmholtz Centre for Environmental Research - UFZ	Helmholtz Centre for Environmental Research - UFZ	Helmholtz Centre for Environmental Research - UFZ	Helmholtz Centre for Environmental Research - UFZ	Helmholtz Centre for Environmental Research - UFZ
+Study Person Roles	first author	co-author	co-author	co-author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	MS	MS	MS	MS	NCIT

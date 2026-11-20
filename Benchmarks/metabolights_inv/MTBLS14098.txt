@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	ENM	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://enanomapper.github.io/ontologies/enanomapper.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version	250	2025-10-21	3.88.0	10.0			1.0.1		2025-12-03	25.06e	2025-12-18	2026-01-16
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	eNanoMapper ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS14098
+Investigation Title	Untargeted lipidomics analysis of yeast metabolic proteins degradations to investigate the role of metabolic proteins in lipid metabolism
+Investigation Description	
+Investigation Submission Date	2026-03-20
+Investigation Public Release Date	2026-03-24
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID	
+Investigation Publication DOI	
+Investigation Publication Author List	
+Investigation Publication Title	Untargeted lipidomics analysis of yeast metabolic proteins degradations to investigate the role of metabolic proteins in lipid metabolism
+Investigation Publication Status	
+Investigation Publication Status Term Accession Number	
+Investigation Publication Status Term Source REF	
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14098
+Study Title	Untargeted lipidomics analysis of yeast metabolic proteins degradations to investigate the role of metabolic proteins in lipid metabolism
+Study Description	We combine auxin-inducible degradation of 500 characterized and 204 uncharacterized proteins with untargeted lipidomics providing a quantitative readout of cellular lipidomic states.
+Study Submission Date	2026-03-20
+Study Public Release Date	2026-03-24
+Study File Name	s_MTBLS14098.txt
+Comment[Created At]	2026-03-12T15:31:12.424537
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	liquid chromatography mass spectrometry assay	protein degradation
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/UPa_UPA00468
+Study Design Type Term Source REF	NCIT	ENM	
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Stephan Durot, Nicola Zamboni, Rosario Valenti, Maya Schuldiner
+Study Publication Title	Untargeted lipidomics analysis of yeast metabolic proteins degradations to investigate the role of metabolic proteins in lipid metabolism
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	AUXIN
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14098_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>704 strains of S. cerevisiae, with each strain having a specific protein with an AID (auxin-inducible degron) tag, grown in SD medium with histidine, methionine and uracil in a shaker at 30C and with 250rpm in 96 deep-well plates. Protein degradation was induced with 10uM 5-Ph-IAA for 10 minutes.</p>	<p>LC was performed on a Agilent 1290 Infinity II with a BEH C18 column. Column temperature was 60°C, flow rate 1.2ml/min and the injection volume 2ul. The gradient was from 85% buffer A consisting of acetonitrile/H2O (6:4, v/v), with 0.1% formic acid and 10mM ammonium acetate to 99% buffer B consisting IPA/acetonitrile (9:1, v/v) with 0.1% formic acid and 10mM ammonium acetate after 2 minutes.</p>	<p>Raw files were converted to mzML files and a master matrix was generated with an internal software (MASSter). The resulting ion intensities were TIC normalized before downstream analysis.</p>	<p>Strains were grown in triplicates to an OD of 0.5 with a volume of 1ml per replicate in 96 deep-well plates. Protein degradation was induced with 10uM 5-Ph-IAA. The cultures were then centrifuged, supernatant removed and the lipids extracted with 150ul MeOH/IPA 50:50 for 24h at -20°C. The samples were centrifuged and supernatant containing the lipids transferred to a fresh plate and stored at -20°C until measurement. Pooled study samples were created by pooling aliquots from 96 randomly picked samples. Blanks denote to solvent blanks.</p>	<p>Mass spectrometry measurements were performed on a Sciex ZenoTOF 7600 equipped with an electrospray ionization source operating in positive mode. The source temperature was 500°C, spray voltage 5500V, curtain gas at 45, CAD gas at 7 and ion source gas 1 and 2 at 70. Mass detection was done from 70 to 2000m/z. Data acquisition was performed with Data Dependent Acquisition, with the collision energy at 30V, accumulation time in MS2 at 5ms and zeno threshold at 1000000.</p>	<p>We used an internal tool called LipidOracle, which performs MS2 annotation by rule-based approaches and spectral libraries and MS1 annotation and RT checking. It harmonises nomenclature compliant with LIPIDMAPS.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Durot	Zamboni	Valenti	Schuldiner
+Study Person First Name	Stephan	Nicola	Rosario	Maya
+Study Person Mid Initials				
+Study Person Email	stephan.durot@hotmail.com	zamboni@imsb.biol.ethz.ch	rosariom@weizmann.ac.il	maya.schuldiner@weizmann.ac.il
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	ETH Zurich	ETH Zurich	Weizmann Institute of Science	Weizmann Institute of Science
+Study Person Roles	Investigator	Principal Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0003-2307-7070	0000-0003-1271-1021	0000-0002-6093-1873	0000-0001-9947-115X
+Comment[Study Person Affiliation ROR ID]	https://ror.org/05a28rw58	https://ror.org/05a28rw58	https://ror.org/0316ej306	https://ror.org/0316ej306

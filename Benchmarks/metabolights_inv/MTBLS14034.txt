@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14034
+Investigation Title	Targeted Metabolome of Caenorhabditis elegans
+Investigation Description	
+Investigation Submission Date	2026-03-12
+Investigation Public Release Date	2026-07-20
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14034
+Study Title	Targeted Metabolome of Caenorhabditis elegans
+Study Description	<p>The effect of Lactiplantibacillus plantarum Q7 on SCFAs in Caenorhabditis elegans</p>
+Study Submission Date	2026-03-12
+Study Public Release Date	2026-07-20
+Study File Name	s_MTBLS14034.txt
+Comment[Created At]	2026-03-11
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-07-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolite profiling	Aging	microbiome
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/NCIT_C16269	http://www.ebi.ac.uk/efo/EFO_0004982
+Study Design Type Term Source REF	MSIO	NCIT	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	jiayuan Cao, yisuo Liu, huaxi Yi
+Study Publication Title	Targeted metabolomics of SCFAs in Caenorhabditis elegans
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Probiotics	Caenorhabitis elegans	Targeted metabolome
+Study Factor Type	treatment	age	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000246	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14034_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MI	CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>After 5 days of incubation, nematodes from different treatment groups were collected.</p>	<p>Chromatographic separation used helium carrier gas (1.0 mL/min) with the following temperature program: 100°C (1 min), increased to 180°C at 8°C/min, and held for 1 min.</p>	<p>After tested for the series concentrations of standard solution, the calibration curve </p><p>was constructed by using the concentration of standard solution as the abscissa, and the </p><p>ratio of peak area between it and internal standard as the ordinate. The obtained linear </p><p>regression equation of each substance was shown in Table 1 (correlation coefficient </p><p>R &gt;0.99).</p>	<p>The worms were mixed with 50 µL of 15% phosphoric acid, 100 µL of internal standard (isohexanoic acid, 125 µg/mL), and 400 µL of diethyl ether.</p>	<p>After vortexing and centrifugation, the supernatant was analyzed on a Thermo ScientificTM&nbsp;Trace 1310 GC-ISQ LT MS system (Waltham, MA, USA) equipped with Agilent DB-FFAP capillary column (30 m × 0.25 mm × 0.25 μm).</p>	<p>Quantitation was performed using external calibration curves based on the peak area ratio of each SCFA to the internal standard.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	jiayuan	yisuo	huaxi
+Study Person First Name	Cao	Liu	Yi
+Study Person Mid Initials			
+Study Person Email			yihx@ouc.edu.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation			Ocean University of China
+Study Person Roles	Author	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]			https://ror.org/04rdtx186

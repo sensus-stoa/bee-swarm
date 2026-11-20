@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	BTO	OBI	FIX	MS	EFO		CHMO	MTBLS	NCIT
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/FIX	http://data.bioontology.org/ontologies/MS		http://purl.obolibrary.org/obo/ncit.owl		https://www.ebi.ac.uk/metabolights/	
+Term Source Version	2	22	22	4	86		18.10e		1.0	
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	BRENDA Tissue and Enzyme Source Ontology	Ontology for Biomedical Investigations	Physico-Chemical Methods and Properties	Mass Spectrometry Ontology		NCI Thesaurus OBO Edition		Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS710
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-07-25
+Investigation Public Release Date	2022-05-17
+Comment[Created With Configuration]	C:\Users\allis\Documents\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS710
+Study Title	Software tool for internal standard based normalization of lipids, and effect of data-processing strategies on resulting values
+Study Description	<p><strong>BACKGROUND:</strong> Lipidomics, the comprehensive measurement of lipids within a biological system or substrate, is an emerging field with significant potential for improving clinical diagnosis and our understanding of health and disease. While lipids diverse biological roles contribute to their clinical utility, the diversity of lipid structure and concentrations prove to make lipidomics analytically challenging. Without internal standards to match each lipid species, researchers often apply individual internal standards to a broad range of related lipids. To aid in standardizing and automating this relative quantitation process, we developed LipidMatch Normalizer (LMN) http://secim.ufl.edu/secim-tools/ which can be used in most open source lipidomics workflows.</p><p><strong>RESULTS:</strong> LMN uses a ranking system (1-3) to assign lipid standards to target analytes. A ranking of 1 signifies that both the lipid class and adduct of the internal standard and target analyte match, while a ranking of 3 signifies that neither the adduct or class match. If multiple internal standards are provided for a lipid class, standards with the closest retention time to the target analyte will be chosen. The user can also signify which lipid classes an internal standard represents, for example indicating that ether-linked phosphatidylcholine can be semi-quantified using phosphatidylcholine. LMN is designed to work with any lipid identification software and feature finding software, and in this study is used to quantify lipids in NIST SRM 1950 human plasma annotated using LipidMatch and MZmine.</p><p><strong>CONCLUSIONS:</strong> LMN can be integrated into an open source workflow which completes all data processing steps including feature finding, annotation, and quantification for LC-MS/MS studies. Using LMN we determined that in certain cases the use of peak height versus peak area, certain adducts, and negative versus positive polarity data can have major effects on the final concentration obtained.</p>
+Study Submission Date	2018-07-25
+Study Public Release Date	2022-05-17
+Study File Name	s_MTBLS710.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	lipidomics analysis software	untargeted metabolites	tandem mass spectrometry	SRM 1950	Lipidomics	Proof of Concept Study
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/MS_1002964	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000575	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C153193	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	CHMO	MS	MTBLS	CHMO	MTBLS	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	31035918
+Study Publication DOI	10.1186/s12859-019-2803-8
+Study Publication Author List	Koelmel JP, Cochran JA, Ulmer CZ, Levy AJ, Patterson RE, Olsen BC, Yost RA, Bowden JA, Garrett TJ.
+Study Publication Title	Software tool for internal standard based normalization of lipids, and effect of data-processing strategies on resulting values.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample
+Study Factor Type	sample
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1000457
+Study Factor Type Term Source REF	MS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS710_POS_metabolite_profiling_mass_spectrometry.txt	a_MTBLS710_NEG_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography Tandem MS (LC-MS/MS)	Liquid Chromatography Tandem MS (LC-MS/MS)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Lipids were isolated from 40 μl of National Institute for Standards and Technology (<strong>NIST</strong>) standard reference material (<strong>SRM 1950</strong>) Metabolites in Frozen Human Plasma<strong>[1]</strong>. Lipid internal standards purchased from Avanti Lipids (Alabaster, AL), which included lysophosphatidylcholine (LPC(17:0)), phosphatidylcholine (PC(17:0/17:0)), phosphatidylglycerol (PG(17:0/17:0)), phosphatidylethanolamine (PE(17:0/17:0)), phosphatidylserine (PS(17:0/17:0)), triglyceride (TG(15:0/15:0/15:0)), ceramide (Cer(d18:1/17:0)), and sphingomyelin (SM(d18:1/17:0)), were spiked into the plasma at 1.4 nmol, 0.92 nmol, 0.93 nmol, 0.97 nmol, 0.92 nmol, 0.26 nmol, 1.3 nmol, and 0.98 nmol, respectively (resulting in final concentrations of 35 nmol/ml, 23 nmol/ml, 23.25 nmol/ml, 24.25 nmol/ml, 23 nmol/ml, 6.5 nmol/ml, 32.5 nmol/ml, and 24.5 nmol lipid/ml plasma). 13C2-cholesterol was purchased from Cambridge Isotope Laboratories (Tewksbury, MA), and spiked in at 1.8 nmol resulting in concentrations of 45 nmol lipid/ml plasma.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Phinney KW, Ballihaut G, Bedner M, Benford BS, Camara JE, Christopher SJ et al. Development of a Standard Reference Material for metabolomics research. Anal Chem. 2013 Dec 17;85(24):11732-8. doi:10.1021/ac402689t. PMID:24187941.</p>	<p>The extraction was performed using the Matyash method<strong>[1]</strong> and samples were reconstituted in 200 μl of isopropanol.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Matyash V, Liebisch G, Kurzchalia TV, Shevchenko A, Schwudke D. Lipid extraction by methyl-tert-butyl ether for high-throughput lipidomics. J Lipid Res. 2008 May;49(5):1137-46. doi:10.1194/jlr.D700041-JLR200. PMID:18281723.</p>	<p>A Dionex Ultimate 3000 RS UHLPC system (Thermo Scientific, San Jose, CA) coupled to a Thermo Q-Exactive mass spectrometer (San Jose, CA). Samples were injected onto a Waters (Milford, MA) BEH C18 UHPLC column (50 x 2.1 mm, 1.7 μm) held at 50 °C with mobile phase A consisting of acetonitrile:water (60:40, v/v) with 10 mM ammonium formate and 0.1% formic acid and mobile phase B consisting of isopropanol:acetonitrile:water (90:8:2) with 10 mM ammonium formate and 0.1% formic acid at a flow rate of 0.5 ml/min. The UHPLC gradient used in this experiment is shown in <strong>Table S1</strong> in the paper associated with this study.</p>	<p>Thermo Q-Exactive mass spectrometer (San Jose, CA) was employed for data acquisition using both targeted and data-independent MS/MS acquisition for annotation. 3 replicate injections were run in both positive and negative polarity employing alternating full and all-ion fragmentation (AIF) scans at a resolution of 70,000 (FWHM) at m/z 200. In addition, 15 injections employing targeted MS/MS data acquisition were performed, with the inclusion list (supplemental file <strong>Supplemental_Targeted_List.xlsx</strong>) for fragmentation containing lipids identified by the LIPID MAPS consortium. The ion optic settings for the mass spectrometer included: analyzer temperature of 30 °C and S-Lens radio frequency level of 35 V. The ionization conditions included a sheath gas flow of 30, auxiliary gas flow of 5, and sweep gas flow of 1 arbitrary unit, and a spray voltage of 3.5 kV, and capillary temperature of 250 °C.&nbsp;For positive ion mode, lock masses of diisooctyl phthalate (m/z 391.2842) and polysiloxanes (m/z 371.1012 and 445.1200) were used, while no lock masses were used in negative ion mode. Both AIF and targeted MS/MS injections were used for lipid identification, while full scan data were used for feature finding and relative quantification. The mass spectrometric parameters are shown in <strong>Table S2</strong> in the paper associated with this study. The targeted MS/MS list can be found in <strong>Additional file 2</strong> in the paper associated with this study.</p>	<p>The first step in the workflow is feature finding using <strong>MZmine 2</strong>, followed by annotation with <strong>LipidMatch</strong>, <strong>blank feature filtering (BFF)[1]</strong>, and relative quantification by <strong>LipidMatch Normalizer (LMN)</strong>. Note that <strong>LMN</strong> can be employed with any feature finding and lipid identification software.</p><p><br></p><p>A 2-step process was used for feature detection. First features and their respective m/z, retention time, and peak heights across samples were detected using an <strong>MZmine</strong> workflow consisting of mass detection, chromatogram building, chromatogram deconvolution using local minimum, isotopic peak grouping, and alignment and gap filling of features (the batch mode is in the <strong>supplemental 2017_9_11_LMN_Software.zip</strong> file; <strong>2017_8_01_MZMine_Batch_Step1.xml</strong>). This step is untargeted, in that no information on expected peaks is utilized. In this work, the untargeted step for feature detection included a solvent blank and three replicate injections of SRM 1950 in both positive and negative polarity. The resulting feature table from the untargeted step was filtered using a modified <strong>BFF[1]</strong> approach, where the minimum intensity of the replicate injections had to be at least five fold greater than the blank intensity. The <strong>BFF</strong> method dramatically reduces the number of peaks which are not from biological origin, and has been shown to better detect true positives and negatives as compared to other filtering approaches<strong>[1]</strong>.</p><p><br></p><p>After filtering, the median peak height and peak retention time from the <strong>SRM 1950</strong> replicate injections were used to develop a targeted peak list.&nbsp;In the second step, a targeted list of peak m/z and retention time values was generated from the previous step, and the internal standard m/z values and retention time values were appended to this list. An <strong>MZmine</strong> workflow consisting of mass detection, targeted peak detection, chromatogram deconvolution, alignment, and gap filling was used (the batch mode is in the supplemental <strong>2017_9_11_LMN_Software.zip</strong> file; <strong>2017_8_01_MZMine_Batch_Step2.xml</strong>).</p><p><br></p><p>Reprocessing the data using a targeted peak list determined from a smaller sample set has 2 advantages, especially for application to larger datasets. One advantage is that this workflow significantly reduces data processing time for large datasets, while the other advantage is that peak picking and integration using a targeted peak list is more consistent across samples than aligning features from an untargeted workflow. For example, if there are 6 pooled samples which should be representative of the features present in 100 samples, these pooled samples are the only samples that need to be run through the initial <strong>MZmine</strong> workflow. Then a target list can be generated after blank filtration and subsequently used to target features across all 100 samples. Note that in this study only 3 samples were analyzed, and hence all samples were used to determine the targeted peak list. The median of retention time and m/z values across all samples was used rather than the average, as often overlapping peaks lead to average m/z and retention time values which are actually between the 2 peaks and neither represents the first or second peak. For cases in which there are odd sample numbers, the median will always represent the location of a true peak. For cases in which there are even sample numbers, the median will represent the average of 2 peaks and therefore the value at the ith position of the ranked values can be used, where i = n/2, and n is the total number of samples. </p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Patterson RE, Kirpich AS, Koelmel JP, Kalavalapalli S, Morse AM, Cusi K, et al. Improved experimental data processing for UHPLC–HRMS/MS lipidomics applied to nonalcoholic fatty liver disease. Metabolomics. 2017;13:142. doi:10.1007/s11306-017-1280-1</p>	<p>Once the final peak list with retention time, m/z, peak area, and peak heights were obtained, the data were annotated using <strong>LipidMatch</strong> (see <strong>Fig. 1</strong> in the paper associated with this study). <strong>LipidMatch[1]</strong> identification was performed using <strong>all ion fragmentation data (AIF)</strong> and targeted MS/MS data acquisition using precursor ions from lipids determined by the <strong>LIPID MAPS consortium[2]</strong>.&nbsp;If multiple lipids are annotated for a single feature, the lipid annotations are then ranked by the sum of fragment intensity. </p><p><br></p><p>The annotated feature table was further reduced to molecular species in positive and negative ion mode using a new <strong>R</strong> script available at <a href='http://secim.ufl.edu/secim-tools/' rel='noopener noreferrer' target='_blank'>secim.ufl.edu/secim-tools</a>/ in the <strong>LipidMatch</strong> additional tools folder and in the supplemental information (<strong>2017_9_11_LMN_Software.zip</strong>). The algorithm selects the top most abundant ion excluding sodium (see the <strong>Results and Discussion</strong> section in the paper associated with this study) and can also be used to combine negative and positive polarity datasets (preferentially choosing negative ions over positive ions of the same lipid molecule due to lower background and more accurate identifications in negative ion mode).</p><p><br></p><p>The finalized feature tables in negative and positive ion polarity with unique lipid molecular species was uploaded into <strong>LipidMatch Normalizer (LMN)</strong> for relative quantification. A table containing the internal standard name and corresponding concentrations (nmol lipid per ml plasma) was created and uploaded. </p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Koelmel JP, Kroeger NM, Ulmer CZ, Bowden JA, Patterson RE, Cochran JA, Beecher CWW, Garrett TJ, Yost RA. LipidMatch: an automated workflow for rule-based lipid identification using untargeted high-resolution tandem mass spectrometry data. BMC Bioinformatics. 2017 Jul 10;18(1):331. doi:10.1186/s12859-017-1744-3. PMID:28693421.</p><p><strong>[2]</strong> Quehenberger O, Armando AM, Brown AH, Milne SB, Myers DS, Merrill AH, Bandyopadhyay S et al. Lipidomics reveals a remarkable diversity of lipids in human plasma. J Lipid Res. 2010 Nov;51(11):3299-305. doi:10.1194/jlr.M009449. PMID:20671299.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Koelmel	Cochran	Ulmer	Levy	Patterson	Olsen	Yost	Bowden	Garrett
+Study Person First Name	Jeremy P	Jason A	Candice Z	Allison J	Rainey E	Berkley C	Richard A	John A	Timothy J
+Study Person Mid Initials									
+Study Person Email									
+Study Person Phone									
+Study Person Fax									
+Study Person Address									
+Study Person Affiliation									
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF									

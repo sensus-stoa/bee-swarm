@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	SNOMED	EFO	NCIT	OBI	MTBLS	MONDO
+Term Source File		http://data.bioontology.org/ontologies/EFO		http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	
+Term Source Version		132		29	1.0	
+Term Source Description		Experimental Factor Ontology		Ontology for Biomedical Investigations	Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS10284
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-05-26
+Investigation Public Release Date	2024-07-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10284
+Study Title	Taurine ameliorates oxidative stress of BMSCs and promotes osteogenesis in irradiated jaws
+Study Description	Osteoradionecrosis of the jaw (ORNJ) is a complication after head and neck radiotherapy that severely affects patients’ quality of life. Currently, an overall understanding of microenvironmental factors of ORNJ is still lacking. Here, we reveal the activation of taurine metabolism in irradiated mandibular stromal cells with scRNA-Seq and the decrease of taurine in irradiated bone marrow mesenchymal stromal cells (BMSCs) with metabolomics. Compared to the unirradiated BMSCs, the taurine uptake of irradiated BMSCs increases. The taurine concentration in peripheral blood and jaws of irradiated mice are significantly lower than the unirradiated mice. Supplementation of taurine promotes osteogenic differentiation, decreases oxidative stress and DNA damage of irradiated BMSCs. Oral administration of taurine significantly promotes survival rate of irradiated mice and promotes osteogenesis of irradiated jaws. Our study sheds light on the role of taurine during the recovery of radiation-induced jaw injury, suggesting a potential non-invasive therapeutic means to combat ORNJ.
+Study Submission Date	2024-05-26
+Study Public Release Date	2024-07-08
+Study File Name	s_MTBLS10284.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Osteoradionecrosis of the mandible	Metabolomics	radiation injury
+Study Design Type Term Accession Number	http://snomed.info/id/109716001	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000270	http://purl.obolibrary.org/obo/MONDO_0043458
+Study Design Type Term Source REF	SNOMED	MTBLS	MONDO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Heng Chen, Mengting Zheng, Xu Wang, Yue He
+Study Publication Title	Taurine ameliorates oxidative stress of BMSCs and promotes osteogenesis in irradiated jaws
+Study Publication Status	In preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Ionizing radiation
+Study Factor Type	Ionizing Radiation
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C17052
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10284_LC-MS___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The culture medium from the cultured BMSCs (~10^7 cells per sample) was removed using pipette. Then the cells were washed with PBS under 37 °C and the PBS was removed.</p>	<p>Briefly, 800 μL of cold methanol/acetonitrile (1:1, v/v) to remove the protein and extract the metabolites. The mixture was collected into a new centrifuge tube, and centrifuged at 14,000 x g for 20 min to collect the supernatant. The supernatant was dried in a vacuum centrifuge. For LC-MS analysis, the samples were re-dissolved in 100 μL acetonitrile/water (1:1, v/v) solvent and centrifuged at 14,000 x g at 4 °C for 15 min, then the supernatant was injected. To monitor the stability and repeatability of instrument analysis, quality control (QC) samples were prepared by pooling 10 μL of each sample and analyzed together with the other samples. The QC samples were inserted regularly and analyzed in every 5 samples.</p>	<p>Analysis was performed using an UHPLC (Vanquish UHPLC, Thermo) coupled to a Orbitrap in Shanghai Applied Protein Technology Co., Ltd. For HILIC separation, samples were analyzed using a 2.1 mm x 100 mm ACQUIY UPLC BEH Amide 1.7 µm column (waters, Ireland). In both ESI positive and negative modes, the mobile phase contained A = 25 mM ammonium acetate and 25 mM ammonium hydroxide in water and B = acetonitrile. The gradient was 98% B for 1.5 min and was linearly reduced to 2% in 10.5 min, and then kept for 2 min, and then increased to 98% in 0.1 min, with a 3 min re-equilibration period employed.</p>	<p>The ESI source conditions were set as follows: Ion Source Gas1 (Gas1) as 60, Ion Source Gas2 (Gas2) as 60, curtain gas (CUR) as 30, source temperature: 600 °C, IonSpray Voltage Floating (ISVF) ± 5500 V. In MS only acquisition, the instrument was set to acquire over the m/z range 80-1200 Da, the resolution was set at 60000 and the accumulation time was set at 100 ms. In auto MS/MS acquisition, the instrument was set to acquire over the m/z range 70-1200 Da, the resolution was set at 30000 and the accumulation time was set at 50 ms, exclude time within 4 s.</p>	<p>The raw MS data were converted to mzXML files using ProteoWizard MSConvert before<strong> </strong>importing into freely available XCMS software. For peak picking, the following parameters were used: centWave, m/z = 10 ppm, peakwidth = c(10,60), prefilter = c(10,100). For peak grouping, bw = 5, mzwid = 0.025, minfrac = 0.5 were used. CAMERA (Collection of Algorithms of MEtabolite pRofile Annotation) was used for annotation of isotopes and adducts. In the extracted ion features, only the variables having more than 50% of the nonzero measurement values in at least one group were kept.</p>	<p>Compound identification of metabolites was performed by comparing of accuracy m/z value (&lt;10 ppm), and MS/MS spectra with an in-house database established with available authentic standards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chen
+Study Person First Name	Heng
+Study Person Mid Initials	
+Study Person Email	739211733@qq.com
+Study Person Phone	+86 13761475796
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

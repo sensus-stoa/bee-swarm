@@ -1,0 +1,129 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCIT	OBI	SNOMED	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.90.0				26.02d	2026-05-08		2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14704
+Investigation Title	Non-targeted metabolomics sequencing of Lactobacillus salivarius fermentation broth
+Investigation Description	
+Investigation Submission Date	2026-06-07
+Investigation Public Release Date	2026-06-08
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14704
+Study Title	Non-targeted metabolomics sequencing of Lactobacillus salivarius fermentation broth
+Study Description	To conduct an in-depth analysis of which metabolites in the antiviral-effective lactic acid bacteria supernatant are playing a role, a pretreatment approach was selected. Non-targeted metabolomic analysis was performed on the differential metabolites between LSD2339-CFS and LSM231-CFS, which exhibited no antiviral effect compared to the virus-exposed group.
+Study Submission Date	2026-06-07
+Study Public Release Date	2026-06-08
+Study File Name	s_MTBLS14704.txt
+Comment[Created At]	2026-06-07
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Ligilactobacillus salivarius	Metabolite	Indolelactic acid	Agilent 1290 Infinity HPLC	AB SCIEX QTRAP 6500+	Lactobacillus salivarius	Culture supernatant of Lactobacillus salivarius	experimental blank	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://id.nlm.nih.gov/mesh/D000069996	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://snomed.info/id/715237000	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299				http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	mesh	MTBLS	SNOMED	MTBLS	MTBLS				MS	EDAM
+Comment[Study Design Category]	submitter	submitter	submitter	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Senhao Zhang, Fuzhen Han, Qi Zhang, Weichun Xie, Lijie Tang
+Study Publication Title	Non-targeted metabolomics sequencing of Lactobacillus salivarius fermentation broth
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14704_LC-MS_positive_reverse-phase.txt	a_MTBLS14704_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity HPLC;Agilent 1290 Infinity Autosampler;ACQUITY UPLC HSS C18 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;Acclaim C18 Guard Column (4 mm x 4 mm; Thermo Scientific);positive;50-1200;AB SCIEX QTRAP 6500+;electrospray ionization;orbitrap	Agilent 1290 Infinity HPLC;Agilent 1290 Infinity Autosampler;ACQUITY UPLC HSS C18;reverse phase;Acclaim C18 Guard Column (4 mm x 4 mm; Thermo Scientific);negative;50-1200;AB SCIEX QTRAP 6500+;electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;;;;;;	;;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002087;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000796;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000569;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002087;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000569;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS	MTBLS;MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Culture supernatants of two different strains of Lactobacillus salivarius were collected after fermentation. The obtained supernatants were used as test samples for subsequent metabolomic analysis.</p>	<p>Liquid chromatographic separation was performed using ultra-high performance liquid chromatography.</p><p>Parameter Value[Chromatography Instrument]: Agilent 1290 Infinity LC, Vanquish UHPLC</p><p>Parameter Value[Autosampler model]: Agilent 1290 Autosampler, Vanquish Autosampler</p><p>Parameter Value[Column model]: C18 column (conventional analytical column for metabolomics)</p><p>Parameter Value[Guard column]: Corresponding C18 guard column</p>	<p>Raw LC-MS data were imported into professional metabolomics software for peak picking, peak alignment, retention time correction, noise filtering and normalization. Feature intensities were extracted for subsequent statistical analysis.</p>	<p>An appropriate volume of fermentation supernatant was mixed with ice-cold acetonitrile at a fixed ratio for protein precipitation. The mixture was vortexed thoroughly and centrifuged at high speed. The resulting supernatant was collected, filtered through a 0.22 μm organic membrane, and subjected to LC-MS analysis.</p>	<p>Mass spectrometry detection was carried out on two high-resolution mass spectrometers respectively.</p><p>Parameter Value[Scan m/z range]: 50–1200 m/z</p><p>Parameter Value[Instrument]: AB Triple TOF 6600, Thermo Scientific Orbitrap Exploris 480</p><p>Parameter Value[Ion source]: Electrospray ionization (ESI)</p><p>Parameter Value[Mass analyzer]: Time-of-Flight (TOF), Orbitrap</p>	<p>Metabolites were identified by matching the acquired MS and MS/MS spectra with public metabolite databases. Accurate molecular weight, fragment ion information and retention time were comprehensively compared to annotate candidate metabolites. Differential metabolites between two groups of supernatants were further screened.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Han
+Study Person First Name	Fuzhen
+Study Person Mid Initials	
+Study Person Email	hanfuzhen216@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	China Agricultural Research Institute, Harbin Veterinary Research Center
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

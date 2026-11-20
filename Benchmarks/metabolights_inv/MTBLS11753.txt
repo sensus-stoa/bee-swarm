@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	ENVO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	
+Term Source Version											
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Environment Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS11753
+Investigation Title	Trapped ion mobilty improves annotation accuracy in LC-HRMS screening applications for exposomics
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-05
+Investigation Public Release Date	2025-10-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11753
+Study Title	Trapped ion mobilty improves annotation accuracy in LC-HRMS screening applications for exposomics
+Study Description	<p>The widespread use of a large number of chemicals results in a significant exposure of humans and the environment, posing potential risks to human health and ecosystems. To assess the exposure to chemical mixtures, screening applications covering a large number of analytes based on liquid chromatography coupled to high-resolution mass spectrometry (LC-HRMS) are required. False positives occur frequently in complex environmental and biological matrices due to the interference of ions with the same or a close m/z, stemming from isomeric and isobaric compounds, chemical noise, in-source fragmentation, or adduct formation. Besides that, interferences may also result in false negatives, especially when only trace levels are present. Due to an insufficient separation in the LC dimension, MS2 spectra may contain fragments from other analytes within the precursor isolation window, leading to decreased spectral matching values. In recent years, ion mobility separation (IM), and later on trapped ion mobility mass spectrometry (TIMS) was introduced as an additional separation dimension in HRMS. We developed a IM-target screening method and evaluated for a set of more than 700 chemicals of interest if the TIMS separation allowed for a separation of interfering ions as compared to the classical LC-HRMS method in different matrices. </p>
+Study Submission Date	2025-08-05
+Study Public Release Date	2025-10-14
+Study File Name	s_MTBLS11753.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2025-10-14
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	tandem mass spectrometry	Quality Control	ion mobility spectrometry-mass spectrometry	Spiked-in Standard
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/NCIT_C15311	http://purl.obolibrary.org/obo/CHMO_0000499	http://purl.obolibrary.org/obo/NCIT_C180957
+Study Design Type Term Source REF	CHMO	NCIT	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Carolin Huber, Nadin Ulrich, Martin Krauss
+Study Publication Title	Trapped ion mobilty improves annotation accuracy in LC-HRMS screening applications for exposomics
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	Replicate
+Study Factor Type Term Accession Number	
+Study Factor Type Term Source REF	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11753_LC-MS_positive__metabolite_profiling.txt	a_MTBLS11753_LC-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive	Liquid Chromatography MS - negative
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>The sample set contains a pooled urine sample (N=25), a commercially purchased sheep serum, a breastmilk sample, a 24-h composite sample a wastewater influent and a dust sample.</p><p><br></p>	<p><strong>Pooled urine:</strong> A pooled urine sample (N=25) was sampled among the laboratory participants and was prepared using a similar sample protocol as in a previous large-scale cohort studies. In brief, 500&nbsp;µL of pooled urine were diluted in 500&nbsp;µL of a phosphate buffer solution (pH 6.8) and loaded on HLB solid phase cardriges (30&nbsp;mg, 30&nbsp;µm particle seize, CHROMABOND® Machery Nagel, preconditioned with 500&nbsp;µL of MeOH and equilibrated with 500&nbsp;µL of H2O), washed with 200&nbsp;µL of H2O and extracted with 1&nbsp;mL of ACN:H2O (90:10 v/v). The eluate was evaporated under room temperature using 10&nbsp;µL of DMSO as a keeper and reconstituted in 100&nbsp;µL of H2O and 5&nbsp;µL of IS mixture in MeOH (10&nbsp;µg/mL).</p><p><strong>Sheep serum:</strong> Protein precipitation was performed as simple sample preparation step. In brief, 200&nbsp;µL of serum were combined with 800&nbsp;µL of ACN in a filtration vial (GVS Filter Technology, PFTE membrane, 0.2&nbsp;µm) and left for 1&nbsp;h at -20°C prior to filtration. The filtrate was evaporated under a gentle nitrogen stream (heated at 40°C) until near dryness and reconstituted with 100&nbsp;µL of H2O/ACN 90:10 (v/v) and 5&nbsp;µL of IS mixture (10&nbsp;µg/mL).</p><p><strong>Breastmilk sample:</strong> In brief, an aliquot of 400µL of breastmilk was added to 1.6mL of ACN, vortexed for 1&nbsp;min, and centrifugend for 10&nbsp;min at 3500&nbsp;rpm. The supernatant was loaded on Captiva EMR-Lipid cartridges (60&nbsp;mg, Agilent, preconditioned with 10&nbsp;mL of 80:20 ACN/H2O v/v) and eluted. The eluate was concentrated under a gentle nitrogen stream (heated at 35°C) until near dryness and reconstituted with 50&nbsp;µL of MeOH/H2O 70:30 (v/v) and 2&nbsp;µL of IS mixture (10&nbsp;µg/mL) in MeOH were added.</p><p><strong>Wastewater influent:</strong> A 24-h composite sample of a exemplary influent of a waste-water treatment plant was extracted based on a in-house method. In brief, after filtration through Whatmann GF/F microfiber filter (0.55&nbsp;µm, 135&nbsp;mm diameter), the 50&nbsp;µL of the filtrate was loaded on HRX cardriges (CHROMABOND®, 85&nbsp;µm, 200&nbsp;mg, Machery Nagel, preconditioned with 5&nbsp;mL of each, ethyl acetate and methanol, and 10&nbsp;mL of H2O) and washed with 4&nbsp;mL of H2O. The sample matrix was eluted using each 2&nbsp;mL of ethyl acetate and methanol. The eluent was evaporated under a gentle nitrogen stream until dryness and reconstituted in 500&nbsp;µL methanol. Before analysis, 100&nbsp;µL of the reconstituted sample were added to 96&nbsp;µL of LC-grade water and 5&nbsp;µL of IS mixture in MeOH (5&nbsp;µg/mL).</p><p><strong>Dust sample:</strong> In brief, 20&nbsp;mg of dust (&lt;100&nbsp;µm particle size) were two times extracted with 2.5&nbsp;mL of Hexane/Acetone (v/v) in a ultrasonic bath for 5&nbsp;min. The supernatant was evaporated under a gentle nitrogen stream (heated at 35°C) until near dryness and reconstituted in 140 µL of MeOH and 30&nbsp;µL of H2O and 50&nbsp;µL of IS mixture (1&nbsp;µg/mL).</p>	<p>The applied LC method was based on methods applied in previous Exposomics studies using a C18 column (2.1&nbsp;mm × 100&nbsp;mm, 1.7&nbsp;µm particle size, Waters Acquity BEH C18) at 50°C and a flow rate of 0.3&nbsp;mL/min. For positive mode, a gradient elution with water/methanol (both containing 0.1% of formic acid and 2&nbsp;mM ammonium formate) was used with 100:0 at 0&nbsp;min, 0:100 at 15&nbsp;min, 0:100 at 21&nbsp;min, 100:0 at 22&nbsp;min, and 100:0 at 30&nbsp;min (v/v). For negative mode analysis, a gradient elution of water and water/methanol (90:10 v/v), both containing 10&nbsp;mM ammonium bicarbonate was used with the same gradient program as in employed in positive mode. The injection volume was set to 5&nbsp;µL for all samples.</p>	<p>The Bruker timsTOF Pro 2 measurements were performed in positive and negative ionization using a VIP-HESI source. The TIMS cardrige tunnel pressure was set to 2.64&nbsp;mbar/0.768&nbsp;mbar (in/out) by the instrument. The inverse reduced mobility (1/K0) values were measured over a range of 0.45-1.45&nbsp;V*s/cm^2. The ion charge control (ICC) was activated, to reduce TIMS tunnel saturation and space charge effects, with a limit of 7.5e6. For TOF analyses, a scan range of 75-1250&nbsp;m/z was used. For calibration purposes, before each analysis, through a valve with a 20&nbsp;µL sample loop containing a 1:1 mixture of Agilent ESI-L Low Concentration Tune Mix and sodium-formate buffer solution (10&nbsp;mM) was injected. Data-dependent MS2 were acquired with Parallel Accumulation Serial Fragmentation (PASEF) with a cycle time of 0.53&nbsp;s for 2 ramps. The isolation window was set to 1&nbsp;m/z, employing a combined collision energy of 20 and 50&nbsp;eV. Precursor selection was performed with an active exclusion for 0.1&nbsp;min.</p>	<p>No data transformation step was needed for data analysis.</p>	<p>Manual evaluation and extraction of target compounds was performed in TasQ (Bruker, Bremen, Germany), version 2024b. The data processing steps included automatic mass and ion mobility recalibration, generation of extracted ion chromatograms (EICs), and extracted ion mobilograms (EIMs) and CCS(N2) calculation based on the measured 1/K0 values.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huber
+Study Person First Name	Carolin
+Study Person Mid Initials	
+Study Person Email	carolin-elisabeth.huber@ufz.de
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Permoßer Straße 15, 04318 Leipzig
+Study Person Affiliation	Helmholtz Center for Environmental Research UFZ
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

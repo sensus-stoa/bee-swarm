@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI	PRIDE	mesh	obo
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz	
+Term Source Version	2025-10-21	3.87.0			1.0.1		25.06e	2025-12-18		2025	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology	Medical Subject Headings	
+INVESTIGATION
+Investigation Identifier	MTBLS14070
+Investigation Title	Multi-omics analysis of differential expression profiles in Vibrio natriegens strain VCOD-2 under optimal and high-salinity conditions
+Investigation Description	
+Investigation Submission Date	2026-03-18
+Investigation Public Release Date	2026-03-18
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14070
+Study Title	Multi-omics analysis of differential expression profiles in Vibrio natriegens strain VCOD-2 under optimal and high-salinity conditions
+Study Description	<p>This study employs integrated multi-omics analysis to systematically investigate the proteome and metabolome of marine bacterium&nbsp;Vibrio natriegens&nbsp;strain VCOD-2 (ATCC 14048) under optimal salinity (3% NaCl) and high-salinity stress (8% NaCl) conditions, aiming to reveal the molecular mechanisms of its high-salinity adaptation.</p><p>Proteomics:&nbsp;Two salinity treatment groups were established with three biological replicates each, totaling six samples. Through trypsin digestion, TMTpro 16plex isobaric labeling, and high-pH reverse-phase fractionation, LC-MS/MS analysis was performed using Q Exactive HF-X Orbitrap mass spectrometer, successfully identifying 3077 protein groups and 31,646 peptides. Using 3% NaCl as control and 8% NaCl as experimental group, differentially expressed proteins (DEPs) were screened with fold change ≥1.5 or ≤0.667 and q-value&lt;0.05, identifying 979 DEPs including 370 up-regulated and 609 down-regulated proteins. Differential proteins were further analyzed by COG, GO, and KEGG functional annotation and pathway enrichment analysis.</p><p>Metabolomics:&nbsp;Intracellular metabolite profiles under 3% and 8% NaCl salinities were simultaneously determined. Through liquid chromatography-tandem mass spectrometry (LC-MS/MS) analysis, multiple metabolites related to salt stress response were identified and quantified, including compatible solutes, amino acids, organic acids, sugars, and other metabolites. Metabolomics analysis revealed metabolic pathway reprogramming under salt stress.</p><p>Multi-omics Integration:&nbsp;Through integrated analysis of proteomics and metabolomics data, the molecular response network of&nbsp;V. natriegens&nbsp;under high-salinity stress was systematically elucidated. The combined analysis of proteomics and metabolomics revealed changes in key metabolic pathways including osmotic regulation, ion transport, energy metabolism, compatible solute biosynthesis and accumulation, providing multi-layer molecular evidence for deeply understanding the high-salinity adaptation strategies of&nbsp;V. natriegens.</p><p>This study provides important multi-omics resources for understanding salt adaptation mechanisms in&nbsp;V. natriegens&nbsp;and offers theoretical references for salt tolerance research and industrial applications of extremophilic microorganisms.</p>
+Study Submission Date	2026-03-18
+Study Public Release Date	2026-03-18
+Study File Name	s_MTBLS14070.txt
+Comment[Created At]	2026-03-17T14:00:58.121051
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Multi-omics study	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/PRIDE_0000461	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MSIO	PRIDE	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	XinYi Tao;
+Study Publication Title	Multi-omics analysis of differential expression profiles in Vibrio natriegens strain VCOD-2 under optimal and high-salinity conditions
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Salinity
+Study Factor Type	Salinity
+Study Factor Type Term Accession Number	http://id.nlm.nih.gov/mesh/D054712
+Study Factor Type Term Source REF	mesh
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14070_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14070_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>An ACQUITY UPLC HSS T3 column (100Å, 1.8 µm, 2.1 mm × 100 mm) was used with a flow rate of 0.4 mL/min, a column temperature of 40°C, an autosampler temperature of 8°C, and an injection volume of 2 μL.</p>	<p>The .raw format data was imported into the commercial software Compound Discoverer™ 3.3 (version 3.3.2.31, Thermo, Waltham, USA). Based on the new peak detection and peak quality scoring algorithm of the software, peak extraction, alignment, correction and other operations were performed. The unique peak quality rating calculation and filter greatly reduced the interference of background peaks and low-quality peaks. The peaks that were not detected in more than 50% of the QC samples were filtered, and the missing values of the undetected peaks were filled based on the software Fill Gaps algorithm, and the Sum total peak area was normalized.</p>	<p>Metabolite Extraction</p><p>Bacterial samples stored at -80℃ were slowly thawed on ice. 1.5 mL of 50% methanol solution (methanol:water = 1:1, v/v) was added to cell pellets for extracting intracellular metabolites. Cells were sonicated using ultrasonic cell disruptor under ice bath conditions for 10 minutes to fully release intracellular metabolites. After sonication, samples were centrifuged at 13,000 r/min for 5 minutes at 4℃ to remove cell debris and protein precipitates.</p><p>Supernatant was collected and filtered through 0.22 μm aqueous phase membrane filter to remove residual particles and impurities. Filtered supernatant was transferred to a new 1.5 mL centrifuge tube (EP tube). To facilitate subsequent LC-MS/MS analysis, filtered metabolite extract was diluted to appropriate concentration with 50% methanol-water solution.</p><p>Extraction Buffer Description</p><p>50% methanol-water solution was used as extraction solvent, which can effectively extract polar to moderately polar metabolites, including amino acids, organic acids, sugars, nucleotides, compatible solutes, and other major metabolite categories. Methanol can rapidly precipitate proteins and inactivate metabolic enzymes, while water addition helps extract polar metabolites.</p><p>Quality Control (QC) Sample Preparation</p><p>Equal volumes of metabolite extract were taken from each biological sample (R3_1, R3_2, R3_3, H8_1, H8_2, H8_3) and mixed uniformly to prepare QC samples. QC samples were used to evaluate stability of the instrument system and experimental reproducibility throughout the LC-MS/MS analysis process.</p><p>During sample injection for analysis, QC samples were inserted at regular intervals (e.g., every 10-12 samples) to monitor instrument performance drift and data quality. QC sample preparation followed exactly the same extraction and pretreatment methods as experimental samples.</p><p>Blank Sample Preparation</p><p>Blank control samples were prepared to assess solvent background and potential contamination during the experimental process. Blank samples were prepared using 50% methanol-water solution (without any biological sample) following the same treatment protocol as experimental samples, including sonication, centrifugation, and filtration steps.</p><p>Standard Solution (if applicable)</p><p>For qualitative and quantitative verification of known metabolites, standard solution can be prepared. High-purity standards were dissolved in 50% methanol-water solution to prepare a series of standard curve solutions with known concentrations. Standard solutions were stored at -20℃, equilibrated to room temperature before use, and vortexed for thorough mixing.</p><p>Pre-injection Preparation</p><p>All prepared samples (including experimental samples, QC samples, and Blank samples) were centrifuged at 10,000 r/min for 10 minutes at 4℃ before injection. Supernatant was transferred to auto-sampler vials and placed in 4℃ temperature-controlled module of auto-sampler, awaiting LC-MS/MS analysis.</p>	<p>Thermo Orbitrap Exploris 120 mass spectrometer was used to collect DDA mass spectrometric data in positive and negative ion modes under the control of Xcalibur software (version: 4.7, Thermo). HESI source, spray voltage 3.5 kV/-3.0 kV, sheath gas 40 arb, auxiliary gas 15 arb, capillary temperature 325℃, auxiliary gas temperature 300℃, primary resolution 60,000, scan range 100-1000 m/z, AGC Target Standard, Max IT 100 ms, the top 4 ions were screened for secondary fragmentation, dynamic exclusion time was 8 s, secondary resolution 15,000, HCD collision energy 30%, AGC Target Standard, Max IT Auto. All formal samples and QC sample were loaded into the equipment according to the above-mentioned chromatography and mass spectrometry methods. Before the formal injection, QC sample were injected 2-4 times to balance the system. During the injection process, one QC sample was injected for every 5-10 samples for subsequent data evaluation and quality control.</p>	<p>The identification of metabolites was based on self-built library PSNGM Database, mzCloud online library (https://www.mzcloud.org/), LIPID MAPS (https://www.lipidmaps.org/), HMDB (https://hmdb.ca/), MoNA (https://mona.fiehnlab.ucdavis.edu/) and NIST_2020_MSMS spectral library. The MS1 mass tolerance was set to 15 ppm and the MS2 Match Factor Threshold was set to 50.</p>	<p>Sample Source</p><p>Vibrio natriegens&nbsp;strain VCOD-2 (ATCC 14048) was preserved at the laboratory of the Graduate School of Chinese Academy of Agricultural Sciences. The strain was cultured in liquid media containing different salinities (3% NaCl and 8% NaCl) for untargeted metabolomics analysis.</p><p>Culture Conditions</p><p>V. natriegens&nbsp;stock culture stored at -80℃ was inoculated at 1% (v/v) into 5 mL liquid medium and activated at 30℃ (or 33℃) with shaking at 220 r/min for 24 hours. The activated culture was then inoculated at 1% (v/v) into 5 mL liquid medium containing corresponding salinity (3% NaCl or 8% NaCl) and cultured under the same conditions for 12 hours to reach logarithmic growth phase, followed by a second activation as seed culture. Seed culture was inoculated at 1% (v/v) into 250 mL liquid medium containing corresponding salinity and cultured at 30℃ (or 33℃) with shaking at 220 r/min until logarithmic growth phase.</p><p>Treatment</p><p>Two salinity treatment groups were established:</p><p>R3 group (3% NaCl):&nbsp;Optimal salinity group, serving as control</p><p>H8 group (8% NaCl):&nbsp;High-salinity stress group, serving as experimental group</p><p>Each salinity treatment group had three biological replicates, designated as R3_1, R3_2, R3_3 (3% NaCl group) and H8_1, H8_2, H8_3 (8% NaCl group).</p><p>Sample Collection</p><p>Cells were harvested at logarithmic growth phase (OD600 approximately 0.6-0.8) by centrifugation at 13,000 r/min for 10 minutes at 4℃. Supernatant was discarded, and cell pellets were washed three times with ice-cold phosphate buffer saline (PBS, pH 7.4) or potassium phosphate buffer (100 mmol/L, pH 7.5) containing the same concentration of NaCl to remove residual medium components. After each wash, supernatant was discarded by centrifugation at 13,000 r/min for 5 minutes at 4℃.</p><p>Rapid Freezing</p><p>Washed cell pellets were immediately immersed in liquid nitrogen for rapid freezing (flash freezing) to terminate metabolic activity and preserve metabolite levels at the moment of collection.</p><p>Storage Procedure</p><p>Flash-frozen cell samples were transferred to pre-cooled cryovials and rapidly placed in -80℃ ultra-low temperature freezer for long-term storage until metabolite extraction. Samples were protected from repeated freeze-thaw cycles during storage to prevent metabolite degradation or transformation.</p><p>Storage Duration</p><p>All samples were flash-frozen with liquid nitrogen and transferred to -80℃ storage within 24 hours after collection. Metabolite extraction was completed within one week after sample collection.</p><p>Quality Control (QC) Sample Preparation</p><p>Equal volumes of solution were taken from each sample, and all six biological samples (R3_1, R3_2, R3_3, H8_1, H8_2, H8_3) were mixed uniformly to prepare QC samples for evaluating instrument stability and experimental reproducibility.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Tao
+Study Person First Name	XinYi
+Study Person Mid Initials	
+Study Person Email	taoxinyi121dx@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Chinese Academy of Agricultural Sciences
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

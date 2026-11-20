@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version		253	2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08	2025
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14308
+Investigation Title	Gut metabolomics of 6PPD-Q exposed mice with ABX treatment
+Investigation Description	
+Investigation Submission Date	2026-04-17
+Investigation Public Release Date	2026-09-15
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14308
+Study Title	Gut metabolomics of 6PPD-Q exposed mice with ABX treatment
+Study Description	<p>Untargeted fecal metabolomics using UHPLC-MS/MS to analyze microbiota-dependent metabolic changes in C57BL/6 mice exposed to 6PPD-quinone (6PPD-Q) with/without antibiotic-mediated gut microbiota depletion. Key pathways include tryptophan and nicotinamide metabolism linked to intestinal barrier function.</p>
+Study Submission Date	2026-04-17
+Study Public Release Date	2026-09-15
+Study File Name	s_MTBLS14308.txt
+Comment[Created At]	2026-04-08
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-15
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolite profiling	6PPDQ	Gastrointestinal Microbiome	Intestinal Barrier Function	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q Exactive HF-X	Mus musculus	feces	experimental blank	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/CHEBI_233238	http://id.nlm.nih.gov/mesh/D000069196	http://id.nlm.nih.gov/mesh/D000095644	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/BTO_0000440		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MSIO	CHEBI	mesh	mesh	MTBLS	MTBLS	NCBITaxon	BTO		MS	EDAM
+Comment[Study Design Category]	default	default	default	default	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhuxia Zhang, Xiaolu Zhang, Weiqiang Liu, Lei Wang, Meiting Wei, Chunyang Zhang, Jinxiu Zhu, Yaoyao
+Study Publication Title	Gut metabolomics of 6PPD-Q exposed mice with ABX treatment
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14308_LC-MS_alternating_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;alternating;75-1000;Thermo Scientific Q Exactive HF-X
+Comment[Assay Field Default Unit]	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>For gut microbiota and metabolite analysis, fresh fecal samples were collected immediately after defecation, snap-frozen in liquid nitrogen within 30 seconds, and stored at -80°C until further processing.&nbsp;</p>	<p>All samples were for two LC/MS methods. One aliquot was analyzed using positive ion conditions and was eluted from T3 column (Waters ACQUITY Premier HSS T3 Column 1.8 µm, 2.1 mm * 100 mm) using 0.1 % formic acid in water as solvent A and 0.1 % formic acid in acetonitrile as solvent B in the following gradient: 5 to 20 % in 2 min, increased to 60 % in the following 3 mins, increased to 99 % in 1 min and held for 1.5 min, then come back to 5 % mobile phase B witnin 0.1 min, held for 2.4 min. The analytical conditions were as follows, column temperature, 40 °C; flow rate, 0.4 mL/min; injection volume, 4 μL; Another aliquot was using negative ion conditions and was the same as the elution gradient of positive mode.</p>	<p>The raw mass spectrometry data were converted to mzML format using ProteoWizard, followed by peak detection, alignment, and retention time correction using the XCMS program. Peaks with &gt;50% missing values across any group were filtered out. Missing values were imputed using a hybrid approach: KNN imputation combined with 1/5 of the minimum value (if missing rate ≤50%, KNN imputation was applied; if missing rate &gt;50%, imputation with 1/5 of the minimum value was used). Peak areas were further normalized using a support vector regression (SVR)-based method.&nbsp;</p>	<p>The sample stored at -80 °C refrigerator was thawed on ice. A 400 μL solution (Methanol : Water = 7:3, V/V) containing internal standard was added into 20 mg sample, and vortexed for 3 min. The sample was sonicated in an ice bath for 10 min and vortexed for 1 min, and then placed in -20 °C for 30 min. The sample was then centrifuged at 12000 rpm for 10 min (4 °C). And the sediment was removed, then centrifuged the supernatant at 12000 rpm for 3 min (4 °C). A 200 μL aliquots of supernatant were transferred for LC-MS analysis.</p>	<p>All the methods alternated between full scan MS and data dependent MSn scans using dynamic exclusion. MS analyses were carried out using electrospray ionization in the positive ion mode and negative ion mode using full scan analysis over m/z 75-1000 at 35000 resolution. Additional MS settings are: ion spray voltage, 3.5 KV or 3.2 KV in positive or negative modes, respevtively; Sheath gas (Arb), 30; Aux gas, 5; Ion transfer tube temperature, 320 °C; Vaporizer temperature, 300 °C; Collision energy, 30,40,50 V; Signal Intensity Threshold, 1*e6 cps; Top N vs Top speed, 10; Exclusion duration, 3s.</p>	<p>The filtered and normalized peaks were annotated by searching against an in-house laboratory database, integrating public databases, a prediction library, and the metDNA method. Only metabolites with a comprehensive identification score ≥0.5 and a coefficient of variation (CV) in QC samples &lt;0.3 were retained. Finally, positive and negative mode data were merged (keeping the metabolite with the highest confidence level and smallest CV), resulting in the file 'all_sample_data.xlsx'.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang
+Study Person First Name	Zhuxia
+Study Person Mid Initials	
+Study Person Email	15849226001@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Shenzhen, 518172, Guangdong, China
+Study Person Affiliation	Longgang District Maternity & Child Healthcare Hospital of Shenzhen City
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0009-0006-1468-7263
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01me2d674
+Comment[Study Person Alternative Email]	meow_xiaolu@sina.com

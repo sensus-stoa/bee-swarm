@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCIT	MI	CRISP	EFO	MTBLS	IOBC	CHEBI	DOID	
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://purl.obolibrary.org/obo/mi.owl	http://data.bioontology.org/ontologies/CRISP	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/metabolights/				http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	25	103	18	40	6	6	132	1				18.10e
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	PSI Molecular Interactions	Computer Retrieval of Information on Scientific Projects Thesaurus	Experimental Factor Ontology	Metabolights Ontology				NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS3342
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2021-08-24
+Investigation Public Release Date	2023-06-27
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 1.0.3
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS3342
+Study Title	Oxidative phosphorylation is a metabolic vulnerability of endocrine therapy and palbociclib resistant metastatic breast cancers
+Study Description	Resistance to endocrine treatments and CDK4/6 inhibitors is considered a near-inevitability in most patients with estrogen receptor positive breast cancers (ER + BC). By genomic and metabolomics analyses of patients' tumours, metastasis-derived patient-derived xenografts (PDX) and isogenic cell lines we demonstrate that a fraction of metastatic ER + BC is highly reliant on oxidative phosphorylation (OXPHOS). Treatment by the OXPHOS inhibitor IACS-010759 strongly inhibits tumour growth in multiple endocrine and palbociclib resistant PDX. Mutations in the PIK3CA/AKT1 genes are significantly associated with response to IACS-010759. At the metabolic level, in vivo response to IACS-010759 is associated with decreased levels of metabolites of the glutathione, glycogen and pentose phosphate pathways in treated tumours. In vitro, endocrine and palbociclib resistant cells show increased OXPHOS dependency and increased ROS levels upon IACS-010759 treatment. Finally, in ER + BC patients, high expression of OXPHOS associated genes predict poor prognosis. In conclusion, these results identify OXPHOS as a promising target for treatment resistant ER + BC patients.
+Study Submission Date	2021-08-24
+Study Public Release Date	2023-06-27
+Study File Name	s_MTBLS3342.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	metabolon	palbociclib	breast cancer	Xenograft	bone metastasis	Hormone Therapy	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.jp/bio/4/id/201606002506532625	http://purl.obolibrary.org/obo/CHEBI_85993	http://purl.obolibrary.org/obo/DOID_1612	http://www.ebi.ac.uk/efo/EFO_0003942	http://www.ebi.ac.uk/efo/EFO_0009870	http://purl.obolibrary.org/obo/NCIT_C15445	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	IOBC	CHEBI	DOID	EFO	EFO	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37452026
+Study Publication DOI	10.1038/s41467-023-40022-5
+Study Publication Author List	El-Botty Rania, Morriset Ludivine, Montaudon Elodie, Tariq Zakia, Schnitzler Anne, Bacci Marina, Lorito Nicla, Sourd Laura, Huguet Léa, Dahmani Ahmed, Painsec Pierre, Derrien Heloise, Vacher Sophie, Masliah-Planchon Julien, Raynal Virginie, Baulande Sylvain, Larcher Thibaut, Vincent-Salomon Anne, Dutertre Guillaume, Cottu Paul, Gentric Géraldine, Mechta-Grigoriou Fatima, Hutton Scott, Driouch Keltouma, Bièche Ivan, Morandi Andrea, Marangoni Elisabetta
+Study Publication Title	Oxidative phosphorylation is a metabolic vulnerability of endocrine therapy and palbociclib resistant metastatic breast cancers
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Biosample	Treatment	IACS Response
+Study Factor Type	Biosample	treatment	response to drug
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C43412	http://www.ebi.ac.uk/efo/EFO_0000727	http://purl.obolibrary.org/obo/GO_0042493
+Study Factor Type Term Source REF	NCIT	EFO	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS3342_CTRL_IACS_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_CTRL_IACS_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_CTRL_IACS_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_CTRL_IACS_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_Tumor_PDX_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_Tumor_PDX_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_Tumor_PDX_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS3342_Tumor_PDX_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl				
+Study Protocol Type Term Source REF		NCIT	NCIT	NCIT	NCIT	NCIT
+Study Protocol Description	<p>Human breast tumor fragments were obtained with patients’ informed consent (Institute Curie). </p><p><br></p><p>PDX models of ER+ metastatic BC were obtained by engrafting biopsies from spinal bone metastases of ER positive BC female patients progressing under ET and treated with vertebroplasty to restore biomechanical vertebral properties (stabilization) and reduce back pain, as described previously<strong>[1]</strong>. The protocol was approved by the Institut Curie Hospital committee (CRI: Comité de Revue Institutionnel). Bone metastasis biopsies were engrafted with informed consent from the patient into the interscapular fat pad of 8- to 12-wk-old female Swiss nude mice (Charles River Laboratories), which were maintained under specific pathogen-free conditions. The housing facility was kept at 22(+/-2) °C with a relative humidity of 30-70%. The light/dark cycle was 12 h light/12 h dark.&nbsp;Mice were maintained on a standard diet (4RF25, Mucedola SRL, Italy) and were given free access to food and water.</p><p><br></p><p>Global metabolomic profiling of primary tumours and PDX samples was performed using the analytical DiscoveryHD4 platform by Metabolon<strong>[2]</strong>.&nbsp;</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Montaudon E, Nikitorowicz-Buniak J, Sourd L, Morisset L, El Botty R, Huguet L et al. PLK1 inhibition exhibits strong anti-tumoral activity in CCND1-driven breast cancer metastases with acquired palbociclib resistance. Nat Commun. 2020 Aug 13;11(1):4053. doi:10.1038/s41467-020-17697-1. PMID:32792481.</p><p><strong>[2]</strong> Evans AM, DeHaven CD, Barrett T, Mitchell M, Milgram E. Integrated, nontargeted ultrahigh performance liquid chromatography/electrospray ionization tandem mass spectrometry platform for the identification and relative quantification of the small-molecule complement of biological systems. Anal Chem. 2009 Aug 15;81(16):6656-67. doi:10.1021/ac901536h. PMID:19624122.</p><p><br></p>	Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.	All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. Method 1/Pos 1: One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 um) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). Method 2/Pos 2: A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. Method 3/Neg 1: A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. Method 4/Neg 2: The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 um) using a gradient consisting of water and acetonitrile with 10 mM Ammonium Formate, pH 10.8.	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	Raw data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Marangoni	El-Botty	Morriset	Montaudon	Tariq	Schnitzler	Bacci	Lorito	Sourd	Huguet	Dahmani	Painsec	Derrien	Vacher	Masliah-Planchon	Raynal	Baulande	Larcher	Vincent-Salomon	Dutertre	Cottu	Gentric	Mechta-Grigoriou	Hutton	Driouch	Bièche	Morandi
+Study Person First Name	Elisabetta	Rania	Ludivine	Elodie	Zakia	Anne	Marina	Nicla	Laura	Léa	Ahmed	Pierre	Heloise	Sophie	Julien	Virginie	Sylvain	Thibaut	Anne	Guillaume	Paul	Géraldine	Fatima	Scott	Keltouma	Ivan	Andrea
+Study Person Mid Initials																											
+Study Person Email	elisabetta.marangoni@curie.fr																										
+Study Person Phone																											
+Study Person Fax																											
+Study Person Address	Laboratory of Preclinical Investigation, Translational Research Department, Institut Curie, PSL University, 26 rue d’Ulm, 75005 Paris, France																										
+Study Person Affiliation	Institut Curie, Paris, France																										
+Study Person Roles	Principal Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT																										

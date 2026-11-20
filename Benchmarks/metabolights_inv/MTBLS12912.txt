@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	ENVO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.86.0	2025-10-20			1.0.1		2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12912
+Investigation Title	LC-MS/MS targeted analysis of ferroptosis-associated phospholipid peroxidation in KIF11-depleted HRECs
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-30
+Investigation Public Release Date	2026-02-13
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12912
+Study Title	LC-MS/MS targeted analysis of ferroptosis-associated phospholipid peroxidation in KIF11-depleted HRECs
+Study Description	<p>Human retinal vascular endothelial cells (HRECs) were transfected with lentivirus encoding either KIF11-targeting shRNA or a non-targeting control. KIF11-depleted and control cells were then subjected to lipid extraction followed by LC–MS/MS–based targeted analysis of ferroptosis-associated phospholipid peroxidation.</p>
+Study Submission Date	2025-08-30
+Study Public Release Date	2026-02-13
+Study File Name	s_MTBLS12912.txt
+Comment[Created At]	2025-08-23T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolite profiling	endothelial cell	Retina	Homo sapiens
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/CL_0000115	http://purl.obolibrary.org/obo/NCIT_C12343	http://purl.obolibrary.org/obo/NCBITaxon_9606
+Study Design Type Term Source REF	MSIO	EFO	NCIT	ENVO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Mu Yang, Rulian Zhao, Li Peng, Liting Lv, Lanyao Yang, Yunqi He, Xu Ha, Huijuan Xu, Xiang Zhang, Peiquan Zhao, Shujin Li, Zhenglin Yang
+Study Publication Title	KIF11 protects prevents retinal endothelial ferroptosis in familial exudative vitreoretinopathy
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	KIF11 knockdown
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12912_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Human retinal vascular endothelial cells (HRECs) were transfected with lentivirus encoding either KIF11-targeting shRNA or a non-targeting control. KIF11-depleted and control cells were then subjected to lipid extraction followed by LC–MS/MS–based targeted analysis of ferroptosis-associated phospholipid peroxidation.</p>	<p>For lipid extraction, the control or KIF11-depleted HRECs were resuspended in 1 mL of the regent containing methanol, tert-butyl methyl ether (MTBE), butylated hydroxytoluene (BHT), and internal standard mixture.</p>	<p>Lipid extracts were separated on a Thermo Accucore™ C30 column (2.6 μm, 2.1 × 100 mm) at a flow rate of 0.35 mL/min. The mobile phase consisted of solvent A (acetonitrile/water, 60:40, v/v, containing 0.1% formic acid and 10 mmol/L ammonium formate) and solvent B (acetonitrile/isopropanol, 10:90, v/v, containing 0.1% formic acid and 10 mmol/L ammonium formate). The gradient elution program was set as follows: 0 min (80% A, 20% B), 2 min (70% A, 30% B), 4 min (40% A, 60% B), 9 min (15% A, 85% B), 14 min (10% A, 90% B), 15.5 min (5% A, 95% B), 17.3 min (5% A, 95% B), and 17.5 min (80% A, 20% B).</p>	<p>Mass spectrometric detection was performed on a QTRAP® 6500+ system (SCIEX, UK) equipped with an electrospray ionization (ESI) source. The analysis was conducted in multiple reaction monitoring (MRM) mode, monitoring transitions from precursor ions to product ions. The optimized ion source parameters were as follows: ion spray voltage (IS), –4500 V; source temperature (TEM), 500 °C; curtain gas (CUR), 35 psi; nebulizer gas (GS1), 45 psi; auxiliary gas (GS2), 55 psi. The compound-dependent parameters were set as declustering potential (DP), –50 V; entrance potential (EP), –10 V; and collision energy (CE), –38 V.</p>	<p>Chromatographic peaks corresponding to precursor-to-product ion transitions were integrated using the instrument’s software to obtain peak areas.</p>	<p>Lipid metabolites were identified and quantified based on MRM transitions and normalized to internal standards for corresponding lipid species.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Yang	Yang
+Study Person First Name	Shujin	Mu	Zhenglin
+Study Person Mid Initials			
+Study Person Email	lishujin91@126.com	yangmu2019@126.com	yangzhenglin@cashq.ac.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	Sichuan provincial people's hospital		Sichuan Provincial People's Hospital
+Study Person Roles	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-7691-3776		
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01qh26a66		

@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	BAO	NCBITAXON	MS	NCIT	MI	CRISP	BTO	UO	EFO	MTBLS	CHMO	IOBC
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/NCIT	http://purl.obolibrary.org/obo/mi.owl	http://data.bioontology.org/ontologies/CRISP	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/UO		https://www.ebi.ac.uk/metabolights/		
+Term Source Version	25	26	6	129	44		6	29	43		1.0		
+Term Source Description	Ontology for Biomedical Investigations	BioAssay Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Mass Spectrometry Ontology	National Cancer Institute Thesaurus	PSI Molecular Interactions	Computer Retrieval of Information on Scientific Projects Thesaurus	BRENDA Tissue and Enzyme Source Ontology	Units of Measurement Ontology		Metabolights Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS106
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2018-05-24
+Investigation Public Release Date	2019-09-17
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 0.5.1
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Robinson
+Investigation Person First Name	Richard
+Investigation Person Mid Initials	
+Investigation Person Email	RRobinson@metabolon.com
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Metabolon
+Investigation Person Roles	
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS106
+Study Title	Ribosomal mistranslation leads to silencing of the unfolded protein response and increased mitochondrial biogenesis
+Study Description	<p>Translation fidelity is the limiting factor in the accuracy of gene expression. With an estimated frequency of 10-4, errors in mRNA decoding occur in a mostly stochastic manner. Little is known about the response of higher eukaryotes to chronic loss of ribosomal accuracy as per an increase in the random error rate of mRNA decoding. Here, we present a global and comprehensive picture of the cellular changes in response to translational accuracy in mammalian ribosomes impaired by genetic manipulation. In addition to affecting established protein quality control pathways, such as elevated transcript levels for cytosolic chaperones, activation of the ubiquitin-proteasome system, and translational slowdown, ribosomal mistranslation led to unexpected responses. In particular, we observed increased mitochondrial biogenesis associated with import of misfolded proteins into the mitochondria and silencing of the unfolded protein response in the endoplasmic reticulum.</p><p><br></p><p>This study describes the metabolomic analysis of HEK293 cells lines expressing mutant ribosomal protein RPS2 (human A226Y). RPS2 A226Y mutation has been shown to cause misreading and readthrough. Results provide insight into the response to chronic mistranslation in mammalian cells.</p>
+Study Submission Date	2018-05-24
+Study Public Release Date	2019-09-17
+Study File Name	s_MTBLS106.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	transcriptomics	untargeted metabolites	unfolded protein response	chronic mistranslation	protein misfolding	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	metabolon
+Study Design Type Term Accession Number		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279				http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.jp/bio/4/id/201606002506532625
+Study Design Type Term Source REF		MTBLS				CHMO	CHMO	IOBC
+STUDY PUBLICATIONS
+Study PubMed ID	31637312
+Study Publication DOI	10.1038/s42003-019-0626-9
+Study Publication Author List	Shcherbakov D, Teo Y, Boukari H, Cortes-Sanchon A, Mantovani M, Osinnii I, Moore J, Juskeviciene R, Brilkova M, Duscha S, Kumar HS, Laczko E, Rehrauer H, Westhof E, Akbergenov R, Böttger EC.
+Study Publication Title	Ribosomal mistranslation leads to silencing of the unfolded protein response and increased mitochondrial biogenesis.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cell line
+Study Factor Type	cell line
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CLO_0000031
+Study Factor Type Term Source REF	BAO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS106__NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS106__NEG_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS106__POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS106__POS_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://purl.bioontology.org/ontology/CRISP/4009-0034	http://purl.obolibrary.org/obo/NCIT_C61575	http://purl.obolibrary.org/obo/NCIT_C16431	http://purl.obolibrary.org/obo/NCIT_C17156	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	CRISP	NCIT	NCIT	NCIT	OBI	MI
+Study Protocol Description	HEK293 cells were transfected with pRps2(WT/A226Y/G203R) expression vectors using Turbofect (Thermo Fisher) and cultured in DMEM supplemented with 10% FBS under 100 µg/ml hygromycin B selection for 5-7 weeks. GFP expressing colonies were picked for further characterization. GFP fluorescence was analyzed by flow cytometry using the BD FACS Canto II (BD Biosciences) and the FlowJo data analysis software (Tree Star Inc, Ashland OR). Transgene expression levels were confirmed using Taqman quantitive real-time PCR.	Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.	All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 µm) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 µm) using a gradient consisting of water and acetonitrile with 10mM Ammonium Formate, pH 10.8.	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	Raw data were extracted, peak-identified, and QC processed using Metabolon’s hardware and software. These systems are built on a web-service platform utilizing Microsoft’s .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Boettger	Rashid	Dimitri	Teo
+Study Person First Name	Erik	Akbergenov	Scherbakov	Youjin
+Study Person Mid Initials	C			
+Study Person Email	boettger@imm.uzh.ch	rakbergenov@imm.uzh.ch	dscherbakov@imm.uzh.ch	youjin.teo@uzh.ch
+Study Person Phone	+41 44 634 26 60	+41 44 634 26 64	+41 44 634 26 72	
+Study Person Fax				
+Study Person Address	Gloriastrasse 30, 8006 Zürich, Switzerland	Gloriastrasse 30, 8006 Zürich, Switzerland	Gloriastrasse 30, 8006 Zürich, Switzerland	Gloriastrasse 30, 8006 Zürich, Switzerland
+Study Person Affiliation	University of Zurich	University of Zurich	University of Zurich	University of Zurich
+Study Person Roles	Group Leader, Principle Investigator	Co-first author	Co-first author	Co-first author
+Study Person Roles Term Accession Number				
+Study Person Roles Term Source REF				

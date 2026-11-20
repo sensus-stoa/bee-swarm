@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	GOLD	MCO	MESH	MI	MTBLS	NCIT	OBI	XCO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	https://raw.githubusercontent.com/cmungall/gold-ontology/refs/heads/main/gold.owl	http://purl.obolibrary.org/obo/mco.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/xco.owl
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.86.0						25.06e	2025-12-18	
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology		Microbial Conditions Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Experimental condition ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13260
+Investigation Title	Bacterial extracellular vesicles as recyclable nutrient reservoirs
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-11-04
+Investigation Public Release Date	2026-02-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13260
+Study Title	Bacterial extracellular vesicles as recyclable nutrient reservoirs
+Study Description	<p>Bacterial extracellular vesicles (EVs) are known to mediate intercellular communication, virulence, and immune modulation. Here we show that bacteria can utilise EVs also as recyclable nutrient reservoirs. Using&nbsp;Bacillus cereus&nbsp;as a model organism, we demonstrate that EVs exhibit distinct dynamics depending on growth conditions: EVs produced in complex nutrient-rich media undergo time-dependent degradation, while those produced in defined nutrient-limited conditions remain stable and accumulate. We observe similar EV degradation patterns in&nbsp;Staphylococcus&nbsp;aureus. Time-resolved multi-omics profiling reveals that EVs containing the lipid sphingomyelin undergo progressive degradation. Using pharmacological inhibition, knockout mutants, and enzymatic complementation, we show that this process is driven by secreted sphingomyelinase (SMase). This enzyme contributes to degradation of sphingomyelin-containing EVs, thereby releasing their biomolecular cargo which can be used as a nutrient source. Growth assays confirm that SMase-mediated EV degradation provides a growth advantage when nutrients become depleted, thus establishing EVs as dynamic nutrient reservoirs.</p>
+Study Submission Date	2025-11-04
+Study Public Release Date	2026-02-18
+Study File Name	s_MTBLS13260.txt
+Comment[Created At]	2025-10-20T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Bacillus cereus	Extracellular Vesicles	Sphingolipids
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_1396	http://id.nlm.nih.gov/mesh/D000067128	http://id.nlm.nih.gov/mesh/D013107
+Study Design Type Term Source REF	EFO	MESH	MESH
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Astrid Laimer-Digruber, Tanja V Edelbacher, Masoumeh Alinaghi, Mia S C Yu, Dapi Menglin Chiang, Benedikt Kirchner, Susanne I Wudy, Christina Ludwig, Stefan Kummer, Jan Přibyl, Michael W Pfaffl, Monika Ehling-Schulz
+Study Publication Title	Sphingomyelinase-mediated extracellular vesicle degradation suggests a role of EVs in nutrient recycling
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Medium
+Study Factor Type	Cultivation parameter
+Study Factor Type Term Accession Number	http://edamontology.org/data_3724
+Study Factor Type Term Source REF	EDAM
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13260_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS13260_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Bacterial strains&nbsp;</p><p>Experiments in this study were conducted using the emetic&nbsp;B. cereus&nbsp;reference strain F4810/7239&nbsp;(aka&nbsp;AH187) and an isogenic SMase knock-out mutant (Δsph)&nbsp;of&nbsp;B. cereus&nbsp;F4810/7219. For complementary experiments, the&nbsp;B. cereus&nbsp;strains BC435, F588/94, and WBSC10925, as well as the&nbsp;Staphylococcus aureus&nbsp;strain Newman were used.&nbsp;</p><p><br></p><p>Growth media, production of conditioned media and EV-depleted conditioned media</p><p>The composition of the growth media LB40, MOD41. and MODVAL*&nbsp;is detailed in Supplementary Table 6. The host-factor-enriched RPMI (hfRPMI) was produced by growing Caco-2 cells in RPMI (Thermo Scientific, Waltham, MA, USA), supplemented with 10 % FBS (Thermo Scientific, Waltham, MA, USA), for 21 days as described earlier42. Subsequently, this hfRPMI was subjected to ultracentrifugation overnight at 180,000&nbsp;× g&nbsp;to deplete the medium from Caco-2 EVs and then frozen until further use.</p><p>To obtain ‘cell-free conditioned media’, bacteria were grown for 7 hours at 30 °C while shaking (120 rpm) in the respective media and the supernatants were cleared of bacterial cells by a series of centrifugation steps: 3000 x g, 4000&nbsp;x g, 4 °C, 15 min each, followed by filtration (pore size 0.45 µm), and centrifugation at 10,000&nbsp;x g, (4 °C, 15 min). To further produce ‘EV-depleted cell-free conditioned media’, cell-free conditioned media were ultracentrifuged overnight (16 h, 180,000&nbsp;x g).</p><p><br></p><p>Production and isolation of EVs&nbsp;</p><p>For the production of EVs, bacteria were grown in the respective media at 30 °C and 120 rpm shaking as described previously43. The cultures were then harvested at the indicated time points. To isolate EVs, the 100 ml culture was centrifuged (3,000&nbsp;× g&nbsp;for 15 min; at 4 °C; 4,000&nbsp;× g&nbsp;for 15 min; at 4 °C). Supernatants were filtered through a 0.45&nbsp;µm filter (Merck Millipore, Darmstadt, Germany), and the filtrate was centrifuged at 10,000&nbsp;× g&nbsp;for 15 min at 4&nbsp;°C. Subsequently, EVs were pelleted from this supernatant via ultracentrifugation, at 180,000&nbsp;× g&nbsp;for one hour using OptiSeal Polypropylene tubes (MLA-50 rotor, Optima MAX-XP, Beckman-Coulter, Brea, CA, USA). The supernatant was discarded, and the pellet was resuspended in 30 µl PBS (pH 7.4) for every 100 ml of bacterial liquid culture.</p>	<p>For the EV lipid extraction,&nbsp;B. cereus&nbsp;was grown in LB or MOD for 9, at 30 °C while shaking (120 rpm), and EVs were collected via ultracentrifugation, as described in the previous section. To extract EV-lipids, equal amounts of EVs (1.2 × 109) were pelleted and resuspended in 150 µl of ice-cold isopropanol (Carl Roth, Karlsruhe, Germany) containing internal standards (provided by the EMBL Metabolomics Core Facility). The samples were incubated on ice for 20 minutes, followed by 5 minutes of vortexing and centrifugation at 14,000 × g for 15 minutes at 4&nbsp;°C. The supernatant containing the extracted lipids was subsequently frozen until further analysis. A quality control (QC) sample was prepared by pooling 20 µl from each sample together.&nbsp;</p>	<p>LC-MS/MS analysis was performed on a Vanquish UHPLC system coupled to an Orbitrap Exploris&nbsp;240 high-resolution mass spectrometer (Thermo Scientific, MA, USA) in negative and positive ESI (electrospray ionization) mode. Chromatographic separation was carried out on an ACQUITY Premier CSH C18 column (Waters; 2.1&nbsp;mm x 100 mm, 1.7 µm) at a flow rate of 0.3&nbsp;mL/min. The mobile phase consisted of water:acetonitrile (40:60, v/v;&nbsp;mobile phase phase A) and isopropanol:acetonitrile (9:1, v/v;&nbsp;mobile phase&nbsp;B), which were modified with a total buffer concentration of 10 mM ammonium acetate + 0.1 % acetic acid (negative mode) and 10 mM ammonium formate + 0.1% formic acid (positive mode), respectively. The following gradient (23 min total run time including re-equilibration) was applied (min/%B): 0/15, 2.5/30, 3.2/48, 15/82, 17.5/99, 19.5/99, 20/15, 23/15. Column temperature was maintained at 65°C, the autosampler was set to 4°C and sample injection volume was 5 µL.</p><p><br></p>	<p>Analytes were recorded via a full scan with a mass resolving power of 120,000 over a mass range from 200 – 1700 m/z (scan time: 100 ms, RF lens: 70%). To obtain MS/MS fragment spectra, data-dependant acquisition was carried out (resolving power: 15,000; scan time: 54 ms; stepped collision energies [%]: 25/35/50; cycle time: 600 ms). Ion source parameters were set to the following values: spray voltage: 3250 V / -3000&nbsp;V, sheath gas: 45 psi, auxiliary gas: 15 psi, sweep gas: 0 psi, ion transfer tube temperature: 300°C, vaporizer temperature: 275°C.</p>	<p>All experimental samples were measured in a randomized manner. Pooled quality control (QC) samples were prepared by mixing equal aliquots from each processed sample. Multiple QCs were injected at the beginning of the analysis in order to equilibrate the analytical system. A QC sample was analyzed after every 5th experimental sample to monitor instrument performance&nbsp;throughout the sequence. For determination of background signals and subsequent background subtraction, an additional processed blank sample was recorded. Data was processed using MS-DIAL ( DOI: 10.1038/nmeth.3393) and raw peak intensity data was normalized via total ion count of all detected analytes (DOI: 10.1021/acs.analchem.9b01505). Feature identification was based on accurate mass, isotope pattern, MS/MS fragment scoring, retention time and intra-class elution pattern matching (10.1007/s00216-019-02364-2)</p>	<p>Thermo Xcalibur software (Thermo Scientific, Waltham, MA, USA) was employed to acquire data and perform preliminary data evaluation, including assessment of chromatogram quality and obtaining extracted ion chromatograms peak integration and raw data visualisation. Alignment of LC-MS/MS data, peak picking, adduct deconvolution, and normalisation were done using Progenesis QI (Waters, Nonlinear Dynamics, Newcastle upon Tyne, UK) software. Lipid annotations were performed using LipidBlast database and EMBL Metabolomics Core Facility spectral library (http://curatr.mcf.embl.de) for MS and MS/MS-based identification. The mass tolerance in MS1 and MS2 was 5 ppm and 10 ppm, respectively.</p><p>To analyse differentially expressed lipids and lipid abundance, files from both negative and positive measurement modes were combined to avoid counting duplicates or lipids that are measured in both modes. Next, the average of all quality control (QC) samples was calculated for each lipid. Then, we compared QC lipid values between positive and negative modes, selecting only the mode with the higher value for further analysis. Duplicates were removed by keeping the replicate with the higher value. Finally, both modes were combined into a single list, ensuring each lipid had only one respective measurement. To annotate the lipid class and subclass, the metabolomics workbench, available at www.metabolomicsworkbench.org66&nbsp;was used. To determine the number of abundant lipid species, we considered lipids to be abundant in a replicate only if their detected value exceeded the blank. With three biological replicates analysed per condition, lipids were only counted as abundant if present in at least two out of three biological replicates. Subsequently, we quantified the relative proportions of each lipid class and subclass.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ehling-Schulz	Laimer-Digruber	Edelbacher
+Study Person First Name	Monika	Astrid	Tanja
+Study Person Mid Initials			V
+Study Person Email	monika.ehling-schulz@vetmeduni.ac.at	astrid.laimer-digruber@vetmeduni.ac.at	tanja.edelbacher@vetmeduni.ac.at
+Study Person Phone			
+Study Person Fax			
+Study Person Address	Veterinaerplatz 1, 1210 Vienna		
+Study Person Affiliation	Veterinärmeidzinische Universität		
+Study Person Roles	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

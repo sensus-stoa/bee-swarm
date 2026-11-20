@@ -1,0 +1,133 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	ADDICTO	BAO	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	PATO	SNOMED	UO	mesh	ror
+Term Source File	http://addictovocab.org/addicto.owl	http://www.bioassayontology.org/bao/	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/pato.owl	http://snomed.info/sct/900000000000207008/version/20251017	http://purl.obolibrary.org/obo/uo.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz	https://w3id.org/biopragmatics/resources/ror/ror.owl.gz
+Term Source Version		2.8.19		2026-05-28	1.25-20251112T1620Z-unstable(1.26)	3.91.0			1.0.1		2026-05-13	26.02d	2026-05-08	2025-05-14		2026-01-16	2025	2.0
+Term Source Description	Addiction Ontology	BioAssay Ontology	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	PATO - the Phenotype And Trait Ontology	SNOMED CT (International Edition)	Units of measurement ontology	Medical Subject Headings	Research Organization Registry
+INVESTIGATION
+Investigation Identifier	MTBLS15091
+Investigation Title	Serum Metabolomic Profiling Reveals Load-Specific Adaptations to Resistance Training
+Investigation Description	
+Investigation Submission Date	2026-07-20
+Investigation Public Release Date	2026-07-20
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15091
+Study Title	Serum Metabolomic Profiling Reveals Load-Specific Adaptations to Resistance Training
+Study Description	This study deposits the untargeted ¹H-NMR serum metabolomics dataset of a parallel-group, longitudinal resistance training intervention designed to identify load-specific and training-status-specific metabolomic signatures in healthy young men. Seventeen healthy young men (age 24 ± 3 yr; height 173 ± 6 cm; body mass 71 ± 13.7 kg) were allocated to one of two resistance training protocols differing exclusively in mechanical load: high-load (HL; 80% of one-repetition maximum [1-RM]; n = 9) or low-load (LL; 30% 1-RM; n = 8). Both groups completed an 8-week supervised programme of twice-weekly lower-limb resistance training comprising bilateral 45° leg press and bilateral knee extension, with three working sets per exercise carried to concentric volitional failure and standardised rest intervals of 90 s between sets and 120 s between exercises. Training loads were reassessed at the intervention midpoint to preserve relative intensity. Fasting venous serum was obtained at two time points — immediately before the first training session (Before) and after the final session of the 8-week intervention (After-HL and After-LL) — yielding a total of 34 serum samples. Blood was drawn from the median cubital vein after a 10-h overnight fast and 1 h of supine rest, with dietary intake recorded for the preceding 24 h. Serum was separated by centrifugation at 3000 rpm for 10 min and stored at −80 °C until analysis. Untargeted one-dimensional ¹H-NMR spectroscopy was performed at 600 MHz following 3-kDa ultrafiltration to remove macromolecular signal contributions, with phosphate buffer in D2O as field-frequency lock and TSP-d4 as internal chemical shift reference and quantification standard; 256 transients were accumulated per sample. Spectral processing, metabolite identification and absolute quantification were performed using Chenomx NMR Suite, yielding a final matrix of 51 quantified serum metabolites across all 34 samples. The deposition comprises raw 1D ¹H-NMR free induction decay (FID) files, processed spectra, the quantified metabolite concentration matrix, and the associated sample and assay metadata in ISA-Tab format. The downstream analytical pipeline applied to these data — univariate paired t-tests and one-way ANOVA with Benjamini–Hochberg false discovery rate correction, principal component analysis, partial least squares-discriminant analysis, and Random Forest classification with stratified 5×5-fold repeated cross-validation, 1000-iteration permutation testing and exhaustive enumeration of 1- to 5-metabolite subsets — is fully described in the associated publication. This dataset is made openly available to support independent re-analysis of training-status-specific and load-specific serum metabolomic signatures of resistance training in healthy young adults.
+Study Submission Date	2026-07-20
+Study Public Release Date	2026-07-20
+Study File Name	s_MTBLS15091.txt
+Comment[Created At]	2026-05-21
+Comment[Funder]	Coordenação de Aperfeicoamento de Pessoal de Nível Superior
+Comment[Funder ROR ID]	https://ror.org/00x0ma614
+Comment[Grant Identifier]	001
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-07-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	nmr
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	normal	Brazilian Biosciences National Laboratory	targeted metabolite profiling	Serum	Longitudinal Studies	Varian Unity Inova 600 MHz spectrometer	Homo sapiens	blood serum	experimental sample	targeted analysis	1H nuclear magnetic resonance spectroscopy	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PATO_0000461	https://ror.org/04kjcjc51	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/NCIT_C13325	http://id.nlm.nih.gov/mesh/D008137	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000430	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000133	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/CHMO_0000593	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	PATO	ror	MSIO	NCIT	mesh	MTBLS	NCBITaxon	BTO	CHMO	MS	CHMO	EDAM
+Comment[Study Design Category]	disease	facility	default	default	default	Instrument	Organism	Organism part	Sample type	measurement-type		omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Diego Salgueiro; Matthews Martins; Guilherme Scherrer; Denis Valério; Alex Castro; Renato Barroso; Richard Leite; Valerio Barauna
+Study Publication Title	Serum Metabolomic Profiling Reveals Load-Specific Adaptations to Resistance Training
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Timepoint	Resistance training
+Study Factor Type	timepoint	intervention
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://humanbehaviourchange.org/ontology/BCIO_037000
+Study Factor Type Term Source REF	EFO	ADDICTO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15091_NMR__-1.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	NMR
+Comment[Assay Type]	NMR spectroscopy assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000623
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[NMR tube type];Parameter Value[Solvent];Parameter Value[Sample pH];Parameter Value[Temperature];Parameter Value[Instrument];Parameter Value[NMR Probe];Parameter Value[Number of transients];Parameter Value[Pulse sequence name];Parameter Value[Magnetic field strength]
+Comment[Assay Field Default Value]	5 mm (Wilmad-LabGlass);0.1 M phosphate buffered D2O;7.4;298;Varian Unity Inova 600 MHz spectrometer;5 mm CPTCI 1H/13C/15N/D Z-GRD cryoprobe;256;1D 1H with presaturation (presat);14.1
+Comment[Assay Field Default Unit]	;;;kelvin;;;;;tesla
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000385;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000350;;http://purl.obolibrary.org/obo/UO_0000012;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000430;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000461;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000512;http://purl.obolibrary.org/obo/UO_0000228
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;;UO;MTBLS;MTBLS;;MTBLS;UO
+Comment[Measurement Type]	targeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor]	1H nuclear magnetic resonance spectroscopy
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/CHMO_0000593
+Comment[Assay Descriptor Term Source REF]	CHMO
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Extraction	Metabolite identification	NMR sample	NMR spectroscopy
+Study Protocol Type	Sample collection	data transformation	Extraction	metabolite identification	NMR sample	NMR spectroscopy
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/MI_2131	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111
+Study Protocol Type Term Source REF		OBI	OBI	MI	MTBLS	MTBLS
+Study Protocol Description	<p>Venous puncture was performed via the median cubital vein located in the antecubital fossa. After collection (8 mL), blood was allowed to rest for 30 minutes at room temperature. Following this period, samples were centrifuged for 10 minutes at 3,000 RPM at room temperature. After this step, approximately 4 mL of serum was stored at −80°C.&nbsp;</p>	<p>The processing of the 1H-NMR spectral data was performed using the Chenomx® NMR Suite 7.6 software (Chenomx Inc., Edmonton, AB, Canada). Spectral processing consisted of spectral phase adjustment, baseline correction, and signal removal from water (4.6–5.1 ppm). Then, a 0.3 Hz line-broadening apodization function was applied and the spectrum was calibrated by the internal reference signal (TMSP-d4).</p>	<p>Prior to analysis, a 3 kDa filter (Amicon Ultra, Sigma-Aldrich, USA) was washed using 500 µL of Milli-Q water. After applying Milli-Q water to the filter, it was centrifuged at 14,000 RPM for 10 minutes at 4°C. This process was repeated five times. Following this washing step, 350 µL of previously stored serum was loaded onto the filter and centrifuged at 14,000 RPM for 45 minutes at 4°C. The resulting filtrate (200 µL) was mixed with 60 µL of 0.1 mol/L phosphate buffer (NaH2PO4/Na2HPO4, pH 7.4), 6.06 µL of 50 mmol/L TMSP-d4 in D2O (internal chemical shift reference), and 340 µL of Milli-Q water.</p>	<p>The Chenomx® NMR Suite 7.6 software (Chenomx Inc.), along with the Human Metabolome Database - HMDB 4.0, were used to identify the metabolites. Quantitative analyses were performed with the integral of signals of each metabolite.</p><p>Spectral quality was evaluated against a set of predefined acceptance criteria established for high-precision ¹H-NMR phenotyping, comprising a line width at 50% peak height of the TMSP-d4 reference signal not exceeding 1.0 Hz, and a flat, distortion-free baseline throughout the water-suppression region (δ 4.5–5.0 ppm). The observed line width of 0.79 ± 0.10 Hz and a signal-to-noise ratio of 4,180 ± 523 a.u. confirmed that instrumental performance was well within the defined thresholds. Water suppression was uniform and reproducible across all spectra, with no detectable distortion of adjacent resonances. All 34 spectra fulfilled the established quality criteria; consequently, no spectra were excluded from subsequent analyses. Analytical reproducibility was further substantiated by the systematic use of TSP-d4 as an internal reference standard for both chemical shift calibration and signal normalization. The coefficient of variation (CV) of the TSP-d4 signal was consistently low across the entire dataset (0.49 mM ± 0.001; CV = 0.3%), providing robust evidence of spectrometer stability throughout the analytical run. All 48 annotated metabolites were assigned confidence level 2 according to the Metabolomics Standards Initiative (MSI) reporting framework.</p>	<p>The final solution was transferred to 5-mm NMR tubes (Wilmad-LabGlass, Vineland, NJ, USA) for spectral acquisition. The sample tuning adjustments with the device were performed by a specialized technician.</p>	<p>Spectral acquisition was performed by 1H-NMR spectrometer at 600MHz equipped with triple resonance cryogenic inverse probe (Varian, Agilent Inova). The sample tuning adjustments with the device were performed by a specialized technician, and the other adjustments (lock and shimming) were performed manually for each sample. The analysis was performed at a constant temperature of 298 K (25 °C). The spectrum was acquired via 256 scans, with an interval of 1.5 seconds and an acquisition time of 4 seconds for each scan.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Extraction Method		NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength
+Study Protocol Parameters Name Term Accession Number					;;;	;;;;
+Study Protocol Parameters Name Term Source REF					;;;	;;;;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Salgueiro
+Study Person First Name	Diego
+Study Person Mid Initials	
+Study Person Email	diegosalgueiro@usp.br
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Universidade de São Paulo
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0002-5712-1546
+Comment[Study Person Affiliation ROR ID]	https://ror.org/036rp1748

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	CO_325	MTBLS	FBcv	EFO	NCIT	operation		SIO	ENVO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/EFO			http://purl.obolibrary.org/obo/ncit.owl			
+Term Source Version	29		1.0		132			18.10e			
+Term Source Description	Ontology for Biomedical Investigations		User defined terms		Experimental Factor Ontology			NCI Thesaurus OBO Edition			
+INVESTIGATION
+Investigation Identifier	MTBLS1455
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-01-16
+Investigation Public Release Date	2020-05-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1455
+Study Title	A data set of 255000 randomly selected and manually classified extracted ion chromatograms for evaluation of peak detection methods
+Study Description	<p>Nontargeted mass spectrometry (MS) has become an important method over the last years in the fields of metabolomics and environmental research. While more and more algorithms and workflows become available to process a large number of data sets nontargeted, there still exist few manually evaluated universal test data sets for refining and evaluating these methods. The first step of nontargeted screening, peak detection (and refinement of it) is arguably the most important step for nontargeted screening. However, the absence of a model data set makes it harder for researchers to evaluate peak detection methods. In this Data Descriptor, we provide a manually checked data set consisting of 255000 EICs (5000 peaks randomly sampled from across 51 samples) for the evaluation on peak detection and gap filling algorithms. The data set was created from a previous real-world study, of which a subset was used to extract and manually classify ion chromatograms by three mass spectrometry experts. The data set consists of 51 converted mass spectral files in mzML format and an MZmine peaklist with annotations.</p><p><br></p><p>Links:</p><p><a href='https://doi.org/10.5281/zenodo.3756211' rel='noopener noreferrer' target='_blank'>Zenodo complete data set</a></p>
+Study Submission Date	2020-01-16
+Study Public Release Date	2020-05-26
+Study File Name	s_MTBLS1455.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	gap filling	peak detection	Dataset descriptor	Computational mass spectrometry	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/FBcv_0003021	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	MTBLS	MTBLS	FBcv	MTBLS	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	32331455
+Study Publication DOI	10.3390/metabo10040162
+Study Publication Author List	Müller Erik, Huber Carolin, Beckers Liza-Marie, Brack Werner, Krauss Martin, Schulze Tobias
+Study Publication Title	A Data Set of 255,000 Randomly Selected and Manually Classified Extracted Ion Chromatograms for Evaluation of Peak Detection Methods
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	location	longitude	Latitude	Study site identifier	River	date	Processing	Comment
+Study Factor Type	Location	longitude	latitude	Study Site Identifier	river	Date	Processing	Comment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25341	http://semanticscience.org/resource/SIO_000318	http://semanticscience.org/resource/SIO_000319	http://purl.obolibrary.org/obo/NCIT_C83081	http://purl.obolibrary.org/obo/ENVO_00000022	http://purl.obolibrary.org/obo/NCIT_C25164	http://purl.obolibrary.org/obo/NCIT_C48177	http://purl.obolibrary.org/obo/NCIT_C25393
+Study Factor Type Term Source REF	NCIT	SIO	SIO	NCIT	ENVO	NCIT	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1455_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The sampling was conducted at the Holtemme river (Saxony-Anhalt, Germany). The river originates in the Harz Mountains and flows into the Bode river after 47 km. Agriculture is the dominating land use in the Holtemme river catchment. Furthermore, the river passes through two medium-sized towns and receives the effluent of two wastewater treatment plants (WWTPs). The first WWTP (WWTP I) serves an area of 300 km² with about 50,000 inhabitants. The second WWTP (WWTP II) covers an urban area of 143 square km with about 36,800 inhabitants connected to the WWTP. Further technical details on the WWTPs are presented in the Supporting Information. At 16 spots along the river, grab samples with a volume of 500 ml were taken. To guarantee relative consistency of these samples, the time at which they were taken was adjusted to the flow rate of the river to sample the same water package at all spots. More detailed information about the samples is provided in the appendix. Additionally, three two-hour composite samples intervals of the WWTP effluents were provided by the operators. These samples were taken time-proportional in 2 min intervals.</p>	<p>To prepare the samples for a direct large volume injection of 100 µl, a 2 M ammonium formate buffer, 25 µl of methanol and 25 µl of an internal standard mixture containing 40 isotope-labelled compounds (40 ng/ml) were added to 1 ml of sample. These 40 internal standards were added to all measured samples except for the blanks.</p>	<p>A Kinetex 2.6 µm EVO C18 (50 x 2.1 mm) column with a pre-column (C18 EVO 5 x 2.1 mm) and an inline filter was used at 40 °C to perform chromatographic separation of the samples. The solvent gradient across all samples was identical. The chromatograpic system was an UltiMate 3000 LC system (Thermo Scientific).</p>	<p>The data provided in this study was measured on a Q Exactive Plus (Thermo Scientific) at the nominal resolving power of 140,000 referenced to m/z 200 in full-scan mode with a positive ionization. The sheath gas flow rate was 45, the aux gas flow rate was 1. The spray voltage was set to 3.8 kV. The capillary temperature and the aux gas heater temperature were both set to 300 °C. The S-lens RF level was 70. The scan range was set to a m/z of 100-1000. At the beginning and at the end of the batch, calibration standards were run at 1, 10, 100, and 1000 ng/L for quality control purposes</p>	<p>Raw data from the LC-HRMS were converted into mzML format (centroid mode) by ProteoWizard v3.0.18265. Peak lists were generated using the software MZmine v2.26.</p>	<p>No metabolites have been identified. This dataset is a demo dataset for the development of peak detection methods (i.e. peak picking and gap filling).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Schulze	Müller	Huber	Beckers	Brack	Krauss
+Study Person First Name	Tobias	Erik	Carolin	Liza-Marie	Werner	Martin
+Study Person Mid Initials						
+Study Person Email	tobias.schulze@ufz.de					
+Study Person Phone	00493412351083					
+Study Person Fax						
+Study Person Address	Permoserstr. 15, 0341 Leipzig, Germany					
+Study Person Affiliation	Helmholtz Centre for Environmental Research - UFZ	Helmholtz Centre for Environmental Research - UFZ, Department of Effect-Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany.	Helmholtz Centre for Environmental Research - UFZ, Department of Effect-Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany.	Helmholtz Centre for Environmental Research - UFZ, Department of Effect-Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany.	Helmholtz Centre for Environmental Research - UFZ, Department of Effect-Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany.	Helmholtz Centre for Environmental Research - UFZ, Department of Effect-Directed Analysis, Permoserstrasse 15, 04318 Leipzig, Germany.
+Study Person Roles	Principal Investigator	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT					

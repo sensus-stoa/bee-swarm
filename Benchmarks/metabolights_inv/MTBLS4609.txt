@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	EFO	UBERON	NCIT	CHMO	ENVO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO				
+Term Source Version	29	1	132	4/1/2022			
+Term Source Description	Ontology for Biomedical Investigations	User defined terms	Experimental Factor Ontology				
+INVESTIGATION
+Investigation Identifier	MTBLS4609
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-03-31
+Investigation Public Release Date	2022-08-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS4609
+Study Title	Hidden molecular clues in marine sediments revealed by untargeted mass spectrometry imaging
+Study Description	<p>Mass spectrometry imaging (MSI) in sedimentary archives can produce records of molecular proxies at μm-scale resolution. For example, in annually varved sediments of the Santa Barbara Basin, such a fine resolution allows deciphering sub-annual distributions of archaeal tetraether lipids, haptophyte-derived alkenones and sterols. Herein, we reported the establishment of an untargeted data processing workflow aimed at dissecting the MSI datasets and extracting information beyond that obtained by targeted analysis of known molecular proxies. The combination of MSI and the untargeted workflow not only increases the spatial resolution for molecular stratigraphy but also dramatically broadens the number and diversity of molecular signals evaluated, enabling us to discover unique molecular signatures imprinted by various biogeochemical processes. We applied the proposed workflow to two MSI datasets that were both measured on the uppermost ∼10&nbsp;cm of the Santa Barbara Basin sediments while covering different mass ranges. Two matrices of 18625 x 293 and 18963 x 323 (number of spectra x number of peaks) were, respectively, extracted after peak alignment using bin-wise kernel density estimation and subsequent peak picking by peak prominence filtering combined with geochemical context-based filtering. Feature extraction by non-negative matrix factorization revealed in total 15 stable molecular clusters with distinct spatial distributions in the sediments. Each cluster typically comprised several to dozens of compounds, with the majority of compounds in each cluster likely belonging to similar chemical taxonomies. Some of these clusters can be linked to specific biogeochemical processes. For example, chlorin-like compounds are possibly related to diatom production, alkenones are related to coccolithophorid production, and steranes and long-chain fatty acids likely represent terrigenous input. Supervised learning from these data mining results further extracted molecular signatures with proxy potential that appear to be linked to specific environmental conditions inferred from historical oceanographic data. However, generalizability to other sedimentary settings will require further investigation.</p>
+Study Submission Date	2022-03-31
+Study Public Release Date	2022-08-15
+Study File Name	s_MTBLS4609.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	matrix-assisted laser desorption-ionisation imaging mass spectrometry	ultra high resolution molecular stratigraphy	Machine Learning	feature extraction	untargeted metabolites	biogeochemical process
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000054	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C176231	http://www.ebi.ac.uk/efo/EFO_0000494	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/ENVO_02500030
+Study Design Type Term Source REF	CHMO	MTBLS	NCIT	EFO	MTBLS	ENVO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/feart.2022.931157
+Study Publication Author List	Liu Weimin, Alfken Susanne, Wörmer Lars, Lipp Julius S., Hinrichs Kai-Uwe
+Study Publication Title	Hidden molecular clues in marine sediments revealed by untargeted mass spectrometry imaging
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sediment depth	Oxygen concentration	Sea surface temperature	Replicate
+Study Factor Type	Depth	concentration	temperature	replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25333	http://purl.obolibrary.org/obo/CHMO_0002820	http://www.ebi.ac.uk/efo/EFO_0001702	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	NCIT	CHMO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS4609_MSImaging___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The sample employed in the study was collected from an intact <strong>sediment slab </strong>from box core SPR0901-05BC retrieved in 2009 from the Santa Barbara Basin (SBB). The chosen segments from the 30 cm long slab cover the topmost ~5 cm and 5-10 cm from a box core that had significantly compacted since 2009. The interior sediment of the slab remained anoxic. The segments were sampled using double L channels resulting in a width of 1.5 and 0.7 cm thickness.</p><p><br></p><p>A total of 4 MSI datasets acquired from the uppermost ~10 cm of box core SPR0901‐05BC collected from the center of SBB were employed to evaluate the data processing workflow proposed in this study. The sediment samples and MALDI-FT-ICR-MS analysis protocol have been described in detail<strong>[1]</strong>. Dataset A1 and A2 published previously<strong>[1] </strong>were measured with a mass window of 520-580 Da for mapping the&nbsp;index and dataset B1 and B2 published previously<strong>[2]</strong> with a wider mass window of 375-525 Da for mapping the stanol/stenol ratios. A1 and B1 were obtained from the uppermost ~ 5 cm of the sediment and A2 and B2 were obtained from 5-10 cm interval on the sediment. For the sake of brevity, A1 and A2, B1 and B2 were merged respectively in this study, and the resulting new datasets were coded as datasets A and B.</p><p><br></p><p><strong>Water column data treatment</strong></p><p>The seasonally measured water column data, including temperature, salinity, oxygen concentrations and nutrient concentrations, were obtained at the CalCOFI (California Cooperative Oceanic Fisheries Investigation) station 81.8 46.9, situated in the center of Santa Barbara Basin and in close proximity to the core location. The water column data were treated by the same approach described previously<strong>[1]</strong>, i.e., including the integration over water parcel and interpolation.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Alfken S, Wörmer L, Lipp JS, Wendt J, Schimmelmann A, Hinrichs KU. Mechanistic insights into molecular proxies through comparison of subannually resolved sedimentary records with instrumental water column data in the santa barbara basin, Southern California. Paleoceanography and Paleoclimatology. 2020 Oct;35(10):e2020PA004076. doi:10.1029/2020PA004076.</p><p><strong>[2]</strong> Alfken S, Wörmer L, Lipp JS, Napier T, Elvert M, Wendt J, Schimmelmann A, Hinrichs KU. Disrupted coherence between upwelling strength and redox conditions reflects source water change in Santa Barbara Basin during the 20th century. Paleoceanography and Paleoclimatology. 2021 Dec;36(12):e2021PA004354. doi:10.1029/2021PA004354.</p>	<p>The collected samples were prepared as previously described<strong>[1]</strong>. Shortly, the intact and freeze-dried 5‐cm sediment pieces by were stabilizing the intact, freeze‐dried 5‐cm sediment pieces in a gelatin‐based mixture (5% gelatin, 2% sodium carboxymethyl cellulose; Sigma Aldrich Chemie GmbH, Munich, Germany) and subsequently sliced into sequential 60‐μm thick sections with a cryomicrotome (Microm HM 505 E Cryostat, GMI, Ramsey, Minnesota, USA). The 60‐μm slices were adhered onto indium tin oxide (ITO)‐coated glass slides.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Alfken S, Wörmer L, Lipp JS, Wendt J, Taubner H, Schimmelmann A, Hinrichs KU. Micrometer scale imaging of sedimentary climate archives–Sample preparation for combined elemental and lipid biomarker analysis. Organic Geochemistry. 2019 Jan 1;127:81-91. doi:10.1016/j.orggeochem.2018.11.002.</p>	<p>MALDI-FT-ICR-MS high‐resolution mass spectrometry data were produced by rastering with the laser across the samples in a defined rectangular area at a 200‐μm resolution spot distance. Mass spectra were generated on individual slices with a 95% data reduction during acquisition in the <strong>ftmsControl</strong> software program (Bruker Daltonik). To improve sensitivity, spectra were acquired in continuous accumulation of selected ions (CASI) mode with an isolation window of 450 ± 75 and 550 ± 30 m/z. External mass calibration was performed in electrospray ionization mode with sodium trifluoroacetate (NaTFA), followed by internal lock mass calibration of single MSI spectra on the unspecific, but highly abundant m/z of 433.38047 corresponding to the Na+ adduct of a C30H50 compound (e.g., squalene, diploptene) and the Na+ adduct of pheophorbide (m/z 557.25231). Laser power, number of shots and frequency were optimized for best signal intensities with final settings of 35%, 700 and 1,000 Hz, respectively.</p>	<p>No histology was carried out in this experiment.</p>	<p>The MSI datasets were first exported to plain text files (*.txt) from <strong>Data Analysis </strong>version 4.4 software (Bruker Daltonics). These plain text files were taken as inputs by the proposed workflow in this study, which is implemented in an in-house developed <strong>python</strong> package that is publicly available (<a href='https://github.com/weimin-liu/msi_feature_extraction' rel='noopener noreferrer' target='_blank'>https://github.com/weimin-liu/msi_feature_extraction</a>). In brief, the workflow includes a data cleaning module for mass calibration, peak normalization, peak alignment and peak picking, and a data mining module for molecular signatures extraction and clustering of molecules. In addition, <strong>ElasticNet </strong>was employed to train multivariate linear regression models for indicating environmental conditions using the data mining results, in order to demonstrate the potential of supervised learning for molecular proxy discovery.</p>	<p>Chemical formulas of the detected compounds were assigned by their accurate mass-to-charge-ratios obtained by the cluster-wise KDE approach proposed in this study. We used mass bins&nbsp;with an interval of 1 Da to collect m/z from all spectra and get an array of bins. We then fitted KDE to the distribution of m/z within each sorted bin using a Gaussian kernel function, the bandwidth of which is automatically selected by improved Sheather Jones algorithm implemented in <strong>KDEpy[1]</strong>, which is robust in fitting multimodal distributions. Reference m/z ratios were detected on the KDE curve by first normalizing its height to [0,1] and then picking local maxima with peak prominence<strong>[2]</strong> greater than a pre-defined threshold.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Odland T. tommyod/KDEpy: Kernel Density Estimation in Python (v0.9.10). Zenodo. 2018. doi:10.5281/zenodo.2392268.</p><p><strong>[2]</strong> Virtanen P, Gommers R, Oliphant TE, Haberland M, Reddy T, Cournapeau D, Burovski E, Peterson P, Weckesser W, Bright J, van der Walt SJ, Brett M, Wilson J, Millman KJ, Mayorov N, Nelson ARJ, Jones E, Kern R, Larson E, Carey CJ, Polat İ, Feng Y, Moore EW, VanderPlas J, Laxalde D, Perktold J, Cimrman R, Henriksen I, Quintero EA, Harris CR, Archibald AM, Ribeiro AH, Pedregosa F, van Mulbregt P; SciPy 1.0 Contributors. SciPy 1.0: fundamental algorithms for scientific computing in Python. Nat Methods. 2020 Mar;17(3):261-272. doi:10.1038/s41592-019-0686-2. Epub 2020 Feb 3. Erratum in: Nat Methods. 2020 Feb 24;: PMID:32015543.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Sample mounting;Sectioning instrument;Section thickness	Scan polarity;Scan m/z range;Instrument;Instrument manufacurer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Linescan sequence;Scan pattern;Scan type;Number of scans	Stain;High-res image	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number		;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;	;	
+Study Protocol Parameters Name Term Source REF		;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu	Alfken	Wörmer	Lipp	Hinrichs
+Study Person First Name	Weimin	Susanne	Lars	Julius	Kai-Uwe
+Study Person Mid Initials				Sebastian	
+Study Person Email	wliu@marum.de	salfken@marum.de	lwoermer@marum.de	jlipp@uni-bremen.de	khinrichs@uni-bremen.de
+Study Person Phone					
+Study Person Fax					
+Study Person Address	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen, Bremen, Germany	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen, Bremen, Germany	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen, Bremen,Germany	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen, Bremen, Germany	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen
+Study Person Affiliation	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen	Organic Geochemistry Group, MARUM – Center for Marine Environmental Sciences, University of Bremen, Bremen, Germany
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT

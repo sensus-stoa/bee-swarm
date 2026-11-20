@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MESH	MI	MS	MSIO	MTBLS	NCBITAXON	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version	2025-10-21	3.87.0				1.0.1			25.06e	2025-12-18	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS13492
+Investigation Title	Stable isotope labelling of Toxoplasma gondii under iron and copper restriction
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-10
+Investigation Public Release Date	2026-03-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13492
+Study Title	Stable isotope labelling of Toxoplasma gondii under iron and copper restriction
+Study Description	<p>Toxoplasma uses metal nutrients like iron and copper for vital functions in their energy metabolism. Here, we have used stable isotope labelling to track the incorporation of glucose and glutamine into metabolic pathways, primarily focusing on central carbon metabolism, when these metals are disrupted. We cultured intracellular Toxoplasma for a period of 4 hours in the present of 13C glucose or 13C glutamine before extracting metabolites and performing mass spectrometry analysis. We included several conditions in our experiment that included metal deprivation (using chelation or genetic means) along with parasites recovering from metal deprivation. </p><p><br></p><p><br></p>
+Study Submission Date	2025-12-10
+Study Public Release Date	2026-03-18
+Study File Name	s_MTBLS13492.txt
+Comment[Created At]	2025-12-02T14:43:12.256569
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Stable isotope	Toxoplasma	targeted metabolites	Parasites	Iron
+Study Design Type Term Accession Number	http://snomed.info/id/35740003	http://purl.obolibrary.org/obo/NCIT_C75538	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://id.nlm.nih.gov/mesh/D010271	http://purl.obolibrary.org/obo/NCIT_C598
+Study Design Type Term Source REF	SNOMED	NCIT	MTBLS	MESH	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2025.08.11.669662
+Study Publication Author List	Hanna Jack C., Shikha Shikha, Sloan Megan A., Harding Clare R.
+Study Publication Title	Global translational and metabolic remodelling during iron deprivation in <i>Toxoplasma gondii</i>
+Study Publication Status	preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0010558
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Drug treatment
+Study Factor Type	Deferoxamine
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C416
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13492_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS13492_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Metabolite identification	Extraction	Chromatography	Mass spectrometry	Data transformation
+Study Protocol Type	Sample collection	metabolite identification	Extraction	chromatography	mass spectrometry	data transformation
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://purl.obolibrary.org/obo/MI_2131	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000
+Study Protocol Type Term Source REF	MTBLS	MI	MTBLS	CHMO	CHMO	OBI
+Study Protocol Description	<p>Metabolites were extracted from Toxoplasma tachyzoites cultured on human foreskin fibroblasts. For control conditions 2 x 15 cm dishes containing confluent HFFs for control conditions and 4 x 15 cm dishes for iron deprived conditions were pooled to generate each replicate. For iron deprivation, confluent host cells in 15 cm dishes were incubated with D3 media containing 100 µM deferoxamine for 24 hours prior to infection. For iron recovery, the media was changed on iron depleted parasites and they were cultured for a further 24 hours in iron replete media. After 24 hours of infection dishes were moved to a container of ice water to rapidly quench metabolism. Cells were washed in ice-cold PBS twice to remove extracellular parasites and old media, before being scraped and passed through a 25 gauge needle to mechanically release parasites. Parasites were filtered from host material through a 3 µm filter before centrifugation at 1 °C for 25 mins at 3000 xg. Pellets were resuspended and washed in 1 ml ice-cold PBS before being counted using a haemocytometer. 4 x 10^7 parasites were resuspended in 200 µl of a chloroform /methanol/water mixture (1:3:1 ratio). Samples were shaken for 1 hour at 4 °C and centrifuged at 20,000 xg for 5 minutes at 4°C. Metabolites in the supernatant were collected. Samples were then stored at -80 until analysis by mass spectrometry.</p>	<p>mzXML files were processed on the IDEOM platform. Peak detection was performed with XCMS and MZ match was used for peak annotation. IDEOM macro tools were used for data filtering and putative metabolite assignment. Features with poor peak shape or multiple peaks were excluded. Data were normalised across conditions by median normalisation. Missing values were imputed with 1/5 the minimum detected value. Data were also log transformed and mean centred.</p>	<p>Samples were extracted using a mixture of 1:3:1 Chloroform methanol water. 100 uL of extraction solvent was used per 20,000,000 tachyzoites. An identical tube without parasites was incubated alongside experimental samples to act as a blank. All samples were incubated shaking for 1 hour at 4°C before being centrifuged at 20,000 xg. Metabolites in supernatant were collected. A pooled sample was prepared using 5 ul from each sample.</p><p><br></p>	<p>Metabolites were quantified by LCMS as previously described (Pountain and Barrett, 2019). Samples were separated by high performance liquid chromatography on a Dionex UltiMate 3000 RSLC system (Thermo) using a ZIC-pHILIC column (Merck).&nbsp;Metabolite separation was performed at a column temperature of 25 °C using a linear gradient elution between two mobile phases: solvent A (20 mM ammonium carbonate in water) and solvent B (acetonitrile). The gradient began with a 20:80 ratio of A:B and was shifted to 80:20 over 15 minutes. This was followed by a rapid transition to 95:5, which was held for 2 minutes. The gradient was then quickly returned to the initial 20:80 ratio and maintained for an additional 9 minutes to re-equilibrate the column.</p><p>The flow rate was set at 0.3 mL/min, with an injection volume of 10 μL. Samples were kept at 5 °C prior to injection to preserve metabolite integrity.</p>	<p>Data were acquired using high-resolution mass spectrometry at a resolution of 70,000 (FWHM at m/z 200), with an AGC target of 1e6 and a scan range of m/z 70–1050. The instrument was operated with sheath gas set to 40, auxiliary gas to 5, and sweep gas to 1. The probe and capillary temperatures were maintained at 150 °C and 320 °C, respectively.</p><p>For positive ion mode, the source voltage was +3.8 kV, with an S-Lens RF level of 30.00, S-Lens voltage of –25.00 V, skimmer voltage of –15.00 V, inject flatapole offset of –8.00 V, and bent flatapole DC of –6.00 V. For negative ion mode, the source voltage was –3.8 kV.</p><p>To extend the calibration range for small metabolites, low-mass calibrants were added to the standard Thermo Calmix mixture: butylamine (m/z 74.096426) for positive ion electrospray ionisation (PIESI) and COF3 (m/z 84.9906726) for negative ion electrospray ionisation (NIESI). Lock-mass correction was applied throughout all analytical runs to enhance mass accuracy and calibration stability.</p>	<p>Data were converted to .mzXML files according to their ionization mode.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number			;	;;;;	;;;;	
+Study Protocol Parameters Name Term Source REF			;	;;;;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hanna	Harding	Pagura
+Study Person First Name	Jack	Clare	Lucas
+Study Person Mid Initials	C	R	
+Study Person Email	jack.hanna@glasgow.ac.uk	clare.harding@glasgow.ac.uk	lucas.pagura@glasgow.ac.uk
+Study Person Phone			
+Study Person Fax			
+Study Person Address	126 University Pl, Sir Graeme Davies Building, Level 6	126 University Pl, Sir Graeme Davies Building, Level 6	126 University Pl, Sir Graeme Davies Building, Level 6
+Study Person Affiliation	Glasgow University	Glasgow University	Glasgow University
+Study Person Roles	Investigator	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-1302-8905	0000-0002-8428-0374	0000-0003-1061-6311
+Comment[Study Person Affiliation ROR ID]	https://ror.org/00vtgdb53	https://ror.org/00vtgdb53	https://ror.org/00vtgdb53
+Comment[Study Person Alternative Email]	jackhanna465@gmail.com		

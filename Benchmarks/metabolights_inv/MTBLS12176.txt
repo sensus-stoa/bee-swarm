@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MS	DOID	OBI	EFO	NCIT	SNOMED
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	Metabolights	https://www.ebi.ac.uk/ols4/api
+Term Source Version			29	132		
+Term Source Description			Ontology for Biomedical Investigations	Experimental Factor Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS12176
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-01-15
+Investigation Public Release Date	2025-05-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12176
+Study Title	Cell-intrinsic metabolic phenotypes identified in glioblastoma patients using mass spectrometry imaging of 13C-labeled glucose metabolism
+Study Description	<p>Transcriptomic studies attempted to classify glioblastoma (GB) into subtypes that predict survival and that have different therapeutic vulnerabilities1-3. Here we identified three metabolic subtypes: glycolytic, oxidative and a mixed glycolytic/oxidative by mass spectrometry imaging of rapidly excised tumour sections from two GB patients infused with [U-13C]glucose and from spatial transcriptomic analysis of contiguous sections. The phenotypes are not correlated with microenvironmental features, including proliferation rate, immune cell infiltration and vascularisation, are retained when patient-derived cells are grown in vitro, or as orthotopically implanted xenografts, and are robust to changes in oxygen concentration, demonstrating their cell intrinsic nature. The spatial extent of the regions occupied by cells displaying these distinct metabolic phenotypes are large enough to be detected using clinically applicable metabolic imaging techniques. A limitation of the study is that it is based on only two patient tumours, albeit on multiple sections, and therefore represents a proof-of-concept study.</p>
+Study Submission Date	2025-01-15
+Study Public Release Date	2025-05-08
+Study File Name	s_MTBLS12176.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	mass spectrometry imaging	brain cancer	glioblastoma
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1002521	http://purl.obolibrary.org/obo/DOID_1319	http://www.ebi.ac.uk/efo/EFO_0000519
+Study Design Type Term Source REF	MS	DOID	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	gregory hamm
+Study Publication Title	Cell-intrinsic metabolic phenotypes identified in glioblastoma patients using mass spectrometry imaging of 13C-labeled glucose metabolism
+Study Publication Status	Accepted
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C62559
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	lactate
+Study Factor Type	Lactate
+Study Factor Type Term Accession Number	http://snomed.info/id/83036002
+Study Factor Type Term Source REF	SNOMED
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12176_MSImaging___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Generation of patient-derived xenografts and [U-13C]glucose infusion</p><p>Procedures were performed in compliance with personal and project licenses issued under the United Kingdom Animals Scientific Procedures Act (1986) and approved by the Cancer Research UK, Cambridge Institute Animal Welfare, and Ethical Review Body. Athymic, nude rats were implanted orthotopically with the primary GB lines A11, AT8, AT5 and S2 at passage 10. Animals were anaesthetised using 2% isoflurane (Isoflo, Abbotts Laboratories, Maidenhead, UK) in O2/air (25/75%, v/v 2L/min) with 5 mg/kg Carpofen (Zoetis, USA) and 0.3 mg/mL buprenorphine hydrochloride (Alstoe, UK) subcutaneous analgesia. Body temperature was maintained using a heating pad. A stereotactic surgical frame (Kopf, USA) with bite and ear bars were used to secure the animal’s head. A midline incision was made followed by a 1 mm burr hole anterior and to the right of the bregma. A total of 1 x 106 cells were injected in 5 μL of Neurobasal media at a depth of 4 mm. The burr hole was closed with bone wax (Ethicon, Germany) and skin with 6/0 vicryl (Ethicon, Germany). Tumour growth was monitored using T2-weighted MRI. Specifically, animals were anaesthetised using 2% isoflurane (Isoflo, Abbotts Laboratories, Maidenhead, UK) in O2/air (25/75%, v/v, 2 L/min) and placed supine inside a 7T magnet (Agilent, USA) and T2-weighted MRI was used to monitor tumour growth. A 72 mm 1H volume coil was placed around the animal’s head and breathing rate and temperature were monitored with a small animal instruments monitoring system (SAII, NY, USA). Axial 1H T2-weighted images were acquired using a fast spin-echo sequence with an echo time (TE) of 50 ms, pulse repetition time (TR) of 1500 ms, flip angle of 60-90º and a slice thickness of 2.0 mm, field-of-view (FOV) of 40 mm x 40 mm, and 128 x 128 or 256 x 256 data points. Three animals per cell line were administered with [U-13C]glucose as a bolus at 0.4 mg/g, followed by continuous infusion of 0.012 mg/g/min at 300 μL/h for 120 min56. The brains were snap-frozen in liquid nitrogen, cryo-sectioned at a thickness of 10 μm and analysed with DESI and MALDI MSI, as described above.</p><p><br></p><p>Neurosphere cell line derivation and MSI preparation</p><p>Primary human cell lines were derived at Addenbrooke’s hospital, Cambridge, UK using a protocol described previously49. Tissue collection was approved by a Regional Ethics Committee (REC18/EE/0283) and was compliant with the UK Human Tissue Act 2004. Resected tissue samples were washed with HBSS and minced using sterile razor blades, followed by enzymatic digestion with Accutase (Sigma, UK) for 60 min at 37 °C. Single cells were isolated by filtration through a 40 μM filter (Falcon, UK). Cells were centrifuged at 350 x g, 21 °C and the pellet incubated with 2-3 mL of Red Blood Cell Lysis buffer (Sigma, UK) for 5 min at room temperature. Following another cycle of centrifugation, cells were seeded at a density of 15,000 cells/cm2 in serum-free Neurobasal A Medium (Gibco) supplemented with B27, N2, EGF and FGF growth factors (Sigma, UK). Cells were allowed to form primary aggregates and the medium was changed 3 days post derivation 50. For neurosphere formation cells were seeded in Ultra Low attachment 96-well plates (Corning, New York, US) at a density of 10,000 cells/well. Sphere diameter was monitored using IncuCyte microscope (Sartorius, Göttingen, Germany). Spheres were collected using a cut 1000 μL pipette and embedded in 150 μL Matrigel (Corning) domes in 24 well plates (Corning). The domes were covered with 2 mL of fresh Neurobasal medium and allowed to grow for 24 h. Medium was then aspirated and Matrigel domes containing the neurospheres were washed 3x times with PBS before 2 mL of fresh glucose-free Neurobasal medium supplemented with 25 mM [U-13C]glucose were added. Following incubation for 24 h, the medium was removed and the Matrigel domes washed 3x times with ice-cold PBS and then snap frozen in LN2. The domes were embedded on cryo-sectioning chucks, sectioned to a thickness of 10 μm and analyzed using DESI and MALDI MSI, as described above.</p>	<p>Generation of patient-derived xenografts and [U-13C]glucose infusion</p><p>Procedures were performed in compliance with personal and project licenses issued under the United Kingdom Animals Scientific Procedures Act (1986) and approved by the Cancer Research UK, Cambridge Institute Animal Welfare, and Ethical Review Body. Athymic, nude rats were implanted orthotopically with the primary GB lines A11, AT8, AT5 and S2 at passage 10. Animals were anaesthetised using 2% isoflurane (Isoflo, Abbotts Laboratories, Maidenhead, UK) in O2/air (25/75%, v/v 2L/min) with 5 mg/kg Carpofen (Zoetis, USA) and 0.3 mg/mL buprenorphine hydrochloride (Alstoe, UK) subcutaneous analgesia. Body temperature was maintained using a heating pad. A stereotactic surgical frame (Kopf, USA) with bite and ear bars were used to secure the animal’s head. A midline incision was made followed by a 1 mm burr hole anterior and to the right of the bregma. A total of 1 x 106 cells were injected in 5 μL of Neurobasal media at a depth of 4 mm. The burr hole was closed with bone wax (Ethicon, Germany) and skin with 6/0 vicryl (Ethicon, Germany). Tumour growth was monitored using T2-weighted MRI. Specifically, animals were anaesthetised using 2% isoflurane (Isoflo, Abbotts Laboratories, Maidenhead, UK) in O2/air (25/75%, v/v, 2 L/min) and placed supine inside a 7T magnet (Agilent, USA) and T2-weighted MRI was used to monitor tumour growth. A 72 mm 1H volume coil was placed around the animal’s head and breathing rate and temperature were monitored with a small animal instruments monitoring system (SAII, NY, USA). Axial 1H T2-weighted images were acquired using a fast spin-echo sequence with an echo time (TE) of 50 ms, pulse repetition time (TR) of 1500 ms, flip angle of 60-90º and a slice thickness of 2.0 mm, field-of-view (FOV) of 40 mm x 40 mm, and 128 x 128 or 256 x 256 data points. Three animals per cell line were administered with [U-13C]glucose as a bolus at 0.4 mg/g, followed by continuous infusion of 0.012 mg/g/min at 300 μL/h for 120 min56. The brains were snap-frozen in liquid nitrogen, cryo-sectioned at a thickness of 10 μm and analysed with DESI and MALDI MSI, as described above.</p><p><br></p><p>Neurosphere cell line derivation and MSI preparation</p><p>Primary human cell lines were derived at Addenbrooke’s hospital, Cambridge, UK using a protocol described previously49. Tissue collection was approved by a Regional Ethics Committee (REC18/EE/0283) and was compliant with the UK Human Tissue Act 2004. Resected tissue samples were washed with HBSS and minced using sterile razor blades, followed by enzymatic digestion with Accutase (Sigma, UK) for 60 min at 37 °C. Single cells were isolated by filtration through a 40 μM filter (Falcon, UK). Cells were centrifuged at 350 x g, 21 °C and the pellet incubated with 2-3 mL of Red Blood Cell Lysis buffer (Sigma, UK) for 5 min at room temperature. Following another cycle of centrifugation, cells were seeded at a density of 15,000 cells/cm2 in serum-free Neurobasal A Medium (Gibco) supplemented with B27, N2, EGF and FGF growth factors (Sigma, UK). Cells were allowed to form primary aggregates and the medium was changed 3 days post derivation 50. For neurosphere formation cells were seeded in Ultra Low attachment 96-well plates (Corning, New York, US) at a density of 10,000 cells/well. Sphere diameter was monitored using IncuCyte microscope (Sartorius, Göttingen, Germany). Spheres were collected using a cut 1000 μL pipette and embedded in 150 μL Matrigel (Corning) domes in 24 well plates (Corning). The domes were covered with 2 mL of fresh Neurobasal medium and allowed to grow for 24 h. Medium was then aspirated and Matrigel domes containing the neurospheres were washed 3x times with PBS before 2 mL of fresh glucose-free Neurobasal medium supplemented with 25 mM [U-13C]glucose were added. Following incubation for 24 h, the medium was removed and the Matrigel domes washed 3x times with ice-cold PBS and then snap frozen in LN2. The domes were embedded on cryo-sectioning chucks, sectioned to a thickness of 10 μm and analyzed using DESI and MALDI MSI, as described above.</p>	<p>Mass spectrometry imaging</p><p>DESI-MSI analysis was performed on a Q-Exactive mass spectrometer (Thermo Scientific, Bremen, Germany) equipped with an automated 2D-DESI ion source (Prosolia Inc., Indianapolis, IN, USA). The spectrometer was used with a home-made Swagelok DESI sprayer operated with a mixture of 95% methanol, 5% water delivered at a flow rate of 1.5 μL/min and nebulized with nitrogen at a backpressure of 6 bar. Human tumour samples were analysed in the mass range from 70 to 280 m/z with a mass resolution of 140,000 at 200 m/z. The injection time was set at 500 ms and data were acquired with a pixel size of 65 μm. Following analysis, sections were stained with H&amp;E and co-registered with the DESI-MS images. The resulting .raw files were converted into .mzML files using ProteoWizard msConvert (version 3.0.4043) with the built-in peak picking algorithm 47 and subsequently compiled to an .imzML file (imzML converter version 1.3) 48. All subsequent data processing was performed in SCiLS Lab (version 2022b, Bruker Daltonik, Bremen, Germany). </p><p>MALDI-MSI analysis was performed using a RapifleX Tissuetyper instrument (Bruker Daltonik, Bremen, Germany) operated in negative ion detection mode. 9-Aminoacridine (9-AA) prepared in 80:20 methanol:water was used as a MALDI matrix and spray deposited using an automated spray system (M3-Sprayer, HTX technologies, Chapel Hill, NC, USA). MALDI mass spectra were acquired from 180 to 1000 m/z with a pixel size of 40 μm. A total of 350 laser shots were summed up per pixel to give the final spectra. For all experiments the laser was operated with a repetition rate of 10 kHz. Raw data were directly uploaded and processed in SCiLS lab (Version 2022b) software package. </p><p>All DESI and MALDI data and images were normalised to the total ion current (TIC) to compensate for signal variation during the course of the experiments and acquisition parameters and data processing were identical for human tissue, neurospheres embedded in Matrigel and xenograft sections.</p>	<p>Following analysis, sections were stained with H&amp;E and co-registered with the DESI-MS images.</p>	<p>Total ion count (TIC) normalised MSI data were extracted using the SCiLS Lab API (version 2022b, Bruker Daltonik, Bremen, Germany), and metabolic labels were spatially smoothed to provide coherent spatial regions. To achieve this, immediately neighbouring pixels (≤8) were identified for each MSI pixel and, across 5 iterations, for each pixel that had at least 2 neighbours and for which the majority of neighbours were assigned a different label, the label was replaced with the majority label. An image was created from the MSI data using spatial coordinates, where pixels were coloured using first 3 principal components as RGB channels. Landmarks were identified between this MSI dimensionality reduction image and the H&amp;E image of the corresponding tissue section and subsequently between the H&amp;E image and the corresponding H&amp;E image of the contiguous tissue section used for spatial transcriptomic analysis. These landmarks were then used to map the MSI coordinates onto the spatial transcriptomic coordinate space using an affine transform. MSI labels were finally transferred to spots on the spatial transcriptomic image using the kNN algorithm (k=3).</p>	<p>Defining metabolic regions on MSI</p><p>Regions were defined using K-means clustering and fitted using the Kmeans function in the amap R package, and performed independently on the neurosphere, human and metastases datasets. Specifically, the values for each of the 7 metabolites ([U-13C]pyruvate, [U-13C]lactate, [13C2]fumarate, [13C2]succinate, [13C2]malate, [13C2]glutamate and [13C2]glutamine) used for metabolic clustering were initially standardised into z-scores (by subtracting the metabolite’s mean and dividing by the metabolite’s standard deviation). Each pixel was then assigned into 3 or 4 groups using K-means clustering with Manhattan distances.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Sample mounting;Sample preservation;Tissue modification;Sectioning instrument;Section thickness;Matrix;Matrix application	Scan polarity;Scan m/z range;Instrument;Instrument manufacturer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Linescan sequence;Scan pattern;Scan type;Number of scans	Stain;High-res image;Low-res image	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Parameters Name Term Source REF		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hamm	Ana
+Study Person First Name	Gregory	Tsyben
+Study Person Mid Initials		
+Study Person Email	gregory.hamm@astrazeneca.com	Anastasia.Tsyben@cruk.cam.ac.uk
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT

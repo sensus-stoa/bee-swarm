@@ -1,0 +1,105 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	GOLD	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://raw.githubusercontent.com/cmungall/gold-ontology/refs/heads/main/gold.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.87.0					2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology		Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14074
+Investigation Title	Single cell lipidomics of adherent gut epithelial cell lines Caco2 and HT29-MTX reveals a metabolic switch
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-03-18
+Investigation Public Release Date	2026-03-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14074
+Study Title	Single cell lipidomics of adherent gut epithelial cell lines Caco2 and HT29-MTX reveals a metabolic switch
+Study Description	<p>Raw MS data files for the CaCo02 and HT29-MTX single cells isolated using the Yokogawa SS2000 for the research article 'Single cell lipidomics of adherent gut epithelial cell lines Caco2 and HT29-MTX reveals a metabolic switch'&nbsp;</p>
+Study Submission Date	2026-03-18
+Study Public Release Date	2026-03-18
+Study File Name	s_MTBLS14074.txt
+Comment[Created At]	2025-09-17T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted lipidomics	single cell	single cell lipidomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	CHMO	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Qianying Xu, Jake Penny, Emily Fraser, Federica Orsenigo, Matteo Barberis, Lee Gethings, Melanie Bailey, Clare Mills
+Study Publication Title	Cellular-level lipidomics of two-dimensional cultures of adherent gut epithelial cell lines reveals a metabolic switch
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Experimental group	Sample type	Date of single cell isolation	Date of LCMS analysis
+Study Factor Type	Experimental group	Sample type	Date of single cell isolation	Date of LCMS analysis
+Study Factor Type Term Accession Number				
+Study Factor Type Term Source REF				
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14074_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Single CaCo02 and HT29_MTX cell samples were isolated using the Yokogawa SS2000 single cellome. </p>	<p>Both Caco2 and HT29-MTX cells were culture to form a a monolayer, 2-3 hours prior to single cell isolation using capillary sampling through a Yokogawa SS2000 the cell media was replaced with serum-free Dulbecco’s Modified Eagle Medium. A limited Trypsin treatment was applied to the to aid in disruption of cellular tight junction to improve single cell isolation efficiency. After isolation into capillary sampling, capillary tips were placed onto dry ice before being stored at -80 C until analysis.</p><p><br></p><p>Samples were prepared for LCMS by eluting cells from the capillary tips using 5 microlitres of 70:30 mobile phase A (60:40 ACN:H2O + 0.1% formic acid + 10 mM Ammonium Formate) and mobile phase B (85:10:5 IPA:H2O:ACN + 0.1% formic acid + 10 mM Ammonium Formate) spiked with 16ng/mL Avanti EquiPLASH lipid mix. Cells were eluted into 10 uL of 70:30 mobile phase A and B to make a final volume of 15 uL. Samples were vortexed and placed into the LC autosampler which was set to 4 C. </p>	<p>Samples were then injected onto Ultimate 3000 UHPLC (Thermo Fisher Scientific, USA) attached to a Q-Exactive Plus Orbitrap mass spectrometer (Thermo Fisher Scientific, USA). The HPLC was performed using an Accucore C30 column (2.6 µm, 150 × 2.1nm, Thermo Fisher Scientific, UK), using a flow rate of 0.4 mL/min. Lipids were eluted with a LC gradient was set to start with 30% of mobile phase B (85:10:5 (v/v) isopropanol: H2O : acetonitrile with 10 mM ammonium formate and 0.1% (v/v) formic acid) which was increased to 43% of mobile phase B after 5 min. The proportion of mobile phase B was further increased to 50% at 5.1 min, and raised to 70% at 14 min; it was then increased to 99% from 21 to 24 min, before being decreased back to 30% at 24.1 min and held for 4 min.&nbsp;</p>	<p>The data was acquired in full scan in positive ionisation mode, with a heated ESI (HESI) probe at 320 °C with a spray voltage at 3 kV. The full scan automatic gain control (AGC) target was of 1×106 with the mass range of 150- 1200 m/z, and the detection resolution was set at 140,000.</p>	<p>The raw data fils were initially processed using MS-Dial (ver. 5.3.240719) using a mass tolerance of 0.01 Da as previously described 9.&nbsp;Lipid identification was performed using LipidBlast database with a mass tolerance of 0.01 Da for MS1 and 0.025 Da for MS2, with an 80% identification score cutoff with [M + H]+, [M + NH4]+, and [M + H − H2O]+ as allowable adducts. The statistical analysis such as PCA and heatmap was performed through MetaboAnalyst 6.022. Lipid metabolic pathway analysis was carried out using BioPAN (www.lipidmaps.org/biopan). The Z-scores were calculated to assess regulation of the reaction pathway by lipid subclass. Statistical significance was taken &lt; 0.05, correspond to Z &gt; 1.645.&nbsp;</p>	<p>Lipid identifications were achieved using a in-house lipid library constructed using MS2 lipid data from PANC-1 cells in conjunction with the internal MS-Dial (ver. 5.3.240719) lipid library.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Penny	Mills	Xu	Bailey
+Study Person First Name	Jake	Clare	Qianying	Melanie
+Study Person Mid Initials				
+Study Person Email	jake.penny@kcl.ac.uk	clare.mills@surrey.ac.uk	qx0001@surrey.ac.uk	melanie.j.bailey@kcl.ac.uk
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	Kings College London		University of Manchester	
+Study Person Roles	Author	Author	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0001-7433-1740	0000-0001-8429-6993	0000-0001-9050-7910

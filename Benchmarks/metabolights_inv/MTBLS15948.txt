@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MONDO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UBERON
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uberon.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0		2026-07-06		1.0.1		2026-07-12	26.02d	2026-05-08	
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Uber-anatomy ontology
+INVESTIGATION
+Investigation Identifier	MTBLS15948
+Investigation Title	Metabolome profiling on resectable pancreatic ductal adenocarcinoma patients with early liver metastasis
+Investigation Description	
+Investigation Submission Date	2026-10-08
+Investigation Public Release Date	2026-10-17
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15948
+Study Title	Metabolome profiling on resectable pancreatic ductal adenocarcinoma patients with early liver metastasis
+Study Description	Pancreatic ductal adenocarcinoma (PDAC) remains difficult to cure because many patients develop liver metastasis even after apparently curative resection. Bile is in close contact with the pancreatobiliary system, but its multi-omic features in resectable PDAC and their relationship to postoperative liver metastasis remain poorly defined. Here, we performed integrated metabolomic profiling of bile samples from 96 patients, including 40 with benign biliary disease and 56 with resectable PDAC, among whom 30 developed liver metastasis within 6 months after surgery and 26 remained disease free.
+Study Submission Date	2026-10-08
+Study Public Release Date	2026-10-17
+Study File Name	s_MTBLS15948.txt
+Comment[Created At]	2026-10-07
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-17
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Dionex Ultimate 3000 UHPLC system	Thermo Scientific Orbitrap Exploris 120	Homo sapiens	bile	Pancreatic cancer	Control	QC	untargeted analysis	Metabolomics	pancreatic adenocarcinoma	untargeted metabolite profiling	Liver metastasis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000914	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/UBERON_0001970				http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MONDO_0006047	http://purl.obolibrary.org/obo/MSIO_0000101	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	UBERON				MS	EDAM	MONDO	MSIO	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Disease	Disease	Disease	measurement-type	omics-type	disease	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhongxu Zhu, Qianwei Jiang, Linwei Xu, Hang Jiang, Yiyun Huang, Liuqi Wang, Zhixiong Shao, Jiantao Huang, Junnan Huang, Lei Zhao, Dan Sun, Xia Li, Yuhua Zhang
+Study Publication Title	Metabolome profiling on resectable pancreatic ductal adenocarcinoma patients with early liver metastasis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0000001
+Study Factor Type Term Source REF	MONDO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15948_LC-MS_positive_reverse-phase.txt	a_MTBLS15948_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Thermo Scientific Dionex Ultimate 3000 UHPLC system;ACQUITY UPLC HSS T3 (1.7 µm, 2.1 mm x 100 mm; Waters);reverse phase;positive;100–1000;Thermo Scientific Orbitrap Exploris 120;orbitrap	Thermo Scientific Dionex Ultimate 3000 UHPLC system;ACQUITY UPLC HSS T3 (1.7 µm, 2.1 mm x 100 mm; Waters);reverse phase;negative;100-1000;Thermo Scientific Orbitrap Exploris 120;orbitrap
+Comment[Assay Field Default Unit]	;;;;;;	;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000914;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002077;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000914;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002077;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>All samples were collected using sterile instruments and containers. For patients with PDAC, bile was aspirated directly from the bile duct after operative exposure, while for patients with benign biliary diseases, bile was aspirated during clinically indicated endoscopic retrograde cholangiopancreatography (ERCP). </p>	<p>Protein extraction was performed using SDT lysis buffer (4% SDS, 100 mM Tris-HCl, pH 7.6), and protein concentration was determined by the BCA assay. Protein samples were separated by SDS-PAGE and visualized with Coomassie Brilliant Blue R-250 staining. A pooled quality control (QC) sample was prepared by mixing equal amounts of protein from all individual samples. All samples were digested with trypsin using the filter-aided proteome preparation (FASP) method. Tryptic peptides were desalted with C18 cartridges, lyophilized, and reconstituted in 0.1% formic acid. Peptide concentration was measured at OD280, and iRT standard peptides were spiked into each sample before analysis.</p>	<p>The raw mass spectrometry acquisition files were converted to mzXML format using the MSConvert tool within the Proteowizard software package (v3.0.8789).</p>	<p>Fresh bile was immediately transferred to sterile tubes, placed on ice, and processed within 2 hours of collection. Samples were centrifuged to remove cellular debris, and the supernatant was aliquoted and stored at −80 °C until further analysis.&nbsp;</p>	<p>DIA data were acquired on a Thermo Scientific Orbitrap Astral mass spectrometer coupled with a Vanquish Neo nano-LC system in positive ion mode. Full-scan MS spectra were acquired over a mass range of 380–980 m/z at a resolution of 240,000 (at 200 m/z). For DIA mode, 299 isolation windows of 2 m/z were used with HCD collision energy at 25 eV. MS2 spectra were collected with normalized AGC target of 500% and maximum injection time of 3 ms. Raw DIA data were processed using a library-based search engine.&nbsp;</p>	<p>The RXCMS package was used for peak detection, peak filtering and peak alignment with the following parameters: bw = 2, ppm = 15, peakwidth = c(5, 30), mzwid = 0.015, mzdiff = 0.01, method = 'centWave', to generate the metabolite quantification table.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhu
+Study Person First Name	Zhongxu
+Study Person Mid Initials	
+Study Person Email	zhongxu.zhu@my.cityu.edu.hk
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Hangzhou Institute of Medicine (HIM), Chinese Academy of Sciences
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0003-2197-5563
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04vs9wp72

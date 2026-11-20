@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.86.0				2025-12-03	25.06e	2025-12-18
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13498
+Investigation Title	Metabolic profiling reveals CAD as a central metabolic signaling node
+Investigation Description	This investigation uses LC MS based metabolite profiling and carbon tracing to study how the enzyme CAD regulates central carbon metabolism and supports cancer cell growth.
+Investigation Submission Date	2025-12-11
+Investigation Public Release Date	2026-02-03
+Comment[Created With Configuration]	MetaboLights Editor
+Comment[Last Opened With Configuration]	MetaboLights Editor v1
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Feng
+Investigation Person First Name	Pinghui
+Investigation Person Mid Initials	
+Investigation Person Email	pinghuif@usc.edu
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	University of Southern California
+Investigation Person Roles	Principal Investigator
+Investigation Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25956
+Investigation Person Roles Term Source REF	NCIT
+STUDY
+Study Identifier	MTBLS13498
+Study Title	Metabolic profiling reveals CAD as a central metabolic signaling node
+Study Description	LC MS metabolite profiling and carbon tracing were used to show that the pyrimidine synthesis enzyme CAD regulates glycolysis and branching into pentose phosphate and serine synthesis pathways to support cancer cell proliferation.
+Study Submission Date	2025-12-11
+Study Public Release Date	2026-02-03
+Study File Name	s_MTBLS13498.txt
+Comment[Created At]	2025-12-09T22:36:36.676519
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Cell line	Liquid chromatography mass spectrometry	untargeted metabolomics	stable isotope tracing
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C28152	http://purl.obolibrary.org/obo/NCIT_C16606
+Study Design Type Term Source REF	NCIT	CHMO	MTBLS	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Unknown
+Study Publication Title	Manuscript in preparation
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Characterization
+Study Factor Type	Characterization
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25205
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13498_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13498_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS positive reverse phase	Liquid Chromatography MS negative reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	Cells were washed with ammonium acetate solution on ice and extracted with eighty percent methanol.	Metabolites were extracted with cold eighty percent methanol and supernatants were dried and reconstituted.	Metabolites were separated by reverse phase liquid chromatography on a Luna NH2 one hundred angstrom column.	Samples were analyzed on a Q Exactive Plus mass spectrometer in full scan mode.	Raw data were processed in TraceFinder and abundances were normalized to cell number and to the median intensity.	Metabolites were identified by matching retention time and accurate mass to verified standards.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Feng	Qin
+Study Person First Name	Pinghui	Chao
+Study Person Mid Initials		
+Study Person Email	pinghuif@usc.edu	chaochin@usc.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Southern California	University of Southern California
+Study Person Roles	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT

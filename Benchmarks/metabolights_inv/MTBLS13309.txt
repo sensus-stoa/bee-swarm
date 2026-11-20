@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	INO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ino.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-28	3.92.0	1.1.13			1.0.1		26.02d	2026-05-08
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	INO: Interaction Network Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13309
+Investigation Title	Metabolome analysis of tea leaves after transient overexpression of CsCHS1
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-11-12
+Investigation Public Release Date	2026-09-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13309
+Study Title	Metabolome analysis of tea leaves after transient overexpression of CsCHS1
+Study Description	<p>Given that foliar diseases severely impact tea yield and quality, and prior research has shown that CsCHS1 positively regulates resistance to Didymella segeticola in tea leaves, we performed metabolomics analysis on tea leaves with transient overexpression of CsCHS1 to investigate the metabolites potentially regulated by CsCHS1.</p>
+Study Submission Date	2025-11-12
+Study Public Release Date	2026-09-08
+Study File Name	s_MTBLS13309.txt
+Comment[Created At]	2025-11-04
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Vanquish Flex UPLC	Q-Exactive Plus	Camellia sinensis	leaf	experimental blank	untargeted analysis	untargeted metabolite profiling	untargeted metabolites	Tea Leaf	overexpression
+Study Design Type Term Accession Number				http://purl.obolibrary.org/obo/BTO_0000713		http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MSIO_0000101	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C87164	http://purl.obolibrary.org/obo/INO_0000114
+Study Design Type Term Source REF				BTO		MS	MSIO	MTBLS	NCIT	INO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	submitter	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Dongxue Li, Wenjing Xie, Zhongqiu Xia, Jia Liu, Delu Wang, Michael Wisniewski, Xuehong Wu, Baoan Song, Zhuo Chen
+Study Publication Title	Metabolome analysis of tea leaves after transient overexpression of CsCHS1
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treat
+Study Factor Type	overexpression
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/INO_0000114
+Study Factor Type Term Source REF	INO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13309_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS13309_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>After overexpressing CsCHS1 and the empty vector in the third and fourth leaves of tea plants, samples were collected, flash-frozen in liquid nitrogen, and stored at -80°C for metabolome analysis.</p>	<p>Weigh 50 mg (±5 mg) of the sample and add 500 μL of 80 % icy methanol solution. Put a small amount of steel balls and grind them with a grinder, and incubated for 30 min at -20℃ to precipitate proteins, and centrifuged at 20000 g for 10 min at 4℃, supernatant centrifuged for 5 min again. The supernatant was transferred to a fresh vial for UPLC-HRMS analysis. The quality control (QC) sample was prepared by mixing an equal aliquot of the supernatant of samples</p>	<p>An ACQUITY UPLC HSS T3 column (100 mm×2.1 mm, 1.8 µm, Waters) was used for separation. The mobile phase consists of phase A (5 mmol/L ammonium acetate + 5 mmol/L acetic acid + water) and phase B (acetonitrile). Gradient elution conditions were set as follows: 0~0.8 min , 2% ~ 70%B; 0.8~2.8 min , 70% ~ 90% B; 2.8~5.3 min, 90% ~ 99% B; 5.3~5.9 min, 99% B; 5.9~7.5 min , 99% ~ 2% B;7.5~7.6 min , 2% B;7.6~10.0 min, 2% B; The flow rate is 0.35 mL/min. The injection volume for each sample was 4 µL. The column oven was maintained at 40℃.</p>	<p>A high-resolution tandem mass spectrometer Q-Exactive Plus (Thermo Fisher Scientific) was used to detect metabolites eluted form the column. Each sample was operated in both positive and negative electrospray ionization mode. ESI temperature is 350℃. The voltage is +3800 volts in positive ion mode and -3400 volts in negative ion mode. The sweep gas pressure of the ion source is 0 Arb, Gas 1 (Auxiliary gas) pressures set to 15 Arb, Gas 2 (Sheath gas) pressures set to 50 Arb. The mass spectrometric data were obtained with full scan and data-dependent acquisition (DDA) modes. In one acquisition cycle, the full scan acquisition range is 70-1050 Da, and the resolution is 70k, AGC target is set to 3000000, maximum ion injection time is set to 100 ms. Then, the top 5 signal ions with a signal accumulation intensity of more than 100000 were selected from the full scan for DDA scanning, the DDA resolution is 17.5k, maximum ion injection time is set to 50 ms. Dynamic exclusion is set to 6 s.</p>	<p>The acquired MS data pretreatments including peak picking, peak grouping, retention time correction, second peak grouping, and annotation of isotopes and adducts was performed using XCMS software. LC−MS raw data files were converted into mzXML format and then processed by the XCMS, CAMERA and metaX toolbox implemented with the R software. Each ion was identified by combining retention time (RT) and m/z data. Intensities of each peaks were recorded and a three dimensional matrix containing arbitrarily assigned peak indices (retention time-m/z pairs), sample names (observations) and ion intensity information (variables) was generated.</p>	<p>The online KEGG, HMDB database was used to annotate the metabolites by matching the exact molecular mass data (m/z) of samples with those from database. If a mass difference between observed and the database value was less than 10 ppm, the metabolite would be annotated and the molecular formula of metabolites would further be identified and validated by the isotopic distribution measurements. We also used a in-house fragment spectrum library of metabolites to validate the metabolite identidification.</p><p>&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Xie	Xia	Liu	Wang	Wisniewski	Wu	Song	Chen
+Study Person First Name	Dongxue	Wenjing	Zhongqiu	Jia	Delu	Michael	Xuehong	Baoan	Zhuo
+Study Person Mid Initials									
+Study Person Email	gydxli@aliyun.com								gychenzhuo@aliyun.com
+Study Person Phone									
+Study Person Fax									
+Study Person Address									
+Study Person Affiliation									State Key Laboratory of Green Pesticides, Guizhou University, Guiyang 550025, China
+Study Person Roles	Investigator	Author	Author	Author	Author	Author	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]									0000-0001-7130-8457
+Comment[Study Person Affiliation ROR ID]									https://ror.org/04r0bka54

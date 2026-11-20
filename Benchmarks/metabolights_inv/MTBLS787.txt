@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	NCBITAXON	NCIT	OBI	MS	BTO	UO	EFO
+Term Source File	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/UO	
+Term Source Version	18	6	44	22	86	29	43	
+Term Source Description	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	BRENDA Tissue and Enzyme Source Ontology	Units of Measurement Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS787
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-11-14
+Investigation Public Release Date	2020-07-13
+Comment[Created With Configuration]	C:\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS787
+Study Title	Correlation-based Deconvolution (CorrDec) to generate high quality MS2 spectra from data independent acquisition in multi-sample studies (Chemical standards assay)
+Study Description	<p>Data-independent acquisition mass spectrometry (DIA-MS) is essential for information-rich spectral annotations in untargeted metabolomics. However, the acquired MS2 spectra are highly complex, posing significant annotation challenges. We have developed a correlation-based deconvolution (CorrDec) method that uses ion abundance correlations in multi-sample studies using DIA-MS as an update of our MS-DIAL software. CorrDec is based on the assumption that peak intensities of precursor and fragment ions correlate across samples, and exploits this quantitative information to deconvolute complex DIA spectra. CorrDec clearly improved deconvolution of the original MS-DIAL deconvolution method (MS2Dec) in a dilution series of chemical standards and a 224-sample urinary metabolomics study. The primary advantage of CorrDec over MS2Dec is the ability to discriminate co-eluting low-abundance compounds. CorrDec requires the measurement of multiple samples to successfully deconvolute DIA spectra, and our randomized assessment demonstrated that CorrDec can contribute to studies with as few as 10 unique samples. The presented methodology improves compound annotation and identification in multi-sample studies and will be useful for applications in large cohort studies.</p><p><br></p><p><strong>Chemical standards assay</strong> is reported in the current study <a href='https://www.ebi.ac.uk/metabolights/MTBLS787' rel='noopener noreferrer' target='_blank'><strong>MTBLS787</strong></a>.</p><p><strong>Urine assay</strong> is reported in <a href='https://www.ebi.ac.uk/metabolights/MTBLS816' rel='noopener noreferrer' target='_blank'><strong>MTBLS816</strong></a>.</p>
+Study Submission Date	2018-11-14
+Study Public Release Date	2020-07-13
+Study File Name	s_MTBLS787.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	liquid chromatography-mass spectrometry	untargeted metabolites	Chemical standards characterisation	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000524			http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO			CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1021/acs.analchem.0c01980
+Study Publication Author List	Tada Ipputa, Chaleckis Romanas, Tsugawa Hiroshi, Meister Isabel, Zhang Pei, Lazarinis Nikolaos, Dahlén Barbro, Wheelock Craig E., Arita Masanori
+Study Publication Title	Correlation-based Deconvolution (CorrDec) to generate high-quality MS2 spectra from data-independent acquisition in multi-sample studies
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Concentration
+Study Factor Type	Concentration
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C41185
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS787_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Chemical standards of proline betaine, trigonelline, dimethylglycine, trimethylamine N-oxide, tyrosine, betaine, proline, 3-OH-kynurenine were purchased and 5-60 mM stock solutions were prepared as specified in <strong>Table S5</strong> of the paper associated with this study.</p>	<p>Urine matrix for the serial dilutions of the compounds was prepared as follows. Pooled reference urine sample was normalized to specific gravity (SG) of 1.002 using LC-MS grade water and diluted 10-fold with acetonitrile containing internal standards (see <strong>Table S6</strong> in the paper associated with this study). The first dilution was prepared for each of the compounds at a starting concentration of 400 μM. Then, as shown in <strong>Figure S6</strong> in the paper associated with this study, 2 x 10-fold serial dilutions and 10 x 1.5-fold serial dilutions were performed in a 96-well 0.2 ml PCR plate PCR-96-MJ (BMBio, Tokyo, Japan) using 8-channel pipette to obtain end concentrations ranging from 69 to 4000 nM. A pierceable seal 4Ti-0531 (4titude, UK) was used to seal the plate for 4 s at 185 °C using PX1 heat sealer (Biorad, USA). The plate was stored at 4 °C until LC-MS measurement. 2 μl of each dilution were injected with a water blank between each compound dilution series (see <strong>Table S7</strong> in the paper associated with this study).</p>	<p>Solvents used for the LC-MS analysis and sample preparation were of LC-MS grade and purchased from Wako (Japan). LC-MS measurements in AIF mode were performed as described previously<strong>[1][2]</strong>. Briefly, metabolite separation was performed on a HILIC SeQuant ZIC-HILIC (Merck, Darmstadt, Germany) column 100 Å (100 x 2.1 mm, 3.5 μm particle size) coupled to a guard column (2.1 x 20 mm, 3.5 μm particle size). Sample analysis was performed using water with 0.1% formic acid (pH 2.63; solvent A) and acetonitrile with 0.1% formic acid (solvent B). The elution gradient used was as follows: isocratic step at 95% B for 1.5 min, 95 to 40% B in 12 min, maintained at 40% B for 2 min, then decreasing to 25% B at 14.2 min, maintained for 2.8 min, then returned to initial conditions over 1 min, and a column re-equilibration phase of 7 min. The flow rate was 0.3 ml/min, injection volume 2 μl, and the column oven was maintained at 25 °C.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Naz S, Gallart-Ayala H, Reinke SN, Mathon C, Blankley R, Chaleckis R, Wheelock CE. Development of a Liquid Chromatography-High Resolution Mass Spectrometry Metabolomics Method with High Specificity for Metabolite Identification Using All Ion Fragmentation Acquisition. Anal Chem. 2017 Aug 1;89(15):7933-7942. doi:10.1021/acs.analchem.7b00925. PMID:28641411</p><p><strong>[2]</strong> Chaleckis R, Naz S, Meister I, Wheelock CE. LC-MS-Based Metabolomics of Biofluids Using All-Ion Fragmentation (AIF) Acquisition. Methods Mol Biol. 2018;1730:45-58. doi:10.1007/978-1-4939-7592-1_3. PMID:29363064</p>	Data was acquired in positive ionization mode on an Agilent 6550 Q-TOF-MS system in centroid mode. Nitrogen was used as a sheath gas and drying gas at a flow of 8 and 15 l/min, respectively. The drying and sheath gas temperature was set at 250 °C with the nebulizer pressure at 35 psig and voltage 3000 V. Data was obtained with a mass range of 40−1200 m/z in AIF mode including 3 sequential experiments at alternating collision energies: 1 full scan at 0 eV (fragmentor voltage 380 V), followed by 1 MS/MS scan at 10 eV (fragmentor voltage at 175 V), and then followed by 1 MS/MS scan at 30 eV (fragmentor voltage at 380 V). The data acquisition rate was 6 scans/s.	<p>Data was transformed from Agilent .d format to .abf format using <a href='https://www.reifycs.com/AbfConverter/' rel='noopener noreferrer' target='_blank'>Reifycs Abf (Analysis Base File) Converter</a><a href='Reifycs Abf (Analysis Base File) Converter' rel='noopener noreferrer' target='_blank'>.</a></p>	<p>Data was analysed using MS-DIAL software as described in the publication associated with this study. Abundances have been reported as peak intensities.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Chromatography Instrument;Column model;Column type;Guard column	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ipputa	Hiroshi	Chaleckis	Meister	Zhang	Wheelock	Arita
+Study Person First Name	Tada	Tsugawa	Romanas	Isabel	Pei	Craig	Masanori
+Study Person Mid Initials						E	
+Study Person Email	tipputa@nig.ac.jp	hiroshi.tsugawa@riken.jp	romanas.chaleckis@gmail.com	isabel.meister@gunma-u.ac.jp	peizhang@gunma-u.ac.jp	craig.wheelock@ki.se	arita@nig.ac.jp
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation	Department of Genetics, SOKENDAI (Graduate University for Advanced Studies), Shizuoka, Japan	RIKEN Center for Sustainable Resource Science, Yokohama, Kanagawa, Japan	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	National Institute of Genetics, Shizuoka, Japan
+Study Person Roles							
+Study Person Roles Term Accession Number							
+Study Person Roles Term Source REF							

@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	CLO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://purl.obolibrary.org/obo/clo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version		2026-05-28	2026-06-19	3.94.0				2026-07-12	26.02d	2026-07-27	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Cell Line Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS11308
+Investigation Title	Host specific sphingomyelin is critical for replication of diverse RNA viruses
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-10-11
+Investigation Public Release Date	2026-10-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11308
+Study Title	Host specific sphingomyelin is critical for replication of diverse RNA viruses
+Study Description	Lipids and lipid metabolism play an important role in RNA virus replication, which typically occurs on host cell endomembrane structures in the cytoplasm through mechanisms that are not yet fully identified. We conducted genome-scale CRISPR screening and identified sphingomyelin synthase 1 (SMS1; encoded by SGMS1) as a critical host factor for infection by severe fever with thrombocytopenia syndrome virus (SFTSV). SGMS1 knockout reduced sphingomyelin (SM) (d18:1/16:1) levels, inhibiting SFTSV replication. A helix-turn-helix motif in SFTSV RdRp directly binds to SM(d18:1/16:1) in Golgi apparatus, which was also observed in SARS-CoV-2 and lymphocytic choriomeningitis virus (LCMV), both showing inhibited replication in SGMS1-KO cells. SM metabolic disturbance is associated with disease severity of viral infections. We designed a novel SMS1 inhibitor that protects mice against lethal SFTSV infection and reduce SARS-CoV-2 replication and pathogenesis. These findings highlight the critical role of SMS1 and SM(d18:1/16:1) in RNA virus replication, suggesting a broad-spectrum antiviral strategy.
+Study Submission Date	2024-10-11
+Study Public Release Date	2026-10-29
+Study File Name	s_MTBLS11308.txt
+Comment[Created At]	2024-10-06
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-29
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity LC ultra-high performance liquid chromatography	Xevo TQ-S	Homo sapiens	Golgi Apparatus	liver cancer cell	experimental blank	untargeted analysis	Biomarker	high-performance liquid chromatography-mass spectrometry	cell culture	Comparative LC/MS-based profiling	Fatty Acid Metabolism
+Study Design Type Term Accession Number			http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/NCIT_C13238	http://purl.obolibrary.org/obo/BTO_0000594		http://purl.obolibrary.org/obo/MS_1003904	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000194	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000042	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000089	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000066	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000210
+Study Design Type Term Source REF			NCBITaxon	NCIT	BTO		MS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	Sample type	measurement-type					
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	39566509
+Study Publication DOI	10.1016/j.chembiol.2024.10.009
+Study Publication Author List	Han S, Ye X, Yang J, Peng X, Jiang X, Li J, Zheng X, Zhang X, Zhang Y, Zhang L, Wang W, Li J, Xin W, Zhang X, Xiao G, Peng K, Zhang L, Du X, Zhou L, Liu W, Li H.
+Study Publication Title	Host specific sphingomyelin is critical for replication of diverse RNA viruses.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	SGMS1
+Study Factor Type	mass
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000282
+Study Factor Type Term Source REF	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11308_LC-MS_alternating_hilic_metabolite_profiling.txt	a_MTBLS11308_LC-MS_alternating_hilic_metabolite_profiling-1.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p> Huh7 (male) cells were obtained from the China Center for Type Culture Collection (CCTCC, Cat GDC0134), SGMS1-knockout (KO) Huh7 cells were generated by CRISPR genome editing system. The MinuteTM Golgi Apparatus Enrichment Kit (Invent Biotechnologies, Cat GO-037) was used for isolation of Golgi fractions. All samples were prepared as precipitates for freezing and preservation.</p>	<p>Lipids were quantitated in biological samples (whole cells and purified Golgi fraction) using internal standards including 15:0–18:1_(d7)PA (7 μg/mL), 15:0–18:1(d7)PE (5 μg/mL), 15:0–18:1(d7)PG (30 μg/mL), 15:0–18:1(d7)PI (10 μg/mL), 15:0–18:1(d7)_PS (5 μg/mL), 15:0–18:1 (d7) PC (160 μg/mL), 15:0–18:1 (d7) DG (10 μg/mL), 15:0–18:1 (d7)–15:0 TG (55 μg/mL), 18:1 (d7) CE (350 μg/mL), 18:1 (d7) LPC (5 μg/mL), 18:1 (d7) LPE (5 μg/mL), 18:1 (d7) MG (2 μg/mL), 18:1 (d9) SM (30 μg/mL), and Cholesterol (d7, 100 μg/mL) purchased from Sigma (Sigma-Aldrich). Samples were thawed in an ice bath, then 200 μL of isopropanol was added. The samples were ultrasonically disrupted for 3 seconds, kept at -20 °C for 10 min, vortexed for 10 min, maintained at 2-8 °C for 2 hours, and centrifuged at 18,000 × g for 10 min; supernatants were used for LC-MS analysis.</p>	<p>An ACQUITY UPLC BEH amide column (1.7 µm, 2.1 mm × 100 mm) heated at 45 °C was utilized for chromatographic separation. The mobile phase A was acetonitrile(95:5 v/v) containing 5 mM ammonium acetate, while the mobile phase B was acetonitrile(50:50 v/v) containing 5 mM ammonium acetate. An injection volume of 1 µL was used. The gradient conditions were 0.1-20% B for 0-2 min, 20-80% B for 2-5 min, 80-0.1% B for 5 min, and 0.1% B for 5.1-8 min. The flow rate was set at 0.6 mL/min.</p>	<p>Lipids were detected by ultra-high performance liquid chromatography-triple quadrupole mass spectrometry (UPLC-TQMS) (Waters Corp., ACQUITY UPLC-Xevo TQ-S Milford). The capillary voltage was set at 1.9 kV negative and 2.8 kV positive, source temperature was kept at 120 °C, desolvation temperature was set to 500 °C, and desolvation gas flow was 1000 L/h. A mixture of all measured samples was used as a QC sample injected regularly throughout the analysis process.</p>	<p>Raw data generated by UPLC-TQMS was processed using MassLynx software (Waters Corp). Peak extraction, integration, and quantification were performed for each lipid. Samples were randomly tested according to group information to eliminate potential errors caused by the sequence of the analysis process.</p>	<p>Metabolic analysis was conducted using MetaboAnalyst 5.0 as previously described. Partial least-squares discriminant analysis (PLS-DA) was performed for classification and prediction of data. Hierarchical clustering of all potential metabolites was performed after unit variance scaling for each metabolite. Pathway enrichment analyses were based on the Kyoto Encyclopedia of Genes and Genomes database and the human metabolome database (KEGG) (http://www.genome.jp/kegg/).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li
+Study Person First Name	Hao
+Study Person Mid Initials	
+Study Person Email	lihao_1986@126.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	20 Dongda Street, Fengtai District, Beijing 100071, China
+Study Person Affiliation	State Key Laboratory of Pathogen and Biosecurity, Academy of Military Medical Sciences
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

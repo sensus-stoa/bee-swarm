@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version	2025-10-21	3.89.0				2026-05-05	26.02d	2026-03-19	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12801
+Investigation Title	Characterization of Whole Blood EVs Using PRotein Organic Solvent PRecipitation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-31
+Investigation Public Release Date	2026-08-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12801
+Study Title	Characterization of Whole Blood EVs Using PRotein Organic Solvent PRecipitation
+Study Description	<p>Blood plays a vital role in diagnostic medicine by providing essential information for assessing health and diagnosing various conditions. Routine blood tests can reveal important biomarkers that support early diagnosis and timely intervention. Recently, extracellular vesicles (EVs) have emerged as promising biomarkers due to their role in intercellular communication and involvement in disease processes such as cancer and neurodegeneration. However, isolating EVs from plasma remains challenging, as residual blood cells, especially platelets, can interfere with vesicle release. In this study, we explore the use of the PRotein Organic Solvent PRecipitation (PROSPR) method, a straightforward and effective technique previously applied to plasma and brain samples, to isolate EVs directly from whole blood. We performed detailed analyses, including ultrastructural imaging, cytometry, and multi-omics profiling, to characterize the EVs obtained. Our findings demonstrate that PROSPR can successfully capture even the smallest exosomes (30–120 nm), which are often missed in plasma-based isolation. This approach represents a significant advancement in EV research and may enhance the identification of blood-based biomarkers for a range of diseases.</p>
+Study Submission Date	2025-07-31
+Study Public Release Date	2026-08-24
+Study File Name	s_MTBLS12801.txt
+Comment[Created At]	2025-07-24
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Multi-omics study	untargeted metabolites	electrospray ionisation quadrupole detection
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PRIDE_0000461	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0002337
+Study Design Type Term Source REF	PRIDE	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jose Antonio Sánchez Milán, Itziar Molet, Magdalena Torres, Maria Font-Alberich, Yormaris Castillo, Silvia Ticó, Oriol Yuguero, Gerard Piñol-Ripoll, Filip Bellon, Montserrat Gea-Sánchez, Raj N. Kalaria, Siu Kwan Sze, Xavier Gallart-Palau and Aida Serra
+Study Publication Title	Optimized Enrichment of Circulating Extracellular Vesicles from Whole Blood Samples Using PROSPR
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample type
+Study Factor Type	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12801_LC-MS__reverse-phase_metabolite_profiling.txt	a_MTBLS12801_LC-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - - reverse phase	Liquid Chromatography MS - negative
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Whole blood and derivative plasma samples were obtained from elderly donors without relevant diagnosed pathologies (n = 5) and stored at -80°C, as provided by the Newcastle Biobank, Newcastle upon Tyne, United Kingdom. An independent validation cohort of whole blood was also collected at the University Hospital Arnau de Vilanova (HUAV), Lleida, Spain (whole blood, n = 5; EDTA-plasma, n = 10) and supplied by the HUAV Biobank. For whole blood samples, the raw blood was frozen and stored until further analysis. For plasma samples, immediately following venepuncture, heparin was added to each tube to achieve a final concentration of 20 IU/mL. The samples were then centrifuged at 4,200 × g for 10 minutes at room temperature. In some cases, the whole blood fraction obtained after plasma extraction by centrifugation was retained for further analyses. The resulting plasma was aliquoted, and both the plasma and corresponding whole-blood aliquots were snap-frozen and stored at −80°C until required for use.</p>	<p>For the extraction of lipids, 5 µL of PROSPR-enriched EVs were combined with 5 µL of Milli-Q water and 20 µL of ice-cold methanol (Optima LC-MS grade, Thermo Fisher Scientific, Waltham, USA). The samples were subjected to vigorous vortexing for 2 minutes, followed by the addition of 250 µL of methyl tert-butyl ether (MTBE) (Sigma-Aldrich, St. Louis, USA). The mixture underwent ultrasound-assisted extraction by immersion in a water bath sonicator (ATU Ultrasonidos, Valencia, Spain) operating at 40 kHz and 100 W for 30 minutes at 10 °C. After sonication, 25 µL of Milli-Q water was added to facilitate phase separation. The samples were then centrifuged at 1400 × g for 10 minutes at 10 °C. The resultant upper organic phase, containing the EV-derived lipids, was meticulously collected and transferred to glass autosampler vials for further analysis. Stock solutions were formulated by dissolving lipid standards in MTBE at a concentration of 1 mg/mL, and subsequently, working solutions were diluted to 2.5 µg/mL in MTBE.</p>	<p>PROSPR-EV lipid extracts were subjected to Liquid Chromatography–Electrospray Ionization Quadrupole Time-of-Flight Mass Spectrometry (LC-ESI-Q-TOF) analysis using an Agilent 1290 Infinity II UHPLC system, which was coupled to a 6545 Q-TOF mass spectrometer equipped with a dual ESI source (Agilent Technologies, Santa Clara, USA). The autosampler was maintained at a temperature of 4 °C, and 10 µL of each extract was injected onto a Waters ACQUITY HSS T3 column (100 × 2.1 mm, 1.8 µm; Waters, Milford, USA) maintained at 55 °C. Chromatographic separation was conducted at a flow rate of 0.40 mL/min using solvent A (10 mM ammonium acetate in ACN/water, 40:60 v/v) and solvent B (10 mM ammonium acetate in ACN/isopropanol, 10:90 v/v). A linear gradient was employed, transitioning from 40% to 100% solvent B over 10 minutes, followed by a 2-minute hold at 100% B, and a 3-minute re-equilibration at 60% B, resulting in a total run time of 15 minutes.</p>	<p>The Q-TOF mass spectrometer acquired full-scan spectra (m/z 100–3000, 2 GHz, 1 scan/s) in separate positive- and negative-ion modes, utilizing nitrogen as the nebulizer gas (5 L/min, 350 °C) with a capillary voltage of 3.5 kV. Continuous mass-axis calibration was achieved through dual-spray infusion of reference ions (m/z 121.050873 and 922.009798 in positive mode; m/z 119.036320 and 966.000725 in negative mode).</p>	<p>In the processing of lipidomics data, raw LC-ESI-Q-TOF files derived from PROSPR blood- and plasma-EV extracts were analyzed using MassHunter Qualitative Analysis B.07.00 (Agilent Technologies, Barcelona, Spain). The Molecular Feature Extractor (MFE) algorithm was employed to group co-eluting adducts of identical molecular entities. Molecular features comprising two or more ions were exported to MassHunter Mass Profiler Professional for untargeted statistical analysis. Features were aligned with a retention-time tolerance of 0.1% ± 0.25 min and a mass tolerance of 30.0 ppm ± 2.0 mDa; only those present in at least 70% of quality-control (QC) injections were retained. Signal drift was corrected using QC-based LOESS normalization, followed by the application of univariate ANOVA (p &lt; 0.05) and multivariate PLS-DA to identify discriminatory lipids.</p>	<p>Initial annotation of consistently detected features (n = 3 technical replicates) was conducted using CEU Mass Mediator v3.0 (mass accuracy &lt; 10 ppm) and further refined against Human Metabolome Database (HMDB) (&lt; 30 ppm) and LIPID MAPS (&lt; 20 ppm). Tentative identities were verified by comparing chromatographic retention with standards and confirmed through MS/MS spectral matching.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Serra	Gallart-Palau
+Study Person First Name	Aida	Xavier
+Study Person Mid Initials		
+Study Person Email	aida.serra@udl.cat	xgallart@irblleida.cat
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Department of Medical Basic Sciences (CMB) University of Lleida (UdL) Biomedical Research Institute of Lleida – (IRBLLEIDA) +Pec Proteomics Research Group (+PPRG) 80, Av. Rovira Roure, 25198, Lleida, Spain	Biomedical Research Institute of Lleida – (IRBLLEIDA) +Pec Proteomics Research Group (+PPRG) - Neuroscience Area University Hospital Arnau de Vilanova (HUAV) 80, Av. Rovira Roure, 25198, Lleida, Spain
+Study Person Affiliation	Instituto de Investigación Biomédica de Lleida	Instituto de Investigación Biomédica de Lleida
+Study Person Roles	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03mfyme49	https://ror.org/03mfyme49

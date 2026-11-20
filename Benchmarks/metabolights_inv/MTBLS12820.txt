@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MTBLS	NCBITaxon	NCIT	OBI	PRIDE	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.86.0			2025-12-03	25.06e	2025-12-18		2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS12820
+Investigation Title	Integrated Multi-Omics Analysis of Dampness-Heat Gout Reveals Diagnostic Biomarkers and Therapeutic Targets
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-06
+Investigation Public Release Date	2026-02-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12820
+Study Title	Integrated Multi-Omics Analysis of Dampness-Heat Gout Reveals Diagnostic Biomarkers and Therapeutic Targets
+Study Description	<p>Damp-heat gout (DHG) is a clinically recognized subtype of gout characterized by a specific syndrome in traditional Chinese medicine (TCM). However, its pathomechanism remains unclear, and there is a lack of quantifiable indicators for accurate clinical diagnosis and treatment. This study aimed to elucidate the pathological mechanisms underlying DHG and to establish a symptom-centered model for its diagnosis and treatment. A total of 136 participants, comprising healthy controls and diagnosed DHG patients, were recruited for the analysis. Utilizing serum metabolomics and proteomics methodologies, we identified 21 common pathways associated with DHG, highlighting four crucial pathways: bile secretion, cholesterol metabolism, purine metabolism, and arachidonic acid metabolism, which were found to correlate significantly with the primary symptoms of DHG. Additionally, six key biomarkers—hypoxanthine, prostaglandin E2, uric acid, deoxycholic acid, taurochenodeoxycholic acid, and bilirubin—were identified. These biomarkers demonstrated robust diagnostic potential, with AUC values of 0.987 in the discovery cohort and above 0.99 in the validation cohort. </p>
+Study Submission Date	2025-08-06
+Study Public Release Date	2026-02-04
+Study File Name	s_MTBLS12820.txt
+Comment[Created At]	2025-08-05T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Biomarkers	traditional Chinese medicine type	gout	Multi-omics study
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://id.nlm.nih.gov/mesh/D015415	http://www.ebi.ac.uk/efo/EFO_0007637	http://www.ebi.ac.uk/efo/EFO_0004274	http://purl.obolibrary.org/obo/PRIDE_0000461
+Study Design Type Term Source REF	MTBLS	mesh	EFO	EFO	PRIDE
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Le Yang, Ye Sun, Chuanning Li, Hui Sun, Shuyun Wei, Fangjie Zhu, Wenkai Wang, Runyue Huang, Xin Sun, Maojie Wang, Guangli Yan, Xijun Wang
+Study Publication Title	Integrated Multi-Omics Analysis of Dampness-Heat Gout Reveals Diagnostic Biomarkers and Therapeutic Targets
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12820_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS12820_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>The origin of samples: This study enrolled 86 male patients diagnosed with DHG from Guangdong Provincial Hospital of Chinese Medicine between 2020 and 2022, along with 50 age-matched healthy controls (HCs) recruited from Guangdong Eleventh People's Hospital in 2022. DHG patients met the following inclusion criteria: (a) fulfillment of the 2015 ACR/EULAR classification criteria for gouty arthritis; (b) compliance with diagnostic standards for DHG outlined in the Guideline for Diagnosis and Treatment of Gout and Hyperuricemia with Integrated Traditional Chinese and Western Medicine(12); (c) age 18-70 years; (d) exclusion of individuals with severe cardiovascular, cerebrovascular, pulmonary, hepatic, renal, hematologic malignancies, psychiatric disorders, or secondary gout induced by underlying conditions or medications. HCs were included based on (a) self-reported absence of significant medical conditions and (b) normal physical examination findings within the same age range. Using computer-generated random number tables, we allocated participants into discovery (60 DHG patients and 35 HCs) and validation cohorts (25 DHG patients and 15 HCs). The discovery cohort served for initial biomarker identification, while the validation cohort was utilized for subsequent optimization and verification of findings. Importantly, no significant age differences were observed between DHG patients and HCs within either cohort, ensuring proper case-control matching.</p><p>The collection and storage procedure: The blood samples were allowed to clot at room temperature for 30 minutes, followed by centrifugation at 3000 rpm for 10 minutes to obtain serum. 50 μL of each serum sample was mixed with 200 μL of methanol and shaken for 1 minute. The mixture was then left to stand at 4°C for 20 minutes, followed by centrifugation at 13,000 rpm for 15 minutes. The supernatant was filtered through a 0.22 μm membrane for subsequent UPLC-MS analysis. A quality control (QC) sample was prepared by pooling all serum samples aliquots.</p>	<p>50 μL of each serum sample was mixed with 200 μL of methanol and shaken for 1 minute. The mixture was then left to stand at 4°C for 20 minutes, followed by centrifugation at 13,000 rpm for 15 minutes. The supernatant was filtered through a 0.22 μm membrane for subsequent UPLC-MS analysis. A quality control (QC) sample was prepared by pooling all serum samples aliquots.</p>	<p>The metabolomics analysis was performed using the UPLC (Ultimate 3000, Thermo Scientific) and Orbitrap analysis platform (Q-Exactive Focus, Thermo Scientific). Chromatographic separation was performed on Waters 2.1 mm × 100 mm ACQUITY UPLC HSS T3 1.8µm chromatographic column (Waters, USA) at 35°C. The mobile phase consisted of acetonitrile (A) and 0.1% formic acid in water (B). The UPLC gradient program were: 0 ~ 1.0 min, 95% ~ 75% B; 1.0 ~ 2.0 min, 75% ~ 40% B; 2.0 ~ 7.5 min, 40% ~ 10% B; 7.5 ~ 10.5 min, 10% ~ 1% B; 10.5 ~ 12.5 min, 1% B; 12.5 ~ 13.0 min, 1% ~ 95% B; 13.0 ~ 15.0 min, 1% B. The flow rate was 0.30 ml/min and the inject sample volume was 3 μL. </p>	<p>After separation, mass spectrometry was performed on a Q-Exactive Focus. Heater temperature 320°C; Sheath gas flow rate: 40; Auxiliary gas flow rate: 15; Sweep gas flow rate: 1; Positive ion electrospray voltage: 3.5 KV, Capillary temperature: 350 °C; S-Lens RF Level: 50. Scanning mode: Full Scan (m/z 80-1200), resolution 70,000.</p>	<p>Pre-processing the original data with Progenesis QI 2.0 software, including peak extraction, normalization, peak alignment and so on.</p>	<p>Explored overall metabolic changes between the groups using principal component analysis (PCA) and hierarchical clustering analysis. Employed orthogonal partial least squares discriminant analysis (OPLS-DA) to maximize inter-group metabolic variations and evaluated the model's discriminative power with 100 permutations to guard against overfitting. The matrix result was reduced by replacing the missing values, and data with &gt;20% missing values were removed. Univariate analysis was performed with Wilcoxon Mann-Whitney U test, the p values were adjusted with false discovery rate (FDR) correction. Then, the ions which conform to VIP &gt; 0.5, P &lt; 0.05, log2(FC)&gt;1.5 were selected. These ions were deemed to have a large contribution rate to the change of the metabolic profile. The qualifying ions were screened for endogenous metabolites through the Human Metabolome Database (HMDB) (http://www.hmdb.ca/). The mass spectrometric data collected in FullMS-ddMS2 mode, and the structure of differentially expressed metabolites was confirmed by combining the compound excimer ions, MS cleavage pathways, and some reference substances. Pathway enrichment analysis was conducted using The R package through the MetaboAnalyst web tool (https://www.metaboanalyst.ca/).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yang
+Study Person First Name	Le
+Study Person Mid Initials	
+Study Person Email	leyang92gzy@sina.com
+Study Person Phone	+86-18645126685
+Study Person Fax	
+Study Person Address	The Second Affiliated Hospital of Guangzhou University of Chinese Medicine, Dade Road 111, Guangzhou, China.
+Study Person Affiliation	The Second Affiliated Hospital of Guangzhou University of Chinese Medicine
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	OGG	UO	ror
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/ogg.owl	http://purl.obolibrary.org/obo/uo.owl	https://w3id.org/biopragmatics/resources/ror/ror.owl.gz
+Term Source Version	252	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.90.0				2026-05-13	26.02d	2026-05-08	Vision Release: 1.0.59	2026-01-16	2.0
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	OGG: Ontology of Genes and Genomes	Units of measurement ontology	Research Organization Registry
+INVESTIGATION
+Investigation Identifier	MTBLS2188
+Investigation Title	Exploring the Glucose Fluxotype of the E. coli y-ome Using High-Resolution Fluxomics
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-10-26
+Investigation Public Release Date	2021-05-13
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2188
+Study Title	Exploring the Glucose Fluxotype of the E. coli y-ome Using High-Resolution Fluxomics
+Study Description	We have developed a robust workflow to measure high-resolution fluxotypes (metabolic flux phenotypes) for large strain libraries under fully controlled growth conditions. This was achieved by optimizing and automating the whole high-throughput fluxomics process and integrating all relevant software tools. This workflow allowed us to obtain highly detailed maps of carbon fluxes in the central carbon metabolism in a fully automated manner. It was applied to investigate the glucose fluxotypes of 180 <i>Escherichia coli</i> strains deleted for y-genes. Since the products of these y-genes potentially play a role in a variety of metabolic processes, the experiments were designed to be agnostic as to their potential metabolic impact. The obtained data highlight the robustness of <i>E. coli</i>'s central metabolism to y-gene deletion. For two y-genes, deletion resulted in significant changes in carbon and energy fluxes, demonstrating the involvement of the corresponding y-gene products in metabolic function or regulation. This work also introduces novel metrics to measure the actual scope and quality of high-throughput fluxomics investigations.
+Study Submission Date	2020-10-26
+Study Public Release Date	2021-05-13
+Study File Name	s_MTBLS2188.txt
+Comment[Created At]	2020-10-26
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[Revision]	3
+Comment[Revision Date]	2026-07-01
+Comment[Revision Log]	Add MTH MetaToul to Contacts
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Fluxomics	High Throughput Screening	Bacteria	high-performance liquid chromatography-mass spectrometry	nuclear magnetic resonance spectroscopy	targeted metabolites	high-resolution fluxotyping	y-ome phenotyping	MetaboHUB
+Study Design Type Term Accession Number	http://edamontology.org/topic_3955	http://purl.obolibrary.org/obo/NCIT_C18472	http://purl.obolibrary.org/obo/NCIT_C14187	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/CHMO_0000591	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	https://ror.org/039gscz82
+Study Design Type Term Source REF	EDAM	NCIT	NCIT	CHMO	CHMO	MTBLS	MTBLS	MTBLS	ror
+Comment[Study Design Category]									facility
+Comment[Study Design Source]									data-curation
+STUDY PUBLICATIONS
+Study PubMed ID	33926117
+Study Publication DOI	10.3390/metabo11050271
+Study Publication Author List	Bergès C, Cahoreau E, Millard P, Enjalbert B, Dinclaux M, Heuillet M, Kulyk H, Gales L, Butin N, Chazalviel M, Palama T, Guionnet M, Sokol S, Peyriga L, Bellvert F, Heux S, Portais JC.
+Study Publication Title	Exploring the Glucose Fluxotype of the <i>E. coli</i> y-ome Using High-Resolution Fluxomics.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Strain	Gene mutation	Collection time point
+Study Factor Type	strain	Gene Mutation	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005135	http://purl.obolibrary.org/obo/NCIT_C18093	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2188_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS2188_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Nuclear Magnetic Resonance (NMR) -
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	NMR
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification	Chromatography	Mass spectrometry
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	data transformation	metabolite identification	chromatography	mass spectrometry
+Study Protocol Type Term Accession Number			http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470
+Study Protocol Type Term Source REF			MTBLS	MTBLS	MTBLS	OBI	MI	CHMO	CHMO
+Study Protocol Description	<p><strong>Bacteria Strains and Cultivation Conditions:</strong></p><p><em>E. coli</em> BW 25,113 and the derived strains used in this study (see <strong>Data S1</strong> in the paper associated with this study) were taken from the Keio collection<strong>[1]</strong>. 180 y-gene mutants were selected from the original glycerol stock of 3985 single-gene deletion mutants available in this collection (<em>E. coli</em> BW 25,113 strains mutants; see <strong>paragraph 2.1</strong> of the paper associated with this study). The <em>E. coli</em> strain MG1655 was also used. All the selected strains were first cultivated overnight in Luria-Bertani (LB) medium (10 g/l tryptone, 5 g/l yeast extract and 10 g/l NaCl) with kanamycine (25 µg/ml) at 37 °C and then stored in glycerol stocks.</p><p><br></p><p>To perform the experiments, the glycerol stocks of relevant strains were used to inoculate liquid LB medium in microplates. The LB cultures were used to inoculate precultures in minimal synthetic medium containing 17.4 g/l Na2HPO4, 12H2O, 3.03 g/l KH2PO4, 0.51 g/l NaCl, 2.04 g/l NH4Cl, 0.49 g/l MgSO4, 4.38 mg/l CaCl2, 15 mg/l Na2EDTA 2H2O, 4.5 mg/l ZnSO4 7H2O, 0.3 mg/l CoCl2 6H2O, 1 mg/l MnCl2 4H2O, 1 mg/l H3BO3, 0.4 mg/l Na2MoO4 2H2O, 3 mg/l FeSO4 7H2O, 0.3 mg/l CuSO4 5H2O, 0.1 g/l thiamine and 3 g/l glucose. For the 13C-labeling experiments, unlabeled glucose was replaced by the same concentration of a mixture of 80% [1-13C1]-D-glucose + 20% [U-13C6]-D-glucose. To minimize sources of unlabeled carbon atoms from the first cultivation steps in subsequent experiments, the cells were inoculated at a starting OD between 0.08 and 0.12.</p><p><br></p><p>Robotic Platforms for Culture, Sampling and Sample Preparation:</p><p>2 robotic platforms were used to parallelize the cell cultures, 13C-labelling experiments, sampling of labeled metabolites, and sample preparation for NMR and MS analyses. The first system allowed 48 13C-labelling experiments to be performed automatically in parallel in 15 ml bioreactors under controlled growth conditions, with automated collection of labelled samples (of biomass or culture medium) at defined culture times or optical densities. The robot and its operation have previously been described<strong>[2]</strong>. A second robotic workstation (Freedom EVO 200, Tecan, Männedorf, Switzerland) was designed and assembled to fully automate and parallelize the final preparation of labeled biological samples for the analysis of isotopic profiles by NMR or mass spectrometry. This device was used to handle the different containers used (NMR tubes, vials, multiwell-plates, etc.), in order to perform dilutions, add standards, take aliquots, and manage the samples.</p><p><br></p><p>The 13C-labeling experiments were carried out in batches of 48 parallel cell cultures using the 2 robotic platforms described above. The input label was optimized for E. coli’s metabolic network using IsoDesign (1.2.1)<strong>[3]</strong>, and consisted of a mixture of 80% [1-13C1]-D-glucose and 20% [U-13C6]-D-glucose. All cultures were performed in 15 ml reaction vessels, at 37 °C, pH = 7, a stirring speed of 2300 rpm and with 5 l/min of compressed air fed into the culture module. 4 to 8 supernatant samples were collected in each reactor throughout the culture to analyze the exometabolome and to calculate the rates of substrate consumption and end-product production.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Baba T, Ara T, Hasegawa M, Takai Y, Okumura Y, Baba M, Datsenko KA, Tomita M, Wanner BL, Mori H. Construction of Escherichia coli K-12 in-frame, single-gene knockout mutants: the Keio collection. Mol Syst Biol. 2006;2:2006.0008. doi:10.1038/msb4100050. PMID:16738554.</p><p><strong>[2]</strong> Heux S, Poinot J, Massou S, Sokol S, Portais JC. A novel platform for automated high-throughput fluxome profiling of metabolic variants. Metab Eng. 2014 Sep;25:8-19. doi:10.1016/j.ymben.2014.06.001. PMID:24930895.</p><p><strong>[3]</strong> Moxley JF, Jewett MC, Antoniewicz MR, Villas-Boas SG, Alper H, Wheeler RT, Tong L, Hinnebusch AG, Ideker T, Nielsen J, Stephanopoulos G. Linking high-resolution metabolic flux phenotypes and transcriptional regulation in yeast modulated by the global regulator Gcn4p. Proc Natl Acad Sci U S A. 2009 Apr 21;106(16):6477-82. doi:10.1073/pnas.0811091106. PMID:19346491.</p>	<p><strong>Isotopic Profiling of Proteinogenic Amino-Acids:</strong></p><p>The biomass was automatically sampled once the OD600nm had reached 1.2, indicating that the metabolic and isotopic steady-state had been achieved: 4 ml samples of culture were pelleted by automated centrifugation (5 min, 4410 x g), manually hydrolyzed with 250 µl 6 N HCl for 15 h at 110 °C and washed twice in 1 ml D2O by rotary evaporation (Büchi Labortechnik AG, CH, Flawil, Switzerland) between each washing step. Aliquots (10 µl) of biomass hydrolysate supernatant were then collected and transferred into 96 well plates, diluted with 990 µl pure H2O and transferred to vials for LC-MS analysis. </p><p><br></p><p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>Supernatants were not extracted but directly prepared for NMR analyses.</p>	<p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>Samples of biomass hydrolysate supernatant (150 µl) were also mixed with 50 µl of TSP d4 (4 mM in D2O) and 150 µl of each mixture was then transferred into 3 mm NMR tubes.</p>	<p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>Culture supernatants were analyzed by 1D-1H NMR on a Bruker Avance III 800 MHz spectrometer (Bruker BioSpin, Rheinstetten, Germany) page equipped with a 5 mm CQPI cryoprobe at 280 K.</p>	<p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>To precisely quantify the extracellular compounds, the 1D-1H NMR data were recorded after a 30° presaturation pulse (zgpr30), with a relaxation delay of 7 s with 32 acquired scans.</p>	<p><strong>Isotopic Profiling of Proteinogenic Amino-Acids:</strong></p><p>The raw MS isotopic profiles of proteinogenic amino acids were then quantified using <strong>Tracefinder</strong> (Thermo Fisher Scientific, Waltham, MA, USA).</p><p><br></p><p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>Raw data obtained after acquisition are FID. A Fourier transform were applied for each spectrum with a specific smoothing (em apodization with LB = 0.3 and SI = 128K). Phase and baseline corrections were also performed using automatic tools from <strong>Topspin 3.5pl6</strong> (Bruker BioSpin, Rheinstetten, Germany), before the automatic integration of specific signals belonging to exo-metabolites present in the samples. Absolute quantitation of the metabolites of interest was performed using the internal standard TSP-d4 as reference.</p>	<p><strong>Isotopic Profiling of Proteinogenic Amino-Acids:</strong></p><p>Metabolites were determined by extracting the exact mass with a tolerance of 5 ppm. The isotopic profiles (Carbon Isotopologue Distributions) were obtained after correcting for natural isotopic abundances using <strong>IsoCor 1.2[1][2]</strong> (<a href='https://github.com/MetaSys-LISBP/IsoCor' rel='noopener noreferrer' target='_blank'>https://github.com/MetaSys-LISBP/IsoCor</a> (accessed on 20 May 2020)). The different carbon isotopologues fraction of the following amino acids were measured: Alanine, rginine, aspartate, glutamate, glycine, histidine, isoleucine, leucine, lysine, methionine,phenylalanine, proline, serine, threonine, tryptophane, tyrosine and valine.</p><p><br></p><p><strong>NMR Analysis of Extracellular Medium:</strong></p><p>3 metabolites (glucose lactate and acetate) were quantified and their labelling position accessed.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Millard P, Letisse F, Sokol S, Portais JC. IsoCor: correcting MS data in isotope labeling experiments. Bioinformatics. 2012 May 1;28(9):1294-6. doi:10.1093/bioinformatics/bts127. PMID:22419781.</p><p><strong>[2]</strong> Millard P, Delépine B, Guionnet M, Heuillet M, Bellvert F, Létisse F. IsoCor: isotope correction for high-resolution MS labeling experiments. Bioinformatics. 2019 Nov 1;35(21):4484-4487. doi:10.1093/bioinformatics/btz209. PMID:30903185.</p>	<p><strong>Isotopic Profiling of Proteinogenic Amino-Acids:</strong></p><p>The incorporation of 13C-label into proteinogenic amino acids was analyzed by liquid chromatography–mass spectrometry, using an Ultimate 3000 HPLC system (Dionex, Sunnyvale, CA, USA) coupled to an LTQ Orbitrap Velos mass spectrometer (Thermo Fisher Scientific, Waltham, MA, USA). The hydrolyzed biomass samples were separated with an Ultimate 3000 HPLC system (Dionex,CA, USA) on a PFP column (150 x 2.1 mm i.d., particle size 5 µm; Supelco Bellefonte, PEN, USA). Solvent A was 0.1% formic acid in H20 and solvent B was 0.1% formic acid in acetonitrile at a flow rate of 250 µl/min. Solvent B was varied as follows: 0 min: 2%, 2 min: 2%, 10 min: 5%, 16 min: 35%, 20 min: 100% and 24 min: 100%. The column was then equilibrated for 6 min at the initial conditions before the next sample was analyzed. The volume of injection was 20 µl.</p>	<p><strong>Isotopic Profiling of Proteinogenic Amino-Acids:</strong></p><p>High resolution experiments were performed with the chromatography system coupled to an LTQ Orbitrap Velos mass spectrometer (Thermo Fisher Scientific, Waltham, MA, USA) equipped with a heated electrospray ionization probe. Full scan HRMS analyses were performed in positive FTMS mode at a resolution of 60,000 (at 400 m/z), using the following source parameters: Capillary temperature, 275 °C; source heater temperature, 250 °C; sheath gas flow rate, 45 a.u. (arbitrary unit); auxiliary gas flow rate, 20 a.u.; S-Lens RF level, 40%; source voltage, 5 kV. Metabolites were identified by extracting the exact mass with a tolerance of 5 ppm.</p>
+Study Protocol URI									
+Study Protocol Version									
+Study Protocol Parameters Name	Final tracer concentration;Tracer molecule	Post Extraction;Derivatization;Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength				Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer
+Study Protocol Parameters Name Term Accession Number	;	;;	;;;	;;;;				;;;;	;;;;
+Study Protocol Parameters Name Term Source REF	;	;;	;;;	;;;;				;;;;	;;;;
+Study Protocol Components Name									
+Study Protocol Components Type									
+Study Protocol Components Type Term Accession Number									
+Study Protocol Components Type Term Source REF									
+STUDY CONTACTS
+Study Person Last Name	Bergès	Cahoreau	Millard	Enjalbert	Dinclaux	Heuillet	Kulyk	Gales	Butin	Chazalviel	Palama	Guionnet	Sokol	Peyriga	Bellvert	Heux	Portais	Sokol	MetaToul
+Study Person First Name	Cécilia	Edern	Pierre	Brice	Mickael	Maud	Hanna	Lara	Noémie	Maxime	Tony	Matthieu	Serguei	Lindsay	Floriant	Stéphanie	Jean-Charles	Sergueï	MTH
+Study Person Mid Initials																			
+Study Person Email	berges@insa-toulouse.fr	cahoreau@insa-toulouse.fr															jean-charles.portais@insa-toulouse.fr		mtbls-mth-metatoul@inrae.fr
+Study Person Phone																			
+Study Person Fax																			
+Study Person Address																			
+Study Person Affiliation																	MetaboHUB		MetaboHUB
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Principal Investigator	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]																	https://ror.org/039gscz82		https://ror.org/039gscz82

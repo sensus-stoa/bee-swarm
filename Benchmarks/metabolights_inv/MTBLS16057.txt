@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0				2026-07-12	26.02d	2026-05-08	
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS16057
+Investigation Title	A Transferable Workflow for Confident Annotation of Polar Analytes in 4D-Metabolomics
+Investigation Description	
+Investigation Submission Date	2026-10-19
+Investigation Public Release Date	2026-10-19
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16057
+Study Title	A Transferable Workflow for Confident Annotation of Polar Analytes in 4D-Metabolomics
+Study Description	Introduction High-confidence annotation of polar metabolites remains a central challenge in non-targeted metabolomics. While derivatization improves chromatographic retention and ionization of derivatized compounds, it changes the molecules, making annotation using conventional annotation workflows difficult. Trapped ion mobility spectrometry (TIMS) provides collisional cross section (CCS) values as an orthogonal, instrument-agnostic molecular descriptor, but CCS reference data for derivatized metabolites is scarce. Objectives We present a four-dimensional annotation strategy integrating 3-nitrophenylhydrazine 3-NPH derivatization with orthogonal retention time (RT), CCS, accurate mass, isotopic pattern, and MS/MS information acquired by LC-TIMS-HRMS, providing a large-scale experimental CCS reference dataset for 3-NPH-derivatized metabolites. Methods Experimentally measured TIMS CCS values were acquired for 3-NPH derivatives on a timsTOF Pro2. Combined with standardized RTs from the biocrates MxQuant kit workflow, these values form a curated 4D target list for automated annotation that is instrument independent and transferable. Coverage was further extended via an in silico derivatization workflow scoring candidate structures against experimental MS/MS and CCS data. Results CCS values were transferred directly to the timsMetabo platform with inter-instrument agreement consistent with published benchmarks (<2 % ΔCCS). Applied to time-resolved brown adipocyte extracts following norepinephrine stimulation, the workflow resolved temporal trajectories across fatty acids, organic acids, and amino acid derivatives matching previous reports. Conclusion Anchoring 3-NPH metabolite annotation to experimentally measured TIMS CCS values and standardized biocrates kit retention times substantially reduces annotation ambiguity, allowing confident profiling of polar analytes in complex biological systems.
+Study Submission Date	2026-10-19
+Study Public Release Date	2026-10-19
+Study File Name	s_MTBLS16057.txt
+Comment[Created At]	2026-06-22
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-19
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity II UHPLC	timsMetabo	Mus musculus	Cell Line	experimental sample	untargeted analysis	Metabolomics	MetaboScape	Ion Mobility Separation	timsTOF Pro 2
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864	http://purl.obolibrary.org/obo/MS_1003479	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/NCIT_C16403	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MS_1003608	http://purl.obolibrary.org/obo/PRIDE_0000660	http://purl.obolibrary.org/obo/MS_1003230
+Study Design Type Term Source REF	MTBLS	MS	NCBITaxon	NCIT	CHMO	MS	EDAM	MS	PRIDE	MS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	software	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Matthias Anagho-Mattanovich, Aiko Barsch, Cristian De Gobba, Hai Pham-Tuan, Alice Limonciel, Matthew R. Lewis, Ondrej Hodek & Thomas Moritz
+Study Publication Title	A Transferable Workflow for Confident Annotation of Polar Analytes in 4D-Metabolomics
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Time after induction
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16057_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity II UHPLC;Agilent 1290 Infinity Autosampler;biocrates UHPLC column;reverse phase;Agilent XDB-C18;negative;20-1300;timsMetabo;electrospray ionization
+Comment[Assay Field Default Unit]	;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002087;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://purl.obolibrary.org/obo/MS_1003479;http://purl.obolibrary.org/obo/MS_1000073
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;MTBLS;MTBLS;;;MS;MS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Immortalized murine brown preadipocytes were cultured as previously described in (Anagho-Mattanovich et al. 2025). To induce thermogenic activation, fully differentiated adipocytes were stimulated with norepinephrine (1 µmol L-1, Sigma-Aldrich). Cell extracts were collected at 0, 4, and 24 h following stimulation.</p>	<p>Derivatized adipocyte extracts were analyzed using an Agilent 1290 Infinity II UHPLC coupled to a Bruker timsMetabo mass spectrometer. A 2 µL injection volume was used for all analyses. Chromatographic separation was achieved using an 11-min reversed-phase gradient on a biocrates UHPLC column equipped with an Agilent XDB-C18 UHPLC precolumn operated at 50 °C. Milli-Q water with 0.02 % formic acid was used as mobile phase A, and a mixture of Methanol and Acetonitrile (3:2, v/v) with 0.02 % formic acid as mobile phase B, using the following gradient: starting conditions were 10 % B and a flow rate of 0.8 mL min-1. Between 0.05 min and 3.30 min B was increased to 35 %, until 7.50 min B was increased to 75 %, and until 7.80 min B was increased to 95 %, which was maintained until 9.00 min. Between 9.00 and 9.10 min B was further increased to 100 % and the flow rate was increased to 1.2 mL min-1, both of which were maintained until 10.00 min. Between 10.00 and 10.10 min B was lowered to 10 % and the flow rate to 1.0 mL min-1, which was further lowered to 0.8 mL min-1 until 10.80 min. These settings were maintained until the end of the run at 11.00 min.</p>	<p>All data was processed in MetaboScape® 2026b for automatic mass and mobility calibration, feature detection, and alignment using the T-ReX® 4D algorithm. Feature extraction included de-adducting, de-isotoping, and feature grouping. Automated annotation was performed using a CCS- and RT-anchored target list and an in silico derivatization workflow, as described in detail in 'In silico derivatization and CCS value prediction improve interoperable semi-untargeted stable-isotope labeling analysis' (Anagho-Mattanovich et al. 2026). The following narrow and wide tolerances and scorings were applied for compound annotation: m/z 1.5 mDa and 2 mDa, retention time 0.1 min and 0.15 min, mSigma 25 and 750, MS/MS score 750 and 250, CCS 2.0 and 5.0 %.</p>	<p>Cells were quenched in ice-cold 90% methanol. Culture medium was transferred to tubes, wells were rinsed with 1 mL phosphate-buffered saline (PBS), and 500 µL methanol was added. Cells were scraped, snap-frozen in liquid nitrogen, and subjected to three freeze-thaw-vortex cycles. For protein precipitation, samples were incubated on ice for 1 h and subsequently centrifuged (16,000 g, 15 min, 4 °C). Supernatants were collected and stored at -80 °C until further analysis.</p>	<p>Mass spectrometry was performed in negative ion mode using a VIP-HESI source operated under the following conditions: end plate offset 500 V, capillary 4500 V, nebulizer 2.0 bar, dry gas 10.0 L/min, dry temperature 220 °C, probe gas temperature 450 °C, probe gas flow 4.0 L min-1. The measurement range was 20-1300 m/z, and the instrument was used in TIMS-PASEF model with a ramp time of 100 ms, a mobility range of 0.45-1.45 1/K0 and an MS/MS collision energy of 35 eV. The transfer parameters were the following: deflection delta -70 V, funnel 1 RF 500 Vpp, funnel 2 RF 250 Vpp, multipole RF 200 Vpp, collision energy 10 eV, collision RF 1200 V, quadrupole low mass 60 m/z, AIP MS Profile: 600-0vpp slope 20Vpp/us, storage time ramping: 3.7 at 0.7 1/K0-14.0 at 1.3 1/K0. AIP MS/MS profile: 600-0vpp slope 20Vpp/us, storage time ramping: 3.0 at 0.7 1/K0-3.0 at 1.3 1/K0. The TIMS offsets were the following: Δt1 20 V, Δt2 120 V, Δt3 -60 V, Δt4 -50 V, Δt5 0 V, Δt6 -20 V, collision cell in -140 V, ICC target intensity 30 M.</p><p>Automatic internal mass calibration was performed using sodium formate, and automatic internal mobility calibration using Agilent ESI-L low concentration Tunemix.</p>	<p>Metabolites were identified based on the biocrates MxQuant kit and a previously recorded CCS library that is described in the manuscript associated with this study.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Anagho-Mattanovich	Moritz
+Study Person First Name	Matthias	Thomas
+Study Person Mid Initials		
+Study Person Email	matthias.mattanovich@sund.ku.dk	thomas.moritz@sund.ku.dk
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Copenhagen	University of Copenhagen
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-7561-7898	0000-0002-4258-3190
+Comment[Study Person Affiliation ROR ID]	https://ror.org/035b05819	https://ror.org/035b05819

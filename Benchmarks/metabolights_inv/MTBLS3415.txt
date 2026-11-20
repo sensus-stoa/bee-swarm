@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	MTBLS	OMIT	CHMO	NCIT	GO	MS	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/						
+Term Source Version	29		1.0						
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology						
+INVESTIGATION
+Investigation Identifier	MTBLS3415
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-09-03
+Investigation Public Release Date	2022-03-22
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS3415
+Study Title	Interorganelle lipid flux revealed by enzymatic mass tagging in vivo
+Study Description	The distinct activities of cellular organelles are dependent on the proper function of their membranes. Coordinated membrane biogenesis of the different organelles necessitates interorganelle transport of lipids from their site of synthesis to their destination membranes. Several proteins and trafficking pathways have been proposed to participate in lipid distribution, but despite the basic importance of this process, in vivo evidence linking the absence of putative transport pathways to specific transport defects remains scarce. An obvious reason for this scarcity is the near absence of in vivo lipid trafficking assays. Here we introduce a versatile method named METALIC (Mass tagging-Enabled TrAcking of Lipids In Cells) to track interorganelle lipid flux inside living cells. In this strategy, two enzymes, one directed to a “donor” and the other to an “acceptor” organelle, add two distinct mass tags to lipids. Mass spectrometry-based detection of lipids bearing the two mass tags is then used as a proxy for lipid exchange between the two organelles. By applying this approach to ER and mitochondria, we show that the ERMES and Vps13-Mcp1 complexes have lipid transport activity in vivo, and unravel their relative contributions to ER-mitochondria lipid exchange.
+Study Submission Date	2021-09-03
+Study Public Release Date	2022-03-22
+Study File Name	s_MTBLS3415.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	phospholipid	ultra-performance liquid chromatography-mass spectrometry	Lipid Transport	organelle membrane contact site	lipid transfer activity
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000069	http://purl.obolibrary.org/obo/CHEBI_16247	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C20739	http://purl.obolibrary.org/obo/GO_0044232	http://purl.obolibrary.org/obo/GO_0120013
+Study Design Type Term Source REF	MTBLS	CHEBI	CHMO	NCIT	GO	GO
+STUDY PUBLICATIONS
+Study PubMed ID		35654841
+Study Publication DOI	10.1101/2021.08.27.457935	10.1038/s41556-022-00917-9
+Study Publication Author List	John Peter Arun T., Peter Matthias, Kornmann Benoît	John Peter Arun T., Petrungaro Carmelina, Peter Matthias, Kornmann Benoît
+Study Publication Title	Interorganelle lipid flux revealed by enzymatic mass tagging in vivo	METALIC reveals interorganelle lipid flux in live cells by enzymatic mass tagging
+Study Publication Status	Published	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Replicate	Timepoint
+Study Factor Type	treatment	replicate	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000683	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS3415_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS3415_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Yeast strains and plasmids Strains used in this study are listed in <strong>Table S1 </strong>in the paper associated with this study. Genomic integration of PCR fragments was done by homologous recombination<strong>[1],[2]</strong>. Gene deletions were confirmed by colony PCR. Plasmids and primers used in the study are listed in <strong>Tables S2</strong> and <strong>S3 </strong>in the paper associated with this study, respectively. CFAse ORF was amplified from <strong>E. coli</strong>. A CFAse-mCherry construct was targeted to different organelles using the following targeting sequences; for the ER membrane, the C-terminal 20 residues of <strong>Ubc6 </strong>(230-250); for the ER lumen, the signal sequence of <strong>Kar2 </strong>(aa 1-41) at the N-terminus and a HDEL signal at the C-terminus; for the outer mitochondrial membrane, aa 1-30 of Tom70; for the mitochondrial matrix, aa 1-69 of subunit 9 of the F0-ATPase from <strong>N.crassa</strong>; for the peroxisome, full-length <strong>Pex3 </strong>at the N-terminus; for the plasma membrane, the <strong>PH </strong>domain of <strong>Osh1 </strong>(aa 268-388); for the vacuole, full-length <strong>Vac8 </strong>at the N-terminus.</p><p><br></p><p>Pre-cultures in synthetic minimal medium were diluted to 0.05 OD600/ml in 25 ml and treated with 0.5 mM auxin for 7 hours. Next, cells were pulse labeled with 2 mM deuterated methionine and grown at 30 °C. At the indicated time points, 8 OD600&nbsp;of cells was pelleted, snap-frozen and stored at −80 °C.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Janke C, Magiera MM, Rathfelder N, Taxis C, Reber S, Maekawa H, Moreno-Borchart A, Doenges G, Schwob E, Schiebel E, Knop M. A versatile toolbox for PCR-based tagging of yeast genes: new fluorescent proteins, more markers and promoter substitution cassettes. Yeast. 2004 Aug;21(11):947-62. doi: 10.1002/yea.1142. PMID: 15334558</p><p><strong>[2] </strong>Longtine MS, McKenzie A 3rd, Demarini DJ, Shah NG, Wach A, Brachat A, Philippsen P, Pringle JR. Additional modules for versatile and economical PCR-based gene deletion and modification in Saccharomyces cerevisiae. Yeast. 1998 Jul;14(10):953-61. doi: 10.1002/(SICI)1097-0061(199807)14:10&lt;953::AID-YEA293&gt;3.0.CO;2-U. PMID: 9717241</p>	<p>Lipids were extracted as described previously with minor modifications<strong>[1]</strong>. Briefly, cells were washed in ice-cold water and subsequently resuspended in 1.5 ml of extraction solvent containing ethanol, water, diethyl ether, pyridine, and 4.2 N ammonium hydroxide (v/v 15:15:5:1:0.18). After the addition of 300 μL glass beads, samples were vortexed vigorously for 5 minutes and incubated at 60 °C for 20 min. Cell debris were pelleted by centrifugation at 1,800×g for 10 min and the supernatant was dried under a stream of nitrogen. The dried extract was resuspended in 1 ml of water-saturated butanol and sonicated for 5 min in a water bath sonicator. 500 μl of water was added and vortexed further for 2 min. After centrifugation at 3000×g, the upper butanol phase was collected, dried under a stream of nitrogen and resuspended in 50% methanol for lipidomics analysis.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>da Silveira Dos Santos AX, Riezman I, Aguilera-Romero MA, David F, Piccolis M, Loewith R, Schaad O, Riezman H. Systematic lipidomic analysis of yeast protein kinase and phosphatase mutants reveals novel insights into regulation of lipid homeostasis. Mol Biol Cell. 2014 Oct 15;25(20):3234-46. doi: 10.1091/mbc.E14-03-0851. Epub 2014 Aug 20. PMID: 25143408</p>	<p>LC analysis was performed as described previously with several modifications<strong>[1]</strong>. Phospholipids were separated on a nanoAcquity UPLC (Waters) equipped with a HSS T3 capillary column (150 m x30mm, 1.8 m particle size, Waters), applying a 10 min linear gradient of buffer A (5 mM ammonium acetate in acetonitrile/water 60:40) and B (5 mM ammonium acetate in isopropanol/acetonitrile 90:10) from 10% B to 100% B. Conditions were kept at 100% B for the next 7 min, followed by a 8 min re-equilibration to 10% B. The injection volume was 1 μL. The flow rate was constant at 2.5 μl/min.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Castro-Perez JM, Kamphorst J, DeGroot J, Lafeber F, Goshawk J, Yu K, Shockcor JP, Vreeken RJ, Hankemeier T. Comprehensive LC-MS E lipidomic analysis using a shotgun approach and its application to biomarker detection and identification in osteoarthritis patients. J Proteome Res. 2010 May 7;9(5):2377-89. doi: 10.1021/pr901094j. Erratum in: J Proteome Res. 2011 Jul 1;10(7):3303-8. PMID: 20355720.</p><p><br></p>	<p>The UPLC was coupled to QExactive mass spectrometer (Thermo) by a nanoESI source (New Objective Digital PicoView 550). The source was operated with a spray voltage of 2.9 kV in positive mode and 2.5 kV in negative mode. Sheath gas flow rate was set to 25 and 20 for positive and negative mode, respectively. MS data was acquired using either positive or negative polarization, alternating between full MS and all ion fragmentation (AIF) scans. Full scan MS spectra were acquired in profile mode from 107-1600 m/z with an automatic gain control target of 1e6, an Orbitrap resolution of 70,000, and a maximum injection time of 200 ms. AIF spectra were acquired from 107-1600 m/z with an automatic gain control value of 5e^4, a resolution of 17,500, a maximum injection time of 50 ms and fragmented with a normalized collision energy of 20, 30 and 40 (arbitrary units). Generated fragment ions were scanned in the linear trap. Positive-ion-mode was employed for monitoring PC and negative-ion-mode was used for monitoring PS and PE. Lipid species were identified based on their m/z and elution time. We used a standard mixture comprising PS 10:0/10:0, PE 17:0/17:0, PC 17:0/17:0, PG 17:0/17:0 and PI 12:0/13:0 for deriving an estimate of specific elution times.</p>	<p>No data transformation information was supplied for this study. </p>	<p>Lipid intensities were quantified using the <strong>Skyline </strong>software. For each phospholipid, signal was integrated for the precursor species (m), cyclopropane species (m+14) and species that appear upon pulse-labeling with deuterated methionine (m+9, m+16, m+23, m+25). Fraction of cyclopropylated species (<strong>Fig 2 </strong>in the paper associated with this study) upon constitutive expression of CFAse was calculated as (m+14) / (m + m+14). Fraction of labeled headgroups (<strong>Fig 3 </strong>in the paper associated with this study), was calculated as (m+9&nbsp;+ m+23&nbsp;+ m+25) / (m + m+9&nbsp;+ m+14&nbsp;+ m+16&nbsp;+ m+23&nbsp;+ m+25). Fraction of labeled cyclopropane (<strong>Fig 3 </strong>in the paper associated with this study) was calculated as (m+16&nbsp;+ m+25) / (m + m+9&nbsp;+ m+14&nbsp;+ m+16&nbsp;+ m+23&nbsp;+ m+25). Fraction of labeled headgroups and cyclopropane, independent of transport (<strong>Fig 5 </strong>in the paper associated with this study), were calculated as (m+9&nbsp;+ m+23) / (m + m+9&nbsp;+ m+14&nbsp;+ m+16&nbsp;+ m+23&nbsp;+ m+25) and (m+16) / (m+14&nbsp;+ m+16&nbsp;+ m+23&nbsp;+ m+25), respectively. Fraction of doubly labeled mass-tagged species (<strong>Fig 3&nbsp;and&nbsp;5 </strong>in the paper associated with this study) was calculated as (m+25) / (m + m+9&nbsp;+ m+14&nbsp;+ m+16&nbsp;+ m+23&nbsp;+ m+25).</p><p><br></p><p>Lipid species of interest were identified using a targeted approach on Skyline. The parameters used to identify the metabolite were precursor ion m/z, product ion m/z , their elution time as well as the elution times of lipid standards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	John Peter	Petrungaro	Peter	Kornmann
+Study Person First Name	Arun	Carmelina	Matthias	Benoit
+Study Person Mid Initials	T			
+Study Person Email	arun.john@bc.biol.ethz.ch	carmelina.petrungaro@gmail.com	matthias.peter@bc.biol.ethz.ch	benoit.kornmann@bioch.ox.ac.uk
+Study Person Phone				
+Study Person Fax				
+Study Person Address	Otto-Stern-Weg 3, HPM G16.1, Institute of Biochemistry, ETH Zurich			
+Study Person Affiliation	ETH Zurich	ETH Zurich	ETH Zurich	Dept. of Biochemistry, University of Oxford
+Study Person Roles	Principal Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

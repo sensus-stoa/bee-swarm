@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	NCBITAXON	MTBLS	OMIT	OBI	BAO	CHEBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/EFO			https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI			
+Term Source Version	132		21/08/2020	1		29			
+Term Source Description	Experimental Factor Ontology			User defined terms		Ontology for Biomedical Investigations			
+INVESTIGATION
+Investigation Identifier	MTBLS2007
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-08-13
+Investigation Public Release Date	2021-07-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2007
+Study Title	Model-guided development of evolutionarily stable yeast chassis for dicarboxylic acids production
+Study Description	<p>Chassis strain suitable for producing multiple compounds is a central concept in synthetic biology. Design of a chassis using computational, first-principle, models is particularly attractive due to the predictability and control it offers, including against phenotype reversal due to adaptive mutations. Yet, the theory of model-based chassis design has rarely been put to rigorous experimental test and assessed at multiomics level. Here, we report two <em>Saccharomyces cerevisiae</em> chassis strains for dicarboxylic acid production based on genome-scale metabolic modelling. The chassis strain, harbouring gene knockouts in serine biosynthesis and in pentose-phosphate pathway, is geared for higher flux towards three target products - succinate, fumarate and malate - but does not appreciably secrete any. Introducing modular product-specific mutations resulted in improved secretion of the corresponding acid as predicted by the model. Adaptive laboratory evolution of the chassis-derived producer cells further improved production for succinate and fumarate attesting to the evolutionary robustness of the underlying growth-product coupling. In the case of malate, which exhibited decreased production during evolution, the multiomics analysis revealed flux bypass at peroxisomal malate dehydrogenase that was not accounted in the model. Integration of transcriptomics, proteomics and metabolomics data showed overall concordance with the flux re-routing predicted by the model. Together, our results provide experimental evidence for model-based design of microbial chassis and have implications for computer-aided design of microbial cell factories.</p>
+Study Submission Date	2020-08-13
+Study Public Release Date	2021-07-19
+Study File Name	s_MTBLS2007.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	adaptive laboratory evolution	targeted metabolites	Proteomics	transcription profiling by high throughput sequencing	genome-scale modeling	dicarboxylic acids and O-substituted derivatives	Genetic Engineering	gas chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/NCIT_C20085	http://www.ebi.ac.uk/efo/EFO_0002770	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000133	http://purl.obolibrary.org/obo/CHEBI_131927	http://purl.obolibrary.org/obo/NCIT_C16621	http://purl.obolibrary.org/obo/CHMO_0000497
+Study Design Type Term Source REF	MTBLS	MTBLS	NCIT	EFO	MTBLS	CHEBI	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Filipa Pereira, Helder Lopes, Paulo Maia, Britta Meyer, Justyna Nocon, Paula Jouhten, Dimitrios Konstantinidis, Eleni Kafkia, Peter Koetter, Isabel Rocha and Kiran R. Patil
+Study Publication Title	Model-guided development of evolutionarily stable yeast chassis for dicarboxylic acids production
+Study Publication Status	In preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate	Genotype	Metabolite product
+Study Factor Type	replicate	genotype	metabolite product
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000683	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	EFO	EFO	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2007_GC-MS___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Yeast strain construction and maintenance</strong></p><p>The <em>S. cerevisiae</em> strains used in this study, listed <strong>Table S7 </strong>in the paper associated with this study, have a CEN.PK genetic background<strong>[1]</strong>. Parental strain, CEN.PK119 (URA3/ura3-52), was derived from crossing strains CEN.PK113-5D and CEN.PK113-1A by zygote isolation using a SINGER micromanipulator. Deletion cassettes were obtained by the short flanking homology method<strong>[2] </strong>using pUG6, pUG74 or pUG75 as template<strong>[3]</strong> and with the primers listed in <strong>Table S8 </strong>in the paper associated with this study. Yeast strains were transformed as described<strong>[4]</strong>. Transformants were selected on solid YPD medium (1% yeast extract, 2% peptone, 2% glucose, 1.5% agar; Formedium) supplemented with 200 mg/L G418 (Formedium), 100 mg/L nourseothricin (clonNat, Werner BioAgents) or 300 mg/L hygromycin B (Formedium). Single mutants were constructed by transforming the corresponding deletion cassette in the diploid strain CEN.PK119 (URA3/ura3-52). After tetrad analysis segregants of both mating types for URA3 and ura3-52 were isolated. Gene deletions of transformants 10 and after tetrad analysis of haploid segregants were confirmed by diagnostic PCR using the primers listed in <strong>Table S8 </strong>in the paper associated with this study. Yeast strains with multiple deletions were generated by crossing, starting with the single deletion strains. The mating types of the strains constructed in this study were determined by PCR using whole yeast cells<strong>[5]</strong>. Plasmid containing deltagdh1:GDH2_URA3MX4 cassette was assembled using TheYeastPathwayKit method<strong>[6]</strong>. The strains were grown to stationary phase at 30 °C and 180 rpm agitation in shake flask cultures on YPD medium (10 g/L 15 of yeast extract, 20 g/L of peptone, and 20 g/L of glucose). Stock cultures were prepared by adding glycerol to the culture broth (final concentration 30% v/v) and stored in sterile vials at -80 °C. For YPD plates, 20 g/L of agar was included in the medium formulation. Pre-cultures were inoculated from a single colony of plated frozen stocks.</p><p><br></p><p><strong>Media and yeast cultivation</strong></p><p>Yeast cells were grown in defined minimal medium<strong>[7]</strong> (MD) with 20 g/L of glucose (MD20), as carbon source, pH 5 on an orbital shaker set to 180 rpm at 30 °C, unless indicated otherwise. Glycine auxotrophic strains were grown in the same medium supplemented with 500 mg/L of glycine, added by sterile filtration. Pre-cultures were prepared by cultivating a 25 single colony from a selective YPD plate of each yeast strain in YPD medium until mid-exponential phase (~16 h). Pre-cultured cells were centrifuged, washed 2 times with distilled water, re-suspended in MD and used for inoculation in MD with initial OD600 of 0.1. These cultivations were performed in triplicates. Growth and multi-omics strain characterization was performed in MD20 with the procedure described above. Whereas adaptive laboratory evolution was performed in MD media with high glucose concentration (100 g/L 30 - MD100) in 50 mL shake-flasks with 13 mL of MD100 medium at 30 °C and constant agitation of 180 rpm.</p><p><br></p><p><strong>Adaptive laboratory evolution</strong></p><p><strong>Chassis_z</strong> and chassis-derived producing strains (<strong>Producer_F</strong>, <strong>Producer_Fz</strong>, <strong>Producer_Sz</strong>, <strong>Producer_Mz</strong> and<strong> Producer_FzG</strong>) were used in the adaptive laboratory evolution (ALE) experiments. ALE was performed by serial transfers of yeast cultures into fresh 35 MD100 medium. 3 independent parallel evolution cultures of each selected design were performed in shake flasks. Each independent culture was inoculated at an initial OD of 0.15 in fresh medium along the evolution experiment. ALE experiment was conducted for 100 d, corresponding to an average of 24 serial passages. The first 4 consecutive passages were performed in medium supplemented with glycine, which was abruptly removed after the 4th passage. Thereafter, ALE was completed in MD100 without any amino acid supplementation. Culture stocks were 5 frozen and stored at regular intervals throughout the process. The final evolved populations were plated in MD20+ agar. 3 isolated colonies of each independent parallel population were picked for further physiological characterization, regarding their specific growth rate and production profile. All isolated clones from one of the parallel evolutions of <strong>Producer_F </strong>and <strong>Producer_Mz</strong>, had high growth rates and lower lag-phases (<strong>Fig. S4 </strong>in the paper associated with this study), comparable to <strong>wild-type </strong>strain. However, these isolates were no longer able to produce the respective target compound. The loss of production and improved fitness was not further investigated, neither the genotype of the isolates confirmed to rule out possible contaminations. The graphical pipeline of directed evolution followed by screening and the selection of the best growth-coupled producers employed in this study are depicted in <strong>Fig. 2 </strong>and <strong>Fig. S3 </strong> in the paper associated with this study.</p><p><br></p><p>For targeted extracelular metabolomics, samples were taken at 5 precise times. After centrifugation (4,000 x g, 10 min), 5 mL supernatants were filtered using 0.2 μm PVDF (Poly(vinylidene fluoride)) syringe filter (Phenomenex, USA) and stored at -20 °C until High-Performance Liquid Chromatography (HPLC) and Gas Chromatography - Mass Spectrometry (GC-MS) analysis was performed. Organic acids, including succinic acid, malic acid, fumaric acid, pyruvic acid and lactic acid were determined by GC-MS.</p><p><br></p><p><strong>Refs: </strong></p><p><strong>[1] </strong>Entian, K. D. &amp; Kötter, P. “Yeast Genetic Strain and Plasmid Collections”, in: Methods in Microbiology, I. Stansfield, M. Stark, Eds (Elsevier, 2007) pp. 629–666.</p><p><strong>[2] </strong>Wach A, Brachat A, Pöhlmann R, Philippsen P. New heterologous modules for classical or PCR-based gene disruptions in Saccharomyces cerevisiae. Yeast. 1994 Dec;10(13):1793-808. doi:10.1002/yea.320101310. PMID:7747518.</p><p><strong>[3] </strong>Hegemann JH, Heick SB. Delete and repeat: a comprehensive toolkit for sequential gene knockout in the budding yeast Saccharomyces cerevisiae. Methods Mol Biol. 2011;765:189-206. doi:10.1007/978-1-61779-197-0_12. PMID:21815094</p><p><strong>[4] </strong>Schiestl RH, Gietz RD. High efficiency transformation of intact yeast cells using single stranded nucleic acids as a carrier. Curr Genet. 1989 Dec;16(5-6):339-46. doi:10.1007/BF00340712. PMID:2692852</p><p><strong>[5] </strong>Huxley C, Green ED, Dunham I. Rapid assessment of S. cerevisiae mating type by PCR. Trends Genet. 1990 Aug;6(8):236. doi:10.1016/0168-9525(90)90190-h. PMID:2238077</p><p><strong>[6] </strong>Pereira F, Azevedo F, Parachin NS, Hahn-Hägerdal B, Gorwa-Grauslund MF, Johansson B. Yeast Pathway Kit: A Method for Metabolic Pathway Assembly with Automatically Simulated Executable Documentation. ACS Synth Biol. 2016 May 20;5(5):386-94. doi:10.1021/acssynbio.5b00250. Epub 2016 Mar 17. PMID:26916955</p><p><strong>[7] </strong>Verduyn C, Postma E, Scheffers WA, Van Dijken JP. Effect of benzoic acid on metabolic fluxes in yeasts: a continuous-culture study on the regulation of respiration and alcoholic fermentation. Yeast. 1992 Jul;8(7):501-17. doi:10.1002/yea.320080703. PMID:1523884</p><p><strong>[8] </strong>Hoffman, C.S. “Preparation of yeast DNA, RNA and proteins” In Current Protocols in Molecular Biology, F. M. Ausubel, R. Brent, R. E. Kingston, D. D. Moore, J. G. Seidman, J. A. Smith, K. Struhl, Eds. (Wiley, 1995), pp.13.11.1-13.11.3</p>	<p>Ribitol (Adonitol) (Alfa Aeaar, UK) was added to 100 μL of supernatants as an internal standard. Samples were subsequently evaporated using a GeneVac EZ-2 plus evaporating system (SP Scientific). Dried extracts were derivatized with 50 μL of 20 mg/mL methoxyamine hydrochloride (Alfa Aesar, UK) solution in pyridine (Alfa Aesar, UK) for 90 min at 40 °C, followed by reaction with 100 μL N-methyl-N-(trimethylsilyl)trifluoroacetamide (Alfa Aesar, UK) for approximately 12 h at room temperature before injection.</p>	<p>Metabolites were measured using a Shimadzu TQ8040 GC-(triple quadrupole) MS system (Shimadzu Corp.). The gas chromatograph was equipped with a 30 m x 0.25 mm x 0.25 mm DB-50MS capillary column (Phenomenex, USA). 1 μL of sample was injected in split mode at 250 °C using helium as a carrier gas with a flow rate of 1 ml/min. GC oven temperature was held at 100 °C for 4 min followed by an increase to 320 °C with a rate of 10 °C/min, and a final constant temperature period at 320 °C for 11 min. The interface and the ion source were held at 280 °C and 230 °C, respectively.</p>	<p>The detector of the Shimadzu TQ8040 GC-(triple quadrupole) MS system was operated both in scanning mode recording in the range of 50-600 <em>m/z</em>, as well as in Multiple Reaction Monitoring (MRM) mode for the specified metabolites. </p>	<p>No data transformation was performed in this study. </p>	<p>For peak annotation the <strong>GCMS solution software </strong>(Shimadzu Corp.) was utilized. The metabolite identification was based on an <strong>in-house database</strong> with analytical standards utilized to define the retention time, the mass spectrum and the quantifying ion fragment for each specified metabolite. Metabolite quantification was performed by integrating the area under the curve (AUC) of the quantifying ion fragment of each metabolite (<strong>Table S9 </strong>in the paper associated with this study) divided by the AUC of ribitol’s quantifying ion (<em>m/z </em>319). For quantitative determination of succinate, malate and fumarate calibration curves were performed using known concentrations of target compounds.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Pereira
+Study Person First Name	Filipa
+Study Person Mid Initials	
+Study Person Email	filipa.pereira@embl.de
+Study Person Phone	
+Study Person Fax	
+Study Person Address	EMBL Heidelberg, Meyerhofstraasse 1, 69117 Heidelberg, Germany
+Study Person Affiliation	EMBL - Heidelberg
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

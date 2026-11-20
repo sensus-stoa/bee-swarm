@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	BTO	OBI	MS	EFO		NCIT	CHMO	MTBLS	BAO
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS		http://purl.obolibrary.org/obo/ncit.owl			https://www.ebi.ac.uk/metabolights/	
+Term Source Version	2	22	22	86		18.10e			1.0	
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	BRENDA Tissue and Enzyme Source Ontology	Ontology for Biomedical Investigations	Mass Spectrometry Ontology		NCI Thesaurus OBO Edition			User defined terms	
+INVESTIGATION
+Investigation Identifier	MTBLS587
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2017-12-15
+Investigation Public Release Date	2022-01-20
+Comment[Created With Configuration]	/home/sapista/MetabolightsDATA/ISAcreatorMetaboLights/Configurations/MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS587
+Study Title	Novel automated workflow for spectral alignment and mass calibration in MS imaging using a sputtered Ag nanolayer
+Study Description	Mass spectrometry imaging (MSI) is a technique that can map analyte spatial distribution directly onto a tissue section. This enables the spatial correlation of molecular entities with a tissue morphology to be investigated. Analyte annotation in MSI is intrinsically linked to the mass accuracy of the data. Mass accuracy and analyte identification are determined by such factors as the experimental set up and the data processing workflow. We present an MSI data processing workflow that uses a label-free approach to compensate for mass shifts. The algorithms developed were designed to perform efficiently even for datasets much larger than computer's memory. Herein, we present the application of the developed processing workflow to a dataset with more than 13.000 pixels and ∼50.000 mass channels. We assessed the overall mass accuracy in the range m/z 400 to 1200 using silver and gold sputtered nanolayers. With our novel processing workflow we were able to obtain mass errors as low as 5 ppm using a TOF instrument.
+Study Submission Date	2017-12-15
+Study Public Release Date	2022-01-20
+Study File Name	s_MTBLS587.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	matrix-assisted laser desorption-ionisation imaging mass spectrometry	Proof of Concept Study	method development and validation
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000054	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.bioassayontology.org/bao#BAO_0010225
+Study Design Type Term Source REF	CHMO	MTBLS	BAO
+STUDY PUBLICATIONS
+Study PubMed ID	29729739
+Study Publication DOI	10.1016/j.aca.2018.03.031
+Study Publication Author List	Ràfols P, Castillo ED, Yanes O, Brezmes J, Correig X
+Study Publication Title	Novel automated workflow for spectral alignment and mass calibration in MS imaging using a sputtered Ag nanolayer
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS587_MSImaging___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Mass spectrometry	Data transformation	Metabolite identification	Preparation	Histology
+Study Protocol Type	Sample collection	Mass spectrometry	Data transformation	Metabolite identification	Preparation	Histology
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Indium tin oxide (ITO)-coated glass slides were obtained from Bruker Daltonics (Bremen, Germany). The gold and silver targets used for sputtering coating were obtained from Kurt J. Lesker Company (Hastings, England) with a purity grade higher than 99.995%.</p><p><br></p><p>Liver tissue was obtained from C57BL/6 mice, snap frozen at -80 °C after collection and stored and shipped at this temperature until analysis. Dr M. Teresa Colomina, Professor of Psychobiology at the Research Center for Behavioral Assessment (CRAMC) of the Universitat Rovira i Virgili provided the animal tissues. The tissues were sectioned at -20 °C in slices 10 µm thick using a Leica CM-1950 cryostat (Leica Biosystems Nussloch GmbH) located at the Centre for Omic Sciences (COS) of the Universitat Rovira i Virgili and mounted on ITO coated slides by directly placing the glass slide at ambient temperature onto the section. To remove residual humidity, samples were dried in a desiccator under vacuum for 15 min after tissue mounting.</p>	<p>MS tissues images were acquired using a MALDI TOF/TOF UltrafleXtreme instrument with SmartBeam II Nd:YAG/355 nm laser from Bruker Daltonics. Acquisitions were carried out using a large laser spot, operated at 2 kHz at an attenuated power of 50%, collecting a total of 500 shots/pixel with a raster size of 100 µm for the MMA assessment and 40 mm for the liver with a high-pixel count acquisition. MS spectra were acquired in positive reflection mode, at 2.5 GHz in a mass range between m/z 400 to 1200, with a manually optimized extraction delay. The spectrometer was calibrated prior to tissue image acquisitions using Ag+ peaks as reference masses.</p><p><br></p>	<p>MS images were acquired using <strong>FlexImaging 3.0</strong> software from Bruker. Each image was exported to <strong>XMASS</strong> data format using instrument manufacturer software packages (<strong>FlexImaging</strong> and <strong>Compass export</strong>). The raw data was loaded using the rMSI package written in-house<strong>[1]</strong>. This package provides a data storage format based on segmented matrices and optimized for processing large MSI datasets in R language. Then a pre-processing workflow consisting of smoothing, alignment, recalibration and peak detection was applied. The pre-processing was carried out using the in-house developed <strong>rMSIproc</strong> R package (<a href='https://github.com/prafols/rMSI' rel='noopener noreferrer' target='_blank'>https://github.com/prafols/rMSI</a>).</p><p><br></p><p><strong>Smoothing:</strong></p><p>The first step in the processing chain is a smoothing stage using the well-known <strong>Savitzky-Golay algorithm[2]</strong> which has the important property of retaining the exact position of mass peaks. The smoothing stage improves the performance of the following processing methods because it reduces noise. Therefore, the alignment routine becomes more robust since the random noise reduction provides a better correlation between spectra. Peak detection is also improved because it becomes less sensitive to noise peaks.</p><p><br></p><p><strong>Label-free alignment:</strong></p><p>The spectra of an MS image present some degree of mass miss- alignment between pixels for several experimental reasons. The goal of a label-free alignment algorithm is to project all the spectra onto the same mass axis without using any reference peaks based on spectral correlations that can compensate for the experimental mass drifts.</p><p><br></p><p><strong>Mass recalibration:</strong></p><p>After the label-free alignment stage, all the spectra share a common m/z axis. Thus, the whole dataset can be recalibrated using the same reference. Here, the average spectrum is recalculated using the aligned spectra to avoid double peaks and wider peak issues. Then, the average spectrum is used to calculate the mass calibration function using reference masses. Each reference peak position is located in the average spectrum and recorded together with its theoretical mass. A <strong>Loess smoother</strong> is used to predict the calibrated m/z axis. In this study, we used the Ag peaks from the AgAu layer as internal reference <strong>[3]-[5]</strong>. However, standard compound or matrix peaks can be used for this purpose as well. Refer to <strong>Table S</strong>1 in the paper associated with this study for the complete list of peaks used for calibration.</p><p><br></p><p><strong>Peak detection:</strong></p><p>After the alignment and recalibration stage, peaks can be detected with reduced mass error. However, the number of data points used to represent a peak is not accurate enough if the peak is represented directly by a data point. When all spectra have been converted to a list of peaks everything is merged into a single matrix to represent the whole dataset.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Ràfols P, Torres S, Ramírez N, Del Castillo E, Yanes O, Brezmes J, Correig X. rMSI: an R package for MS imaging data handling and visualization. Bioinformatics. 2017 Aug 1;33(15):2427-2428. doi:10.1093/bioinformatics/btx182. PMID:28369250.</p><p><strong>[2]</strong> Savitzky A, Golay MJE, Smoothing and differentiation of data by simplified least squares procedures, Anal. Chem. 36 (1964) 1627-1639, doi:10.1021/ac60214a047.</p><p><strong>[3]</strong> Dufresne M, Masson JF, Chaurand P. Sodium-Doped Gold-Assisted Laser Desorption Ionization for Enhanced Imaging Mass Spectrometry of Triacylglycerols from Thin Tissue Sections. Anal Chem. 2016 Jun 7;88(11):6018-25. doi:10.1021/acs.analchem.6b01141. PMID:27145160.</p><p><strong>[4]</strong> Dufresne M, Thomas A, Breault-Turcot J, Masson JF, Chaurand P. Silver-assisted laser desorption ionization for high spatial resolution imaging mass spectrometry of olefins from thin tissue sections. Anal Chem. 2013 Mar 19;85(6):3318-24. doi:10.1021/ac3037415. PMID:23425078.</p><p><strong>[5]</strong> Sekuła J, Nizioł J, Rode W, Ruman T. Gold nanoparticle-enhanced target (AuNPET) as universal solution for laser desorption/ionization mass spectrometry analysis and imaging of low molecular weight compounds. Anal Chim Acta. 2015 May 22;875:61-72. doi:10.1016/j.aca.2015.01.046. PMID:25937107.</p>	<p>No metabolites were formally identified as this was a proof-of-concept/method development study.</p>	<p>Silver and gold nanolayers were deposited over the 10 µm tissue sections using an ATC Orion 8-HV (AJA International, N. Scituate, MA, USA) sputtering system. An argon atmosphere with a pressure of 30 mTor was used to create the plasma in the gun. The working distance of the plate was set to 35 mm. The silver layer was deposited in DC mode at 100 W for 10 s. The gold layer was deposited in RF mode at 60 W for 35 s. These deposition modes were selected so that the liver tissue could be coated with both metals faster and without pumping the sputter chamber vacuum various times to replace the target. Since the deposition times used in this study were very short, the substrate temperature did not increase during the deposition. The argon ion current was adjusted to 20 ml/min for both DC and RF modes.</p>	<p>No histology information was provided in this study.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range			Sample mounting;Sample preservation;Tissue modification;Sectioning instrument;Section thickness;Matrix;Matrix application	Stain;High-res image;Low-res image
+Study Protocol Parameters Name Term Accession Number		;;;;			;;;;;;	;;
+Study Protocol Parameters Name Term Source REF		;;;;			;;;;;;	;;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ràfols	Castillo	Yanes	Brezmes	Correig
+Study Person First Name	Pere	Esteban Del	Oscar	Jesús	Xavier
+Study Person Mid Initials					
+Study Person Email	pere.rafols@urv.cat				
+Study Person Phone					
+Study Person Fax					
+Study Person Address	Avinguda Països Catalans 26, 43007 Tarragona, Spain				
+Study Person Affiliation	Department of Electronic Engineering, Rovira i Virgili University, IISPV, Tarragona, 43007, Spain				
+Study Person Roles	Principal Investigator	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT				

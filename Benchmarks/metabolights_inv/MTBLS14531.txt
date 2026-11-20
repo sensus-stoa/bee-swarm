@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14531
+Investigation Title	A targeted MRM-based lipidomic dataset of Tenebrio molitor larvae fed diets with different protein levels
+Investigation Description	
+Investigation Submission Date	2026-05-20
+Investigation Public Release Date	2026-05-20
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14531
+Study Title	A targeted MRM-based lipidomic dataset of Tenebrio molitor larvae fed diets with different protein levels
+Study Description	Tenebrio molitor is increasingly used as a sustainable source of nutrients for food and feed production, yet their lipid metabolic responses to dietary protein remain poorly characterized at the molecular species level. Here, we report a targeted UPLC–MS/MS lipidomics dataset of Tenebrio molitor larvae fed four dietary treatments: a wheat bran control and three formulated diets containing 15%, 20% and 25% crude protein. The dataset includes 20 biological samples, with five independent replicates per treatment, each generated from pooled whole-body larvae. Using a scheduled multiple reaction monitoring method on a QTRAP 6500+ platform, 834 lipid species were annotated and quantified across major lipid categories, including glycerolipids, glycerophospholipids, glycolipids and sphingolipids. The data records comprise raw mzML files, processed concentration matrices, sample metadata, lipid annotation tables, MRM transition lists and quality-control metrics. Technical validation using pooled quality-control samples, coefficient-of-variation analysis, sample correlation, principal component analysis and hierarchical clustering supported the reproducibility of the dataset. This resource may facilitate studies of insect nutrition, dietary lipid remodeling, feed formulation and comparative lipidomics.
+Study Submission Date	2026-05-20
+Study Public Release Date	2026-05-20
+Study File Name	s_MTBLS14531.txt
+Comment[Created At]	2026-05-19
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	lipidomics	intervention study	dietary intervention	SCIEX ExionLC AD UPLC system	AB SCIEX QTRAP 6500+	Tenebrio molitor	larva	Sample	targeted analysis	mzML format	lipid extraction	Liquid Chromatography	mass spectrometry
+Study Design Type Term Accession Number	OBI:0000366	OBI:0000115	OBI:0000938	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299	NCBITaxon:7067	BTO:0000707		http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/MS_1000584	http://purl.obolibrary.org/obo/MSIO_0000142	http://purl.obolibrary.org/obo/NCIT_C16435	http://purl.obolibrary.org/obo/CHMO_0000470
+Study Design Type Term Source REF	OBI	OBI	OBI	MTBLS	MTBLS	NCBITaxon	BTO		MS	MS	MSIO	NCIT	MSIO
+Comment[Study Design Category]	omics-type			Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type				
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Liu Hansuo,Hu Rong, Du Yanling, Zhang Shuhui, Wei Qiaohong, Kang Weipeng, Wu Jiangli, Xu Shufa, Han Bin
+Study Publication Title	A targeted MRM-based lipidomic dataset of Tenebrio molitor larvae fed diets with different protein levels
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Protein level
+Study Factor Type	diet
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002755
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14531_LC-MS_positive_reverse-phase.txt	a_MTBLS14531_LC-MS_negative_reversed-phase-c30.txt
+Study Assay Measurement Type	targeted analysis	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reversed-phase-c30
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Lipidomics	Lipidomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153	http://edamontology.org/topic_0153
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Descriptor]	mzML format;lipid extraction;Liquid Chromatography;mass spectrometry	lipid extraction;mzML format;Liquid Chromatography;mass spectrometry
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1000584;http://purl.obolibrary.org/obo/MSIO_0000142;http://purl.obolibrary.org/obo/NCIT_C16435;http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MSIO_0000142;http://purl.obolibrary.org/obo/MS_1000584;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Descriptor Term Source REF]	MS;MSIO;NCIT;MSIO	MSIO;MS;MTBLS;MTBLS
+Comment[Assay Descriptor Category]	;;;	default;default;default;default
+Comment[Assay Descriptor Source]	submitter;submitter;submitter;submitter	submitter;submitter;submitter;submitter
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]
+Comment[Assay Field Default Value]	SCIEX ExionLC AD UPLC system;Accucore C30 (2.6 μm, 2.1 × 100 mm; Thermo );reverse phase;positive;50-1200;AB SCIEX QTRAP 6500+;electrospray ionization	SCIEX ExionLC AD UPLC system;Thermo Accucore C30, 2.6 μm, 2.1 × 100 mm;reversed-phase C30;negative;50-1200;AB SCIEX QTRAP 6500+;ESI Turbo Ion-Spray
+Comment[Assay Field Default Unit]	;;;;;;	;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299;http://purl.obolibrary.org/obo/MS_1000073	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS	MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS
+Comment[Measurement Type]	targeted analysis	
+Comment[Measurement Type Term Source REF]	MS	
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Tenebrio molitor larvae were obtained from a laboratory colony maintained on wheat bran at the State Key Laboratory of Resource Insects, Institute of Apicultural Research, Chinese Academy of Agricultural Sciences, Beijing, China. Experimental design: Seven-week-old larvae were assigned to four dietary treatments for 12 weeks: standard wheat bran (Control), and custom-formulated feeds containing 15%, 20%, and 25% crude protein. The three formulated diets were designed to be isoenergetic. Each treatment included 5 independent biological replicates. Sample collection: At the end of the 12-week feeding trial, whole larvae were harvested from each dietary treatment. Approximately 30 fasted larvae were collected from one independent rearing tray and pooled as a single biological sample. Larvae were euthanized by immersion in liquid nitrogen within 10 s of removal and stored immediately at −80 °C until lipid extraction.</p>	<p>The sample extracts were analyzed using an LC-ESI-MS/MS system (UPLC, ExionLC AD; MS, QTRAP 6500+ System).</p><p>UPLC conditions:</p><p>- Column: Thermo Accucore C30 (2.6 μm, 2.1 mm × 100 mm)</p><p>- Solvent system:</p><p>&nbsp;- A: acetonitrile/water (60/40, v/v, 0.1% formic acid, 10 mmol/L ammonium formate)</p><p>&nbsp;- B: acetonitrile/isopropanol (10/90, v/v, 0.1% formic acid, 10 mmol/L ammonium formate)</p><p>- Gradient program:</p><p>&nbsp;- 0 min: A/B (80:20, v/v)</p><p>&nbsp;- 2.0 min: 70:30</p><p>&nbsp;- 4 min: 40:60</p><p>&nbsp;- 9 min: 15:85</p><p>&nbsp;- 14 min: 10:90</p><p>&nbsp;- 15.5 min: 5:95</p><p>&nbsp;- 17.3 min: 5:95</p><p>&nbsp;- 17.3 min: 80:20</p><p>&nbsp;- 20 min: 80:20</p><p>- Flow rate: 0.35 mL/min</p><p>- Column temperature: 45 °C</p><p>- Injection volume: 2 μL</p>	<p>Raw mass spectrometry data were processed utilizing Analyst 1.6.3 software (AB Sciex, Framingham, MA, USA). Qualitative identification of lipids was strictly performed by matching the retention times (RT) and characteristic precursor-to-product ion transitions against the self-built MWDB (Metware Database), referencing universally accepted standard databases such as LIPID MAPS, HMDB, and KEGG.</p><p>For quantitative analysis, peak area integration was performed on the extracted ion chromatograms (XICs). To ensure quantitative accuracy, internal standard normalization was applied. Identification required a precise RT match (tolerance window of ± 0.1 min) and matching Q1/Q3 masses. The absolute content of each lipid species (X, nmol/g) was calculated using the standard internal calibration ratio method formula: X=(0.001×R×c×F×V)/m, where R is the peak area ratio of target to internal standard, c is the internal standard concentration (μmol/L), F is the class-specific correction coefficient, V is the extraction volume (μL), and m is the sample mass (g).&nbsp;</p>	<p>Lipids were extracted using an MTBE-based protocol. Frozen whole-body samples were thawed on ice and homogenized into a fine powder in liquid nitrogen using a Retsch MM400 ball mill at 25 Hz for 90 s, with a 60 s pause at the midpoint to prevent heating. An exact mass of 20 mg (±1 mg) of the homogenized powder was weighed. For extraction, 1 mL of extraction mixture containing MTBE/methanol (3:1, v/v) spiked with isotopic internal lipid standards was added to each sample. The mixture was vortexed for 15 min to ensure thorough homogenization and efficient lipid extraction. After vortexing, 200 μL of ultrapure water was added. The mixture was vortexed for 1 min and centrifuged at 12,000 rpm for 10 min at 4 °C. The upper organic layer (200 μL) was collected and evaporated to dryness using a vacuum concentrator. The dry extract was dissolved in 200 μL reconstitution solution (ACN/IPA = 1:1, v/v) for UPLC-MS/MS analysis. A pooled quality control (QC) sample was prepared by mixing equal aliquots of the reconstituted extracts from all 20 biological samples.</p>	<p>Lipid contents were detected by MetWare (http://www.metware.cn/) based on the AB Sciex QTRAP 6500 UPLC-MS/MS platform23. LIT and triple quadrupole (QQQ) scans were acquired on a QTRAP, QTRAP® 6500+ LC-MS/MS System, equipped with an ESI Turbo Ion-Spray interface, operating in positive and negative ion modes and controlled by Analyst 1.6.3 software (Sciex). The ESI source operation parameters were as follows: ion source, turbo spray; source temperature, 500 ℃; ion spray voltage (IS), 5500 V in positive mode and −4500 V in negative mode; Ion source gas 1 (GS1), gas 2 (GS2), curtain gas (CUR) were set at 45, 55, and 35 psi, respectively. Instrument tuning and mass calibration were performed with 10 and 100 μmol/L polypropylene glycol solutions in QQQ and LIT modes, respectively. QQQ scans were acquired as multiple reaction monitoring (MRM) experiments with collision gas (nitrogen) set to 5 psi. Declustering potential (DP) and collision energy (CE) for individual MRM transitions was done with further DP and CE optimization. A specific set of MRM transitions was monitored for each period according to the metabolites eluted within this period.</p>	<p>Lipid identification was performed using a targeted MRM-based approach on the AB SCIEX QTRAP 6500+ LC-MS/MS platform.&nbsp; Qualitative identification of lipids was strictly performed by matching the retention times (RT) and characteristic precursor-to-product ion transitions (Q1/Q3) against the self-built MWDB (Metware Database). The identification required:</p><p>- Precise RT match (tolerance window of ± 0.1 min)</p><p>- Matching Q1 (precursor ion) and Q3 (product ion) masses</p><p>Reference databases used for annotation included:</p><p>- LIPID MAPS (http://www.lipidmaps.org/)</p><p>- HMDB (Human Metabolome Database, https://hmdb.ca/)</p><p>- KEGG (Kyoto Encyclopedia of Genes and Genomes, https://www.kegg.jp/)</p><p>A total of 834 lipid species were annotated and quantified across major lipid categories, including glycerolipids, glycerophospholipids, glycolipids and sphingolipids.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Han
+Study Person First Name	Bin
+Study Person Mid Initials	
+Study Person Email	liuhansuo@caas.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Institute of Apicultural Research, Chinese Academy of Agricultural Sciences
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

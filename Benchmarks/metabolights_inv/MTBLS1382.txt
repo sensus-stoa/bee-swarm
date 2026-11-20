@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MTBLS	OMIT	CHEBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/			
+Term Source Version	29	132		1.0		2019-12-19	
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		Metabolights Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS1382
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-11-20
+Investigation Public Release Date	2020-04-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1382
+Study Title	LipidCreator workbench to probe the lipidomic landscape - Platelet isolation and stimulation - DIA lipid mediator validation
+Study Description	<p>Here we present LipidCreator, a software that fully supports targeted lipidomics assay development. LipidCreator offers a comprehensive framework to compute MS/MS fragment masses for over 60 lipid classes. LipidCreator provides all functionalities needed to define fragments, manage stable isotope labeling, optimize collision energy and generate in silico spectral libraries. We validate LipidCreator assays computationally and analytically and prove that it is capable to generate large targeted experiments to analyze blood and to dissect lipid-signaling pathways such as in human platelets.</p><p><br></p><p>In MTBLS1382, to validate lipid mediator species identified with the Qtrap instrument (<a href='https://www.ebi.ac.uk/metabolights/MTBLS1381' rel='noopener noreferrer' target='_blank'>https://www.ebi.ac.uk/metabolights/MTBLS1381</a>), the Thermo QEx HF was used to perform high resolution MS full scan (HR-FS) and data independent acquisition (DIA) analyses between 200-400 m/z with a 20 m/z step size. DIA method preparation and data analysis were performed with Skyline. We used LipidCreator as an external tool in Skyline to generate a collision-energy specific transition list for the mediators 12-HETE, 13-HODE, 15-HETE, arachidonic acid (AA),<strong> </strong>docosahexaenoic acid (DHA), eicosapentaenoic acid (EPA) and thromboxane B2 (TXB2) and their deuterated counterparts 12-HETE-d8, 13-HODE-d4, 15-HETE-d8, AA-d8, DHA-d5, EPA-d5 and TXB2-d4, at a normalized collision energy NCE=21. We also used LipidCreator's relative fragment intensity prediction model to generate a custom spectral library for the light and heavy mediators. We transfered both the transition list and the spectral library directly from LipidCreator to Skyline and exported the dot product values after manual fragment peaks review.</p><p><br></p><p>Studies linked to this manuscript include;</p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1333' rel='noopener noreferrer' target='_blank'>MTBLS1333; LipidCreator: Collision Energy Optimization and Fragment Intensity Prediction for Lipid Mediators - Thermo QExactive HF</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1334' rel='noopener noreferrer' target='_blank'>MTBLS1334; LipidCreator: Collision Energy Optimization and Fragment Intensity Prediction for Lipid Mediators - Agilent QTof</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1369' rel='noopener noreferrer' target='_blank'>MTBLS1369; LipidCreator: Platelet isolation and stimulation - Targeted Phospho- and Glycerolipid Profiling</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1375' rel='noopener noreferrer' target='_blank'>MTBLS1375; LipidCreator: Targeted lipidomics analysis of Human Plasma samples and comparison with NIST SRM 1950 standard</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1376' rel='noopener noreferrer' target='_blank'>MTBLS1376; LipidCreator: Targeted lipidomics analysis of S. cerevisiae to determine true and false identification</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1381' rel='noopener noreferrer' target='_blank'>MTBLS1381; LipidCreator: Platelet isolation and stimulation - Targeted Lipid Mediator Profiling</a></p><p><a href='https://www.ebi.ac.uk/metabolights/MTBLS1382' rel='noopener noreferrer' target='_blank'>MTBLS1382; LipidCreator: Platelet isolation and stimulation - DIA Lipid Mediator Validation</a></p>
+Study Submission Date	2019-11-20
+Study Public Release Date	2020-04-15
+Study File Name	s_MTBLS1382.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Lipidomics	Ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000069	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1038/s41467-020-15960-z
+Study Publication Author List	Bing Peng, Dominik Kopczynski, Brian S Pratt, Christer S Ejsing, Bo Burla, Martin Hermansson, Peter Imre Benke, Sock Hwee Tan, Mark Y. Chan, Federico Torta, Dominik Schwudke, Sven Meckelmann, Cristina Coman, Oliver J. Schmitz, Brendan MacLean, Oliver Borst, Markus Wenk, Nils Hoffmann, Robert Ahrends
+Study Publication Title	LipidCreator workbench to probe the lipidomic landscape
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Concentration
+Study Factor Type	Treatment	Concentration
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://purl.obolibrary.org/obo/CHMO_0002820
+Study Factor Type Term Source REF	EFO	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1382_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Blood from five individual healthy volunteers was collected in ACD-buffer and centrifuged at 200 x g for 20&nbsp;mins. The obtained platelet-rich plasma was added to modified Tyrode-HEPES (N-2-hydroxyethyl-piperazone-N´2-ethanesulfonic acid) buffer (137&nbsp;mM NaCl, 2&nbsp;mM KCl, 12&nbsp;mM NaHCO3, 5&nbsp;mM glucose, 0.3&nbsp;mM Na2HPO4, 10&nbsp;mM HEPES, pH 6.5). After centrifugation at 900 x g for 10 mins and removal of the supernatant, the resulting platelet pellet was resuspended in Tyrode-HEPES buffer (pH 7.4, supplemented with 1&nbsp;mM CaCl2). Freshly isolated and resuspended human platelets were stimulated with 0.01 U/ml thrombin, 1 U/ml thrombin, 1 µg/ml CRP or 5 µg/ml CRP for 5 min. After centrifugation for 5 min at 640 x g at 25 °C, the pellet and supernatant were separated and separately snap frozen in liquid nitrogen.</p><p><br></p><p>The platelet study was approved by the institutional ethics committee (270/2011BO1) at University Hospital Tübingen (Germany) and complies with the declaration of Helsinki and good clinical practice guidelines, all volunteers gave informed consent for blood samples.</p>	<p>Lipid (except fatty acid and its derivatives) extraction was carried out according to Matyash et al. [1] with small modifications. In brief, 225&nbsp;µl of MeOH (4&nbsp;°C) were added to platelet cell pellet or platelet supernatant in an Eppendorf polypropylene tube that was placed on ice. After a few seconds of treatment with ultrasonication and vortexing, 8&nbsp;µl of the SPLASH standard and 750&nbsp;µl MTBE (4 °C) were added. The mixture was incubated for 1&nbsp;h at 4&nbsp;°C in a thermomixer at 650&nbsp;rpm. Subsequently 188&nbsp;µl of ultrapure water was added to induce phase separation. The samples were centrifuged at 10,000 x g for 10&nbsp;mins at 4&nbsp;°C, afterwards the upper organic layer was transferred to another Eppendorf tube and dried under continuous N2 flow. The dried lipid extract was re-suspended in 100&nbsp;µl of IPA/MeOH/CHCl3 (4:2:1, v/v/v) for further MS analysis. The lower layer was used to precipitate proteins by adding 903&nbsp;µl MeOH after removing the interphase and samples were stored at -80&nbsp;°C for 3&nbsp;hrs in order to perform protein precipitation. Protein pellets were collected after centrifugation at 19,000 x g for 30&nbsp;mins at 4&nbsp;°C and stored in 1&nbsp;% SDS, 150&nbsp;mM NaCl, 50&nbsp;mM Tris (pH 7.8) solution at -80&nbsp;°C. Protein amount was quantified by BCA (bicinchoninic acid assay, Thermo Fisher Scientific, Rockford, USA).</p><p>To extract lipid mediators, additional 20&nbsp;µl of acetic acid (99.99%, 17.5M) was added together with mediator internal standard mixture (consisting of 0.5&nbsp;mg/l of TXB2-d4 and PGE2-d4; 5&nbsp;mg/l of PGD2-d4, 12-HETE-d8 and AA-d8; 0.2&nbsp;mg/l of 15-HETE-d8 and 13-HODE-d4; 0.01&nbsp;mg/l of DHA-d5; and 0.02&nbsp;mg/l of EPA-d5) and 750&nbsp;µl MTBE into the sample. After that, same incubation and centrifugation procedures as described above were applied. The dried lipid extract was re-suspended in 50&nbsp;µl of MeOH for further MS analysis. Protein pellets were collected and protein amount was quantified as described above.</p><p><br></p><p>References:</p><p>[1] Matyash, V., Liebisch, G., Kurzchalia, T.V., Shevchenko, A. &amp; Schwudke, D. Lipid extraction by methyl-tert-butyl ether for high-throughput lipidomics. Journal of lipid research 49, 1137-1146 (2008).</p>	<p>For the reverse-phase liquid chromatography (LC), an UltiMate 3000-system from Thermo Fisher Scientific (Darmstadt, Germany) was employed. The chromatographic separation was performed according to Bird et al. [1] on an Ascentis Express C18 main column (150 mm × 2.1 mm, 2.7 µm, Supelco) fitted with a guard cartridge (5 mm × 2.1 mm, 2.7 µm, Supelco). The temperatures of the autosampler and the column oven were set to 10 °C and 30 °C, respectively. Solvent A was ACN/H2O (3:7, v/v) and 0.1 % formic acid while solvent B was IPA/ACN (1:1, v/v). The separation was carried out at a flow rate of 0.4 ml/min with the following 20 min long gradient: initial (0 % B), 0.0-1.0 min (hold 0 % B), 1.0-13.0 min (0-100 % B), 13.0-16.0 min (hold 100 % B), 16.0 min (0 % B), 16.0-20.0 min (hold 0 % B). Solvent A was also used as transfer solution for injection. Samples and standards were injected with a volume of 5 µl and analyzed in triplicates, respectively.</p><p><br></p><p>References:</p><p>[1] Bird, S.S., Marur, V.R., Sniatynski, M.J., Greenberg, H.K. &amp; Kristal, B.S. Lipidomics profiling by high-resolution LC-MS and high-energy collisional dissociation fragmentation: focus on characterization of mitochondrial cardiolipins and monolysocardiolipins. Analytical Chemistry 83, 940-949 (2011).</p>	<p>To validate lipid mediator species identified from the QTrap Experiment (<a href='https://www.ebi.ac.uk/metabolights/MTBLS1381' rel='noopener noreferrer' target='_blank'>MTBLS1381</a>), the QEx HF mass spectrometer (Thermo Scientific, Bremen, Germany) was used to perform high resolution MS full scan (HR-FS) and data independent acquisition (DIA) analyses. The following HESI source settings were used: sheath gas 50 arbitrary units, aux gas 14 arbitrary units, sweep gas 3 arbitrary units, S-lens RF level 60 arbitrary units, capillary temperature 270 °C, aux gas heater temperature 380 °C, spray voltage 3400 V (negative mode). HR-FS was acquired at mass resolution of 240,000 at m/z 200 with an AGC value of 1 x 106 and maximum injection time of 100 ms. The negative mode of HR-FS was acquired from 200 to 400 m/z. In DIA, an inclusion list (with m/z 200, 220, 240, 260, 280, 300, 320, 340, 360, 400) was used. The DIA parameters were set as following: resolution of 60,000, AGC value at 1 x 105, maximum injection time at 50 ms, loop count at 100, isolation width at 20 m/z and a NCE at 21. DIA method preparation and data analysis were performed in Skyline according to the <a href='https://skyline.ms/wiki/home/software/Skyline/page.view?name=tutorial_dia' rel='noopener noreferrer' target='_blank'>DIA tutorial</a>.</p>	<p>Thermo Raw data files were acquired using Thermo Xcalibur (version 2.8-280502/2.8.1.2806). Data was converted to mzML using the ProteoWizard msConvert tool (version 3.0.11537). The data was centroided using vendor peak picking (Thermo/Xcalibur peak picking) and MS1 and MS2 peaks were selected for export with 64 bit float encoding and scan-wise zlib compression. </p>	<p>Data analysis for native QExHF data (DIA) was performed with Skyline (64-bit, 4.2.0.18305) on the raw files. We used LipidCreator as an external tool in Skyline to generate a collision-energy specific transition list for the mediators 12-HETE, 13-HODE, 15-HETE, arachidonic acid (AA), docosahexaenoic acid (DHA), eicosapentaenoic acid (EPA) and thromboxane B2 (TXB2) and their deuterated counterparts 12-HETE-d8, 13-HODE-d4, 15-HETE-d8, AA-d8, DHA-d5, EPA-d5 and TXB2-d4. Collision energy optimization for the Thermo QExactive HF platform was enabled and the CE energy (NCE) was set to 21 for all compounds included in the transition list. The transition list and the CE-specific spectral library were transfered directly to Skyline, copies of the transition list and the spectral library are available from the study folder for manual import. PGE2 and PGD2 were excluded from the validation due to lower sensitivity of the QExactive HF in comparison to the QTrap. The 'QEx_measurement records.csv' file reports the measurements that were included for this proof-of-concept validation and states their provenance (SN=Supernatant, pellet=Pellet) and treatment (see study factors). Blank and standards samples were included together with the second measurement for each provenance and treatment combination, totalling 14 samples in the Skyline project, which is available at <a href='https://panoramaweb.org/lipidcreator.url' rel='noopener noreferrer' target='_blank'>https://panoramaweb.org/lipidcreator.url</a> as file HuPl_DIA_Validation_2020-01-21_15-21-46.sky.zip.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hoffmann	Peng	Ahrends
+Study Person First Name	Nils	Bing	Robert
+Study Person Mid Initials			
+Study Person Email	nils.hoffmann@cebitec.uni-bielefeld.de	bing.peng@isas.de	robert.ahrends@isas.de
+Study Person Phone	+4923113924239		+4923113924173
+Study Person Fax			
+Study Person Address	ISAS e.V. Otto-Hahn-Straße 6b 44227 Dortmund, Germany	ISAS e.V. Otto-Hahn-Straße 6b 44227 Dortmund, Germany	ISAS e.V. Otto-Hahn-Straße 6b 44227 Dortmund, Germany
+Study Person Affiliation	Leibniz-Institut für Analytische Wissenschaften – ISAS – e.V.	Leibniz-Institut für Analytische Wissenschaften – ISAS – e.V.	Leibniz-Institut für Analytische Wissenschaften – ISAS – e.V.
+Study Person Roles	Co-Investigator	Co-Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

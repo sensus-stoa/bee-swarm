@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MONDO	MS	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0		2026-05-05			26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14175
+Investigation Title	Integrated metagenomic binning and metabolomic profiling reveal a microbial-bile acid feedback loop in neonatal calf diarrhea_2
+Investigation Description	
+Investigation Submission Date	2026-03-28
+Investigation Public Release Date	2026-10-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14175
+Study Title	Integrated metagenomic binning and metabolomic profiling reveal a microbial-bile acid feedback loop in neonatal calf diarrhea_2
+Study Description	A metagenomic binning analysis was performed on fecal samples from 50 healthy calves and 50 diarrheic calves to comprehensively investigate the association between microbial dysbiosis and calf diarrhea. By integrating shotgun metagenomics, untargeted metabolomics, targeted bile acid metabolomics, and qPCR assays, this study demonstrates that microbial dysbiosis and bile acid perturbations form a self-reinforcing vicious cycle that drives the onset and persistence of calf diarrhea.
+Study Submission Date	2026-03-28
+Study Public Release Date	2026-10-23
+Study File Name	s_MTBLS14175.txt
+Comment[Created At]	2026-03-28
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-23
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Diarrhea	calf	bile acid	SCIEX ExionLC AD	AB SCIEX QTRAP 6500+	Bos taurus	Colonic contents	targeted analysis	mzML format	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/HP_0002014	http://purl.obolibrary.org/obo/FMA_24984	http://purl.obolibrary.org/obo/CHEBI_3098	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002206	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299			http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/MS_1000584	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MONDO	EFO	EFO	MTBLS	MTBLS			MS	MS	EDAM
+Comment[Study Design Category]	disease	submitter	default	Chromatography Instrument	Instrument	Organism	Organism part	measurement-type		omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	PeiZhong, YanliangBi
+Study Publication Title	Integrated metagenomic binning and metabolomic profiling reveal a microbial-bile acid feedback loop in neonatal calf diarrhea_2
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14175_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	SCIEX ExionLC AD;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;negative;100-1000;AB SCIEX QTRAP 6500+
+Comment[Assay Field Default Unit]	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002206;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002299
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Measurement Type]	targeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor]	mzML format
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1000584
+Comment[Assay Descriptor Term Source REF]	MS
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>At 14 days of age, six calves per group were randomly selected and humanely euthanized in accordance with the AVMA Guidelines for the Euthanasia of Animals by intravenous overdose of sodium pentobarbital administered by a licensed farm veterinarian, followed by collection of intestinal and liver samples. The remaining calves were maintained until 28 days of age for growth performance monitoring.&nbsp;Following euthanasia, the abdominal cavity was opened under aseptic conditions. The esophagus and rectum were ligated to prevent cross-contamination, and standardized intestinal segments were collected from the jejunum, ileum, and colon according to established anatomical landmarks.&nbsp;Each segment was divided into three portions: one portion was fixed in 4% paraformaldehyde for histomorphological analysis, whereas the other portion was rinsed with sterile ice-cold PBS, the mucosa was scraped off, and then transferred into RNase-free cryogenic tubes and snap-frozen in liquid nitrogen. The remaining portion of contents was collected and placed in cryogenic tubes. All samples were stored at -80 °C for subsequent analyses.</p>	<p>The chromatographic analysis was performed on an LC-ESI-MS/MS system equipped with an UHPLC ExionLC™ AD (Sciex, https://sciex.com.cn/). The analytical conditions were as follows:</p><p>Chromatographic column: Waters ACQUITY UPLC HSS T3 C18 column (100 mm × 2.1 mm i.d., 1.8 µm);</p><p>Mobile phase: Phase A was ultra-pure water containing 0.01% acetic acid and 5 mmol/L ammonium acetate, and Phase B was acetonitrile containing 0.01% acetic acid;</p><p>Gradient elution program: the proportion of Phase B was increased from 5% to 40% within 1 min, then raised to 50% within the next 6 min, further increased to 75% within the subsequent 5 min, then elevated to 95% within 2 min, maintained at 95% for 2 min for washing, and finally ramped back to 5% at 16–17.5 min;</p><p>Other parameters: flow rate was set at 0.35 mL/min, column temperature was 40°C, and injection volume was 3 μL.</p>	<p>Data acquisition of mass spectrometric signals was completed using Analyst 1.6.3 software (Sciex). The raw detection data were processed and quantified by MultiQuant 3.0.3 software (Sciex), which was used for the quantitative analysis of all detected metabolites based on the MRM data and internal standard method.</p>	<p>Samples (20 mg) were first grinded with a ball mill, and then extracted with 495 μL of methanol. Subsequently, 5 μL of internal standard (IS) mixed solution (10 μg/mL) was added into the extract for quantitative analysis. The samples were placed at -20°C for 10 min to precipitate proteins, followed by centrifugation at 12000 r/min and 4°C for 10 min. After centrifugation, the supernatant was passed through a Protein Precipitation Plate for subsequent LC-MS analysis.</p>	<p>Mass spectrometric detection was conducted on a QTRAP® 6500+ LC-MS/MS System (Sciex, https://sciex.com.cn/) (also referred to as Applied Biosystems 6500 Triple Quadrupole) equipped with an ESI Turbo Ion-Spray interface, and the system was controlled by Analyst 1.6.3 software (Sciex). The mass spectrometry conditions were optimized as follows:</p><p>Ionization mode: negative ion mode (ESI-);</p><p>ESI source operation parameters: source temperature 550 °C, ion spray voltage (IS) -4500 V, curtain gas (CUR) 35 psi;</p><p>Detection mode: scheduled multiple reaction monitoring (MRM) was adopted for the analysis of bile acids;</p><p>Parameter optimization: the declustering potentials (DP) and collision energies (CE) of the mass spectrometer for individual MRM transitions were further optimized, and a specific set of MRM transitions was monitored for each time period according to the metabolites eluted in the corresponding period;</p><p>Scanning mode: linear ion trap (LIT) and triple quadrupole (QQQ) scans were acquired for detection.</p>	<p>Bile acids were selected as the target metabolites for identification and quantitative analysis. Metabolite identification was achieved by scheduled multiple reaction monitoring (MRM) based on the specific MRM transitions of each bile acid. A specific set of MRM transitions was dynamically monitored for different elution time periods according to the metabolites eluted in the corresponding period, combined with the optimized mass spectrometric parameters (declustering potentials (DP) and collision energies (CE)) for individual MRM transitions to ensure the specificity of metabolite detection. The retention time of the target metabolites and the matching degree of MRM ion pairs were used as the core basis for metabolite identification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhong	Bi
+Study Person First Name	Pei	Yanliang
+Study Person Mid Initials		
+Study Person Email	14119117@njau.edu.cn	biyanliang@caas.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		Chinese Academy of Agricultural Sciences
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

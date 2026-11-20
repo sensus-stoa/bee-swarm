@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	NCIT	OBI	SNOMED	EFO	GO	CHMO	CHEBI	PRIDE
+Term Source File	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI						
+Term Source Version	1.0		29						
+Term Source Description	Metabolights Ontology		Ontology for Biomedical Investigations						
+INVESTIGATION
+Investigation Identifier	MTBLS7424
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-03-15
+Investigation Public Release Date	2024-08-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7424
+Study Title	Mechanistic insights into the biological activity of S-Sulfocysteine in CHO cells using a multi-omics approach
+Study Description	S-Sulfocysteine (SSC), a bioavailable L-cysteine derivative (Cys), is known to be taken up and metabolized in Chinese hamster ovary (CHO) cells used to produce novel therapeutic biological entities. To gain a deeper mechanistic insight into the SSC biological activity and metabolization, a multi-omics study was performed on industrially relevant CHO-K1 GS cells throughout a fed-batch process, including metabolomic and proteomic profiling combined with multivariate data and pathway analyses. Multi-layered data and enzymatical assays revealed an intracellular SSC/glutathione mixed disulfide formation and glutaredoxin-mediated reduction, releasing Cys and sulfur species. Increased Cys availability was directed towards glutathione and taurine synthesis, while other Cys catabolic pathways were likewise affected, indicating that cells strive to maintain Cys homeostasis and cellular functions.
+Study Submission Date	2023-03-15
+Study Public Release Date	2024-08-08
+Study File Name	s_MTBLS7424.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	Fed-batch culture	S-sulfo-L-cysteine	L-cysteine	Multi-omics study	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHEBI_27891	http://purl.obolibrary.org/obo/CHEBI_17561	http://purl.obolibrary.org/obo/PRIDE_0000461	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	MTBLS	CHEBI	CHEBI	PRIDE	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37680342
+Study Publication DOI	10.3389/fbioe.2023.1230422
+Study Publication Author List	Nguyen Melanie, Le Mignon Maxime, Schnellbächer Alisa, Wehsling Maria, Braun Julian, Baumgaertner Jens, Grabner Martina, Zimmer Aline
+Study Publication Title	Mechanistic insights into the biological activity of S-Sulfocysteine in CHO cells using a multi-omics approach
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Feeding substrate	Cultivation time	Cellular component
+Study Factor Type	Substrate Device	timepoint	cellular_component
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C50196	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/GO_0005575
+Study Factor Type Term Source REF	NCIT	EFO	GO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7424_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7424_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Fed-batch cell culture cultivation in bioreactors:</strong></p><p>Small-scale bioreactor experiments with CHO-K1 GS cells producing an IgG were performed in 1.2 L DasGip glass vessels (Eppendorf, Hamburg, Germany). Cells were inoculated at 0.2 x 10^6 cells/ml in Cellvento 4CHO medium and fed with Cellvento ModiFeed Prime, with L-cysteine and S-sulfocysteine being added through a 1- or 2-feed system with the following feeding strategy (v/v): 2.75, 5, 6, 6, 6 and 5% on <strong>Day</strong> 3, 5, 7, 9, 11 and 14 for the neutral pH feed, and 1/10th of the volume on the respective days for the separate alkaline 10X concentrated L-cysteine feed. The pH in the bioreactor was controlled at pH 6.95 ± 0.15 from <strong>Day 0-4</strong>, at pH 6.80 ± 0.05 from <strong>Day 4-13</strong>, and at pH 7.00 ± 0.05 from <strong>Day 13-17</strong>. The dissolved oxygen concentration was controlled at 50% air saturation by sparging with pure oxygen and air via an open pipe sparger. Temperature was set at 36.7 °C and agitation was maintained at 280 rpm using a marine impeller. The redox potential probe was re-calibrated on <strong>Day 3</strong> to account for probe drift.</p><p><br></p><p><strong>Quenching:</strong></p><p>For intracellular and extracellular metabolomics, samples (<strong>Cys</strong> and <strong>SSC</strong> conditions on <strong>Day</strong> 0, 3, 5, 7, 10, 12, 14, 17, <strong>n =</strong> 42 or 48) were diluted 1:10 or were derivatized with either 2 mM NEM or 2 mM monobromobimane (MBBr) for the quantification of thiols or polysulfides respectively, prior to LC-MS measurement.</p><p><br></p><p>For extracellular metabolomics, samples were collected at the defined time points. After centrifugation, the supernatant was transferred to a new tube and store at -80 °C until LC-MS analysis</p><p><br></p><p>For intracellular metabolomics, the cell suspension (10 ml) was immediately quenched with 40 ml of pre-chilled 0.9% NaCl (0.5-1.5 °C). Cells were centrifuged (1200 x g, 1 min, 4 °C), the supernatant was discarded, and the pellet was snap frozen in liquid nitrogen and stored at -80 °C.</p>	<p>To extract intracellular metabolites, pellets were incubated 15 min on ice, extracted by vortexing 1 min in pre-chilled (-20 °C) buffer consisting of 40% acetonitrile, 40% methanol (5 x 10^7 cells/ml) and further incubated in a thermomixer (1600 rpm, 15 min, 1 °C). Samples were centrifuged at 18000 x g for 15 min at 0 °C. The supernatant was dried using a SpeedVac at a temperature of 45 °C for 60 min, 100 mTorr and a total run time of 90 min. Dry samples were kept at -80 °C until LC-MS analysis.</p>	<p>Pellets were reconstituted (equivalent of 10^8 cells/ml) in pre-chilled water and analyzed using UHPLC (Vanquish, Thermo Fisher Scientific, San Jose, CA, USA) coupled with an ESI-Q-ToF mass spectrometer (Impact II, Bruker Daltonics, Bremen, Germany). 1 or 2 µl of sample were loaded in 99.9% buffer A (20 mM ammonium formate/0.1% formic acid) onto a XSelect HSS T3 column (2.1 x 150 mm, 3.5 µm, Waters) thermostated at 40 °C with a flowrate of 300 µl/min. An optimized 12 min linear gradient was applied using 100% methanol (buffer B) as follows (min/%B): 0/0, 2/0, 4/20, 6/30, 8/80, 8.5/100, 9.5/100, 9.6/0 12/0.</p>	<p>LC-MS/MS analyses were performed using the Impact II mass spectrometer equipped with an ESI source (Bruker Daltonics, Bremen, Germany). MS acquisition was performed in positive and negative modes with capillary voltages set at 4500 V and 3500 V, respectively, and the end plate offset set at 500 V. Nebulizer and dry gas (250 °C) were set at 1.4 bar and 9.0 L/min, respectively. MS spectra were acquired over the m/z range 50-1000 with a MS scan rate of 2&nbsp;Hz in MS mode only for metabolite quantification. Additional LC-MS/MS acquisitions with a MS scan rate of 12 Hz using a fixed MS-MSMS cycle of 0.5 s and a dynamic exclusion list were performed for metabolite identification.</p>	<p>Relative quantification of metabolites was carried out using Metaboscape 2021 (Bruker Daltonics, Bremen, Germany). Data were processed using the T-ReX 3D workflow using the following parameters: an intensity threshold of 1000 counts and a minimum peak length of 8 spectra were set for peak detection and peak area was used for feature quantification. Only features eluted between 0.8 and 9 min and exhibiting abundance &gt;5000 were considered. Injections of QC samples coupled to the 'within batch-correction' processing was used to mitigate intensity drift effects occurring over the acquisition sequence.</p>	<p>Various levels of confidence were assigned to the annotations based on the previously published initial recommendation<strong>[1]</strong> and some further published guidance document<strong>[2]</strong>. Briefly, <strong>Tier 1</strong> identification level was given to features where the retention time (± 0.3 min), the precursor mass (± 3.0 ppm) and the fragmentation pattern matched a commercially available standard that was measured on the same LC-MS equipment and with the same method (<strong>Tier 1*</strong> were assigned to features lacking MSMS data). <strong>Tier 2</strong> annotations were obtained for features matching the precursor mass (± 3.0 ppm) and the MSMS fragmentation pattern of spectral library (Bruker HMDB Metabolite and Bruker MetaboBASE personal libraries). Features were annotated as a <strong>Tier 3</strong> when a tentative structure matched the precursor mass (± 3.0 ppm) and the MSMS fragmentation data were annotated manually. <strong>Tier 4</strong> level corresponds to features for which the precursor mass (± 3.0 ppm) and the isotopic pattern (mSigma &lt; 100) were matched with a sum formula. Finally, <strong>Tier 5</strong> were only identified by a unique retention time and a precursor mass and no tentative structure/sum formula can be reported.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O et al. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616.</p><p><strong>[2]</strong> Blazenović I, Kind T, Sa MR, Ji J, Vaniya A, Wancewicz B, Roberts BS, Torbasinović H, Lee T, Mehta SS, Showalter MR, Song H, Kwok J, Jahn D, Kim J, Fiehn O. Structure Annotation of All Mass Spectra in Untargeted Metabolomics. Anal Chem. 2019 Feb 5;91(3):2155-2162. doi:10.1021/acs.analchem.8b04698. PMID:30608141.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nguyen	Le Mignon	Schnellbächer	Wehsling	Braun	Baumgaertner	Grabner	Zimmer
+Study Person First Name	Melanie	Maxime	Alisa	Maria	Julian	Jens	Martina	Aline
+Study Person Mid Initials								
+Study Person Email								
+Study Person Phone								
+Study Person Fax								
+Study Person Address								
+Study Person Affiliation								
+Study Person Roles	Investigator	Investigator	Investigator	Subinvestigator	Subinvestigator	Subinvestigator	Subinvestigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C54622	http://purl.obolibrary.org/obo/NCIT_C54622	http://purl.obolibrary.org/obo/NCIT_C54622	http://purl.obolibrary.org/obo/NCIT_C54622	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

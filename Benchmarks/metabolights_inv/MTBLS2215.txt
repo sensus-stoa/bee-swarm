@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCIT	CRISP	MTBLS	EFO	OMIT	IOBC	
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/CRISP	https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org	http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	25	103	18	40	6	1.0				18.10e
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	Computer Retrieval of Information on Scientific Projects Thesaurus	User defined terms				NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS2215
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2020-11-03
+Investigation Public Release Date	2021-01-29
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 1.0.3
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2215
+Study Title	Metabolomics Insights in Early Childhood Caries
+Study Description	Dental caries is characterized by a dysbiotic shift at the biofilm-tooth surface interface, yet comprehensive biochemical characterizations of the biofilm are scant. We used metabolomics to identify biochemical features of the supragingival biofilm associated with early childhood caries (ECC) prevalence and severity. The study's analytical sample comprised 289 children ages 3 to 5 (51% with ECC) who attended public preschools in North Carolina and were enrolled in a community-based cross-sectional study of early childhood oral health. Clinical examinations were conducted by calibrated examiners in community locations using International Caries Detection and Classification System (ICDAS) criteria. Supragingival plaque collected from the facial/buccal surfaces of all primary teeth in the upper-left quadrant was analyzed using ultra-performance liquid chromatography-tandem mass spectrometry. Associations between individual metabolites and 18 clinical traits (based on different ECC definitions and sets of tooth surfaces) were quantified using Brownian distance correlations (dCor) and linear regression modeling of log<sub>2</sub>-transformed values, applying a false discovery rate multiple testing correction. A tree-based pipeline optimization tool (TPOT)-machine learning process was used to identify the best-fitting ECC classification metabolite model. There were 503 named metabolites identified, including microbial, host, and exogenous biochemicals. Most significant ECC-metabolite associations were positive (i.e., upregulations/enrichments). The localized ECC case definition (ICDAS ≥1 caries experience within the surfaces from which plaque was collected) had the strongest correlation with the metabolome (dCor <i>P</i> = 8 × 10<sup>-3</sup>). Sixteen metabolites were significantly associated with ECC after multiple testing correction, including fucose (<i>P</i> = 3.0 × 10<sup>-6</sup>) and <i>N</i>-acetylneuraminate (p = 6.8 × 10<sup>-6</sup>) with higher ECC prevalence, as well as catechin (<i>P</i> = 4.7 × 10<sup>-6</sup>) and epicatechin (<i>P</i> = 2.9 × 10<sup>-6</sup>) with lower. Catechin, epicatechin, imidazole propionate, fucose, 9,10-DiHOME, and <i>N</i>-acetylneuraminate were among the top 15 metabolites in terms of ECC classification importance in the automated TPOT model. These supragingival biofilm metabolite findings provide novel insights in ECC biology and can serve as the basis for the development of measures of disease activity or risk assessment.
+Study Submission Date	2020-11-03
+Study Public Release Date	2021-01-29
+Study File Name	s_MTBLS2215.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	3
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	biofilm	children	risk assessment	Caries	microbiome	Machine Learning	Dental	metabolon	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C52593	http://www.ebi.ac.uk/efo/EFO_0004982	http://purl.obolibrary.org/obo/OMIT_0001480	http://purl.obolibrary.org/obo/NCIT_C41136	http://purl.jp/bio/4/id/201606002506532625	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	MTBLS	MTBLS	MTBLS	NCIT	EFO	OMIT	NCIT	IOBC	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	33423574
+Study Publication DOI	10.1177/0022034520982963
+Study Publication Author List	Heimisdottir L.H., Lin B.M., Cho H., Orlenko A., Ribeiro A.A., Simon-Soro A., Roach J., Shungin D., Ginnis J., Simancas-Pallares M.A., Spangler H.D., Zandoná A.G. Ferreira, Wright J.T., Ramamoorthy P., Moore J.H., Koo H., Wu D., Divaris K.
+Study Publication Title	Metabolomics Insights in Early Childhood Caries
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sex	Age at exam
+Study Factor Type	Sex	age
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C28421	http://purl.obolibrary.org/obo/NCIT_C25150
+Study Factor Type Term Source REF	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2215_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS2215_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS2215_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS2215_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl				
+Study Protocol Type Term Source REF		NCIT	NCIT	NCIT	NCIT	NCIT
+Study Protocol Description	<p>A detailed report of the biofilm (i.e., supragingival plaque) collection protocol in the ZOE 2.0 study is reported in Divaris K et al. [1]. In brief, the initial study population comprised 300 preschool-age children attending public preschool centers in North Carolina, participants of a community-based, cross-sectional, epidemiologic study of early childhood oral health [2][3]. Children were between 36 and 71 months old. Their legal guardians provided written informed consent for clinical data and biospecimen (saliva and dental plaque) collection. Children underwent comprehensive dental examinations recording dental caries experience using ICDAS criteria by trained and calibrated examiners between August 2016 and February 2019. Detailed descriptions of the clinical examination [4], biofilm collection and analysis protocols [1], as well as parent study’s cohort profile [2] have been reported in detail in previous publications. The supragingival biofilm samples were collected prior to the dental examinations which took place before or at least 30 minutes after breakfast or snack. The families were instructed not to brush their child’s teeth the morning of the clinical encounter. A plaque sample for metabolomics analyses was collected from the facial/buccal surfaces of the upper left quadrant (Universal system: F, G, H, I, and J; FDI system: 61, 62, 63, 64, and 65). Examiners used sterile toothpicks for plaque collection and the samples were immediately frozen at the collection site (-20° C using CoolBoxes) until being transferred to a University core facility and stored long-term at -80° C until further processing.</p><p><br></p><p>References:</p><p>[1] Divaris K, Shungin D, Rodríguez-Cortés A, Basta PV, Roach J, Cho H, Wu D, Ferreira Zandoná AG, Ginnis J, Ramamoorthy S, Kinchen JM, Kwintkiewicz J, Butz N, Ribeiro AA, Azcarate-Peril MA. The Supragingival Biofilm in Early Childhood Caries: Clinical and Laboratory Protocols and Bioinformatics Pipelines Supporting Metagenomics, Metatranscriptomics, and Metabolomics Studies of the Oral Microbiome. Methods Mol Biol. 2019;1922:525-548. doi: 10.1007/978-1-4939-9012-2_40. PMID: 30838598 PMCID: PMC6628198</p><p>[2] Divaris K, Slade GD, Ferreira Zandona AG, Preisser JS, Ginnis J, Simancas-Pallares MA, Agler CS, Shrestha P, Karhade DS, Ribeiro AA, Cho H, Gu Y, Meyer BD, Joshi AR, Azcarate-Peril MA, Basta PV, Wu D, North KE. Cohort Profile: ZOE 2.0-A Community-Based Genetic Epidemiologic Study of Early Childhood Oral Health. Int J Environ Res Public Health. 2020 Nov 1;17(21):8056. doi: 10.3390/ijerph17218056. PMID: 33139633; PMCID: PMC7663650.</p><p>[3] Divaris K, Joshi A. The building blocks of precision oral health in early childhood: the ZOE 2.0 study. J Public Health Dent. 2020 Mar;80 Suppl 1:S31-S36. doi: 10.1111/jphd.12303. PMID: 30566750; PMCID: PMC6584604.</p><p>[4] Ginnis J, Ferreira Zandoná AG, Slade GD, Cantrell J, Antonio ME, Pahel BT, Meyer BD, Shrestha P, Simancas-Pallares MA, Joshi AR, Divaris K. Measurement of Early Childhood Oral Health for Research Purposes: Dental Caries Experience and Developmental Defects of the Enamel in the Primary Dentition. Methods Mol Biol. 2019;1922:511-523. doi: 10.1007/978-1-4939-9012-2_39. PMID: 30838597; PMCID: PMC6642073.</p>	Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.	<p>All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. Method 1/Pos 1: One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 µm) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). Method 2/Pos 2: A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. Method 3/Neg 1: A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. Method 4/Neg 2: The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 µm) using a gradient consisting of water and acetonitrile with 10mM Ammonium Formate, pH 10.8.</p>	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	<p>Raw data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.</p>	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Divaris	Heimisdottir	Lin	Cho	Orlenko	Ribeiro	Simon-Soro	Roach	Shungin	Ginnis	Simancas-Pallares	Spangler	Zandoná	Wright	Ramamoorthy	Moore	Koo	Wu
+Study Person First Name	Kimon	L H	B M	H	A	A A	A	J	D	J	M A	H D	A G Ferreira	J T	P	J H	H	D
+Study Person Mid Initials																		
+Study Person Email	kimon_divaris@unc.edu																	
+Study Person Phone																		
+Study Person Fax																		
+Study Person Address																		
+Study Person Affiliation																		
+Study Person Roles	Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT																	

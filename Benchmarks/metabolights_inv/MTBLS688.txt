@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	BRIDG	BTO	CHMO	CCONT	OBI	MS	MTBLS	EFO		AGRO	GAZ	NCIT
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BRIDG	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/CCONT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO	http://purl.obolibrary.org/obo/ncit.owl			
+Term Source Version	2	1	22	5	2	22	86	1	132	18.10e			
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	Biomedical Research Integrated Domain Group Model	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Cell Culture Ontology	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Metabolights Ontology	Experimental Factor Ontology	NCI Thesaurus OBO Edition			
+INVESTIGATION
+Investigation Identifier	MTBLS688
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-05-31
+Investigation Public Release Date	2022-04-15
+Comment[Created With Configuration]	/home/dmitry/Downloads/ISAcreatorMetaboLights/Configurations/MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS688
+Study Title	Employing fingerprinting of medicinal plants by means of LC-MS and machine learning for species identification task
+Study Description	<p>A dataset of liquid chromatography-mass spectrometry measurements of medicinal plant extracts from 76 species was generated and used for training and validating plant species identification algorithms. Various strategies for data handling and feature space selection were tested. Constrained Tucker decomposition, large-scale (more than 1500 variables) discrete Bayesian Networks and autoencoder based dimensionality reduction coupled with continuous Bayes classifier and logistic regression were optimized to achieve the best accuracy. Classification algorithms based on Tucker decomposition of original data and logistic regression on representation learned with autoencoder showed identification accuracy of up to 96%, outperforming various implementations of Bayesian Networks. Benefits and drawbacks of used approaches were discussed. Tolerance to changes in data created by using different extraction methods and equipment was tentatively tested.</p><p><br></p><p><strong>Main study</strong> is reported in the current study <strong>MTBLS688</strong></p><p><strong><em>Helianthus tuberosu</em>s assay</strong> is reported in <a href='https://www.ebi.ac.uk/metabolights/MTBLS759/' rel='noopener noreferrer' target='_blank'><strong>MTBLS759</strong></a></p>
+Study Submission Date	2018-05-31
+Study Public Release Date	2022-04-15
+Study File Name	s_MTBLS688.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	plant species	Machine Learning	Proof of Concept Study
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279		http://purl.obolibrary.org/obo/NCIT_C176231	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	CHMO	MTBLS		NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	30451976
+Study Publication DOI	10.1038/s41598-018-35399-z
+Study Publication Author List	Kharyuk P, Nazarenko D, Oseledets I, Rodin I, Shpigun O, Tsitsilin A, Lavrentyev M.
+Study Publication Title	Employing fingerprinting of medicinal plants by means of LC-MS and machine learning for species identification task.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Harvest Year	Location
+Study Factor Type	Year Date	geographic location
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C159612	http://purl.obolibrary.org/obo/GAZ_00000448
+Study Factor Type Term Source REF	NCIT	GAZ
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS688_POS_metabolite_profiling_mass_spectrometry.txt	a_MTBLS688_NEG_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Alternating (LC-MS (Alternating))	Liquid Chromatography MS - Alternating (LC-MS (Alternating))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Plant material:</strong></p><p>Medicinal plant extracts from 76 species was generated and used for training and validating plant species identification algorithms. Plant material was either collected by botanists or purchased from commercial suppliers. Samples were collected in dry forms and stored at room temperature in darkness.</p><p><br></p><p><strong>Chemicals:</strong></p><p>Methanol, ethanol, acetonitrile and formic acid were purchased from Merck (Germany). Deionized water was purified with Milli-Q water system (Millipore, Milford, MA, USA).</p>	<p>1 g of each plant was powdered in an agate mortar and <strong>(a)</strong> sonicated for 1 h in 10 ml of 70% EtOH, <strong>(b)</strong> sonicated for 1 h in 10 ml of 70% MeOH, <strong>(c)</strong> sonicated for 3 h in 10 ml of deionized water. 2 ml of crude extract were diluted 1:10 with 0.1% FA, centrifuged for 10 min (10000 x g); 10 μl of supernatant were subjected to LC-MS analysis.</p>	<p>Chromatography was performed on a Hypersil Gold aQ (Thermo scientific, USA) column (100 mm x 2.1 mm i.d., 1.9 μm). Separation was performed with 0.1% aqueous formic acid (A) and 0.1% formic acid acetonitrile (B) according to the following gradient program: 0% to 95% B (0–12 min), 95% B (12–17 min), 95% to 0% B for 0.01 min and 0% B for 3 min. The temperature was set to 50 °C with flow rate 0.3 ml/min.</p>	<p>MS experiment was conducted on a LCMS-IT-TOF (Shimadzu Corp, Japan) equipped with an ESI-source. MS data was collected in scan mode in range 100-900 m/z with both positive and negative polarities included.</p>	<p>All LC-MS run files were converted into <strong>mzXML</strong> format. Then, chromatogram files were uploaded in <strong>Waters Progenesis QI </strong>software for peak picking procedure. Peak lists with and tR tags for each sample were obtained and further converted according by the following procedure: m/z values of peaks were rounded to integers and only peaks with the highest abundance value for each m/z were chosen. This resulted in a vector with length 1600 (800 values for positive and negative polarity) for each respective sample.</p>	<p>Target-free study, no metabolite identification was performed.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Column type;Column model;Chromatography Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nazarenko	Kharyuk	Oseledets	Rodin	Shpigun	Tsitsilin	Lavrentyev
+Study Person First Name	Dmitry	Pavel	Ivan	Igor	Oleg	Andrey	Mikhail
+Study Person Mid Initials	V						
+Study Person Email	dmitro.nazarenko@gmail.com						
+Study Person Phone	79163260286						
+Study Person Fax							
+Study Person Address	MSU Faculty of Chemistry, Russia,119991,Moscow 1, GSP-1, 1-3 Leninskiye Gory						
+Study Person Affiliation	Lomonosov Moscow State University						
+Study Person Roles		Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number		http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF							

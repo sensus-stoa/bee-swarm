@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	MTBLS	OBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api
+Term Source Version	132		1	29	
+Term Source Description	Experimental Factor Ontology		User defined terms	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS6696
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-02-16
+Investigation Public Release Date	2025-05-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6696
+Study Title	ms-mint: Targeted metabolomics with Python
+Study Description	<p>Metabolomics has emerged as a mainstream approach&nbsp;for investigating the complex metabolic underpinnings of living systems. Over recent years, metabolomics has increasingly been applied to large cohort studies that tax the limits of existing computational tools. Though effective when applied to small datasets, many existing metabolomics software tools have three common shortcomings that limit their utility when applied to large studies: they store entire datasets in memory, they use batch-dependent fitting algorithms, and they use ambiguous representation of regions of interests leading to inconsistent peak-picking results across samples. To address this, we developed the mass-spectrometry metabolomics integrator (ms-mint), a Python library for processing, analyzing, and visualizing large LC-MS datasets. To enable reproducible large scale data processing tasks, ms-mint uses a region of interest (ROI)-based approach to extract data. We illustrate the function of this new tool using a large dataset (3,334 files) of standards and Staphylococcus aureus metabolite extracts. Via regression analyses, we show that ms-mint faithfully reproduces data generated from other software tools (R2 &gt; 0.9999). Moreover, once ms-mint processing parameters have been set, analyses are fully automated and efficient (3334 files in less than 10 minutes) while maintaining a minimal memory footprint (~200MB). We demonstrate how the extendable open-source library can be used to efficiently process very large datasets using a deterministic and batch-independent protocol enabling targeted metabolomics at scale.</p>
+Study Submission Date	2023-02-16
+Study Public Release Date	2025-05-21
+Study File Name	s_MTBLS6696.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	HILIC	ZIC-HILIC	Chromatographic column conditioning
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	35700271	
+Study Publication DOI	10.1021/acs.analchem.2c00078	
+Study Publication Author List	Groves RA, Mapar M, Aburashed R, Ponce LF, Bishop SL, Rydzak T, Drikic M, Bihan DG, Benediktsson H, Clement F, Gregson DB, Lewis IA.	Soren Wacker, Ryan Groves, Alikhan Mansuri, Maryam Mapar, Rory L. Gilliland, M. Ethan MacDonald, Ian A. Lewis
+Study Publication Title	Methods for Quantifying the Metabolic Boundary Fluxes of Cell Cultures in Large Cohorts by High-Resolution Hydrophilic Liquid Chromatography Mass Spectrometry.	ms-mint: Targeted metabolomics with Python
+Study Publication Status	Published	In preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Column
+Study Factor Type	chromatography column
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000997
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6696_Col03_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS6696_Col04_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - negative - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>An evaluation of the lasting impacts of chromatographic drift and column conditioning was conducted by monitoring a pair of never-before-used chromatographic columns, under standard conditions, over a duration of 3192 injections. To keep track of the performance as the process unfolded, two types of samples were repetitively injected: a<strong> 6-point reference curve</strong> and<strong> a pooled <em>S. aureus</em> sample made from 160 culture supernatants mixed at an equal ratio</strong>. These samples were taken on a regular cycle, wherein the six analytical standards were first observed followed by 100 injections of the pooled S. aureus sample. Each sample was introduced to both columns, with the injections automatically alternating between them until each column had completed 1,500 S. aureus samples (resulting in 3,192 total injections, including standards). </p>	<p>To achieve the uniform growth of selected&nbsp;<em>S. aureus</em>&nbsp;cultures, microbes were inoculated in 96-well plates filled with Mueller–Hinton broth originating from a single batch and were cultured overnight. Samples for all stages of growth were cultured aerobically at 37 °C in a humidified incubator with a controlled 5% CO2, 21% O2&nbsp;atmosphere, without shaking. These were then subcultured and grown to an OD between 0.35 and 0.4, and culture supernatants were then fixed in methanol (1:1 v/v). Samples were centrifuged for 5 min at 4000<em>g</em>, and the cleared supernatants were retrieved and stored at −80 °C. On the date of LC-MS analysis, the stored supernatants were further diluted at 1:10 with 50% methanol. Genomic sequencing, as described previously,&nbsp;was performed on these cultures to verify microbial species and to screen for cross-contamination.</p>	<p>Chromatographic separation was accomplished on two Syncronis ZIC-HILIC columns (inner diameter, 2.1 mm; length, 100 mm; particle size, 1.7 μm) using a UHPLC Vanquish Integrated biocompatible system (Thermo Fisher Scientific) equipped with an auxiliary vanquish UHPLC pump to perform the analytical gradient, while the main pump performs sample deposition and offline column re-equilibration. Mobile phases consisted of solvent A (20 mM ammonium formate, pH 3.0 in Optima LC-MS grade water; Thermo Fisher Scientific) and solvent B (Optima LC-MS grade acetonitrile with 0.1% formic acid; Thermo Fisher Scientific). Solvent A was constituted by the addition of ammonium formate salt followed by pH adjustment through titration with formic acid until a stable pH of 3.0 (±0.05) was reached overnight. For each experiment, all required solvents were produced in one large batch to minimize the possibility of solvent batch effects. All gradients were run at a flow rate of 0.6 mL/min with a sample injection volume of 2 μL using this binary solvent system. The column temperature was maintained in a sealed compartment at 30 °C (±0.005 °C).</p><p><br></p><p>During LC-MS analysis, two chromatographic gradients were employed simultaneously using the auxiliary vanquish UHPLC pump. This setup also utilized two sets of multiport switch valves (MSVs) to direct alternating sample plugs to each column and manage the sample analyte elution into the mass spectrometer (Figure S1). For the auxiliary pump, the following gradient was used with respect to solvent B: 95% from 0 to 0.5 min; 95% to 5% from 0.5 to 3.5 min; and 5% from 3.5 to 4.5 min. Concurrently, the main pump gradient used was 95% from 0 to 0.5 mins; 95% to 5% from 0.5 to 0.75 min; 5% from 0.75 to 2 min; 5% to 95% from 2 to 2.25 min; and 100% from 2.25 to 4.5 min. The lower MSV controlled sample introduction to each column and switched at the 0.4 min mark to allow sample plug deposition on the column head before switching to the auxiliary pump to begin the analytical gradient. The upper MSV switched between columns at the beginning of each run to direct the flow from the column currently eluting an analytical gradient into the mass spectrometer and the equilibrating column to the waste.</p>	<p>Electrospray ionization was undertaken at a sheath gas flow rate of 35, an auxiliary gas flow rate of 15, and a sweep flow gas rate of 2 (all rates in arbitrary units), and all gas flows provided were high-purity N2&nbsp;gas. A spray voltage of −2.5 kV was used in the negative ion mode and +3.0 kV was used in the positive ion mode. The capillary temperature was maintained at 275 °C, and the auxiliary gas heater was set at 300 °C. A Thermo Fisher Q Exactive HF Hybrid Quadrupole-Orbitrap mass spectrometer was used to acquire data in negative and positive ion full-scan modes, within a range of 50–750&nbsp;<em>m</em>/<em>z</em>, at a resolution power of 120,000. The automatic gain control target was 1e,&nbsp;(6)&nbsp;and the maximum injection time was 200 ms.</p>	<p>Peak assignment and quantification were performed using the open-source MAVEN software package with mass window of (±) 10 ppm. </p><p>Data extraction was done using the ms-mint protocol. </p>	<p>For all qualitative work, the mass spectrometry metabolite library service (MSMLS; Sigma-Aldrich) was used to prepare standards for determining chromatographic performance. Standards were received preweighed in 96-well plates with 5 μg in each well and were subsequently reconstituted to a concentration of 25 μg/mL using 50% methanol (1:1 Optima LC-MS grade water and methanol; Thermo Fisher Scientific). Following this, individual standard solutions were then combined equally into 65 pooled mixtures with either 12 compounds or 6 compounds with 6 equiv of 50% methanol so that all mixtures reached a final concentration per metabolite of 2.08 μg/mL. These mixtures were assigned such that they excluded isobaric compounds to minimize any possible cross-interference when determining retention characteristics. Retention times were then annotated manually based on the peak signal intensity maxima in extracted ion chromatograms (±10 ppm) for all observed [M + H]+&nbsp;and [M – H]−&nbsp;ions with a signal intensity greater than 1e.&nbsp;(4)&nbsp;Pooled standard mixtures were run in both positive and negative ion modes, and all chemical data provided by the manufacturers (chemical name, elemental composition, mass characteristics, associated database entries), subpool mixture number assignments, and observed retention characteristics are recorded. Summary information of the number of compounds detected in each ionization mode is also tabulated in&nbsp;Table S2&nbsp;based on these data.</p><p><br></p><p>For all quantitative work, a mixture of 85 commonly observed compounds was prepared in 50% methanol at varying concentrations and stored at −80 °C in 1 mL aliquots. Samples were then thawed on the day of use, and a 16-point standard curve was prepared by serial dilution (see&nbsp;Table S3&nbsp;for concentrations). Each metabolite concentration was calibrated to ensure that the metabolites quantified were within the linear range of response factors for each target metabolite. These samples were used in the determination of lower limit of detection (LLOD) and lower limit of quantification (LLOQ) values in positive and negative ion modes, which were respectively defined as the lowest observed concentration in this standard curve with a signal ratio &gt;3× and &gt;10× greater than the signal observed in a 50% methanol blank injection. Compounds observed in these data that were not present in the MSMLS set are annotated. Some experiments in this work used additional 8- or 6-point standard curves where appropriate and are annotated.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wacker	Groves	Mansuri	Mapar	Gilliland	MacDonald	Lewis
+Study Person First Name	Soren	Ryan	Alikhan	Maryam	Rory	M. Ethan	Ian
+Study Person Mid Initials		A			L		A
+Study Person Email	swacker@ucalgary.ca	rgroves@ucalgary.ca	alikhan.mansuri@ucalgary.ca	maryam.mapar1@ucalgary.ca	rory.gilliland@ucalgary.ca	ethan.macdonald@ucalgary.ca	ian.lewis2@ucalgary.ca
+Study Person Phone							
+Study Person Fax							
+Study Person Address	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4	2500 University Dr NW, Calgary, AB T2N 1N4
+Study Person Affiliation	University of Calgary	University of Calgary	University of Calgary	University of Calgary	University of Calgary	University of Calgary	University of Calgary
+Study Person Roles	Submitter	Co-Investigator	Co-Investigator	Co-Investigator	Co-Investigator	Co-Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C54269	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

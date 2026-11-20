@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	NCBITAXON	EFO	OBI	CHEBI	PLOSTHES	BTO	UO
+Term Source File	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/PLOSTHES	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/UO
+Term Source Version	18	6	146	22	99	5	29	43
+Term Source Description	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Experimental Factor Ontology	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology	PLOS Thesaurus	BRENDA Tissue and Enzyme Source Ontology	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS781
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-11-06
+Investigation Public Release Date	2019-09-27
+Comment[Created With Configuration]	C:\Users\joestewc\Desktop\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS781
+Study Title	RANCM: a new ranking scheme for assigning confidence levels to metabolite assignments in NMR-based metabolomics studies
+Study Description	<p><strong>INTRODUCTION:</strong> The Metabolomics Standards Initiative has recommended four categories for metabolite assignments in NMR-based metabolic profiling studies. The putatively annotated compound category is most commonly reported by metabolomics investigators. However, there is significant ambiguity in reliability of putatively annotated compound assignments, which can range from low confidence made on minimal corroborating data to high confidence made on substantial corroborating data.</p><p><strong>OBJECTIVES: </strong>To introduce a new ranking system, Rank and AssigN Confidence to Metabolites (RANCM), to assign confidence levels to putatively annotated compound assignments in NMR-based metabolic profiling studies.</p><p><strong>METHODS:</strong> The ranking system was constructed with three confidence levels ranging from Rank 1 for the lowest confidence assignment level to Rank 3 for the highest confidence assignment level. A decision tree was constructed to guide rank selection for each metabolite assignment.</p><p><strong>RESULTS:</strong> Examples are provided from experimental data demonstrating how to use the decision tree to make confidence level assignments to putatively annotated compounds in each of the three rank levels. A standard Excel sheet template is provided to facilitate decision-making, documentation and submission to data repositories.</p><p><strong>CONCLUSION:</strong> RANCM is intended to reduce the ambiguity in putatively annotated compound assignments, to facilitate effective communication of the degree of confidence in putatively annotated compound assignments, and to make it easier for non-experts to evaluate the significance and reliability of NMR-based metabonomics studies. The system is straightforward to implement, based on the most common datasets collected in NMR-based metabolic profiling studies, and can be used with equal rigor and significance with any set of NMR datasets.</p>
+Study Submission Date	2018-11-06
+Study Public Release Date	2019-09-27
+Study File Name	s_MTBLS781.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	nuclear magnetic resonance spectroscopy	Ranking algorithms
+Study Design Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0000591	http://localhost/plosthes.2017-1#1540532
+Study Design Type Term Source REF		CHMO	PLOSTHES
+STUDY PUBLICATIONS
+Study PubMed ID	30830432
+Study Publication DOI	10.1007/s11306-018-1465-2
+Study Publication Author List	Joesten WC, Kennedy MA.
+Study Publication Title	RANCM: a new ranking scheme for assigning confidence levels to metabolite assignments in NMR-based metabolomics studies.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Pulse program
+Study Factor Type	nuclear magnetic resonance pulse sequence
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001841
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS781_NMR_spectroscopy.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	Urine samples from NOD-ShiLtJ mice were obtained by placing the mouse into a metabolism cage for 12 h and collecting urine into a beaker containing light mineral oil to prevent evaporation and sodium azide to prevent bacterial growth.	The urine under the light mineral oil layer was collected by pipette and centrifuged at 10,000 x g for 5 min at 4 °C, and liquid supernatant was collected.	The samples were prepared for NMR analysis by mixing 540 µl of urine with 66 µl of a pH 7.4 phosphate buffer containing 10 mM trimethylsilylpropanoic acid (TSP) as a chemical shift reference. The samples were pH adjusted to 7.4 by adding HCl and NaOH as necessary, and finally added to 60 µl of D2O. The resulting 666 µl solutions were frozen at -80 °C until NMR experiments could be conducted. 600 µl of each sample was transferred into a 5 mm NMR tube for NMR analysis.	All NMR experiments on the NOD-ShiLtJ samples were conducted on a Bruker Avance Spectrometer at 298 K and 850.104 MHz.	One-dimensional 1H CPMG or NOESY NMR experiments and two-dimensional 1H-1H TOCSY and 1H-13H HSQC NMR experiments were performed as described in our previous publications[1]-[11]. </br></br> Ref: [1] Chihanga T, Hausmann SM, Ni S, Kennedy MA. Influence of media selection on NMR based metabolic profiling of human cell lines. Metabolomics. 2018 Jan 31;14(3):28. doi:10.1007/s11306-018-1323-2. PMID:30830358</br> [2] Chihanga T, Ma Q, Nicholson JD, Ruby HN, Edelmann RE, Devarajan P, Kennedy MA. NMR spectroscopy and electron microscopy identification of metabolic and ultrastructural changes to the kidney following ischemia-reperfusion injury. Am J Physiol Renal Physiol. 2018 Feb 1;314(2):F154-F166. doi:10.1152/ajprenal.00363.2017. PMID:28978534</br> [3] Chihanga T, Ruby HN1, Ma Q, Bashir S, Devarajan P, Kennedy MA. NMR-based urine metabolic profiling and immunohistochemistry analysis of nephron changes in a mouse model of hypoxia-induced acute kidney injury. Am J Physiol Renal Physiol. 2018 Oct 1;315(4):F1159-F1173. doi:10.1152/ajprenal.00500.2017. PMID:29993280</br> [4] Romick-Rosendale LE, Goodpaster AM, Hanwright PJ, Patel NB, Wheeler ET, Chona DL, Kennedy MA. NMR-based metabonomics analysis of mouse urine and fecal extracts following oral treatment with the broad-spectrum antibiotic enrofloxacin (Baytril). Magn Reson Chem. 2009 Dec;47 Suppl 1:S36-46. doi:10.1002/mrc.2511. PMID:19768747</br> [5] Romick-Rosendale LE, Legomarcino A, Patel NB, Morrow AL, Kennedy MA. Prolonged antibiotic use induces intestinal injury in mice that is repaired after removing antibiotic pressure: implications for empiric antibiotic therapy. Metabolomics. 2014 Feb;10(1):8-20. doi:10.1007/s11306-013-0546-5. PMID:26273236</br> [6] Romick-Rosendale LE, Schibler KR, Kennedy MA. A Potential Biomarker for Acute Kidney Injury in Preterm Infants from Metabolic Profiling. J Mol Biomark Diagn. 2012 Feb;Suppl 3. pii: 001. doi:10.4172/2155-9929.S3-001. PMID:25035813</br> [7] Schmahl MJ, Regan DP, Rivers AC, Joesten WC, Kennedy MA. NMR-based metabolic profiling of urine, serum, fecal, and pancreatic tissue samples from the Ptf1a-Cre; LSL-KrasG12D transgenic mouse model of pancreatic cancer. PLoS One. 2018 Jul 17;13(7):e0200658. doi:10.1371/journal.pone.0200658. PMID:30016349</br> [8] Wang B, Sheriff S, Balasubramaniam A, Kennedy MA. (2015). NMR based metabolomics study of Y2 receptor activation by neuropeptide Y in the SK-N-BE2 human neuroblastoma cell line. Metabolomics, 11, 1243–1252. doi:10.1007/s11306-015-0782-y.</br> [9] Watanabe M, Sheriff S, Kadeer N, Cho J, Lewis KB, Balasubramaniam A, et al. (2012). NMR based metabonomics study of NPY Y5 receptor activation in BT-549, a human breast carcinoma cell line. Metabolomics, 8, 854–868. doi:10.1007/s11306-011-0380-6.</br> [10] Watanabe M, Sheriff S, Lewis KB, Cho J, Tinch SL, Balasubramaniam A, Kennedy MA. Metabolic Profiling Comparison of Human Pancreatic Ductal Epithelial Cells and Three Pancreatic Cancer Cell Lines using NMR Based Metabonomics. J Mol Biomark Diagn. 2012 Apr;3(2). pii: S3-002. doi:10.4172/2155-9929.S3-002. PMID:26609466</br> [11] Watanabe M, Sheriff S, Ramelot TA, Kadeer N, Cho J, Lewis KB, et al. (2011). NMR Based metabonomics study of DAG treatment in a C2C12 mouse skeletal muscle cell line myotube model of burn-injury. International Journal of Peptide Research and Therapeutics, 17, 281–299. doi:10.1007/s10989-011-9264-x.</br>	Phase correction, baseline correction, and other necessary processing of spectra were performed manually using TopSpin 3.5.	One-dimensional NMR spectra were investigated using the ChenomX Profiler software (https://www.chenomx.com/). Putative metabolite identifications made using the ChenomX software were further analyzed using the HMDB (http://www.hmdb.ca/)[1]. Analysis of 2D NMR data was performed using the COLMAR software (http://spin.ccic.ohio-state.edu/) (Bingol et al. 2014; Bingol et al. 2016). Ranking score assignments were determined using the decision tree described in Section 2.4 Construction of the ranking decision tree and Fig 1, in the paper associated with this study. </br></br> Ref: [1] Wishart DS, Feunang YD, Marcu A, Guo AC, Liang K, Vázquez-Fresno R, Sajed T et al. HMDB 4.0: the human metabolome database for 2018. Nucleic Acids Res. 2018 Jan 4;46(D1):D608-D617. doi:10.1093/nar/gkx1089. PMID:29140435</br> [2] Bingol K, Bruschweiler-Li L, Li DW, Brüschweiler R. Customized metabolomics database for the analysis of NMR 1H-1H TOCSY and 13C-1H HSQC-TOCSY spectra of complex mixtures. Anal Chem. 2014 Jun 3;86(11):5494-501. doi:10.1021/ac500979g. PMID:24773139</br> [3] Bingol K, Li DW, Zhang B, Brüschweiler R. Comprehensive Metabolite Identification Strategy Using Multiple Two-Dimensional NMR Spectra of a Complex Mixture Implemented in the COLMARm Web Server. Anal Chem. 2016 Dec 20;88(24):12411-12418. doi:10.1021/acs.analchem.6b03724. PMID:28193069</br>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Temperature;Sample pH;Solvent	Magnetic field strength;Pulse sequence name;Instrument;NMR Probe;Number of transients			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Joesten	Kennedy
+Study Person First Name	William	Michael
+Study Person Mid Initials	C	A
+Study Person Email	joestewc@miamioh.edu	kennedm4@miamioh.edu
+Study Person Phone	4199444682	5135298267
+Study Person Fax		5135295715
+Study Person Address	106 Hughes Laboratory Miami University 651 East High Street Oxford, OH 45056	106 Hughes Laboratory Miami University 651 East High Street Oxford, OH 45056
+Study Person Affiliation	Graduate Student	Eminent Scholar and Professor
+Study Person Roles	Author	Author
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

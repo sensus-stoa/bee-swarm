@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI	ror
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/ror/ror.owl.gz
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.88.0			1.0.1		26.02d	2026-03-19	2.0
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Research Organization Registry
+INVESTIGATION
+Investigation Identifier	MTBLS14380
+Investigation Title	Untargeted Metabolomics of Wheat Fielder, TaPDK1-OE, and pdk1 Lines under Alkaline Salt Stress
+Investigation Description	
+Investigation Submission Date	2026-04-26
+Investigation Public Release Date	2026-04-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14380
+Study Title	Untargeted Metabolomics of Wheat Fielder, TaPDK1-OE, and pdk1 Lines under Alkaline Salt Stress
+Study Description	An untargeted metabolomics study was performed on wheat plants, including the wild-type cultivar Fielder, TaPDK1-overexpression (TaPDK1-OE) lines, and pdk1 mutant lines. Plants were grown under either normal conditions (control groups) or exposed to alkaline salt stress for 1 or 3 days (experimental groups). Each treatment group consisted of six independent biological replicates.
+Study Submission Date	2026-04-26
+Study Public Release Date	2026-04-26
+Study File Name	s_MTBLS14380.txt
+Comment[Created At]	2026-04-25
+Comment[Funder]	National Natural Science Foundation of China
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	MTBLS1
+Comment[Related Data Repository]	MetaboLights
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Shandong University	OpenMS	Thermo Scientific Q Exactive HF-X	Triticum aestivum	Root	experimental blank	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	https://ror.org/0207yh398	http://purl.obolibrary.org/obo/MS_1003430	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243				http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MSIO	ror	MS	MTBLS				MS	EDAM
+Comment[Study Design Category]	default	facility	software	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Minghan Cui, Shuwei Liu, Guangmin Xia
+Study Publication Title	Untargeted Metabolomics of Wheat Fielder, TaPDK1-OE, and pdk1 Lines under Alkaline Salt Stress
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Alkali
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14380_MS_alternating_.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Mass spectrometry - alternating
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	MS
+Comment[Assay Type]	mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	alternating;70-1050;Thermo Scientific Q Exactive HF-X
+Comment[Assay Field Default Unit]	;;
+Comment[Assay Field Default Value Accession Number]	;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243
+Comment[Assay Field Default Value Source REF]	;;MTBLS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Extraction	Mass spectrometry	Metabolite identification	54 samples for -MS/MS analysis
+Study Protocol Type	Sample collection	data transformation	Extraction	mass spectrometry	metabolite identification	54 samples for -MS/MS analysis
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF		OBI	OBI	CHMO	MI	EFO
+Study Protocol Description	<p>Fielder, TaPDK1-OE, and pdk1 were grown under normal conditions until the two-leaf stage. Fielder was designated as JW1, and pdk1 as PDK1-KO. The control group continued to be cultured under normal conditions. For the D3 group, the culture solution was replaced with one containing 50 mM alkaline salt and cultured for three days. For the D1 group, the culture solution was replaced with one containing 50 mM alkaline salt and cultured for one day, with sampling performed at the respective time points.</p>	<p>After instrument analysis, raw data were processed using Progenesis QI (Waters Corporation, Milford, USA) for peak detection, extraction, alignment, and integration. Metabolite annotation was performed using the HMDB database (http://www.hmdb.ca/) and the METLIN database (https://metlin.scripps.edu/), as well as the Majji self-built library.</p><p>To eliminate or reduce errors introduced during experimentation and analysis, the annotated data underwent preprocessing, which included: removal of features with a missing value rate &gt;20% within any experimental group; imputation of remaining missing values with the minimum value across all samples; and normalization of the response intensity of mass spectral peaks across samples using the total sum normalization method, resulting in a normalized data matrix.</p><p>Subsequently, variables with a relative standard deviation (RSD) &gt;30% in quality control (QC) samples were removed. The data were then subjected to a log10 transformation, yielding the final data matrix for subsequent analyses.</p><p>Statistical analyses, including PCA and OPLS-DA, were performed using the ropls package (Version 1.6.2) in R. Metabolites were annotated using the HMDB and KEGG (https://www.kegg.jp/kegg/pathway.html) databases. Pathway enrichment analysis was conducted using the scipy.stats package in Python.</p>	<p class='ql-align-justify'>1. Sample Preparation and Quenching</p><p>Fresh wheat root samples were rinsed with ultrapure water to remove soil and debris, then immediately flash-frozen in liquid nitrogen.</p><p>Frozen roots were ground to a fine powder using a pre-chilled mortar and pestle under continuous liquid nitrogen cooling.</p><p>Approximately 50 mg of the homogenized powder was accurately weighed into a 2 mL microcentrifuge tube and kept on dry ice or at -80°C until extraction.</p><p>2. Metabolite Extraction Procedure</p><p>The extraction was performed using a modified methanol/chloroform/water biphasic method optimized for root tissue.</p><p>Solvent Addition: 800 μL of ice-cold methanol (LC-MS grade, containing internal standards) was added to the powdered tissue. The sample was vortexed vigorously for 30 seconds.</p><p>Addition of Chloroform: 200 μL of ice-cold chloroform (HPLC grade) was added, followed by another 30 seconds of vortexing.</p><p>Addition of Water: 400 μL of ice-cold LC-MS grade water was added, and the mixture was vortexed for a final 30 seconds.</p><p>Incubation: The sample was incubated on ice for 10 minutes to ensure complete metabolite extraction.</p><p>Centrifugation: The tube was centrifuged at 14,000 × g for 15 minutes at 4°C to separate the phases.</p><p>3. Sample Collection and Preparation for LC-MS</p><p>The upper aqueous phase (containing polar metabolites) was carefully transferred to a new microcentrifuge tube.</p><p>The extract was dried completely using a vacuum concentrator (CentriVap, 35°C).</p><p>The dried metabolites were reconstituted in 100 μL of 50% methanol (v/v, in water) with 0.1% formic acid.</p><p>The reconstituted sample was vortexed for 30 seconds, sonicated in an ice-water bath for 5 minutes, and then centrifuged at 14,000 × g for 10 minutes at 4°C to remove insoluble debris.</p><p>The final supernatant was transferred to an LC-MS vial for analysis.</p><p>4. Quality Control (QC) and Control Samples</p><p>Pooled QC Sample: An aliquot (e.g., 10 μL) from each individual sample extract was combined to create a pooled QC sample. This QC sample was injected at the beginning of the analytical run and after every 5-10 experimental samples to monitor instrument stability and performance.</p><p>Solvent Blank: A blank sample containing only the extraction solvents (methanol, chloroform, water) and internal standards was processed identically to the biological samples to account for background contamination.</p><p>Internal Standards: A mixture of stable isotope-labeled compounds (e.g., leucine-13C6, phenylalanine-13C9, 2H4-succinic acid) was spiked into the initial methanol solvent prior to extraction to correct for variations in extraction efficiency and matrix effects.</p><p>5. Additional Notes</p><p>All steps were performed on ice or at 4°C where possible to minimize metabolite degradation.</p><p>The lower organic phase (chloroform layer) can be collected separately for lipidomics analysis if required.</p><p>The use of acidified reconstitution solvent (0.1% formic acid) is optional and depends on the LC-MS method (typically beneficial for positive ionization mode in LC-ESI-MS).</p>	<p>instrument&nbsp; Thermo Scientific Q Exactive HF-X</p><p>ion source ESI</p><p>ionisation mode positive &amp; negative</p><p>m/z range 70-1050</p>	<p>After instrument analysis, raw data were processed using Progenesis QI (Waters Corporation, Milford, USA) for peak detection, extraction, alignment, and integration. Metabolite annotation was performed using the HMDB database (http://www.hmdb.ca/) and the METLIN database (https://metlin.scripps.edu/), as well as the Majji self-built library.</p><p>To eliminate or reduce errors introduced during experimentation and analysis, the annotated data underwent preprocessing, which included: removal of features with a missing value rate &gt;20% within any experimental group; imputation of remaining missing values with the minimum value across all samples; and normalization of the response intensity of mass spectral peaks across samples using the total sum normalization method, resulting in a normalized data matrix.</p><p>Subsequently, variables with a relative standard deviation (RSD) &gt;30% in quality control (QC) samples were removed. The data were then subjected to a log10 transformation, yielding the final data matrix for subsequent analyses.</p><p>Statistical analyses, including PCA and OPLS-DA, were performed using the ropls package (Version 1.6.2) in R. Metabolites were annotated using the HMDB and KEGG (https://www.kegg.jp/kegg/pathway.html) databases. Pathway enrichment analysis was conducted using the scipy.stats package in Python.</p>	<p>This study included 54 samples for -MS/MS analysis. After instrument analysis, raw data were processed using Progenesis QI (Waters Corporation, Milford, USA) for peak detection, extraction, alignment, and integration. Metabolite annotation was performed using the HMDB database (http://www.hmdb.ca/) and the METLIN database (https://metlin.scripps.edu/), as well as the Majji self-built library.To eliminate or reduce errors introduced during experimentation and analysis, the annotated data underwent preprocessing, which included: removal of features with a missing value rate &gt;20% within any experimental group; imputation of remaining missing values with the minimum value across all samples; and normalization of the response intensity of mass spectral peaks across samples using the total sum normalization method, resulting in a normalized data matrix.Subsequently, variables with a relative standard deviation (RSD) &gt;30% in quality control (QC) samples were removed. The data were then subjected to a log10 transformation, yielding the final data matrix for subsequent analyses.Statistical analyses, including PCA and OPLS-DA, were performed using the ropls package (Version 1.6.2) in R. Metabolites were annotated using the HMDB and KEGG (https://www.kegg.jp/kegg/pathway.html) databases. Pathway enrichment analysis was conducted using the scipy.stats package in Python.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number			;	;;;;		
+Study Protocol Parameters Name Term Source REF			;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cui
+Study Person First Name	Minghan
+Study Person Mid Initials	
+Study Person Email	cuiminghande@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Shandong University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0009-0002-5381-2697
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0207yh398

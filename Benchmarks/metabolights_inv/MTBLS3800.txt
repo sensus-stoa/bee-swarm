@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	COVIDO	CHMO	EFO	NCIT	MONDO	DOID	MTBLS
+Term Source File	http://data.bioontology.org/ontologies/OBI						https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/
+Term Source Version	29							1.0
+Term Source Description	Ontology for Biomedical Investigations							Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS3800
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-11-15
+Investigation Public Release Date	2025-01-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS3800
+Study Title	Metabolomics study of COVID-19 patients in four different clinical stages
+Study Description	<p>SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) is the coronavirus strain causing the respiratory pandemic COVID-19 (coronavirus disease 2019). To understand the pathobiology of SARS-CoV-2 in humans it is necessary to unravel the metabolic changes that are produced in the individuals once the infection has taken place. The goal of this work is to provide new information about the altered biomolecule profile and with that the altered biological pathways of patients in different clinical situations due to SARS-CoV-2 infection. This is done via metabolomics using HPLC-QTOF-MS analysis of plasma samples at COVID-diagnose from a total of 145 adult patients, divided into different clinical stages based on their subsequent clinical outcome (25 negative controls (non-COVID); 28 positive patients with asymptomatic disease not requiring hospitalization; 27 positive patients with mild disease defined by a total time in hospital lower than 10 days; 36 positive patients with severe disease defined by a total time in hospital over 20 days and/or admission at the ICU; and 29 positive patients with fatal outcome or deceased). Moreover, follow up samples between 2 and 3 months after hospital discharge were also obtained from the hospitalized patients with mild prognosis. The final goal of this work is to provide biomarkers that can help to better understand how the COVID-19 illness evolves and to predict how a patient could progress based on the metabolites profile of plasma obtained at an early stage of the infection. In the present work, several metabolites were found as potential biomarkers to distinguish between the end-stage and the early-stage (or non-COVID) disease groups. These metabolites are mainly involved in the metabolism of carnitines, ketone bodies, fatty acids, lysophosphatidylcholines/phosphatidylcholines, tryptophan, bile acids and purines, but also omeprazole. In addition, the levels of several of these metabolites decreased to “normal” values at hospital discharge, suggesting some of them as early prognosis biomarkers in COVID-19 at diagnose.</p>
+Study Submission Date	2021-11-15
+Study Public Release Date	2025-01-24
+Study File Name	s_MTBLS3800.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	COVID-19	untargeted metabolites	high-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/DOID_0080600	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	DOID	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	35102215
+Study Publication DOI	10.1038/s41598-022-05667-0
+Study Publication Author List	Valdés A, Moreno LO, Rello SR, Orduña A, Bernardo D, Cifuentes A.
+Study Publication Title	Metabolomics study of COVID-19 patients in four different clinical stages.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	COVID-19 Clinical Stage
+Study Factor Type	disease stage
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000278
+Study Factor Type Term Source REF	OBI
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS3800_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS3800_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>A total of 145 adult patients, over 18 years, who attended the A&amp;E unit at 'Hospital Clínico Universitario de Valladolid' (Valladolid, Spain) during the COVID-19 outbreak between March and April 2020 were recruited following ethics approval by the local ethics committee (Comité ético de investigación con medicamento -CEIm- de Valladolid este; PI20-1716). All research was performed in accordance with relevant guidelines/regulations. Informed consent was obtained from all participants. Samples from all patients were taken at hospital admission (without any standard of care) and, based on the medical history, none of the patients were treated with any drug for COVID-19-related symptoms.</p><p><br></p><p>Patients included 25 negative controls (non-COVID) who attended the hospital for non-COVID related issues (52% males, mean age 66.4 ± 9.6 years) and 120 COVID-19 patients as confirmed by a positive result for severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) infection by polymerase chain reaction on a nasopharyngeal sample. Of them, 28 were asymptomatic and did not require hospital admission (50% male, 65.2 ± 15.2 years); 27 had mild disease defined by a total time in hospital lower than 10 days (44% male, 65.3 ± 11.5 years); 36 had severe disease, defined by a total time in hospital over 25 days and/or admission at the ICU (66.7% male, 65.3 ± 11.5 years); and 29 patients with fatal outcome or deceased (45% male, 71.6 ± 8.4 years). Last, follow up samples between 2 and 3 months after hospital discharge were also obtained from the hospitalized patients with mild prognosis. Detailed demographics, co-morbidities and treatments of these patients can be found in Table S16 in the paper associated with this study.</p>	<p>Plasma samples from all patients were thaw on ice and vortex for 30 s. Thereafter, 100 µL of each sample was taken, 400 µL of methanol at -20 °C was added, and the mixture was vortexed for 1 min and incubated on ice for 10 min. Samples were then centrifuged at 14, 8000 rpm for 20 min at 4 °C, and 300 µL of the supernatant was collected and evaporated using SpeedVac (Savant SPD1030, Thermo Scientific, USA). Dried samples were reconstituted in 100 µL of 80% methanol, mixed for 1 min, and centrifuged again at 14, 8000 rpm for 5 min at 4 °C. In total 80 µL of the new supernatant was collected and stored at -80 °C until HPLC-MS/MS analysis.</p><p><br></p><p>Quality control was assured by: i) randomization of the sequence; ii) procedure blank analysis; iii) injection of pool samples to equilibrate the LC-MS system before and after of the different sequence of samples; and iv) injection of standard mixture for checking the retention time, peak shape, intensity and mass accuracy.</p>	<p>Aliquots of 2 μL (for both ESI (+) and ESI (-) modes) were injected into a LC-MS/MS system consisting of a quadrupole Q-TOF series 6540 coupled to a HPLC (model 1290) both from Agilent Technologies (Germany), equipped with an Agilent Jet Stream (AJS) thermal orthogonal ESI source. MS control, data acquisition, and data analysis were carried out using the Agilent Mass Hunter Qualitative Analysis software (B.10.0). For the chromatographic separation, an Eclipe Plus C18 analytical column (100 x 2.1 mm, particle size 1.8 μm) with a C18 guard column (0.5 cm x 2.1 mm, particle size 1.8 μm), both from Agilent (Germany) were employed. The column temperature was held at 40 °C and the flow rate was set to 0.5 mL/min. Both ESI (+) and ESI (-) modes used water (LC-MS grade) as mobile phase (A) and ACN as mobile phase (B), and formic acid was used as mobile phase modifier (0.1% for ESI (+) and 0.01% for ESI (-)). The gradient started at 0 min with 0% (B), 0-30% (B) in 7 min, 30-80% (B) in 2 min, 80-100% (B) in 2 min, 100% (B) in 2 min, and 3 min of post-time to come back to initial conditions.</p>	<p>The mass spectrometer was operated using the following parameters: capillary voltage of 3000&nbsp;V (+) or -3000&nbsp;V (-), and with a range from 25 to 1100 m/z. Nebulizer pressure was set at 40 psig and the drying gas flow rate was fixed to 8 L/min and 300&nbsp;°C. The sheath gas flow was 11 L/min at 350&nbsp;°C. 110&nbsp;V was chosen for the fragmentor voltage, whereas the skimmer and octapole voltage were 45&nbsp;and 750&nbsp;V, respectively. MS/MS analyses were performed employing the auto MS/MS mode using 5 precursor per cycle, dynamic exclusion after two spectra (released after 0.5&nbsp;min), and collision energies of 20 and 40&nbsp;V. For proper mass accuracy, spectra were corrected using ions m/z 121.0509 (C5H4N4) and 922.0098 (C18H18O6N3P3F24) in ESI (+), and m/z 119.0363 (C5H4N4) and 966.0007 (C18H18O6N3P3F24 + formate) in ESI (-), simultaneously pumped into the ionization source.</p>	<p>LC-MS raw data files were firstly converted to ABF format using Reifycs Abf (Analysis Base File) Converter (accessible at: http://www.reifycs.com/AbfConverter/). Data processing was then performed using MS-DIAL (v. 4.12) software for deconvolution, peak picking, alignment and identification using the following parameters: retention time begin, 0 min; retention time end, 14 min; mass range begin, 0 Da; mass range end, 1100 Da; MS1 tolerance, 0.01 Da; smoothing level, 3 scans; minimum peak width, 5 scans; minimum peak height, 1000 amplitude; mass slice width, 0.1 Da; sigma window value for deconvolution, 0.1; accurate mass tolerance for MSP library, 0.01 Da; identification score cut off for MSP library, 80%; retention time tolerance for alignment, 0.1 min; MS1 tolerance for alignment, 0.015 Da. Peak height calculation was performed by combining data for different detected molecular species for each particular compound ([M+H]+, [M+NH4]+, [M+Na]+, [M+K]+, [2M+H]+, [2M+NH4]+, [2M+Na]+, [2M+K]+ adducts in positive mode, and [M-H]-, [2M-H]-, [M+Cl]-, [M+FA-H]- adducts in negative mode).</p>	<p>The MSP file used for annotation was generated by combining MS/MS spectra from NIST20 MS/MS database, the LipidBLAST mass spectral library, and the MassBank of NorthAmerica database (MoNA, available at https://mona.fiehnlab.ucdavis.edu/downloads). All metabolite were annotated following the Metabolomics Standard Initiative (MSI) guidelines as MSI level 2a (metabolites with precursor m/z and MS/MS spectral library matching).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Valdés
+Study Person First Name	Alberto
+Study Person Mid Initials	
+Study Person Email	a.valdes@csic.es
+Study Person Phone	0034910017821
+Study Person Fax	
+Study Person Address	C\Nicolás Cabrera, 9. Campus Cantoblanco. 28049 Madrid. Spain
+Study Person Affiliation	Insituto de Investigación en Ciencias de la Alimentación (CIAL-CSIC)
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

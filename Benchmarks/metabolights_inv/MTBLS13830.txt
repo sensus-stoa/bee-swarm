@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.86.0			25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13830
+Investigation Title	Metabolomic profiling of Sophora flavescens under different tissue types using LC–MS-based untargeted metabolomics
+Investigation Description	
+Investigation Submission Date	2026-02-03
+Investigation Public Release Date	2026-02-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13830
+Study Title	Metabolomic profiling of Sophora flavescens under different tissue types using LC–MS-based untargeted metabolomics
+Study Description	<p>Sophora flavescens (Kushen) is a traditional medicinal plant widely used in East Asia for its anti-inflammatory, antimicrobial, and antitumor properties. Its pharmacological activities are mainly attributed to diverse secondary metabolites, including alkaloids, flavonoids, and phenolic compounds. However, the metabolic differences between distinct tissues remain incompletely characterized.</p><p>In this study, an untargeted metabolomics approach based on liquid chromatography–mass spectrometry (LC–MS) was employed to comprehensively profile the metabolic composition of Sophora flavescens. Root and stem tissues were collected and analyzed to investigate tissue-specific metabolic variations. Metabolite extraction was performed using organic solvent-based protocols, followed by high-resolution LC–MS analysis in both positive and negative ionization modes.</p><p>Multivariate statistical analyses, including principal component analysis (PCA) and differential abundance analysis, were applied to evaluate metabolic differences between tissues. Differentially accumulated metabolites were further annotated and mapped to KEGG pathways to elucidate the biological processes and metabolic pathways underlying tissue-specific metabolite distribution.</p><p>This dataset provides a valuable resource for understanding the metabolic basis of bioactive compound accumulation in Sophora flavescens and supports further studies on medicinal plant metabolomics, functional metabolism, and natural product discovery.</p>
+Study Submission Date	2026-02-03
+Study Public Release Date	2026-02-03
+Study File Name	s_MTBLS13830.txt
+Comment[Created At]	2026-02-03T15:45:51.828324
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics	LC–MS	Sophora flavescens	Plant metabolomics	Natural products
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Ning Zhang
+Study Publication Title	Metabolomics Data of Root and Stem Tissues in Five-Year-Old Sophora flavescens
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	TissueType
+Study Factor Type	Plant tissue
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13830_LC-MS_alternating_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed using a reverse-phase liquid chromatography system equipped with a C18 column. The mobile phase consisted of solvent A (water with 0.1% formic acid) and solvent B (acetonitrile with 0.1% formic acid). A gradient elution program was applied at a constant flow rate. The column temperature was maintained at 40 °C, and the injection volume was 2–5 μL.</p>	<p>Raw LC–MS data files were converted into open formats and processed using standard metabolomics data processing pipelines. Peak detection, retention time alignment, and peak normalization were performed to generate a data matrix of mass features and corresponding intensities. Quality control samples were used to assess analytical stability and data reproducibility.</p>	<p>Approximately 100 mg of frozen plant tissue was ground into a fine powder under liquid nitrogen. Metabolites were extracted using cold methanol–water solution (70:30, v/v). Samples were vortexed thoroughly, sonicated in an ice-water bath for 30 min, and incubated at −20 °C for 1 h to enhance extraction efficiency. After centrifugation at 12,000 × g for 15 min at 4 °C, the supernatant was collected for LC–MS analysis. A pooled quality control (QC) sample was prepared by mixing equal aliquots from each extract.</p>	<p>Mass spectrometric detection was performed using a high-resolution mass spectrometer equipped with an electrospray ionization (ESI) source operating in both positive and negative ion modes. Data were acquired over an m/z range of 50–1,500. Source parameters were optimized to ensure stable ionization and mass accuracy. Full-scan MS data were collected for untargeted metabolomic profiling.</p>	<p>Metabolite annotation was performed by comparing accurate mass, retention time, and MS/MS fragmentation patterns against public metabolite databases, including HMDB, KEGG, and MassBank. Putative identifications were assigned according to established metabolomics reporting standards.</p>	<p>Five-year-old Sophora flavescens plants were cultivated under standard field conditions. Stem tissues were collected from approximately 1 cm above the root–shoot junction, while root tissues were sampled from the main taproot at approximately 3 cm below the soil surface. All samples were harvested at the same developmental stage, immediately rinsed with distilled water to remove surface contaminants, flash-frozen in liquid nitrogen, and stored at −80 °C until metabolite extraction. Three independent biological replicates were collected for each tissue type.</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ning
+Study Person First Name	Zhang
+Study Person Mid Initials	
+Study Person Email	zhangning@xiyi.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	No. 1, Xinwang Road, Weiyang District, Xi 'an, 710021
+Study Person Affiliation	Xi’an Medical University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0003-0288-1369

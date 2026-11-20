@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCBITAXON	EFO	NCIT	MI	CRISP	BTO	UO	MTBLS	IOBC
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/NCIT	http://purl.obolibrary.org/obo/mi.owl	http://data.bioontology.org/ontologies/CRISP	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/UO	https://www.ebi.ac.uk/metabolights/	
+Term Source Version	25	103	18	6	146	44		6	29	43	1.0	
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Experimental Factor Ontology	National Cancer Institute Thesaurus	PSI Molecular Interactions	Computer Retrieval of Information on Scientific Projects Thesaurus	BRENDA Tissue and Enzyme Source Ontology	Units of Measurement Ontology	Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS158
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2018-07-13
+Investigation Public Release Date	2020-04-25
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 0.5.1
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Robinson
+Investigation Person First Name	Richard
+Investigation Person Mid Initials	
+Investigation Person Email	RRobinson@metabolon.com
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Metabolon
+Investigation Person Roles	
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS158
+Study Title	Multi-omics systems toxicology study of mouse lung assessing the effects of aerosols from two heat-not-burn tobacco products and cigarette smoke
+Study Description	Cigarette smoke (CS) causes adverse health effects and leads to the development of respiratory disease (chronic obstructive pulmonary disease), cardiovascular disease, and cancer. To reduce the risk of smokers developing smoking-related diseases, Philip Morris International is developing modified risk tobacco products (MRTP). Within a systems toxicology study, we conducted an integrative multi-omics analysis to assess the effects of aerosols from two potential MRTPs - the Carbon Heated Tobacco Product (CHTP) 1.2 and the Tobacco Heating System (THS) 1.2 -, compared with cigarette smoke (CS) at matched nicotine concentrations, on the lung of ApoE-/- mice. Mice were exposed for up to six months and molecular exposure effects were measured by mRNA/miRNA transcriptomics, proteomics, metabolomics, and lipidomics. In addition, the impact of cessation (CESS) or switching to CHTP 1.2 (SWITCH) after three months of CS exposure was evaluated. This data set represents the lung metabolomics data obtained after 3 and 6 months of exposure. The 'Animal ID' or 'CAN' represents the unique animal identifier and allows matching of samples across the different data modalities.
+Study Submission Date	2018-07-13
+Study Public Release Date	2020-04-25
+Study File Name	s_MTBLS158.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	Tobacco Smoke	Cigarette	tandem mass spectrometry	metabolon
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C829	http://purl.obolibrary.org/obo/NCIT_C1802	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.jp/bio/4/id/201606002506532625
+Study Design Type Term Source REF	CHMO	MTBLS	NCIT	NCIT	CHMO	IOBC
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1016/j.csbj.2020.04.011
+Study Publication Author List	Titz Bjoern, Szostak Justyna, Sewer Alain, Phillips Blaine, Nury Catherine, Schneider Thomas, Dijon Sophie, Lavrynenko Oksana, Elamin Ashraf, Guedj Emmanuel, Tsin Wong Ee, Lebrun Stefan, Vuillaume Grégory, Kondylis Athanasios, Gubian Sylvain, Cano Stephane, Leroy Patrice, Keppler Brian, Ivanov Nikolai V., Vanscheeuwijck Patrick, Martin Florian, Peitsch Manuel C., Hoeng Julia
+Study Publication Title	Multi-omics systems toxicology study of mouse lung assessing the effects of aerosols from two heat-not-burn tobacco products and cigarette smoke
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group	Treatment	Time Point	Animal ID	Gender
+Study Factor Type	cohort	treatment	timepoint	Identification	Gender
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0004445	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C25737	http://purl.obolibrary.org/obo/NCIT_C17357
+Study Factor Type Term Source REF	EFO	EFO	EFO	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS158__NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS158__NEG_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS158__POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS158__POS_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://purl.bioontology.org/ontology/CRISP/4009-0034	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl				
+Study Protocol Type Term Source REF	CRISP	NCIT	NCIT	NCIT	OBI	MI
+Study Protocol Description	All procedures involving animals were performed in an Association for Assessment and Accreditation of Laboratory Animal Care International-accredited, Agri-Food and Veterinary Authority of Singapore-licensed facility with approval from an Institutional Animal Care and Use Committee, in compliance with the National Advisory Committee for Laboratory Animal Research Guidelines on the Care and Use of Animals for Scientific Purposes (NACLAR, 2004).</br></br> Female B6.129P2-Apoetm1Unc N11 Apoe−/− mice bred under specific pathogen-free conditions were obtained from Taconic Biosciences (Germantown, NY, USA). The mice were approximately 6–8 weeks old on arrival and 8–10 weeks old at the start of the exposure. Mice were kept and exposed under specific hygienic conditions with filtered, conditioned, fresh air at 22°C ± 2°C and 55% ± 15% humidity. The light/dark cycle was 12 hours/12 hours. A maximum of eight mice were housed per cage.</br></br> The mice were whole-body exposed to diluted mainstream smoke from 3R4F cigarettes (target concentration 600 µg TPM/l, equivalent to 28 µg nicotine/l), CHTP1.2 aerosol (nicotine-matched to 3R4F, 28 µg/l), THS2.2 aerosol (nicotine-matched to 3R4F, 28 µg/l), or filtered air for 3 hours per day, 5 days per week, for up to 6 months. Intermittent daily exposure to fresh, filtered air for 30 minutes after the first hour of smoke exposure and for 60 minutes after the second hour of exposure was provided to avoid a build-up of excessive carboxyhemoglobin (COHb) concentrations in the 3R4F group.</br></br> Metabolomics was performed after 3 and 6 months of exposure. Tissues were collected 16–24 hours after exposure from nine animals per group. For analysis, a frozen right lung lobe was shipped to Metabolon.	Samples were prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards were added prior to the first step in the extraction process for QC purposes. Samples were extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract was divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples were placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples were then reconstituted in solvents compatible to each of the four methods.	All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 µm) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 µm) using a gradient consisting of water and acetonitrile with 10mM Ammonium Formate, pH 10.8.	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	Raw data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Titz	Szostak	Blaine	Hoeng
+Study Person First Name	Bjoern	Justyna	Phillips	Julia
+Study Person Mid Initials				
+Study Person Email	bjorn.titz@pmi.com	justyna.szostak@pmi.com	blaine.phillips@pmi.com	julia.hoeng@pmi.com
+Study Person Phone				
+Study Person Fax				
+Study Person Address	Quai Jeanrenaud 5, CH-2000 Neuch�tel, Switzerland	Quai Jeanrenaud 5, CH-2000 Neuch�tel, Switzerland	Science Park II, Singapore	Quai Jeanrenaud 5, CH-2000 Neuch�tel, Switzerland
+Study Person Affiliation	PMI R&D, Philip Morris Products S.A.	PMI R&D, Philip Morris Products S.A.	Philip Morris International Research Laboratories Pte. Ltd	PMI R&D, Philip Morris Products S.A.
+Study Person Roles				
+Study Person Roles Term Accession Number				
+Study Person Roles Term Source REF				

@@ -1,0 +1,102 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MCRO	MESH	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	https://data.bioontology.org/ontologies/MESH	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version								
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology		Medical Subject Headings	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13731
+Investigation Title	Untargeted LC–MS metabolomics of Chlorella vulgaris under different carbon-source conditions
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-01-20
+Investigation Public Release Date	2026-01-20
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13731
+Study Title	Untargeted LC–MS metabolomics of Chlorella vulgaris under different carbon-source conditions
+Study Description	<p>This study presents untargeted LC–MS/MS metabolomics and lipidomics datasets comparing CON and MAL experimental groups acquired in both positive and negative electrospray ionization modes. For quality control, a pooled QC sample was prepared by mixing equal volumes of all study samples and was analyzed alongside extracted samples. Separation was performed using an Agilent Infinity 1200 UPLC system coupled to an Agilent 6540 Quadrupole Time-of-Flight mass spectrometer (Q-TOF) in data-dependent acquisition (DDA) mode over an m/z range of 50–1000. Chromatographic separation used an Agilent Poroshell column (2.1 × 100 mm, 1.9 μm) with mobile phases (A) 0.1% formic acid in water and (B) 0.1% formic acid in acetonitrile, at 0.4 mL/min, 30 °C, and 10 μL injection volume. The ESI source settings were: gas temperature 250 °C, gas flow 10 L/min, nebulizer 35 psi, sheath gas 250 °C at 11 L/min, capillary 3.5 kV, fragmentor 75 V, and oct RF 750 V; acquisition rate was 2 spectra/s. MS/MS fragmentation used a rolling collision energy of 10–20–40 V. Raw Q-TOF data were processed using Progenesis QI to generate aligned feature tables (m/z, retention time, and intensity; default sensitivity level 3; S/N ≥ 3). Internal standards were removed prior to downstream analysis. Putative annotation was performed using an in-house PMDB combined with HMDB (mass error ≤ 10 ppm; MS/MS match ≥ 35). Features were filtered using a 50% rule, missing values were imputed with minimum values, intensities were sum-normalized, features with QC RSD &gt; 30% were removed, and the matrix was log10-transformed. Statistical analysis included OPLS-DA using the R package ropls (v1.6.2) and significance assessment using VIP &gt; 1 and Student’s t-test (p &lt; 0.05). The deposited files include raw vendor data (.d) for both ion modes and the processed data matrices used for analysis.</p>
+Study Submission Date	2026-01-20
+Study Public Release Date	2026-01-20
+Study File Name	s_MTBLS13731.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	LC-MS data	Microalgae	electrospray-ionisation quadrupole time-of-flight tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/swo/SWO_0000253	http://id.nlm.nih.gov/mesh/D058086	http://purl.obolibrary.org/obo/CHMO_0001275
+Study Design Type Term Source REF	MTBLS	MCRO	MESH	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhuo Li, Iris KM Yu
+Study Publication Title	Improving microalgal biomass production: Disaccharide and oligosaccharide as growth stimulators
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13731_LC-MS_negative__metabolite_profiling.txt	a_MTBLS13731_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative	Liquid Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Samples were collected for metabolomics/lipidomics analysis, quenched as required, and processed identically across experimental groups (CON and MAL). Pooled QC and procedural blanks were included to monitor system stability and background signals.</p>	<p>Metabolites and lipids were extracted from each sample using an organic solvent-based extraction procedure. Extracts were clarified by centrifugation and transferred to autosampler vials. A pooled QC sample was prepared by mixing equal volumes of all extracts.</p>	<p>Extracts were separated by UHPLC (Agilent Infinity 1200) using an Agilent Poroshell column (2.1 × 100 mm, 1.9 μm). Mobile phases were (A) 0.1% formic acid in water and (B) 0.1% formic acid in acetonitrile. Flow rate was 0.4 mL/min, injection volume 10 μL, and column temperature 30 °C.</p>	<p>Mass spectrometry data were acquired on an Agilent 6540 Q-TOF using an ESI source in both positive and negative ion modes. Data-dependent acquisition (DDA) was performed over m/z 50–1000 with MS/MS collision energies of 10–20–40 V. Key source settings included gas temperature 250 °C and capillary voltage 3.5 kV.</p>	<p>Raw Q-TOF data were processed in Progenesis QI to generate aligned feature tables (m/z, retention time, and intensity) with S/N ≥ 3. Features were filtered, normalized, and log-transformed. Annotation used an in-house PMDB combined with HMDB (mass error ≤ 10 ppm; MS/MS match ≥ 35).</p>	<p>Raw Q-TOF data were processed in Progenesis QI to generate aligned feature tables (m/z, retention time, and intensity) with S/N ≥ 3. Features were filtered, normalized, and log-transformed. Annotation used an in-house PMDB combined with HMDB (mass error ≤ 10 ppm; MS/MS match ≥ 35).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Yu
+Study Person First Name	Zhuo	Iris KM
+Study Person Mid Initials		
+Study Person Email	e1135498@u.nus.edu	irisyu@nus.edu.sg
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	National University of Singapore	National University of Singapore
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-8046-9022	0000-0003-2494-8974
+Comment[Study Person Alternative Email]		

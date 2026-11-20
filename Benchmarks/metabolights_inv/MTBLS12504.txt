@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MS	MTBLS	NCBITaxon	NCIT	OBI	OGG
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://www.ebi.ac.uk/ols4/api
+Term Source Version									
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS12504
+Investigation Title	Combined transcriptome and metabolome analysis reveals the regulatory network of histidine kinase QseC in the two-component system of Glaesserella parasuis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-05-20
+Investigation Public Release Date	2025-08-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12504
+Study Title	Combined transcriptome and metabolome analysis reveals the regulatory network of histidine kinase QseC in the two-component system of Glaesserella parasuis
+Study Description	Glaesserella parasuis is the causative agent of Glässer's disease in pigs, which can lead to polyserositis, arthritis, and meningitis. This study used transcriptome and metabolomics sequencing techniques to investigate the mechanism of action of qseC gene in Glaesserella parasuis. Transmission electron microscopy revealed that the ΔqseC mutant strain exhibited localized dissolution and rupture of the cell wall and membrane. The cytoplasmic wall separation was obvious, and the cytoplasm appeared sparse. These findings suggest an imbalance in membrane homeostasis。Metabolomics analysis identified 819 metabolites, among which 24 metabolites showed significant differences under positive ion mode, including upregulation of Methionine, Prostaglandin F2 α -1-glyceryl ester, and downregulation of Hypoxantine, UDP, and others. There were significant differences in 36 metabolites under negative ion mode. KEGG enrichment analysis revealed abnormalities in pathways related to amino acid synthesis, lipid metabolism, and quorum sensing. Transcriptomic analysis identified 663 differentially expressed genes, including upregulation of membrane synthesis-related genes (such as plsB and wecA) and downregulation of virulence factors (such as hrpA and pilW). This study systematically analyzed the regulatory networks of differentially expressed genes and metabolites by integrating transcriptome and metabolome data. Key genes such as plsB and wecA form a strong association network with metabolites such as methionine and prostaglandin F2α-1-glyceride. KEGG pathway co-enrichment analysis showed that amino acid synthesis (such as cysteine/methionine metabolism) and purine metabolism pathways were co regulated in positive ion mode, while peptidoglycan synthesis and glycerophospholipid metabolism were significantly enriched in negative ion mode. This study constructed a cross-omics regulatory map of “gene-metabolism” mediated by QseC, revealing the global regulatory role of QseC in Glaesserella parasuis, providing a theoretical basis for the development of new prevention and control strategies against Glaesserella parasuis infection.
+Study Submission Date	2025-05-20
+Study Public Release Date	2025-08-11
+Study File Name	s_MTBLS12504.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-08-11
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Glaesserella parasuis	qseC	Transcriptomics	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_738	http://purl.obolibrary.org/obo/OGG_3003191649	http://purl.obolibrary.org/obo/NCIT_C153189	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	NCBITaxon	OGG	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xuefeng Yan, Yuhong Zhou, Songwei Liu, Congwei Gu, Wudian Xiao, Mingde Zhao, Zehui Yu, Lvqin He
+Study Publication Title	Combined transcriptome and metabolome analysis reveals the regulatory network of histidine kinase QseC in the two-component system of Glaesserella parasuis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Gene
+Study Factor Type	Gene Knockout
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18143
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12504_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12504_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>SMY1902 and ΔqseC were grown in TSB at 37 °C, with shaking to an OD600 of 0.8. In total 2 mL of bacterial culture were centrifuged at 4000 rpm, and the bacteria were collected in centrifuge tube. After washing the cells 3 times with sterile PBS, and freezing in liquid nitrogen for 1 h and store at -80 °C.</p>	<p>After the sample is slowly thawed at 4 °C, add an appropriate amount of sample to the pre-cooled methanol/acetonitrile/water solution (2:2:1, v/v), and vortex to mix. Ultrasound at low temperature for 30 min, let stand at -20 °C for 10 min, and centrifuge at 14,000 rpm/min at 4 °C for 20 min. Take the supernatant and vacuum dry, add 100 μL of acetonitrile aqueous solution (acetonitrile:water, 1:1, v/v) for reconstitution during mass spectrometry, vortex, centrifuge at 14,000 rpm/min at 4 °C for 15 min, and take the supernatant for sample analysis.</p>	<p>The samples were separated by an Agilent 1290 Infinity LC ultra-high performance liquid chromatography system (UHPLC) HILIC column; column temperature 25 °C; flow rate 0.5 mL/min; injection volume 2 μL; mobile phase composition A: water + 25 mM ammonium acetate + 25 mM ammonia, B: acetonitrile; gradient elution program as follows: 0.0-0.5 min, 95% B; 0.5-7.0 min, B linearly changed from 95% to 65%; 7,0-8.0 min, B Linear change from 65% to 40%; 8.0-9.0 min, B maintained at 40%; 9.0-9.1 min, B linearly changed from 40% to 95%; 9.1-12.0 min, B maintained at 95%; samples were placed in a 4 °C autosampler throughout the analysis. In order to avoid the influence caused by the fluctuation of the instrument detection signal, the continuous analysis of the samples is carried out in random order. QC samples are inserted into the sample queue to monitor and evaluate the stability of the system and the reliability of the experimental data.</p>	<p>The primary and secondary spectra of the samples were collected using an AB Triple TOF 6600 mass spectrometer. The samples were separated by an Agilent 1290 Infinity LC ultra-high performance liquid chromatography system (UHPLC) and then analyzed by a Triple TOF 6600 mass spectrometer (AB SCIEX) using electrospray ionization (ESI) in positive and negative ion modes, respectively. The ESI source setting parameters are as follows: Nebulizer Gas Auxiliary Heater Gas 1 (Gas1): 60, Auxiliary Heater Gas 2 (Gas2): 60, Curtain Gas (CUR): 30 psi, Ion Source Temperature: 600 °C, Spray Voltage (ISVF) ±5500 V (both positive and negative modes); primary mass-to-charge ratio detection range: 60-1000 Da, secondary product ion mass-to-charge ratio detection range: 25-1000 Da, primary mass-to-charge scanning accumulation time: 0.20 s/spectra, MS MS scan accumulation time 0.05 s/spectra; MS MS was acquired using data-dependent acquisition mode (IDA), and peak intensity value screening mode was used, declustering voltage (DP): ±60 V (both positive and negative modes), collision energy: 35 ± 15 eV, IDA settings are as follows: Dynamically excluded isotope ion range: 4 Da, 10 fragment spectra were collected per scan.</p>	<p>The raw data in .wiff / .wiff.scan format was converted to .mzXML format by ProteoWizard, and then XCMS software was used for peak alignment, retention time correction and peak area extraction. The data extracted by XCMS were firstly subjected to metabolite structure identification, data preprocessing, and then to experimental data quality evaluation, and finally to data analysis.</p>	<p>This project uses the local self-built standard database (in-house database (Shanghai Applied Protein Technology)) of Zhongke New Life to search the database and pass the retention time and molecular mass of the metabolites in the local database (the molecular mass error is within &lt;25 ppm) , secondary fragmentation spectrum, collision energy and other information are matched, the structure of metabolites in biological samples is identified, and the identification results are strictly checked and confirmed manually. The identification level is above Level 2.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	lvqin	xuefeng
+Study Person First Name	He	Yan
+Study Person Mid Initials		
+Study Person Email	1176044269@qq.com	425177126@qq.com
+Study Person Phone	18328495366	
+Study Person Fax		
+Study Person Address	southwest medical university, luzhou, sichuan, china	
+Study Person Affiliation		
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCIT	EFO	AGRO	CHMO	MSIO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/EFO			
+Term Source Version	29	1.0		132			
+Term Source Description	Ontology for Biomedical Investigations	User defined terms		Experimental Factor Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS2483
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-02-17
+Investigation Public Release Date	2021-07-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2483
+Study Title	hRUV: Hierarchical approach to removal of unwanted variation for large-scale metabolomics data
+Study Description	Liquid chromatography-mass spectrometry-based metabolomics studies are increasingly applied to large population cohorts, which run for several weeks or even years in data acquisition. This inevitably introduces unwanted intra- and inter-batch variations over time that can overshadow true biological signals and thus hinder potential biological discoveries. To date, normalisation approaches have struggled to mitigate the variability introduced by technical factors whilst preserving biological variance, especially for protracted acquisitions. Here, we propose a study design framework with an arrangement for embedding biological sample replicates to quantify variance within and between batches and a novel workflow that uses these replicates to remove unwanted variation in a hierarchical (hRUV) manner. We use this design to produce a dataset of more than 1,000 human plasma samples run over an extended period of time. We demonstrate significant improvement of hRUV over existing methods in preserving biological signals whilst removing unwanted variation for large scale metabolomics studies. Our novel tools not only provide a strategy for large scale data normalization, but also provides guidance on the design strategy for large omics studies.
+Study Submission Date	2021-02-17
+Study Public Release Date	2021-07-05
+Study File Name	s_MTBLS2483.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolomics	Cardiovascular	assessing study batch to batch variation	normalization data transformation protocol
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C25292	http://purl.obolibrary.org/obo/MSIO_0000089	http://www.ebi.ac.uk/efo/EFO_0003816
+Study Design Type Term Source REF	CHMO	MTBLS	NCIT	MSIO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2020.12.21.423723
+Study Publication Author List	Kim Taiyun, Tang Owen, Vernon Stephen T, Kott Katharine A, Koay Yen Chin, Park John, James David, Speed Terence P, Yang Pengyi, O’Sullivan John F., Figtree Gemma A, Yang Jean Yee Hwa
+Study Publication Title	hRUV: Hierarchical approach to removal of unwanted variation for large-scale metabolomics data
+Study Publication Status	Preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004
+Study Publication Status Term Source REF	MTBLS
+STUDY FACTORS
+Study Factor Name	Age	Gender	hypertension	Run Order	Batch Number
+Study Factor Type	age	Gender	hypertension	Run Order	Batch Number
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000246	http://purl.obolibrary.org/obo/NCIT_C17357	http://www.ebi.ac.uk/efo/EFO_0000537	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C104504
+Study Factor Type Term Source REF	EFO	NCIT	EFO	MTBLS	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2483_LC-MS_positive_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The samples used were from the BioHEART-CT discovery cohort, which has been described in detail previously<strong>[1]</strong>. The study was approved by the Northern Sydney Local Health District Human Research Ethics Committee (HREC/17/HAWKE/343) and all participants provided informed, written consent. Briefly, patients undergoing clinically indicated CT coronary angiogram for suspected coronary artery disease were recruited from multiple sites in Sydney, Australia. <strong>Blood </strong>samples were taken at time of recruitment, and after appropriate processing, <strong>plasma </strong>samples including <strong>replicates </strong>were aliquoted and stored at -80 °C until analysis.</p><p><br></p><p><strong>Technical replicate design</strong></p><p>For each 96 (8 x 12) well plate, in order of run by rows, the first 3 wells were populated with 3 pooled QC samples, then a single pooled QC sample was repeated after every 10 runs. For each row of the plate from the second onwards, we randomly selected a single biological sample from the previous row to be replicated at random position in a row (short replicate). For each plate, after the first 3 pooled QC samples, a random selection of 5 biological samples from the previous plate was repeated (batch replicate) and short replicates are embedded at each row. All randomization was performed using the sample function in R.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Kott KA, Vernon ST, Hansen T, Yu C, Bubb KJ, Coffey S, Sullivan D, Yang J, O'Sullivan J, Chow C, Patel S, Chong J, Celermajer DS, Kritharides L, Grieve SM, Figtree GA. Biobanking for discovery of novel cardiovascular biomarkers using imaging-quantified disease burden: protocol for the longitudinal, prospective, BioHEART-CT cohort study. BMJ Open. 2019 Sep 18;9(9):e028649. doi:10.1136/bmjopen-2018-028649. PMID:31537558</p>	<p>Metabolites were prepared as previously described<strong>[1][2]</strong>. In brief, 10 μL plasma was mixed with 90 μL HILIC sample buffer, an acetonitrile:methanol:formic acid mix (75:25:0.2, v:v:v). The resulting mixture was vortexed and spun at 14,000 rpm for 20 min to remove plasma protein. The metabolite containing supernatant was then transferred to a glass HPLC sample vial.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Koay YC, Wali JA, Luk AWS, Macia L, Cogger VC, Pulpitel TJ, Wahl D, Solon-Biet SM, Holmes A, Simpson SJ, O'Sullivan JF. Ingestion of resistant starch by mice markedly increases microbiome-derived metabolites. FASEB J. 2019 Jul;33(7):8033-8042. doi:10.1096/fj.201900177R. Epub 2019 Mar 29. PMID:30925066</p><p><strong>[2] </strong>Koay YC, Stanton K, Kienzle V, Li M, Yang J, Celermajer DS, O'Sullivan JF. Effect of chronic exercise in healthy young male adults: a metabolomic analysis. Cardiovasc Res. 2021 Jan 21;117(2):613-622. doi:10.1093/cvr/cvaa051. PMID:32239128.</p>	<p>Chromatographic separation was performed using an XBridge BEH Amide Van Guard Catridge, 3.5 mm, 2.1 x 5 mm guard column and Atlantis HILIC Silica, 3 mm, 2.1 x 150 mm column and an Agilent 1200 Series HPLC System coupled to a QTRAP 5500 mass spectrometer. Column temperature was maintained at 30 °C with a flowrate of 0.250-0.400 μL/min. The Injection volume was set to 10 μL. The following mobile phases were used: Mobile phase A: 0.1% formic acid in 10 mM ammonium formate (pH ~2.5) and mobile Phase B: 0.1% formic acid in acetonitrile. Each sample was eluted over a 25 min period, and each batch of samples took 40 h to complete. A total of 15 batches were completed over 44 d.&nbsp;</p>	<p>The scan was completed using positive mode with Q1 ranging from 75.87-777.623, Q3 ranging from 30-731.8. </p>	<p>No data transformation information was supplied for this study.</p>	<p><strong>Pre-processing of metabolomics data</strong></p><p>Metabolite elution characteristics were pre-determined using pure standards. Metabolite abundance peaks were integrated using the area under the curve for calibrated peaks from <strong>MultiQuant </strong>(SCIEX), with manual adjustments to the curves when necessary. This ensures the consistency of all the peaks integrated. The <em>m/z </em>signals were <strong>log2</strong> transformed and metabolites that were not present in at least 50% of the samples were filtered out. Missing values were imputed using <strong>k-nearest neighbour</strong> with default parameters implemented in <strong>DMwR2[1] </strong>package in <strong>R</strong>. We examined the 3 consecutive QC samples embedded at the start of each plate and removed any outlying measurements.</p><p><br></p><p><strong>Hierarchical approach to removal of unwanted variation (hRUV)</strong></p><p>The hRUV algorithm was designed for experiments with a large number of batches, and consists of 2 key components, including <strong>(i)</strong> within batch signal drift adjustment with robust smoothers and RUV; and <strong>(ii)</strong> the adjustment of the datasets with unwanted variation using an RUV in a hierarchical approach. The main inputs to hRUV consist of a list of raw signal matrix, with rows corresponding to metabolites and columns to samples as <strong>SummarizedExperiment[2] </strong>objects in <strong>R</strong>, a specific intra- and interbatch normalisation method, structure of the tree and the parameters for RUV. hRUV performs repeated RUV procedures to sequentially adjust the data over a large collection of batches, with the number of unwanted variation factors (<strong>k</strong>) defaulting to 5.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Torgo, L. Data Mining with R, learning with case studies, 2nd edition. (Chapman and Hall/CRC, 2016)</p><p><strong>[2]</strong> Morgan, M., Obenchain, V., Hester, J. &amp; Pagès, H. SummarizedExperiment: SummarizedExperiment container. (2020)</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Kim	Tang	Vernon	Kott	Koay	Park	David	Speed	Yang	O’Sullivan	Figtree	Yang
+Study Person First Name	Taiyun	Owen	Stephen	Katharine	Yen	John	James	Terence	Pengyi	John	Gemma	Jean
+Study Person Mid Initials			T	A	C			P		F	A	Y.H
+Study Person Email	tkim9630@uni.sydney.edu.au	owen.tang@sydney.edu.au	steve.vernon@gmail.com	kat.kott@gmail.com	yen.koay@hri.org.au				pengyi.yang@sydney.edu.au	john.osullivan@sydney.edu.au	gemma.figtree@sydney.edu.au	jean.yang@sydney.edu.au
+Study Person Phone		+61299264916	+61299264915	+61299264915							+61299264915	+61293513012
+Study Person Fax												
+Study Person Address	CPC, the University of Sydney, Camperdown, NSW, Australia	L12, Kolling Institute, RNSH, St Leonards, NSW, Australia	L12, Kolling Building, RNSH, St Leonards, NSW, Australia	L12, Kolling Building, RNSH, St Leonards, NSW, Australia	L3, CPC,the University of Sydney, Camperdown, NSW, Australia				F07 - Carslaw Building, The University of Sydney, Camperdown, NSW, Australia	L3, CPC,the University of Sydney, Camperdown, NSW, Australia	L12, Kolling Building, RNSH, St Leonards, NSW, Australia	The University of Sydney, Camperdown, NSW, Australia
+Study Person Affiliation	The Univerity of Sydney	The University of Sydney	The University of Sydney	The University of Sydney	The University of Sydney, The Heart Institute	The University of Sydney	The University of Sydney		The University of Sydney	The University of Sydney	The University of Sydney	The University of Sydney
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Co-Investigator	data transformation	Co-Investigator	Co-Investigator	Co-Investigator	Co-Investigator	principal investigator	principal investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/AGRO_00000380	http://purl.obolibrary.org/obo/AGRO_00000380
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	OBI	NCIT	NCIT	NCIT	NCIT	AGRO	AGRO

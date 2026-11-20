@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	EFO	NCBITAXON	CHMO	NCIT	MS	OBI	MESH	MS
+Term Source File	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MESH	http://data.bioontology.org/ontologies/MS
+Term Source Version	22	113	15	5	87	86	40	6	152
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Chemical Methods Ontology	National Cancer Institute Thesaurus	Mass Spectrometry Ontology	Ontology for Biomedical Investigations	Medical Subject Headings	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1558
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-03-13
+Investigation Public Release Date	2021-11-18
+Comment[Created With Configuration]	/Users/kenneth/Downloads/ISAcreatorMetaboLights/Configurations/MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1558
+Study Title	Lipid Profiles of Human Brain Tumors Obtained by High-Resolution Negative Mode Ambient Mass Spectrometry
+Study Description	<p>Alterations in cell metabolism, including changes in lipid composition occurring during malignancy, are well characterized for various tumor types. However, a significant part of studies that deal with brain tumors have been performed using cell cultures and animal models. Here, we present a dataset of 124 high-resolution negative ionization mode lipid profiles of human brain tumors resected during neurosurgery. The dataset is supplemented with 38 non-tumor pathological brain tissue samples resected during elective surgery. The change in lipid composition alterations of brain tumors enables the possibility of discriminating between malignant and healthy tissues with the implementation of ambient mass spectrometry. On the other hand, the collection of clinical samples allows the comparison of the metabolism alteration patterns in animal models or in vitro models with natural tumor samples ex vivo. The presented dataset is intended to be a data sample for bioinformaticians to test various data analysis techniques with ambient mass spectrometry profiles, or to be a source of clinically relevant data for lipidomic research in oncology.</p>
+Study Submission Date	2020-03-13
+Study Public Release Date	2021-11-18
+Study File Name	s_MTBLS1558.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Direct Infusion Mass Spectrometry	Brain Tumor Surgery	untargeted metabolites	Drug Resistant Epilepsy	spray-from-tissue ionization	Fourier transform ion cyclotron resonance mass spectrometry
+Study Design Type Term Accession Number		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C157801		http://purl.bioontology.org/ontology/MESH/D000069279		http://purl.obolibrary.org/obo/CHMO_0000502
+Study Design Type Term Source REF		NCIT		MESH		CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3390/data6120132
+Study Publication Author List	Zavorotnyuk Denis S., Pekov Stanislav I., Sorokin Anatoly A., Bormotov Denis S., Levin Nikita, Zhvansky Evgeny, Semenov Savva, Strelnikova Polina, Bocharov Konstantin V., Vorobiev Alexander, Kononikhin Alexey, Shurkhay Vsevolod, Nikolaev Eugene N., Popov Igor A.
+Study Publication Title	Lipid Profiles of Human Brain Tumors Obtained by High-Resolution Negative Mode Ambient Mass Spectrometry
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Gender	Diagnosis	Birth year
+Study Factor Type	Gender	disease	Year Date
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C17357	http://www.ebi.ac.uk/efo/EFO_0000408	http://purl.obolibrary.org/obo/NCIT_C159612
+Study Factor Type Term Source REF	NCIT	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1558_DI-FT_ICR-MS.txt	a_MTBLS1558_DI-LTQ-MS.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	LTQ FT Ultra	Direct infusion MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Samples were provided by the N.N. Burdenko National Scientific and Practical Center for Neurosurgery. Brain tumor tissues were resected during the elective surgery. Non-tumor pathological tissues were resected in the course of surgery of drug-resistant epilepsy. Sample collection and processing were approved by the local ethical committee, and signed informed consent was obtained from all patients. Every dissected tissue was split into 2 parts: the first part was examined by a professional pathologist, and the second one was frozen to be sent to mass spectrometric analysis in the laboratory</p>	<p>The samples were treated with normal saline to remove blood and subjected to the simultaneous extraction-ionization procedure.</p>	<p>The simultaneous extraction-ionization procedure (spray-from-tissue ambient ionization) was carried out as previously described<strong>[1]</strong>. Briefly, about 2 mm^3 of sample were placed on the tip of a 30 x 0.6 mm injection needle (KD-FINE disposable hypodermic needle, KD Medical GmbH Products, Germany). The high voltage (6±1 kV) and solvent flow (4±1 𝜇l/min) were then applied through the needle to obtain a stable ion current. HPLC grade methanol supplemented with 0.1% of formic acid (optionally supplemented with 30% HPLC grade chloroform, see detailed data description) (Merck KGaA, Darmstadt, Germany) was used as an extraction solvent.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Kononikhin A, Zhvansky E, Shurkhay V, Popov I, Bormotov D, Kostyukevich Y, Karchugina S, Indeykina M, Bugrova A, Starodubtseva N, Potapov A, Nikolaev E. A novel direct spray-from-tissue ionization method for mass spectrometric analysis of human brain tumors. Anal Bioanal Chem. 2015 Oct;407(25):7797-805. doi:10.1007/s00216-015-8947-0. PMID:26277186</p>	<p>Mass spectra acquisition were performed on a Thermo Finnigan LTQ FT Ultra mass spectrometer equipped with a 7T superconducting magnet and with an LTQ XL Orbitrap ETD mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA). Samples were analyzed in negative mode in the ranges of m/z 100-1300 and m/z 120-2000 on LTQ FT Ultra device and LTQ XL Orbitrap device respectively.</p>	<p>All spectra obtained in RAW-files were converted to NetCDF-format using in-laboratory built software.</p><p>Spectra information in CDF-files is presented in the fields: <strong>mass_values</strong>; <strong>intensity_values</strong>; <strong>scan_acquisition_time</strong>; <strong>scan_index</strong>; <strong>point_count</strong>; and <strong>total_intensity</strong>.</p><p><br></p><p>Also, there are 4 metadata fields in CDF-files filled as follows: <strong>created_by</strong> = 'LIMP Data Extractor 1.0'; <strong>netcdf_revision</strong> = '4.0.1.0'; <strong>source_file_format</strong> = 'Finnigan'; and <strong>netcdf_file_date_time_stamp</strong> = &lt;<em>Date and time of CDf-file creation</em>&gt;.</p><p><br></p><p>Validity of this conversion method was approved by means of using <a href='http://www.strimmerlab.org/software/maldiquant/' rel='noopener noreferrer' target='_blank'><strong>MALDIquant</strong> ver.1.19.3</a> and <a href='http://www.unidata.ucar.edu/software/netcdf/' rel='noopener noreferrer' target='_blank'><strong>RNetCDF</strong> ver.2.1-1</a> R-packages and <a href='https://www.mathworks.com/help/matlab/ref/ncread.html' rel='noopener noreferrer' target='_blank'><strong>ncread</strong> Matlab-package</a> for spectra analysis.</p>	<p>Metabolite identification was not performed in this study</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	DI Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;		;;;;		
+Study Protocol Parameters Name Term Source REF		;		;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Sorokin	Zhvansky	Zavorotnyuk
+Study Person First Name	Anatoly	Evgeny	Denis
+Study Person Mid Initials			
+Study Person Email	lptolik@gmail.com	evgeny.zhvansky@yandex.ru	denis.zavorotnyuk@gmail.com
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation			
+Study Person Roles			
+Study Person Roles Term Accession Number			
+Study Person Roles Term Source REF			

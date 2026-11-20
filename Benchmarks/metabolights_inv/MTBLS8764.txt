@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCIT	MI	CRISP	EFO	MTBLS	IOBC
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://purl.obolibrary.org/obo/mi.owl	http://data.bioontology.org/ontologies/CRISP	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/metabolights/	
+Term Source Version	25	103	18	40	6	6	132	1	
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	PSI Molecular Interactions	Computer Retrieval of Information on Scientific Projects Thesaurus	Experimental Factor Ontology	Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS8764
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2023-10-13
+Investigation Public Release Date	2024-05-09
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 1.0.3
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8764
+Study Title	Metabolomics biomarkers of hepatocellular carcinoma in a prospective cohort of patients with cirrhosis
+Study Description	<p><strong>BACKGROUND &amp; AIMS: </strong>The effectiveness of surveillance for hepatocellular carcinoma (HCC) in patients with cirrhosis is limited, due to inadequate risk stratification and suboptimal performance of current screening modalities.</p><p><strong>METHODS: </strong>We developed a multicenter prospective cohort of patients with cirrhosis undergoing surveillance with MRI and applied global untargeted metabolomics to 612 longitudinal serum samples from 203 patients. Among them, 37 developed HCC during follow-up.</p><p><strong>RESULTS: </strong>We identified 150 metabolites with significant abundance changes in samples collected prior to HCC (Cases) compared to samples from patients who did not develop HCC (Controls). Tauro-conjugated bile acids and gamma-glutamyl amino acids were increased, while acyl-cholines and deoxycholate derivatives were decreased. Seven amino acids including serine and alanine had strong associations with HCC risk, while strong protective effects were observed for N-acetylglycine and glycerophosphorylcholine. Machine learning using the 150 metabolites, age, gender, and PNPLA3 and TMS6SF2 single nucleotide polymorphisms, identified 15 variables giving optimal performance. Among them, N-acetylglycine had the highest AUC in discriminating Cases and Controls. When restricting Cases to samples collected within 1 year prior to HCC (Cases-12M), additional metabolites including microbiota-derived metabolites were identified. The combination of the top six variables identified by machine learning (alpha-fetoprotein, 6-bromotryptophan, N-acetylglycine, salicyluric glucuronide, testosterone sulfate and age) had good performance in discriminating Cases-12M from Controls (AUC 0.88, 95% CI 0.83-0.93). Finally, 23 metabolites distinguished Cases with LI-RADS-3 lesions from Controls with LI-RADS-3 lesions, with reduced abundance of acyl-cholines and glycerophosphorylcholine-related lysophospholipids in Cases.</p><p><strong>CONCLUSIONS: </strong>This study identified N-acetylglycine, amino acids, bile acids and choline-derived metabolites as biomarkers of HCC risk, and microbiota-derived metabolites as contributors to HCC development.</p>
+Study Submission Date	2023-10-13
+Study Public Release Date	2024-05-09
+Study File Name	s_MTBLS8764.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	metabolon	hepatocellular carcinoma	cirrhosis of liver	biomarker
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.jp/bio/4/id/201606002506532625	http://www.ebi.ac.uk/efo/EFO_0000182	http://www.ebi.ac.uk/efo/EFO_0001422	http://purl.obolibrary.org/obo/CHEBI_59163
+Study Design Type Term Source REF	CHMO	MTBLS	IOBC	EFO	EFO	
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1016/j.jhepr.2024.101119
+Study Publication Author List	Sanchez Jessica I., Fontillas Antoine C., Kwan Suet-Ying, Sanchez Caren I., Calderone Tiffany L., Lee Jana L., Elsaiey Ahmed, Cleere Darrel W., Wei Peng, Vierling John M., Victor David W., Beretta Laura
+Study Publication Title	Metabolomics biomarkers of hepatocellular carcinoma in a prospective cohort of patients with cirrhosis
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cohort	Age	Gender	Tine to latest visit
+Study Factor Type	cohort	age	Gender	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0004445	http://www.ebi.ac.uk/efo/EFO_0000246	http://purl.obolibrary.org/obo/NCIT_C17357	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8764_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS8764_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS8764_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS8764_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl				
+Study Protocol Type Term Source REF		NCIT	NCIT	NCIT	NCIT	NCIT
+Study Protocol Description	<p>A nested group of 203 patients with cirrhosis under surveillance for HCC with contract-enhanced MRI, were selected from a large multicenter prospective cohort initiated in 2017. The recruitment sites for this nested cohort study included Houston Methodist Hospital (Site 1: n=108) and Baylor College of Medicine (Site 2: n=95). At recruitment, written informed consent was obtained from each participant and medical history was collected to confirm eligibility (above 18 yr of age, diagnosis of cirrhosis confirmed histologically or radiographically, no clinical evidence of significant hepatic decompensation defined as refractory ascites and grade 3-4 encephalopathy). Following consent, date of birth, gender, race, ethnicity, liver cirrhosis etiology, ascites status, encephalopathy status, Child Pugh score, Child Pugh class, Model for end stage liver disease (MELD) score, year of cirrhosis diagnosis, diabetes and date of diabetes onset were collected. All participants were followed during the duration of the study with contrast-enhanced MRI and blood collection, at time intervals defined by their surveillance standard of care at the 2 participating institutions. In some cases, CT was performed instead of MRI. At enrollment and at each follow-up visit, 1 lavender and 2 red top venous blood tubes were collected from each patient.</p><p><br></p><p>Samples were kept at 4 °C until processed, within 4 h of collection. Serum, plasma and buffy coat aliquots were then stored in -80 °C. The following clinical data were also collected at baseline and at each follow-up visit using electronic medical records: alpha-fetoprotein (AFP), alanine aminotransferase (ALT), aspartate aminotransferase (AST), alkaline phosphatase (ALP), total protein, albumin, total bilirubin, bilirubin direct, platelets, body mass index (BMI). All clinical data were entered into the study data capture system as an integrated part of a secure website supported by the Data Management Services team at MD Anderson Cancer Center. The secure website also provides an interface to upload the related de-identified image files and documentation to a secure dedicated server space.</p><p><br></p><p>A total of 612 serum samples collected from the 203 patients, with an average of 3 prospectively collected bloods per patient and up to 11 bloods, were submitted for global metabolomics profiling (Metabolon Inc, Durham, NC). </p>	Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.	All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. Method 1/Pos 1: One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 um) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). Method 2/Pos 2: A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. Method 3/Neg 1: A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. Method 4/Neg 2: The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 um) using a gradient consisting of water and acetonitrile with 10 mM Ammonium Formate, pH 10.8.	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	Raw data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Beretta
+Study Person First Name	Laura
+Study Person Mid Initials	
+Study Person Email	LBeretta@mdanderson.org
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Department of Molecular and Cellular Oncology, The University of Texas MD Anderson Cancer Center, Houston, TX, USA.
+Study Person Affiliation	The University of Texas MD Anderson Cancer Center
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

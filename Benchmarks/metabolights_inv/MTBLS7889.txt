@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	OBI	MTBLS	operation	DICOM	MSIO	EDAM	OMIT	SRAO	PROCO	ENVO
+Term Source File	http://data.bioontology.org/ontologies/EFO		http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/								
+Term Source Version	132		29	1								
+Term Source Description	Experimental Factor Ontology		Ontology for Biomedical Investigations	Metabolights Ontology								
+INVESTIGATION
+Investigation Identifier	MTBLS7889
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-05-18
+Investigation Public Release Date	2024-03-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7889
+Study Title	On-line targeted metabolomics for real-time monitoring of relevant compounds in fermentation processes
+Study Description	Fermentation monitoring is a powerful tool for bioprocess development and optimisation. On-line metabolomics is a technology that is starting to gain attention as a bioprocess monitoring tool, allowing the direct measurement of many compounds in the fermentation broth at a very high time resolution. In this work, targeted on-line metabolomics was used to monitor 40 metabolites of interest during three Escherichia coli succinate production fermentation experiments every 5 minutes with a triple quadrupole mass spectrometer. This allowed capturing high time resolution biological data that can provide critical information for process optimisation. For 9 of these metabolites, simple univariate regression models were used to model compound concentration from their on-line mass spectrometry peak area. These on-line metabolomics univariate models performed comparably to vibrational spectroscopy multivariate PLS regressions models reported in the literature, which typically are much more complex and time consuming to build. In conclusion, this work shows how on-line metabolomics can be used to directly monitor many bioprocess compounds of interest and obtain rich biological and bioprocess data.
+Study Submission Date	2023-05-18
+Study Public Release Date	2024-03-05
+Study File Name	s_MTBLS7889.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	Targeted	Biological Process Engineering	fermentation	bioreactor	on-line fermentation monitoring	Bioprocess monitoring	process analytical technology	On-line metabolomics	Real-time metabolomics	flow injection analysis-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://dicom.nema.org/resources/ontology/DCM/111127	http://www.fairsharing.org/ontology/subject/SRAO_0000223	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000038	http://purl.obolibrary.org/obo/ENVO_00002123	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/PROCO_0000227	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	DICOM	SRAO	MTBLS	ENVO	MTBLS	MTBLS	PROCO	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	37990977
+Study Publication DOI	10.1002/bit.28599
+Study Publication Author List	Cortada‐Garcia Joan, Haggarty Jennifer, Weidt Stefan, Daly Rónán, Arnold S. Alison, Burgess Karl
+Study Publication Title	On‐line targeted metabolomics for real‐time monitoring of relevant compounds in fermentation processes
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7889_FIA-MS_negative__metabolite_profiling.txt	a_MTBLS7889_FIA-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Flow injection analysis MS - negative	Flow injection analysis MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Flow Injection Analysis	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Flow Injection Analysis	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Bacterial strain:</strong></p><p>All experiments described in this article were carried out using a proprietary industrial E. coli strain (Ingenza Ltd.), based on the <em>E. coli</em> NZN111 strain with deletions of the pyruvate-formate lyase (pflB) and lactate dehydrogenase (ldhA) genes as previously described<strong>[1]</strong>.</p><p><br></p><p><strong>Fermentation process conditions:</strong></p><p>All fermentation experiments were carried out in a 5 L Applikon stirred tank fermenter controlled with a FerMac 320 (Electrolab Biotech Ltd.) coupled to a FerMac 368 gas analyzer for off-gas analysis. The fermentation consisted of a dual-phase succinate production process as previously described<strong>[2]</strong>. A biomass filtration probe (TRACE Analytics GmbH) equipped with a polypropylene membrane (0.2 µm pore size) was installed in the fermenter through the headplate and submerged in the fermentation broth. Cell-free fermentation broth was continuously withdrawn from the probe and recirculated into the fermenter, while a small 50 μl fraction of the broth was automatically sent to a mass spectrometer every 5 min for RTMet analysis.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Chatterjee R, Millard CS, Champion K, Clark DP, Donnelly MI. Mutation of the ptsG gene results in increased production of succinate in fermentation of glucose by Escherichia coli. Appl Environ Microbiol. 2001 Jan;67(1):148-54. doi:10.1128/AEM.67.1.148-154.2001. PMID:11133439.</p><p><strong>[2]</strong> Cortada-Garcia J, Haggarty J, Moses T, Daly R, Arnold SA, Burgess K. On-line untargeted metabolomics monitoring of an Escherichia coli succinate fermentation process. Biotechnol Bioeng. 2022 Oct;119(10):2757-2769. doi:10.1002/bit.28173. PMID:35798686.</p><p><br></p>	<p>No extraction was performed. On-line metabolomics was performed using flow injection using fermentation filtered samples (via an in-line filtration probe) introduced directly into the mass spectrometer.</p>	<p>On-line metabolomics was conducted by connecting the fermenter to a TSQ Quantiva triple quadrupole (Thermo Scientific) mass spectrometer with the fluidics system previously described<strong>[1]</strong> but the fermentation broth samples were subtracted from the bioreactor using a biomass filtration probe (TRACE Analytics GmbH) equipped with a polypropylene membrane. The filtration efficiency of the probe was measured to be at least 99.9801 ± 0.0037% (see <strong>Table S2</strong> in the paper associated with this study), therefore, the samples analysed should consist of mostly cell-free medium (referred to “cell-free medium” for simplicity). A Masterflex L/S (Cole-Parmer) high-performance pump was used to continuously withdraw cell-free broth from the fermenter for automatic metabolomics analysis and it was operated at a low flow rate of 1.5 ml/min to prevent cells from entering the filtration probe, as indicated by the filtration probe manufacturer. Due to the flow rate of the pump, the total travelling time from the bioreactor to the mass spectrometer was 31.5 min. Despite this time offset, as fermentation broth was continuously withdrawn from the bioreactor, samples were analyzed every 5 min. Furthermore, the significantly reduced concentration of cells in the sample should minimise the chances of biochemical modifications of the metabolites in the sample during this travelling time, particularly in organisms like <em>E. coli</em>, where the secretion of enzymes to the extracellular space is uncommon.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Cortada-Garcia J, Haggarty J, Moses T, Daly R, Arnold SA, Burgess K. On-line untargeted metabolomics monitoring of an Escherichia coli succinate fermentation process. Biotechnol Bioeng. 2022 Oct;119(10):2757-2769. doi:10.1002/bit.28173. PMID:35798686.</p><p><br></p>	<p>Data was collected using a TSQ Quantiva triple quadrupole mass spectrometer. Gas-phase ions were generated using an Ion Max NG source (Thermo Scientific) with a HESI II probe. The mass analyser was operated using a multiple reaction monitoring (MRM) method in polarity switching mode with a spray voltage of ±3.5 kV. HESI probe temperature was set to 25 °C, ion transfer tube temperature 325 °C, sheath gas flow rate 50 a.u., auxiliary gas 10 a.u. and sweep gas 1 a.u. Resolution for both Q1 and Q3 was set at a FWHM of 0.7 m/z, cycle time was 0.8 s and collision induced dissociation fragmentation in Q2 was done under 1.5 mTorr pressure.</p>	<p>Raw data was processed with the software <strong>Xcalibur (Version 4.2.28.14) </strong>using the ICIS peak detection method with the following parameters: 1 smoothing point, a baseline window of 40, area noise factor of 5, a peak noise factor of 10 and minimum peak height threshold of 3 signal-to-noise ratio. After processing, metabolite features were extracted as a .csv file. On-line data was smoothed in the statistical software environment <strong>R (Version 3.6.1)</strong> using the <strong>ggplot2 package (Version 3.3.3)[1]</strong> with a l<strong>ocally estimated scatterplot smoothing (LOESS)</strong> method with a span between 0.15 and 0.50, depending on the metabolite.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Wickham H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag. <a href='https://ggplot2.tidyverse.org' rel='noopener noreferrer' target='_blank'>https://ggplot2.tidyverse.org</a></p><p><br></p>	<p>Metabolites were identified using a MRM method developed with reference standards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	FIA Instrument	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;		;;;;		
+Study Protocol Parameters Name Term Source REF		;		;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cortada-Garcia	Haggarty	Weidt	Daly	Arnold	Burgess
+Study Person First Name	Joan	Jennifer	Stefan	Ronan	Alison	Karl
+Study Person Mid Initials						
+Study Person Email						karl.burgess@ed.ac.uk
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	University of Edinburgh	University of Glasgow	University of Glasgow	University of Glasgow	Ingenza Ltd	University of Edinburgh
+Study Person Roles	Principal Investigator	Co-Investigator	Co-Investigator	Co-Investigator	Co-Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

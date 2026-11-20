@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	ADO	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/ado.owl	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2.0.1		2025-10-21	3.86.0				2025-12-03	25.06e	2025-12-18
+Term Source Description	Alzheimer's Disease Ontology (ADO)	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13890
+Investigation Title	Dietary Glutamine Supplementation Mitigates Age-Associated Cardiac Decline by Restricting H3K27me3
+Investigation Description	
+Investigation Submission Date	2026-02-11
+Investigation Public Release Date	2026-02-11
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13890
+Study Title	Dietary Glutamine Supplementation Mitigates Age-Associated Cardiac Decline by Restricting H3K27me3
+Study Description	<p>Epigenetic alterations are central drivers of cardiovascular aging, with histone modifications regulating gene expression through chromatin remodeling and changes in DNA accessibility. However, the mechanisms underlying these epigenetic shifts in the aging heart remain poorly defined. Here, we identify an age-associated accumulation of the repressive histone mark H3K27me3 in the myocardium of mice and humans, implicating this modification in myocardial aging. Elevated H3K27me3 was associated with impaired glutamine metabolism, driven by reduced expression of the amino acid transporter SLC1A5. Clinically, low circulating glutamine levels correlated with increased heart failure incidence, and genetic variants in SLC1A5 were linked to heightened cardiovascular disease risk. Mechanistically, elevated myocardial H3K27me3 suppressed cardiomyocyte autophagy and induced metabolic reprogramming, thereby promoting age-related myocardial dysfunction. Dietary glutamine supplementation in aged mice reduced H3K27me3 accumulation and improved myocardial function. Collectively, these findings identify a novel epigenetic mechanism underlying cardiac aging and highlight the glutamine–SLC1A5 axis as a potential therapeutic target for preserving myocardial function with age.</p>
+Study Submission Date	2026-02-11
+Study Public Release Date	2026-02-11
+Study File Name	s_MTBLS13890.txt
+Comment[Created At]	2026-02-06T10:32:57.248916
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Aging	Heart	glutamine
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16269	http://purl.obolibrary.org/obo/NCIT_C12727	http://purl.obolibrary.org/obo/CHEBI_28300
+Study Design Type Term Source REF	NCIT	NCIT	ADO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Cassy Le, Pierre Coleman, Thomas Burgoyne, Jie Su, Helen R. Warren, Ravi Kumar, Celio Santos, Rafael Oexner, Hyunchan Ahn, Rhys Anderson, Angeliki Ntorla, Ajay Shah, Mauro Giacca, Elisabeth Ehler, Joseph R. Burgoyne
+Study Publication Title	Dietary Glutamine Supplementation Mitigates Age-Associated Cardiac Decline by Restricting H3K27me3
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13890_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Mice we fed control diet or diet supplimented with glutamine (2-months) were culled at 83 weeks of aged. Cardiac tissue was extracted, snap frozen and stored in liquid nitrogen.</p>	<p>The dried polar metabolite fractions were reconstituted in acetonitrile/water (v/v 3/2) and analyzed using a 1290 Infinity II ultrahigh performance liquid chromatography (UHPLC) system coupled to a 6546 quadrupole time-of-flight (Q-TOF) mass spectrometer (Agilent Technologies). Samples were separated on a Poroshell 120 HILIC-Z column (2.1 × 100 mm, 2.7 μm).</p>	<p>Chromatograms were time aligned to a control sample prior to metabolite identification</p>	<p>About 30 mg of pulverised mouse young and aged cardiac tissue samples were lyophilised overnight at -55°C using a freeze-dryer. Metabolite extraction was performed following a modified Le Belle et al. method, utilising a methanol/chloroform/water extraction protocol. The extraction procedure was carried out in two stages:</p><p><br></p><p>Initial Extraction: 600 μL of methanol/chloroform (2:1; v/v) was added to the tissue sample. The mixture was subjected to sonication in a water bath at 4°C for 1 hr, with three 8-min pulse sonication cycles. Following centrifugation, the supernatant was retained.</p><p><br></p><p>Secondary Extraction: The remaining tissue pellet underwent further extraction with 200 μL of water and 400 μL of methanol. This mixture was sonicated for an additional hour in the water bath, again with three 8-min sonication cycles.</p><p>The supernatants from both extractions were combined and concentrated using a SpeedVac vacuum centrifuge overnight (Thermofisher Scientific). The dried extract was reconstituted in a chloroform:methanol:water mixture (1:3:3, v/v/v). The polar metabolite fraction (upper phase) was isolated by centrifugation at 16,000xG at 4°C. This fraction was then dried and stored at -80°C pending liquid chromatography-mass spectrometry (LC-MS) analysis.</p>	<p>Samples were separated on a Poroshell 120 HILIC-Z column (2.1 × 100 mm, 2.7 μm) and analyzed in negative ionization mode using water with 10 mM ammonium acetate (solvent A) and acetonitrile with 10 mM ammonium acetate (solvent B), both solvents containing 5 μM InfinityLab deactivator additive (Agilent Technologies). The elution gradient used was as follows: isocratic step at 95% B for 2 min, 95% to 65% B in 12 min, maintained at 65% B for 3 min, then returned to initial conditions over 1 min, and then the column was equilibrated at initial conditions for 8 min. The flow rate was 0.25 mL/min; injection volume was 5 μL, and the column oven was maintained at 30 °C. The 6546 Q-TOF was operated at 2 GHz extended dynamic range with a mass acquisition range from 0 to 1700 m/z. The drying and sheath gas temperature was set at 250 °C and 380 °C, respectively, with the nebulizer pressure at 45 psi and voltage 3000. The fragmentor voltage was set at 115 V. </p>	<p>Feature annotation and metabolite identification were based on accurate mass and standard retention times with a tolerance of ±5 ppm and ±0.5 min, respectively, and performed with MassHunter Profinder (version 10.0.2, Agilent Technologies) using an in-house curated metabolite library based on metabolite standards (Sigma-Aldrich). Metabolite levels are represented as ion peak height normalized to protein concentration. Data visualization and statistical analyses were performed using MetaboAnalyst v5.0.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Burgoyne
+Study Person First Name	Joseph
+Study Person Mid Initials	
+Study Person Email	joseph.burgoyne@kcl.ac.uk
+Study Person Phone	
+Study Person Fax	
+Study Person Address	The Rayne Institute, St Thomas' Hospital
+Study Person Affiliation	King's College London
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0001-7325-7382
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0220mzb33
+Comment[Study Person Alternative Email]	joseph.burgoyne@kcl.ac.uk

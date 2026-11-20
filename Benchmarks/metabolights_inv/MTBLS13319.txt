@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	XLMOD
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/xlmod.owl
+Term Source Version		2025-10-21	3.89.0				2026-05-05	26.02d	2026-03-19	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	HUPO-PSI cross-linking and derivatization reagents controlled vocabulary
+INVESTIGATION
+Investigation Identifier	MTBLS13319
+Investigation Title	AROMA-GC: Green Automated Plasma Metabolome Profiling
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-11-17
+Investigation Public Release Date	2026-08-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13319
+Study Title	AROMA-GC: Green Automated Plasma Metabolome Profiling
+Study Description	<p>Metabolomics enables the comprehensive profiling of low–molecular weight metabolites that reflect the interplay between environmental exposures and endogenous biological processes. As the downstream output of genomic, transcriptomic, proteomic, and epigenomic networks, the metabolome provides the closest biochemical representation of phenotype, making metabolomic signatures highly sensitive indicators of physiological states, pathological alterations, and therapeutic responses. Despite its promise for biomarker discovery and precision diagnostics, routine clinical implementation remains limited by labor-intensive workflows, high operational costs, and the reliance on technically demanding analytical platforms. Human plasma is an attractive matrix for translational metabolomics due to its molecular diversity, clinical accessibility, and ability to capture systemic metabolic changes; however, conventional plasma metabolomics methods typically require solvent-based extraction, derivatization, and large injection volumes that hinder scalability and reproducibility.</p><p>Gas chromatography–mass spectrometry (GC–MS) offers robust, high-resolution analysis of volatile and semi-volatile compounds, yet its application in plasma metabolomics has traditionally been constrained by complex sample preparation and environmental concerns associated with solvent use. Principles of green analytical chemistry highlight the need for simplified, solvent-minimized approaches. Headspace solid-phase microextraction (HS-SPME), particularly with the advanced PAL SPME Arrow system, provides an attractive alternative by increasing extraction capacity, improving robustness, and enabling full automation. Although widely applied in environmental and food analysis, its use in clinical metabolomics remains underexplored.</p><p>Here, we present an expedited, solvent-minimized, and automatable GC–MS workflow employing headspace PAL SPME Arrow for metabolic profiling of human plasma. The method requires minimal sample volume, eliminates derivatization, reduces chemical waste, and is compatible with routine laboratory automation. Systematic optimization of sample dilution, extraction temperature, incubation time, and desorption parameters demonstrated that HS-SPME Arrow coupled with GC–MS enables the reliable detection of a broad array of clinically relevant metabolites. By integrating principles of green analytical chemistry with high analytical performance, this workflow offers a practical, scalable platform to support translational metabolomics and future diagnostic and prognostic applications.</p>
+Study Submission Date	2025-11-17
+Study Public Release Date	2026-08-24
+Study File Name	s_MTBLS13319.txt
+Comment[Created At]	2025-11-12
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Analytical Biochemistry	Plasma	headspace solid-phase micro-extraction	Gas Chromatography/Tandem Mass Spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18632	http://purl.obolibrary.org/obo/NCIT_C13356	http://purl.obolibrary.org/obo/CHMO_0001589	http://purl.obolibrary.org/obo/NCIT_C120685
+Study Design Type Term Source REF	NCIT	NCIT	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Julia Lisa-Molina, José Antonio Sánchez Milán, María Mulet, Sílvia Ticó, Oriol Yuguero, Aida Serra and Xavier Gallart-Palau
+Study Publication Title	Automated Rapid Organic-Solvent-Free Metabolomics via Arrow–GC–MS (AROMA-GC): An Optimized Green Workflow for Blood Plasma Profiling in Biomedical and Clinical Settings
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample volume	Vial volume	Incubation temperature	Incubation time	Desorption time	Derivatization	Timepoint
+Study Factor Type	Volume	volume	Temperature	Time	Time	TMS reagent	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C25206	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/XLMOD_06013	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	MTBLS	MTBLS	NCIT	MTBLS	MTBLS	XLMOD	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13319_GC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	GC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Peripheral blood was collected from healthy adult volunteers (n = 5) with institutional approval at the Clinical Laboratory of the University Hospital Arnau de Vilanova (HUAV, Lleida, Spain) and supplied by the HUAV Biobank. Immediately following venepuncture, heparin was added, and the tubes were centrifuged at 4,200 × g for 10 minutes at 4 °C. The plasma was pooled, vortex-mixed, aliquoted into 1 mL low-bind tubes, snap-frozen, and stored at −80 °C until further processing.</p>	<p>For solvent-free sample processing, NaCl-saturated water was freshly prepared by introducing an excess of sodium chloride to HPLC-grade water (target concentration ≈0.5 g /mL) and stirring until undissolved crystals remained. Aliquots of this brine were dispensed into 20 mL crimp headspace vials equipped with PTFE/silicone septa. Blood plasma samples&nbsp;were added to the vials to achieve the desired headspace-to-sample ratio. The vials were immediately sealed, briefly vortex-mixed (2–3 s), and ready to be placed on the PAL autosampler tray. No organic modifiers were employed.</p><p><br></p><p>For metabolome derivatization, 100 µL of plasma samples were mixed with 900 µL of acetonitrile, isopropanol and water HPLC grade purchased from Sigma-Aldrich (Darmstadt, Germany) in a 3:3:2 (v/v/v) ratio, previously sonicated for 10 min in degas mode and stored at −20 °C. The mixtures were vortexed for 10 s, shaken at 4 °C for 5 min, and centrifuged at 14,000 rcf for 2 min at 4 °C. Two aliquots (450 µL each) of the resulting supernatant were collected: one stored at −80 °C for later analyses, and the other used for derivatization. The aliquot was evaporated to dryness in a SpeedVac concentrator. Dried samples were reconstituted in 450 µL of acetonitrile and water in a 1:1 (v/v) ratio, vortexed for 10 s, and centrifuged (14,000 rcf, 2 min, 4 °C), dried again under the same conditions, and subsequently derivatized.</p><p>Methoximation was carried out by adding 10 µL of a freshly prepared methoxyamine hydrochloride solution (20 mg/mL in pyridine; Sigma-Aldrich). The solution was vortexed for 90 min at room temperature. For silylation, a mixture of N-methyl-N-(trimethylsilyl)trifluoroacetamide (MSTFA; Sigma-Aldrich) with fatty acid methyl esters (FAMEs, Supelco 37 Component FAME Mix, Sigma-Aldrich; 10 µL per mL MSTFA) was prepared. After methoximation, 91 µL of the MSTFA–FAME mixture was added to each sample, and the mixture was incubated for 30 min at 37 °C.</p>	<p>HS-SPME was conducted using a CTC Analytics PAL RSI 120 Series 2 autosampler (Zwingen, Switzerland) equipped with an SPME Arrow system. A Smart SPME Arrow fiber, coated with carbon WR/PDMS (outer diameter 1.10 mm, phase thickness 120 µm), was employed. Prior to utilization, the fibers were conditioned at 250 °C for 20 minutes in the conditioning station. The extraction duration for each vial on the autosampler tray was set to 30 minutes, with continuous stirring at 800 rpm using a Heatex Stirrer. The autosampler settings were configured as follows: vial penetration depth of 40 mm (20 mm/s) and inlet penetration depth of 40 mm (100 mm/s). For the purpose of method development and optimization, the following parameters were examined using a one-factor-at-a-time (OFAT) approach: headspace water volume (2/4/8 mL, NaCl-saturated), plasma volume (50/100/200 µL), extraction temperature (50/60/70/80 °C), incubation time (10/20 min), and desorption time (3/5 min) prior to adopting the final settings detailed in the results of this study. Subsequent to extraction, thermal desorption in GC inlet was conducted in splitless mode at a temperature of 250 °C for a duration of 10 minutes.&nbsp;Metabolomic profiling of the samples was conducted using an Agilent Technologies 8890 gas chromatograph coupled with a 5977C mass selective detector (Santa Clara, USA), equipped with a PAL RSI 120 Series 2 autosampler. The separations were performed on an Agilent J&amp;W HP-5ms Ultra Inert capillary column (30 m × 0.25 mm i.d., 0.25 µm film; Agilent Technologies, Santa Clara, USA). The oven temperature program was as follows: initial temperature of 50 °C held for 3 minutes, followed by a ramp of 5 °C per minute to 210 °C, maintained for 2 minutes, and then increased at 20 °C per minute to 325 °C. The injection was conducted in splitless mode, with helium serving as the carrier gas at a constant flow rate of 1.0 mL per minute. Post-run conditions were set at 325 °C for 3 minutes with a flow rate of 3.0 mL per minute.&nbsp;</p>	<p>The transfer line, ion source, and quadrupole temperatures were maintained at 320, 230, and 150 °C, respectively. Electron impact ionization at 70 eV was employed. Full-scan data were acquired over a mass-to-charge ratio (m/z) range of 45–450, with normal scan speed and a threshold of 150 counts; the solvent delay was set to 0 minutes, and the total acquisition time was 42 minutes. All samples were analyzed per triplicate.</p>	<p>Data analyses were conducted using R (v4.5.0) and GraphPad Prism (v9.4.1). Based on the assessment of normality via the Shapiro–Wilk test, either a one-way ANOVA with Tukey's correction or a Kruskal–Wallis test with Dunn's correction were employed (α = 0.05). For unsupervised exploration, principal component analysis was performed using FactoMineR, and hierarchical clustering with k-means was executed using ComplexHeatmap. Criteria for the reliable presence of detected compounds per condition were pre-specified, requiring an intensity greater than 0 in at least three replicates.</p><p>Carryover was evaluated by employing matrix blanks interspersed after samples. The carryover percentage was determined using the formula [area(blank)/area(high)]×100 for representative ions, with an acceptance threshold set at ≤1%. FAMEs and n-alkane standards were injected to monitor retention time stability and to calculate Kovats indices for identity verification. Intra-run precision was assessed through triplicate injections of a quality control (QC) sample, while inter-run precision was evaluated using three independent QCs prepared according to the same protocol on a different day. Precision targets were established at a relative standard deviation (%RSD) of ≤5% for retention time and ≤10% for peak areas. As part of robustness testing, parameters such as NaCl saturation, agitation at 800 rpm, and autosampler cycle timing were standardized across runs. Fiber integrity and performance were monitored using control charts of total ion current and by inspecting for siloxane signatures.</p><p>Data preprocessing for biological interpretation of the identified blood plasma metabolome was performed using R (v4.3.2) and Python (v3.10+). Compound names were standardized and normalized through regular expression–based cleaning to remove derivatization suffixes (e.g., “.TMS”, “.MeOx”) and unify annotation formats. Chemical classification was achieved using a rule-based annotation workflow integrating keyword pattern recognition, curated dictionaries from PubChem, ChEBI, and HMDB, and manual expert review. The annotation distinguished principal chemical families including lipid peroxidation aldehydes (LPO), fatty acid methyl esters (FAMEs), quinones, and thiol antioxidants.</p><p>Each metabolite was subsequently assigned a cellular function and pathway association based on biochemical role, oxidative stress relationship, and lipid metabolism relevance. Evidence tiers were defined as follows: Tier 1 — literature-supported biochemical relevance; Tier 2 — database cross-reference via KEGG and Reactome; Tier 3 — structural analogy inference. Functional enrichment and network mapping were conducted by linking the classified metabolites to the corresponding KEGG and HMDB pathways, highlighting major modules such as antioxidant defense, lipid peroxidation, fatty acid metabolism, and mitochondrial redox balance. The resulting directed pathway network was visualized using the NetworkX and Matplotlib libraries, illustrating interconnections between metabolic modules and compound nodes reflective of cellular oxidative and lipid regulatory processes.</p>	<p>The raw data were analyzed using the National Institute of Standards and Technology (NIST 23) mass spectral library (Gaithersburg, USA). Spectral deconvolution and peak selection were conducted using the Agilent Technologies MassHunter Qualitative Analysis software (Santa Clara, USA). Subsequently, molecular features (≥2 ions) were exported to the Agilent Technologies Mass Profiler Professional (MPP) software (Santa Clara, USA) for alignment, with a retention time tolerance of 0.1% ± 0.25 min and a mass tolerance of 30 ppm ± 2 mDa. A QC-based LOESS method was applied to correct signal drift, retaining features present in ≥70% of QC injections. The deconvoluted and selected data were then exported to CSV matrices (log2-transformed intensities) and further curated using an in-house script to remove siloxanes, merge derivatized/non-derivatized duplicates, and consolidate redundant annotations.</p><p>Putative identifications were determined using CEU Mass Mediator (Madrid, Spain) with a tolerance of ≤10 ppm. These identifications were further refined by comparison with the University of Alberta HMDB (Edmonton, Canada) and University of California San Diego LIPID MAPS (La Jolla, USA).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Serra	Gallart-Palau
+Study Person First Name	Aida	Xavier
+Study Person Mid Initials		
+Study Person Email	aida.serra@udl.cat	xgallart@irblleida.cat
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Av. Rovira Roure, 25198, Lleida, Spain	Av. Rovira Roure, 25198, Lleida, Spain
+Study Person Affiliation	Biomedical Research Institute of Lleida	Biomedical Research Institute of Lleida – (IRBLLEIDA) +Pec Proteomics Research Group (+PPRG) - Neuroscience Area University Hospital Arnau de Vilanova (HUAV)
+Study Person Roles	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0001-5160-8794
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03mfyme49	

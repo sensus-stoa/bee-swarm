@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	EFO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version						
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS11996
+Investigation Title	Plasma metabolomic profiling for hepatocellular carcinoma diagnosis and microvascular invasion prediction
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-02
+Investigation Public Release Date	2025-07-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11996
+Study Title	Plasma metabolomic profiling for hepatocellular carcinoma diagnosis and microvascular invasion prediction
+Study Description	Altered metabolites play a crucial role in the development and progression of hepatocellular carcinoma (HCC). In this study, an untargeted metabolomic analysis was conducted to identify novel biomarkers with high sensitivity and specificity for the early detection of HCC and to explore their functions. Plasma samples were collected from 138 HCC patients, 69 patients with benign hepatic lesions, and 35 healthy donors. These samples were divided into a discovery set of 171 and a validation set of 71, and analyzed using ultra high performance liquid chromatography mass spectrometry. Through paired t-tests and orthogonal partial least-squares discriminant analysis, nine metabolites with significant predictive value were selected out and incorporated into a model for HCC diagnosis. Area under curves for the discovery set, the validation set, and all samples were 0.97, 0.95, and 0.96 respectively. The satisfactory diagnostic performance was maintained regardless of the China liver cancer (CNLC) staging. Additionally, this model demonstrated better diagnostic performance than AFP when comparing HCC to controls in different CNLC stages. The metabolite pathway enrichment analysis showed that alterations in plasma bile acids were associated with cirrhosis. Univariate and multivariate analyses indicated that the ratio of L-Serine and Sarcosine was an independent predictor for MVI. An integrated analysis of metabolomic data with transcriptomic data from the Cancer Genome Atlas revealed that the low expression of AGXT and GATM was more likely related to MVI. To sum up, our research findings may offer valuable insights into HCC metabolic alterations and contribute to a better characterization of HCC.
+Study Submission Date	2025-07-02
+Study Public Release Date	2025-07-02
+Study File Name	s_MTBLS11996.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	hepatocellular carcinoma	Cirrhosis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0000182	http://purl.obolibrary.org/obo/NCIT_C2951
+Study Design Type Term Source REF	MTBLS	EFO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Fei Huang, Huiqin Jiang, Minna Shen, Chunyan Zhang, Yu Chen, Baishen Pan, Beili Wang, Wei Guo, Wenjing Yang
+Study Publication Title	Plasma metabolomic profiling for hepatocellular carcinoma diagnosis and microvascular invasion prediction
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Pathology
+Study Factor Type	Pathology
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18189
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11996_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS11996_LC-MS_positive_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>definite HCC diagnosis based on histopathological examinations</p>	<p> 100 μL plasma samples were mixed with 400 μl extraction solution (MeOH:ACN, 1:1 (v/v)) which contained deuterated internal standards. The mixtures were vortexed for 30 s, sonicated for 10 min in 4 ℃ water bath, and incubated for 1 h at -40℃ to precipitate proteins. Then, the mixed solution samples were centrifuged at 13,000 rpm for 15 min at 4℃. </p>	<p>The separation was performed on UHPLC system (Vanquish, Thermo Fisher Scientific) with a Waters ACQUITY UPLC BEH Amide (2.1 mm × 50 mm, 1.7 μm) and Orbitrap Exploris 120 mass spectrometer (Orbitrap MS, Thermo). The mobile phase was composed of 25 mmol/L ammonium acetate and 25 mmol/L ammonia hydroxide in water (pH=9.75) (A) and acetonitrile (B). The temperature of auto-sampler was 4 ℃, while the injection volume was 2 μL.</p>	<p>The spectrometer was used to acquire MS/MS spectra on Data-Independent Acquisition (DDA) mode in the control of the acquisition software (Xcalibur, Thermo). In this mode, the software assessed the full scan MS spectrum, continuously. The conditions of ESI source were set as following: sheath gas flow rate as 50 arb, Aux gas flow rate as 15 arb, capillary temperature 320 ℃, full MS resolution as 60,000, MS/MS resolution as 15,000, collision energy: SNCE 20/30/40, spray voltage as 3.8 kV (positive) or -3.4 kV (negative), respectively.</p>	<p>The raw data were converted to the mzXML format depend on ProteoWizard and an in-house program, which was developed by R and based on XCMS, for peak detection, extraction, alignment, and integration. </p>	<p>Then an in-house MS2 database was used in annotation of the metabolite. The cutoff value of annotation was 0.3.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wei	Guo
+Study Person First Name	Guo	Wei
+Study Person Mid Initials		
+Study Person Email	guo.wei@zs-hospital.sh.cn	guo.wei@zs-hospital.sh.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Department of Laboratory Medicine, Zhongshan Hospital, Fudan University, 111 Yi Xue Yuan Road, Shanghai 200032, China	111 Yixueyuan Road, Xuhui district, Shanghai, China
+Study Person Affiliation	Myself	Zhongshan Hospital, Fudan University
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

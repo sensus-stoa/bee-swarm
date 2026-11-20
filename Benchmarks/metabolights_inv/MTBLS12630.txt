@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	ENVO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.90.0	2025-10-20			1.0.1		26.02d	2026-05-08
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12630
+Investigation Title	Viral lysis and host reprogramming impact carbohydrate, amino acid, and osmolyte cycling in salt marsh tidal creek sediments
+Investigation Description	
+Investigation Submission Date	2025-06-23
+Investigation Public Release Date	2026-06-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12630
+Study Title	Viral lysis and host reprogramming impact carbohydrate, amino acid, and osmolyte cycling in salt marsh tidal creek sediments
+Study Description	<p>Salt marshes are highly productive ecosystems where microbial communities drive key</p><p>transformations of organic matter at rates often exceeding those of oceanic and inland</p><p>environments. Viruses are recognised as important drivers and regulators of global</p><p>biogeochemical cycling, yet their diversity, host range, and functional roles in salt</p><p>marsh ecosystems remain largely unresolved. To address these gaps, we investigated</p><p>how viral lysis and host reprogramming can affect microbe-mediated organic matter</p><p>transformations in a salt marsh of the Venice lagoon (Italy). Focusing on tidal creek</p><p>surface sediments, we reconstructed 311 metagenome-assembled genomes (MAGs),</p><p>built corresponding genome-scale metabolic models (GEMs) individually constrained</p><p>with 121 metabolites detected in the sediments, and identified 3,537 viral populations</p><p>(vOTUs) across 10 samples. To assess the impact of viral lysis, we inferred prokaryotic</p><p>hosts for 243 vOTUs and analysed host metabolism through MAG pathway analysis</p><p>and GEM flux modelling across 13 bacterial orders, thus highlighting a negative impact</p><p>on polysaccharide degradation, organic nitrogen mineralisation, and organosulphur</p><p>mineralisation/volatilisation processes. For host metabolic reprogramming, we</p><p>characterised a subset of 50 auxiliary viral genes (AVGs) by mapping them to GEM</p><p>reactions and analysing their stoichiometry, directionality, and pathway context,</p><p>outlining two dominant strategies: resource scavenging through nucleotide-sugar</p><p>biosynthesis, amino acid utilisation, and sulphate assimilation; functional host</p><p>maintenance through cofactor biosynthesis, electron transport, and energy production</p><p>through carbonyl-compound utilisation. Our findings provide a mechanistic view of the</p><p>viral influence on organic matter transformations in salt marsh sediments and confirm</p><p>viruses as key players in salt marsh biogeochemistry.</p>
+Study Submission Date	2025-06-23
+Study Public Release Date	2026-06-26
+Study File Name	s_MTBLS12630.txt
+Comment[Created At]	2025-06-19
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	saltmarsh	sediment	Metabolomics	LC-MS	GC-MS	Metagenomics	viromics	host reprogramming	viral lysis	genome-scale models	auxiliary viral genes	Thermo Scientific Dionex Ultimate 3000 UHPLC system	Thermo Scientific Q Exactive	Agilent 8860 GC system	Agilent 5977B GC/MSD	marine salt marsh sediment	Solvent	pooled quality control sample	solvent blank	experimental sample	untargeted analysis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C49019	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C153191	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000914	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658			http://purl.obolibrary.org/obo/ENVO_02000153	http://purl.obolibrary.org/obo/NCIT_C45790		http://purl.obolibrary.org/obo/MSIO_0000026	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MTBLS	MTBLS	NCIT	MTBLS	MTBLS	NCIT	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS			ENVO	NCIT		MSIO	CHMO	MS
+Comment[Study Design Category]	submitter	Organism part	submitter	submitter	submitter	default	default	default	default	default	default	Chromatography Instrument	Instrument	Chromatography Instrument	Instrument	Organism	Organism	Sample type	Sample type	Sample type	measurement-type
+Comment[Study Design Source]						submitter	submitter	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Riccardo Frizzo, Silvia Pettenuzzo, Enrico Bortoletto, Irene Gregori, Alessandro Vezzi, Mattia Panin, Sciamila Hemmati, Lorenzo Archetti, Stefano Mammi, Sara Bogialli, Paola Venier
+Study Publication Title	Viral lysis and host reprogramming impact carbohydrate, amino acid, and osmolyte cycling in salt marsh tidal creek sediments
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Salt marsh area
+Study Factor Type	Salt marsh area
+Study Factor Type Term Accession Number	
+Study Factor Type Term Source REF	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12630_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12630_GC-MS_positive__metabolite_profiling.txt	a_MTBLS12630_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Gas Chromatography MS - positive	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]			
+Comment[Assay Type Label]	LC-MS	GC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Surface sediment samples (0-2.5 cm depth) were collected on June 26 th , 2023, at 5:30 am, in low tide conditions, from the inner tidal creeks of one natural (NAT) and one restored (RES) area of the Boschettona salt marsh, located in the southern Venice lagoon, Italy (45,15°; 12,12°). Three sampling points per area were selected, each in two replicates and at a minimum distance of 2 m from one another. All sediment samples were collected with nitrile long cuff gloves, using aluminium spoons treated with alcohol and UV-irradiated. Sampling was performed by sinking the spoon into the sediment to a depth of 2.5 cm, and rotating it to collect the sediments. After collection, spoons were rinsed in the surrounding water and wiped with clean paper. For metagenomics, elemental composition, and metabolomics analyses, aliquots of 40 mL of wet sediments were collected, immediately frozen in dry ice, transported, and stored at -80 °C for 2 months.</p>	<p>For Liquid Chromatography–Mass Spectrometry (LC-MS), aliquots of 1 g of sediment (6 NAT, 6 RES) were centrifuged and, after water removal, re-weighed to determine the exact mass of the solid fraction (~0.3 g). The sediment was extracted with 800 µL of a methanol:ultrapure water (1:3) solution, containing 200 µg/L of phenylalanine-d 5 as internal standard, and 1.2 mL of chloroform. The extraction mixture was vortexed for 30 s before and after the addition of chloroform and then centrifuged for 5 min at 1000 rpm. The methanol:ultrapure water fraction was filtered on 0.2 µm Regenerate Cellulose membrane filters (Phenomenex, 4 mm syringe filters) before injection. Quality control (QC) samples were prepared as a pool of all sediment samples under analysis and extracted with the same protocol.</p><p><br></p><p>For Gas Chromatography–Mass Spectrometry (GC-MS), aliquots of 2 g of homogenised sediment samples (6 NAT, 6 RES), with the addition of 50 µL of n-decane (1 mg/L) as internal standard, were analysed with a Centri sample preparation platform (Markes International, Bridgend, United Kingdom). Volatile compounds were extracted and pre-concentrated with the HiSorb sorptive extraction, using a multi-phase standard DVB/CWR/PDMS fiber. Incubation was</p><p>performed for 60 min at 60 °C, with vial vortexed for 10 s at 400 rpm. Desorption was performed for 10 min at 250 °C. Desorb trap settings were: trap purge time 0.2 min, purge flow 50 mL/min, trap low and high temperature 5 °C and 280 °C, respectively, trap desorption time 3 min with a split flow of 15 mL/min.</p>	<p>For LC-MS, processed samples were analysed with an Ultimate 3000 UHPLC chromatograph coupled with a Q-Exactive™ hybrid quadrupole-Orbitrap™ mass spectrometer (Thermo Fisher Scientific, Waltham, Massachusetts, USA). A TSKgel Amide-80, 3 µm, 2.0×150 mm (LabService Analytica, Anzola dell’Emilia, Bologna, Italy) column stabilised at 30 °C was used in HILIC mode. Eluents were acetonitrile and 3 mM ammonium acetate at a flow rate of 0.2 mL/min. The gradient was 95% acetonitrile for 3 min, linear increasing to 70% ammonium acetate in 24 min, 70% constant ammonium acetate for 3 min and then 95%</p><p>acetonitrile in 2 min, equilibration for 8 min.</p><p><br></p><p>GC-MS conditions were: Restek Rxi- 624SIL MS capillary column (60 m x 250 μm x 1.4 μm, Restek S.R.L., Milano, Italy). Helium was used as a carrier with a flow rate of 1.2 mL/min. The analyses were carried out with a temperature ramp: the starting temperature (40 °C) was held constant for 5 minutes, followed by an increase of 5 °C/min until 320 °C held constant for 5 min with a total run time of 66 min.</p>	<p>For LC-MS mass spectrometric conditions were: electrospray ionization (ESI) in both positive (+) and negative (-) mode, data dependent acquisition with resolution 35,000 in full MS and 17,500 in MS/MS, AGC target 1·10 6 in full MS and 1·10 5 in MS/MS, max injection time of 100 ms, m/z range 70-1000, isolation window 2.0 m/z, collision gas nitrogen, normalized collision energy 25 eV. Data dependent settings were: Minimum AGC target 9·10 3 and dynamic exclusion 20s. The capillary voltage was 4.0 kV (+)/ 2.8 kV (-), capillary temperature 300 °C (+)/280 °C (-), and auxiliary gas was nitrogen at 20 psi. The calibration was performed with a standard solution and the software Xcalibur 3.1 was used for instrument control (Thermo Fisher Scientific, Waltham, Massachusetts, USA). Sample measurement order was randomised to avoid experimental drifts.</p><p><br></p><p>For GC-MS the mass spectrometer, with an electron impact mode at 70 eV, was set to scan from m/z 40 to 500. Transfer line was set at 260 °C and MS source and quadrupole temperatures were set at 230 and 150 °C, respectively.</p>	<p>Raw data were converted to ABF format (Reyfics Analysis Base File Converter) and processed with MS-DIAL 4.9. Parameters for data extraction were selected on the basis of the chromatographic performances of the above-mentioned equipment. The feature’s areas were extracted from MS-DIAL, after alignment, identification and normalisation for QCs and internal standard, for further analysis. Curation of assignments, molecular classification,and statistical analyses were performed on LC-, GC-MS data with MetaboAnalyst 6.0: metabolites found with LC- and GC-MS were assigned to chemical sub-classes based on HMDB classification using the Enrichment analysis module. For LC-, GC-MS, all peak areas (PA) were normalised by sum and auto-scaled, then Two-sample Student’s t-test was applied to asses which metabolites differed between the NAT and RES areas, and PCoA analysis was used to evaluate the clustering pattern of the samples. Permutational Multivariate Analysis of Variance (PERMANOVA) was also performed to assess the significance of the composition differences between groups. </p>	<p>Metabolites were tentatively identified by comparing experimental mass spectra with MS-DIAL LC-MS reference libraries “ESI(+)-MS/MS from authentic standards (16,481 unique compounds)” and “ESI(-)-MS/MS from authentic standards (9,033 unique compounds)”. Volatile compounds were tentatively identified with MS-DIAL GC-MS reference libraries “All records with Kovats RI (9062 unique compounds)” and further confirmed by comparing mass spectra with the NIST reference library (NIST 08, National Institute of Standards and Technology, Gaithersburg, MD, 2008).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Frizzo	Pettenuzzo	Bortoletto	Gregori	Vezzi	Panin	Hemmati	Archetti	Mammi	Bogialli	Venier
+Study Person First Name	Riccardo	Silvia	Enrico	Irene	Alessandro	Mattia	Sciamila	Lorenzo	Stefano	Sara	Paola
+Study Person Mid Initials											
+Study Person Email	riccardo.frizzo@phd.unipd.it	silvia.pettenuzzo@unipd.it								sara.bogialli@unipd.it	paola.venier@unipd.it
+Study Person Phone											
+Study Person Fax											
+Study Person Address											
+Study Person Affiliation	Università degli Studi di Padova	Università degli Studi di Padova	Università degli Studi di Padova							Università degli Studi di Padova	Università degli Studi di Padova
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Coordinating Investigator	Coordinating Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C51818	http://purl.obolibrary.org/obo/NCIT_C51818	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

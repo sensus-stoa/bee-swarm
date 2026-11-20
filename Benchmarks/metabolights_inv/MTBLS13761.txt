@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MTBLS	NCBITaxon	NCIT	OBI	PCO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/pco.owl
+Term Source Version	2025-10-21	3.85.0			2025-12-03	25.06e	2025-10-14	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Population and Community Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13761
+Investigation Title	List of metabolites of human feces of control and alcohol-exposed groups
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-01-25
+Investigation Public Release Date	2026-01-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13761
+Study Title	List of metabolites of human feces of control and alcohol-exposed groups
+Study Description	<p>To explore the diet-microbiome-host-drug efficacy axis in chronic alcohol-increased anaesthetic use. Fecal metabolites were comprehensively extracted, detected and analyzed to identify differential metabolic profiles induced by chronic alcohol consumption, providing a basis for revealing the correlation between fecal metabolic changes and increased anaesthetic demand.</p>
+Study Submission Date	2026-01-25
+Study Public Release Date	2026-01-25
+Study File Name	s_MTBLS13761.txt
+Comment[Created At]	2026-01-15T02:39:37.170938
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	alcohol abuse	microbe
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MONDO_0002046	http://purl.obolibrary.org/obo/PCO_0000049
+Study Design Type Term Source REF	MTBLS	EFO	PCO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Shuangping Wang, Ling-Yan Su, Danfeng Lan
+Study Publication Title	A diet-microbiome-host-drug efficacy axis in chronic alcohol-increased anaesthetic use
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13761_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13761_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	MTBLS	CHMO	MI
+Study Protocol Description	<p>Fecal samples were collected from non-drinkers and drinkers, immediately snap-frozen in liquid nitrogen after collection to avoid metabolite degradation, and then stored at -80 °C until subsequent pretreatment and detection.</p>	<p>For polar metabolites detection, chromatographic analysis was performed on a Vanquish ultra-high performance liquid chromatography system (Thermo Fisher Scientific). Separation was achieved using a reverse phase Waters ACQUITY UPLC BEH C18 column (2.1mm × 50mm, 1.7μm) — a typical reverse phase column suitable for polar metabolites separation, with mobile phase A (25mmol/L ammonium acetate and 25mmol/L ammonia aqueous solution) and mobile phase B (acetonitrile). The sample plate temperature was maintained at 4 ℃, and the injection volume was 2 μL.</p>	<p>Raw mass spectrometric data were processed using Xcalibur software and metabolomic analysis tools for peak extraction, alignment, deconvolution and normalization. Metabolites with more than 50% missing values were removed, and multivariate and univariate statistical analyses were performed to screen differential metabolites.</p>	<p>Fecal samples were accurately weighed (50 mg per sample), homogenized with 500 μL pre-cooled extraction solvent (methanol:acetonitrile:water = 2:2:1, v/v/v) containing internal standard, vortexed vigorously for 3 min, and sonicated on ice for 15 min to fully release polar metabolites. After incubation at -20 °C for 30 min to precipitate proteins, the samples were centrifuged at 12,000 × g and 4 °C for 15 min. The supernatants were collected and filtered through 0.22 μm organic phase filters, and the filtrates were used for ultra-high performance liquid chromatography-tandem mass spectrometry (UHPLC-MS/MS) analysis (combined chromatographic and mass spectrometric detection).</p>	<p>Mass spectrometric detection was conducted on an Orbitrap Exploris 120 mass spectrometer (Thermo Fisher Scientific) controlled by Xcalibur software (version 4.4), equipped with an electrospray ionization (ESI) source, and operated in both positive and negative ion modes. Key parameters included sheath gas flow rate 50 Arb, auxiliary gas flow rate 15 Arb, capillary temperature 320 ℃, full ms resolution 60,000, MS/MS resolution 15,000, collision energy SNCE 20/30/40, and spray voltage 3.8 kV (positive) or -3.4 kV (negative).</p>	<p>Metabolite identification was achieved by matching the retention time, accurate molecular weight, and MS/MS fragmentation patterns of detected metabolites with those in standard databases, combined with the mass spectrometric parameters and chromatographic separation characteristics.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhou
+Study Person First Name	Hejiang
+Study Person Mid Initials	
+Study Person Email	zhouhej@126.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Yunnan Agricultural University, No. 452 Fengyuan Road, Yunnan 650201, China
+Study Person Affiliation	Yunnan Agricultural University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0001-8607-039X
+Comment[Study Person Alternative Email]	zhouhej@126.com

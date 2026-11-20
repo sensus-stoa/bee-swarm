@@ -1,0 +1,135 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	ENVO	MI	MONDO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	1.25-20251112T1620Z-unstable(1.26)	3.91.0	2025-10-20		2026-06-02		1.0.1		2026-05-13	26.02d	2026-05-08
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15115
+Investigation Title	LC-MS/MS Quantification of Nuclear α-KG in NSCLC
+Investigation Description	
+Investigation Submission Date	2026-07-21
+Investigation Public Release Date	2026-07-21
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15115
+Study Title	LC-MS/MS Quantification of Nuclear α-KG in NSCLC
+Study Description	This study contains targeted LC-MS/MS quantification of α-ketoglutarate (α-KG) in NSCLC cells using 13C-labeled α-KG internal standard. Nuclear α-KG levels were measured in A549, A549/DTX, PC9, and PC9/OR cells. In addition, nuclear α-KG was quantified in GLUD1-overexpressing A549 cells and GLUD1-knockdown A549/DTX cells. Mitochondrial α-KG measurements were performed exclusively in A549/DTX cells. The dataset includes raw SCIEX LC-MS/MS data, sample metadata, and processed quantitative results.
+Study Submission Date	2026-07-21
+Study Public Release Date	2026-07-21
+Study File Name	s_MTBLS15115.txt
+Comment[Created At]	2026-07-21
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-07-21
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	non-small cell lung carcinoma	targeted metabolite profiling	cell culture	Shimadzu SIL-20AC	QTRAP 5500	Homo sapiens	endometabolome	experimental sample	targeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0005233	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/ENVO_02000008	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/MS_1000931	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000125	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003905	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MONDO	MSIO	ENVO	MTBLS	MS	NCBITaxon	MTBLS	CHMO	MS	EDAM
+Comment[Study Design Category]	disease	default	default	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jiawen Cui，Jiali Liu
+Study Publication Title	LC-MS/MS Quantification of Nuclear α-KG in NSCLC
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15115_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Shimadzu Nexera X2 UHPLC system (binary pump, DGU-20A degasser, and CBM-20A controller);T3;reverse phase;negative;145.1 → 101.0;QTRAP 5500
+Comment[Assay Field Default Unit]	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000895;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://purl.obolibrary.org/obo/MS_1000931
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MS
+Comment[Measurement Type]	targeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Cultured cells were rapidly harvested on ice and washed with ice-cold phosphate-buffered saline (PBS). Nuclei were isolated immediately using a chilled sucrose-based fractionation protocol to minimize metabolic alterations. Cells were homogenized in ice-cold 0.25 M sucrose buffer (10 mM Tris-HCl, 3 mM MgCl2, pH 7.4), filtered, and layered onto a 0.34 M sucrose cushion. Following centrifugation at 700 × g for 10 min at 4°C, the nuclear pellet was collected and washed twice with 0.25 M sucrose buffer at 1,000 × g for 10 min. The purified nuclear pellet was immediately subjected to metabolite extraction.</p>	<p>Chromatographic separation was performed using a liquid chromatography system coupled to a QTRAP 5500 mass spectrometer (AB Sciex, Framingham, MA, USA). Samples were separated on a T3 reversed-phase analytical column under optimized chromatographic conditions suitable for targeted α-KG quantification.</p>	<p>Raw LC-MS/MS data were processed using the manufacturer’s software to integrate chromatographic peak areas. Quantification was performed by comparing analyte-to-internal-standard peak area ratios with an external calibration curve generated using authentic α-ketoglutarate standards. Nuclear α-KG concentrations were subsequently calculated by normalizing the quantified α-KG amount to the estimated total nuclear volume, assuming an average nuclear volume of approximately 1 pL per cell.</p>	<p>To quench metabolism and preserve intracellular α-ketoglutarate (α-KG), isolated nuclear pellets were extracted with 500 μL of pre-chilled 80% (v/v) methanol and incubated at −80°C for 2 h. Samples were centrifuged at 15,000 × g for 15 min at 4°C, and the supernatant containing extracted metabolites was collected and vacuum-dried. Prior to LC-MS/MS analysis, dried extracts were reconstituted in an appropriate solvent. Stable isotope-labeled 13C5-α-ketoglutaric acid was used as the internal standard.</p>	<p>Mass spectrometric analysis was performed on a QTRAP 5500 triple quadrupole mass spectrometer equipped with an electrospray ionization (ESI) source operating in negative ion mode. Quantification was performed using multiple reaction monitoring (MRM). The MRM transition for α-ketoglutarate was m/z 145.1 - 101.0 with a declustering potential (DP) of −20 V and collision energy (CE) of −12 V. The isotopically labeled internal standard (13C5-α-ketoglutaric acid) was monitored using the transition m/z 151.06 - 105.0 with DP = −50 V and CE = −12 V. Instrument control and data acquisition were performed using the manufacturer’s software.</p>	<p>α-Ketoglutarate was identified by comparison with an authentic reference standard based on retention time and characteristic MRM transition (m/z 145.1 - 101.0). Quantification was further verified using the stable isotope-labeled internal standard (13C5-α-ketoglutaric acid). Calibration was performed using authentic α-ketoglutarate standards to ensure accurate metabolite identification and quantification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cui	Liu
+Study Person First Name	Jiawen	Jiali
+Study Person Mid Initials		
+Study Person Email	cuijw0514@outlook.com	carrie_CPU@hotmail.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		TongJiaXiang #24, Nanjing, Jiangsu, China
+Study Person Affiliation	China Phramaceutical University	China Pharmaceutical University
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]		https://ror.org/01sfm2718
+Comment[Study Person Alternative Email]		carrie_CPU@hotmail.com

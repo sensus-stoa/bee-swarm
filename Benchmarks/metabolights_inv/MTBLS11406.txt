@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	MS	MTBLS	SNOMED	NCIT
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version	29	132		1		
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		User defined terms		
+INVESTIGATION
+Investigation Identifier	MTBLS11406
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-10-17
+Investigation Public Release Date	2024-11-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11406
+Study Title	Multi-omic Molecular Characterization and Diagnostic Biomarkers for Occult Hepatitis B Infection and HBsAg-Positive Hepatitis B Infection
+Study Description	<p>BACKGROUND: The pathological and physiological characteristics between HBsAg-positive HBV infection and occult hepatitis B infection (OBI) are currently unclear. This study aimed to explore the immune microenvironment in the peripheral circulation of OBI patients through integration of proteomic and metabolomic sequencing, and to identify molecular biomarkers for clinical diagnosis of HBsAg-positive HBV and OBI.</p><p>METHODS: This research involved collection of plasma from 20 patients with OBI (negative for HBsAg but positive for HBV DNA, with HBV DNA levels &lt; 200 IU/mL), 20 patients with HBsAg-positive HBV infection and 10 healthy individuals. Mass spectrometry-based detection was used to analyze the proteome, while nuclear magnetic resonance spectroscopy was employed to study the metabolomic phenotypes. Differential molecule analysis, pathway enrichment and functional annotation, as well as weighted correlation network analysis (WGCNA), were conducted to uncover the characteristics of HBV-related liver disease. Prognostic biomarkers were identified using machine learning algorithms, and their validity was confirmed in a larger cohort using enzyme linked immunosorbent assay (ELISA).</p><p>RESULTS: HBsAg-positive HBV individuals showed higher age and ALT levels (p=0.010) when compared to OBI patients. The influence of HBV infection on metabolic functions and inflammation was evident through the analysis of distinct metabolic pathways in HBsAg-positive HBV and OBI groups. Tissue tracing demonstrated a connection between Kupffer cells and HBsAg-positive HBV infection, as well as between hepatocytes and OBI. Immune profiling revealed the correlation between CD4 Tem cells, memory B cells and OBI, enabling a rapid response to infection reactivation through cytokine secretion and antibody production.</p>
+Study Submission Date	2024-10-17
+Study Public Release Date	2024-11-05
+Study File Name	s_MTBLS11406.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	occult hepatitis B infection	molecular biomarkers	HBsAg-positive HBV infection
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xinyi Jiang
+Study Publication Title	Multi-omic Molecular Characterization and Diagnostic Biomarkers for Occult Hepatitis B Infection and HBsAg-Positive Hepatitis B Infection
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Infection
+Study Factor Type	Infection
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C128320
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11406_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11406_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>In the discovery cohorts, a total of 50 samples were collected, including 20 samples with occult HBV infection (OBI), 20 samples from HBsAg positive HBV infection and 10 samples from healthy controls. The blood samples were centrifuged at 3000 rpm for 10 min, plasma was collected and stored at 80 °C for the following research.</p>	<p>Samples were measured using LC-MS instrumentation consisting of an EASY-nLC 1200 ultra-high-pressure system (Thermo Fisher Scientific) coupled via a nano-electrospray ion source (Thermo Fisher Scientific) to a Fusion Lumos Orbitrap (Thermo Fisher Scientific).</p>	<p>The peptides were dissolved with 12 μL loading buffer (0.1% formic acid in water), and 5 μL was loaded onto a 100 μm I.D. x 2.5 cm, C18 trap column at a maximum pressure 280 bar with 14 μL solvent A (0.1% formic acid in water). Peptides were separated on 150 μm I.D. x 15 cm column (C18, 1.9 μm, 120 Å, Dr. Maisch GmbH) with a linear 15-30% Mobile Phase B (ACN and 0.1% formic acid) at 600 nL/min for 75 min.</p>	<p>The peptides were dissolved with 12 μL loading buffer (0.1% formic acid in water), and 5 μL was loaded onto a 100 μm I.D. x 2.5 cm, C18 trap column at a maximum pressure 280 bar with 14 μL solvent A (0.1% formic acid in water). Peptides were separated on 150 μm I.D. x 15 cm column (C18, 1.9 μm, 120 Å, Dr. Maisch GmbH) with a linear 15-30% Mobile Phase B (ACN and 0.1% formic acid) at 600 nL/min for 75 min.</p>	<p>The MS analysis was performed in a data-independent manner (DIA). The DIA method consisted of MS1 scan from 300-1400 m/z at 60 K resolution (AGC target 4e5 or 50 ms). Then, 30 DIA segments were acquired at 15 K resolution with an AGC target 5e4 or 22 ms for maximal injection time. The setting “inject ions for all available parallelizable time” was enabled. HCD fragmentation was set to normalized collision energy of 30%. The spectra were recorded in profile mode. The default charge state for the MS2 was set to 3.</p>	<p>A total of 348 quantitative parameters were utilized to describe the metabolomic profiles of each plasma sample, encompassing lipoproteins, glycoproteins, small metabolites and fatty acids.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jiang
+Study Person First Name	Xinyi
+Study Person Mid Initials	
+Study Person Email	xyjiang@njmu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	The Affiliated Wuxi People's Hospital of Nanjing Medical University
+Study Person Roles	first author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034
+Study Person Roles Term Source REF	MS

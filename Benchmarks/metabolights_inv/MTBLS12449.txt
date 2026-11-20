@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MESH	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.89.0					2026-05-05	26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12449
+Investigation Title	Nutrient depletion and systems-wide metabolic shifting in polymer-producing wastewater bacterium
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-05-02
+Investigation Public Release Date	2026-09-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12449
+Study Title	Nutrient depletion and systems-wide metabolic shifting in polymer-producing wastewater bacterium
+Study Description	<p>Inorganic nutrient deficiency stimulates polymer synthesis in bacterial producers relevant to wastewater treatment and biotechnology, but the metabolic mechanisms are poorly understood. Here, using a quantitative multi-omics analysis of the wastewater isolate <em>Comamonas testosteroni </em>during nitrogen and phosphorus depletion, we uncover widespread metabolic rebalancing of carbon and energy fluxes beyond the synthesis of polyhydroxyalkanoate and glycogen, thereby revealing other key metabolic phenotypes important for surviving nutrient limitation with additional relevance to biotechnology applications.&nbsp;</p>
+Study Submission Date	2025-05-02
+Study Public Release Date	2026-09-09
+Study File Name	s_MTBLS12449.txt
+Comment[Created At]	2025-04-29
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-09
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	poly(3-hydroxybutyrate)-co-(3-hydroxyvalerate)	Nutrient	Comamonas testosteroni KF-1
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.bioontology.org/ontology/MESH/C052620	http://purl.obolibrary.org/obo/NCIT_C1814	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	CHMO	MESH	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xinyu Chen, Yeonsoo Park, Rebecca A. Wilkes, Lichun Zhang, Zijian Wang, Gloria Zhou, Xinyue Mu, Eva Durance, Fuzhong Zhang, April Z. Gu, Jacob R. Waldbauer, Ludmilla Aristilde
+Study Publication Title	Nutrient depletion and systems-wide metabolic shifting in polymer-producing wastewater bacterium
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Nitrogen level
+Study Factor Type	Ammonia
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C76698
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12449_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>For glycogen quantification, both extracellular and intracellular samples were obtained at 6 to 8 time points throughout biomass growth. Sample preparation and enzymatic hydrolysis of glycogen were done with a commercially available glycogen assay kit (ab65620, Abcam, UK). Glucose in the samples was then quantified with LC-HRMS following a published protocol. For PHA quantification, we developed a LC-HRMS method to determine and quantify the following composition of PHA in C testosteroni following PHA hydrolysis: 3-hydroxybutyric acid (C4), 3-hydroxyvaleric acid (C5), 3-hydroxyhexanoic acid (C6), 3-hydroxyoctanoic acid (C8), 3-hydroxydecanoic acid (C10), 3-hydroxydodecanoic acid (C12), 3-hydroxytetradecanoic acid (C14) and 3-hydroxyhexadecanoic acid (C16) (Extended Data Fig. 3 and Supplementary Table 5). For this analysis, 8 mg of lyophilized cells were collected at different time points (in three biological replicates) throughout biomass growth under the different nutrient conditions.&nbsp;The cells were suspended in 1 mL of 2 M NaOH, sealed, and heated at 100 °C for 5 hours using a heating block. After cooling to room temperature, 1 mL of 2 M HCl was added to neutralize the solution. The mixture was then filtered through a 0.45-µm polyethersulfone membranes filters (Millipore; Burlington, MA), diluted 100- or 200-fold using water (LC/MS Grade, Fisher Scientific, USA), and subjected to LC-HRMS analysis. PHA monomer separation and analysis followed a previously described LC-MS-based metabolomics protocol, with minor modifications. The flow rate was 180 µL min-1 during the entire 32 min sample run. The solvent gradient with the respect to solvent A was the following: 0 min, 100%; 2.5 min, 100%; 5 min, 80%; 7.5 min, 80%; 10 min, 45%; 12 min, 45%; 15 min, 5%; 20 min, 5%; 23 min, 5%; 26 min, 0%; 32 min, 0% was run.&nbsp;All chemicals for PHA standards were purchased from Sigma Aldrich.&nbsp;</p>	<p>Intracellular metabolite levels were determined from cell suspensions obtained during exponential growth phase. The suspensions were filtered and the cell-containing filters were immediately quenched by submerging them in a cold (4°C) 2-mL solution of methanol:acetonitrile:water (40:40:20). Solutions with the lysed cells were subsequently filter-centrifuged (Sigma-Aldrich Spin-X 0.22 μm filters). Aliquots of the supernatants were dried under nitrogen gas and re-suspended in LC-MS ultrapure water (Fisher Scientific, Pittsburgh, Pennsylvania) before analysis via LC-MS. Metabolite levels were normalized to biomass quantity at the time of sampling.</p>	<p>The metabolite extracts were analyzed by reversed-phase ion-pairing liquid chromatography using ultra-high performance LC (Thermo Scientific DionexUltiMate 3000) coupled with high-resolution/accurate-mass spectrometer (Thermo Scientific Q Exactive quadrupole-Orbitrap hybrid mass spectrometer) with electrospray ionization operated in negative mode. An injection sample of 10 μL was used and the column temperature was set to 25°C. A Waters Acquity UPLC BEH C18&nbsp;1.7 μm with a column size of 2.1 × 100 mm) (Waters Corporation, Massachusetts) was used. Solvent A contained 97:3 (v:v) LC-MS grade H2O: methanol with acetic acid (15 mM) and tributylamine (10 mM). Solvent B contained 100% methanol. The flow rate was 180 μL min−1&nbsp;during the entire sample run (25 min). The solvent gradient with respect to solvent A was the following: 0 min, 100%; 2.5 min, 100%; 5 min, 80%; 7.5 min, 80%; 10 min, 45%; 12 min, 45%; 14 min, 5%; 17 min, 5%; 18 min, 0%; 25 min, 0% was run. </p>	<p>An electrospray ionization interface was used to direct column eluent to the mass spectrometer. Because the ion pairing agent tributylamine will cause ion suppression in positive mode, the instrument was operated in negative mode only. Initial instrument optimization (tuning) was done by infusing a mixture of malate (<em>m</em>/<em>z</em>&nbsp;133.0142), ATP (<em>m</em>/<em>z</em>&nbsp;505.9885), and coenzyme A (<em>m</em>/<em>z</em>&nbsp;766.1079), each at 1 μg/mL at a flow rate of 200 μg/mL, using a 11Plus syringe pump (Harvard Apparatus, Boston, MA). Various instrumental settings were optimized to maximize the signal with the final parameters as follows: sheath gas flow rate 25 (arbitrary units), auxiliary gas flow rate 8 (arbitrary units), sweep gas flow rate 3 (arbitrary units), spray voltage 3 kV, capillary temperature 325 °C, capillary voltage −50 V, tube lens voltage −100 V. The instrument was mass calibrated using the polytyrosine-1,3,6 standards every 3 days. Anal. Chem. 2010, 82, 8, 3212–3221</p>	<p>All metabolite identification and isotopic enrichment were determined using the Metabolomics Analysis and Visualization Engine (MAVEN) software package (Clasquin et al., 2012). Corrections for natural abundance of&nbsp;13C were conducted on the&nbsp;13C-labeled fractions.</p>	<p>The Exactive mass spectrometer has a maximum scan range of&nbsp;<em>m</em>/<em>z</em>&nbsp;50−4000. For the study of small molecule metabolites, of particular interest is the low mass range (<em>m</em>/<em>z</em>&nbsp;85−1000). In preliminary experiments, we found that the high amount of phosphate and sulfate in typical cellular media adversely impact analysis, apparently due to a combination of ion suppression at the ion source and space-charge effects inside the orbitrap. To mitigate the latter, during the LC segments at which phosphate (H2PO4−,&nbsp;<em>m</em>/<em>z</em>&nbsp;96.9696, ∼6 min) and sulfate (HSO4−,&nbsp;<em>m</em>/<em>z</em>&nbsp;96.9601, ∼13 min) elute, we chose a lower scan limit of ≥<em>m</em>/<em>z</em>&nbsp;100 (rather than&nbsp;<em>m</em>/<em>z</em>&nbsp;85) to reduce the accumulation of phosphate and sulfate ions in the orbitrap. Although the scan limit does not provide high-resolution mass filtration, ions falling outside of the scan range are selected against. Empirically, we found that this selection was adequate to substantially improve the analytical results. Later in the LC run, the lower&nbsp;<em>m</em>/<em>z</em>&nbsp;limit was raised yet higher, as low molecular weight metabolites elute early in this reversed phase LC method. The final MS scan method is thus made in the following with segments: 0−5 min,&nbsp;<em>m</em>/<em>z</em>&nbsp;85−800; 5−6.7 min,&nbsp;<em>m</em>/<em>z</em>&nbsp;100−800; 6.7−9 min,&nbsp;<em>m</em>/<em>z</em>&nbsp;85−800; 9−16 min,&nbsp;<em>m</em>/<em>z</em>&nbsp;110−1000; 16−24 min,&nbsp;<em>m</em>/<em>z</em>&nbsp;220−1000. The last minute in the LC run is for column equilibrium only and is not scanned. Other MS method settings are resolution 100 000 at 1 Hz (1 scan per second), AGC (automatic gain control) target 3 × 106, maximum injection time 100 μS. Anal. Chem. 2010, 82, 8, 3212–3221</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Aristilde
+Study Person First Name	Ludmilla
+Study Person Mid Initials	
+Study Person Email	ludmilla.aristilde@northwestern.edu
+Study Person Phone	847-491-2999
+Study Person Fax	
+Study Person Address	2145 Sheridan Road, Tech A316, Evanston, IL 60208-3109
+Study Person Affiliation	Northwestern university
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

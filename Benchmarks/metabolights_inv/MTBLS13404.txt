@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	MDM	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://data.bioontology.org	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	253	2026-05-28	3.92.0					2026-07-12	26.02d	2026-05-08
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology		Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13404
+Investigation Title	Profiling aromatic amino acid metabolome in the human gut microbiota reveals Clostridioides difficile specific N-acyl amino acids
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-11-27
+Investigation Public Release Date	2026-07-23
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13404
+Study Title	Profiling aromatic amino acid metabolome in the human gut microbiota reveals Clostridioides difficile specific N-acyl amino acids
+Study Description	<p>Owing to its compositional and chemical complexity, much of the gut microbiota metabolome remains poorly characterized. Aromatic amino acids (AAAs) have a history of being privileged substrates for the biosynthesis of diverse bioactive metabolites and thus represent a potentially rich source of bioactive molecules within the microbiota metabolome. In this study, we leveraged&nbsp;13C- and&nbsp;2H-labeled aromatic amino acid and untargeted&nbsp;liquid chromatography-mass spectrometry&nbsp;(LC-MS) to profile AAA-derived metabolites produced by 80 phylogenetically diverse human gut bacterial isolates. Collectively, we found 93 unique LC-MS features, 28 of which, predominantly produced by&nbsp;Clostridioides difficile,&nbsp;were identified as&nbsp;N-acyl amino acids.&nbsp;C. difficile&nbsp;produced the highest levels of the AAA-derived precursors phenylacetic acid and phenylpropionic acid, exceeding all Bacteroidetes and Proteobacteria strains in our panel.&nbsp;C. difficile’s&nbsp;uniquely diverse&nbsp;N-acyl amino acids&nbsp;have the potential to serve biomarkers for&nbsp;C. difficile&nbsp;colonization and mediators of&nbsp;C. difficile-specific host interaction.</p>
+Study Submission Date	2025-11-27
+Study Public Release Date	2026-07-23
+Study File Name	s_MTBLS13404.txt
+Comment[Created At]	2025-11-26
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	2
+Comment[Revision Date]	2026-09-03
+Comment[Revision Log]	Added DOI. Modified Organism Part in Samples section and updated Assay sheet to correct order of columns.
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	microbiome	Isotope Labeling, Stable
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0004982	http://id.nlm.nih.gov/mesh/D007553
+Study Design Type Term Source REF	MTBLS	EFO	MDM
+STUDY PUBLICATIONS
+Study PubMed ID	42573234
+Study Publication DOI	10.1128/msystems.00779-26
+Study Publication Author List	Hsieh David Chun-Cheng, Jiang Linhai, Xue Mengzhao, Antonovsky Niv, Brady Sean F.
+Study Publication Title	Profiling the aromatic amino acid metabolome in the human gut microbiota reveals <i>Clostridioides difficile</i> -specific <i>N</i> -acyl amino acids
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Medium	MS level
+Study Factor Type	Medium	ms level
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C49507	http://purl.obolibrary.org/obo/MS_1000511
+Study Factor Type Term Source REF	NCIT	MS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13404_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>All bacteria were cultured anaerobically in a vinyl anaerobic chamber (Coy Laboratory Products) with a gas mixture of 5% CO2, 5% H2, and 90% N2&nbsp;at 37 °C. BHI media consisted of 37 g/L brain-heart infusion (Hardy diagnostics), 5 g/L yeast extract, 200 mg/L MgSO4·7H2O, 100 mg/L MnCl2·4H2O. After being autoclaved, 1L of BHI media was supplemented with 5 ml of 200 g/L maltose, 10 ml of 100 g/L cellobiose, 25 ml of 20 g/L-cysteine, and 5 ml of 1 g/L hemin. All media were deoxygenated by placing in an anaerobic chamber for at least 24 hr prior to use. Bacteria from a glycerol stock were plated on BHI-agar, and a single colony was picked and cultured in BHI media. For isotope feeding experiments, 10 μL of the saturated 2-day culture was used to inoculate fresh 1 ml BHI media supplemented with the indicated amino acid isotopes, followed by incubation for 3 days.&nbsp;L-tryptophan-2H5&nbsp;and&nbsp;L-tryptophan-13C11&nbsp;were spiked at final concentration at 1 mM for tryptophan feeding; L-phenylalanine-2H5&nbsp;and&nbsp;L-phenylalanine-13C9&nbsp;were spiked at final concentration at 3 mM&nbsp;for phenylalanine feeding;&nbsp;L-tyrosine-2H4&nbsp;and&nbsp;L-tyrosine-13C9&nbsp;were spiked at final concentration at 0.5 mM&nbsp;for tyrosine feeding. These isotope concentrations were similar to endogenous amino acid concentrations in BHI medium. </p>	<p>After incubation, the culture was centrifuged (10 min, 3220 xg) to remove bacteria. 200 μL of the resulting culture broth was added to 2 μM of oligomycin in 800 μL methanol followed by incubation at -80 °C for 3 hr, and centrifugation (10 min, 3220 xg) to precipitate protein. From the resulting clarified supernatant, 800 μL was transferred to a 96-well plate, dried using a SpeedVac and resuspended in 160 μL of a 1:1 mixture of methanol:water for LC-MS analysis. </p>	<p>5 μL of spent culture was separated using a Waters Acquity UPLC BEH Shield RP18 1.7 μm 2.1 x 150 mm column maintained at 40 °C. The mobile phase consisted of buffer A (0.1% formic acid in water) and buffer B (0.1% formic acid in acetonitrile). The LC gradient was as follows: 0-2 min: 2% B, 2-3 min: 10% B, 3-13 min: linear gradient from 10% to 18% B, 13-17 min: linear gradient from 18% to 50% B, 17-22 min: 95% B, 22- 30 min: 2% B. The flow rate was set at 0.25 ml/min.&nbsp;Tryptophan labeled samples were analyzed using the following LC gradient:&nbsp;0-2 min: 2% B, 2-3 min: 10% B, 3-15&nbsp;min: linear gradient from 10% to 18% B, 15-23&nbsp;min: linear gradient from 18% to 50% B, 23-26&nbsp;min: 95% B, 26-30 min: 2% B. If indicated, a synthetic standard was used to create a standard curve and run in the same batch to perform absolute quantification. </p>	<p>The LC-MS analysis was performed using a Sciex X500R quadrupole time-of-flight MS coupled to&nbsp;an Exion LC. Turbo ESI source was set with the following parameters: curtain gas at 30 psi, ion source gas 1 at 50 psi, ion source gas 2 at 50 psi, temperature at 500 °C, positive polarity, spray voltage at 5500 V, CAD gas at 7, declustering potential at 80 V, collision energy at 5 V, TOF start mass at 100 Da, and TOF stop mass at 1000 Da. MS/MS spectra were acquired with the same parameters, except collision energy was set at&nbsp;30&nbsp;V, collision energy spread was set as&nbsp;10&nbsp;V, TOF start mass was set at 20 Da, and TOF stop mass was set at 500 Da.&nbsp;</p>	<p>Each LC-MS file in&nbsp;wiff2 format was converted to mzXML format using MSConvert (ProteoWizard).</p><p><br></p><p>MS Feature identification:&nbsp;To identify&nbsp;13C-labeled MS features (i.e., a&nbsp;m/z&nbsp;peak at specific retention time), the TracExtract module of MetExtract II (version 2.9.7) was used with the following parameters: atom count: 9, number of labeling atom to search for: 6-9, native isotopolog: 12C, native isotopolog enrichment: 98.93%, labeled isotopolog: 13C, labeled isotopolog enrichment: 99%, amount native compound: 50, amount labeled compound: 50, ratio deviation relative to theoretical signal ratio: 50% to 170%, scan range: 1-28 mins, intensity threshold: 10000, charge: 1, mass deviation: ±5 ppm, isotopologs native: 2, isotopologs labeled: 2, maximum ratio deviation native: ±50%, maximum ratio deviation labeled: ±50%, MZ clustering window: ≤10 ppm, MZ clustering minimum spectra: ≥ 3 scans, XIC extraction width: ±10 ppm, XIC smoothing window: Gaussian and ±3 scans, chromatographic separation: 15-70 scans, EIC artificial shift: 0 scan, center error: ≤10 scans, minimum corr: ≥85 %. Tryptophan features were searched using the same parameters except atom count was 11 and number of labeling atom to search for was 8-11.&nbsp;</p><p><br></p><p>MS feature filtering:&nbsp;For each feature, expected&nbsp;2H-labeled masses were calculated from the native mass (3 to 5&nbsp;2H for phenylalanine and tryptophan labeling; 2 to 4&nbsp;2H for tyrosine labeling). Peak areas of&nbsp;13C-labeled, expected&nbsp;2H-labeled, and&nbsp;native masses were extracted from the same LC-MS sample where the feature was identified in MetExtract II using Mzmine 2 (version 2.5.3) with the following parameters: (1)&nbsp;mass detection: MS level: 1, centroid mode, noise level: 3E3; (2)&nbsp;targeted feature detection: intensity tolerance: 60%, noise level: 2E3, m/z tolerance: 20 ppm, retention time tolerance: 0.1 min (0.3 min for expected&nbsp;2H-labeled masses); (3)&nbsp;smoothing: filter width: 11. All features were then aligned across samples using (1)&nbsp;join aligner: m/z tolerance: 10 ppm, weight for m/z: 75, retention time tolerance: 0.3 min, weight for RT: 25; (2)&nbsp;peak finder (multithreaded): intensity tolerance: 100%, m/z tolerance: 10 ppm, retention time tolerance: 0.2 min, (3)&nbsp;peak filter: duration: 0.05 to 2.5 min, height: 2E3 to 1E8. Features were kept based on the following criteria: (1) the difference in retention time between&nbsp;13C-labeled and native masses was &lt; 0.1 min. (2) the peak area ratio of (native mass/&nbsp;13C-labeled mass) was between 3 and 0.3. (3) the retention time of&nbsp;2H-labeled mass minus the retention time of native mass was between 0.1 and -0.3 min. (4) the peak area ratio of (2H-labeled mass/&nbsp;13C-labeled mass) was between 3 and 0.3.&nbsp;2H-labeling number was determined by the largest peak area among all identified&nbsp;2H-labeled masses. Finally, a feature was removed if (1) its&nbsp;2H-labeled mass cannot be found. (2) its&nbsp;13C-labeled masswas found in the BHI medium. (3) its native&nbsp;mass appeared as fragments in the MS/MS (e.g.,&nbsp;due to&nbsp;in-source fragmentation) or matched a common adduct ions (e.g.,&nbsp;multimers and Na+) of another feature at (+/- 0.1 min) the same retention time.&nbsp;MS/MS spectra of native mass for each feature were extracted using (1)&nbsp;mass detection: MS level: 2, centroid, noise level: 1E1;&nbsp;(2) targeted feature detection: intensity tolerance: 60%, noise level: 2E3, m/z tolerance: 20 ppm, retention time tolerance: 0.3 min.</p><p><br></p><p><br></p>	<p>Molecular networking analysis: GNPS was used to analyze metabolite structural similarity among MS features based on MS/MS.&nbsp;The MS/MS was filtered by removing all MS/MS fragment ions within +/- 17 Da of the precursor m/z. The precursor ion mass tolerance was set to 0.02 Da and a MS/MS fragment ion tolerance of 0.02 Da. A network was then created where edges were filtered to have a cosine score above 0.4 and more than 4 matched peaks. Further, edges between two nodes were kept in the network if and only if each of the nodes appeared in each other's respective top 10 most similar nodes. Finally, the maximum size of a molecular family was set to 100, and the lowest scoring edges were removed from molecular families until the molecular family size was below this threshold. The spectra in the network were then searched against GNPS' spectral libraries. The library spectra were filtered in the same manner as the input data. All matches kept between network spectra and library spectra were required to have a score above 0.7 and at least 6 matched peaks.</p><p><br></p><p>All putative structures were identified either through comparing to a synthetic standard (level 1) or detailed MS/MS and isotope analyses (level 2 identification: putative compound based on MS/MS similarity to a standard).</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Brady
+Study Person First Name	Sean
+Study Person Mid Initials	F
+Study Person Email	sbrady@rockefeller.edu
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	The Rockefeller University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

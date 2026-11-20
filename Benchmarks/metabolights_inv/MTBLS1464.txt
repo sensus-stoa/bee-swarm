@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	OBI	BTO	MS	MESH	HL7	DOID	CHMO	MTBLS	EFO	NCIT	OMIT	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/MESH	http://data.bioontology.org/ontologies/HL7	http://data.bioontology.org/ontologies/DOID		https://www.ebi.ac.uk/metabolights/				
+Term Source Version	2	22	22	86	6	3	399		1				
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	Ontology for Biomedical Investigations	BRENDA Tissue and Enzyme Source Ontology	Mass Spectrometry Ontology	Medical Subject Headings	Health Level Seven Reference Implementation Model, Version 3	Human Disease Ontology		Metabolights Ontology				
+INVESTIGATION
+Investigation Identifier	MTBLS1464
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-01-23
+Investigation Public Release Date	2023-05-31
+Comment[Created With Configuration]	C:UsersUUDocumentsStephanieISAcreatorMetaboLightsConfigurationsMetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1464
+Study Title	Disease phenotype prediction in multiple sclerosis
+Study Description	<p>Progressive multiple sclerosis (PMS) is currently diagnosed retrospectively. Here, we work towards a set of biomarkers that could assist in early diagnosis of PMS. A selection of cerebrospinal fluid metabolites (n=15) was shown to differentiate between PMS and its preceding phenotype in an independent cohort (AUC=0.93). Complementing the classifier with conformal prediction showed that highly confident predictions could be made, and that three out of eight patients developing PMS within three years of sample collection were predicted as PMS at that time point. Finally, this methodology was applied to PMS patients part of a clinical trial for intrathecal treatment with rituximab. The methodology showed that 68% of the patients decreased their similarity to the PMS phenotype one year after treatment. In conclusion, the inclusion of confidence predictors contributes with more information compared to traditional machine learning, and this information is relevant for disease monitoring.</p><p><br></p><p><strong>Cohort 1 assays</strong> are reported in the current study <a href='https://www.ebi.ac.uk/metabolights/MTBLS1464' rel='noopener noreferrer' target='_blank'><strong>MTBLS1464</strong></a>.</p><p><strong>Cohort 2 assays</strong> are reported in <a href='https://www.ebi.ac.uk/metabolights/MTBLS558' rel='noopener noreferrer' target='_blank'><strong>MTBLS558</strong></a>.</p>
+Study Submission Date	2020-01-23
+Study Public Release Date	2023-05-31
+Study File Name	s_MTBLS1464.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	multiple sclerosis	high-performance liquid chromatography-mass spectrometry	Precision Medicine	untargeted metabolites	biomarker
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/DOID_2377	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/OMIT_0026946	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHEBI_59163
+Study Design Type Term Source REF	DOID	CHMO	OMIT	MTBLS	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID		30214633
+Study Publication DOI	10.1016/j.isci.2023.106906	10.7150/thno.26249
+Study Publication Author List	Stephanie Herman, Staffan Arvidsson McShane, Christina Zhukovsky, Payam Emami Khoonsari, Anders Svenningsson, Joachim Burman, Ola Spjuth, Kim Kultima.	Herman S, Khoonsari PE, Tolf A, Steinmetz J, Zetterberg H, Åkerfeldt T, Jakobsson PJ, Larsson A, Spjuth O, Burman J, Kultima K.
+Study Publication Title	Disease phenotype prediction in multiple sclerosis	Integration of magnetic resonance imaging and protein and metabolite CSF measurements to enable early diagnosis of secondary progressive multiple sclerosis.
+Study Publication Status	Preprint	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	MTBLS	EFO
+STUDY FACTORS
+Study Factor Name	Phenotype	Batch	Collection Number
+Study Factor Type	phenotype	Batch	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000651	http://purl.obolibrary.org/obo/NCIT_C67073	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1464_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1464_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Experimental model and subject details:</strong></p><p>The study was approved by the Regional Ethical Review Board in Umeå (EPN; 2009-08-157M) and the Regional Ethical Board of Uppsala (Dnr 2015/462 and Dnr 2013/278). The study was performed in accordance with standards of good clinical practice and the principles of the Declaration of Helsinki. Oral and written information about the study was provided to all participants before written consent was obtained.</p><p><br></p><p><strong>Cohort 1:</strong></p><p>Cohort 1 included in total 39 RRMS patients (sex=27 female, 12 male; mean age=33; age</p><p>SD=15.6), 35 PMS patients (sex=22 female, 13 male; mean age=50; age SD=9.53) and 49</p><p>controls (sex=28 female, 21 male; mean age=35; age SD=15.6). Out of the 35 PMS patients</p><p>eight were diagnosed with primary PMS and 27 with secondary PMS.</p><p><br></p><p><strong>Cohort 2:</strong></p><p>Cohort 2 included in total 30 RRMS patients (sex=21 female, 9 male; mean age=39; age</p><p>SD=10.6), 16 PMS patients (sex=10 female, 6 male; mean age=58; age SD=9.3) and 10</p><p>controls (sex=6 female, 4 male; mean age=39; age SD=13.1). All PMS patients were diagnosed</p><p>with secondary PMS.</p><p><br></p><p><strong>Sample collection:</strong></p><p>The lumbar puncture was performed through the L3/L4 or L4/L5 interspace, and CSF was collected in a polypropylene tube that was centrifuged for 5 min at 250 x g at room temperature. The supernatant was transferred, gently mixed and aliquoted in polypropylene tubes stored at -80 °C until analysis.</p><p><br></p><p>The Collection Number corresponds to the repeated samplings at baseline, 3, 6 and 12 mth from the participants in the Intrathecal Treatment Trial in PMS (ITT-PMS), a controlled clinical trial designed to evaluate the effect of intrathecal treatment with rituximab, and registered with the EU Clinical Trial Register (EudraCT; 2008-002626-11) and ClinicalTrial.Gov (NCT01719159).</p>	CSF samples were thawed on ice, and 100 µl was transferred and mixed with 410 µl ice-cold methanol (MeOH) supplemented with an internal standard cocktail. The samples were further vortexed for 15 s and incubated at -20 °C for 30 min, followed by centrifugation at 20400 x g for 12 min at 4 °C. The supernatants were transferred to fresh Eppendorf tubes and dried using a centrifugal vacuum concentrator (overnight). Upon analysis, the dried samples were reconstituted in 100 µl of 5% MeOH, 0.1% formic acid (FA) and 94.9% deionized MilliQ water. 10 µl of each sample was pooled to create a quality control (QC) sample to be repeatedly injected to monitor the performance throughout the analysis.	<p>The liquid chromatography-mass spectrometry analyses were performed using a Thermo Ultimate 3000 HPLC and Thermo Q-Exactive Orbitrap mass spectrometer. 10 µl sample was injected in a constrained randomised order to a Thermo Accucore aQ RP C18 column (100 x 2.1 mm, 2.6 µm particle size). The analytical gradient was initiated with an isocratic flow for 3 min (0% B), followed by a 2.6 min gradient (0-10% B), 8.3 min (10-100% B) and 3 min (100% B), followed, finally, by re-equilibration and washing of the column for 3 min (0% B), where A is 0.1% FA in MilliQ water and B is 89.9% acetonitrile, 10% isopropanol and 0.1% FA.</p><p><br></p><p>After column conditioning and equilibration of the system, the analysis was initiated with a 2-fold serial dilution series ranging from 0.5 to 32.0 µL injection volume of QC (to aid extraction of features originating from samples). Thereafter, a QC and a blank injection (containing only reconstitution solution [5% MeOH and 0.1% FA in deionized MilliQ water]) were done every 8th study sample to enable performance monitoring and filtering of stable features.</p>	Mass spectrometry data were acquired in profile mode (in positive and negative ionization mode) on a Thermo Q-Exactive Orbitrap mass spectrometer, using a mass range of 70-900 m/z during the first 5 min and 148-900 m/z in the following 15 min (to avoid low mass contaminants) in the positive ionization mode and 70-900 m/z throughout in negative ionization mode. To improve the identification of metabolites, 10 tandem mass spectrometry analyses in positive and negative ionization mode were performed separately on sample subpools and the QC.	The acquired raw data was converted to an open-source format (.mzML). Peak picking was performed using msconvert from ProteoWizard and preprocessing using the following pipeline within the KNIME platform. The peak-picked data was quantified by FeatureFinderMetabo, features were aligned using MapAlignerPoseClustering and linked across samples using FeatureLinkerUnlabelledQT. The time tolerance was set to 10 s and a 5 ppm mass deviation was allowed.	Metabolites were identified using an in-house library consisting of 471 characterized pure standards, where the features first were matched using a ±2.5 ppm in mass and ±5 seconds in retention time window. Matches that did not have an MS/MS fragmentation spectrum available were noted as identified on level 1, whereas matches with an available MS/MS spectrum were noted as identified on level 2. Identities of metabolites whose MS/MS spectrum did not match with the suggested library identity were rejected. To increase the identification rate, three additional identification strategies were used. First, an in silico prediction of MS/MS fragmentation spectra was done on metabolites available on the Human Metabolome Database (HMDB) using the PhenoMeNal framework. Briefly, OpenMS was used to extract metabolic features, which were imported into CAMERA to predict adducts, which further were used to derive the neutral masses of the precursors. Neutral masses and MS/MS spectra were then used in CSI:FingerID to perform the in silico identification. Additionally, the identification workflow for untargeted metabolomics using online databases and chemical composition prediction in the Compound discoverer software from Thermo Fisher Scientific (v. 3.1.0.305) was used as well as the metfRag R package with the KEGG database and an allowance of 10 ppm relative mass deviation for the database search and 20 ppm for fragment peak matching.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Kultima	Herman
+Study Person First Name	Kim	Stephanie
+Study Person Mid Initials		
+Study Person Email	kim.kultima@medsci.uu.se	stephanie.herman@medsci.uu.se
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Uppsala University, Department of Medical Sciences	Uppsala University, Department of Medical Sciences
+Study Person Roles		
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

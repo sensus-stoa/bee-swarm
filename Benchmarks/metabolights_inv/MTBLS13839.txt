@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version		2025-10-21	3.86.0				2025-12-03	25.06e	2025-12-18	2025
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS13839
+Investigation Title	Urinary Extracellular Vesicle Metabolomic Profiling Reveals a Distinct Molecular Signature for the Non-Invasive Diagnosis of Lupus Nephritis
+Investigation Description	
+Investigation Submission Date	2026-02-05
+Investigation Public Release Date	2026-02-11
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13839
+Study Title	Urinary Extracellular Vesicle Metabolomic Profiling Reveals a Distinct Molecular Signature for the Non-Invasive Diagnosis of Lupus Nephritis
+Study Description	<p><strong>Background:</strong>&nbsp;Lupus nephritis (LN) is a severe complication of systemic lupus erythematosus (SLE), underscoring an urgent need for non-invasive diagnostic biomarkers.&nbsp;</p><p><strong>Objective:&nbsp;</strong>This study aimed to define the metabolomic signature of urinary extracellular vesicles (uEVs) in LN and to identify novel biomarkers for precision diagnosis.</p><p><strong>Methods:</strong>&nbsp;We isolated uEVs from 29 patients with LN, 22 SLE patients without nephritis, and 20 healthy controls. uEVs were characterized according to MISEV guidelines, and their metabolomes were profiled using untargeted liquid chromatography–tandem mass spectrometry (LC–MS/MS). Differential metabolites were analyzed through bioinformatics and a random forest machine-learning algorithm to construct a diagnostic model.&nbsp;</p><p><strong>Results:</strong>&nbsp;Among 897 identified metabolites, 284 were significantly dysregulated in LN. A random forest model prioritized a ten-metabolite panel. Three metabolites—Glucosylsphingosine,&nbsp;PE-NMe, and&nbsp;PC(20:5/TXB2)—exhibited outstanding diagnostic performance, with area under the curve (AUC) values of 0.912, 0.906, and 0.897, respectively, for distinguishing LN from non-renal SLE.&nbsp;</p><p><strong>Conclusion:</strong>&nbsp;We identified a distinct uEV metabolic signature in LN and developed a robust, non-invasive biomarker panel. This strategy holds significant promise for the early detection and personalized management of LN, offering a compelling alternative to invasive renal biopsy.</p>
+Study Submission Date	2026-02-05
+Study Public Release Date	2026-02-11
+Study File Name	s_MTBLS13839.txt
+Comment[Created At]	2026-01-31T11:48:38.946653
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	lupus nephritis	Extracellular Vesicles	metabolomic profiling	Biomarkers
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005761	http://id.nlm.nih.gov/mesh/D000067128	http://www.ebi.ac.uk/efo/EFO_0000752	http://id.nlm.nih.gov/mesh/D015415
+Study Design Type Term Source REF	EFO	mesh	EFO	mesh
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Nan Zhang, Ning Dong, Anran Xie, Wenjing Liu, Adeel Khan, Yanjing Rui, Ping Yang
+Study Publication Title	Urinary Extracellular Vesicle Metabolomic Profiling Reveals a Distinct Molecular Signature for the Non-Invasive Diagnosis of Lupus Nephritis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13839_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13839_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Between March 2022 and March 2024, 51 SLE patients were enrolled from the Department of Rheumatology and Immunology, Nanjing Drum Tower Hospital. Patients were stratified into SLE with LN&nbsp;(n&nbsp;= 29) and SLE without LN (n&nbsp;= 22) subgroups according to renal involvement. Twenty age- and sex-matched HCs were recruited from the hospital’s Physical Examination Center. Demographic characteristics, clinical data, and treatment histories were systematically recorded.&nbsp;After an overnight fast (≥8 h), midstream morning urine samples (~8 mL) were collected under sterile conditions. The samples were centrifuged at 2,000 × g for 30 min at room temperature to remove cellular debris, and the resulting supernatants were aliquoted into 2-mL tubes and stored at −80 °C until further analysis. The uEVs were isolated using a commercial precipitation-based kit (Total Exosome Isolation Reagent; Thermo Fisher Scientific, USA) according to the manufacturer’s instructions. Briefly, thawed urine samples were centrifuged at 2,000 × g for 30 min at 4 °C to remove residual debris. Subsequently, 800 µL of the clarified supernatant was mixed with an equal volume of the isolation reagent, vortexed thoroughly, and incubated at room temperature for 1 h. The mixture was then centrifuged at 10,000 × g for 1 h at 4 °C, and the resulting uEV pellet was resuspended in sterile phosphate-buffered saline (PBS) and stored at −80 °C until further analysis.</p>	<p>Untargeted metabolomic profiling was performed using an ultrahigh-performance liquid chromatography (UHPLC) system. Chromatographic separation was achieved on an ACQUITY UPLC HSS T3 column (100 × 2.1 mm, 1.8 μm; Waters, USA) maintained at 40 °C, with an injection volume of 10 μL. The mobile phase consisted of (A) 0.1% formic acid in water/acetonitrile (95:5, v/v) and (B) acetonitrile/isopropanol/water (47.5:47.5:5, v/v/v) containing 0.1% formic acid.&nbsp;</p>	<p>For metabolomics analysis, raw LC–MS/MS data were processed using Progenesis QI software (Waters, USA).</p>	<p>Metabolites were extracted from uEV suspensions using a protein precipitation procedure. Briefly, 100 µL of each uEV suspension was mixed with 400 µL of ice-cold acetonitrile/methanol (1:1, v/v) containing L-2-chlorophenylalanine (0.02 mg/mL) as an internal standard. The mixture was vortexed for 30 s and subjected to ultrasonic extraction (5 °C, 40 kHz) for 30 min. Samples were then incubated at −20 °C for 30 min to facilitate protein precipitation, followed by centrifugation at 13,000 × g for 15 min at 4 °C. The resulting supernatants were evaporated to dryness under a gentle nitrogen stream, reconstituted in 100 µL of acetonitrile/water (1:1, v/v), sonicated for 5 min, and centrifuged again (13,000 × g, 10 min, 4 °C). The clarified supernatants were transferred to LC–MS vials for subsequent metabolomic analysis.&nbsp;Quality control (QC) samples were prepared by pooling equal aliquots from all study samples and injected periodically (one QC sample per 5 study samples) throughout the analytical sequence to monitor instrument stability and assess analytical reproducibility.</p>	<p>Mass spectrometric detection was performed in both positive and negative electrospray ionization (ESI) modes over an m/z range of 70–1050 using a <strong>Orbitrap Exploris 240 (Thermo Fisher Scientific, USA)</strong> mass spectrometer. The optimized ion source parameters were as follows: sheath gas pressure, 60 psi; auxiliary gas pressure, 20 psi; auxiliary gas heater temperature, 350 °C; capillary temperature, 320 °C; and spray voltages of +3.4 kV and −3.0 kV for the respective modes. Data were acquired in data-dependent acquisition (DDA) mode, with full MS and MS/MS resolutions of 60,000 and 15,000, respectively. Higher-energy collisional dissociation (HCD) was applied with stepped collision energies of 20, 40, and 60 eV.</p>	<p>LC–MS/MS data were processed for alignment, peak detection, and annotation against HMDB and Metlin databases, achieving metabolite identification at MSI Level 2 confidence.&nbsp;Features detected in &gt;80% of samples were retained, missing values were imputed (group minimum), and signal intensities were normalized to total ion current;&nbsp;variables with &gt;30% RSD in QC samples were removed.&nbsp;Multivariate analyses (PCA and OPLS-DA) were performed using the ropls R package, with model robustness validated by seven-fold cross-validation and a permutation test (n = 200).&nbsp;Differential metabolites were defined by a VIP score ≥ 1.0, fold change (FC) ≥ 1.2 (or ≤ 0.83), and an FDR-adjusted P-value &lt; 0.05.&nbsp;Pathway enrichment was conducted using the KEGG database.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang	Dong	Xie	Liu	Khan	Rui	Yang
+Study Person First Name	Nan	Ning	Anran	Wenjing	Adeel	Yanjing	Ping
+Study Person Mid Initials							
+Study Person Email		dongning0404@163.com		2013325843@qq.com	adeelsurani@hotmail.com		pingyang@njglyy.com
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation							Department of Laboratory Medicine, Nanjing Drum Tower Hospital, Affiliated Hospital of Medical School, Nanjing University, Nanjing, China
+Study Person Roles	Author	Author	Author	Author	Author	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]							0000-0003-3495-856X
+Comment[Study Person Affiliation ROR ID]							https://ror.org/026axqv54
+Comment[Study Person Alternative Email]		dongning0404@163.com		2013325843@qq.com	adeelsurani@hotmail.com		pingyang@njglyy.com

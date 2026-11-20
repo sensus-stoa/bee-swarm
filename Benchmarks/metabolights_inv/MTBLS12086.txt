@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	EFO	MDM	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://www.ebi.ac.uk/efo/efo.owl	http://data.bioontology.org	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12086
+Investigation Title	Epigenetic coordination of transcriptional and translational programs in hypoxia
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-05-30
+Investigation Public Release Date	2025-06-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12086
+Study Title	Epigenetic coordination of transcriptional and translational programs in hypoxia
+Study Description	<p>Adaptation to cellular stresses entails an incompletely understood coordination of transcriptional and post-transcriptional gene regulation. Here, we quantified hypoxia-dependent transcriptomes, epigenomes and translatomes in T47D breast cancer cells and H9 human embryonic stem cells. This revealed alterations in H3K4me3 associating with pervasive changes in transcription start site (TSS) selection leading to remodeling of 5’UTRs, which act as critical hubs regulating translation, and a concomitant reshaping of translational landscapes. Moreover, modulating H3K4me3 could both recapitulate and block a subset of hypoxia-induced TSS switching, defining a role for H3K4me3 in TSS selection, independently of HIF1-dependent transcriptional mechanisms. While TSS switching is coordinated with the integrated stress response (ISR) and mTOR-guided translational reprogramming, it also acts independently to regulate translation in hypoxia. These results demonstrate a previously unappreciated mechanism of translational regulation driven by epigenetic reprogramming of the 5’UTRome, which is orchestrated with other hypoxia-triggered adaptive mechanisms.</p>
+Study Submission Date	2025-05-30
+Study Public Release Date	2025-06-09
+Study File Name	s_MTBLS12086.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	hypoxia	5' Untranslated Region	Epigenome	transcriptome
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0009444	http://purl.obolibrary.org/obo/NCIT_C13371	http://id.nlm.nih.gov/mesh/D000081122	http://www.ebi.ac.uk/efo/EFO_0004421
+Study Design Type Term Source REF	EFO	NCIT	MDM	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Kathleen Watt, Bianca Dauber, Krzysztof J. Szkop, Laura Lee, Predrag Jovanovic, Shan Chen, Ranveer Palia, Julia A. Vassalakis, Tyler T. Cooper, David Papadopoli, Laìa Masvidal, Michael Jewer, Kristofferson Tandoc, Hannah Plummer Doherty, Gilles A. Lajoie, Ivan Topisirovic, Ola Larsson, Lynne-Marie Postovit
+Study Publication Title	Epigenetic coordination of transcriptional and translational programs in hypoxia
+Study Publication Status	Revision
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C54087
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	Cell line	Oxygen
+Study Factor Type	Cell Line	Oxygen
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16403	http://purl.obolibrary.org/obo/NCIT_C722
+Study Factor Type Term Source REF	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12086_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>T47D cells were grown in normoxia or hypoxia (20 and 0.5% O2, respectively) for 24 h. Cells were incubated with media containing 1 mM unlabeled pyruvate for 2 h, then changed to 1 mM labeled ([U-13C])-pyruvate media for 15 min (Cambridge Isotope Laboratories, MA, USA).</p>	<p>Steady state samples were extracted simultaneously with tracing samples. Dishes were washed in cold saline solution (9 g/L NaCl) and quenched in 80% methanol. Lysates were sonicated at 4 °C for 10 min and spun for 10 min (14,000 rpm, 4 °C). The internal standard (750 ng myristic acid-D27) was added to supernatants and dried overnight in a speedvac (Labconco) at 4 °C. The next day, pellets were resuspended in methoxyamine hydrochloride (10 mg/mL in pyridine), sonicated and vortexed 3x times (30 s each) and spun for 10 min. Samples were heated to 70 °C for 30 min. Derivatization with N-tert-butyldimethylsilyl-N-methyltrifluoroacetamide (MTBSTFA) was performed at 70 °C for 1 h. Samples were injected (1 μL) into an Agilent 5975C GC/MS (Agilent Technologies, CA, USA).</p>	<p>GC-MS methods and mass isotopomer distribution analyses are as previously described [McGuirk et al., 2013; Gravel et al., 2016; Papadopoli et al., 2021].</p><p>GC-MS instrumentation and software were all from Agilent.</p><p>(Column: DB-5MS + DG capillary column, 30m length, 10m Duraguard deactivated fused silica tubing, 0.25mm internal diameter, 0.25uM film thickness; Agilent Technologies)</p><p><br></p><p>McGuirk S, Gravel SP, Deblois G, Papadopoli DJ, Faubert B, Wegner A, Hiller K, Avizonis D, Akavia UD, Jones RG, Giguère V, St-Pierre J. PGC-1α supports glutamine metabolism in breast cancer. Cancer Metab. 2013 Dec 5;1(1):22. doi:10.1186/2049-3002-1-22. PMID:24304688.</p><p>Gravel SP, Avizonis D, St-Pierre J. Metabolomics Analyses of Cancer Cells in Controlled Microenvironments. Methods Mol Biol. 2016;1458:273-90. doi:10.1007/978-1-4939-3801-8_20. PMID:27581029.</p>	<p>GC-MS methods and mass isotopomer distribution analyses are as previously described [Gravel et al., 2016].</p><p>GC-MS instrumentation and software were all from Agilent.</p>	<p>MassHunter software (Agilent) was used to carry out mass isotopomer distribution analyses, with metabolites normalized to myristic acid-D27 and cell number. Isotopic distributions were corrected for naturally occurring isotopes using an in-house algorithm&nbsp;[McGuirk et al., 2013].</p>	<p>Metabolite identification was conducted as previously described [Gravel et al., 2016].</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Postovit
+Study Person First Name	Lynne-Marie
+Study Person Mid Initials	
+Study Person Email	l.postovit@queensu.ca
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Queen's University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

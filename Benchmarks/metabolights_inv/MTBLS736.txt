@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	CHMO	NCBITAXON	MS	NCIT	OBI	BTO
+Term Source File	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BTO
+Term Source Version	1.0	18	6	129	44	22	29
+Term Source Description	Metabolights Ontology	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Mass Spectrometry Ontology	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	BRENDA Tissue and Enzyme Source Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS736
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-08-28
+Investigation Public Release Date	2019-11-19
+Comment[Created With Configuration]	D:\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS736
+Study Title	Comprehensive evaluation of untargeted metabolomics data processing software in feature detection, quantification and discriminating marker selection (AB SCIEX TripleTOF 6600 assay)
+Study Description	<p>Data analysis represents a key challenge for untargeted metabolomics studies and it commonly requires extensive processing of more than thousands of metabolite peaks included in raw high-resolution MS data. Although a number of software packages have been developed to facilitate untargeted data processing, they have not been comprehensively scrutinized in the capability of feature detection, quantification and marker selection using a well-defined benchmark sample set. In this study, we acquired a benchmark dataset from standard mixtures consisting of 1100 compounds with specified concentration ratios including 130 compounds with significant variation of concentrations. Five software evaluated here (MS-Dial, MZmine 2, XCMS, MarkerView, and Compound Discoverer) showed similar performance in detection of true features derived from compounds in the mixtures. However, significant differences between untargeted metabolomics software were observed in relative quantification of true features in the benchmark dataset. MZmine 2 outperformed the other software in terms of quantification accuracy and it reported the most true discriminating markers together with the fewest false markers. Further-more, we assessed selection of discriminating markers by different software using both the benchmark dataset and a real-case metabolomics dataset to propose combined usage of two software for increasing confidence of biomarker identification. Our findings from comprehensive evaluation of untargeted metabolomics software would help guide future improvements of these widely used bioinformatics tools and enable users to properly interpret their metabolomics results. </p><p><br></p><p> <strong>AB SCIEX TripleTOF 6600 assay</strong> protocols and data are reported in the current study <strong>MTBLS736</strong>.</p><p> <strong>Thermo Q Exactive HF assay</strong> protocols and data are reported in <a href='https://www.ebi.ac.uk/metabolights/MTBLS733' target='_blank'><strong>MTBLS733</strong></a>.</p>
+Study Submission Date	2018-08-28
+Study Public Release Date	2019-11-19
+Study File Name	s_MTBLS736.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Data processing software	Comparative marker selection	Ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	Mzmine	MS-Dial	Xcms	Markerview software	Compound discoverer
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1001457	http://purl.obolibrary.org/obo/NCIT_C64198	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MS_1002342	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MS_1001582	http://purl.obolibrary.org/obo/MS_1000665	http://purl.obolibrary.org/obo/MS_1002880
+Study Design Type Term Source REF	MS	NCIT	CHMO	MTBLS	MS	MTBLS	MS	MS	MS
+STUDY PUBLICATIONS
+Study PubMed ID	29907290
+Study Publication DOI	10.1016/j.aca.2018.05.001
+Study Publication Author List	Zhucui Li, Yan Lu, Yufeng Guo, Haijie Cao, Qinhong Wang, Wenqing Shui
+Study Publication Title	Comprehensive evaluation of untargeted metabolomics data processing software in feature detection, quantification and discriminating marker selection
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	technical replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1001808
+Study Factor Type Term Source REF	MS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS736_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>To obtain total metabolite extracts from black pepper (Piper nigrum), its seeds were pulverized into powder.</p><p><br></p><p>1100 compounds including drugs and metabolites were mixed at specific concentrations to prepare 2 standard mixtures SA and SB. Both SA and SB stocks contained 970 compounds with equal concentration of 10 μM to be in the matrix group. The rest of 130 compounds were prepared at variable concentration ratios of 1/16, 1/4, 1/2, 2/1, 4/1 and 16/1 in SB:SA to be in 6 differential groups. The stocks were diluted to 100 nM for compounds in the matrix group in acetonitrile/H2O (v/v, 1:1) solvent prior to LC-MS analysis. The MS intensities of all detectable compounds were in the typical dynamic range of the MS instruments used in this work.</p>	<p>The powder (50 g) was extracted with 200 ml of 70% ethanol, and the crude materials were extracted twice by heating reflux in a magnetic heated stirrer (YU HUA, China) at 70 °C for 1 h each time. After filtration and removal of the organic solvents by vacuum evaporation at 55 °C, the remaining materials were dried out by in a speed vacuum machine (Labconco, USA), and the resulting powder was stored at −20 °C.</p><p><br></p><p>The powder of black pepper metabolite extracts (10 mg) was dissolved with 100 μl 95% DMSO to make a stock solution of 100 mg/ml. The stock was diluted with the EBOV NP incubation buffer (20mM Tris-HCl, 200 mM NaCl, 5 mM DTT, pH 8.5) to a concentration of 2.5 mg/ml. Then Ebola virus nucleoprotein (EBOV NP) at 40 μM was mixed with the diluted extract at 1:1 (v/v) in 50 μl, and incubation was kept at 16 °C for 40 min. The protein incubation sample was then subjected to ultrafiltration and compound dissociation in order to collect compounds in the metabolite extracts that were associated with EBOV NP. A protein-free control was prepared using the buffer substitute for EBOV NP during incubation. Compounds from the protein incubation sample and the control were reconstituted in 20% methanol, and analyzed by LC-MS. All samples were prepared in 4 replicates and analyzed separately.</p>	<p>The standard mixtures were analyzed on an AB SCIEX TripleTOF 6600 interfaced with Shimazu L30A UPLC operating in the positive ion mode. Chromatographic separation was performed on a ZORBAX Eclipse Plus C18 column (3.5 μm, 2.1 x 100 mm, Agilent) at a flow rate of 300 μl/min and maintained at 40 °C, with the mobile phases of water/0.1% formic acid (A) and acetonitrile/0.1% formic acid (B). LC gradient was as follows: 0–2 min, 5% B; 2–2.1 min, 5–20% B; 2.1–22 min, 20–35% B; 22–30 min, 35–60% B; 30–30.5 min, 60–90% B; 30.5–35 min, 90% B and re-equilibration for 5 min.</p>	<p>Full-scan mass spectra were acquired in the range of 100–1500 m/z with major ESI source settings: voltage 5.0–5.5 kV, gas temperature 500 °C, curtain gas 35 psi, nebulizer gas 55 psi, heater gas 55 psi. MS1 accumulation time was 200 ms. Each standard mixture was analyzed in 4 replicates.</p>	<p>Mass spectral data was processed by instrument-specific software MarkerView 1.3 (AB SCIEX). The dataset was also processed by open source software XCMS online (v2.3.0), MZmine 2 (v2.28) and MS-Dial (v2.52). For each untargeted data processing software, multiple parameters were tuned and the optimized settings were summarized in Tables S1–S5 in the paper associated with this study. After detection of total features, degeneracies were removed using MS-FLO with default settings except the m/z tolerance changed to 0.005, and consensus features (nonzero features across all replicates) were retained for further analysis. Features from untargeted data analysis were matched to benchmark features from targeted data analysis within restraints of mass accuracy (&lt;10 ppm) and RT shift (&lt;0.3 min). MSstats was also used to calculate fold changes of SB:SA for features quantified by untargeted data analysis. Features with fold-change &gt;2 or &lt;0.5 (p&lt;0.05, n=4) were selected as discriminating markers.</p>	<p>These markers were filtered to match compounds registered in a Traditional Chinese Medicine database (TCMDB) within restraints of accurate mass (&lt;10 ppm) and isotope envelop (&lt;15% deviation).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Column type;Column model;Chromatography Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wenqing	Zhucui	Yan
+Study Person First Name	Shui	Li	Lu
+Study Person Mid Initials			
+Study Person Email	shuiwq@shanghaitech.edu.cn	lizhucuicas@163.com	luyan1@shanghaitech.edu.cn
+Study Person Phone	+86-21-20685005	+86-21-20685005	+86-21-20685005
+Study Person Fax	+86-21-54201292	+86-21-54201292	+86-21-54201292
+Study Person Address	393 Middle Huaxia Road, Pudong, Shanghai, 201210	393 Middle Huaxia Road, Pudong, Shanghai, 201210	393 Middle Huaxia Road, Pudong, Shanghai, 201210
+Study Person Affiliation	iHuman Institute	iHuman Institute	iHuman Institute
+Study Person Roles	PI	Student	Student
+Study Person Roles Term Accession Number			
+Study Person Roles Term Source REF			

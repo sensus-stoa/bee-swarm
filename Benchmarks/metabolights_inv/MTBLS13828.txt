@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MSIO	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.86.0		1.0.1	2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13828
+Investigation Title	Succinate drives macrophage inflammation by promoting GPR91 mitochondrial signaling in rheumatoid arthritis
+Investigation Description	
+Investigation Submission Date	2026-02-03
+Investigation Public Release Date	2026-02-05
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13828
+Study Title	Succinate drives macrophage inflammation by promoting GPR91 mitochondrial signaling in rheumatoid arthritis
+Study Description	<p _msttexthash='40138319' _msthash='479'>Succinate is implicated in rheumatoid arthritis (RA) and other inflammatory diseases via its receptor, G protein-coupled receptor 91 (GPR91). Despite its therapeutic potential, conflicting reports on its inflammatory roles have hindered GPR91-targeted treatments. Here, we report that the effects of succinate are biphasic and concentration-dependent. At physiological levels, membrane-localized GPR91 promotes M2 polarization through Gq-mediated activation of phospholipase C and subsequent intracellular calcium mobilization. In RA, elevated succinate induces GPR91 internalization and mitochondrial translocation, thereby disrupting Gq signaling. Mechanistically, mitochondrial GPR91 recruits Gs proteins and, together with intracellular succinate, activates the cyclic adenosine monophosphate (cAMP)-protein kinase (PK)-A pathway. PKA then phosphorylates ctidine/uridine monophosphate kinase 2 at Ser404, stabilizing it to enhance mitochondrial DNA (mtDNA) synthesis. Newly synthesized mtDNA is oxidized (forming ox-mtDNA) and released into the cytosol, activating the cyclic GMP-AMP synthase-stimulator of interferon genes pathway to drive macrophage inflammation. Myeloid-specific GPR91 deletion or inhibition of intracellular succinate accumulation alleviates arthritis in mice. This study reveals that GPR91 reprograms signaling via subcellular relocation, uncovering a novel therapeutic strategy for autoimmune diseases.</p>
+Study Submission Date	2026-02-03
+Study Public Release Date	2026-02-05
+Study File Name	s_MTBLS13828.txt
+Comment[Created At]	2026-02-03T05:12:50.141183
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	succinate	rheumatoid arthritis	macrophage
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHEBI_26806	http://www.ebi.ac.uk/efo/EFO_0000685	http://purl.obolibrary.org/obo/CL_0000235
+Study Design Type Term Source REF	MSIO	EFO	EFO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Wankang Zhang, Luping Wang, Yingjie Zhao, Yao Mu, Lei Qiu, Xinyu Feng, Yueye Wang, Jiewen Zhao, Yan Chang, Wei Wei, Xuezhi Yang
+Study Publication Title	Succinate drives macrophage inflammation by promoting GPR91 mitochondrial signaling in rheumatoid arthritis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13828_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Monocytes were isolated from peripheral blood and induced to become macrophages</p>	<p>The sample extracts were analyzed using an LC-ESI-MS/MS system ((Waters ACQUITY H-ClassD, https://www.waters.com/nextgen/cn/zh.html; MS, QTRAP® 6500+ System,&nbsp;https://sciex.com&nbsp;/). The analytical conditions were as follows.</p><p>Amide method: HPLC: column, ACQUITY UPLC BEH Amide (i.d.2.1×100 mm, 1.7 μm); solvent system, water with 10mM Ammonium acetate and 0.3% Ammonium hydroxide (A), 90% acetonitrile/water (V/V)(B); The gradient was started at 95% B (0-1.2 min), decreased to 70% B (8 min),50% B (9-11 min), finaly ramped back to 95% B (11.1-15 min); flow rate, 0.4 mL/min; temperature, 40°C; injection volume: 2 μL.</p>	<p>All those metobolites were detected by (http://www.metware.cn/) based on the AB Sciex QTRAP 6500 LC-MS/MS platform</p>	<p>After the sample was thawed the sample was vortexd for 10 seconds.50 μL of the sample was transferred to a centrifuge tube, and mixed with 250 μL of 20% acetonitrile/methanol, vortexed for 3 minutes, centrifuged at 12000 r/min for 10 min at 4°C. Take 250 μL of supernatant into a new centrifuge tube and place the supernatant in -20°C refrigerator for 30 min. Then the supernatant was centrifuged at 12000 r/min for 10 min at 4°C. After centrifugation, transfer 180 μL of the supernatant through Protein Precipitation Plate for further LC-MS analysis.</p>	<p>Linear ion trap (LIT) and triple quadrupole (QQQ) scans were acquired on a triple quadrupole-linear ion trap mass spectrometer (QTRAP), QTRAP® 6500+ LC-MS/MS System, equipped with an ESI Turbo Ion-Spray interface, operating in both positive and negative ion mode and controlled by Analyst 1.6.3 software (Sciex). The ESI source operation parameters were as follows: ion source, ESI+/-; source temperature 550 ℃; ion spray voltage (IS) 5500 V(Positive),-4500 V(Negative); curtain gas (CUR) was set at 35 psi, respectively. Energy and its metabolites were analyzed using scheduled multiple reaction monitoring (MRM). Data acquisitions were performed using Analyst 1.6.3 software (Sciex). Multiquant 3.0.3 software (Sciex) was used to quantify all metabolites. Mass spectrometer parameters including the declustering potentials (DP) and collision energies (CE) for individual MRM transitions were done with further DP and CE optimization. A specific set of MRM transitions were monitored for each period according to the metabolites eluted within this period.</p>	<p>Identified metabolites were annotated using KEGG compound database (http://www.kegg.jp/kegg/compound/), annotated metabolites were then mapped to KEGG Pathway database (http://www.kegg.jp/kegg/pathway.html). Pathways with significantly regulated metabolites mapped to were then fed into MSEA (metabolite sets enrichment analysis), their significance was determined by hypergeometric tests P-Values.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yang	Zhang	Wang	zhao	Mu	Qiu	Feng	Wang	Zhao	Chang	Wei
+Study Person First Name	Xuezhi	Wankang	luping	yingjie	yao	lei	xinyu	yueye	jiemin	yan	wei
+Study Person Mid Initials											
+Study Person Email	yangxuezhi@ahmu.edu.cn	1571421463@qq.com									
+Study Person Phone											
+Study Person Fax											
+Study Person Address	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81	Anhui Province, Hefei City, Shushan District, Meishan Road No. 81
+Study Person Affiliation	Anhui Medical University	Anhui Medical University	Anhui Medical University	Second Hospital of Anhui Medical University	Anhui Medical University	Anhui Medical University	Anhui Medical University	Anhui Medical University	Anhui Medical University	Anhui Medical University	Anhui Medical University
+Study Person Roles	Principal Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/047aw1y82	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968	https://ror.org/03xb04968

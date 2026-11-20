@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	MTBLS	SIO	CHMO	NCIT	BTO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/BTO
+Term Source Version	29	132	1				
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology	User defined terms		Chemical Methods Ontology	National Cancer Institute Thesaurus	BRENDA Tissue and Enzyme Source Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS4895
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-05-16
+Investigation Public Release Date	2023-07-17
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS4895
+Study Title	Alignment of multiple metabolomics LC-MS datasets from disparate diseases to reveal fever-associated metabolites
+Study Description	<p>Acute febrile illnesses are still a major cause of mortality and morbidity globally, particularly in low to middle income countries. The aim of this study was to determine any possible metabolic commonalities of patients infected with disparate pathogens that cause fever. Three liquid chromatography-mass spectrometry (LC-MS) datasets investigating the metabolic effects of malaria, leishmaniasis and Zika virus infection were used. The retention time (RT) drift between the datasets was determined using landmarks obtained from the internal standards generally used in the quality control of the LC-MS experiments. Fitted Gaussian Process models (GPs) were used to perform a high level correction of the RT drift between the experiments, which was followed by standard peakset alignment between the samples with corrected RTs of the three LC-MS datasets. Statistical analysis, annotation and pathway analysis of the integrated peaksets were subsequently performed. Metabolic dysregulation patterns common across the datasets were identified, with kynurenine pathway being the most affected pathway between all three fever-associated datasets.</p>
+Study Submission Date	2022-05-16
+Study Public Release Date	2023-07-17
+Study File Name	s_MTBLS4895.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Zika Virus	malaria	visceral Leishmaniasis	Fever-associated infectious diseases	untargeted metabolites	Glasgow Polyomics	high-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C128553	http://www.ebi.ac.uk/efo/EFO_0001068	http://www.ebi.ac.uk/efo/EFO_0005045	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	NCIT	EFO	EFO	MTBLS	MTBLS	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37486920
+Study Publication DOI	10.1371/journal.pntd.0011133
+Study Publication Author List	Năstase Ana-Maria, Barrett Michael P., Cárdenas Washington B., Cordeiro Fernanda Bertuccez, Zambrano Mildred, Andrade Joyce, Chang Juan, Regato Mary, Carrillo Eugenia, Botana Laura, Moreno Javier, Regnault Clement, Milne Kathryn, Spence Philip J., Rowe J. Alexandra, Rogers Simon
+Study Publication Title	Alignment of multiple metabolomics LC-MS datasets from disparate diseases to reveal fever-associated metabolites
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Dataset	Infection
+Study Factor Type	dataset	infection
+Study Factor Type Term Accession Number	http://semanticscience.org/resource/SIO_000089	http://www.ebi.ac.uk/efo/EFO_0000544
+Study Factor Type Term Source REF	SIO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS4895_LC-MS_zika_negative_hilic_metabolite_profiling.txt	a_MTBLS4895_LC-MS_zika_positive_hilic_metabolite_profiling.txt	a_MTBLS4895_LC-MS_malaria_positive_hilic_metabolite_profiling.txt	a_MTBLS4895_LC-MS_malaria_negative_hilic_metabolite_profiling.txt	a_MTBLS4895_LC-MS_leishmaniasis_positive_hilic_metabolite_profiling.txt	a_MTBLS4895_LC-MS_leishmaniasis_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Datasets</strong></p><p>Three LC-MS datasets - DZ, DM, DV L - analysed at Glasgow Polyomics metabolomics facility (University of Glasgow, UK) were used for the cross-experimental integration in this study. Detailed information regarding the sample collection process for each dataset is included in the Supporting Information (<strong>File S1</strong>) in the paper associated with this study. All three experiments were designed for detecting the differences between the serum metabolic profiles of healthy controls and infected patients diagnosed by gold-standard methods. In total, there were 74 samples (37 controls and 37 disease samples). Detailed information about each LC-MS experiment is presented in <strong>Table 1</strong> in the paper associated with this study.</p><p><br></p><p><strong>Table 1</strong>: Information about each LC-MS experiment, including the disease studied, type of study, number of controls and patients, LC-MS platform used, date when the samples from the LC-MS experiment were run and availability of fragmentation (MS2) data, are presented.</p><p><br></p><p>Infectious Disease | Zika virus<strong>[1]</strong> | Malaria<strong>[2]</strong> | Visceral Leishmaniasis<strong>[3]</strong></p><p>Study Type | Case-control | Intervention <strong> </strong>Case-control</p><p>LC Column/MS Platform | pHILIC/Q-Exactive | pHILIC/Q-Exactive | pHILIC/Q-Exactive</p><p>LC-MS Run Length | 26 min | 26 min | 46 min</p><p>Date Analysed | 2018 | 2016 | 2018</p><p>Healthy Controls | 10 | 7 | 20</p><p>Infected Patients | 10 | 7 | 20</p><p>Internal Standards Sets | 3 | 3 | 3</p><p>MS2 data | Yes | Yes | Yes</p><p><br></p><p><strong>Zika dataset[1] (DZ):</strong></p><p>For DZ, patients included in the Zika virus group had presented to hospital seeking assistance for febrile symptoms confirmed as Zika virus infection by PCR (n=10). The healthy control group was composed of women attending their routine prenatal care (n=10). Samples from all participants were collected by using a red cap vacuum blood tube of 4 mL, without clot activator. After blood collection, the tubes were maintained in the rack, at room temperature for 30 min. After this time, samples were maintained at 4 °C until centrifugation (which was performed in less than 5 h). Centrifugation was carried out at 2000 x g for 10 min. Serum samples were then placed in 1.5 microtubes and stored at -80 °C until metabolites extraction.</p><p><br></p><p><strong>Malaria dataset[2] (DM) - MTBLS1188: </strong></p><p>At each sampling timepoint, 14 mL blood volumes were collected into lithium heparin vacutainers (Grenier Bio-One) for isolation of plasma, by first transferring blood to pre-prepared Leucosep tubes (Grenier Bio-one) containing 15 mL of Lymphoprep (Axis Shields), and centrifuging at 1000 x g for 13 min at room temperature. Following centrifugation, 2 mL of the isolated plasma fraction was collected and snap-frozen on dry ice for longer-term storage at -80 °C.</p><p><br></p><p><strong>Leishmaniasis dataset[3] (DV L):</strong></p><p>For DV L, plasma was taken from 20 adult patients from Fuenlabrada (Madrid, Spain) diagnosed with visceral leishmaniasis at the Hospital Universitario de Fuenlabrada between January 2013 and June 2015. Blood samples were collected during the period of active disease and infection by Leishmania infantum was confirmed by Leishmania specific nested PCR; the presence of Leishmania-specific plasma antibodies were determined by rK39 immunochromatographic test (Inbios, USA) and indirect immunofluorecence test. Data obtained were compared with those of 20 matched healthy controls obtained from volunteers at the Blood Bank of the Hospital Universitario de Fuenlabrada.</p><p><br></p><p><strong>LC-MS metabolomics</strong></p><p>Samples were taken from 3 separate LC-MS studies into different infections with pathogens associated with febrile disease. The experiments were run at different time points (<strong>Table 1</strong>) using the same LC-MS platform. Thermo Orbitrap QExactive (Thermo Fisher Scientific) mass spectrometer coupled with a Dionex UltiMate 3000 RSLC system (Thermo Fisher Scientific, Hemel Hempstead, UK) using a ZIC-pHILIC column (150 mm x 4.6 mm, 5 μm column, Merck SeQuant). While the same flow rate was used for all three datasets, the length of the run differed for DV L, which lasted longer than the other two datasets. Data from both positive (+ve) and negative (-ve) electrospray ionisation (ESI) mode was obtained.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Jarrin EP, Cordeiro FB, Medranda WC, Barrett M, Zambrano M, Regato M. A Machine Learning-Based algorithm for the assessment of clinical metabolomic fingerprints in Zika virus disease. In2019 IEEE Latin American Conference on Computational Intelligence (LA-CCI) 2019 Nov 11 (pp. 1-6). IEEE.</p><p><strong>[2]</strong> Milne K, Ivens A, Reid AJ, Lotkowska ME, O'Toole A, Sankaranarayanan G, Munoz Sandoval D, Nahrendorf W, Regnault C, Edwards NJ, Silk SE, Payne RO, Minassian AM, Venkatraman N, Sanders MJ, Hill AV, Barrett M, Berriman M, Draper SJ, Rowe JA, Spence PJ. Mapping immune variation and&nbsp;<em>var</em>&nbsp;gene switching in naive hosts infected with&nbsp;<em>Plasmodium falciparum</em>. Elife. 2021 Mar 2;10:e62800. doi:10.7554/eLife.62800. PMID:33648633.</p><p><strong>[3]</strong> Botana L, Matía B, San Martin JV, Romero-Maté A, Castro A, Molina L, Fernandez L, Ibarra-Meneses A, Aguado M, Sánchez C, Horrillo L, Chicharro C, Nieto J, Ortega S, Ruiz-Giardin JM, Carrillo E, Moreno J. Cellular Markers of Active Disease and Cure in Different Forms of&nbsp;<em>Leishmania infantum</em>-Induced Disease. Front Cell Infect Microbiol. 2018 Nov 13;8:381. doi:10.3389/fcimb.2018.00381. PMID:30483480.</p>	<p>Plasma samples were prepared for Liquid Chromatography-Mass Spectrometry (LC-MS) by diluting 25 μL of sample in 1000 μL of 4 °C (HLPC grade) chloroform/methanol/water (1:2:1 mix ratio), vortexing for 5 min and centrifugation for 3 min at 13,000 x g (at 4 °C). Following centrifugation, 200 μL volumes of supernatant were transferred into pre-labelled 1.5 mL cryovials for storage at -80 °C until use. For quality control purposes, a pooled sample was also prepared by combining 10 μL of each test plasma sample. Once mixed, 25 μL of this pooled sample was diluted in 1000 μL of 4 °C chloroform/methanol/water (1:2:1 mix ratio), for processing as described.</p><p><br></p><p>As part of the quality control across each experiment, 3 sets of internal standard mixtures which include compounds that cover a broad range of metabolic pathways such as amino acid metabolism, central carbon metabolism and nucleotide metabolism were run twice, before and after the cohort of samples was run. Detailed information about the internal standards used during the LC-MS experiments is included in the Supporting Information (<strong>Table S1</strong>) in the paper associated with this study.</p>	<p>Hydrophilic interaction liquid chromatography (HILIC) was carried out on a Dionex UltiMate 3000 RSLC system (Thermo Fisher Scientific, Hemel Hempstead, UK) using a ZIC-pHILIC column (150 mm x 4.6 mm, 5 μm column, Merck Sequant). The column was maintained at 30 °C and samples were eluted with a linear gradient (20 mM ammonium carbonate in water (A) and acetonitrile (B)) over 26 min at a flow rate of 0.3 mL/min as follows: 0 min, 20% A; 15 min, 80% A; 15 min, 95% A; 17 min, 95% A; 17 min, 20% A; 24 min, 20% A. The injection volume was 10 μL and samples were maintained at 5 °C prior to injection.</p>	<p>A Thermo Orbitrap Q Exactive (Thermo Fisher Scientific) was operated in polarity switching mode and the MS settings were as follows: Resolution, 70,000; AGC, 1e6; m/z range, 70-1050; sheath gas, 40; Auxiliary gas, 5; sweep gas, 1; Probe temperature, 150 °C; Capillary temperature, 320 °C. For positive mode ionisation: source voltage, +3.8 kV; S-Lens RF Level, 30.00; S-Lens Voltage, -25 V; Skimmer Voltage, -15 V; Inject Flatopole Offset, -8 V; Bent Flatapole DC, -6 V. For negative mode ionisation: source voltage, -3.8 kV. The calibration mass range was extended to cover small metabolites by inclusion of low-mass calibrants with the standard Thermo calmix masses (below m/z 138), butylamine (C4H11N1) for positive ion electrospray ionisation (PIESI) mode (m/z 74.096426) and COF3 for negative ion electospray ionisation (NIESI) mode (m/z 84.9906726). To enhance calibration stability, lock-mass correction was also applied to each analytical run shown below. Positive Mode Lock masses: Number of Lock Masses: 3; LockMass no.1: 83.0604 m/z; LockMass no.2: 149.0233 m/z; LockMass no.3: 445.1200 m/z. Negative Mode Lock mases: Number of Lock Masses: 1; LockMass no.1: 89.0244 m/z.</p><p><br></p><p>Fragmentation of the pooled samples within each experiment was performed using higher energy C-trap dissociation (HCD) at a normalised collision energy (NCE) of 60. These were analysed with TopN data-dependent acquisition (DDA) fragmentation strategies, resulting in tandem mass spectrometry (MS2) data only for some of the observed ions.</p>	<p>Instrument .raw files were converted to positive and negative ionisation mode .mzXML files. These files were then analysed using MZmine2 (peak picking and alignment) and python (RT drift correction - using Gaussian Process regression modelling).</p>	<p>The levels of reliability of the spectral assignment to metabolites, as defined by the Metabolomics Standard Initiative, are as follows - 'MSI:1 (identified metabolites)': high resolution mass (3 ppm) and retention time (5%) matched to an authentic standard; 'MSI:2 (putatively annotated compounds)': high resolution mass matched to a public library (HMDB). Mummichog software was also used for compound annotation.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Năstase	Barrett	Cárdenas	Cordeiro	Zambrano	Andrade	Chang	Regato	Carrillo	Botana	Moreno	Regnault	Milne	Spence	Rowe	Rogers
+Study Person First Name	Ana-Maria	Michael	Washington	Fernanda Bertuccez	Mildred	Joyce	Juan	Mary	Eugenia	Laura	Javier	Clement	Kathryn	Philip	Alexandra	Simon
+Study Person Mid Initials																
+Study Person Email																
+Study Person Phone																
+Study Person Fax																
+Study Person Address																
+Study Person Affiliation																
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

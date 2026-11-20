@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MDM	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl		http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	
+Term Source Version												
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS10565
+Investigation Title	Bridging Targeted (Zeno MRM-HR) and Untargeted (SWATH) LC–HRMS in a Single Run for Sensitive Exposomics
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-08-09
+Investigation Public Release Date	2025-08-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10565
+Study Title	Bridging Targeted (Zeno MRM-HR) and Untargeted (SWATH) LC–HRMS in a Single Run for Sensitive Exposomics
+Study Description	<p>Traditionally, chemical exposure has been assessed by low-resolution mass spectrometry via targeted approaches due to the typically extremely low concentration of such compounds in biological samples. Nevertheless, untargeted approaches are now becoming a promising tool for a broader investigation of the exposome, covering additional compounds, their biotransformation products, and possible metabolic alterations (metabolomics). However, despite broad compound coverage, untargeted metabolomics still underperforms in ultratrace biomonitoring analysis. To overcome these analytical limitations, we present the development of the first combined targeted/untargeted LC–MS method, merging MRM-HR and SWATH experiments in one analytical run, making use of Zeno technology for improved sensitivity. Multiple reaction monitoring transitions were optimized for 135 highly diverse toxicants including mycotoxins, plasticizers, PFAS, personal care products ingredients, and industrial side products as well as potentially beneficial xenobiotics such as phytohormones. As a proof of concept, standard reference materials of human plasma (SRM 1950) and serum (SRM 1958) were analyzed with both Zeno MRM-HR + SWATH and SWATH-only methodologies. Results demonstrated a significant increase in sensitivity represented by the detection of lower concentration levels in spiked SRM materials (mean value: 2.2 and 3 times lower concentrations for SRMs 1950 and 1958, respectively). Overall, the detection frequency was increased by 68% (19 to 32 positive detections) in the MRM-HR + SWATH mode compared to the SWATH-only. This work presents a promising avenue for addressing the outstanding key challenge in the small-molecule omics field: finding a balance between high sensitivity and broad chemical coverage. It was demonstrated for exposomic applications but might be transferred to lipidomics and metabolomics workflows.</p>
+Study Submission Date	2024-08-09
+Study Public Release Date	2025-08-28
+Study File Name	s_MTBLS10565.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-08-29
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	mass spectrometry	time-of-flight mass spectrometry	Exposome	targeted metabolites	untargeted metabolites	SWATH MS	Zeno MRM-HR
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000056	http://id.nlm.nih.gov/mesh/D000081413	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/PRIDE_0000447	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MDM	MTBLS	MTBLS	PRIDE	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	39056508
+Study Publication DOI	10.1021/acs.analchem.4c01630
+Study Publication Author List	Vinicius Verri Hernandes, Benedikt Warth.
+Study Publication Title	Bridging Targeted (Zeno MRM-HR) and Untargeted (SWATH) LC-HRMS in a Single Run for Sensitive Exposomics.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample matrix
+Study Factor Type	matrix
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002743
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10565_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10565_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS10565_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt	a_MTBLS10565_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Multicomponent standard solutions containing 135 compounds (Table S1) were prepared at six different concentrations levels. The selection of compounds was intended to represent a highly diverse and commonly observed chemical exposure panel, considering factors such as chemical classes, origin of exposure, exposure route, among others. In addition, the selection of compounds was based on a previous work published by our group for a multiclass targeted methodology. (12) Concentrations were compound-dependent and are described in detail in Table S1.</p><p><br></p><p>Standard reference materials (SRM 1950 and 1958 from NIST) were purchased from NIST and stored at −80 °C. In total, nine replicates of each SRMs were prepared following the protocol previously described by Jamnik et al. (2022).</p><p><br></p><p>Jamnik, T.; Flasch, M.; Braun, D.; Fareed, Y.; Wasinger, D.; Seki, D.; Berry, D.; Berger, A.; Wisgrill, L.; Warth, B. Next-Generation Biomonitoring of the Early-Life Chemical Exposome in Neonatal and Infant Development. Nat. Commun. 2022, 13 (1), 2653,&nbsp;DOI: 10.1038/s41467-022-30204-y</p>	<p>For extraction, 30 μL of both SRMs were mixed with 120 μL of extraction solution (ACN/MeOH 50:50, v/v) in Eppendorf tubes and sonicated for 10 min on ice. The extraction solution contained labeled IS (Table S2) for accounting for the total variation (sample preparation + instrumental analysis). A 2 h protein precipitation step was performed at −20 °C afterward, followed by centrifugation for 10 min at 18,000<em>g</em> at 4 °C. The supernatant (120 μL) was transferred to a new Eppendorf tube and dried under vacuum at 4 °C overnight. From the nine replicates, three were reconstituted using 120 μL of ACN/H2O 10:90, v/v. The additional six replicates were used to build a matrix-matched calibration curve with the same solvent composition and spiked at the same levels as the standard solutions in solvent. Samples were vortexed for 10 min after reconstitution and centrifuged at 18,000<em>g</em> and 4 °C. Finally, 100 μL of the supernatant was transferred to an amber glass vial for data acquisition. The sample preparation protocol was chosen to maximize chemical coverage (Gu et al. (2023)).</p><p><br></p><p>Gu, Y.; Peach, J. T.; Warth, B. Sample Preparation Strategies for Mass Spectrometry Analysis in Human Exposome Research: Current Status and Future Perspectives. TrAC, Trends Anal. Chem. 2023, 166, 117151,&nbsp;DOI: 10.1016/j.trac.2023.117151</p>	<p>An Infinity II 1290 LC system (Agilent) coupled to a SCIEX ZenoTOF 7600 system with a Turbo V source was used. Chromatographic separation was based on the same method described by Jamnik et al. (2022). In summary, a 20 min reversed-phase gradient was employed on an HSS T3 column (Waters), with a flow rate of 0.4 mL/min and an injection volume of 5 μL.</p><p><br></p><p>Jamnik, T.; Flasch, M.; Braun, D.; Fareed, Y.; Wasinger, D.; Seki, D.; Berry, D.; Berger, A.; Wisgrill, L.; Warth, B. Next-Generation Biomonitoring of the Early-Life Chemical Exposome in Neonatal and Infant Development. Nat. Commun. 2022, 13 (1), 2653,&nbsp;DOI: 10.1038/s41467-022-30204-y</p>	<p>LC–MS data was acquired for the Zeno MRM-HR + SWATH methodology as well as for a SWATH-only method. Ion source parameters were standardized across both methodologies as follows: GS1-50 psi; GS2-50 psi; curtain gas-35 psi; CAD gas-9; and temperature −550 °C. In both cases, MS1 data were acquired from m/z 100 to 1000, with declustering potential (DP) at 80 V (−80 V for negative mode) and collision energy (CE) at 10 V (−10 V for negative mode). Spray voltage was set at 5500 V for the positive ionization mode (ESI+) and −4500 V for the negative ionization mode (ESI–).</p><p><br></p><p>For the developed Zeno MRM-HR + SWATH data, accumulation time was set at 0.05 s for individual MRM transitions and at 0.02 s for each SWATH window (n = 10). SWATH windows were optimized individually for each SRM using the SWATH windows optimizer provided by SCIEX. Both SWATH-only and MRM-HR + SWATH methods had the exact same parameter for SWATH acquisition, including windows range, DP (80 or −80 V), and CE, as described in detail in Table S3. For the MRM experiment, the Start/Stop option was selected, with the TOF Start Mass at m/z 50 and the TOF Stop Mass set as compound-dependent by adding 2 m/z units to precursor m/z. Retention time windows, declustering potentials, and collision energies were adjusted for each compound (see the Results and Discussion section), and Zeno Pulsing was activated at a threshold of 8000 cps.</p><p><br></p><p>To allow for a point of comparison, the cycle time for the SWATH-only method was adjusted to a value similar to the maximum scan time for the MRM-HR + SWATH method. To evaluate possible differences in increased accumulation time for MS1 or SWATH windows, two different approaches were taken. For the Zeno MRM-HR + SWATH in the negative mode, accumulation time for MS1 was increased from 0.05 to 0.15 s (for both SRM 1958 and SRM 1950). For the positive mode, on the other hand, MS1 accumulation time was kept the same as for the MRM-HR + SWATH method (0.05 s), and instead, accumulation times for SWATH-only windows were increased such that the total cycle time would compare to the maximum cycle time for MRM-HR + SWATH. For instance, the maximum scan time for the Zeno MRM-HR + SWATH method was 0.435 s, while the SWATH-only total cycle time was 0.25 s (0.05 s for MS1 and 0.02 s for each of the 10 SWATH window). Therefore, at the maximum number of overlapping MRM windows, the total cycle time would be 0.685 s. Based on that, the SWATH-only method for positive mode was set as total scan time of 0.643 by keeping MS1 acquisition at 0.05 s and increasing SWATH windows accumulation time from 0.02 to 0.05 s.</p><p><br></p><p><strong>Compound Optimization</strong></p><p>Two key parameters, namely, CE and DP (a voltage applied to the orifice to minimize solvent clusters and help on desolvation of ions) were optimized by either direct infusion (DP) or using an LC–MS method (CE). For DP, submixes of all compounds at either 10 or 100 ng/mL (depending on ionization efficiency) of all standards were constantly injected in the source using a syringe pump set at 5 μL/min. Automatic DP optimization was performed in SCIEX OS in the range from 10 to 300 V. For CE optimization, MS2 spectra were first acquired using DDA with the inclusion list for each of the submixes at in the range of 100–1000 ng/mL. MS2 spectra were acquired using the CE spread (CES) at 35 ± 15 V. This allows for a combined (and representative) spectra of three collision energies: 20, 35, and 50 V. Next, the five most intense fragments (or fragments known to work best in our targeted approach using low-resolution instruments (13)) were selected for further optimization. Finally, an MRM-HR method was created with all selected transitions, and submixes were injected multiple times using the above-described LC–MS method with one specific CE for each injection, in the range from 15 to 60 V, with steps of 5 V (total of nine injections per submix). Peak areas were used to select the best fragment and CE (Table S1).</p>	<p>Targeted data analysis (MRM-HR) was performed using SCIEX OS version 3.0.0.3339. Regardless of the MS mode of acquisition, extracted ion chromatograms for SWATH-only (MS1 level) and MRM + SWATH (MS2 level) were extracted using the default window of 0.02 Da. Chromatograms were integrated by the AutoPeak method and smoothed using a noise filter algorithm with the 'Low' option. Concentrations were calculated for all compounds detected in nonspiked SRMs by standard addition method.</p><p><br></p><p>For quality control, peak areas of the internal standards in the ESI– mode were inspected in the MS1 mode for both SWATH-only and MRM-HR + SWATH. From the labeled IS employed, none was found to be ionized in ESI+ so relative standard deviation values (RSD) were only estimated to be similar to those in ESI–. Peak areas for the MRM + SWATH mode have presented higher RSD (Table S4), which may be explained by the lower values for peak areas. These may additionally be related to the fact that accumulation time at MS1 for SWATH-only in ESI– mode was set three times longer than that for MRM-HR + SWATH, therefore providing better sensitivity. Nevertheless, it is also important to highlight that this variation is likely to be considerably smaller for the MS2 data in MRM-HR + SWATH due to the increased peak areas provided by the Zeno pulsing technique, which are, in fact, the data presented and evaluated along this work. In addition, labeled IS were added to the extraction solution and, therefore, account for the sum of the variances of both extraction process and analytical run. For PFOS, for example, recovery at a very low concentration was reported (13) as 56 ± 25%, representing 50% of variance only related to sample preparation. As the average RSD was significantly below this value, we may infer that the analytical variance was minimal. Total variance for recovery was also reported (13) for genistein and estradiol at 30 and 14%, respectively, while RSD in our analysis were at 24 and 23% for MRM-HR + SWATH data.</p>	<p>MS2 matching for both exogenous (xenobiotics) and endogenous (metabolites) compounds was performed in MS-DIAL (15) (version 5.2.240218.2) against Mass Bank of North America (MoNA) and MS-DIAL spectral libraries. For ESI+, LC–MS/MS Positive Mode (MoNA - 99,260 spectra) and ESI(+)–MS/MS from authentic standards (MS-DIAL, 324,191 spectra) were used. For ESI–, LC–MS/MS Negative Mode (MoNA - 47,058 spectra) and ESI(−)-MS/MS from authentic standards (MS-DIAL-44,669 spectra) were employed. A spectral match score of 70% was used as a threshold, with no limitation for minimum dot and reverse dot-product scores (since data were manually curated afterward). All method parameters from MS-Dial (from peak detection to identification) are described in Table S5.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Verri Hernandes	Warth
+Study Person First Name	Vinicius	Benedikt
+Study Person Mid Initials		
+Study Person Email	viniciusveri@gmail.com	benedikt.warth@univie.ac.at
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

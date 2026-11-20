@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MONDO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mondo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version								
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Mondo Disease Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12786
+Investigation Title	Human basal cell carcinoma samples analysed by laser desorption rapid evaporative ionisation mass spectrometry (LD-REIMS) imaging
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-28
+Investigation Public Release Date	2025-07-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12786
+Study Title	Human basal cell carcinoma samples analysed by laser desorption rapid evaporative ionisation mass spectrometry (LD-REIMS) imaging
+Study Description	<p>Laser ablation rapid evaporative ionisation mass spectrometry (LA-REIMS) was used to analyse human basal cell carcinoma (BCC) samples. 14 samples are presented here, along with H&amp;E-stained histological images.</p>
+Study Submission Date	2025-07-28
+Study Public Release Date	2025-07-28
+Study File Name	s_MTBLS12786.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-07-28
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	imaging mass spectrometry	basal cell carcinoma	cancer	laser desorption-ionisation mass spectrometry	ambient ionisation mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000053	http://www.ebi.ac.uk/efo/EFO_0004193	http://purl.obolibrary.org/obo/MONDO_0004992	http://purl.obolibrary.org/obo/CHMO_0000515	http://purl.obolibrary.org/obo/CHMO_0000710
+Study Design Type Term Source REF	CHMO	EFO	MONDO	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Lauritz F. Brorsen, James S. McKenzie, Daniel Simon, Helen Huang, Martin Glud, Uwe Paasch, Merete Haedersdal, Zoltan Takats, Christian Janfelt, Catharina M. Lerche
+Study Publication Title	Metabolomic recognition of basal cell carcinoma in patients using laser-assisted REIMS and machine learning
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Patient
+Study Factor Type	Patient
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16960
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12786_MSImaging___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Patients with a clinical diagnosis of BCC were recruited at Bispebjerg Hospital, Department of Dermatology between 2021 and 2023. Inclusion criteria were patients presenting with BCC and age over 18 years. Immunosuppressed patients were excluded in the study and participants were not reimbursed. Written informed consent for the present study was obtained from all participants. This study was conducted in accordance with the Declaration of Helsinki. This study was approved by the Danish Research Ethics Committee (H-20009236), the Danish Knowledge Center for Data Reviews (P-2020-390), and it was registered on ClinicalTrials.gov (NCT06227416).</p>	<p>Moh’s micrographic surgery (MMS) was performed. Excised tissue was immediately snap-frozen, embedded in a mixture of hydroxypropyl methylcellulose and polyvinylpyrrolidone (7.5% : 2.5%) and sectioned at 10 µm on microscope glass slides (Dako Denmark, Glostrup, Denmark)&nbsp;(Dannhorn et al., 2020).</p>	<p>Mass spectrometry data acquisition was carried out on a Waters Xevo G2-XS QToF mass spectrometer equipped with an Ambimass Direct inlet REIMS ion-source prototype. MassLynx v4.1 was used for MS instrument control and High Definition Imaging (HDI) v1.4 was used for data structuring and coordination between the laser and the mass spectrometer. An Opotek Opolette HE2940 tunable laser operated at a wavelength of 2940 nm, pulse width of 5-7 nm, pulse energy of 70 µJ. The beam was focused using an f = 5.95 mm Geltech aspheric lens (Thorlabs) and a spot size of 25-30 µm was achieved on tissue sections.&nbsp;Spectra were acquired in negative ion mode in a&nbsp;m/z&nbsp;range of 50-1200, 0.1 sec scan time, 50 µm pixel sizes. A custom built 2D imaging stage (Prosolia, Thorlabs) was used to perform actuation with a repeat accuracy of 2 µm for the linear stages to ensure robust and reliable imaging performance.</p>	<p>The&nbsp;central section from each block&nbsp;was mounted for H&amp;E staining and an adjacent section was used for LA-REIMS imaging. Section slides were stored at −80 °C.</p>	<p>Waters Raw files were converted to MZ5 format using ProteoWizard msConvert v3.0.24066-8d99481 [1].</p><p><br></p><p>[1] A cross-platform toolkit for mass spectrometry and proteomics. Chambers, M.C., MacLean, B., ... Mallick, P. Nature Biotechnology 30, 918-920 (2012)</p>	<p>The m/z values were matched to entries found in LIPID MAPS and METASPACE. A maximum deviation of ±30 ppm was allowed. Deprotonated and chlorate adducts were considered. As assignment is based only on accurate mass, no differentiation between isobaric/isomeric species is capable.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Sample mounting;Sample preservation;Sectioning instrument;Section thickness;Matrix application;Matrix;Tissue modification	Scan polarity;Scan m/z range;Instrument;Instrument manufacurer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Linescan sequence;Scan pattern;Scan type;Number of scans;Instrument manufacturer	Stain;High-res image;Low-res image	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Parameters Name Term Source REF		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	McKenzie	Brorsen	Simon	Takats	Janfelt	Lerche
+Study Person First Name	James	Lauritz	Daniel	Zoltan	Christian	Catharina
+Study Person Mid Initials	S					M
+Study Person Email	j.mckenzie@imperial.ac.uk			z.takats@imperial.ac.uk	christian.janfelt@sund.ku.dk	Catharina.Margrethe.Lerche@regionh.dk
+Study Person Phone						
+Study Person Fax						
+Study Person Address	Imperial College London	University of Copehagen	Imperial College London	Imperial College London	University of Copenhagen	Department of Dermatology
+Study Person Affiliation	Department of Metabolism, Digestion and Reproduction	Department of Pharmacy	Department of Metabolism, Digestion and Reproduction	Department of Metabolism, Digestion and Reproduction	Department of Pharmacy	Copenhagen University Hospital
+Study Person Roles	Investigator	Investigator	Investigator	Principal Investigator	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

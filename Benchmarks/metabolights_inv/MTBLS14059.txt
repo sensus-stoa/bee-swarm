@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MONDO	MS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.88.0		2026-04-07		2025-12-03	26.02d	2026-03-19	2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14059
+Investigation Title	Semaglutide targets muscle mitochondria to regulate osteoarthritis
+Investigation Description	
+Investigation Submission Date	2026-03-16
+Investigation Public Release Date	2026-05-06
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14059
+Study Title	Semaglutide targets muscle mitochondria to regulate osteoarthritis
+Study Description	<p>Metabolic and inflammatory diseases often coexist, and become important challenges facing global health, and obesity has shown to be a susceptibility factor for osteoarthritis (OA). As a metabolic regulatory drug for lowering blood sugar and body weight, semaglutide has shown additional therapeutic effects in OA, but the underlying mechanism requires further investigation. Here we employed cross-tissue single-cell RNA sequencing (scRNA-seq) analysis, and found that semaglutide significantly improved metabolic disorders in muscle tissue under high-fat diet (HFD) and OA conditions in mice. The results of scRNA-seq and mitochondrial proteomics indicated that semaglutide targeted muscle mitochondria to regulate glutamate metabolism during OA. Intriguingly, intramuscular injection of semaglutide pre-stimulated mitochondria from muscle stem cell could significantly alleviate OA inflammation and pain symptoms. These findings reveal the mitochondrial regulatory mechanism in the muscle-OA axis, and provide a new perspective for the application of semaglutide in OA treatment.</p>
+Study Submission Date	2026-03-16
+Study Public Release Date	2026-05-06
+Study File Name	s_MTBLS14059.txt
+Comment[Created At]	2026-03-11
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-06
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Semaglutide	osteoarthritis	Mitochondria
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C152328	http://purl.obolibrary.org/obo/MONDO_0005178	http://id.nlm.nih.gov/mesh/D008928
+Study Design Type Term Source REF	NCIT	EFO	mesh
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yuchen Tian
+Study Publication Title	Semaglutide targets muscle mitochondria to regulate osteoarthritis
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	HFD	OA	Semaglutide
+Study Factor Type	disease	disease	treatment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0000001	http://purl.obolibrary.org/obo/MONDO_0000001	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	MONDO	MONDO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14059_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14059_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>After separating the muscles, wash them with PBS and then place them in liquid nitrogen</p>	<p>All samples were acquired by the LC-MS system followed machine orders. Firstly, all chromatographic separations were performed using an UltiMate 3000 UPLC System (Thermo Fisher Scientific, Bremen, Germany). An ACQUITY UPLC T3 column (100mm*2.1mm, 1.8μm, Waters, Milford, USA) was used for the reversed phase separation. The column oven was maintained at 40 ° C. The fter, 5mM ammonium acetate and 5mM acetic acid) and solvent B (Acetonitrile). low rate was 0.3 ml/min and the mobile phase consisted of solvent A . </p>	<p>The acquired MS data pretreatments including peak picking, peak grouping, retention time correction, second peak grouping, and annotation of isotopes and adducts was performed using XCMS software. LC−MS raw data files were converted into mzXML format and then processed by the XCMS, CAMERA and metaX toolbox implemented with the R software. Each ion was identified by combining retention time (RT) and m/z data. Intensities of each peaks were recorded</p><p>and a three dimensional matrix containing arbitrarily assigned peak indices (retention time-m/z pairs), sample names (observations) and ion intensity information (variables) was generated.</p>	<p>The collected samples were thawed on ice, and metabolite were extracted with 80% methanol Buffer. Briefly, 50 mg of sample was extracted with 0.5 ml of precooled 80% methanol. The extraction mixture was then stored in 30 min at -20°C. After centrifugation at 20,000 g for 15 min, the supernatants were transferred into new tube to and vacuum dried. The samples were redissolved with 100 μ L 80% methanol and stored at -80 ° C prior to the LC-MS analysis. In</p><p>addition, pooled QC samples were also prepared by combining 10 μ L of each extraction mixture.</p>	<p>A high-resolution tandem mass spectrometer TripleTOF 6600 (SCIEX, Framingham, MA, USA) was used to detect metabolites eluted form the column. The Q-TOF was operated in both positive and negative ion modes. The curtain gas was set 30 PSI, Ion source gas1 was set 60 PSI, Ion source gas2 was set 60 PSI, and an interface heater temperature was 500 ℃.For positive ion mode, the Ionspray voltage floating were set at 5000 V, respectively. For negative ion mode, the Ionspray voltage floating were set at -4500V, respectively. The mass spectrometry data were acquired in IDA mode. The TOF mass range was from 60 to 1200 Da. The survey scans were acquired in 150 ms and as many as 12 product ion scans were collected if exceeding a threshold of 100 counts per second (counts/s) and with a 1+ charge-state. Dynamic exclusion was set for 4 s.During the acquisition, the mass accuracy was calibrated every 20 samples. Furthermore, in order to evaluate the stability of the LC-MS during the whole acquisition, a quality control sample (Pool of all samples) was acquired after every 10 samples.</p>	<p>The online KEGG, HMDB database was used to annotate the metabolites by matching the exact molecular mass data (m/z) of samples with those from database. If a mass difference between observed and the database value was less than 10 ppm, the metabolite would be annotated and the molecular formula of metabolites would further be identified and validated by the isotopic distribution measurements. We also used a in-house fragment spectrum library of metabolites to validate the metabolite identidification.</p><p>Statistical analysis was performed in R (version 4.0.0). The raw protein intensity will be normalized by method 'medium', Hierarchical clustering was performed using pheatmap package. Principal component analysis (PCA) was performed using metaX package. The PLSDA analysis is performed by the R package ropls and the VIP values of each variable are calculated.Correlation analysis was performed by Pearson correlation coefficient of cor package .The three conditions of P Value&lt;0.05, difference multiple &gt;1.2 obtained by T test and VIP calculated by PLSDA analysis simultaneously met the screening of the final metabolites with significant differences..</p><p>Hypergeometric-based enrichment analysis with KEGG Pathway was performed to annotate protein sequences. individually.The software GSEA (v4.1.0) and MSigDB were used for gene set enrichment analysis to determine whether a set of genes in a specific KEGG pathway in different situations. Meeting this condition |NES|&gt;1, NOM p-val&lt;0.05, FDR q-val&lt;0.25 were considered to be significantly different between the two groups. .The network map is drawn according to the pathway where the metabolite is located.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Tian
+Study Person First Name	Yuchen
+Study Person Mid Initials	
+Study Person Email	yctian97s@sjtu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Shanghai Sixth People's Hospital
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

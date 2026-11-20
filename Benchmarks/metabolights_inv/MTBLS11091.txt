@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	CL	OBI	GENEPIO	INO	MTBLS	MS	CHMO	Drug	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/	https://www.ebi.ac.uk/ols4/api	Metabolights	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version	132			29			1.0				
+Term Source Description	Experimental Factor Ontology			Ontology for Biomedical Investigations			User defined terms				
+INVESTIGATION
+Investigation Identifier	MTBLS11091
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-04-11
+Investigation Public Release Date	2025-04-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11091
+Study Title	Dynamic single-cell metabolomics reveals cell-cell interaction between tumor cells and macrophages
+Study Description	<p>Single-cell metabolomics reveals cell heterogeneity and elucidates intracellular molecular mechanisms. However, general concentration measurement of metabolites can only provide a static delineation of metabolomics, lacking the metabolic activity information of biological pathways. Herein, we developed a universal system for dynamic metabolomics by stable isotope tracing at the single-cell level. This system comprises an organic mass cytometry-based single-cell metabolomic platform and an automated metabolite quantification and untargeted metabolic flux data processing platform, providing an integrated workflow for dynamic metabolomics of living single cells. As a proof-of-concept, a total of 40 labeled metabolites were tracked in single breast cancer cells, enabling the global profiling and correlation analysis of metabolic activities across various metabolic pathways, as well as flow analysis of interlaced metabolic networks. The significance of metabolic activity profiling was underscored by a 2-deoxyglucose inhibition model, demonstrating delicate metabolic alteration within single cells which cannot reflected by concentration analysis. Significantly, the system combined with a neural network model successfully enabled the metabolomic profiling of direct co-cultured tumor cells and macrophages. This revealed intricate cell-cell interaction mechanisms within the tumor microenvironment and firstly identified versatile polarization subtypes of tumor-associated macrophages based on their metabolic signatures. Importantly, these findings are in line with the renewed diversity atlas of macrophages from genome features obtained through single-cell RNA-sequencing. The developed system facilitates a comprehensive understanding and opens a new avenue of single-cell metabolomics from both static and dynamic perspectives.</p>
+Study Submission Date	2025-04-11
+Study Public Release Date	2025-04-14
+Study File Name	s_MTBLS11091.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	3
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	single cell	cell-cell interaction
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/GENEPIO_0001587	http://purl.obolibrary.org/obo/INO_0000027
+Study Design Type Term Source REF	MTBLS	GENEPIO	INO
+STUDY PUBLICATIONS
+Study PubMed ID	40379657
+Study Publication DOI	10.1038/s41467-025-59878-w
+Study Publication Author List	Zhang Yi, Shi Mingying, Li Mingxuan, Qin Shaojie, Miao Daiyu, Bai Yu
+Study Publication Title	Dynamic single-cell metabolomics reveals cell-cell interaction between tumor cells and macrophages
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cell culture model	2DG Treatment	Timepoint	Label
+Study Factor Type	treatment	treatment	timepoint	label
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/CHEBI_35209
+Study Factor Type Term Source REF	EFO	EFO	EFO	CHEBI
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11091_DI-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Direct infusion MS - negative
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>MDA-MB-231 cell line and THP-1 cell line were analyzed in this study. MDA-MB-231 cells were cultured in DMEM/high glucose medium supplemented with 10% dFBS, 80 U/mL penicillin, and 80 μg/mL streptomycin. THP-1 cells were cultured with RPMI-1640 medium supplemented with 10% dFBS, 80 U/mL penicillin, and 80 μg/mL streptomycin. All of the cells were cultured in an incubator with 5% CO2 at 37 °C. For co-culture experiments, THP-1 cells were treated with 100 ng/mL phorbol-12-myristate-13-acetate for 48 h for differentiation into macrophages. Subsequently, macrophages were mixed with MDA-MB-231 cells at the ratio of 1:1 and co-cultured for 3 days. For [U-13C]-glucose labeling experiments, when cells were grown to 80% confluence, the unlabeled medium was removed, and cells were washed by PBS for 3 times. Then, glucose-free DMEM with 25 mM [U-13C]-glucose and 10% dFBS was added for isotope labeling.&nbsp;After labeling, the labeling medium was quickly removed, and cells were washed twice by PBS, trypsinized and dispersed in PBS. Cells were quickly placed in the dry ice until&nbsp;PBS was removed by centrifugation and cells were resuspended in 140&nbsp;mM ammonium formate aqueous solution (pH = 7.3) for MS analysis.</p><p><br></p><p>For 2-deoxylglucose (2-DG) treatment experiments, MDA-MB-231 cells were treated with 10 mM 2-DG for different time interval, labeled with isotracer, and collected for MS analysis as depicted above.</p>	<p>Cells were counted and diluted into 1 x 10^4/mL by ammonium formate buffer, followed by detection with MS immediately.</p>	<p>The sample were directly injected and detected by MS using a homemade mass cytometry device. The construction was built refer to CyESI-MS<strong>[1]</strong>. Briefly, the inner capillary (150 μm OD., 50 μm ID.) was used to introduce cell suspension which was driven by a Pressure Injection Cell with Magnetic Stirplate. Then, the inner capillary was wrapped by the middle capillary (360 μm OD., 200 μm ID.) through a metal three-way valve, which was utilized for sheath liquid transportation. High voltage was applied on the sheath liquid by metal valve for electrospray ionization. The sheath gas was also introduced by a three-way valve and wrapped the middle capillary by a poly(ether-ether-ketone) capillary (790 μm OD., 500 μm ID.). At the tip of this device, the outlet of inner capillary was 4 mm shorter than the middle capillary to achieve the fully contact of cell suspension and sheath liquid for metabolites extraction and stable formation of electrospray. The outlet of the middle capillary was stretched out the outer capillary by 2 mm for nebulization and nitrogen served as the sheath gas.&nbsp;</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Yao H, Zhao H, Zhao X, Pan X, Feng J, Xu F, Zhang S, Zhang X. Label-free Mass Cytometry for Unveiling Cellular Metabolic Heterogeneity. Anal Chem. 2019 Aug 6;91(15):9777-9783. doi: 10.1021/acs.analchem.9b01419. Epub 2019 Jul 10. PMID: 31242386.</p>	<p>All mass spectrometry detection was performed on the QE-Orbitrap spectrometer (Thermo Scientific, San Jose, CA) by nanoESI. The MS parameters were set as follows: Scan range = 80-1200 m/z, Ion source capillary temperature = 320 °C, resolution = 35000, AGC target = 1 x 10^6, maximum inject time = 50 ms, microscans = 1 in both positive and negative mode.</p>	<p>The raw MS data was transformed into mzML format by the MSConvert software (ProteoWizard), and then a streamline data processing platform was developed for single-cell essential data processing and isotope tracing.</p>	<p>The characteristic peaks detected in single cells were annotated to metabolites by accurate mass matching with standards in HMDB, local database and MS/MS determined metabolites from population cells (MDA-MB-231) successively. For isotope tracing analysis, peaks with m/z &gt; 663 were filtered out for complex labeling distribution of lipids.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	DI Instrument;Electrospray Ionization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;http://purl.obolibrary.org/obo/NCIT_C19363	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;NCIT	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang	Shi	Li	Qin	Miao	Bai
+Study Person First Name	Yi	Mingying	Mingxuan	Shaojie	Daiyu	Yu
+Study Person Mid Initials						
+Study Person Email	zhangyi2019@pku.edu.cn					yu.bai@pku.edu.cn
+Study Person Phone						010-62758198
+Study Person Fax						
+Study Person Address	Peking University, Beijing, China					Peking University, Beijing, China
+Study Person Affiliation	Peking University					Peking University
+Study Person Roles	Author	Author	Author	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

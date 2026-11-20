@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MMO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/mmo.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.88.0					2025-12-03	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Measurement method ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12889
+Investigation Title	Untargeted metabolomics of long-term drug intervention under standard diet in mice associated with lifespan
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-24
+Investigation Public Release Date	2026-05-07
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12889
+Study Title	Untargeted metabolomics of long-term drug intervention under standard diet in mice associated with lifespan
+Study Description	<p>This study investigates urinary metabolic differences in young mice, aged mice, and aged mice supplemented with long-term drug intervention under standard diet. Untargeted metabolomics was performed using UHPLC-MS/MS in both positive (POS) and negative (NEG) ionization modes. The dataset provides raw and derived data with metadata and protocols, supporting the characterization of metabolic alterations associated with aging and potential drug-related effects on lifespan.</p>
+Study Submission Date	2025-08-24
+Study Public Release Date	2026-05-07
+Study File Name	s_MTBLS12889.txt
+Comment[Created At]	2025-08-11
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-07
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Aging	untargeted metabolites	Mus musculus	Dietary Intervention	Ultra High-performance Liquid Chromatography/Tandem Mass Spectrometry	ultra-performance liquid chromatography	Thermo Scientific Q Exactive Plus	Solvent	urine	experimental blank	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16269	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C45247	http://purl.obolibrary.org/obo/NCIT_C15447	http://purl.obolibrary.org/obo/NCIT_C122176	http://purl.obolibrary.org/obo/MMO_0000720	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000661	http://purl.obolibrary.org/obo/NCIT_C45790	http://purl.obolibrary.org/obo/BTO_0001419		http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	NCIT	MTBLS	NCIT	NCIT	NCIT	MMO	MTBLS	NCIT	BTO		MS
+Comment[Study Design Category]			Organism			Chromatography Instrument	Instrument	Organism part	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Shu-Fang Cheng
+Study Publication Title	Untargeted metabolomics analysis of aging and drug intervention in mice
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Age
+Study Factor Type	age
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000246
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12889_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12889_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Urine samples were collected from Mus musculus at 50 weeks (young), 128 weeks (aged), and 128 weeks with long-term drug supplementation under standard diet. Samples were collected into sterile tubes and stored at ??0 °C until analysis.</p>	<p>For each sample, 100 μL of urine was mixed with 400 μL of extraction solvent (methanol:acetonitrile, 1:1, v/v). The mixture was vortexed for 30 s, sonicated in an ice-water bath for 10 min, incubated at -20 °C for 1 h, and centrifuged at 12,000 rpm for 15 min at 4 °C. The resulting supernatants were transferred to LC vials for UHPLC-MS/MS analysis. A pooled quality control (QC) sample was prepared by combining equal volumes of supernatants from all individual samples. Solvent blanks were also included to monitor background signals.</p>	<p>Chromatographic separation was performed on a Vanquish Focused UHPLC system (Thermo Fisher Scientific) using an ACQUITY BEH C18 column (2.1 ? 100 mm, 1.7 μm; Waters) maintained at 40 °C. The mobile phases were 0.1% formic acid in water (A) and 0.1% formic acid in acetonitrile (B). The gradient was: 0-1 min, 0% B; 1-8 min, linear to 100% B; 8-11 min, hold 100% B; 11-12 min, return to 0% B; 3 min re-equilibration. Flow rate was 0.25 mL/min and injection volume 10 μL.</p>	<p>Mass spectrometric analysis was performed on an Orbitrap QE Plus mass spectrometer (Thermo Fisher Scientific) via electrospray ionization. Data were acquired in both positive and negative ion modes. Full MS scans (m/z 70-1000) were collected at 60,000 resolution, followed by MS/MS scans at 15,000 resolution with normalized collision energy of 25. Source settings: spray voltage 3.5 kV, capillary temperature 280 °C, sheath gas 30, auxiliary gas 5. QC samples were injected every five runs for normalization.</p>	<p>Raw LC-MS/MS files were converted to mzXML format using ProteoWizard. Peak detection, alignment, and integration were performed in R using the xcms package (v3.12.0) with Autotuner (v1.4.0) for parameter optimization. Data matrices were normalized to pooled QC samples and log-transformed prior to downstream statistical analysis.</p>	<p>Metabolite annotation was carried out by matching experimental MS/MS spectra against public spectral databases including HMDB and KEGG. A similarity score cutoff of 0.5 and mass tolerance of 10 ppm were applied to support metabolite identification. Annotation was performed using an in-house R-based pipeline integrated with xcms outputs.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cheng	Chen
+Study Person First Name	Shu-Fang	Chin-Chuan
+Study Person Mid Initials		
+Study Person Email	wazai1023@gmail.com	chinchuan@mail.cgu.edu.tw
+Study Person Phone		
+Study Person Fax		
+Study Person Address	No.259, Wenhua 1st Rd., Guishan Dist., Taoyuan City 33302, Taiwan (R.O.C.)	No.259, Wenhua 1st Rd., Guishan Dist., Taoyuan City 33302, Taiwan (R.O.C.)
+Study Person Affiliation	Graduate Institute of Natural Products, Chang Gung University	Graduate Institute of Natural Products, Chang Gung University
+Study Person Roles	Submitter	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C54269	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

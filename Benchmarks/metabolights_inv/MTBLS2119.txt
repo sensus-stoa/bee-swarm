@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	NCBITAXON	CHMO	EFO	NCIT	OBI
+Term Source File	https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO		http://data.bioontology.org/ontologies/OBI
+Term Source Version	1.0	2020-09-30		132		29
+Term Source Description	Metabolights Ontology			Experimental Factor Ontology		Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS2119
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-09-30
+Investigation Public Release Date	2021-01-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2119
+Study Title	Uncovering the Complexity of the Yeast Lipidome by Means of nLC/NSI-MS/MS
+Study Description	Saccharomyces cerevisiae is a eukaryotic model organism widely used for the investigation of fundamental cellular processes and disease mechanisms. Consequently, the lipid landscape of yeast has been extensively investigated and up to this day the lipidome is considered as rather basic. Here, we used a nLC/NSI-MS/MS method combined with a semi-autonomous data analysis workflow for an in-depth evaluation of the steady state yeast lipidome. We identified close to 900 lipid species across 26 lipid classes, including glycerophospholipids, sphingolipids, glycerolipids and sterol lipids. Most lipid classes are dominated by few high abundant species, with a multitude of lower abundant lipids contributing to the overall complexity of the yeast lipidome. Contrary to previously published datasets, odd-chain and diunsaturated fatty acyl moieties were found to be commonly incorporated in multiple lipid classes. Careful data evaluation furthermore revealed the presence of putative new lipid species such as MMPSs (mono-methylated phosphatidylserine), not yet described in yeast. Overall, our analysis achieved a more than 4-fold increase in lipid identifications compared to previous approaches, underscoring the use of nLC/NSI-MS/MS methods for the in-depth investigation of lipidomes.
+Study Submission Date	2020-09-30
+Study Public Release Date	2021-01-08
+Study File Name	s_MTBLS2119.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	nanoflow liquid chromatography-tandem mass spectrometry	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/CHMO_0001834	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	NCIT	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Niklas Danne-Rasche, Stefanie Rubenzucker, Robert Ahrends
+Study Publication Title	Uncovering the Complexity of the Yeast Lipidome by Means of nLC/NSI-MS/MS
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2119_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS2119_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Culture conditions are described in more detail in <strong>Text S1</strong> in the paper associated with this study. The <em>S. cerevisiae</em> yeast strain FW1511 was cultured in Glucose SC medium (13.4 g/l yeast nitrogen base supplemented with 4.0 g/l amino acid powder without uracil and 2% glucose (w/v)) for 15 h at 30 °C. The yeast cells were subsequently diluted to an OD600 of 0.15 with Raffinose SC medium (13.4 g/l yeast nitrogen base supplemented with 4.0 g/l amino acid powder without uracil and 2% raffinose (w/v)) and galactose (2% (w/v)) was added after an additional incubation for 3 h at 30 °C (OD of O.2 - 0.26). After further incubation for 6 h at 30 °C, the cells were diluted with Raffinose SC medium (+galactose) (13.4 g/l yeast nitrogen base supplemented with 4.0 g/l amino acid powder without uracil and 2% raffinose (w/v) and 2% galactose (w/v)) to an OD600 of 0.1. After a final incubation period of 20 h at 30 °C, the yeast cells were harvested and stored at -80 °C.</p>	<p>Lipids of the <em>S. cerevisiae</em> yeast strain FW1511 were extracted according to a previously described method<strong>[1]</strong>. For the lipid extraction, the yeast suspension was thawed on ice and diluted to 1.3 x 10^9 cells/μl with 150 mM ammonium bicarbonate buffer. Cells were counted using a Thoma cell counting chamber. 250 μl glass beads (Sigma Aldrich, St. Luis, USA) were added to 500 μl aliquots of cell suspension (approx. 6.7 x 10^8 cells) and cell disruption was carried out using the TissueLyser (Qiagen, Venlo, Netherlands) with precooled reaction tube racks (-20 °C) at a frequency of 20 Hz for a period of 30 min. Subsequently, 400 μl of the disrupted yeast suspension and 1980 μl of a CHCl3:MeOH (17:1) mixture were added to a 5 ml polypropylene tube. For the first extraction step, the extraction suspension was shaken for 2 h at 4 °C and 750 rpm on a Thermomixer comfort (Eppendorf, Hamburg, Germany). The aqueous upper phase was then separated from the lower chloroform containing organic phase by centrifugation at 8000 RCF for 10 min at 4 °C. The primary organic phase, containing mostly unpolar lipid classes<strong>[2]</strong>, was removed and stored at -20 °C in a polypropylene microreaction tube. The upper phase (containing polar metabolites) and the interphase, where cell debris and proteins were accumulating, were re-extracted in the second extraction cycle with 990 μl CHCl3:MeOH (2:1 (v/v)) to increase the recovery of polar lipid classes. Again, the extract was agitated for 2 h at 750 rpm and 4 °C and phase separation was induced by centrifugation for 10 min (4 °C) at 8000 RCF. The secondary organic phase was combined with the primary extract to yield 1 extraction replicate. 3 extraction replicates were pooled, nitrogen-evaporated and re-dissolved in 200 µl 1-BuOH:IPA:H2O 8:23:69 (v/v/v) + 5 mM H3PO4.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Ejsing CS, Sampaio JL, Surendranath V, Duchoslav E, Ekroos K, Klemm RW, Simons K, Shevchenko A. Global analysis of the yeast lipidome by quantitative shotgun mass spectrometry. Proc Natl Acad Sci U S A. 2009 Feb 17;106(7):2136-41. doi:10.1073/pnas.0811700106. PMID:19174513.</p><p><strong>[2]</strong> Fahy E, Cotter D, Sud M, Subramaniam S. Lipid classification, structures and tools. Biochim Biophys Acta. 2011 Nov;1811(11):637-47. doi:10.1016/j.bbalip.2011.06.009. PMID:21704189.</p><p><br></p>	<p>For extracted yeast samples, nLC/NSI-MS/MS analysis was carried out as previously described<strong>[1]</strong>. In short, nLC separation was performed on an Ultimate 3000 System (Thermo Scientific, Bremen, Germany), equipped with a Nano/Cap System NCS−3500RS pump with a WPS-3000T PL RS Pulled-Loop-Autosampler. Separation was achieved on an in-house packed nanobore column (100 μm x 30 cm) containing Ascentis Express C18 core-shell material (2.7 μm; 90 Å; Supelco, Bellefonte, USA). Gradient separation was carried out at a flow rate of 600 nl/min, with the column compartment kept at 60 °C. The injection volume was 1 µl. Analytes were eluted over 75 min, followed by a 35 min washing and equilibration step. The weak eluent (A) consisted of ACN:H2O 60:40 (v/v), while ACN:IPA 10:90 (v/v) was used as the strong eluent (B). Both eluents further contained 0.1% formic acid and 10 mM ammonium formate. The gradient was as follows: min 0-1 1% B, min 5 30% B, min 10 35% B, min 15 51% B, min 40 61% B, min 50 70% B, min 60-75 99% B, min 76-79 60% B, min 80-85 99% B, min 87-110 1% B.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Danne-Rasche N, Coman C, Ahrends R. Nano-LC/NSI MS Refines Lipidomics by Enhancing Lipid Coverage, Measurement Sensitivity, and Linear Dynamic Range. Anal Chem. 2018 Jul 3;90(13):8093-8101. doi:10.1021/acs.analchem.8b01275. PMID:29792796.</p>	<p>High-resolution mass spectrometric analysis was performed on a Q Exactive Plus (Thermo Scientific, Bremen, Germany) mass spectrometer using a Top10 data-dependent acquisition (DDA) method and stepped collision energy fragmentation. Ionization in the positive mode was performed using a Nanospray Flex (Thermo Scientific, Bremen, Germany) equipped with PicoTip capillary emitters (New Objective Woburn, MA, USA). Ion transfer capillary temperature was set to 250 °C, S-lens RF level to 60 and capillary voltage to 2.2 kV. In full scan, the resolution was 70,000, AGC was 1 x E^6, max. IT 50 ms and scan range m/z 300-1600. At MS2 level the resolution was 17,500, AGC was 1 x E^5, min. AGC was 2 x E^2, max. IT was 117 ms, isolation window was 1 m/z, dynamic exclusion was 20 s and stepped NCE was 25 and 30.</p>	<p>No data transformation information was provided.</p>	<p>Lipid identification and peak integration was performed using LipidCreator<strong>[1]</strong> and Skyline (64-bit) 3.5.0.9319<strong>[2]</strong>. Lipids and their associated mass spectra were annotated according to a previously described method<strong>[3]</strong>. LUX score analysis was performed according to the previously published protocol<strong>[4]</strong>. Lipids were identified based on different criteria like (1) exact MS1 precursor mass (&lt; 3 ppm), (2) class characteristic MS2 fragments with high mass accuracy (&lt; 5 ppm), (3) presence of the lipid species in both positive and negative mode, (4) class-specific elution patterns and (5) class-specific adduct distribution.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Peng B, Kopczynski D, Pratt BS, Ejsing CS, Burla B, Hermansson M, Benke PI, Tan SH, Chan MY, Torta F, Schwudke D, Meckelmann SW, Coman C, Schmitz OJ, MacLean B, Manke MC, Borst O, Wenk MR, Hoffmann N, Ahrends R. LipidCreator workbench to probe the lipidomic landscape. Nat Commun. 2020 Apr 28;11(1):2057. doi:10.1038/s41467-020-15960-z. PMID:32345972.</p><p><strong>[2]</strong> Adams KJ, Pratt B, Bose N, Dubois LG, St John-Williams L, Perrott KM, Ky K, Kapahi P, Sharma V, MacCoss MJ, Moseley MA, Colton CA, MacLean BX, Schilling B, Thompson JW; Alzheimer’s Disease Metabolomics Consortium. Skyline for Small Molecules: A Unifying Software Package for Quantitative Metabolomics. J Proteome Res. 2020 Apr 3;19(4):1447-1458. doi:10.1021/acs.jproteome.9b00640. PMID:31984744.</p><p><strong>[3]</strong> Pauling JK, Hermansson M, Hartler J, Christiansen K, Gallego SF, Peng B, Ahrends R, Ejsing CS. Proposal for a common nomenclature for fragment ions in mass spectra of lipids. PLoS One. 2017 Nov 21;12(11):e0188394. doi:10.1371/journal.pone.0188394. PMID:29161304.</p><p><strong>[4]</strong> Marella C, Torda AE, Schwudke D. The LUX Score: A Metric for Lipidome Homology. PLoS Comput Biol. 2015 Sep 22;11(9):e1004511. doi:10.1371/journal.pcbi.1004511. PMID:26393792.</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Danne-Rasche	Rubenzucker	Ahrends
+Study Person First Name	Niklas	Stefanie	Robert
+Study Person Mid Initials			
+Study Person Email	niklasdannerasche@gmx.de	stefanie.rubenzucker@univie.ac.at	robert.ahrends@univie.ac.at
+Study Person Phone			
+Study Person Fax			
+Study Person Address	Otto-Hahn-Straße 6b, 44227 Dortmund, Germany	Währinger Strasse 38, 1090 Vienna, Austria	Währinger Strasse 38, 1090 Vienna, Austria
+Study Person Affiliation	Leibniz-Institut für Analytische Wissenschaften – ISAS – e.V.	Department of Analytical Chemistry, University of Vienna	Department of Analytical Chemistry, University of Vienna
+Study Person Roles	Scientist	Scientist	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C28249	http://purl.obolibrary.org/obo/NCIT_C28249	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

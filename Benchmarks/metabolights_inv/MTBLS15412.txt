@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	ENVO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2026-05-28	1.25-20251112T1620Z-unstable(1.26)	3.91.0	2025-10-20				2026-05-13	26.02d	2026-05-08	2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS15412
+Investigation Title	liquid chromatography-mass spectrometry
+Investigation Description	
+Investigation Submission Date	2026-08-21
+Investigation Public Release Date	2026-08-24
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15412
+Study Title	liquid chromatography-mass spectrometry
+Study Description	Bacterial cells harvested at peak enzyme activity were subjected to untargeted metabolomic profiling to evaluate metabolic changes during straw degradation compared to control (CK) groups. Samples were extracted using pre-chilled methanol–water (4:1, v/v) and analyzed on a UHPLC-Q Exactive HF-X system operating in both positive and negative ionisation modes. Metabolites were identified by database matching against HMDB, KEGG, and Metlin. Downstream analyses integrated metabolomic findings with transcriptomic data to identify co-regulated pathways and construct correlation networks linking metabolite abundances with CMCase enzymatic activity.
+Study Submission Date	2026-08-21
+Study Public Release Date	2026-08-24
+Study File Name	s_MTBLS15412.txt
+Comment[Created At]	2026-08-20
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Fisher Scientific Vanquish UHPLC	Thermo Scientific Orbitrap Exploris 240	Bacillus siamensis	not applicable	culture supernatant	experimental sample	quality control sample	untargeted analysis	Metabolomics	ultra-performance liquid chromatography-mass spectrometry	biodegradation	Multiomics
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002240				http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/ENVO_06105014	http://id.nlm.nih.gov/mesh/D000095028
+Study Design Type Term Source REF	MTBLS	MTBLS				CHMO		MS	EDAM	CHMO	ENVO	mesh
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	Sample type	Sample type	measurement-type	omics-type	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	zhao xiaoqing
+Study Publication Title	Bacterial cells harvested at peak enzyme activity were subjected to untargeted metabolomic profiling to evaluate metabolic changes during straw degradation compared to control (CK) groups. Samples were extracted using pre-chilled methanol–water (4:1, v/v) and analyzed on a UHPLC-Q Exactive HF-X system operating in both positive and negative ionisation modes. Metabolites were identified by database matching against HMDB, KEGG, and Metlin. Downstream analyses integrated metabolomic findings with t arrow_drop_downmore
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15412_LC-MS_positive_reverse-phase.txt	a_MTBLS15412_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Fisher Scientific Vanquish UHPLC;Waters HSS T3 (100 mm × 2.1 mm i.d., 1.8 μm);reverse phase;positive;70-1050;Thermo Scientific Orbitrap Exploris 240	Thermo Scientific Orbitrap Exploris 240;Waters HSS T3 (100 mm × 2.1 mm i.d., 1.8 μm);reverse phase;negative;70-1050;Thermo Scientific Orbitrap Exploris 240
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002240	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002240
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Six cultures of Bacillus siamensis LSZ23 were used for untargeted metabolomic profiling, consisting of three control (CK) replicates and three straw-treatment (straw) replicates. Cells were harvested at peak cellulase activity, immediately centrifuged at 5,000 × g for 10 min at 4 °C, and washed twice with ice-cold phosphate-buffered saline (PBS). Bacterial pellets were then snap-frozen in liquid nitrogen and stored at −80 °C until metabolite extraction.</p>	<p>Chromatographic separation was performed using a UHPLC system (Thermo Fisher Scientific, Waltham, MA, USA) equipped with a Waters HSS T3 column (100 mm × 2.1 mm i.d., 1.8 μm). The column temperature was maintained at 40 °C. Mobile phase A consisted of 0.1% formic acid in water/methanol (95:5, v/v), and mobile phase B consisted of 0.1% formic acid in acetonitrile/methanol/water (47.5:47.5:5, v/v/v). Separation was achieved using the following gradient program: 0–1 min: 2% B; 1–9 min: 2–95% B (linear); 9–10 min: 95–100% B; 10–12 min: 100% B; 12–13 min: 100–2% B. Flow rate was 0.40 mL/min. Injection volume was 3 μL.</p>	<p>Raw MS data files were processed using Progenesis QI (Waters Corporation, Milford, USA). Mass features were extracted with mass tolerance of ±5 ppm and retention time tolerance of ±0.5 min. Peak alignment and gap-filling were performed using automated alignment algorithm. Quality control was performed by filtering features with coefficient of variation (CV) in QC samples &gt; 30%, which were subsequently excluded from further analysis. Intensity data were normalised using total ion chromatogram (TIC) normalisation based on sample quality peaks. The resulting feature matrix contained approximately 800–1200 metabolite features across 15 study samples (6 CK, 6 straw-treated, 3 QC replicates). Data were uploaded to MajorBio Cloud Platform (cloud.majorbio.com) for downstream preprocessing, including removal of features with &gt;80% missing values, retention of features with abundance ≥80% above background noise, and log10 transformation of QC-normalised features.</p>	<p>Each bacterial pellet (50 mg) was extracted in 400 μL of pre-chilled methanol–water (4:1, v/v) containing 0.02 mg/mL L-2-chlorophenylalanine as internal standard. Samples were homogenised at low temperature using a high-throughput tissue disruptor (Wonbio-96c, Shanghai Wanbo Biotechnology Co., Ltd.), vortexed, and ultrasonicated on ice for 30 min. After incubation at −20 °C for 30 min, samples were centrifuged at 13,000 × g for 15 min at 4 °C. Supernatants were transferred to LC-MS vials and stored at −20 °C until analysis. Quality control (QC) samples were prepared by pooling equal volumes of supernatant from all study samples (CK and straw groups combined), then divided into aliquots and processed in parallel with study samples.</p>	<p>Mass spectrometry was performed using a Q Exactive HF-X orbitrap mass spectrometer (Thermo Fisher Scientific) operated in both positive and negative electrospray ionisation (ESI) modes with the following parameters: Positive ionisation mode: Spray voltage: 3500 V; Negative ionisation mode: Spray voltage: 3000 V; Sheath gas flow rate: 40 arb; Auxiliary gas flow rate: 13 arb; Ion transfer tube temperature: 450 °C; Scan range: m/z 70–1050; Resolving power: 120,000 at m/z 200 (full MS); Data acquisition mode: Full MS with data-dependent acquisition (DDA); Collision energy: stepped 20, 40, 60 eV for MS/MS fragmentation.</p>	<p>Metabolites were identified by spectral matching against three public mass spectral databases: HMDB (Human Metabolome Database; http://www.hmdb.ca/), Metlin (https://metlin.scripps.edu/), and KEGG (Kyoto Encyclopedia of Genes and Genomes; https://www.kegg.jp/kegg/pathway.html). Identification was based on matching of precursor m/z and MS/MS spectra with mass error tolerance of ±5 ppm. Significantly differentially abundant metabolites (DAMs) between control and straw-treatment groups were identified using the following criteria: (1) Variable importance in projection (VIP) &gt; 1.0 from orthogonal partial least squares discriminant analysis (OPLS-DA); (2) Unadjusted Student's t-test p-value &lt; 0.05; (3) Model validity was assessed using 7-fold cross-validation and 200 permutation tests; models with permuted R²Y and Q² lower than the original, and negative Q² regression intercept were considered valid. Metabolite identifications were classified according to Metabolomics Standards Initiative (MSI) confidence levels: Level 1 (confirmed with authentic standard), Level 2 (putative annotation based on spectral similarity to databases), or Level 3 (putative annotation with partial structure elucidation). Pathway analysis was performed using KEGG database and scipy.stats package in Python, with pathways reaching p &lt; 0.05 in both transcriptomics and metabolomics datasets regarded as jointly significant.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	xiaoqing	zhao
+Study Person First Name	zhao	xiaoqing
+Study Person Mid Initials	Dieu	
+Study Person Email	dieuanh5683@gmail.com	
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	inner monggolia university	
+Study Person Roles	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Alternative Email]	dieuanh5683@gmail.com	

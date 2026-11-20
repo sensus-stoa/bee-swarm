@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version		2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19	2025
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14567
+Investigation Title	An explainable prognostic prediction panel for sepsis based on serum amino acid profiles
+Investigation Description	
+Investigation Submission Date	2026-05-23
+Investigation Public Release Date	2026-05-24
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14567
+Study Title	An explainable prognostic prediction panel for sepsis based on serum amino acid profiles
+Study Description	<p>Sepsis is a life-threatening syndrome requiring aggressive management, and novel noninvasive biomarkers to enable risk stratification of sepsis with high confidence and to predict the sepsis-related outcomes are urgently needed.&nbsp;</p><p>A mass spectrometry–based quantitative method was used to analyze the abundance of serum amino acids between patients with sepsis and healthy controls (HC), in order to characterize alterations in amino acid profiles associated with sepsis. In addition, multiple machine learning methods were applied to construct a prognostic prediction model for patients with sepsis. The predictive performance was assessed and the feature contributions were screened, followed by the development of an explainable prognostic prediction panel for sepsis.</p><p>Sixty participants in the HC group and 172 patients in the sepsis group (82 patients with septic shock) were enrolled in this study. A discernible segregation trend in amino acid profiles between the HC and sepsis groups was disclosed, meanwhile the abundance of amino acids differed significantly among the HC, septic shock, and non-septic shock groups, indicating that amino acids could differentiate patients with sepsis from the HC group with good diagnostic performance. Then, 172 patients in the sepsis group were assigned to training and validation sets, and 130 patient patients with sepsis in external test set were collected. Five machine learning models (deephit, piecewise constant hazard, probability mass function, resource selection function, and extreme gradient boosting) were afterwards used and the deephit model was selected according to greater area under the curve and clinical benefits in the training, validation, and test sets. In the process of reducing features based on feature importance ranking, the Deephit model based on five features had the best ability to predict survival probability and an optimized Deephit model with screening five features including glutamine, glycine, lysine, pyroglutamic acid and proline was successfully developed to predict the prognostic risk probability for patients with sepsis.</p>
+Study Submission Date	2026-05-23
+Study Public Release Date	2026-05-24
+Study File Name	s_MTBLS14567.txt
+Comment[Created At]	2026-05-18
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Sepsis	targeted metabolite profiling	Amino Acids	Agilent 1290 Infinity II UHPLC	Agilent 1290 Infinity UHPLC system/Agilent 6460 Triple Quadrupole LC/MS	Homo sapiens	blood serum	experimental blank	experimental sample	targeted analysis	ultra-performance liquid chromatography-mass spectrometry	Metabolomics
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/MSIO_0000100	http://id.nlm.nih.gov/mesh/D000596	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864		http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000133		http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/CHMO_0000715	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MTBLS	MSIO	mesh	MTBLS		NCBITaxon	BTO		CHMO	MS	CHMO	EDAM
+Comment[Study Design Category]	disease	submitter	submitter	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type		omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yue Liu, Long Zhao, Mingyue Sun, Jingyao Zhang, Chong Gu, Nanbin Hu, Shuangshuang Gu, Yan Shi
+Study Publication Title	An explainable prognostic prediction panel for sepsis based on serum amino acid profiles
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Group
+Study Factor Type Term Accession Number	
+Study Factor Type Term Source REF	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14567_LC-MS_positive_hilic.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity II UHPLC;Ascentis Express C18 (2.7 µm, 2.1 mm x 100 mm; Sigma-Aldrich);HILIC;positive;100-500;Agilent 6460 Triple Quadrupole
+Comment[Assay Field Default Unit]	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000722;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000609
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Measurement Type]	targeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor]	ultra-performance liquid chromatography-mass spectrometry
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/CHMO_0000715
+Comment[Assay Descriptor Term Source REF]	CHMO
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>This retrospective study included patients diagnosed with sepsis and septic shock at the Emergency Intensive Care Center of Huai’an Second People’s Hospital and Nanjing Drum Tower Hospital between December 1, 2018, and May 1, 2023, at The Affiliated lianshui County People's Hospital of Kangda College of Nanjing Medical University between March 1, 2022 and July 1, 2025. The sepsis diagnosis was consistent with the criteria outlined in Sepsis 3.0, wherein patients with a SOFA score of 2 or higher due to infection were included. Septic shock was defined as persistent hypotension, requiring vasoactive drugs to maintain a mean arterial pressure ≥65 mmHg (1 mmHg=0.133 kPa) and serum lactate level greater than 2 mmol/L (&gt;18 mg/dL) in the absence of hypovolemia . The exclusion criteria were as follows: (1) pregnancy status; (2) age &lt;18 years or &gt;80 years; (3) receiving antibiotic treatment within 3 months before inclusion; (4) combined with immunosuppressive diseases (malignant tumors, immunosuppressive treatment, organic disease or drug-induced reduction of immune cells); (5) combined with endocrine metabolic diseases (such as hyperthyroidism, hypothyroidism, pheochromocytoma, primary aldosteronism, etc.); (6) rejection or patients who did not cooperate with treatment; and (7) missing clinical data. Healthy volunteers matched at the physical examination center were also included in the healthy control (HC) group.&nbsp;</p>	<p>In liquid chromatography, samples were separated with Poroshell 120 HILIC Column (2.1x100 mm, 2.7 µm) with mobile phase A set as 20 mM ammonium formate acetonitrile solution (water:acetonitrile = 1:9, v/v), and mobile phase B set as 20 mM ammonium formate aqueous solution. Gradient elution was performed with a linear gradient of A 100% 0 min to 70% 11.5 min to 70% 12 min to 100% 15 min at a flow rate of 0.3 mL/min, with the column temperature set at 25 °C and an injection volume of 5 µL.&nbsp;</p>	<p>In Agilent MassHunter software, a method is established using standard substance data and applied to all samples.</p>	<p>Fresh blood samples were centrifuged at 3000 rpm for 15 min, and serum samples were transferred to Eppendorf tubes, which were numbered and stored at −80 °C freezer. For the HC group, 2 mL of venous blood was collected from the blood drawn during physical examination. Blood samples were processed in the same manner as those obtained from patients with sepsis.&nbsp;</p>	<p>In mass spectrometry analysis, multiple scan segments were used, each set to a different CE value, to obtain product ions under different CE values. Multiple reaction monitoring (MRM) analysis of a single precursor ion and its multiple product ions was performed to detect and quantify the amino acids in the sample. The mass spectrometry parameters were as follows: drying gas temperature at 330°C, gas flow rate at 13.0 L/min, nebulizer pressure at 35 psi, sheath gas temperature at 390°C, sheath gas flow at 12.0 L/min, and electrospray capillary voltage at 1,500 V.&nbsp;</p>	<p>Metabolites were identified by monitoring specific parent-to-daughter ion transitions using MRM mode.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gu
+Study Person First Name	Shuangshuang
+Study Person Mid Initials	
+Study Person Email	guss2926@njglyy.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Department of Emergency, Nanjing Drum Tower Hospital, The Affiliated Hospital of Nanjing University Medical School
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

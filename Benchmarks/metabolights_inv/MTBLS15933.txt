@@ -1,0 +1,135 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI	SNOMED	mesh
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	253	2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		26.02d	2026-05-08		2025
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS15933
+Investigation Title	Membrane lipid as cofactor of cargo uptake and release by box-like lipid transfer proteins
+Investigation Description	
+Investigation Submission Date	2026-10-06
+Investigation Public Release Date	2026-10-06
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15933
+Study Title	Membrane lipid as cofactor of cargo uptake and release by box-like lipid transfer proteins
+Study Description	Lipid transfer proteins (LTPs) shuttle their cargo lipids between cellular membranes. LTPs facilitate the costly extraction of a lipid from a donor membrane, and its delivery into the acceptor membrane, but the mechanisms remain poorly understood. We combined extensive molecular dynamics simulations and biochemical assays to investigate the box-like ceramide transfer protein STARD11 and other members of the STARD family. We show that a family-wide conserved arginine in the gate region is the keystone of a phospholipid binding site which, when occupied by a phosphate group, stabilizes an open gate that induces local disruption of the membrane packing, as evidenced by upward displacement of lipid acyl chains towards the membrane interface. Mutation of this residue slows down in vitro ceramide uptake by 20-fold, whereas other mutations in the gate region have little effect. UV-induced cross-linking experiments with liposomes containing a bifunctional phosphatidylcholine show close proximity of the lipid acyl chains and STARD11WT, but not the arginine mutant. Together our results demonstrate that a membrane-resident phospholipid acts as a cofactor for efficient lipid transfer by STARD11, STARD4 and STARD1. Simulations of STARD2, STARD10 and STARD13 support a conserved structural role for this arginine, which is present in 13 STARD family members with different cargo specificity.
+Study Submission Date	2026-10-06
+Study Public Release Date	2026-10-06
+Study File Name	s_MTBLS15933.txt
+Comment[Created At]	2026-10-01
+Comment[Funder]	Deutsche Forschungsgemeinschaft
+Comment[Funder ROR ID]	https://ror.org/018mejw64
+Comment[Grant Identifier]	#511488495 SFB-1638/1 (Z02)
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-06
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Advion TriVersa NanoMate	Thermo Scientific Q Exactive	reference compound	reference compound; blank	reference compound; Escherichia coli	Liposome	mixture	experimental sample	reference compound mix	semi-targeted analysis	parallel reaction monitoring	data-independent acquisition	Lipidomics	lipid homeostasis	non-vesicular lipid transport	STARD	lipid transfer protein	allostery
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658	http://purl.obolibrary.org/obo/MSIO_0000023	http://purl.obolibrary.org/obo/CHEBI_747204;	http://purl.obolibrary.org/obo/CHEBI_747204; http://purl.obolibrary.org/obo/NCBITaxon_562	http://purl.obolibrary.org/obo/NCIT_C18208	http://purl.obolibrary.org/obo/CHEBI_60004	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MSIO_0000024	http://purl.obolibrary.org/obo/MS_1003906	http://purl.obolibrary.org/obo/MS_1003907	http://purl.obolibrary.org/obo/MS_1003215	http://edamontology.org/topic_0153	http://www.ebi.ac.uk/efo/EFO_0005880	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://id.nlm.nih.gov/mesh/C030363	http://purl.obolibrary.org/obo/MI_1157
+Study Design Type Term Source REF	MTBLS	MTBLS	MSIO			NCIT	CHEBI	CHMO	MSIO	MS	MS	MS	EDAM	EFO	MTBLS	MTBLS	mesh	MI
+Comment[Study Design Category]	DI Instrument	Instrument	Organism	Organism	Organism	Organism part	Organism part	Sample type	Sample type	measurement-type	default	default	omics-type	default	default	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Camille Cuveillier, Mahmoud Moqadam, Timo Sachsenheimer, Britta Brügger, Anne-Claude Gavin, and Nathalie Reuter
+Study Publication Title	Membrane lipid as cofactor of cargo uptake and release by box-like lipid transfer proteins
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Experiment	Lipid transfer protein
+Study Factor Type	Experiment	Lipid transfer protein
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42790	http://snomed.info/id/304382005
+Study Factor Type Term Source REF	NCIT	SNOMED
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15933_DI-MS_positive_.txt	a_MTBLS15933_DI-MS_negative_.txt
+Study Assay Measurement Type	semi-targeted analysis	semi-targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003906	http://purl.obolibrary.org/obo/MS_1003906
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Direct infusion MS - positive	Direct infusion MS - negative
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	DI-MS	DI-MS
+Comment[Assay Type]	direct infusion mass spectrometry assay	direct infusion mass spectrometry assay
+Comment[Assay Type Term Accession Number]		http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]		OBI
+Comment[Omics Type]	Lipidomics	Lipidomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153	http://edamontology.org/topic_0153
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[DI Instrument];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[DI Instrument];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	QExactive;positive;150-2000;Thermo Scientific Q Exactive;electrospray ionization;orbitrap	QExactive;negative;150-2000;Thermo Scientific Exactive;electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000688;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000640;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000688;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;;;MTBLS;MTBLS;MS	MTBLS;;;MTBLS;MTBLS;MS
+Comment[Measurement Type]		semi-targeted analysis
+Comment[Measurement Type Term Source REF]		MS
+Comment[Measurement Type Term Accession Number]		http://purl.obolibrary.org/obo/MS_1003906
+Comment[Assay Descriptor]	parallel reaction monitoring;data-independent acquisition	parallel reaction monitoring;data-independent acquisition
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003907;http://purl.obolibrary.org/obo/MS_1003215	http://purl.obolibrary.org/obo/MS_1003907;http://purl.obolibrary.org/obo/MS_1003215
+Comment[Assay Descriptor Term Source REF]	MS;MS	MS;MS
+Comment[Assay Descriptor Category]	default;default	
+Comment[Assay Descriptor Source]	submitter;submitter	submitter;submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Direct infusion	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	data transformation	Direct infusion	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000			http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		OBI	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Heavy donor liposomes (Input LUV1 = POPC:POPE:Ceramide, 76:20:4 mol%; Input LUV2 = POPC:POPE 80:20 mol%; Input LUV3 = POPC:POPE:TAG, 76:20:4 mol%; all lipids from Avanti Research) were incubated in presence of buffer (50 mM Hepes pH 7.4, 150 mM NaCl, 125 mM sucrose), 10 μM STARD11 wild-type&nbsp;(WT) or variant R478N (R478N). His-tagged proteins were recombinantly expressed in BL21(D3) cells and purified by NiNTA agarose followed by size exclusion chromatography. After pelleting liposomes incubated with buffer or the indicated proteins, supernatants (Sup) were gathered and analyzed by nanoESI-DI-MS/MS based lipidomics.</p><p>Liposome input samples and supernatants were aliquoted, frozen in liquid nitrogen and stored at -80°C.</p>	<p>Raw data was filtered and converted using PeakStrainer (1). </p><p>(1) Schuhmann, K.; Thomas, H.; Ackerman, J.M.; Nagornov, K.O.; Tsybin, Y.O.; Shevchenko, A., 'Intensity-Independent Noise Filtering in FT MS and FT MS/MS</p><p>Spectra for Shotgun Lipidomics', Analytical Chemistry, 2017, 89, 046−7052</p>	<p>Samples were injected using a robotic electrospray infusion device Triversa Nanomate (Advion Biosciences) with chip-based ionization (HD-D ESI Chip, Advion Biosciences). </p>	<p>Mass spectrometric quantitative untargeted lipid analysis of samples was performed as follows. Lipid extractions were performed in the presence of internal lipid standards using an acidic liquid-liquid extraction (ABD) method (1). Extraction was performed using 30 µL for supernatants, and 2 µL for liposomes. Lipid extractions were performed in the presence of internal lipid standards for each analyzed lipid class, with the standards resembling the structure of the endogenous lipid species. Following this approach, a relative quantification of lipid species was performed. Lipid standards were added prior to extractions, using a master mix consisting of 50 pmol phosphatidylcholine (PC, 18:1-d7/15:0, AvantiResearch), 40 pmol phosphatidylethanolamine (PE, 18:1-d7/15:0, AvantiResearch), 5 pmol ceramide (Cer, d18:1 with N-acylated 16:0-d9 and t18:0 with N-acylated 16:0-d9, AvantiResearch). The final chloroform phase was evaporated under a gentle stream of nitrogen at 37 °C. Samples were directly subjected to mass spectrometric analysis. </p><p>(1) Bligh, E.G.; Dyer, W.J., 'A Rapid Method for Total Lipid Extraction and Purification', Canadian Journal of Bio-Chemistry and Physiology, 1959, 37, 911-917</p>	<p>Lipid extracts were resuspended in 7.5 mM ammonium formate in 60 µl isopropanol:methanol:chloroform 4:2:1 (v/v/v) including 1.5 µM 12-{[(cyclohexylamino)carbonyl]amino}dodecanoic acid (CUDA) for lock mass reference compound. Samples were analyzed on a Q Exactive, coupled to a robotic electrospray infusion device Triversa Nanomate (Advion Biosciences) with chip-based ionization (HD-D ESI Chip, Advion Biosciences). Measurement preparation in 96well plate format (Eppendorf twin tec 96), 5 µl aliquots of the resuspended lipid extracts were diluted 1:3 in 15 µl 7.5 mM ammonium formate in isopropanol:methanol:chloroform (v:v:v, 4:2:1) including 1.5 µM CUDA for lock mass reference in 96-wells.</p><p>Mass spectrometric data were acquired in positive- and negative-ion modes using full-MS SIM, targeted SIM, and parallel reaction monitoring (PRM). In both ion modes, full-MS SIM spectra were acquired over&nbsp;m/z&nbsp;320–1000 at a resolution of 140,000, with an AGC target of 3e6, a maximum injection time of 3000 ms, and one microscan per scan. Targeted SIM spectra were acquired using an inclusion list over&nbsp;m/z&nbsp;150–2000, with a 20.0&nbsp;m/z isolation window and a resolution of 140,000. In negative-ion mode, the AGC target and maximum injection time were 3e6 and 3000 ms, respectively; in positive-ion mode, they were 5e4 and 650 ms, respectively. PRM spectra were acquired using an inclusion list with a default charge state of 1 and one microscan per scan. For the standard PRM method in both polarities, the isolation window was 1.0&nbsp;m/z, the resolution was 70,000, the AGC target was 5e4, the maximum injection time was 400 ms, and the normalized collision energy was 30 in negative-ion mode and 15 in positive-ion mode. An additional positive-ion PRM method was used with a 0.4&nbsp;m/z&nbsp;isolation window, a fixed first mass of 300.0&nbsp;m/z, a resolution of 140,000, an AGC target of 1e5, a maximum injection time of 3000 ms, two microscans, and a normalized collision energy of 12.5. In-source collision-induced dissociation was set to 0.0 eV for all experiments, and spectra were recorded in profile mode.</p><p>Lock mass calibration was performed using CUDA (C19H36N2O3) at m/z 339.26532 ([M-H]-) and m/z 341.27987 ([M+H]+). PE species were assessed in negative ion mode measurements and ceramide and PC were quantified from positive ion mode measurements.</p>	<p>Data evaluation was done using LipidXplorer (1). LipidXplorer mfql queries were applied to detect precursor ions in MS scans and their corresponding fragment ions in MS/MS scans within the m/z range of 500-1000. Selection and quantification of internal standards and lipid species were done using an R-based in-house-developed software (ShinyLipidcountr_alpha4). The amount [pmol] for endogenous molecular lipid species was calculated based on the intensities of the corresponding internal standards and normalized to the sample volumes used for extraction to obtain lipid species concentrations [µM].</p><p>(1) Schuhmann, K.; Thomas, H.; Ackerman, J.M.; Nagornov, K.O.; Tsybin, Y.O.; Shevchenko, A., 'Intensity-Independent Noise Filtering in FT MS and FT MS/MS</p><p>Spectra for Shotgun Lipidomics', Analytical Chemistry, 2017, 89, 046−7052</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			DI Instrument	Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number				;	;;;;	
+Study Protocol Parameters Name Term Source REF				;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Brügger
+Study Person First Name	Britta
+Study Person Mid Initials	
+Study Person Email	britta.bruegger@bzh.uni-heidelberg.de
+Study Person Phone	
+Study Person Fax	
+Study Person Address	INF 328, 69120 Heidelberg, Germany
+Study Person Affiliation	Heidelberg University Biochemistry Center (BZH)
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0002-3477-8270
+Comment[Study Person Affiliation ROR ID]	https://ror.org/038t36y30

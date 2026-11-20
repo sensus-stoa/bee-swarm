@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	EFO	MS	MTBLS	NCBITaxon	NCIT	OBI	OMIT
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/omit.owl
+Term Source Version								
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Ontology for MicroRNA Target
+INVESTIGATION
+Investigation Identifier	MTBLS13538
+Investigation Title	Untargeted Plasma Lipidomics with Machine Learning Identifies Oxidative Stress and Inflammation Signatures of Recurrent Leg Ulcers in Sickle Cell Disease
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-19
+Investigation Public Release Date	2025-12-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13538
+Study Title	Untargeted Plasma Lipidomics Identifies Oxidative Stress and Inflammation Signatures Associated with Recurrent Leg Ulcer Status in Sickle Cell Disease
+Study Description	<p>Leg ulcers are among the most burdensome complications of sickle cell disease (SCD), yet the molecular determinants underlying ulcer susceptibility and recurrence remain incompletely characterized. We performed untargeted plasma lipidomics by LC–MS in 129 individuals with SCD from the REDS-III Brazil cohort, comparing participants with a recurrent sickle cell leg ulcer (SCLU) phenotype (n = 72) and SCD controls without ulcer history or follow-up episodes (n = 57). Data were split into a training set (80%; SCLUs n = 58, controls n = 46) and an independent validation set (20%; SCLUs n = 14, controls n = 11), with leakage-resistant preprocessing and variable selection restricted to the training set. After quality filtering, 2,419 features were retained. Univariate screening in the training set yielded 181 candidates, and 44 annotated metabolites were retained for visualization and modelling. Recurrent SCLUs showed higher lysophospholipids and oxylipins and lower sphingolipids and FAHFAs, consistent with inflammation, oxidative stress and membrane dysregulation. Random Forest achieved the best validation discrimination (AUC = 0.85; accuracy = 0.72; sensitivity = 0.86; specificity = 0.55). Untargeted plasma lipidomics defines an interpretable lipid signature linked to recurrent SCLUs and nominates candidates for targeted quantification and external validation to support individualized risk stratification.</p>
+Study Submission Date	2025-12-19
+Study Public Release Date	2025-12-19
+Study File Name	s_MTBLS13538.txt
+Comment[Created At]	2025-06-30T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	2
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	Sickle Cell Disease	Leg Ulcer
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/NCIT_C34383	http://purl.obolibrary.org/obo/OMIT_0008966
+Study Design Type Term Source REF	NCIT	NCIT	OMIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Alex Aparecido Rosini Silva,  Rubens de Assis Santos Sebastião,  Marcos Eduardo Souza Abreu,  Felipe Custódio Carvalho dos Santos,  Brian Scott Custer,  Ester Cerdeira Sabino,  Carla Luana Dinardo,  Fábio Eudes Leal,  Luiz de Melo Amorim Filho,  Dahra Teles,  André Rolim Belisário,  Sheila de Oliveira Garcia MateosPI,  Scott Bowler,  Lishomwa Ndhlovu
+Study Publication Title	"Untargeted Plasma Lipidomics with Machine Learning Identifies Oxidative Stress and Inflammation Signatures of Recurrent Leg Ulcers in Sickle Cell Disease
+"
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sickle cell disease
+Study Factor Type	Sickle Cell Disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C34383
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13538_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Peripheral blood was collected in EDTA tubes and processed to separate cellular and plasma components, following standardized biobanking protocols. Samples were subsequently aliquoted and stored at the Biobank of the University of São Paulo.</p>	<p>Briefly, 200 μL aliquots of plasma were mixed with 800 μL of cold methanol:chloroform:methyl tert-butyl ether (1.33:1:1), vortexed for 30 s, and centrifuged (12,000 × g, 10 min, 4 °C). The apolar fraction (450 μL) was collected, concentrated, and resuspended in 200 μL of water:acetonitrile:isopropanol (1:1:2) prior to analysis. Quality control (QC) pools were prepared by combining aliquots from all study samples. QC injections were run every 10 analyses to monitor extraction reproducibility and instrument stability. Sample order was randomized to minimize technical bias.</p><p><br></p>	<p>The samples were separated by an ACQUITY UPLC and eluted through CSH C18 column (1.7 µm × 100 mm × 2.1 mm) column (Waters Ltd., Elstree, UK), and analysis was acquired in negative mode.The column oven was maintained at 40 °C throughout the chromatographic run.</p><p>For the apolar compound analysis was employed using mobile phase A, with ACN/H2O solution (60:40, v/v) and 10 mM ammonium formate + 0.1% formic acid, and mobile phase B, comprising isopropanol/ACN (90:10, v/v) with 10 mM ammonium formate + 0.1% formic acid. The flow rate was 0.4 mL min−1. The flow rate was 0.400 mL/min. The method started with 10% of solvent A, followed by a 18-minute ramp up to 70% of A, which was then held for 1,5 minutes. Shortly after, the system returned to the initial value of 10% of A, maintaining this condition for an additional 3,5 minutes for re-equilibration. The total run time was 22 minutes, with an injection volume of 2 μL.</p>	<p>Data was obtained in MSE mode employing 6 V for low collision energy and a ramp of 20–50 V for high collision energy, with the&nbsp;range set from 50 to 1200 Da and 0.5 s for scan duration. Leucine enkephalin (molecular weight = 555.62; 200 pg L−1 in 1:1 ACN:H2O, v/v) was used as the lock mass, and calibration was performed using 0.5 mM sodium formate solution. Additional settings included: source temperature of 140 °C, desolvation temperature of 550 °C, desolvation gas flow rate of 900 L h−1, capillary voltage of 2.5 kV, and cone voltage of 40 V.</p><p>A quality control (QC) sample was created by pooling from each study sample to monitor extraction and LC-MS system stability (injected after every 10 study samples). The order of sample extraction and analysis was randomized to mitigate potential instrument or biological bias.</p><p><br></p>	<p>Raw LC-MS data were processed using Progenesis QI™ v3.0 (Nonlinear Dynamics) to extract features based on retention time, m/z, and peak area. Ion abundance data were corrected using the QC-based random forest signal correction (QC-RFSC) method25. The relative standard deviation (%RSD) was then calculated for the QC samples.</p>	<p>Metabolite identification was achieved through MSE analysis, by evaluating fragmentation score, mass error, mass accuracy, and isotope similarity corresponding to level 2 (putatively annotated compounds), was enhanced using SDF2PQI, an in-house tool for matching Progenesis QI features with external SDF libraries (https://github.com/pedrohgodoys/sdf_to_pqi, accessed 10 February 2025). Spectral libraries included LipidMaps, the Human Metabolome Database (HMDB), and MassBank of North America (MoNA).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Silva	Sebastião	Abreu	Santos	Custer	Sabino	Dinardo	Leal	Filho	Teles	Belisário	Mateos	Bowler	Ndhlovu
+Study Person First Name	Alex	Rubens	Marcos	Felipe	Brian	Ester	Carla	Fábio	Luiz	Dahra	André	Sheila	Scott	Lishomwa
+Study Person Mid Initials	Aparecido Rosini	de Assis Santos	Eduardo Souza	Custódio Carvalho dos	Scott	Cerdeira	Luana	Eudes	de Melo Amorim		Rolim	de Oliveira Garcia		
+Study Person Email	alex.rosini@online.uscs.edu.br	rubens.sebastiao@online.uscs.edu.br	marcos.abreu@uscsonline.com.br	felipe.santos4@uscsonline.com.br	bcuster@vitalant.org	sabinoec@usp.br	caludinardo@gmail.com	fabio.leal@online.uscs.edu.br	luizamorimfilho@gmail.com	dahra.teles@gmail.com	andre.belisario@hemominas.mg.gov.br	sheila.mateos@online.uscs.edu.br	scb4005@med.cornell.edu	lndhlovu@med.cornell.edu
+Study Person Phone														
+Study Person Fax														
+Study Person Address					360 Spear St Suite 200, San Francisco, California, 94105, United States of America	Rua Santo Antonio, 50, Centro, São Caetano do Sul, São Paulo, 02550250, Brazil	R. Dr. Ovídio Pires de Campos, 225, São Paulo, São Paulo, 05403-010, Brazil	Rua Santo Antônio,50, Centro, São Caetano do Sul, São Paulo, 02550250, Brazil						
+Study Person Affiliation	City University of São Caetano do Sul	City University of São Caetano do Sul	City University of São Caetano do Sul	City University of São Caetano do Sul	Vitalant Research Institute	City University of São Caetano do Sul	Hospital das Clínicas, Faculdade de Medicina, Universidade de São Paulo (HCFMUSP)	City University of São Caetano do Sul	Fundação Hemorio, Rio de Janeiro	Fundação de Hematologia e Hemoterapia de Pernambuco (Hemope)	Fundação Centro de Hematologia e Hemoterapia de Minas Gerais	City University of São Caetano do Sul	Weill Cornell Medicine	Weill Cornell Medicine
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-6400-5201	0009-0005-3881-5840	0009-0006-9670-6957	0009-0003-6129-9771	0000-0001-6251-366X	0000-0003-2623-5126	0000-0002-0453-7863	0000-0003-1986-3765			0000-0003-0166-4258	0000-0001-5416-2724	0000-0001-8881-6941	0000-0001-5427-4187
+Comment[Study Person Affiliation ROR Id]	https://ror.org/00gby0d64	https://ror.org/00gby0d64	https://ror.org/00gby0d64	https://ror.org/00gby0d64		https://ror.org/00gby0d64		https://ror.org/00gby0d64			https://ror.org/04n4r7e14	https://ror.org/00gby0d64	https://ror.org/02r109517	https://ror.org/02r109517

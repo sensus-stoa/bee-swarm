@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCBITAXON	CO_356	EFO	OGIowlAuthor	MTBLS	CHMO	
+Term Source File	http://data.bioontology.org/ontologies/OBI					https://www.ebi.ac.uk/metabolights/		http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	29					1.0		18.10e
+Term Source Description	Ontology for Biomedical Investigations					Metabolights Ontology		NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS7328
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-02-27
+Investigation Public Release Date	2024-09-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7328
+Study Title	A next-generation yeast chassis: comprehensive characterization of a robust fast-growing Saccharomyces cerevisiae
+Study Description	<p>Robust and efficient hosts are necessary to facilitate advances in biotechnology. We unveil <em>Saccharomyces cerevisiae</em> strain XP as a promising new microbial chassis owing to its high growth rate and robustness. This strain has a doubling time of 48.2 min, which is 12.8 min faster than the model yeast <em>S. cerevisiae</em> S288C. Strain XP can grow well at low pH (≤ 3.0) and 30% (w/v) glucose under oligotrophic conditions. We establish a genetic manipulation toolbox using URA3 auxotroph and haploid strains, a Cre/loxP-based knocking-out method, and CRISPR/Cas9 genome editing tools. Genomic, transcriptomic and metabolomic data were analyzed in an integrated manner to characterize the strain. The multi-omics analysis reveals that changes in energy and essential nutrient metabolism are linked to rapid growth and robustness. A high-producing strain, XH352-D, was successfully constructed, which produced L-lactic acid with a titer of 52.6 g/L. Here, we comprehensively characterized a robust fast-growing yeast, laying foundation for its potential in industrial production of bulk chemicals.</p>
+Study Submission Date	2023-02-27
+Study Public Release Date	2024-09-26
+Study File Name	s_MTBLS7328.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	38214535
+Study Publication DOI	10.1128/mbio.03196-23
+Study Publication Author List	Long Yangdanyu, Han Xiao, Meng Xuanlin, Xu Ping, Tao Fei
+Study Publication Title	A robust yeast chassis: comprehensive characterization of a fast-growing <i>Saccharomyces cerevisiae</i>
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Strain	Sugar	Biological replicate
+Study Factor Type	strain	Sugar	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005135	http://www.cropontology.org/rdf/CO_356:2000146	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	CO_356	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7328_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7328_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Strains XP and S288C were cultivated in the YPD medium at 30 °C overnight, then inoculated 1% (v/v) to the FM and FM30 media in flasks. Cells were collected at logarithmic phase (OD600nm = 2), named XP_low sugar, XP_high sugar, S288c_low sugar, S288c_high sugar, respectively.&nbsp;</p>	<p>The reported method was used to extract metabolites in S. cerevisiae<strong>[1]</strong>.</p><p><br></p><p>The liquid was quickly filtered with a volume of 5 mL to avoid metabolite loss and extracellular metabolite contamination. Then the filter membrane was washed with 10 mL ddH2O. These processes should be complete within 30 s. If the OD600nm values were different, sampling volume was adjusted to make the number of cells consistent. Then the filtered cell masses attached to the filter membrane were mixed quickly with 20 mL of metabolite extraction solvent (acetonitrile:water (1:1, v/v) at -20 °C) and were frozen with liquid nitrogen. When preparing samples, the extraction mixture was thawed on ice, vortexed for 3 min, and centrifuged at 12,000 rpm for 5 min at 4 °C. The supernatants were frozen in a vacuum dry environment. Finally, the extracts were resuspended in 500 μL of fresh acetonitrile:water mixture (1:1, v/v) on the ice. A total of 6 biological replicates were performed for each sample.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> (69)</p>	<p>Thermo UPLC Q-Extractive (QE) coupled with ESI ion source was applied for untargeted metabolomics data acquisition. Thermo UPLC Q Extractive (QE) Orbitrap system using ESI ion source was applied for data acquisition included full MS, PRM and full MS-ddMS2 instrument methods. RP Zorbax Eclipse XBD-C18 column was applied for positive and negative mode analysis. The mobile phase was used for analysis with 0.1% formic acid in diluted water as aqueous phase A and 0.1% formic acid in pure acetonitrile as organic phase B. The LC gradient elution program was as follows: 0.0 min, 99% A; 5.0 min, 99% A; 5.5 min, 70% A; 9.0 min, 100% B; 11.0 min, 100% B; 12.1 min, 99% A.</p>	<p>The MS parameters of C18-ESI-MS in the analysis of positive ionization mode are as follows: the mass range was set from 80 to 1000 m/z, with a spectra collection rate of 2.0 Hz and capillary voltage of 4500 V; the gas flow rate of the nebulizer was 1.6 bar; the velocity of dry gas at 220 °C was 6.0 L/min; funnel 1 and 2 radio frequencies (RFs) were set as 150 Vpp and 200 Vpp; collision-induced dissociation (CID) energy was set as 0 eV; quadrupole ion energy was 5 eV; low mass was 50 m/z; collision cell energy was 7.0 eV; pre-pulse storage was 5.0 μs; collision RF ramp was from 400 to 800 Vpp; transfer time ramp was from 50 to 100 μs.</p>	<p>Full MS and Full MS-ddMS2 data were transformed to mzXML format by ms converter (ProteoWizard). We applied the database named metDNA and metID for metabolomics data analysis<strong>[1][2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> (70)</p><p><strong>[2]</strong> (71)</p>	<p>We applied the database named metDNA and metID for metabolomics data analysis<strong>[1][2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> (70)</p><p><strong>[2]</strong> (71)</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yangdanyu	Han	Meng	Xu	Tao
+Study Person First Name	Long	Xiao	Xuanlin	Ping	Fei
+Study Person Mid Initials					
+Study Person Email	damara1994@163.com				
+Study Person Phone	+8615666933072				
+Study Person Fax					
+Study Person Address	No.800 Dongchuan Road, Minhang District, Shanghai, China Shanghai Jiao Tong University, school of life science and technology				
+Study Person Affiliation					
+Study Person Roles	author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/OGI.owl#Author	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	OGIowlAuthor				

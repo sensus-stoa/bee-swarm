@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	TFO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://opendata.inrae.fr/PO2/Ontology/transformON.rdf
+Term Source Version		252	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.90.0			1.0.1		2026-05-13	26.02d	2026-05-08	28.0
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	TransformON
+INVESTIGATION
+Investigation Identifier	MTBLS14813
+Investigation Title	Rapid chromatography combined with trapped ion mobility mass spectrometry for analysis of derivatized small molecules
+Investigation Description	
+Investigation Submission Date	2026-06-22
+Investigation Public Release Date	2026-06-30
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14813
+Study Title	Rapid chromatography combined with trapped ion mobility mass spectrometry for analysis of derivatized small molecules
+Study Description	Liquid chromatography (LC) separates biomolecules based on their physicochemical properties. Reproducible retention times support compound identification, while efficient separation of structurally similar compounds is essential for accurate quantification. However, conventional LC methods are often time-intensive, limiting analytical throughput in large-scale and clinical applications. Here, we present rapid LC–trapped ion mobility spectrometry–tandem mass spectrometry (LC–TIMS–MS/MS) approaches that substantially reduce analysis time while preserving chromatographic resolution and quantitative reliability, with run times of around 2 minutes or below. Accelerated separations were achieved using shorter columns and elevated flow rates coupled to a trapped ion mobility mass spectrometer. The added ion mobility dimension improves molecular specificity and enhances confidence in compound annotation. To maximise metabolome coverage in a single chromatographic analysis, and to further increase throughput, we implemented automated derivatization of carboxylic acids, ketones, aldehydes, and amino acids using a liquid-handling platform, minimizing rate-limiting steps in sample preparation. The resulting workflow is well suited for high-throughput small-molecule analysis in large cohort studies and screening applications. The method was applied to the analysis of short-chain fatty acids, tricarboxylic acid cycle intermediates, and amino acids in human plasma and fecal samples.
+Study Submission Date	2026-06-22
+Study Public Release Date	2026-06-30
+Study File Name	s_MTBLS14813.txt
+Comment[Created At]	2026-06-17
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-30
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	ion mobility MS	derivatization	Method Development	Agilent 1290 Infinity II UHPLC	Bruker timsTOF Pro 2	Homo sapiens	Mus musculus	reference compound	blood plasma	feces	Cell Line	certified reference material	experimental sample	reference compound mix	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://opendata.inrae.fr/PO2/Ontology/TransformON/c_FTSiSQkp	http://purl.obolibrary.org/obo/MSIO_0000111	http://purl.obolibrary.org/obo/NCIT_C189155	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/CHEBI_747204	http://purl.obolibrary.org/obo/BTO_0000131	http://purl.obolibrary.org/obo/BTO_0000440	http://purl.obolibrary.org/obo/NCIT_C16403	http://purl.obolibrary.org/obo/CHMO_0002879	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MSIO_0000024	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	CHMO	TFO	MSIO	NCIT	MTBLS	MTBLS	NCBITaxon	NCBITaxon	CHEBI	BTO	BTO	NCIT	CHMO	CHMO	MSIO	MS	EDAM
+Comment[Study Design Category]	default	default	default	default	Chromatography Instrument	Instrument	Organism	Organism	Organism part	Organism part	Organism part	Organism part	Sample type	Sample type	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Matthias Anagho-Mattanovich, Ondrej Hodek, Aiko Barsch, Nikolas Kessler, Sofie Weinkouff, Siri Furre, Jasmin P. Hjerresen, Cristian De Gobba, Marit Eika Jørgensen, Matthew R. Lewis and Thomas Moritz
+Study Publication Title	Rapid chromatography combined with trapped ion mobility mass spectrometry for analysis of derivatized small molecules
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Chromatography method development
+Study Factor Type	Method Development
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C189155
+Study Factor Type Term Source REF	NCIT
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14813_LC-MS_negative_reverse-phase.txt	a_MTBLS14813_LC-MS_positive_reverse-phase.txt	a_MTBLS14813_LC-MS_negative_reverse-phase-1.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]			
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity II UHPLC;Bio-AQ (2 µm, 2.1 mm x 50 mm, Bruker);reverse phase;negative;50-1200;Bruker timsTOF Pro 2	Agilent 1290 Infinity II UHPLC;Kinetex Biphenyl (2.6 µm, 2.1 mm x 50 mm, Phenomenex);reverse phase;positive;50-1200;Bruker timsTOF Pro 2	Agilent 1290 Infinity II UHPLC;Bio-AQ (2 µm, 2.1 mm x 50 mm, Bruker);reverse phase;negative;50-1200;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight
+Comment[Assay Field Default Unit]	;;;;;	;;;;;	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS
+Comment[Assay Descriptor]			
+Comment[Assay Descriptor Term Accession Number]			
+Comment[Assay Descriptor Term Source REF]			
+Comment[Assay Descriptor Category]			
+Comment[Assay Descriptor Source]			
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	CHMO	CHMO	MI
+Study Protocol Description	<p>The brown adipocyte samples were prepared the same way as described in Anagho-Mattanovich et al. 2025. In brief, immortalized murine brown preadipocytes were cultured in 6-well plates using DMEM (Thermo Fisher Scientific) supplemented with 10 % FBS and 1 % penicillin-streptomycin at 37 °C, 5 % CO2. Upon reaching confluence (day 0), differentiation was induced with 20 nM insulin, 1 nM triiodothyronine (T3), 1 µM dexamethasone, 0.125 mM indomethacin, and 0.5 mM isobutylmethylxanthine (Sigma-Aldrich). After 2 days, the medium was replaced with DMEM containing 20 nM insulin and 1 nM T3, refreshed every 2 days. Experiments were performed on day 7 using cells confirmed to be free of mycoplasma. For stimulation, cells were treated with 1 µM L-(-)-norepinephrine (+)-bitartrate salt monohydrate (Sigma-Aldrich), and samples were collected for metabolomics without stimulation (0 h samples) and at 4, 8, and 24 h post-stimulation. For each condition, 6 replicates were collected. An un-inoculated plate was treated the same way as the samples and used as an experimental blank.</p><p><br></p><p>Short-chain fatty acids were extracted from approximately 100 mg human fecal samples.</p><p><br></p><p>Amino acids were extracted from 50 µL of NIST® SRM® 1950 reference plasma.</p>	<p>A Bruker Bio-AQ, 50 x 2.1 mm, 2 µm column was used at an oven temperature of 55 °C. At a flow rate of 0.9 mL/min, the mobile phases A (water with 0.1% HCOOH) and B (acetonitrile with 0.1% HCOOH) were delivered with the following gradient: starting conditions 20 % B, 1.5 min 80% B, 1.7 min 100 % B, 1.9 min 100 % B, 1.92 min 20 % B, ending at 2.0 min 20 % B.</p><p><br></p><p>A Bruker Bio-AQ, 50 x 2.1 mm, 2 µm column (1901674, Bruker, Bremen, Germany) was used at an oven temperature of 55°C. At a flow rate of 0.9 mL/min, the mobile phases consisted of A (water with 0.1 % HCOOH) and B (acetonitrile with 0.1% HCOOH), and were delivered with the following gradient: starting conditions 20 % B, 0.2 min 20 % B, 1.2 min 80 % B, 1.25 min 100 % B, 1.45 min 100 % B, 1.5 min 20 % B, ending at 1.6 min 20 %.</p><p><br></p><p>A Kinetex Biphenyl, 50 x 2.1 mm, (Phenomenex, Torrance, California, United States) 2.6 µm column was used at an oven temperature of 55°C. At a flow rate of 0.9 mL/min, the mobile phases A (water with 0.1% HCOOH) and B (acetonitrile with 0.1% HCOOH) were delivered with the following gradient: starting conditions 0.1 % B, 0.5 min 0.1 % B, 0.9 min 0.15% B, 1.25% 0.15% B, 1.6 min, 40% B, 1.85 min 100 % B, 1.95 min 100 % B, ending at 2.05 min 0.1 % B.</p>	<p>Data were processed with Metaboscape 2026 and TASQ 2026 (Bruker, Daltonics GmbH, &amp; Co. KG, Bremen, Germany) for untargeted and targeted investigation, respectively. All processing used optimised software settings for the different analyses. The smoothing parameter for chromatograms in TASQ was always set to 1 Gaussian smoothing cycle, with smoothing width of 1s. Quantification was based on internal calibration curves, ranging for TCA-metabolites from 0.05 to 100 µM, SCFA from 0.1 to 1000 µM, and amino acids 0.1 to 500 µM.&nbsp;</p>	<p>For metabolite extraction, cells were quenched in ice-cold 90% methanol. Culture media were transferred to tubes, wells were rinsed with 1 mL in-house PBS, and 500 µL methanol solution containing 25 ng/µL of 13C3-lactic acid, 13C3-citric acid, 13C4-malic acid (Cambridge Isotope Laboratories, MA, USA), D6-alpha-ketoglutaric acid, D4-succinic acid and D4-fumaric acid (Merck-Sigma Aldrich, MO, USA) as internal standards were added. Cells were scraped, collected, snap-frozen in liquid nitrogen, and subjected to three freeze-thaw-vortex cycles. After 1 h incubation on ice for protein precipitation, samples were centrifuged (16,000 g, 15 min, 4 °C), and supernatants were stored at -80 °C. For subsequent NPH derivatization, 20 µL of supernatant were used.</p><p><br></p><p>Short-chain fatty acids were extracted from approximately 100 mg human fecal samples (for experimental- and sample-specific details see the referenced studies) with 1.5 mL extraction mix of 10% methanol containing isotopically labelled internal standards (340 µM acetic acid-D4, propionic acid-D6, and butyric acid-D8, Merck Sigma-Aldrich, MO, USA). The samples were vortexed vigorously for 30 sec before centrifugation at 4,000 rpm at 4°C for 15 min. Samples were thereafter diluted 1:20 with extraction mixture.&nbsp;</p><p>Metabolite extraction of TCA and amino acids from plasma was achieved by adding 300 μL of 90% MeOH to 50 µL of NIST® SRM® 1950 reference plasma or Sigma serum H4522 (Merck-Sigma Aldrich, MO, USA), Samples were vortexed and kept on ice for 30 min. Thereafter, the extracts were centrifuged at 18,000 x g at 4 °C for 15 min. Then, 50 µL of the supernatant were transferred to LC-MS vials for amino acid analysis, and 150 µL were transferred to another LC-MS vial for analysis of TCA-metabolites. Prior to drying the LC-MS vials under N2 (stream flow = 6 L/min) for 1 h at room temperature, stable-isotope labeled internal standards were added to the vials. For amino acid analysis, 20 μL of deuterated amino acid standard mixture (SMB00917, Merck-Sigma Aldrich, MO, USA) was added with the following concentrations: alanine-D4 164 µM, arginine-D7 48 µM, asparagine-D3 48 µM, aspartic acid-D3 20 µM, glutamic acid-D5 64 µM, glutamine-D5 222 µM, glycine-D2 152 µM, histidine-D5 50 µM, isoleucine-D10 124 µM, leucine-D10 124 µM, lysine-D8 70 µM, methionine-D8 24 µM, ornithine-D2 51 µM, phenylalanine-D8 44 µM, proline-D7 84 µM, serine-D3 60 µM, threonine-D5 81 µM, tryptophan-D8 31 µM, tyrosine-D7 45 µM, valine-D8 156 µM. For TCA metabolite analysis 20 μL of a mixture of 4000 ng 13C3-lactic acid, 400 ng 13C3-citric acid, 100 ng 13C4-malic acid (Cambridge Isotope Laboratories, MA, USA), 400 ng 13C3-pyruvic acid 100 ng D6-alpha-ketoglutaric acid, 50 ng D4-succinic acid and 50ng D4-fumaric acid (Merck-Sigma Aldrich, MO, USA) were added.&nbsp;</p><p>For analysis of SCFAs in plasma, 20 µL of plasma (for experimental- and sample-specific details see the referenced study) were mixed with 20 µL of internal standard mixture in methanol containing isotopically labelled internal standards (100 µM acetic acid-D4, 2 µM propionic acid-D6, and 2 µM butyric acid-D8, Merck Sigma-Aldrich, MO, USA) with a Bravo Automated Liquid Handling Platform (Agilent Technologies, Santa Clara, CA, USA).</p>	<p>All mass spectrometry measurements were performed using a Bruker timsTOF Pro 2 (Bruker Daltonics GmbH &amp; Co. KG, Bremen, Germany) instrument equipped with a trapped-ion mobility spectrometry (TIMS) tunnel coupled to a hybrid quadrupole time-of-flight mass spectrometer (TOF-MS). Acquisition was controlled by timsControl 7.05 and HyStar 6.4.</p><p>Acquisition was made with a Vacuum Insulated Probe Heated ElectroSpray Ionization source (VIP-HESI) operated in negative (for SCFA and TCA analysis) or positive ionization (for amino acid analysis) mode. Capillary voltage was 3.6 kV (negative mode) or 4 kV (positive mode), nebulizer 4 bar, dry gas flow 8 L/min, dry gas temperature 230 °C, sheath gas temperature 400 °C and sheath gas flow 4 L/min. For the analysis with lower flow-rates (standard methods), the nebulizer was set to 2.5 bar.</p><p>Mass range was m/z 50-1200, 1/K0 between 0.45-1.38, and ramp time, 75 ms. The ion charge control was enabled and set to 5.0M. For PASEF, the collision energy was set to 35 eV.</p>	<p>Metabolites were identified based on an in house library based on authentic analytical standards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Anagho-Mattanovich	Moritz
+Study Person First Name	Matthias	Thomas
+Study Person Mid Initials		
+Study Person Email	matthias.mattanovich@sund.ku.dk	thomas.moritz@sund.ku.dk
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Copenhagen	University of Copenhagen
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-7561-7898	0000-0002-4258-3190
+Comment[Study Person Affiliation ROR ID]	https://ror.org/035b05819	https://ror.org/035b05819

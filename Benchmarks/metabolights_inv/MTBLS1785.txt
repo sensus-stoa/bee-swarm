@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	UBERON	BTO	MTBLS	OBI	EFO	NCIT
+Term Source File				https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	
+Term Source Version		2020-06-10	2020-06-10	1.0	29	132	
+Term Source Description				Metabolights Ontology	Ontology for Biomedical Investigations	Experimental Factor Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS1785
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-06-10
+Investigation Public Release Date	2021-01-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1785
+Study Title	Optimizing peak picking and development of a suspect screening tool for rapid annotation of the human chemical exposome from LC- HRMS datasets
+Study Description	The technological advances of cutting-edge high-resolution mass spectrometry (HRMS) has set the stage for a new paradigm for exposure assessment. However, it is critical to ensure that bioinformatics software developed to process raw HRMS data can disentangle low-abundant xenobiotics from the noise. It is also essential to provide tools to speed up the annotation process. In this study, we optimized and compared the efficiency of open source (e.g. XCMS and MzMine2) and vendor software (e.g. MarkerViewTM and Progenesis QI) to detect low-abundant xenobiotics in human plasma and serum. We show that the rates of false negative can be decreased to below 5% when critical parameters are identified and tuned. Even though similar performances can be achieved using the best tuning for all software, the best detection rate was observed for MzMine2 (ADAP pipeline). We then developed an automatized suspect screening workflow (XenoScreener) based on the mass, three Rt prediction models and isotopic pattern. Indicators were developed to provide intermediate annotation scores for each predictor as well as a global score. With XenoScreener, we show that it is possible to efficiently pre-annotate with a high level of confidence a mix of xenobiotics spiked at real-life concentrations in human plasma and serum samples in a very short time (i.e. less than 3 hours after acquisition). We also demonstrate XenoScreener’s high efficiency for the rapid annotation of various xenobiotics (pharmaceuticals, lifestyle markers, plasticizers, flame-retardant, antifungals) in human plasma and serum using a library of about 2200 xenobiotics (annotation confirmed with MS/MS data).
+Study Submission Date	2020-06-10
+Study Public Release Date	2021-01-04
+Study File Name	s_MTBLS1785.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	blood plasma	blood serum	untargeted metabolites	data processing software
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/UBERON_0001969	http://purl.obolibrary.org/obo/BTO_0000133	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000177
+Study Design Type Term Source REF	CHMO	UBERON	BTO	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jade Chaker, Erwann Gilles, Thibaut Léger, Bernard Jégou, Arthur David
+Study Publication Title	Optimizing peak picking and development of a suspect screening tool for rapid annotation of the human chemical exposome from LC- HRMS datasets
+Study Publication Status	In preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Spiking
+Study Factor Type	spiked sample
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002851
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1785_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1785_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Plasma and serum were acquired from the French blood agency (Etablissement Français du Sang, EFS). Homogenate plasma or serum samples were prepared and divided into 8 x 100 µL aliquots for each matrix (1-8), of which 4 plasma samples and 4 serum samples (labelled 1-4) were spiked with 1 ng of a mix of selected classes of contaminants (i.e. pesticides, pharmaceuticals and diet toxins) and metabolites (i.e., steroids, eicosanoids and neurotransmitters) (n=45) to give 10 ng/mL in matrix.</p><p><br></p><p>Spiking compounds : 2-Phenylphenol, Acetochlor, Aflatoxin B1, Aminobenzimidazole, Androstenedione, Arachidonic Acid, Azoxystrobin, Boscalid, Carbamazepine, Carbendazim, Chlorpyrifos, Clothianidin, Codeine, Cortisone, Cotinine, Cyprodinil, Diazinon, Diclofenac, Dimethyldithiophosphate, Estrone, Fluoxetine, Hydrocortisone, Hydroxyindoleacetic acid, Ibuprofen, Imidacloprid, Leukotriene B4, Leukotriene D4, Nicotine, Paracetamol, Paroxetine, Piperine, Pravastatin, Prochloraz, Progesterone, Propiconazole, Prostaglandin D2, Prostaglandin E2, Prostaglandin F2a, Sertraline, Solanidine, Tebuconazole, Testosterone, Thiacloprid, Thiamethoxam, Venlafaxine.</p>	<p>Protein precipitation was performed on all samples using a 4:1 (v:v) ratio of cold methanol to matrix. To improve protein removal, samples were allowed to stand at -20 °C for one hour prior centrifugation. After centrifugation at 4 °C and 13 300 rpm [LT1]&nbsp;[CJ2]&nbsp;for 20 min, supernatants were collected and evaporated to dryness under vacuum. Samples were recovered in 100 µL of 90:10 (v:v) ultrapure water to acetonitrile ratio.</p>	<p>Samples were separated with an AB SCIEX ExionLC AD UPLC. Compound chromatographic separation was achieved using an Acquity UPLC HSS T3 C18 column (1.8µm, 1.0 x150mm) maintained at 40°C. Injection volume was set at 2 µL. Flow rate was set at 100 µL/min with mobile phases of ultrapure water/0.01% formic acid (A) and acetonitrile/0.01% formic acid (B). The gradient was as follows: 0-2.5 min, 10-20% B&nbsp;; 2.5-20 min, 20-30% B&nbsp;; 20-38 min, 30-45% B&nbsp;; 38-45 min, 45-100% B&nbsp;; 45-55 min, 100% B&nbsp;; 55-60 min, 10% B. </p>	<p>Samples were analyzed on AB SCIEX X500R QTOF. Full-scan mass spectra was acquired between 50-1100 m/z using ESI source settings: temperature 550°C, ionspray voltage 4,5kV (-4,5kV in negative mode), declustering potential 80V (-80V in negative mode), accumulation time 300 ms, spray N2 gas 35 arbitrary units, heat conduction gas 35 arbitrary units; curtain gas 7 arbitrary units, collisionally activated dissociation gas 7 arbitrary units, run time 60min. Samples were analyzed in full scan experiment in both – and + ESI modes. MS/MS mass fragmentation information for chemical elucidation was obtained by further analysis of selected samples in sequential window acquisition of theoretical mass spectrum (SWATH).</p>	<p>Files were generated in the .wiff2 format and converted to the converted to 64 bit .mzML (full scan) using MSConvert from ProteoWizard[1]. </p><p>Mass spectra acquired in full scan were processed (peak picking, deconvolution, alignment, gap filling) using four software programs: instrument-specific software MarkerViewTM 1.3 (AB SCIEX), vendor software Progenesis QI for metabolomics (Waters), and open-source solutions MzMine2 [2] (v2.51) and R-based XCMS [3] (v3.6.1) to create aggregate datasets from all samples files in which the MS features were binned into retention time (Rt) × m/z markers. </p><p><br></p><p>REF : </p><p>[1] Adusumilli, R.; Mallick, P., Methods Mol Biol 2017, 1550, 339-368.</p><p>[2] Pluskal, T.; Castillo, S.; Villar-Briones, A.; Orešič, M., BMC Bioinformatics 2010.</p><p>[3] Smith, C. A.; Want, E. J.; O'Maille, G.; Abagyan, R.; Siuzdak, G., Anal. Chem. 2006,&nbsp;(78), 779-787.</p>	<p>An in-house automatized suspect screening workflow based on three predictors, m/z, experimental or predicted retention times and isotopic patterns was then developed to pre-annotate suspects from HRMS dataset. Manual curation was performed to confirm pre-annotations using MS/MS data.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chaker	Gilles	Léger	Jégou	David
+Study Person First Name	Jade	Erwann	Thibaut	Bernard	Arthur
+Study Person Mid Initials					
+Study Person Email	jade.chaker@ehesp.fr	erwann.gilles@ehesp.fr	thibaut.leger@ehesp.fr	bernard.jegou@ehesp.fr	arthur.david@ehesp.fr
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation	Univ Rennes, Inserm, EHESP, Irset (Institut de recherche en santé, environnement et travail) – UMR_S 1085, F-35000 Rennes, France	Univ Rennes, Inserm, EHESP, Irset (Institut de recherche en santé, environnement et travail) – UMR_S 1085, F-35000 Rennes, France	Univ Rennes, Inserm, EHESP, Irset (Institut de recherche en santé, environnement et travail) – UMR_S 1085, F-35000 Rennes, France	Univ Rennes, Inserm, EHESP, Irset (Institut de recherche en santé, environnement et travail) – UMR_S 1085, F-35000 Rennes, France	Univ Rennes, Inserm, EHESP, Irset (Institut de recherche en santé, environnement et travail) – UMR_S 1085, F-35000 Rennes, France
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT

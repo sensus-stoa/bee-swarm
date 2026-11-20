@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	not labeled
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	
+Term Source Version		2025-10-21	3.87.0				2025-12-03	25.06e	2025-12-18	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS13927
+Investigation Title	Cell Atlas and Novel Signal Processing Strategy in Primate Insular Cortex
+Investigation Description	
+Investigation Submission Date	2026-02-22
+Investigation Public Release Date	2026-02-28
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13927
+Study Title	Cell Atlas and Novel Signal Processing Strategy in Primate Insular Cortex
+Study Description	<p>The anterior insular cortex (AIC) is a critical hub integrating exteroceptive and interoceptive information into high-order cognition, yet its neural basis remains incompletely understood. Here, by combining whole-cell-based single-cell transcriptomics with Patch-seq recordings, we resolved and characterized 78 detailed cell types in the macaque AIC, revealing the diversity and specialization of this region in cell type, connectivity profile, signal-processing strategy, and metabolic characteristics. Among these, we identified two transcriptomically and morphoelectrically defined von Economo neuron (VEN) subtypes, DSG2-expressing VEN-L and POC5-expressing VEN-S, transcriptomically relating to extratelencephalic and corticothalamic projection neurons, respectively. We also uncovered a previously underappreciated signal-processing strategy in VENs, whereby the geometry of the dendrite-originating axon initial segment (AIS) reshapes action potential dynamics and enhances somatic responsiveness to deep-layer synaptic inputs. Together, this multimodal atlas establishes a molecular and functional framework for investigating the circuit principles underlying deep-layer projection neurons in the primate AIC.</p>
+Study Submission Date	2026-02-22
+Study Public Release Date	2026-02-28
+Study File Name	s_MTBLS13927.txt
+Comment[Created At]	2026-02-05T14:35:31.874225
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Heterogeneity	Parameter Assumptions	Estimators
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C28359		
+Study Design Type Term Source REF	NCIT		
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Rui-Feng Liu, Mengyao Huang, Yuhui Shen, Mingting Shao, Junzhan Jing, Nana Xu, Lei Tang, Biaodi Liu, Jianming Shi, Fanrui Chen, Zhao-Zhe Hao, Xiaolong Jiang, Sheng Liu1
+Study Publication Title	Cell Atlas and Novel Signal Processing Strategy in Primate Insular Cortex
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Tissue
+Study Factor Type	Brain Region
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13927_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MI	CHMO	OBI	MI	CHMO	MI
+Study Protocol Description	<p>Selected brain area (&nbsp;Anterior Insular Cortex, parietal cortex, and primary visual cortex) were dissected out from adult crab-eating macaque brain.</p>	<p>For reverse phase liquid chromatography (RPLC), polar metabolites were separated on a Waters ACQUITY HSS-T3 column (3.0 × 100 mm, 1.8 μm), while a Waters ACQUITY BEH Amide column (2.1 × 100 mm, 1.7 μm) was utilized for hydrophilic interaction liquid chromatography (HILIC). </p>	<p>All detected ions were extracted using MarkerView 1.3 (AB Sciex, Concord, ON, Canada) into Excel in the format of two dimensional matrix, including mass to charge ratio (m/z), retention time, and peak areas, and isotopic peaks were filtered. PeakView 2.2 (AB Sciex, Concord, ON, Canada) was applied to extract MS/MS data and perform comparisons with the Metabolites database (AB Sciex, Concord, ON, Canada), HMDB, and standard references to annotate ion identities</p>	<p>Polar metabolites were extracted from approximately 50 mg of tissues using 500 µL of ice-cold methanol:H2O (4:1,v/v) containing 0.224mM phenylhydrazine. Tissues were minced into small pieces in the extraction solvent and subsequently homogenized using a bead ruptor with an optimized program. Tissue homogenates were incubated at 1500 rpm for 30 min at 4 oC. Following the incubation, samples were kept at -20 oC for 1h for derivatization of alpha-keto acids126. Then, samples were centrifuged for 10 min at 12,000 rpm at 4 oC. Clean supernatant was transferred to a new tube. Extraction was repeated for another round by adding another 500 µL of ice-cold methanol containing 0.224mM phenylhydrazine. Extracts from both rounds were pooled into a single tube and dried in a SpeedVac under H2O mode. The dried extract was reconstituted in 5% acetonitrile in water prior to LC-MS analysis on an Agilent 1290 II UPLC coupled to Sciex 5600+ quadrupole-TOF MS. For reverse phase liquid chromatography (RPLC), polar metabolites were separated on a Waters ACQUITY HSS-T3 column (3.0 × 100 mm, 1.8 μm), while a Waters ACQUITY BEH Amide column (2.1 × 100 mm, 1.7 μm) was utilized for hydrophilic interaction liquid chromatography (HILIC). </p>	<p>MS parameters for detection were: ESI source voltage positive ion mode 5.5 kV, negative ion mode −4.5 kV; vaporizer temperature, 500 °C; drying gas (N2) pressure, 50 psi; nebulizer gas (N2) pressure, 50 psi; curtain gas (N2) pressure, 35 psi; The scan ranges were set at m/z 60-700 during RPLC, and m/z 70-850 during HILIC analysis, respectively127. Information-dependent acquisition mode was used for MS/MS analyses of the metabolites. Collision energy was set at (±) 35 ± 15 eV. Data acquisition and processing were performed using Analyst® TF 1.7.1 Software (AB Sciex, Concord, ON, Canada). All detected ions were extracted using MarkerView 1.3 (AB Sciex, Concord, ON, Canada) into Excel in the format of two dimensional matrix, including mass to charge ratio (m/z), retention time, and peak areas, and isotopic peaks were filtered. PeakView 2.2 (AB Sciex, Concord, ON, Canada) was applied to extract MS/MS data and perform comparisons with the Metabolites database (AB Sciex, Concord, ON, Canada), HMDB, and standard references to annotate ion identities.&nbsp;</p><p><br></p>	<p>PeakView 2.2 (AB Sciex, Concord, ON, Canada) was applied to extract MS/MS data and perform comparisons with the Metabolites database (AB Sciex, Concord, ON, Canada), HMDB, and standard references to annotate ion identities</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu
+Study Person First Name	Sheng
+Study Person Mid Initials	
+Study Person Email	liush87@mail.sysu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	54S Xianlie Road, Yuexiu District, Guangzhou, Guangdong China
+Study Person Affiliation	Sun Yat-sen University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0002-2497-8666
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0064kty71

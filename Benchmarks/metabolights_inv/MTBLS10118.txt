@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	SNOMED	MTBLS	EFO	NCIT	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/			https://www.ebi.ac.uk/ols4/api
+Term Source Version	29		1			
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS10118
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-05-07
+Investigation Public Release Date	2024-10-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10118
+Study Title	Transcriptomics integrated with metabolomics reveals partial molecular mechanisms of nutritional risk and neurodevelopment in children with congenital heart disease
+Study Description	<p><strong>PURPOSE:</strong> To explore molecular mechanisms affecting nutritional risk and neurodevelopment in children with congenital heart disease (CHD) by combining transcriptome and metabolome analysis.</p><p><strong>METHODS:</strong> A total of 26 blood and serum samples from 3 groups of children with CHD (low nutritional risk combined with normal neurodevelopment (group A), low nutritional risk combined with neurodevelopmental disorders (group B) and high nutritional risk combined with normal neurodevelopment (group C)) were analyzed by transcriptome and metabolomics to search for differentially expressed genes (DEGs) and metabolites (DEMs). Functional analysis was conducted for DEGs and DEMs. Further, the joint pathway analysis and correlation analysis of DEGs and DEMs were performed.</p><p><strong>RESULTS:</strong> A total of 362 and 1351 DEGs were detected in group B and C compared to A, respectively. A total of 6 and 7 DEMs were detected in group B and C compared to A in positive mode, respectively. There were 39 and 31 DEMs in group B and C compared to A in negative mode. Transcriptomic analysis indicated that neurodevelopment may be regulated by some genes such as NSUN7, SLC6A8, CXCL1 and LCN8, nutritional risk may be regulated by SLC1A3 and LCN8. Metabolome analysis and joint pathway analysis showed that tryptophan metabolism, linoleic and metabolism and glycerophospholipid metabolism may be related to neurodevelopment, and glycerophospholipid metabolism pathway may be related to nutritional risk.</p><p><strong>CONCLUSION:</strong> By integrating transcriptome and metabolome analyses, this study revealed key genes and metabolites associated with nutritional risk and neurodevelopment in children with CHD, as well as significantly altered pathways. It has important clinical translational significance.</p>
+Study Submission Date	2024-05-07
+Study Public Release Date	2024-10-25
+Study File Name	s_MTBLS10118.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	At risk for nutritional problem	untargeted metabolites	congenital heart disease	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://snomed.info/id/129689002	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0005207	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	SNOMED	MTBLS	EFO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fcvm.2024.1414089
+Study Publication Author List	Minglei Gao, Yang Shen, Ping Yang, Chang Yuan, Yanan Sun, Zipu Li
+Study Publication Title	Transcriptomics integrated with metabolomics reveals partial molecular mechanisms of nutritional risk and neurodevelopment in children with congenital heart disease
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cohort
+Study Factor Type	cohort
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0004445
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10118_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10118_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>A total of 26&nbsp;blood and serum&nbsp;samples were collected from hospitalized children with CHD in the Dalian&nbsp;Children's Hospital - 24 h before discharge from the hospital (or after surgery).&nbsp;Blood samples were used for transcriptomic analysis and serum samples were used for metabolomics analysis. Main inclusion criteria: (1) confirmed diagnosis of CHD; (2) aged 0-24 months; (3) informed consent was signed by child's guardian. Main exclusion criteria: (1) children with nutritional impairments due to major non-cardiac diseases; (2) multiple pregnancy; (3) chromosomal abnormality; (4) structural brain malformation; (5) placental dysfunction; (6) intrauterine growth retardation of the fetus; (7) received the prescribed nutrition supply and blood transfusion half a month before hospitalization.</p>	<p>Total RNA was extracted from the samples with TRIzol. Sequencing By Synthesis (SBS) technology was used to sequence the cDNA library using Illumina's high-throughput sequencing platform. The raw data obtained by sequencing were converted into FASTQ format sequence data by base calling.</p>	<p>The 300 μL acetonitrile was added to 100 μL serum at 4 °C. After 20 min of centrifugation at 12,000 rpm (4 °C), 100 μL supernatant was carefully extracted. Take 50 μL as quality control (QC) samples. All of the extracts were analyzed using LC-MS/MS technology with a high performance liquid chromatography (HPLC) and a high resolution mass spectrometer (HRMS). The chromatographic separation was performed on a Waters HSS T3 column. Metabolomics data were collected as follows: a column temperature of 45 °C and the flow rate of 0.3 mL/min. mobile phase: A = 0.1% formic acid water, B = 0.1% formic acid acetonitrile.</p>	<p>Mass spectrometry (MS) negative and positive mode conditions: sheath gas flow rates 30 arb, atomization pressure 50 psi. capillary voltage: positive mode 5500 V, negative mode -4500 V. Based on the MS detection, the original files were imported into Progenesis QI (Waters) software for data pre-processing and identification, and then the data quality control analysis was carried out to ensure the accuracy and reliability of the data.</p>	<p>Multivariate statistical analysis was performed on the data to reveal the differences of metabolites of different components, the biological significance of metabolites was discovered through functional analysis.&nbsp;Orthogonal partial least squares discrimination analysis&nbsp;(OPLS-DA) was used to filter signals that are not relevant to classification. Potential metabolites were analyzed according to predicted value (VIP) and significance of variables in Student's t-test. VIP &gt; 1 and p &lt; 0.05 were considered as statistically significant.</p>	<p>Differentially expressed metabolites (DEMs) were selected using KEGG (https://www.genome.jp/kegg/) and human metabolome database (HMDB) (https://hmdb.ca/), and further annotated in the KEGG compound database. The annotated metabolic pathways were classified according to the KEGG pathway database (https://www.kegg.jp/kegg/pathway.html).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gao
+Study Person First Name	Minglei
+Study Person Mid Initials	
+Study Person Email	mingleigao@sina.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Qingdao Women and Children’s Hospital
+Study Person Affiliation	
+Study Person Roles	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT

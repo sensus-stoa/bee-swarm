@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version	2025-10-21	3.89.0				2026-05-05	26.02d	2026-03-19	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13827
+Investigation Title	Salivary Multi-omics Characterization and Staging Diagnostic Model for Type 2 Diabetes with Different Stages of Periodontitis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-02-03
+Investigation Public Release Date	2026-05-20
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13827
+Study Title	Salivary Multi-omics Characterization and Staging Diagnostic Model for Type 2 Diabetes with Different Stages of Periodontitis
+Study Description	<p>Background:&nbsp;This study aims to comprehensively characterize the dynamic succession of the salivary microbiome and metabolic reprogramming in type 2 diabetes mellitus (T2DM) patients across progressive stages of periodontitis (Stage I–IV) using an integrated multi-omics approach. We specifically sought to evaluate the clinical value of a salivary multi-omics-based machine learning model for the precision stratification of periodontitis severity.</p><p>Methods:&nbsp;Unstimulated saliva samples were collected from 120 T2DM patients stratified into four groups based on periodontitis severity (Stages I–IV, n=30 per group). 16S rDNA amplicon sequencing and LC-MS untargeted metabolomics were employed to analyze microbial and metabolic profiles. Multivariate statistics, Procrustes analysis, and Random Forest algorithms were utilized to identify key features and construct diagnostic models.</p><p>Results:&nbsp;Disease progression was characterized by a significant restructuring of the microbiome, featuring an increase in Firmicutes and enrichment of core pathogens (e.g., Porphyromonas, Treponema) in Stage IV. Metabolically, a stage-specific shift was observed from early amino acid perturbations to late-stage active proteolysis (accumulation of Pro-Pro dipeptides) and inflammatory lipid dysregulation. Notably, the abundance of Lactobacillus was significantly positively correlated with HbA1c levels and periodontal destruction. The Random Forest model based on these multi-omics signatures achieved an AUC of 0.961 for identifying Stage IV periodontitis.</p><p>Conclusion:&nbsp;This study reveals that the progression of periodontitis in T2DM patients is associated with specific remodeling of the salivary microecosystem, mechanistically driven by pathogen-induced proteolysis and dysregulated inflammatory lipid metabolism. The significant correlation between Lactobacillus and HbA1c provides novel evidence for the oral-systemic metabolic interplay. Furthermore, the high-accuracy diagnostic model validates the potential of saliva for non-invasive disease stratification.</p>
+Study Submission Date	2026-02-03
+Study Public Release Date	2026-05-20
+Study File Name	s_MTBLS13827.txt
+Comment[Created At]	2025-12-08
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Multi-omics study	microbiome	periodontitis	saliva	Oral Microbiome
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/PRIDE_0000461	http://www.ebi.ac.uk/efo/EFO_0004982	http://www.ebi.ac.uk/efo/EFO_0000649	http://purl.obolibrary.org/obo/UBERON_0001836	http://purl.obolibrary.org/obo/NCIT_C125208
+Study Design Type Term Source REF	MTBLS	PRIDE	EFO	EFO	EFO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Chenyang Shi,Mengfang Jin ,Yujie Gu,Minzhe Zhang,Qianjia Pan, Min Gu
+Study Publication Title	Salivary Multi-omics Characterization and Staging Diagnostic Model for Type 2 Diabetes with Different Stages of Periodontitis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13827_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13827_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Sample Collection and Processing Unstimulated whole saliva samples were collected from all participants between 09:00 and 11:00 to minimize circadian rhythmic variations. Participants were instructed to abstain from eating, drinking (except water), smoking, or oral hygiene procedures for at least 2 hours prior to sampling. After rinsing with deionized water, approximately 3–5 mL of saliva was collected via the passive drool method into sterile 50-mL tubes kept on ice. Samples were processed within 30 minutes of collection by centrifugation at 10,000 × g for 10 minutes at 4°C. The supernatant was carefully separated for metabolomic analysis, while the pellet was retained for DNA extraction. All aliquots were immediately snap-frozen and stored at −80°C until analysis.</p>	<p>100 μL liquid sample was added to a 1.5 mL centrifuge tube with 800 μL solution = four (0.02 mg/mL&nbsp;L-2-chlorophenylalanine,&nbsp;etc.) to extract metabolites. The samples were mixed by vortex for 30 s and low-temperature sonicated for 30 min (5°C, 40 KHz). The samples were placed at -20°C for 30 min to precipitate the proteins. Then the samples were centrifuged for 15 min (4°C, 13000 g). The supernatant was removed and blown dry under nitrogen. The sample was then re-solubilized with 100 μL&nbsp;solution (acetonitrile:&nbsp;water = 1:1) and extracted by low-temperature ultrasonication for 5 min (5°C, 40 KHz), followed by centrifugation at 13000 g and 4°C for 10 min.The supernatant was transferred to sample vials for LC-MS/MS analysis.</p>	<p>The LC-MS/MS analysis of sample was conducted on a UHPLC-Orbitmap 240&nbsp;system&nbsp;equipped with an&nbsp;ACQUITY&nbsp;HSS T3&nbsp;column&nbsp;(100 mm × 2.1 mm i.d., 1.8 μm;&nbsp;Waters,&nbsp;USA) at Majorbio Bio-Pharm Technology Co. Ltd. (Shanghai, China). The mobile phases consisted of 0.1%&nbsp;formic&nbsp;acid in water:a v/v)&nbsp;(solvent&nbsp;A) and 0.1%&nbsp;formic&nbsp;acid in a B). The flow rate was 0.40&nbsp;mL/min&nbsp;and the column temperature was 40°C. The injection volume was 5 μL.</p>	<p>The UPLC system was coupled to a&nbsp;UHPLC-Orbitrap Exploris&nbsp;240&nbsp;system&nbsp;Mass Spectrometer equipped with an electrospray ionization (ESI) source operating in positive mode and negative mode. The optimal conditions were set as followed: source temperature at 400°C ; sheath gas flow rate at 40 arb; Aux gas flow rate at 10 arb; ion-spray voltage floating (ISVF) at&nbsp;-2800V&nbsp;in negative mode and 3500V in positive mode, respectively; Normalized collision energy ,&nbsp;20-40-60V&nbsp;rolling for MS/MS. Data acquisition was performed with the Data Dependent Acquisition (DDA) mode. The detection was carried out over a mass range of&nbsp;70-1050&nbsp;m/z.</p>	<p>The pretreatment of LC/MS raw data was performed by&nbsp;Progenesis&nbsp;QI&nbsp;(Waters Corporation, Milford,&nbsp;USA) software, and a three-dimensional data matrix in CSV format was exported. The information in this three-dimensional matrix included: sample information, metabolite name and mass spectral response intensity. Internal standard peaks, as well as any known false positive peaks (including noise, column bleed, and derivatized reagent peaks), were removed from the data matrix, deredundant and peak pooled.&nbsp;</p>	<p>At the same time, the metabolites were identified by searching database, and the main databases were the HMDB (http://www.hmdb.ca/), Metlin ( https://metlin.scripps.edu/) and the self-compiled Majorbio Database (MJDB) of Majorbio Biotechnology Co., Ltd. (Shanghai, China)</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Shi	Gu
+Study Person First Name	Chenyang	Min
+Study Person Mid Initials		
+Study Person Email	1162256913@qq.com	gumin106@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	The Third Affiliated Hospital of Soochow University, The First People’s Hospital of Changzhou	The Third Affiliated Hospital of Soochow University, The First People’s Hospital of Changzhou
+Study Person Roles	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

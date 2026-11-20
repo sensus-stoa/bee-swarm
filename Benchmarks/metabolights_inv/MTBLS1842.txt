@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	EFO	WBbt	NCIT	MTBLS
+Term Source File	http://data.bioontology.org/ontologies/OBI			http://data.bioontology.org/ontologies/EFO			https://www.ebi.ac.uk/metabolights/
+Term Source Version	29			132			1.0
+Term Source Description	Ontology for Biomedical Investigations			Experimental Factor Ontology			Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1842
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-06-24
+Investigation Public Release Date	2020-10-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1842
+Study Title	Evaluation of significant features discovered from different data acquisition modes in mass spectrometry-based untargeted metabolomics
+Study Description	<p>Despite the growing popularity of liquid chromatography-mass spectrometry (LC-MS)-based metabolomics, no study has yet to systematically compare the performance of different data acquisition modes in the discovery of significantly altered metabolic features, which is an important task of untargeted metabolomics for identifying clinical biomarkers and elucidating disease mechanism in comparative samples. In this work, we performed a comprehensive comparison of three most commonly used data acquisition modes, including full-scan, data-dependent acquisition (DDA), and data-independent acquisition (DIA), using a metabolomics study of human plasma samples from leukemia patients before and after one-month chemotherapy. After optimization of data processing parameters, we extracted and compared statistically significant metabolic features from the results of each data acquisition mode. We found that most significant features can be consistently found in all three data acquisition modes with similar statistical performance as evaluated by Pearson correlation and receiver operating characteristic (ROC) analysis. Upon comparison, DDA mode consistently generated fewer uniquely found significant features than full-scan and DIA modes. We then manually inspected over 2000 uniquely discovered significant features in each data acquisition mode and showed that these features can be generally categorized into four major types. Many significant features were missed in DDA mode, primarily due to its low capability of detecting or extracting these features from raw LC-MS data. We thus proposed a bioinformatic solution to rescue these missing significant features from the raw DDA data with good reproducibility and accuracy. Overall, our work asserts that data acquisition modes can influence metabolomics results, suggesting room for improvement of data acquisition modes for untargeted metabolomics.</p>
+Study Submission Date	2020-06-24
+Study Public Release Date	2020-10-02
+Study File Name	s_MTBLS1842.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	Data-Dependent Acquisition	Data-Independent Acquisition
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C161785	http://purl.obolibrary.org/obo/NCIT_C161786
+Study Design Type Term Source REF	CHMO	MTBLS	NCIT	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1016/j.aca.2020.08.065
+Study Publication Author List	Jian Guo, Tao Huan
+Study Publication Title	Evaluation of significant features discovered from different data acquisition modes in mass spectrometry-based untargeted metabolomics
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Acquisition mode
+Study Factor Type	detector acquisition mode
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1000027
+Study Factor Type Term Source REF	MS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1842_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS1842_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Bone marrow interstitial fluid (BMIF) and peripheral blood (PB) samples were collected from 5 leukemia patients before and after 1-month chemotherapy.</p>	<p>The metabolite and lipid extractions followed previous published workflow with a few modifications<strong>[1]</strong>. In brief, 50 µl of the biofluid was mixed with 270 µl ice-cold methanol to quench metabolic activities and placed in a&nbsp;20 °C freezer overnight to complete the protein precipitation process. Then, 900 µl methyl tert-butyl ether (MTBE) was mixed with the extracted solution and vortexed for 30 min on a microplate shaker. To induce phase separation, 265 µl H2O was then added into the solution, followed by centrifugation (17,530 x g, 4 °C, 1 min). The upper organic phase and lower aqueous phase were separately transferred to 2 x 1.5 ml Eppendorf vials and concentrated by SpeedVac at 4 °C. The concentrated pellets were subsequently reconstituted with (ACN:IPA=1:1, v:v) for the lipids from organic phase and (ACN:H2O=1:1, v:v) for the metabolites from aqueous phase. 1 method blank was prepared using the same procedure but with no real sample in the vial. The metabolite solutions of BMIF samples were used for HILIC(-) analysis and the lipid solutions of PB samples were used for RP(+) analysis.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Wang S, Zhou L, Wang Z, Shi X, Xu G. Simultaneous metabolomics and lipidomics analysis based on novel heart-cutting two-dimensional liquid chromatography-mass spectrometry. Anal Chim Acta. 2017 May 8;966:34-40. doi:10.1016/j.aca.2017.03.004. PMID:28372724.</p>	<p>The BMIF samples were used for HILIC-MS(-) analysis and the PB samples were used for RP-MS(+) mode analysis.</p><p><br></p><p>The LC-MS analysis was performed on a Bruker Impact II Ultra-High Resolution Qq-Time-Of-Flight Mass Spectrometer (UHR-QqTOF-MS) coupled with an Agilent 1290 Infinity II Ultra High-Performance Liquid Chromatography (UHPLC) system. RP(+) and HILIC(-) modes were used in this study as they are the 2 most commonly used LC-MS modes for profiling hydrophobic and hydrophilic metabolites, respectively. A Millipore ZIC-pHILIC column (2.1 x 150 mm, 5 µm particle size, 200 Å) was used for HILIC(-) analysis. A Waters ACQUITY UPLC BEH C18 column (1.0 x 100 mm, 1.7 µm particle size, 130 Å) was used for RP(+) analysis. For HILIC(-) analysis, mobile phase A was 95% H2O and 5% ACN (adjusted to pH = 9.8 with 5 mM ammonium acetate (NH4AC)); mobile phase B was 5% H2O and 95% ACN. The chromatographic gradient was set as follows: 0 min, 5% A; 20 min, 80% A; 25 min, 95% A; 26 min, 5% A. Post-gradient equilibrium time was set for 14 min at 5% A. Flow rate was 0.15 ml/min. For RP(+) analysis, mobile phase A was 60% ACN and 40% H2O (adjusted to pH = 2.6 with 2 mM ammonium formate (NH4FA)); mobile phase B was 90% IPA and 10% ACN (adjusted to pH = 2.6 with 2 mM NH4FA). The chromatographic gradient was set as follows: 0 min,95% A; 8 min, 60% A; 14 min, 30% A; 20 min, 5% A; 23 min, 5% A; 24 min, 95% A. Post-gradient equilibrium time was set for 9 min at 95% A. Flow rate was 0.10 ml/min. A 2 µl of 250 mM sodium formate (NaFA) injection was performed at the end of each LC gradient as the internal reference. The analyses of full-scan, DDA, and DIA were completely randomized to minimize signal drift and systematic bias.</p>	<p>The MS parameter settings were optimized via (1) consulting Bruker MS scientists for recommended factory instrumental settings; (2) testing different parameter combinations and manually checking the results; (3) comparing our parameter settings with the literature. This optimization process has been iterated for many years and the optimized parameter settings has been demonstrated in many peer-reviewed publications <strong>[1][2]-[4]</strong>. MS parameters in full-scan mode: The ionization source capillary voltage was set to 4.5 kV in positive scanning mode and -3 kV in negative scanning mode. The nebulizer gas pressure was set to 1.6 bar. The dry gas temperature was set to 220 °C. Absolute threshold was set to 250 cts. The spectra rate was set to be 2 Hz. The mass detection range was 50 to 2500 in positive mode and 70 to 1020 in negative mode.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Dong Y, Arif AA, Guo J, Ha Z, Lee-Sayer SSM, Poon GFT, Dosanjh M, Roskelley CD, Huan T, Johnson P. CD44 Loss Disrupts Lung Lipid Surfactant Homeostasis and Exacerbates Oxidized Lipid-Induced Lung Inflammation. Front Immunol. 2020 Jan 30;11:29. doi:10.3389/fimmu.2020.00029. PMID:32082314.</p><p><strong>[2]</strong> Guo J, Huan T. Comparison of Full-Scan, Data-Dependent, and Data-Independent Acquisition Modes in Liquid Chromatography-Mass Spectrometry Based Untargeted Metabolomics. Anal Chem. 2020 Jun 16;92(12):8072-8080. doi:10.1021/acs.analchem.9b05135. PMID:32401506.</p><p><strong>[3]</strong> Hu Y, Cai B, Huan T. Enhancing Metabolome Coverage in Data-Dependent LC-MS/MS Analysis through an Integrated Feature Extraction Strategy. Anal Chem. 2019 Nov 19;91(22):14433-14441. doi:10.1021/acs.analchem.9b02980. PMID:31626534.</p><p><strong>[4]</strong> Yu H, Xing S, Nierves L, Lange PF, Huan T. Fold-Change Compression: An Unexplored But Correctable Quantitative Bias Caused by Nonlinear Electrospray Ionization Responses in Untargeted Metabolomics. Anal Chem. 2020 May 19;92(10):7011-7019. doi:10.1021/acs.analchem.0c00246. PMID:32319750.</p>	<p>Bruker DataAnalysis software was used to calibrate the MS raw data using the 250 mM sodium formate (NaFA) signal in the LC-MS analysis, as the internal reference. After mass calibration, the raw data files with format of '.d' were first converted to format of '.abf' using AbfConverter. The converted files were then uploaded onto MS-DIAL for feature extraction and alignment<strong>[1]</strong>. The parameters were set as follows: MS1 tolerance for feature extraction was 0.01 Da; MS2 tolerance was 0.05 Da; minimum peak height was 1000 amplitude; mass slice width was 0.1 Da; retention time tolerance for alignment was 0.2 min. MS1 tolerance for alignment was 0.02 Da; smoothing method was linear weighted moving average.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Tsugawa H, Cajka T, Kind T, Ma Y, Higgins B, Ikeda K, Kanazawa M, VanderGheynst J, Fiehn O, Arita M. MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods. 2015 Jun;12(6):523-6. doi:10.1038/nmeth.3393. PMID:25938372.</p>	<p>No metabolite identification procedure was performed for this study.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Guo	Huan
+Study Person First Name	Jian	Tao
+Study Person Mid Initials		
+Study Person Email	jian@chem.ubc.ca	thuan@chem.ubc.ca
+Study Person Phone	7802361588	1-604-822-4891
+Study Person Fax		
+Study Person Address	2036 Main Mall, Vancouver, BC Canada V6T 1Z1	2036 Main Mall Vancouver, BC Canada V6T 1Z1
+Study Person Affiliation	UBC	UBC
+Study Person Roles	PHD	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/WBbt_0008630	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	WBbt	NCIT

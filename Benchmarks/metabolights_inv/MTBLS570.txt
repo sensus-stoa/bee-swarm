@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BIRNLEX	CCONT	NCBITAXON	ONL-DP	OBI	BAO	BTO	MS	CHMO	CHEBI	EFO
+Term Source File	http://data.bioontology.org/ontologies/BIRNLEX	http://data.bioontology.org/ontologies/CCONT	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/ONL-DP	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/EFO
+Term Source Version	1	2	2	1	22	19	22	86	5	80	113
+Term Source Description	Biomedical Informatics Research Network Project Lexicon	Cell Culture Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Dataset processing	Ontology for Biomedical Investigations	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology	Mass Spectrometry Ontology	Chemical Methods Ontology	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS570
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2017-11-14
+Investigation Public Release Date	2018-03-13
+Comment[Created With Configuration]	C:\ISAcreatorMetaboLights\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS570
+Study Title	Metabolomic profiling of macrophages determines the discrete metabolomic signature and metabolomic interactome triggered by polarising immune stimuli
+Study Description	Priming and activating immune stimuli have profound effects on macrophages, however, studies generally evaluate stimuli in isolation rather than in combination. In this study we have investigated the effects of pro-inflammatory and anti-inflammatory stimuli either alone or in combination on macrophage metabolism. These stimuli include host factors such as IFNγ and ovalbumin-immunoglobulin immune complexes, or pathogen factors such as LPS. Untargeted LC-MS based metabolomics provided an in-depth profile of the macrophage metabolome, and revealed specific changes in metabolite abundance upon either individual stimuli or combined stimuli. Here, by factoring in an interaction term in the linear model, we define the metabolome interactome. This approach allowed us to determine whether stimuli interact in a synergistic or antagonistic manner. In conclusion this study demonstrates a robust approach to interrogate immune-metabolism, especially systems that model host-pathogen interactions.
+Study Submission Date	2017-11-14
+Study Public Release Date	2018-03-13
+Study File Name	s_MTBLS570.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	inflammation	untargeted metabolites	high-performance liquid chromatography-mass spectrometry	non-targeted object
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MP_0001845		http://purl.obolibrary.org/obo/CHMO_0000796	http://neurolog.unice.fr/ontoneurolog/v3.0/ontoneurolog-extension-of-dolce.owl#non-targeted-object
+Study Design Type Term Source REF	EFO		CHMO	ONL-DP
+STUDY PUBLICATIONS
+Study PubMed ID	29538444
+Study Publication DOI	10.1371/journal.pone.0194126
+Study Publication Author List	Rattigan KM, Pountain AW, Regnault C, Achcar F, Vincent IM, Goodyear CS, Barrett MP
+Study Publication Title	Metabolomic profiling of macrophages determines the discrete metabolomic signature and metabolomic interactome triggered by polarising immune stimuli.
+Study Publication Status	Accepted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Inflammation	Dataset
+Study Factor Type	inflammation	block
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MP_0001845	http://www.ebi.ac.uk/efo/EFO_0005067
+Study Factor Type Term Source REF	CCONT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS570_data1_POS_LCMS.txt	a_MTBLS570_data1_NEG_LCMS.txt	a_MTBLS570_data2_POS_LCMS.txt	a_MTBLS570_data2_NEG_LCMS.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	qExactive (Thermo Scientific)	qExactive (Thermo Scientific)	qExactive (Thermo Scientific)	qExactive (Thermo Scientific)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	Male C57 BL/6 mice, aged 8-12 weeks were used to generate bone marrow derived macrophages (BMDM). Approval for these procedures was given prior to their initiation by the University of Glasgow ethics committee and by the U.K. Home Office under License No. 60/4314. </p> On day 0, bones were cut at each end and a 23-gauge needle (Kenke Sass Wolf Fine-Ject®) was used to flush out bone marrow from leg bone with complete RPMI (RPMI (Thermo Fisher) supplemented with 2 mM L-glutamine, 1% (v/v) penicillin streptomycin solution (Sigma), 10% FBS (Thermo Fisher) :cRPMI) into a 9 cm Petri dish (Thermo Fisher). To obtain a single cell suspension, cells were passed through a 70 µM cell strainer (Easy strainer™ Greiner bio-one), pelleted by centrifugation (300 RCF, 5 min) and resuspended in cRMPI to obtain a density of 6-7 x 10^6 cells/ml. Cell number was calculated using Trypan blue exclusion (1:1 cells: Trypan blue (Sigma)) to ensure that >95% were viable. The BMDM were matured using 20% L929 supernatant over 7 days (5% CO2, 37 ºC). On day three, 5 ml cRMPI and 2 ml L929 supernatant were added. On day 6 BMDM were harvested. Medium was removed by aspiration and plates were washed once with warm dPBS to remove remaining non-adherent cells. Note that this wash was only done for experiments involving overnight IFNgamma treatments. To each plate 6 ml of ice-cold dPBS was added for 1-2 min. Cells were detached by gentle scraping, transferred to a 50 ml falcon tube. Plates rinsed once more with 6 ml of ice-cold dPBS, transferring the same 6 ml between plates to collect remaining cells. Cells were pelleted by centrifugation (300 RCF, 5 min), resuspended in cRMPI and viable cell number was calculated using Trypan blue exclusion. Cell density was then adjusted by dilution to desired density (10^6 cells/ml in this study). Next, cells were left to re-adhere overnight in tissue culture plates. Typically 6, and 98 flat well plates were used (Costar). Fore LCMS experiments 3 x 10^6 macrophages/well/replicate were seeded in a 6 well plate at a density of 10^6 cells/ml. The stimuli used were murine IFNgamma (Peprotech, 315-05), LPS (Sigma: E. coli 0111:B4, Ref L2630) and OIC. IFNgamma (100 U/ml: 0.02 µG/ml) was added for overnight stimulation, after which either LPS (100 nG/ml) or ova immune complexes (OIC) were added for 6 hr. To make ova immune complexes, 136.4 µg anti ova (Creative diagnostics: DPAB26522 polyclonal rabbit serpinb14)) and 13.63 µg albumin (Sigma: A3912) were dissolved in dPBS (Gibco, Magnesium and Calcium free), mixed and incubated at 37 ºC for 30 min prior to use. Note that LPS and OIC were added to wells without replacing medium (i.e. IFNgamma was not removed).	Samples were extracted in a volume of 400 µl chloroform/methanol/water, 1:3:1 (CMW). Medium was aspirated and cells were washed once with dPBS (Magnesium and Calcium free, no EDTA), aspirating immediately. Ice-cold extraction solvent (chloroform/methanol/water, 1:3:1) was added to each well, including an empty well (for solvent blank), and cells were left shaking (1 hr, 4 ºC). Solvent was then transferred to 1.5 ml micro-tubes, and centrifuged (18,000 RCF, 15 min, 4 ºC). Supernatant was immediately transferred to 2 ml screw-cap tubes. Sample from each tube was transferred to a new screw-cap tube for pooled sample. At this point, samples were capped with Argon, and then stored at -80 ºC until LC-MS analysis. To calculate protein levels post extraction, NaOH (0.1 M, 400 µl/10^6 cells) was added to each well. The plates were left shaking (15 min 4 ºC). Plates were next centrifuged (300 RCF, 5 min) and 10 µl of supernatant transferred to a 96 well plate. To the same plate, a 10 µl of a BSA (Sigma) dilution series (2 fold: 0.5-0 mg/ml in 0.1 M NaOH) was added. Finally, 190 µl of Bradford reagent (BioRad) was added to each plate on top of samples and standards. Absorbance was measured at 595 nm using a FLUOstar OPTIMA micro-plate reader.	All samples were separated with high performance liquid chromatography (HPLC) on a Dionex Ultimate 3000 RSLC system (Thermo) using ZIC-pHILIC (Merck) column. A 10 µl injection volume was used and samples were maintained at 4 ºC during analysis. A linear biphasic LC gradient was conducted from 80% B to 20% B over 26 min, where solvent B was acetonitrile and solvent A was 20 mM ammonium carbonate in water. The flow rate was 300 µl/min, and column temperature maintained at 25 ºC. Each sample was run in a randomized order, with a pooled sample run between every 4 samples.	The mass spectrometry platform used was a qExactive Orbitrap mass spectrometer (Thermo). Analysis was performed in positive and negative mode. The MS set up was calibrated [Thermo calmix (Pierce™ calibration solutions from Thermo Scientific) with masses at lower m/z; 74.0393 m/z (C2H6NO2: +ve) and 89.0244 (C3H5NO3: -ve)] in both ionization modes before analysis and a tune file targeted towards the lower m/z range was used. Full scan (MS1) data was acquired in both ionization modes in profile mode at 50,000 resolution (at m/z range 70-1400), an automatic gain control (AGC) target of 106 cts, with spray voltages +4.5 kV (capillary +50 V, tube: +70 kV, skimmer: +20 V) and -3.5 kV (capillary -50 V, tube: -70 kV, skimmer: -20 V), capillary temperature 275 ºC, probe temperature 150 ºC, sheath gas flow rate 40, auxiliary gas flow rate 5 a.u., and a sweep gas flow rate of 1 a.u. </p> For fragmentation the settings used were:</br> Full MS / dd-MS² (TopN)</br> General</br> Runtime: 0 to 46 min</br> Polarity: Positive</br> In-source CID: 0.0 eV</br> Default charge state: 1</br> Inclusion: -</br> Exclusion: -</br> Tags: -</br> Full MS</br> Microscans: 1</br> Resolution: 70,000</br> AGC target: 1e^6</br> Maximum IT: 250 ms</br> Number of scan ranges: 1</br> Scan range: 70 to 1050 m/z</br> Spectrum data type: Profile</br> dd-MS² / dd-SIM</br> Microscans: 1</br> Resolution: 35,000</br> AGC target: 2e^5</br> Maximum IT: 120 ms</br> Loop count: 5</br> MSX count: 1</br> TopN: 5</br> Isolation window: 4.0 m/z</br> Isolation offset: 0.0 m/z</br> Scan range: 200 to 2000 m/z</br> Fixed first mass: -</br> NCE / stepped NCE: 65</br> Spectrum data type: Profile</br> dd Settings</br> Underfill ratio: 20.0%</br> Intensity threshold: 3.3e^5</br> Apex trigger: -</br> Charge exclusion: -</br> Peptide match: Off</br> Exclude isotopes: on</br> Dynamic exclusion: 10.0 s</br> If idle ..: do not pick others</br> </p> Negative mode is the same but with Negative polarity. TopN is the number of features it fragments and NCE is the collision energy, it uses such a large isolation window as it is a quadrupole that picks the ions. There is no in-source CID. 10s dynamic exclusion so it doesn’t constantly fragment the same peak. The AGC is the automatic gain control, it collects a set number of ions and injects them into the orbitrap, the maximum IT is a hard limit on cycle time so it doesn’t sit idle if it can’t reach the AGC. Resolution is lower during MS2 to improve sensitivity.	Raw data files were converted to mzData format (splitting on polarity) using Proteowizard: pwiz\msconvert.exe (http://proteowizard.sourceforge.net/) and processed using the XCMS package (http://bioconductor.org/packages/release/bioc/html/xcms.html). </p> XCMS settings for processing:</br> LC/MS data with centWave() were prefilter #points= 3 prefilter=(1000); Mzfif=0.001; snthr=3; ppm=2; peakwidth=(5,100). </p> mzMatch and IDEOM[1] software were used for untargeted analysis (R-3.1.2 x64). </p> Ref:</br> [1] Creek DJ, Jankevics A, Burgess KE, Breitling R, Barrett MP. IDEOM: an Excel interface for analysis of LC-MS-based metabolomics data. Bioinformatics. 2012 Apr 1;28(7):1048-9. doi:10.1093/bioinformatics/bts069. PMID:22308147</br>	For mzMatch the settings were:</br> Grouping RT window: 0.5; Mzmatch grouping m/z ppm: 5; Relative Std Dev (RSD) filter: 0.80; Noise filter (codadw): 0.80; Intensity filter (LOQ): 1000; Minimum detections #: 3.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rattigan	Barrett
+Study Person First Name	Kevin	Michael
+Study Person Mid Initials	M	P
+Study Person Email	Kevin.Rattigan@glasgow.ac.uk	Michael.Barrett@glasgow.ac.uk
+Study Person Phone	07741172805	01413306904
+Study Person Fax		
+Study Person Address	338, Wwcrc, Mvls, Ics, Garscube Estate, Glasgow G61 1QH,	RB521 Level B5, Iii - Gbrc, University Place, Glasgow G12 8TA
+Study Person Affiliation	University of Glasgow	University of Glasgow
+Study Person Roles	researcher	Principal investigator
+Study Person Roles Term Accession Number	http://www.bioassayontology.org/bao#BAO_0165001	http://bioontology.org/projects/ontologies/birnlex#birnlex_2152
+Study Person Roles Term Source REF	BAO	BIRNLEX

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	OBI	CHMO	MTBLS	processAFP	COVIDO	CHEBI	DOID	
+Term Source File	http://data.bioontology.org/ontologies/EFO		http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/					http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	132		29		1					18.10e
+Term Source Description	Experimental Factor Ontology		Ontology for Biomedical Investigations		Metabolights Ontology					NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS7429
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-03-16
+Investigation Public Release Date	2024-04-23
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7429
+Study Title	Quantitative LC-MS study of compounds found predictive of COVID-19 severity and outcome
+Study Description	<h4><strong>INTRODUCTION: </strong>Since the beginning of the SARS-CoV-2 pandemic in December 2019 multiple metabolomics studies have proposed predictive biomarkers of infection severity and outcome. Whilst some trends have emerged, the findings remain intangible and uninformative when it comes to new patients.</h4><h4><strong>OBJECTIVES: </strong>In this study, we accurately quantitate a subset of compounds in patient serum that were found predictive of severity and outcome.</h4><h4><strong>METHODS: </strong>A targeted LC-MS method was used in 46 control and 95 acute COVID-19 patient samples to quantitate the selected metabolites. These compounds included tryptophan and its degradation products kynurenine and kynurenic acid (reflective of immune response), butyrylcarnitine and its isomer (reflective of energy metabolism) and finally 3’,4’-didehydro-3’-deoxycytidine, a deoxycytidine analogue, (reflective of host viral defence response). We subsequently examine changes in those markers by disease severity and outcome relative to those of control patients’ levels.</h4><h4><strong>RESULTS &amp; CONCLUSION: </strong>Finally, we demonstrate the added value of the kynurenic acid / tryptophan ratio for severity and outcome prediction and highlight the viral detection potential of ddhC.</h4>
+Study Submission Date	2023-03-16
+Study Public Release Date	2024-04-23
+Study File Name	s_MTBLS7429.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	targeted metabolites	biomarker	COVID-19	tryptophan	kynurenine	kynurenic acid	O-butanoylcarnitine	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHEBI_59163	http://purl.obolibrary.org/obo/DOID_0080600	http://purl.obolibrary.org/obo/CHEBI_27897	http://purl.obolibrary.org/obo/CHEBI_28683	http://purl.obolibrary.org/obo/CHEBI_18344	http://purl.obolibrary.org/obo/CHEBI_7676	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	CHEBI	DOID	CHEBI	CHEBI	CHEBI	CHEBI	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37853293
+Study Publication DOI	10.1007/s11306-023-02048-0
+Study Publication Author List	Roberts I, Wright Muelas M, Taylor JM, Davison AS, Winder CL, Goodacre R, Kell DB.
+Study Publication Title	Quantitative LC-MS study of compounds found predictive of COVID-19 severity and outcome.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Severity	Survival	Sex	Age	BMI	Plate sample
+Study Factor Type	Severity	Survival	Sex	age	body mass index	sample
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25676	http://purl.obolibrary.org/obo/NCIT_C17177	http://purl.obolibrary.org/obo/NCIT_C28421	http://www.ebi.ac.uk/efo/EFO_0000246	http://www.ebi.ac.uk/efo/EFO_0004340	http://purl.obolibrary.org/obo/MS_1000457
+Study Factor Type Term Source REF	NCIT	NCIT	NCIT	EFO	EFO	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7429_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>COVID-19</strong> patient and control serum samples were acquired as previously described<strong>[1]</strong>. Briefly, all samples were acquired at the Royal Liverpool University Hospital (RLUH) on the first positive <strong>SARS- CoV-2</strong> test (not fasted and at different times of the day). Surplus serum was saved after routine diagnostic testing on patients admitted to the hospital who subsequently tested positive for <strong>SARS-CoV-2</strong> via PCR. Blood was initially collected into VACUETTE Clot Activator tubes (Greiner, Germany) within approximately 48 h of presentation and centrifuged at 1500 x g for 10 min within 60 min of collection. Surplus serum was stored at −80 °C prior to processing and analysis. Ethical approval for the use of serum samples and associated metadata in this study was obtained from North West - Haydock research ethics committee (REC ref: 20/NW/0332).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Roberts I, Wright Muelas M, Taylor JM, Davison AS, Xu Y, Grixti JM, Gotts N, Sorokin A, Goodacre R, Kell DB. Untargeted metabolomics of COVID-19 patient serum reveals potential prognostic markers of both severity and outcome. Metabolomics. 2021 Dec 20;18(1):6. doi:10.1007/s11306-021-01859-3. PMID:34928464.</p>	<p>Patient serum samples were thawed at room temperature and maintained on ice throughout the sample preparation process. Samples were prepared by addition of 100 µl of sample to a 2 ml Eppendorf containing 350 µl methanol (LC–MS grade) previously cooled at −80 °C and maintained on dry ice. The mixture of serum and methanol was vortexed vigorously followed by centrifugation at 18,000 x g for 15 min at 4 °C to pellet proteins. Multiple 75 µl aliquots (for extraction replicates) of the resulting supernatant were then dried in a vacuum centrifuge (ScanVac MaxiVac Beta Vacuum Concentrator system, LaboGene ApS, Denmark) with no temperature application and stored at −80 °C until required for <strong>UHPLC-MS/MS</strong> analysis.</p>	<p>Targeted <strong>UHPLC-MS/MS</strong> data acquisition was performed on a ThermoFisher Scientific Vanquish UHPLC system coupled to a ThermoFisher Scientific Q-Exactive mass spectrometer (ThermoFisher Scientific, UK). LC separation was performed in water (Solvent A) and methanol (solvent B) both with 0.1% formic acid on a Hypersil GOLD aQ C18 100 x 2.1 mm, 1.9 µm (ThermoFisher Scientific, UK) column at 50 °C. A 10 min gradient with a flow rate of 0.4 ml/min was used. Gradient elution started at 1% B with an increase to 50% B between 2 to 6 min followed by a linear increase to 99% B from 6 at 6.5 min and held at this ratio to 8 min. Finally, the gradient was quickly brought back down to 1% B at 8.5 min and re-equilibrated at 1% B to the end of the method at 10 min.</p>	<p>The ThermoFisher Scientific Q-Exactive mass spectrometer (ThermoFisher Scientific, UK) source was set at C position with 3.2 kV spray voltage, 350 °C capillary temperature, 400 °C aux gas heater temperature, 48, 15 and 0 arbitrary unit for sheath, aux and sweep gas flow respectively. Finally, S-lens RF was set to 60%. A <strong>parallel reaction monitoring (PRM)</strong> mass spectrometry method was used at 17,500 FWHM at m/z 200 orbitrap resolution and 1.2 m/z quadrupole isolation window. The list of targeted compounds, their expected elution time and the collision energies used can be found in <strong>Table 5</strong> in the paper associated with this study.</p>	<p>Raw data were processed in Thermo Fisher scientific <strong>Trace Finder (Version 5.1 Build 203)</strong>. Compound detection was performed based on the target and confirming ion transitions listed in <strong>Table 5</strong> in the paper associated with this study. Compound concentrations were normalized based on internal standards, with <strong>iso-C4-carnitine</strong> normalized on <strong>butyrylcarnitine-d3</strong> and <strong>ddhC</strong> normalized on <strong>cytidine 15N3</strong> due to the difficulty of obtaining a labelled version of those compounds.</p>	<p>This is a targeted quantitative method. Metabolites were identified based on the <strong>PRM</strong> transitions defined in <strong>Table 5</strong> of the paper associated with this study.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Roberts	Wright Muelas	Taylor	Davison	Winder	Goodacre	Kell
+Study Person First Name	Ivayla	Marina	Joseph	Andrew	Catherine	Royston	Douglas
+Study Person Mid Initials			M.	S.	L.		B.
+Study Person Email	ivayla.roberts@liverpool.ac.uk						
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation	University of Liverpool	University of Liverpool	Royal Liverpool University Hospitals Trust	Royal Liverpool University Hospitals Trust	University of Liverpool	University of Liverpool	University of Liverpool
+Study Person Roles	Investigator	Investigator	author	author	author	Grant Principal Investigator	Grant Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C51826	http://purl.obolibrary.org/obo/NCIT_C51826
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

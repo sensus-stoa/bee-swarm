@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	MTBLS	OBI	EFO
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/ontology	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api
+Term Source Version		1	29	
+Term Source Description		Metabolights Ontology	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS11379
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-10-15
+Investigation Public Release Date	2024-11-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11379
+Study Title	Metabolomic Analysis of the Metabolome of Fusobacterium mortiferum
+Study Description	We cultured Fusobacterium mortiferum and performed metabolomic identification using BHI broth as a control group.
+Study Submission Date	2024-10-15
+Study Public Release Date	2024-11-05
+Study File Name	s_MTBLS11379.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Fusobacterium mortiferum	Metabolomics	Macro Broth Dilution Method
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C86399	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000270	http://purl.obolibrary.org/obo/NCIT_C85697
+Study Design Type Term Source REF	NCIT	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jiaxin Deng, Jiawei Zhang, Mingli Su, Juan Li, Yuping Su, Qinghua Zhong, Jiancong Hu, Yongcheng Chen, Sen Liao, Dezheng Lin,Xuefeng Guo
+Study Publication Title	Fusobacterium mortiferum and its metabolite 5-Aminovaleric acid promote the development of colorectal cancer in obese individuals through Wnt/β-catenin pathway by DKK2
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C43359
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11379_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11379_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Our samples are derived from Fusobacterium mortiferum (ATCC25557) bacteria and brain heart infusion (BHI) blank control group. The bacterial culture environment is a strictly anaerobic setting. After 1 week of cultivation, the samples were subjected to metabolomic analysis. The samples were packaged in centrifuge tubes and stored in a -80 °C freezer, strictly following the requirements for the preservation of microbial metabolites.</p>	<p>The samples (1 mL) were freeze-dried and resuspended with prechilled 80% methanol by well vortex. Then the sampleswere incubated on ice for 5 min and centrifuged at 15,000 x g, 4 °C for 15 min. Some of supernatant was diluted to final concentration containing 53% methanol by LC-MS grade water. The samples were subsequently transferred to a fresh Eppendorf tube and then were centrifuged at 15,000 x g, 4 °C for 15 min. Finally, the supernatant was injected into the LC-MS/MS system analysis.</p>	<p>UHPLC-MS/MS analyses were performed using a Vanquish UHPLC system (ThermoFisher, Germany) coupled with an Orbitrap Q Exactive HF mass spectrometer or Orbitrap Q Exactive HF-X mass spectrometer (Thermo Fisher, Germany). Samples were injected onto a Hypersil Gold column (100 x 2.1 mm, 1.9 μm) using a 12-min linear gradient at a flow rate of 0.2 mL/min. The eluents for the positive and negative polarity modes were eluent A (0.1% FA in Water) and eluent B (Methanol). The solvent gradient was set as follows: 2% B, 1.5 min; 2-85% B, 3.0 min; 85-100% B, 10.0 min; 100-2% B, 10.1 min; 2% B, 12.0 min.</p>	<p>Q Exactive HF mass spectrometer was operated in positive/negative polarity mode with spray voltage of 3.5 kV, capillary temperature of 320 °C, sheath gas flow rate of 35 psi and aux gas flow rate of 10 L/min, S-lens RF level of 60, Aux gas heater temperature of 350 °C.</p>	<p>The raw data files generated by UHPLC-MS/MS were processed using the Compound Discoverer 3.3 (CD3.3, ThermoFisher) to perform peak alignment, peak picking and quantitation for each metabolite. The main parameters were set as follows: peak area was corrected with the first QC; actual mass tolerance, 5 ppm; signal intensity tolerance, 30%; and minimum intensity, et al. After that, peak intensities were normalized to the total spectral intensity.</p>	<p>The normalized data was used to predict the molecular formula based on additive ions, molecular ion peaks and fragment ions. And then peaks were matched with the mzCloud (https://www.mzcloud.org/), mzVault and MassList database to obtain the accurate qualitative and relative quantitative results. Statistical analyses were performed using the statistical software R (R versionR-3.4.3), Python (Python 2.7.6 version) and CentOS (CentOS release 6.6). When data were not normally distributed, standardize according to the formula: sample raw quantitation value / (The sum of sample metabolite quantitation value / The sum of QC1 sample metabolite quantitation value) to obtain relative peak areas; And compounds whose CVs of relative peak areas in QC samples were greater than 30% were removed, and finally the metabolites' identification and relative quantification results were obtained.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jiaxin
+Study Person First Name	Deng
+Study Person Mid Initials	
+Study Person Email	dengjx23@mail3.sysu.edu.cn
+Study Person Phone	-18862186661
+Study Person Fax	
+Study Person Address	No. 26 Erheng Road, yuancun, Tianhe District, Guangzhou
+Study Person Affiliation	The National Sun Yat-sen University's sixth hospital
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

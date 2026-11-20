@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	CHEBI	CHMO	EFO	MCRO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.allotrope.org/voc/afo/latest.xml	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mcro.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	REC/2026/03	251	2025-10-21	3.88.0	2023-03-07			1.0.1		26.02d	2026-03-19
+Term Source Description	Allotrope Merged Ontology Suite	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Model Card Report Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14343
+Investigation Title	HUMAN Ring Trial - Standards detection - Reverse phase
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-04-22
+Investigation Public Release Date	2026-04-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14343
+Study Title	HUMAN Ring Trial - Standards detection - Reverse phase
+Study Description	<p>To better understand the effect of different LC-MS setups on metabolite detection, five laboratories analyzed 1298 standard compounds obtained from the MetaSci metabolite standard library, classified as 'Human Endosome' (HE), 'Food Exposome' (FE), 'Chemical Exposome' (CE), 'Microbiota Exposome' (ME), 'Plant Exposome' (PE), and 'Eukaryotic Exposome' (EE), using a common reference reverse-phase method in both positive and negative ionization modes and different in-house methods. NAPS were used for alignment and retention time indexing.</p><p>In our laboratory, we ran the reference reverse-phase method, an in-house reverse-phase method, and an in-house HILIC method, all three with positive and negative ionization, using an LC-MS with a Q-ToF analyzer. In this study, we present data from the reference reverse-phase method and the in-house reverse-phase method.</p>
+Study Submission Date	2026-04-22
+Study Public Release Date	2026-04-24
+Study File Name	s_MTBLS14343.txt
+Comment[Created At]	2025-07-11
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Interlaboratory	LC-MS data	reference compound	Agilent 1290 Infinity II UHPLC	Agilent 6546 LC/Q-TOF	blank	reference compound mix	experimental blank	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C95130	http://www.ebi.ac.uk/swo/SWO_0000253	http://purl.obolibrary.org/obo/MSIO_0000023	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002300	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304	http://purl.obolibrary.org/obo/MSIO_0000024		http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	NCIT	MCRO	MSIO	MTBLS	MTBLS	MTBLS	MSIO		MS
+Comment[Study Design Category]	submitter	submitter	Sample type	Chromatography Instrument	Instrument	Organism part	Organism	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Dennisse Avella, Philippine Louail, Olli Kärkkäinen
+Study Publication Title	HUMAN Ring Trial - Standards detection - Reverse phase
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Mixture type
+Study Factor Type	classification purpose
+Study Factor Type Term Accession Number	http://purl.allotrope.org/ontologies/role#AFRL_0000368
+Study Factor Type Term Source REF	AFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14343_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14343_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS14343_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt	a_MTBLS14343_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>A set of 1298 reference standards classified as 'Human Endosome' (HE), 'Food Exposome' (FE), 'Chemical Exposome' (CE), 'Microbiota Exposome' (ME), 'Plant Exposome' (PE), and 'Eukaryotic Exposome (EE) was acquired from the MetaSci metabolite library. The whole set was divided into 83 mixtures, each containing a maximum of 20 standards at about 1000 ppm.</p><p>NAPS (N-alkylpyridinium-3-sulfonates) at 700 ppm were also acquired for alignment and retention time indexing.</p>	<p>Before collecting aliquots for dilution, the original concentration of NAPS and standard mixtures were vortexed for 10 seconds. Then, they were diluted to 10 ppm with an extraction mixture of 80% water / 20% Acetonitrile before analysis.</p><p>Blank solutions were prepared under the same conditions. </p>	<p>The reference method and the in-house methods were run on an Agilent 1290 Infinity II UHPLC.</p><p><br></p><p>The reference method used reverse-phase chromatography. Eluent A was composed by 100% water with 0.1% formic acid, and eluent B was composed by 100% acetonitrile with 0.1% formic acid. The column was Kinetex C18 100 Å (1.7 µm, 2.1 mm x 100 mm; Phenomenex). The flow was constant at 0.5 mL/min. The injection volume was 1 μL. The chromatographic gradient was as follows (t [min], %B): (0, 5), (1.5, 5), (10, 99.9), (12, 99.9), (12.1, 5), and (15, 5).</p><p><br></p><p>The in-house methods, reverse-phase, and HILIC have been previously described by Avella et al. 2025 (https://doi.org/10.26434/chemrxiv-2025-7tbxq).</p>	<p>Mass spectrometry for the reference method and the in-house methods was performed on an Agilent 6546 LC/Q-TOF with a Jet Stream ESI ion source for positive and negative ionization.</p><p><br></p><p>For all the methods, a range of 20-1600 mass-to-charge-ratio (m/z) was used for both MS and MS/MS analysis. Full-scan MS was acquired with a fragmentor voltage of 100 eV, while the collision energies for the MS/MS analysis were fixed at 10, 20, and 40 eV. The four most abundant precursor ions were automatically selected for MS/MS fragmentation, excluded after two acquired MS/MS spectra, and released again from the exclusion list after 0.25 min.</p>	<p>The data was acquired using the software MassHunter Acquisition B.05.01 software (Agilent Technologies). No transformation was included. </p>	<p>Metabolite identification was performed by manual curation and verification of the extracted peaks using MassHunter Qualitative 10.0 (Agilent Technologies) and the MassHunter Qualitative workflow 8.0 (Agilent Technologies). A height filter of 5000 counts was used with the MassHunter Qualitative workflow 8.0.</p><p><br></p><p>In this study, we are reporting the [M+H]+ and [M-H]- mass-to-charge ratios (m/z) and detected retention times for the compounds of the Human Endosome mixtures, with an identification reliability level 2 (Summer et al. 2007, http://link.springer.com/10.1007/s11306-007-0082-2). When the MS/MS fragments are verified, the reliability will be updated to level 1.</p><p><br></p><p>In parallel, an automated strategy is being evaluated to verify, in addition to the m/z match, the isotope pattern match, the detection of multiple related ions, and the MS2 match to reference spectra. </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Avella	Louail	Kärkkäinen
+Study Person First Name	Dennisse	Philippine	Olli
+Study Person Mid Initials	J.		
+Study Person Email	dennisse.avella@afekta.com	philippine.louail@eurac.edu	olli.karkkainen@uef.fi
+Study Person Phone	+358449735026		
+Study Person Fax			
+Study Person Address	Mikrokatu 1		
+Study Person Affiliation	Afekta Technologies LTD.		University of Eastern Finland
+Study Person Roles	Author	Co-Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]			0000-0003-0825-4956
+Comment[Study Person Affiliation ROR ID]			https://ror.org/00cyydd11

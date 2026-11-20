@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	SWO	MESH	CHMO	NCBITAXON	EFO	GMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/SWO	http://data.bioontology.org/ontologies/MESH	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/GMO
+Term Source Version	22	86	22	10	18	6	146	6
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Software Ontology	Medical Subject Headings	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Experimental Factor Ontology	Growth Medium Onotology
+INVESTIGATION
+Investigation Identifier	MTBLS572
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2017-11-14
+Investigation Public Release Date	2017-11-23
+Comment[Created With Configuration]	G:\20170314_nature protocol\metabolomics data\ISAcreatorMetaboLights\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS572
+Study Title	Data processing, multi-omic pathway mapping, and metabolite activity analysis using XCMS Online
+Study Description	<p>Systems biology is the study of complex living organisms, and as such, analysis on a systems-wide scale involves the collection of information-dense data sets that are representative of an entire phenotype. To uncover dynamic biological mechanisms, bioinformatics tools have become essential to facilitating data interpretation in large-scale analyses. Global metabolomics is one such method for performing systems biology, as metabolites represent the downstream functional products of ongoing biological processes. We have developed XCMS Online, a platform that enables online metabolomics data processing and interpretation. A systems biology workflow recently implemented within XCMS Online enables rapid metabolic pathway mapping using raw metabolomics data for investigating dysregulated metabolic processes. In addition, this platform supports integration of multi-omic (such as genomic and proteomic) data to garner further systems-wide mechanistic insight. Here, we provide an in-depth procedure showing how to effectively navigate and use the systems biology workflow within XCMS Online without a priori knowledge of the platform, including uploading liquid chromatography (LC)-mass spectrometry (MS) data from metabolite-extracted biological samples, defining the job parameters to identify features, correcting for retention time deviations, conducting statistical analysis of features between sample classes and performing predictive metabolic pathway analysis. Additional multi-omics data can be uploaded and overlaid with previously identified pathways to enhance systems-wide analysis of the observed dysregulations. We also describe unique visualization tools to assist in elucidation of statistically significant dysregulated metabolic pathways. Parameter input takes 5-10 min, depending on user experience; data processing typically takes 1-3 h, and data analysis takes ~30 min.</p>
+Study Submission Date	2017-11-14
+Study Public Release Date	2017-11-23
+Study File Name	s_MTBLS572.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolomics	Systems Biology	high-performance liquid chromatography-mass spectrometry	xcms
+Study Design Type Term Accession Number		http://purl.bioontology.org/ontology/MESH/D049490	http://purl.obolibrary.org/obo/CHMO_0000796	http://www.ebi.ac.uk/efo/swo/SWO_0000729
+Study Design Type Term Source REF		MESH	CHMO	SWO
+STUDY PUBLICATIONS
+Study PubMed ID	29494574
+Study Publication DOI	10.1038/nprot.2017.151
+Study Publication Author List	Forsberg EM, Huan T, Rinehart D, Benton HP, Warth B, Hilmers B, Siuzdak G
+Study Publication Title	Data processing, multi-omic pathway mapping, and metabolite activity analysis using XCMS Online.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Carbon source
+Study Factor Type	Carbon source
+Study Factor Type Term Accession Number	http://purl.jp/bio/10/gmo/GMO_000063
+Study Factor Type Term Source REF	GMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS572_ecoli_glucose-vs-adenosine_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Impact II HD Q-TOF
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>A standard method for probing changes in metabolomics was developed using E. coli K12 MG 1655 cultures grown in different carbon sources (glucose and adenosine carbon sources). Glucose and adenosine were prepared with equimolar concentrations of carbon in 10 ml aliquots of M9 minimal media in triplicate. Carbon concentration was based on a final concentration of 20 mM glucose or 0.12 M carbon. All carbon sources were prepared in sterile water, then filtered through a 0.22 µm syringe filter prior to addition to M9 salts. A 10 ml culture of E. coli was grown in LB media overnight at 37 °C. To inoculate each condition, a 1 ml aliquot of cells was centrifuged at 13,000 rpm for 1 min, the supernatant media was removed and the pellet was washed 3 times with sterile water. The cells were made up to a final volume of 1 ml in sterile water and a 1 µl aliquot was added to 8 ml of each carbon source. The cultures were grown until an OD600 ~1, or stopped after 72 hr if the growth rate was plateaued. Triplicate 1 ml aliquots were taken for each replicate for metabolomics analysis and duplicate 1 ml samples were taken for RNA sequencing.</p>	<p>For the metabolomics analysis, triplicates of 1 ml of E. coli cells (OD600 = 1.0) were prepared at each treatment condition (i.e., glucose, glycerol, adenosine and lactic acid). E. coli cells were pelleted by centrifugation at 4 °C and 3,200 RCF for 15 min. Subsequently, cell pellets were extracted using a acetonitrile:methanol:water (2:2:1, v/v) solvent mixture. A volume of 1 ml of cold solvent was added to each pellet, vortexed for 30 s and incubated in liquid nitrogen for 1 min. Samples were allowed to thaw and sonicated for 10 min. This cycle of cell lysis in liquid nitrogen together with sonication was repeated an additional 2 times. To precipitate proteins, the samples were incubated for 1 hr at 20 °C, followed by 15 min centrifugation at 13,000 rpm and 4 °C. The resulting supernatant was removed and evaporated to dryness in the SpeedVap at 4 °C. The dry extracts were then reconstituted in 100 µl of acetonitrile:water (1:1, v/v), sonicated for 10 min and centrifuged for 15 min at 13,000 rpm and 4 °C to remove insoluble debris. The supernatants were transferred to HPLC vials and stored at -80 °C prior to LC/MS analysis.</p>	The LC-MS analysis was performed on each sample in triplicate using a Bruker Impact QTOF mass spectrometer (Billerica, MA, USA) linked to an Agilent 1200 series capillary HPLC system (Palo Alto, CA, USA). 2 µl sample was injected after injection volume optimization. A Phenomenex Luna NH2 column (1 mm x 150 mm, 3 µm particle size, 100 Å pore size) was used for LC separation. Mobile phase A was 20 mM ammonium acetate in H2O with 5% acetonitrile (ACN), and mobile phase B was ACN with 5% H2O. The gradient elution profile was as follows: t = 0 min, 95% B; t = 5 min, 95% B; t = 50 min, 5% B. t = 63 min, 5% B. The flow rate was 50 µl/min. 20 min post acquisition time was also added with 95% B to re-equilibrium the LC column. Injection of 1 µl sodium formate (250 µM) occurred at t = 57 min and eluted on t = 61 min. This calibration peak was used to internally calibrate the LC-MS data and also served as the MS peak intensity quality control.	Data was collected in negative ionization mode. MS conditions were set as follows: capillary voltage, 4500; nebulizer gas flow, 1.6 Bar; dry gas, 6.0 l/min at 220 °C; funnel 1 RF 150 Vpp; funnel 2 RF, 200 Vpp; isCID energy, 0 eV; hexapole RF: 50 Vpp; Quadrupole ion energy, 4 eV; low mass 50 m/z; collision cell energy, 7.0 eV; pre pulse storage 5.0 µs; collision RF, ramp from 350 to 800 Vpp; transfer time, ramp from 50 to 100 µs; detection mass range 25 to 1500 m/z; spectra rate 2.0 Hz. To collect MS/MS in data dependent mode, auto MS/MS is activated with a collision energy ramp from 10 to 50 eV.	<p>All data files were converted to mzXML format and uploaded to XCMS Online to perform a pairwise analysis on glucose control (n = 3) versus adenosine stressed (n = 3) using Welch’s t-test. HILIC-ESI(-) metabolomic data processing parameter: centWave for feature detection (m/z = 15 ppm, minimum peak width = 10 s, and maximum peak width = 60 s); obiwarp settings for retention time correction (profStep = 0.5); parameters for chromatogram alignment, including mzwid = 0.015, minfrac = 0.5, and bw = 5. The relative quantification of metabolite features was based on extracted ion chromatogram (EIC) areas. Unpaired parametric two-way t test were used to find the metabolic difference in between normal and tumor colon tissue samples. For full parameter settings see Supplemental Table S1 in the paper associated with this study.</p>	Metabolite identification was performed by matching the experimental tandem MS data against standard tandem MS data archived in METLIN mass spectra database. Mass tolerance for precursor ion was 10 ppm and for fragment ions was 0.05 Da.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huan	Siuzdak
+Study Person First Name	Tao	Gary
+Study Person Mid Initials		
+Study Person Email	thuan@scripps.edu	siuzdak@scripps.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address	10550 North Torrey Pines Road	10550 North Torrey Pines Road
+Study Person Affiliation	The Scripps Research Institute	The Scripps Research Institute
+Study Person Roles	Research Associate	Principal investigator
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

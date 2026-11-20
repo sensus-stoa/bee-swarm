@@ -1,0 +1,103 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MS	MSIO	MTBLS	NCBITAXON	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl		http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary		National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS7390
+Investigation Title	Multi-omics and biophysical phosphoproteomics uncover functional phosphorylation networks of BRAFV600E-driven signaling
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-09
+Investigation Public Release Date	2025-12-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7390
+Study Title	Multi-omics and biophysical phosphoproteomics uncover functional phosphorylation networks of BRAFV600E-driven signaling
+Study Description	<p>Dysregulated kinase activity drives oncogenic signalling, perturbs cellular homeostasis, and promotes tumour progression. Despite major success in targeting kinases therapeutically, the downstream consequences of kinase inhibition and the mechanisms underlying drug resistance remain incompletely understood. One of the most frequent oncogenic kinase mutations, BRAFV600E, constitutively activates the MAPK pathway and represents a major therapeutic target in melanoma and other cancers. However, the functional relevance of most phosphorylation events downstream of BRAF signalling is unknown, limiting mechanistic interpretation and rational therapeutic design.</p><p> Here, we established a global, multi-omic model of BRAF inhibition response in BRAFV600E-mutant melanoma cells by integrating time-resolved phosphoproteomics, biophysical PTM-proteomics, transcriptomics, and thermal proteome profiling. Our ultradeep phosphoproteomic analysis revealed widespread phosphorylation changes upon Dabrafenib treatment, while biophysical phosphoproteomics uncovered phosphorylation events associated with altered solubility and subcellular localisation, indicative of biomolecular condensation and nuclear reorganisation. Integration of these modalities into a network-based mechanistic model enabled the prioritisation of functionally relevant phosphorylation sites and kinases. Experimental validation confirmed CDK9, CLK3, and TNIK as key regulators of BRAFV600E signalling and as candidate targets for combinatorial inhibition strategies capable of re-sensitising resistant melanoma cells in a synthetic lethal manner.</p><p> The transcription factor ETV3 emerged from the network as a previously unrecognised effector of oncogenic BRAF signalling. Using phosphosite-specific biophysical data, imaging, and FRAP experiments, we demonstrated that ETV3 phosphorylation controls its DNA-binding kinetics. Functional assays combining ETV3 knockdown, metabolomics, and drug screening revealed that ETV3 modulates transcriptional and metabolic responses to BRAF inhibition, linking oncogenic signalling to metabolic rewiring.</p><p> Together, this study provides a comprehensive systems-level framework that connects phosphorylation dynamics to protein function and cellular phenotype, highlights ETV3 as a novel signalling node, and illustrates how multi-omic, site-resolved network models can reveal actionable mechanisms of kinase-driven oncogenesis.</p>
+Study Submission Date	2025-12-09
+Study Public Release Date	2025-12-09
+Study File Name	s_MTBLS7390.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	glucose	glutamine
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHEBI_17234	http://purl.obolibrary.org/obo/CHEBI_28300
+Study Design Type Term Source REF	MTBLS	EFO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Denise Medeiros Selegato, Mira Lea Burtscher, Mikhail Savitski, Michael Zimmermann
+Study Publication Title	Charting the functional landscape of phosphorylation through biophysical and multi-omics integration
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Knockdown	Treatment
+Study Factor Type	genotype	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7390_LC-MS_positive_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>To evaluate the functional role of ETV3 downstream of BRAF inhibition, we treated ETV3 knockdown cells with Dabrafenib 100nMDabrafenib and also DMSO as negative control.</p>	<p>For LC-MS acquisition, 15 µL of supernatant was diluted with 30 µL of the HPLC starting condition supplemented with an internal standard mixture. Internal standard mixture consisted of phenylalanine-d5, tryptophan-d5, ibuprofen-d4, tolfenamic acid-d4, estriol-d3, diclofenac-d4, warfarin-d5, oxfendazole-d3, chloramphenicol-d5, nafcillin-d5&nbsp;and caffeine-d9, each to a final concentration of 80 nM.&nbsp;</p>	<p>Liquid chromatography-mass spectrometry analysis was carried out as previously described (Zimmermann, 2019). In brief, chromatographic separation was performed using reversed-phase chromatography with an Agilent 1200 Infinity UHPLC system with an InfinityLab Poroshell HPH-C18 column (Agilent, 2.1 x 100 mm, 1.9 Micron particle size). LC solvent A was water, acetonitrile, and methanol (2:1:1 v/v) with 0.1% formic acid and 5 mM of ammonium formate (v/v), and solvent B was isopropanol and acetonitrile (9:1 v/v) with 0.1% formic acid (v/v). Column operated at 45 °C. 5 µL of sample was injected at the following gradients: 0 min 5% B; 0.1 min 5% B; 5.50 min 95% B; 6.49min 95% B; 6.5 min 5% B. The time between injections was 0.5 min.&nbsp;</p>	<p>The qTOF instrument (Agilent 6550) was operated in positive scanning mode (50–1,700 m/z) at the following source parameters: VCap: 3500 V, nozzle voltage: 2000 V, gas temp: 225 °C; drying gas 13 L/min; nebulizer: 20 psig; sheath gas temp 225 °C; sheath gas flow 12 L/min. Online mass calibration was used throughout the run in a second ionization source and a constant flow of reference solution (m/z 121.0508 and m/z 922.0097 for positive mode).&nbsp;</p>	<p>The area under the curve from coenzymes Q10, Q9 and intermediates was integrated using the MassHunter Quantitative Analysis Software (Agilent, version 7.0) based on the accurate high-resolution mass and RT of these reference analytes and the following parameters: signal threshold of 30,000; mass tolerances of 0.002 amu or 20 ppm; retention time tolerance of 0.2 min, for C18. The resulting table was further normalized in R 4.4.1 using RStudio/2023.06.1 according to established protocols.</p><p>Statistical analysis and plotting were performed in R 4.4.1 using RStudio/2023.06.1. The statistical significance of molecular features in tumor tissue vs. adjacent tissue was assessed with a paired t-test (t.test function in R), and p-values were FDR-corrected for multiple hypothesis testing using the Benjamini-Hochberg procedure (p.adjust function in R with ‘fdr’ parameter). Significant metabolites were selected when their intensity had a corrected p-value &lt; 0.05.</p><p><br></p><p><br></p>	<p>To ensure the annotation of the significant coenzymes, we have performed level-1 metabolite annotation, which is the direct comparison of an authentic chemical standard analysed under identical analytical conditions. For this, we have used standards of coenzyme Q10 and coenzyme Q9. Correct annotation occurs when all three orthogonal properties of the metabolite of interest (retention time, high-resolution mass, and fragmentation mass spectrum) are similar between the analyte and the CRC-sample.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Selegato	Burtscher	Savitski	Zimmermann
+Study Person First Name	Denise	Mira Lea	Mikhail	Michael
+Study Person Mid Initials				
+Study Person Email	denise.selegato@embl.de	mira.burtscher@embl.de	mikhail.savitski@embl.de	michael.zimmermann@embl.de
+Study Person Phone				
+Study Person Fax				
+Study Person Address		Meyerhofstraße 1, 69117 Heidelberg	Meyerhofstraße 1, 69117 Heidelberg	Meyerhofstraße 1, 69117 Heidelberg
+Study Person Affiliation		European Molecular Biology Laboratory	European Molecular Biology Laboratory	European Molecular Biology Laboratory
+Study Person Roles	Author	Author	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0003-2628-0795	0000-0003-2011-9247	0000-0002-5797-3589
+Comment[Study Person Affiliation ROR Id]		https://ror.org/03mstc592	https://ror.org/03mstc592	https://ror.org/03mstc592
+Comment[Study Person Alternative Email]				michael.zimmermann@embl.de

@@ -1,0 +1,134 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	CHEBI	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.allotrope.org/voc/afo/latest.xml	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	REC/2026/09	256	2026-05-27	1.25-20260626T1230Z	3.95.0			1.0.1		2026-07-12	26.02d	2026-07-27	2025
+Term Source Description	Allotrope Merged Ontology Suite	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS16471
+Investigation Title	Discovery of Enzymes for Nucleobase Amino Acid Biosynthesis Guided by AI
+Investigation Description	
+Investigation Submission Date	2026-11-17
+Investigation Public Release Date	2026-11-17
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16471
+Study Title	Discovery of Enzymes for Nucleobase Amino Acid Biosynthesis Guided by AI
+Study Description	Life’s chemistry is built on two sequence-encoded molecular alphabets: amino acids and nucleic acids. Molecules that bridge these alphabets—nucleobase amino acids—could enable new forms of molecular recognition, cellular engineering, information storage, catalysis, and therapeutics, yet their availability has been limited to lengthy and costly chemical synthesis. Here we uncover enzymes for the de novo biosynthesis of canonical nucleobase amino acids incorporating uracil, cytosine, thymine, and adenine. Using machine learning to guide enzyme discovery in plant proteomes and ultrasensitive metabolomics for experimental validation, we identified and characterized nucleobase amino acid synthases that catalyze a previously unrecognized mode of C–N bond formation between O-acetylserine and free canonical nucleobases. We further demonstrate intracellular nucleobase amino acid biosynthesis from endogenous metabolites and its responsiveness to nucleobase availability. Phylogenetic and metabolomic analyses suggest that cytosinyl-alanine biosynthetic activity may be widespread across the three domains of life, revealing a previously unrecognized link between amino acid and nucleic acid metabolism. By uncovering nature’s capacity to merge amino acids and nucleobases, this work opens new avenues for nucleobase-programmable protein architectures and hybrid biological codes.
+Study Submission Date	2026-11-17
+Study Public Release Date	2026-11-17
+Study File Name	s_MTBLS16471.txt
+Comment[Created At]	2026-11-13
+Comment[Funder]	United States Department of Energy
+Comment[Funder ROR ID]	https://ror.org/01bj3aw27
+Comment[Grant Identifier]	DE-FG02-02ER63445
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	MSV000103972
+Comment[Related Data Description]	
+Comment[Related Data Repository]	MassIVE
+Comment[Related Data URL]	
+Comment[Repository Data Description]	This dataset contains proteomics data related to this study
+Comment[Revision]	2
+Comment[Revision Date]	2026-11-18
+Comment[Revision Log]	removal of duplicate RAW_FILES__ folder - JEH 18NOV26
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity II Bio ultra-high-performance liquid chromatography (UHPLC)	Agilent G6495D	Biochemical assay	Escherichia coli	No enzyme	Enzyme	Standard	Negative control	Sample	targeted analysis	multiple reaction monitoring	ultra high-performance liquid chromatograph	triple quadrupole instrument	hydrophilic interaction chromatography	Metabolomics	targeted metabolite profiling	Biochemistry	Metabolism	Plant	nucleobase	O-acetyl-L-serine	Amino Acid	HILIC-NuAA
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder		http://purl.obolibrary.org/obo/NCBITaxon_562		http://purl.obolibrary.org/obo/OBI_0000427				http://purl.obolibrary.org/obo/MS_1003905	http://purl.allotrope.org/ontologies/process#AFP_0002535	http://purl.allotrope.org/ontologies/equipment#AFE_0000171	http://purl.obolibrary.org/obo/MS_1003762	http://purl.allotrope.org/ontologies/process#AFP_0000021	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/NCIT_C16337	http://id.nlm.nih.gov/mesh/D008660	http://purl.obolibrary.org/obo/NCIT_C14258	http://purl.obolibrary.org/obo/CHEBI_18282	http://purl.obolibrary.org/obo/CHEBI_17981	http://purl.obolibrary.org/obo/NCIT_C231	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS		NCBITaxon		EFO				MS	AFO	AFO	MS	AFO	EDAM	MSIO	NCIT	mesh	NCIT	CHEBI	CHEBI	NCIT	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism	Organism part	Organism part	Sample type	Sample type	Sample type	measurement-type	default	default	default	default	omics-type	default	default	default	default	default	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Anush Chiappino-Pepe, Peter G Mikhael, Itamar Chinn, Bogdan Budnik, Alexander C Pauer, Gregory Stephanopoulos, Regina Barzilay, George M Church
+Study Publication Title	Discovery of Enzymes for Nucleobase Amino Acid Biosynthesis Guided by AI
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Enzyme
+Study Factor Type	Enzyme
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16554
+Study Factor Type Term Source REF	NCIT
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16471_LC-MS_alternating_hilic.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity II Bio ultra-high-performance liquid chromatography (UHPLC);Agilent InfinityLab Poroshell 120 Hydrophilic Interaction Liquid Chromatography (HILIC-Z) column (2.1 x 150 mm, 2.7 µm, P/N: 683775-924);HILIC;alternating;40.2-247.0;Agilent G6495D;Agilent JetStream ESI;triple quadrupole
+Comment[Assay Field Default Unit]	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000698
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MTBLS
+Comment[Assay Descriptor]	multiple reaction monitoring;ultra high-performance liquid chromatograph;triple quadrupole instrument;hydrophilic interaction chromatography;targeted analysis
+Comment[Assay Descriptor Term Accession Number]	http://purl.allotrope.org/ontologies/process#AFP_0002535;http://purl.allotrope.org/ontologies/equipment#AFE_0000171;http://purl.obolibrary.org/obo/MS_1003762;http://purl.allotrope.org/ontologies/process#AFP_0000021;http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor Term Source REF]	AFO;AFO;MS;AFO;MS
+Comment[Assay Descriptor Category]	default;default;default;default;default
+Comment[Assay Descriptor Source]	submitter;submitter;submitter;submitter;submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Cell-free expression of candidate alaU synthases</p><p>Candidate genes were expressed from linear DNA templates using the PURExpress in vitro protein synthesis system (E6800L, NEB). Linear DNA templates were assembled in Geneious Prime® (version 2025.2.5) and ribosome binding sites were designed with the deNovoDNA37 software (https://www.denovodna.com/software/design_rbs_calculator). Reactions contained 50 ng/μL of DNA, murine RNAse inhibitor (M0314L, NEB), and were incubated at 37°C for 2 h in a thermocycler (Mastercycler X50s, Eppendorf). Following expression, samples were treated with 1 μL of Benzonase nuclease (77509-726, Sigma Aldrich) and incubated at room temperature for 15 min. Samples were dialyzed against the assay buffer using 10 kDa molecular weight cutoff (MWCO) microdialysis plates (PI88260, Thermo Scientific). Dialysis was performed with two buffer exchanges after 30-min incubations at room temperature on a 90 rpm shaker, followed by overnight equilibration at 4°C. Dialyzed samples were used directly for biosynthesis assays. Only the first set of twenty-two P. sativum enzymes screened (Supplementary Fig. 8; including the top 20 CLIPZyme+ candidates and 2 rational candidates, see Supplementary Information) was produced using a cell-free expression system. All subsequent enzymes for screening were heterologously expressed in E. coli, purified, and characterized in vitro.</p><p><br></p><p>Biosynthesis assay from cell-free expressed proteins</p><p>Dialyzed cell-free expressed proteins were recovered in 75 μL of assay buffer. Biosynthesis reactions were performed in the assay buffer using dialyzed expression samples.</p><p>Unless otherwise specified, reactions contained 100 μM pyridoxal 5′-phosphate (PLP), 1 mM O-acetylserine, and nucleobases at the following concentrations: uracil, cytosine, or adenine (4 mM); thymine or guanine (2 mM). Final reaction volume was 150 μL. We only explored a biosynthetic mechanism of nucleobase amino acids involving O-acetylserine and free nucleobases.</p><p>Negative controls included reactions lacking enzyme. Spike-in controls consisted of sample matrix lacking enzyme and supplemented with 40 ng/μL synthetic nucleobase amino acid standards (Supplementary Information) to validate retention times and chromatographic peak shapes within the reaction matrix. Reactions were incubated at 30°C for 1 h in a thermocycler (Mastercycler X50s, Eppendorf) and immediately frozen at −80°C prior to metabolomic sample preparation and analysis.&nbsp;</p><p><br></p><p>In vivo protein expression</p><p>Proteins were expressed in E. coli BL21 harboring expression plasmids encoding candidate nucleobase amino acid synthases. Cultures were grown in 5 mL (small scale) or 100 mL (medium scale) of 2xYT medium supplemented with carbenicillin (100 μg/mL from E0096, Teknova) at 37°C and 250 rpm from and initial OD 600 of 0.01. At OD 600 of 0.5-0.7, cultures were induced with 0.2% L-arabinose, and incubated at 16°C and 250 rpm for 16 h. Cells were harvested by centrifugation at 4500×g and 4°C&nbsp;for 10 min and stored at −80°C.&nbsp;</p><p><br></p><p>Protein purification from in vivo expression</p><p>Proteins were purified using immobilized metal affinity chromatography (IMAC) with Ni-IDA (745300.4, Macherey-Nagel for small scale) or Ni-TED (745110.5, Macherey-Nagel for medium scale) resin depending on scale. Eluted proteins were dialyzed against assay buffer using 3.5 kDa MWCO microdialysis plates (PIA50468, Thermo Scientific for small scale) or 12 kDa MWCO Pur-A-Lyzer column (PURG12010, Sigma Aldrich for medium scale). Dialysis at a small scale was performed with two buffer exchanges after 30-min incubations at room temperature on a 90 rpm shaker, followed by overnight equilibration at 4°C. Dialysis at a medium scale was performed overnight at 4°C with the Pur-A-Lyzer in a floating rack and this in a 2 L beaker containing 1.6 L of assay buffer stirring gently. Dialyzed samples were assayed for protein quantification using the Qubit Protein Assay Kit (Q33211, Thermo Scientific) and used directly for biosynthesis assays.</p><p><br></p><p>Biosynthesis assay from in vivo expressed proteins</p><p>Biosynthesis assays from in vivo expressed proteins were performed in an assay buffer using purified proteins. Unless otherwise specified, reactions contained 1 μM enzyme, 100 μM PLP, 2 mM O-acetylserine, and nucleobases at the following concentrations: uracil, cytosine, or adenine (4 mM); thymine or guanine (2 mM). The final reaction volume was 100 μL. We only explored a biosynthetic mechanism of nucleobase amino acids involving O-acetylserine and free nucleobases.</p><p>Negative controls included reactions lacking the enzyme. Spike-in controls consisted of synthetic nucleobase amino acid standards (Supplementary Information) in the assay buffer.&nbsp;After mixing all substrates with the enzyme, reactions were incubated at 30°C for 1 h in a thermocycler (Mastercycler X50s, Eppendorf), and then quenched immediately at −80°C.</p>	<p>HILIC-NuAA targeted metabolomics</p><p>Targeted detection of nucleobase amino acids was performed using a HILIC-based LC–MS/MS workflow optimized for low-abundance alanyl nucleobase amino acids in complex biochemical samples (HILIC-NuAA). Analytical specificity was achieved using triple quadrupole tandem mass spectrometry operated in multiple reaction monitoring (MRM) mode with at least 2 optimized transitions per compound (Supplementary Table 1).</p><p>Metabolite separation was performed on an Agilent 1290 Infinity II Bio ultra-high-performance liquid chromatography (UHPLC) system equipped with an Agilent InfinityLab Poroshell 120 Hydrophilic Interaction Liquid Chromatography (HILIC-Z) column (2.1 x 150 mm, 2.7 µm, P/N: 683775-924). </p><p><br></p>	<p>Product concentrations in samples were calculated from integrated peak areas using the computed calibration curves (Supplementary Fig. 3). Statistical significance was assessed using one-way ANOVA followed by Dunnett’s multiple comparisons test against the negative control. Data in bar plots are presented as the mean, with error bars showing the standard deviation from three independent experiments (n = 3). We also plot the individual measures.</p>	<p>Reaction assay buffer preparation</p><p>Assay buffer consisted of 20 mM HEPES (from 15-630-080, Gibco) and 20 mM potassium phosphate (KPi) adjusted to pH 7.8 using 1M solutions of dipotassium hydrogen phosphate and potassium dihydrogen phosphate. Buffers were prepared in Milli-Q water and stored at 4°C.</p><p><br></p><p>Preparation of in vitro samples for metabolomics</p><p>In vitro reactions were quenched using four volumes of cold (-20°C) 80:20 methanol:water containing 0.1% formic acid. Samples were vortexed for 10-15 seconds, incubated on ice for 10 min, and centrifuged at 4°C and 13,000 rpm for 10 min. Supernatants were collected and dried under vacuum in an Eppendorf 450 Vacufuge plus (2231001204, cycle V-AQ and no heating) for approximately 2 hours per 100 μL. Samples were reconstituted in water:methanol:acetonitrile (20:10:70) and centrifuged at maximum speed for 2 min. An aliquot of 10 μL of supernatant was diluted in 40 μL of water:methanol:acetonitrile (20:10:70) in a glass vial for LC–MS/MS analysis. The remaining sample was stored at -80°C.</p><p><br></p><p>Preparation of E. coli in vivo samples for intracellular metabolomics</p><p>Frozen cell pellets were thawed and lysed in 25 μL of 0.2% n-dodecyl β-D-maltoside (DDM). Cell lysates were suspended in 500 μL of 80% (v/v) methanol (pre-cooled to -20 °C), transferred to microcentrifuge tubes, and incubated at -20 °C for 20 min. Samples were centrifuged at 6,000×g for 5 min at 4 °C to pellet cell debris. The resulting supernatants were transferred to fresh microcentrifuge tubes and dried under vacuum for 3 h using an Eppendorf 450 Vacufuge plus (2231001204, cycle V-AQ and no heating). Dried samples were reconstituted in water:methanol:acetonitrile (20:10:70) and centrifuged at maximum speed for 2 min. An aliquot of 10 μL of supernatant was diluted in 40 μL of water:methanol:acetonitrile (20:10:70) in a glass vial for LC–MS/MS analysis.</p><p><br></p><p>In vivo biosynthesis evaluation upon heterologous enzyme expression in E. coli</p><p>We evaluated in vivo production of alaU in E. coli. For this purpose, we used E. coli BL21 with plasmids encoding the discovered alaU synthases under the control of an L-arabinose-inducible promoter. These cells were cultured in 5 mL of liquid Luria Broth (LB) supplemented with uracil at 0 (no uracil added), 2, and 5 mM. Overnight cultures were inoculated at an initial optical density at 600 nm of 0.3 and grown at 37 °C in a rotator to mid-exponential phase (optical density at 600 nm of 0.3-0.5). Expression of the alaU synthases was then induced by addition of L-arabinose to a final concentration of 0.2% (v/v). After 2 hours of induction, cultures were cooled on ice for 10 min and cells were harvested by centrifugation at 4,500×g for 10 min at 4 °C. The supernatants were discarded, and cell pellets were stored at -80 °C until intracellular metabolomic analysis. More details on plasmid designs, the electroporation process, and media preparation are available in the Supplementary Information.</p>	<p>HILIC-NuAA targeted metabolomics</p><p>Metabolite detection was performed using an Agilent G6495D iFunnel Triple Quadrupole LC/MS system with an Agilent JetStream ESI source with polarity switching in positive and negative electrospray ionization mode.&nbsp;</p><p>Mobile phase A consisted of 20 mM ammonium acetate adjusted to pH 9.3 with 5 μM medronic acid in LC/MS-grade water, and mobile phase B consisted of LC/MS-grade acetonitrile. The column was maintained at 15°C and injection volume was 5 μL. Gradient elution was performed using the following program: 90% B for 1 min, 78% B at 8 min, 60% B at 12 min, 10% B at 15 min, 10% B at 18 min, and a return to 90% B at 19 min all at a flow rate of 0.4 mL/min. To stabilize retention times, column equilibration followed the chromatographic gradient with a 2 min hold at 0.5 mL/min and an additional 10 min hold at 0.4 mL/min prior to the next injection.</p><p>Acquisition was performed in MRM mode using transitions from a custom database of relevant compounds. MRM transitions were optimized using the Agilent MassHunter Method Optimizer. The acquisition method included 35 transitions (2-3 transitions per compound), with a dwell time of 17 ms for each transition and an estimated cycle time of 734 ms/cycle. A full list of MRM transitions is provided in Supplementary Table 1. Source parameters were optimized to improve detection sensitivity of nucleobase amino acids (HILIC-NuAA) using a standard solution of uracilyl-alanine at 1 ng/μL. The final source parameters were drying gas temperature 180°C, sheath gas temperature 400°C, drying gas flow 14.0 L/min, nebulizer 30.0 psi, sheath gas flow 12.0 L/min, capillary voltage 3000 V (+) and 2100 V (-), and nozzle voltage 0 V (+/-). Data acquisition and analysis were performed using Agilent MassHunter software (v12.3).</p>	<p>Additional notes on mass chromatogram peak area quantification</p><p>All peak areas were quantified manually and consistently across all samples using the LC/MS MassHunter Qualitative Analysis software (version 12.3) and LC/MS MassHunter License from Agilent Technologies.</p><p>For negative controls, we have defined a peak baseline that provides some numerical value, so that it is not zero. The area of the sample has not been subtracted from the area of the negative controls. Using the same baseline (manually defined), we report directly all areas as measured. All peak areas have been integrated for the quantitative transitions (reported in Supplementary Table 1).&nbsp;</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chiappino-Pepe	George
+Study Person First Name	Anush	Church
+Study Person Mid Initials		M
+Study Person Email	anush.chiappino@gmail.com	gchurch@genetics.med.harvard.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address	77 Avenue Louis Pasteur, VSC 238, Boston MA 02115 USA	77 Avenue Louis Pasteur, VSC 238, Boston MA 02115 USA
+Study Person Affiliation	Harvard Medical School	Harvard Medical School
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-3993-907X	0000-0001-6232-9969
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03vek6s52	https://ror.org/03vek6s52
+Comment[Study Person Alternative Email]	anush_chiappinopepe@hms.harvard.edu	church_lab_admin@hms.harvard.edu

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	OBI	MTBLS	Organism	MS
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	Metabolights	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version			29			
+Term Source Description			Ontology for Biomedical Investigations	Metabolights Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS11965
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-02-10
+Investigation Public Release Date	2025-05-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11965
+Study Title	Integrated multi-omics analysis and experimental verification reveal the involvement of the PI3K/Akt signaling pathway in myometrial fibrosis of adenomyosis.
+Study Description	<p>This analysis established comprehensive metabolomic profiles of adenomyosis patients and revealed widespread alterations in the metabolome within normal and fibrotic myometrium. Integrated analysis shown significant associations between metabolomic data and fibrosis . This study is the first to demonstrate that myometrial fibrosis represents a critical pathological mechanism in adenomyosis. These findings provide valuable insights into the pathophysiology of zdenomyosis and suggest antifibrotic treatment as a promising therapeutic strategy.</p>
+Study Submission Date	2025-02-10
+Study Public Release Date	2025-05-12
+Study File Name	s_MTBLS11965.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Adenomyosis	Fibrosis	targeted metabolites
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_1001757	http://purl.obolibrary.org/obo/NCIT_C3044	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	EFO	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	40254638
+Study Publication DOI	10.1038/s41598-025-98369-2
+Study Publication Author List	Yang Q, Hong J, Fu J, Liu X, Zheng X, Jiang J, Zhu A, Chen L, Lin H, Sun P.
+Study Publication Title	Integrated multi-omics analysis and experimental verification reveal the involvement of the PI3K/Akt signaling pathway in myometrial fibrosis of adenomyosis.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cohort
+Study Factor Type	cohort
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0004445
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11965_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11965_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Briefly, 10 pairs of fresh myometrial tissue samples, with and without adenomyotic lesions, were collected from AM patients who underwent hysterectomies</p>	<p>Samples were retrieved from -80 °C storage, weighed and ground into powder using liquid nitrogen in a mortar. Each group was then treated with a quadruple volume of MeOH/ACN buffer (1:1, v/v), vortexed and sonicated for lysis. Subsequently, samples were sedimented at -20 °C for 1 h, then centrifuged at 18,000 x g for 15 min at 4 °C to remove cell debris and protein precipitates. The resulting supernatant was transferred to a new tube. After concentration, the insoluble fraction was resuspended with an equal volume of ACN:H2O (1:1, v/v) and centrifuged again.</p>	<p>Waters ACQUITY UPLC ultra high performance liquid phase system</p><p>Waters ACQUITY UPLC BEH C18 Column (1.7 µm, 2.1 mm x 100 mm)</p>	<p>The data acquisition mode uses parallel accumulation serial fragmentation (PASEF) mode. After one level one mass spectrum is acquired, two PASEF mode acquisitions are performed to obtain secondary spectra with parent ion charges within the range of 0-1. The dynamic exclusion time for tandem mass spectrometry scanning is set to 6 s to avoid repeated scans of parent ions.</p>	<p>The data acquisition mode uses parallel accumulation serial fragmentation (PASEF) mode. After one level one mass spectrum is acquired, two PASEF mode acquisitions are performed to obtain secondary spectra with parent ion charges within the range of 0-1. The dynamic exclusion time for tandem mass spectrometry scanning is set to 6 s to avoid repeated scans of parent ions.</p>	<p>MetaboScape 2022 was used for peak extraction, alignment and retention time correction of the original data, and the primary and secondary mass errors were controlled within 20 ppm to ensure the accuracy of the identification results. The structure and annotation information of metabolites were obtained by spectrogram comparison of NIST, HMDB, own database and integrated public database.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Mei
+Study Person First Name	Yang
+Study Person Mid Initials	Qiao
+Study Person Email	FJFY2014@163.com
+Study Person Phone	8.61836E+12
+Study Person Fax	
+Study Person Address	Department of Gynecology, Fujian Maternity and Child Health Hospital College of Clinical Medicine for Obstetrics & Gynecology and Pediatrics, Fujian Medical University, Fuzhou, Fujian Province, China.
+Study Person Affiliation	Fujian Maternity and Child Health Hospital
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

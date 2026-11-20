@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MTBLS	MONDO	UPa	RBO	MS	SIO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	Metabolights	Metabolights	Metabolights	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version	29	132							
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		Metabolights Ontology					
+INVESTIGATION
+Investigation Identifier	MTBLS11849
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-03-06
+Investigation Public Release Date	2025-05-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11849
+Study Title	Lactate controls cancer stemness and plasticity through epigenetic regulation.
+Study Description	<p>Tumours arise from uncontrolled cell proliferation driven by mutations in genes that regulate stem cell renewal and differentiation. Intestinal tumours, however, retain some hierarchical organization, maintaining both cancer stem cells (CSCs) and cancer differentiated cells (CDCs). This heterogeneity, coupled with cellular plasticity enabling CDCs to revert to CSCs, contributes to therapy resistance and relapse. Using fluorescent metabolic and signalling reporters in human tumour organoids, combined with our machine learning-based cell tracker, CellPhenTracker, we simultaneously traced cell type specification, metabolic changes, and reconstructed cell lineage trajectories during tumour organoid development. Our findings reveal distinctive metabolic phenotypes in CSCs and CDCs. We find that lactate regulates tumour dynamics, suppressing CSC differentiation and inducing dedifferentiation into a proliferative CSC state. Mechanistically, lactate increases histone acetylation, epigenetically activating MYC. Given that lactate’s regulation of MYC depends on BRD4, targeting cancer metabolism combined with BET inhibitors emerges as a promising strategy to prevent tumour relapse.&nbsp;</p>
+Study Submission Date	2025-03-06
+Study Public Release Date	2025-05-28
+Study File Name	s_MTBLS11849.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	cancer	metabolism	epigenetic study	Colon
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/MONDO_0004992	http://purl.obolibrary.org/obo/UPa_UPA00026	http://purl.obolibrary.org/obo/RBO_00002091	http://purl.obolibrary.org/obo/NCIT_C12382
+Study Design Type Term Source REF	MTBLS	MONDO	UPa	RBO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	39933514
+Study Publication DOI	10.1016/j.cmet.2025.01.002
+Study Publication Author List	Nguyen Nguyen T.B., Gevers Sira, Kok Rutger N.U., Burgering Lotte M., Neikes Hannah, Akkerman Ninouk, Betjes Max A., Ludikhuize Marlies C., Gulersonmez Can, Stigter Edwin C.A., Vercoulen Yvonne, Drost Jarno, Clevers Hans, Vermeulen Michiel, van Zon Jeroen S., Tans Sander J., Burgering Boudewijn M.T., Rodríguez Colman Maria J.
+Study Publication Title	Lactate controls cancer stemness and plasticity through epigenetic regulation
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Comparison	ExperimentID
+Study Factor Type	treatment	Comparison	experiment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://purl.obolibrary.org/obo/NCIT_C49156	http://semanticscience.org/resource/SIO_000994
+Study Factor Type Term Source REF	EFO	NCIT	SIO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11849_LC-MS___metabolite_profiling-1.txt	a_MTBLS11849_LC-MS___metabolite_profiling-2.txt	a_MTBLS11849_LC-MS___metabolite_profiling-3.txt	a_MTBLS11849_LC-MS___metabolite_profiling-4.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>For metabolomics, 1200 µL of human tumor organoid-containing matrigel or 1000 µL cultured media were used per condition. To compare the effect of lactate, DCA or pyruvate on metabolome, control or lactate medium were applied 3 h, 6 h and 2 days before collection, DCA 20 mM were added 4 and 8 h before collection, pyruvate condition was applied 6 h before collection. To assess the effect of MCTs on glucose metabolism, organoids were cultured under control conditions, with and without treatment of an MCT4 inhibitor (VB124, 20 µM), an MCT1 inhibitor (AZD3965, 1 µM), or a dual MCT1 + MCT4 inhibition (Syrosingopine, 10 µM; or a combination of VB124, 20 µM, and AZD3965, 1 µM) for 6 h before sample collection. To assess the effect of low glucose on lactate and Acetyl-coA levels, organoids were cultured in SILAC differentiated medium supplemented with either 12 mM or 0.5 mM of D-glucose for 6 h. Organoids were washed and collected in ice-cold PBS. An equal portion of the organoid suspension was set aside for protein quantification, which was later used for normalization purposes. Organoids were centrifuged and resuspended in 80% ice-cold methanol/PBS and snap-frozen in liquid nitrogen prior to LC-MS metabolomic analysis. After collection, medium samples were snap-frozen in liquid nitrogen.</p>	<p>All organoid samples were evaporated to dryness in a Labconco Centrivap (VWR, Amsterdam, The Netherlands). To the residue 190 µL water, 10 µL 1 mM ribitol internal standard in water, 500 µL methanol and 50 µL stainless steel beads (0.9-2.0 mm) were added and the sample was homogenized for 2 x 2 min at 4 °C in a Bullet Blender (Next Advance, Troy NY, USA). After pulse centrifugation 300 µL chloroform was added and the samples were incubated for 2 h in a VWR thermostated shaker (900 rpm, 37 °C). After centrifugation at room temperature (10 min, 15,000 x g) the upper aqueous phase was quantitatively transferred to a clean eppendorf and evaporated to dryness overnight in the Labconco Centrivap. The residue was dissolved in 100 µL water and transferred to an injection vial for LC-MS analysis. Vials were kept at 6 °C in the injector. For medium analysis, 20 µL of medium was sampled after homogenization of the available medium sample to which a volume of 120 µL water was added. The sample extraction was further performed as described above.</p>	<p>The LC-MS analysis was performed using an Atlantis premier BEH-C18 AX column (2.1 x 100, 2.5 µm) connected to a related VanGuard column (Waters, Etten-Leur, The Netherlands). The column was installed into an Ultimate 3000 LC system. The column outlet was coupled to a Q-Exactive FT mass spectrometer equipped with an HESI ion source. The UPLC system was operated at a flow rate of 250 μL/min and the column was kept at 30 °C. The mobile phases consisted of 10 mM ammonium acetate and 0.04 (v/v) ammonium hydroxide in water, pH9 (A) and acetonitrile (B), respectively. Upon 5 µL sample injection the system was kept at 0% B for 1.5 min followed by a 6-min linear gradient of 0-30% B. Thereafter the gradient increased linearly to 70% in 4 min and kept at 70% for 0.5 min followed by column regeneration at 0% B for 4 min.</p>	<p>Mass spectrometry data were acquired over a scan range from 60 to 900 m/z. The system was operated at -2.5 kV (negative mode) and 120000 mass resolution. Further source settings were: transfer tube and vaporizer temperature 350 and 300 °C, and sheath gas and auxiliary gas pressure at 35 and 10, respectively. For high mass accuracy mass calibration was performed before each experiment.</p>	<p>Raw data files were processed and analysed using XCalibur Quan software.&nbsp;Metabolite levels in the organoid samples were normalized by protein amount and normalized to the control conditions. Metabolite levels in the medium samples were subtracted to the starting level of the metabolites in starting medium and then normalized to the control conditions.</p>	<p>The analytical method is a targeted method. Commercially available standards and internal standards were used to identify metabolites after processing the data using XCalibur Quan software.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rodriguez-Colman
+Study Person First Name	Maria
+Study Person Mid Initials	
+Study Person Email	m.j.rodriguezcolman@umcutrecht.nl
+Study Person Phone	31-88-75 68093
+Study Person Fax	
+Study Person Address	Universiteitsweg 100, 3584 CG Utrecht, The Netherlands
+Study Person Affiliation	Center for Molecular Medicine (CMM), University Medical Center Utrecht (UMCU)
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,134 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MTBLS	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version		2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0				26.02d	2026-03-19	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS14771
+Investigation Title	Revealing Hidden Variables in DESI-based Spatial Metabolomics: Solvent Composition and Tissue Type as Critical Drivers
+Investigation Description	
+Investigation Submission Date	2026-06-16
+Investigation Public Release Date	2026-09-11
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14771
+Study Title	Revealing Hidden Variables in DESI-based Spatial Metabolomics: Solvent Composition and Tissue Type as Critical Drivers
+Study Description	In the development of a desorption electrospray ionization (DESI) workflow for spatial metabolomics, we investigated the impact of two commonly used solvent systems, 90% acetonitrile (ACN) and 90% methanol (MeOH), on the spatial metabolomic profiling of multiple murine tissues. The performance of both solvents was evaluated across several metabolite classes (central carbon metabolites, amino acids, and fatty acids). While the ACN-based solvent system led to higher signal intensities of small polar metabolites involved in glycolysis, the tricarboxylic acid (TCA) cycle, and amino acid metabolism, the MeOH-based solvent system provided superior signal intensities of fatty acids. These findings demonstrate that solvent composition differentially influences metabolite extraction and ionization processes in DESI and should be carefully matched to the biological question and metabolite classes of interest. To illustrate the utility of the optimized workflow, the ACN solvent system was applied to a rat model of renal ischemic injury. Spatial mapping of metabolites across distinct kidney regions (cortex, outer medulla, and inner medulla) revealed pronounced region-specific metabolic changes between normoxic and ischemic conditions. Together, these results demonstrate the importance of solvent selection in DESI-based spatial metabolomics and showcase the ability of this approach to uncover spatially resolved metabolic adaptations associated with tissue injury.
+Study Submission Date	2026-06-16
+Study Public Release Date	2026-09-11
+Study File Name	s_MTBLS14771.txt
+Comment[Created At]	2026-06-04
+Comment[Funder]	HORIZON-MSCA-2023-PF-01-01
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	101152131
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-11
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-imaging
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Mass spectrometry imaging	DESI	Metabolomics	MRT SELECT Series	C57 black mouse	Sprague Dawley	heart	liver	brain	kidney	mouse	experimental sample	semi-targeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PRIDE_0000631	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C49019									http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003906
+Study Design Type Term Source REF	PRIDE	MTBLS	NCIT									CHMO	MS
+Comment[Study Design Category]	default	default	omics-type	Instrument	Organism	Organism	Organism part	Organism part	Organism part	Organism part	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Marco Giampà, Peter D. E. M. Verhaert, Jan Claereboudt, Emmanuelle Claude, Bernard Drotleff, Geert Goeminne, Veerle Heedfeld, Jakub Idkowiak, Emrys Jones, Alexander Muck, Janick Mathys, Alaa Othmann, Nina Ravoet, Julio Lopes Sampaio, Johannes V. Swinnen, Ina Jochmans, Bart Ghesquière
+Study Publication Title	Revealing Hidden Variables in DESI-based Spatial Metabolomics: Solvent Composition and Tissue Type as Critical Drivers
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Organism
+Study Factor Type	Organism part
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14771_MSImaging_negative_.txt	a_MTBLS14771_MSImaging_negative_-1.txt
+Study Assay Measurement Type	semi-targeted analysis	semi-targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003906	http://purl.obolibrary.org/obo/MS_1003906
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	MS Imaging - negative	MS Imaging - negative
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	MSImaging	MSImaging
+Comment[Assay Type]	mass spectrometry imaging assay	mass spectrometry imaging assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Sample mounting];Parameter Value[Sample preservation];Parameter Value[Tissue modification];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Instrument manufacturer];Parameter Value[Ion source];Parameter Value[Mass analyzer];Parameter Value[Solvent];Parameter Value[Resolving power];Parameter Value[Resolving power m/z];Parameter Value[Line scan direction];Parameter Value[Scan pattern];Parameter Value[Scan type]	Parameter Value[Sample mounting];Parameter Value[Sample preservation];Parameter Value[Tissue modification];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Instrument manufacturer];Parameter Value[Ion source];Parameter Value[Mass analyzer];Parameter Value[Solvent];Parameter Value[Resolving power];Parameter Value[Resolving power m/z];Parameter Value[Line scan direction];Parameter Value[Scan pattern];Parameter Value[Scan type]
+Comment[Assay Field Default Value]	Water;-80 C;No modification;negative;50-2400;SELECT SERIES MRT;Waters;desorption electrospray ionization;quadrupole time-of-flight;90% Acetonitrile 10% Water;100000;89.02442;Horizontal;Full MS ;Full MS1 scan	Water;-80 C;No modification;negative;50-2400;SELECT SERIES MRT;Waters;desorption electrospray ionization;quadrupole time-of-flight;90% Methanol 10% Water;100000;89.02442;Horizontal;raster;Full MS1 scan
+Comment[Assay Field Default Unit]	;;;;;;;;;;;;;;	;;;;;;;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	;;;;;http://purl.obolibrary.org/obo/MS_1003185;;http://purl.obolibrary.org/obo/MS_1002011;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;;;	;;;;;http://purl.obolibrary.org/obo/MS_1003185;;http://purl.obolibrary.org/obo/MS_1002011;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;;;
+Comment[Assay Field Default Value Source REF]	;;;;;MS;;MS;MTBLS;MTBLS;;;;;	;;;;;MS;;MS;MTBLS;MTBLS;;;;;
+Comment[Measurement Type]	semi-targeted analysis	semi-targeted analysis
+Comment[Measurement Type Term Source REF]	MS	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003906	http://purl.obolibrary.org/obo/MS_1003906
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Histology	Mass spectrometry	Metabolite identification	Preparation
+Study Protocol Type	Sample collection	data transformation	Histology	mass spectrometry	metabolite identification	Preparation
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF		OBI	OBI	CHMO	MI	EFO
+Study Protocol Description	<p>Mouse tissues (heart, liver, brain and kidney) were obtained from wild type C57 black 6 mice, wrapped in aluminum foil and snap-frozen in liquid nitrogen and stored immediately at -80°C as approved by the KU Leuven ethical committee for animal experimentation (M018/2024). For the replication batch, brain tissues were collected from a knockout mouse.</p><p>Male Sprague–Dawley rats (250 g; 6-8-weeks-old) were housed at the KU Leuven animal facility. After at least 4 days of acclimatization, they were anesthetized using isoflurane (5% for induction, 1.5% for maintenance). Analgesics were administered before the start of the surgery, including Vetergesic, Ecuphar 0.1 mg/kg, and Naropin (AstraZeneca) 5mg/kg. Then both renal pedicles were dissected free through a midline abdominal incision. The right kidney pedicle was clamped with a microaneurysm clamp for 60 min to induce ischemia. Reperfusion was initiated by removal of the clamp. After 3 hours of reperfusion, the rat was anesthetized using isoflurane (5% for induction, 1.5% for maintenance).&nbsp;Kidneys were collected and immediately snap-frozen in liquid nitrogen and then stored at -80°C. The rats were sacrificed under anesthesia by a lethal dose of sodium pentobarbital (Dolethal, Vetoquinol). All protocols had been approved by the KU Leuven ethical committee for animal experimentation (M018/2024). </p>	<p>The raw data were converted to the h5 format for the import in Mozaic (Version 2025.11.0.b2; Spectroswiss), where mass accuracy analysis, recalibration, and peak picking were performed. Centroided data were exported in imzML format. A subset of the centroided dataset was generated using the function peakAlign(), in Cardinal’s R package28,29 considering a target peak list with a tolerance of 5 ppm. The target peak list for subsequent analyses included metabolites from glycolysis, the TCA cycle, as well as abundant amino acids and fatty acids. The full target peak list is shown in Table S3 in Supporting information. The subset of the centroided dataset was normalized by TIC. Selection of the acquisition region is restricted by the DESI source control software to rectangular forms. In order to perform the data analysis purely on the tissue region, a spatial clustering analysis was performed with the glass region removed.&nbsp;</p>	<p>After DESI MSI, rat kidney tissue sections were stained in hematoxylin/eosin (H&amp;E) using Leica Autostainer XL (ST5010). Briefly, the slides goes through the following washes: milliQWater (4 min), Hematoxylin (MHS32-1L, Sigma) (5 min), running tap water (5 min), Eosine Y, aqueous (HT110232-1L, Sigma) (2 min), running tap water (40 sec), 95% Ethanol (2 min), 100% Ethanol (4 min), 100% Ethanol (5 min), Xylene (2x for 10 min). The stained slides exit in xylene and were mounted with DPX Mountant for Histology (06522-500mL, Sigma). The stained tissue slides were scanned with high resolution of 40x (0.25µm/pixel) with Vectra PolarisTM. Rat kidney histology annotations were performed using QuPath as digital pathology software.</p>	<p>A Waters ACQUITY M-Class uBSM pump was used to continuously deliver the solvent (90% MeOH or ACN in H2O; 9:1 v/v) at 2 uL/min to the Waters DESI XS source coupled with a hybrid quadrupole-multireflecting time-of-flight Select Series MRT mass spectrometer (Waters, Massachusetts, USA). The solvent line was implemented using the low-flow kit (Waters) to increase backpressure (between 1400-1500 psi) and improve spray stability. All DESI MSI analyses were done in negative ionization mode. Initial mass calibration was performed with polyalanine (5 mg/mL in 95:5 v/v MeOH/H2O). Oleic acid (ubiquitous in tissues; m/z= 281.2489) was used as internal lock mass.</p><p><br></p><p>Capillary voltage was set at 0.45-0.50 kV, cone voltage at 35 V, ion source temperature 95 C, API gas at 0.7 bar and the heated transfer line temperature at 100 C. The MRT mass spectrometer was tuned in order to best transmit metabolites with m/z values &lt;500.</p><p><br></p><p>Ion transfer was facilitated using a StepWave ion guide with RF voltage set to 100 V. The T-Wave ion guide operated at a velocity of 300 m/s and a pulse height of 0.5 V. The entrance, bias, and DC offset voltages were 2.0 V, 2.0 V, and -4.0 V, respectively. The exit voltage was 0.0 V (readback: -76.5 V).</p><p><br></p><p>The MS profile was set to Manual at m/z 50, 150 and 200, dwell time (% scan time) 80 and 5, ramp time 5 and 10 (% scan time). The collision energy was set to 5 V, and the collision gas (nitrogen) flow rate was 0.9 mL/min. The transfer lens acceleration voltage was 20 V, and the detector voltage was maintained at 1.96 kV. The polarity was set to negative mode. The scan time was set to 1.5 s and 1 s per pixel for a pixel resolution of 100 um and 50 um, respectively. Based on lower concentrations of metabolites in tissue compared with other classes of analytes, such as lipids, we have chosen extended scan times of 1-1.5 s allowing for higher intensities due to longer microextraction effects for the investigated analytes in sample sections. This corresponds to a DESI stage motion speed of 66.6 um/s and 50 um/s respectively. Spray stability was assessed through multiple tests, including solvent acquisition, ink measurement, and a 30-minute acquisition on test tissue, followed by evaluation of the TIC heatmap. The ink intensity exceeded 5 x 10^6, passing the sensitivity control.</p>	<p>The high accuracy measurements of m/<em>z</em> values (average mass error lower than 1 ppm) allowed for MS1-based putative identifications of the metabolites of interest with a mass tolerance of 3 ppm and a false discovery rate &lt;10%. For this, centroided MSI datasets were uploaded to MetaSpace 25. The metabolite annotation was performed using the FDR-controlled method26 delivering annotations 'at Level 2’ (putatively annotated compounds) according to the Metabolomics Standard Initiative 27.&nbsp;Adjacent tissue sections, originating from the same organs (identical processing, storage time and sectioning conditions) as those used for the DESI MSI, were prepared for direct injection MSMS and ion pairing LCMS.</p>	<p>All organs were sectioned into 20 μm thick sections (Cryostar NX70 cryostat, ThermoFisher Scientific, Massachusetts, USA) employing a fresh disposable blade and tissue temperature parameters for each organ (see Table S 1). Enough material was sectioned to allow for 4 technical replicates for each organ and for each solvent system (one technical replicate as representative batch and three technical replicates reproducibility batch) For a direct comparison between the two solvents, two subsequent sections were mounted on two different glass slides.</p><p>For the rat hypoxia pilot study, three animals were sacrificed and sections of hypoxic and normoxic kidney were mounted on the same slide for each animal. All slides were vacuum dried immediately after mounting and further stored at -80 °C until analysis, in order to maximally reduce metabolite delocalization. The sections from -80 °C were vacuum dried again immediately before the MSI analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Data Transformation software;Data Transformation software version	Stain;High-res image;Low-res image	Scan polarity;Scan m/z range;Instrument;Instrument manufacturer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Line scan sequence;Scan pattern;Scan type;Number of scans;Linescan sequence		Sample mounting;Sample preservation;Tissue modification;Sectioning instrument;Section thickness;Matrix;Matrix application
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		;;;;;;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		;;;;;;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Giampà	Ghesquière
+Study Person First Name	Marco	Bart
+Study Person Mid Initials		
+Study Person Email	marco.giampa@kuleuven.be	bart.ghesquiere@kuleuven.be
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	VIB -KU Leuven	KU Leuven, Department of Cellular and Molecular Medicine, Laboratory of Applied Mass Spectrometry (LAMaS)
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0003-1547-1705
+Comment[Study Person Affiliation ROR ID]		https://ror.org/05f950310

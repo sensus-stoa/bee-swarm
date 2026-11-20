@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	FOODON	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/foodon.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		2025-10-21	3.86.0	2025-12-30				2025-12-03	25.06e	2025-12-18	2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Food Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12296
+Investigation Title	Transcriptomic and metabolomic data of Populus deltoides ‘Shalinyang’ (PdS) response to feeding of Anoplophora glabripennis adults
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-03-07
+Investigation Public Release Date	2026-03-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12296
+Study Title	Transcriptomic and metabolomic data of Populus deltoides ‘Shalinyang’ (PdS) response to feeding of Anoplophora glabripennis adults
+Study Description	Populus deltoides ‘Shalinyang’ (PdS), a vital species for artificial shelterbelts in the arid regions of northwest China, has shown resistance to the destructive stem-boring beetle Anoplophora glabripennis Motschulsky (Asian longhorned beetle, ALB). However, comprehensive research in this area is still lacking. This study compared PDS leaves and phloem tissues before and after ALB adult feeding, utilizing untargeted metabolomics (LC-MS/MS) and transcriptomics (RNA-Seq) methods. The investigation identified a total of 3,552 metabolites across the 12 samples. Transcriptomic sequencing generated 82.52 Gb of clean data, with an average of 6.88 Gb per sample, and annotated 33,429 expressed genes. These data provide fundamental and valuable information for understanding how the resistant species PdS responds to ALB adult infestation. Furthermore, they can be utilized in future studies to explore the interaction mechanisms between poplar species and ALB and investigate the insect resistance mechanisms of PdS.
+Study Submission Date	2025-03-07
+Study Public Release Date	2026-03-25
+Study File Name	s_MTBLS12296.txt
+Comment[Created At]	2025-03-05T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	metabolomic profiling	beetle	Populus
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000752	http://purl.obolibrary.org/obo/FOODON_03414645	http://purl.obolibrary.org/obo/NCBITaxon_3689
+Study Design Type Term Source REF	EFO	FOODON	NCBITaxon
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Hui-Quan Sun, Yu-Rong Ren, Ying Yang, Zhi Su, Li-Jun Dong, Jian-Feng Liu, Jian-Rong Wei
+Study Publication Title	Transcriptomic and metabolomic data of Populus deltoides ‘Shalinyang’ (PdS) response to feeding of Anoplophora glabripennis adults
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Feeding by beetle adults
+Study Factor Type	beetle
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/FOODON_03414645
+Study Factor Type Term Source REF	FOODON
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12296_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12296_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Male and female adults starved for 24 h were placed on poplars, with one male and one female beetle (<em>Anoplophora glabripennis</em>) on each <strong><em>Populus deltoides</em> ‘Shalinyang’(PdS)</strong>. The no-insect treatment was used as the control group. After 48 h of feeding, leaves and phloem of PdS were collected, and samples of the control group were collected from the same location. The samples were frozen in liquid nitrogen and stored in a -80 °C refrigerator for subsequent analysis.</p>	<p>Briefly, 100 mg solid sample was added to a 2 mL centrifuge tube and a 6 mm diameter grinding bead was added. Next 800 μL of extraction solution (methanol:water, 4:1, v:v) containing 4 internal standards (0.02 mg/mL L-2-chlorophenylalanine, etc) were used for metabolite extraction. Samples were ground by the Wonbio-96c (Shanghai wanbo biotechnology co., LTD) frozen tissue grinder for 6 min (-10 °C, 50 Hz), followed by low-temperature ultrasonic extraction for 30 min (5 °C, 40 kHz). The samples were left at -20 °C for 30 min, centrifuged for 15 min (4 °C,13,000 x g), and the supernatant was transferred to the injection vial for LC-MS/MS analysis.</p>	<p>The LC-MS/MS analysis of sample was conducted on a Thermo UHPLC-Q Exactive system equipped with an ACQUITY BEH C18 column (100 mm x 2.1 mm i.d., 1.7 μm; Waters, USA) at Majorbio Bio-Pharm Technology Co. Ltd (Shanghai, China).The mobile phases consisted of 0.1% formic acid in water:acetonitrile (2:98, v/v) (solvent A) and 0.1% formic acid in acetonitrile (solvent B). The gradient conditions are as follows: 0.0-0.5 min, mobile phase B was maintained at 2%; 0.5-7.5 min, mobile phase B was increased from 2% to 35%; 7.5-13.0 min, mobile phase B was increased from 35% to 95%; 13.0-14.4 min, mobile phase B was maintained at 95%; 14.4-14.5 min, mobile phase B was decreased from 95% to 2%; 14.5-16.0 min, mobile phase B was maintained at 2%. The flow rate was 0.40 mL/min and the column temperature was 40 °C. The LC-MS/MS analysis of sample was conducted on a Thermo UHPLC-Q Exactive system equipped with an ACQUITY BEH Amide column (100 mm x 2.1 mm i.d., 1.7 μm; Waters, USA) at Majorbio Bio-Pharm Technology Co. Ltd (Shanghai, China). The flow rate was 0.40 mL/min and the column temperature was 40 °C. The injection volume was 3 μL.</p>	<p>The UPLC system was coupled to a Thermo UHPLC-Q Exactive Mass Spectrometer equipped with an electrospray ionization (ESI) source operating in positive mode and negative mode. The optimal conditions were set as followed: source temperature at 400 °C; sheath gas flow rate at 40 arb; Aux gas flow rate at 10 arb; ion-spray voltage floating (ISVF) at -2800 V in negative mode and 3500 V in positive mode, respectively; Normalized collision energy, 20-40-60 V rolling for MS/MS. Full MS resolution was 70000, and MS/MS resolution was 17500. Data acquisition was performed with the Data Dependent Acquisition (DDA) mode. The detection was carried out over a mass range of 70-1050 m/z.</p>	<p>The pretreatment of LC-MS raw data was performed by Progenesis QI (Waters Corporation, Milford, USA) software, and a 3D data matrix in CSV format was exported. The information in this 3D matrix included: sample information, metabolite name and mass spectral response intensity. Internal standard peaks, as well as any known false positive peaks (including noise, column bleed and derivatized reagent peaks), were removed from the data matrix, deredundant and peak pooled. At the same time, the metabolites were identified by searching Self-built plant-specific metabolite database (MJDBPM). Metabolic features detected at least 80% in any set of samples were retained. After filtering, minimum metabolite values were imputed for specific samples in which the metabolite levels fell below the lower limit of quantitation, and each Metabolic features were normalized by sum. To reduce the errors caused by sample preparation and instrument instability, the response intensity of the sample mass spectrum peaks was normalized by the sum normalization method, and then the normalized data matrix was obtained. Meanwhile, variables with relative standard deviation (RSD) &gt; 30% of QC samples were removed, and log10 processing was performed to obtain the final data matrix for subsequent analysis.</p>	<p>The pretreatment of LC-MS raw data was performed by Progenesis QI (Waters Corporation, Milford, USA) software, and a 3D data matrix in CSV format was exported. The information in this 3D matrix included: sample information, metabolite name and mass spectral response intensity. Internal standard peaks, as well as any known false positive peaks (including noise, column bleed and derivatized reagent peaks), were removed from the data matrix, deredundant and peak pooled. At the same time, the metabolites were identified by searching Self-built plant-specific metabolite database (MJDBPM). Metabolic features detected at least 80% in any set of samples were retained. After filtering, minimum metabolite values were imputed for specific samples in which the metabolite levels fell below the lower limit of quantitation, and each Metabolic features were normalized by sum. To reduce the errors caused by sample preparation and instrument instability, the response intensity of the sample mass spectrum peaks was normalized by the sum normalization method, and then the normalized data matrix was obtained. Meanwhile, variables with relative standard deviation (RSD) &gt; 30% of QC samples were removed, and log10 processing was performed to obtain the final data matrix for subsequent analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hui-Quan
+Study Person First Name	Sun
+Study Person Mid Initials	
+Study Person Email	hhsunhq@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	School of Life Sciences, Hebei University.
+Study Person Affiliation	No. 180 Wusi Dong Road, Lian Chi District, Baoding, China
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	CHEBI	CHMO	EFO	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description		Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13066
+Investigation Title	Optimizing Deconvolution of Chimeric Fragmentation Spectra to reveal molecular structures of complex biological mixtures
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-09-29
+Investigation Public Release Date	2025-09-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13066
+Study Title	Optimizing Deconvolution of Chimeric Fragmentation Spectra to reveal molecular structures of complex biological mixtures
+Study Description	<p>Direct infusion mass spectrometry (DI-MS) offers a rapid, high-throughput analysis and, compared to liquid chromatography MS (LC-MS), a different analytical window into the composition of complex biological samples. However, the lack of chromatographic separation in DI-MS results in highly complex mass spectra and 'chimeric' fragmentation spectra that simultaneously contain multiple precursors and their fragments, complicating compound identification. Recently, a data acquisition technique based on shift of isolation window was proposed: to correctly connect precursor and fragments in chimeric fragmentation spectra, multiple MS/MS spectra are recorded for the same nominal mass by stepwise shifting of the isolation window centre. The ion transmission is different in the middle of isolation window and on its edges, which causes changes in intensity of precursor ions and their fragments between MS/MS scans. </p><p>To optimize deconvolution of chimeric spectra, we recorded fragmentation spectra of 115 mixtures of isobaric compounds with masses 180, 194, 280, 302, 318 and 342 Da using direct infusion - high resolution tandem mass spectrometry. Both pairs of isobaric compounds and mixtures of up to four isobaric compounds were used. For pairs of isobaric compounds, multiple mixtures with different range of concentrations were analysed. The mixtures of compounds and solutions of pure individual compounds were prepared by diluting stock solutions in MeOH:H2O 50:50 (v./v.) solvent with addition of 0.1% (v.%) HCOOH.&nbsp;</p><p>The data was recorded using positive electrospray ionization, resolving power of 120 000 and higher energy collisional dissociation (HCD) fragmentation with normalized collision energy (NCE) of 35 and 65&nbsp; on Orbitrap Elite. Tandem mass spectra were recorded using shifting isolating window width 1 m/z, mass ranged from (x - 0.7) to (x + 1) where x is nominal mass of [M+H]+ molecular ions of isobaric compounds, with 0.02 m/z step between consecutive fragmentation events. The mass difference between isobaric compounds ranged from 0.0034 to 0.0905 m/z (mass deviations range from 11 to 500 ppm). Additionally, fragmentation spectra of individual compounds were recorded using the same NCE and isolation window width. Finally, the blank fragmentation spectra of nominal masses corresponding to nominal masses of isobaric compounds were recorded using the same solvent with 1% (v.%) addition of DMSO, same set of NCE and 3 m/z wide isolation window. </p>
+Study Submission Date	2025-09-29
+Study Public Release Date	2025-09-29
+Study File Name	s_MTBLS13066.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-09-29
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	high-resolution mass spectrometry	tandem mass spectrometry	Orbitrap
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000498	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/CHMO_0000968
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Wei Tang, Arina Ivanova, Kai Dührkop, Carsten Simon, Gerd Gleixner, Sebastian Böcker
+Study Publication Title	Optimizing Deconvolution of Chimeric Fragmentation Spectra to reveal molecular structures of complex biological mixtures
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Normalized collision energy
+Study Factor Type	collision energy
+Study Factor Type Term Accession Number	http://purl.allotrope.org/ontologies/result#AFR_0001879
+Study Factor Type Term Source REF	AFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13066_DI-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Direct infusion MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification	Mass spectrometry: ms1 for isobaric mixtures	Mass spectrometry: analysis of pure standard compounds	Mass spectrometry: blank
+Study Protocol Type	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification	Mass spectrometry: ms1 for isobaric mixtures	Mass spectrometry: analysis of pure standard compounds	Mass spectrometry: blank
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107			
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Only pure reference compounds with purity &gt;=90% were used in this study. Solid reference compounds and prepared solutions were stored at -20°C. </p>	<p>The stock solutions of used compounds were prepared at concentration 1000 ppm in MeOH or DMSO depending on the solubility (details available in metadata).</p><p>The mixtures of compounds and solutions of pure individual compounds were prepared by diluting stock solutions in MeOH:H2O 50:50 (v./v.) solvent with addition of 0.1% (v.%) HCOOH to improve ionization in positive mode. The solvents used were UHPLC-MS grade MeOH (HiPerSolv CHROMANORM, VWR, Germany), LC-MS grade DMSO (Pierce, Thermo Scientific), ultrapure water (Milli-Q IQ 7000, Merck) and LC-MS grade HCOOH (VWR Chemicals).</p><p>The concentrations of individual solutions for measurements of reference spectra were between x and y</p><p>The concentrations of compounds in mixtures were varied to achieve different intensities of different isobaric compounds in resulting spectra. The concentrations of compounds in mixtures are given in corresponding MS2 spectra file name and in meta data file. For example, file 302B+D_1_1ppm_1Dawin_0-02step_35NCE contains MS/MS data for isobaric mixture of compounds 302B and 302D (302B+D), where compound 302B is present at concentration 1 ppm, compound 302D is present at concentration 1 ppm (1_1ppm), the nominal mass of isobaric compounds 302B and 302D is 302 Da (nominal mass of [M+H]+ molecular ion is 303 m/z), NCE used is 35 (35NCE). </p><p>As a blank, the same solvent with addition of 1% (v.%) DMSO was used.</p>	<p>All measurements were performed using high-resolution mass spectrometer Orbitrap Elite (Thermo Fisher Scientific). All data were collected in the profile mode via direct infusion with positive electrospray ionization using following source settings: flow rate 20 μl/min; capillary voltage 4 kV; capillary temperature 275°C, sheath gas 10, auxiliary gas 5 , sweep gas 5 arb units.</p>	<p>All measurements were performed using high-resolution mass spectrometer Orbitrap Elite (Thermo Fisher Scientific). All data were collected in the profile mode via direct infusion with positive electrospray ionization using following source settings: flow rate 20 μl/min; capillary voltage 4 kV; capillary temperature 275°C, sheath gas 10, auxiliary gas 5 , sweep gas 5 arb units.</p><p>For analysis of isobaric mixtures, tandem mass spectra were recorded using shifting isolating window approach (multiple MS/MS scans with slightly different m/z value of window isolation centre). The isolation window width was 1 m/z, the isolation centre m/z value ranged from (x - 0.7) to (x + 0.9) where x is nominal mass of [M+H]+ molecular ions of isobaric compounds, with 0.02 m/z step between consecutive fragmentation events.</p><p>The data was recorded using resolving power of 120 000 and higher energy collisional dissociation (HCD) fragmentation with normalized collision energy (NCE) of 35 and 65, and averaging 5 microscans per scan. The scan range was from 50 to (x+1) m/z. Total number of scans was 81.</p><p>Following MS/MS measurement cycle, one MS1 scan in centroided mode was recorded.</p><p>All spectra were recorded using 120 000 mass resolving power.</p><p>NCE used in each measurement is given in the file name. The nominal mass and name of isobaric compounds for each measurement is given in the file name. For example, file 302B_D_1_1ppm_1Dawin_0-02step_35NCE contains MS/MS data for isobaric mixture of compounds 302B and 302D (302B_D), where compound 302B is present at concentration 1 ppm, compound 302D is present at concentration 1 ppm (1_1ppm), the nominal mass of isobaric compounds 302B and 302D is 302 Da (nominal mass of [M+H]+ molecular ion is 303 m/z), NCE used is 35 (35NCE). 1Dawin_0-02step denotes 1 m/z isolation window width and 0.02 m/z step between consecutive MS/MS scans, see above.</p>	<p>All spectra were firstly centroided and transformed into mzML format using msConvert by ProteoWizard.</p>	<p>Since only the standard compounds were used in this study, the metabolite information was available a priori. </p>	<p>All measurements were performed using high-resolution mass spectrometer Orbitrap Elite (Thermo Fisher Scientific). All data were collected in the profile mode via direct infusion with positive electrospray ionization using following source settings: flow rate 20 μl/min; capillary voltage 4 kV; capillary temperature 275°C, sheath gas 10, auxiliary gas 5 , sweep gas 5 arb units.</p><p>For analysis of isobaric mixtures, MS1 data was recorded using 480 000 mass resolving power and scan range from 200 to 500 m/z for isobars with nominal mass of [M+H]+ ion &gt;200 m/z and scan range from 100 to 500 m/z for isobaric compounds with nominal mass of [M+H]+ ion &lt;200 m/z. The nominal mass and name of isobaric compounds for each measurement is given in the file name. For example, file 194A_F_1_0-1ppm_ms1 contains MS data for isobaric mixture of compounds 194A and 194F (194A_F), where compound 194A is present at concentration 1 ppm, compound 194F is present at concentration 0.1 ppm (1_0-1ppm), the nominal mass of isobaric compounds 194A and 194F is 194 Da (nominal mass of [M+H]+ molecular ion is 195 m/z).</p>	<p>All measurements were performed using high-resolution mass spectrometer Orbitrap Elite (Thermo Fisher Scientific). All data were collected in the profile mode via direct infusion with positive electrospray ionization using following source settings: flow rate 20 μl/min; capillary voltage 4 kV; capillary temperature 275°C, sheath gas 10, auxiliary gas 5 , sweep gas 5 arb units.</p><p>Reference fragmentation spectra of pure compounds that were used in isobaric mixtures were recorded using NCE 15, 35, 55 and 120 at mass resolving power 480 000, in the scan range was from 50 to (x+1) m/z, where x is nominal mass of [M+H]+ molecular ions of the analysed compound, with one microscan per scan. Isolation window width was 1 m/z, center of isolation window was x. Additionally, an MS1 scan in the range 50 – 500 m/z at the same mass resolving power was recorded. The data was collected for at least 3 min. The name of the analysed compound and it’s concentration is given in the file name. For example, file 318-C_10ppm_pos contains data for pure compound 318C (318-C) that was injected at 10 ppm (10ppm) concentration.</p>	<p>All measurements were performed using high-resolution mass spectrometer Orbitrap Elite (Thermo Fisher Scientific). All data were collected in the profile mode via direct infusion with positive electrospray ionization using following source settings: flow rate 20 μl/min; capillary voltage 4 kV; capillary temperature 275°C, sheath gas 10, auxiliary gas 5 , sweep gas 5 arb units.</p><p>Blank fragmentation spectra were recorded NCE 15, 35, 55 and 120 at mass resolving power 480 000, in the scan range was from 50 to (x+1) m/z, where x is nominal mass of [M+H]+ molecular ions of the analysed compounds (at least one blank for each nominal mass), with one microscan per scan. Isolation window width was 3 m/z, center of isolation window was x. Additionally, an MS1 scan in the range 50 – 500 m/z at the same mass resolving power was recorded. The data was collected for at least 4 min.</p><p>The number in the name of the blank file corresponds to the nominal mass of analysed isobars, for example, 194_blank1 is the blank for nominal mass 194.</p>
+Study Protocol URI									
+Study Protocol Version									
+Study Protocol Parameters Name		Post Extraction;Derivatization	DI Instrument	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer			ion source;Mass Spectrometry	Mass Spectrometry;reference compound;ion source	Mass Spectrometry;blank
+Study Protocol Parameters Name Term Accession Number		;		;;;;			http://purl.obolibrary.org/obo/OBI_0000361;http://purl.obolibrary.org/obo/NCIT_C17156	http://purl.obolibrary.org/obo/NCIT_C17156;http://purl.obolibrary.org/obo/MSIO_0000023;http://purl.obolibrary.org/obo/OBI_0000361	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000325;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304
+Study Protocol Parameters Name Term Source REF		;		;;;;			CHMO;NCIT	NCIT;;CHMO	MTBLS;MTBLS
+Study Protocol Components Name									
+Study Protocol Components Type									
+Study Protocol Components Type Term Accession Number									
+Study Protocol Components Type Term Source REF									
+STUDY CONTACTS
+Study Person Last Name	Tang	Ivanova	Böcker	Gleixner	Simon	Dührkop
+Study Person First Name	Wei	Arina	Sebastian	Gerd	Carsten	Kai
+Study Person Mid Initials						
+Study Person Email	wei.tang@uni-jena.de	aivanova@bgc-jena.mpg.de	sebastian.boecker@uni-jena.de	ggleix@bgc-jena.mpg.de	carsten.simon@ufz.de	
+Study Person Phone						
+Study Person Fax						
+Study Person Address	Ernst-Abbe-Platz 2, 07743 Jena, Germany	Hans-Knöll-Straße 10, 07745 Jena. Germany	Faculty of Mathematics and Computer Science, Ernst-Abbe-Platz 2 07743 Jena	Hans-Knöll-Straße 10 07745 Jena, Germany	Helmholtz-Centre for Environmental Research – UFZ	
+Study Person Affiliation	Chair of Bioinformatics, Friedrich Schiller University Jena	Max Planck Institute for Biogeochemistry	Chair of Bioinformatics, Friedrich Schiller University Jena	Max Planck Institute for Biogeochemistry	Permoserstr. 15 DE-04318 Leipzig Germany	
+Study Person Roles	Investigator	Principal Investigator	Investigator	Investigator	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

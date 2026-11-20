@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	6407	BTO	CHMO	Drug	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI	SiRNA	UO
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://www.ebi.ac.uk/ols4/api	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version			2025-10-21		3.89.0		2026-05-05			2026-05-05	26.02d	2026-03-19		2026-01-16
+Term Source Description		The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology		Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations		Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12791
+Investigation Title	Targeting GSTZ1 sensitizes KRASG12C-mutant lung cancer cells by overcoming glutathione and glycolysis pathway rewiring
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-29
+Investigation Public Release Date	2026-05-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12791
+Study Title	Targeting GSTZ1 sensitizes KRASG12C-mutant lung cancer cells by overcoming glutathione and glycolysis pathway rewiring
+Study Description	<p>KRAS mutations are prevalent in lung cancer, but KRAS G12C inhibitors exhibit limited efficacy, partly due to metabolic adaptations, such as enhanced glutathione metabolism and increased glycolysis. Glutathione S-Transferase Zeta 1 (GSTZ1) is a metabolic enzyme that regulates cell metabolism. However, its role in KRAS-driven lung cancer remains underexplored. We recently reported that targeting GSTZ1 significantly enhances the efficacy of FDA-approved KRAS G12C inhibitors in non-small cell lung cancer cells. Untargeted metabolomics now revealed significant alterations in glutathione and glycolytic pathways, marked by lowered lactate levels and increased oxidized glutathione following GSTZ1 ablation. Moreover, pharmacological inhibition of glutathione synthesis and glucose uptake mimicked the sensitizing effects of GSTZ1 targeting. These metabolic shifts were accompanied by increased AMPK phosphorylation and reduced AKT phosphorylation, two key mediators of the response to KRAS G12C inhibition. Our findings establish GSTZ1-induced metabolic and signaling alterations as a novel mechanism of sensitization, positioning GSTZ1 as a potential therapeutic target.</p>
+Study Submission Date	2025-07-29
+Study Public Release Date	2026-05-15
+Study File Name	s_MTBLS12791.txt
+Comment[Created At]	2025-07-07
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-15
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	lung cancer	untargeted metabolites	KRAS	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q Exactive HF	Homo sapiens	lung	experimental sample	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0008903	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://identifiers.org/hgnc/6407	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000660	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000763	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MONDO	MTBLS	6407	MTBLS	MTBLS	NCBITaxon	BTO	CHMO	MS
+Comment[Study Design Category]				Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yi Liao, Xueli Li, Min Liu, Vanessa C. Fernandes, Derek Duckett, Eric B. Haura, Andrii Monastyrskyi, Uwe Rix
+Study Publication Title	Targeting GSTZ1 sensitizes KRASG12C-mutant lung cancer cells by overcoming glutathione and glycolysis pathway rewiring
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sotorasib tx	GSTZ1 KD
+Study Factor Type	drug	siRNA
+Study Factor Type Term Accession Number	https://w3id.org/biolink/vocab/Drug	https://w3id.org/biolink/vocab/SiRNA
+Study Factor Type Term Source REF	Drug	SiRNA
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12791_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12791_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>The cell line used is a KRAS G12C mutant non small cell lung cancer, H1792 cells. The treatment conditions are: siNT (non-targeting siRNAs, 25 nM), siGSTZ1 (25 nM), siNT+sotorasib (1 micromolar), siGSTZ1+sotorasib (1 micromolar). siRNAs (siNT and siGSTZ1) were incubated with cells for 24h, followed by the addition of sotorasib for an additional 72 hours.</p>	<p>H1792 cells were treated with non-targeting siRNA and siGSTZ1 for 24 hours, followed by an additional 72-hour treatment with sotorasib. Cell pellets were washed three times with PBS and stored at -80 °C until use. All procedures were carried out on ice to maintain sample integrity. To initiate protein precipitation, 500 µL of pre-cooled 80% methanol extraction solvent was added to the samples. Following solvent addition, the samples were vortexed thoroughly and centrifuged at 18,800 × g (Microfuge 22R, Beckman Coulter) at 0 °C for 10 minutes. To enhance metabolite extraction, the samples were then incubated in a -80 °C freezer for 30 minutes before undergoing immediate centrifugation again at 18,800 × g at 4 °C for 10 minutes. The resulting supernatant was carefully transferred into a fresh microcentrifuge tube. Meanwhile, the protein pellet was resolubilized in aqueous 20 mM HEPES buffer containing 8 M urea for Bradford assays to quantify protein concentration. Dried metabolites were re-dissolved in 80% methanol containing 10% of the Metabolomics QC kit, ensuring consistency across samples. A 2 µL aliquot of the Metabolomics QC kit metabolite mixture was added to each sample to facilitate downstream analysis.</p>	<p>Ultra-high-performance liquid chromatography coupled with high-resolution mass spectrometry (UHPLC-HRMS) was conducted using a Vanquish UHPLC system interfaced with a Q Exactive HF quadrupole-orbitrap mass spectrometer (Thermo). Chromatographic separation was achieved using an Atlantis Premier BEH Z-HILIC VanGuard FIT column (2.1 mm ID × 150 mm length, 2.5 µm particle size; Waters). Mobile phase A consisted of aqueous 10 mM ammonium carbonate with 0.05% ammonium hydroxide, while mobile phase B was pure acetonitrile. The gradient program was structured as follows: the initial condition was set at 80% B, followed by a linear decrease to 20% B over 13 minutes. The system was remained at 20% B for 2 minutes before swiftly returning to 80% B within 0.1 minutes, concluding with a 4.9-minute re-equilibration period. The total runtime was 20 minutes, with a flow rate of 0.400 mL/min. The autosampler was maintained at 5 °C, while the column temperature was stabilized at 30 °C. A sample injection volume of 2 µL was used for both positive and negative ion mode electrospray ionization. </p>	<p>Ultra-high-performance liquid chromatography coupled with high-resolution mass spectrometry (UHPLC-HRMS) was conducted using a Vanquish UHPLC system interfaced with a Q Exactive HF quadrupole-orbitrap mass spectrometer (Thermo). Source and ion transmission parameters included: spray voltage was 3.3 kV, capillary temperature was 320 degrees Celsius, sheath gas flow 50, auxiliary gas flow 10, and S-Lens RF level 50. AGC target was set to 1E6, and maximum injection time at 50 ms.</p><p>Full MS scans were performed separately in both ionization modes, detecting ions ranging from m/z 65 to m/z 900 using resolution 120,000.</p>	<p>Metabolite identification and quantification were performed using MZmine software (version 3.53), utilizing an in-house library for matching based on m/z and retention time. A batch file streamlined the automation of multiple analytical modules, including centroid mass detection, ADAP chromatogram builder, and deconvolution via local minimum search. Key settings included a minimum group size of five scans and a group intensity threshold set to 1.0 x 104. Smoothing parameters were adjusted to a value of five, and chromatographic thresholding was maintained at 95%. Retention time search parameters ranged from 0.05 to 5 minutes, ensuring precise peak detection. Additional refinements included isotopic peak grouping, peak alignment (weighted 75% for m/z and 25% for RT), duplicate peak filtering, and gap filling. Peak height values were extracted as CSV files for further processing using the iterative rank-order normalization (IRON) method (Welsh et al. BMC Bioinformatics 2013, 14,153).</p>	<p>Metabolite identification and quantification were performed using MZmine software (version 3.53), utilizing an in-house library for matching based on m/z and retention time. Custom database searches were conducted with a tolerance of 10 ppm for m/z and 0.3 minutes for RT, ensuring robust metabolite identification. Adduct and complex searches, peak list filtering, and final peak list exports were executed seamlessly. Peak height values were extracted as CSV files for further processing using the iterative rank-order normalization (IRON) method (Welsh et al. BMC Bioinformatics 2013, 14,153).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rix
+Study Person First Name	Uwe
+Study Person Mid Initials	
+Study Person Email	uwe.rix@moffitt.org
+Study Person Phone	18137453714
+Study Person Fax	18137456817
+Study Person Address	12902 Magnolia Drive Tampa, FL 33612
+Study Person Affiliation	Drug Discovery, Moffitt Cancer Center
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

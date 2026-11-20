@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	EFO	EUPATH	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED	WBbt	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://www.ebi.ac.uk/efo/efo.owl		http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl		https://www.ebi.ac.uk/ols4/api	
+Term Source Version											
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations			
+INVESTIGATION
+Investigation Identifier	MTBLS10085
+Investigation Title	The microbiome is associated with obesity-related metabolome signature in the process of aging
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-10
+Investigation Public Release Date	2025-07-10
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10085
+Study Title	The microbiome is associated with obesity-related metabolome signature in the process of aging
+Study Description	<p>The roles of specific microbial metabolites in aging remains understudied.&nbsp;Here we examine the microbiome’s contribution to the metabolic profile in aged mice. Fecal samples were collected from 8-week-old (young) and 18-month-old (aged) female Swiss-Webster mice raised conventionally (Conv) or germ free (GF). Bacterial DNA was sequenced and microbiome analysis predormed using QIIME2. Liquid chromatography mass spectrometry was used for untargeted metabolomics on Conv and GF samples.</p><p>Significant differences were observed in bacterial composition and predicted functional pathways between young and aged mice. Age-related metabolome variance was greater in Conv than GF mice, highlighting microbial contribution. Moreover, microbiome-associated metabolites, predominantly lipids, were higher in aged mice, with linoleic acid metabolism enriched in this group. Our study underscores a microbiome-dependent component to age-related metabolic changes, particularly in lipid-associated pathways. These findings contribute to the growing body of literature linking gut microbiota with host metabolism in aging.</p>
+Study Submission Date	2025-07-10
+Study Public Release Date	2025-07-10
+Study File Name	s_MTBLS10085.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	aging	microbiome
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C16269	http://www.ebi.ac.uk/efo/EFO_0004982
+Study Design Type Term Source REF	MTBLS	NCIT	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Dana Binyamin, Sondra Turjeman, Nofar Asulin, Ron Schweitzer, Omry Koren1
+Study Publication Title	THE MICROBIOME IS ASSOCIATED WITH OBESITY-RELATED METABOLOME SIGNATURE IN THE PROCESS OF AGING
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Age	Germ free
+Study Factor Type	age	Germ-Free
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000246	http://purl.obolibrary.org/obo/NCIT_C28027
+Study Factor Type Term Source REF	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10085_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS10085_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS10085_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10085_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Metabolomics analysis	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Metabolomics analysis	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Fecal samples were collected from two groups, young (8 weeks old) and old (18 months old) Conv and GF Swiss-Webster (SW) female mice. In addition, following fecal sample collection, Conv mice received an antibiotic treatment consisting of 0.04g ciprofloxacin, 0.2g metronidazole and 0.1g vancomycin in 400ml sterile water for two weeks and were then sampled again. All Conv mice were housed 2 to 3 mice per cage in the same room, and GF mice were housed in cages of up to 4 mice per cage in sterile isolators. GF mice were fed an autoclaved chow diet enriched with proteins (28%) and fats (22%) (Altromin 1414 IRR, Lage, Germany) while Conv mice were fed a normal chow diet (11% fats, 24% proteins and 65% carbohydrates; Altromin 1324 IRR, Lage, Germany). All mice were maintained at 22 ± 1°C with a 12 h light/dark cycle at the animal facility of Azrieli Faculty of Medicine, BIU, Israel.</p>	<p>Sample preparation:</p><p>Metabolite extraction and protein precipitation were conducted by Afekta Technologies Ltd. (Kuopio, Finland) on 4 fecal samples from each group (young and aged mice, raised conventionally, before and after antibiotics treatment, or germ free; Fig. 1B). Samples were individually homogenized with cold 80% v/v aqueous LC-MS ultra-grade methanol in a ratio of 900µL per 100mg of sample using a Bead Ruptor 24 Elite homogenizer (OMNI, Kennesaw GA, USA) at 6m/s at 2 ± 2 °C for 30s. Following 15 min ice incubation and 10 s vortex, samples were centrifuged for 10 min at 4 °C and 17,000 × g. The supernatant was collected and filtered (Captiva ND filter plate 0.2 µm, Agilent, Santa Clara, CA, USA) by centrifuging for 5 min at 700 × g at 4 °C, and then samples were kept at 4 °C until analysis. Following this procedure, a portion of each sample (60 µL) was pooled into one tube, to be used as a pooled quality control sample in the analysis.</p><p>Liquid chromatography–mass spectrometry (LC-MS) analysis:</p><p>Samples were analyzed in an untargeted manner by liquid chromatography-mass spectrometry (LC-MS) on an Agilent 6546 Q-TOF LC/MS System with Agilent Jet Stream source and 1290 Infinity II UHPLC system (Santa Clara CA, USA). The analytical method has been described in detail by Hanhineva et al. 49 and Klåvus et al. 50. In brief, for the reversed-phase (RP) separation, a Zorbax Eclipse XDB-C18 column (2.1 × 100 mm, 1.8 µm; Agilent, Santa Clara CA, USA) was used and an Aqcuity UPLC BEH amide column (Waters, Milford MA, USA) was used for the HILIC separation. After each chromatographic run, ionization was carried out using jet stream electrospray ionization (ESI) in the positive and negative mode, yielding four data files per sample. The collision energies for the MS/MS analysis were selected as 10, 20, and 40 V, for compatibility with spectral databases.</p><p>Data processing:</p><p>Peak detection and alignment were conducted using MS-DIAL version 4.90 51. Peak collection involved inclusion of m/z values ranging from 50 to 1500 and all retention times, with a minimum peak height set at 3,000. The peaks were detected using a linear weighted moving average algorithm. Alignment of peaks across samples employed a retention time tolerance of 0.1 minutes and an m/z tolerance of 0.015 Da. To eliminate solvent background, blank solvent samples were utilized, with the condition that signal abundance across samples was at least five times greater than the average in the solvent blank samples to be retained for further data analysis.</p><p>After the peak picking, a total of 77,578 molecular features were included in the data preprocessing and clean-up step. The annotation of each metabolite and the level of confidence for the identification were given based on the recommendations published by the Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI) 52. The final analysis was made on 711 metabolites with annotation tags of at least of 430. &nbsp;Metabolites were classified based on metabolite type manually and from these groups, common pathways were inferred. In addition, pathway enrichment analysis was conducted considering the 51 annotated metabolites that had significantly different concentrations across the age groups of Conv mice. This analysis was performed using the MetaboAnalyst 6.0 website53, in order to identify significantly overrepresented metabolic pathways.</p>	<p>Metabolite extraction and protein precipitation were conducted by Afekta Technologies Ltd. (Kuopio, Finland) on 4 fecal samples from each group (young and aged mice, raised conventionally, before and after antibiotics treatment, or germ free; Fig. 1B). Samples were individually homogenized with cold 80% v/v aqueous LC-MS ultra-grade methanol in a ratio of 900µL per 100mg of sample using a Bead Ruptor 24 Elite homogenizer (OMNI, Kennesaw GA, USA) at 6m/s at 2 ± 2 °C for 30s. Following 15 min ice incubation and 10 s vortex, samples were centrifuged for 10 min at 4 °C and 17,000 × g. The supernatant was collected and filtered (Captiva ND filter plate 0.2 µm, Agilent, Santa Clara, CA, USA) by centrifuging for 5 min at 700 × g at 4 °C, and then samples were kept at 4 °C until analysis. Following this procedure, a portion of each sample (60 µL) was pooled into one tube, to be used as a pooled quality control sample in the analysis.</p>	<p>For the reversed-phase (RP) separation, a Zorbax Eclipse XDB-C18 column (2.1 × 100 mm, 1.8 µm; Agilent, Santa Clara CA, USA) was used and an Aqcuity UPLC BEH amide column (Waters, Milford MA, USA) was used for the HILIC separation.</p>	<p>Samples were analyzed in an untargeted manner by liquid chromatography-mass spectrometry (LC-MS) on an Agilent 6546 Q-TOF LC/MS System with Agilent Jet Stream source and 1290 Infinity II UHPLC system (Santa Clara CA, USA). The analytical method has been described in detail by Hanhineva et al. and Klåvus et al.</p><p><br></p><p>After each chromatographic run, ionization was carried out using jet stream electrospray ionization (ESI) in the positive and negative mode, yielding four data files per sample. The collision energies for the MS/MS analysis were selected as 10, 20, and 40 V, for compatibility with spectral databases.</p>	<p>Peak detection and alignment were conducted using MS-DIAL version 4.90 51. Peak collection involved inclusion of m/z values ranging from 50 to 1500 and all retention times, with a minimum peak height set at 3,000. The peaks were detected using a linear weighted moving average algorithm. Alignment of peaks across samples employed a retention time tolerance of 0.1 minutes and an m/z tolerance of 0.015 Da. To eliminate solvent background, blank solvent samples were utilized, with the condition that signal abundance across samples was at least five times greater than the average in the solvent blank samples to be retained for further data analysis.</p><p>After the peak picking, a total of 77,578 molecular features were included in the data preprocessing and clean-up step.</p>	<p>The annotation of each metabolite and the level of confidence for the identification were given based on the recommendations published by the Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI)</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name			Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number			;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF			;	;;;;	;;;;		
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Binyamin	Koren
+Study Person First Name	Dana	Omry
+Study Person Mid Initials		
+Study Person Email	dsimoni925@gmail.com	Omry.koren@biu.ac.il
+Study Person Phone	+972507343021	
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Azrieli Faculty of Medicine, Bar-Ilan University, Safed, Israel	
+Study Person Roles	PHD	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/WBbt_0008630	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	WBbt	NCIT

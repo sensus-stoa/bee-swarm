@@ -1,0 +1,96 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	OMIT	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/omit.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version											
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Ontology for MicroRNA Target	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11393
+Investigation Title	Metabolic mapping of the human solute carrier superfamily
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-01-24
+Investigation Public Release Date	2025-07-22
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11393
+Study Title	Metabolic mapping of the human solute carrier superfamily
+Study Description	<p>Solute carrier (SLC) transporters govern most of the chemical exchange across cellular membranes and are integral to metabolic regulation, which in turn is linked to cellular function and identity. Despite their key role, individual functions of the SLC superfamily members were not evaluated systematically. We determined the metabolic and transcriptional profiles upon SLC overexpression in knock-out or wild-type isogenic cell backgrounds for 378 SLCs and 441 SLCs, respectively. Targeted metabolomics provided a fingerprint of 189 intracellular metabolites, while transcriptomics offered insights into cellular programs modulated by SLC expression. Beyond the metabolic profiles of 102 SLCs directly related to their known substrates, we identified putative substrates or metabolic pathway connections for 71 SLCs without previously annotated bona fide substrates, including SLC45A4 as a new polyamine transporter. By comparing the molecular profiles, we identified functionally related SLC groups, including some with distinct impacts on osmolyte balancing and glycosylation. </p><p>This MetaboLights study deposits LC-MS data from ad-hoc targeted metabolite measurements for deorphanization of SLC45A4 and validation of an osmolyte balancing response identified in one of the transcriptomic clusters.</p>
+Study Submission Date	2025-01-24
+Study Public Release Date	2025-07-22
+Study File Name	s_MTBLS11393.txt
+Comment[Revision]	1
+Comment[Revision Date]	2025-07-22
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Liquid Chromatography/Tandem Mass Spectrometry	reversed phase column	targeted metabolites	Putrescine	Polyamines
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C122168	http://purl.obolibrary.org/obo/OBI_0000510	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/NCIT_C129011	http://purl.obolibrary.org/obo/OMIT_0012043
+Study Design Type Term Source REF	NCIT	OBI	MTBLS	NCIT	OMIT
+STUDY PUBLICATIONS
+Study PubMed ID	40355754
+Study Publication DOI	10.1038/s44320-025-00106-4
+Study Publication Author List	Wiedmer T, Teoh ST, Christodoulaki E, Wolf G, Tian C, Sedlyarov V, Jarret A, Leippe P, Frommelt F, Ingles-Prieto A, Lindinger S, Barbosa BMG, Onstein S, Klimek C, Garcia J, Serrano I, Reil D, Santacruz D, Piotrowski M, Noell S, Bueschl C, Li H, Chi G, Mereiter S, Oliveira T, Penninger JM, Sauer DB, Steppan CM, Viollet C, Klavins K, Hannich JT, Goldmann U, Superti-Furga G.
+Study Publication Title	Metabolic mapping of the human solute carrier superfamily.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Relevant figure(s)	Induction	Time point	Media serum	Other addition(s)
+Study Factor Type	Experiment	treatment	timepoint	Serum	treatment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42790	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C13325	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	NCIT	EFO	EFO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11393_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>For experiments with HCT116 SLC45A4 KO-OE, cells were seeded in regular RPMI media overnight, then switched to RPMI containing 10% regular FBS, dialyzed FBS, horse serum or no serum, with supplementation of 1 mM DFMO, 2 mM aminoguanidine, or 0.1 unit/mL porcine diamine oxidase (Sigma), and +/- 1 µg/mL Dox for 9 h.</p><p>For experiments with HEK293 WT-OE cell lines, cells were seeded in regular DMEM overnight +/-&nbsp;1 µg/mL Dox.</p>	<p>For cell samples, cells were first gently washed with room temperature ammonium carbonate buffer (75 mM NH4HCO3, pH 7.4). Then, cells were transferred to ice, where 300 µl/well in 24-well plate or 1500 µl/well in 6-well plate of ice-cold 80:20 MeOH:H2O was added.&nbsp;The cells were then scraped and transferred to a pre-cooled Eppendorf tube and immediately snap frozen in liquid nitrogen. Samples were thawed on ice before being centrifuged at 16 000 × g for 10 min at 4 °C. The clarified metabolite-containing supernatants were moved into a high-performance liquid chromatography vial and stored at -80 °C until further preparation for LC-MS/MS analysis. The protein pellets remaining after extraction were dissolved in 0.5 M KOH and subsequently quantified by BCA assay.</p><p><br></p><p>Proteoliposome samples were dissolved in 400 µL 1:1 methanol/chloroform mixture, then 120 µL of water was added to achieve a final methanol/chloroform/water ratio of 5:5:3. The mixture was vortexed vigorously for 10 s, then centrifuged at 18 000 × g, 4 °C for 10 min. </p>	<p>Targeted metabolite measurements were performed on a Waters Xevo TQ system utilizing an ACQUITY UPLC® HSS T3 1.8 µm reversed-phase column (for SLC45A4-related metabolites except sucrose), ACQUITY UPLC&nbsp;BEH Amide 1.7 m column (for SLC45A4 sucrose uptake quantification), or ACQUITY UPLC&nbsp;BEH HILIC 1.7 µm (for osmolyte transporter-related metabolites). All columns were maintained at 40 °C. The mobile phase A was water with 0.1% formic acid, and mobile phase B was acetonitrile with 0.1% formic acid. For reversed phase chromatography, the elution gradient was as follows: t = 0, 2% solvent B, flow rate 0.15 mL/min; t = 2.5, 2% solvent B, flow rate 0.15 mL/min; t = 3.5, 100% solvent B, flow rate 0.3 mL/min; t = 6, 100% solvent B, flow rate 0.3 mL/min; t = 6.1, 2% solvent B, flow rate 0.2 mL/min; t = 8, 2% solvent B, flow rate 0.15 mL/min. For hydrophilic interaction chromatography, the elution gradient was: t = 0, 100% solvent B, flow rate 0.25 mL/min; t = 5, 70% solvent B, flow rate 0.25 mL/min; t = 8, 25% solvent B, flow rate 0.3 mL/min; t = 9.7, 25% solvent B, flow rate 0.3 mL/min; t = 10, 100% solvent B, flow rate 0.25 mL/min; t = 12, 100% solvent B, flow rate 0.25 mL/min.</p>	<p>The triple quadrupole mass spectrometer was operated in electrospray ionization mode with polarity determined according to the analyte. Other settings were as follows: capillary voltage 3 kV, source temperature 150 °C, desolvation temperature 350 °C, desolvation gas flow 650 L/h, collision gas flow 0.15 mL/min.</p>	<p>Waters RAW data folders were converted to mzML files using Proteowizard MSConvert (Chambers et al, 2012) and peak areas were quantified using EL-MAVEN (Agrawal et al, 2019). Peak areas were then normalized to both internal standard (13C15N-glutamic acid) and BCA protein quantification values and the results expressed as normalized peak areas.</p>	<p>MRM transitions were determined for each target metabolite using the IntelliStart function of MassLynx software and were as follows: GABA (+) 104.0953 / 69.0814; putrescine (+) 89.0681 / 72.06; spermidine (+) 146.2537 / 72.1248; 13C15N-Glutamic acid (+) 154.1596 / 89.1233; sucrose (-) 341.1481 / 179.0127; carnitine (+) 162.201 / 103.0763; creatine (+) 132.1014 / 44.1745; glycerophosphorylcholine (+) 258.2624 / 104.1273; glycine (+) 76.064 / 30.1437; histidine (+) 156.1652 / 110.177; methionine (+) 150.083 / 104.0747; myo-inositol (+) 181.1592 / 109.019; taurine (+) 126.0466 / 44.1084.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Teoh	Superti-Furga
+Study Person First Name	Shao Thing	Giulio
+Study Person Mid Initials		
+Study Person Email	steoh@cemm.oeaw.ac.at	gsuperti@cemm.oeaw.ac.at
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences	
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

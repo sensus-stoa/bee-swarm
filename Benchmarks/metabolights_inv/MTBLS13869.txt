@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version		2025-10-21	3.86.0			1.0.1		2025-12-03	25.06e	2025-12-18	2025
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS13869
+Investigation Title	Serum Metabolomics in the Rat Model of Recurrent Pelvic Pain
+Investigation Description	
+Investigation Submission Date	2026-02-08
+Investigation Public Release Date	2026-02-11
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13869
+Study Title	Serum Metabolomics in the Rat Model of Recurrent Pelvic Pain
+Study Description	<p>This study aimed to investigate systemic metabolic alterations underlying pain-depression comorbidity in the Recurrent Pelvic Pain (RPP) rat model using untargeted serum metabolomics (UPLC-Q-Orbitrap-MS). Comparative analysis revealed distinct metabolic profiles, identifying 234 differential metabolites enriched in steroids, fatty acyls, and carboxylic acids. KEGG analysis highlighted reprogramming of amino acid metabolism (e.g., phenylalanine, tyrosine, and tryptophan biosynthesis) and arachidonic acid metabolism. Integrative target prediction identified 10 key overlapping targets (e.g., TRPV1, OPRM1, PTGS2) associated with inflammatory response, fatty acid metabolism, and synaptic signaling. These targets were further linked to chronic pain and hyperalgesia. The metabolomic profile supports progressive nociceptive sensitization and reveals altered neurotransmitter biosynthesis pathways, providing insight into mechanisms of pain-depression comorbidity and potential therapeutic targets.</p>
+Study Submission Date	2026-02-08
+Study Public Release Date	2026-02-11
+Study File Name	s_MTBLS13869.txt
+Comment[Created At]	2026-02-07T02:34:44.720985
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Serum	untargeted metabolite profiling	Rattus norvegicus
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C13325	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/NCBITaxon_10116
+Study Design Type Term Source REF	NCIT	MSIO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xiaotian Yang , Yajie Qin, Qi Zhao, Huiijin Zhao, Yinyin Ding, Bei Liu and Huifang Zhou
+Study Publication Title	A Pharmacological Rat Model of Recurrent Pelvic Pain Exhibiting Hyperalgesia and Depression-like Behaviors
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Modeling status
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13869_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13869_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p> Metabolomics profiling was analyzed using a UPLC-ESI-Q-Orbitrap-MS system (UHPLC, Shimadzu Nexera X2 LC-30AD, Shimadzu, Japan) coupled with Q-Exactive Plus (Thermo Scientific, San Jose, USA).</p><p>For liquid chromatography (LC) separation, samples were analyzed using a ACQUITY UPLC HSS T3 column (2.1×100 mm, 1.8μm) (Waters, Milford, MA, USA). The flow rate was 0.3 mL/min and the mobile phase contained: A: 0.1% FA in water and B: 100% acetonitrile (ACN). The gradient was 0% buffer B for 2 min and was linearly increase to 48% in 4 min, and then up to 100% in4 min and maintained for 2 min, and then decreased to 0% buffer B in 0.1 min, with 3 min re-equilibration period employed.</p>	<p>R(version:4.0.3) and R packages were used for all multivariate data analyses and modeling. Data were mean-centered using Pareto scaling. Models were built on principal component analysis (PCA), orthogonal partial least-square discriminant analysis (PLS-DA) and partial least-square discriminant analysis (OPLS-DA). All the models evaluated were tested for over fitting with methods of permutation tests. The descriptive performance of the models was determined by R2X (cumulative) (perfect model: R2X (cum) = 1) and R2Y (cumulative) (perfect model: R2Y (cum) = 1) values while their prediction performance was measured by Q2 (cumulative) (perfect model: Q2 (cum) = 1) and a permutation test (n = 200). The permuted model should not be able to predict classes: R2 and Q2 values at the Y-axis intercept must be lower than those of Q2 and the R2 of the non-permuted model. OPLS-DA allowed the determination of discriminating metabolites using the variable importance on projection (VIP). The VIP score value indicates the contribution of a variable to the discrimination between all the classes of samples. Mathematically, these scores are calculated for each variable as a weighted sum of squares of PLS weights. The mean VIP value is 1, and usually VIP values over 1 are considered as significant. A high score is in agreement with a strong discriminatory ability and thus constitutes a criterion for the selection of biomarkers.</p><p>The discriminating metabolites were obtained using a statistically significant threshold of variable influence on projection (VIP) values obtained from the OPLS-DA model and two-tailed Student’s t test (p value) on the normalized raw data at univariate analysis level. The p value was calculated by one-way analysis of variance (ANOVA) for multiple groups analysis. Metabolites with VIP values greater than 1.0 and p value less than 0.05 were considered to be statistically significant metabolites. Fold change was calculated as the logarithm of the average mass response (area) ratio between two arbitrary classes. On the other side, the identified differential metabolites were used to perform cluster analyses with R package.</p>	<p>100 µL sample was thoroughly mixed with 400 µL of cold methanol acetonitrile (v/v, 1:1) via vortexing. And then the mixture were processed with sonication for 1 h in ice baths. The mixture was then incubated at -20°C for 1 h, and centrifuged at 4 °C for 20 minutes with a speed of 14, 000 g. The supernatants were then harvested and dried under vacuum LC-MS analysis.</p>	<p>Metabolomics profiling was analyzed using a UPLC-ESI-Q-Orbitrap-MS system (UHPLC, Shimadzu Nexera X2 LC-30AD, Shimadzu, Japan) coupled with Q-Exactive Plus (Thermo Scientific, San Jose, USA). </p><p><br></p><p>The electrospray ionization (ESI) with positive-mode and negative mode were applied for MS data acquisition separately. The HESI source conditions were set as follows: Spray Voltage: 3.8kv (positive) and 3.2kv (negative); Capillary Temperature: 320 °C; Sheath Gas (nitrogen) flow: 30 arb (arbitrary units); Aux Gas flow: 5 arb; Probe Heater Temp: 350 °C; S-Lens RF Level: 50. The instrument was set to acquire over the m/z range 70-1050 Da for full MS. The full MS scans were acquired at a resolution of 70,000 at m/z 200, and 17,500 at m/z 200 for MS/MS scan. The maximum injection time was set to for 100 ms for MS and 50 ms for MS/MS. The isolation window for MS2 was set to 2 m/z and the normalized collision energy (stepped) was set as 20, 30 and 40 for fragmentation.</p>	<p>The raw MS data were processed using MS-DIAL for peak alignment, retention time correction and peak area extraction. The metabolites were identified by accuracy mass (mass tolerance &lt; 10 ppm) and MS/MS data (mass tolerance &lt; 0.02Da) which were matched with HMDB, massbank and other public databases and our self-built metabolite standard library. In the extracted-ion features, only the variables having more than 50% of the nonzero measurement values in at least one group were kept.</p>	<p>&nbsp;Blood was collected from the abdominal aorta of rats in the control and model group, and serum was separated by centrifugation.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yang	Zhou
+Study Person First Name	Xiaotian	Huifang
+Study Person Mid Initials		
+Study Person Email	202430054@njucm.edu.cn	zhouhuifang2011301@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address	138 Xianlin Avene, Nanjing, Jiangsu Province, 210023, China	155 Hanzhong Road, Nanjing, Jiangsu Province, 210023, China
+Study Person Affiliation	Nanjing University of Chinese Medicine	Nanjing Traditional Chinese Medicine Hospital
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0004-8662-6078	0009-0004-2199-3854
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04523zj19	https://ror.org/016k98t76
+Comment[Study Person Alternative Email]	202430054@njucm.edu.cn	

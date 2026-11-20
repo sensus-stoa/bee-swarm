@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	CHMO	FOBI	EFO	OMIT	NCIT	OBI	ontologyCREDIT
+Term Source File	https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO				
+Term Source Version	1.0			132				
+Term Source Description	Metabolights Ontology			Experimental Factor Ontology				
+INVESTIGATION
+Investigation Identifier	MTBLS10858
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-08-09
+Investigation Public Release Date	2024-08-16
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10858
+Study Title	Exploring Lipidomic Profiles and Their Correlation with Hormone Receptor and HER2 Status in Breast Cancer
+Study Description	Dysregulated lipid metabolism promotes the progression of various cancers, including breast cancer. This study aimed to explore the lipidomic profiles of breast cancer patients, providing insights into the correlation between lipid compositions and tumor subtypes characterized by hormone receptor (HR) and human epidermal growth factor receptor 2 (HER2) status. Briefly, 30 breast cancer patients were categorized into four cohorts based on their HR and HER2 status: HR+, HER2 zero (HR+ HER2-0); HR+, HER2 low (HR+ HER2-low); HR+, HER2 pos (HR+ HER2-pos); and HR-, HER2 positive (HR- HER2-pos). Lipidomic profiles were analyzed using high-throughput liquid chromatography-mass spectrometry (LC-MS). Data were processed through principal component analysis (PCA), Partial Least Squares Discriminant Analysis (PLS-DA), and Random Forest (RF) classification to assess lipidomic variations and significant lipid features among these groups. Profiles of lipids, particularly triglycerides (TG) such as TG (16:0_18:1_18:1) +NH4, were significantly different across the cohorts. PCA and PLS-DA analyses identified unique lipid profiles in the HR+ HER2-pos and HR+ HER2-0 groups, while RF highlighted PIP3(21:2)+NH4 as a crucial lipid feature for accurate patient grouping. Advanced statistical analysis showed significant correlations between lipid carbon chain length and the number of double bonds with the classifications, providing insights into the role of structural lipid properties in tumor biology. Additionally, a clustering heatmap and network analysis indicated significant lipid-lipid interactions. Pathway enrichment analysis showed critical biological pathways, such as the assembly of active LPL and LIPC lipase complexes. In conclusion, the study underscores the importance of lipidomic profiling is crucial in understanding the metabolic alterations associated with different breast cancer subtypes. These findings highlight specific lipid features and interactions that may serve as potential biomarkers for breast cancer classification and target pathways for therapeutic intervention. Furthermore, advanced lipidomic analyses can be integrated to decipher complex biological data, offering a foundation for further research into the role of lipid metabolism in cancer progression.
+Study Submission Date	2024-08-09
+Study Public Release Date	2024-08-16
+Study File Name	s_MTBLS10858.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	breast cancer	LC-MS	Biomarkers
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000075	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.obolibrary.org/obo/FOBI_01501
+Study Design Type Term Source REF	NCIT	MTBLS	CHMO	FOBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xiaojun Qian, Xiaolin Jin, Jiaying He, Junjing Zhang, Shan Hu1
+Study Publication Title	Exploring Lipidomic Profiles and Their Correlation with Hormone Receptor and HER2 Status in Breast Cancer
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Age	Cohort
+Study Factor Type	age	cohort
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25150	http://www.ebi.ac.uk/efo/EFO_0004445
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10858_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10858_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Blood samples are provided voluntarily by breast cancer patients</p>	<p>Lipids were extracted according to MTBE method. Briefly, a 200 µL volume of water was added to sample and vortexed for 5 s. Subsequently, 240 µL of precooling methanol was added and the mixture vortexed for 30 s. After that, 800 µL of MTBE was added and the mixture was ultrasound 20 min at 4 °C followed by sitting still for 30 min at room temperature. The solution was centrifuged at 14,000 x g for 15 min at 10 °C and the upper organic solvent layer was obtained and dried under nitrogen.</p>	<p>Samples were separated using a UHPLC Nexera LC-30A ultra-high-performance liquid chromatography system. A C18 column was employed; column temperature was set at 45 °C; flow rate was maintained at 300 μL/min. The mobile phase consisted of solvent A: acetonitrile-water solution (acetonitrile:water, 6:4, v/v) + 0.1% formic acid + 0.1 mM ammonium formate, and solvent B: acetonitrile-isopropanol solution (acetonitrile:isopropanol, 1:9, v/v) + 0.1% formic acid + 0.1 mM ammonium formate. The gradient elution program was as follows: 0.0-2.0 min, B held at 30%; 2.0-25.0 min, B linearly increased from 30 to 100%; 25.0-35.0 min, B held at 30%. Throughout the analytical process, samples were kept at 10 °C in an autosampler. To minimize the impact of instrument detection signal fluctuations, samples were analyzed in a random sequence.</p>	<p>Detection was performed using electrospray ionization (ESI) in both positive and negative ion modes. After separation by UHPLC, samples were analyzed using a Q Exactive series mass spectrometer (Thermo Scientific). The ESI source conditions were as follows: Heater Temperature: 300 °C, Sheath Gas Flow rate: 45 arb, Auxiliary Gas Flow Rate: 15 arb, Sweep Gas Flow Rate: 1 arb, Spray Voltage: 3.0 kV, Capillary Temperature: 350 °C, S-Lens RF Level: 50%, MS1 scan ranges: 200-1800 m/z. The mass-to-charge ratios (m/z) of lipid molecules and their fragments were acquired using the following method: after each full scan, 10x MS2 scans (HCD) were collected. The resolution at m/z 200 for MS1 was 70,000 and for MS2 was 17,500.</p>	<p>The raw MS data (wiff / wiff.scan) were converted to mzXML files using ProteoWizard MSConvert before importing into freely available XCMS software.</p>	<p>'Lipid Search' is a search engine for the identification of lipid species based on MS/MS math. LipidSearch contains more than 30 lipid classes and more than 1,500,000 fragment ions in the database. Both mass tolerance for precursor and fragment were set to 5 ppm.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Qian	Jin	He	Zhang	Hu
+Study Person First Name	Xiaojun	Xiaolin	Jiaying	Junjing	Shan
+Study Person Mid Initials					
+Study Person Email					sxrmyyhs@163.com
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation					
+Study Person Roles	Data Curation	Administration	Methodology	Validation process	conceptualization role
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0028885	http://purl.obolibrary.org/obo/NCIT_C25409	http://purl.obolibrary.org/obo/NCIT_C86572	http://purl.obolibrary.org/obo/OBI_0302911	http://purl.org/credit/ontology#CREDIT_00000001
+Study Person Roles Term Source REF	OMIT	NCIT	NCIT	OBI	ontologyCREDIT

@@ -1,0 +1,136 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	PRIDE	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08		2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS15852
+Investigation Title	Transcriptomic and Metabolomic Study of *Fp* Induced by Bacterial Strain 2b14
+Investigation Description	
+Investigation Submission Date	2026-09-29
+Investigation Public Release Date	2026-10-17
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15852
+Study Title	Transcriptomic and Metabolomic Study of *Fp* Induced by Bacterial Strain 2b14
+Study Description	<p>The main experimental workflow consists of sample collection, metabolite extraction, quality control sample preparation, liquid chromatography-mass spectrometry measurement, and downstream bioinformatic analysis. Samples are preprocessed for metabolite extraction, and pooled QC samples are generated to assess instrument stability and assay reproducibility. All experimental samples and pooled QC samples are analyzed using liquid chromatography coupled with mass spectrometry to acquire raw mass spectrometry data. The raw MS files undergo format conversion, peak alignment, retention time correction, and peak area extraction. Subsequent data preprocessing includes metabolite structural annotation, missing value imputation, and data normalization. The overall dataset quality is evaluated based on signals from QC samples; outlier samples and low-quality feature peaks are removed. Systematic data analysis involves univariate statistics, multivariate statistics, differential metabolite screening, metabolite correlation analysis, machine learning modeling, curve analysis, and pathway enrichment analysis. These analyses aim to resolve metabolic phenotypic differences among samples and uncover the underlying biological regulatory mechanisms.</p>
+Study Submission Date	2026-09-29
+Study Public Release Date	2026-10-17
+Study File Name	s_MTBLS15852.txt
+Comment[Created At]	2026-09-21
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-17
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish Flex UHPLC System	Thermo Scientific Orbitrap Exploris 120	Homo sapiens	blood plasma	untargeted analysis	Metabolomics	untargeted metabolite profiling	Multi-omics study	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002252	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000131	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/PRIDE_0000461	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	BTO	MS	EDAM	MSIO	PRIDE	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	measurement-type	omics-type	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	zhaoxingli
+Study Publication Title	Transcriptomic and Metabolomic Study of Fp Induced by Bacterial Strain 2b14
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Time
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15852_LC-MS_positive_reverse-phase.txt	a_MTBLS15852_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish Flex UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;positive;70-1000;Thermo Scientific Orbitrap Exploris 120	Thermo Scientific Vanquish Flex UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;negative;70-1000 m;Thermo Scientific Orbitrap Exploris 120
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002252;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002252;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Measurement Type]	untargeted analysis	untargeted analysis
+Comment[Measurement Type Term Source REF]	MS	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>For transcriptomic and metabolomic analyses of the bacterial strain, mycelial samples of the control and treatment groups were collected at the representative inhibitory stage. All samples were frozen in liquid nitrogen and stored at −80 °C. Three biological replicates were included for each experimental group to ensure the accuracy of subsequent analyses.</p>	<p _msttexthash='32273813' _msthash='547'>An ACQUITY UPLC HSS T3 column (100 Å, 1.8 µm, 2.1 mm × 100 mm) was used. The flow rate was set at 0.4 mL/min, column temperature at 40 °C, autosampler temperature at 8 °C, and injection volume at 2 μL. The positive ion mode mobile phase system was adopted. Mobile phase A consisted of water containing 0.1% formic acid, and mobile phase B was acetonitrile.</p>	<p>Raw files were imported into dedicated software for peak picking, alignment, filtering and metabolite annotation. Compounds with more than 80 % missing values in QC samples and compounds with over 50 % missing values across all samples were removed. Missing peak intensities were imputed using the neighbor algorithm, followed by data normalization.</p>	<p _msttexthash='32273813' _msthash='448'>Weigh 30 mg of sample into a 2 mL centrifuge tube; add 1 mL of pre-cooled 50% methanol and 2 glass beads, then vortex for 30 s. Immerse the tube in liquid nitrogen for rapid freezing for 5 min. Take out the centrifuge tube, thaw at room temperature, and place it in a high-throughput tissue grinder at 55 Hz for 60 s. Repeat the freezing-thawing and grinding steps twice. Centrifuge at 12,000 rpm and 4 °C for 15 min, transfer 850 μL of the supernatant and concentrate it under vacuum to complete dryness. Add 150 μL of 50% methanol (containing 5 ppm 2-chlorophenylalanine), and vortex for 30 s. Centrifuge at 12,000 rpm and 4 °C for 10 min, collect the supernatant and filter through a 0.22 μm membrane. Transfer the filtrate to an autosampler vial. Mix 10–20 μL filtrate from each sample to prepare one quality control (QC) sample. QC sample is not prepared when the total number of samples is ≤5. QC samples are used to evaluate instrument stability and data reliability.</p>	<p _msttexthash='32273813' _msthash='623'>Mass spectrometry data in data-dependent acquisition (DDA) mode under both positive and negative ion modes were acquired using a Thermo Orbitrap Exploris 120 mass spectrometer controlled by Xcalibur software (version 4.7, Thermo). A heated electrospray ionization (HESI) source was employed. The spray voltage was set at 3.5 kV for positive mode and −3.0 kV for negative mode. The sheath gas was 40 arb, auxiliary gas 10 arb, capillary temperature 320 °C, and auxiliary gas heater temperature 300 °C. The full scan resolution was 60,000 with a scan range of 70–1000 m/z, AGC Target set to Standard, and maximum injection time (Max IT) of 100 ms. The top 4 most intense ions were selected for tandem MS fragmentation. The dynamic exclusion duration was 4 s. The MS/MS resolution was 15,000, with HCD collision energy of 30%, AGC Target as Standard, and Max IT set to Auto.</p>	<p _msttexthash='32273813' _msthash='774'>Metabolite identification was performed against the PerSonalbio Next-Generation Metabolomics Database (PSNGM, Personalbio), which integrates an in-house library built from authentic standards, mzCloud (https://www.mzcloud.org/), LIPID MAPS (https://www.lipidmaps.org/), HMDB (https://hmdb.ca/), MoNA (https://mona.fiehnlab.ucdavis.edu/), NIST_2020_MSMS, and an AI-predicted MS/MS spectral library. The main parameters for library searching were set as follows: MS1 tolerance for identification = 0.01, MS2 tolerance for identification = 0.05, Smoothing level = 3, Minimum peak height = 10000, Minimum peak width = 5, Mass slice width = 0.05, and Identification score cut-off = 70.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	zhao
+Study Person First Name	xingli
+Study Person Mid Initials	
+Study Person Email	hellen1984@haust.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Henan University of Science and Technology
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0001-6119-2729
+Comment[Study Person Affiliation ROR ID]	https://www.wikidata.org/wiki/Q106570311
+Comment[Study Person Alternative Email]	helly1984@126.com

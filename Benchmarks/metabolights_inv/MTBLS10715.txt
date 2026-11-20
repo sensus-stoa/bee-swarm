@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCIT	MTBLS	MSIO	MONDO	EFO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO	
+Term Source Version	29		1.0			132	
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology			Experimental Factor Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS10715
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-07-18
+Investigation Public Release Date	2024-10-10
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10715
+Study Title	Dysregulation of the 3β-Hydroxysteroid Dehydrogenase Type 2 Enzyme and Steroid Hormone Biosynthesis in Chronic Kidney Disease
+Study Description	<p>Chronic kidney disease (CKD) presents a critical global health challenge, marked by the progressive decline of renal function. This study explores the role of the 3β-hydroxysteroid dehydrogenase type 2 enzyme (HSD3B2) and steroid hormone biosynthesis pathway in CKD pathogenesis and progression. Using an adenine-induced CKD mouse model, we conducted an untargeted metabolomic analysis of plasma samples to identify key metabolite alterations associated with CKD. Metabolic characteristics revealed significant metabolic shifts in CKD, with 61 metabolites increased and 65 metabolites decreased, highlighting the disruption in steroid hormone biosynthesis pathways influenced by HSD3B2. A detailed examination of seven key metabolites underscored the enzyme's central role. Further supported by Nephroseq and Human Protein Atlas data, HSD3B2 exhibited a strong correlation with kidney function. A drastic reduction in its expression in CKD-affected kidneys was confirmed through immunohistochemistry, Western blotting and qPCR analyses in both human and mouse tissues. Suppressed proliferation and increased apoptosis rate in HSD3B2 knocked down HK2 cells further demonstrated its significance in regulating renal pathophysiology. These findings underscore the potential of HSD3B2 as a clinical diagnostic and therapeutic target in CKD. While further studies are warranted to elucidate the mechanisms fully, our results provide valuable insights into the intricate interplay between steroid hormone biosynthesis and CKD, offering a promising avenue for precision medicine approaches and personalized treatment strategies.</p>
+Study Submission Date	2024-07-18
+Study Public Release Date	2024-10-10
+Study File Name	s_MTBLS10715.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics	untargeted metabolites	chronic kidney disease
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C49019	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MONDO_0005300
+Study Design Type Term Source REF	NCIT	MTBLS	MONDO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fendo.2024.1358124
+Study Publication Author List	Yiyi Zuo, Dongqing Zha; Yue Zhang, Wan Yang, Jie Jiang, Kangning Wang, Runze Zhang, Ziyi Chen, Qing He
+Study Publication Title	Dysregulation of the 3β-Hydroxysteroid Dehydrogenase Type 2 Enzyme and Steroid Hormone Biosynthesis in Chronic Kidney Disease
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Diet
+Study Factor Type	Diet
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C15222
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10715_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS10715_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Blood samples were collected from the control group (n=8) and the CKD group (n=6) at the end of the 6-week study period.&nbsp;Plasma was separated from blood cells by centrifugation (1000-2000 rcf, 10 min, 4 °C), followed by storage at -80 °C until analysis. Plasma samples were thawed at 4 °C before use.</p>	<p>For each sample, 100 μL plasma was deproteinized by addition of 400 μL MeOH. The mixture was vortexed for 60 s and stored at -20 °C for 20 min, and then centrifuged at 13,000 rpm for 10 min at 4 °C. The supernatant was collected and dried under nitrogen, and then redissolved in 100 μL methanol/water (1/1, v/v) before LC-MS analysis. The quality control (QC) sample was prepared through mixing an equal aliquot (10 μL) from all plasma samples.&nbsp;The same procedure was used for each QC aliquot and individual sample. Throughout the experiment, plasma samples were analyzed randomly, with the QC sample analyzed every 5 samples for the purposes of data filtering, analytical variability evaluation and normalization.</p>	<p>The UHPLC-LTQ-Orbitrap MS system was used for plasma samples analysis, consisting of a <strong>Dionex Ultimate 3000 UHPLC system (Thermo Scientific, Sunnyvale, CA, USA)</strong> and an <strong>LTQ-Orbitrap Elite</strong> mass spectrometer (Thermo Scientific, Waltham, MA, USA) with an electrospray ionization source (ESI). LC separation was achieved on a <strong>ZORBAX Eclipse Plus C18 Column (50 x 2.1 mm, 1.8 μm, Agilent Technologies)</strong> with a flow rate of 0.35 mL/min at 40 °C. FA in water (0.1%, v/v, solvent A) and FA in ACN (0.1%, v/v, solvent B) were used as mobile phases. A gradient of 0.0-1.0 min at 2% B, 1.0-9.0 min from 2% to 98% B, 9.0-12.0 min at 98% B, 12.0-12.1 min from 98% to 2% B, and 12.1-15.0 min at 2% B was applied. The injection volume was 10 μL.</p>	<p>The MS analysis was performed under both the positive ion mode and negative ion mode with full scan detection of 70-1000 m/z at the resolution of 60000. The ESI parameters were set as follows: heater temperature, 300 °C; sheath gas, 35 arb; aux gas, 7 or 10 arb for positive or negative mode, respectively; spray voltage, 3500 V; capillary temperature, 350 °C. Data-dependent acquisition mode (DDA) was used to acquire the MS2 spectra according to the top 6 intensities with the resolution of 15000. And the MS2 fragment ions were acquired under higher energy dissociation (HCD) with 40% normalized collision energy, 2.0 m/z isolation width, 0.1 ms activation time and 10 s dynamic exclusion duration.</p>	<p>Raw data were acquired by Thermo Xcalibur Software (version 2.1, MA, USA). Compound discoverer software (version 3.0) was used for features extraction, retention time correction, peak alignment, and blank subtraction to generate peak table, and QC-based LOESS normalization to generate a comprehensive feature list (23, 24). QC samples were injected in every batch at a regular interval of 5 samples, were used for data filtering. For metabolites detected by two or more platforms, only the values with the lowest relative standard deviation (RSD) in QC samples were retained, and metabolites with RSDs less than 30% in QC samples were selected for further analysis. Before conducting statistical analysis, the data underwent log-transformation to achieve an approximate normal distribution.</p>	<p>The detected metabolites were annotated by matching their MS2 spectra against the mzCloud database through Compound discoverer. For fold change analysis, volcano plot visualization, two-dimensional principal component analysis (PCA) and the identification of CKD-influenced metabolic pathways (Mus musculus), these analyses were conducted using the web-based tool MetaboAnalyst 5.0 (https://www.metaboanalyst.ca/, accessed on 26 January 2023).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zuo	He
+Study Person First Name	Yiyi	Qing
+Study Person Mid Initials		
+Study Person Email	2021203040004@whu.edu.cn	qing.he@whu.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address	237 Luoyu Road, Wuhan 430079, China.	237 Luoyu Road, Wuhan 430079, China.
+Study Person Affiliation	State Key Laboratory of Oral & Maxillofacial Reconstruction and Regeneration, Key Laboratory of Oral Biomedicine Ministry of Education, Hubei Key Laboratory of Stomatology, School & Hospital of Stomatology, Wuhan University, Wuhan, China	State Key Laboratory of Oral & Maxillofacial Reconstruction and Regeneration, Key Laboratory of Oral Biomedicine Ministry of Education, Hubei Key Laboratory of Stomatology, School & Hospital of Stomatology, Wuhan University, Wuhan, China
+Study Person Roles	Co-Investigator	Co-Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812
+Study Person Roles Term Source REF	NCIT	NCIT

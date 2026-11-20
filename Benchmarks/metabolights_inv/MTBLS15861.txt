@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	GSSO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/gsso.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0					2026-07-12	26.02d	2026-05-08
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	GSSO - the Gender, Sex, and Sexual Orientation ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15861
+Investigation Title	High-resolution LC-MS/MS lipidomics characterization of wild-type and ATG7-deficient mouse renal proximal tubule cells
+Investigation Description	
+Investigation Submission Date	2026-09-29
+Investigation Public Release Date	2026-09-30
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15861
+Study Title	High-resolution LC-MS/MS lipidomics characterization of wild-type and ATG7-deficient mouse renal proximal tubule cells
+Study Description	This study provides an untargeted lipidomics investigation of ATG7-deficient (cKO) mouse renal proximal tubule cells compared to wild-type (WT) controls to evaluate lipidomic alterations associated with autophagy deficiency. Lipids were extracted from cell culture wells using a single-phase isopropanol:methanol (1:1) extraction protocol at -80 °C, followed by protein precipitation and reconstitution in methanol:isopropanol (1:1). High-resolution LC-MS/MS data acquisition was performed on a Thermo Vanquish Horizon tandem LC system coupled to a Thermo Scientific Exploris 480 mass spectrometer equipped with a Heating Electrospray Ionization (HESI) source. Chromatographic separation was achieved via reverse-phase liquid chromatography using a Waters Premier BEH C18 column (50 mm × 2.1 mm, 1.7 µm) operating at 60 °C with a 7.5-minute segmented gradient. Data were acquired in Data-Dependent Acquisition (DDA) mode (Top 5) in both positive and negative ESI polarities in separate analytical runs across an m/z range of 150–2000. Raw mass spectrometry data files (.raw) were processed using Thermo Compound Discoverer (version 3.3). Structural lipid identification was performed by matching experimental spectra against the LipidBlast spectral library in compliance with Lipid Standards Initiative (LSI) guidelines, using strict accurate mass, retention time, and fragmentation criteria. Peak areas were median-normalized, log-transformed, and statistically evaluated to identify significantly altered lipid species between WT and ATG7-deficient cell groups.
+Study Submission Date	2026-09-29
+Study Public Release Date	2026-09-30
+Study File Name	s_MTBLS15861.txt
+Comment[Created At]	2026-09-29
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-30
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Vanquish Horizon	Thermo Scientific Exploris 480	Mus musculus	kidney	Biological Sample - Metabolomics	untargeted analysis	Lipidomics	untargeted lipidomics	ultra-performance liquid chromatography-mass spectrometry	Cell Culture	autophagia	Compound Discoverer	LipidBlast
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCBITaxon_10090			http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_0153	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C16396	http://purl.obolibrary.org/obo/GSSO_009205	http://purl.obolibrary.org/obo/MS_1002880	http://purl.obolibrary.org/obo/MS_1002971
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon			MS	EDAM	MTBLS	CHMO	NCIT	GSSO	MS	MS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	default	default	default	default	software	software
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Daniela Nieri, Svenja Aline Keller, Louise Pierre, Federica Carloni, Roberto Pili, Zhiyong Chen, Adia M. Ouellette, Marine Berquez, Patrick Krohn, Andrea Raimondi, Valeria Berno, Martina Zanella, Michelle Elisabeth Reid, Alaa Othman, Andrew M. Schaefer, Eric Gregory Olinger, John A. Sayer, Alina Ustiugova, Mikhail Korzinkin, Stephan C.F. Neuhauss, Christian Münz, Robert McFarland, Robert W. Taylor, Louis R. Lapierre, Elisa Araldi, Olivier Devuyst, and Alessandro Luciani
+Study Publication Title	Autophagy regulator ATG7 links lipid metabolism to proximal tubule cell-fate decisions in health and disease
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	ATG7-KO
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15861_LC-MS_positive_reverse-phase.txt	a_MTBLS15861_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Lipidomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Thermo Vanquish Horizon;Waters Premier BEH C18;reverse phase;positive;150-2000;Thermo Scientific Exploris 480;orbitrap	Thermo Vanquish Horizon;Waters Premier BEH C18;reverse phase;negative;150-2000;Thermo Scientific Exploris 480;Heating electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;;;	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS	MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Lipids were extracted from cell culture wells by adding 1000 µL of pre-chilled isopropanol:methanol (1:1, v/v) to each well. Plates were incubated at -80°C for 10 minutes, after which cells were scraped and transferred to Eppendorf tubes. Samples were continuously mixed in a thermomixer at 25°C (950 rpm) for 30 minutes. Protein precipitation was achieved by centrifugation at 16,000 × g for 10 minutes at 25°C. The single-phase supernatant was collected, dried under a stream of nitrogen ($N_2$), and stored at -20°C. Prior to LC-MS analysis, dried lipid extracts were reconstituted in 100 µL of methanol:isopropanol (1:1, v/v).</p>	<p>Liquid chromatography was performed on a Thermo Vanquish Horizon LC system using a Waters Premier BEH C18 column (50 mm × 2.1 mm, 1.7 µm) maintained at 60°C. Injection volume was 2 µL for positive mode and 5 µL for negative mode, with a flow rate of 1.0 mL/min. A 7.5-minute segmented gradient was applied as follows: 0.0–1.0 min, 15–30% B; 1.0–1.25 min, 30–48% B; 1.25–5.0 min, 48–82% B; 5.5–5.75 min, 82–99% B; 5.75–6.0 min, 99% B (isocratic); 6.0–6.05 min, 99–15% B; 6.05–7.5 min, 15% B (isocratic re-equilibration).</p>	<p>Raw LC-MS dataset files (.raw) were processed using Thermo Compound Discoverer software (version 3.3). Peak areas were normalized across samples using median normalization. Processed peak areas were log-transformed, and statistical comparisons between experimental groups were performed using Student's t-test. Data visualization, including volcano plots and heatmaps, was performed in R using the ggplot2 and ComplexHeatmap packages.</p>	<p>&nbsp;Lipid extraction was performed following a previously described method54, with some modifications. A mixture of 1000 µL isopropanol: methanol (1:1) was added to each cell culture well. The plates were then incubated at -80 °C for 10 minutes. After incubation, the cells were scraped, and the resulting solution was transferred to Eppendorf tubes. The samples were continuously mixed in a thermomixer (Eppendorf) at 25 °C (950 rpm) for 30 minutes. Protein precipitation was achieved by centrifugation at 16,000 g for 10 minutes at 25 °C. The resulting single-phase supernatant was collected, dried under nitrogen (N2), and stored at -20°C until further analysis. Before analysis, the dried lipids were reconstituted in 100 µL methanol: isopropanol (1:1)</p>	<p>Mass spectrometry was performed on a Thermo Scientific Exploris 480 mass spectrometer equipped with a Heated Electrospray Ionization (HESI) source operating in both positive and negative polarities in separate analytical runs. Source settings: sheath gas = 30, auxiliary gas = 13, spray voltage = 3800 V (positive mode) and -3500 V (negative mode), vaporizer temperature = 350°C, ion transfer tube temperature = 300°C, RF lens = 50%, with mild trapping enabled. Internal mass calibration was performed at the start of each run. Data were acquired in Data-Dependent Acquisition (DDA) mode (Top 5). MS1 parameters: resolution = 60,000, scan range = 150–2000 m/z, AGC target = 1e6, max injection time = 10 ms. MS2 parameters: isolation window = 1 m/z, stepped normalized collision energy (NCE) = 10, 30, and 340%, resolution = 15,000, AGC target = 1e5, max injection time = 10 ms.</p>	<p>Lipid identification was conducted by matching acquired spectra against the LipidBlast spectral library. Spectral alignment and diagnostic fragments were confirmed through visual inspection of mirror plots (library vs. experimental data). Identification was validated according to Lipid Standards Initiative (LSI) guidelines. Lipids meeting the strict criteria for expected MS2 fragmentation patterns, mass accuracy threshold, and retention time (RT) alignment were retained in the final compound table.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Korzinkin	Luciani	Zanella
+Study Person First Name	Mikhail	Alessandro	Martina
+Study Person Mid Initials			
+Study Person Email	mike@insilicomedicine.com	alessandro.luciani@physiol.uzh.ch	martina.zanella@fgcz.ethz.ch
+Study Person Phone			
+Study Person Fax			
+Study Person Address		University of Zurich, 8057 Zurich, Switzerland	
+Study Person Affiliation	Insilico Medicine	Institute of Physiology, University of Zurich	
+Study Person Roles	Author	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0001-7219-3719	

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	SWO	ENVO	BIOMODELS	MESH	NCBITAXON	EDAM	CHEBI	BTO	GMO	CCONT	UO	OBI
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/SWO	http://data.bioontology.org/ontologies/ENVO	http://data.bioontology.org/ontologies/BIOMODELS	http://data.bioontology.org/ontologies/MESH	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EDAM	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/GMO	http://data.bioontology.org/ontologies/CCONT	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/OBI
+Term Source Version	28	19	27	3	6	2	19	80	22	2	2	42	22
+Term Source Description	National Cancer Institute Thesaurus	Software Ontology	Environment Ontology	BioModels Ontology	Medical Subject Headings	National Center for Biotechnology Information (NCBI) Organismal Classification	EDAM bioinformatics operations, data types, formats, identifiers and topics	Chemical Entities of Biological Interest Ontology	BRENDA Tissue and Enzyme Source Ontology	Growth Medium Onotology	Cell Culture Ontology	Units of Measurement Ontology	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS705
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-07-16
+Investigation Public Release Date	2019-10-29
+Comment[Created With Configuration]	/Users/greg/Downloads/ISAcreatorMetaboLights/Configurations/MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS705
+Study Title	Inferring metabolic mechanisms of interaction within a defined gut microbiota
+Study Description	The diversity and number of species present within microbial communities create the potential for a multitude of interspecies metabolic interactions. Here, we develop, apply, and experimentally test a framework for inferring metabolic mechanisms associated with interspecies interactions. We perform pairwise growth and metabolome profiling of co-cultures of strains from a model mouse microbiota. We then apply our framework to dissect emergent metabolic behaviors that occur in co-culture. Based on one of the inferences from this framework, we identify and interrogate an amino acid cross-feeding interaction and validate that the proposed interaction leads to a growth benefit in vitro. Our results reveal the type and extent of emergent metabolic behavior in microbial communities composed of gut microbes. We focus on growth-modulating interactions, but the framework can be applied to interspecies interactions that modulate any phenotype of interest within microbial communities.
+Study Submission Date	2018-07-16
+Study Public Release Date	2019-10-29
+Study File Name	s_MTBLS705.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	microbiome	Gastrointestinal Microbiome	Intestinal Flora	Microbial ecology	Microbial Interactions	anaerobic	Anaerobic medium	Bacteria, Anaerobic
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0004982	http://purl.bioontology.org/ontology/MESH/D000069196	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl					
+Study Design Type Term Source REF	CCONT	MESH	NCIT	SWO	MESH	ENVO	GMO	MESH
+STUDY PUBLICATIONS
+Study PubMed ID	30195437
+Study Publication DOI	10.1016/j.cels.2018.08.003
+Study Publication Author List	Medlock GL, Carey MA, McDuffie DG, Mundy MB, Giallourou N, Swann JR, Kolling GL, Papin JA
+Study Publication Title	Inferring metabolic mechanisms of interaction within a defined gut microbiota
+Study Publication Status	Final
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	species
+Study Factor Type	species design
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001753
+Study Factor Type Term Source REF	CCONT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS705_asf_co-cultures_metabolite_profiling_NMR_spectroscopy.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Bruker
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	Strains were inoculated from frozen stock to grow a dense lawn on agar plates containing BHI media. Prior to inoculation, all agar plates were equilibrated inside an anaerobic chamber for at least 24 hrs. Inoculated plates were incubated for 3-9 days before being used to start overnight cultures. For overnight cultures, 50 ml of mLB broth in a 500 ml glass flask was inoculated using a generous streak from the lawn of each strain, then each flask was covered with a Breathe-Easy membrane (Diversified Biotech, Dedham, Massachusetts, USA). After 18-24 hrs of incubation at 37°C, overnight cultures were transferred to 50 ml conical tubes, sealed, transferred out of the chamber, and centrifuged at 1500 x g for 5 mins. After centrifugation, samples were transferred into the chamber, supernatant was poured off, and pellets were resuspended in 12.7 ml mLB broth. The resuspension for each species was then diluted to make inoculant with the same concentration of cells as a solution at an optical density of 0.01, measured at OD600 with 100 µl of sample volume in a flat-bottom 96-well plate (with a well diameter of 0.64 cm). This final inoculant was then used to inoculate mLB broth in 12-well plates. For monoculture samples, 100 µl of inoculant was added to 2.9 ml of media. For co-culture samples, 100 µl of each strain’s inoculant was added to 2.8 ml of media. 12-well plates were covered with a Breathe-Easy membrane, then the 12-well plate lid was placed on top of the membrane. Inoculated, covered 12-well plates were incubated at 37 °C for 72 hrs. After 72 hrs of incubation, 12-well plates were removed from the incubator and membranes were opened for each well using a razor. For each well, the sample was mixed by pipetting 900 µl three times, then 1.8 ml of sample was transferred to a 2 ml snap-cap tube. 200 µl of sample was also collected after mixing and transferred to a 96-well plate to measure optical density at OD600. Samples within 2 ml tubes were then transferred out of the chamber and centrifuged at 18407 x g for 2 mins. After centrifugation, supernatant was poured directly into a 3 ml syringe attached to a syringe pump filter (0.22 µm pore size, mixed cellulose ester filter) and filtered into a 2 ml snap-cap tube. Cell pellets were then resuspended in 400 µl Qiagen lysis buffer (Buffer ASL, Qiagen) and vortexed until thoroughly mixed. Resuspended pellets and spent media were then frozen at -80 °C. To ensure reproducibility, 3 experiments were performed in which independent overnight starter cultures were used to inoculate 3 samples per monoculture and co-culture condition (resulting in 9 total replicates). For the third experiment, ASF492 and ASF500 did not appear to grow in monoculture according to both OD600 and qPCR, and their metabolomes did not appear significantly different than any negative controls, so all sample groups containing ASF492 and ASF500 in the third experiment were excluded from analyses. As a result, those sample groups have N = 6 replicates throughout the study.	<p>N/A supernatant was collected in the previous step and no further extraction was performed.</p>	<div>Samples were prepared for 1H NMR spectroscopy as described by Dona et al [1]. Samples were thawed at room temperature and centrifuged at 12,000 x g at 4 °C for 10 mins, before 540 μl of supernatant was combined with 60 μl of buffer (pH 7.4; 1.5mM KH2PO4, 0.1% TSP (3-(trimethylsilyl)propionic- 2,2,3,3-d4 acid sodium salt) in 100% D2O) and transferred to a SampleJet NMR tube (Bruker BioSpin, Rheinstetten, Germany). <br></div><div><br></div><div>Ref:</div><div>[1] Dona AC, Jiménez B, Schäfer H, Humpfer E, Spraul M, Lewis MR, et al. Precision high-throughput proton NMR spectroscopy of human urine, serum, and plasma for large-scale metabolic phenotyping. Anal Chem. 2014;86: 9887–9894</div>	Standard one-dimensional (1D) 1H-NMR spectra with water pre-saturation were acquired at 300 K using a 600 MHz Avance III spectrometer (Bruker), equipped with a SampleJet autosampler (Bruker).	A total of 32 scans were collected into 64,000 data points for each sample.	<div>Spectra were automatically phased, baseline corrected and calibrated to the TSP resonance at δ1H 0 in Topspin 3.1 software (Bruker). The spectra were imported into MATLAB R2014a (The Mathworks, Inc., Natick, MA, USA). Biologically irrelevant regions of the spectra were removed (TSP resonance at δ1H 0 and residual water peak δ 1H 4.5- 5.2) before peak alignment by recursive segment-wise peak alignment (RSPA) [1]. <br></div><div><br></div><div>Ref:</div><div>[1] Veselkov KA, Lindon JC, Ebbels TMD, Crockford D, Volynkin VV, Holmes E, et al. (2009) Recursive Segment-Wise Peak Alignment of Biological 1H NMR Spectra for Improved Metabolic Biomarker Recovery. Anal Chem. 81: 56–66.</div>	The loadings of pairwise principal component analysis models, as well as manual comparisons between fresh media spectra and spent media of each bacterial strain, were used to identify metabolites generated or consumed in each experiment. To further identify metabolites that may only have been produced or consumed in co-culture, group means for all 21 co-culture conditions were compared to fresh media across the entire spectra.
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Temperature;Sample pH;Solvent	Magnetic field strength;Pulse sequence name;Instrument;NMR Probe;Number of transients			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Medlock	Papin
+Study Person First Name	Gregory	Jason
+Study Person Mid Initials	L	A
+Study Person Email	gmedlo@gmail.com	papin@virginia.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Virginia	University of Virginia
+Study Person Roles	PhD student	Principal Investigator
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	Group	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.88.0					2025-12-03	26.02d	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology		Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12891
+Investigation Title	Blocking NKp46-CCR6-ILC3 autophagy alleviates necrotizing enterocolitis by restoring energy metabolism balance
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-24
+Investigation Public Release Date	2026-04-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12891
+Study Title	Blocking NKp46-CCR6-ILC3 autophagy alleviates necrotizing enterocolitis by restoring energy metabolism balance
+Study Description	<p>Group 3 innate lymphoid cells (ILC3s) play a crucial role in intestinal inflammatory disorders such as necrotizing enterocolitis (NEC) in neonates; however, the mechanisms by which ILC3s contribute to NEC remain unclear. In this study, single-cell transcriptomics, in vivo experiments on T cell-deficient mice, and targeted cell interventions demonstrated that NKp46CCR6 (double-negative, DN) ILC3 autophagy significantly impacts NEC development by regulating intracellular metabolism. Mice lacking ATG5 or treated with autophagy inhibitors exhibited reduced ILC3 abundance and impaired ILC3 function, alleviating NEC. Mechanistically, ATG5 deficiency enhanced fatty acid metabolism while reducing glycolysis. Conversely, inhibiting fatty acid oxidation or supplementing with lactate restored the quantity and functionality of ATG5-deficient DN ILC3s, exacerbating NEC. Lipid metabolism analyses combined with a mouse model of NEC indicated that phosphatidylcholine supplementation alleviated intestinal inflammation by inhibiting DN ILC3 autophagy. Clinically, patients with NEC showed elevated ILC3 levels and significant enrichment of autophagy genes. These findings highlight the importance of DN ILC3 autophagy in metabolic adaptation, suggesting potential strategies for managing NEC.</p>
+Study Submission Date	2025-08-24
+Study Public Release Date	2026-04-12
+Study File Name	s_MTBLS12891.txt
+Comment[Created At]	2025-08-24
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-12
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	NEC	ATG5	ILC3	phosphatidylcholine
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Junyu He, Yumei He
+Study Publication Title	Blocking NKp46-CCR6-ILC3 autophagy alleviates necrotizing enterocolitis by restoring energy metabolism balance
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Group
+Study Factor Type Term Accession Number	http://www.w3.org/2006/vcard/ns#Group
+Study Factor Type Term Source REF	Group
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12891_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Four days after NEC induction of mouse intestinal cells, intestinal tissue was collected and subjected to gradient centrifugation to isolate intestinal ILC3 cells. The collected cell pellets were stored at -80°C and sent to Kidiou Company for testing.</p>	<p>Lipids were extracted according to MTBE method. Briefly, a 200-μL volume of water was added to 30 mg sample and vortexed for 5 s. Subsequently, 240 μL of precooling methanol was added and the mixture vortexed for 30 s. After that, 800 μL of MTBE was added and the mixture was ultrasound 20 min at 4 followed by sitting still for 30 min at room temperature. The solution was centrifuged at 14000g for 15min at 10 and the upper organic solvent layer was obtained and dried under nitrogen.</p>	<p>The sample was separated using the UHPLC Nexera LC-30A ultra-high performance liquid chromatography system. C18 chromatographic column was used with a column temperature of 45 and a flow rate of 300 μL/min. The mobile phase consisted of solvent A: acetonitrile-water solution (acetonitrile:water=6:4,v/v) and solvent B: acetonitrile-isopropanol solution (acetonitrile:isopropanol = 1:9, v/v). The gradient elution program was as follows: 0-2 min, B was maintained at 30%; 2-25 min, B linearly increased from 30% to 100%; 25-35min, B was maintained at 30%. Throughout the entire analysis process, the samples were kept in an autosampler at 10 to prevent any impact from fluctuations in the instrument detection signal. To avoid any systematic errors, the samples were analyzed in a random order.</p>	<p>Mass spectra was acquired by Q-Exactive Plus in positive and negative mode, respectively. ESI parameters were optimized and preset for all measurements as follows: Source temperature, 300 °C; Capillary Temp, 350 °C, the ion spray voltage was set at 3000V, S-Lens RF Level was set at 50% and the scan range of the instruments was set at m/z 200–1800.</p><p>The mass-to-charge ratio (m/z) of lipid molecules and lipid fragments is collected using</p><p>the following method: After each full scan, 10 fragment spectra (MS2 scan, HCD) are</p><p>collected. The resolution of MS1 is 70,000 at m/z 200, while the resolution of MS2 is 17,500</p><p>at m/z 200.</p>	<p>Raw data were obtained by LipidSearch software (*.raw format). Preprocessing steps such as peak alignment, peak identification, and peak extraction are performed on lipid molecules and internal standard lipid molecules to get data matrix of mass to charge ratio</p><p>(m/z) , retention time (rt) and peak intensity et al.</p><p>All peak intensities were batch normalized to the total spectral intensity for comparing</p><p>the data of different orders of magnitude.</p>	<p>Using LipidSearch software to perform lipid identification. The main parameters were</p><p>set as follows: precursor tolerance: 5 ppm, product tolerance: 5 ppm, product ion threshold:</p><p>5%.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	He	He
+Study Person First Name	Junyu	Yumei
+Study Person Mid Initials		
+Study Person Email	15625599188@163.com	hym0909@smu.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Southern Medical University	Southern Medical University
+Study Person Roles	Principal Investigator	Corresponding Author indicator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C164481
+Study Person Roles Term Source REF	NCIT	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://www.ebi.ac.uk/ols4/api	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version								
+Term Source Description	Chemical Methods Ontology		Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS11277
+Investigation Title	Whole genome CRISPRi screening identifies druggable vulnerabilities in drug-resistant Mycobacterium tuberculosis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-09-30
+Investigation Public Release Date	2024-10-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11277
+Study Title	Whole genome CRISPRi screening identifies druggable vulnerabilities in drug-resistant Mycobacterium tuberculosis
+Study Description	<p>Tuberculosis (TB) remains a global health threat, aggravated by the emergence of drug-resistant strains. This study aims to identify genes and metabolic pathways with increased vulnerability in drug-resistant Mycobacterium tuberculosis strains compared to their drug-susceptible counterparts. Using CRISPR interference (CRISPRi), we screened for critical pathways unique or shared across resistant strains. The findings reveal potential therapeutic targets, offering new avenues for anti-TB drug development. This approach addresses the urgent need for effective treatments against drug-resistant TB and advances our understanding of its underlying resistance mechanisms. This work highlights how changes in the physiology of drug-resistant strains generate druggable vulnerabilities that can be exploited to improve clinical outcomes.</p>
+Study Submission Date	2024-09-30
+Study Public Release Date	2024-10-15
+Study File Name	s_MTBLS11277.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Antimicrobial resistance	CRISPR Gene Editing	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://edamontology.org/topic_4013	http://purl.obolibrary.org/obo/NCIT_C200340	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	EDAM	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	XinYue Wang, William J Jowsey, Chen-Yi Cheung, Caitlan J Smart, Hannah R Klaus, Noon EJ Seeto, Natalie JE Waller, Michael T Chrisp, Amanda L Peterson, Boatema Ofori-Anyinam, Emily Strong, Brunda Nijagal, Nicholas P West, Jason H Yang, Peter C Fineran, Gregory M Cook, Simon A Jackson Matthew B McNeil
+Study Publication Title	Whole genome CRISPRi screening identifies druggable vulnerabilities in an isoniazid resistant strain of Mycobacterium tuberculosis
+Study Publication Status	Accepted
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C62559
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	Drug-resistance-conferring mutation
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11277_LC-MS___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Mass spectrometry	Data transformation	Metabolite identification	Extraction	Chromatography
+Study Protocol Type	Sample collection	Mass spectrometry	Data transformation	Metabolite identification	Extraction	Chromatography
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Metabolites were extracted from cultures of both DS-parent and INHR-katG as follows. From glycerol stocks, 150 µL of each strain was used to inoculate 10 mL of 7H9 and were grown in T25 flasks at 37 °C without shaking until confluent. A total of 100 µL of these cultures were then used to inoculate T25 flasks containing 10 mL of fresh 7H9 medium. Once confluent (approximately 2 weeks), these cultures were used to inoculate 6 mL of fresh 7H9 to a density of OD600 0.25 and grown for a further ~48 h (OD600 of 0.5-1.2) in T25 flasks at 37 °C without shaking.</p>	<p>For metabolite detection, the Orbitrap ID-X Tribrid Mass Spectrometer was coupled to a heated electrospray ionisation source and performed as follows: sheath gas flow 40 arbitrary units, auxiliary gas flow 10 arbitrary units, sweep gas flow 1 arbitrary units, ion transfer tube temperature 275 °C and vaporiser temperature 320 °C. The radio frequency lens value was 35%. Data was acquired in negative polarity with spray voltages of 3500 V. Samples were run in a random order, and the quality of data produced was assessed by the peak variation of pooled samples (all samples combined equally) and 4 internal standards (13C5,15N1 Valine, 13C6 Sorbitol, 13C,15N-UMP, 13C,15N-AMP) that were added to each sample.</p>	<p>Raw data were processed and analysed using the MetaboAnalyst v5.0 web server (https://www.metaboanalyst.ca/docs/About.xhtml) as follows. Peak intensities of all identified metabolites in a combined dataset of DS-parent and INHR-katG were median normalised and compared between DS and the INHR-katG groups using the Statistical Analysis [one factor] pipeline.</p>	<p>The data was collected using Thermo Tracefinder (v4.1) (General Quan Browser). Metabolites were assigned to sample peaks in El-Maven v.0.12.1 by comparison to the peaks in the standard library. WT and INHR-katG peaks that were also observed in metabolite extraction solvent-only samples (at &gt;20% of the WT) were excluded. Identified metabolites of the DS and INHR-katG samples were provided as raw values from the area under the curve.</p>	<p>Culture volumes equivalent to 5 mL of culture at an O vacuumD600 of 1 were filtered through 0.22 µm filters (Millipore, GVWP02500) via filtration. Cell-laden filters were suspended in 2-mL bead beater tubes (SSIbio, 21276) containing 1 mL of fresh metabolite extraction solvent (2:2:1 ratio of acetonitrile (Sigma-Aldrich, 900667), methanol (&gt;99.8%), distilled and deionised water (18.2 Ω)) and ~200 µL of 0.1 mm silica beads (dnature, 11079101z), and cells were lysed by bead beating at 4000 rpm three times for 30 s. Samples were rested for 30 s on dry ice (solid CO2) between each bead beating run. Cell lysates were centrifuged at 13,000 x g for 10 min at 4 °C, then ~400 µL of the soluble fraction were transferred to 0.2 µm Spin-X filter columns (Costar, 8196) and centrifuged at 13,000 x g for 3 min at 4 °C. Filtered lysates were transferred to fresh, pre-chilled microcentrifuge tubes before storage at -80 °C. Replicates of the DS-parent and INHR-katG were prepared in parallel. Altogether 5 replicates were prepared in total, with each replicate prepared on separate days.</p>	<p>Metabolites were separated and detected using a Vanquish Horizon UHPLC system (Thermo Scientific) coupled to an Orbitrap ID-X Tribrid mass spectrometer (Thermo Scientific). Chromatography conditions were performed as previously reported (89) with modifications. Briefly, separation was performed using a SeQuant zic-pHILIC column (150 mm x 4.6 mm, 5 µm particle size; Merck) at 25 °C, with a binary gradient of solvent A (20 mM ammonium carbonate (pH 9.0; Sigma-Aldrich) and solvent B (100% acetonitrile; Merck, 100029). The gradient of A/B solvents was run at a flow rate of 300 μL/min as follows: 0.0 min, 80% B; 0.5 min, 80% B; 15.5 min, 50% B; 17.5 min, 30% B; 18.5 min, 5%; 21.0 min, 5% B; 23.0-33.0 min, 80% A.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer			Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column
+Study Protocol Parameters Name Term Accession Number		;;;;			;	;;;;
+Study Protocol Parameters Name Term Source REF		;;;;			;	;;;;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wang	McNeil	Jowsey
+Study Person First Name	XinYue	Matthew	William
+Study Person Mid Initials			
+Study Person Email	xinyue.wang@otago.ac.nz		will.jowsey@otago.ac.nz
+Study Person Phone		matthew.mcneil@otago.ac.nz	
+Study Person Fax			
+Study Person Address	Microbiology Building, 720 Cumberland Street, Dunedin, New Zealand		720 Cumberland Street, Dunedin, New Zealand
+Study Person Affiliation	Department of Microbiology and Immunology, University of Otago, Dunedin, New Zealand.	720 Cumberland Street, Dunedin North, New Zealand	
+Study Person Roles	Postdoctoral Scholar	Principal Investigator	Postdoctoral Scholar
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19925	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19925
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

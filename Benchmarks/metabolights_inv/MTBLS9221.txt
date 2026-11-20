@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCIT	CHEBI	UPa	MTBLS	EFO	SIO
+Term Source File	http://data.bioontology.org/ontologies/OBI				https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO	
+Term Source Version	29				1	132	
+Term Source Description	Ontology for Biomedical Investigations				Metabolights Ontology	Experimental Factor Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS9221
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-12-21
+Investigation Public Release Date	2024-08-06
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS9221
+Study Title	Microbial transformation of dietary xenobiotics shapes gut microbiome composition
+Study Description	<p>Diet is a major determinant of gut microbiome composition, and variation in diet-microbiome interactions may contribute to variation in their health consequences. Understanding individual differences requires mechanistic understanding of dietary xenobiotics-microbiome interactions. Here, we map interactions between ~150 small molecule dietary xenobiotics and the gut microbiome, including community composition, compound metabolism, growth inhibitory effects and interindividual variation in these traits. Integrating these measures highlights mechanisms for community remodelling. We identify dietary xenobiotics with growth inhibitory activity and demonstrate how these compounds alter community composition. Microbial metabolism both toxifies and detoxifies these compounds, producing emergent interactions. We identify the gene and enzyme responsible for detoxification of one such dietary xenobiotic, resveratrol, and demonstrate that this enzyme contributes to interindividual variation in community remodelling. Together, these results systematically map interactions between dietary xenobiotics and the gut microbiome and suggest how toxification and detoxification contributes to interpersonal differences in microbiome response to diet.</p>
+Study Submission Date	2023-12-21
+Study Public Release Date	2024-08-06
+Study File Name	s_MTBLS9221.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Microbiome	xenobiotic	metabolism
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C68564	http://purl.obolibrary.org/obo/CHEBI_35703	http://purl.obolibrary.org/obo/UPa_UPA00026
+Study Design Type Term Source REF	NCIT	CHEBI	UPa
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Elizabeth J. Culp, Nora T. Nelson, Andrew A. Verdegaal, Andrew L. Goodman1
+Study Publication Title	Microbial transformation of dietary xenobiotics shapes gut microbiome composition
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Experiment	Compound	Bacterial community
+Study Factor Type	experiment	Compound	Species
+Study Factor Type Term Accession Number	http://semanticscience.org/resource/SIO_000994	http://purl.obolibrary.org/obo/NCIT_C43366	http://purl.obolibrary.org/obo/NCIT_C45293
+Study Factor Type Term Source REF	SIO	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS9221_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Incubations to measure the metabolism of dietary xenobiotics in vitro were performed anaerobically. For experiments involving MV communities, glycerol stock aliquots were used to inoculate an overnight culture grown in BB:mGAM medium. For experiments involving defined communities, saturated cultures of each species were normalized based on their OD600 and combined. These community starter cultures were then diluted 1:50 in fresh BB:mGAM media and 400-1000 μL was dispensed into 96-well deep well plates (SP Scienceware - F37860-0001).&nbsp;Each dietary xenobiotic was added to a final concentration of 10-20 μM (metabolism assays) or 200 μM (remodelling assays). Incubations were allowed to continue anaerobically for 48 h at 37 °C. Unless otherwise indicated, biological triplicate incubations were performed.</p>	<p>To prepare extracts for LC-MS analysis, the cultures were first mixed, then 20 μL was transferred to a 96-well polypropylene V-bottom microplate (Abgene AB1058), diluted with 20 μL of acetonitrile, and vortexed briefly. Plates were centrifuged at 4000 rpm for 10 min to pellet cellular debris, then 10 μL was transferred to a new plate, diluted with 10 μL of water, and covered with a heat-sealing foil (Thermo-Scientific AB-0745). In experiments surveying many compounds at once, as in Figures 1A, 3D and S1B-D in the paper associated with this study, incubations were performed independently but then pooled for LC-MS analysis. Pools were chosen so that each dietary xenobiotic and its predicted metabolites could be distinguished using orthogonal mass and retention times. Every incubation was performed in biological duplicate or triplicate alongside sterile media controls.&nbsp;</p><p><br></p><p>To prepare 'toxification screen' extracts for LC-MS, supernatant was harvested by centrifugation after 48 h of incubation, transferred new 96-well deep well plates, and frozen at -20 °C until processing. Supernatants were brought to room temperature before extract preparation. The supernatant was acidified with 0.1% formic acid and then applied to solid phase extraction resin cartridges in a 96-well format, pre-equilibrated with water + 0.1% formic acid (HyperSep Retain PEP 30 mg/1 mL 96 Removable Well Plate). Cartridge plates were centrifuged at 600 rpm for 20 min to bind the supernatant, then washed with 1 mL of 5% methanol + 0.1% formic acid followed by centrifugation. Extracts were eluted into 96 well deep-well plates through sequential application of 500 μL methanol, 50 μL DMSO and 500 μL methanol, each followed by centrifugation at 600 rpm. Elution fractions were dried through vacuum centrifugation followed by lyophilization, and finally resuspended in 20 μL DMSO.&nbsp;Extracts were diluted 1:100 in water prior to LC-MS analysis.</p>	<p>LC chromatography was performed using an Agilent 1200 Infinity UHPLC system and C18 Kinetex Evo column (100 mm x 2.1 mm, 1.7-mm particle size, and according guard columns, Phenomenex). A dual column set-up with alternating injection was used. LC conditions for the main pump are as follows: 0.0-0.5 min 0% B, 0.5-7.0 min 0-70% B, 7.0-7.3 min 70-95% B, 7.3-7.5 min 95% B, 7.5-7.9 min 95-0% B, 7.9-8.5 min 0% B; A = water + 0.1% formic acid; B = acetonitrile + 0.1% formic acid; 0.4 mL/min, 45 °C). LC conditions for the reconditioning pump are as follows: 0.0-1.5 min 0-95% B, 1.5-5.0 min 95% B, 5.0-6.5 min 95-0% B, 6.5-8.5 min 0% B; A = water + 0.1% formic acid; B = acetonitrile + 0.1% formic acid; 0.4 mL/min, 45 °C).</p>	<p>MS analysis was performed in negative ion mode using an Agilent 6550 Q-TOF LC-ESI/MS using following source parameters: VCap: 3500 V; nozzle voltage: 2000 V; gas temp: 225 °C; drying gas: 13 L/min; nebulizer: 20 psig; sheath gas temp 225 °C; sheath gas flow: 12 L/min. Online mass calibration was performed using a second ionization source and a constant flow (5 µL/min) of reference solution.</p>	<p>Integrated ion intensities were extracted from chromatograms using MassHunter Quantitative Analysis Software (Version B.07.01/Build 7.1.524.0 for QTOF).</p>	<p>Metabolites were identified according to m/z and retention times listed in Table S1. Integrated ion intensities were normalized to levels in sterile media controls when possible. If a reference standard was unavailable, ion intensity was normalized to the maximum detected ion intensity in the dataset.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Culp	Goodman
+Study Person First Name	Elizabeth	Andrew
+Study Person Mid Initials	J	L
+Study Person Email	elizabeth.culp@yale.edu	andrew.goodman@yale.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Yale University	Yale University
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

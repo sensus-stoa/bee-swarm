@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	SIO	ZFA	MTBLS	operation	OBI	MS	CHMO	BAO
+Term Source File	http://data.bioontology.org/ontologies/EFO				https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI			
+Term Source Version	132				1		29			
+Term Source Description	Experimental Factor Ontology				Metabolights Ontology		Ontology for Biomedical Investigations			
+INVESTIGATION
+Investigation Identifier	MTBLS5568
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-07-31
+Investigation Public Release Date	2022-10-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS5568
+Study Title	The Impact of Ethnicity and Intra-Pancreatic Fat on the Postprandial Metabolome Response to Whey Protein in Overweight Asian Chinese and European Caucasian Women with Prediabetes
+Study Description	The 'Thin on the Outside Fat on the Inside' TOFI_Asia study found Asian Chinese to be more susceptible to Type 2 Diabetes (T2D) compared to European Caucasians matched for gender and body mass index (BMI). This was influenced by degree of visceral adipose deposition and ectopic fat accumulation in key organs, including liver and pancreas, leading to altered fasting plasma glucose, insulin resistance, and differences in plasma lipid and metabolite profiles. It remains unclear how intra-pancreatic fat deposition (IPFD) impacts TOFI phenotype-related T2D risk factors associated with Asian Chinese. Cow’s milk whey protein isolate (WPI) is an insulin secretagogue which can suppress hyperglycemia in prediabetes. In this dietary intervention, we used untargeted metabolomics to characterize the postprandial WPI response in 24 overweight women with prediabetes. Participants were classified by ethnicity (Asian Chinese, n=12; European Caucasian, n=12) and IPFD (low IPFD < 4.66%, n=10; high IPFD ≥ 4.66%, n=10). Using a cross-over design participants were randomized to consume three WPI beverages on separate occasions; 0 g (water control), 12.5 g (low protein, LP) and 50 g (high protein, HP), consumed when fasted. An exclusion pipeline for isolating metabolites with temporal (T0-240mins) WPI responses was implemented, and a support vector machine-recursive feature elimination (SVM-RFE) algorithm was used to model relevant metabolites by ethnicity and IPFD classes. Metabolic network analysis identified glycine as a central hub in both ethnicity and IPFD WPI response networks. A depletion of glycine relative to WPI concentration was detected in Chinese and high IPFD participants independent of BMI. Urea cycle metabolites were highly represented among the ethnicity WPI metabolome model, implicating a dysregulation in ammonia and nitrogen metabolism among Chinese participants. Uric acid and purine synthesis pathways were enriched within the high IPFD cohort’s WPI metabolome response, implicating adipogenesis and insulin resistance pathways. In conclusion, the discrimination of ethnicity from WPI metabolome profiles was a stronger prediction model than IPFD in overweight women with prediabetes. Each models’ discriminatory metabolites enriched different metabolic pathways that help to further characterize prediabetes in Asian Chinese women and women with increased IPFD, independently.
+Study Submission Date	2022-07-31
+Study Public Release Date	2022-10-12
+Study File Name	s_MTBLS5568.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ethnicity	Prediabetes	pancreatic fat	Whey Protein Isolate	untargeted metabolites	Machine Learning	Enrichment analysis	network analysis	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://semanticscience.org/resource/SIO_001014	http://purl.obolibrary.org/obo/NCIT_C122685	http://purl.obolibrary.org/obo/ZFA_0005758	http://purl.obolibrary.org/obo/NCIT_C67285	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C176231	http://edamontology.org/operation_3501	http://www.bioassayontology.org/bao#BAO_0002361	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	SIO	NCIT	ZFA	NCIT	MTBLS	NCIT	operation	BAO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fcdhc.2022.980856
+Study Publication Author List	Aidan Joblin-Mills, Zhanxuan Wu, Karl Fraser, Beatrix Jones, Wilson Yip, Jia Jiet Lim, Louise Lu, Ivana Sequeira, Sally Poppitt
+Study Publication Title	The Impact of Ethnicity and Intra-Pancreatic Fat on the Postprandial Metabolome Response to Whey Protein in Overweight Asian Chinese and European Caucasian Women with Prediabetes
+Study Publication Status	Preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004
+Study Publication Status Term Source REF	MTBLS
+STUDY FACTORS
+Study Factor Name	WPI	Gender	Ethnic group	Age	BMI	MRI pancreas fat	Time	Batch
+Study Factor Type	Whey Protein Isolate	Gender	ethnic group	age	body mass index	pancreas fat measurement	timepoint	Batch Number
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C67285	http://purl.obolibrary.org/obo/NCIT_C17357	http://www.ebi.ac.uk/efo/EFO_0001799	http://www.ebi.ac.uk/efo/EFO_0000246	http://www.ebi.ac.uk/efo/EFO_0004340	http://www.ebi.ac.uk/efo/EFO_0600049	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C104504
+Study Factor Type Term Source REF	NCIT	NCIT	EFO	EFO	EFO	EFO	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS5568_LC-MS_pos_hilic_metabolite_profiling.txt	a_MTBLS5568_LC-MS_neg_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS – pos - hilic	Liquid Chromatography MS -neg - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Each participant attended the <strong>Human Nutrition Unit (HNU), University of Auckland, New Zealand</strong> for 3 study visits over a 3 wk duration, with a minimum 7 d wash-out period. At each visit, a fasted baseline (T = 0 min) plasma sample was collected. Following consumption of the 280 ml test drinks comprising 0 g (water control, WC), 12.5 g (low protein, LP) and 50 g (high protein, HP) WPI, postprandial plasma samples were collected via a venous cannula at T = 30, 60, 120 and 240 min. No other foods or beverages were consumed during the study morning and participants followed a sedentary protocol.</p>	<p>Blood samples were stored at -80 °C and batch analysed at the end of the study. For each sample, 100 μl plasma was mixed with 800 μl pre-chilled (-20 °C) CHCl3:MeOH (50:50, v/v), agitated for 30 s and placed in a -20 °C freezer for 60 min to allow protein precipitation. 400 μl milliQ water was subsequently added to each sample, agitated for 30 s and centrifuged at 11,000 rpm at 4 °C for 10 min. From each biphasic separation, 200 μl of the upper aqueous layer was transferred to 2 ml micro-centrifuges and dried under a nitrogen stream before being stored at -80 °C. To account for batch-to-batch variations, pooled quality control (QC) samples were prepared by pooling aliquots from each sample into a clean glass vial and stored at -80 °C<strong>[1]</strong>. Pooled samples were combined from each batch and dispensed into separate 200 µl aliquots for drying under a nitrogen stream and -80 °C storage. Dried polar extracts were reconstituted in 200 μl acetonitrile:H2O (50:50, v/v) before injection<strong>[2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Xu J, Begley P, Church SJ, Patassini S, Hollywood KA, Jüllig M, Curtis MA, Waldvogel HJ, Faull RL, Unwin RD, Cooper GJ. Graded perturbations of metabolism in multiple regions of human brain in Alzheimer's disease: Snapshot of a pervasive metabolic disorder. Biochim Biophys Acta. 2016 Jun;1862(6):1084-92. doi:10.1016/j.bbadis.2016.03.001. PMID:26957286.</p><p><strong>[2]</strong> Wu ZE, Fraser K, Kruger MC, Sequeira IR, Yip W, Lu LW, Plank LD, Murphy R, Cooper GJS, Martin JC, Hollingsworth KG, Poppitt SD. Untargeted metabolomics reveals plasma metabolites predictive of ectopic fat in pancreas and liver as assessed by magnetic resonance imaging: the TOFI_Asia study. Int J Obes (Lond). 2021 Aug;45(8):1844-1854. doi:10.1038/s41366-021-00854-x. PMID:33994541.</p>	<p>Polar metabolites were analysed with an Accela 1250 quaternary UHPLC pump coupled to an Exactive Orbitrap mass spectrometer (Thermo Fisher Scientific, USA). Chromatographic separation was carried out at 25 °C on a SeQuant ZIC-pHILIC 5 µm 2.1 mm x 100 mm column (Merck, Darmstadt, Germany) using the following solvent system: A = 10 mM ammonium formate in milliQ water, B = 0.1% formic acid in acetonitrile at a gradient program flow rate of 250 µl/min: 3–3% A (0.0–1.0 min), 3–30% A (1.0–12.0 min), 30–90% A (12.0–14.5 min). 90% A was maintained for 3.5 min followed by re-equilibration with 3% A for 7 min. An injection volume of 2 µl was used. The electrospray probe was operated at room temperature (25 °C) to avoid degradation of thermally labile compounds.</p>	<p>Mass spectra were collected using a Exactive Orbitrap mass spectrometer (Thermo Fisher Scientific, USA). External mass calibration of the Orbitrap prior to sample analysis was performed by the flow injection of the calibration mix solution according to manufacturer’s instruction. High resolution (25,000) data were acquired by full scan (m/z 55 to 1100) with a source voltage of 4000 V for both ESI + and ESI - ion modes. A capillary temperature of 325 °C was set, and sheath, auxiliary, and sweep gas flow rates of 40, 10, and 5 arbitrary units were applied, respectively<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Cabrera D, Kruger M, Wolber FM, Roy NC, Totman JJ, Henry CJ, Cameron-Smith D, Fraser K. Association of Plasma Lipids and Polar Metabolites with Low Bone Mineral Density in Singaporean-Chinese Menopausal Women: A Pilot Study. Int J Environ Res Public Health. 2018 May 22;15(5):1045. doi:10.3390/ijerph15051045. PMID:29789485.</p>	<p><strong>Raw data files</strong> were converted to <strong>mzXML</strong> format using <strong>ProteoWizard tool MSconvert (v 3.0.1818)</strong>. Open <strong>mzXML</strong> data files were pre-processed for features by untargeted peak filtering, peak alignment, and peak filling parameters with the <strong>XCMS package (v3.0.2)</strong> in the <strong>R programming environment (v3.2.2)[1][2]</strong>. Features not detected in 100% of the QC samples were excluded from the analysis and resulting extracted ion chromatograms were manually examined to filter poorly integrated peaks generated by the diffreport function. Signal drift and batch effects were corrected for by <strong>LOESS algorithm</strong> in the online <strong>W4M Galaxy</strong> environment, and feature filtering with a &lt; 30% coefficient of variation limit among QC samples was applied<strong>[3][4]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051.</p><p><strong>[2]</strong> Team RC. R: A Language and Environment for Statisitical Computing. Vienna, Austria: R Foundation for Statistical Computing; 2021.</p><p><strong>[3]</strong> van der Kloet FM, Bobeldijk I, Verheij ER, Jellema RH. Analytical error reduction using single point calibration for accurate and precise metabolomic phenotyping. J Proteome Res. 2009 Nov;8(11):5132-41. doi:10.1021/pr900499r. PMID:19754161.</p><p><strong>[4]</strong> Giacomoni F, Le Corguillé G, Monsoor M, Landi M, Pericard P, Pétéra M, Duperier C, Tremblay-Franco M, Martin JF, Jacob D, Goulitquer S, Thévenot EA, Caron C. Workflow4Metabolomics: a collaborative research infrastructure for computational metabolomics. Bioinformatics. 2015 May 1;31(9):1493-5. doi:10.1093/bioinformatics/btu813. PMID:25527831.</p><p><br></p>	<p>A subset of positive and negative mode features were annotated using accurate mass and retention time matching to an in-house library of authentic standards. These were used as a quality control measure for annotating features with the <strong>metID package (GitHub) in R[1]</strong>. Features were subsequently annotated using <strong>metID's hilic 0.0.2 database</strong> with accurate mass and a retention time window shift of 420 s as calculated from initial in-house library matching. Features that lacked an annotation had their molecular and co-eluting ions manually inspected for pseudo MS2 fragmentation patterns created from in-source fragmentation. Pseudo fragments and chemometric features (e.g., isotopes, multiple adducts) representing the same metabolites were annotated accordingly. Remaining features were annotated using the online <strong>Human Metabolome Database (HMDB)</strong> using an m/z ppm error of 15 for positive and negative ion modes<strong>[2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Shen X, Wu S, Liang L, Chen S, Contrepois K, Zhu ZJ, Snyder M. metID: a R package for automatable compound annotation for LC-MS-based data. Bioinformatics. 2021 Aug 25;38(2):568–9. doi:10.1093/bioinformatics/btab583. PMID:34432001.</p><p><strong>[2]</strong> Wishart DS, Feunang YD, Marcu A, Guo AC, Liang K, Vázquez-Fresno R, Sajed T, Johnson D et al. HMDB 4.0: the human metabolome database for 2018. Nucleic Acids Res. 2018 Jan 4;46(D1):D608-D617. doi:10.1093/nar/gkx1089. PMID:29140435.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Joblin-Mills
+Study Person First Name	Aidan
+Study Person Mid Initials	J
+Study Person Email	aidan.joblin-mills@agresearch.co.nz
+Study Person Phone	+64 6 356 8019
+Study Person Fax	
+Study Person Address	Grasslands Research Centre Tennent Drive Fitzherbert Palmerston North 4410 Private Bag 11008 Manawatu Mail Centre Palmerston North 4442
+Study Person Affiliation	Agresearch NZ
+Study Person Roles	Coordinating Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51818
+Study Person Roles Term Source REF	NCIT

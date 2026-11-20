@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI	PATO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/pato.owl
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0			1.0.1		26.02d	2026-03-19	2025-05-14
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	PATO - the Phenotype And Trait Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS14503
+Investigation Title	Targeted metabolomics of F. rodentium
+Investigation Description	
+Investigation Submission Date	2026-05-17
+Investigation Public Release Date	2026-08-13
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14503
+Study Title	Targeted metabolomics of F. rodentium
+Study Description	<p>Targeted metabolomics of F. rodentium culture supernatants. The study was divided into four groups: 0 mg/mL, 0.04 mg/mL, 5 mg/mL, 10 mg/mL. After co-culture seven days, the culture supernatants were centrifuged 12000rpm for 5 minutes.</p>
+Study Submission Date	2026-05-17
+Study Public Release Date	2026-08-13
+Study File Name	s_MTBLS14503.txt
+Comment[Created At]	2026-05-14
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-13
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	normal	targeted metabolite profiling	ProteoWizard msconvert	ExionLC AE	AB SCIEX Triple Quad 6500+	Faecalibaculum rodentium	supernatant	experimental blank	targeted analysis	data-independent acquisition	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PATO_0000461	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/MS_1002205	http://purl.obolibrary.org/obo/MS_1003654	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002039				http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/MS_1003215	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	PATO	MSIO	MS	MS	MTBLS				MS	MS	EDAM
+Comment[Study Design Category]	disease	default	software	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	default	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jiang Fei
+Study Publication Title	Multi-omics profiling unravels novel oncogenic mechanisms in colorectal cancer initiation
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14503_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	ExionLC AE;Kinetex C18 100 Å (2.6 µm, 2.1 mm x 100 mm; Phenomenex);reverse phase;negative;100-300;AB SCIEX Triple Quad 6500+
+Comment[Assay Field Default Unit]	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://purl.obolibrary.org/obo/MS_1003654;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000820;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002039
+Comment[Assay Field Default Value Source REF]	MS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]	data-independent acquisition
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003215
+Comment[Assay Descriptor Term Source REF]	MS
+Comment[Assay Descriptor Category]	default
+Comment[Assay Descriptor Source]	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>F. rodentium culture supernatant. 7 days. Centrifuged in 12000rpm for 5 minutes. stored in -80 degree.</p>	<p>Using a Kinetex C8 chromatographic column (100Å, 2.6 µm, 2.1 mm × 100 mm), with a flow rate of 0.3 mL/min, column temperature of 40 ℃, auto sampler at 4 ℃, and injection volume of 1 μL. The mobile phase A is 0.1% formic acid water, and the mobile phase B is 50% methanol - isopropanol (containing 0.1% formic acid). The gradient of the mobile phase is as follows: 0 - 1 min: A/B is 80:20 (V/V); 6 min: A/B is 60:40 (V/V); 9 - 10 min: A/B is 80:20 (V/V).</p>	<p>Data integration processing was carried out using quantitative software OS (version 4.7, SCIEX). After obtaining the mass spectrometry analysis data of different samples, the chromatographic peaks of all target substances were integrated. A standard curve was constructed with standard substances for quantitative analysis, and the on-machine detection concentration was calculated.</p>	<p>1. The entire experiment was conducted on ice.&nbsp;</p><p>2. Take an appropriate amount of liquid sample, mix well, then add 200 μL of the extraction agent (containing an internal standard), and vortex for 60 seconds.&nbsp;</p><p>3. Centrifuge at 4000g, 10°C for 10 minutes.&nbsp;</p><p>4. Take 40 μL of the supernatant, add 20 μL of 200 mM 3-NPH and mix well.&nbsp;</p><p>5. Add 20 μL of 120 mM (EDC)·HCl-6% pyridine solution, vortex and mix well.&nbsp;</p><p>6. Place in a constant temperature metal shaker, at 40°C, 1200 rpm, and shake for 30 minutes.&nbsp;</p><p>7. After the reaction, place at -20°C for 30 minutes.&nbsp;</p><p>8. Centrifuge at 12000g, 4°C for 10 minutes.&nbsp;</p><p>9. Take the supernatant, pass through a 0.22 μm filter membrane, and transfer the filtrate into a bottle. The volume of the bottle should be no less than 50 μL per bottle.</p>	<p>The SCIEX Citrine Triple Quad TM mass spectrometer uses the software OS (version: 4.7, SCIEX), operating in ESI (Electrospray Ionization, ESI) negative mode, and employs the Multiple Reaction Monitoring (MRM) data acquisition method. Ion source parameters: the negative mode voltage of the Ionspray (IS) is 4500V, the spray gas (GS1) and auxiliary heating gas (GS2) are 50psi and 50 psi respectively, and the desolvation gas temperature is 550℃; the gas curtain gas (Curtain Gas, CUR) is 30 psi, and the collision gas (Collision Gas, CAD) is 10. All formal samples and QC samples are run according to the above chromatography and mass spectrometry methods. Before formal injection, 2-4 QC sample tests are conducted to confirm the stability of the instrument state. During the injection process, one QC sample is injected every 12 samples, which is used for subsequent data evaluation and quality control (QC is not performed for less than 6 samples).</p>	<p>A database was constructed based on self-built targeted standards, and qualitative analysis was conducted on the raw data of mass spectrometry. Quantification is accomplished by using the Multiple Reaction Monitoring (MRM) mode of triple quadrupole mass spectrometry. In the MRM mode, the quadrupole first screens the precursor ions (parent ions) of the target compound and eliminates other mass-to-charge ratio interfering ions to achieve initial anti-interference. The precursor ions enter the collision chamber and undergo collision-induced dissociation of the CID, then break to form multiple fragment ions. These fragment ions are then specifically screened out through triple quadrupoles to select the required characteristic sub-ion fragments, further eliminating the interference of non-target ions, making the quantification more accurate and the repeatability better. After obtaining the mass spectrometry analysis data of different samples, the chromatographic peaks of all target substances were integrated, and quantitative analysis was completed in combination with the standard curve.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	fei
+Study Person First Name	jiang
+Study Person Mid Initials	
+Study Person Email	feijiangfj@csu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Xiangya Hospital Central South University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/05c1yfj14

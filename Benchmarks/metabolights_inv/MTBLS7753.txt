@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OMIT	MTBLS	CHEBI	OBI	EFO	NCIT	MP	CHMO	
+Term Source File		https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO				http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version		1		29	132				18.10e
+Term Source Description		Metabolights Ontology		Ontology for Biomedical Investigations	Experimental Factor Ontology				NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS7753
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-04-26
+Investigation Public Release Date	2023-10-30
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7753
+Study Title	Untargeted plasma metabolome identifies biomarkers in patients with extracranial arteriovenous malformations
+Study Description	<p><strong>OBJECTIVE:</strong> This study aimed to investigate the plasma metabolic profile of patients with extracranial arteriovenous malformations (AVM).</p><p><strong>METHOD:</strong> Plasma samples were collected from 32 AVM patients and 30 healthy controls (HC). Ultra-high performance liquid chromatography-mass spectrometry (UHPLC-MS) was employed to analyze the metabolic profiles of both groups. Metabolic pathway enrichment analysis was performed through Kyoto Encyclopedia of Genes and Genomes (KEGG) database and MetaboAnalyst. Additionally, machine learning algorithms such as Least Absolute Shrinkage and Selection Operator (LASSO) and random forest (RF) were conducted to screen characteristic metabolites. The effectiveness of the serum biomarkers for AVM was evaluated using a receiver-operating characteristics (ROC) curve.</p><p><strong>RESULT:</strong> In total, 184 differential metabolites were screened in this study, with 110 metabolites in positive ion mode and 74 metabolites in negative mode. Lipids and lipid-like molecules were the predominant metabolites detected in both positive and negative ion modes. Several significant metabolic pathways were enriched in AVMs, including lipid metabolism, amino acid metabolism, carbohydrate metabolism and protein translation. Through machine learning algorithms, 9 metabolites were identify as characteristic metabolites, including hydroxy-proline, L-2-Amino-4-methylenepentanedioic acid, piperettine, 20-hydroxy-PGF2a, 2,2,4,4-tetramethyl-6-(1-oxobutyl)-1,3,5-cyclohexanetrione, DL-tryptophan, 9-oxoODE, alpha-Linolenic acid and dihydrojasmonic acid.</p><p><strong>CONCLUSION:</strong> Patients with extracranial AVMs exhibited significantly altered metabolic patterns compared to healthy controls, which could be identified using plasma metabolomics. These findings suggest that metabolomic profiling can aid in the understanding of AVM pathophysiology and potentially inform clinical diagnosis and treatment.</p>
+Study Submission Date	2023-04-26
+Study Public Release Date	2023-10-30
+Study File Name	s_MTBLS7753.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	arteriovenous malformation	biomarker	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MP_0006093	http://purl.obolibrary.org/obo/CHEBI_59163	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MP	CHEBI	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37727659
+Study Publication DOI	10.3389/fphys.2023.1207390
+Study Publication Author List	Fan X, Gao X, Deng Y, Ma B, Liu J, Zhang Z, Zhang D, Yang Y, Wang C, He B, Nie Q, Ye Z, Liu P, Wen J.
+Study Publication Title	Untargeted plasma metabolome identifies biomarkers in patients with extracranial arteriovenous malformations
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7753_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7753_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>This study included 32 patients with extracranial AVM who were recruited from China-Japan Friendship Hospital (Beijing, China) between July 2021 and November 2022. The diagnosis of AVM was based on the protocol formulated by the International Society for the Study of Vascular Anomalies (ISSVA)<strong>[1]</strong>. Exclusion criteria included individuals with: 1) other types of vascular malformations, such as venous malformations or lymphatic malformations; 2) hemangioma; 3) relevant treatment 4 weeks before operation; 4) inflammatory, septic or autoimmune diseases; 5) age over 75 years; 6) severe dysfunction of heart, liver, kidney or other organs; 7) a history of malignancy; 8) pregnancy or lactation. A total of 30 healthy volunteers with no evidence of vascular malformations or metabolic syndrome were enrolled as healthy controls. This study was approved by the Ethics Committee of China-Japan Friendship Hospital, and informed consent was signed by all study participants or their guardians before collecting blood samples. The research adhered to the principles of the Declaration of Helsinki.</p><p><br></p><p>Peripheral venous blood samples were collected from patients prior to their operation, while blood samples from healthy controls were collected in the morning. Fresh EDTA anti-coagulated blood was centrifuged at 3000 rpm for 10 min at room temperature. The resulting plasma was immediately stored at -80 °C until analysis.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Wassef M, Blei F, Adams D, Alomari A, Baselga E, Berenstein A, Burrows P, Frieden IJ, Garzon MC, Lopez-Gutierrez JC, Lord DJ, Mitchel S, Powell J, Prendiville J, Vikkula M; ISSVA Board and Scientific Committee. Vascular Anomalies Classification: Recommendations From the International Society for the Study of Vascular Anomalies. Pediatrics. 2015 Jul;136(1):e203-14. doi:10.1542/peds.2014-3673. Epub 2015 Jun 8. PMID:26055853.</p>	<p>Prior to analysis, the blood samples were thawed at 4 °C, and 100 μL of the sample was transferred to an EP tube. After the addition of 300 μL of extract solution (methanol, containing isotopically labelled internal standard mixture), the samples were vortexed for 30 s and sonicated for 10 min in an ice-water bath. The internal standard (IS) mixture of the negative ion mode comprised L-phenylalanine-D5, decanoic acid-D19, and L-2-chlorophenylalanine. The positive ion mode internal standard mixture comprised L-phenylalanine-D5, L-2-chlorophenylalanine, and diisobutyl phthalate-D4. Finally, the samples were incubated for 1 h at -40 °C to precipitate proteins. Samples were then centrifuged at 12,000 rpm (RCF = 13,800 x g, R = 8.6 cm) for 15 min at 4 °C. The resulting supernatant was transferred to a new glass vial for analysis. To prepare the quality control (QC) sample, an equal aliquot of the supernatants from all of the samples was mixed<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Alseekh S, Aharoni A, Brotman Y, Contrepois K, D'Auria J, Ewald J, C Ewald J, Fraser PD, Giavalisco P, Hall RD, Heinemann M, Link H, Luo J, Neumann S, Nielsen J, Perez de Souza L, Saito K, Sauer U, Schroeder FC, Schuster S, Siuzdak G, Skirycz A, Sumner LW, Snyder MP, Tang H, Tohge T, Wang Y, Wen W, Wu S, Xu G, Zamboni N, Fernie AR. Mass spectrometry-based metabolomics: a guide for annotation, quantification and best reporting practices. Nat Methods. 2021 Jul;18(7):747-756. doi:10.1038/s41592-021-01197-1. Epub 2021 Jul 8. PMID:34239102.</p>	<p>LC-MS/MS analyses were performed using an UHPLC system (Vanquish, Thermo Fisher Scientific) with a UPLC HSS T3 column (2.1 mm x 100 mm, 1.8 μm) coupled to Orbitrap&nbsp;Exploris 120 mass spectrometer (Orbitrap MS, Thermo). The mobile phase consisted of 5 mmol/L ammonium acetate and 5 mmol/L acetic acid in water (A) and acetonitrile (B). The&nbsp;auto-sampler temperature was 4 °C, and the injection volume was 2 μL.</p>	<p>The Orbitrap Exploris 120 mass spectrometer was used for its ability to acquire MS/MS spectra on information-dependent acquisition (IDA) mode in the control of the acquisition software (Xcalibur, Thermo). In this mode, the acquisition software continuously evaluates the full scan MS spectrum. The ESI source conditions were set as follows: sheath gas flow rate as 50 Arb, Aux gas flow rate as 15 Arb, capillary temperature as 320 °C, full MS resolution as 60000, MS/MS resolution as 15,000 collision energy as 10/30/60 in NCE mode, spray Voltage as 3.8 kV (positive) or -3.4 kV (negative), respectively<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Dunn WB, Broadhurst D, Begley P, Zelena E, Francis-McIntyre S, Anderson N, Brown M, Knowles JD, Halsall A, Haselden JN, Nicholls AW, Wilson ID, Kell DB, Goodacre R; Human Serum Metabolome (HUSERMET) Consortium. Procedures for large-scale metabolic profiling of serum and plasma using gas chromatography and liquid chromatography coupled to mass spectrometry. Nat Protoc. 2011 Jun 30;6(7):1060-83. doi:10.1038/nprot.2011.335. PMID:21720319.</p>	<p>The raw data underwent conversion to a mzXML format using ProteoWizard and were subsequently processed with an in-house program, which was designed using R and based on XCMS<strong>[1]</strong>. This program facilitated peak detection, extraction, alignment and integration. The extracted data were annotated using an in-house MS2 database (BiotreeDB) with a 0.3 cutoff for annotation, which means that only annotations with a similarity score equal to or higher than 0.3 are considered for further analysis<strong>[2]</strong> - mass accuracy &lt; 5 ppm / fragment ion match score &gt; 80%. XCMS was used with the centWave method, employing a mass error ppm of 10, retention time deviation of 0.5 min and peak widths ranging from 5 to 20 s. The signal-to-noise ratio (SN) threshold was set at 3. As a pre-filtering step, only peaks with at least 3 intensity values greater than or equal to 1000 were retained (prefilter = c(3,1000)). The function used to calculate the chromatographic peak mz center was wMean, which represents the intensity-weighted average of the peak’s mz values. A minimum m/z dimension difference of -0.001 was required for peaks with overlapping retention times. The marking value of metabolites is calculated based on Euclidean distance and dot product algorithm, which improves the accuracy of mass spectrum annotation.</p><p><br></p><p>The normalization was performed using an internal standard. The derived data was then log-converted and CTR formatted using SIMCA software (v16.0.2, Sartorius Stedim Data Analytics AB, Umea, Sweden), followed by automatic modeling analysis<strong>[3]</strong>. This software analysis included both unsupervised principal component analysis (PCA) and supervised orthogonal projections to latent structures-discriminant analysis (OPLS-DA). Following this, the validity of the model was assessed via cross-validation of R2Y (the interpretability of the model to the categorical variable Y) and Q2 (the predictability of the model). Additionally, a permutation test was conducted, involving the random reordering of the categorical variable Y multiple times (n = 200) to generate various random Q2 values. This assisted in further testing the validity of the model. R2 and Q2 represent the model’s interpretability and predictability, respectively, and can be used to assess the model’s performance. In theory, higher values of R2 and Q2, closer to 1, indicate better model performance, while lower values suggest poorer fitting accuracy. Generally, R2 and Q2 values above 0.5 are considered good, and values above 0.4 are acceptable. Outside of multivariate statistical methods, the significance of metabolite changes at the univariate level was evaluated using a Student’s t-test. The contribution of variables in the OPLS-DA model was summarized via calculation of the variable importance in the projection (VIP) value.</p><p><br></p><p>Metabolites exhibiting VIP values &gt; 1 and p-values &lt; 0.05 were identified as significantly altered metabolites. The metabolic regulations of these metabolites were visualized using a volcano plot. To perform pathway enrichment analysis, both enrichment analysis and topological analysis were conducted using the Kyoto Encyclopedia of Genes and Genomes (KEGG) database (http://www.kegg.jp/kegg/pathway.html) and MetaboAnalyst<strong>[4]-[6]</strong>. Characteristic metabolites were screened using 2 machine learning algorithms: Least Absolute Shrinkage and Selection Operator (LASSO) analysis and random forest (RF). Potential biomarkers were assessed using receiver operating characteristic (ROC) curve analysis, and the sensitivity and specificity were evaluated by calculating the area under the curve (AUC).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051.</p><p><strong>[2]</strong> Cai Y, Weng K, Guo Y, Peng J, Zhu ZJ. An integrated targeted metabolomic platform for high-throughput metabolite profiling and automated data processing. Metabolomics. 2015 Dec;11:1575-86. doi:10.1007/s11306-015-0809-4.</p><p><strong>[3]</strong> Saccenti E, Hoefsloot HC, Smilde AK, Westerhuis JA, Hendriks MM. Reflections on univariate and multivariate analysis of metabolomics data. Metabolomics. 2014 Jun;10:361-74. doi:10.1007/s11306-013-0598-6.</p><p><strong>[4]</strong> Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi:10.1093/nar/28.1.27. PMID:10592173.</p><p><strong>[5]</strong> Xia J, Sinelnikov IV, Han B, Wishart DS. MetaboAnalyst 3.0--making metabolomics more meaningful. Nucleic Acids Res. 2015 Jul 1;43(W1):W251-7. doi:10.1093/nar/gkv380. Epub 2015 Apr 20. PMID:25897128.</p><p><strong>[6]</strong> Kanehisa M, Sato Y, Kawashima M, Furumichi M, Tanabe M. KEGG as a reference resource for gene and protein annotation. Nucleic Acids Res. 2016 Jan 4;44(D1):D457-62. doi:10.1093/nar/gkv1070. Epub 2015 Oct 17. PMID:26476454.</p><p>(Kanehisa and Goto, 2000; Xia et al., 2015; Kanehisa et al., 2016)</p>	<p>The extracted data were annotated using an in-house MS2 database (BiotreeDB) with a 0.3 cutoff for annotation, which means that only annotations with a similarity score equal to or higher than 0.3 are considered for further analysis<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Cai Y, Weng K, Guo Y, Peng J, Zhu ZJ. An integrated targeted metabolomic platform for high-throughput metabolite profiling and automated data processing. Metabolomics. 2015 Dec;11:1575-86. doi:10.1007/s11306-015-0809-4.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Fan	Gao	Deng	Ma	Liu	Zhang	Zhang	Yang	Wang	He	Nie	Ye	Liu	Wen
+Study Person First Name	Xueqiang	Xixi	Yisen	Bo	Jingwen	Zhaohua	Dingkai	Yuguang	Cheng	Bin	Qiangqiang	Zhidong	Peng	Jianyan
+Study Person Mid Initials														
+Study Person Email													liupeng6618@yeah.net	
+Study Person Phone													+86-15010721237	
+Study Person Fax														
+Study Person Address													2nd Yinghuayuan East road, Chaoyang District, Beijing, China	
+Study Person Affiliation													China-Japan Friendship Hospital	
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Correspondence	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C97019	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

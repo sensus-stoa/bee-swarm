@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO		MSIO	MTBLS	PW	CHMO	NCIT	EDAM
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	http://purl.obolibrary.org/obo/ncit.owl		https://www.ebi.ac.uk/metabolights/				
+Term Source Version	22	132	18.10e		1				
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology	NCI Thesaurus OBO Edition		User defined terms				
+INVESTIGATION
+Investigation Identifier	MTBLS923
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-04-10
+Investigation Public Release Date	2021-04-01
+Comment[Created With Configuration]	C:\Users\bellvert\Desktop\metabolights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS923
+Study Title	Functional analysis of isoprenoid precursors biosynthesis by quantitative metabolomics and isotopologue profiling
+Study Description	<p><strong>INTRODUCTION:</strong> Isoprenoids are amongst the most abundant and diverse biological molecules and are involved in a broad range of biological functions. Functional understanding of their biosynthesis is thus key in many fundamental and applicative fields, including systems biology, medicine and biotechnology. However, available methods do not yet allow accurate quantification and tracing of stable isotopes incorporation for all the isoprenoids precursors.</p><p><strong>OBJECTIVES:</strong> We developed and validated a complete methodology for quantitative metabolomics and isotopologue profiling of isoprenoid precursors in the yeast Saccharomyces cerevisiae.</p><p><strong>METHODS:</strong> This workflow covers all the experimental and computational steps from sample collection and preparation to data acquisition and processing. It also includes a novel quantification method based on liquid chromatography coupled to high-resolution mass spectrometry. Method validation followed the Metabolomics Standards Initiative guidelines.</p><p><strong>RESULTS:</strong> This workflow ensures accurate absolute quantification (RSD &lt; 20%) of all mevalonate and prenyl pyrophosphates intermediates with a high sensitivity over a large linear range (from 0.1 to 50&nbsp;pmol). In addition, we demonstrate that this workflow brings crucial information to design more efficient phytoene producers. Results indicate stable turnover rates of prenyl pyrophosphate intermediates in the constructed strains and provide quantitative information on the change of the biosynthetic flux of phytoene precursors.</p><p><strong>CONCLUSION:</strong> This methodology fills one of the last technical gaps for functional studies of isoprenoids biosynthesis and should be applicable to other eukaryotic and prokaryotic (micro)organisms after adaptation of some organism-dependent steps. This methodology also opens the way to 13C-metabolic flux analysis of isoprenoid biosynthesis.</p>
+Study Submission Date	2019-04-10
+Study Public Release Date	2021-04-01
+Study File Name	s_MTBLS923.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Fluxomics	absolute quantification	isotope dilution mass spectrometry	targeted metabolites	Isoprenoid biosynthetic pathway	Ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://edamontology.org/topic_3955	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000510	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/PW_0000453	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	EDAM	MTBLS	CHMO	MTBLS	PW	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	31435826
+Study Publication DOI	10.1007/s11306-019-1580-8
+Study Publication Author List	Castaño-Cerezo Sara, Kulyk-Barbier Hanna, Millard Pierre, Portais Jean-Charles, Heux Stéphanie, Truan Gilles, Bellvert Floriant
+Study Publication Title	Functional analysis of isoprenoid precursors biosynthesis by quantitative metabolomics and isotopologue profiling
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	time point
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS923_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>All strains used in this study were derived from <em>Saccharomyces cerevisiae </em>CEN-PK2.1C (<a href='www.uni-frankfurt.de/fb15/mikro/euroscarf' rel='noopener noreferrer' target='_blank'>www.uni-frankfurt.de/fb15/mikro/euroscarf</a>). To test the performance of the analytical method, we constructed two strains (S023 and S037) with higher levels of isoprenoid precursors than the wild-type strain. Both had integrated one extra copy of HMG1t and ERG20 under TDH3 and PGK promoters respectively. Furthermore, in S023 and S037 the GGPP synthase from <em>Xanthophyllomyces dendrorhous</em> (CrtE) was expressed constitutively (TEF1p) in a centromeric plasmid. Additionally, the strain S023 also bears one integrated copy of the phytoene synthase (converts GGPP to phytoene) from Pantoea ananatis (CrtB) under the transcriptional control of the PDC1p. This strain was used to test if the GGPP pool was consumed. The genotypes of the different strains are detailed in <strong>Table S2</strong> of the paper associated with this study. All strains were grown in a modified Verduyn synthetic complete media containing glucose (111 mM), NH4Cl (75 mM), KH2PO4 (22 mM), MgSO4 (0.4 mM) and CSM Leu- (ForMedium LTD, Hunstaton, England) at pH 5.0<strong>[1]</strong>. An initial OD600nm of 0.007 was used to inoculate 50 ml of Verduyn medium Leu- and cells were grown at 28 ºC with an agitation of 220 rpm (MaxQ, ThermoFisher) until harvest at mid-exponential phase.</p><p><br></p><p>Internal standards obtained from uniformly&nbsp;13C-labeled extracts from yeast were used to enable isotope-dilution mass spectrometry (IDMS)<strong>[2]</strong> for the identification and quantification of following compounds: MEV (CAS number 150-97-0), M5P (CAS number 1189-94-2), M5PP (CAS number 4872-34-8), IPP (CAS number 358-71-4) and DMAPP (CAS number 358-72-5) (isobaric compound not separated by the chromatographic method), GPP (CAS number 763-10-0), FPP (CAS number 13058-04-3), and GGPP (CAS number 6699-20-3).</p><p><br></p><p>Calibration mixtures (prepared at concentrations from 0.08&nbsp;nM to 10&nbsp;µM of each isoprenoid precursor) were used to construct calibration curves enabling to determine the concentration of each compound in the samples to be measured.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Verduyn C, Postma E, Scheffers WA, Van Dijken JP. Effect of benzoic acid on metabolic fluxes in yeasts: a continuous-culture study on the regulation of respiration and alcoholic fermentation. Yeast. 1992 Jul;8(7):501-17. doi:10.1002/yea.320080703. PMID:1523884</p><p><strong>[2]</strong> Wu L, Mashego MR, van Dam JC, Proell AM, Vinke JL, Ras C, van Winden WA, van Gulik WM, Heijnen JJ. Quantitative analysis of the microbial metabolome by isotope dilution mass spectrometry using uniformly 13C-labeled cell extracts as internal standards. Anal Biochem. 2005 Jan 15;336(2):164-71. doi:10.1016/j.ab.2004.09.001. PMID:15620880</p>	<p>Intracellular metabolites were sampled by fast filtration<strong>[1][2]</strong>. Briefly, 10&nbsp;ml of broth were filtered through 0.45&nbsp;μm Sartolon polyamide (Sartorius, Goettingen, Germany) and washed with 5&nbsp;ml of fresh culture medium (without glucose). The filters were rapidly plunged into liquid nitrogen and then stored at −80&nbsp;°C until extraction. Intracellular metabolites were extracted by incubating filters in closed glass tubes containing 5 ml of an isopropanol/H20 NH4HCO3 100 mM (50/50) mixture at 70 °C for 10 min. For absolute metabolite quantification 50 µl of 13C internal standard were added to each extract. Cellular extracts were cooled on ice and sonicated for 1 min. Cell debris was removed by centrifugation (5000 x g, 4 °C, 5 min). Supernatants were evaporated overnight (SC110A SpeedVac Plus, ThermoFisher, Waltham, MA, USA), resuspended in 200 μl of methanol: NH4OH 10 mM (7:3) at pH 9.5 and stored at −80 °C until analysis.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Kiefer P, Nicolas C, Letisse F, Portais JC. Determination of carbon labeling distribution of intracellular metabolites from single fragment ions by ion chromatography tandem mass spectrometry. Anal Biochem. 2007 Jan 15;360(2):182-8. doi:10.1016/j.ab.2006.06.032. Epub 2006 Jul 12. PMID:17134674</p><p><strong>[2]</strong> Millard P, Massou S, Wittmann C, Portais JC, Létisse F. Sampling of intracellular metabolites for stationary and non-stationary (13)C metabolic flux analysis in Escherichia coli. Anal Biochem. 2014 Nov 15;465:38-49. doi:10.1016/j.ab.2014.07.026. Epub 2014 Aug 4. PMID:25102204</p>	<p>Analyses were carried out on a LC-MS platform composed of a Thermo Scientific Vanquish Focused UHPLC Plus system with DAD, coupled to a Thermo Scientific Q Exactive Plus hybrid quadrupole-Orbitrap mass spectrometer (ThermoFisher). Analysis of isoprenoids precursors was performed on a Thermo Scientific Hypersil C18 GOLD, 3 µm, and 2.1 x 100 mm column. The column was kept at 25 °C and the flow rate was set to 0.3 ml/min during first 2 min and 0.4 ml/min for the rest chromatographic run. The solvent system consisted of (A) 20 mM NH4FA, pH 9.5, in water and (B) 20 mM NH4FA, pH 9.5, in 9:1 (v/v) acetonitrile-water, with the following gradient: 0 min – 12 min from 100% A to 100% B, 5.5 min kept with 100% B and within 0.5 min the return to the initial condition and 4 min equilibration of the column. The injection volume was 10 µl.</p>	<p>Analyses were carried out on a LC-MS platform composed of a Thermo Scientific Vanquish Focused UHPLC Plus system with DAD, coupled to a Thermo Scientific Q Exactive Plus hybrid quadrupole-Orbitrap mass spectrometer (ThermoFisher). Mass detection was carried out in negative electrospray ionization (ESI) mode. The settings of the mass spectrometer were as follows: spray voltage 3.2 kV, capillary and desolvation temperature were 350 and 400 °C respectively, maximum injection time 200 ms. Nitrogen was used as sheath gas (50 a.u.) and auxiliary gas (15 a.u.). The automatic gain control (AGC) was set at 106 and resolution at 70 000 from m/z 100 to 700. MS analyses were performed by targeted selected ion monitoring (tSIM) mode with 0.5 m/z isolation window for SIM and ±10 ppm for inclusion tolerances. tSIM MS scans the targeted masses in different time segments selected based on the retention times of the analytes. Data acquisition was performed using Thermo Scientific Xcalibur software.</p>	<p>MS data were processed using TraceFinder v3.2 (ThermoFisher), with a tolerance of 5 ppm to extract exact masses. In 13C-ILEs, isotopologue distributions were quantified from mass fractions after correction for the presence of all naturally occurring isotopes and isotopic purity of the tracer (99%) using IsoCor v2.0.4<strong>[1]</strong>, which ensures accurate correction of high-resolution isotopic data. IsoCor also calculates the mean 13C-enrichment (E) from the isotopologue distributions. For metabolomics experiments, standard deviations were calculated from three independent biological replicates, each with two technical replicates. For isotopic profiling, standard deviations were calculated from two independent biological experiments, with one technical replicate. For each intermediate, a two-sided Welch’s t-test was used to assess the significance of differences of concentrations and labeling dynamics observed between the strains.</p><p><br></p><p>Ref:</p><p><strong>[1]</strong> Millard P, Delépine B, Guionnet M, Heuillet M, Bellvert F, Létisse F. IsoCor: isotope correction for high-resolution MS labeling experiments. Bioinformatics. 2019 Nov 1;35(21):4484-4487. doi:10.1093/bioinformatics/btz209. PMID:30903185</p>	<p>All the metabolites of this study were identified with chemical standards injected in the same analytical system and compared with retention time and m/z. All metabolites were identified following minimum standards for level 1 identification<strong>[1]</strong>.</p><p><br></p><p>Ref:</p><p><strong>[1]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O, Goodacre R, Griffin JL, Hankemeier T, Hardy N, Harnly J, Higashi R, Kopka J, Lane AN, Lindon JC, Marriott P, Nicholls AW, Reily MD, Thaden JJ, Viant MR. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Column model;Chromatography Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number			;	;;;;		
+Study Protocol Parameters Name Term Source REF			;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Bellvert	Millard	Castaño-Cerezo	Kulyk-Barbier	Portais	Heux	Truan
+Study Person First Name	Floriant	Pierre	Sara	Hanna	Jean-Charles	Stéphanie	Gilles
+Study Person Mid Initials							
+Study Person Email	bellvert@insa-toulouse.fr	millard@insa-toulouse.fr					
+Study Person Phone	33561559407	33561559407					
+Study Person Fax							
+Study Person Address	135 avenue de rangueil 31077 Toulouse France	135 avenue de rangueil 31077 Toulouse France					
+Study Person Affiliation	MetaToul-MetaboHUB LISBP	LISBP	LISBP, Université de Toulouse, CNRS, INRA, INSA, Toulouse, France.	LISBP, Université de Toulouse, CNRS, INRA, INSA, Toulouse, France.	LISBP, Université de Toulouse, CNRS, INRA, INSA, Toulouse, France.	LISBP, Université de Toulouse, CNRS, INRA, INSA, Toulouse, France.	LISBP, Université de Toulouse, CNRS, INRA, INSA, Toulouse, France.
+Study Person Roles			Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number			http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF							

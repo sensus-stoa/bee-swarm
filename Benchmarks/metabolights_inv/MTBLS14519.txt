@@ -1,0 +1,129 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	CHEBI	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.allotrope.org/voc/afo/latest.xml	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	REC/2026/03	252	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19
+Term Source Description	Allotrope Merged Ontology Suite	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14519
+Investigation Title	Method Comparison using DBS samples
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-05-19
+Investigation Public Release Date	2026-05-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14519
+Study Title	Method Comparison using DBS samples
+Study Description	<p>Metabolomics serves as a critical pillar in clinical research, yet the lack of standardized protocols often limits the comparability of data across different platforms and institutions. The HUMAN (Harmonizing and Unifying Blood Metabolomics Network) has as one of its goals to to advance the field of metabolomics by performing cross-laboratory comparisons, integration and co-evaluation of data analysis tools. The present Ring Trial was established as a multi-center collaborative effort to address these inconsistencies by systematically evaluating the impact of varying analytical setups on metabolite detection and identification. While the broader initiative encompasses multiple phases of standardization, the present work focuses specifically on the Phase 2 of the ring trial, which evaluates the analytical robustness of Dried Blood Spot (DBS) analysis.</p><p>In this phase, whole blood samples from 10 healthy individuals were used to create a controlled 'artificial metabolic disruption' model. Samples were divided into two cohorts: one unspiked and one spiked with a blinded mixture of 12 endogenous metabolites and 8 exogenous compounds at varying concentrations. These samples were spotted onto Whatman cards to simulate real-world clinical specimens. Participating laboratories analyzed the blinded samples using both a common harmonized LC-MS method and their own lab-specific protocols to assess the recovery and accurate annotation of these 'artificial biomarkers.' By comparing results across diverse mass spectrometry platforms, this study quantifies the efficiency of different workflows in identifying unknown compounds in complex matrices. The current report is dedicated exclusively to the methodology and outcomes of this second phase analyzed at the BIOMIC laboratory at Aristotle University of Thessaloniki.</p>
+Study Submission Date	2026-05-19
+Study Public Release Date	2026-05-19
+Study File Name	s_MTBLS14519.txt
+Comment[Created At]	2025-11-14
+Comment[Funder]	European Union
+Comment[Funder ROR ID]	https://ror.org/019w4f821
+Comment[Grant Identifier]	101073062
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-19
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics	ultra-performance liquid chromatography-mass spectrometry	ring trial design	Bruker Elute UHPLC system	Bruker timsTOF Pro 2	Homo sapiens	reference compound	Dried Blood Spot	Solvent	sample preparation blank	experimental sample	reference compound mix	long term reference	untargeted analysis	data-dependent acquisition	ion mobility separation	electrospray-ionisation quadrupole time-of-flight tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C49019	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/OBI_0003658	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002112	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/CHEBI_747204	http://purl.obolibrary.org/obo/NCIT_C113746	http://purl.obolibrary.org/obo/NCIT_C45790	http://purl.obolibrary.org/obo/MSIO_0000025	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MSIO_0000024	http://purl.obolibrary.org/obo/MSIO_0000019	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003221	http://purl.obolibrary.org/obo/MS_1003219	http://purl.obolibrary.org/obo/CHMO_0001275
+Study Design Type Term Source REF	NCIT	CHMO	OBI	MTBLS	MTBLS	NCBITaxon	CHEBI	NCIT	NCIT	MSIO	CHMO	MSIO	MSIO	MS	MS	MS	CHMO
+Comment[Study Design Category]	omics-type	default	submitter	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	Organism part	Sample type	Sample type	Sample type	Sample type	measurement-type	default	default	default
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Daniel Marques de Sa e Silva, Marlene Thaitumu, Helen Gika
+Study Publication Title	The HUMAN Ring Trial
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Spiking state	Chromatographic method
+Study Factor Type	addition compound	column chromatography
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_35504	http://purl.obolibrary.org/obo/CHMO_0001001
+Study Factor Type Term Source REF	CHEBI	CHMO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14519_LC-MS_positive_reverse-phase-2.txt	a_MTBLS14519_LC-MS_positive_reverse-phase-3.txt	a_MTBLS14519_LC-MS_negative_reverse-phase.txt	a_MTBLS14519_LC-MS_negative_reverse-phase-3.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Bruker Elute UHPLC system;Kinetex C18 100 Å (1.7 µm, 2.1 mm x 100 mm; Phenomenex);reverse phase;positive;20-1300;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight	Bruker Elute UHPLC system;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;ACQUITY UPLC HSS T3 VanGuard Pre-column (1.8 µm, 2.1 mm x 5 mm; Waters);positive;20-1300;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight	Bruker Elute UHPLC system;Kinetex C18 100 Å (1.7 µm, 2.1 mm x 100 mm; Phenomenex);reverse phase;negative;20-1300;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight	Bruker Elute UHPLC system;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;ACQUITY UPLC HSS T3 VanGuard Pre-column (1.8 µm, 2.1 mm x 5 mm; Waters);negative;20-1300;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight
+Comment[Assay Field Default Unit]	;;;;;;;	;;;;;;;;	;;;;;;;	;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002112;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000787;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002112;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000573;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002112;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000787;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002112;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000573;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS
+Comment[Assay Descriptor]				
+Comment[Assay Descriptor Term Accession Number]				
+Comment[Assay Descriptor Term Source REF]				
+Comment[Assay Descriptor Category]				
+Comment[Assay Descriptor Source]				
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>DBS samples were prepared at the BIOMIC lab of Aristotle University of Thessaloniki. To evaluate the recovery and accurate annotation of biomarkers from biological specimens, venipuncture whole blood samples from 10 healthy male individuals were divided into two aliquots. One aliquot of the sample (200 μL) was spiked with a mixture of 12 endogenous metabolites (at various concentration levels for each individual) and a mixture of 8 exogenous compounds (at various concentration levels for each individual). Another aliquot (200 μL)&nbsp; was kept unspiked. Twenty (20) μL of the samples were spotted on Whatman cards.</p>	<p>Extracts were analyzed using the harmonized method established at Helmholtz Munich (HMGU). Chromatographic separation was performed on a Phenomenex Kinetex C18 column (100×2.1 mm, 1.7 µm) maintained at 40°C with a flow rate of 0.5 mL/min. The mobile phase consisted of 0.1% formic acid in water (A) and 0.1% formic acid in acetonitrile (B).</p><p>The linear gradient was programmed as follows: an initial hold at 5% B for 1.5 min, followed by a linear increase to 99.9% B over 8.5 min. This composition was held for 2.0 min before returning to initial conditions (5% B) at 12.1 min, with a final re-equilibration period of 2.9 min, totaling a 15-min run time.</p><p><br></p><p>Regarding the in-house method, reverse phase separation was performed using an Acquity UPLC HSS-T3 (C18), 1.8 µm particle size, 2.1 × 100 mm column (Waters, Milford, MA, USA). The aqueous mobile phase was 0.1% formic acid in water (solvent A) and the organic one was 0.1% formic acid in methanol (solvent B). The mobile phase gradient was as follows (percentage of solvent B): 0% from 0 to 1.5 min, linearly increased to 10% from 1.5 to 4 min, linearly increased to 40% from 4 to 8 min, linearly increased to 100% from 8 to 12 min, and held at 100% from 12 to 14 min. Three minutes of equilibration in the initial conditions followed. The flow rate was kept at 0.35 mL/min. The injection volumes were 10 µL for the extraction optimization study and 20 µL for the BµS device and plasma comparison study.</p>	<p>Data processing was performed using the original data format on Metaboscape 2025b.</p>	<p>Frozen samples were thawed on ice, and the entire dried blood spot (20 μL) was transferred to a reaction tube. The spots were first extracted in 100 μL of water via sonication for 10 min in an ice-cooled bath, followed by centrifugation (14,000 rpm, 10 min, 0°C). After adding 400 μL of methanol, the samples were sonicated for an additional 10 min under the same conditions.</p><p>The DBS cards were then removed, and the mixture was centrifuged (14,000 rpm, 10 min, 0°C). The resulting supernatant was divided into two aliquots for the respective chromatographic methods, with 50 μL from each sample pooled to create QC samples. All extracts were evaporated to dryness. Finally, samples were reconstituted in 200 μL of either ACN/H2O (20:80) for the harmonized method or MeOH/H2O (5:95) for the in-house method.</p>	<p>The TIMS-qTOFMS was operated in data-dependent acquisition mode with a 20-to-1300 m/z scanning mass range. PASEF was performed in two ramps with a cycle time of 0.69 seconds. TIMS ramp was set with 1/k0 values going from 0.10 V.s/cm2 to 1.50 V.s/cm2 in 100 ms.</p><p>The electrospray ionization (ESI) source was operated in positive and negative ion mode. For the positive mode, the following parameters were employed: end plate offset 500 V, capillary voltage 4500 V, nebulizer gas pressure 2.2 bars, drying gas flow rate 10 L/min, temperature 220 C, and quadrupole energy 5.0 eV. For the negative mode, end plate offset was 500 V, capillary voltage 3600 V, nebulizer gas pressure 2.2 bars, drying gas flow rate 10 L/min, temperature 220 C, and quadrupole energy 5.0 eV.</p><p>The collision-induced decay energy was set for each mass range. Sodium formate solution (10 mM) and AgilentTM calibrant mix were used for calibration by direct infusion into the MS at a 10 μL/h flow rate for the first 0.5 min of every injection.</p>	<p>Metabolite identification was performed in Metaboscape 2025b using GNPS (https://www.nature.com/articles/nbt.3597) and MSDial (https://www.nature.com/articles/nmeth.3393).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gika	Silva	Thaitumu	Theodoridis
+Study Person First Name	Helen	Daniel	Marlene	Georgios
+Study Person Mid Initials		M. S.	N	
+Study Person Email	gkikae@auth.gr	dmarque@auth.gr	mthai@auth.gr	gtheodor@auth.gr
+Study Person Phone				
+Study Person Fax				
+Study Person Address			School of Medicine, Aristotle University of Thessaloniki, 54124 Thessaloniki, Greece.	Department of Chemistry, Aristotle University of Thessaloniki, 54124 Thessaloniki, Greece.
+Study Person Affiliation	Aristotle University of Thessaloniki	Aristotle University of Thessaloniki	Aristotle University of Thessaloniki	Aristotle University of Thessaloniki
+Study Person Roles	Principal Investigator	Author	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-1893-937X	0000-0002-9674-042X	0009-0004-7616-7875	0000-0002-2015-108X
+Comment[Study Person Affiliation ROR ID]	https://ror.org/02j61yw88			https://ror.org/02j61yw88

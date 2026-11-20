@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	NCIT	MTBLS	EFO	SNOMED	T4FS	OBI	LOINC	FDC-GDMT
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/ontology	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org	http://data.bioontology.org
+Term Source Version			1.0	132			29		
+Term Source Description			Metabolights Ontology	Experimental Factor Ontology			Ontology for Biomedical Investigations		
+INVESTIGATION
+Investigation Identifier	MTBLS11250
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-09-27
+Investigation Public Release Date	2024-10-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11250
+Study Title	G6PD deficiency triggers dopamine loss and the initiation of Parkinson’s Disease pathogenesis
+Study Description	Loss of dopaminergic neurons in Parkinson’s disease (PD) is preceded by loss of synaptic dopamine (DA) and accumulation of proteinaceous aggregates. Linking these deficits is critical to restoring DA signaling in PD. Using murine and human pluripotent stem cell (hPSC) models of PD coupled with human postmortem tissue, we show that accumulation of a-syn micro-aggregates impairs metabolic flux through the pentose phosphate pathway (PPP). This leads to decreased NADPH and GSH levels, resulting in DA oxidation and decreased total DA levels. We find that a-syn anchors the PPP enzyme G6PD to synaptic vesicles via the a-syn C-terminus, and that this interaction is lost in PD. We find G6PD clinical mutations are associated with PD diagnosis, and G6PD deletion phenocopies PD pathology. Finally, we find that restoring NADPH or GSH levels through genetic and pharmacological intervention blocks DA-oxidation and rescues steady-state DA levels identifying G6PD as a pharmacological target against PD.
+Study Submission Date	2024-09-27
+Study Public Release Date	2024-10-18
+Study File Name	s_MTBLS11250.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	hiPSC cell	Parkinson Disease	Alpha-Synuclein	targeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/BTO_0006081	http://purl.obolibrary.org/obo/NCIT_C26845	http://purl.obolibrary.org/obo/NCIT_C90119	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	BTO	NCIT	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Morgan G. Stykel, Shehani V. Siripala, Eric Soubeyrand, Carla L. Coackley, Ping Lu, Suelen Camargo, Sharanya Thevasenan, Gerardo Balderas Figueroa, Raphaella W.L. So, Erica Stuart, Rachi Panchal, Elissavet-Kalliopi Akrioti, Jeffery Joseph, Omid Haji-Ghassemi, Era Taoufik, Tariq A. Akhtar, Joel C. Watts, Scott D. Ryan
+Study Publication Title	G6PD deficiency triggers dopamine loss and the initiation of Parkinson’s Disease pathogenesis
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://vocab.fairdatacollective.org/gdmt/Submitted
+Study Publication Status Term Source REF	FDC-GDMT
+STUDY FACTORS
+Study Factor Name	Genotype	timepoint
+Study Factor Type	Genotype	timepoint
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16631	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11250_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Humanisogenic induced pluripotent stem cell were labeled with either 5 mM U-C13-Glucose or [1,2]-C13-Glucose for 24 or 3 h.</p>	<p>Metabolites were extracted with a cold solvent of 80:20 methanol:H2O.</p>	<p>Chromatographical separation of metabolites is performed on Zorbax SB-C18 UHPLC column (2.1 mm x 50 mm x 1.8 um, Agilent, Part number 822700-902) at the flow rate of 600 uL/min using a binary solvent system: solvent A, 10 mM tributylamine, 10 mM acetate pH 7.5 in 97/3% (v/v) mass spectrometry grade water/methanol and solvent B, mass spectrometry grade acetonitrile. The gradient is 0 min, 0% B; 1 min, 0% B; 2 min, 25% B; 3.5 min, 25% B; 5 min, 55% B; 6.5 min, 55% B; 8.5 min, 100% B; 10 min, 100% B; 11 min, 0% B. Sample injection volume is 2 uL.</p>	<p>Metabolic analysis is performed on a Q Exactive Hybrid Quadrupole-Orbitrap Mass Spectrometer (Thermo-Fisher). The mass spectrometer was run in negative full scan mode at a resolution of 140,000 scanning from 50-750 m/z.</p>	<p>Metabolite data is analyzed by El-MAVEN software package. </p>	<p>Metabolites is identified by matching observed m/z signals (+/-10ppm) and chromatographic retention times to those observed from commercial metabolite standards (LMSLSTM Sigma-Aldrich). </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Stykel	Siripala	Soubeyrand	Coackley	Lu	Camargo	Thevasenan	Figueroa	So	Stuart	Panchal	Akrioti	Joseph	Haji-Ghassemi	Taoufik	Akhtar	Watts	Ryan
+Study Person First Name	Morgan	Shehani	Eric	Carla	Ping	Suelen	Sharanya	Gerardo	Raphaella	Erica	Rachi	Elissavet-Kalliopi	Jeffery	Omid	Era	Tariq	Joel	Scott
+Study Person Mid Initials	G.	V.						Balderas	W.L.							A.	C.	D.
+Study Person Email					ping.lu1@ucalgary.ca													
+Study Person Phone																		
+Study Person Fax																		
+Study Person Address																		
+Study Person Affiliation	Department of Molecular and Cellular Biology, The University of Guelph, Guelph ON, Canada	Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada			Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada	Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada	Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada	Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada			Department of Biochemistry, University of Toronto, Toronto, ON, Canada	Laboratory of Cellular and Molecular Neurobiology-Stem Cells, Hellenic Pasteur Institute, Athens, Greece	Pathology and Laboratory Medicine, University of Calgary, Calgary, AB, Canada	Biological Sciences, University of Calgary, Calgary, AB, Canada	Laboratory of Cellular and Molecular Neurobiology-Stem Cells, Hellenic Pasteur Institute, Athens, Greece	Department of Molecular and Cellular Biology, The University of Guelph, Guelph ON, Canada		Departments of Clinical Neuroscience, University of Calgary, Calgary, AB, Canada
+Study Person Roles	Researcher	Researcher	Researcher	research manager	research manager	Technician	Student	Student	Researcher	Researcher	Researcher	Researcher	Researcher	Researcher	Researcher	Researcher	Researcher	Principal Investigator
+Study Person Roles Term Accession Number	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://purl.obolibrary.org/obo/T4FS_0000486	http://purl.obolibrary.org/obo/T4FS_0000486	http://purl.obolibrary.org/obo/NCIT_C63861	http://purl.bioontology.org/ontology/LNC/LP182271-9	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C75561	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://snomed.info/id/769038007	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	SNOMED	SNOMED	SNOMED	T4FS	T4FS	NCIT	LOINC	NCIT	SNOMED	SNOMED	SNOMED	SNOMED	SNOMED	SNOMED	SNOMED	SNOMED	SNOMED	NCIT

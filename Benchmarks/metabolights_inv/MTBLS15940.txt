@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0				2026-07-12	26.02d	2026-05-08	2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS15940
+Investigation Title	Effects of Drinking Water Quality on the Health of Mice of Different Ages and Strains
+Investigation Description	Multi-omics study
+Investigation Submission Date	2026-10-07
+Investigation Public Release Date	2026-10-07
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Liu
+Investigation Person First Name	Tanghao
+Investigation Person Mid Initials	
+Investigation Person Email	lth1996@sjtu.edu.cn
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	Room 3-205, Biopharmaceutical Sciences Building, Shanghai Jiao Tong University
+Investigation Person Affiliation	Shanghai Jiao Tong University
+Investigation Person Roles	Principal Investigator
+Investigation Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Investigation Person Roles Term Source REF	NCIT
+STUDY
+Study Identifier	MTBLS15940
+Study Title	Effects of Drinking Water Quality on the Health of Mice of Different Ages and Strains
+Study Description	Through long-term interventions involving drinking water of varying water quality, this study investigates the health effects on mice of different ages and strains, incorporating multi-omics data and phenotypic validation.
+Study Submission Date	2026-10-07
+Study Public Release Date	2026-10-07
+Study File Name	s_MTBLS15940.txt
+Comment[Created At]	2026-10-06
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-07
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Accela UHPLC System	Orbitrap Exploris 240	Mus musculus	colonic content	pooled quality control sample	experimental sample	untargeted analysis	Metabolomics	intervention design	parallel group design	factorial design
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000861	http://purl.obolibrary.org/obo/MS_1003094	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://www.ebi.ac.uk/metabolights/ontology/placeholder		http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/OBI_0000115	http://purl.obolibrary.org/obo/OBI_0500006	http://purl.obolibrary.org/obo/OBI_0500014
+Study Design Type Term Source REF	MTBLS	MS	NCBITaxon	MTBLS		CHMO	MS	EDAM	OBI	OBI	OBI
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type	omics-type	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	data-curation	data-curation	data-curation
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Tanghao Liu
+Study Publication Title	Effects of Drinking Water Quality on the Health of Mice of Different Ages and Strains
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Age	Strain	Water quality
+Study Factor Type	age	strain	Water Quality
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000246	http://www.ebi.ac.uk/efo/EFO_0005135	http://id.nlm.nih.gov/mesh/D060753
+Study Factor Type Term Source REF	EFO	EFO	mesh
+Comment[Study Factor Value Format]	ontology	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15940_LC-MS_positive_reverse-phase.txt	a_MTBLS15940_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Post Extraction];Parameter Value[Derivatization];Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Post Extraction];Parameter Value[Derivatization];Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	none;none;Thermo Scientific Accela UHPLC System;none;ACQUITY UPLC HSS T3 (1.7 µm, 2.1 mm x 100 mm, Waters);reverse phase;none;positive;70-1050;Orbitrap Exploris 240;electrospray ionization;orbitrap	none;none;Thermo Scientific Accela UHPLC System;none;ACQUITY UPLC HSS T3 (1.7 µm, 2.1 mm x 100 mm, Waters);reverse phase;none;negative;70-1050;Orbitrap Exploris 240;electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;;;;;;;;	;;;;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000861;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002077;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;;http://purl.obolibrary.org/obo/MS_1003094;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484	;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000861;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002077;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;;http://purl.obolibrary.org/obo/MS_1003094;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	;;MTBLS;;MTBLS;MTBLS;;;;MS;MS;MS	;;MTBLS;;MTBLS;MTBLS;;;;MS;MS;MS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	sample collection protocol	extraction protocol	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005518	http://purl.obolibrary.org/obo/OBI_0000652	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	EFO	OBI	CHMO	CHMO	OBI	MI
+Study Protocol Description	Mice received four drinking water types for 5 months. At the endpoint, colonic contents were collected aseptically, snap-frozen in liquid nitrogen, and stored at -80°C for metabolomic profiling.	For solid colonic contents, 100 mg sample was placed in a 2 mL centrifuge tube with one 6 mm diameter grinding bead. Metabolites were extracted with 800 uL of methanol/water (4:1, v/v) containing four internal standards including L-2-chlorophenylalanine (0.02 mg/mL). Samples were ground in a frozen tissue grinder for 6 min (-10°C, 50 Hz), followed by low-temperature ultrasonic extraction for 30 min (5°C, 40 kHz). Samples were left at -20°C for 30 min and centrifuged at 4°C, 13000 g for 15 min. The supernatant was transferred to an injection vial for LC-MS/MS analysis. No derivatization was performed.	Metabolites were separated on a Thermo Scientific UHPLC-Orbitrap Exploris 240 system equipped with an ACQUITY UPLC HSS T3 column (1.7 µm, 2.1 mm x 100 mm, Waters). Mobile phase A was 0.1% formic acid in water/acetonitrile (95:5, v/v). Mobile phase B was 0.1% formic acid in acetonitrile/isopropanol/water (47.5:47.5:5, v/v/v). The flow rate was 0.40 mL/min and the column temperature was 40°C. The injection volume was 3 uL. The LC gradient was the standard Majorbio untargeted metabolomics gradient; the exact time/%B program should be confirmed from the raw data acquisition method.	Untargeted metabolomic profiling was performed on a Thermo Scientific Orbitrap Exploris 240 mass spectrometer with an electrospray ionization source operating in positive and negative modes. The scan range was m/z 70-1050. Positive ion spray voltage was 3500 V and negative ion spray voltage was -3000 V. Sheath gas was 50 arb and auxiliary heating gas was 13 arb. The ion source heater temperature was 450°C. Normalized collision energy was 20-40-60 V for MS/MS. Data were acquired in data-dependent acquisition (DDA) mode.	Raw LC-MS data were processed with Progenesis QI (Waters Corporation, Milford, USA) for baseline filtering, peak picking, integration, retention time correction, and peak alignment. A data matrix containing retention time, m/z, and peak intensity was generated. MS and MS/MS spectra were matched against HMDB, Metlin, and the Majorbio in-house database. The data matrix was uploaded to the Majorbio Cloud Platform (cloud.majorbio.com). Features were retained if detected in at least 80% of samples in any group. Missing values were filled with the minimum value. Total sum normalization was applied. Features with QC RSD >30% were removed, followed by log10 transformation. PCA and OPLS-DA were performed using the R ropls package (Version 1.6.2) with 7-cycle cross-validation.	Metabolites were annotated against HMDB, Metlin, KEGG, LipidMaps, and the Majorbio in-house database. Differential metabolites were identified with VIP >1 from the OPLS-DA model and p <0.05 from Student's t-test. KEGG pathway annotation and enrichment analysis were performed, and Fisher's exact test was used to obtain the most relevant biological pathways. Key bile acids and tryptophan metabolites were targeted for validation.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu
+Study Person First Name	Tanghao
+Study Person Mid Initials	
+Study Person Email	lth1996@sjtu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Room 3-205, Biopharmaceutical Sciences Building, Shanghai Jiao Tong University
+Study Person Affiliation	Shanghai Jiao Tong University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

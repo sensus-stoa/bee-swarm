@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	GO	MTBLS	EFO	NCIT	CO_340	MS		CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO				http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version	29		1.0	132				18.10e	
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology	Experimental Factor Ontology				NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS1402
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-12-04
+Investigation Public Release Date	2020-10-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1402
+Study Title	Untargeted metabolomics links glutathione to bacterial cell cycle progression
+Study Description	Cell cycle progression requires the coordination of cell growth, chromosome replication, and division. Consequently, a functional cell cycle must be coupled with metabolism. However, direct measurements of metabolome dynamics remained scarce, in particular in bacteria. Here, we describe an untargeted metabolomics approach with synchronized Caulobacter crescentus cells to monitor the relative abundance changes of ~400 putative metabolites as a function of the cell cycle. While the majority of metabolite pools remains homeostatic, ~14% respond to cell cycle progression. In particular, sulfur metabolism is redirected during the G1-S transition, and glutathione levels periodically change over the cell cycle with a peak in late S phase. A lack of glutathione perturbs cell size by uncoupling cell growth and division through dysregulation of KefB, a K+/H+ antiporter. Overall, we here describe the impact of the C. crescentus cell cycle progression on metabolism, and in turn relate glutathione and potassium homeostasis to timely cell division.
+Study Submission Date	2019-12-04
+Study Public Release Date	2020-10-15
+Study File Name	s_MTBLS1402.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	high-performance liquid chromatography-mass spectrometry	cell cycle
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/GO_0007049
+Study Design Type Term Source REF	MTBLS	CHMO	GO
+STUDY PUBLICATIONS
+Study PubMed ID	32090198
+Study Publication DOI	10.1038/s42255-019-0166-0
+Study Publication Author List	Hartl J, Kiefer P, Kaczmarczyk A, Mittelviefhaus M, Meyer F, Vonderach T, Hattendorf B, Jenal U, Vorholt JA.
+Study Publication Title	Untargeted metabolomics links glutathione to bacterial cell cycle progression.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Time	Organism synonym
+Study Factor Type	Minutes	Synonym
+Study Factor Type Term Accession Number	http://www.cropontology.org/rdf/CO_340:0000478	http://purl.obolibrary.org/obo/NCIT_C52469
+Study Factor Type Term Source REF	CO_340	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1402_nano_LC-MS___metabolite_profiling.txt	a_MTBLS1402_microbore_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Prior to (cell-cycle) synchronization of Caulobacter crescentus, one sample of the pre-culture was obtained as a reference 12C extract, and one sample was spiked with 13C internal standard (see linked manuscript) to obtain a reference sample. Then, C. crescentus cells were cell cycle synchronized and incubated in Erlenmeyer flasks sitting in a shaking water bath and sampled at time points 5 min, 10 min, followed by 10 min intervals until 160 min after cell cycle release. At each time point, OD600 was determined and sampling volume for fast filtration was adjusted to yield biomass corresponding to 1 ml of OD600 of 1.0. </p><p>For quantification, an aliquot containing the same biomass of 13C internal standard was spiked into the respective quenching and extraction solution. Samples were further processed as described above and stored at -80 °C until measurement.&nbsp;In addition, for each analyzed batch, a set of reference samples containing 12C, 13C, and mixed extract were prepared; these where used to filter for Caulobacter specific signals (see <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7035108/' rel='noopener noreferrer' target='_blank'>study manuscript</a> and https://pypi.org/project/idms-pairfinder-2/).</p>	<p>C. crescentus cells were sampled, quenched and extracted employing the fast-filtration method. To this end, a culture volume corresponding to 1 ml OD600 of 1.0 was passed through a polyethersulfone filter (0.2 um, Sartorius Setim) placed on a vaccum-filtration apparatus. The medium was separated from cells and discarded as a flow through and cells were washed by quickly drawing 10 ml dH2O supplemented with 2 mM glucose through the filter. The filter situating bacterial cells was then immediately quenched in pre-cooled (-20 °C) glass bottles (Schott) containing 8 ml quenching and extraction solution (60/20/20 % V/V acetonitrile/methanol/dH2O acidified to a final concentration of 0.1M formic acid). Cells were extracted for 10 min on ice with repeated treatment in a bath sonifier (Branson). The filter was removed, and the extract was frozen in liquid nitrogen and lyophilized overnight at -48 °C. Finally, the dried extract was re-suspended in dH2O, centrifuged twice (10,000 g and 20,000 g, 10 min each, 4 °C) and was stored at -80 °C until further analysis.</p>	<p>Nanoscale HPLC-HRMS was performed with an nLC-ultra (Eksigent) chromatography system. Separation was achieved by ion pairing with a reverse-phase C18 column (Dr. Maisch Reprosil-Gold 120, 3 μm, 100 × 0.1 mm, Morvay Analytik) as a stationary phase. Mobile phase consisted of solvent A with 230 μM tributylamine (TBA) in dH2O with 3% methanol (TBA was first dissolved in 230 μM aqueous acetic acid; pH was adjusted to 9.0 with ammonium hydroxide). The eluent solvent B (50/50 % V/V mix of methanol/2-propanol) was used for the following multi-step gradient: 3 min 0 % B; 35 min 12 % B; 36 min 90 % B; 48 min 90 % B; 49 min 0 % B; 60 min 0 % B. The flow rate was 400 nl/min. For analysis, bacterial extracts were diluted (1:5) in solvent A to a concentration of 100 ng ul-1; 1 μl was injected.&nbsp;</p><p><br></p><p>Microbore UHPLC-HRMS was carried out employing a Dionex UltiMate 3000 chromatography (Thermo Scientific) coupled to a LTQ XL (Thermo Scientific) Orbitrap mass spectrometer with a heated electrospray ionization (HESI) probe. Separation was based on a protocol for hydrophilic interaction chromatography (HILIC) with a BEH amide column (130Å, 1.7 μm, 100 x 2.1 mm, Acquity). The mobile phase consisted of solvent C (95/5/5 % V/V of acetonitrile/methanol/ dH2O) and the eluent solvent A (50 % V/V mix of acetonitrile and dHf2O). Both solvents were buffered with 55 mM formic acid and 10 mM ammonium hydroxide. The gradient was: 1.5 min 85% C; 5.5 min 5% C; 7.5 min 5% C; 8.0 min 85% C; 10.0 min 85% C. For analysis, bacterial extracts were dried and concentrated in a vacuum concentrator (SpeedVac SVC100, Savant) and re-suspended in 85/15 % V/V of solvent C/A to a concentration of 2 μg/ul; 20 μl were injected.</p>	<p>Nanoscale HPLC-HRMS was performed with an nLC-ultra (Eksigent) chromatography system hyphenated to a Q Exactive Plus (Thermo Scientific) Orbitrap mass spectrometer with a electrospray ionization probe (ESI). ESI and mass spectrometer were operating in negative mode with a spray voltage of 2.1 kV without supplemental gas flows. The S-lens RF level was set to 50.0 and capillary temperature was 250°C. Mass acquisition was performed by data-independent Fourier transform mass spectrometry (FTMS) full scan mode (scan range m/z 100-1200) with a resolution of 70k (at m/z 200) and summing 3 micro-scans. For targeted tandem MS experiments, parallel reaction monitoring (PRM, resolution of 30k at m/z 200) was employed using pre-defined inclusion lists defining parent retention time (rt) and m/z windows (isolation width was set to m/z 0.5). Metabolites were fragmented using higher energy collisional dissociations (HCDs) with a normalized stepped collision energy (NCE; 25, 30, 35). Data-independent FTMS scans were obtained in parallel (resolution of 30k at m/z 200).</p><p><br></p><p>Microbore UHPLC-HRMS was carried out employing a Dionex UltiMate 3000 chromatography (Thermo Scientific) coupled to a LTQ XL (Thermo Scientific) Orbitrap mass spectrometer with a heated electrospray ionization (HESI) probe. HESI source and mass spectrometer were operating with an APCI vaporizer temperature of 400°C supported by sheath gas and aux gas flow of 50 and 20 respectively. The source voltage was 3.5 kV, the capillary temperature 275°C, the tube lens was set to 60.0. Mass spectrometer was acquiring in positive FTMS full scan mode with a resolution of 30k (at m/z 400) and a scan range of m/z 85-600. Targeted tandem MS experiments (resolution of 15k at m/z 400) were performed using MS/MS mass lists with preset parent rt and m/z values (isolation width was set to m/z 1.0). Metabolites were fragmented by collision-induced dissociation (CID) with a NCE of 25.0. Data-independent FTMS scans were obtained in parallel (resolution of 15k at m/z 400).</p>	<p>A semi-automated workflow was developed with the Python based framework eMZed2. A detailed description can be obtained from Supplementary Methods of the <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7035108/' rel='noopener noreferrer' target='_blank'>study manuscript</a> and at https://pypi.org/project/idms-pairfinder-2/. </p><p>Briefly, for each of the 6 sampled batches (i.e. three replicates of cell cycle synchronized and their respective asynchronous control cultures), a corresponding naturally labelled extract (12C), the u-13C enriched standard (13C) and mixture (mix) of both extracts were acquired with the two described, non-targeted LC-HRMS techniques. The data was converted to mzML files and was submitted to a workflow aiming at detection and isolation of extraction windows of U12C – U13C pairs corresponding to intracellular metabolites of C. crescentus. To this end, custom spectral processing and stable isotope assisted filtering was employed to build respective consensus tables containing the extraction windows (U12C-U13C pairs) of reproducibly detected metabolites for each applied LC-HRMS method.</p><p><br></p><p>Then, these tailored extraction tables were used for targeted extraction of respective unlabeled (12C) and fully labeled (13C) peak pairs of all detected metabolites throughout the time series of the batch. The targeted extraction algorithm allowed for minor retention time shifts occurring for data acquired by nano-scale LC-HRMS. Peak areas where then calculated using numerical integration with a trapezoid rule. As 12C extracts and 13C internal standards were normalized to a constant biomass during sampling, relative pool size R of metabolite i at time point t was calculated as the ratio of peak areas AU12C over AU13C. After processing of all samples, individual metabolites with high variability over time and between replicates were manually inspected and curated. As an additional quality criteria, peak pairs where the U13C signal did not exceed the limit of quantification (LOQ, 10x signal to noise) were discarded from analysis, and only metabolite features that contained &gt;75% U13C signals per time-series were considered for analysis. Spectral noise levels were determined for each individual measurement (for details see Supplementary Methods of the linked manuscript).</p><p><br></p>	<p>Potential metabolites were assigned to filtered isotope dilution mass spectrometry (IDMS) pairs by exact mass (0.003 Da) and by the number of carbon atoms deduced from the mass difference between M0 and MUL isotopologues. In case of adduct assignment missing, protonated or deprotonated ions were assumed depending on the ionization mode. In case no charge state could be assigned the charge states z = 1, 2, 3 were assumed and for each charge state the corresponding number of possible carbon atoms was calculated, respectively. Results were matched with KEGG data base5 and with a merged database consisting of an E. coli model (iML1515) merged with C. crescentus Seed model (Seed190650_1). Merging was required since seed model database was not manually curated and known core metabolites were missing in the model. Resulting annotations by database matching are listed in Supplementary Tables 1, 2 of the linked manuscript. Cell cycle dependent candidate features were further annotated using analytical standards (matching retention time), and/or tandem mass spectrometry followed by spectral matching using the dereplication workflow of GNPS (https://gnps.ucsd.edu/). Respective MS level 2 spectra were averaged over the elution window size of the LC-MS peak and 20 most intense spectral signals were picked for further analysis. All available spectral libraries from GNPS were initially queried with a precursor ion mass tolerance of 1 Da, a fragment ion mass tolerance of 0.5, a minimum of 5 matched peaks, and a minimum cosine score threshold of 0.7. If no match was acquired, search was extended to analogs with a maximum parent mass difference of 250 Da. Note that the metabolite tables listed here only describe metabolites that were flagged as cell-cycle dependent and that produced a database match; unknowns are not included but listed in the linked manuscript.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hartl	Kiefer	Kaczmarczyk	Mittelviefhaus	Meyer	Vonderach	Hattendorf	Jenal	Vorholt
+Study Person First Name	Johannes	Patrick	Andreas	Maximilian	Fabian	Thomas	Bodo	Urs	Julia A
+Study Person Mid Initials									
+Study Person Email	hartlj@ethz.ch								
+Study Person Phone									
+Study Person Fax									
+Study Person Address									
+Study Person Affiliation	ETH Zürich								
+Study Person Roles	First author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	MS								

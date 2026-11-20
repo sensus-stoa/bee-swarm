@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.86.0				2025-12-03	25.06e	2025-12-18
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS10568
+Investigation Title	EFFECT OF DIFFERENT POOLED QC SAMPLES ON DATA QUALITY DURING AN INTER-BATCH EXPERIMENT IN UNTARGETED UHPLC-HRMS ANALYSIS ON TWO DIFFERENT MS PLATFORMS
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-02-04
+Investigation Public Release Date	2026-02-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10568
+Study Title	EFFECT OF DIFFERENT POOLED QC SAMPLES ON DATA QUALITY DURING AN INTER-BATCH EXPERIMENT IN UNTARGETED UHPLC-HRMS ANALYSIS ON TWO DIFFERENT MS PLATFORMS
+Study Description	Quality control (QC) samples are commonly used in metabolomics approaches for three main reasons: (i) the initial conditioning of the column; (ii) the correction of analytical drift especially between batches; and (iii) the evaluation of measurement precision. In practice there are several ways to prepare and conserve QC samples. The most common in untargeted metabolomics is to pool samples after or before extraction, in order to obtain pooled QC samples accounting respectively for analytical variance or for both analytical and sample preparation variances. In this study, focusing on untargeted analysis of tea (Camellia sinensis) leaves, we compared three ways of preparing pooled QC samples (two usual and one unusual QC sample preparations) and their efficiency to improve data quality in terms of inter-batch correction, measurement precision, and VIP candidates selection on datasets obtained using two mass spectrometry (MS) technologies (Orbitrap and time of flight (QToF)). We also investigated the effect of data processing modalities, based on the different QC preparations, on data loss and on the global structure of the datasets. Generally, our results show that usual QC sample preparation leads to comparable datasets quality in terms of precision and dispersion in both MS instruments. They also show that QC preparation is crucial for VIP selection, in fact, up to 54% of biomarkers candidates are specific of the QC preparation type used for data processing.
+Study Submission Date	2026-02-04
+Study Public Release Date	2026-02-04
+Study File Name	s_MTBLS10568.txt
+Comment[Created At]	2024-07-01T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Quality control (QC)	Non-targeted analyses	liquid chromatography	Tea Leaf	Mass Spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0001004	http://purl.obolibrary.org/obo/NCIT_C87164	http://purl.obolibrary.org/obo/NCIT_C17156
+Study Design Type Term Source REF	MTBLS	MTBLS	CHMO	NCIT	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	39557686
+Study Publication DOI	10.1007/s00216-024-05646-6
+Study Publication Author List	Mélina Ramos, Valérie Camel, Even Le Roux, Soha Farah, Mathieu Cladiere
+Study Publication Title	Effect of different pooled qc samples on data quality during an inter-batch experiment in untargeted UHPLC-HRMS analysis on two different MS platforms.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	SampleType
+Study Factor Type	Tea
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C178191
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10568_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10568_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS10568_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt	a_MTBLS10568_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Commercial tea leaves (Camellia sinensis) samples were purchased from “Palais des Thés” (Paris, France). We compared three types of tea coming from China: the green tea ‘Long Jing Imperial’ (Zhejiang region), the oolong tea ‘Osmanthus d’Or Huang Jin Gui’ (Fujian region), and the black tea ‘Grand Yunnan Imperial’ (Yunnan region). Tea leaves were ground using a porcelain mortar and pestle prior storage at 4 °C. A tea mix of an equal mass of the ground three tea types was also prepared for quality control purpose and stored at 4 °C.</p>	<p>Samples were extracted using a method based on previous work (Cladière et al. 2018): 1 g of each tea sample was weighted in a 15 mL centrifuge tube and 5 mL of an ACN/MeOH (90/10 v/v) mixture acidified with 0.1% FA were added to each sample for extraction. Tubes were then agitated upside-down on an agitator plate for 1 h, and centrifuged at 3000 g for 10 min. Then 2 mL of the supernatant were collected and evaporated to dryness under a gentle nitrogen stream at 30 °C. The extract was reconstituted in 0.4 mL of ACN acidified with 0.1% FA and completed by 1.6 mL of water acidified with 0.1% FA, leading to a total volume of 2 mL. The reconstituted extract was then diluted by 20 in ACN/water acidified (20/80 v/v). Then, 0.45 mL was collected and filtered at 0.2 μm using a syringeless filter vial (mini-uniprep G2, Whatman) before analysis. All extractions were performed in triplicate. A blank sample was prepared for each extraction batch going through all the extraction step but without adding tea on the extraction solvent in the first step.</p><p>Three different types of QC preparations were made with an increasing variability to compare their performances: </p><p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pooled extract QC samples (QCe): made by pooling together 0.5 mL of all final extracts of the three tea types considered in both analytical sequences; one single QCe was prepared and aliquots were stored at -20 °C between the two analytical sequences.</p><p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pooled leaves QC samples (QCf): made by extracting 1g of the mix of the three tea types. QCf were prepared with the extraction of the tea samples following the same protocol for each sequence on the day before LC-MS analysis. For each sequence the tea mix was extracted in duplicates, and the two extracts were pooled together before filtering in order to obtain the final QCf. This QCf type is planned to be used as Long-term QC sample, it shows both technical and sample preparation variability so it is expected to be more variable than QCe type.</p><p>3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batch QC samples (QCb): made by pooling together 0.5 mL of all final extracts considered in each analytical sequence; green + oolong tea extracts for QCb injected in batch 1, and oolong + black tea extracts for QCb injected in batch 2. This QC type is expected to present more variability as QCb injected in batch 1 is different from the one injected in batch 2.</p><p>Aliquots of 0.45 mL of each QC type were sampled and filtered using a syringeless filter vial.</p>	<p>Please update this protocol descriptionFor each platform, the injection volume was 5 μL and separation was achieved on a C18-PFP column (150 × 2.1 mm, 2 μm particles diameter, ACE supplied by AIT France). The same chromatographic gradients, one in positive ionisation&nbsp;mode and one in negative ionisation mode, were used on both instruments as described in previous work (Delaporte, Cladière, et Camel 2019). </p>	<p>All samples were analysed on two UHPLC-HRMS platforms. The first is a Waters® Acquity UPLC® H-Class system coupled to a Waters® high resolution Time of Flight mass spectrometer Xevo® G2-S QToF operated in centroid mode (resolution of 30,000 FWHM at m/z 200, m/z range from 60 to 800, 10 scans/sec) using an electrospray ion source (ESI). The second is a Thermo Scientific UltiMate 3000 UHPLC system coupled to a QExactiveTM Orbitrap mass spectrometer operated in centroid mode (resolution of 70,000 FWHM at m/z 200, m/z range from 60 to 800) with a heated electrospray ion source (HESI). For the Orbitrap MS method “AGC target” and “Maximum IT” parameters were set to 106 and 200 msec respectively. </p>	<p>For both instruments, data were acquired in RAW format. They were then converted to “.mzML” using the MSConvertGUI software (ProteoWizard) (Chambers et al. 2012) in order to upload and process data using Galaxy Workflow4Metabolomics platform (Giacomoni et al. 2015).</p>	<p>No identification was performed but standards were used for development so they are added to this study for comparison.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	RAMOS	CAMEL	LE ROUX	FARAH	CLADIERE
+Study Person First Name	Mélina	Valérie	Even	Soha	Mathieu
+Study Person Mid Initials					
+Study Person Email	melina.ramos@agroparistech.fr	valerie.camel@agroparistech.fr	even.leroux@agroparistech.fr	soha.farah@agroparistech.fr	Mathieu.Cladiere@agroparistech.fr
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation	Université Paris-Saclay, INRAE, AgroParisTech, UMR SayFood, 91120 Palaiseau, France	Université Paris-Saclay, INRAE, AgroParisTech, UMR SayFood, 91120 Palaiseau, France	Université Paris-Saclay, INRAE, AgroParisTech, UMR SayFood, 91120 Palaiseau, France	Université Paris-Saclay, INRAE, AgroParisTech, UMR SayFood, 91120 Palaiseau, France	Université Paris-Saclay, INRAE, AgroParisTech, UMR SayFood, 91120 Palaiseau, France
+Study Person Roles	Principal Investigator	Investigator	Technician	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C63861	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-1059-7467				0000-0002-7555-0918
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03xjwb503				https://ror.org/03xjwb503
+Comment[Study Person Alternative Email]	melina.ramos66@gmail.com				

@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MSIO	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version	2025-10-21	3.88.0		1.0.1	25.06e	2025-12-18	
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS14137
+Investigation Title	LC_MS Dataset for Morin Detection in Phoebe Wood Extracts, Enzyme Assays and Transgenic Populus
+Investigation Description	
+Investigation Submission Date	2026-03-25
+Investigation Public Release Date	2026-03-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14137
+Study Title	LC_MS Dataset for Morin Detection in Phoebe Wood Extracts, Enzyme Assays and Transgenic Populus
+Study Description	<p>This dataset contains LC-MS data generated for the detection of morin in plant tissues and enzymatic reactions related to flavonoid biosynthesis. The samples include methanol extracts of wood tissues from Phoebe species (including Phoebe zhennan and related Lauraceae species), in vitro enzyme reaction products of Phoebe zhennan flavonoid biosynthetic enzymes (F3H, F3_H_like, and FLS), and metabolite extracts from transgenic Populus callus expressing the P. zhennan F3_H_like gene. Wood tissues and callus samples were extracted using methanol prior to LC_MS analysis.</p>
+Study Submission Date	2026-03-25
+Study Public Release Date	2026-03-26
+Study File Name	s_MTBLS14137.txt
+Comment[Created At]	2026-03-10
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-03-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolite profiling	Multi-omics study
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/PRIDE_0000461
+Study Design Type Term Source REF	CHMO	MSIO	PRIDE
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Lingfei Kong, Qin Song, Shaoming Liang, Tao Ma, Keming Luo
+Study Publication Title	Multi-omics analysis uncovers the molecular basis of ‘Golden-thread’ formation in Phoebe zhennan stems
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Enzyme	Genotype
+Study Factor Type	enzyme	genotype
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000427	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14137_LC-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>LC–MS analysis was performed using an ACQUITY UPLC system coupled to a SYNAPT XS mass spectrometer (Waters Corp., Milford, MA, USA). Chromatographic separation was achieved on an ACQUITY UPLC HSS T3 column (1.8 μm; Waters) maintained at 40 °C. The flow rate was 0.30 mL/min, and the injection volume was 1 μL.</p><p>The mobile phase consisted of solvent A (0.1% formic acid in water) and solvent B (acetonitrile). The gradient program was as follows: 10% B from 0-0.5 min, increased to 95% B at 13.0 min, held at 95% B until 16.5 min, returned to 10% B at 17.0 min, and equilibrated until 20.0 min.</p>	<p>Raw LC–MS data were acquired using MassLynx software (version 4.2, Waters Corp., Milford, MA, USA). No data transformation, normalization, or format conversion was applied prior to deposition. All files are provided in the original vendor-specific raw format to ensure full data transparency and allow independent reanalysis.</p>	<p>Prior to LC–MS analysis, all samples were subjected to methanol-based extraction. Wood tissues from Phoebe species and transgenic Populus callus were ground into fine powder under liquid nitrogen, followed by extraction with methanol. The mixtures were vortexed thoroughly and centrifuged to remove insoluble debris, and the resulting supernatants were collected for analysis.</p><p>For in vitro enzymatic assays, reaction mixtures containing flavonoid biosynthetic enzymes (F3H, F3′H-like, and FLS) were incubated under defined conditions and terminated by the addition of methanol. After centrifugation, the supernatants were directly used for LC–MS detection.</p><p>Authentic standards, including morin and relevant flavonoid intermediates, were analyzed to confirm retention times and fragmentation patterns.</p>	<p>Mass spectrometric analysis was performed using a SYNAPT XS quadrupole time-of-flight mass spectrometer (Waters Corp., Milford, MA, USA) equipped with an electrospray ionization (ESI) source. The instrument was operated in negative ionization mode. Full-scan TOF-MS data were acquired over an m/z range of 50-1000 with a scan time of 0.10 s.</p><p>The source parameters were set as follows: capillary voltage, 2.6 kV; sampling cone voltage, 40 V; source temperature, 130 °C; desolvation temperature, 450 °C; cone gas flow, 80 L/h; and desolvation gas flow, 800 L/h. Collision-induced dissociation (CID) was performed with a collision energy ramp of 15–60 eV depending on precursor ion mass.</p>	<p>Metabolite identification was performed based on comparisons with authentic reference standards rather than database-driven annotation. Seven commercially available flavonoid standards, including naringenin, dihydrokaempferol, dihydromorin, dihydroquercetin, kaempferol, morin, and quercetin, were used.</p><p>Target metabolites in samples were identified by matching retention times and mass spectral features (including precursor and, where applicable, fragment ions) with those of the corresponding standards analyzed under identical LC–MS conditions. No external spectral or metabolite databases were used for annotation.</p>	<p>Samples were derived from three sources: (i) wood tissues of Phoebe species, including Phoebe zhennan and related Lauraceae species; (ii) in vitro enzymatic reaction mixtures containing recombinant flavonoid biosynthetic enzymes from P. zhennan (F3H, F3′H-like, and FLS); and (iii) metabolite extracts from transgenic Populus callus expressing the P. zhennan F3′H-like gene.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Lingfei	Keming
+Study Person First Name	Kong	Luo
+Study Person Mid Initials		
+Study Person Email	klf306037@126.com	kemingl@swu.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		Chongqing Key Laboratory of Forest Resource Innovation and Utilization
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

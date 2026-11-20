@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CCO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	TXPO
+Term Source File	http://www.bio.ntnu.no/ontology/CCO/cco.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/txpo.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08	2022/12/07
+Term Source Description	Cell Cycle Ontology	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	TOXic Process Ontology (TXPO)
+INVESTIGATION
+Investigation Identifier	MTBLS14676
+Investigation Title	TRIM47 promotes cardiac ischemia/reperfusion injury
+Investigation Description	
+Investigation Submission Date	2026-06-05
+Investigation Public Release Date	2026-08-28
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14676
+Study Title	TRIM47 promotes cardiac ischemia/reperfusion injury
+Study Description	This study shows that TRIM47 is upregulated in cardiomyocytes during cardiac I/R injury in an EGR1-dependent manner, correlating with injury severity. Cardiomyocyte-specific TRIM47 overexpression worsens, while TRIM47 knockout alleviates, I/R-induced cardiac injury and dysfunction. Mechanistically, TRIM47 promotes K63-linked ubiquitination of FOXO1 at lysine 210, inducing its nuclear translocation. Nuclear FOXO1 then inhibits HNF4A transcriptional activity, leading to mitochondrial dysfunction, fatty acid oxidation defects, and aggravated cardiac injury. Therapeutic knockdown of TRIM47 after I/R injury effectively prevents cardiac remodeling and dysfunction. The TRIM47/FOXO1/HNF4A axis represents a promising therapeutic target for cardiac I/R injury.
+Study Submission Date	2026-06-05
+Study Public Release Date	2026-08-28
+Study File Name	s_MTBLS14676.txt
+Comment[Created At]	2026-06-05
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-28
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Ubiquitination	TRIM47	mitochondrial dysfunction	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Orbitrap Exploris 120	Mus musculus	heart	experimental blank	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/NCIT_C19358	http://identifiers.org/ncbigene/91107	http://purl.obolibrary.org/obo/TXPO_0002361	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://purl.obolibrary.org/obo/NCBITaxon_10090			http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MSIO	NCIT	CCO	TXPO	MTBLS	MTBLS	NCBITaxon			MS	EDAM
+Comment[Study Design Category]	default	default	default	default	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Can Hu, Lufang Wang, Wei Sun, Yishu Song, Xueke Li, Ziming Zhang, Xin Zhang, Li Zhang
+Study Publication Title	TRIM47 promotes cardiac ischemia/reperfusion injury
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	numeric
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14676_LC-MS_positive_hilic.txt	a_MTBLS14676_LC-MS_negative_hilic.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;Hypersil GOLD aQ (1.9 µm, 2.1 mm x 100 mm; Thermo Scientific);HILIC;positive;50-1200;Thermo Scientific Orbitrap Exploris 120	Thermo Scientific Vanquish UHPLC System;Hypersil GOLD aQ (1.9 µm, 2.1 mm x 100 mm; Thermo Scientific);HILIC;negative;50-1200;Thermo Scientific Orbitrap Exploris 120
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000822;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000822;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Following cervical dislocation for euthanasia, the mouse was placed in a supine position. A midline thoracotomy was performed to expose the thoracic cavity. The pericardium was carefully opened to visualize the heart. The whole heart was excised, gently rinsed with ice-cold PBS to remove residual blood, and promptly transferred into a pre-chilled cryovial or fixative solution. The harvested tissue was immediately labeled and transported on dry ice or in liquid nitrogen to maintain RNA/protein integrity. All instruments were cleaned between samples to prevent cross-contamination.'</p>	<p>UHPLC-MS/MS analyses were performed using a Vanquish UHPLC system (ThermoFisher, Germany) coupled with an Orbitrap Exploris 120 mass spectrometer (Thermo Fisher, Germany) in Bioyi Biotechnology Co., Ltd. Wuhan, China.Samples were injected onto aHypersil Goldcolumn (100×2.1 mm, 1.9μm) using a 12-min linear gradient at a flowrate of 0.2 mL/min. The eluents for the positive polarity mode were eluent A (0.1%FA in Water) and eluent B (Methanol). The eluents for the negative polarity modewere eluent A (5 mM ammonium acetate, pH 9.0) and eluent B (Methanol ).The solvent gradient was set as follows: 2% B, 1.5 min; 2-85% B, 3 min; 85-100% B, 10min;100-2% B, 10.1 min;2%</p><p>B, 12 min.</p>	<p>The raw data files generated by UHPLC-MS/MS were processed using the Compound Discoverer 3.3 (CD3.3, ThermoFisher) to perform peak alignment, peak picking, and quantitation for each metabolite. The main parameterswere set as follows:peak area was corrected with the first QC, actual mass tolerance, 5ppm; signal intensity tolerance, 30%; and minimum intensity, et al. After that, peak intensities were normalized to the total spectral intensity.The normalized data was used to predict the molecular formula based on additive ions, molecular ion peaks and fragment ions. And then peaks were matched with the mzCloud (https://www.mzcloud.org/)&nbsp;</p><p>mzVault and MassList database to obtain the accurate qualitative and relative quantitative results.Statistical analyses were performed using the statistical software R (R version R-3.4.3), Python (Python 2.7.6 version) and CentOS (CentOS release 6.6), When data were not normally distributed, standardize according to the formula: sample raw quantitation value / (The sum of sample metabolite quantitation value /The sum of QC1 sample metabolite quantitation value ) to obtain relative peak areas; And compounds whose CVs of relative peak areas in QC samples were greater than 30% were removed, and finally the metabolites' identification and relative quantification results were obtained.</p>	<p>Tissues (100 mg) were individually grounded with liquid nitrogen and the homogenate was resuspended with prechilled 80% methanol by well vortex. The samples were incubated on ice for 5 min and then were centrifuged at 15,000 g, 4°C for 20 min. Some of supernatant was diluted to final concentration containing 53% methanol by LC-MS grade water.The samples were subsequently transferred to a fresh Eppendorf tube and thenwere centrifuged at 15000 g, 4°C for 20 min. Finally, the supernatant was injected into the LC-MS/MS system analysis</p>	<p>Q ExactiveTM&nbsp;HF mass spectromete r was operated in positive/negative polarity mode with spray voltage of 3.5 kV, cap illarytemperature of 320°C, sheath gas flow rate of 35 psi and aux gas flow rate of 10L/min, S-lens RF level of 60, Aux gas heater temperature of 350°C.</p>	<p>These metabolites were annotated using the KEGG database (https://www.genome.jp/kegg/pathway.html)&nbsp;, HMDB database (https://hmdb.ca/ metabolites) and LIPIDMaps database (http://www.lipidmaps.org/). Principal components analysis (PCA) and Partial least squares discriminant analysis (PLS-DA)</p><p>were performed at metaX[6]&nbsp;(a flexible and comprehensive software for processing metabolomics data).We applied univariate analysis (t-test) to calculate the statistical significance (P-value).The metabolites with VIP &gt; 1 and P-value&lt; 0.05 and fold change≥2 or FC≤0.5 were considered to be differential metabolites. Volcano plots were used to filter metabolites of interest which based on log2(FoldChange) and -log10(p-value) of metabolites by&nbsp;ggplot2&nbsp;in R language.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hu
+Study Person First Name	Can
+Study Person Mid Initials	
+Study Person Email	1092749312@qq.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Department of Ultrasound Medicine, Union Hospital, Tongji Medical College, Huazhong University of Science and Technology
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

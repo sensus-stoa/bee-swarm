@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	DOID	EFO	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://www.ebi.ac.uk/ols4/api	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mondo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description	Chemical Methods Ontology		Experimental Factor Ontology	Mondo Disease Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12868
+Investigation Title	MassVision: An open-source end-to-end platform for AI-driven mass spectrometry image analysis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-18
+Investigation Public Release Date	2025-09-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12868
+Study Title	MassVision: An open-source end-to-end platform for AI-driven mass spectrometry image analysis
+Study Description	<p>This dataset contains 10 Desorption Electrospray Ionization Mass Spectrometry Imaging (DESI-MSI) slides from cross-sections of surgically resected colorectal tissues with cancer and adjacent normal. The data is released with MassVision software platform for exploration and analysis of MSI data. Primary publication for citation: Jamzad et al., Analytical Chemistry 2025. Methods reference for acquisition conditions: Kaufmann et al., Metabolites 2023.&nbsp;Please cite BOTH papers when using this dataset, in whole or in part, in any publications or presentations.</p>
+Study Submission Date	2025-08-18
+Study Public Release Date	2025-09-19
+Study File Name	s_MTBLS12868.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-09-19
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	desorption electrospray ionisation mass spectrometry	mass spectrometry imaging	colorectal cancer
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000484	http://purl.obolibrary.org/obo/MS_1002521	http://purl.obolibrary.org/obo/DOID_9256
+Study Design Type Term Source REF	CHMO	MS	DOID
+STUDY PUBLICATIONS
+Study PubMed ID	40966530	37110166
+Study Publication DOI	10.1021/acs.analchem.5c04018	10.3390/metabo13040508
+Study Publication Author List	Jamzad A, Warren J, Syeda A, Kaufmann M, Iaboni N, Nicol CJB, Rudan JF, Ren KYM, Hurlbut D, Varma S, Fichtinger G, Mousavi P.	Kaufmann Martin, Iaboni Natasha, Jamzad Amoon, Hurlbut David, Ren Kevin Yi Mi, Rudan John F., Mousavi Parvin, Fichtinger Gabor, Varma Sonal, Caycedo-Marulanda Antonio, Nicol Christopher J. B.
+Study Publication Title	MassVision: An Open-Source End-to-End Platform for AI-Driven Mass Spectrometry Imaging Analysis.	Metabolically Active Zones Involving Fatty Acid Elongation Delineated by DESI-MSI Correlate with Pathological and Prognostic Features of Colorectal Cancer
+Study Publication Status	published	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	LVI
+Study Factor Type	Lymphovascular Invasion Indicator
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C156505
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12868_MSImaging___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Human colorectal cancer tissue was prospectively collected from 10 patients undergoing surgical resection at Kingston Health Sciences Centre (2020–2021), under HSREB approval Queen’s University File No. 6018391; informed consent obtained. Tissue was sampled immediately after receipt in pathology, keeping cold ischemic time &lt; 20 min. For this dataset we include one resection tissue section per patient (no biopsy data).&nbsp;</p>	<p> Tissues were embedded in an optimal cutting temperature (OCT) medium, flash-frozen, and cryosectioned to a 10 µm thickness on uncharged slides. The slides were stored at −80 °C until DESI analysis.</p>	<p>MSI was performed in negative ion mode on a Waters Xevo G2-XS ToF fitted with a Prosolia 2D DESI source (high-performance sprayer, heated inlet). Solvent: 95% (v/v) methanol/water containing 0.05 ng/µL leucine-enkephalin delivered by syringe pump at 2.25 µL/min. Acquisition range:m/z 50–1500. Spatial resolution:100 × 100 µm. Stage speed:175 µm/s. Source temp:100 °C; capillary voltage:0.57 kV; N2 nebulizing gas ~15 psi.</p>	<p>Histology images corresponding to these DESI-MSI data are available separately a</p>	<p>Raw DESI-MSI data acquired in Waters .raw format were deposited without additional processing. No normalization, peak picking, or other transformations were applied prior to submission.&nbsp;</p>	<p>No targeted metabolite identification was performed in this study. Instead, analysis focused on spectral and image-level features using MassVision, an end-to-end MSI analysis platform. Ion signals were processed in their centroided form and used directly for classification and visualization. </p><p>MassVision: <a href='https://slicermassvision.readthedocs.io/en/latest/' rel='noopener noreferrer' target='_blank'>https://slicermassvision.readthedocs.io/en/latest/</a></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Sample mounting;Sample preservation;Tissue modification;Sectioning instrument;Section thickness;Matrix;Matrix application	Scan polarity;Scan m/z range;Instrument;Instrument manufacurer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Linescan sequence;Scan pattern;Scan type;Number of scans;Instrument manufacturer	Stain;High-res image;Low-res image	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Parameters Name Term Source REF		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jamzad	Sonal
+Study Person First Name	Amoon	Varma
+Study Person Mid Initials		
+Study Person Email	a.jamzad@queensu.ca	Sonal.Varma@kingstonhsc.ca
+Study Person Phone		
+Study Person Fax		
+Study Person Address	25 Union Street, Kingston, ON, Canada	88 Stuart Street, Queen's University, Kingston, Ontario K7L 3N6, Canada
+Study Person Affiliation	Queen's University	Queen's University
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

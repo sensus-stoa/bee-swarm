@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	CHEBI	EFO	CHMO	UO	OBI
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/OBI
+Term Source Version	28	80	113	5	42	22
+Term Source Description	National Cancer Institute Thesaurus	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology	Chemical Methods Ontology	Units of Measurement Ontology	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS794
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2018-11-27
+Investigation Public Release Date	2019-02-28
+Comment[Created With Configuration]	/Users/piazzesia/Downloads/ISAcreatorMetaboLights/Configurations/MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS794
+Study Title	Multi‐omics identify xanthine as a pro‐survival metabolite for nematodes with mitochondrial dysfunction
+Study Description	Aberrant mitochondrial function contributes to the pathogenesis of various metabolic and chronic disorders. Inhibition of insulin/IGF-1 signaling (IIS) represents a promising avenue for the treatment of mitochondrial diseases, although many of the molecular mechanisms underlying this beneficial effect remain elusive. Using an unbiased multi-omics approach, we report here that IIS inhibition reduces protein synthesis and favors catabolism in mitochondrial deficient Caenorhabditis elegans We unveil that the lifespan extension does not occur through the restoration of mitochondrial respiration, but as a consequence of an ATP-saving metabolic rewiring that is associated with an evolutionarily conserved phosphoproteome landscape. Furthermore, we identify xanthine accumulation as a prominent downstream metabolic output of IIS inhibition. We provide evidence that supplementation of FDA-approved xanthine derivatives is sufficient to promote fitness and survival of nematodes carrying mitochondrial lesions. Together, our data describe previously unknown molecular components of a metabolic network that can extend the lifespan of short-lived mitochondrial mutant animals.
+Study Submission Date	2018-11-27
+Study Public Release Date	2019-02-28
+Study File Name	s_MTBLS794.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Mitochondrial disease	targeted metabolites	nuclear magnetic resonance spectroscopy	insulin/IGF‐1 signaling	xanthine
+Study Design Type Term Accession Number	http://www.orpha.net/ORDO/Orphanet_68380		http://purl.obolibrary.org/obo/CHMO_0000591		http://purl.obolibrary.org/obo/CHEBI_15318
+Study Design Type Term Source REF	EFO		CHMO		CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	30796049
+Study Publication DOI	10.15252/embj.201899558
+Study Publication Author List	Gioran Anna, Piazzesi Antonia, Bertan Fabio, Schroer Jonas, Wischhof Lena, Nicotera Pierluigi, Bano Daniele
+Study Publication Title	Multi‐omics identify xanthine as a pro‐survival metabolite for nematodes with mitochondrial dysfunction
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS794_mitochondrial_deficiency_metabolite_profiling_NMR_spectroscopy.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Varian two-channel VNMRS 600 MHz NMR spectrometer
+STUDY PROTOCOLS
+Study Protocol Name	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification	Sample collection	Lipidomics UPLC-MS
+Study Protocol Type	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification	Sample collection	Lipidomics UPLC-MS
+Study Protocol Type Term Accession Number								
+Study Protocol Type Term Source REF								
+Study Protocol Description	<p>Each sample (up to 1 ml) was filtered using Nanosep 3K Omega microcentrifuge filter tubes for 60 mins, then 6.3 ml was used to prepare the NMR sample. Internal standard solution was added to each sample solution, and the resulting mixture was vortexed for 30 sec, centrifuged and 0.7 ml transferred to an NMR tube for data acquisition.</p>	During sample preparation, each sample is diluted by introducing an internal standard and, where necessary, to increase the analyzed volume of a small sample. The reported concentration for each sample is equal to the profiled concentration multiplied by the ratio of the original sample volume to the diluted volume. Dilution corrections are calculated and applied on a per-sample basis.	NMR spectra were acquired on a Varian two-channel VNMRS 600 MHz NMR spectrometer equipped with an HX 5 mm probe. The pulse sequence used was a 1D-tnnoesy with a 990 ms presaturation on water and a 4 s acquisition time. Spectra were collected with 128 transients and 4 steady-state scans at 298 K.	Spectra were processed and .cnx files were generated using the Processor module in Chenomx NMR Suite 8.0.	Compounds were identified and quantified using the Profiler module in Chenomx NMR Suite 8.1 with the Chenomx Compound Library version 10.	All spectra were analyzed using the same compound set that was generated by combining a list of all compounds identified in the samples. If the concentration of a metabolite was described as zero, the metabolite was either not present in the sample or was at too low of a concentration to be detected.	<p>Nematodes were synchronized, and young adults were collected in pellets of 250–500 mg and stored at -80°C. Chenomx Inc. (Canada) performed an NMR-1D analysis to determine the metabolites present in wild-type, gas-1, and age-1; gas-1 mutant nematodes.</p>	<p><strong><em>Lipidomics profiling was performed by Creative Proteomics. Raw data files are not available however final results can be found in the files tab MTBLS794_lipodomics_results.txt</em></strong></p><p><br></p><p>Sample Collection &amp; Preparation</p><p>Nematodes were synchronized, and 4,000–8,000 young adults were sorted with a COPAS Biosort System, collected in pellets, flashfrozen in liquid N2, and stored at -80°C. A total of five biological replicates per condition (wild-type, age-1, gas-1, and age-1; gas-1 mutant nematodes) were collected.</p><p>The sample was transferred to a 4 ml glass tube with 100 μl of water, 1.4 ml chloroform and 0.7 ml methanol, vortexed x 1 min and lysed with sonication for 6 mins, (6 s on/4 s off).</p><p>a) The homogenate was transfered to a glass centrifuge tube, centrifuged at 3000 rpm for 15 min at 4ºC.</p><p>b) The supernatant was transferred to a separate glass centrifuge tube with 600 μl water and vortexed x 1 min, allowed to stand still for 10 min, then centrifuged at 3000 rpm for 15 min at 4ºC). The lower liquid layer was transferred to another glass centrifuge tube, 2.1 ml of chloroform / methanol (2/1, v / v) added and vortexed for 1 min followed by centrifugation at 3000 rpm for 15 min at 4ºC.</p><p>The lower layer of process (b) was then mixed with that of process (a) in a glass centrifuge tube. The mixture was dried in a vacuum concentrator and the dry residue re-dissolved in 150 μl methanol/ isopropyl alcohol (1:1) before analysis.</p><p><br></p><p>UPLC-MS</p><p>Analysis was performed using an Ultimate 3000 (Thermo) with Hypersil GOLD C18 column, (100 × 2.1 mm, 1.9 μm, Thermo). The mobile phase was composed of solvent A (acetonitrile : water, 60:40, V/V) and solvent B (acetonitrile : isopropyl alcohol, 10:90, V/V) with a gradient elution. Solvent A and B contained 10 mmol/l ammonium formate and 0.1% formic acid. The gradient elution was shown in following table. The flow rate of the mobile phase is 0.4 ml/min. The column temperature is maintained at 45 °C, and the sample manager temperature is set at 4 °C. Mass spectrometry was performed on Q Exactive hybrid quadrupole-Orbitrap mass spectrometer (Thermo Fisher Scientific).</p>
+Study Protocol URI								
+Study Protocol Version								
+Study Protocol Parameters Name	Extraction Method	NMR tube type;Temperature;Sample pH;Solvent	Magnetic field strength;Number of transients;Pulse sequence name;NMR Probe;Instrument					
+Study Protocol Parameters Name Term Accession Number		;;;	;;;;					
+Study Protocol Parameters Name Term Source REF		;;;	;;;;					
+Study Protocol Components Name								
+Study Protocol Components Type								
+Study Protocol Components Type Term Accession Number								
+Study Protocol Components Type Term Source REF								
+STUDY CONTACTS
+Study Person Last Name	Bano	Gioran	Piazzesi	Bertan	Schroer	Wischhof	Nicotera
+Study Person First Name	Daniele	Anna	Antonia	Fabio	Jonas	Lena	Pierluigi
+Study Person Mid Initials							
+Study Person Email	Daniele.Bano@dzne.de						
+Study Person Phone	+4922843302510						
+Study Person Fax							
+Study Person Address	Sigmund-Freud-Strasse 27, 53121 Bonn, Germany						
+Study Person Affiliation	DZNE	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.	German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany.
+Study Person Roles		Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number							
+Study Person Roles Term Source REF							

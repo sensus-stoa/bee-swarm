@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	ENM	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://enanomapper.github.io/ontologies/enanomapper.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.89.0	10.0			1.0.1		2026-05-05	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	eNanoMapper ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14002
+Investigation Title	High-confidence untargeted lipidomics of mammalian serum using LC-TIMS-PASEF
+Investigation Description	
+Investigation Submission Date	2026-03-08
+Investigation Public Release Date	2026-05-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14002
+Study Title	High-confidence untargeted lipidomics of mammalian serum using LC-TIMS-PASEF
+Study Description	<p>This study aimed to establish and validate a robust untargeted lipidomics workflow for the analysis of human serum using reversed-phase liquid chromatography coupled to trapped ion mobility spectrometry time-of-flight mass spectrometry (RP-LC-TIMS-TOF MS). Commercial pooled human serum was used as a standardized biological matrix to evaluate lipid extraction, chromatographic separation, ion mobility separation, and data-processing performance.</p>
+Study Submission Date	2026-03-08
+Study Public Release Date	2026-05-26
+Study File Name	s_MTBLS14002.txt
+Comment[Created At]	2026-03-07
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	liquid chromatography mass spectrometry assay	lipid extraction	blood serum
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/MSIO_0000142	http://purl.obolibrary.org/obo/BTO_0000133
+Study Design Type Term Source REF	NCIT	ENM	MSIO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Fernanda Sousa Monteiro, Adriana Zardini Buzatto
+Study Publication Title	Untargeted lipidomics of mammalian serum using LC-TIMS-PASEF
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14002_LC-MS_negative__metabolite_profiling.txt	a_MTBLS14002_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative	Liquid Chromatography MS - positive
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Untargeted lipidomic analysis was performed using a Bruker timsTOF Pro mass spectrometer (Bruker Daltonics, Billerica, MA, USA) equipped with a VIP-HESI source and coupled to an Agilent 1290 Infinity III UHPLC system (Agilent Technologies, Santa Clara, CA, USA). Lipid separation was achieved using an ACQUITY UPLC CSH C18 column (2.1 × 100 mm, 1.7 µm; Waters Corporation, Milford, MA, USA) maintained at 50 °C.</p><p>Mobile phase A consisted of 10 mM ammonium formate in methanol/acetonitrile/water (40:35:25, v/v/v) and mobile phase B consisted of 10 mM ammonium formate in 2-propanol/acetonitrile/water (96:3:1, v/v/v). The flow rate was 0.35 mL/min, with gradient elution starting at 10% MPB, increasing to 99% MPB, and returning to 10% MPB over a 20 min run.</p><p>Lipid extracts were resuspended in 1:1 mobile phase A/mobile phase B prior to analysis. Injection volumes were 5 µL for positive ionization mode and 10 µL for negative ionization mode. The autosampler was maintained at 4–8 °C.</p>	<p>Raw LC–MS/MS data were processed separately for positive and negative ionization modes using Bruker MetaboScape 2025b. Data transformation included mass recalibration using sodium formate, ion mobility recalibration using tuning mix reference values, lock-mass correction, feature detection, retention time alignment, and MS/MS import within the chromatographic window excluding the calibration segment. Feature extraction was performed using the T-ReX 4D algorithm with intensity, peak-size, occurrence, and group-presence filters optimized for untargeted lipidomics.</p><p>Following vendor processing, curated feature tables were exported for downstream processing in Excel and custom Python scripts. Additional transformation steps included removal of blank-associated signals, low-intensity and artifactual features, filtering based on pooled QC reproducibility, missing value imputation using low-intensity dataset-derived values, internal-standard normalization, and QC-based drift correction when required. Positive- and negative-ionization datasets were processed independently prior to final merging for downstream statistical analysis.</p>	<p>Serum lipids were extracted using a miniaturized liquid–liquid extraction based on the Folch method optimized for untargeted LC–MS lipidomics. For each extraction batch, 10 samples, one pooled quality control (QC) sample, and one extraction blank were processed in parallel. The extraction blank consisted of water processed identically to biological samples to monitor background contamination.</p><p>Frozen serum aliquots stored at −80 °C were kept on ice during processing. Prior to extraction, 4 µL of the Avanti SPLASH Lipidomix internal standard mixture (Avanti Research) was added to each sample, QC, and blank to enable signal normalization and monitoring of extraction performance. Methanol was then added to induce protein precipitation, followed by dichloromethane and an aqueous 0.2 M potassium chloride solution to generate a biphasic system (dichloromethane:methanol:aqueous ratio of 8:4:3). Samples were vortexed, incubated at 4 °C, and centrifuged to achieve phase separation.</p><p>Following centrifugation, the lower organic phase containing extracted lipids was carefully collected and transferred to clean tubes. Organic extracts were evaporated to dryness using nitrogen blow-down or vacuum centrifugation and stored at −80 °C until LC–MS analysis. All extractions were performed in a randomized order to minimize batch effects and potential systematic bias.</p><p><br></p><p><br></p><p><br></p><p><br></p>	<p>Mass spectrometric detection was performed using a timsTOF Pro mass spectrometer (Bruker Daltonics, Billerica, MA, USA) equipped with a VIP-HESI electrospray ionization source. Data were acquired in both positive and negative ionization modes using trapped ion mobility spectrometry–parallel accumulation serial fragmentation (TIMS-PASEF).</p><p>Mass spectra were acquired over the m/z range 120–1850, with two PASEF ramps per acquisition cycle and a total cycle time of 0.36 s. Ion mobility separation was performed over a 1/K0 range of 0.60–2.00 V·s/cm², with ramp and accumulation times of 65 ms.</p><p>Source parameters included a capillary voltage of 4300 V, an end plate offset of 500 V, a nebulizer pressure of 2.0 bar, a dry gas flow of 8 L/min, and a&nbsp;dry gas temperature of 220 °C. The sheath gas temperature was 300 °C with a sheath gas flow of 3 L/min.</p><p>Fragmentation was performed using collision-induced dissociation (CID) with mobility-dependent collision energies ranging from 22–37 eV in positive mode and 21–39 eV in negative mode. Mass and ion mobility calibration were performed prior to analysis using sodium formate and ESI tuning mix standards.</p>	<p>Lipid annotation was performed using Bruker MetaboScape 2025b by combining accurate mass, isotope pattern, retention time, ion mobility (CCS), and MS/MS spectral matching. Lipid annotation was carried out using the Lipid Species Annotation module and lipid-focused MS/MS spectral libraries, including MoNA LipidBlast 2022 and MoNA HMDB. Internal standards from the Avanti SPLASH Lipidomix mixture were annotated using target lists containing expected formulas, retention times, and CCS values.</p><p>Annotations were accepted based on predefined thresholds for m/z error, mSigma, CCS agreement, and MS/MS score, followed by manual review of diagnostic fragment ions and spectral quality. For features lacking confident MS/MS-based annotation, accurate-mass matching was performed using additional orthogonal constraints, including expected retention behavior, Kendrick mass defect patterns, expected adduct forms, ion mobility consistency, and biochemical plausibility for the sample matrix. Final annotations were reported as putative lipid species-level assignments unless confirmed with authentic standards.</p>	<p>Human serum samples used in this study consisted of commercially available pooled normal human serum (MilliporeSigma, Cat. No. S1-100ML). The material was obtained as a ready-to-use biological matrix derived from healthy human donors and supplied by the manufacturer under standardized collection and processing conditions. Upon receipt, serum aliquots were prepared to minimize repeated freeze–thaw cycles and stored at −80 °C until analysis. Prior to lipid extraction and LC–MS analysis, aliquots were thawed on ice and gently mixed to ensure sample homogeneity. No additional biological treatments or time-course exposures were applied to the serum samples prior to analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zardini Buzatto	Sousa Monteiro
+Study Person First Name	Adriana	Fernanda
+Study Person Mid Initials		
+Study Person Email	adriana.zardinibuzat@ucalgary.ca	fernanda.sousamontei@ucalgary.ca
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Calgary	University of Calgary
+Study Person Roles	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-7977-4102	0000-0002-6399-4490
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03yjb2x39	https://ror.org/03yjb2x39

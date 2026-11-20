@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MS	AGRO	EDAM	MTBLS		CHMO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI						https://www.ebi.ac.uk/metabolights/	http://purl.obolibrary.org/obo/ncit.owl		
+Term Source Version	29						1	18.10e		
+Term Source Description	Ontology for Biomedical Investigations						User defined terms	NCI Thesaurus OBO Edition		
+INVESTIGATION
+Investigation Identifier	MTBLS1990
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-08-07
+Investigation Public Release Date	2023-05-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1990
+Study Title	Metabolic profiling of maternal serum of women at high-risk of spontaneous preterm birth using NMR and MGWAS approach
+Study Description	Preterm birth (PTB) is a leading global cause of infant mortality. Risk factors include genetics, lifestyle choices and infection. Understanding the mechanism of PTB could aid the development of novel approaches to prevent PTB. This study aimed to investigate the metabolic biomarkers of PTB in early pregnancy and the association of significant metabolites with participant genotypes. Maternal sera collected at 16 and 20 weeks of gestation, from women who previously experienced PTB (high-risk) and women who did not (low-risk controls), were analysed using 1H nuclear magnetic resonance (NMR) metabolomics and genome-wide screening microarray. ANOVA and probabilistic neural network (PNN) modelling were performed on the spectral bins. Metabolomics genome-wide association (MGWAS) of the spectral bins and genotype data from the same participants was applied to determine potential metabolite-gene pathways. Phenylalanine, acetate and lactate metabolite differences between PTB cases and controls were obtained by ANOVA and PNN showed strong prediction at week 20 (AUC = 0.89). MGWAS identified several metabolite bins with strong genetic associations. Cis-eQTL analysis highlighted TRAF1 (involved in the inflammatory pathway) local to a non-coding SNP associated with lactate at week 20 of gestation. MGWAS of a well-defined cohort of participants highlighted a lactate-TRAF1 relationship that could potentially contribute to PTB.
+Study Submission Date	2020-08-07
+Study Public Release Date	2023-05-24
+Study File Name	s_MTBLS1990.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	nuclear magnetic resonance spectroscopy	mGAWS	probabilistic neural network	premature birth	untargeted metabolites	biomarker
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000591	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/efo/EFO_0003917	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHEBI_59163
+Study Design Type Term Source REF	CHMO	MTBLS	MTBLS	EFO	MTBLS	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	34402867
+Study Publication DOI	10.1042/bsr20210759
+Study Publication Author List	Gupta JK, Care A, Goodfellow L, Alfirevic Z, Lian LY, Müller-Myhsok B, Alfirevic A, Phelan MM.
+Study Publication Title	Metabolic profiling of maternal serum of women at high-risk of spontaneous preterm birth using NMR and MGWAS approach.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Pregnancy outcome	Gestation
+Study Factor Type	Pregnancy Outcome	pregnancy
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C90491	http://www.ebi.ac.uk/efo/EFO_0002950
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1990_NMR_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p><strong>Participant recruitment:</strong></p><p>Participants with singleton pregnancies, visiting between April 2012 to December 2017, were prospectively recruited at 16 and 20 wk of gestation at the Liverpool Women’s Hospital Preterm Birth Prevention Clinic. Women who previously experienced preterm birth (≤ 34 wk) and subsequently delivered ≤ 37 wk in the index pregnancy were categorised as high-risk (HTERM). Low-risk control patients were parous women with all previous births at term and who delivered ≥ 39 wk in the index pregnancy (LTERM). Women who had spontaneous PTB ≤ 34+0 weeks gestation were reviewed and classified as a phenotype of SPTB or PPROM. All non-iatrogenic spontaneous will hereon refer to PTB as sPTB (the sub-categories of which are SPTB and PPROM).</p><p><br></p><p><strong>Sample preparation:</strong></p><p>Samples were collected from all women who attended the clinic at 16 and 20 wk of gestation. In addition, women who only attended the clinic at either 16 or 20 wk of gestation were included (7.8% of all women sampled). Maternal serum samples were collected in BD vacutainer with clot activators and stored at room temperature (20-25 °C) for 30 min. The samples were centrifuged at 3000 rpm at 4 °C for 10 min. Aliquots of 500 µl were prepared and stored at −80 °C.</p>	<p>No extractions were performed in this study.</p>	<p>Serum (500 µl) was thawed at room temperature and diluted with 500 µl of 200 mM phosphate (PO43−) buffer (pH 7.4) and D2O. Phosphate buffer was made using dibasic sodium phosphate (Na2HPO4, VWR International, US: Mr = 141.96) and monobasic sodium phosphate (NaH2PO4, Acros Organics Fisher Scientific, UK: Mr = 119.98) in 20% D2O (Sigma, UK). In approximately 4.5% of samples, serum volume available was &lt;500 µl, 200 µl of ddH2O was added to ensure a volume of &gt;500 µl diluted serum (all samples were normalised including those diluted to mitigate batch effects and the diluted samples were spread equitably between all 4 sample groups, ranging between 2.4 and 5.6%). Samples were briefly vortexed and centrifuged at 21.5 rpm (~21,500 x g), 4 °C for 5 min. Serum-buffer mix (600 µl) was transferred into 5 mm diameter NMR tubes.</p><p><br></p>	<p>Spectra were acquired on a 600 MHz NMR solution-state spectrometer Bruker Avance III system (Bruker, GmBH, Germany) at 37 °C.</p>	<p>A one-dimensional vendor supplied (1D) Carr-Purcell-Meiboom-Gill (CPMG) pulse sequence was applied to attenuate signals from high molecular weight components<strong>[1]</strong> with 32 transients, 20 ppm spectral width with 4 s interscan delay.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Soininen P, Kangas AJ, Würtz P, Tukiainen T, Tynkkynen T, Laatikainen R, Järvelin MR, Kähönen M, Lehtimäki T, Viikari J, Raitakari OT, Savolainen MJ, Ala-Korpela M. High-throughput serum NMR metabonomics for cost-effective holistic studies on systemic metabolism. Analyst. 2009 Sep;134(9):1781-5. doi:10.1039/b910205a. PMID:19684899.</p>	<p>Spectra were automatically processed via standard vendor routines to ensure consistent Fourier transformation, window function and phasing (Bruker macro apk0.noe). Spectra were aligned indirectly to Trimethylsilyl propionate via glucose anomeric doublet (5.204 ppm). Quality control (QC) measures were performed manually according to 'The Metabolite Standards Initiative' – MSI<strong>[1] </strong>briefly via measurement of the Line-Width Half Height (LWHH) of a representative peak – the anomeric glucose located 5.244 ppm (&lt; 3 Hz), ensuring a flat baseline for each sample spectrum, checking consistent signal-to-noise ratio across spectra and ensuring good water suppression (i.e. water signal is narrow, and &lt; 0.4 ppm wide). Where the spectra failed QC the sample were repeated.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O et al. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616.</p>	<p>Metabolite annotation was determined through peak fitting of serum spectra initially using the metabolite library provided through <strong>Chenomx software v8.2</strong> (Chenomx Inc., Canada) followed by comparison to in-house library spectra for specific metabolites of interest (using 1D 1H and 2D 1H 13C HSQC where appropriate standard spectra acquired on the same instruments under identical conditions). Peaks were converted to spectra 'bins' by manual preparation of a ’pattern file' (a text file generated manually defining the left and right ppm boundaries for each individual peak [or multiplet] in the spectrum). Peaks were then integrated over each bin boundary and divided by the width of each bin using the software <strong>AMIX</strong> (Bruker, Coventry U.K.). The resultant bin or bucket table contained 145 individual bins, 99 with metabolite specific annotation corresponding to 34 unique metabolites. A further 46 bins that were not assigned to known metabolite signals. Metabolite annotations and identifications are defined as per 'The Metabolite Standards Initiative' – MSI<strong>[1]</strong>, briefly metabolites annotated to an external library (i.e. Chenomx) were assigned to 'level 2 - annotation' whereas metabolites with identities confirmed using 2 independent terms (such as 1H and 13C chemical shifts) from an in-house source were assigned to 'level 1 - identification'. Representative spectra can be found in <strong>Figure S1</strong> of the paper associated with this study.</p><p><br></p><p><strong>Statistical analysis:</strong></p><p>Univariate statistical analysis was performed using R statistical computing environment [r-project.org]. Data were first normalised per spectrum using Probabilistic Quotient Normalisation (PQN)<strong>[2]</strong> to offset any dilution effects from the sample preparation. 1-way ANOVA with Tukey’s HSD multiple testing was employed on the 145 variable dataset using R packages <strong>'car'</strong> (Companion to Applied Regression). The 4 individual phenotypes (HTERM, LTERM, SPTB and PPROM) were included in the analysis and a significance level of P &lt; 0.05 was applied<strong>[3]</strong>. <strong>MetaboAnalyst</strong> was used to perform multivariate analysis with spectra normalised to the median and variables scaled using the Pareto method. Principal component analysis (PCA) was employed to appraise spectra quality and ensure no outliers were present and partial least squares discriminant analysis (PLS-DA) a widely used supervised, multivariate, classification method in chemometrics. PLS-DA classification, with 10-fold cross-validation to evaluate the predictive model, using R packages <strong>'pls’[4]</strong> and <strong>’caret'[5]</strong>. The Q2 value describes the cross-validated sum of squares (R2), which is provided with the model prediction accuracy score by <strong>MetaboAnalyst[6]</strong>. The <strong>PNN algorithm</strong> was executed on all 145 metabolite bins per timepoint using a predictive modelling software: <strong>DTREG</strong> (<a href='https://www.dtreg.com/' rel='noopener noreferrer' target='_blank'>https://www.dtreg.com/</a>)[7]. Leave-one-out cross-validation (LOOCV) was applied and the AUC values obtained for each gestation timepoint. For this analysis, the phenotypes were combined: sPTB cases (SPTB and PPROM) and controls (HTERM and LTERM).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O et al. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616.</p><p><strong>[2]</strong> Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90. doi:10.1021/ac051632c. PMID:16808434.</p><p><strong>[3]</strong> Fox J. and Weisberg S. (2019) An R Companion to Applied Regression, 3rd Ed, Sage, Thousand Oaks, CA</p><p><strong>[4]</strong> Wehrens R. and Mevik B. (2007) pls: Partial Least Squares Regression (PLSR) and Principal Component Regression (PCR), R package version 2.1-0.</p><p><strong>[5]</strong> Kuhn M. (2008) Building Predictive Models in R Using the caret Package. J. Statistical Software 28, 1–26 doi:10.18637/jss.v028.i05.</p><p><strong>[6]</strong> Chong J, Wishart DS, Xia J. Using MetaboAnalyst 4.0 for Comprehensive and Integrative Metabolomics Data Analysis. Curr Protoc Bioinformatics. 2019 Dec;68(1):e86. doi:10.1002/cpbi.86. PMID:31756036.</p><p><strong>[7]</strong> Sherrod PH. (2014) DTREG predictive modeling software. <a href='http://www.dtreg.com' rel='noopener noreferrer' target='_blank'>http://www.dtreg.com</a></p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Alfirevic	Alfirevic	Gupta	Phelan	Care	Goodfellow	Lian	Müller-Myhsok
+Study Person First Name	Ana	Zarko	Juhi	Marie	Angharad	Laura	Lu-Yun	Bertram
+Study Person Mid Initials			K	M				
+Study Person Email	Ana.Alfirevic@liverpool.ac.uk	zarko@liv.ac.uk	hljgupta@liverpool.ac.uk	mphelan@liverpool.ac.uk				
+Study Person Phone	044 151 794 5551	044 151 795 9553		+44 151 795 4398				
+Study Person Fax								
+Study Person Address	Department of Pharmacology and Therapeutics, University of Liverpool, Block A: Waterhouse Buildings, 1-5 Brownlow Street, Liverpool, L69 3GL	Harris-Wellbeing Research Centre, University Department, Liverpool Women's Hospital, Crown Street, Liverpool, L8 7SS, UK	epartment of Pharmacology and Therapeutics, University of Liverpool, Block A: Waterhouse Buildings, 1-5	Technology Directorate, NMR Metabolomics Facility, NMR Centre for Structural Biology, Crown Street, L69 7ZB, UK				
+Study Person Affiliation	Institute of Systems, Molecular and Integrative Biology	Institute of Systems, Molecular and Integrative Biology	Institute of Systems, Molecular and Integrative Biology	Institute of Systems, Molecular and Integrative Biology,				
+Study Person Roles	Principal Investigator	Principal Investigator	first author	researcher	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/AGRO_00000373	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	MS	AGRO				

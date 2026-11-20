@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCBITAXON	CHMO	EFO	NCIT	CHEBI	UO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/UO
+Term Source Version	29	1.0	6	18	146	44	99	43
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Chemical Methods Ontology	Experimental Factor Ontology	National Cancer Institute Thesaurus	Chemical Entities of Biological Interest Ontology	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1320
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-10-22
+Investigation Public Release Date	2020-02-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1320
+Study Title	A multi-omics dataset of heat-shock response in the yeast RNA binding protein Mip6 (NMR assay)
+Study Description	<p>Gene expression is a biological process regulated at different molecular levels, including chromatin accessibility, transcription, and RNA maturation and transport. In addition, these regulatory mechanisms have strong links with cellular metabolism. Here we present a multi-omics dataset that captures different aspects of this multi-layered process in yeast. We obtained RNA-seq, metabolomics, and H4K12Ac ChIP-seq data for wild-type and mip6delta strains during a heat-shock time course. Mip6 is an RNA-binding protein that contributes to RNA export during environmental stress and is informative of the contribution of post-transcriptional regulation to control cellular adaptations to environmental changes. The experiment was performed in quadruplicate, and the different omics measurements were obtained from the same biological samples, which facilitates the integration and analysis of data using covariance-based methods. We validate our dataset by showing that ChIP-seq, RNA-seq and metabolomics signals recapitulate existing knowledge about the response of ribosomal genes and the contribution of trehalose metabolism to heat stress.</p>
+Study Submission Date	2019-10-22
+Study Public Release Date	2020-02-14
+Study File Name	s_MTBLS1320.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	Nuclear magnetic resonance spectroscopy	Heat shock treatment	mip6 mutant
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000591	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	CHMO	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Carme Nuño-Cabanes, Manuel Ugidos, Sonia Tarazona, Manuel Martín-Expósito, Alberto Ferrer, Susana Rodríguez-Navarro, Ana Conesa
+Study Publication Title	A multi-omics dataset of heat-shock response in the yeast RNA binding protein Mip6
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype	Time	Temperature	Replicate
+Study Factor Type	Genotype	timepoint	Temperature	replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0001702	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	EFO	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1320_NMR_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p>A single, 330 ml culture (either for WT and mip6D strains) was grown at 30 ºC until the exponential phase (OD=0.7), and this culture was subsequently split across 3 flasks. 1 flask was maintained at 30 ºC and labeled as time point 0. The other 2 flasks were incubated at 39 ºC for 20 min and 120 min, respectively, by adding pre-heated media to rapidly increase the temperature to 39 ºC. These last 2 flasks capture the heat-shock response, while the 30 ºC flask serves as a control representing non-stress conditions. The rationale for having 2 flasks for the 39 ºC temperature instead of a single flask sampled at 2 different time points was to avoid introducing effects related to culture volume. A 10 ml aliquot was obtained from each of the flasks to supply NMR metabolomics. The cells were harvested and washed once with phosphate buffer (Na2HPO4 100 mM, pH 7.4). The resulting pellet was frozen in liquid nitrogen and stored at −80 °C.</p>	<p>250 μl of a mixture of methanol/chloroform 2:1 (4 °C) were added to the frozen cell pellets on ice and were resuspended after 5 min. To break the yeast cell wall, the freeze/thaw method, sonication and glass beads were employed. 125 μl of MilliQ water and 125 μl of chloroform were then added, and each tube was vortexed until a homogeneous emulsion was obtained. For phase separation, samples were centrifuged for 30 min at 15,000 x g. The aqueous phase (upper part) was collected with a pipette, while the lipophilic phase (lower phase) was collected with a glass syringe. The water and methanol of the aqueous phase were eliminated by lyophilisation for 1.5 h. Dry extracts were stored at −80 °C until the NMR measurements were taken.</p>	<p>Immediately before NMR acquisition, the extracts were defrosted at 4 °C. Next, 0.5 ml of phosphate buffer (Na2HPO4 100 mM, pH 7.4) in D2O with 0.2 mM TSP (as internal standard) was added to the aqueous phase prior to introduction into the NMR tube.</p>	<p>The NMR spectra of the extracts were recorded at 25 °C on a Bruker AVI-600 using a 5-mm TCI cryoprobe. Spectra were processed using Topspin2.16 software (Bruker GmbH, Karlsruhe, Germany).</p>	<p>1H NMR spectra with NOE mixing were acquired for all the samples with 128 free induction decays (FIDs) and 64 k data points over a spectral width of 30 ppm. A 4-s relaxation delay was incorporated between FIDs, while presaturation was applied for water suppresion. The FID values were multiplied by an exponential function with a 0.5 Hz line broadening factor.</p>	<p>The spectra were normalised to the sum of total spectrum intensity to minimise the effect of the differences in sample concentration. The regions corresponding to water, methanol and TSP (aqueous phase), and water, chloroform and TMS (organic phase) were excluded from normalisation. Each region of the NMR spectrum was then integrated into MestReNova (v 6.2.0-7238, 2010 Mestrelab Research S.L.) with the multiple integration option. For each compound, the mean value of the different assigned signals was determined. 6 to 9 independent samples from at least 2 different cell cultures were obtained per sample condition.</p>	<p>Metabolite identification and assignment were performed with the help of the Human Metabolome Database and 2D NMR experiments. Total correlation spectroscopy (TOCSY) and multiplicity heteronuclear single quantum correlation (HSQC) were performed for representative samples of the aqueous phase. 256–512 t1 increments were used, and 32–96 transients were collected. The relaxation delays were set at 1.5 s, and the experiments were acquired in the phase sensitive mode. The TOCSY spectra were recorded using a standard MLEV-17 pulse sequence with mixing times (spin-lock) of 65 μs.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Nuño-Cabanes	Ugidos	Tarazona	Martín-Expósito	Ferrer	Rodríguez-Navarro	Conesa
+Study Person First Name	Carme	Manuel	Sonia	Manuel	Alberto	Susana	Ana
+Study Person Mid Initials							
+Study Person Email	cnuno@ibv.csic.es	mugidos@ibv.csic.es	sotacam@eio.upv.es	mmartin@ibv.csic.es	aferrer@eio.upv.es	srodriguez@ib.csic.es	aconesa@ufl.edu
+Study Person Phone							
+Study Person Fax							
+Study Person Address	Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Universitat Politècnica de València (UPV), Valencia, Spain	Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Universitat Politècnica de València (UPV), Valencia, Spain	Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	University of Florida, Gainesville, Florida,
+Study Person Affiliation	Gene Expression and RNA Metabolism Laboratory, Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Gene Expression and RNA Metabolism Laboratory, Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Department of Applied Statistics, Operations Research and Quality, Universitat Politècnica de València (UPV), Valencia, Spain	Gene Expression and RNA Metabolism Laboratory, Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Department of Applied Statistics, Operations Research and Quality, Universitat Politècnica de València (UPV), Valencia, Spain	Gene Expression and RNA Metabolism Laboratory, Instituto de Biomedicina de Valencia (CSIC). Jaume Roig, 11, E-46010 Valencia, Spain	Microbiology and Cell Science Department, Genetics Institute, University of Florida, Gainesville, Florida, USA
+Study Person Roles	Co-Investigator	Co-Investigator	Study Site Investigator	Subinvestigator	Study Site Investigator	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C93404	http://purl.obolibrary.org/obo/NCIT_C54622	http://purl.obolibrary.org/obo/NCIT_C93404	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

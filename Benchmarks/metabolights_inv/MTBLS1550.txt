@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCIT	MTBLS	GO	CHEBI	BTO	CHMO	BAO	EFO	MS
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/NCIT	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/GO	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/MS
+Term Source Version	29	28	1.0	1358	80	22	5	19	132	86
+Term Source Description	Ontology for Biomedical Investigations	National Cancer Institute Thesaurus	Metabolights Ontology	Gene Ontology	Chemical Entities of Biological Interest Ontology	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	BioAssay Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1550
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-03-09
+Investigation Public Release Date	2020-05-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1550
+Study Title	Metabolomics analysis identifies metabolites associated with systemic acquired resistance in Arabidopsis
+Study Description	<p><strong>BACKGROUND:</strong> Systemic acquired resistance (SAR) is a plant defense response that provides long-lasting, broad-spectrum pathogen resistance to uninfected distal leaves following an initial localized infection. However, little information is available on the molecular biological basis of SAR especially in uninfected distal leaves. </p><p><strong>METHODS:</strong> Here, we used two SAR-inducing pathogen to induce SAR in Arabidopsis, and a metabolomics approach based on ultra-high-performance liquid chromatography (UPLC) and mass spectrometry (MS) technique was used to identify SAR-related metabolites in SAR-inducing pathogen infected local leaves and uninfected distal leaves. </p><p><strong>RESULTS:</strong> Multiple statistical analyses were used to identify differentially expressed metabolites. The result showed that primary metabolism and secondary metabolism were significantly altered in local leaves and distal leaves, including phenolic compounds, amino acids, nucleotides, organic acids and many other metabolites.</p><p><strong>CONCLUSIONS:</strong> The content of amino acids and phenolic compounds increased in distal leaves, suggesting their contribution to the establishment of SAR in distal leaves. In addition, 2’-hydroxy-4, 4’, 6’-trimethoxychalcone, phenylalanine and p-coumaric acid were identified as potential components which may play important roles both in basic resistance and SAR. This study provided a reference for understanding metabolic mechanism associated with SAR in Arabidopsis, which will be useful for further investigation of the molecular basis of SAR.</p>
+Study Submission Date	2020-03-09
+Study Public Release Date	2020-05-14
+Study File Name	s_MTBLS1550.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Ultra-performance liquid chromatography-mass spectrometry	Systemic acquired resistance	Amino acid	Phenols
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/GO_0009627	http://purl.obolibrary.org/obo/CHEBI_33709	http://purl.obolibrary.org/obo/CHEBI_33853
+Study Design Type Term Source REF	MTBLS	CHMO	GO	CHEBI	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Hang Gao, Ziqin Xu, Qian Zhou, Yeye Ma
+Study Publication Title	Metabolomic analysis identifies metabolites associated with systemic acquired resistance in Arabidopsis
+Study Publication Status	Submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate	Leaf location	Treatment
+Study Factor Type	replicate	Location	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000683	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C25341	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1550_LC-MS.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Arabidopsis thaliana (L.) Heynh. ecotype Col-0 were grown in individual pots on a matrix of perlite, vermiculite and nutrient soil (1:1:1, v/v/v) in a controlled environment chamber under the conditions of 65% relative humidity (RH) and 16 h light/8 h dark cycles. Growth temperatures during the day and night period were set to 22 °C and 18 °C, respectively. 4-5 week-old plants exhibiting a uniform appearance were used for systemic acquired resistance (SAR) experiments.</p><p><br></p><p>The avirulent P. syringae pv. maculicola ES4326 harboring avrRpm1 (Psm avrRpm1, termed as Avr) and virulent P. syringae pv. maculicola ES4326 (Psm ES4326, termed as Vir) were used for induction of SAR. Bacterium strains were cultivated in King's B medium supplemented with 50 mg/l streptomycin and 50 mg/l tetracycline (for Avr) or 50 mg/l streptomycin (for Vir), respectively, and were grown at 200 r/m in 28 °C. For SAR induction, a suspension of Avr, Vir in 10 mM MgCl2 (OD600=0.002) were infiltrated into 3 local leaves (LL). Infiltration with 10 mM MgCl2 served as mock-control treatment (CK). 48 h later, the Avr, Vir and CK inoculated LL (LL-Avr, LL-Vir and LL-CK) and distal leaves (termed as DL) of locally Avr, Vir and CK inoculated plants (DL-Avr, DL-Vir and DL-CK) were harvest separately, and stored in liquid nitrogen. Together, 6 biologically independent SAR experiments for each treatment were performed for metabolomics analysis.</p>	<p>Each sample (50 mg) was ground in liquid nitrogen, followed by the addition of 0.5 ml pre-cooled methanol/water (3:1, v/v), mixed by vortexing and incubation for 1 h at −20 °C for protein precipitation. Then the sample was centrifuged at 13000 rpm for 15 min at 4 °C. After filtering with a 0.22 μm filter, the supernatant was dried with nitrogen and stored at -80 °C until use. QC samples, a pooled mixture made with an equal amount of each sample, were prepared using the same steps above.</p>	<p>The samples were placed in a 4 °C autosampler and separated on a DIONEX UltiMate 3000 ultra high performance liquid chromatography system (UHPLC) using a ACQUITY UPLC CSH C18 Column 130 Å (1.7 µm, 2.1 mm x 100 mm, Waters). The sample volume was 3 μl, the column temperature was 45 °C, and the flow rate was 0.35 ml/min. Chromatographic mobile phase A: 0.1% formic acid; B: acetonitrile in 0.1% formic acid; chromatographic gradient elution programme: 0-0.5min, 98% A; 0.5-15 min, A with a linear change from 98% to 2%; 15-17 min, 2% A; 17.1-20 min, A with a linear change from 2% to 98%. QC samples were inserted every 6 samples to evaluate the stability of the system and the reliability of experimental data.</p>	<p>Each sample was electrospray-ionized (ESI) and detected with positive and negative ion mode, respectively. Samples were separated by UPLC and analysed by a Q-Exactive mass spectrometer (Thermo Scientific, San Jose, CA, USA), The ESI source conditions were as follows: spray voltage (kV), 3.5 ESI+ and 3.2 ESI- (positive and negative modes); source temperature, 320 °C; sheath gas flow rate (Arb), 45; aux gas flow rate (Arb), 15; mass range (m/z), 80-1200; full MS resolution, 70000; MS/MS resolution, 17500.</p>	<p>No data transformation was carried out on the mass spectrometer RAW files in this study.</p>	<p>Compound Discoverer 3.0 was used to search the raw data and then used for peak alignment, peaks deconvoluted, treatment of adducts, compound detection, grouping and metabolite identification. A blank sample was used for background subtraction and noise removal during the pre-processing step. The precision mass matching (5 ppm)<strong>[1]</strong> and MS and MSMS matching to search MZcloud and ChemSpider database were used to determine the metabolite structure. The detailed workflow and parameters are provided in Table S5 of the paper associated with this study. The SIMCA-P14.1 application software (Umetrics, Umea, Sweden) was used for pattern recognition. After processing by Pareto scaling, the data were subjected to multidimensional statistical analysis, including orthogonal partial least squares discriminant analysis.</p><p><br></p><p>Ref:</p><p><strong>[1]</strong> Cao J, Li M, Chen J, Liu P, Li Z. Effects of MeJA on Arabidopsis metabolome under endogenous JA deficiency. Sci Rep. 2016 Nov 24;6:37674. doi:10.1038/srep37674. PMID:27883040</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gao	Xu	Zhou	Ma
+Study Person First Name	Hang	Ziqin	Qian	Yeye
+Study Person Mid Initials				
+Study Person Email	gaohang19861222@163.com	ziqinxu@nwu.edu.cn	zhouqian@omicsspace.com	yeyema0709@163.com
+Study Person Phone				
+Study Person Fax				
+Study Person Address	Key Laboratory of Resource Biology and Biotechnology in Western China (Ministry of Education), Provincial Key Laboratory of Biotechnology, College of Life Sciences, Northwest University	Key Laboratory of Resource Biology and Biotechnology in Western China (Ministry of Education), Provincial Key Laboratory of Biotechnology, College of Life Sciences, Northwest University	Shanghai Omicsspace Biotechnology Co Ltd	Key Laboratory of Resource Biology and Biotechnology in Western China (Ministry of Education), Shaanxi Provincial Key Laboratory of Biotechnology, College of Life Sciences, Northwest University
+Study Person Affiliation				
+Study Person Roles	Investigator	Correspondence	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C97019	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

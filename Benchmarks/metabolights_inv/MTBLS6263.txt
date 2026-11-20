@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	EFO	MESH	MI	MS	MSIO	MTBLS	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version	249	3.87.0				1.0.1		25.06e	2025-12-18	2026-01-16
+Term Source Description	Chemical Entities of Biological Interest	Experimental Factor Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS6263
+Investigation Title	CASMDB: An Open-Source Database of Metabolite Annotation Data for 1D 1H NMR-Based Metabolomics
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-01-15
+Investigation Public Release Date	2026-04-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6263
+Study Title	CASMDB: An Open-Source Database of Metabolite Annotation Data for 1D 1H NMR-Based Metabolomics
+Study Description	<p>In metabolomics analyses databases are invaluable for the identification of individual metabolites in experimentally collected samples. Publicly available databases for NMR-based metabolomics are unfortunately incomplete with respect to experimental conditions, such as pH, temperature and NMR field-strength, that all affect the observed signals. Moreover, derived NMR annotation parameters, such as peak positions and multiplet patterns, are often incomplete and contain crucial errors. Hence, these databases are often inadequate for the analyses of experimental samples across a range of conditions, most notably field-strength. </p><p>In this paper we describe the collection, remediation and integration of annotation data from the publicly available HMDB, BRMB and GISSMO NMR metabolomics databases to build the CcpNmr Analysis Simulated Metabolomics Database (CASMDB). CASMDB contains 1932 unique and fully annotated metabolite entries that in concert with the AnalysisMetabolomics program, allows for accurate simulation of spectra at arbitrary field-strengths and the easy addition of new entries. Together, these tools underpin the visualising of experimental and simulated metabolite references for 1D 1H NMR-based metabolomics studies.&nbsp;</p>
+Study Submission Date	2026-01-15
+Study Public Release Date	2026-04-21
+Study File Name	s_MTBLS6263.txt
+Comment[Created At]	2022-10-18
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-21
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Magnetic Field Strength	buffer pH	targeted metabolites	Reference Standards
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C156494	http://nmrML.org/nmrCV#NMR:1000165	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://id.nlm.nih.gov/mesh/D012015
+Study Design Type Term Source REF	NCIT	MSIO	MTBLS	MESH
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Morgan W. Hayward, Luca G. Mureddu, Gary S. Thompson, Marie M. Phelan, Edward J. Brooksbank and Geerten W. Vuister
+Study Publication Title	CASMDB: An Open-Source Database of Metabolite Annotation Data for 1D 1H NMR-Based Metabolomics
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Magnetic field strength	Buffer ph
+Study Factor Type	Magnetic Field Strength	buffer pH
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C156494	http://nmrML.org/nmrCV#NMR:1000165
+Study Factor Type Term Source REF	NCIT	MSIO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6263_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	NMR
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	OBI	MI
+Study Protocol Description	<p>Experimental standard mixtures were prepared from standard compounds.</p>	<p>Standard compounds Trimethylsilyl propionate, Citric-acid, Creatine, Creatinine, D-Glucose, Glycine, L-Alanine, L-Aspartic acid, L-Arginine, L-Asparagine, L-Glutamic acid, L-Glutamine, L-Histidine, L-Isoleucine, L-Leucine, L-Lysine, L-Methionine, L-Phenylalanine, L-Proline, L-Serine, L-Threonine, L-Tyrosine, L-Valine were weighed on an analytical balance and stock solutions of 10mM for each compound was prepared in 1mL of 99.9% deuterated water for each accepting L-Aspartic acid (stock concentration of 5mM) and Glutamic acid (stock concentration of 2.5mM).</p>	<p>The NMR sample was prepared by addition of 1% of each stock solution with 99.9% deuterated water and sodium phosphate buffer (final concentration 100mM) to the desire pH of either 7.2, 7.4 or 7.6. samples were vortexed and centrifuged at 21500g 4 degrees celcius for 4 minutes before transfer to a 5mm outer wall diameter SampleJet NMR tube</p>	<p>NMR were acquired on either; 600MHz Avance III, 700MHz Avance IIIHD or 800MHz Neo Bruker NMR spectrometers each equipped with TCI cryoprobe and SampleJet autosampler. Spectrometer quality assurance was completed daily via temperature calibration to 25 °C (with margin error of 0.1 °C) by a methanol thermometer (cat number Z10627 99.8% Methanol-d4, 5 mm, Bruker, UK) [Findeisen [https://doi.org/10.1002/mrc.1941]&nbsp;and 3D shimming on Bruker standard 2 mM sucrose&nbsp;(cat number Z10902 2; mM Sucrose 0.5 mM DSS 2 mM NaN3 in H2O/D2O 90/10, 5 mm Bruker, UK) to ensure linewidth half height of DSS reference peak is within acceptance criteria (&lt;1 Hz).</p>	<p>Spectra were acquired using standard (vendor supplied) 1D 1H Carr-Purcell-Meiboom-Gill (CPMG; cpmgpr1d) spectra with 128 transients as specified, a 15-ppm spectral width, 32K points, 9.6 ms echo time, 3.1 s acquisition time and 4 s interscan delay.</p>	<p>All acquired spectra were automatically phased referenced to 3-(trimethylsilyl) propionic-2,2,3,3-d4 acid sodium salt (deuterated trimethylsilyl propionate; TSP-d4) at 0 ppm, phasing and baseline corrected using automated macro (apk0.noe) provided within TopSpin v4.4.1 (Bruker). Quality control criteria was applied as recommended by the Metabolites Standards Initiative (MSI) [Sumner et al 2007 DOI: 10.1007/s11306-007-0082-2 ] with line width at half height for the TSP-d4 methyl peak less than 1 standard deviation. Any spectra not meeting this threshold were reacquired.</p>	<p>Metabolite identification proceeded via matching to the CASMDB standard library and also GISSMO simulated spectra with matching direct to the reference standard added to the mixture. 2D JResolved spectra were also acquired and metabolites directly match to the individual component spectra at the same field strength to meet MSI identification level 1 (Sumner et al 2007 DOI: 10.1007/s11306-007-0082-2 )</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Phelan	Hayward	Thompson	Mureddu	Brooksbank	Vuister
+Study Person First Name	Marie	Morgan	Gary	Luca	Edward	Geerten
+Study Person Mid Initials	M	W	S	G	J	W
+Study Person Email	mphelan@liv.ac.uk					gv29@leicester.ac.uk
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	University of Liverpool		University of Kent			University of Leicester
+Study Person Roles	Principal Investigator	first author	Author	Author	Author	Funded Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C63403
+Study Person Roles Term Source REF	NCIT	MS	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-0708-2964					0000-0001-6172-5097
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04xs57h96		https://ror.org/00xkeyj56			https://ror.org/04h699437

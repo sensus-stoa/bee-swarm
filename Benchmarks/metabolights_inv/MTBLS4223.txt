@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	SDGIO	MTBLS	BTO	OMIT	CHMO	GO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/					
+Term Source Version	29	132		1.0					
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		Metabolights Ontology					
+INVESTIGATION
+Investigation Identifier	MTBLS4223
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-01-28
+Investigation Public Release Date	2022-03-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS4223
+Study Title	The functional role of OGDH for maintaining mitochondrial respiration and identity of primed human embryonic stem cells
+Study Description	<p>Human embryonic stem cells (hESCs) can self-renew infinitely or differentiate into the 3 germ layer lineages<em> in vitro</em> with certain cues, holding great promise to model early human embryo development <em>ex vivo</em>. It is wildly accepted that hESCs take advantage of both glycolysis and mitochondrial respiration to favor the naïve pluripotency, while prefer glycolysis to support the primed pluripotency. Thus, the function of mitochondrial respiration in primed hESCs has been underestimated for a long time, and has not been fully understood yet. Herein, we report that the adenosine triphosphate (ATP) production rate is comparable between mitochondrial respiration and glycolysis, suggesting that mitoATP may serve as one of the major sources of the ATP pool in primed hESCs. To further reveal the function of mitochondrial respiration, we deployed inducible CRISPRi method to inhibit OGDH expression with high efficiency, resulting in the TCA cycle blockade as well as the diminishment of mitochondrial respiration activity and total ATP level. Of note, OGDH deficiency led to the exit of primed pluripotency accompanied by cell death. Furthermore, the treatment with small molecule inhibitors to block electron transport chain (ETC) can phenocopy the loss-of-function of OGDH in hESCs. Therefore, genetic and pharmacological perturbations on mitochondrial respiration can impair the stemness of primed hESCs. Collectively, the current study unveils that OGDH acts as a key regulator to fine-tune the abundance of TCA cycle metabolites to ensure the mitochondrial respiration activity in primed hESCs, and highlights the pivotal roles of mitochondrial respiration in terms of ATP production and the maintenance of primed pluripotency. Our findings may provide insights into the linkage between pluripotent states and energy metabolism in hESCs.</p>
+Study Submission Date	2022-01-28
+Study Public Release Date	2022-03-03
+Study File Name	s_MTBLS4223.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	OGDH	tricarboxylic acid cycle	ATP
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/OMIT_0033990	http://purl.obolibrary.org/obo/GO_0006099	http://purl.obolibrary.org/obo/CHEBI_15422
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO	OMIT	GO	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yujie Liu, Han Wang, Min Shao
+Study Publication Title	The functional role of OGDH for maintaining mitochondrial respiration and identity of primed human embryonic stem cells
+Study Publication Status	Unpublished Works
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0020936
+Study Publication Status Term Source REF	OMIT
+STUDY FACTORS
+Study Factor Name	Genotype	Replicate
+Study Factor Type	genotype	replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS4223_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>hESCs were seeded in 6-well plates at a density of 2 x 10^5 cells/well.&nbsp;After 24 h, hESCs were cultured in the <strong>presence</strong> or <strong>absence</strong> of <strong>Dox</strong> for an additional 4 days to knockdown OGDH. Before measurement, the culture medium from the hESCs was removed using pipette and the cells were digested by ACCUTASE after washed. There are 6 independent samples for <strong>control</strong> group (-Dox) and <strong>treat</strong> group (+Dox 4 days), respectively. LC-MS/MS analysis was conducted by Applied Protein Technology (Shanghai, China).</p>	<p>Take out the samples which at -80 °C, add 1 mL methanol:acetonitrile aqueous solution (2:2:1, v/v), vortex for 60 s, sonicate at low temperature for 30 min (twice), place at -20 °C for 1 h to precipitate proteins and centrifuge at 14,000 rcf for 20 min at 4 °C. The supernatant was freeze-dried.</p>	<p>The samples were separated using an Agilent 1290 Infinity LC ultra-high performance liquid chromatography system with a ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 100 mm; Waters) column. Mobile phases were as follows: A solution is 10 mM ammonium acetate aqueous solution and B solution is acetonitrile. The samples were placed in an autosampler at 4 °C, the column temperature was 45 °C, the flow rate was 300 μL/min and the injection volume was 2 μL.</p><p><br></p><p>In the sample cohort, a QC sample was set at every interval of a certain number of experimental samples to detect and evaluate the stability and repeatability of the system; the standard mixture of energy metabolites was set in the sample cohort for the correction of chromatographic retention time.</p>	<p>Mass spectrometry was performed on a AB&nbsp;SCIEX&nbsp;Triple&nbsp;Quad&nbsp;5500 in negative ion mode. The ESI source conditions were as follows: source temperature, 450 °C; ion Source Gas1 (Gas1), 45; Ion Source Gas2 (Gas2), 45; Curtain gas (CUR), 30; ionSapary Voltage Floating (ISVF), -4500 V. MRM is used - mode detects the transition to be analyzed.</p>	<p>Chromatographic peak areas and retention times were extracted using <strong>Multiquant</strong> software. The retention time was corrected by using the standard substance of energy substitute for metabolite identification. The following parameters were used: for peak picking, centWave, m/z = 25 ppm, peakwidth = c(10,60), prefilter = c(10,100); for peak grouping, bw = 5, mzwid = 0.025, minfrac = 0.5. Only the variables having more than 50% of the nonzero measurement values in the least group were kept.</p>	<p>Compound identification of metabolites by MS/MS spectra with an in house database established with available authentic standards. With targeted metabolomics, selective reaction/multiple reaction monitoring (SRM/MRM), with reference to standard substances, can detect and analyze specific metabolite groups in a targeted and specific manner, so as to obtain absolute quantitative results of target metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yujie	Han	Min
+Study Person First Name	Liu	Wang	Shao
+Study Person Mid Initials			
+Study Person Email	yjliu0704@163.com	wanghan@sibs.ac.cn	shaomin@picb.ac.cn
+Study Person Phone	19121718017	19916945606	18717870756
+Study Person Fax			
+Study Person Address	Shanghai Jiao Tong University School of Medicine	Shanghai Jiao Tong University School of Medicine	Chinese Academy of Sciences
+Study Person Affiliation	contributor	contributor	contributor
+Study Person Roles	student	student	student
+Study Person Roles Term Accession Number	http://purl.unep.org/sdg/SDGIO_00010067	http://purl.unep.org/sdg/SDGIO_00010067	http://purl.unep.org/sdg/SDGIO_00010067
+Study Person Roles Term Source REF	SDGIO	SDGIO	SDGIO

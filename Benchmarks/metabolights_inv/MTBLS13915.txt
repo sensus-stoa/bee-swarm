@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MSIO	NCBITaxon	NCIT	OBI	PRIDE
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl
+Term Source Version		2025-10-21	3.86.0			1.0.1	2025-12-03	25.06e	2025-12-18	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13915
+Investigation Title	Integrated plant metabolic and microbiome signatures distinguish phytoprotection mechanisms underpinning single- vs dual-pathosystem soil suppressiveness
+Investigation Description	
+Investigation Submission Date	2026-02-17
+Investigation Public Release Date	2026-02-17
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13915
+Study Title	Integrated plant metabolic and microbiome signatures distinguish phytoprotection mechanisms underpinning single- vs dual-pathosystem soil suppressiveness
+Study Description	<p>The goal of this study is to compare the metabolic response of plants grown in soils suppressive or conducive to wheat crown rot (caused by<em> Fusarium graminearum</em>) and inoculated or not with <em>F. graminearum</em>. This dataset contains LC-QTOF-MS-based untargeted metabolomics data from the roots of wheat plants. The wheat plants were grown in disease-suppressive and disease-conducive soils from France and Switzerland.</p>
+Study Submission Date	2026-02-17
+Study Public Release Date	2026-02-17
+Study File Name	s_MTBLS13915.txt
+Comment[Created At]	2026-02-13T14:54:11.739806
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Multi-omics study	untargeted metabolite profiling	Wheat
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PRIDE_0000461	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/NCIT_C74546
+Study Design Type Term Source REF	PRIDE	MSIO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Alix Catry, Danis Abrouk, Ana-Isabel Serrano-Mendoza, Marjolaine Rey, Marie-Lara Bouffaud, François Buscot, Adriana Giongo, Kornelia Smalla, Gilles Comte, Christoph Keel, Daniel Muller, Yvan Moënne-Loccoz
+Study Publication Title	Integrated plant metabolic and microbiome signatures distinguish phytoprotection mechanisms underpinning single- vs dual-pathosystem soil suppressiveness
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	F GRAMINEARUM INOCULATION
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13915_LC-DAD_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Diode array detection MS - positive - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-DAD
+Comment[Assay Type]	LC-DAD
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	MI
+Study Protocol Description	<p>A set of 8 soils was used for this experiment, including 4 French soils (sampled near Seyssel and Albens in the Savoie region) and 4 Swiss soils (sampled in the Morens region in Cantons Vaud and Fribourg, western Switzerland). The Morens soils include MS16, MS7, MC112 and MC10, and the Savoie soils include Ysa5, Asa2, Ymo4 and Amo1. Sites and soil sampling have been described (Catry et al., 2026). The wheat pathogen used for inoculation was&nbsp;<em>F. graminearum</em>&nbsp;strain Fg1 (Besset-Manzoni et al., 2019).</p><p>The greenhouse experiment followed the one described in Catry et al. (2026), in which&nbsp;<em>Nicotiana glutinosa</em>&nbsp;seedlings had been grown in each soil and inoculated or not with a&nbsp;<em>T. basicola</em>&nbsp;spore suspension. After that experiment, soils from the pots were grouped according to their original source, thoroughly mixed and sieved to remove tobacco roots. The prepared soils were then returned to pots and sown with three&nbsp;<em>Triticum aestivum</em>&nbsp;(cv. Recital) seeds. Seeds were inoculated with 100 μL of a&nbsp;<em>F. graminearum</em>&nbsp;spore suspension (2 ×&nbsp;10^5&nbsp;spores per seed) or received 100 μL of sterile distilled water (10 pots per soil × inoculation condition). Plants were grown under controlled greenhouse conditions (22 ± 2 °C day / 18 ± 2 °C night, 16 h light / 8 h dark, relative humidity 60–70%).&nbsp;For each treatment, 8 biological replicates (each consisting of one pot with three plants) were used, and 8 of them were processed for root metabolomics. Sampling was done at 8 weeks after sowing. The plants were unearthed, and loosely-adhering soil was gently removed with sterile tweezers.&nbsp;The roots&nbsp;were separated from the shoots, placed in sterile water, and tightly-adhering soil was detached by vortexing.</p>	<p>Two µL of each extract were analyzed on an Accurate-Mass Q-TOF 6546 instrument coupled with an LC 1290 Infinity II system (Agilent Technologies). The separation was carried out at 40&nbsp;°C using a 120 EC-C18 column (3.0 × 100&nbsp;mm × 2.7&nbsp;μm; Agilent Poroshell) with water, with 0.4% formic acid (v/v) as eluent A and acetonitrile as eluent B. The elution gradient (0.7&nbsp;mL/min) was run with eluent B from 1 to 57% in 8.5&nbsp;min, then 93% in 7&nbsp;min and finally a plateau at 100% from 16.5 to 18.5&nbsp;min. Mass analyses were made in positive mode with the nebulization gas (nitrogen) at a flow of 12 L/min and 40 PSG pressure, and with a capillary tension of 3500&nbsp;V.</p>	<p>Agilent’s data files were converted to open-format files using ProteoWizard's msConvert. Data were then processed with the Galaxy platform ‘Workflow4metabolomics’.</p>	<p>Wheat roots were freeze-dried using an Alpha 1–4 LSC (Martin Christ, Osterode am Harz, Germany) and then ground (Tissue Lyser II; Qiagen, Hilden, Germany). The powder obtained was extracted twice with methanol at a rate of 1.5&nbsp;mL per 100&nbsp;mg. Extracts were dried and dissolved at 10&nbsp;g/L in methanol.</p>	<p>Spectral data (UV and MS) were used to annotate discriminating molecules based on metabolome variables associated with the differences between suppressive and conducive soils, identified via OPLS-DAs (R package 'ropls'). From MS/MS fragmentation spectra, in both positive and negative modes, of pseudomolecular ions and adducts, the Sirius software (Dührkop et al., 2019) generated molecular formulas and information on their putative structures, by comparison with various databases (i.e., Natural Products, Coconut, KEGG, PlantCyc, Pubchem). These annotations were then checked by comparing them to the existing literature (e.g. with SciFinder).</p>
+Study Protocol URI					
+Study Protocol Version					
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column;Detector;Signal range;Resolution		Post Extraction;Derivatization	
+Study Protocol Parameters Name Term Accession Number		;;;;;;;		;	
+Study Protocol Parameters Name Term Source REF		;;;;;;;		;	
+Study Protocol Components Name					
+Study Protocol Components Type					
+Study Protocol Components Type Term Accession Number					
+Study Protocol Components Type Term Source REF					
+STUDY CONTACTS
+Study Person Last Name	Catry	Rey	Moënne-Loccoz	Comte	Muller
+Study Person First Name	Alix	Marjolaine	Yvan	Gilles	Daniel
+Study Person Mid Initials					
+Study Person Email	alix.catry@univ-lyon1.fr	marjolaine.rey@univ-lyon1.fr	yvan.moenne-loccoz@univ-lyon1.fr	gilles.comte@univ-lyon1.fr	daniel.muller@univ-lyon1.fr
+Study Person Phone					
+Study Person Fax					
+Study Person Address	43 bd du 11 novembre 1918, F-69622 Villeurbanne, France	43 bd du 11 novembre 1918, F-69622 Villeurbanne, France	43 bd du 11 novembre 1918, F-69622 Villeurbanne, France	43 bd du 11 novembre 1918, F-69622 Villeurbanne, France	43 bd du 11 novembre 1918, F-69622 Villeurbanne, France
+Study Person Affiliation	Ecologie Microbienne Lyon	Ecologie Microbienne Lyon	Ecologie Microbienne Lyon	Ecologie Microbienne Lyon	Ecologie Microbienne Lyon
+Study Person Roles	Investigator	Investigator	Principal Investigator	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0007-5752-7224	0000-0002-3101-5606	0000-0002-9817-1953	0000-0003-1191-6455	0000-0002-6619-4691
+Comment[Study Person Affiliation ROR ID]	https://ror.org/053vv7851	https://ror.org/053vv7851	https://ror.org/053vv7851	https://ror.org/053vv7851	https://ror.org/053vv7851
+Comment[Study Person Alternative Email]	alixcatry@gmail.com				

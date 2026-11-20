@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13918
+Investigation Title	Metabolomic Reprogramming Induced by Conjugative Acquisition of Carbapenemase-producing IncX3 Plasmid Revealed by Untargeted LC-MS/MS Profiling
+Investigation Description	
+Investigation Submission Date	2026-02-17
+Investigation Public Release Date	2026-09-27
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Kyung
+Investigation Person First Name	
+Investigation Person Mid Initials	
+Investigation Person Email	stevekyung25@snu.ac.kr
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Seoul National University
+Investigation Person Roles	Principal Investigator role
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS13918
+Study Title	Metabolomic Reprogramming Induced by Conjugative Acquisition of Carbapenemase-producing IncX3 Plasmid Revealed by Untargeted LC-MS/MS Profiling
+Study Description	<p>This study aimed to elucidate the metabolic process of IncX3 plasmid within conjugated strains, by utilizing untargeted LC-MS/MS profiling. In this study, the <em>blaNDM-5</em>-carrying IncX3 plasmid was successfully conjugated into Escherichia coli J53, which was confirmed to enhance both carbapenem resistance and host fitness. Untargeted LC-MS/MS profiling revealed strategic remodeling response induced by the acquisition of the IncX3 plasmid. </p>
+Study Submission Date	2026-02-17
+Study Public Release Date	2026-09-27
+Study File Name	s_MTBLS13918.txt
+Comment[Created At]	2026-02-12
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-27
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Conjugation	AMR
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101		
+Study Design Type Term Source REF	MSIO		
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Su Min Kyung, Eun-Seo Lee, Jun Ho Lee, and Han Sang Yoo
+Study Publication Title	Metabolomic Reprogramming Induced by Conjugative Acquisition of Carbapenemase-producing IncX3 Plasmid Revealed by Untargeted LC-MS/MS Profiling
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Transconjugant
+Study Factor Type	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13918_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>The chromatographic separation was performed on an ACQUITY UPLC HSS T3 column (100 mm × 2.1 mm I.D., 1.8 μm, 100 Å; Waters Corporation) using a binary mobile phase system consisting of solvent A (10 mM ammonium formate and 0.1% formic acid in water) and solvent B (0.1% formic acid in 80% acetonitrile). The gradient was programmed as follows: 1% B at 0 min, held at 1% B until 1.5 min, increased linearly to 60% B at 14.5 min, ramped to 96% B at 16.5 min, maintained at 96% B until 16.5 min, and then returned to 1% B at 20 min for column re-equilibration. The flow rate was set to 0.25 mL/min, and mass spectrometric detection was carried out in positive ionization mode over a mass range of 100-1,000 m/z.</p>	<p>Raw data files for each sample were processed using Compound Discoverer 3.3™ for data analysis, employing the “Untargeted Metabolomics with Statistics Detect Unknowns with ID using Online Database and mzLogic” workflow. Putative metabolite identification was performed using mzCloud (ddMS2) and ChemSpider (formula or exact mass), and all compounds were subjected to ddMS2 data similarity searches against the mzCloud spectral library. To increase annotation confidence, features were filtered according to the Metabolomics Standards Initiative (MSI) criteria, retaining only Level 2 (mass accuracy &lt; 10 ppm, mzCloud score &gt; 80) and Level 3 (ChemSpider match error &lt; 5 ppm) compounds, while duplicate metabolites were removed based on peak area.</p>	<p>Cells were resuspended in 50 mM ammonium bicarbonate and then lysed by adjustment of QSonica Sonicator Q125. The protein concentration of each sample was estimated to adjust the volume of metabolites to extract, using a bicinchoninic acid (BCA) protein assay kit (Pierce Biotechnology, Rockford, IL). Metabolites were then extracted by vortexing samples after adding ice-cold 100% methanol, followed by incubation in -20℃ for an hour. The metabolites were then centrifuged in 14,000 × g for 15 minutes, then dried out using speed-vac. The dried extracts were reconstituted in 0.1% formic acid in water, and sample filtration was subsequently performed using a spin filter. Water was first added to the spin filter and centrifuged at 1,000 × g for 5 min to collect the flow-through. The eluted water was discarded, and the filter was placed back into the centrifuge tube. The sample was then loaded onto the filter and centrifuged at 1,000 × g for 3 min to obtain the filtrate. The filtered samples were transferred to MS vials, and 5 μL of each sample was injected for LC-MS/MS analysis.</p>	<p>The chromatographic separation was performed on an ACQUITY UPLC HSS T3 column (100 mm × 2.1 mm I.D., 1.8 μm, 100 Å; Waters Corporation) using a binary mobile phase system consisting of solvent A (10 mM ammonium formate and 0.1% formic acid in water) and solvent B (0.1% formic acid in 80% acetonitrile). The gradient was programmed as follows: 1% B at 0 min, held at 1% B until 1.5 min, increased linearly to 60% B at 14.5 min, ramped to 96% B at 16.5 min, maintained at 96% B until 16.5 min, and then returned to 1% B at 20 min for column re-equilibration. The flow rate was set to 0.25 mL/min, and mass spectrometric detection was carried out in positive ionization mode over a mass range of 100-1,000 m/z.</p>	<p>To identify metabolites that were differentially altered by conjugation, the detected features were filtered using the following criteria: P &lt; 0.05, coefficient of variation (CV) &lt; 20%, variable importance in projection (VIP) &gt; 1, and a fold change ≥ 1.5. Metabolite analysis and visualization were performed using MetaboAnalyst 6.0 (https://www.metaboanalyst.ca/) (49), using the “Statistical Analysis [one factor]” module and the E. coli KEGG pathway library options. Among the statistically significant metabolites, those relevant to the subject were identified for the pathway analysis based on the EcoCyc database (50).</p>	<p>Three biological replicates of unconjugated J53 and four of the transconjugants were prepared by inoculating overnight cultures into fresh LB broth and harvesting at mid-log phase. Bacterial pellets were stored at -80℃ until all of the samples were processed to next stage.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Kyung
+Study Person First Name	Su Min
+Study Person Mid Initials	
+Study Person Email	stevekyung25@snu.ac.kr
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Seoul National University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

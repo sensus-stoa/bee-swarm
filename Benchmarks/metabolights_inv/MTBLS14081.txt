@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	GO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.88.0	2026-01-23			1.0.1		2025-12-03	25.06e	2025-12-18	2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14081
+Investigation Title	Adaptive Evolution Reveals Mechanisms of Isobutanol Tolerance in Zymomonas mobilis
+Investigation Description	
+Investigation Submission Date	2026-03-18
+Investigation Public Release Date	2026-03-18
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14081
+Study Title	Adaptive Evolution Reveals Mechanisms of Isobutanol Tolerance in Zymomonas mobilis
+Study Description	<p>Isobutanol production has been demonstrated in E. coli and Z. mobilis using heterologous pathways, with titers reaching up to 60% of the theoretical yield under optimized conditions. However, these results often depend on impractical setups, such as continuous product extraction, oxygenation, or nutrient supplementation, and still produce poorly growing strains with unstable pathway expression. In Z. mobilis, carbon flux remains strongly biased toward ethanol, which competes directly with isobutanol for pyruvate and reducing power.</p><p>Here, to address this challenge, we conducted an adaptive evolution experiment to improve isobutanol resistance in Z. mobilis. The bacterium was subjected to prolonged growth under gradually increasing isobutanol concentrations, leading to the isolation of evolved strains with significantly enhanced tolerance. Whole-genome sequencing revealed conserved adaptive mechanisms, with genetic alterations affecting a small set of target genes shared across resistant strains. By linking these mutations to improved growth kinetics and resistance profiles, we provide insights into the genetic and physiological basis of isobutanol tolerance, guiding future metabolic engineering efforts.</p><p><br></p>
+Study Submission Date	2026-03-18
+Study Public Release Date	2026-03-18
+Study File Name	s_MTBLS14081.txt
+Comment[Created At]	2026-03-10T16:48:11.408404
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Lipids	Fatty Acids	Liquid Chromatography Mass Spectrometry	Zymomonas mobilis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://id.nlm.nih.gov/mesh/D008055	http://id.nlm.nih.gov/mesh/D005227	http://purl.obolibrary.org/obo/NCIT_C18475	http://purl.obolibrary.org/obo/NCBITaxon_542
+Study Design Type Term Source REF	MSIO	mesh	mesh	NCIT	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Julio Rivera Vazquez, Benjamin Chadwick, Bingnan Zhao, Eashant Thusoo, Isabella Colón, Michael Wolfe, Zaid Aman, Zach Wenger, Michael Botts, Joshua Coon, Daniel Amador-Noguez
+Study Publication Title	Adaptive Evolution Reveals Mechanisms of Isobutanol Tolerance in Zymomonas mobilis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Condition
+Study Factor Type	concentration
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002820
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14081_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14081_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS14081_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]			
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]			
+Comment[Assay Type Term Source REF]			
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>The chromatography was done using a reverse-phase C18 column (Acquity UPLC CSH) (1.7-µm particle size, 2.1-by-100-mm column). Solvent A was 70% acetonitrile and 30% H2O with 10 mM ammonium acetate and 250 µL acetic acid per liter. Solvent B was 90% isopropanol and 10% acetonitrile with 10 mM ammonium acetate and 250 µL acetic acid per liter. The total run time was 33 min. Flow rate was held constant at 0.4 mL/min. The chromatography gradient was as follows: 2% solvent B for 2 min, linear increase to 30% B over 3 min, linear increase to 85% B for 14 min, linear increase to 99% for 1 min, maintenance at 99% B for 7 min, linear decrease back to 2% B over 1 min, maintenance at 2% B for 5 min. For the general method, eluent from the column was analyzed by MS from the start of the run until 28 min, at which time the flow was directed to waste for the remainder of the run.</p>	<p>Data analysis was conducted with the El-MAVEN software (Elucidata), leveraging retention times matched against authenticated pure standards for compound identification. Fold changes in lipid, fatty acid or metabolite concentrations under various growth conditions were quantified relative to Z. mobilis cultured in minimal media. Signal intensities were subjected to a log2 transformation, followed by two-tailed t-tests with equal variance assumptions to calculate corresponding P values.</p>	<p>The frozen pellets were thoroughly washed with 500 µL of water and then pelleted within a 2 mL glass vial (Thomas Fisher, 1234R80). Subsequently, 300 µL of a butanol/methanol solution in a 3:1 (v/v) ratio was gently injected using a glass digital analytical syringe (VWR, 97049-424). After this, the solution was strenuously vortexed for 30 s and further mixed with a foam tube holder for 10 min. In a subsequent step, 150 µL of a hexane/ethyl acetate solution in a 3:1 (v/v) ratio was added, vortexed for 30 s, and mixed for 5 min; this process was performed two times, yielding a total of 300 µL of the hexane/ethyl acetate 3:1 (v/v) solution being added. The reaction was completed by the addition of 300 µL of a 1% acetic acid solution. After vortexing for 30 s and mixing for 5 min, the solution was centrifuged at 4 °C for 10 min at 4400 rpm. 200 µL of the upper layer was collected for lipid analysis and fatty acid saponification. The collected layer was then dried under a stream of nitrogen gas. The resulting dried lipids were reconstituted in 55 µL of methanol, with 45 µL being used for LC–MS analysis.</p><p>In a 2 mL glass vial (Thomas Fisher, 1234R80), the dried 200 µL lipid layer was resuspended by adding 1 mL of a methanol/water solution with a ratio of 9:1 (v/v) and containing 0.3 M potassium hydroxide. The samples were then incubated in a water bath at 80 °C for 1 h. Afterwards, 100 µL of formic acid were added to acidify the solution. To allow phase separation, 900 µL of hexane were added, followed by vortexing for 1 min and subsequent centrifugation at 4400 rpm for 5 min. After, 600 µL of the uppermost layer were cautiously transferred to a new glass vial and dried using nitrogen gas. The dried sample was then reconstituted with 100 µL of a solution of acetonitrile, isopropanol, and water in a 65:30:5 (v/v) ratio. For LC–MS analysis, 80 µL of this solution were utilized.</p>	<p>LC–MS method was performed using a Vanquish ultra-high-performance liquid chromatography (UHPLC) system (Thermo Scientific) coupled to a hybrid quadrupole Orbitrap mass spectrometer (Q Exactive; Thermo Scientific). The chromatography was done using a reverse-phase C18 column (Acquity UPLC CSH) (1.7-µm particle size, 2.1-by-100-mm column).</p>	<p>The peak list was annotated using El-MAVEN software (Elucidata) through the analysis of standards and spectra.</p>	<p>Zymomonas mobilis ZM4 (ATCC 31821) and evolved lineages were anaerobically cultured on a rich medium plate at 30 °C for three days. A single colony was used to inoculate 6 mL of rich medium, followed by inoculation of 30 mL ZM4 minimal medium with 60 µL of the overnight culture. This culture was grown for 16 hours before being used to seed three 30 mL minimal medium cultures and three additional 30 mL minimal medium with 0.15M isobutanol cultures, adjusting to an initial optical density (OD600) of 0.05. Cells were cultivated under different conditions until reaching an OD600 of 0.500 in an anaerobic glove bag. Subsequently, 5 mL of culture was collected and centrifuged at 4400 rpm for 10 minutes (Allegra X-30R, Beckman Coulter). The resulting cell pellets were flash-frozen and stored at −80 °C for lipidomics and proteomics analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Julio	Daniel
+Study Person First Name	Rivera Vazquez	Amador-Noguez
+Study Person Mid Initials		
+Study Person Email	riveravazque@wisc.edu	amadornoguez@wisc.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address	1550 Linden Dr, Madison, WI 53706, USA	1550 Linden Dr, Madison, WI 53706, USA
+Study Person Affiliation		University of Wisconsin–Madison
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0009-9202-4109	
+Comment[Study Person Affiliation ROR ID]		https://ror.org/01y2jtd41
+Comment[Study Person Alternative Email]	juliocrivera.2016@gmail.com	

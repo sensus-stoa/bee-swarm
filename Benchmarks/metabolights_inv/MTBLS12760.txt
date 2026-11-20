@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI	SO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/so.owl
+Term Source Version		2025-10-21	3.86.0		2026-01-06			2025-12-03	25.06e	2025-12-18	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Sequence types and features ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12760
+Investigation Title	Translational repression of viral RNA mediates arbovirus persistence in mosquitoes
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-22
+Investigation Public Release Date	2026-02-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12760
+Study Title	Translational repression of viral RNA mediates arbovirus persistence in mosquitoes
+Study Description	<p>Persistent infection of mosquito vectors is essential for the transmission of arboviruses, yet how these viruses produce sufficient progeny without compromising host cell fitness remains unclear. Arbovirus genomes exhibit suboptimal codon usage for both human and mosquito hosts, raising questions about how they achieve efficient translation in such distinct cellular environments. Using chikungunya virus (CHIKV) as a model, we conducted a temporal, genome-wide analysis of transcription, translation, and tRNA modifications in Aedes albopictus C6/36 cells. We found that, unlike in human cells, CHIKV infection does not manipulate the tRNA modification landscape in mosquitoes to overcome codon bias. Instead, viral persistence is marked by a progressive, virus-specific repression of CHIKV RNA translation, occurring alongside a recovery of host mRNA translation. This translational balance, established independently of the RNAi system, supports sustained viral production without major disruption to host gene expression. Our findings reveal a fine-tuned equilibrium in mosquito cells that allows the establishment of long-term CHIKV persistence through controlled viral protein synthesis.</p>
+Study Submission Date	2025-07-22
+Study Public Release Date	2026-02-12
+Study File Name	s_MTBLS12760.txt
+Comment[Created At]	2025-06-16T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	tRNA	Aedes albopictus	Chikungunya Virus	targeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/SO_0000253	http://purl.obolibrary.obo/obo/NCBITaxon_7160	http://purl.obolibrary.org/obo/NCIT_C125638	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	SO	NCBITaxon	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2025.07.10.664053
+Study Publication Author List	Talló-Parra Marc, Puig-Torrents Mireia, Pérez-Vilaró Gemma, Pons Sol Ribó, Hernández-Alias Xavier, Mantica Federica, Irimia Manuel, Serrano Luis, Díez Juana
+Study Publication Title	Translational repression of viral RNA mediates arbovirus persistence in mosquitoes
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Infection
+Study Factor Type	Chikungunya Virus
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C125638
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12760_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Aedes albopictus C6/36 and U4.4 cells were infected with CHIKV and at 8-, 24- hours post-infection and 7 days post-infection, total RNA was extracted and DNAse treated.</p>	<p>3-10 μg of total RNA per sample was run in a 15% TBE-UREA gel (Novex, ThermoFisher Scientific, EC6885BOX) for 60 min at 180V. Gels were stained with 1:10000 SybrGold (ThermoFisher Scientific, S11494) and the tRNA bands were selected. tRNA was then extracted using ZR small RNA PAGE Recovery kit (Zymo Research, R1070) following the manufacturer’s instructions. The same amount of extracted tRNA was digested with 1 μl of the Nucleoside Digestion Mix (New England BioLabs, M0649S) and the mixture was incubated at 37ºC for 1h.</p>	<p>Samples (15 ng) were analyzed using an Orbitrap Eclipse Tribrid mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA) coupled to an EASY-nLC 1200 (Thermo Fisher Scientific (Proxeon), Odense, Denmark). Ribonucleosides were loaded directly onto the analytical column and were separated by reversed-phase chromatography using a 50 cm column with an inner diameter of 75 μm, packed with 2 μm C18 particles (Thermo Fisher Scientific, ES903). Chromatographic gradients started at 93% buffer A and 3% buffer B with a flow rate of 250 nL/min for 5 min and gradually increased to 30% buffer B and 70% buffer A in 20 min. After each analysis, the column was washed for 10min with 0% buffer A and 100% buffer B. Buffer A: 0.1% formic acid in water. Buffer B: 0.1% formic acid in 80% acetonitrile.</p>	<p>The mass spectrometer was operated in positive ionization mode with nanospray voltage set at 2.4kV and source temperature at 305°C. For Parallel Reaction Monitoring (PRM) method the quadrupole isolation window was set to 1.4m/z, and MSMS scans were collected over a mass range of m/z 50-300, with detection in the Orbitrap at resolution of 60,000. MSMS fragmentation of defined masses was performed using HCD at NCE 20 (except stated differently) (Sarin 2018), the auto gain control (AGC) was set to “Standard” and a maximum injection time of 118 ms was used. In each PRM cycle, one full MS scan at resolution of 120,000 was acquired over a mass range of m/z 220-700 with detection in the Orbitrap mass analyzer. Auto gain control (AGC) was set to 1e5 and the maximum injection time was set to 50 ms. </p>	<p>Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the linear range of quantification and the limit of detection of each compound. A mix of commercial ribonucleosides was injected before and after each batch of samples to assess instrument stability and to be used as an external standard to calibrate the retention time of each ribonucleoside.</p>	<p>Acquired data were analyzed with the Skyline-daily software (v24.1.1.284) and extracted precursor areas of the ribonucleosides were used for quantification. </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Tallo Parra	Puig-Torrents	Perez-Vilaro	Diez
+Study Person First Name	Marc	Mireia	Gemma	Juana
+Study Person Mid Initials				
+Study Person Email	marc.tallo@upf.edu	mireia.puig@upf.edu	gemma.perez@upf.edu	juana.diez@upf.edu
+Study Person Phone	+34933160861	+34933160861		
+Study Person Fax				
+Study Person Address	Doctor Aiguader 88, 3rd floor, Lab 368	Doctor Aiguader 88, 3rd floor, Lab 368		
+Study Person Affiliation	Molecular Virology Group, MELIS Department	Molecular Virology Group, MELIS Department, Universitat Pompeu Fabra	Universitat Pompeu Fabra	Universitat Pompeu Fabra
+Study Person Roles	Investigator	Co-Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

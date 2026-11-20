@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	MTBLS	CHMO	OBI	
+Term Source File	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI	http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	132		1	22/11/2020	29	18.10e
+Term Source Description	Experimental Factor Ontology		Metabolights Ontology		Ontology for Biomedical Investigations	NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS1517
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2025-04-29
+Investigation Public Release Date	2025-04-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1517
+Study Title	Combined metabolomics with transcriptomics reveals important serum biomarkers correlated with lung cancer proliferation through calcium signaling pathway
+Study Description	<p>Lung cancer (LC) is still one of the most deadly cancers in the world, but there is a lack of non-invasive biomarkers to assist diagnosis and guide treatment. Herein, untargeted serum metabolomics of 57 LC patients and 59 HC people was performed based on gas chromatography-mass spectrography (GC-MS). Differential metabolites were identified by NIST14 database and human metabolome database (HMDB). The random forest (RF) classification algorithm was then carried out for selecting the optimal panel of biomarkers among differential metabolites. The biomarker panel was finally validated by support vector machine (SVM) and partial least squares-discriminant analysis (PLS-DA) classification algorithm. After that, each biomarker was targeted quantitated using GC-MS/SIM in a test set consisted of 50 LC patients and 41 HC people. Subsequently, the Network analysis of Ingenuity Pathway Analysis (IPA) was applied to browse the biomarker panel-related genes, and the transcriptome data from GEO database were used to verify the gene expression. In the results, five metabolites including cholesterol, oleic acid, myo-inositol, 2-hydroxybutyric acid and 4-hydroxybutyric acid were combined to be biomarker panel from totally 15 differential metabolites. The genes of INPP5A, MAP2K2, CAMK1D, GABARAPL1, NDUFS4/8 were involved in biomarker panel-related biological pathway, and calcium signaling pathways might mediate their role in the proliferation of LC. Our study provided effective candidate biomarkers for the diagnosis of LC, and elucidated part of the underlying pathological mechanism of LC from the perspective of metabolites.</p>
+Study Submission Date	2025-04-29
+Study Public Release Date	2025-04-29
+Study File Name	s_MTBLS1517.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics	GC-MS	lung cancer	biomarker
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000270	http://purl.obolibrary.org/obo/CHMO_0000497	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000081	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000087
+Study Design Type Term Source REF	MTBLS	CHMO	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	34056907
+Study Publication DOI	10.1021/acs.jproteome.0c01019
+Study Publication Author List	Zheng Y, He Z, Kong Y, Huang X, Zhu W, Liu Z, Gong L.
+Study Publication Title	Combined Metabolomics with Transcriptomics Reveals Important Serum Biomarkers Correlated with Lung Cancer Proliferation through a Calcium Signaling Pathway.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1517_GC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>A discovery cohort containing 57 LC patients and 59 age and sex matched healthy controls (HC) was recruited for serum collection at the Department of Cardiothoracic surgery in the Second Clinical College of Guangzhou University of Chinese Medicine, and LC patients were diagnosed by pathologically determination. Subjects were rejected if met any of the following exclusion criteria: history of diabetes, heart diseases and other fundamental diseases, heavy drinker, HIV or AIDS defining illness. A test cohort containing 50 LC and 41 HC was recruited from the same clinic and followed the same exclusion criteria as that for the discovery cohort. Detailed clinical information was derived from basic case information for each patient, including age, sex, self-reported smoking status and American Joint Committee on Cancer (AJCC) staging as well as tumor-node-metastasis (TNM) staging. Staging and TNM were performed by a pathologist using the seventh edition of the AJCC's Cancer Staging Manual. The study was conducted in compliance with the Declaration of Helsinki, and ethical approval was obtained from the Ethics Committee of the Second Clinical College of Guangzhou University of Chinese Medicine. All subjects gave written informed consent and the clinical information was displayed in Table 1. Blood was collected with vacuum tube and then centrifuged at 6,797 ×g at 4 °C for 10 min to yield serum. The supernatant was immediately aliquoted and stored at -80 °C prior to analysis.</p>	<p>The extraction of metabolites was referred to the previous work [19]. Briefly, after thawing, 150 μL MeOH-H2O (3:1, v/v) and 10 μL internal standard (tridecanoic acid, 0.2 mg/mL) were firstly pipetted into a 1.5 mL Eppendorf centrifuge tube with 50 μL serum, and the mixture was vortexed for 1 min. Then, 50 μL CHCl3 was secondly added into the mixture and vortexed for 1 min. After that, 100 μL CHCl3-MeOH (3:1, v/v) was finally added and vortexed for 1 min. The mixture was incubated at 4 °C for 10 min, followed by centrifugation at 20,817 ×g for 10 min at 4 °C. Next, the 200 μL extract was transferred into a new GC vial and vacuum dried at room temperature for 1 h. The quality controls (QCs) were prepared by mixing a small quantity of supernatant from LC and HC samples, and then was divided into eight tubes of each 200 μL. Next, the dried extract and QCs were redissolved in 30 μL methoxyamine hydrochloride (15 mg/mL in pyridine) at 25 °C for 16 h and then derivatized with 30 μL MSTFA (containing 1% TMCS) at 60 °C for 2 h. Finally, the derivative samples were added 10 μL retention index solvent (RIs, 0.3 mg/mL) that consisted of five alkanes (decane, dodecane, pentadecane, nonadecane, docosane) before GC-MS injection.</p>	<p>Untargeted metabolomics analysis was performed for the subjects in the discovery cohort. The metabolomic profiling was carried out on 7890B GC system (Agilent, CA, USA) with a HP-5MS column (30 m × 0.25 mm × 0.25 µm, Agilent, MA, USA). The temperature was set to 70 °C initially, held for 4 min, and then programmed to 320 °C at 15 °C/min, and held for 4 min. The auxiliary temperature and the injector temperature were both at 280 °C. The injection volume was 1 µL with a split ratio of 4:1. The helium carrier gas flow rate was set at 1 mL/min.</p>	<p>The metabolomic profiling was carried out on 5977A MS system (Agilent, CA, USA). MS scan was ranged between m/z 45-800. The EI source temperature was kept at 230 °C.</p>	<p>Briefly, the profile data of serum sample was acquired by GC-MS and then imported to Unknowns Analysis (version 10.1) in MassHunter Workstation (version 10.0, Agilent, CA, USA). In this program, peak detection, deconvolution and alignment were performed automatically with default settings. Features with absolute peak area less than 5000 or absolute peak height less than 1000 were ignored after the above treatment. After that, the data was outputted in CEF format and inputted to Mass Profiler Professional (MPP) software (version 15.0, Agilent, CA, USA) to yield data matrix of peak area with logarithmic transformation. The peak area of each feature was normalized by the total peak area. The data matrix was then subjected to univariate statistical analysis (Student’s t-test or Mann-Whitney U test) and multivariate statistical analysis ((principal components analysis, PCA) and (orthogonal partial least squares discriminant analysis, OPLS-DA)) to obtain P value and VIP value, respectively, for each feature. The features with false discovery rates (FDR) value below 0.05 and VIP above 1 were considered to be the potential differential metabolites.</p>	<p>The identification of differential metabolites was carried out by matching the GC-MS spectra with the reference standards in the National Institute of Standards and Technology (NIST14.L) database, Human Metabolome Database (HMDB) and Golm Metabolome Database (GMD). Among them, metabolites with matching score below 70 were eliminated for the following analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zheng	He	Liu	Gong
+Study Person First Name	Yuan	Zhuoru	Zhongqiu	Lingzhi
+Study Person Mid Initials				
+Study Person Email		maybehzr@163.com		 lingzhigong@gzucm.edu.cn
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation				
+Study Person Roles	Investigator	Author	Funded Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C63403	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

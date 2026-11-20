@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	BRO	NCBITAXON	OBI	CHEBI	MS
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/BRO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/MS
+Term Source Version	28	14	2	22	99	86
+Term Source Description	National Cancer Institute Thesaurus	Biomedical Resource Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS591
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2017-12-26
+Investigation Public Release Date	2018-02-09
+Comment[Created With Configuration]	D:\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS591
+Study Title	A Prototypic Small Molecule Database for Bronchoalveolar Lavage-Based Metabolomics
+Study Description	The analysis of bronchoalveolar lavage fluid (BALF) using mass spectrometry-based metabolomics can provide insight into lung diseases, such as asthma. However, the important step of compound identification is hindered by the lack of a small molecule database that is specific for BALF. Here we describe prototypic, small molecule databases derived from human BALF samples (n=117). Human BALF was extracted into lipid and aqueous fractions and analyzed using liquid chromatography mass spectrometry. Following filtering to reduce contaminants and artifacts, the resulting BALF databases (BALF-DBs) contain 11,737 lipid and 658 aqueous compounds. Over 10% of these were found in 100% of samples. Testing the BALF-DBs using nested test sets produced a 99% match rate for lipids and 47% match rate for aqueous molecules. Searching an independent dataset resulted in 45% matching to the lipid BALF-DB compared to < 25% when general databases are searched. Overall, the BALF-DBs can reduce false positives and improve confidence in compound identification compared to when general databases are used.
+Study Submission Date	2017-12-26
+Study Public Release Date	2018-02-09
+Study File Name	s_MTBLS591.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics Facility	Chronic Obstructive Pulmonary Disease	Bronchoalveolar Lavage Fluid	Sample Specific Databases	high-performance liquid chromatography-mass spectrometry	lipid	untargeted metabolites
+Study Design Type Term Accession Number	http://bioontology.org/ontologies/BiomedicalResourceOntology.owl#Metabolomics_Facility	http://purl.obolibrary.org/obo/NCIT_C3199	http://purl.obolibrary.org/obo/NCIT_C13195			http://purl.obolibrary.org/obo/CHEBI_18059	
+Study Design Type Term Source REF	BRO	NCIT	NCIT			CHEBI	
+STUDY PUBLICATIONS
+Study PubMed ID	29664467
+Study Publication DOI	
+Study Publication Author List	Scott Walmsley, Charmion Cruickshank-Quinn, Kevin Quinn, Xing Zhang, Irina Petrache, Russell P Bowler, Richard Residorph, Nichole Reisdorph
+Study Publication Title	A Prototypic Small Molecule Database for Bronchoalveolar Lavage-Based Metabolomics
+Study Publication Status	Submission
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25695
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	COPD GOLD Stage
+Study Factor Type	FEV1 Stage
+Study Factor Type Term Accession Number	
+Study Factor Type Term Source REF	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS591_study_id_metabolite_profiling_mass_spectrometry.txt	a_MTBLS591_study_id_metabolite_profiling_mass_spectrometry-1.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Agilent 6545 QTOF	Agilent 6520 QTOF
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	BALF was collected from subjects from the SPIROMICS cohort (n = 117) as previously described [1] for use in database development.</br></br> Ref:</br> [1] Cruickshank-Quinn C, Powell R, Jacobson S, Kechris K, Bowler RP, Petrache I, & Reisdorph N. Metabolomic similarities between bronchoalveolar lavage fluid and plasma in humans and mice. Sci Rep. 2017;7(1):5108	For the BALF-DB development, 140 µl of BALF from the SPIROMICS cohort were prepared using protein precipitation with 560 µl of methanol to pellet proteins and extract the metabolites in the supernatant. The supernatant was split into two aliquots: 165 µl for HILIC analysis (hydrophilic/aqueous fraction) and 495 µl for C18 analysis (hydrophobic/lipid fraction). The aqueous fraction was dried down in a speedvac at 45 °C and reconstituted in 30 µl of 95:5 water:acetonitrile. The lipid fraction was reconstituted in 90 µl of methanol.	For all samples, including blanks, the BALF lipid fraction was resolved using the same C18 reverse phase chromatography. The separations used an Agilent Zorbax Rapid Resolution HD (RRHD) SB-C18, 1.8 micron (2.1 x 100 mm) analytical column with an Agilent Zorbax SB-C18, 1.8 micron (2.1 x 5 mm) guard column and used an Agilent 1290 series high performance liquid chromatography (HPLC) pump with an 8 µl injection volume.</br> For all samples, analysis of the aqueous fraction was by HILIC chromatography using an Agilent 1290 series pump with a Phenomenex Kinetex HILIC, 2.6 µm, 100 Å, 2.1x50 mm analytical column and an Agilent Zorbax Eclipse Plus-C8 Narrow Bore Guard Column, 2.1 x 12.5 mm, 5 micron guard column. Sample injection volume was 1 µl.</br> A flow rate of 0.6 ml/min was used with the following mobile phases: mobile phase A was 50% ACN with pH 5.8 ammonium acetate, and mobile phase B was 90% ACN with pH 5.8 ammonium acetate. Gradient elution was as follows: 0-2 minutes 100% B, 2-2.1 minutes 100-90% B, 2.1-8.6 minutes 90-50% B, 8.6-8.7 minutes 50-0% B, 8.7-14.7 0% B, 14.7-14.8 minutes 0-100% B, 14.8-24.8 minutes 100%B. The auto sampler tray temperature was set to 4 °C and column temperature was 20 °C.	Data acquisition for the lipid fraction used the following methods: For the primary experiment, data were acquired on an Agilent 6545 Time-of-Flight (TOF-MS) with ESI source in positive ionization mode using a scan rate 2.00 spectra/second, mass range 50-1700 m/z, gas temperature 300 °C, gas flow 12.0 l/min, nebulizer 35 psi, skimmer 65V, capillary voltage 3500V, fragmentor 120V, and calibrated with reference m/z 121.050873 (Purine) and 922.009798 (Hexakis(1H, 1H, 3H-Tetrafluoropropoxy)Phosphazene).</br> The aqueous fraction MS conditions were as follows: Agilent 6520 Quadrupole Time-of-Flight (Q-TOF-MS) in positive ionization mode with ESI source, mass range 50-1700 m/z, scan rate 2.00 spectra/second, gas temperature 325°C, gas flow 12.0 l/min, nebulizer 30psi, skimmer 60V, capillary voltage 4000V, fragmentor 120V, and calibrated using the reference masses 121.050873 (Purine) and 922.009798 009798 (Hexakis (1H, 1H, 3H-Tetrafluoropropoxy) Phosphazene).	Data was processed using the Profinder Software v.8.0.888 (Agilent Technologies) with the following parameters: Batch Recursive Feature Finding, positive mode, single charge, with +H, +Na, +K, and +NH4 adducts in positive ionization mode and single charge, with -H, +Cl, +HCOO, +CH3COO adducts for negative ionization mode, and absolute height filter of >600. Charge states were limited to <2. The resultant dataset comprises multiple adducts / ion species that have been merged into single compounds. Data were aligned during feature finding with Profinder (using 15 ppm mass error and 0.3 min retention time window) and then imported into Mass Profiler Professional (v14.8) for annotation. Compound exchange format (.cef) files were exported and then used for further evaluation.	Molecular formula generation used mass and isotope peaks and included the following elements: C, H, N, O, S, and P and was completed using IDBrowser. Compounds were annotated using formulas to search against the Human Metabolome Database v.3.6 (HMDB), Lipid Maps and Metlin. HMDB was utilized first since the samples were derived from human. For database searches, an error window of <10 ppm was used and a maximum of 2 charge states were allowed. Additional higher level annotation of compounds was performed by MS/MS using a non-targeted data acquisition approach followed by a search against the established Lipid Blast and NIST17 MS/MS spectral libraries. High confident identification (MSI level 1) were by searching against an in house chemical standards database.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Reisdorph
+Study Person First Name	Nichole
+Study Person Mid Initials	
+Study Person Email	Nichole.Reisdorph@ucdenver.edu
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	UC Denver Anschutz Medical Campus
+Study Person Roles	Director
+Study Person Roles Term Accession Number	
+Study Person Roles Term Source REF	

@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MFOMD	MI	MONDO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mfomd.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		253	2026-05-28	3.92.0	2020-04-26		2026-07-06		1.0.1		2026-07-12	26.02d	2026-05-08	2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Mental Disease Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11671
+Investigation Title	Targeting PI3K inhibitor resistance in breast cancer with metabolic drugs
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-07-31
+Investigation Public Release Date	2026-08-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11671
+Study Title	Targeting PI3K inhibitor resistance in breast cancer with metabolic drugs
+Study Description	<p>Activating PIK3CA mutations, present in up to 40% of hormone receptor-positive (HR+), human epidermal growth factor receptor 2-negative (Her2-) breast cancer (BC) patients, can be effectively targeted with the alpha isoform-specific PI3K inhibitor Alpelisib. This treatment significantly improves outcomes for HR+, Her2-, and PIK3CA-mutated metastatic BC patients. However, acquired resistance, often due to aberrant activation of the mTOR complex 1 (mTORC1) pathway, remains a significant clinical challenge.</p><p>Our study demonstrates that constitutively active mTORC1 signaling renders PI3K inhibitor-resistant BC exquisitely sensitive to various inhibitors of cancer metabolism. Mechanistically, mTORC1 inhibits the induction of autophagy during metabolic perturbation, leading to energy stress and cell death, both in vitro and orthotopic xenograft mouse models. Supporting this, BC cells with CRISPR/Cas9-engineered knockouts of canonical autophagy genes showed similar vulnerability to metabolically active drugs. In BC patients, high mTORC1 activity, indicated by 4E-BP1T37/46 phosphorylation, correlated with p62 accumulation, a sign of impaired autophagy. Together, these markers predicted poor overall survival in multiple BC subgroups. Our findings reveal that aberrant mTORC1 signaling, a common cause of PI3K inhibitor resistance in BC, creates a druggable metabolic vulnerability by suppressing autophagy. Additionally, the combination of 4E-BP1T37/46 phosphorylation and p62 accumulation serves as a biomarker for poor overall survival, suggesting their potential utility in identifying BC patients who may benefit from metabolic therapies.</p>
+Study Submission Date	2026-07-31
+Study Public Release Date	2026-08-21
+Study File Name	s_MTBLS11671.txt
+Comment[Created At]	2024-11-14
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-21
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Dionex Ultimate 3000 HPLC system	Thermo Scientific Q Exactive Focus	Homo sapiens	blank	breast cancer cell	solvent	experimental sample	pooled quality control sample	solvent blank	untargeted analysis	untargeted metabolites	breast cancer	Phosphatidylinositide 3-Kinase Inhibitor	resistance	metformin	autophagy
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000883	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000659	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304	http://purl.obolibrary.org/obo/BTO_0000150	http://purl.obolibrary.org/obo/CHEBI_46787	http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MSIO_0000026	http://purl.obolibrary.org/obo/MS_1003904	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MONDO_0007254	http://purl.obolibrary.org/obo/NCIT_C2152	http://purl.obolibrary.org/obo/MFOMD_0000133	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	MTBLS	BTO	CHEBI	CHMO		MSIO	MS	MTBLS	MONDO	NCIT	MFOMD	MTBLS	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism	Organism part	Organism part	Sample type	Sample type	Sample type	measurement-type	submitter	submitter	submitter	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	40113784
+Study Publication DOI	10.1038/s41392-025-02180-4
+Study Publication Author List	Gremke Niklas, Besong Isabelle, Stroh Alina, von Wichert Luise, Witt Marie, Elmshäuser Sabrina, Wanzel Michael, Fromm Martin F., Taudte R. Verena, Schmatloch Sabine, Karn Thomas, Reinisch Mattea, Hirmas Nader, Loibl Sibylle, Wündisch Thomas, Litmeyer Anne-Sophie, Jank Paul, Denkert Carsten, Griewing Sebastian, Wagner Uwe, Stiewe Thorsten
+Study Publication Title	Targeting PI3K inhibitor resistance in breast cancer with metabolic drugs
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Timepoint	Treatment	Cell count	Genotype
+Study Factor Type	timepoint	Metformin	Cell Count	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C61612	http://purl.obolibrary.org/obo/NCIT_C48938	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO	NCIT	NCIT	EFO
+Comment[Study Factor Value Format]				ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11671_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS11671_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11671_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS11671_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Cells (parental, ATG 7 ko and PI3KI res) were cultured on 6 well plates and treated with metformin for 2 or 5 days. After these times, cells were harvested following this protocol:</p><p>At first, cells were washed with PBS (37°C) three times, then PBS was removed and 2 x 500 uL 80% MeOH (ice cold, -20°C) added and the cells scratched. The lysates were transferred in 1.5 mL Eppendorf tubes. The extracts were centrifuged (16000 rpm, 4°C, 5 min) and the supernatant aliquoted into HPLC vials (2 x 350 uL) and one aliquot used to create a pooled aliquot (250 uL). The extracts were dried overnight in a speed vac and then reconstituted in 200 uL of eluent (for HILIC and RP respectively).</p>	<p> The extracts were centrifuged (16000 rpm, 4°C, 5 min) and the supernatant aliquoted into HPLC vials (2 x 350 uL) and one aliquot used to create a pooled aliquot (250 uL). The extracts were dried overnight in a speed vac and then reconstituted in 200 uL of eluent (for HILIC and RP respectively).</p>	<p>All analyses were conducted using a Dionex Ultimate 3000 chromatography system coupled with a Q Exactive Focus mass spectrometer, both from Thermo Fisher Scientific, Dreieich, Germany. The instrument was equipped with a heated electrospray ionization (HESI) source and was operated via TraceFinder 4.1 software. Each sample underwent analysis in both RP and HILIC, with data collected in both positive and negative polarization. QC samples consisting of pooled aliquots from all samples were injected every five samples to allow correcting for instrument variations.&nbsp;</p><p>For RP, the system utilized an Acquity UPLC BEH C18 column measuring 1.7 µm in particle size and 2.1 x 100 mm in dimensions, along with a 2.1 x 5 mm guard column to extend the column's lifespan. The RP eluent system consisted of water with 0.1% formic acid as mobile phase A, and methanol with 0.1% formic acid as mobile phase B. Chromatographic separation was achieved using a gradient program starting with 10% B, increased linearly to 98% B over 9 min. This concentration was maintained until 11 min, followed by a return to 10% B from 11.1 to 15 min for re-equilibration.</p><p>For HILIC analysis, an Acquity UPLC BEH Amide column of the same dimensions (1.7 µm, 2.1 x 100 mm) was used, also with a 2.1 x 5 mm guard column. The HILIC eluent system comprised mobile phase A, a solution of 10 mM ammonium formate with 0.1% formic acid, and mobile phase B, 10 mM ammonium formate with 5% water, 95% acetonitrile, and 0.1% formic acid. The HILIC gradient program startet with 100% B for the first 2 min, gradually decreasing to 30% B by the 14th min, and then reverting to the starting conditions by 16.5 min.</p><p>For both chromatographic methods, the column temperature was consistently maintained at 40°C, the flow rate was set at 0.35 mL/ min and the injection volume was 2 µL.</p>	<p>The Q Exactive Focus mass spectrometer was operated with a capillary voltage of 3.5 kV in positive mode and -3 kV in negative mode. The capillary temperature was set to 380°C, while the auxiliary gas temperature was 400°C. The sheath gas pressure, auxiliary gas pressure and sweep gas flow rate were set to 60, 20, and 0 arbitrary units, respectively. Nitrogen 5.0 was used for these gases. The scanning range was set from 66.7 to 1000 m/z. For full scan (MS1) analysis, the mass resolution was set to 70,000, with the automatic gain control (AGC) target set at 1e6 and the maximum injection time set to auto mode. In data-dependent MS2 (ddMS2) mode, the resolution was reduced to 35,000, with an AGC target of 5e4 and the maximum injection time also set to auto.</p>	<p>For data analysis, Compound Discoverer 3.3 was used (Thermo Fisher Scientific, Dreieich, Germany). Retention time tolerance for alignment and mass tolerance for annotation were set to 0.2 min and 5 ppm respectively.&nbsp;Compound annotations were made using mzcloudTM, mzVault and ChemSpider databases. After pre-processing, peaks were manually filtered by re-checking individual chromatograms and spectral matching with the above-mentioned libraries. Peak areas of the individual compounds were normalized according to cell count and underwent further QC correction. The peak list of the individual modi i.e., HILIC negative, HILIC positive, RP negative, and RP positive were merged, whereby for compounds detected in multiple modi, the entry with the highest abundance was used.&nbsp;</p>	<p>Compound annotations were made using mzcloudTM, mzVault and ChemSpider databases within the Compound Discoverer Software (version 3.3). The annotations were manually re-checked afterwards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gremke	Stiewe
+Study Person First Name	Niklas	Thorsten
+Study Person Mid Initials		
+Study Person Email	gremken@staff.uni-marburg.de	stiewe@uni-marburg.de
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Institute of Molecular Oncology, Member of the German Center for Lung Research (DZL), Philipps-University, Marburg, Germany	Institute of Molecular Oncology, Member of the German Center for Lung Research (DZL), Philipps-University, Marburg, Germany
+Study Person Affiliation	Philipps University of Marburg	Philipps University of Marburg
+Study Person Roles	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01rdrb571	https://ror.org/01rdrb571

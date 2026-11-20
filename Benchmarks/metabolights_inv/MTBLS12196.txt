@@ -1,0 +1,96 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mondo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mondo Disease Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12196
+Investigation Title	Engineered Oncolytic VSV Enhances Tumor Killing in HBV-Positive HCC
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-01-27
+Investigation Public Release Date	2025-07-17
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12196
+Study Title	Engineered Oncolytic VSV Enhances Tumor Killing in HBV-Positive HCC
+Study Description	Hepatocellular carcinoma (HCC) is a leading cause of cancer-related death worldwide, with chronic hepatitis B virus (HBV) infection being a major contributor to its development. Despite this, effective treatment for HBV-associated HCC remains a significant challenge. In this study, we combined the strengths of vesicular stomatitis virus (VSV) and therapeutic vaccines to propose a novel strategy for treating HBV-related liver cancer. We engineered an oncolytic virus that delivers hepatitis B surface antigen (HBsAg) and the IL-15 cytokine directly to tumor cells, thereby enhancing immune activation and promoting tumor cell destruction. As the tumor cells die, they release additional virus particles, spreading HBsAg and IL-15 expression to neighboring tumor cells. This approach demonstrated promising efficacy in multiple HBV-positive HCC mouse models.
+Study Submission Date	2025-01-27
+Study Public Release Date	2025-07-17
+Study File Name	s_MTBLS12196.txt
+Comment[Revision]	1
+Comment[Revision Date]	2025-07-17
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	cancer	microbiome
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/MONDO_0004992	http://www.ebi.ac.uk/efo/EFO_0004982
+Study Design Type Term Source REF	MTBLS	MONDO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	35123658	37471141
+Study Publication DOI	10.1016/j.cmet.2022.01.007	10.1172/jci164599
+Study Publication Author List	Pavlova NN, Zhu J, Thompson CB.	Taves Matthew D., Otsuka Shizuka, Taylor Michaela A., Donahue Kaitlynn M., Meyer Thomas J., Cam Margaret C., Ashwell Jonathan D.
+Study Publication Title	The hallmarks of cancer metabolism: Still emerging.	Tumors produce glucocorticoids by metabolite recycling, not synthesis, and activate Tregs to promote growth
+Study Publication Status	published	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12196_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12196_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Collection of serum samples from mice with no high salt in the sample and no descaling agents.</p>	<p>1. Remove the sample stored at -80 °C, thaw at room temperature, remove 100 μL of sample, add 20 μL of internal standard (L-2-chlorophenylalanine, 0.3 mg/mL, configured in methanol) and vortex for 10 s. </p><p>2. Add 300 μL of methanol:acetonitrile, a protein precipitant (2:1, v:v), and vortex for 1 min.</p><p>3. Extract the sample by sonication with an ice water bath for 10 min, and leave for 30 min at -20 °C.</p><p>4. Centrifuge for 10 min (13,000 rpm, 4 °C), then volatilise 300 μL of supernatant in an LC-MS injection vial.</p><p>4. centrifuge for 10 min (13000 rpm, 4 °C), take 300 μL of supernatant into the LC-MS injection vial to be evaporated;</p><p>5. redissolve with 300 μL of methanol:water (1:4, v:v), add 10 μL of the internal standard (Lyso PC17:0, 0.1 mg/mL, methanol), vortex for 30 s, and then ultrasonic for 3 min.</p><p>6. leave at -20 °C for 2 h;</p><p>7. centrifuge for 10 min (13,000 rpm, 4 °C), and 150 μL of supernatant was loaded into an LC-MS injection vial with a foot-lined tube for analysis</p>	<p>LC-MS is the most commonly used technique in metabolomics. It uses a liquid chromatography column to separate metabolites of different chemical properties, and then detects and quantifies these metabolites by mass spectrometry. The advantages of LC-MS are mainly in the simplicity of sample preparation and pre-treatment, good experimental reproducibility, high resolution, and a wide range of separations and analyses, while the disadvantages are the insufficiently developed database and the relative difficulty of characterisation.</p>	<p>Mass spectrometry is another commonly used metabolomics technique that generates spectral data based on the mass-to-charge ratio (m/z) and the relative abundance of metabolites. In mass spectrometry, a biological sample first needs to be ionised and then analysed by a mass spectrometer. Ionised compounds of different molecules will produce different peak patterns, thus defining the fingerprint of the metabolite.</p>	<p>Statistical analysis is the core process of metabolomics data processing, through different analytical methods and tools can be detected in different groups of samples metabolic profile analysis, and then use the relevant statistical software (XploreMET\SIMCA, etc.) or the R language to carry out univariate statistical analysis or multivariate statistical analysis to find and visualise the difference metabolite information so that researchers can more intuitively capture the key difference metabolite information and carry out their visualisation. Univariate statistical analysis or multivariate statistical analysis using relevant statistical software (XploreMET\SIMCA, etc.) or R language can be used to search for differential metabolites and visualise them, so that researchers can capture key differential metabolite information more intuitively and carry out in-depth studies on them.</p><p>&nbsp;</p>	<p>Non-targeted metabolomics is achieved by comparing the retention time (RT), primary mass spectrometry (MS1) and secondary mass spectrometry (MS2) of the metabolites detected in the actual sample with the three information in the database.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jian	Lai	Tong	Yingchen	Yuchen
+Study Person First Name	Wu	Xin	Ying	Zheng	Xia
+Study Person Mid Initials	Chuan	Tai	Jia		
+Study Person Email	wchuanjian@yeah.net	Tailaixin@whu.edu.cn	yinjiatong@163.com		yuchenxia@whu.edu.cn
+Study Person Phone	15152181586				15152181586
+Study Person Fax					
+Study Person Address	No. 115 Donghu Road, Wuhan				No. 115 Donghu Road, Wuhan
+Study Person Affiliation	Wuhan University	wuhan university	Wuhan Unversity	Hubei university	Wuhan University
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT

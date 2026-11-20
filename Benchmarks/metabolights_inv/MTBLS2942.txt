@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EDAM	MTBLS	ERO	NCIT	EFO	BTO		CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO		http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version	29		1			132		18.10e	
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology			Experimental Factor Ontology		NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS2942
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-06-14
+Investigation Public Release Date	2021-08-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2942
+Study Title	Multiomic Approach to Analyze Infant Gut Microbiota: Experimental and Analytical Method Optimization
+Study Description	<p><strong>BACKGROUND:</strong> The human intestinal microbiome plays a central role in overall health status, especially in early life stages. 16S rRNA amplicon sequencing is used to profile its taxonomic composition; however, multiomic approaches have been proposed as the most accurate methods for study of the complexity of the gut microbiota. In this study, we propose an optimized method for bacterial diversity analysis that we validated and complemented with metabolomics by analyzing fecal samples.</p><p><strong>METHODS:</strong> Forty-eight different analytical combinations regarding (1) 16S rRNA variable region sequencing, (2) a feature selection approach, and (3) taxonomy assignment methods were tested. A total of 18 infant fecal samples grouped depending on the type of feeding were analyzed by the proposed 16S rRNA workflow and by metabolomic analysis.</p><p><strong>RESULTS:</strong> The results showed that the sole use of V4 region sequencing with ASV identification and VSEARCH for taxonomy assignment produced the most accurate results. The application of this workflow showed clear differences between fecal samples according to the type of feeding, which correlated with changes in the fecal metabolic profile.</p><p><strong>CONCLUSION:</strong> A multiomic approach using real fecal samples from 18 infants with different types of feeding demonstrated the effectiveness of the proposed 16S rRNA-amplicon sequencing workflow.</p>
+Study Submission Date	2021-06-14
+Study Public Release Date	2021-08-18
+Study File Name	s_MTBLS2942.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metagenomics	ion torrent next generation sequencing	untargeted metabolites	nuclear magnetic resonance spectroscopy	microbiome	infant gut
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153191	http://purl.obolibrary.org/obo/ERO_0001642	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000591	http://www.ebi.ac.uk/efo/EFO_0004982	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	NCIT	ERO	MTBLS	CHMO	EFO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	34356622
+Study Publication DOI	10.3390/biom11070999
+Study Publication Author List	Torrell Helena, Cereto-Massagué Adrià, Kazakova Polina, García Lorena, Palacios Héctor, Canela Núria
+Study Publication Title	Multiomic Approach to Analyze Infant Gut Microbiota: Experimental and Analytical Method Optimization
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Infant Diet
+Study Factor Type	diet
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002755
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2942_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p>To confirm the workflow capacity to describe bacterial diversity in gut microbiota, the optimized procedure was applied to 18 infant fecal samples. The infants were under 6 mth old and exclusively fed milk. The infants were classified depending on the type of feeding (breast feeding, n = 9 or formula feeding, n = 9). Additionally, the fecal metabolic profile was also analyzed through NMR in 15 of the previous 18 fecal samples (breast feeding, n = 9, and formula feeding, n = 6). A multiomic correlation was performed to relate the metabolite changes with gut microbiota differences in composition. Samples were stored at -80 °C until metagenomic and metabolic analysis.</p>	<p>No extraction was carried out in this study.</p>	<p>Fecal samples (50 mg) were homogenized with phosphate-buffered saline (PBS). The homogenates were centrifuged at 15,000 x g for 15 min at 4 °C. A total of 200 µL of the supernatants were separated from the pellet and mixed with 400 µL of D2O phosphate buffer (PBS 0.05 mM, pH 7.4, 99.5% D2O). The mixture was transferred into 5 mm NMR glass tubes for NMR measurement.</p>	<p>The NMR spectra were measured at a 600.20 MHz frequency while using an Avance III-600 Bruker spectrometer equipped with a 5 mm PABBO BB-1H/D Z-GRD probe. </p>	<p>A standard 1H NOESY presaturation pulse sequence (RD-90°-t1-90°-tm-90°-acquire, noesypr1d) was used with water suppression. A recycle delay (RD) of 5.0 s, a mixing time (tm) of 100 ms, an acquisition time of 3.4 s, and a 90° pulse of 21.16 µs were used for all of the samples.</p>	<p>NMR spectra were processed using <strong>TopSpin</strong> 3.5pl4 software (Bruker Biospin, Conventry, UK).</p>	<p>An exponential line broadening of 0.3 Hz was applied before Fourier transformation. Metabolite identification was carried out using information from the literature, public databases, and proprietary software (<strong>Chenomx NMR Suite</strong> 8.5, <strong>Human Metabolite DataBase </strong>(<strong>HMDB</strong>), <strong>Biological Magnetic Resonance Data Bank</strong>), and normalization was performed using the PULCON (PULse length-based CONcentration determination) methodology (ERETIC), which is based on the principle of reciprocity. Orthogonal partial least squares-discriminant analysis (OPLS-DA) was performed with <strong>Metaboanalyst</strong> software 5.0 (<a href='https://www.metaboanalyst.ca' rel='noopener noreferrer' target='_blank'>https://www.metaboanalyst.ca</a> - accessed on 23 October 2020). The statistical calculation of the significance of the correlated OPLS-DA metabolites (p &lt; 0.05) was obtained using the website for statistical computation <strong>VassarStats</strong> (<a href='http://www.vassarstats.net' rel='noopener noreferrer' target='_blank'>http://www.vassarstats.net</a> - accessed on 27 October 2020).</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Canela	Torrell	Cereto-Massagué	Kazakova	García	Palacios
+Study Person First Name	Nuria	Helena	Adrià	Polina	Lorena	Héctor
+Study Person Mid Initials						
+Study Person Email	nuria.canela@eurecat.org	helena.torrell@eurecat.org				
+Study Person Phone						
+Study Person Fax						
+Study Person Address	Centre Tecnològic de Nutrició i Salud R+D+I, URV. Avda. Univeristat,1. Reus, Tarragona 43204. Spain	Centre Tecnològic de Nutrició i Salud R+D+I, URV. Avda. Univeristat,. Reus, Tarragina 43204, Spain				
+Study Person Affiliation	Eurecat, Centre Tecnològic de Catalunya, Centre for Omic Sciences (COS)	Eurecat, Centre Tecnològic de Catalunya, Centre for Omic Sciences (COS), Joint Unit Universitat Rovira i Virgili-EURECAT, Unique Scientific and Technical Infrastructures (ICTS)				
+Study Person Roles	Coordinating Investigator	Principal Investigator	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51818	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT				

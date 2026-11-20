@@ -1,0 +1,100 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	EFO	MESH	MS	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version							
+Term Source Description	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology	Medical Subject Headings	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13502
+Investigation Title	Regulation of drug resistance to enrofloxacin in Pasteurella multocida strains from cattle by quorum-sensing acyl-homoserine lactone signaling molecules
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-12
+Investigation Public Release Date	2025-12-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13502
+Study Title	Regulation of drug resistance to enrofloxacin in Pasteurella multocida strains from cattle by quorum-sensing acyl-homoserine lactone signaling molecules
+Study Description	<p>Pasteurella multocida (Pm) is a significant cause of respiratory disease in beef cattle, with serious consequences for the cattle industry. The bacterial quorum-sensing (QS) system is used for communication and regulation of various processes, including bacterial growth, virulence, biofilm formation and antimicrobial resistance. This study investigated the effects of the C6 signaling molecule on Pm resistance to the antimicrobial enrofloxacin (ENR). Bacteria were divided into groups, with one group (Pm-E1) treated with sub-inhibitory concentrations of ENR, a second treated with sub-inhibitory concentrations of ENR + 200 mg/L C6 (Pm-E2), and a control group (Pm-YQ). Transcriptomic, proteomic, and metabolomic sequencing of the bacteria was then performed. The results showed that C6 increased the minimum inhibitory concentration of ENR against Pm from 0.125 μg/mL to 0.5 μg/mL. Differentially expressed genes (DEGs), proteins (DEPs), and metabolites (DEMs), with 798 DEGs, 249 DEPs, and 299 DEMs identified in the Pm-YQ vs. Pm-E1 group, while the Pm-E1 vs. Pm-E2 group contained 784 DEGs, 301 DEPs, and 397 DEMs. Further analysis of the DEGs, DEPs, and DEMs revealed that C6 induced Pm resistance to ENR by regulating the SOS response, CpxAR two-component system and ABC transporter system. Our findings not only provide insight into the QS-mediated drug resistance mechanisms in Pm, but also highlight the potential of targeting the QS system as a promising strategy for developing novel interventions to control pasteurellosis and counteract antimicrobial resistance.</p>
+Study Submission Date	2025-12-12
+Study Public Release Date	2025-12-18
+Study File Name	s_MTBLS13502.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Pasteurella multocida	Drug Resistance	quorum sensing inhibitor	transcriptomic data	proteome	Metabolome
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C76373	http://id.nlm.nih.gov/mesh/D004351	http://purl.obolibrary.org/obo/CHEBI_138977	http://www.ebi.ac.uk/efo/EFO_0004601	http://www.ebi.ac.uk/efo/EFO_0010579	http://purl.obolibrary.org/obo/NCIT_C210457
+Study Design Type Term Source REF	NCIT	MESH	CHEBI	EFO	EFO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Miao Sun, Zipeng Zhang, Yongqiang Wang, Linghao Meng, Dongxu Han, Xinran Ge, Hengli Chen, Dahan Yang, Jianing Wang, Yue Li, Boran Xu, Zi Wang, Kai Liu
+Study Publication Title	Regulation of drug resistance to enrofloxacin in Pasteurella multocida strains from cattle by quorum-sensing acyl-homoserine lactone signaling molecules
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13502_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13502_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>The sample stored at -80 °C refrigerator was thawed on ice.</p>	<p>The thawed sample was homogenized by a grinder (30 HZ) for 20 s. A 400 μL solution (Methanol : Water = 4:1, V/V) containing internal standard was added into 40 mg of the sample and vortexed for 3 min. The sample was placed in liquid nitrogen for 5 min and on the dry ice for 5 min, and then thawed on ice and vortexed for 2 min. This freeze-thaw circle was repeated three times in total. The sample was centrifuged at 12000 rpm for 10 min (4 °C). A 300 μL of supernatant was collected and placed in -20 °C for 30 min. The sample was then centrifuged at 12000 rpm for 3 min (4 °C). A 200 μL aliquots of supernatant were transferred for LC-MS analysis.</p>	<p>All samples were for two LC/MS methods. One aliquot was analyzed using positive ion conditions and was eluted from T3 column (Waters ACQUITY Premier HSS T3 Column 1.8 µm, 2.1 mm * 100 mm) </p><p>using 0.1 % formic acid in water as solvent A and 0.1 % formic acid in acetonitrile as solvent B in the following gradient: 5 to 20 % in 1 min, increased to 99 % in the following 2 mins and held for 1.5 min, then come back to 5 % mobile phase B witnin 0.1 min, held for 1.4 min. The analytical conditions were as follows, column temperature, 40 °C; flow rate, 0.4 mL/min; injection volume, 4 μL; Another aliquot was using negative ion conditions and was the same as the elution gradient of positive mode.</p>	<p>All the methods alternated between full scan MS and data dependent MSn scans using dynamic exclusion. MS analyses were carried out using electrospray ionization in the positive ion mode and negative ion mode using full scan analysis over m/z 75-1000 at 35000 resolution. Additional MS settings are: ion spray voltage, 3.5 KV or 3.2 KV in positive or negative modes, respevtively; Sheath gas (Arb), 30; Aux gas, 5; Ion transfer tube temperature, 320 °C; Vaporizer temperature, 300 °C; Collision energy, 30,40,50 V; Signal Intensity Threshold, 1.00E+06 cps; Top N vs Top speed, 10; Exclusion duration, 3s.</p>	<p><strong>PCA </strong></p><p>Unsupervised PCA (principal component analysis) was performed by statistics function prcomp within R (www.r-project.org). The data was unit variance scaled before unsupervised PCA.</p><p><strong>Hierarchical Cluster Analysis and Pearson Correlation Coefficients </strong></p><p>The HCA (hierarchical cluster analysis) results of samples and metabolites were presented as heatmaps with dendrograms, while pearson correlation coefficients (PCC) between samples were caculated by the cor function in R and presented as only heatmaps. Both HCA and PCC were carried out by R package ComplexHeatmap. For HCA, normalized signal intensities of metabolites (unit variance scaling) are visualized as a color spectrum.</p><p><strong>Differential metabolites selected </strong></p><p>For two-group analysis, differential metabolites were determined by VIP (VIP&gt;1) and P-value (P-value &lt; 0.05, Student’s t test). VIP values were extracted from OPLS-DA result, which also contain score plots and permutation plots, was generated using R package MetaboAnalystR. The data was log transform (Log2 ) and mean centering before OPLS-DA. In order to avoid overfitting, a permutation test (200 permutations) was performed.</p>	<p><strong>KEGG annotation and enrichment analysis </strong></p><p>Identified metabolites were annotated using KEGG Compound database (http://www.kegg.jp/kegg/ compound/), annotated metabolites were then mapped to KEGG Pathway database (http://www.kegg.jp/ kegg/pathway.html).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zi
+Study Person First Name	Wang
+Study Person Mid Initials	
+Study Person Email	wangzixiaoxu@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	INNER MONGOLIA MINZU UNIVERSITY
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

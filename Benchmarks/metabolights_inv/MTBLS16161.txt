@@ -1,0 +1,129 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.94.0				2026-07-12	26.02d	2026-07-27
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS16161
+Investigation Title	TREM2-Positive Macrophages and Renal Ceramide Dysregulation in Diabetic Kidney Disease
+Investigation Description	
+Investigation Submission Date	2026-10-26
+Investigation Public Release Date	2026-10-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16161
+Study Title	TREM2-Positive Macrophages and Renal Ceramide Dysregulation in Diabetic Kidney Disease
+Study Description	This study investigated the effects of TREM2 deficiency and high-fat diet/streptozotocin (HFD/STZ)-induced diabetes on renal lipid metabolism in mice. Kidney tissue samples were collected from four experimental groups, with five biological replicates per group (20 samples in total): (A) TREM2 knockout mice maintained on a normal diet, (B) TREM2 knockout mice subjected to HFD/STZ treatment, (C) wild-type control mice maintained on a normal diet, and (D) wild-type mice subjected to HFD/STZ treatment. Untargeted lipidomic profiling was performed using ultra-high-performance liquid chromatography coupled with high-resolution mass spectrometry (UHPLC-MS/MS) on a Vanquish UHPLC system and an Orbitrap Exploris 120 mass spectrometer. Data were acquired in both positive and negative ionization modes. A pooled quality control (QC) sample was prepared by combining equal aliquots of experimental samples and analyzed repeatedly to assess analytical stability and reproducibility. Mass spectrometry data were converted to mzXML format using ProteoWizard and processed using XCMS for peak detection, retention time alignment, and peak integration. Lipid annotation was performed using an in-house R-based workflow and the LipidBlast 2022 database. Following data preprocessing, 3,585 annotated lipids were retained for analysis. Multivariate statistical analyses, including principal component analysis (PCA) and orthogonal partial least squares discriminant analysis (OPLS-DA), were performed to investigate lipidomic differences between experimental groups. This dataset provides a resource for investigating renal lipid remodeling, particularly alterations in ceramide and sphingolipid metabolism, associated with TREM2 deficiency and diabetic kidney disease.
+Study Submission Date	2026-10-26
+Study Public Release Date	2026-10-26
+Study File Name	s_MTBLS16161.txt
+Comment[Created At]	2026-10-26
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Fisher Scientific Vanquish UHPLC system	Thermo Fisher Scientific Orbitrap Exploris 120	Mus musculus	kidney	experimental sample	untargeted analysis	Metabolomics	Untargeted lipidomics	Liquid chromatography-mass spectrometry	TREM2
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/BTO_0000671	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	BTO	CHMO	MS	EDAM	MTBLS	MTBLS	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Juan Jin, Yourou Zhou, Qikai Luo, Yiwei Shang, Shaoting Wang, Ran He, Qing He, Junfen Fan, Yunguang Wang, Qiang He
+Study Publication Title	TREM2-Positive Macrophages and Renal Ceramide Dysregulation in Diabetic Kidney Disease
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16161_LC-MS_positive_reverse-phase.txt	a_MTBLS16161_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Fisher Scientific Vanquish UHPLC system;Phenomenex Kinetex C18 (2.1 mm × 100 mm, 2.6 µm);reverse phase;positive;100–1000;Thermo Fisher Scientific Orbitrap Exploris 120	Thermo Fisher Scientific Vanquish UHPLC system;Phenomenex Kinetex C18 (2.1 mm × 100 mm, 2.6 µm);reverse phase;negative;100–1000;Thermo Fisher Scientific Orbitrap Exploris 120
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Kidney tissue samples were obtained from wild-type C57BL/6J mice and TREM2 knockout mice on a C57BL/6J genetic background. A total of 20 kidney tissue samples were collected from four experimental groups, with five biological replicates per group: Group A, TREM2 knockout mice maintained on a normal diet; Group B, TREM2 knockout mice subjected to high-fat diet and streptozotocin (HFD/STZ)-induced diabetes; Group C, wild-type control mice maintained on a normal diet; and Group D, wild-type mice subjected to HFD/STZ-induced diabetes. All tissue samples were stored at -80 °C upon receipt at the analytical laboratory until lipid extraction and LC-MS/MS analysis. Approximately 25 mg of kidney tissue was used for lipidomic analysis from each sample.</p>	<p>Chromatographic separation of lipids was performed using a Vanquish ultra-high-performance liquid chromatography (UHPLC) system (Thermo Fisher Scientific) equipped with a Phenomenex Kinetex C18 reversed-phase column (2.1 mm × 100 mm, 2.6 µm).</p><p>The mobile phase A consisted of water/acetonitrile (40:60, v/v) containing 10 mmol/L ammonium formate, as specified in the main experimental methods section of the analytical report. The mobile phase B consisted of isopropanol/acetonitrile (90:10, v/v) containing 10 mmol/L ammonium formate. The injection volume was 2 µL.</p><p>The UHPLC system was coupled to a Thermo Fisher Scientific Orbitrap Exploris 120 high-resolution mass spectrometer. Chromatographic analyses were performed for both positive and negative ionization modes.</p>	<p>Raw mass spectrometry data acquired in positive and negative ionization modes were converted to mzXML format using the msconvert tool from ProteoWizard. The converted files were processed using the XCMS software package with the CentWave algorithm for peak detection, feature extraction, retention time correction, peak integration, and chromatographic alignment. The minfrac parameter was set to 0.5, and the cutoff parameter for annotation was set to 0.3.</p><p>Data preprocessing included feature filtering based on relative standard deviation (RSD) and missing-value frequency. Features with poor reproducibility or excessive missing values were removed. Missing values were imputed using half of the minimum observed value, and peak intensities were normalized using the total ion current (TIC) normalization method.</p><p>After preprocessing, 36,313 features and 3,585 annotated lipid metabolites were retained. The processed data were further analyzed using principal component analysis (PCA) and orthogonal partial least squares discriminant analysis (OPLS-DA) implemented in SIMCA software (version 18.0.1). OPLS-DA model robustness was evaluated using permutation testing.</p>	<p>Approximately 25 mg of kidney tissue was weighed on dry ice and transferred into a microcentrifuge tube containing 200 µL of ultrapure water. Steel beads were added, and the samples were homogenized at 35 Hz for 4 min, followed by sonication in an ice-water bath for 5 min. This homogenization and sonication procedure was repeated three times.</p><p>Subsequently, 480 µL of extraction solvent (methyl tert-butyl ether/methanol, MTBE:MeOH = 5:1, v/v), precooled to -40 °C and containing isotopically labeled internal standards, was added. The mixture was vortexed for 30 s, sonicated in an ice-water bath for 10 min, and incubated at -40 °C for 1 h. Samples were then centrifuged at 3,000 rpm for 15 min at 4 °C, and 300 µL of the supernatant was collected and evaporated to dryness under vacuum.</p><p>Pooled quality control (QC) samples were prepared by combining equal-volume aliquots from the experimental samples to evaluate analytical reproducibility and instrument stability. QC samples were analyzed in both positive and negative electrospray ionization modes. Blank samples were also included during LC-MS analysis to assess potential carryover and background interference.</p>	<p>Mass spectrometric analysis was performed using a Thermo Fisher Scientific Orbitrap Exploris 120 high-resolution mass spectrometer coupled to a Vanquish UHPLC system. Data were acquired using an electrospray ionization (ESI) source in both positive (ESI+) and negative (ESI-) ionization modes under the control of Xcalibur software (version 4.4, Thermo Fisher Scientific).</p><p>The spray voltage was set to +3.8 kV in positive ionization mode and -3.4 kV in negative ionization mode. The capillary temperature was maintained at 320 °C for both modes. The sheath gas flow rate was set to 30 arbitrary units (Arb), and the auxiliary gas flow rate was set to 10 Arb.</p><p>The full MS resolution was set to 60,000, while the MS/MS resolution was set to 15,000. Tandem mass spectra were acquired using normalized collision energies (NCE) of 15, 30, and 45. Full-scan MS and MS/MS data were collected for lipid profiling and subsequent lipid annotation in both ionization modes.</p>	<p>Lipid identification and annotation were performed using an in-house R-based computational workflow integrated with XCMS and the LipidBlast 2022 spectral database. Mass spectrometric features detected in positive and negative ionization modes were annotated through spectral matching against reference lipid spectra.</p><p>Lipid identities were primarily assigned based on available tandem mass spectrometry (MS/MS) fragmentation information and database matching. MS/MS-supported annotations were prioritized over assignments based solely on precursor mass.</p><p>Following data processing and lipid annotation, a total of 3,585 lipid metabolites were annotated in the kidney tissue lipidomics dataset. The annotated lipid species were subsequently used for lipid classification, comparative statistical analysis, and investigation of lipid metabolic alterations among the experimental groups.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Runze
+Study Person First Name	Meng
+Study Person Mid Initials	
+Study Person Email	mrzsng@126.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine)
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

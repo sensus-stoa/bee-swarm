@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	GO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.90.0	2026-03-25				2026-05-13	26.02d	2026-05-08	2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS12917
+Investigation Title	Comparative non-targeted LC-MS metabolomic profiling of murine bone marrow-derived macrophages cultured in 2D versus 3D
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-09-01
+Investigation Public Release Date	2026-06-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12917
+Study Title	Comparative non-targeted LC-MS metabolomic profiling of murine bone marrow-derived macrophages cultured in 2D versus 3D
+Study Description	<p>Macrophages are key drivers of inflammatory and fibrotic diseases and their activation is shaped by interactions in their tissue microenvironment. However, dissecting the processes that drive immunopathology has proved challenging as traditional 2D culture methods fail to capture the complex molecular environment that macrophages inhabit in vivo. To address this, we generated a 3D in vitro model to better mimic the in vivo biophysical microenvironment. We show that the extracellular matrix (ECM) protein vitronectin promotes a novel pro-fibrotic macrophage phenotype in 3D that is characterised by increased expression of the NAD+ ectoenzyme CD38, elevated glycolysis and mitochondrial metabolism, and synthesis of the immunomodulatory metabolite itaconate. This is validated in vivo where vitronectin-deficient mice were protected from an experimental model of idiopathic pulmonary fibrosis. Thus, we uncover a novel link between the composition of tissue niches and macrophage pro-fibrotic function via altered metabolic reprogramming.&nbsp;</p>
+Study Submission Date	2025-09-01
+Study Public Release Date	2026-06-08
+Study File Name	s_MTBLS12917.txt
+Comment[Created At]	2025-08-31
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Macrophage	untargeted metabolites	Phenotype	macrophage activation	Thermo Scientific Vanquish Flex UHPLC System	Thermo Scientific Orbitrap IQ-X Tribrid	Mus musculus	Macrophages	experimental blank	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C12558	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C16977	http://purl.obolibrary.org/obo/GO_0042116	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002252	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002242	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://id.nlm.nih.gov/mesh/D008264		http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	NCIT	MTBLS	NCIT	GO	MTBLS	MTBLS	NCBITaxon	mesh		MS
+Comment[Study Design Category]					Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Sean W Cutter, Gang Liu, Eleanor Saunders, Vinzenz Hofferek, Thomas Soerianto, Kaitlyn Ritchie, Erin NS McGowan, Tien K Nguyen, Ivan KH Poon, Malcolm J McConville, Mark D Hulett, Nicholas P Reynolds, Mark D Wright, Philip M Hansbro, Katrina J Binger
+Study Publication Title	Vitronectin metabolically programs pro-fibrotic macrophages in 3D cultures and idiopathic pulmonary fibrosis
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Culture dimension	Treatment
+Study Factor Type	Cell Culture	Macrophage Activation
+Study Factor Type Term Accession Number	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C16396	http://id.nlm.nih.gov/mesh/D008262
+Study Factor Type Term Source REF	NCIT	mesh
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12917_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12917_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>BMDMs were cultured in RPMI-1640 (Sigma-Aldrich) supplemented with 10% FBS, 2 mM L-Glutamine (Sigma-Aldrich), 1% penicillin/streptomycin (Sigma-Aldrich) and 50 µM 2-mercaptoethanol (Sigma-Aldrich) at 37°C, 5% CO2. For 3D culture, BMDMs cells were suspended in a 1:1 mixture with collagen (5 mg/mL; 5074, PureCol® Bovine Type I Collagen, Advanced Biomatrix). Samples were incubated for 30 min in 96-wells or 60 min in 24-wells at 37°C, 5% CO2 to ensure complete gelation of the collagen matrix. A total cell:collagen volume of 150 μL was used for 96-well plate assays, and 500 μL for 24-well plates, with an additional 100&nbsp;μL and 500 μL of culture media added respectively after the gelation time to ensure hydration of gels and the provision of sufficient nutrients. This resulted in a final collagen concentration of 2.5 mg/mL, cell density of 1 x 106 cells/mL, in total volumes of 250 μL (96-well) and 1000 μL (24-well).&nbsp;ECM proteins were added to the cell-collagen mixture prior to gelation, at the following final concentrations: human vitronectin (5&nbsp;μg/mL; 10424-H08H, Sino Biological). Control conditions included BMDMs seeded directly onto standard 2D tissue culture-treated plastic plates, or onto plates pre-coated with a monolayer of the respective ECM protein(s). For these 2D-coated controls, wells were incubated with 0.5 mg/mL collagen (5074, PureCol® Bovine Type I Collagen, Advanced Biomatrix) diluted in 0.02 M acetic acid for 2 hrs at 37°C, followed by washing twice with phosphate buffered saline (PBS) prior to cell seeding. If required, other ECM proteins were included in this coating solution at the same concentrations as described above for 3D cultures. For 2D controls (plastic plates and ECM-coated), cells were seeded at the same density and total media volume as for 3D conditions. Macrophage activation was induced 3 hours after seeding/gelation of the 3D cultures by the supplementation of culture media with either 10 ng/mL LPS (tlrl-3pelps, Invivogen) and 10 ng/mL murine IFNγ (ab9922, Abcam), or 10 ng/mL murine IL-4 (214-14, PeproTech) and 10 ng/mL IL-13 (210-13, PeproTech). Unactivated BMDMs were maintained in standard media.&nbsp;BMDMs were isolated from 3D scaffolds by enzymatic digestion with 1.6 mg/mL collagenase (Type IV; 17104019, ThermoFisher) for 25 min at 37°C, with gentle agitation every 5 min, with gentle pipetting after the incubation period to disrupt any remaining gel fragments. For consistency, 2D control samples were treated with the same concentration of collagenase under identical conditions. Cells adhered to 2D plates were detached by the addition of PBS supplemented with 0.5% v/v FBS and 2 mM EDTA.&nbsp;Single cell suspensions were then centrifuged at 300 x g for 5 min and cell metabolism was quenched by resuspension of cell pellets in ice-cold PBS.&nbsp;</p>	<p>Washed cell pellets were then washed once with ice-cold ddH2O, and metabolites were extracted from the resulting cell pellets by adding 500 µL of methyl-tert-butyl ether (MTBE) and methanol (3:1, v/v). Samples were sonicated for 10 min to facilitate extraction. Biphasic partitioning was initiated by adding 250 µL of a methanol:water mixture (1:3, v/v), followed by shaking on an Eppendorf Thermomixer C for 30 min at 4 °C and 2000 RPM. This resulted in a final solvent composition of 6:2:3 MTBE:methanol:water (750 μL). Samples were centrifuged at 16,000 x g for 15 min, 4 °C to separate phases. The apolar phase (top layer) was removed, and the polar (bottom layer) containing water-soluble metabolites was retained, centrifuged again, and dried under a nitrogen manifold.Please update this protocol description</p>	<p>Dried metabolite extracts were resuspended in 200 µL of 80% acetonitrile prior to liquid chromatography (LC)-MS. Samples were analsed using a Thermo Scientific Vanquish Quaternary Pumps LC System™ coupled to a Thermo Scientific Orbitrap IQ-X Tribrid Mass Spectrometer™. Five μL of each sample were injected onto a SeQuant® ZIC®-pHILIC column (5 µm pore size, 150 x 4.6 mm, PEEK-coated; Merck Millipore) preceded by a SeQuant® ZIC®-pHILIC guard column (20 x 2.1 mm, PEEK-coated; Merck Millipore) using a Thermo Scientific™ Vanquish™ Ultra High-Performance Liquid Chromatography (UHPLC) system. Mobile phases were 20 mM ammonium carbonate pH 9 (Eluent A), and acetonitrile (Eluent B) with a flow rate of 0.3 ml/min. The gradient elution profile was as follows: 0 min 80% B; 15.5 min 50% B; 17.5 min 30% B; 18.5 min 5% B; 21 min maintained at 5% B; 23 min 80% B; 30 maintained at 80% B.Please update this protocol description</p>	<p>Mass spectrometry data were acquired using a Thermo Scientific Orbitrap IQ-X Tribrid Mass Spectrometer in both positive and negative mode using H-ESI with the following parameters: spray voltage was set 3500 V (positive) or 3200 V (negative); sheath gas at 50 Arbitrary (Arb) units; auxiliary gas at 10 Arb units; and sweep gas at 1 Arb unit. The ion transfer tube temperature was set to 300°C, and the vaporizer temperature to 400°C. Full MS scans were acquired using the Orbitrap detector at a resolution of 120,000 FWHM, with RF lens set to 60%. Prior to data collection, 10 blank injections were performed followed by 5 quality control samples. Pooled biological quality control samples (PBQC) were interspersed between every 5 samples to monitor instrument performance and correct for run-to-run variability.&nbsp;</p>	<p>Raw LC-MS data was processed using El-MAVEN (Agrawal et al Meth Mol Biol 1978) for peak integration and quantification as follows.</p>	<p>Peaks were annotated by comparison with authentic standards. Relative metabolite concentrations were quantified by manually integrating peak areas for each metabolite. If major chromatographic shifts occurred between runs, peak alignment was performed using the OBI-Warp algorithm with a PBQC sample as a reference65. Peak areas were exported as a csv matrix and data was pretreated using MetaboAnalyst66–68 to account for biological, experimental, and instrument variations. Pretreatment included a natural log transformation, Pareto scaling, and normalising to the median metabolite abundance within each sample69. Statistical comparisons were then made using unpaired Student’s t-test (α = 0.05), with false discovery rate (FDR) correction using the Benjamini-Hochberg method70. Enrichment analysis was performed using the KEGG metabolite library in MetaboAnalyst.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cutter	Liu	Saunders	Hofferek	Soerianto	Ritchie	McGowan	Nguyen	Poon	McConville	Hulett	Reynolds	Wright	Hansbro	Binger
+Study Person First Name	Sean	Gang	Eleanor	Vinzenz	Thomas	Kaitlyn	Erin	Tien	Ivan	Malcolm	Mark	Nicholas	Mark	Phillip	Katrina
+Study Person Mid Initials	W						NS	K	KH	J	D	P	D	M	J
+Study Person Email	s.cutter@latrobe.edu.au														k.binger@latrobe.edu.au
+Study Person Phone															
+Study Person Fax															
+Study Person Address	La Trobe University, Department Biochemistry and Chemistry, Bundoora VIC 3086, Australia														La Trobe University, Dept Biochemistry and Chemistry, Bundoora VIC 3086, Australia
+Study Person Affiliation	La Trobe University	University of Technology Sydney	The University of Melbourne	The University of Melbourne	The University of Melbourne	La Trobe University	The University of Melbourne	La Trobe University	La Trobe University	The University of Melbourne	La Trobe University	RMIT University	Monash University	University of Technology Sydney	La Trobe University
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]															0000-0003-1139-3308
+Comment[Study Person Affiliation ROR ID]		https://ror.org/03f0f6041													https://ror.org/01rxfrp27

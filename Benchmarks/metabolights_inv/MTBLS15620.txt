@@ -1,0 +1,133 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MONDO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0		2026-07-06		1.0.1		2026-07-12	26.02d	2026-05-08
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15620
+Investigation Title	Metabolomic profiling of mouse colorectal tumor tissues and fecal samples following bacterial intervention
+Investigation Description	
+Investigation Submission Date	2026-09-10
+Investigation Public Release Date	2026-09-24
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15620
+Study Title	Metabolomic profiling of mouse colorectal tumor tissues and fecal samples following bacterial intervention
+Study Description	This study investigated metabolic alterations in an AOM/DSS-induced mouse colorectal tumor model following bacterial intervention with Faecalibacterium prausnitzii and Peptostreptococcus stomatis. Targeted bile acid profiling and untargeted metabolomics were performed using LC-MS on colorectal tumor tissues and fecal samples from control and intervention groups to characterize changes in metabolic profiles associated with bacterial intervention.
+Study Submission Date	2026-09-10
+Study Public Release Date	2026-09-24
+Study File Name	s_MTBLS15620.txt
+Comment[Created At]	2026-09-07
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-24
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Orbitrap Exploris 120	Mus musculus	feces	colon	untargeted analysis	Metabolomics	colorectal cancer	targeted metabolite profiling	untargeted metabolite profiling
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/BTO_0000440		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MONDO_0005575	http://purl.obolibrary.org/obo/MSIO_0000100	http://purl.obolibrary.org/obo/MSIO_0000101
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	BTO		MS	EDAM	MONDO	MSIO	MSIO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	measurement-type	omics-type	disease	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Qinyuan Zhang, Jingwen Ma, Ruiqi Gu, Ziyi Cai, Fanying Guo, Jinming Li, Cheng Kong, Yanlei Ma, Guoxiang Cai, Yongzhi Yang
+Study Publication Title	Metabolomic profiling of mouse colorectal tumor tissues and fecal samples following bacterial intervention
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15620_LC-MS_positive_reverse-phase.txt	a_MTBLS15620_LC-MS_negative_reverse-phase.txt	a_MTBLS15620_LC-MS_negative_reverse-phase-1.txt	a_MTBLS15620_LC-MS_positive_reverse-phase-1.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;positive;100-1000;Thermo Scientific Orbitrap Exploris 120;electrospray ionization;orbitrap	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;negative;100-1000;Thermo Scientific Orbitrap Exploris 120;electrospray ionization;orbitrap	SCIEX ExionLC AC;ACQUITY UPLC BEH C18 (1.7 µm, 2.1 mm x 150 mm; Waters);reverse phase;negative;73.9-600.3;AB SCIEX Triple Quad 5500;electrospray ionization;triple quadrupole	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;positive;100-1000;Thermo Scientific Orbitrap Exploris 120;electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;;;;	;;;;;;;	;;;;;;;	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000897;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000789;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000600;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000698	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS
+Comment[Measurement Type]			untargeted analysis	
+Comment[Measurement Type Term Source REF]			MS	
+Comment[Measurement Type Term Accession Number]			http://purl.obolibrary.org/obo/MS_1003904	
+Comment[Assay Descriptor]				
+Comment[Assay Descriptor Term Accession Number]				
+Comment[Assay Descriptor Term Source REF]				
+Comment[Assay Descriptor Category]				
+Comment[Assay Descriptor Source]				
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Colorectal tumor tissues and fecal samples were collected from female C57BL/6J mice subjected to AOM/DSS-induced colorectal tumorigenesis. Mice were assigned to control, Faecalibacterium prausnitzii, Peptostreptococcus stomatis, and combined Faecalibacterium prausnitzii plus Peptostreptococcus stomatis intervention groups. Samples were collected for targeted bile acid profiling and untargeted metabolomic analysis.</p>	<p>Liquid chromatography was performed using a Thermo Vanquish UHPLC system equipped with an ACQUITY UPLC HSS T3 column (2.1 × 100 mm, 1.8 µm; Waters). The column temperature was maintained at 40°C, with a flow rate of 0.3 mL/min and an injection volume of 2 µL. For positive ion mode, mobile phases were 0.1% formic acid in water (A) and 0.1% formic acid in acetonitrile (B). The gradient was: 0–1 min, 10% B; 1–5 min, 10–98% B; 5–6.5 min, 98% B; 6.5–6.6 min, 98–10% B; and 6.6–8 min, 10% B. For negative ion mode, mobile phases were 5 mM ammonium formate in water (A) and acetonitrile (B), using the same gradient program.</p>	<p>Raw LC-MS data were acquired in positive and negative ion modes for subsequent untargeted metabolomic data processing and analysis.</p>	<p>An appropriate amount of colorectal tumor tissue was transferred into a 2 mL centrifuge tube and extracted with 1000 µL tissue extraction solution consisting of 75% (9:1 methanol:chloroform) and 25% water. Samples were homogenized with steel balls at 50 Hz for 60 s twice, sonicated at room temperature for 30 min, and incubated on ice for 30 min. Samples were centrifuged at 12,000 rpm and 4°C for 10 min. The supernatant was collected, concentrated to dryness, and reconstituted in 200 µL of 50% acetonitrile containing 4 ppm 2-chloro-L-phenylalanine. The reconstituted samples were filtered through a 0.22 µm membrane before LC-MS analysis.</p>	<p>Mass spectrometric detection was performed using a Thermo Orbitrap Exploris 120 mass spectrometer equipped with an electrospray ionization (ESI) source. Data were acquired separately in positive and negative ion modes using Full MS-ddMS2 acquisition. Spray voltages were 3.50 kV for ESI positive mode and −2.50 kV for ESI negative mode. The sheath gas and auxiliary gas were set to 40 arb and 10 arb, respectively, and the capillary temperature was 325°C. Full MS scans were acquired over m/z 100–1000 at a resolution of 60,000 FWHM. Data-dependent MS/MS was performed at a resolution of 15,000 FWHM with a normalized collision energy of 30%, selecting the top four ions per cycle with dynamic exclusion.</p>	<p>Metabolite features detected by untargeted LC-MS analysis were subjected to subsequent metabolite annotation and identification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ma	Yang	Zhang
+Study Person First Name	Jingwen	Yongzhi	Qinyuan
+Study Person Mid Initials			
+Study Person Email	mjw13905271256@163.com	yongzhiyang@fudan.edu.cn	260979227@qq.com
+Study Person Phone			
+Study Person Fax			
+Study Person Address	270 Dongan Road, Xuhui District, Shanghai 200032, China	270 Dongan Road, Xuhui District, Shanghai 200032, China	270 Dongan Road, Xuhui District, Shanghai 200032, China
+Study Person Affiliation	Fudan University Shanghai Cancer Center	Fudan University Shanghai Cancer Center	Fudan University Shanghai Cancer Center
+Study Person Roles	Author	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

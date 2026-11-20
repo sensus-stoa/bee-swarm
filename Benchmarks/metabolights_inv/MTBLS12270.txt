@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	MFOMD	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version									
+Term Source Description	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12270
+Investigation Title	Osh2 mediates Candida resistance to miltefosine by regulating zymosterol transport
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-03-02
+Investigation Public Release Date	2025-07-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12270
+Study Title	Osh2 mediates Candida resistance to miltefosine by regulating zymosterol transport
+Study Description	Miltefosine has been identified for its antifungal properties, yet the mechanisms underlying its action and the development of resistance remain unclear. In this study, we induced drug resistance in various Candida species through concentration gradient exposure, successfully obtaining a miltefosine-resistant strain of Candida glabrata. Whole-genome sequencing revealed a premature stop codon mutation in the OSH2 gene within the resistant strain. To further investigate the function of the Osh2, we deleted it in Candida albicans, observing a significant increase in miltefosine resistance in the knockout strain. RNA-seq and lipidomics analyses indicated that Osh2 influences the ergosterol biosynthetic pathway by regulating zymosterol transport, thereby mediating miltefosine resistance. Additionally, exogenous supplementation of zymosterol significantly enhanced the resistance of Candida to miltefosine. Further studies revealed that deletion of the ERG11 gene, a rate-limiting enzyme in the zymosterol synthesis pathway, rendered the strain highly sensitive to miltefosine, while deletion of the ERG6 gene, which catalyzes the conversion of zymosterol to fecosterol, led to miltefosine resistance. This study is the first to elucidate that the Osh2 gene mediates miltefosine resistance in Candida by regulating zymosterol transport and affecting the ergosterol biosynthetic pathway, providing new theoretical insights into the mechanism of action of miltefosine and strategies to overcome fungal resistance.
+Study Submission Date	2025-03-02
+Study Public Release Date	2025-07-03
+Study File Name	s_MTBLS12270.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Miltefosine	Candida albicans	zymosterol	resistance	untargeted metabolites	Lipidomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C1170	http://purl.obolibrary.org/obo/NCIT_C77170	http://purl.obolibrary.org/obo/CHEBI_18252	http://purl.obolibrary.org/obo/MFOMD_0000133	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C153193
+Study Design Type Term Source REF	NCIT	NCIT	CHEBI	MFOMD	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yongqin Wu; Yuanyuan Dai; Huaiwei Lu; Yuanyuan Wang
+Study Publication Title	Osh2 mediates Candida resistance to miltefosine by regulating zymosterol transport
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Drug miltefosine
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12270_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12270_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Candida albicans&nbsp;SN152 (wild-type) and its isogenic&nbsp;osh2Δ/Δ&nbsp;mutant were cultured in YPD broth at 30 °C with agitation (200 rpm) to mid-log phase. Cells were treated with 2 μg/mL miltefosine or PBS (vehicle control) for 1 h, generating 4 experimental groups: (1) SN152 + miltefosine, (2) SN152 + PBS, (3)&nbsp;osh2Δ/Δ&nbsp;+ miltefosine, (4)&nbsp;osh2Δ/Δ&nbsp;+ PBS, each with 3 biological replicates (total n=12). Following treatment, cells were harvested by centrifugation, washed twice with ice-cold PBS, and flash-frozen in liquid nitrogen prior to storage at -80 °C for subsequent omics analyses.</p>	<p>Lipid extraction was performed using a methyl tert-butyl ether (MTBE)-based protocol. Briefly, frozen samples were spiked with a lipid internal standard mixture (e.g., Avanti SPLASH LIPIDOMIX) and homogenized with 200 μL ultrapure water and 240 μL methanol. After vortexing for 30 s, 800 μL MTBE was added to induce phase separation, followed by ultrasonication in an ice-water bath and static incubation at room temperature (30 min). Phase separation was achieved by centrifugation (14,000 x g, 15 min, 10 °C), and the upper organic phase containing lipids was collected. The lipid extracts were dried under a nitrogen stream and stored at -80 °C until LC-MS analysis.</p>	<p>Chromatographic separation was performed using reversed-phase liquid chromatography on a CSH C18 column (1.7 μm particle size, 2.1 x 100 mm; Waters) maintained at 45 °C. Lipid extracts were reconstituted in 200 μL of 90% isopropanol/acetonitrile (v/v), centrifuged (14,000 x g, 15 min, 10 °C), and 3 μL of supernatant was injected. Mobile phases consisted of (A) acetonitrile/water (6:4, v/v) and (B) acetonitrile/isopropanol (1:9, v/v), both supplemented with 0.1% formic acid and 0.1 mM ammonium formate. The gradient elution program was as follows: 30% B (0.0-2.0 min), 30-100% B (2.0-25.0 min, linear), 100% B (25.0-28.0 min), and re-equilibration at 5% B (28.0-38.0 min), with a constant flow rate of 300 μL/min.</p>	<p>Mass spectrometric data were acquired in both positive and negative ionization modes using a Q Exactive Plus hybrid quadrupole-Orbitrap mass spectrometer (Thermo Scientific) equipped with an electrospray ionization (ESI) source. The ESI parameters were optimized as follows: ion source temperature, 300 °C; capillary temperature, 350 °C; ion spray voltage, 3.0 kV; and S-lens RF level, 50%. Full-scan spectra were collected over a mass range of&nbsp;200-1800 m/z with a resolving power of 70,000 (at&nbsp;m/z&nbsp;200) in profile mode. Instrument calibration was performed weekly using a Pierce LTQ ESI Positive and Negative Ion Calibration Solution (Thermo Scientific) to ensure mass accuracy &lt;2 ppm.</p>	<p>In this project, mass spectrometry data were statistically analyzed using the commercial software LipidSearch (developed by Thermo Fisher Scientific), which includes a built-in database containing more than 30 lipid classes and over 1,500,000 fragment ions. Lipid identification was performed based on this database.</p>	<p>Lipid species were identified using&nbsp;LipidSearch software (version 4.2, Thermo Scientific)&nbsp;with a curated database encompassing &gt;30 lipid classes (e.g., phospholipids, sphingolipids, sterols) and &gt;1.5 million annotated MS/MS spectra. Identification criteria included: 5 ppm mass accuracy thresholds for both precursor and fragment ions, retention time alignment (±0.3 min) and HCD-specific fragmentation patterns.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wu
+Study Person First Name	Yongqin
+Study Person Mid Initials	
+Study Person Email	yongqinwu2020@ustc.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Hefei 230001, China
+Study Person Affiliation	Department of Clinical Laboratory, the First Affiliated Hospital of USTC, University of Science and Technology of China
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	NCBITAXON	BTO	EFO	CHMO	BAO	OBI	MTBLS
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/
+Term Source Version	28	2	22	113	5	19	22	1.0
+Term Source Description	National Cancer Institute Thesaurus	National Center for Biotechnology Information (NCBI) Organismal Classification	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	Chemical Methods Ontology	BioAssay Ontology	Ontology for Biomedical Investigations	Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1794
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-06-12
+Investigation Public Release Date	2021-01-04
+Comment[Created With Configuration]	E:\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1794
+Study Title	Untargeted LC-MS metabolomics for the analysis of micro-scaled extracellular metabolites from hepatocytes
+Study Description	Metabolome analysis in micro physiological models is a challenge due to the low volume of cell culture medium (CCM). Here, we report a LC-MS-based untargeted metabolomics protocol for the detection of hepatocyte extracellular metabolites from micro-scale samples of CCM. Using a single LC-MS method we have detected 57 metabolites of which 27 showed >2-fold shifts after 72-hours incubation. We demonstrate that micro-scale CCM samples can be used for modelling micro-physiological temporal dynamics in metabolite intensities.
+Study Submission Date	2020-06-12
+Study Public Release Date	2021-01-04
+Study File Name	s_MTBLS1794.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	liquid chromatography-mass spectrometry	untargeted metabolites	Micro-scale cell culture medium	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000524	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	33342928
+Study Publication DOI	10.2116/analsci.20n032
+Study Publication Author List	Abdalkader R, Chaleckis R, Meister I, Zhang P, Wheelock CE, Kamei KI.
+Study Publication Title	Untargeted LC-MS metabolomics for the analysis of micro-scaled extracellular metabolites from hepatocytes.
+Study Publication Status	Preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004
+Study Publication Status Term Source REF	MTBLS
+STUDY FACTORS
+Study Factor Name	Replicate	Timepoint	Extraction volume
+Study Factor Type	technical replicate	timepoint	Fluid Volume
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002090	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C124480
+Study Factor Type Term Source REF	EFO	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1794_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>HepG2 cells (American Type Culture Collection, Manassas, VA, USA) were cultured in DMEM supplemented with 10% (v/v) FBS, 1% penicillin/streptomycin, and 1 mM nonessential amino acids. The cells were passaged with trypsin-EDTA solutions at a 1:10 to 1:20 subculture ratio. For the collection of extracellular metabolites 3 x 10^5 cells were seeded into T-25 flasks in a final volume of 15 ml of the CCM. Cells were then incubated at 37 °C and 5% CO2. At 3 timepoints (0 - control, 24 and 72 h) 1 ml of extracellular CCM was taken and preserved at -80 °C.</p>	<p>CCM samples were thawed at room temperature and 1 μl of each sample was extracted using 50, 100 μl or 200 μl acetonitrile containing 5 technical internal standards (tIS), see Table S1 in the paper associated with this study. Then samples were centrifuged at 4 °C for 15 min at 20000 x g. 40 μl of the supernatant were transferred to a 96-well 0.2 ml PCR plate PCR-96-MJ (BMBio, Tokyo, Japan). The plate was sealed with a pierceable seal (4titude, Wotton, UK) for 3 s at 180 °C using a plate sealer (BioRad PX-1, CA, USA) and kept at 4 °C during the LC-MS measurement.</p>	<p>Injection volume was 1 μl (injection sequence see <strong>Table S2</strong> in the paper associated with this study). The LC-MS method was described in previous publications<strong>[1]-[3]</strong>. Briefly, metabolite separation was performed on an Agilent 1290 Infinity II system using SeQuant ZIC-HILIC (Merck, Darmstadt, Germany) column. Sample analysis was performed using water with 0.1% formic acid (solvent A) and acetonitrile with 0.1% formic acid (solvent B). The elution gradient used was as follows: isocratic step at 95% B for 1.5 min, 95% B to 40% B in 12 min and maintained at 40% B for 2 min. The flow rate was 0.4 ml/min.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Naz S, Gallart-Ayala H, Reinke SN, Mathon C, Blankley R, Chaleckis R, Wheelock CE. Development of a Liquid Chromatography-High Resolution Mass Spectrometry Metabolomics Method with High Specificity for Metabolite Identification Using All Ion Fragmentation Acquisition. Anal Chem. 2017 Aug 1;89(15):7933-7942. doi:10.1021/acs.analchem.7b00925. PMID:28641411.</p><p><strong>[2]</strong> Chaleckis R, Naz S, Meister I, Wheelock CE. LC-MS-Based Metabolomics of Biofluids Using All-Ion Fragmentation (AIF) Acquisition. Methods Mol Biol. 2018;1730:45-58. doi:10.1007/978-1-4939-7592-1_3. PMID:29363064.</p><p><strong>[3] </strong>Tada I, Tsugawa H, Meister I, Zhang P, Shu R, Katsumi R, Wheelock CE, Arita M, Chaleckis R. Creating a Reliable Mass Spectral-Retention Time Library for All Ion Fragmentation-Based Metabolomics. Metabolites. 2019 Oct 26;9(11):251. doi:10.3390/metabo9110251. PMID:31717785.</p>	<p>Data was acquired on an Agilent 6550 Q-TOF-MS system with a mass range of 40−1200 m/z in positive ionization all ion fragmentation mode (AIF) including 3 sequential experiments at alternating collision energies: 1 full scan at 0 eV, followed by 1 MS/MS scan at 10 eV, and then followed by 1 MS/MS scan at 30 eV. The data acquisition rate was 6 scans/s.</p>	<p>Data was transformed from Agilent .d format to .abf format using Reifycs Abf (Analysis Base File) Converter (<a href='https://www.reifycs.com/AbfConverter/' rel='noopener noreferrer' target='_blank'>https://www.reifycs.com/AbfConverter/</a>). Data were processed in MS-DIAL version 4.20<strong>[1]</strong> (detailed parameters in <strong>Tables S3</strong> and <strong>S4</strong> in the publication associated with this study).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Tsugawa H, Cajka T, Kind T, Ma Y, Higgins B, Ikeda K, Kanazawa M, VanderGheynst J, Fiehn O, Arita M. MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods. 2015 Jun;12(6):523-6. doi:10.1038/nmeth.3393. PMID:25938372.</p>	<p>An in-house MS2 spectral library containing experimental MS2 spectra and retention times (RT) for 391 compounds obtained&nbsp;from standards<strong>[1][2]</strong> was used for annotation of detected features using 3 criteria: <strong>(i)</strong> accurate mass (AM) match (tolerance: 0.01 Da), <strong>(ii)</strong> RT match (tolerance: 1 min), and <strong>(iii)</strong> MS2 spectrum match (similarity &gt;70%). The MS2 similarity was scored by the simple dot product without any weighting (at least 2 MS2 peaks match with the reference spectra). The MS2 similarities with reference spectra were matched to any of the CorrDec<strong>[3]</strong> or the MS2Dec<strong>[4]</strong> deconvoluted MS2 spectra of the 3 collision energies (0, 10, and 30 eV). We used peak areas of the representative ion (usually [M+H]+) for the relative quantification of metabolites.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Naz S, Gallart-Ayala H, Reinke SN, Mathon C, Blankley R, Chaleckis R, Wheelock CE. Development of a Liquid Chromatography-High Resolution Mass Spectrometry Metabolomics Method with High Specificity for Metabolite Identification Using All Ion Fragmentation Acquisition. Anal Chem. 2017 Aug 1;89(15):7933-7942. doi:10.1021/acs.analchem.7b00925. PMID:28641411.</p><p><strong>[2]</strong> Tada I, Tsugawa H, Meister I, Zhang P, Shu R, Katsumi R, Wheelock CE, Arita M, Chaleckis R. Creating a Reliable Mass Spectral-Retention Time Library for All Ion Fragmentation-Based Metabolomics. Metabolites. 2019 Oct 26;9(11):251. doi:10.3390/metabo9110251. PMID:31717785.</p><p><strong>[3]</strong> Tada I, Chaleckis R, Tsugawa H, Meister I, Zhang P, Lazarinis N, Dahlén B, Wheelock CE, Arita M. Correlation-Based Deconvolution (CorrDec) To Generate High-Quality MS2 Spectra from Data-Independent Acquisition in Multisample Studies. Anal Chem. 2020 Aug 18;92(16):11310-11317. doi:10.1021/acs.analchem.0c01980. PMID:32648737.</p><p><strong>[4]</strong> Tsugawa H, Cajka T, Kind T, Ma Y, Higgins B, Ikeda K, Kanazawa M, VanderGheynst J, Fiehn O, Arita M. MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods. 2015 Jun;12(6):523-6. doi:10.1038/nmeth.3393. PMID:25938372.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Column type;Column model;Chromatography Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Abdalkader	Chaleckis	Meister	Zhang	Wheelock	Kamei
+Study Person First Name	Rodi	Romanas	Isabel	Pei	Craig	Ken-Ichiro
+Study Person Mid Initials					E	
+Study Person Email		romanas.chaleckis@gmail.com				
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	Institute for Integrated Cell-Material Sciences (WPI-iCeMS), Kyoto University, Yoshida-Ushinomiya-cho, Sakyo-ku, Kyoto 606-8501, Japan	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Institute for Integrated Cell-Material Sciences (WPI-iCeMS), Kyoto University, Yoshida-Ushinomiya-cho, Sakyo-ku, Kyoto 606-8501, Japan
+Study Person Roles						
+Study Person Roles Term Accession Number						
+Study Person Roles Term Source REF						

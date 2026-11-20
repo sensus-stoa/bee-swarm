@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	OMIT	OBI	REX	EFO	NCIT	CHMO	CHEBI	ENVO
+Term Source File	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI						
+Term Source Version	1		29						
+Term Source Description	Metabolights Ontology		Ontology for Biomedical Investigations						
+INVESTIGATION
+Investigation Identifier	MTBLS5219
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-06-29
+Investigation Public Release Date	2022-09-16
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS5219
+Study Title	Metabolome patterns identify active dechlorination in bioaugmentation consortium SDC-9
+Study Description	<p>Ultra-high performance liquid chromatography-high resolution mass spectrometry (UPHLC-HRMS) is used to discover and monitor single or sets of biomarkers informing about metabolic processes of interest. The technique can detect thousands of molecules (i.e., metabolites) in a single instrument run and provide a measurement of the global metabolome, which could be a fingerprint of activity. Despite the power of this approach, technical challenges have hindered the effective use of metabolomics to interrogate microbial communities implicated in the removal of priority contaminants. Herein, our efforts to circumvent these challenges and apply this emerging systems biology technique to synthetic microbiomes relevant for contaminant biodegradation will be discussed. Chlorinated ethenes impact many contaminated sites, and detoxification can be achieved by organohalide-respiring bacteria, a process currently assessed by quantitative gene-centric tools (e.g., quantitative PCR). </p><p><br></p><p>This laboratory study monitored the metabolome of the SDC-9 bioaugmentation consortium during cis-1,2-dichloroethene conversion to vinyl chloride and nontoxic ethene. Untargeted metabolomics using an UPLC-Orbitrap mass spectrometer and performed on SDC-9 cultures at different stages of the reductive dechlorination process detected ~10,000 spectral features per sample arising from water-soluble molecules with both known and unknown structures. Multivariate statistical techniques including partial least squares-discriminate analysis (PLS-DA) identified patterns of measurable spectral features (peak patterns) that correlated with dechlorination (in)activity. ANOVA analyses identified 18 potential biomarkers of reductive dechlorination activity. Statistical clustering of samples with these 18 features predicted dechlorination activity more reliably than clustering of samples based only on chlorinated ethene concentration and Dhc 16S rRNA gene abundance data, highlighting the value of metabolomic workflows as an innovative site assessment and bioremediation monitoring tool.</p>
+Study Submission Date	2022-06-29
+Study Public Release Date	2022-09-16
+Study File Name	s_MTBLS5219.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	reductive dechlorination	bioremediation	environmental monitoring	biomarker	ultra-performance liquid chromatography-mass spectrometry	Chlorinated Ethene
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/ENVO_02500041	http://purl.obolibrary.org/obo/CHEBI_59163	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	ENVO	CHEBI	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fmicb.2022.981994
+Study Publication Author List	Amanda L. May, Yongchao Xie, Fadime K. Murdoch, Mandy M. Michalsen, Frank E. Löffler, Shawn R. Campagna
+Study Publication Title	Metabolome patterns identify active dechlorination in bioaugmentation consortium SDC-9
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Timepoint
+Study Factor Type	treatment	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS5219_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The consortium SDC-9 was provided by APTIM (Lawrenceville, NJ, USA) as a concentrated stock suspension. Glass serum bottles (160 mL) containing 100 mL of bicarbonate-buffered defined mineral salt medium<strong>[1]</strong> were sealed with rubber stoppers and autoclaved. Once cooled, filter-sterilized vitamin mix<strong>[2]</strong> excluding vitamin B12, and lactate (10 mM) was added to the medium, and 50 μg/L vitamin B12 was added. Cultures were then inoculated (5% v/v) directly from the stock culture suspension inside an anoxic chamber filled hydrogen (3% v/v) and nitrogen (97% v/v). The electron acceptor, cDCE (6 μL, 79.2 μmol) or VC gas (2 mL, 83.3 μmol) was added. Control cultures received no electron acceptor. All cultures were incubated at room temperature (22 °C) in the dark under static conditions. Entire cultures were sacrificed before initiation of dechlorination (100% cDCE/VC remaining, t0), at the beginning of dechlorination (&gt;90% cDCE/VC remaining, t1), during active dechlorination (20-80% cDCE/VC remaining, t2-3), and for up to 14 days after dechlorination was completed (0% cDCE/VC remaining, t5-7). Control samples (Con) with no added chlorinated ethenes were also collected as indicated in <strong>Table 1</strong> in the paper associated with this study.</p><p><br></p><p>QC samples ('comb-'): 'comb-Nacdce' : pool of all SDC-9 samples in the Nacdce no addition group; 'comb-Navc': pool of all SDC-9 samples in the Navc no addition group; 'comb-VC+NA': pool of all SDC-9 samples in the VC and Navc no addition groups and VCmedia samples; 'comb-VC': pool of all SDC-9 samples in the VC group and VCmedia samples; 'comb-all': pool of all SDC-9 samples and medium groups; 'comb-cDCE+NA': pool of all SDC-9 samples in the cDCE and Nacdce no addition groups and cDCEmedia samples; 'comb-cDCE': pool of all SDC-9 samples in the cDCE group and cDCEmedia samples.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Löffler FE, Sanford RA, Ritalahti KM. Enrichment, cultivation, and detection of reductively dechlorinating bacteria. Methods Enzymol. 2005;397:77-111. doi:10.1016/S0076-6879(05)97005-5. PMID:16260286.</p><p><strong>[2]</strong> Wolin EA, Wolin MJ, Wolfe RS. FORMATION OF METHANE BY BACTERIAL EXTRACTS. J Biol Chem. 1963 Aug;238:2882-6. PMID:14063318.</p>	<p>Individual replicate cultures taken from the collection of total cultures were sacrificed to collect data for each time point, and a portion (50 mL) of the contents were collected by vacuum filtration through a polycarbonate membrane filter (47 mm diameter, 0.2 μM pore size)<strong>[1]</strong>. Filters were then place upside down in a Petri dish (47 mm) containing 1.3 mL of chilled (-20 °C) extraction solvent (40:40:20 acetonitrile:methanol:water with 0.1M formic acid). Extraction was continued for 15-20 min at -20 °C at which point the filter was flipped right side up and washed. The extraction solvent was transferred to a 2 mL microcentrifuge tube. The filter was then washed with 200 μL chilled (-20 °C) extraction solvent and added to the microcentrifuge tube and the combined extracts were centrifuged (5 min, 13.2 rpm, 4 °C). The supernatant was removed and transferred to clean vial. The pellet was then extracted with 200 μL of extraction solvent (chilled to -20 °C) for 15 minutes at -20 °C, after which the samples were once again centrifuged (5 min, 13.2 rpm, 4 °C). The supernatants were removed and combined with the previously collected supernatant, and the extraction process was repeated once more. The combined supernatants were then dried under a stream of nitrogen and stored at -80 °C until analysis.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Bennett BD, Yuan J, Kimball EH, Rabinowitz JD. Absolute quantitation of intracellular metabolite concentrations by an isotope ratio-based approach. Nat Protoc. 2008;3(8):1299-311. doi:10.1038/nprot.2008.107. PMID:18714298.</p>	<p>Prior to analysis, samples were reconstituted in 300 μL of sterile MilliQ water, transferred to an autosampler vial, and placed in an autosampler tray kept at 4 °C. In total 10 μL from each sample was injected through a Synergi 2.5 micron Hydro-RP 100, 100 x 2.00 mm LC column (Phenomex, Torrance, CA) kept at 25 °C and eluted using the following solvents: (A) water:methanol (97:3), 10 mM tributylamine and 15 mM acetic acid, (B) methanol; and gradient: t = 0.0 min; 0% B; t = 2.5 min, 0% B; t = 5.0 min, 20% B; t = 7.5 min, 20% B; t = 13.0 min, 55% B, t = 15.5 min, 95% B; t = 18.5 min, 95% B; t = 19.0 min, 0% B; t = 25.0 min, 0% B; using a flow rate of 200 μL/min.</p>	<p>The eluent was introduced into the mass spectrometer (MS) via electrospray ionization (ESI) attached to a Thermo Scientific Exactive Plus Orbitrap MS (Waltham, MA). Data were collected in full scan mode with negative ionization mode using a previously established method<strong>[1]</strong>. Samples were run with a spray voltage of 3 kV. The nitrogen sheath gas was set to 10 psi, with a capillary temperature of 320 °C and AGC target was set to 3e^6. Samples were analyzed with a resolution of 140,000. A scan window of 85-800 m/z (mass-to-charge) was used from 0.0 to 9.0 min and a window of 110-1000 m/z from 9.0 to 25.0 min.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lu W, Clasquin MF, Melamud E, Amador-Noguez D, Caudy AA, Rabinowitz JD. Metabolomic analysis via reversed-phase ion-pairing liquid chromatography coupled to a stand alone orbitrap mass spectrometer. Anal Chem. 2010 Apr 15;82(8):3212-21. doi:10.1021/ac902837x. PMID:20349993.</p>	<p>Raw spectra files were converted to a universal format, <strong>mzML</strong>, using <strong>msconvert[1]</strong>. Feature detection was performed using the online <strong>MetaboAnalyst</strong> 5.0 platform<strong>[2]</strong>. Settings were optimized using a pooled sample for QC on the UHPLC-Orbitrap platform. Feature detection and removal from instrument blank was also utilized for optimal feature detection. Detected features were then trimmed using a % coefficient of variation (%CV) of less than 40% for pooled samples. Remaining features were normalized using TBAC 16S qPCR cell count data and the cell normalized ion intensities were used in all following analyses. </p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Chambers MC, Maclean B, Burke R, Amodei D, Ruderman DL, Neumann S, Gatto L, Fischer B, Pratt B, Egertson J, Hoff K, Kessner D, Tasman N, Shulman N, Frewen B, Baker TA, Brusniak MY, Paulse C, Creasy D, Flashner L, Kani K, Moulding C, Seymour SL, Nuwaysir LM, Lefebvre B, Kuhlmann F, Roark J, Rainer P, Detlev S, Hemenway T, Huhmer A, Langridge J, Connolly B, Chadick T, Holly K, Eckels J, Deutsch EW, Moritz RL, Katz JE, Agus DB, MacCoss M, Tabb DL, Mallick P. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol. 2012 Oct;30(10):918-20. doi:10.1038/nbt.2377. PMID:23051804.</p><p><strong>[2]</strong> Pang Z, Chong J, Zhou G, de Lima Morais DA, Chang L, Barrette M, Gauthier C, Jacques PÉ, Li S, Xia J. MetaboAnalyst 5.0: narrowing the gap between raw spectra and functional insights. Nucleic Acids Res. 2021 Jul 2;49(W1):W388-W396. doi:10.1093/nar/gkab382. PMID:34019663.</p>	<p>No metabolite identification was carried out in this experiment.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	May	Xie	Murdoch	Michalsen	Loeffler	Shawn
+Study Person First Name	Amanda	Yongchao	Fadime	Mandy	Frank	Campagna
+Study Person Mid Initials						
+Study Person Email	amay6@utk.edu					
+Study Person Phone						
+Study Person Fax						
+Study Person Address	676 Buehler Hall 1416 Circle Drive Knoxville TN 37902					
+Study Person Affiliation	University of Tennessee, Knoxville					
+Study Person Roles	Co-Investigator	Author	Author	Author	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

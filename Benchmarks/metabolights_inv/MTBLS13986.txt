@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BAO	BMONT	BTO	CAO	CHMO	CIDO	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://www.bioassayontology.org/bao/	http://purl.obolibrary.org/obo/bmont.owl	http://purl.obolibrary.org/obo/bto.owl	https://champ.stuchalk.domains.unf.edu/images/ontology/cao.owl	http://purl.obolibrary.org/obo/chmo.owl	http://purl.obolibrary.org/obo/cido.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2.8.18a	2025-06-20		0.2	2025-10-21	2024-02-16	3.87.0		2026-02-03			2025-12-03	25.06e	2025-12-18
+Term Source Description	BioAssay Ontology	Biomarker Ontology (BMONT)	The BRENDA Tissue Ontology (BTO)	Chemical Analysis Metadata Platform (ChAMP) Ontology version 0.2	Chemical Methods Ontology	CIDO: Ontology of Coronavirus Infectious Disease	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13986
+Investigation Title	Rapid and targeted HILIC-MS/MS quantification of urinary metabolites reveals metabolic alterations in COVID-19 patients
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-03-06
+Investigation Public Release Date	2026-06-08
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13986
+Study Title	Rapid and targeted HILIC-MS/MS quantification of urinary metabolites reveals metabolic alterations in COVID-19 patients
+Study Description	<p>Urinary metabolites and their concentrations serve as biomarkers for identification of metabolic pathways that relate to specific diseases; therefore, fast and accurate quantification of the metabolites in urine is essential in health assessment and diagnosis. As many urinary metabolites are of polar nature, hydrophilic interaction liquid chromatography (HILIC) has been used over the last several years because it offers faster and more reproducible analyses compared to traditional techniques such as reversed-phase chromatography or capillary electrophoresis. In our study, we developed a HILIC method by using a 3-cm analytical column in connection with tandem mass spectrometry detection for quantification of 10 urinary metabolites including creatinine as the reference for normalization. As all tested metabolites contain ionizable functional groups, pH of the mobile phase was optimized to achieve baseline separation of 2 isomeric pairs (1-methyl-4-imidazoleacetic acid/1-methyl-5-imidazoleacetic acid and 1-methylhistidine/3-methylhistidine) and to obtain overall better separation efficiency resulting in a 7-min analysis. The developed method was validated in terms of sensitivity, carry-over, linearity, matrix effects, accuracy, and precision. The metabolite concentrations in healthy subjects determined by the developed method correspond well with the normal reference values found in the literature. Moreover, the method was tested on a small cohort of COVID-19 patients, where it enabled identification of differences in metabolite levels. Thus, the developed method has potential to be used routinely in a diagnostic field for high-throughput analysis of urine samples.</p>
+Study Submission Date	2026-03-06
+Study Public Release Date	2026-06-08
+Study File Name	s_MTBLS13986.txt
+Comment[Created At]	2025-03-19
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	human urinary metabolite	COVID-19	targeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHEBI_84087	http://purl.obolibrary.org/obo/DOID_0080600	http://purl.obolibrary.org/obo/MS_1003905
+Study Design Type Term Source REF	CHMO	BAO	CIDO	MS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Ondrej Hodek, Anna Edman, Christoffer Granvik, Alicia Lind, Anna K. Överby, Mareike Gutensohn, Annika I. Johansson
+Study Publication Title	Rapid and targeted HILIC-MS/MS quantification of urinary metabolites reveals metabolic alterations in COVID-19 patients
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease	Sample type
+Study Factor Type	COVID-19	validation
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0100096	http://purl.obolibrary.org/obo/OBI_0302911
+Study Factor Type Term Source REF	EFO	BMONT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13986_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Extraction	Chromatography	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	data transformation	Extraction	chromatography	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		OBI	OBI	CHMO	CHMO	MI
+Study Protocol Description	<p>The human urine samples used for validation were obtained from healthy adults with age between 20 and 73 years (n = 13). The samples were frozen at -80 °C within 4 hours after sampling. Urine samples from patients with mild (n = 10) and severe (n = 10) COVID-19 were obtained from the prospective, observational cohort study CoVUm (clinicaltrials.gov identifier: NCT04368013) and used for further clinical validation of the method.&nbsp;</p>	<p>The LC-MS data was processed by using the&nbsp;Agilent MassHunter Qualitative 12.0.430.0 and QQQ quantitative analysis version B.12.0.893.1 (Agilent Technologies Inc., Santa Clara, CA, USA) and Excel (Microsoft, Redmond, Washington, USA) software.</p>	<p>Prior to the analysis the urine samples were thawed at room temperature, vortex mixed, and 10 µL of urine was diluted 150× with 80% acetonitrile containing the internal standards (1 µM creatine-D3, 1 µM 1-methyl-histamine-D3, 1 µM 1-methyl-histidine-D3, 1 µM 3-methyl-histidine-D3). For quantification of the most abundant metabolites – creatinine, urea, uric acid – the 150× diluted urine was further diluted 40-fold with 80% acetonitrile containing internal standards of 10 µM creatinine-D3, 10 µM urea-15N2, and 10 µM uric acid-15N2.</p>	<p>The urinary metabolites were separated and quantified by using an LC-MS/MS system consisting of an Agilent 1290 UPLC connected to an Agilent 6495D triple quadrupole (Agilent, CA, USA). The separation was achieved by injecting 3 µL of a sample to a BEH amide column (30×2.1 mm, 1.7 µm, Waters, MA, USA). The mobile phase consisted of 10&nbsp;mM ammonium fomate of pH 3.0 (adjusted with formic acid) in (A) water and in (B) acetonitrile/water 90/10 (v/v). The mobile phase was delivered on column by a flow rate of 0.6 mL/min with the following gradient: 0.0 min (99% B), 1.5 min (99% B), 3.0 min (30% B), 4.0 min (30% B), 4.1 min (99% B), 7.0 min (99% B). Column and autosampler were thermostated at 40&nbsp;°C and 4 °C, respectively.&nbsp;</p>	<p>Analytes were ionized in an electrospray ion source operated both in positive and negative modes. The source and gas parameters were set as follows: ion spray voltage -3.5 kV in negative and +4.0 kV in positive mode, gas temperature 150&nbsp;°C, drying gas flow 11 L/min, nebulizer pressure 20 psi, sheath gas temperature 325&nbsp;°C, sheath gas flow 12&nbsp;L/min, fragmentor&nbsp;166 V.</p>	<p>Data was acquired in MRM mode, and the MRM transitions and retention times otpimized on synthetic standards were used as identifiers for the quantified metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number			;	;;;;	;;;;	
+Study Protocol Parameters Name Term Source REF			;	;;;;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hodek	Johansson
+Study Person First Name	Ondrej	Annika
+Study Person Mid Initials		I.
+Study Person Email	ondrej.hodek@slu.se	annika.johansson01@umu.se
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Swedish University of Agricultural Sciences	Umeå University
+Study Person Roles	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-8307-9575	0000-0001-5000-1288
+Comment[Study Person Affiliation ROR ID]	https://ror.org/02yy8x990	https://ror.org/05kb8h459
+Comment[Study Person Alternative Email]	ondrej.hodek@slu.se	

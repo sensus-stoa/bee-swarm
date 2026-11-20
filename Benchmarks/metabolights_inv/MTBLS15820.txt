@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI	wikipathways
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/wikipathways/wikipathways.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0		2026-07-06			2026-07-12	26.02d	2026-05-08	20251010
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	WikiPathways
+INVESTIGATION
+Investigation Identifier	MTBLS15820
+Investigation Title	GDF15 hijacks B cells to fuel the lifeblood of tumor salvage pyrimidine synthesis
+Investigation Description	
+Investigation Submission Date	2026-09-27
+Investigation Public Release Date	2026-09-27
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15820
+Study Title	GDF15 hijacks B cells to fuel the lifeblood of tumor salvage pyrimidine synthesis
+Study Description	B cell-tumor crosstalk has emerged as a critical determinant of tumor progression; however, its role in metabolic reprogramming and therapeutic resistance remains poorly understood. Here, we uncover a metabolic feedback loop that drives resistance to dihydroorotate dehydrogenase (DHODH) inhibitors. Mechanistically, DHODH inhibition induces lactylation of TERF2IP at lysine 208 (K208) in tumor cells, enabling TERF2IP to scaffold IKK and p65, thereby promoting p65 phosphorylation and subsequent GDF15 expression. Secreted GDF15 recruits B cells into the tumor microenvironment, where they activate JAK1-STAT3-IL-1beta signaling, which in turn enhances ERK-cMYC-UCK2-driven salvage pyrimidine synthesis and confers resistance to DHODH inhibition. Through high-throughput screening, we identify melitracen as a synergistic agent that reverses this B cell-dependent resistance. Collectively, our findings delineate a B cell-orchestrated regulatory axis governing tumor pyrimidine metabolism that underlies DHODH inhibitor resistance, and propose a clinically translatable combinatorial therapeutic strategy for cancer treatment.
+Study Submission Date	2026-09-27
+Study Public Release Date	2026-09-27
+Study File Name	s_MTBLS15820.txt
+Comment[Created At]	2026-09-27
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-27
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity HPLC	AB SCIEX QTRAP 5500	Mus musculus	liver	supernatant	targeted analysis	Metabolomics	B cells	DHODH	GDF15	Pyrimidine metabolism
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000598	http://purl.obolibrary.org/obo/NCBITaxon_10090			http://purl.obolibrary.org/obo/MS_1003905	http://edamontology.org/topic_3172	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://identifiers.org/hgnc/2867	http://identifiers.org/hgnc/30142	http://identifiers.org/wikipathways/WP4022
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon			MS	EDAM	MTBLS	MONDO	MONDO	wikipathways
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	measurement-type	omics-type	default	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Junhu Yuan, Junyi Zhao, Xin Wang, Ziyi Jiang, Mingjuan Lei , Mo Li, Ying Zhang, Xiaobing Wang & Yuchen Jiao
+Study Publication Title	GDF15 hijacks B cells to fuel the lifeblood of tumor salvage pyrimidine synthesis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	numeric
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15820_LC-MS_alternating_reverse-phase.txt	a_MTBLS15820_LC-MS_alternating_reverse-phase-1.txt
+Study Assay Measurement Type	targeted analysis	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity HPLC;ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 100 mm; Waters);reverse phase;alternating;MRM;AB SCIEX QTRAP 5500	Agilent 1290 Infinity HPLC;AccQ-Tag Ultra C18 (1.7 µm, 2.1 mm x 100 mm; Waters);reverse phase;alternating;MRM;AB SCIEX QTRAP 5500
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000814;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000598	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000759;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000598
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Equal weights of mouse liver tumor tissues were rinsed with PBS and immediately placed into liquid nitrogen.</p>	<p>Samples were separated using an Agilent 1290 Infinity LC ultra-high-performance liquid chromatography system. The samples were placed in an autosampler at 4 °C, and the column temperature was maintained at 35 °C. Mobile phase A consisted of 50 mM ammonium acetate aqueous solution with 1.2% ammonium hydroxide, while mobile phase B consisted of 1% acetylacetone in acetonitrile. The flow rate was 300 μL/min, and the injection volume was 2 μL. The relevant liquid chromatography gradient was as follows: 0-1 min, 70% B; 1-10 min, B linearly changed from 70% to 60%; 10-12 min, B linearly changed from 60% to 30%; 12.1-15 min, B was maintained at 30%; 15-15.5 min, B linearly changed from 30% to 70%; 15.1-22 min, B was maintained at 70%. In the sample queue, a QC sample was set at regular intervals among the experimental samples to monitor and evaluate the stability and reproducibility of the system. A standard mixture of the target substances was also included in the sample queue for correction of chromatographic retention times.</p>	<p>Raw data acquired from the 5500 QTRAP ESI source in MRM mode were processed using Analyst and MultiQuant software. Peak integration was performed with a consistent retention time window across all samples. QC samples were used to monitor system stability and reproducibility. Metabolite concentrations were calculated from calibration curves and normalized to internal standards and sample weight. Data were filtered to remove peaks with poor reproducibility or signal-to-noise ratio below the threshold before statistical analysis.</p>	<p>Samples were retrieved from -80 °C, and 15 mg of each sample was weighed. Then, 200 μL of water and MP were added, followed by vortexing for 60 s. Next, 800 μL of methanol-acetonitrile solution (1:1, v/v) was added, followed by 10 μL of SUCCINIC ACID-D6 internal standard, and the mixture was vortexed for 60 s. The samples were subjected to low-temperature ultrasonication for 30 min, and this step was repeated twice. Afterwards, the samples were placed at -20 °C for 1 h to precipitate proteins, followed by centrifugation at 14,000 rcf for 20 min at 4 °C. The supernatant was collected and freeze-dried, and the samples were stored at -80 °C.</p>	<p>Mass spectrometry analysis was performed using a 5500 QTRAP mass spectrometer (SCIEX) in negative ion mode. The 5500 QTRAP ESI source conditions were as follows: source temperature 450 °C, Ion Source Gas1 (Gas1): 45, Ion Source Gas2 (Gas2): 45, Curtain gas (CUR): 30, ionSapary Voltage Floating (ISVF) -4500 V. MRM mode was used to detect the target ion pairs.</p>	<p>Metabolite identification was based on MRM transitions, retention time matching, and authentic standards. Target metabolites were confirmed by comparing retention times and ion pair ratios with reference standards analyzed under identical LC-MS conditions. The standard mixture in the sample queue was used for retention time correction. For compounds without standards, identification relied on accurate MRM transitions and database matching. Confirmed metabolites were reported with transition ions, retention times, and quantification results.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	yuan
+Study Person First Name	junhu
+Study Person Mid Initials	
+Study Person Email	jhyuan1998@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	National Cancer Center/National Clinical Research Center for Cancer/Cancer Hospital, Chinese Academy of Medical Sciences and Peking Union Medical College
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

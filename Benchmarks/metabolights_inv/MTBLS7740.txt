@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CCO	CHEBI	CHMO	CL	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	OMIT	SIO
+Term Source File	http://www.bio.ntnu.no/ontology/CCO/cco.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://purl.obolibrary.org/obo/cl.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/omit.owl	https://raw.githubusercontent.com/micheldumontier/semanticscience/master/ontology/sio/release/sio-release.owl
+Term Source Version		249	2025-10-21	2025-12-17	3.87.0			1.0.1		2025-12-03	25.06e	2025-12-18		1.59
+Term Source Description	Cell Cycle Ontology	Chemical Entities of Biological Interest	Chemical Methods Ontology	Cell Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Ontology for MIRNA Target	Semanticscience Integrated Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS7740
+Investigation Title	Omics data integration allows the identification of an idiopathic Parkinson’s disease signature
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-08-14
+Investigation Public Release Date	2026-03-16
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7740
+Study Title	Omics data integration allows the identification of an idiopathic Parkinson’s disease signature
+Study Description	The vast majority of Parkinson’s disease cases are idiopathic. Unclear ethiology and multifactorial nature complicate the comprehension of disease pathogenesis. Identification of early transcriptomic and metabolic alterations consistent across different idiopathic Parkinson’s disease (IPD) patients might reveal the potential basis of increased dopaminergic neuron vulnerability and primary disease mechanisms. In this study, we combine systems biology and data integration approaches to identify differences in transcriptomic and metabolic signatures between IPD patient and healthy individual-derived midbrain neural precursor cells. Characterisation of gene expression and metabolic modelling reveals pyruvate, several amino acids and lipid metabolism as the most dysregulated metabolic pathways in IPD neural precursors. Furthermore, we show that IPD neural precursors endure mitochondrial metabolism impairment and a reduced total NAD pool. Accordingly, we show that treatment with NAD precursors increases ATP yield hence demonstrating a potential to rescue early IPD-associated metabolic changes.
+Study Submission Date	2023-08-14
+Study Public Release Date	2026-03-16
+Study File Name	s_MTBLS7740.txt
+Comment[Created At]	2023-04-24T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Stem Cells	Parkinson disease	Metabolomics	gas chromatography mass spectrometry assay
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0014111	http://identifiers.org/omim/168600	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000270	http://purl.obolibrary.org/obo/OBI_0003110
+Study Design Type Term Source REF	OMIT	CCO	MTBLS	OBI
+STUDY PUBLICATIONS
+Study PubMed ID	37985891
+Study Publication DOI	10.1038/s42003-023-05548-w
+Study Publication Author List	Zagare Alise, Preciat German, Nickels Sarah. L., Luo Xi, Monzel Anna S., Gomez-Giro Gemma, Robertson Graham, Jaeger Christian, Sharif Jafar, Koseki Haruhiko, Diederich Nico J., Glaab Enrico, Fleming Ronan M. T., Schwamborn Jens C.
+Study Publication Title	Omics data integration suggests a potential idiopathic Parkinson’s disease signature
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Idiopathic parkinson's disease	Polar/Non-polar extract
+Study Factor Type	disease	Extract
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408	http://purl.obolibrary.org/obo/NCIT_C82948
+Study Factor Type Term Source REF	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7740_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	GC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Neuroepithelial stem cells (<strong>NESCs) </strong>were derived from iPSCs as previously described<strong>[1]</strong>. <strong>NESCs </strong>were cultured in N2B27 maintenance medium on 6-well plates (Thermo Scientific) pre-coated with Matrigel (Corning). N2B27 medium is composed of DMEM-F12 (Invitrogen) and Neurobasal (Invitrogen) 1:1 and supplemented with 1:200 N2 (Invitrogen), 1:100 B27 without vitamin A (Invitrogen), 1% Glutamax (ThermoFisher) and 1% penicillin/streptomycin (Invitrogen). For neural induction, N2B27 medium was freshly supplemented with small molecules - 3 μM CHIR (Axon Medchem), 0.75 μM PMA (Enzo Life Science) and 150 μM ascorbic acid (Sigma). The medium was changed every second day and cells were routinely passaged at 80-90% confluence. Splitting was performed with Accutase (Sigma). Cells were kept in the incubator under constant conditions of 37 °C and 5% CO2.</p><p><br></p><p><strong>Ref:</strong></p><p>Reinhardt, P., et al., Derivation and expansion using only small molecules of human neural progenitors for neurodegenerative disease modeling. PLoS One, 2013. 8(3): p. e59252.</p>	<p>Liquid-Liquid Extraction with Methanol, Water, Chloroform to separate polar and non-polar metabolites.</p><p><br></p><p>Metabolite derivatization was performed by a multi-purpose sample preparation robot (Gerstel). Dried cell polar extracts were dissolved in 20 μL pyridine, containing 20 mg/mL methoxyamine hydrochloride (Sigma-Aldrich), for 90 min at 45 °C under shaking. After adding 20 μL N-methyl-N-trimethylsilyl-trifluoroacetamide (Macherey-Nagel), samples were incubated for 30 min at 45 °C under continuous shaking. Dried non-polar extracts were only dissolved in 30 μL N-methyl-N- trimethylsilyl-trifluoroacetamide and incubated for 60 min at 45 °C under continuous shaking.</p>	<p>GC-MS analysis was performed by using an Agilent 7890B GC coupled to an Agilent 5977A inert XL Mass Selective Detector (Agilent Technologies). A sample volume of 1 μL was injected into a Split/Splitless inlet, operating in splitless mode at 270 °C. The gas chromatograph was equipped with a 30 m (I.D. 0.25 mm, film 0.25 μm) ZB-35ms capillary column (Phenomenex) with 5 m guard column in front of the analytical column. Helium was used as carrier gas with a constant flow rate of 1.2 mL/min. The GC oven temperature was held at 90 °C for 1 min and increased to 270 °C at 9 °C/min. Then, the temperature was increased to 320 °C at 25 °C/min and held for 7 min. The total run time was 30 min. The transfer line temperature was set to 280 °C.</p>	<p>The MSD was operating under electron ionization at 70 eV. The MS source was held at 230 °C and the quadrupole at 150 °C. Mass spectra were acquired in full scan mode (70-700 m/z).</p>	<p>All GC-MS chromatograms were processed using MetaboliteDetector, v3.220190704 [82]. Compounds were annotated by retention index and mass spectrum using an in-house mass spectral library. Retention index calibration was based on an C10-C40 even n-alkane mixture (Sigma Aldrich). The internal standards, U-13C–Ribitol (Omicron Biochemicals), Pentanedioic-d6 acid (C/D/N Isotopes) and Tridecanoic-d25 acid (C/D/N Isotopes) were added at the same concentration to every sample to correct for uncontrolled sample losses and analyte degradation during metabolite extraction. The data set was normalized by using the response ratio of the integrated peak area analyte and the integrated peak area internal standard.</p><p><br></p><p>Ref:</p><p>[REF] (82)</p>	<p>Compounds were annotated by retention index and mass spectrum using an in-house mass spectral library. Retention index calibration was based on an C10-C40 even n-alkane mixture (Sigma Aldrich).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jäger	Zagare	Schwamborn
+Study Person First Name	Christian	Alise	Jens
+Study Person Mid Initials			Christian
+Study Person Email	christian.jaeger@uni.lu	alise.zagare@uni.lu	jens.schwamborn@uni.lu
+Study Person Phone			
+Study Person Fax			
+Study Person Address	6, avenue du Swing, L-4367 Belvaux		
+Study Person Affiliation	Luxembourg Centre for Systems Biomedicine, University of Luxembourg	Luxembourg Centre for Systems Biomedicine, University of Luxembourg	Luxembourg Centre for Systems Biomedicine, University of Luxembourg
+Study Person Roles	Author	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0003-4235-7430	0000-0003-3724-540X	0000-0003-4496-0559
+Comment[Study Person Affiliation ROR ID]			https://ror.org/051tr1y59

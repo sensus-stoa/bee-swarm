@@ -1,0 +1,112 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MSIO	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.89.0			1.0.1	2026-05-05	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13954
+Investigation Title	The effects of diets with different energy levels on rumen metabolites of yaks
+Investigation Description	
+Investigation Submission Date	2026-03-02
+Investigation Public Release Date	2026-10-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13954
+Study Title	The effects of diets with different energy levels on rumen metabolites of yaks
+Study Description	<p>This project aims to investigate the effects of different energy levels of diets on methane emissions from the rumen of yaks, and to identify key metabolic pathways and metabolites. To provide scientific basis for formulating more precise methane emission reduction strategies</p>
+Study Submission Date	2026-03-02
+Study Public Release Date	2026-10-26
+Study File Name	s_MTBLS13954.txt
+Comment[Created At]	2026-02-24
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	ultra-performance liquid chromatography-mass spectrometry	Bos grunniens	Rumen
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCBITaxon_30521	http://purl.obolibrary.org/obo/NCIT_C98778
+Study Design Type Term Source REF	MSIO	CHMO	NCBITaxon	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Kenan Li, He Ding, Xiaoqing zhang
+Study Publication Title	High-energy diets regulate the rumen microbiome of yaks in relation to enteric methane emissions
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C43359
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13954_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13954_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MI	CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Rumen contents were collected using an oral gastric tube method. The collected rumen fluid was placed in 2 mL cryogenic vials, rapidly frozen in liquid nitrogen, and stored at -80℃ for subsequent analysis of rumen metabolomics.</p>	<p>100 μL liquid sample was added to a 1.5 mL centrifuge tube with 400 μL solution (acetonitrile: methanol = 1:1(v:v)) containing 0.02 mg/mL internal standard (L-2-chlorophenylalanine) to extract metabolites.The samples were mixed by vortex for 30 s and low-temperature sonicated for 30 min (5°C, 40 KHz).The samples were placed at -20°C for 30 min to precipitate the proteins.Then the samples were centrifuged for 15 min (4°C, 13000 g).The supernatant was removed and blown dry under nitrogen. The sample was then re-solubilized with 100 µL solution (acetonitrile: water = 1:1) and extracted by low-temperature ultrasonication for 5 min (5°C, 40 KHz), followed by centrifugation at 13000 g and 4°C for 10 min.The supernatant was transferred to sample vials for LC-MS/MS analysis.</p>	<p>The pretreatment of LC/MS raw data was performed by Progenesis QI software, and a three-dimensional data matrix in CSV format was exported. The information in this three-dimensional matrix included: sample information, metabolite name and mass spectral response intensity. Internal standard peaks, as well as any known false positive peaks (including noise, column bleed, and derivatized reagent peaks), were removed from the data matrix, deredundant and peak pooled. </p>	<p>100 μL liquid sample was added to a 1.5 mL centrifuge tube with 400 μL solution (acetonitrile: methanol = 1:1(v:v)) containing 0.02 mg/mL internal standard (L-2-chlorophenylalanine) to extract metabolites.The samples were mixed by vortex for 30 s and low-temperature sonicated for 30 min (5°C, 40 KHz).The samples were placed at -20°C for 30 min to precipitate the proteins.Then the samples were centrifuged for 15 min (4°C, 13000 g).The supernatant was removed and blown dry under nitrogen. The sample was then re-solubilized with 100 µL solution (acetonitrile: water = 1:1) and extracted by low-temperature ultrasonication for 5 min (5°C, 40 KHz), followed by centrifugation at 13000 g and 4°C for 10 min.The supernatant was transferred to sample vials for LC-MS/MS analysis.</p>	<p>The LC-MS/MS analysis of sample was conducted on a Thermo UHPLC-Q Exactive system equipped with an ACQUITY HSS T3 column (100 mm × 2.1 mm i.d., 1.8 μm; Waters, USA) at Majorbio Bio-Pharm Technology Co. Ltd. (Shanghai, China).The mobile phases consisted of 0.1% formic acid in water:acetonitrile (95:5, v/v) (solvent A) and 0.1% formic acid in acetonitrile:isopropanol:water (47.5:47.5, v/v)(solvent B).</p>	<p>At the same time, the metabolites were identified by searching database, and the main databases were the HMDB (http://www.hmdb.ca/), Metlin ( https://metlin.scripps.edu/) and Majorbio Database .</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Zhang	Ding
+Study Person First Name	Kenan	Xiaoqing	He
+Study Person Mid Initials			
+Study Person Email	likenan@caas.cn	zhangxiaoqing@caas.cn	dinghe@caas.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address	No. 120, East Ulanqab Street, Saihan District, Hohhot City	No. 120, East Ulanqab Street, Saihan District, Hohhot City	No. 120, East Ulanqab Street, Saihan District, Hohhot City
+Study Person Affiliation	Institute of Grassland Research of Chinese Academy of Agricultural Sciences	Institute of Grassland Research of Chinese Academy of Agricultural Sciences	Institute of Grassland Research of Chinese Academy of Agricultural Sciences
+Study Person Roles	Author	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-0874-7972		
+Comment[Study Person Alternative Email]		wangzheqi@caas.cn	

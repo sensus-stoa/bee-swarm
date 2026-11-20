@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-28	3.92.0		2026-07-06			2026-07-12	26.02d	2026-05-08
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12684
+Investigation Title	Metabolic biomarkers of gastric cancer
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-05
+Investigation Public Release Date	2026-09-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12684
+Study Title	Metabolic biomarkers of gastric cancer
+Study Description	<p>Plasma samples were analyzed using UPLC-MS/MS untargeted metabolomics. The dataset comprised 144 participants. Partial least squares discriminant analysis (PLS-DA) three-dimensional scores plot distinguishing GC patients from non-GC controls. Metabolic profiling and differential comparison identified 93 candidate differential blood metabolites between GC patients and healthy controls.</p>
+Study Submission Date	2025-07-05
+Study Public Release Date	2026-09-29
+Study File Name	s_MTBLS12684.txt
+Comment[Created At]	2025-07-04
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-29
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	cancer
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/MONDO_0004992
+Study Design Type Term Source REF	MTBLS	CHMO	MONDO
+STUDY PUBLICATIONS
+Study PubMed ID	41145761
+Study Publication DOI	10.1038/s44321-025-00325-0
+Study Publication Author List	Zhu Juan, Huang Yida, Li Xue, Liu Bin, Yuan Li, Wang Le, Qian Kun, Mao Yingying, Xu Yongjie, Du Lingbin, Cheng Xiangdong
+Study Publication Title	Metabolic signatures for gastric cancer diagnosis and mechanistic insights: a multicenter study
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Condition
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25457
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12684_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12684_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt	a_MTBLS12684_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS12684_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]				
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Peripheral blood (5 mL) was drawn from fasting participants before gastroscopy or surgery into ethylenediaminetetraacetic acid (EDTA) tubes, delivered on ice, and processed within one hour at 4 °C. Samples were centrifuged at 1,800 g for 10 minutes at 4 °C, and the plasma layer was aliquoted and stored at –80 °C according to a uniform SOP (GB/T 38576-2020) .</p>	<p>Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples were homogenized and extracted using methanol in a ratio of 1:4. The mixtures were shaken for 3 min and precipitated by centrifugation at 4000 x g, 10 min at 20 °C. The resulting extract is divided into four fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI. Samples were transferred to sample plates and dried under blowing nitrogen, then re-dissolved in reconstitution</p><p>solutions for sample injection into UPLC-MS/MS systems.</p>	<p>All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). column temperature: 40 °C; injection volume: 5 µL; The LC separation was performed in a 3.4 min for positive (assay 1 and 2), 6.5 min for negative (assay 3 and 4).</p><p>Assay 1: UPLC-MS/MS method, QE was operated in positive ESI mode. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 um) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA).</p><p>Assay 2: UPLC-MS/MS method had the QE operated in ESI positive mode , but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the C18 reverse-phase (UPLC BEH C18, 2.1x100 mm, 1.7 um; Waters) using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content.&nbsp;</p><p>Assay 3: UPLC-MS/MS method, QE was operated in negative ESI mode, and the UPLC column was C18 reverse-phase (UPLC BEH C18, 2.1x100 mm, 1.7 um; Waters). The extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8.&nbsp;</p><p>Assay 4: QE was operated in negative ESI mode,and the UPLC column was HILIC (UPLC BEH Amide, 2.1x150 mm, 1.7 um; Waters). The extracts are gradient-eluted from the column using a gradient consisting of water and acetonitrile with 10 mM Ammonium Formate, pH 10.8.&nbsp;</p>	<p>Q Exactive (QE) hybrid Quadrupole-Orbitrap mass spectrometer (Thermo Fisher Scientific, San Jose, USA) was operated at a mass resolution of 35000, the scan range was 70-1000 m/z, The AGC target was 1e6 in both positive and negative mode. MS data were recorded in electrospray ionization (ESI). MS/MS spectra of precursor ions was obtained in dd-MS2 mode, within an isolation window of 3.0 m/z at a peak resolution of 17500.</p>	<p>Raw data were extracted, peak-identified, and QC processed using Lab's hardware and software(e.g. Aird). These systems are built on a web-service platform utilizing Microsoft's .</p>	<p>For metabolite identification, a proprietary in-house librarycontaining retention times, molecular weight-to-charge ratios (m/z), and MS/MS spectraof pure reference compounds were used.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhu	Du
+Study Person First Name	Juan	Lingbin
+Study Person Mid Initials		
+Study Person Email	zhujuan@zjcc.org.cn	dulb@zjcc.org.cn
+Study Person Phone	+8618801176286	13588114180
+Study Person Fax		
+Study Person Address	No.1 Banshan East Road, Gongshu District, Hangzhou City	No.1 Banshan East Road, Gongshu District, Hangzhou City
+Study Person Affiliation	Zhejiang Cancer Hospital	Zhejiang Cancer Hospital
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

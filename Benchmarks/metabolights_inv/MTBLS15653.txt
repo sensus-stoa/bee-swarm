@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15653
+Investigation Title	Organ-Resolved Untargeted LC-MS/MS Profiling of Putative Metabolite Families in Aerial Organs of Vitex negundo L
+Investigation Description	
+Investigation Submission Date	2026-09-13
+Investigation Public Release Date	2026-09-13
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15653
+Study Title	Organ-Resolved Untargeted LC-MS/MS Profiling of Putative Metabolite Families in Aerial Organs of Vitex negundo L
+Study Description	<p>Background/Objectives: Vitex negundo L. is a multi-part medicinal and aromatic plant, but organ-resolved chemical information for its aerial organs remains incomplete. This study generated an exploratory paired untargeted liquid chromatography–tandem mass spectrometry (LC-MS/MS) dataset for flowers, stems, and leaves and prioritized organ-associated putative metabolite families for subsequent validation. Methods: To reduce inter-individual background variation, flower, stem, and leaf tissues were harvested from the same three V. negundo individuals to form n = 3 paired plant blocks. LC-MS/MS feature data were filtered using pooled quality-control relative standard deviation (QC RSD ≤ 30%), median-normalized and log2-transformed. Principal component analysis (PCA) provided an unsupervised overview, and paired feature-level comparisons were performed using paired t-tests with Benjamini−Hochberg false discovery rate (FDR) correction. Results: A total of 42,125 QC-filtered LC-MS features were retained. PCA showed organ-associated separation among flowers, stems, and leaves. Using FDR &lt; 0.05 and |mean paired log2 difference| ≥ 1, paired screening yielded 13,043, 22,836, and 13,393 FDR-supported LC-MS features for flower vs. stem, flower vs. leaf, and stem vs. leaf comparisons, respectively. Higher-scoring putative annotations suggested organ-associated putative family-level patterns, including flavonoid-related, hydroxycinnamic-acid derivative, phenolamide-related, triterpenoid-related, iridoid-related, and lignan-related signals. Conclusions: This organ-resolved dataset provides a chemical-feature framework for V. negundo aerial organs and putative family-level patterns for future structural confirmation, targeted quantification, bioactivity evaluation, and quality-marker development. Feature counts are not equivalent to unique metabolite counts, and compound labels require validation before being interpreted as confirmed structures.</p>
+Study Submission Date	2026-09-13
+Study Public Release Date	2026-09-13
+Study File Name	s_MTBLS15653.txt
+Comment[Created At]	2026-05-06
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-13
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity HPLC	AB SCIEX TripleTOF 6600	Agilent 1290 Infinity LC	Vitex negundo	flower	stem	leaf	mixture	experimental sample	pooled quality control sample	untargeted analysis	Metabolomics	tandem mass spectrometry	untargeted metabolite profiling	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000889	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/BTO_0000713	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	BTO	MTBLS	CHMO		MS	EDAM	CHMO	MSIO	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Chromatography Instrument	Organism	Organism part	Organism part	Organism part	Organism part	Sample type	Sample type	measurement-type	omics-type	default	default	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3390/metabo16090633
+Study Publication Author List	Wang Menghu, Wang Xinyang, Jiang Xue, Zuo Yafeng, Liu Dong, Jiang Qianqian, Meng Xiangsong
+Study Publication Title	Organ-Resolved Untargeted LC-MS/MS Profiling of Putative Metabolite Families in Aerial Organs of Vitex negundo L.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Organ
+Study Factor Type	organism part
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000635
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15653_LC-MS_positive_reversed-phase-c18.txt	a_MTBLS15653_LC-MS_negative_reversed-phase-c18.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reversed-phase-c18	Liquid Chromatography MS - negative - reversed-phase-c18
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity HPLC;Waters ACQUITY UPLC BEH C18, 1.7 µm, 2.1 × 100 mm;reversed-phase C18;positive;60-1000;AB SCIEX TripleTOF 6600;electrospray ionization (ESI);quadrupole time-of-flight (QTOF)	Agilent 1290 Infinity LC;Waters ACQUITY UPLC BEH C18, 1.7 µm, 2.1 × 100 mm;reversed-phase C18;negative;60-1000;AB SCIEX TripleTOF 6600;electrospray ionization (ESI);quadrupole time-of-flight (QTOF)
+Comment[Assay Field Default Unit]	;;;;;;;	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000889;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Fresh flower, stem, and leaf tissues of Vitex negundo L. were collected on 14 July 2024 in Bozhou, Anhui Province, China (33.844457° N, 115.768112° E). Plant material was taxonomically authenticated by Xiangsong Meng at Bozhou University, and voucher material (BZXY-20240714-01) was deposited at Bozhou University. Flower, stem, and leaf tissues were collected from the same three individual plants, forming three paired biological blocks. H, J, and Y denote flower, stem, and leaf tissues, respectively; samples sharing the terminal numeral 1–3 originated from the same individual plant. Approximately 1 cm stem segments were collected from the middle portion of second-year stems immediately below the current-year tender shoots.</p>	<p>Chromatographic separation was performed using an Agilent 1290 Infinity LC system equipped with a Waters ACQUITY UPLC BEH C18 column (1.7 µm, 2.1 × 100 mm). The column temperature was 40 °C, the flow rate was 0.4 mL/min, the injection volume was 2 µL, and the autosampler temperature was 4 °C. Mobile phase A consisted of water containing 25 mM ammonium acetate and 0.5% formic acid, and mobile phase B was methanol. The gradient program was: 0–0.5 min, 5% B; 0.5–10.0 min, 5–100% B; 10.0–12.0 min, 100% B; 12.0–12.1 min, 100–5% B; and 12.1–16.0 min, 5% B. Samples were analyzed in randomized order, with pooled QC injections distributed throughout the analytical sequence.</p>	<p>Vendor-processed aligned feature tables were generated using MS-DIAL version 4.60 for peak detection, deconvolution, retention-time correction, peak alignment, peak-area extraction, and annotation-related processing; ProteoWizard 3.0.6428 was also listed in the processing information. Reported MS-DIAL parameters included an MS1 tolerance of 0.01, MS2 tolerance of 0.025, minimum peak height of 800, minimum peak width of 3, and alignment retention-time tolerance of 0.15. Pooled-QC RSD was recalculated from QC-1, QC-2, and QC-3. Features were retained when detected in at least two of three samples in one or more organ groups and when pooled-QC RSD was ≤30%. Retained intensities were sample-wise median-normalized and log2(x + 1)-transformed for downstream analyses.</p>	<p>Fresh tissue (100 mg per sample) was ground in liquid nitrogen and extracted with 400 µL of precooled methanol/acetonitrile/water (2:2:1, v/v/v). Samples were vortexed for 30 s, ultrasonicated for 20 min in a 4 °C water bath, incubated at −20 °C for 30 min, and centrifuged at 14,000 rcf at 4 °C for 20 min. Supernatants were vacuum-dried and reconstituted in 100 µL acetonitrile/water (1:1, v/v), followed by vortexing, centrifugation, and filtration through a 0.22 µm membrane before LC-MS/MS analysis. Pooled quality-control samples were prepared by mixing equal aliquots of all study samples.</p>	<p>Mass-spectrometric acquisition was performed on an AB SCIEX TripleTOF 6600 instrument using electrospray ionization in positive and negative modes. Source parameters were Gas1 = 60, Gas2 = 60, curtain gas = 30, and source temperature = 600 °C. Ion spray voltage floating was +5500 V in positive mode and −5500 V in negative mode. The TOF-MS scan range was m/z 60–1000 and the product-ion scan range was m/z 25–1000. Information-dependent acquisition was performed in high-sensitivity mode using a declustering potential of ±60 V, collision energy of 35 ± 15 eV, isotope exclusion within 4 Da, and ten candidate ions per acquisition cycle.</p>	<p>Putative metabolite annotations were derived from the vendor-processed MS-DIAL-aligned feature tables. Annotation information included feature m/z, retention time, adduct information where available, molecular formula, putative compound name, superclass/class/subclass assignment, KEGG Compound ID where available, and vendor annotation scores. No authentic chemical standards were used for structural confirmation; therefore, compound-level labels were treated as putative annotations rather than confirmed metabolite identities. Annotation information was used primarily to summarize interpretable metabolite families and to prioritize features for subsequent validation. Unannotated or insufficiently characterized LC-MS features were retained at the feature level where appropriate.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	menghu	xiangsong	qianqian
+Study Person First Name	wang	meng	jiang
+Study Person Mid Initials			
+Study Person Email	shapuofeng@163.com	2018070005@bzuu.edu.cn	
+Study Person Phone			
+Study Person Fax			
+Study Person Address		No. 2266 Tangwang Avenue, Qiaocheng District, Bozhou, Anhui 236800, China	
+Study Person Affiliation	Bozhou People's Hospital	School of Traditional Chinese Medicine and Health, Bozhou University	
+Study Person Roles	Principal Investigator	Author	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0009-1322-3389		
+Comment[Study Person Affiliation ROR ID]	https://ror.org/025qsj431		

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	NCBITAXON	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO			
+Term Source Version	29	132		2020-05-20	
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS1739
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-05-20
+Investigation Public Release Date	2020-12-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1739
+Study Title	Aftpo3 and Afdur3, the Aspergillus fumigatus Plasma Membrane Transporters of Polyamines, Regulate Polyamine Homeostasis and Itraconazole Susceptibility
+Study Description	<p>Aspergillus fumigatus is a notorious opportunistic pathogen that causes Invasive Aspergillosis (IA) infections with high mortality in immunosuppressed individuals. Long-term antifungal drug azole abuse in clinical treatment and agriculture renders it ineffectual or drug resistant. Drug resistance can relate to the cellular metabolites and corresponding gene transcription. In this study, through untargeted metabolomics and transcriptomics following itraconazole (ITC) treatment we identified two plasma membrane-localized polyamine transporters Aftpo3 and Afdur3, which were important for polyamine homeostasis and ITC susceptibility in A.&nbsp;fumigatus. In the absence of Aftpo3 or Afdur3, the levels of cytoplasm polyamines had a moderate increase, accompanied by resistance to ITC. In comparison, overexpression of Aftpo3 or Afdur3 induced drastic increase of polyamines, which were linked with the sensitivity to ITC. Accordingly, our study demonstrated that concentration-dependence of polyamines affected susceptibility of A. fumigatus to ITC, by scavenging reactive oxygen species (ROS) at a moderate concentration or generating ROS at a high concentration rather than drug transport.</p>
+Study Submission Date	2020-05-20
+Study Public Release Date	2020-12-21
+Study File Name	s_MTBLS1739.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Aspergillus fumigatus	polyamine	azole
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_746128	http://purl.obolibrary.org/obo/CHEBI_88061	http://purl.obolibrary.org/obo/CHEBI_68452
+Study Design Type Term Source REF	NCBITAXON	CHEBI	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fmicb.2020.563139
+Study Publication Author List	Mingcong Chen, Guowei Zhong, Sha Wang, Jun Zhu, Lei Tang and Lei Li
+Study Publication Title	Aftpo3 and Afdur3, the Aspergillus fumigatus Plasma Membrane Transporters of Polyamines, Regulate Polyamine Homeostasis and Itraconazole Susceptibility
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	susceptibility	polyamine	Genotype
+Study Factor Type	itraconazole	Compound	genotype
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_6076	http://purl.obolibrary.org/obo/NCIT_C43366	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	CHEBI	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1739_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Aspergillus fumigatus wild type cells (A1160) were used throughout this study and were taken from a single colony on an agar plate. Spores (3×10^7) of A1160 strain were divided into WT (A1160 plus 1 μg/ml DMSO) and WT1 (A1160 plus 1 μg/ml Itraconazole (ITC)), two groups (each group contains six biological replicates) and cultured in 300 ml liquid YAG media, at 220 rpm and 37 °C for 35 h, then further incubated in the presence or absence of 1 μg/ml ITC for 1 h. Mycelia were harvested and lyophilized. Accurately weighed sample (100 mg) was transferred to a 1.5 ml Eppendorf tube.&nbsp;</p>	<p>Internal standard, 20 μl of 2-chloro-L-phenylalanine (0.3 mg/ml) dissolved in methanol, 2 ml of methanol-water (4:1 [V/V]) and 400 μl of chloroform were added to each sample. An ultrasonic homogenizer was used to break up the cells for 6 min at 500 W. All of the mixtures of each sample were then extracted by ultrasonication for 20 min. The extracts were centrifuged at 13,000 x g at 4 °C for 10 min. </p><p>A pooled QC sample was prepared by mixing aliquots of the all samples. </p>	<p>ACQUITY UPLC I-Class system (Waters Corporation, Milford, USA) coupled with VION IMS QTOF Mass spectrometer (Waters Corporation，Milford, USA）was used to analyze the metabolic profiling in both ESI positive and ESI negative ion modes.&nbsp;An ACQUITY UPLC BEH C18 column (1.7 μm, 2.1 × 100 mm) were employed in both positive and negative modes.&nbsp;Water and Acetonitrile / Methanol 2/3(v/v), both containing 0.1% formic acid were used as mobile phases A and B, respectively.&nbsp;Linear gradient: 0 min, 1% B;&nbsp;1min, 30% B;&nbsp;2.5min, 60% B;&nbsp;6.5min, 90% B;&nbsp;8.5min, 100% B;&nbsp;10.7 min, 100% B;&nbsp;10.8 min, 1% B and 13min, 1%B.&nbsp;The flow rate was 0.4 ml/min and column temperature was 45 ℃.&nbsp;All the samples were kept at 4℃ during the analysis.&nbsp;The injection volume was 1 μl.&nbsp;</p><p><br></p><p>QC samples were injected at regular intervals (every three samples) throughout the analytical run to provide a set of data from which repeatability can be assessed.</p>	<p>Data acquisition was performed in full scan mode (m/z ranges from 50 to 1000) combined with MSE mode, including 2 independent scans with different collision energies (CE) were alternatively acquired during the run. Parameters of mass spectrometry were as follows: a low-energy scan (CE 4eV), and a high-energy scan (CE ramp 20-45eV) to fragment the ions. Argon (99.999%) was used as collision-induced dissociation gas；scan rate: 0.2 s/scan；capillary voltage, 1 kV (negative mode) / 2 kV (positive mode); reference capillary voltage, 2.5 kV; cone voltage, 40 V; source offset, 60 V; source temperature, 115 °C; desolvation gas temperature, 450 °C; desolvation gas flow, 900 L/h, and cone gas flow, 50 L/h. Nitrogen (&gt;99.5%) was employed as desolvation and cone gas. For lock mass correction, a 250 ng/ml standard solution of leucine- enkephalin in acetonitrile/water/formic acid (50:49.9:0.1, v/ v/v) was continuously infused (5 μl/min) through the reference probe and scanned every 30 s.&nbsp;</p>	<p>The acquired LC-MS raw data were analyzed by the progqenesis QI software (Waters Corporation，Milford, USA) using the following parameters. Precusor tolerance was set 5 ppm, fragment tolerance was set 10 ppm, and retention time (RT) tolerance was set 0.02 min. Internal standard detection parameters were deselected for peak RT alignment, isotopic peaks were excluded for analysis, and noise elimination level was set at 10.00, minimum intensity was set to 15 % of base peak intensity. The Excel file was obtained with three dimension data sets including m/z, peak RT and peak intensities, and RT–m/z pairs were used as the identifier for each ion. The resulting matrix was further reduced by removing any peaks with missing value (ion intensity = 0) in more than 60 % samples. The internal standard was used for data QC (reproducibility). The positive and negative data were combined to get a combine data which was imported into SIMCA software package (version 14.0, Umetrics, Umeå, Sweden). Principle component analysis (PCA) and (orthogonal) partial least-squares-discriminant analysis (O)PLS-DA were carried out to visualize the metabolic alterations among experimental groups, after mean centering (Ctr) and Pareto variance (Par) scaling, respectively. The Hotelling’s T2 region, shown as an ellipse in score plots of the models, defines the 95% confidence interval of the modeled variation. Variable importance in the projection (VIP) ranks the overall contribution of each variable to the OPLS-DA model, and those variables with VIP &gt; 1 are considered relevant for group discrimination. In this study, the default 7-round cross-validation was applied with 1/seventh of the samples being excluded from the mathematical model in each round, in order to guard against overfitting.&nbsp;</p>	<p>The differential metabolites were selected on the basis of the combination of a statistically significant threshold of variable influence on projection (VIP) values obtained from the OPLS- DA model and p values from a two-tailed Student’s t test on the normalized peak areas, where metabolites with VIP values larger&nbsp;than 1.0 and p values less than 0.05 were considered as differential metabolites</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	cong
+Study Person First Name	chen
+Study Person Mid Initials	ming
+Study Person Email	996782466@qq.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	School of Public Health, Nanjing Medical University, 101 Longmian Avenue, Nanjing 211166, China;
+Study Person Affiliation	
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

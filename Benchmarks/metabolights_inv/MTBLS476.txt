@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	BTO	CHMO	SIO	NCIT	OBI	MS
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/SIO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS
+Term Source Version	2	22	5	58	44	22	86
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Semanticscience Integrated Ontology	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS476
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2017-06-14
+Investigation Public Release Date	2019-06-06
+Comment[Created With Configuration]	F:160714_SAVE_PC_perso_LAB02224DocumentsArticlesA_Untargeted_Diagnostic_ScreeningISAcreatorMetaboLightsConfigurationsMetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS476
+Study Title	LC-HRMS Metabolomics for Untargeted Diagnostic Screening in Clinical Laboratories: A Feasibility Study
+Study Description	Today's high-resolution mass spectrometers (HRMS) allow bioanalysts to perform untargeted/global determinations that can reveal unexpected compounds or concentrations in a patient&rsquo;s sample. This could be performed for preliminary diagnosis attempts when usual diagnostic processes and targeted determinations fail. We have evaluated an untargeted diagnostic screening (UDS) procedure. UDS is a metabolome analysis that compares one sample (e.g., a patient) with control samples (a healthy population). Using liquid chromatography (LC)-HRMS full-scan analysis of human serum extracts and unsupervised data treatment, we have compared individual samples that were spiked with one xenobiotic or a higher level of one endogenous compound with control samples. After the use of different filters that drastically reduced the number of metabolites detected, the spiked compound was eventually revealed in each test sample and ranked. The proposed UDS procedure appears feasible and reliable to reveal unexpected xenobiotics (toxicology) or higher concentrations of endogenous metabolites. HRMS-based untargeted approaches could be useful as preliminary diagnostic screening when canonical processes do not reveal disease etiology nor establish a clear diagnosis and could reduce misdiagnosis. On the other hand, the risk of overdiagnosis of this approach should be reduced with mandatory biomedical interpretation of the patient&rsquo;s UDS results and with confirmatory targeted and quantitative determinations.
+Study Submission Date	2017-06-14
+Study Public Release Date	2019-06-06
+Study File Name	s_MTBLS476.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	medical screening	Diagnostic Procedure	Toxicology	ultra high performance liquid chromatography
+Study Design Type Term Accession Number		http://semanticscience.org/resource/SIO_001023	http://purl.obolibrary.org/obo/NCIT_C18020	http://purl.obolibrary.org/obo/NCIT_C17206	http://purl.obolibrary.org/obo/CHMO_0000795
+Study Design Type Term Source REF		SIO	NCIT	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	29914076
+Study Publication DOI	10.3390/metabo8020039
+Study Publication Author List	Rochat B, Mohamed R, Sottas PE.
+Study Publication Title	LC-HRMS Metabolomics for Untargeted Diagnostic Screening in Clinical Laboratories: A Feasibility Study.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Sample type
+Study Factor Type	experimental sample
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002746
+Study Factor Type Term Source REF	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS476_POS_mass_spectrometry.txt	a_MTBLS476_NEG_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Exactive (Thermo Scientific)	Exactive (Thermo Scientific)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	Human serum samples were prepared from anonymized patients' whole blood withdrawn in collection tubes (Sarstedt Monovettes, Numbrecht, Germany). Endogenous and exogenous compounds were chosen based on their availability in our lab. Environmental chemicals or food additives were not tested, but the UDS procedure can be applied to all compounds as far as they are extracted and ionized by the ion source. Concentrations were chosen to be low, medium, or high corresponding to higher levels of the endogenous levels and to chronic or acute intoxications. Test samples contained one spiked compound only.<br>	200 μl of serum were extracted by protein precipitation using 3 volumes of methanol and centrifuged at 20,000 x g for 12 min at 4 °C. Supernatants were transferred, dried under N2 flux, reconstituted with 100 μl of H2O:acetonitrile solution (v:v, 3:1), and placed in polypropylene injection vials. No internal standards were added in the samples prior to extraction. For the test samples, 2 reconstituted extracts were pooled because of volume constraints and spiked with a pure standard solution containing: (a) methadone, (b) methamphetamine, (c) dextromethorphan, (d) endoxifen (a metabolite of tamoxifen), (e) imatinib, (f) DHEA-S (dehydroepiandrosterone-sulfate), or (g) testosterone with the following final concentrations: (a), (b), and (c) 5 ng/ml; (d) 0.5 and 5 μg/ml; (e) 5 μg/ml; (f) 1, 5, and 20 μM; or (g) 17.5, 35, and 70 nM (see Table 1 in the paper associated with this study). In contrast to xenobiotics (a–d), serum extracts contained endogenous levels of DHEA-S (e) and testosterone (f) and, therefore, final concentrations have to take into account both endogenous (unknown) and spiked amounts (e.g., DHEA-S = [endogen.] + 5 μM).<br>	The injection volume was 10 μl. The chromatographic system consisted of an LC pump (Rheos-Allegro, Flux, Basel, Switzerland), an autosampler (CTC Analytics AG, Zwingen, Switzerland) maintaining injection vials at 10 °C, and a Q-Exactive Focus HRMS (Thermo, Waltham, MA, USA) controlled by Xcalibur (Thermo, Waltham, MA, USA). Extracts were injected onto BEH C18 guard and analytical columns (Waters, Milford, MA, USA), 10 and 30 mm x 2.1 mm (L x i.d.) with 1.7 µm part. size. The mobile phase was composed of MS grade (A) water and (B) acetonitrile, both with 0.1% FA and delivered at 0.6 ml/min. The stepwise gradient was delivered as follows: 0–0.5 min, 95% of phase A; 0.5–10 min, 95–5% of phase A; 10–12 min, 5–2% of phase A; and 12–15 min, 95% of phase A for a 15 min total run time.<br><br>The metabolome of 1 test sample (containing the spiked molecule and considered as the patient's sample) was compared with healthy metabolomes of the control group. Test samples were injected in triplicate (N = 3) and compared with 2 types of control samples: (1) a pool sample (Pool) prepared from 25 different individuals and injected in triplicate (N = 3) or (2) 95 unpooled samples (N95) prepared from 95 different individuals and injected once each (N = 95; 95 single injections) (see Fig. 2 in the paper associated with this study). Control samples were injected between each test sample. Memory effect was verified with blank samples and remained below ~2%.<br>	Mass spectrometry data was collected on a Q-Exactive Focus HRMS (Thermo, Waltham, MA, USA). The ion source was a heated electrospray source (H-ESI type II) performing in positive or negative mode with sheath and auxiliary gas flow set at 35 and 25 arb. units, spray voltage set at 3200 V, and auxiliary gas and capillary temperatures set at 320 °C and 400 °C, respectively. HRMS full scans were acquired from m/z 60–900 Da in profile mode for the first 13 min (mean acquisition rate, measured on the complete run, was 2.7 scans/s). The automatic gain control and mass resolution were set at 1 x 10^6 ions and 70,000 (m/z = 200), respectively. LC-HRMS analyses were performed with external mass calibration that was performed once a week and prior to this analysis.<br><br>60 h of analysis were performed in negative and positive mode as follows: 48 h corresponding to the N95 control samples, followed by ~12 h of, alternatively, the control Pool and test samples.<br>	HRMS full-scan data were treated with Progenesis QI metabolomics software (version in 2014, Nonlinear Dynamics, Newcastle, UK) for untargeted data treatment and with Xcalibur (Thermo, USA) for targeted determinations. Extracted-ion chromatograms, XIC, were constructed using Xcalibur and used a mass-extraction window set at ±10 ppm, centered on the theoretical m/z (m/ztheor) or, for unknown ions, on measured m/z (m/zmeas). Metabolite LC-HRMS peak areas found with Progenesis or Xcalibur were compared. Raw files were imported from Xcalibur to Progenesis software with a filter strength set at 1.0 (default value). Then, features were automatically (1) aligned, (2). picked with 'default' Progenesis detection settings and peak widths set at ≥0.04 min, (3) Normalized, and (4) grouped (deconvolution) based on the following adducts: +[H2O+H+]+, +[H+]+, +[2H+]2+, +[NH4+]+, +[Na+]+, and +[K+]+ or −[H+]−, −[H2O-H+]−, −[2H+]2− for positive or negative mode. Positive or negative data were treated separately. Raw peak areas were normalized by the sum of all feature peak areas following one classical Progenesis procedure. For each sample, peak alignment and area normalization were verified by looking at their associated Progenesis values. Progenesis software compared a test sample (triplicate injections) with Pool or N95 control samples (triplicate or simplicate injections, respectively). Thus, the Progenesis study design compared 3 versus 3 or 3 versus 95 samples (see see Fig. 2 from the paper associated with this study). See Fig. S1 from the paper associated with this study, for a comprehensive data processing representation.<br>	The last remaining features were putatively identified by matching m/zmeas with reference entries in the Human Metabolome Database (HMDB, www.hmdb.ca,[1]). Only specific adducts (see Section 2.3 Data Representation and Data Treatment in the paper associated with this study) with a mass accuracy of ≤±5 ppm were allowed to return possible compounds. Therefore, only known-unknown metabolites from a 'small size' database, HMDB, were considered (&lt;0.5 x 10^6 entries like Metlin or KEGG databases[2][3]). Big databases (&gt;50 x 10^6 entries), such as ChemSpider, PubChem, CAS registry, etc.[4-6], were not considered here because most compounds registered in these big databases have an extremely low probability to be found in human plasma[7]. Identification confidence of the putatively identified known-unknown metabolites was evaluated based on a recent publication that proposes the use of an identification (ID) confidence scale and ID score[7]. These ID scores are based on a relative retention time or not, and the collection of ID points from various criteria such as mass accuracy, relative isotopic abundance, fragment ions, fine isotopic distribution, etc.[7].<br><br>Ref:<br>[1] Wishart DS, Jewison T, Guo AC, Wilson M, Knox C, Liu Y, Djoumbou Y, Mandal R, Aziat F, Dong E, Bouatra S, Sinelnikov I, Arndt D, Xia J, Liu P, Yallou F, Bjorndahl T, Perez-Pineiro R, Eisner R, Allen F, Neveu V, Greiner R, Scalbert A. HMDB 3.0--The Human Metabolome Database in 2013. Nucleic Acids Res. 2013 Jan;41(Database issue):D801-7. doi:10.1093/nar/gks1065. PMID:23161693<br>[2] Smith CA, O'Maille G, Want EJ, Qin C, Trauger SA, Brandon TR, Custodio DE, Abagyan R, Siuzdak G. METLIN: a metabolite mass spectral database. Ther Drug Monit. 2005 Dec;27(6):747-51. PMID:16404815<br>[3] Kanehisa M, Goto S, Hattori M, Aoki-Kinoshita KF, Itoh M, Kawashima S, Katayama T, Araki M, Hirakawa M. From genomics to chemical genomics: new developments in KEGG. Nucleic Acids Res. 2006 Jan 1;34(Database issue):D354-7. doi:10.1093/nar/gkj102. PMID:16381885<br>[4] Kelly R, Kidd R. Editorial: ChemSpider—A tool for Natural Products research. Nat. Prod. Rep. 2015, 32, 1163–1164. doi:10.1039/C5NP90022K.<br>[5] Little JL, Cleven CD, Brown SD. Identification of 'known unknowns' utilizing accurate mass data and chemical abstracts service databases. J Am Soc Mass Spectrom. 2011 Feb;22(2):348-59. doi:10.1007/s13361-010-0034-3. PMID:21472594<br>[6] Kim S, Thiessen PA, Bolton EE, Chen J, Fu G, Gindulyte A, Han L, He J, He S, Shoemaker BA, Wang J, Yu B, Zhang J, Bryant SH. PubChem Substance and Compound databases. Nucleic Acids Res. 2016 Jan 4;44(D1):D1202-13. doi:10.1093/nar/gkv951. PMID:26400175<br>[7] Rochat B. Proposed Confidence Scale and ID Score in the Identification of Known-Unknown Compounds Using High Resolution MS Data. J Am Soc Mass Spectrom. 2017 Apr;28(4):709-723. doi:10.1007/s13361-016-1556-0. PMID:28116700<br>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rochat
+Study Person First Name	Bertrand
+Study Person Mid Initials	F
+Study Person Email	bertrand.rochat@chuv.ch
+Study Person Phone	+41213144111
+Study Person Fax	
+Study Person Address	PAF; CIG; UNIL, Lausanne, Switzerland
+Study Person Affiliation	CHUV
+Study Person Roles	
+Study Person Roles Term Accession Number	
+Study Person Roles Term Source REF	

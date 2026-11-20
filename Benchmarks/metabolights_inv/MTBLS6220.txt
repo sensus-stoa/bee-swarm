@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MS	MTBLS	Method	NCBITaxon	NCIT	NMR	OBI	UO	mesh
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl	https://www.ebi.ac.uk/ols4/api
+Term Source Version													
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary		National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus		Ontology for Biomedical Investigations	Units of Measurement Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS6220
+Investigation Title	An NMR metabolomics analysis pipeline for human neutrophil samples with limited source material
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-12
+Investigation Public Release Date	2025-11-06
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6220
+Study Title	An NMR metabolomics analysis pipeline for human neutrophil samples with limited source material
+Study Description	Untargeted 1H NMR metabolomics is a robust and reproducible approach to study metabolism in biological samples, providing unprecedented insight into altered cellular processes associated with human diseases. Metabolomics is increasingly used alongside other -omics techniques, such as proteomics and transcriptomics, to detect instantaneous altered cellular function, for example the role of blood neutrophils in the inflammatory response. However, in some clinical settings e.g. pediatrics research, blood samples may be limited, restricting the amount of cellular material available for metabolomics analysis. In this study we wanted to establish the optimal 1D 1H NMR metabolomics pipeline for use with human neutrophil samples with low input material. We compared the effect of neutrophil isolation protocols using Ficoll-Paque or negative selection using antibody-labelled magnetic beads on neutrophil metabolite profiles. We also compared the effect of absolute cell counts ranging from 100,000 to 5 million neutrophils in total on the identities of metabolites that can be detected with increasing number of scans (NS) from 256 to 2,048. We found that variance in neutrophil profile was higher with N isolation method event though choice of isolation method did not significantly alter the metabolite profile of human neutrophils measured by 1D 1H NMR spectroscopy. The minimum number of cells required for detection of human metabolites was 400,000 at NS 256 for spectra acquired with a cryoprobe equipped 700MHz. Increasing the NS to 2,048 increased metabolite detection at the very lowest cell counts (<400,000 neutrophils), however this was associated with a significant increase in analysis time which would be rate-limiting for large studies. Application of a correlation reliability score (CRS) filtering method to the spectral bins preserved the essential discriminatory features of the PLS-DA models whilst improving the dataset robustness and analytical precision.
+Study Submission Date	2025-08-12
+Study Public Release Date	2025-11-06
+Study File Name	s_MTBLS6220.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2025-11-06
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Neutrophils	untargeted metabolites	Pediatric Medicine Service Type
+Study Design Type Term Accession Number	http://id.nlm.nih.gov/mesh/D009504	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C212714
+Study Design Type Term Source REF	mesh	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	41002996
+Study Publication DOI	10.3390/metabo15090612
+Study Publication Author List	Filbertine Grace, Abdullah Genna A., Gill Lucy, Grosman Rudi, Phelan Marie M., Chiewchengchol Direkrit, Hirankarn Nattiya, Wright Helen L.
+Study Publication Title	An NMR Metabolomics Analysis Pipeline for Human Neutrophil Samples with Limited Source Material
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Number of scans	Number of cells	Method
+Study Factor Type	number of scans	Number of Cells	Method
+Study Factor Type Term Accession Number	http://nmrML.org/nmrCV#NMR:1400087	http://purl.obolibrary.org/obo/NCIT_C202259	http://purl.uniprot.org/core/Method
+Study Factor Type Term Source REF	NMR	NCIT	Method
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6220_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Human peripheral blood samples were obtained by venipuncture into lithium-heparin vacutainers. Neutrophils were isolated immediately in order to maintain viability. Two different neutrophil isolation protocols were compared. </p><p><br></p><p><u>For the first 'Ficoll-Paque' method</u>, whole blood was mixed with HetaSep (STEMCELL Technologies) at a dilution ratio of 5:1 and incubated at 37 °C for 30 minutes to allow sedimentation of erythrocytes. The nucleated cells were then layered onto Ficoll Paque Plus solution (Merck) in 1:1 ratio and centrifuged for 30 min at 500g. Contaminating erythrocytes were removed with hypotonic ammonium chloride lysis buffer and cells were resuspended in RPMI-1640 media without supplementation of Phenol Red buffer and HEPES. Cellular viability was assessed with Trypan blue (Merck) exclusion method in Neubauer haemocytometer. Neutrophil purity was confirmed with Wright Giemsa staining and morphology. Only samples with ≥95% viability and purity were eligible for further experiments. </p><p><br></p><p><u>In the second 'Beads' method,</u> ultrapure neutrophils (&gt;99.9% purity) were obtained using a negative selection kit for neutrophil isolation, employing magnetic bead separation (STEMCELL Technologies). For this method, whole blood was mixed with HetaSep (STEMCELL Technologies) at a dilution ratio of 5:1, and incubated at 37 °C for 30 minutes to allow sedimentation of erythrocytes.&nbsp;The nucleated cells were then mixed with an equal volume of ice-cold isolation buffer (PBS, 2% BSA, 100 μL 0.2 M EDTA). The suspension was centrifuged at 400g for 5 minutes, and the pellet was resuspended in 2 mL of isolation buffer. An antibody cocktail (25 μL) containing tetrameric antibody complexes recognising cell markers of unwanted leukocytes and erythrocytes and magnetic particles was added to the suspension and incubated on ice for 5 minutes. Following this, 50 μL of magnetic beads solution was added for 5 minutes, before placing in a magnetic chamber for 3 minutes.&nbsp;The unlabelled neutrophils were decanted into a clean tube and resuspended in HEPES-free and Phenol Red-free RPMI 1640 media. Cellular viability was assessed with Trypan blue (Merck) exclusion method in Neubauer haemocytometer. Neutrophil purity was confirmed at &gt;99% with Wright Giemsa staining and morphology.</p><p><br></p><p>Neutrophils were pelleted by centrifugation at 1,000 g at 25 °C for 2 min and supernatant was aspirated. Cell pellets were heated at 100 °C for 1 min prior to being snap-frozen using liquid nitrogen and stored at -80 °C for further analysis.</p>	<p>Neutrophil metabolites were extracted using an established method. A mixture of 50:50 v/v ice cold HPLC grade acetonitrile:water (ddH2O) was added to each sample (500 μL per cell pellet), followed by a 10 min incubation on ice. Samples were sonicated three times for 30 sec at 23 kHz and 10 μm amplitude using an exponential probe with 30 sec rest in between of sonication in an ice water bath. Sonicated samples were centrifuged at 12,000 g for 5 mins at 4 °C, followed by transfer of the supernatants to cryovials and flash frozen in liquid nitrogen prior to lyophilisation. All lyophilised samples were stored at -80 °C prior to analysis in spectrometer.</p>	<p>Lyophilised metabolite pellets were resuspended in 200 μL of 100 mM deuterated sodium phosphate buffer pH 7.4 with 100 μM of TSP-d4 and 0.05% NaN3. All samples were vortexed for 20 sec and centrifuged at 12,000 g for 1 min at 20 °C, prior transferring into 3 mm (outer diameter) NMR tubes for acquisition using 700 MHz Avance IIIHD Bruker NMR spectrometer equipped with TCI cryoprobe and chilled SampleJetTM autosampler.</p>	<p>Samples were acquired on a Bruker 700MHz Avance IIIHD equipped with triple resonance TCI cryoprobe and chilled SampleJet autosampler. Spectrometer quality assurance was completed daily via temperature calibration to 25 °C (with margin error of 0.1 °C) by a methanol thermometer (cat number Z10627 99.8% Methanol-d4, 5 mm, Bruker, UK) [Findeisen [https://doi.org/10.1002/mrc.1941]&nbsp;and 3D shimming on Bruker standard 2 mM sucrose&nbsp;(cat number Z10902 2; mM Sucrose 0.5 mM DSS 2 mM NaN3 in H2O/D2O 90/10, 5 mm Bruker, UK) to ensure linewidth half height of DSS reference peak is within acceptance criteria (&lt;1 Hz).</p>	<p>Spectra was acquired using standard (vendor supplied) 1D 1H Carr-Purcell-Meiboom-Gill (CPMG; cpmgpr1d) spectra with 256, 512, 1024 or 2048 transients as specified, a 15-ppm spectral width, 32K points, 9.6 ms echo time, 3.1 s acquisition time and 4 s interscan delay. Additionally, 1D 1H NOESY pre-saturation experiments (noesypr1d) were performed to verify shimming quality and ensure effective water suppression for each sample during data acquisition. This step was essential to maintain spectral clarity and consistency across samples.</p><p><br></p>	<p><br></p><p>All acquired spectra were automatically phased referenced to 3-(trimethylsilyl) propionic-2,2,3,3-d4 acid sodium salt (deuterated trimethylsilyl propionate; TSP-d4) at 0 ppm, phasing and baseline corrected using automated macro (apk0.noe) provided within TopSpin v4.4.1 (Bruker Corporation) followed by compliance check to minimum quality criteria outlined by the Metabolomics Standards Initiative (MSI) to suppress the macromolecule signals, selectively accentuate small molecule metabolite signals, ensure consistent linewidths, baseline corrections, and water suppression. All spectra were thoroughly evaluated to ensure they met the current best practice of Metabolomics Society, ensuring a robust consistency in phasing, baseline correction, peak alignment, chemical shift reference to TSP-d4 at 0 ppm, line width, and water suppression conditions for neutrophil intracellular metabolomic reporting. Only technical replicates with the lowest line width at half height from each sample which passed quality control process including the flat baseline, consistent line widths, and water suppression consistency were selected. Any spectra that did not meet the requirements of recommended reporting standards were subsequently removed from further processing.</p>	<p>Following established guidelines and practice recommendations, manual annotation of neutrophil metabolites was performed using in house tools (tameNMR; https://github.com/PGB-LIV/tameNMR) and profiling software NMR Procflow v1.4 (https://nmrprocflow.org/) [DOI: 10.1007/s11306-017-1178-y], Metabolite peaks were then compared against several open-access metabolite databases, including HMDB (http://www.hmdb.ca/) [DOI: 10.1093/nar/gkab1062], Biological Magnetic Resonance dataBank&nbsp;(BMRB; bmrb.io) [DOI:10.1093/nar/gkac1050], Chenomx library (Chenomx NMR Suite v8.2), in-house reference library, and prior publications on intracellular neutrophil metabolomics.&nbsp;Then, annotation accuracy and consistency were ensured through guidance from an expert spectroscopist. Moreover, biological context was considered crucial when assigning identities to previously unidentified peaks.</p><p>&nbsp;</p><p>Spectral binning process defining left and right boundaries for each peak multiplet was employed to select and integrate peaks and peak multiplets accommodating minimal chemical misalignments of the computed area under the peak in each aligned spectra. Where possible peaks were annotated to known metabolites or marked as unknown. A representative peak bin for each annotated metabolite was selected via correlation reliability score ‘CRS’ filtering (Grosman 2019)&nbsp;through comparison of Pearson correlation matrices using R v4.2. This approach yielded a single representative bucket for each annotated metabolite reducing the number of variables but also removing unknown NMR peaks. As such analysis of the fully integrated spectra (containing information on known and unknown metabolite peaks) as well as the filtered spectra containing only representative peaks from all annotated metabolites present were both compared in subsequent spectral analysis.&nbsp;All data acquired, processing steps, parameters and metabolite annotations and CRS representative peak selections are deposited in the European Bioinformatics Institute (EBI) open repository for metabolomics (www.ebi.ac.uk/metabolights) [DOI: 10.1093/nar/gkad1045].</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Phelan	Filbertine	Wright
+Study Person First Name	Marie	Grace	Helen
+Study Person Mid Initials	M		L
+Study Person Email	mphelan@liv.ac.uk		hlwright@liverpool.ac.uk
+Study Person Phone	+44 151 795 4398		
+Study Person Fax			
+Study Person Address	High Field NMR facility, Crown Street, Merseyside, L69 7ZB		Musculoskeletal & Ageing Science
+Study Person Affiliation	University of Liverpool		University of Liverpool
+Study Person Roles	Investigator	first author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	MS	NCIT

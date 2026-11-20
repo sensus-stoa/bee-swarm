@@ -1,0 +1,125 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	ENVO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.94.0	2026-06-26			1.0.1		26.02d	2026-07-27
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS4827
+Investigation Title	GC/MS data with mzQC: a versatile way to communicate quality information for biological mass spectrometry
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-10-21
+Investigation Public Release Date	2026-10-22
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS4827
+Study Title	GC/MS data with mzQC: a versatile way to communicate quality information for biological mass spectrometry
+Study Description	<p>Reliable quality control (QC) is essential for reproducible biological mass spectrometry, yet QC information is still typically stored in tool-specific, poorly interoperable formats that hinder comparison, reuse, and transparent reporting. mzQC is a community-developed standard from the HUPO Proteomics Standards Initiative for the compact, machine-readable representation of QC metrics and their associated metadata across mass spectrometry workflows. </p><p><br></p><p>We demonstrate the utility of mzQC across diverse analytical modalities and QC settings. This study contains the QC samples and measurements of nine standard compounds across several months of routine operation of the instrument, and the mzQC files obtained with a pipeline implemented with pyOpenMS. Raw data is available in vendor format, mzML and mzPeak.</p>
+Study Submission Date	2026-10-21
+Study Public Release Date	2026-10-22
+Study File Name	s_MTBLS4827.txt
+Comment[Created At]	2022-05-11
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-22
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Shimadzu GC-2010 Plus	Shimadzu GCMS-QP2010 Ultra	reference compound	mixture	reference compound mix	targeted analysis	Metabolomics	QC	gas chromatography-mass spectrometry	instrument performance
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002211	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000926	http://purl.obolibrary.org/obo/MSIO_0000023	http://purl.obolibrary.org/obo/CHEBI_60004	http://purl.obolibrary.org/obo/MSIO_0000024	http://purl.obolibrary.org/obo/MS_1003905	http://edamontology.org/topic_3172	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000497	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MSIO	ENVO	MSIO	MS	EDAM	MTBLS	CHMO	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	default	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.64898/2026.10.02.756144
+Study Publication Author List	Bielow Chris, Walzer Mathias, Hoffmann Nils, Uszkoreit Julian, Mirzadeh Sarcheshmeh Fatemeh, Nicolaus Franziska, Andernach Lars, Boschmann Patrick, Burla Bo, Dogu Eralp, Eisenacher Martin, El Abiead Yasin, Jimenez-Morales David, Neumann Steffen, Perez-Riverol Yasset, Sachsenberg Timo, Salek Reza M., Strobel Michael, Tenzer Stefan, Van Den Bossche Tim, Vitek Olga, Wang Mingxun, Tabb David L., Bittremieux Wout
+Study Publication Title	mzQC: a versatile way to communicate quality information for biological mass spectrometry
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS4827_GC-MS_positive_low-polarity.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive - low-polarity
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	GC-MS
+Comment[Assay Type]	gas chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003110
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Shimadzu GC-2010 Plus;Rxi-5Sil MS (0.25 µm, 0.25 mm x 30 m; Restek);low polarity;positive;50-450;Shimadzu GCMS-QP2010 Ultra;electron ionization;quadrupole
+Comment[Assay Field Default Unit]	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002211;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000973;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000990;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000926;http://purl.obolibrary.org/obo/MS_1000389;http://purl.obolibrary.org/obo/MS_1000081
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>The reference compounds were acquired from commercial vendors. No actual samples are included in this dataset.</p>	<p>The instrument was a Shimadzu GC-2010 Plus gas chromatograph equipped with a Restek Rxi-5Sil MS column (30 m x 0.25 mm, 0.25 µm) coupled to a Shimadzu GCMS-QP2010 Ultra mass spectrometer. Helium with a flow rate of 1 mL/min was used as carrier gas. The purge flow was set to 3 mL/min. The injection was done in splitless mode with a volume of 1 µL. The injector temperature was set to 250 °C. The temperature program was as follows: 1 min 50 °C, 50 °C -&gt; 330 °C with 25 K/min, 2.8 min 330 °C.</p>	<p>Data were saved in the Shimadzu instrument software as Agilent *.D format, and converted with Proteowizard msconvert version 3.0.25352 to *.mzML.The mzPeak files were converted from the *.mzML with mzml2mzpeak version 0.1.0&nbsp;</p>	<p>The reference mix was aliquoted and diluted from a master mix. No extraction was involved.</p>	<p>The instrument was a Shimadzu GCMS-QP2010 Ultra mass spectrometer coupled to a Shimadzu GC-2010 Plus gas chromatograph. The following settings were used for the mass spectrometer: interface temperature 250 °C, ion source temperature 200 °C, ionization voltage 70 V, emission current 60 µA, scan speed 3333 Da/sec, m/z range 50-450, threshold 150, solvent cut off 3 minutes.</p>	<p>The nine compounds in the reference mixture were identified based on their known GC/MS fragmentation pattern and retention time. </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Neumann	Andernach
+Study Person First Name	Steffen	Lars
+Study Person Mid Initials		
+Study Person Email	sneumann@ipb-halle.de	lars.andernach@ipb-halle.de
+Study Person Phone		
+Study Person Fax		
+Study Person Address		Weinberg 3, 06120 Halle, Germany
+Study Person Affiliation	Leibniz Institute of Plant Biochemistry	Leibniz Institute of Plant Biochemistry
+Study Person Roles	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-7899-7192	0009-0000-7800-4237
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01mzk5576	https://ror.org/01mzk5576

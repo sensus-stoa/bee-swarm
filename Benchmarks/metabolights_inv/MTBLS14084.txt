@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BAO	BTO	CHEBI	CHMO	EFO	GENEPIO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://www.bioassayontology.org/bao/	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/genepio.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2.8.18a		250	2025-10-21	3.88.0	2024-12-18				2025-12-03	25.06e	2025-12-18
+Term Source Description	BioAssay Ontology	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Genomic Epidemiology Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14084
+Investigation Title	Gut Microbiota and Bile Acids Profiles study of Ulcerative Colitis and Crohn's Disease Patients
+Investigation Description	
+Investigation Submission Date	2026-03-19
+Investigation Public Release Date	2026-03-19
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14084
+Study Title	Gut Microbiota and Bile Acids Profiles study of Ulcerative Colitis and Crohn's Disease Patients
+Study Description	<p>The global incidence of inflammatory bowel disease (IBD) is increasing, with dysbiosis of the gut microbiota identified as a significant factor contributing to chronic intestinal inflammation. This study aims to elucidate the gut microbiota and serum bile acid profiles in patients with ulcerative colitis (UC) and Crohn's disease (CD), and to explore the relationship between bacterial taxa and bile acids.</p>
+Study Submission Date	2026-03-19
+Study Public Release Date	2026-03-19
+Study File Name	s_MTBLS14084.txt
+Comment[Created At]	2026-03-18T01:53:36.090269
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	short-chain fatty acid	bile	gut
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_26666	http://purl.obolibrary.org/obo/UBERON_0001970	http://purl.obolibrary.org/obo/BTO_0000545
+Study Design Type Term Source REF	CHEBI	EFO	BTO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhejiong Wang, Jiayi Shi, Yan Yu, Linchao Zhu, Lichen Zhu, Wenjuan Tuo, Juntao Ni, Yi Wu, Shengliang Qiu, Ying Yu
+Study Publication Title	Gut Microbiota and Bile Acids Profiles study of Ulcerative Colitis and Crohn's Disease Patients
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Human disease
+Study Factor Type	human disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0700096
+Study Factor Type Term Source REF	GENEPIO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14084_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MI	CHMO	OBI	MI	CHMO	MI
+Study Protocol Description	<p>A total of 104 participants were recruited from The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine) based on standard endoscopic, radiographic, and histologic criteria, including 31 UC patients, 41 CD patients, and 32 age- and sex-matched health check-up population without IBD as healthy controls.Fasting venous blood samples (5 mL) were collected in the morning, centrifuged at 3000 rpm for 10 min within 2 h of collection, and the serum supernatant was stored at -80°C.</p>	<p>Chromatographic separation was performed on a LC-MS/MS&nbsp;system coupled to a TSQ mass spectrometer (Thermo, USA) using a Phenomenex Column (100*3&nbsp;mm, 2.6 µm). Mobile phase A was water (containing 10 mmol/L ammonium acetate), mobile phase B was acetonitrile. The gradient elution program at 0.4 mL/min and 40 °C was:&nbsp;0-5 min, 35-40% B; 5-5.5 min, 40-100% B, and held for 0.5 min; 6-6.5 min, 100-35% B. Injection volume was 15 µL.</p>	<p>The raw data collected from Thermo Fisher TSQ mass spectrometry was processed by Quan Browser software.</p>	<p> Serum samples (100 µL) were mixed with 300 µL of methanol&nbsp;(containing the internal standard solution), vortexed for 5 min, and centrifuged at 12,000 rpm for 5 min at 4&nbsp;°C. Then 150 μL of the supernatant was transferred and mixed with 150 μL of pure water. After vortexing and centrifugation, the supernatant was collected for injection.</p>	<p>An Electrospray Ionization&nbsp;(ESI) source was operated in negative ion mode for ion generation.&nbsp;Ion source properties were as follows: Negative Ion was 3000 V; Ion Transfer Tube Temp was 300 °C; Vaporizer Temp was 350&nbsp;°C. Quantification of the bile acid profile was performed using multiple reaction monitoring (MRM) mode.&nbsp;</p>	<p>Mass spectrometry quantitative method established based on bile acid standards. Quantification of the bile acid profile was performed using&nbsp;Multiple Reaction Monitoring (MRM) mode.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhejiong
+Study Person First Name	Wang
+Study Person Mid Initials	
+Study Person Email	wangzhejiong@zcmu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	No. 54, Youdian Road Shangcheng District Hangzhou, Zhejiang China
+Study Person Affiliation	The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine)
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0009-0004-8297-4745
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04epb4p87

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	OBI	GO	NCIT	CHEBI	SNOMED	MS
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version		29					
+Term Source Description		Ontology for Biomedical Investigations					
+INVESTIGATION
+Investigation Identifier	MTBLS11557
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-03
+Investigation Public Release Date	2025-01-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11557
+Study Title	BMAL1-depletion remodels ceramide metabolism to regulate ferroptosis and sorafenib chemosensitivity in acute myeloid leukemia
+Study Description	Acute myeloid leukemia (AML) is a hematologic malignancy with a poor prognosis. We discovered that BMAL1 is a ferroptosis suppressor. Furthermore, it was also found to be overexpressed in AML patients, affecting the cell cycle and promoting tumor cell growth and progression. In this study, we further validated the association of BMAL1 with the progression and survival outcomes of AML. Lipidomic revealed that the levels of ceramide increased in AML cells following the depletion of BMAL1. Ceramide facilitated ferroptosis in AML cells. ASAH2 played a key role in this process. BMAL1 could not directly regulate ASAH2 but instead through IKZF2. Elevated levels of ceramide promoted the degradation of the ferroptosis protection molecule GPX4, ultimately promoting ferroptosis. Furthermore, ceramide treatment has been demonstrated to enhance the responsiveness of AML cells to sorafenib. In summary, this study elucidates that BMAL1 depletion remodels ceramide metabolism to regulate the sensitivity of AML cells to ferroptosis and targeted drug sorafenib.
+Study Submission Date	2024-11-03
+Study Public Release Date	2025-01-24
+Study File Name	s_MTBLS11557.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	acute myeloid leukemia	ferroptosis	Ceramide	BMAL1 Gene
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000222	http://purl.obolibrary.org/obo/GO_0097707	http://purl.obolibrary.org/obo/NCIT_C359	http://purl.obolibrary.org/obo/NCIT_C119692
+Study Design Type Term Source REF	EFO	GO	NCIT	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Hong Zheng, Zhi Lin, Dan Wang, Jing Zhang, Ting Zeng, Jie Shen, Jia-Da Li4*, Minghua Yang*
+Study Publication Title	BMAL1-depletion remodels ceramide metabolism to regulate ferroptosis and sorafenib chemosensitivity in acute myeloid leukemia
+Study Publication Status	Revision
+Study Publication Status Term Accession Number	http://snomed.info/id/118635009
+Study Publication Status Term Source REF	SNOMED
+STUDY FACTORS
+Study Factor Name	Gene knockdown	Biological replicate
+Study Factor Type	genotype	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11557_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11557_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Initially, we successfully acquired HL60 cells with efficient knockdown of BMAL1 through the shRNA lentivirus. Subsequently, we plated both control and BMAL1-knockdown HL60 cells in optimal growth condition onto 10-cm dishes at a density of 1 x 10^7 cells per dish. To guarantee a sufficient cell count for sequencing (&gt;1 x 10^7 cells per sample), we grouped two dishes of cells as one set. These cells were then treated with RSL3 (0.5 μM) for a duration of 24 h. Following the completion of drug treatment, the cells from the two dishes within each set were collected into a 1.5 mL centrifuge tube at 2000 rpm for 3 min. The cells were then washed 3 times with 1 mL of DPBS per tube. After thoroughly removing the DPBS, the cells were promptly frozen in liquid nitrogen and stored at -80 °C. The samples were prepared for sequencing 1 day after being stored</p>	<p>First 200 μL cold water, 20 μL lipid internal standard mixture and 800 μL cold methyl tert-butyl ether were added to the cell samples and vortexed for 30 s. Following this, 240 μL methanol was added to the samples and vortexed for 30 s, sonicated at 4 °C for 20 min and stand for 30 min, then centrifuged (14,000 x g for 15 min at 10 °C) to extract lipids. The upper organic layer was dried in a vacuum centrifuge.</p>	<p>Prior to analysis, lipid extracts were resuspended in 200 μL of isopropanol acetonitrile 9:1 (v/v) . For untargeted lipidomics analysis, extracts were analyzed by LC-MS in Shanghai Applied Protein Technology Co., Ltd.</p><p><br></p><p>In brief, lipids were separated on a Waters ACQUITY PREMIER CSH C18 Column (1.7 μm, 2.1 x 100 mm), under the following chromatographic conditions: mobile phase A (acetonitrile:water, 6:4, v/v) and mobile phase B (acetonitrile:isopropanol, 1:9, v/v) at a flow rate of 300 μL/min and column oven temperature at 45 °C. The gradient started with 30% of B and was held for 2 min, which was then increased to 100% of B over 23 min, the gradient was returned to 30% B over 1 min, and was finally equilibrated for 9 min. During the whole analysis, the sample was placed in an automatic injector at 10 °C. Random injection sequence was used for analysis of samples to avoid the influence of signal fluctuation.</p>	<p>MS detection was performed using a Thermo Scientific Q Exactive mass spectrometer mass spectrometer, equipped with an ESI ion source. Data were acquired in both positive and negative ion modes, respectively. Data-dependent acquisition methods were used for MS/MS analyses of lipidome. In total 10 MS2 scans were collected after each MS1 full scan. The resolution of MS1 is 70000 at m/z 200 and resolution of MS2 is 17500 at m/z 200. The ESI conditions were set at follows: Heater Temp 300 °C, Sheath Gas Flow Rate 45 arb, Aux Gas Flow Rate 15 arb, Sweep Gas Flow Rate 1 arb, spray voltage 3.0 kV, Capillary Temp 350 °C, S-Lens RF Level 50%, MS1 scan ranges 200-1800 m/z. The mass-to-charge ratios (m/z) of lipid molecules and lipid fragments were acquired according to the following method: 10 fragment spectra (MS2 scans, HCD) were collected after each full scan. The resolution of MS1 was set to 70,000 at m/z 200, and the resolution of MS2 was set to 17,500 at m/z 200.</p>	<p>Lipidsearch 4.0 software was used for peak detection and annotation of lipids or internal standards. The main parameters are as follows: precursor tolerance 5 ppm, product tolerance 5 ppm and product ion threshold 5%.</p>	<p>Using LipidSearch, peak identification, peak extraction and lipid identification (secondary identification) were performed for lipid molecules and internal standard lipid molecules. The main parameters were set as follows: precursor tolerance of 5 ppm, product tolerance of 5 ppm and a product ion threshold of 5%.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zheng
+Study Person First Name	Hong
+Study Person Mid Initials	
+Study Person Email	15626203736@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	The Third Xiangya Hospital, Central South University
+Study Person Roles	first author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034
+Study Person Roles Term Source REF	MS

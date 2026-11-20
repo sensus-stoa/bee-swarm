@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	EFO	NCIT	OBI	SIO
+Term Source File	Metabolights	http://data.bioontology.org/ontologies/EFO	Metabolights	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api
+Term Source Version		132		29	
+Term Source Description	Metabolights Ontology	Experimental Factor Ontology		Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS11741
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-21
+Investigation Public Release Date	2024-12-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11741
+Study Title	Steady state isotope tracing in C. elegans (LC-MS analyses)
+Study Description	<p>The metabolic network, composed of thousands of metabolic reactions, is essential for any organism. Despite its importance, a systems level understanding of how metabolic network is wired by reactions that carry flux in unperturbed condition and rewired by transcriptionally activating or repressing metabolic genes in response to metabolic perturbations are still lacking in any animal. Here, we apply Worm Perturb-Seq (WPS), a high-throughput, whole-animal RNAi and RNA-seq method, to ~900 metabolic genes in the nematode Caenorhabditis elegans. We derive a metabolic gene regulatory network (mGRN) in which 385 perturbations are connected to 9,414 genes by more than 110,000 interactions. The mGRN has a highly modular structure in which 22 perturbation clusters connect to 44 gene expression programs, involving metabolism, stress response and other functions. The mGRN reveals different modes of transcriptional rewiring from simple reaction and pathway compensation to rerouting and more complex network coordination. Using metabolic network modeling, we discover a design principle of transcriptional rewiring we name the ‘compensation/repression’ (CR) model. The CR model explains the majority of the transcriptional responses in metabolic genes and reveals a high-level of compensation and repression in five core metabolic functions related to energy and biomass.</p><p><br></p><p>Leveraging the comprehensive data from WPS, we find that the transcriptional response to metabolic gene perturbations can be integrated with the genome-scale metabolic network models to infer a highly constrained, semi-quantitative flux distribution of unperturbed animal. We discover several features of adult C. elegans metabolism, including cyclic flux through the pentose phosphate pathway, lack of de novo purine synthesis flux, and the primary use of amino acids and bacterial RNA as a tricarboxylic acid cycle carbon source, all of which we validate by stable isotope tracing. Our strategy for inferring metabolic wiring based on transcriptional phenotypes should be applicable to a variety of systems, including human cells.</p><p><br></p><p><strong>LC-MS analyses</strong> is reported in the current study&nbsp;<a href='https://www.ebi.ac.uk/metabolights/MTBLS11741' rel='noopener noreferrer' target='_blank'><strong>MTBLS11741</strong></a>.</p><p><strong>GC-MS analyses</strong>&nbsp;is reported in&nbsp;<a href='https://www.ebi.ac.uk/metabolights/MTBLS11742' rel='noopener noreferrer' target='_blank'><strong>MTBLS11742</strong></a>.</p>
+Study Submission Date	2024-11-21
+Study Public Release Date	2024-12-03
+Study File Name	s_MTBLS11741.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	C. elegans	LC-MS	Isotope tracing
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID		
+Study Publication DOI		
+Study Publication Author List	Xuhang Li, Hefei Zhang, Thomas Hodder, Wen Wang, Chad L. Myers, L. Safak Yilmaz, Albertha J.M. Walhout	Hefei Zhang, Xuhang Li, L. Tenzin Tseyang, Gabrielle E Giese, Hui Wang, Bo Yao, Jingyan Zhang, Rachel L. Neve, Elizabeth A. Shank, Jessica B Spinelli, L. Safak Yilmaz, Albertha J.M. Walhout
+Study Publication Title	Systems-level design principles of metabolic rewiring in an animal	A systems-level, semi-quantitative landscape of metabolic flux in C. elegans
+Study Publication Status	submitted	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Condition	Dataset
+Study Factor Type	experimental condition	dataset
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://semanticscience.org/resource/SIO_000089
+Study Factor Type Term Source REF	MTBLS	SIO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11741_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>To collect animals for metabolite extraction, animals were gently washed off the plates (wells) using ice-cold M9 supplemented with 0.01% (v/v) Triton X-100 and transferred to a 15 mL tube. Subsequently, the animals were washed 4 times with 10 mL of ice-cold M9 containing 0.01% Triton X-100 to remove bacteria and eggs. During each wash, the tube was first vortexed for ~5 s and then allowed to stand on ice for approximately 2 min, to settle adult animals to the bottom of the tubes (forming a ~800 µL pellet of animals), while bacteria and most eggs remained in the supernatant. Following this, 800 µL of the animal pellet was transferred to a well of an ice-cold 96-well filter plate (Enzymax: EZ96FTP). The plate was then centrifuged at 4 °C and 1400 x g for 30 s and washed 4 times with 800 µL of ice-cold 0.9% NaCl solution, each time followed by centrifugation.</p>	<p>Each sample was resuspended in 500 µL ice-cold 60% methanol. The resuspended samples were transferred to 2 mL FastPrep tubes pre-filled with 0.5 mL acid-washed glass beads (G1277, Sigma). For each sample, the resuspension step was repeated for another time to transfer residual animals to the same 2 mL tube.&nbsp;Homogenization was achieved using a FastPrep-24 at 6 m/s for 1 min, repeated 3 times with a 3-min interval, allowing samples to chill on ice.</p><p><br></p><p>The homogenized samples were then transferred to 1.5 mL Eppendorf tubes without glass beads, followed by centrifugation at top speed (4 °C, ~15,000 x g) for 10 min to separate precipitates. For each sample, the supernatant (~ 800 µL) was carefully transferred to a new 1.5 mL Eppendorf tube, and the pellet was resuspended in 1 mL of RIPA buffer for protein concentration measurement using the BCA Protein Assay.</p><p><br></p><p>To remove non-polar metabolites, 1000 µL of ice-cold hexane was added to 500 µL of the 60% methanol extraction in a 1.5 mL tube. The mixture was vortexed for 3 cycles of 1 min each, with 2 min intervals to cool down the samples on ice, followed by centrifugation at top speed (~ 15,000 x g) for 10 min at 4 °C. The top layer, containing non-polar metabolites, was discarded, and the bottom layer was transferred to a new tube. The polar phase extractions were then dried using a SpeedVac overnight at 4 °C or for 4 h at room temperature. Dried metabolites were subsequently resuspended in LC-MS grade water (Fisher: 60-090-634). The resuspension volume normalized the metabolite content per µL to a worth of 1 µg protein (as determined by BCA assay stated above).</p>	<p>We utilized a Q-Exactive orbitrap mass spectrometer, equipped with an Ion Max source and HESI II probe, coupled to a Vanquish Horizon UHPLC system for polar metabolite analysis. Routine maintenance, including weekly cleaning and calibration, was performed using both positive and negative Pierce ESI Ion Calibration Calmix (Thermo Scientific). The analysis involved injecting 2 μL of each sample into the system. This was followed by separation using a SeQuant ZIC-pHILIC 5 µm 150 x 2.1 mm analytical column with a 2.1 x 20 mm guard column attached to the front end (both from Sigma), operating with the column oven at 25 °C and the autosampler at 4 °C. The mobile phase consisted of Buffer A (20 mM ammonium carbonate and 0.1% ammonium hydroxide in HPLC-grade water, all from Sigma) and Buffer B (100% acetonitrile, Sigma). We set the flow rate at 0.15 mL/min and applied a linear gradient from 80% B to 20% B over 20 min, followed by a gradient to 80% B over 0.5 min, and a subsequent hold at 80% B for 7.5 min. The mass spectrometer operated in full scan mode (70-1000 m/z) with polarity switching. Key settings included a spray voltage of 4.0 kV, a heated capillary temperature of 350 °C and a HESI probe temperature of 30 °C. Gas flows were set as follows: sheath gas at 10 units, auxiliary gas at 1 unit and sweep gas at 1 unit. The scan resolution was 70,000, with an AGC target of 1 x 10^6 and a maximum injection time of 20 ms. An additional scan range of 220-700 m/z was employed to enhance nucleotide detection in negative mode, setting the maximum injection time to 80 ms.</p>	<p>We utilized a Q-Exactive orbitrap mass spectrometer, equipped with an Ion Max source and HESI II probe, coupled to a Vanquish Horizon UHPLC system for polar metabolite analysis. Routine maintenance, including weekly cleaning and calibration, was performed using both positive and negative Pierce ESI Ion Calibration Calmix (Thermo Scientific). The analysis involved injecting 2 μL of each sample into the system. This was followed by separation using a SeQuant ZIC-pHILIC 5 µm 150 x 2.1 mm analytical column with a 2.1 x 20 mm guard column attached to the front end (both from Sigma), operating with the column oven at 25 °C and the autosampler at 4 °C. The mobile phase consisted of Buffer A (20 mM ammonium carbonate and 0.1% ammonium hydroxide in HPLC-grade water, all from Sigma) and Buffer B (100% acetonitrile, Sigma). We set the flow rate at 0.15 mL/min and applied a linear gradient from 80% B to 20% B over 20 min, followed by a gradient to 80% B over 0.5 min, and a subsequent hold at 80% B for 7.5 min. The mass spectrometer operated in full scan mode (70-1000 m/z) with polarity switching. Key settings included a spray voltage of 4.0 kV, a heated capillary temperature of 350 °C and a HESI probe temperature of 30 °C. Gas flows were set as follows: sheath gas at 10 units, auxiliary gas at 1 unit and sweep gas at 1 unit. The scan resolution was 70,000, with an AGC target of 1 x 10^6 and a maximum injection time of 20 ms. An additional scan range of 220-700 m/z was employed to enhance nucleotide detection in negative mode, setting the maximum injection time to 80 ms.</p>	<p>Metabolites were quantified by integrating peaks using the software TraceFinder 5.1 (ThermoFisher). Metabolites were identified using a 5 ppm mass tolerance, and the expected retention time as determined by an in-house library of chemical standards. 13C and 15N-isotopologues of metabolites were expected to have the same retention time as the 12C and 14N metabolites and were held to the same stringency for mass tolerance (5 ppm). All stable isotope tracing data underwent natural abundance correction using IsoCorrectoR (Bioconductor)</p>	<p>Metabolites were quantified by integrating peaks using the software TraceFinder 5.1 (ThermoFisher). Metabolites were identified using a 5 ppm mass tolerance, and the expected retention time as determined by an in-house library of chemical standards. 13C and 15N-isotopologues of metabolites were expected to have the same retention time as the 12C and 14N metabolites and were held to the same stringency for mass tolerance (5 ppm).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang
+Study Person First Name	Hefei
+Study Person Mid Initials	
+Study Person Email	hefei.zhang@umassmed.edu
+Study Person Phone	5083040127
+Study Person Fax	
+Study Person Address	55 N Lake Ave, Worcester, MA 01655
+Study Person Affiliation	Department of systems biology, UMass Chan Medical School
+Study Person Roles	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,133 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	PRIDE	TFO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl	http://opendata.inrae.fr/PO2/Ontology/transformON.rdf
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0				2026-07-12	26.02d	2026-05-08		28.0
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology	TransformON
+INVESTIGATION
+Investigation Identifier	MTBLS15436
+Investigation Title	A paired transcriptomic, metabolomic and fruit-quality data resource from field-grown tomatoes across eight agricultural sites in Ningxia, China
+Investigation Description	
+Investigation Submission Date	2026-08-23
+Investigation Public Release Date	2026-09-14
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15436
+Study Title	A paired transcriptomic, metabolomic and fruit-quality data resource from field-grown tomatoes across eight agricultural sites in Ningxia, China
+Study Description	<p>Tomato fruit phenotypes are shaped by genotype, agronomic management and local environment, yet matched molecular and environmental datasets from commercial field settings remain scarce. Here we describe a paired resource comprising fruit transcriptomes, untargeted metabolomes, fruit-quality measurements and plant-matched rhizosphere electrical conductivity (EC) and pH measurements from 32 independently sampled tomato plants distributed across eight agricultural sites in Ningxia, China. The resource contains processed abundance profiles for 1,338 annotated metabolite features; and eight recorded fruit and soil variables. Sample identifiers are shared across all data layers, enabling within-sample multi-omic reuse. We provide site-level metadata, per-plant environmental measurements, quality-control summaries. Because sampling location, cultivar and cultivation conditions were not experimentally randomized, this resource is intended for descriptive, comparative and hypothesis-generating analyses rather than causal inference about salinity responses. The dataset will support studies of tomato fruit biology under heterogeneous field conditions.</p><p><br></p>
+Study Submission Date	2026-08-23
+Study Public Release Date	2026-09-14
+Study File Name	s_MTBLS15436.txt
+Comment[Created At]	2026-08-20
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	PRJNA1515180
+Comment[Related Data Description]	
+Comment[Related Data Repository]	SRA
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-14
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish Horizon system	Thermo Q‑Exactive	Solanum lycopersicum	fruit	experimental blank	untargeted analysis	Metabolomics	LC-MS	tomato fruit	Multi-omics study
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCBITaxon_4081			http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://opendata.inrae.fr/PO2/Ontology/TransformON/c_T09VqBDu	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/PRIDE_0000461
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon			MS	EDAM	TFO	MTBLS	PRIDE
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhihui Liu, Siyan Wang, Hongyan Zhu, Cui Yin, Hua Ma, Yun-e Cao
+Study Publication Title	A paired transcriptomic, metabolomic and fruit-quality data resource from field-grown tomatoes across eight agricultural sites in Ningxia, China
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Site id
+Study Factor Type	EFO:geographic_location
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15436_LC-MS_positive_reverse-phase.txt	a_MTBLS15436_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish Horizon system;Integrated with LC system;ACQUITY UPLC BEH C18 (100 mm × 2.1 mm i.d., 1.7 μm; Waters, Milford, USA);reverse phase;positive;70-1050 m/z;Thermo Q-Exactive;electrospray ionization (ESI);orbitrap	Thermo Scientific Vanquish Horizon system;Integrated with LC system;ACQUITY UPLC BEH C18 (100 mm × 2.1 mm i.d., 1.7 μm; Waters, Milford, USA);reverse phase;negative;70-1050 m/z;Thermo Q-Exactive;electrospray ionization (ESI);orbitrap
+Comment[Assay Field Default Unit]	;;;;;;;;	;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://purl.obolibrary.org/obo/MS_1000484	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MS	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MTBLS;MS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	Leaf samples were collected from Solanum lycopersicum under drought-alkali stress and control conditions. Fully expanded functional leaves were harvested at predefined sampling time-points. Leaf tissues were immediately frozen in liquid nitrogen upon harvest to quench metabolic activity. Samples were ground into fine powder under liquid nitrogen and stored at -80 °C in the dark prior to metabolite extraction. Field sampling was performed across multiple experimental sites in Ningxia, China. Biological replicates were set for each treatment group.	Chromatographic separation was performed using a Thermo Vanquish UHPLC system fitted with an ACQUITY UHPLC C18 analytical column (1.8 μm, 2.1 mm × 100 mm). Mobile phase A consisted of water with 0.1 % formic acid, while mobile phase B was acetonitrile with 0.1 % formic acid. Column oven temperature was maintained at 40 °C, flow rate at 0.35 mL/min, and injection volume set to 5 μL. Gradient elution profile: 0-1 min, 5 % B; 1-12 min, 5-95 % B; 12-15 min, 95 % B; 15-15.1 min, 95-5 % B; 15.1-18 min, 5 % B for column re-equilibration.	Raw LC-MS data were processed using Progenesis QI v3.0 software for peak picking, retention-time alignment, feature detection and signal normalization. Feature intensities were normalized based on total ion intensity. QC-based signal correction was performed, and metabolic features with RSD > 30 % in pooled QC samples were discarded. Blank subtraction was not applied during data transformation.	Metabolites were extracted from frozen tomato leaf powder. Briefly, 100 ± 5 mg leaf tissue powder was transferred into a 2 mL centrifuge tube together with one 6 mm-diameter grinding bead. A total of 400 μL cold extraction solvent (methanol:water = 4:1, v/v) containing four internal standards (0.02 mg/mL L-2-chlorophenylalanine included) was added. Samples were homogenized with a Wonbio-96c frozen tissue grinder (Shanghai Wanbo Biotechnology Co., Ltd.) for 6 min at -10 °C under 50 Hz. Afterwards, low-temperature ultrasonic extraction was carried out for 30 min (5 °C, 40 kHz). The mixture was incubated at -20 °C for 30 min and centrifuged at 13000 g for 15 min at 4 °C. The resulting supernatant was collected and transferred to LC-MS injection vials. Pooled quality-control (QC) samples were prepared by mixing equal volumes of supernatant aliquots from all individual samples. QC samples underwent identical pretreatment as experimental samples and were injected periodically (every 5-15 analytical samples) during data acquisition to assess analytical system stability.	Mass spectrometric detection was performed on a Thermo Q-Exactive Orbitrap mass spectrometer equipped with a heated electrospray ionization (HESI) source. Both positive-ion and negative-ion electrospray modes were acquired using data-dependent acquisition (DDA) for MS/MS fragmentation with HCD normalized collision energies (NCE) of 20 %, 40 %, and 60 %. Common source parameters: sheath gas flow rate 50 arb, auxiliary gas flow rate 13 arb, heater temperature 450 °C, capillary temperature 320 °C, S-Lens RF level 40. Full-scan MS resolution was set to 70 000 at m/z 200; MS/MS resolution was 17 500 at m/z 200. The mass-to-charge (m/z) scan range was set to 70-1050 for both ion modes. Positive-ion mode: spray voltage +3500 V. Negative-ion mode: spray voltage -3000 V.	Metabolite annotation was performed by matching accurate mass-to-charge ratio, retention time and MS/MS fragment spectra (both positive- and negative-ion modes) against public databases including HMDB, METLIN and Massbank. Mass tolerance was set to 5 ppm for precursor ions. Metabolite confidence levels were assigned according to MSI standards.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu	Ma
+Study Person First Name	Zhihui	Hua
+Study Person Mid Initials		
+Study Person Email	3139637496@qq.com	mh3660344@126.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Ningxia University, School of Enology and Horticulture	Ningxia University, School of Enology and Horticulture
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0005-7585-9586	
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04j7b2v61	https://ror.org/04j7b2v61
+Comment[Study Person Alternative Email]	LZH15263650793@126.com	

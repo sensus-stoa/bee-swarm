@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	ExO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/exo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.88.0	2025-08-29		2026-03-03			2025-12-03	26.02d	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Exposure ontology (ExO)	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12590
+Investigation Title	Characterization of the nasal microbiome and metabolome in children with Henoch-Schonlein purpura and children with Henoch-Schonlein purpura nephritis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-06-11
+Investigation Public Release Date	2026-04-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12590
+Study Title	Characterization of the nasal microbiome and metabolome in children with Henoch-Schonlein purpura and children with Henoch-Schonlein purpura nephritis
+Study Description	<p>Three groups of eligible subjects were included, including 20 cases in the HSP group, 20 cases in the HSPN group, and 20 cases in the healthy control (HC) group. Nasal lavage samples from each group were subjected to 16SrRNA gene sequencing and metabolomic analyses to screen differential flora and differential metabolites, and Spearman correlation analysis was done.</p>
+Study Submission Date	2025-06-11
+Study Public Release Date	2026-04-11
+Study File Name	s_MTBLS12590.txt
+Comment[Created At]	2025-06-11
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-11
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	children	Nasal	Vanquish UHPLC system (Thermo Fisher Scientific)	The Orbitrap Exploris 120 mass spectrometer	Homo sapiens	Nasal flora	HSP	HSPN	X	untargeted analysis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/ExO_0000119	http://purl.obolibrary.org/obo/NCIT_C27958			http://purl.obolibrary.org/obo/NCBITaxon_9606					http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MTBLS	ExO	NCIT			NCBITaxon					MS
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+Comment[Study Design Category]				Chromatography Instrument	Instrument	Organism	Organism part	Disease	Disease	Disease	measurement-type
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Shuya Zhang, Ziwei Li, Tiantian Liu, Qingyin Guo
+Study Publication Title	Characterization of the nasal microbiome and metabolome in children with Henoch-Schonlein purpura and children with Henoch-Schonlein purpura nephritis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0000001
+Study Factor Type Term Source REF	MONDO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12590_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12590_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>The subject should sit comfortably with eyes open and the head tilted slightly forward. Using a&nbsp;FeiYang LeKang Nasal Irrigation Device&nbsp;pre-filled with sterile saline, irrigate both nasal cavities for&nbsp;30 seconds per side. Collect&nbsp;7.5 mL from each nostril (total 15 mL).</p><p>The lavage fluid is then drained into a&nbsp;sterile Petri dish. The contents of the dish are passed through a&nbsp;100 µm cell strainer&nbsp;and transferred to a centrifuge tube. The sample is then centrifuged at&nbsp;3000 × g at 4°C. The supernatant is aliquoted into cryovials and stored in a&nbsp;−80°C freezer.</p>	<p>(1) Transfer 1.5 ml of the sample into an EP tube and freeze-dry it. Add 500 μL of extraction solution (methanol:acetonitrile:water&nbsp;= 2:2:1 (V/V)), which contains isotopically labeled internal standards.</p><p>(2) Vortex mix for 30 s, then sonicate for 10 min (in an ice-water bath).</p><p>(3) Let it stand at -40 °C for 1 h.</p><p>(4) Centrifuge the sample at 4 °C, 12000 rpm (centrifugal force 13800 ×g, radius 8.6 cm) for 15 min.</p><p>(5) Transfer the supernatant into vials for instrumental analysis.</p><p>(6) For all samples, take an equal amount of supernatant and mix them to prepare QC samples for instrumental analysis.</p>	<p>For polar metabolites, this project employs a Vanquish UHPLC system (Thermo Fisher Scientific) coupled with a Waters ACQUITY UPLC BEH Amide column (2.1 mm × 50 mm, 1.7 μm) for chromatographic separation of target compounds. The mobile phase consists of:</p><p>Phase A (aqueous phase): 25 mmol/L ammonium acetate and 25 mmol/L ammonia in water.</p><p>Phase B (organic phase): Acetonitrile.</p><p>The sample tray temperature was maintained at&nbsp;4 °C, and the injection volume was&nbsp;2 μL.</p>	<p>The Orbitrap Exploris 120 mass spectrometer is capable of acquiring both&nbsp;full-scan MS&nbsp;and&nbsp;MS/MS data&nbsp;under the control of the&nbsp;Xcalibur software (version: 4.4, Thermo). The detailed parameters are as follows:</p><p>Sheath gas flow rate: 50 Arb</p><p>Aux gas flow rate: 15 Arb</p><p>Capillary temperature: 320 °C</p><p>Full MS resolution: 60,000</p><p>MS/MS resolution: 15,000</p><p>Collision energy: SNCE 20/30/40</p><p>Spray voltage:&nbsp;3.8 kV (positive mode)&nbsp;or&nbsp;-3.4 kV (negative mode)</p>	<p>The raw data were converted to the mzXML format using ProteoWizard and processed with an in-house program. which was developed using R and based on XCMS, for peak detection, extraction, alignment, and integration.</p>	<p> The R package and the BiotreeDB(V3.0) were applied in metabolite identification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang	Guo
+Study Person First Name	Shuya	Qingyin
+Study Person Mid Initials		
+Study Person Email	doczsy@163.com	docgqy@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	The First Affiliated Hospital of Henan University of Chinese Medicine	The First Affiliated Hospital of Henan University of Chinese Medicine
+Study Person Roles	Principal Investigator	Contract Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C51817
+Study Person Roles Term Source REF	NCIT	NCIT

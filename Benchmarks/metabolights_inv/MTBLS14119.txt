@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.88.0			25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14119
+Investigation Title	Metabolomic profiling of goat testicular tissue under combined uranium and cesium exposure
+Investigation Description	
+Investigation Submission Date	2026-03-23
+Investigation Public Release Date	2026-03-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14119
+Study Title	Metabolomic profiling of goat testicular tissue under combined uranium and cesium exposure
+Study Description	<p>This study presents metabolomic profiles of goat testicular tissue obtained under controlled exposure conditions. An untargeted metabolomics approach was applied to characterize global metabolic alterations associated with environmental contaminants. The dataset provides information on small-molecule metabolites and supports investigations into metabolic responses in reproductive tissues under stress conditions.</p>
+Study Submission Date	2026-03-23
+Study Public Release Date	2026-03-23
+Study File Name	s_MTBLS14119.txt
+Comment[Created At]	2026-03-23T16:05:44.006625
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	metabolomics	goat	testis	environmental exposure	reproductive biology
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xinghong Zhou, Xiaoyun Shen
+Study Publication Title	Metabolomic profiling of goat testicular tissue under combined uranium and cesium exposure
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_24433
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14119_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS14119_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed using a UHPLC system equipped with a C18 column. Mobile phases consisted of water and acetonitrile with 0.1% formic acid. Gradient elution was applied, with a flow rate of 0.3 mL/min and an injection volume of 2–5 μL. The column temperature was maintained at 40°C, and samples were kept at 4°C prior to analysis.</p>	<p>Raw LC–MS data were converted into an open format (e.g., mzXML/mzML) using vendor-specific software or MSConvert (ProteoWizard). Data processing, including peak detection, retention time alignment, and peak integration, was performed using appropriate software (e.g., XCMS, MZmine, or Compound Discoverer).</p><p><br></p><p>The resulting feature table was subjected to data filtering to remove low-quality features (e.g., features with high missing rates or low signal intensity). Signal drift and batch effects were corrected using quality control (QC)-based normalization methods where applicable. Data were further normalized (e.g., total ion current normalization or internal standard normalization) and scaled prior to downstream statistical analysis.</p>	<p>Metabolites were extracted from testicular tissue using a cold organic solvent-based protocol. Samples were homogenized, centrifuged, and supernatants collected for analysis. Extracts were dried and reconstituted prior to LC–MS analysis. Pooled quality control (QC) samples, solvent blanks, and internal standards (if applicable) were included to ensure data quality and reproducibility.</p>	<p>Mass spectrometry was performed using a high-resolution instrument with an electrospray ionization (ESI) source in both positive and negative modes. Data were acquired over an m/z range of 70–1000. Key parameters, including capillary temperature, spray voltage, and gas flow, were optimized for stable analysis. MS/MS data were collected for metabolite identification.</p>	<p>Metabolite identification was performed by matching accurate mass, retention time, and MS/MS fragmentation patterns against public and in-house databases. Reference databases included HMDB (Human Metabolome Database), METLIN, MassBank, and KEGG.</p><p><br></p><p>Putative identifications were assigned based on mass accuracy and spectral similarity. When available, MS/MS spectra were compared with reference spectra to improve confidence in annotation. Metabolites were annotated according to commonly accepted levels of confidence (e.g., MSI guidelines), with most features assigned as putatively annotated compounds.</p>	<p>Testicular tissue and blood samples were collected from goats under controlled experimental conditions. Samples were obtained at defined time points and processed immediately after collection. Blood samples were centrifuged to obtain serum. Testicular tissues were dissected and divided for multiple analyses. Portions were snap-frozen in liquid nitrogen and stored at 80°C, while others were fixed for morphological assessment. Sample collection and storage procedures were standardized to maintain sample integrity.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhou	Shen
+Study Person First Name	Xinghong	Xiaoyun
+Study Person Mid Initials		
+Study Person Email	zhouxinhong97@163.com	shenxy@swust.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Southwest University of Science and Technology	Southwest University of Science and Technology
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

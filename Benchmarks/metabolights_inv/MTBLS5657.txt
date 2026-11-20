@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	EFO	NCIT	OBI	GAZ	CHMO	CHEBI	OMIT	
+Term Source File	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO		http://data.bioontology.org/ontologies/OBI					http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	1	132		29					18.10e
+Term Source Description	User defined terms	Experimental Factor Ontology		Ontology for Biomedical Investigations					NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS5657
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-08-10
+Investigation Public Release Date	2022-10-27
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS5657
+Study Title	An interoperability framework for multicentric breath metabolomic studies
+Study Description	Exhaled breath contains valuable information at the molecular level and offers promising potential for precision medicine. However, few breath tests transition to routine clinical practice, partly because of the missing validation in multicenter trials. Therefore, we developed and applied an interoperability framework for standardized multicenter data acquisition and processing for breath analysis with secondary electrospray ionization-high resolution mass spectrometry. We aimed to determine the technical variability and metabolic coverage. Comparison of multicenter data revealed a technical variability of ∼20% and a core signature of the human exhaled metabolome consisting of ∼850 features, corresponding mainly to amino acid, xenobiotic, and carbohydrate metabolic pathways. In addition, we found high inter-subject variability for certain metabolic classes (e.g., amino acids and fatty acids), whereas other regions such as the TCA cycle were relatively stable across subjects. The interoperability framework and overview of metabolic coverage presented here will pave the way for future large-scale multicenter trials.
+Study Submission Date	2022-08-10
+Study Public Release Date	2022-10-27
+Study File Name	s_MTBLS5657.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Breath Test	secondary electrospray ionisation mass spectrometry	volatile organic compound	untargeted metabolites	multicenter clinical studies
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C116515	http://purl.obolibrary.org/obo/CHMO_0000490	http://purl.obolibrary.org/obo/CHEBI_134179	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	NCIT	CHMO	CHEBI	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	36479147
+Study Publication DOI	10.1016/j.isci.2022.105557
+Study Publication Author List	Gisler Amanda, Singh Kapil Dev, Zeng Jiafa, Osswald Martin, Awchi Mo, Decrue Fabienne, Schmidt Felix, Sievi Noriane A., Chen Xing, Usemann Jakob, Frey Urs, Kohler Malcolm, Li Xue, Sinues Pablo
+Study Publication Title	An interoperability framework for multicentric breath metabolomic studies
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Site	Gender
+Study Factor Type	Geographic Location	Gender
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C17357
+Study Factor Type Term Source REF	MTBLS	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS5657_DI-MS_negative__metabolite_profiling.txt	a_MTBLS5657_DI-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Direct infusion MS - negative	Direct infusion MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Mass spectrometry	Data transformation	Metabolite identification	Direct infusion
+Study Protocol Type	Sample collection	Extraction	Mass spectrometry	Data transformation	Metabolite identification	Direct infusion
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Briefly, 255 real-time breath measurements were acquired from 9 healthy adults (30 ± 5 years, mean ± SD; 4 females and 5 males; 30 measurements each) in 3 sites (Zurich and Basel in Switzerland and Guangzhou in China) following data acquisition SOP. Each measurement consists of 5-6 prolonged exhalations directly into the SESI-HRMS system both in positive and negative ion mode (resulting in 510 RAW data files). Typically, each measurement takes 15-20 min to finish and subject performed 1-2 measurements per day during the timeframe of 6 weeks.</p><p><br></p><p>Subjects refrained from using cosmetics, eating or drinking anything (except water) and cleaning their mouth (i.e. brush, mouthwash, etc) for at least 1 h prior to the breath measurement in order to avoid confounding mass features. The Ethics Committee of Northwest and Central Switzerland (ID 2018-01324) approved the study protocol and written informed consent was obtained at enrolment.</p>	<p>Extraction was not performed in this study.</p>	<p>All real-time breath mass spectrometry measurements were acquired in full-scan mode over a range 70-1000 m/z with a resolution on the order of 140,000 for positive and negative mode. And 2 microscans, automatic gain control (AGC) target of 1E^6 and maximum injection time of 500 ms were applied. Q Exactive Tune software (version 2.9) was used to directly control mass spectrometry for real-time measurements. Furthermore, the mass spectrometer was externally calibrated on a weekly basis using a customized calibration option and internally calibrated during each measurement by enabling lock mass.</p>	<p>Pre-processing of exhaled breath data were performed using our patented data processing pipeline (European patent No. 20186274.5 and 21185400.5). Briefly, <strong>.raw</strong> files were read and converted into <strong>MATLAB</strong> structure using an in-house C console app based on an open-source .Net assembly from Thermo Fisher Scientific called <strong>RawFileReader</strong> (version 5.0.0.38). Time during which CO2 concentrations was above 3% (measured by the Exhalion) was used to define exhalation time windows. Features from all files were centroid (intensity higher than 1E^4), appropriately combined using the <strong>MATLAB</strong> ksdensity function and correlated with exhalations (i.e., CO2 trace) to generate a final feature list of size 3198. Afterward, using the time-trace of each feature an exhalation time normalized area under the cure (nAUC) was calculated to depict breath-levels of that feature. Later, the final data matrix was transformed to 5th root to reach normally distributed data for further analyses.</p>	<p>No metabolite identification was carried out in this experiment.</p>	<p>The SESI-HRMS analytical platform employed for real-time breath analysis consisted of an exhalation interface (Exhalion, FIT Spain) for real-time time display of CO2, flow rate, exhaled volume and pressure drop, and an ion source (Super SESI, FIT Spain) coupled to a high-resolution mass spectrometer (Q-Exactive Plus, Thermo Fisher Scientific, Germany). Exhalion was calibrated weekly with 5% CO2. Commercially available bacterial filters (MicroGard, Vyaire Medical, USA) were used as mouthpieces and replaced weekly. For the electrospray formation, a 20-µm ID non-coated TaperTip silica capillary emitter (New Objective, Woburn, MA) and 0.1% formic acid in water were used with the following settings: sheath gas flow rate 60, auxiliary gas flow rate 2, spray voltage 3.5 kV, capillary temperature 275 °C and S-lens RF level 55. The electrospray solution was replaced every second week and capillaries were replaced weekly. The Super SESI solvent reservoir pressure was set to 1.3 bar. The temperature of the ion chamber was set to 90 °C and the sampling line temperature was set to 130 °C. The exhaust mass flow controller of SUPER SESI was set at 0.7 L/min and nitrogen mass flow through the source was set at 0.4 L/min to ensure a constant fraction of breath entering the ionizer (0.3 L/min).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name						
+Study Protocol Parameters Name Term Accession Number						
+Study Protocol Parameters Name Term Source REF						
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gisler	Singh	Zeng	Osswald	Awchi	Decrue	Schmidt	Sievi	Chen	Usemann	Frey	Kohler	Li	Sinues
+Study Person First Name	Amanda	Kapil Dev	Jiafa	Martin	Mo	Fabienne	Felix	Noriane A	Xing	Jakob	Urs	Malcolm	Xue	Pablo
+Study Person Mid Initials														
+Study Person Email		kapil.singh@ukbb.ch												pablo.mlsinues@ukbb.ch
+Study Person Phone		+41 61 704 29 48												+41 61 704 29 49
+Study Person Fax														
+Study Person Address		Spitalstrasse 33, 4056 Basel, Switzerland												Spitalstrasse 33, 4056 Basel, Switzerland
+Study Person Affiliation		Department of Biomedical Engineering, University of Basel; University Children's Hospital Basel												University Children's Hospital Basel and Department of Biomedical Engineering, University of Basel, Basel, Switzerland
+Study Person Roles	Author	Co-Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF		NCIT												NCIT

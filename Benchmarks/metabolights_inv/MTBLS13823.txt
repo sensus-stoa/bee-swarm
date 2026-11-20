@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.86.0			25.06e	2025-12-18
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13823
+Investigation Title	Broad-Targeted Metabolome Sequencing of Chicken Cecal Contents
+Investigation Description	
+Investigation Submission Date	2026-02-03
+Investigation Public Release Date	2026-02-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13823
+Study Title	Broad-Targeted Metabolome Sequencing of Chicken Cecal Contents
+Study Description	<p>Collect the contents of the cecum from chickens before and after heat stress treatment</p>
+Study Submission Date	2026-02-03
+Study Public Release Date	2026-02-03
+Study File Name	s_MTBLS13823.txt
+Comment[Created At]	2026-02-03T02:34:35.071867
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	microbial metabolites	Heat stress	LCMS
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Haobo Zhou, Zheya Sheng
+Study Publication Title	Broad-Targeted Metabolome Sequencing of Chicken Cecal Contents
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_24433
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13823_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS13823_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS13823_LC-MS_negative_hilic_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]			
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]			
+Comment[Assay Type Term Source REF]			
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed using an ultra-performance liquid chromatography (UPLC) system (ExionLC AD, AB SCIEX) equipped with both reversed-phase and HILIC columns. For reversed-phase analysis, a Waters ACQUITY UPLC HSS T3 C18 column (2.1 mm × 100 mm, 1.8 μm) was used with mobile phases consisting of water (0.1% formic acid) and acetonitrile (0.1% formic acid) under a gradient elution. The flow rate was set to 0.4 mL/min, the column temperature was maintained at 40 °C, and the injection volume was 2 μL for targeted and 5 μL for untargeted analyses.</p><p>For HILIC separation, a Waters ACQUITY UPLC BEH HILIC column (1.7 μm, 1.0 mm × 100 mm) was used with ammonium formate–based mobile phases adjusted to alkaline pH. Gradient elution was applied at a flow rate of 0.4 mL/min with the column temperature maintained at 40 °C.</p>	<p>Raw LC–MS/MS data were processed using Analyst and MultiQuant software (AB SCIEX) for peak detection, integration, and alignment. Metabolite peak areas were normalized and missing values were imputed using one-fifth of the minimum detected value for each metabolite. Quality control filtering was applied by retaining metabolites with a coefficient of variation (CV) &lt; 0.3 in QC samples, generating the final quantitative dataset used for downstream statistical analysis.</p>	<p>Frozen samples were thawed on ice and approximately 20 mg (±1 mg) of each sample was weighed into centrifuge tubes. Metabolites were extracted using 400 μL of 70% methanol containing internal standards, followed by vortexing, grinding, incubation at 20 °C, and centrifugation at 12,000 rpm at 4 °C. The resulting supernatant was collected for LC–MS/MS analysis, while pooled quality control (QC) samples were prepared by mixing equal aliquots of all extracts. Solvent blanks and QC samples were included throughout the analytical sequence to monitor background noise, carryover, and system stability.</p>	<p>Mass spectrometric detection was carried out using AB SCIEX TripleTOF 6600 and QTRAP 6500 systems equipped with an electrospray ionization (ESI) source. Data were acquired in both positive and negative ion modes, with ion spray voltages of 5000 V (positive) and 4000 to 4500 V (negative), and source temperatures ranging from 450–550 °C. Nitrogen was used as curtain gas, nebulizer gas, and auxiliary gas with optimized pressures according to the manufacturer’s recommendations.</p><p>For targeted metabolomics, multiple reaction monitoring (MRM) mode was applied on the QTRAP 6500 platform, while untargeted profiling was performed using information-dependent acquisition (IDA) on the TripleTOF 6600 system. The mass scan range and collision energies were optimized for metabolite coverage and quantitative reproducibility.</p>	<p>Metabolite identification was performed by matching accurate mass, retention time, and MS/MS fragmentation patterns against the Metware Database (MWDB), a self-built metabolite database. Additional annotation was supported using integrated public databases including HMDB, METLIN, and KEGG, as well as AI-assisted prediction tools and MetDNA algorithms. Only metabolites meeting strict matching criteria across spectral similarity and retention behavior were retained for qualitative annotation and quantitative analysis.</p>	<p>Biological samples were obtained from experimental animals according to the predefined grouping design, with a total of 30 samples distributed across 6 experimental groups. The analyzed material consisted of intestinal contents, which were collected immediately after sampling, snap-frozen in liquid nitrogen, and stored at 80 °C until further processing to minimize metabolic degradation. All samples were handled on ice during processing to maintain metabolic stability and reduce enzymatic activity prior to extraction.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhou	Sheng
+Study Person First Name	Haobo	Zheya
+Study Person Mid Initials		
+Study Person Email	zhouhaobo@webmail.hzau.edu.cn	zheya.sheng@mail.hzau.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Huazhong Agricultural University	Huazhong Agricultural University
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/023b72294	https://ror.org/023b72294

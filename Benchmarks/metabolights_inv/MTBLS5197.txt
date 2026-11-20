@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCIT	OMIT	CHEBI	NCBITAXON	EFO		ENVO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/						http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version	29	1				2022-06-29		18.10e	
+Term Source Description	Ontology for Biomedical Investigations	User defined terms						NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS5197
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-06-27
+Investigation Public Release Date	2023-04-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS5197
+Study Title	On-line untargeted metabolomics monitoring of an Escherichia coli succinate fermentation process
+Study Description	The real-time monitoring of metabolites (RTMet) is instrumental for the industrial production of biobased fermentation products. This study shows the first application of untargeted on-line metabolomics for the monitoring of undiluted fermentation broth samples taken automatically from a 5 L bioreactor every 5 min via flow injection mass spectrometry. The travel time from the bioreactor to the mass spectrometer was 30 s. Using mass spectrometry allows, on the one hand, the direct monitoring of targeted key process compounds of interest and, on the other hand, provides information on hundreds of additional untargeted compounds without requiring previous calibration data. In this study, this technology was applied in an Escherichia coli succinate fermentation process and 886 different m/z signals were monitored, including key process compounds (glucose, succinate, and pyruvate), potential biomarkers of biomass formation such as (R)-2,3-dihydroxy-isovalerate and (R)-2,3-dihydroxy-3-methylpentanoate and compounds from the pentose phosphate pathway and nucleotide metabolism, among others. The main advantage of the RTMet technology is that it allows the monitoring of hundreds of signals without the requirement of developing partial least squares regression models, making it a perfect tool for bioprocess monitoring and for testing many different strains and process conditions for bioprocess development.
+Study Submission Date	2022-06-27
+Study Public Release Date	2023-04-26
+Study File Name	s_MTBLS5197.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	bioprocess monitoring	fermentation monitoring	untargeted metabolites	succinate	flow injection analysis-mass spectrometry	on-line metabolomics	real-time metabolomics	bioreactor
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHEBI_26806	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/ENVO_00002123
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	CHEBI	MTBLS	MTBLS	MTBLS	ENVO
+STUDY PUBLICATIONS
+Study PubMed ID	35798686
+Study Publication DOI	10.1002/bit.28173
+Study Publication Author List	Cortada-Garcia J, Haggarty J, Moses T, Daly R, Arnold SA, Burgess K.
+Study Publication Title	On-line untargeted metabolomics monitoring of an Escherichia coli succinate fermentation process.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS5197_FIA-MS_alternating_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Flow injection analysis MS - negative
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Flow Injection Analysis	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Flow Injection Analysis	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Bacterial strain:</strong></p><p>All experiments described in this article were carried out using a proprietary industrial <em>E. coli</em> strain (Ingenza Ltd.), based on the <em>E. coli</em> NZN111 strain with deletions of the pyruvate-formate lyase (pflB) and lactate dehydrogenase (ldhA) genes as previously described<strong>[1]</strong>.</p><p><br></p><p><strong>Sample injections:</strong></p><p>During sample injections, fermentation broth containing cells is constantly extracted from the fermenter with the peristaltic pump, injected into the 6-port valve, circulated through a 50 µl loop and returned to the fermenter. Upon valve switching, the broth sample from the 50 µl loop of the 6-port valve is carried by sterile water pumped at a 200 µl/min flow rate using an external piston pump into the 10-port valve, where it is collected in a 1 µl loop. The sample is finally injected into the mass spectrometer carried by a 70:30 ACN:IPA + 0.1% formic acid mixture at a 400 µl/min flow rate. The duration of the injection method was 1 min, and the total travelling time from the bioreactor to the mass spectrometer was 30 s, with ca. 10 s to reach the 6-port valve and 20 more s to reach the mass spectrometer.</p><p><br></p><p><strong>Washing steps:</strong></p><p>Each sample injection was followed by a 4 min washing step to avoid system blockage and signal loss. The 6-port valve was washed with 70:30 IPA:ACN + 0.1% formic acid for 1 min and with sterile water for 3 min, both at a 400 µl/min flow rate. The 10-port valve was washed with sterile water for 2 min and then 70:30 ACN:IPA + 0.1% formic acid for 2 min, both at a 600 µl/min flow rate (see <strong>Figure S1</strong> in the paper associated with this study). The washing solutions were sent to waste and did not enter either the fermenter or the mass spectrometer.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Chatterjee R, Millard CS, Champion K, Clark DP, Donnelly MI. Mutation of the ptsG gene results in increased production of succinate in fermentation of glucose by Escherichia coli. Appl Environ Microbiol. 2001 Jan;67(1):148-54. doi:10.1128/AEM.67.1.148-154.2001. PMID:11133439.</p>	<p>No extraction was performed. The fermentation broth samples (containing cells and fermentation broth) were automatically injected into the mass spectrometer carried by a 70:30 ACN:IPA + 0.1% formic acid mixture.</p>	<p>On-line metabolomics was conducted by connecting the fermenter to an Exactive Orbitrap (Thermo Scientific) mass spectrometer with a fluidics system similar to what had previously been described in the literature<strong>[1]</strong>, but adapted to inject undiluted fermentation broth samples straight into the mass spectrometer. The modified fluidics system consisted of a peristaltic pump and 2 valves (see <strong>Figure 4</strong> in the paper associated with this study), and sample injections were alternated with washing steps, 1-to-1. The peristaltic pump was a Masterflex L/S (Cole-Parmer) high-performance pump model 77252-72 and was operated at a high flow rate of 75-100 ml/min. The first valve was a 6-port, 2-position valve (Vici Valco) and the second one was a 10-port, 2-position valve (Dionex Corporation). Note, however, that no chromatography was used.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Link H, Fuhrer T, Gerosa L, Zamboni N, Sauer U. Real-time metabolome profiling of the metabolic switch between starvation and growth. Nat Methods. 2015 Nov;12(11):1091-7. doi:10.1038/nmeth.3584. PMID:26366986.</p>	<p>Data was collected using an Exactive Orbitrap mass spectrometer. Gas-phase ions were generated with an electrospray ionisation (ESI) source. The mass spectrometer was operated at 50,000 resolution, mass range 50-1000 m/z in polarity switching mode with a spray voltage of ±3.5 kV. Capillary temperature was set to 350 °C, sheath gas 40 a.u., automatic gain control (AGC) target 1 x 10^6 a.u. and the lock masses in positive and negative mode were 74.0964 m/z and 112.9856 m/z, respectively.</p>	<p>Raw mass spectrometry data was processed with the <strong>Xcalibur software (Version 3.1.66.10)</strong> using the <strong>Genesis peak detection </strong>method. The peak integration threshold was set to 0.5 signal to noise ratio (S/N), smoothing points to 1 and peak detection was set to the highest peak within a 15 s retention window, with a minimum peak height threshold of 3 S/N. A small number of signals that were not properly detected with the <strong>Genesis</strong> method were instead processed with the <strong>ICIS</strong> method. In these cases peak integration was performed setting smoothing points to 1, baseline window to 40, area noise factor to 5, peak noise factor to 10, minimum peak height threshold of 3 S/N and peak width constrained to 5% of the peak height with a tailing factor of 2.</p><p><br></p><p>After processing the raw data with the <strong>Xcalibur software</strong>, metabolite features were extracted as a <strong>.csv</strong> file, which was used to generate time-course metabolic profiles using the <strong>ggplot2 package (version 3.3.3)[1]</strong> in the statistical software environment <strong>R (version 3.6.1)</strong>. Data smoothing was carried out using the same version of the <strong>ggplot2 package</strong> with a locally estimated <strong>scatterplot smoothing</strong> method with a span between 0.2 and 0.5, depending on the metabolite.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Wickham H. (2016). ggplot2: Elegant graphics for data analysis. Springer. <a href='https://ggplot2.tidyverse.org' rel='noopener noreferrer' target='_blank'>https://ggplot2.tidyverse.org</a></p>	<p>Metabolites were annotated based on accurate mass within 5 ppm m/z error to annotaions obtained by off-line LC-MS analysis of the fermentation process (as detailed in the <strong>Supplementary Information</strong> of the paper associated with this study) and an in-house list of m/z adducts. The annotations from both methods were compared to obtain a final more confident annotation.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	FIA Instrument	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;		;;;;		
+Study Protocol Parameters Name Term Source REF		;		;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cortada-Garcia	Haggarty	Moses	Daly	Arnold	Burgess
+Study Person First Name	Joan	Jennifer	Tessa	Rónán	Susan Alison	Karl
+Study Person Mid Initials						
+Study Person Email	joancg13@gmail.com					
+Study Person Phone	447519428971					
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	University of Edinburgh					
+Study Person Roles	Investigator	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT					

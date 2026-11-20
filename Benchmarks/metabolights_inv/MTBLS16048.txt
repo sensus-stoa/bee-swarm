@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08	2026-01-16
+Term Source Description	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS16048
+Investigation Title	Metabolic Substrate Availability Regulates Nephron Lineage Expansion in Human Kidney Organoids
+Investigation Description	
+Investigation Submission Date	2026-10-18
+Investigation Public Release Date	2026-10-18
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16048
+Study Title	Metabolic Substrate Availability Regulates Nephron Lineage Expansion in Human Kidney Organoids
+Study Description	Human induced pluripotent stem cell-derived kidney organoids are widely used to model nephrogenesis, but variability in basal media composition remains an underappreciated source of developmental heterogeneity. Because nephrogenesis involves rapid proliferation and differentiation, we hypothesized that metabolic substrate availability directly regulates organoid development. We compared growth and cellular composition across commonly used media (APEL2, advanced RPMI, and DMEM). Advanced RPMI supported robust growth and tubular expansion, whereas DMEM with low basal glucose (5.0 mM) impaired nephron lineage development. Glucose supplementation (to 11.1 mM) significantly rescued these defects, indicating a causal role for substrate limitation. Metabolomics analysis further revealed rapid glucose depletion under low glucose conditions and reduced metabolic activity, while higher glucose media supported oxidative metabolism. Functionally, glucose availability directly influenced cellular proliferation and survival, with low glucose associated with increased TUNEL positivity and cleaved caspase-3. Together, these findings identify glucose as a critical regulator of kidney organoid development and position metabolic substrate composition as a tunable determinant of organoid fidelity and reproducibility.
+Study Submission Date	2026-10-18
+Study Public Release Date	2026-10-18
+Study File Name	s_MTBLS16048.txt
+Comment[Created At]	2026-10-15
+Comment[Funder]	Canadian Institutes of Health Research;Kidney Foundation of Canada
+Comment[Funder ROR ID]	https://ror.org/01gavpb45;https://ror.org/019a0gk53
+Comment[Grant Identifier]	#470337;#1578924
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-18
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	nmr
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Bruker AVANCE 600 MHz spectrometer	Homo sapiens	Organoid	untargeted analysis	Metabolomics	kidney	untargeted metabolite profiling
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000402	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/NCIT_C172259	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/UBERON_0002113	http://purl.obolibrary.org/obo/MSIO_0000101
+Study Design Type Term Source REF	MTBLS	NCBITaxon	NCIT	MS	EDAM	EFO	MSIO
+Comment[Study Design Category]	Instrument	Organism	Organism part	measurement-type	omics-type	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Kieran Meadows, Marin Flanagan, Ariel Chen, Hyunjae Chung, Keekyoung Kim, Ian Lewis, Rustem Shaykhutdinov, Li-Fang Chu, Chunlong Mu, & Justin Chun
+Study Publication Title	Metabolic Substrate Availability Regulates Nephron Lineage Expansion in Human Kidney Organoids
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cell line	Day	Media
+Study Factor Type	biological replicate	timepoint	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002091	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16048_NMR__.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	NMR
+Comment[Assay Type]	NMR spectroscopy assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000623
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[NMR tube type];Parameter Value[Solvent];Parameter Value[Sample pH];Parameter Value[Temperature];Parameter Value[Instrument];Parameter Value[NMR Probe];Parameter Value[Number of transients];Parameter Value[Pulse sequence name];Parameter Value[Magnetic field strength]
+Comment[Assay Field Default Value]	5 mm (Bruker BioSpin);0.5 M phosphate buffered D2O;7.0;298;Bruker AVANCE 600 MHz spectrometer;5 mm TXI;128;1D NOESY with presaturation (noesypr1d);14.1
+Comment[Assay Field Default Unit]	;;;kelvin;;;;;tesla
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002027;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000353;;http://purl.obolibrary.org/obo/UO_0000012;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000402;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000494;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000521;http://purl.obolibrary.org/obo/UO_0000228
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;;UO;MTBLS;MTBLS;;MTBLS;UO
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Extraction	Metabolite identification	NMR sample	NMR spectroscopy
+Study Protocol Type	Sample collection	data transformation	Extraction	metabolite identification	NMR sample	NMR spectroscopy
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/MI_2131	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111
+Study Protocol Type Term Source REF		OBI	EFO	MI	MTBLS	MTBLS
+Study Protocol Description	<p>To measure the intermediary metabolites, the 48-hour spent medium was collected from kidney organoid culture, flash-frozen in liquid nitrogen, and stored at -80℃ until ready for analysis. At the time of analysis, samples were thawed on ice and filtered using a 3-kDa microcentrifuge filter to remove proteins and insoluble impurities.</p>	<p>Each sample was then processed using Chenomx NMR Mixture Analysis Suite software v26.0 (Chenomx Inc., Edmonton, Canada). Concentration values of metabolites were calculated, log10-transformed, and scaled by mean-centering and divided by the standard deviation of each variable using MetaboAnalyst 6.0 software (MetaboAnalyst, Xia Lab, McGill University, Montreal, Canada) for visualization.</p>	<p>Briefly, the filtered volume was brought to 650 µL, using a DSS-containing sodium phosphate buffer (0.5 M), sodium azide as an antibacterial compound (1 M), and deuterium oxide. Proton nuclear magnetic resonance spectroscopy was used to acquire 1-dimensional spectra.&nbsp;</p>	<p>Each sample was then processed using Chenomx NMR Mixture Analysis Suite software v26.0 (Chenomx Inc., Edmonton, Canada).&nbsp;</p>	<p>Briefly, the filtered volume was brought to 650 µL, using a DSS-containing sodium phosphate buffer (0.5 M), sodium azide as an antibacterial compound (1 M), and deuterium oxide. pH was adjusted to 7 ± 0.01 using sodium hydroxide and hydrochloride.</p>	<p>Proton NMR spectroscopy was used to acquire 1-dimensional using a standard pulse program (prnoesy1d) on a Bruker Advance 600 spectrometer equipped with a 600.22 mHz 5 mm TXI probe at 298°K. All samples were analyzed in automatic mode using Bruker NMRCase sample changer. </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name			Extraction Method		NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength
+Study Protocol Parameters Name Term Accession Number					;;;	;;;;
+Study Protocol Parameters Name Term Source REF					;;;	;;;;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Meadows	Flanagan	Chen	Chung	Kim	Lewis	Shaykhutdinov	Chu	Mu	Chun
+Study Person First Name	Kieran	Marin	Ariel	Hyunjae	Keekyoung	Ian	Rustem	Li-Fang	Chunlong	Justin
+Study Person Mid Initials										
+Study Person Email	kieran.meadows1@ucalgary.ca									chuj@ucalgary.ca
+Study Person Phone										
+Study Person Fax										
+Study Person Address										
+Study Person Affiliation	University of Calgary									University of Calgary
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]										https://ror.org/03yjb2x39

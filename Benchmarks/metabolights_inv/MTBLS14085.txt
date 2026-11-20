@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BAO	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://www.bioassayontology.org/bao/	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2.8.18a	2025-10-21	3.88.0			1.0.1		2025-12-03	26.02d	2026-03-19	2025
+Term Source Description	BioAssay Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14085
+Investigation Title	Phosphoethanolamine Cytidylyltransferase 2 Integrates DAG Metabolism and TBK1 Activation to Regulate Antiviral Innate Immunity
+Investigation Description	
+Investigation Submission Date	2026-03-19
+Investigation Public Release Date	2026-05-07
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Liu
+Investigation Person First Name	jie
+Investigation Person Mid Initials	zeng
+Investigation Person Email	1839043781@qq.com
+Investigation Person Phone	15621183625
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Ocean university of China
+Investigation Person Roles	Principal Investigator
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS14085
+Study Title	Phosphoethanolamine Cytidylyltransferase 2 Integrates DAG Metabolism and TBK1 Activation to Regulate Antiviral Innate Immunity
+Study Description	<p>Phosphatidylethanolamine (PE) biosynthesis is critical for membrane biology and cellular homeostasis.&nbsp;However, its specific role in antiviral innate immunity remains poorly understood. Here, we demonstrate that inhibition of phosphoethanolamine cytidylyltransferase 2 (PCYT2), a key enzyme in PE biosynthesis, promotes&nbsp;TBK1 activation to enhance antiviral immune response. Mechanistically, PCYT2 deficiency leads to the accumulation of diacylglycerol (DAG), which activates&nbsp;protein kinase C δ (PKCδ). We identify PKCδ as a direct kinase for TBK1, and demonstrate that it binds to and phosphorylates TBK1 at Ser716. This Ser716 phosphorylation facilitates subsequent&nbsp;canonical phosphorylation at Ser172, resulting in&nbsp;hyperactivation of the TBK1–IRF3 axis. Our findings uncover a novel&nbsp;link between phospholipid metabolism and antiviral innate immunity, suggesting that targeting the PE biosynthesis pathway could be a potential therapeutic strategy against viral infections.</p>
+Study Submission Date	2026-03-19
+Study Public Release Date	2026-05-07
+Study File Name	s_MTBLS14085.txt
+Comment[Created At]	2026-03-12
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	2
+Comment[Revision Date]	2026-05-08
+Comment[Revision Log]	Authors section modified- PI added
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	untargeted metabolite profiling	RAW 264.7 Cells
+Study Design Type Term Accession Number	http://id.nlm.nih.gov/mesh/D000081362	http://purl.obolibrary.org/obo/MSIO_0000101	http://id.nlm.nih.gov/mesh/D000067996
+Study Design Type Term Source REF	mesh	MSIO	mesh
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Wencong Lai, Zengjie Liu
+Study Publication Title	Phosphoethanolamine Cytidylyltransferase 2 Integrates DAG Metabolism and TBK1 Activation to Regulate Antiviral Innate Immunity
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genetype	Treatment
+Study Factor Type	Gene Knockout	treatment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18143	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14085_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14085_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p _msttexthash='32273813' _msthash='689'>RAW264.7 murine macrophage cell lines, including wild-type (Pcyt2+/+) and Pcyt2 knockout (pcyt2-/-) were used in this study. Cells were cultured in DMEM medium supplemented with 10% fetal bovine serum (FBS) and 1% penicillin-streptomycin at 37°C in a 5% CO2 humidified incubator.</p><p _msttexthash='32273813' _msthash='689'>Three experimental groups were established, each with six biological replicates:</p><p _msttexthash='32273813' _msthash='689'>Control group:&nbsp;Untreated Pcyt2+/+ RAW264.7 cells (Pcyt2+/+).</p><p _msttexthash='32273813' _msthash='689'>VSV-infected group:&nbsp;Pcyt2+/+ RAW264.7 cells infected with vesicular stomatitis virus (VSV) (Pcyt2+/+ + VSV) for 12 h.</p><p _msttexthash='32273813' _msthash='689'>Knockout group:&nbsp;Untreated pcyt2-/- RAW264.7 cells (pcyt2-/-).</p><p _msttexthash='32273813' _msthash='689'>After treatment, cells were harvested by trypsinization and pelleted by centrifugation at 800 rpm for 5 minutes. The supernatant was discarded, and the cell pellets were immediately transferred to sterile centrifuge tubes, flash-frozen in liquid nitrogen, and subsequently stored at -80°C until further analysis.</p><p _msttexthash='32273813' _msthash='689'><br></p>	<p>Instrument:&nbsp;ACQUITY UPLC System (Waters Corporation, Milford, MA, USA)</p><p>Column:&nbsp;ACQUITY UPLC CSH C18 column (1.7 μm, 100 mm × 2.1 mm, Waters, UK)</p><p>Column Temperature:&nbsp;40°C</p><p>Flow Rate:&nbsp;0.3 mL/min</p><p>Injection Volume:4&nbsp;μL</p><p>Mobile Phase:</p><p>Mobile Phase A:&nbsp;Acetonitrile:Water (60:40, v/v) with 10 mM ammonium formate and 0.1% formic acid</p><p>Mobile Phase B:&nbsp;Isopropanol:Acetonitrile (90:10, v/v) with 10 mM ammonium formate and 0.1% formic acid</p><p>The mobile phase consisted of phase A (acetonitrile/water, 6:4</p><p>v/v, 0.1% formic acid) and phase B (isopropanol/acetonitrile, 9:1 v/v, 0.1% formic acid). The gradient elution program was as follows: 0.0 - 0.4 min, 30% B; 0.4 - 1.0 min, 30%-45% B; 1.0 - 3.5 min, 45%-60% B; 3.5-5.0 min, 60-75% B; 5.0-7.0 min, 75%-90% B; 7.0-8.5 min, 90-100% B; 8.5-8.6 min, 100% B; 8.6-8.61 min, 100-30% B; 8.61-10 min, 30% B.</p>	<p>Step 1: Peak extraction and alignment</p><p>The raw mass spectrometry data (.raw files) were converted to mzML format using MSConvert (ProteoWizard, version 3.0). Peak detection, alignment, and quantification were performed using XCMS (version 3.12.0) in R (version 4.1.0). Parameters were set as follows: method = 'centWave', ppm = 20, peakwidth = c(6, 17), mzdiff = 0.001, snthresh = 6. Retention time correction was performed using the 'obiwarp' method.</p><p>Step 2: Quality control filtering</p><p>Features with &gt; 50% missing values in QC samples were removed. Data were normalized using probabilistic quotient normalization (PQN).</p>	<p>Cell pellets were resuspended in 100 μL of ice-cold 80% methanol, followed by addition of 300 μL ice-cold MTBE. After vigorous vortexing, samples were centrifuged at 3000 rpm for 15 min at 4°C. The upper organic phase (200 μL) was collected, vacuum-dried, and reconstituted in 200 μL of dichloromethane:methanol (1:1). The reconstituted extracts were centrifuged again (3000 rpm, 15 min, 4°C) and supernatants transferred to autosampler vials for UPLC-HRMS analysis. All steps were performed on ice.</p><p>Pooled quality control (QC) samples were prepared by mixing equal aliquots of each sample extract. QC samples were injected every 10 study samples throughout the analytical run to monitor system stability and data quality.</p>	<p>Instrument:&nbsp;Q-Exactive </p><p>spectrometer (Thermo Fisher Scientific, Bremen, Germany)</p><p>Ionization Mode:&nbsp;Electrospray ionization (ESI) in both positive and negative ion modes (separate runs)</p><p>Source Parameters (common for both modes):</p><p>Sheath Gas Flow Rate: 45 (arbitrary units)</p><p>Auxiliary Gas Flow Rate: 12 (arbitrary units)</p><p>Sweep Gas Flow Rate: 0 (arbitrary units)</p><p>Capillary Temperature: 350°C</p><p>Spray Voltage: +3800 V (positive mode) / -3500 V (negative mode)</p><p>Acquisition Mode:&nbsp;Data-dependent acquisition (DDA, also known as TopN)</p><p>Full Scan (MS1) Parameters:</p><p>Scan Range: m/z 70 - 1500</p><p>Resolution: 70,000 (at m/z 200)</p><p>AGC Target: 3e6</p><p>Maximum Injection Time: 100 ms</p><p>MS/MS (MS2) Parameters:</p><p>Isolation and fragmentation: Top 6 most abundant ions (with intensity threshold &gt; 1e5) were selected for MS/MS fragmentation</p><p>Resolution: 17,500 (at m/z 200)</p><p>Maximum Injection Time: 50 ms</p><p>Dynamic Exclusion: 6 seconds</p><p>QC Injection Frequency:&nbsp;QC samples were injected every 10 study samples throughout the batch to monitor system stability and performance.</p>	<p>Metabolites were identified by matching MS/MS spectra against the LipidBlast, HMDB, or in-house database using metaX software.</p><p><br></p><p>Identification criteria included: mass tolerance &lt; 10 ppm for precursor ions, and MS/MS spectral similarity score &gt; 70%.</p><p><br></p><p>Lipid species were annotated according to LIPID MAPS classification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Lai	liu	Ai
+Study Person First Name	cong	jie	Qinghui
+Study Person Mid Initials	wen	zeng	
+Study Person Email	WClai@stu.ouc.edu.cn	1839043781@qq.com	qhai@ouc.edu.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address		No. 5 Yushan Road, Shidong District, Qingdao City, Shandong Province; China University of Oceanography, Yushan Campus: 266005	
+Study Person Affiliation		Ocean university of China	Ocean University of China
+Study Person Roles	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]		0009-0002-1453-9720	
+Comment[Study Person Affiliation ROR ID]		https://ror.org/04rdtx186	https://ror.org/04rdtx186
+Comment[Study Person Alternative Email]	laiwcong@163.com	1839043781@qq.com	

@@ -1,0 +1,134 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0				2026-07-12	26.02d	2026-05-08	2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS15811
+Investigation Title	UHPLC-MS/MS Untargeted Metabolomics Profiling of Cecal Content in Three Chicken Breeds
+Investigation Description	
+Investigation Submission Date	2026-09-25
+Investigation Public Release Date	2026-10-08
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15811
+Study Title	UHPLC-MS/MS Untargeted Metabolomics Profiling of Cecal Content in Three Chicken Breeds
+Study Description	<p>This study applied an untargeted metabolomics approach to analyze cecal content samples from three chicken breeds (Wenchang chicken, White-ear Yellow chicken, and Recessive White chicken) using UHPLC-MS/MS (Vanquish UHPLC coupled with Q Exactive HFX Orbitrap). A total of 90 samples (30 per breed) plus 8 pooled QC samples were analyzed. Metabolites were extracted with methanol/acetonitrile (1:1, v/v), and data were acquired in positive and negative ionization modes. Raw data were converted to mzXML format by MSConvert (ProteoWizard v3.0.8789) and processed using the R XCMS package for peak detection, retention time correction, and alignment. Metabolites were annotated against HMDB, MassBank, LipidMaps, mzCloud, KEGG, and an in-house database. Data normalization was performed using QC-RLSC (LOESS signal correction), and features with QC RSD &gt; 30% were filtered out. Multivariate statistics (PCA and OPLS-DA) were conducted using the R package ropls to distinguish metabolic profiles. Differential metabolites were screened using a two-tiered strategy: for 2 dpi, P &lt; 0.05 and VIP &gt; 1.0 were used; for 4 dpi and 7 dpi, VIP &gt; 1.0, |log2FC| &gt; 1, and FDR-adjusted P &lt; 0.05 were applied. Pathway enrichment analysis was performed using MetaboAnalyst; no pathway reached P &lt; 0.05, and pathways with P &lt; 0.2 were considered as trends.</p><p>Breed name mapping:&nbsp;In the commercial dataset folders, breeds are abbreviated as WCJ (Wenchang chicken), BEJ (White-ear Yellow chicken), and YXB (Recessive White chicken). These correspond to WCC, WEYC, and RWFC, respectively, as used in this study and the manuscript.</p><p>Note: The associated manuscript analyzes and reports conclusions based exclusively on the Wenchang chicken breed; data from the other two breeds (YXB and BEJ) are included for project-level transparency. They have not been used in the analyses presented in this manuscript.</p><p>Data source clarification:&nbsp;The manuscript analyses are based on the 2023 commercial metabolomics report, which was generated from the complete original raw data at that time. The raw data recovered in 2026 are deposited in MetaboLights (MTBLS15811) and in the Zenodo record for archival and transparency purposes. A small number of recovered files have reduced scan counts due to the original corruption; however, all files can be opened, and this does not affect the manuscript conclusions, which rely on the 2023 commercial report.</p>
+Study Submission Date	2026-09-25
+Study Public Release Date	2026-10-08
+Study File Name	s_MTBLS15811.txt
+Comment[Created At]	2026-08-15
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q Exactive HF-X	Gallus gallus	cecum	experimental sample	pooled quality control sample	untargeted analysis	Metabolomics	Time Series	infection
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_9031	http://purl.obolibrary.org/obo/BTO_0000166	http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/NCIT_C181915	http://www.ebi.ac.uk/efo/EFO_0000544
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	BTO	CHMO		MS	EDAM	NCIT	EFO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type	omics-type	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jianmei Li, Ming Xu, Haiyu Shen, Jian Lu, Wei Han, Xinhong Dou and Liang Qu
+Study Publication Title	Integrated cecal microbiota and metabolome analyses reveal stage-specific microbiota-metabolite associations underlying host responses during Eimeria tenella infection in Wenchang chickens
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Time point	Breed
+Study Factor Type	treatment	timepoint	breed
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0005238
+Study Factor Type Term Source REF	EFO	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15811_LC-MS_positive_reverse-phase.txt	a_MTBLS15811_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 150 mm; Waters);reverse phase;positive;100-1000;Thermo Scientific Q Exactive;electrospray ionization;orbitrap	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 150 mm; Waters);reverse phase;negative;100-1000;Thermo Scientific Q Exactive
+Comment[Assay Field Default Unit]	;;;;;;;	;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000806;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;;http://purl.obolibrary.org/obo/MS_1000073;	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000806;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;;MTBLS;	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Measurement Type]		
+Comment[Measurement Type Term Source REF]		
+Comment[Measurement Type Term Accession Number]		
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Cecal content samples were collected from three chicken breeds—Wenchang chicken (WCC), recessive white feather chicken (RWFC), and white ear yellow chicken (WEYC)—at 26 days of age. For each breed, 60 birds were randomly allocated into two groups: an infected group (n = 30) and a non-infected control group (n = 30), with 5 replicate pens of 6 birds each. The infected group was orally inoculated with 1 mL PBS containing 50,000 sporulated E. tenella oocysts, while the control group received an equivalent volume of PBS. At 2, 4, and 7 days post-infection (dpi), one bird was randomly selected from each replicate pen per group per breed (n = 5 per group per time point per breed). Birds were euthanized by CO2 inhalation followed by cervical dislocation. Immediately after euthanasia, cecal contents were collected and snap-frozen in liquid nitrogen. All samples were stored at −80 °C until metabolomics analysis. A total of 90 cecal content samples (3 breeds × 2 groups × 3 time points × 5 replicates) were collected for metabolomics analysis.</p>	<p>Chromatographic separation was performed on a Vanquish UHPLC system (Thermo Fisher Scientific, Waltham, MA, USA) using an ACQUITY UPLC HSS T3 reverse-phase column (2.1 × 150 mm, 1.8 µm; Waters). The mobile phases consisted of 0.1% formic acid in water and 0.1% formic acid in acetonitrile for the positive ion mode, and 5 mM ammonium formate in water and acetonitrile for the negative ion mode. The flow rate was 0.25 mL/min, the column temperature was 40 °C, and the injection volume was 2 µL.</p>	<p>Raw data were converted to mzXML format by MSConvert (ProteoWizard v3.0.8789) and processed using the R XCMS package for peak detection, retention time correction, and alignment. Multivariate statistical analyses, including principal component analysis (PCA) and orthogonal partial least-squares discriminant analysis (OPLS-DA), were performed using the R package ropls (version 1.6.2). Differential metabolites were screened using a two-tiered strategy: P &lt; 0.05 and VIP &gt; 1.0 for 2 dpi; VIP &gt; 1.0, |log2 fold change| &gt; 1, and FDR-adjusted P &lt; 0.05 for 4 dpi and 7 dpi.</p>	<p>Cecal content samples were thawed on ice. Metabolites were extracted using pre-chilled methanol/acetonitrile (1:1, v/v). A constant volume of internal standard solution was added to all samples prior to extraction; however, the exact identity and concentration of the internal standard were not documented. After centrifugation, the supernatants were collected. Pooled quality control (QC) samples were prepared by pooling equal aliquots of all samples. No solvent blank or external standard information was recorded.</p>	<p>Mass spectrometry detection was performed on a Q Exactive HFX Orbitrap mass spectrometer (Thermo Fisher Scientific, Waltham, MA, USA) equipped with an electrospray ionization (ESI) source. Data were acquired in alternating positive and negative ionization modes over an m/z range of 100–1000. The key parameters were set as follows: spray voltage, +3.50 kV for the positive mode and -2.50 kV for the negative mode; sheath gas pressure, 30 arb; auxiliary gas flow, 10 arb; capillary temperature, 325 °C. The exact resolution setting for full MS scans was not recorded in the original laboratory records.</p>	<p>Metabolite identification was performed using the R XCMS package. The acquired MS/MS spectral data were matched against the mzCloud, Human Metabolome Database (HMDB), MassBank, LipidMaps, Kyoto Encyclopedia of Genes and Genomes (KEGG) databases, and an in-house database.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li
+Study Person First Name	Jianmei
+Study Person Mid Initials	
+Study Person Email	jianmeili157@sina.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Jiangsu Institute of Poultry Science
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0009-0000-5736-4348

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://www.ebi.ac.uk/ols4/api
+Term Source Version						
+Term Source Description	Experimental Factor Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS12854
+Investigation Title	Metabolome profiling by untargeted metabolomics and biomarker panel selection using machine-learning for patients in different stages of peripheral neuropathy induced by oxaliplatin
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-14
+Investigation Public Release Date	2025-08-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12854
+Study Title	Metabolome profiling by untargeted metabolomics and biomarker panel selection using machine-learning for patients in different stages of peripheral neuropathy induced by oxaliplatin
+Study Description	<p>Background: Oxaliplatin-induced peripheral neuropathy (OIPN) poses a significant challenge for patients with colorectal tumor, often resulting in treatment interruption or discontinuation and subsequent treatment failure. Herein, a longitudinal untargeted metabolomic study to reveal the metabolomic profiles and biomarkers associated with the progression of OIPN. Methods: A prospective cohort of 129 colorectal cancer patients receiving oxaliplatin-based chemotherapy was stratified into four OIPN severity grades (Level 0-3). Serum samples underwent untargeted LC-MS/MS metabolomic analysis, detecting 521 metabolites. Multivariate statistical models and SHAP-guided random forest algorithms were employed to prioritize biomarkers. Machine learning validation included six classifiers assessed via ROC-AUC. Results: The cumulative dose of Oxaliplatin chemotherapy plays an important role in OIPN. At the same time, our findings implied that the occurrence of OIPN may be associated with the progression of the disease and the patients' tumor markers (CEA, CA19-9, CA72-4), as well as immune response and inflammation (ANC, PLT), and metabolic and liver function abnormalities (GGT and UA) (P&lt;0.05).Multivariate statistical analysis combined with SHAP-guided machine learning identified six biomarkers, including thiabendazole, 1-methylxanthine, imidazol-5-yl-pyruvate, 5-hydroxypentanoic acid, spermidine, and 4'-oxolividamine that consistently distinguished OIPN patients (Level 1-3) from non-OIPN controls (Level 0). Machine learning models, validated across six classifiers, demonstrated near-perfect discrimination for early-stage OIPN (AUC nearly 1). However, differentiation between intermediate OIPN grades (Level 1 vs 2, Level 1 vs 3, Level 2 vs 3) yielded lower predictive accuracy (AUC: 0.549–0.843), likely due to cohort size limitations and reliance on subjective sensory-based grading. Pathway enrichment analysis highlighted dysregulation in ABC transporters, central carbon metabolism in cancer, amino acid metabolism, and linoleic acid metabolism, suggesting potential roles in OIPN pathogenesis. Conclusions: These findings suggest that the selected biomarkers could serve as a foundation for the prediction and management of OIPN in colorectal cancer patients.</p>
+Study Submission Date	2025-08-14
+Study Public Release Date	2025-08-14
+Study File Name	s_MTBLS12854.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-08-14
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Biomarkers	Machine Learning	Acute Oxaliplatin-Induced Peripheral Neuropathy Measure
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://id.nlm.nih.gov/mesh/D015415	http://purl.obolibrary.org/obo/NCIT_C176231	http://purl.obolibrary.org/obo/NCIT_C166144
+Study Design Type Term Source REF	MTBLS	mesh	NCIT	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yu-jiao Hua, Ying Zhang, Rui-Rong Wu, Juan Lv, Yan Zhang, Yan-yan Chen, Yong-juan Ding, Jing-hua Chen
+Study Publication Title	Metabolome profiling by untargeted metabolomics and biomarker panel selection using machine-learning for patients in different stages of peripheral neuropathy induced by oxaliplatin
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12854_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12854_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>During the period from August 2022 to July 2023, serum samples were gathered from 129 individuals with colorectal cancer who were receiving chemotherapy with oxaliplatin at the Affiliated Hospital of Jiangnan University. Blood samples were collected from each patient</p><p>while they were fasting and were promptly stored in tubes containing EDTA to prevent coagulation. To maintain the integrity of the sample processing, the blood samples were subjected to centrifugation at 1500×g for a 10 mins duration at room temperature. Following centrifugation, the serum was carefully separated, aliquoted, and cryopreserved at -80 degree.</p>	<p>1. Thaw the experimental sample at 4℃, vortex the sample for 1 min after thawing, and mix</p><p>evenly;</p><p>2. Accurately transfer an appropriate amount of sample into a 2 mL centrifuge tube;</p><p>3. Add 400 µL methanol and vortex for 1 min;</p><p>4. Centrifuge for 10 min at 12,000 rpm and 4 °C,take all the supernatant transfer it to a new 2 mL</p><p>centrifuge tube, concentrate and dry it;</p><p>5. Add 150 µL of 2-chloro-l-phenylalanine (4 ppm) solution prepared with 80% methanol water</p><p>to redissolve the sample, filter the supernatant by 0.22 μm membrane and transfer into the</p><p>detection bottle for LC-MS detection.</p>	<p>The LC analysis was performed on a Vanquish UHPLC System (Thermo Fisher Scientific, USA).</p><p>Chromatography was carried out with an ACQUITY UPLC ® HSS T3 (2.1×100 mm, 1.8 µm)</p><p>(Waters, Milford, MA, USA). The column maintained at 40 ℃. The flow rate and injection volume were set at 0.3 mL/min and 2 μL, respectively. For LC-ESI (+)-MS analysis, the mobile phases consisted of (B2) 0.1% formic acid in acetonitrile (v/v) and (A2) 0.1% formic acid in water (v/v). Separation was conducted under the following gradient: 0~1 min, 8% B2; 1~8 min, 8%~98% B2; 8~10 min, 98% B2; 10~10.1 min, 98%~8% B2; 10.1~12 min, 8% B2. For LC-ESI (-)-MS analysis, the analytes was carried out with (B3) acetonitrile and (A3) ammonium formate (5mM). Separation was conducted under the following gradient: 0~1 min, 8% B3; 1~8 min, 8%~98% B3; 8~10 min, 98% B3; 10~10.1 min, 98%~8% B3; 10.1~12 min, 8% B3 .</p>	<p>Mass spectrometric detection of metabolites was performed on Orbitrap Exploris 120 (Thermo</p><p>Fisher Scientific, USA) with ESI ion source. Simultaneous MS1 and MS/MS (Full MS-ddMS2 mode,</p><p>data-dependent MS/MS) acquisition was used. The parameters were as follows: sheath gas</p><p>pressure, 40 arb; aux gas flow, 10 arb; spray voltage, 3.50 kV and -2.50 kV for ESI(+) and ESI(-),</p><p>respectively; capillary temperature, 325 ℃; MS1 range, m/z 100-1000; MS1 resolving power,</p><p>60000 FWHM; number of data dependant scans per cycle, 4; MS/MS resolving power, 15000</p><p>FWHM; normalized collision energy, 30%; dynamic exclusion time, automatic .</p>	<p>Material identification was conducted by searching and comparing spectral databases such as HMDB, massbank, LipidMaps, mzcloud, KEGG, and Nomi Metabolism's self built metabolite standard database.</p>	<p>Compare and match the metabolites containing secondary spectra in the quantitative list with the fragment ion information of each secondary spectrum in the database to achieve secondary qualitative identification of metabolites. In this test, a total of 521 metabolites were identified. The specific metabolite identification table can be found in:</p><p>(1) Metabolite identification quantitative list. xlsx. A data matrix containing information on the mass to charge ratio (m/z), retention time (rt), and peak area (intensity) of metabolites identified at the secondary level. </p><p>(2) Primary and secondary identification of metabolites</p><p>Summary Table. xlsx. A data matrix containing information on the mass to charge ratio (m/z), retention time (rt), and peak area (intensity) of primary and secondary identified metabolites.</p><p>&nbsp;The matching diagram for secondary substance identification can be found in the folder of identification diagrams. The identification chart folder contains identification matches for each substance</p><p>The red mass spectrum represents the information collected in the database, while the blue mass spectrum represents the experimental detection information. Select secondary metabolites from the identification results, and based on the results of primary differential analysis, screen according to the set P value and VIP threshold to obtain secondary differential metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hua
+Study Person First Name	Yujiao
+Study Person Mid Initials	
+Study Person Email	huayujiao1020@163.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Affiliated Hospital of Jiangnan University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

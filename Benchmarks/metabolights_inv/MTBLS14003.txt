@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	ENVO	MI	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.87.0	2025-10-20		1.0.1		2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14003
+Investigation Title	Metabolome of aluminum-tolerant phosphate-solubilizing fungi
+Investigation Description	
+Investigation Submission Date	2026-03-09
+Investigation Public Release Date	2026-03-09
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14003
+Study Title	Metabolome of aluminum-tolerant phosphate-solubilizing fungi
+Study Description	<p>We constructed a bacterial fungal synthetic community and found that it has stronger phosphorus solubilization ability than a single bacterium or fungus. Among them, fungi mainly play a role in phosphorus solubilization, while bacteria can promote fungal phosphorus solubilization. Through metabolomics, the mechanism of fungal phosphorus solubilization is analyzed to further explore whether fungi utilize bacterial metabolites to promote phosphorus solubilization. It was found that fungi mainly utilize organic acids to dissolve phosphorus, while bacterial metabolite whey acid can be utilized by fungi to promote their ability to dissolve phosphorus.</p>
+Study Submission Date	2026-03-09
+Study Public Release Date	2026-03-09
+Study File Name	s_MTBLS14003.txt
+Comment[Created At]	2026-03-03T03:12:40.452451
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Aluminum	Fungi	phosphate
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C93162	http://purl.obolibrary.org/obo/NCBITaxon_4751	http://purl.obolibrary.org/obo/CHEBI_26020
+Study Design Type Term Source REF	NCIT	EFO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Chong Liu, Dan Wang, Cui-Cui Li, Wang-Xi Li, Ya-Ying Li, Yu-Sheng Lu, Kai-Zhi Xie, Hang-Tao Wu, Li-Li Sun, Chang-Min Zhou, Wan-Ling Li, Jie-Xin Zhang, Huan-Long Peng, Chao-Hong Shi, Kun Zhang, Wen-Jie Gu
+Study Publication Title	Cross-feeding in fungi-bacteria consortia contributed to the decoupling of phosphorus-aluminum conflict in acidic soils
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Bacteria and fungi
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14003_LC-MS_positive__metabolite_profiling.txt	a_MTBLS14003_LC-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive	Liquid Chromatography MS - negative
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic conditions: 3 μL of the sample was separated on an HSS T3 column (100 mm × 2.1 mm i.d., 1.8 μm, Waters, USA) and then subjected to mass spectrometry detection. Mobile phase A is 95% water+5% acetonitrile (containing 0.1% formic acid), and mobile phase B is 47.5% acetonitrile+47.5% isopropanol+5% water (containing 0.1% formic acid). The flow rate is 0.40 mL/min, and the column temperature is 40℃.&nbsp;</p>	<p>The raw data was imported into the metabolomics processing software ProgenesQI v3.0 (Waters Corporation, Milford, USA). Baseline filtering, peak identification, integration, retention time correction, peak alignment, etc. are used to obtain the final results including retention time, mass to charge ratio, and peak intensity. A data matrix of degree and other information. </p>	<p>The supernatant (100 μL) was added with 400 μL extraction solution (methanol: water=4:1) containing 0.02 mg mL-1 of internal standard (L-2-chloroalanine). The mixture was ultrasonically extracted for 30 min (5℃, 40 KHz), centrifuged for 15 min (4℃, 13000 g), blow-dried with nitrogen, and then dissolved with 100 μL solution (acetonitrile: water=1:1). The extraction was centrifuged for 10 min, and the supernatant was transferred to an injection vial with an inner tube for UPLC-MS (UHPLC-Q Exactive HF-X, Thermos, USA) analysis.</p>	<p>Mass spectrometry conditions: The sample mass spectrometry signal is collected using positive and negative ion scanning modes, with a mass scanning range of 70-1050 m/z. The sheath gas flow rate is 50psi, the auxiliary gas flow rate is 13 psi, the auxiliary gas heating temperature is 425℃, the positive mode ion spray voltage is set to 3500 V, the negative mode ion spray voltage is set to -3500 V, the ion transfer tube temperature is 325℃, and the normalized collision energy is 20-40-60V cyclic collision energy. The resolution of primary mass spectrometry is 60000, and the resolution of secondary mass spectrometry is 7500. Data is collected using DDA mode.</p>	<p>Afterwards, the software was used for feature peak search and identification, and the MS and MS/MS mass spectrometry information was compared with the representative data. Match with the Xie database, set the MS mass error to less than 10 ppm, and identify metabolites based on the secondary mass spectrometry matching score.</p>	<p>Fungi <em>T. fuscoviridis</em><strong> </strong>were cultured in PKO medium, and the supernatant was collected to conduct metabolomics analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chong	Wen-Jie
+Study Person First Name	Liu	Gu
+Study Person Mid Initials		
+Study Person Email	liuchong1990@gdaas.cn	guwenjie0818@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		Guangdong Academy of Agricultural Sciences
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]		https://ror.org/01rkwtz72

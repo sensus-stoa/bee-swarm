@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	11110	CHMO	EFO	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.88.0		2026-03-03			2025-12-03	25.06e	2025-12-18
+Term Source Description		Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12768
+Investigation Title	Targeting arginine metabolism reverses bone immunosuppressive microenvironment and metastasis in ARID1A-deficient triple negative breast cancer
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-24
+Investigation Public Release Date	2026-03-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12768
+Study Title	Targeting arginine metabolism reverses bone immunosuppressive microenvironment and metastasis in ARID1A-deficient triple negative breast cancer
+Study Description	<p>Bone metastasis is a lethal consequence of breast cancer. AT-rich interaction domain 1A gene (ARID1A), a subunit of the switch/sucrose non-fermentable (SWI/SNF) complex, regulates immunosuppressive tumor microenvironment. ARID1A deficient triple negative breast cancer promotes bone metastasis.To further explore the mechanisms underlying ARID1A deficiency-induced bone metastasis, we performed integrated metabolomic and transcriptome analyses on ARID1A-NC and ARID1A-KO cells.</p>
+Study Submission Date	2025-07-24
+Study Public Release Date	2026-03-24
+Study File Name	s_MTBLS12768.txt
+Comment[Created At]	2025-07-23T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ARID1A	triple-negative breast cancer	bone metastasis
+Study Design Type Term Accession Number	http://identifiers.org/hgnc/11110	http://www.ebi.ac.uk/efo/EFO_0005537	http://www.ebi.ac.uk/efo/EFO_0009870
+Study Design Type Term Source REF	11110	EFO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Shuangyue Pan, Jinyan Wang, Boya Wang, Fangqian Wang, Qingjian Chen, Tiantian Liu, Aima Zhang, Shenyuqi Wu, Bin Li, Hai Hu, Mengdi Yang, Zhonghua Tao, Xichun Hu
+Study Publication Title	Targeting arginine metabolism reverses bone immunosuppressive microenvironment and metastasis in ARID1A-deficient triple negative breast cancer
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	ARID1A
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12768_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12768_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Equal numbers of ARID1A-NC and ARID1A-KO cells were cultured for 48 hours, then collected and frozen in liquid nitrogen.</p>	<p>The cell pellets (about 10^7 cells) were taken, mixed with 1000 μL of extraction solution (MeOH:ACN:H2O, 2:2:1 (v/v)), the extraction solution contain deuterated internal standards, the mixed solution were vortexed for 30 s and incubated in liquid nitrogen for 1 min. The samples were then allowed to thaw at room temperature and vortexed for 30 s. This freeze–thaw cycle was repeated three times.Then the samples were sonicated for 10 min in 4 ℃ water bath, and</p><p>incubated for 1 h at -40 ℃ to precipitate proteins. The samples were centrifuged at 12000 rpm (RCF=13800(×g),R= 8.6cm) for 15 min at 4 ℃. The supernatant was transferred to a fresh glass vial for analysis.</p>	<p>For polar metabolites, LC-MS/MS analyses were performed using an UHPLC system (Vanquish, Thermo Fisher Scientific) with a Waters ACQUITY UPLC BEH Amide (2.1 mm × 50 mm, 1.7 μm) coupled to Orbitrap Exploris 120 mass spectrometer (Orbitrap MS, Thermo). The mobile phase consisted of 25 mmol/L ammonium acetate and 25 ammonia hydroxide in water and acetonitrile. The auto-sampler temperature was 4 ℃, and the injection volume was 2 μL.</p>	<p>The Orbitrap Exploris 120 mass spectrometer was used for its ability to acquire MS/MS spectra on information-dependent acquisition (IDA) mode in the control of the acquisition software (Xcalibur, Thermo). In this mode, the acquisition software continuously evaluates the full scan MS spectrum. The ESI source conditions were set as following: sheath gas flow rate as 50 Arb, Aux gas flow rate as 15 Arb, capillary temperature 320 ℃, full MS resolution as 60000, MS/MS resolution as 15000, collision energy: SNCE 20/30/40, spray voltage as 3.8 kV (positive) or -3.4 kV (negative), respectively.</p>	<p>The raw data were converted to the mzXML format using ProteoWizard and processed with an in-house program. which was developed using R and based on XCMS, for peak detection, extraction, alignment, and integration. The R package and the BiotreeDB V3.0 were applied in metabolite identification.</p>	<p>The raw data were converted to the mzXML format using ProteoWizard and processed with an in-house program. which was developed using R and based on XCMS, for peak detection, extraction, alignment, and integration. The R package and the BiotreeDB V3.0 were applied in metabolite identification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Pan	Wang	Hu
+Study Person First Name	Shuangyue	Boya	Xichun
+Study Person Mid Initials			
+Study Person Email	pansy1996@163.com	18305418898@163.com	huxichun2017@163.com
+Study Person Phone			
+Study Person Fax			
+Study Person Address	No. 270, Dong An Road, Shanghai,China	No.270, Dong An Road, Shanghai, China	No.270, Dong An Road, Shanghai, China
+Study Person Affiliation	Fudan University Shanghai Cancer Center	Fudan University Shanghai Cancer Center	Fudan University Shanghai Cancer Center
+Study Person Roles	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

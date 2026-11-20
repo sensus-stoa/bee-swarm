@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	MS	MSIO	MTBLS	NCIT	OBI	SNOMED	CHMO
+Term Source File	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl		https://www.ebi.ac.uk/ols4/api
+Term Source Version								
+Term Source Description	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations		
+INVESTIGATION
+Investigation Identifier	MTBLS8109
+Investigation Title	An Expanded Database of High-Resolution MS/MS Spectra for Lichen Derived Natural Products
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-06-30
+Investigation Public Release Date	2024-10-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8109
+Study Title	An Expanded Database of High-Resolution MS/MS Spectra for Lichen Derived Natural Products
+Study Description	<p>The history of lichen compound identification has long relied on techniques such as spot tests and TLC, which have been surpassed in sensitivity and accuracy by modern metabolomic techniques such as high-resolution MS/MS. In 2019, Olivier-Jimenez et al. released the Lichen DataBase (LDB), a library containing the Q-TOF MS/MS spectra of 251 metabolites on the GNPS and MetaboLights platforms, that has been widely used for the identification of lichen-derived unknowns. To increase the compound coverage, we have generated the Orbitrap MS/MS spectra of a further 534 lichen-derived compounds from the metabolite library of Jack Elix, housed at the CANB herbarium (Canberra, Australia). This included 399 unique metabolites that are not in the LDB, bringing the total number combined to 650. Technical validation was achieved by investigating the compounds in three Australian lichen extracts using the Library Search and Molecular Networking tools on the GNPS platform. This update provides a much larger database for lichen compound identification, which we envisage will allow refining of the chemotaxonomy framework and contribute to compound discovery.</p>
+Study Submission Date	2023-06-30
+Study Public Release Date	2024-10-09
+Study File Name	s_MTBLS8109.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lichen	Natural Product	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://snomed.info/id/88996004	http://purl.obolibrary.org/obo/NCIT_C66892	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	SNOMED	NCIT	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Joe Bracegirdle, Jack Elix, Udayangani Mawalagedera, Yit-Heng Chooi, Cécile Gueidan
+Study Publication Title	An Expanded Database of High-Resolution MS/MS Spectra for Lichen Derived Natural Products
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Adduct	Chemical class
+Study Factor Type	adduct ion	Class
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1000353	http://purl.obolibrary.org/obo/NCIT_C25346
+Study Factor Type Term Source REF	MS	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8109_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number					http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF			MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>The compounds were sourced from the collection of Jack Elix, containing over 50 years of natural isolates and semi-synthetic compounds derived from lichens. These compounds are currently hosted at the CANB herbarium (Canberra, Australia) and stored dry in glass containers at room temperature. Subsamples of each pure compound were taken with clean metal spatulas, transferred to Eppendorf tubes and weighed with an ABT-22-4M (Kern) precision balance for a target amount of 0.1-1 mg. For compounds with little material available, 50 µL of LCMS-grade MeOH were added to the glass container and 25 µl were pipetted back into an Eppendorf tube after mixing. Both the glass container and the Eppendorf tubes were then let to evaporate in a fume hood to dry the samples. All samples reconstituted to 1 mg/mL in LCMS-grade MeOH. They were then sonicated, centrifuged and the supernatant was transferred to 1.5 mL LCMS vials for analysis.</p>	<p>Lichens are typically extracted in acetone. Various methods of purification over the last 40 years in the lab of Jack Elix</p>	<p>A 1 µL sample was injected and analyzed using a Thermo Vanquish ultra-high performance liquid chromatography (UHPLC) system (Thermo Fisher Scientific, USA). The column used was an Agilent InfinityLab Poroshell C18 (100 x 2.1 mm, 2.7 µm particle size) with mobile phase A being 0.1% FA Milli-Q H2O and mobile phase B being 0.1% FA in ACN. Following 1 min at 5% B, a gradient from 5% B to 95% B from over 3 min was employed for elution, followed by 100% B for 2 min and then re-equilibration at 5% B for 4 mins, all with a flow rate of 0.3 mL/min. A blank MeOH sample was run at the beginning of every batch and every 10 samples otherwise.</p>	<p>Samples were analyzed using a Thermo Orbitrap Exploris 120. Polarity switching was utilized for each run, collecting data in both positive and negative for the first scan event, followed by four data-dependent MS/MS scans of the four most intense ions in the previous scan. Ions were excluded following selection for the next 4 s. For all ions, merged spectra were generated from a combination of individual collision events at 10, 35 and 80 eV utilizing an isolation window of m/z&nbsp;1.4. Internal mass calibration used Thermo EASY-IC. A scan range of 140-2000 m/z was utilized with an orbitrap resolution of 60,000 for MS events and 15,000 for MS/MS events. The ESI capillary voltage was set at 3500 V with a vaporizer temp of 350 °C and a ion transfer tube temp of 325 °C.</p>	<p>Files were saved in the '.raw' file from the OE120. Next the individual ion for the compound was extracted, and the single ms2 run was saved as a '.raw' file. MSConvert was then used to convert the file to mzXML.</p>	<p>Metabolites were identified by Jack Elix and collegues over the last 40 years using a combination of NMR, MS, degradation and synthetic techniques. The MS/MS spectra were manually inspected.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Bracegirdle
+Study Person First Name	Joe
+Study Person Mid Initials	
+Study Person Email	joe_bracegirdle@live.com
+Study Person Phone	61493426225
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	University of Western Australia
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

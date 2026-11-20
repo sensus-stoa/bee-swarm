@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	UPaUPA	ATOL	NCIT	NCBITAXON	EFO			MTBLS	PW	MCO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI						http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/ncit.owl	https://www.ebi.ac.uk/metabolights/			
+Term Source Version	29						18.10e	18.10e	1.0			
+Term Source Description	Ontology for Biomedical Investigations						NCI Thesaurus OBO Edition	NCI Thesaurus OBO Edition	Metabolights Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS3887
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-11-28
+Investigation Public Release Date	2022-01-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS3887
+Study Title	Glycolysis/gluconeogenesis specialization in microbes is driven by biochemical constraints of flux sensing
+Study Description	Central carbon metabolism is highly conserved across microbial species, but can catalyze very different pathways depending on the organism and their ecological niche. Here, we study the dynamic reorganization of central metabolism after switches between the two major opposing pathway configurations of central carbon metabolism, glycolysis, and gluconeogenesis in Escherichia coli, Pseudomonas aeruginosa, and Pseudomonas putida. We combined growth dynamics and dynamic changes in intracellular metabolite levels with a coarse-grained model that integrates fluxes, regulation, protein synthesis, and growth and uncovered fundamental limitations of the regulatory network: After nutrient shifts, metabolite concentrations collapse to their equilibrium, rendering the cell unable to sense which direction the flux is supposed to flow through the metabolic network. The cell can partially alleviate this by picking a preferred direction of regulation at the expense of increasing lag times in the opposite direction. Moreover, decreasing both lag times simultaneously comes at the cost of reduced growth rate or higher futile cycling between metabolic enzymes. These three trade-offs can explain why microorganisms specialize for either glycolytic or gluconeogenic substrates and can help elucidate the complex growth patterns exhibited by different microbial species.
+Study Submission Date	2021-11-28
+Study Public Release Date	2022-01-11
+Study File Name	s_MTBLS3887.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	lag time	Flux	Microbiome	Glycolysis	gluconeogenesis pathway	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://opendata.inra.fr/ATOL/ATOL_0000140	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C68564	http://purl.obolibrary.org/obo/NCIT_C28152	http://purl.obolibrary.org/obo/PW_0000641	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MTBLS	ATOL	MTBLS	NCIT	NCIT	PW	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	34994048
+Study Publication DOI	10.15252/msb.202110704
+Study Publication Author List	Schink Severin Josef, Christodoulou Dimitris, Mukherjee Avik, Athaide Edward, Brunner Viktoria, Fuhrer Tobias, Bradshaw Gary Andrew, Sauer Uwe, Basan Markus
+Study Publication Title	Glycolysis/gluconeogenesis specialization in microbes is driven by biochemical constraints of flux sensing
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Timepoint	Optical Density	Culture Volume	concentration
+Study Factor Type	timepoint	optical density	Culture Volume	concentration
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/MCO_0000077	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0002820
+Study Factor Type Term Source REF	EFO	MCO	MTBLS	CHMO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS3887_LC-MS__hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Bacterial cultures </strong></p><p>Strains used in this paper are wild-type <strong>Escherichia coli </strong>K-12 NCM3722<strong>[1]</strong>, Pseudomonas aeruginosa PAO1<strong>[2]</strong>, and Pseudomonas putida NIST0129. The culture medium used in this study is N-C- minimal medium<strong>[3]</strong>, containing K2SO4 (1 g), K2HPO4-3H2O (17.7 g), KH2PO4 (4.7 g), MgSO4-7H2O (0.1 g), and NaCl (2.5 g) per litre. The medium was supplemented with 20 mM NH4Cl, as the nitrogen source, and either of the following carbon sources: 20 mM glucose-6-phosphate, 20 mM gluconate, 0.2% glucose, 20 mM succinate, 20 mM acetate, 20 mM citrate, 20 mM malate, or 20 mM fumarate. </p><p><br></p><p>Growth was then carried out at 37 °C in a water bath shaker at 200 rpm, in silicate glass tubes (Fisher Scientific) closed with plastic caps (Kim Kap). Cultures spent at least 10 doublings in exponential growth in pre-shift medium. For growth shifts, cultured were transferred to a filter paper and washed twice with pre-warmed post-shift medium. Cells were resuspended from the filter paper in post-shift medium and subsequently diluted to an OD of about 0.05</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Soupene E, van Heeswijk WC, Plumbridge J, Stewart V, Bertenthal D, Lee H, Prasad G, Paliy O, Charernnoppakul P, Kustu S. Physiological studies of Escherichia coli strain MG1655: growth defects and apparent cross-regulation of gene expression. J Bacteriol. 2003 Sep;185(18):5611-26. doi: 10.1128/JB.185.18.5611-5626.2003. PMID: 12949114</p><p><strong>[2] </strong>Stover CK, Pham XQ, Erwin AL, Mizoguchi SD, Warrener P, Hickey MJ, Brinkman FS, Hufnagle WO, Kowalik DJ, Lagrou M, Garber RL, Goltry L, Tolentino E, Westbrock-Wadman S, Yuan Y, Brody LL, Coulter SN, Folger KR, Kas A, Larbig K, Lim R, Smith K, Spencer D, Wong GK, Wu Z, Paulsen IT, Reizer J, Saier MH, Hancock RE, Lory S, Olson MV. Complete genome sequence of Pseudomonas aeruginosa PAO1, an opportunistic pathogen. Nature. 2000 Aug 31;406(6799):959-64. doi: 10.1038/35023079. PMID: 10984043</p><p><strong>[3]</strong> Csonka LN, Ikeda TP, Fletcher SA, Kustu S. The accumulation of glutamate is necessary for optimal growth of Salmonella typhimurium in media of high osmolality but not induction of the proU operon. J Bacteriol. 1994 Oct;176(20):6324-33. doi: 10.1128/jb.176.20.6324-6333.1994. PMID: 7929004; PMCID: PMC196974</p>	<p>Each metabolite sample was filtered, and the filter was immediately plunged in 4 ml ice cold Methanol (40 %)+Acetonitrile (40 %)+water (20 %) and kept in 50 ml tube. Bacteria were washed off from the filter by pipetting, and the solution was transferred to 15 ml tube. Original 50 ml tube was further washed with 4 ml of ice cold Methanol+Acetonitrile+Water mix and added to respective 15 ml tube (total 8 ml). Each sample was dried by speed vac, and dried extracts were sent for Mass spec analysis.</p>	<p>The dried metabolite extracts were resuspended in 150 µL MilliQ water, centrifuged at 4 °C, 10,000 rpm for 10 min, and 100 µL precipitate-free supernatant was transferred to a master 96-well plate. 25 µL of the master plate were transferred to a 96-well plate for acquisition, of which 10 µL were injected into a Waters Acquity ultraperformance liquid chromatography (UPLC) system (Waters) with a Waters Acquity T3 column coupled to a Thermo TSQ Quantum Ultra triple quadrupole instrument (Thermo Fisher Scientific) as described previously<strong>[1]</strong>. Compound separation was achieved using a gradient of 2 mobile phases: A, 10 mM tributylamine (ion-pairing agent), 15 mM acetate and 5% (v/v) methanol in water; and B, 2-propanol. The following gradient was applied: 0-5 min 0% B; 10 min 2% B; 11 min 9% B; 16 min 9% B; 18 min 25% B; 19 min 50% B; 25 min 50% B; 26 min 0% B; 32 min 0% B; 36 min 0% B.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Buescher JM, Moco S, Sauer U, Zamboni N. Ultrahigh performance liquid chromatography-tandem mass spectrometry method for fast and robust quantification of anionic and aromatic metabolites. Anal Chem. 2010 Jun 1;82(11):4403-12. doi: 10.1021/ac100101d. PMID: 20433152</p>	<p>Data was acquired in negative ionization mode using previously published MRM settings<strong>[1]</strong>.&nbsp;Selective and sensitive detection of compounds was achieved by coupling the liquid chromatograph to a Thermo TSQ Quantum Ultra triple quadrupole instrument (Thermo Fisher Scientific, Waltham, MA, United States) using a heated electrospray ionization source (Thermo Fisher Scientific, Waltham, MA, United States). The mass spectrometer was operated in negative mode with multiple reaction monitoring. Electrospray ionization parameters were optimized for 25% 2-propanol at a flow rate of 0.4 mL/min and used for the entire gradient: spray voltage 2500 V, sheath gas pressure 80 arbitrary units, aux gas pressure 50 arbitrary units, ion sweep gas pressure 5 arbitrary units, capillary temperature 380 °C, spray temperature 400 °C. Ion optics were set to 0.5 amu Q1 resolution, 0.5 amu Q3 resolution, 0.01 amu scan width, and 10 ms dwell time. SRM scans were organized in 11 time periods so that each compound could be detected for more than 1 min before and after expected retention time and a scan frequency of at least 2 Hz was maintained.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Buescher JM, Moco S, Sauer U, Zamboni N. Ultrahigh performance liquid chromatography-tandem mass spectrometry method for fast and robust quantification of anionic and aromatic metabolites. Anal Chem. 2010 Jun 1;82(11):4403-12. doi: 10.1021/ac100101d. PMID: 20433152</p>	<p><strong>Raw </strong>files were converted to <strong>eicML </strong>and peak integration was performed using an in-house software based on <strong>MatLab</strong>.</p>	<p>Metabolites were identified by MS/MS and retention time of standards as published previously<strong>[1].</strong> A dilution series of standards was used to calculate the concentrations of metabolites in the samples. The final intracellular concentration was calculated from the sample concentration and the extracted intracellular volume.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Buescher JM, Moco S, Sauer U, Zamboni N. Ultrahigh performance liquid chromatography-tandem mass spectrometry method for fast and robust quantification of anionic and aromatic metabolites. Anal Chem. 2010 Jun 1;82(11):4403-12. doi: 10.1021/ac100101d. PMID: 20433152</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Schink	Christodoulou	Mukherjee	Athaide	Brunner	Fuhrer	Bradshaw	Sauer	Basan
+Study Person First Name	Severin Josef	Dimitris	Avik	Edward	Viktoria	Tobias	Gary Andrew	Uwe	Markus
+Study Person Mid Initials									
+Study Person Email									
+Study Person Phone									
+Study Person Fax									
+Study Person Address									
+Study Person Affiliation									
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF									

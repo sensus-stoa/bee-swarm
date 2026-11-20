@@ -1,0 +1,112 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AGRO	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	PO
+Term Source File	http://purl.obolibrary.org/obo/agro.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/po.owl
+Term Source Version		2025-10-21	3.90.0			1.0.1		2026-05-13	26.02d	2026-05-08	
+Term Source Description	Agronomy Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Plant Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS14131
+Investigation Title	Untargeted LC–MS metabolomics analysis of sorghum root exudates under drought stress
+Investigation Description	
+Investigation Submission Date	2026-03-24
+Investigation Public Release Date	2026-06-09
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14131
+Study Title	Untargeted LC–MS metabolomics analysis of sorghum root exudates under drought stress
+Study Description	<p>This study presents an untargeted metabolomics analysis of root exudates from sorghum (Sorghum bicolor) under control and severe drought conditions. Samples were collected from experimental sites in Shanxi, China. The study aims to investigate metabolic changes in sorghum root exudates in response to drought stress.</p>
+Study Submission Date	2026-03-24
+Study Public Release Date	2026-06-09
+Study File Name	s_MTBLS14131.txt
+Comment[Created At]	2026-03-23
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-09
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	drought	plant	Sorghum bicolor	root	experimental blank	untargeted analysis	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Orbitrap Exploris 240
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/ENVO_1000745	https://w3id.org/biolink/vocab/Plant	NCBITaxon:4558	PO:0009005		http://purl.obolibrary.org/obo/MS_1003904	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002240
+Study Design Type Term Source REF	MSIO	AGRO		NCBITaxon	PO		MS	MTBLS	MTBLS
+Comment[Study Design Category]	submitter	submitter	submitter	Organism	Organism part	Sample type	measurement-type	Chromatography Instrument	Instrument
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Liandong Zhang
+Study Publication Title	Amino acid partitioned plant microbiome strategies sustain crop performance under drought
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	Growth stage	Variety
+Study Factor Type	treatment	timepoint	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14131_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS14131_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed on an ACQUITY UPLC HSS T3 column (100 mm × 2.1 mm, 1.8 μm, Waters). The mobile phases consisted of 0.1% formic acid in water (A) and acetonitrile (B). The flow rate was 0.40 mL/min and the column temperature was 40°C.</p>	<p>Raw data were processed to generate peak intensity matrices, including peak detection, alignment, filtering, and normalization. Missing values were imputed and features with high variability in quality control samples were removed.</p>	<p>Freeze-dried samples (100 mg) were extracted with 800 μL of methanol–water (4:1, v/v) containing an internal standard. Samples were homogenized using a cryogenic grinder, followed by ultrasonic extraction at low temperature. After centrifugation and standing, the supernatant was collected for subsequent analysis.</p>	<p>Mass spectrometric analysis was performed using an Orbitrap Exploris 240 mass spectrometer equipped with an electrospray ionization (ESI) source operating in both positive and negative modes. The scan range was m/z 70–1050.</p>	<p>Metabolites were annotated based on accurate mass and spectral matching against public databases, including the Kyoto Encyclopedia of Genes and Genomes (KEGG) and the Human Metabolome Database (HMDB).</p>	<p>Root exudate samples were collected from sorghum (Sorghum bicolor) grown under control and severe drought conditions across four growth stages in Shanxi, China. Roots were carefully washed to remove adhering soil and then incubated in sterile deionized water for 24 h to collect exudates. Collected samples were subsequently processed and stored under appropriate conditions prior to metabolomic analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang	Zhang
+Study Person First Name	Liandong	Liandong
+Study Person Mid Initials		
+Study Person Email	1141488604z@gmail.com	1141488604z@gmail.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address	No. 88 Zhongke Road, Chunxiao Town, Beilun District, Ningbo, Zhejiang 315800, China	No. 88 Zhongke Road, Chunxiao Town, Beilun District, Ningbo, Zhejiang 315800, China
+Study Person Affiliation	Institute of Urban Environment, Chinese Academy of Sciences	Institute of Urban Environment, Chinese Academy of Sciences
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Alternative Email]	ldzhang@iue.ac.cn	ldzhang@iue.ac.cn

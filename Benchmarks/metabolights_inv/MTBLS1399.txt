@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	OBI	GO	MTBLS	BTO	CHEBI	EFO	CHMO	UO	MS
+Term Source File	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/GO	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/MS
+Term Source Version	28	29	1358	1	22	80	113	5	42	86
+Term Source Description	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Gene Ontology	User defined terms	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Experimental Factor Ontology	Chemical Methods Ontology	Units of Measurement Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1399
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-12-02
+Investigation Public Release Date	2023-01-31
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1399
+Study Title	Energy-stress-mediated AMPK activation inhibits ferroptosis
+Study Description	<p>Energy stress depletes ATP and induces cell death. Here we identify an unexpected inhibitory role of energy stress on ferroptosis, a form of regulated cell death induced by iron-dependent lipid peroxidation. We found that ferroptotic cell death and lipid peroxidation can be inhibited by treatments that induce or mimic energy stress. Inactivation of AMP-activated protein kinase (AMPK), a sensor of cellular energy status, largely abolishes the protective effects of energy stress on ferroptosis in vitro and on ferroptosis-associated renal ischaemia-reperfusion injury in vivo. Cancer cells with high basal AMPK activation are resistant to ferroptosis and AMPK inactivation sensitizes these cells to ferroptosis. Functional and lipidomic analyses further link AMPK regulation of ferroptosis to AMPK-mediated phosphorylation of acetyl-CoA carboxylase and polyunsaturated fatty acid biosynthesis. Our study demonstrates that energy stress inhibits ferroptosis partly through AMPK and reveals an unexpected coupling between ferroptosis and AMPK-mediated energy-stress signalling.</p>
+Study Submission Date	2019-12-02
+Study Public Release Date	2023-01-31
+Study File Name	s_MTBLS1399.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ferroptosis	Lipidomics	Amp-activated protein kinase activity	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/GO_0097707	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/GO_0004679	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	GO	NCIT	GO	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	32029897
+Study Publication DOI	10.1038/s41556-020-0461-8
+Study Publication Author List	Lee H, Zandkarimi F, Zhang Y, Meena JK, Kim J, Zhuang L, Tyagi S, Ma L, Westbrook TF, Steinberg GR, Nakada D, Stockwell BR, Gan B.
+Study Publication Title	Energy-stress-mediated AMPK activation inhibits ferroptosis.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype	Gene knockout	Treatment	Replicate	Drug 1	Drug 1 concentration	Drug 2	Drug 2 concentration	Timepoint
+Study Factor Type	genotype	gene knockout	treatment	Replicate	drug	concentration	drug	concentration	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000506	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000683	http://purl.obolibrary.org/obo/CHEBI_23888	http://purl.obolibrary.org/obo/CHMO_0002820	http://purl.obolibrary.org/obo/CHEBI_23888	http://purl.obolibrary.org/obo/CHMO_0002820	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO	EFO	EFO	EFO	CHMO	EFO	CHMO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1399_LC-MS_achn_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1399_LC-MS_achn_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS1399_LC-MS_mef1_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1399_LC-MS_mef1_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS1399_LC-MS_mef2_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1399_LC-MS_mef2_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Primary MEFs were established from embryos at E13.5 as previously described<strong>[1]</strong>. MEFs were cultured in Dulbecco’s modified Eagle’s medium (DMEM) with 10% fetal bovine serum (FBS) and 1% penicillin/streptomycin at 37 °C in an incubator with a humidified atmosphere of 20% O2 and 5% CO2. The primary MEFs were immortalized by infection with SV40 large T antigen (LT-MEFs). MEFs were treated with vehicle (DMSO), 200 μM A769662, 25 μM TOFA, 2 μM erastin, 200 μM A769662 + 2 μM erastin or 25 μM TOFA + 2 μM erastin for 8 h. AMPK WT and DKO ACHN cells were treated with vehicle (DMSO) or 2 μM erastin for 11 h.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Lee H, Dai F, Zhuang L, Xiao ZD, Kim J, Zhang Y, Ma L, You MJ, Wang Z, Gan B. BAF180 regulates cellular senescence and hematopoietic stem cell homeostasis through p21. Oncotarget. 2016 Apr 12;7(15):19134-46. doi:10.18632/oncotarget.8102. PMID:26992241.</p>	<p>Lipids were extracted from each cell pellet using a modified Matyash<strong>[1]</strong> method, as described previously<strong>[2]</strong>. Briefly, MEFs&nbsp;were cultured in 0 mM glucose-containing media or treated with vehicle (DMSO), 2 mM AICAR, 200 μM A769662, 25 μM TOFA, 2 μM erastin, 200 μM A769662 + 2 μM erastin or 25 μM TOFA + 2 μM erastin for 8 h. AMPK WT and DKO ACHN cells were treated with vehicle (DMSO) or 2 μM erastin for 11 h. In addition, ACHN cells were treated with vehicle (DMSO), 20 μM dihomo-γ-linolenic acid or 20 μM arachidonic acid for 18 h.</p><p><br></p><p>Cells were homogenized in 250 μL cold methanol containing 0.01% butylated hydroxytoluene and 1 μL of SPLASH lipidomics internal standard mix (Avanti Polar Lipids, Inc.) with a microtip solicitor. Homogenized samples were transferred to fresh glass vials containing 850 μL of cold methyl-tert-butyl ether (MTBE) and vortex-mixed for 30 s. To enhance the lipid extraction efficiency, the samples were incubated on ice for 2 h on the shaker. After the addition of 200 μL of ice-cold water, the samples were incubated for 20 min on ice and centrifuged at 3000 rpm for 20 min at 4 °C. The upper phase containing the lipids was collected and dried down under a gentle stream of nitrogen gas. The dried samples were reconstituted with 2-propanol:acetonitrile:water (4:3:1, v/v/v and 0.01% butylatedhydroxytoluene) before LC-MS analysis.</p><p><br></p><p>A blank sample was generated with acetonitrile:water (50:50 v/v) and a quality control sample was prepared by combining 40 μL of each sample to assess the reproducibility of the features through the runs.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Matyash V, Liebisch G, Kurzchalia TV, Shevchenko A, Schwudke D. Lipid extraction by methyl-tert-butyl ether for high-throughput lipidomics. J Lipid Res. 2008 May;49(5):1137-46. doi:10.1194/jlr.D700041-JLR200. Epub 2008 Feb 16. PMID:18281723.</p><p><strong>[2]</strong> Zhang Y, Tan H, Daniels JD, Zandkarimi F, Liu H, Brown LM, Uchida K, O'Connor OA, Stockwell BR. Imidazole Ketone Erastin Induces Ferroptosis and Slows Tumor Growth in a Mouse Lymphoma Model. Cell Chem Biol. 2019 May 16;26(5):623-633.e9. doi:10.1016/j.chembiol.2019.01.008. Epub 2019 Feb 21. PMID:30799221.</p>	<p>Lipids were separated using an Acquity UPLC HSS T3 column (2.1 x 100 mm, 1.8 μm) over a 17-min gradient elution on a Waters Acquity UPLC I-Class system. Mobile phase A consisted of acetonitrile:water (60:40, v/v) and mobile phase B was 2 propanol:acetonitrile:water (85:10:5, v/v/v) both containing 10 mM ammonium acetate and 0.1% acetic acid. The gradient profile was 40% B for 1.5 min, 40-100% B in 10.5 min, 100% B for 3.0 min, 40% B in 1.0 min and 40% B for 1.0 min. The oven temperature was set at 55 °C and the flow rate was 400 μL/min. The injection volume was 6 μL using the flow-through needle mode. The quality control sample was injected between the samples and at the beginning and end of the run to monitor the performance and the stability of the MS platform.</p>	<p>The SYNAPT G2-Q-ToF mass spectrometer was operated in both positive and negative electrospray ionization modes. For the positive mode, a capillary voltage and sampling cone voltage of 3 kV and 32 V were used. The source and desolvation temperatures were kept at 120 and 500 °C, respectively. Nitrogen was used as the desolvation gas with a flow rate of 900 L/h. For the negative mode, a capillary voltage of 2 kV and a cone voltage of 30 V were used. The source temperature was 120 °C and the desolvation gas flow was set to 850 L/h. Depending on the ionization mode, the protonated molecular ion of leucine encephalin ([M+H]+, mass to charge ratio (m/z): 556.2771) or the deprotonated molecular ion ([M-H]-, m/z: 554.2615) was used as a lock mass for mass accuracy and reproducibility. The data were collected in duplicates in <strong>data-independent</strong> (<strong>MSE</strong>) mode over the mass range m/z 50-1600 Da. The quality control sample was also acquired in enhanced <strong>data-independent ion mobility</strong> (<strong>HDMSE</strong>) in both positive and negative modes for enhancing the structural assignment of lipid species. The electrospray ionization source settings for ion mobility were the same as described above. The travelling wave velocity was set to 650 m/s and the wave height was 40 V. The helium gas flow in the helium cell region of the ion-mobility spectrometry cell was set to 180 mL/min. Nitrogen, used as the drift gas, was held at a flow rate of 90 mL/min in the ion-mobility spectrometry cell. The low collision energy was set to 4 eV and the high collision energy was ramped from 25 to 65 eV in the transfer region of the T-Wave device to induce the fragmentation of mobility-separated precursor ions.</p>	<p>All <strong>raw</strong> data files were converted to <strong>netCDF</strong> format using the <strong>DataBridge</strong> tool implemented in <strong>MassLynx</strong> software (Waters, version 4.1). Then, the data were subjected to peak-picking, retention time alignment and grouping using the <strong>XCMS[1][2]</strong> package (version 3.0.2) in an <strong>R</strong> (version 3.4.4) environment. After retention time alignment and filling missing peaks, an output data frame was generated including the list of time-aligned detected lipid features (m/z and retention time) and the relative signal intensity (area of the chromatographic peak) in each sample.</p><p><br></p><p>Multivariate and univariate statistical analyses were performed using <strong>MetaboAnalyst[3]</strong> (version 4.0) and also in an <strong>R</strong> environment. Group differences were calculated using either a two-tailed parametric Welch's t test with a fold-change threshold of 1.5 (average signal intensities of treated over average signal intensities of vehicle groups) or one-way ANOVA. P-values were corrected for multiple hypothesis testing and a FDR of 0.05 or less was considered significant.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051.</p><p><strong>[2]</strong> Tautenhahn R, Böttcher C, Neumann S. Highly sensitive feature detection for high resolution LC/MS. BMC Bioinformatics. 2008 Nov 28;9:504. doi:10.1186/1471-2105-9-504. PMID:19040729.</p><p><strong>[3]</strong> Chong J, Soufan O, Li C, Caraus I, Li S, Bourque G, Wishart DS, Xia J. MetaboAnalyst 4.0: towards more transparent and integrative metabolomics analysis. Nucleic Acids Res. 2018 Jul 2;46(W1):W486-W494. doi:10.1093/nar/gky310. PMID:29762782.</p>	<p>The structural elucidation and validation of significant features were initially obtained by searching monoisotopic masses against the available online databases, such as <strong>METLIN[1]</strong>, <strong>LIPID MAPS[2]</strong> and <strong>HMDB[3]</strong> with a mass tolerance of 5 ppm. Fragment ion information obtained by tandem MS (UPLC-HDMSE) was used for the further structural elucidation of significantly changed lipid species. HDMSE data were processed using MSE data viewer (version 1.3, Waters Corp.).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Montenegro-Burke JR, Guijas C, Siuzdak G. METLIN: A Tandem Mass Spectral Library of Standards. Methods Mol Biol. 2020;2104:149-163. doi:10.1007/978-1-0716-0239-3_9. PMID:31953817.</p><p><strong>[2]</strong> Fahy E, Subramaniam S, Murphy RC, Nishijima M, Raetz CR, Shimizu T, Spener F, van Meer G, Wakelam MJ, Dennis EA. Update of the LIPID MAPS comprehensive classification system for lipids. J Lipid Res. 2009 Apr;50 Suppl(Suppl):S9-14. doi:10.1194/jlr.R800095-JLR200. Epub 2008 Dec 19. PMID:19098281.</p><p><strong>[3]</strong> Wishart DS, Feunang YD, Marcu A, Guo AC, Liang K, Vázquez-Fresno R, Sajed T, Johnson D, Li C, Karu N, Sayeeda Z, Lo E, Assempour N, Berjanskii M, Singhal S, Arndt D, Liang Y, Badran H, Grant J, Serra-Cayuela A, Liu Y, Mandal R, Neveu V, Pon A, Knox C, Wilson M, Manach C, Scalbert A. HMDB 4.0: the human metabolome database for 2018. Nucleic Acids Res. 2018 Jan 4;46(D1):D608-D617. doi:10.1093/nar/gkx1089. PMID:29140435.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Stockwell	Lee	Zandkarimi	Zhang	Meena	Kim	Zhuang	Tyagi	Ma	Westbrook	Steinberg	Nakada	Gan
+Study Person First Name	Brent	Hyemin	Fereshteh	Yilei	Jitendra Kumar	Jongchan	Li	Siddhartha	Li	Thomas F	Gregory R	Daisuke	Boyi
+Study Person Mid Initials													
+Study Person Email	bstockwell@columbia.edu												
+Study Person Phone	2128542948												
+Study Person Fax													
+Study Person Address	1208 NWC Building, 550 West 120th Street, M.C. 4846 New York, NY, 10027												
+Study Person Affiliation	Columbia University												
+Study Person Roles	Principal Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924												
+Study Person Roles Term Source REF	NCIT												

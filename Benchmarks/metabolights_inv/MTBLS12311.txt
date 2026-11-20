@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.85.0				2025-12-03	25.06e	2025-10-14
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12311
+Investigation Title	Comprehensive analysis of flavonoids metabolism and transcription in different parts of Houttuynia cordata
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-03-14
+Investigation Public Release Date	2026-01-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12311
+Study Title	Comprehensive analysis of flavonoids metabolism and transcription in different parts of Houttuynia cordata
+Study Description	<p>Houttuynia cordata is a medicinal plant with diverse pharmacological activities, but the relationship between its flavonoid components and gene expression across different plant parts remains poorly understood. This study aims to explore these relationships using metabolomics and transcriptomics approaches.Differential metabolites were identified through a T-test and OPLS-DA (P &lt;0.05,VIP&gt;1).Transcriptomic data were analyzed for flavonoid biosynthesis-related genes using Fold Change≥2, FDR&lt;0.01, and Benjamini-Hochberg correction.The roots were rich in flavonoids, while the stems exhibited higher hydroxyl group concentrations, and the leaves also contained significant flavonoid levels. A total of 22 differential metabolites (11 flavonoids) were identified between leaves and stems, 25 (14 flavonoids) between leaves and roots, and 32 (12 flavonoids) between stems and roots. KEGG analysis revealed that flavonoid, flavonol, and derivative biosynthesis were the primary metabolic pathways. Key enzymes, including flavanone 3-hydroxylase, flavonol synthase, and dihydroflavonol 4-reductase, were identified. Additionally, higher levels of glutathione enzymes in leaves and stems may facilitate flavonoid transport to roots.This study elucidates the relationship between metabolic components and gene expression in Houttuynia cordata, providing valuable insights for its comprehensive utilization in pharmacological applications.</p>
+Study Submission Date	2025-03-14
+Study Public Release Date	2026-01-24
+Study File Name	s_MTBLS12311.txt
+Comment[Created At]	2025-03-12T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Houttuynia cordata	untargeted metabolites	Transcriptomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_16752	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C153189
+Study Design Type Term Source REF	NCBITaxon	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Juncheng Lin, Tingwen Ming, Changhu Ke, Huimin Liu , Fangling Ren , Lun Wu , Wang Yang, Ying Wei , Jingjian Liu , Zhihao Li
+Study Publication Title	Comprehensive analysis of flavonoids metabolism and transcription in different parts of Houttuynia cordata
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Part
+Study Factor Type	Part
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45313
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12311_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12311_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Fresh Wild Houttuynia cordata from Shiyan was taken and cleaned. The root, stem and leaf parts of Houttuynia cordata were cut up with scissors and stored in a cryopreservation tube. After being rapidly frozen in liquid nitrogen, they were stored at 80 °C. The root samples were named G 1, G 2, G 3, G 4, G 5, G 6, the stem samples were named J 1, J 2, J 3, J 4, J 5, J 6, and the leaf samples were named y 1, Y 2, Y 3, Y 4, Y 5, Y 6.</p>	<p>The sample were thawed slowly at 4 °C, and the right sample were accurately weighed into the centrifuge tube, added 1 mL pre-cooling extraction solution, homogenized 60 s, extracted 30 min by low-temperature ultrasonic, centrifuged 10 min with 12,000 rpm at 4 °C, set still for 1 h to precipitate protein at -20 °C, centrifuged 10 min with 12,000 rpm at 4 °C, the supernatant solution were dried in vacuum, added 0.2 mL 30% acetonitrile solution, homogenized and centrifuged 15 min with 14,000 rpm at 4 °C, the supernatant were taken for computer detection.</p>	<p>The extracted sample were analyzed using an UPLC-Orbitrap-MS system (UPLC, Vanquish; MS, HFX). The analytical conditions were as follows, UPLC: column, Waters HSS T3&nbsp;(100 x 2.1 mm, 1.8&nbsp;μm); column temperature, 40 °C; flow rate, 0.3 mL/min; injection volume, 2&nbsp;μL; solvent system, phase A were Milli-Q water (0.1% formic&nbsp;acid), phase B were acetonitrile (0.1% formic&nbsp;acid); gradient program,&nbsp;0.0 min phase A/phase B (100:0, v/v), 1.0 min phase A/phase B (100:0, v/v), 12.0 min phase A/phase B (5:95, v/v), 13.0 min phase A/phase B (5:95, v/v), 13.1 min phase A/phase B (100:0, v/v), 17.0 min phase A/phase B (100:0, v/v).</p>	<p>HRMS data were recorded on a Q Exactive HFX&nbsp;Hybrid Quadrupole Orbitrap mass spectrometer equipped with a heated ESI source (Thermo Fisher Scientific) utilizing the Full-ms-ddMS2 acquisition methods. The ESI source parameters were set as follows: sheath gas pressure, 40 arb; aux gas pressure, 10 arb; spray voltage, +3000 V/-2800&nbsp;V; temperature, 350 °C; and ion transport tube temperature, 320 °C.&nbsp;The scanning range of the primary mass spectrometry was (scan m/z range) 70-1050 Da, with a primary resolution of 70000 and secondary resolution of 17500.</p>	<p>The raw MS data were acquired on the Q-Exactive using Xcalibur 4.1 (Thermo Scientific), and processed using Progenesis QI. Quantified data were output into excel format. Data were analyzed by R package, where it was subjected to multivariate data analysis, including principal component analysis (PCA) and orthogonal partial least-squares discriminant analysis (OPLS-DA). The variable importance in the projection (VIP) value of each variable in the OPLS-DA model was calculated to indicate its contribution to the classification. Metabolites with the VIP value greater than 1 was further applied to Student’s t-test at univariate level to measure the significance of each metabolite, the p values less than 0.05 were considered as statistically significant.</p>	<p>PCA was performed by statistics function ropls within R. The data was unit variance scaled before unsupervised PCA. PLS-DA and OPLS-DA result, which contain score plots and permutation plots, was generated using R package ropls. The data was pareto scaled before PLS-DA and OPLS-DA analysis. In order to avoid overfitting, a permutation test was performed. Differential metabolites selected Significantly regulated metabolites between groups were determined by VIP ≥ 1 and P-value ≤ 0.05. VIP values were extracted from OPLS-DA result.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Lin	Li
+Study Person First Name	Juncheng	Zhihao
+Study Person Mid Initials		
+Study Person Email	gdlinjuncheng@163.com	gydfyxblzh@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	School of Pharmaceutical Sciences, Hubei University of Medicine	School of Pharmaceutical Sciences, Hubei University of Medicine
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

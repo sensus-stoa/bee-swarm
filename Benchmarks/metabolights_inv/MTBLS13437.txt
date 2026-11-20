@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	MESH	MI	MS	MTBLS	NCIT	OBI	TXPO
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/txpo.owl
+Term Source Version	249	2025-10-21	3.87.0					25.06e	2025-12-18	2022/12/07
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	TOXic Process Ontology (TXPO)
+INVESTIGATION
+Investigation Identifier	MTBLS13437
+Investigation Title	A synthetic cell with integrated DNA self-replication and lipid biosynthesis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-02
+Investigation Public Release Date	2026-02-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13437
+Study Title	A synthetic cell with integrated DNA self-replication and lipid biosynthesis
+Study Description	<p>The emergence, organization, and persistence of cellular life are the result of the functional integration of metabolic and genetic networks. Here, we engineer phospholipid vesicles that can operate three essential functions, namely transcription-translation of a partial genome, self-replication of this DNA program, and membrane synthesis. The synthetic genome encodes six proteins, and its compartmentalized expression produces active liposomes with distinct phenotypes demonstrating successful module integration. Our results reveal that genetic factors exert a stronger control over DNA replication and membrane synthesis than metabolic crosstalk or module co-activity. By showing how genetically encoded functions derived from different species can be integrated in liposome compartments, our work opens new avenues for the construction of autonomous and evolving synthetic cells.&nbsp;&nbsp;</p>
+Study Submission Date	2025-12-02
+Study Public Release Date	2026-02-02
+Study File Name	s_MTBLS13437.txt
+Comment[Created At]	2025-11-25
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	2
+Comment[Revision Date]	2026-03-26
+Comment[Revision Log]	unreferenced raw data and factor name length is too short
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Liposome	Lipidomics	In Vitro
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18208	http://id.nlm.nih.gov/mesh/D000081362	http://purl.obolibrary.org/obo/NCIT_C15263
+Study Design Type Term Source REF	NCIT	MESH	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2025.01.14.632951
+Study Publication Author List	Sierra Ana María Restrepo, Gomez Federico Ramirez, van Tongeren Mats, Heras Laura Sierra, Danelon Christophe
+Study Publication Title	A synthetic cell with integrated DNA self-replication and membrane biosynthesis
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	M1
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13437_LC-MS__reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Samples are collected from liposomes populations. Original lipid composition consisted of 49.5% DOPC, 33.7% DOPE, 12% DOPG, 3.8% 18:1 CL, and 1% DSPE-PEG-biotin mass composition, and liposomes were formed by gentle swelling using In Vitro Transcription Translation reactions using PUREfrex2.0 (GeneFrontier).</p><p>Samples consisted of liposomes containing DNA and negative controls where DNA was replaced by water.</p><p>2 - 4 ul samples were taken at time zero and following 16 hours of incubation at&nbsp;34°C. Samples were stored for maximum 2 weeks before analysis at -25 °C.</p><p><br></p>	<p>Two to four microliters of liposome suspension were diluted 10x in a sample preparation solution consisting of a 1:1:98 ratio of 0.5 M EDTA:200 mM acetylacetone:100% methanol. The solution was sonicated for 10 min, and centrifuged at 16.1 g and room temperature for 5-10 min. 15 μL of the supernatant with the soluble lipid phase were transferred to a 25 μL glass insert within a 2 mL LC-MS glass vial, further diluted 4× with the sample preparation solution, and stored under argon at −20 °C 850 Deleted: x until use (less than a week).</p>	<p>10&nbsp;μL sample kept at 4 °C were injected into an Agilent 6460 Triple Quad LC-MS stocked with a&nbsp;ACQUITY UPLC Peptide CSH C18 Column with a mobile phase A of 0.05% ammonium hydroxide and 2 mM acetylacetone in water, and a mobile phase B of 80% 2-propanol, 20% acetonitrile, 0.05% ammonium hydroxide and 2 mM acetylacetone, at a flow rate of 300 μL min^–1 and column temperature of 60 °C. An A:B ratio of 70:30 was set to equilibrate the column. Upon sample injection, the A:B ratio was slowly changed to 100% mobile phase B and kept for two min. Then, the 70:30 ratio was gradually restored and kept until the end of each sample run.</p>	<p>Samples were injected into an&nbsp;Agilent 6460 Triple Quadripole LC-MS operating in negative ionisation mode at a flow rate of 300 μL min^–1&nbsp;and column temperature of 60 °C.</p>	<p>Data were analyzed with Skyline-daily. Peak areas were exported and normalized to DOPG peak areas. When two injections were done per sample, the averaged peak area was considered.&nbsp;</p>	<p>Transitions were used based on previous studies (https://doi.org/10.1371/journal.pone.0163058 and https://doi.org/10.5281/zenodo.3923781) as determined from purified standards. Data were analyzed with Skyline-daily. Peak areas were exported and normalized to DOPG peak areas. When two injections were done per sample, the averaged peak area was considered.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Christophe	Ana	Laura	Federico	Mats
+Study Person First Name	Danelon	Restrepo-Sierra	Sierra Heras	Ramirez Gomez	van Tongeren
+Study Person Mid Initials		Maria			
+Study Person Email	danelon@insa-toulouse.fr	anasierra.93@gmail.com	sierra-heras@insa-toulouse.fr	f.ramirezgomez@tudelft.nl	mats.van.tongeren@gmail.com
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation	National Institute for Applied Sciences Tolouse	Delft University of Technology	National Institute for Applied Sciences Tolouse	Delft University of Technology	Delft University of Technology
+Study Person Roles	Principal Investigator	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-0961-6640	0000-0001-5183-5575	0009-0007-2527-1375	0009-0003-7356-5512	
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01h8pf755	https://ror.org/02e2c7k09			
+Comment[Study Person Alternative Email]	c.j.a.danelon@tudelft.nl				

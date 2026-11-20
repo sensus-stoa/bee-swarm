@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO	MESH
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl	
+Term Source Version												
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS10418
+Investigation Title	Liquid Chromatography-Mass Spectrometry Quantification of Phytochemicals in Withania somnifera Using Data-Dependent Acquisition, Multiple-Reaction-Monitoring, and Parallel-Reaction-Monitoring with an Inclusion List
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-06-11
+Investigation Public Release Date	2024-07-10
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10418
+Study Title	Liquid Chromatography-Mass Spectrometry Quantification of Phytochemicals in Withania somnifera Using Data-Dependent Acquisition, Multiple-Reaction-Monitoring, and Parallel-Reaction-Monitoring with an Inclusion List
+Study Description	<p>Characterization of botanical extracts by mass spectrometry-based metabolomics analysis helps in determining the phytochemical composition that underlies their bioactivity and potential health benefits, while also supporting reproducibility of effects in clinical trials. The quantification of seven withanolides in Withania somnifera using three mass-spectrometry methods was evaluated using Deming regression. Two high-resolution time-of-flight mass spectrometry methods were used, one operating in data-dependent acquisition mode and the other in parallel-reaction-monitoring mode with an inclusion list. The two high-resolution time-of-flight mass spectrometry methods were compared to a multiple-reaction-monitoring method. We evaluated in-source fragmentation of steroidal glycosides and optimized the methods accordingly. A novel software approach to integrating parallel-reaction-monitoring data acquired with an inclusion list was developed. Combining and comparing quantitative results allowed for quantitative specificity, good precision, and adjustment of instrument source conditions for optimal quantification by multiple-reaction-monitoring mass spectrometry, an analytical method that is widely accessible in analytical and phytochemical laboratories.</p><p><br></p><p><strong>Linked R Script</strong></p><p>An R script for PRM data analysis collected with an inclusion list is available in <a href='https://github.com/marneylc/prm' rel='noopener noreferrer' target='_blank'>Github</a>.</p>
+Study Submission Date	2024-06-11
+Study Public Release Date	2024-07-10
+Study File Name	s_MTBLS10418.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	parallel reaction monitoring	multiple reaction monitoring	Data-Dependent Acquisition	withanolide	Ashwagandha	Comparison	Deming regression	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	targeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002870	http://purl.obolibrary.org/obo/CHMO_0002869	http://purl.obolibrary.org/obo/NCIT_C161785	http://purl.obolibrary.org/obo/CHEBI_74716	http://purl.bioontology.org/ontology/MESH/C030693	http://purl.obolibrary.org/obo/NCIT_C49156	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	CHMO	CHMO	NCIT	CHEBI	MESH	NCIT	MTBLS	CHMO	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fchem.2024.1373535
+Study Publication Author List	Luke C. Marney, Jaewoo Choi, Armando Alcazar Magana, Liping Yang, Natascha Techen, Md N. Alam, Mikah Brandes, Amala Soumyanath, Jan F. Stevens, Claudia S. Maier
+Study Publication Title	Liquid Chromatography-Mass Spectrometry Quantification of Phytochemicals in Withania somnifera Using Data-Dependent Acquisition, Multiple-Reaction-Monitoring, and Parallel-Reaction-Monitoring with an Inclusion List
+Study Publication Status	Accepted
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C62559
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	Concentration	Country	Batch
+Study Factor Type	concentration	Country	block
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0002820	http://purl.obolibrary.org/obo/NCIT_C25464	http://www.ebi.ac.uk/efo/EFO_0005067
+Study Factor Type Term Source REF	CHMO	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10418_DDA_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10418_PRM_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10418_MRM_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF					MTBLS	MTBLS
+Study Protocol Description	<p>Here we evaluated 2 MS2 strategies, multiple-reaction monitoring (<strong>MRM</strong>) and parallel-reaction monitoring (<strong>PRM</strong>) mass spectrometry, to obtain accurate quantification of specialized <em>Withania somnifera </em>(<strong>WS</strong>) metabolites, focusing on a subset of withanolides.</p><p><br></p><p>The following <strong>WS</strong> root samples grown in Oregon USA or India were used in this study: BEN-WS-1, Oregon Wild Harvest (OWH) Batch : 190700054, Oregon; BEN-WS-2, OWH Batch : 200600195, Oregon; BEN-WS-3, Organic India Batch : UAW-248, India; BEN-WS-4, OWH Batch : 180300075, India; BEN-WS-5, OWH Batch : 160200160, Oregon; BEN-WS-6, OWH Batch 181000097, India; BEN-WS-7, NOW Capsules (commercial product) Batch : 3156947-11-47, unknown origin; BEN-WS-8, OWH Batch : 2010000162, Oregon; BEN-WS-9, OWH Batch : 201200142, Oregon; ASH-10, Mountain Rose Herbs Lot : 25760-CT, Oregon. When appropriate, a sample of the root powders are catalogued at the Oregon State University Herbarium. Voucher samples of all roots are also stored at Oregon Health Science University (Soumyanath Lab).&nbsp;Except for ASH-10 and BEN-WS-7, samples were verified as <strong>WS</strong> by genetic testing at the University of Mississippi (<strong>Figure S8</strong> and <strong>Table S1</strong> of the paper associated with the study).</p>	<p>In order to prepare stock solutions of extracts from the different <strong>WS</strong> root powders, 10 mg of root powder was suspended in <strong>1 mL aqueous methanol</strong> <strong>(70:30 methanol:water v/v, 0.1 % formic acid)</strong> and extracted by sonication for 15 min at room temperature. Samples were vortexed for 30 s and then sonicated again for 15 min at room temperature. After sonication, extracts were centrifuged to separate plant debris from aqueous methanol (14000 x g for 10 min) and 200 µL aliquots of the supernatant were transferred to LC-MS vials and diluted to a suitable concentration within the quantitative linearity of the instruments (0.5 µg/mL, 0.25 µg/mL, and 0.025 µg/mL).</p>	<p>For the <strong>DDA </strong>and <strong>PRM </strong>analysis, chromatographic separation was achieved using a <strong>Shimadzu Nexera UHPLC</strong> system and an <strong>Inertsil Phenyl-3 (2 µm, 2.1 mm x 150 mm; GL Sciences)</strong> column.&nbsp;The injection volume was 3 μL. Gradient elution was performed using a mobile phase consisting of solvent A: 10 mM ammonium formate in water containing 0.1% formic acid, and solvent B: 0.1% formic acid in acetonitrile. Flow rate was set at 0.6 mL/min. The total LC-method time was 12 min, and the gradient design was 0 min, 30% B; 8 min, 50% B; 8.5 min, 98% B; 8.5-10 min, 98% B; 10.5 min, 30% B; 10.5-12 min, 30% B.</p><p><br></p><p>For the <strong>MRM </strong>analysis, chromatographic separation was achieved using a <strong>Waters ACQUITY UPLC system</strong> and an <strong>Inertsil Phenyl-3 (2 µm, 2.1 mm x 150 mm; GL Sciences)</strong> column. The column oven temperature was 60 °C. The temperature of the autosampler was set at 6 °C, with the rest of parameters being similar to those used for the <strong>DDA </strong>and <strong>PRM </strong>analysis.</p>	<p>Data-dependent acquisitions (<strong>DDA</strong>) were conducted using a <strong>AB SCIEX TripleTOF 5600</strong> mass spectrometer to obtain precursor and fragment ion information, aiding in annotating compounds in <strong>WS</strong> extracts. DDA analyses were conducted using positive electrospray ionization (ESI+) mode. For detecting ions, the following parameter settings were used to operate the mass spectrometer: spray voltage 5500 V; source temperature 550 °C and a period cycle time of 700 ms was used. In addition, the following settings were used: full scan with ion accumulation of 250 ms, followed by a dynamic MS/MS selection of the 4 most intense ions with 100 ms accumulation. After 3 MS/MS acquisitions, the precursor ions (fragmented) were excluded for 30 s. Collision energy was 35 V with collision energy spread (CES) of 10 V ramped through each MS/MS scan using a range of<strong> m/z 70–1100</strong>.</p><p><br></p><p>Parallel reaction monitoring with an inclusion list (<strong>PRM</strong>) was conducted using a <strong>AB SCIEX TripleTOF 5600</strong> mass spectrometer with an inclusion list of 93 masses and retention times. MS2 spectra were collected during a 1 min window around known retention times of each mass in positive ionization mode. Precursor signals for ions in the inclusion list must exceed 50 cps to collect MS2 data. The maximum number of candidate ions per cycle was set to 8. A spray voltage of 5500 V, source temperature 550 °C, and a cycle time of 1.1001 s was used. Additional parameters are as follows: full scan with ion accumulation of 250 ms, followed by MS/MS selection on inclusion list ions with a 100 ms accumulation; no MS/MS acquisitions of precursor (fragmented) ions were excluded. Collision energy was 35 V with collision energy spread (CES) of 10 V ramped through each MS/MS scan using a range of<strong> m/z 70–1100</strong>.</p><p><br></p><p>Selected <strong>WS </strong>components were quantified by LC-<strong>MRM</strong>-MS using a <strong>Waters Xevo TQ-XS</strong> equipped with an Acquity UPLC I class system and Z-spray source (Waters, Milford, MA, USA). ESI+ had the following parameters: capillary voltage, 2.1 kV; source temperature, 150 °C; cone gas flow rate, 150 L/h; desolvation gas flow rate, 800 L/h; desolvation temperature, 400 °C. Cone voltage and collision energy were optimized for each compound. Data was acquired in multiple reaction monitoring (MRM) mode using MassLynx 4.1 software, tracking the transition of precursor/product ion specific for each compound (Supplementary Table 2). The <strong>WS</strong> components were identified by comparison with retention time and ions of individual standards, and the quantification was conducted using TargetLynx 4.2. A chromatogram is shown for the 7 target compounds in Fig 2 of the paper associated to this study.</p>	<p>LC-HRMS/MS <strong>DDA </strong>data was analyzed for target quantification of withanolides using <strong>PeakView</strong> and<strong> MultiQuant (Sciex)</strong>, where peak areas of each withanolide and <strong>digoxin-d3</strong> internal standard were determined for every sample and replicate. All quantitative data is produced by normalizing peak area to the peak area of <strong style='color: rgb(54, 54, 54);'>digoxin-d3</strong>.</p><p><br></p><p>LC-HRMS/MS <strong>PRM </strong>data was analyzed with in-house software written in R and available for download on <a href='https://github.com/marneylc/prm' rel='noopener noreferrer' target='_blank'>GitHub</a>. Briefly, data is imported and MS2 scans corresponding to inclusion list precursor ions are collected within a suitable retention time window. A reference MS2 spectra for each target is used to select the top fragment ions to integrate. Those ions are integrated over the retention time window providing one value for quantitation.</p><p><br></p><p><strong>Evaluation and Comparison of Methods</strong></p><p>Standard solutions for calibration curves included 7withanolide standards (Fig S9-S11) at a range of concentrations (0.0005, 0.001, 0.005, 0.01, 0.05, 0.10, 0.50, 1.00, 5 and 10 μg/mL) plus internal standard <strong>digoxin-d3</strong> (1 μg/mL) in 70% methanol containing 0.1% formic acid. The same calibration standards and samples from each extract containing <strong>digoxin-d3</strong> (1 μg/mL) were run in triplicate first by LC-HRMS/MS <strong>DDA </strong>acquisition, then by LC-HRMS/MS <strong>PRM </strong>acquisition, and then by LC-<strong>MRM</strong>-MS. Data was processed by calculating peak areas of each analyte normalized to the internal standard peak area with <strong>MarkerView (Sciex)</strong> for LC-HRMS/MS <strong>DDA</strong>, our in-house R script for LC-HRMS/MS <strong>PRM</strong>, and <strong>TargetLynx (Waters Corp.)</strong> for LC-<strong>MRM</strong>-MS. The collected peak area data was collated in Excel. Calibration curves were then calculated in R with 6 weighted linear regression utilizing 1/x scaling (Fig S9-S11) and resulting quantification in ng/mL was completed in Excel. </p>	<p>Concentrations of the target withanolides in the 10 <strong>WS </strong>root samples for 3 dilutions (0.5 μg/mL, 209 0.25 μg/mL, and 0.025 μg/mL) were calculated by comparison of peak area ratio (analyte area/internal standard area) to calibration curves of peak area ratio to concentration constructed using standard withanolides and <strong>digoxin-d3</strong> internal standard. </p><p><br></p><p>Deming regression was performed in R with the <a href='https://CRAN.R-project.org/package=mcr' rel='noopener noreferrer' target='_blank'><strong>mcr package</strong></a> comparing data obtained for the content of each withanolide in the 10 root samples at 3 dilutions for LC-HRMS/MS <strong>DDA </strong>versus LC-<strong>MRM</strong>-MS and LC-<strong>PRM</strong>-MS versus LC-<strong>MRM</strong>-MS. Deming regression is a regression model that calculates the best fit line by optimizing the sum-of-squares of the residuals at an angle defined by the variance in both x and y directions. In this study we assumed equal variance in either method by fitting the best line that minimized residuals at a 90° angle to the line, which makes it similar to orthogonal least squares.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Marney
+Study Person First Name	Luke
+Study Person Mid Initials	
+Study Person Email	marneyl@oregonstate.edu
+Study Person Phone	5096794731
+Study Person Fax	
+Study Person Address	2750 SW Campus Way
+Study Person Affiliation	Oregon State University
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

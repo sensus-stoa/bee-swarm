@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	GOLD	MCO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version										
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology			Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13057
+Investigation Title	Multi-omics analysis reveals immune-metabolic dysregulation in DNASE1L3-deficient mouse liver
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-09-28
+Investigation Public Release Date	2025-10-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13057
+Study Title	Multi-omics analysis reveals immune-metabolic dysregulation in DNASE1L3-deficient mouse liver
+Study Description	<p>This study investigates the role of DNASE1L3 deficiency in hepatic immune and metabolic regulation. Using transcriptomics, proteomics, and metabolomics, we characterize changes in Kupffer cell polarization, ER stress, iron metabolism, and ferroptosis in DNASE1L3 knockout mice.'</p>
+Study Submission Date	2025-09-28
+Study Public Release Date	2025-10-25
+Study File Name	s_MTBLS13057.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-10-25
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Liver	Mouse Model	Metabolomics	knockout mutant	case control design
+Study Design Type Term Accession Number	https://w3id.org/gold.vocab/Liver	http://purl.obolibrary.org/obo/NCIT_C94604	http://purl.obolibrary.org/obo/NCIT_C49019	http://purl.obolibrary.org/obo/MCO_0000042	http://www.ebi.ac.uk/efo/EFO_0001427
+Study Design Type Term Source REF	GOLD	NCIT	NCIT	MCO	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Liangchen Lei, Quanyan Liu, et al.
+Study Publication Title	Systematic Profiling Reveals Hepatic Immune and Metabolic Dysregulation in DNASE1L3-Deficient Mice
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype
+Study Factor Type	Gene Knockout
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18143
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13057_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Liver tissues from DNASE1L3 knockout (KO) and wild-type (WT) mice were collected at 8 weeks of age. Mice were anesthetized, and livers were quickly excised, rinsed in cold PBS, snap-frozen in liquid nitrogen, and stored at −80 °C until metabolite extraction.</p>	<p>Approximately 50 mg of liver tissue was homogenized in 1 mL methanol:acetonitrile:water (2:2:1, v/v/v) on ice. Samples were vortexed, sonicated, and centrifuged at 14,000 × g for 15 min at 4 °C. The supernatant was transferred to a fresh tube, dried under vacuum, and reconstituted in 100 μL 50% acetonitrile for LC–MS analysis. Quality control (QC) samples were prepared by pooling equal aliquots from each extract.</p>	<p>Chromatographic separation was performed on a Waters ACQUITY UPLC system using a HILIC column (e.g., ACQUITY UPLC BEH Amide, 2.1 × 100 mm, 1.7 μm). The mobile phases consisted of solvent A (25 mM ammonium acetate and 25 mM ammonium hydroxide in water) and solvent B (acetonitrile). The gradient elution started from 95% B, decreased to 65% B over 7 min, then to 40% B over 1 min, maintained for 1 min, and returned to 95% B over 1 min. Flow rate was 0.4 mL/min; column temperature 25 °C; injection volume 2 μL.</p>	<p>Metabolites were detected using a Thermo Q Exactive Orbitrap mass spectrometer equipped with an ESI source, operated in negative ion mode. The mass range was m/z 70–1000. Source parameters: sheath gas 40 arb units, auxiliary gas 10 arb units, spray voltage −3.0 kV, capillary temperature 320 °C. Data acquisition was performed at a resolution of 70,000 (m/z 200).</p>	<p>Raw LC–MS data were converted to mzXML format using ProteoWizard (MSConvert). Peak detection, alignment, and normalization were performed using XCMS (R package) and in-house scripts. Features with &gt;50% missing values were removed; remaining missing values were imputed using k-nearest neighbor (KNN).</p>	<p>Metabolites were annotated by matching accurate mass and MS/MS fragmentation patterns against public databases (HMDB, KEGG, METLIN) and in-house spectral libraries, with a mass tolerance of 10 ppm. Identification levels were assigned according to the Metabolomics Standards Initiative (MSI) guidelines.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	liangchen	Quanyan
+Study Person First Name	lei	Liu
+Study Person Mid Initials		
+Study Person Email	leiliangchen@163.com	liuqy@tmu.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Department of Hepatology, Tianjin Medical University General Hospital, Heping Road, Tianjin, China	
+Study Person Affiliation	Tianjin Medical University General Hospital	Tianjin Medical University General Hospital
+Study Person Roles	Submitter	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C54269	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

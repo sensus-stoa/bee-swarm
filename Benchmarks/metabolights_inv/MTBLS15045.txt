@@ -1,0 +1,127 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	FBcv	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/fbcv.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0	2026-07-10				2026-07-12	26.02d	2026-05-08	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	FlyBase Controlled Vocabulary	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS15045
+Investigation Title	Clostridioides difficile-commensal interactions are impacted by diet more than differences between strain
+Investigation Description	
+Investigation Submission Date	2026-07-15
+Investigation Public Release Date	2026-09-18
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15045
+Study Title	Clostridioides difficile-commensal interactions are impacted by diet more than differences between strain
+Study Description	<p>The purpose of this study was to investigate how <em>C. difficile </em>metabolism differs between strains as a function of diet. We used three <em>C. difficile </em>strains (R20291, Cd4, and Cd10). Each strain was grown in three different media conditions designed to mimic different diet conditions: brain-heart infusion (BHI); high protein, low carb (HiPLoC); and low protein, high carb (LoPHiC). The samples were collected at 20 hours, spun down (20,000 RCF, 2 minutes), filter-sterilized (0.2 um), and frozen at -70C until analysis at Metabolon.</p>
+Study Submission Date	2026-07-15
+Study Public Release Date	2026-09-18
+Study File Name	s_MTBLS15045.txt
+Comment[Created At]	2026-02-12
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-18
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Clostridioides difficile	untargeted metabolomics	diet	ExionLC AD	AB SCIEX TripleTOF 6600	blank	Clostridioides diff-icile	not applicable	culture supernatant	experimental blank	pooled quality control sample	untargeted analysis	data-dependent acquisition	Metabolomics
+Study Design Type Term Accession Number	http://snomed.info/id/5933001	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/MS_1003653	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304	http://purl.obolibrary.org/obo/NCBITaxon_645463		http://purl.obolibrary.org/obo/BTO_0000309			http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003221	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	SNOMED	MTBLS	MTBLS	MS	MTBLS	MTBLS	NCBITaxon		BTO			MS	MS	EDAM
+Comment[Study Design Category]	Organism	disease	disease	Chromatography Instrument	Instrument	Organism part	Organism	Organism part	Organism part	Sample type	Sample type	measurement-type	default	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Deborah A. Powers, Jason A. Papin
+Study Publication Title	Clostridioides difficile-commensal interactions are impacted by diet more than differences between strain
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Media	Strain
+Study Factor Type	growth condition	strain
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/FBcv_0003146	http://www.ebi.ac.uk/efo/EFO_0005135
+Study Factor Type Term Source REF	FBcv	EFO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15045_LC-MS_positive_reverse-phase.txt	a_MTBLS15045_LC-MS_negative_reverse-phase.txt	a_MTBLS15045_LC-MS_negative_hilic.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]			
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Guard column];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	ExionLC AD;ExionLC AD;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;Quality Control Sample;positive;70-1000;AB SCIEX TripleTOF 6600;electrospray ionization;time-of-flight	ExionLC AD;ExionLC AD;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;Quality Control Sample;negative;70-1000;AB SCIEX TripleTOF 6600+;electrospray ionization;time-of-flight	SCIEX ExionLC AC;SCIEX ExionLC AD Autosampler;ACQUITY Premier BEH Amide (1.7 μm, 2.1 x 150 mm; Waters);HILIC;negative;70-1000;AB SCIEX TripleTOF 6600+;electrospray ionization;quadrupole time-of-flight
+Comment[Assay Field Default Unit]	;;;;;;;;;	;;;;;;;;;	;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://purl.obolibrary.org/obo/MS_1003653;http://purl.obolibrary.org/obo/MS_1003653;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://purl.obolibrary.org/obo/PRIDE_0000544;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000084	http://purl.obolibrary.org/obo/MS_1003653;http://purl.obolibrary.org/obo/MS_1003653;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;http://purl.obolibrary.org/obo/PRIDE_0000544;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000604;http://purl.obolibrary.org/obo/MS_1000073;http://purl.obolibrary.org/obo/MS_1000084	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000897;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000604;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699
+Comment[Assay Field Default Value Source REF]	MS;MS;MTBLS;MTBLS;PRIDE;;;MTBLS;MS;MS	MS;MS;MTBLS;MTBLS;PRIDE;;;MTBLS;MS;MS	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS
+Comment[Assay Descriptor]	data-dependent acquisition		
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003221		
+Comment[Assay Descriptor Term Source REF]	MS		
+Comment[Assay Descriptor Category]	default		
+Comment[Assay Descriptor Source]	submitter		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Protocol Description: Chromatographic separation was executed using a Sciex ExionLC AD UHPLC system. The analytical column configuration depended on the specific modality branch:</p><p><br></p><ul><li>Reverse-Phase (T3 Mode): Performed on a Waters ACQUITY UPLC HSS T3 (, ) analytical column. The column temperature was maintained at &nbsp;with a continuous flow rate of &nbsp;and an injection volume of . Mobile phase A consisted of ultrapure water with 0.1% formic acid, and mobile phase B consisted of acetonitrile with 0.1% formic acid. Separation was achieved using a 10-minute linear elution gradient: 0–2.0 min, 5% to 20% B; 2.0–5.0 min, 20% to 60% B; 5.0–6.0 min, 60% to 99% B; 6.0–7.5 min, 99% B; 7.5–7.6 min, 99% to 5% B; 7.6–10.0 min, 5% B.</li></ul><p><br></p><ul><li>HILIC Mode: Performed on an ACQUITY Premier BEH Amide (, ) analytical column. The column temperature was kept at &nbsp;with a flow rate of &nbsp;and an injection volume of . Mobile phase A consisted of 60% ACN, 30% water, and 10% MeOH with &nbsp;ammonium formate at pH 10.6. Mobile phase B consisted of 40% ACN and 60% water with &nbsp;ammonium formate at pH 10.6. The multi-step elution gradient spanned 10 minutes.</li></ul>	<p>The original profile raw data files (.wiff) captured from the Sciex TripleTOF system were systematically converted to an open-source mzML format via ProteoWizard. Downstream peak preprocessing workflow (including data peak extraction, alignment across batches, and retention time correction) were executed through the XCMS software program. Spectral clean-up step logic filtered out low-quality features possessing a missing value rate &gt; 50% within any given sample group. Missing values inside the matrix were imputed using K-Nearest Neighbors (KNN), and final peak intensities/areas were normalized and corrected via Support Vector Regression (SVR) pipelines to ensure batch run consistency.</p>	<p>The samples were collected, spun down (20,000 RCF, two minutes), filter-sterilized (0.2 um), and frozen at -70C until analysis.</p>	<p>Mass spectrometry analysis was carried out on an AB SCIEX TripleTOF 6600+ mass spectrometer equipped with an electrospray ionization (ESI) source. Data acquisition was performed for a total run duration of 10 minutes per sample across both positive (ESI+) and negative (ESI-) scan polarities.</p><p><br></p><p>ESI+ Parameters: IonSpray Voltage: 5000V, Source Temperature: 550C, Declustering Potential: 60V, MS1 Collision Energy: 10V, MS2 Collision Energy: 30V.</p><p>ESI- Parameters: IonSpray Voltage: -4000V, Source Temperature: 450C, Declustering Potential: -60V, MS1 Collision Energy: -10V, MS2 Collision Energy: -30V.</p><p><br></p><p>For both polarities, the source gas configuration used Ion Source Gas 1 at 50 psi, Ion Source Gas 2 at 60pse, and Curtain Gas at 35 psi, utilizing a Collision Energy Spread of 15V&nbsp;on a time-of-flight mass analyzer over an active scan&nbsp;<em>m/z </em>range of 70-1000.</p>	<p>Qualitative metabolite identification and structural annotation were completed using automated pipeline search criteria evaluated against several comprehensive compound repositories. Extracted MS2 structural feature patterns and accurate&nbsp;spectra were mapped natively through MetwareBio's in-house database, integrated public metabolomics databases, prediction databases, and metDNA (Metabolite Identification and Network Analysis) software. Features were parsed through strict quality filters: only substances possessing a comprehensive metric identification score higher than 0.5 and exhibiting highly repeatable signal stability (Coefficient of Variation, CV &lt; 0.3) within mixed reference Quality Control samples) were extracted and preserved. </p>	<p>Three <em>C. difficile</em> strains (R20291, Cd10, and Cd4). All strains were grown anaerobically overnight at 37C in BHIS (brain heart infusion supplemented with 5% yeast extract). Overnight cultures were then diluted 1:2 in fresh BHIS and incubated for 2 hours. The 2-hour cultures were then inoculated to the three media: BHIS, LoPHiC (10 mg/mL casaminos, 5 mg/mL sucrose, 5 mg/mL glucose, 1% cysteine, 1% tryptophan, 1% ATCC vitamins, 1% ATCC minerals) and HiPLoC (40 mg/mL casaminos, 0.2 mg/mL sucrose, 0.2 mg/mL glucose, 1% cysteine, 1% tryptophan, 1% ATCC vitamins, 1% ATCC minerals). Growth was measured at OD 600 every 10 minutes for 20-24 hours using a Cerillo Alto plate reader while being shaken continuously at 250 rpm.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Powers	Papin
+Study Person First Name	Deborah	Jason
+Study Person Mid Initials	A.	A.
+Study Person Email	dap5mb@virginia.edu	papin@virginia.edu
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Virginia	University of Virginia
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-4885-879X	0000-0002-2769-5805
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0153tk833	https://ror.org/0153tk833

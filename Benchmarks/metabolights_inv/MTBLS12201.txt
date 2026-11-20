@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	CHEBI	MTBLS	MS	SIO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	Metabolights	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/MS	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version	29	132			1			
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology			User defined terms	Mass Spectrometry Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS12201
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-01-29
+Investigation Public Release Date	2025-02-06
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12201
+Study Title	Mitochondrial metabolism sustains DNMT3A-R882-mutant clonal haematopoiesis
+Study Description	Somatic DNMT3A R882 codon mutations drive the most common form of clonal haematopoiesis (CH) and are associated with increased acute myeloid leukaemia (AML) risk1,2. Preventing expansion of DNMT3A-R882-mutant haematopoietic stem/progenitor cells (HSPCs) may therefore avert progression to AML. To identify DNMT3A-R882-mutant-specific vulnerabilities, we conducted a genome-wide CRISPR screen on primary mouse Dnmt3aR882H/+ HSPCs. Amongst the 640 vulnerability genes identified, many were involved in mitochondrial metabolism and metabolic flux analysis confirmed enhanced oxidative phosphorylation usage in Dnmt3aR882H/+ vs Dnmt3a+/+ (WT) HSPCs. We selected citrate/malate transporter Slc25a1 and complex I component Ndufb11, for which pharmacological inhibitors are available, for downstream studies. In vivo administration of SLC25A1 inhibitor CTPI2 and complex I inhibitors IACS-010759 and metformin, suppressed post-transplantation clonal expansion of Dnmt3aR882H/+, but not WT, LT-HSCs. The effect of metformin was recapitulated using a primary human DNMT3A-R882 CH sample. Notably, analysis of 412,234 UK Biobank participants revealed that individuals taking metformin had markedly lower prevalence of DNMT3A-R882-mutant CH, after controlling for potential confounders including glycated haemoglobin, diabetes and body mass index. Collectively, our data propose that modulation of mitochondrial metabolism as a therapeutic strategy for prevention of DNMT3A-R882-mutant AML.
+Study Submission Date	2025-01-29
+Study Public Release Date	2025-02-06
+Study File Name	s_MTBLS12201.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	clonal hematopoiesis	2-hydroxyglutarate	(R)-2-Hydroxyglutarate	2-Hydroxyglutarate Measurement	acute myeloid leukemia
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0010819	http://purl.obolibrary.org/obo/CHEBI_132941	http://purl.obolibrary.org/obo/NCIT_C179314	http://purl.obolibrary.org/obo/NCIT_C191293	http://www.ebi.ac.uk/efo/EFO_0000222
+Study Design Type Term Source REF	EFO	CHEBI	NCIT	NCIT	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	27923773	31978345
+Study Publication DOI	10.1016/j.cmet.2016.09.015	10.1016/j.cell.2019.12.017
+Study Publication Author List	Burr SP, Costa AS, Grice GL, Timms RT, Lobb IT, Freisinger P, Dodd RB, Dougan G, Lehner PJ, Frezza C, Nathan JA.	Cader MZ, de Almeida Rodrigues RP, West JA, Sewell GW, Md-Ibrahim MN, Reikine S, Sirago G, Unger LW, Iglesias-Romero AB, Ramshorn K, Haag LM, Saveljeva S, Ebel JF, Rosenstiel P, Kaneider NC, Lee JC, Lawley TD, Bradley A, Dougan G, Modis Y, Griffin JL, Kaser A.
+Study Publication Title	Mitochondrial Protein Lipoylation and the 2-Oxoglutarate Dehydrogenase Complex Controls HIF1α Stability in Aerobic Conditions.	FAMIN Is a Multifunctional Purine Enzyme Enabling the Purine Nucleotide Cycle.
+Study Publication Status	published	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Experiment	Genotype	Treatment	Sample_ID	Ion_mode	LCMS_inj_vol
+Study Factor Type	experiment	genotype	treatment	Identifier	ionisation method	Volume
+Study Factor Type Term Accession Number	http://semanticscience.org/resource/SIO_000994	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000727	http://purl.obolibrary.org/obo/NCIT_C25364	http://purl.obolibrary.org/obo/CHMO_0001658	http://purl.obolibrary.org/obo/NCIT_C25335
+Study Factor Type Term Source REF	SIO	EFO	EFO	NCIT	CHMO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12201_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS12201_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt	a_MTBLS12201_LC-MS_negative_reverse-phase_metabolite_profiling-2.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Sample origin for each experiment:</p><p><u>For two experiments: </u>1) GG_day7_C18pfp_240624&nbsp;and 2) GG_vehicle_derivatisation_HSST3_221024:</p><p>Primary mouse haematopoietic stem and progenitor cells (HSPCs/Lin-ve ) of WT, Cas9 or Dnmt3a-R882H/+, Cas9 genotype were transduced in vitro with gRNA for Slc25a1 or control (Empty) gRNA. Cells were FACS sorted for BFP reporter and plated into culture for further 7 days.</p><p><u>For experiment: </u>3) GG_metformin_proper_C18pfp_170724:</p><p>HSPCs were extracted from mouse transplanted with WT or Dnmt3a-R882H/+ cells. 5 weeks post transplantation mice were treated with metformin i.p. (125mg/kg) or vehicle control. Treatment was performed for 5 days on and 2 off over 4 weeks.</p><p><u>Collection and storage:</u></p><p>Cells were collected into 2 mL tubes, spun down and wash twice with cold PBS. Cell pellet was then resuspended in 500 µL 4:1 methanol water and stored at -80 °C.</p>	<p>Aqueous metabolites were extracted from cells using a method modified from (Folch et al., 1957). Briefly, 800 µL chloroform (Fisher Scientific, 15643700) and 380 µL milli Q water was added to cells suspended in 500 µL 4:1 methanol water in 2 mL tubes. This was followed by vortexing, sonication and centrifugation for 5 min at 21,300 x g. The top, aqueous phase was then harvested from each sample into eppendorf tubes and subsequently dried using an SC210A SpeedVac vacuum centrifuge (Savant, Thermo Fisher Scientific).</p><p><br></p><p><strong>Samples for 2HG measurement </strong></p><p>Dried metabolite extracts were reconstituted in 10 mM ammonium acetate (Fisher Chemical, 10598410) LC sample buffer. The following internal standards were added to the LC sample buffer: universal 15N13C amino acid mix; succinate 13C4; AMP 15N513C10; ATP 15N513C10; putrescine D8; dopamine D4.</p><p><br></p><p>A 2HG standard (α-Hydroxyglutaric Acid (sodium salt), Cayman Chemical, 16374) was run on the same LC-MS settings to confirm the retention time of 2HG on the C18pfp column.</p><p><br></p><p><strong>Samples for L- and D-2HG enantiomer analysis</strong></p><p>Dried metabolite extracts were derivatised with diacetyl-L-tartaric anhydride (DATAN, Merck, 336040050) for enantiomer analysis as described previously (Burr et al., 2016). An internal standard of U-13C algal lyophilised cells (CK Isotopes, CLM-2065-1) was added to each sample prior to drying and derivatisation – 10 µL of 0.5 µg/µL was added to each sample post-Folch extraction. Standards of L- and D-2-HG (Merck, 90790-10MG and H8378, respectively) were prepared (100 µM in Milli Q water), to confirm the retention times of L- and D-2-HG. These standards (100 µL of each) were dried, derivatised and run in parallel alongside the samples.</p><p><br></p><p>A blank sample of 10 mM ammonium acetate was run every 10 samples.</p><p><br></p><p><strong>References</strong>:</p><p>Burr, S. P. et al. Mitochondrial Protein Lipoylation and the 2-Oxoglutarate Dehydrogenase Complex Controls HIF1alpha Stability in Aerobic Conditions. Cell Metab 24, 740-752 (2016). https://doi.org/10.1016/j.cmet.2016.09.015</p>	<p>Liquid chromatography-mass spectrometry (LC-MS) was used to measure metabolites within aqueous extracts from cells. Prior to mass spectrometry (see below), samples were injected onto an appropriate column using&nbsp;a Vanquish Horizon&nbsp;ultra-high performance liquid chromatography&nbsp;system (Thermo Fisher Scientific).</p><p>&nbsp;</p><p><strong>LC-MS measurement of 2HG</strong></p><p>An ACE Excel C18-PFP column (150 x 2.1 mm, 2.0µm, Avantor, EXL-1010-1502U) was used to separate 2HG, as previously93. For positive ion mode analyses, mobile phase A consisted of water with 10&nbsp;mM ammonium formate (Merck, 70221-100G-F) and 0.1% formic acid (Optima grade, Fisher Chemical, 10596814) and, for negative ion mode analyses, mobile phase A consisted of water with 0.1% formic acid. Mobile phase B was acetonitrile (Chromasolv, Honeywell, 34851-2.5L) with 0.1% formic acid for both positive and negative ion mode. The C18pfp LC gradient used is detailed in Table1. The column temperature was 30 °C, the flow rate was 0.5&nbsp;mL/min and the injection volume was 3.0-3.5&nbsp;μL. The needle wash used was 1:1 water:acetonitrile.</p><p>Table1. LC gradient used for the C18pfp column</p><p>Step Time (min) mL/min&nbsp;&nbsp;&nbsp;&nbsp;% B</p><p>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run</p><p>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p><p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30</p><p>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;90</p><p>5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;90</p><p>6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</p><p>7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stop run</p><p>&nbsp;</p><p><strong>L- and D-2-HG enantiomer analysis</strong></p><p>An Acquity Premier HSS T3 column (1.8 µm, 2.1 x 100 mm, Waters, 186009468) was used for metabolite extracts derivatised with DATAN, for the purpose of measuring L- and D- enantiomers of 2-HG, as previously92. Mobile phase A was 1.5 mM ammonium formate (to pH 3.6 with formic acid) and mobile phase B was acetonitrile with 0.1% formic acid. The LC gradient used is detailed in Table 2. The column temperature was 30 °C, the flow rate was 0.4 mL/min and the injection volume was 5 µL for samples and 1 µL for L- and D-2-HG standards. The needle wash used was 1:1 water:acetonitrile.</p><p>Table 2. LC gradient used for the HSST3 column</p><p>Step&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time (min) mL/min % B</p><p>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p><p>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</p><p>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95</p><p>5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95</p><p>6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</p><p>7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stop run</p>	<p>For the measurement of ions post-column separation using the Vanquish Horizon, a Q Exactive Plus orbitrap mass spectrometer (Thermo Fisher Scientific) was used.</p><p><br></p><p><strong>LC-MS measurement of 2HG</strong></p><p>Source parameters used for the orbitrap were an auxiliary gas heater temperature of 450 °C, a capillary temperature of 275 °C, an ion spray voltage of 3.5 kV (2.5 kV for negative ion mode) and a sheath gas, auxiliary gas and sweep gas of 55, 15 and 3 arbitrary units, respectively, with an S-lens RF (radio frequency) of 50%. A full scan of 60-900&nbsp;m/z&nbsp;was used at a resolution of 70,000 ppm in positive ion mode, and a full scan of 55-825 m/z at a resolution of 140,000 ppm in negative ion mode. Despite performing full scans with both positive and negative polarities, 2HG was measured in negative ion mode.</p><p><br></p><p><strong>L- and D-2-HG enantiomer analysis</strong></p><p>For the derivatisation method (enantiomers), the mass spectrometry source parameters were as above in negative ion mode. In addition, parallel reaction monitoring (PRM) of the transitions m/z 363.0569 (2-HG + DATAN) to 147.0299 (2-HG) and m/z 368.0737 (2-HG 13C5 + DATAN) to 152.0467 (2-HG 13C5) was performed with a collision energy of 20 in negative ion mode.</p><p><br></p><p><u>Retention time:</u></p><p>For L-2HG standard: 2.05 min</p><p>For D-2HG standard: 2.51 min</p><p>for 2HG: 1.3</p>	<p>Targeted analysis of LC-MS data was performed with Thermo Scientific Xcalibur 4.1 (version 4.1.31.9) as previously (Cader et al., 2020). Peak areas were normalised to an appropriate internal standard where possible. For 2HG, area ratios to 13C515N glutamate internal standard were calculated. For L- and D-2HG enantiomer analysis, the m/z of 147.0299 (2-HG) was extracted as previously (Burr et at., 2016), in addition to the m/z of 152.0467 for the 2-HG 13C5 internal standard. Area ratios of L- and D-2-HG to respective 13C5 labelled L- and D-2HG were calculated.</p><p><br></p><p><strong>References:</strong></p><p>Burr, S. P. et al. Mitochondrial Protein Lipoylation and the 2-Oxoglutarate Dehydrogenase Complex Controls HIF1alpha Stability in Aerobic Conditions. Cell Metab 24, 740-752 (2016). https://doi.org/10.1016/j.cmet.2016.09.015</p><p>Cader, M. Z. et al. FAMIN Is a Multifunctional Purine Enzyme Enabling the Purine Nucleotide Cycle. Cell 180, 278-295 e223 (2020). https://doi.org/10.1016/j.cell.2019.12.017</p>	<p>Standards of L and D-2HG were derivatised and run alongside the samples to confirm the expected retention times of L and D-2HG in the biological samples. Moreover, 13C-labelled algae was added to samples as an internal standard, prior to derivatisation, which allowed further confirmation of the correct retention times for L and D 2HG. Use of 13C labelled algae also aided the calculation of area ratios to account for any suppression at the same retention time.</p><p>2HG standard (α-Hydroxyglutaric Acid (sodium salt), Cayman Chemical, 16374) was run on the same LC-MS settings to confirm the retention time of 2HG on the C18pfp column. This standard helped to confirm identity of 2HG.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gozdecka	Vassiliou
+Study Person First Name	Malgorzata	George
+Study Person Mid Initials		S
+Study Person Email	mg717@cam.ac.uk	gsv20@cam.ac.uk
+Study Person Phone	+44 01223 767800	+44 01223 767800
+Study Person Fax		
+Study Person Address	Jeffrey Cheah Biomedical Centre, Puddicombe Way, Cambridge Biomedical Campus, United Kingdom, CB2 0AW	Jeffrey Cheah Biomedical Centre, Puddicombe Way, Cambridge Biomedical Campus, United Kingdom, CB2 0AW
+Study Person Affiliation	University of Cambridge	University of Cambridge
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

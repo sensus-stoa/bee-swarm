@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	3.94.0				2026-07-12	26.02d	2026-07-27
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15676
+Investigation Title	Metabolomic profiles generated using the IROA TruQuant platform result in reproducible differentiation of sample mixtures in a multi-lab “round robin” study
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-09-15
+Investigation Public Release Date	2026-09-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15676
+Study Title	Metabolomic profiles generated using the IROA TruQuant platform result in reproducible differentiation of sample mixtures in a multi-lab “round robin” study
+Study Description	<p>The clinical utility of metabolomics hinges on reproducibly detecting differences between groups across analytical platforms. No multi-lab studies, to date, have attempted to evaluate the ability to deconvolve heterogeneous mixtures, which reflect mixtures of cell types present in clinical samples, using metabolomics profiles. We evaluated the reproducibility of the TruQuant metabolomics approach in eight labs in the US and UK. Each lab received identical aliquots of 32 samples, containing known mixtures of beef, pork, and chicken extracts of varying homogeneity levels. Metabolomic profiles were generated for each mixture in duplicate using each lab’s LC-MS methods. Anonymized, processed data were analyzed centrally. Despite differences in the number of features detected (560 – 1727 features), all labs correctly differentiated sample mixture types via unsupervised approaches. Pearson correlations of suppression corrected metabolite abundances, compared between lab pairs, were strong (mean = 0.87 ± 0.12 across all labs). Overall, this “round-robin” study design and data show that metabolomic analyses with appropriate study designs and controls enable reproducible conclusions across labs and platforms.</p>
+Study Submission Date	2026-09-15
+Study Public Release Date	2026-09-28
+Study File Name	s_MTBLS15676.txt
+Comment[Created At]	2025-05-02
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	2
+Comment[Revision Date]	2026-10-21
+Comment[Revision Log]	Updated 'm_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-2_v2_maf' to fix truncated 'metabolite identification' values. JEH 21-OCT-2026
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Orbitrap Fusion Lumos Tribrid	SCIEX ExionLC AD	SCIEX 5600 TripleToF	Agilent 6546 LC/Q-TOF	Waters nanoACQUITY UPLC system	Waters Xevo G2-XS QTof	Shimadzu Nexera UHPLC system	ZenoTOF 7600	Agilent 1290 Infinity UHPLC	Thermo Scientific Q Exactive	Gallus gallus; Sus scrofa; Bos taurus	Gallus gallus	Sus scrofa	Bos taurus	mixture	pooled quality control sample	experimental sample	untargeted analysis	ring trial design	untargeted metabolites	isotope ratio mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000656	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002206		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002300	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000890	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000682	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000887		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000871	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658	http://purl.obolibrary.org/obo/NCBITaxon_9031; http://purl.obolibrary.org/obo/NCBITaxon_9823; http://purl.obolibrary.org/obo/NCBITaxon_9913	http://purl.obolibrary.org/obo/NCBITaxon_9031	http://purl.obolibrary.org/obo/NCBITaxon_9823	http://purl.obolibrary.org/obo/NCBITaxon_9913	http://purl.obolibrary.org/obo/CHEBI_60004		http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/OBI_0003658	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000506
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS		MTBLS	MTBLS	MTBLS	MTBLS		MTBLS	MTBLS		NCBITaxon	NCBITaxon	NCBITaxon	CHMO		CHMO	MS	OBI	MTBLS	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Chromatography Instrument	Instrument	Instrument	Chromatography Instrument	Instrument	Chromatography Instrument	Instrument	Chromatography Instrument	Instrument	Organism	Organism	Organism	Organism	Organism part	Sample type	Sample type	measurement-type			
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	data-curation	submitter	data-curation
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Haley Chatelaine, Cristina Balcells, Stephen Barnes, Djawed Bennouna, Justin Cross, Clay Davis, Felice de Jong, Maureen Kachman, Tim Garrett, Micah J. Jeppesen, Hector C. Keun, Iqbal Mahmud, Wenqian Li, Philip L. Lorenzi, Robert Powers, Alexander Raskind, Michelle Saoi, Tracey B. Schock, Bo Wei, Thomas White, Landon Wilson, Chris Beecher, Ewy A. Mathé
+Study Publication Title	Metabolomic profiles reproducibly differentiate clinically relevant, heterogeneous sample mixtures: a multi-lab “round robin” study
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample group	Relative concentration
+Study Factor Type	Species	concentration
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45293	http://purl.obolibrary.org/obo/CHMO_0002820
+Study Factor Type Term Source REF	NCIT	CHMO
+Comment[Study Factor Value Format]		ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-2.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-2.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-3.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-3.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-4.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-4.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-5.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-5.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-6.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-6.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-7.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-7.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS15676_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt	a_MTBLS15676_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]																
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Samples comprised homogenized, protein-normalized beef, chicken, and pork extracts. Seven sample solutions were prepared that comprised all possible equal mixtures of these three extract types: 1) Pure sample chicken (a), pork (b) or beef (c); 2) Dual mixtures of extracts (beef + pork (bc), beef + chicken (ac), pork + chicken (ab)); 3) Mix of all extracts (abc).&nbsp;Concentrations of pure of mixtures of extracts were varied as follows, resulting in 16 samples: Pure samples as 0.5, 1, and 1.5 concentration each (N=18); Dual mixtures at 0.3 and 0.5 concentration each (N=12); Mix of all extracts at 0.3 concentration each (N=2).</p>	<p>Meat homogenates were protein-normalized, and metabolites were extracted, centrally. Aliquots of extracts were distributed to all labs and maintained at -80 C until analysis.</p>	<p><strong>Lab 1</strong></p><p>LC system: Thermo Scientific Vanquish HPLC</p><p>Mobile Phase A: Water + 0.1% formic acid</p><p>Mobile Phase B: Acetonitrile</p><p>Column: Avantor ACE EXCEL 2 C18-PFP (2.1 x 100 mm, 2 um)</p><p>Flow Rate: 0.35 mL/min</p><p>Injection volume: 6 uL</p><p>&nbsp;</p><p><strong>Lab 2</strong></p><p>LC system: Thermo Scientific Vanquish HPLC</p><p>Mobile Phase A: Water + 0.1% formic acid</p><p>Mobile Phase B: Methanol + 0.1% formic acid</p><p>Column: Acquity HSS T3 (2.1 x 150 mm, 1.8 um)</p><p>Flow Rate: 0.3 mL/min</p><p>Injection volume: 5 uL</p><p>&nbsp;</p><p><strong>Lab 3</strong></p><p>LC system: Thermo Scientific Vanquish HPLC</p><p>Mobile Phase A: Water + 0.1% formic acid + 10 mM ammonium acetate</p><p>Mobile Phase B: Methanol + 0.1% formic acid + 10 mM ammonium acetate</p><p>Column: Phenomenex Kinetex C18 (2.1 x 150 mm, 2.6 um)</p><p>Flow Rate: 0.2 mL/min</p><p>Injection volume: 5 uL</p><p>&nbsp;</p><p><strong>Lab 4</strong></p><p>LC system: SCIEX Exion UPLC</p><p>Mobile Phase A: Water + 0.1% formic acid</p><p>Mobile Phase B: Acetonitrile + 0.1% formic acid</p><p>Column: Phenomenex Luna Polar Omega (2.1 x 100 mm, 1.6 um)</p><p>Flow Rate: 0.5 mL/min</p><p>Injection volume: 10 uL</p><p>&nbsp;</p><p><strong>Lab 5</strong></p><p>LC system: Agilent 1290 Infinity II</p><p>Mobile Phase A: Water + 0.1% formic acid</p><p>Mobile Phase B: Acetonitrile + 0.1% formic acid</p><p>Column: Acquity HSS T3 (2.1 x 150 mm, 1.8 um)</p><p>Flow Rate: 0.3 mL/min</p><p>Injection volume: 5 uL</p><p>&nbsp;</p><p><strong>Lab 6</strong></p><p>LC system: Waters nanoAcquity UPLC</p><p>Mobile Phase A: Water + 0.1% formic acid</p><p>Mobile Phase B: Acetonitrile + 0.1% formic acid</p><p>Column: Waters (2.1 x 150 mm, 1.8 um)</p><p>Flow Rate: 0.07 mL/min</p><p>Injection volume: 5 uL</p><p>&nbsp;</p><p><strong>Lab 7</strong></p><p>LC system: SCIEX Exion LC 3.0</p><p>Mobile Phase A: POS - Water + 0.2% formic acid | NEG – Water + 0.1% formic acid + 10 mM ammonium formate</p><p>Mobile Phase B: POS - Acetonitrile + 0.2% formic acid | NEG – Acetonitrile</p><p>Column: Phenomenex Luna Polar Omega (2.1 x 100 mm, 1.6 um)</p><p>Flow Rate: 0.45 mL/min</p><p>Injection volume: 10 uL</p><p>&nbsp;</p><p><strong>Lab 8</strong></p><p>LC system: Agilent 1290 UPLC</p><p>Mobile Phase A: 95/5 Water/Acetonitrile + 0.1% formic acid</p><p>Mobile Phase B: 95/5 Acetonitrile/Water + 0.1% formic acid</p><p>Column: Waters Acquity CHS C18 (2.1 x 100 mm, 1.7 um)</p><p>Flow Rate: 0.4 mL/min</p><p>Injection volume: 5 uL</p>	<p><strong>Lab 1</strong></p><p>MS instrument: Thermo Scientific Q Exactive Orbitrap</p><p>Drying gas temperature: 350</p><p>Sheath gas temperature:</p><p>Voltage: 3500 V</p><p>m/z range: 70-1000</p><p>Scan rate: 6 scan/second</p><p>Resolution: 35,000</p><p>&nbsp;</p><p><strong>Lab 2</strong></p><p>MS instrument: Thermo Scientific Orbitrap Fusion Lumos</p><p>Drying gas temperature:</p><p>Sheath gas temperature: 350</p><p>Voltage: 3500 V</p><p>m/z range: 70-1200</p><p>Scan rate: 4 Hz</p><p>Resolution: 120,000</p><p>&nbsp;</p><p><strong>Lab 3</strong></p><p>MS instrument: Thermo Scientific Orbitrap Fusion Lumos</p><p>Drying gas temperature: 250</p><p>Sheath gas temperature:</p><p>Voltage: 3500 V</p><p>m/z range: 70-1400</p><p>Scan rate: 20 spectra/second</p><p>Resolution: 240,000</p><p>&nbsp;</p><p><strong>Lab 4</strong></p><p>MS instrument: SCIEX 5600 Triple TOF</p><p>Drying gas temperature: 400</p><p>Sheath gas temperature: 40</p><p>Voltage: 40 V</p><p>m/z range: 50-1000</p><p>Scan rate: 8 scans/second</p><p>Resolution: 30,000</p><p>&nbsp;</p><p><strong>Lab 5</strong></p><p>MS instrument: Agilent 6546 QTOF</p><p>Drying gas temperature: 150</p><p>Sheath gas temperature: 250</p><p>Voltage: 2000 V</p><p>m/z range: 50-1700</p><p>Scan rate: 5 spectra/second</p><p>Resolution:</p><p>&nbsp;</p><p><strong>Lab 6</strong></p><p>MS instrument: Waters Xevo G2-XS QTOF</p><p>Drying gas temperature: 20</p><p>Sheath gas temperature: 120</p><p>Voltage: 3000 V</p><p>m/z range: 50-1200</p><p>Scan rate: 2 spectra/second</p><p>Resolution:</p><p>&nbsp;</p><p><strong>Lab 7</strong></p><p>MS instrument: ZenoTOF 7600</p><p>Drying gas temperature: 600</p><p>Sheath gas temperature:</p><p>Voltage: POS = 5500 V | NEG = 4500 V</p><p>m/z range: 50-1000</p><p>Scan rate: Total scan time: 0.839 sec (0.1 s TOF + 25 SWATH win x 0.02s)</p><p>Resolution: &lt;0.02 Da</p><p>&nbsp;</p><p><strong>Lab 8</strong></p><p>MS instrument: Agilent 6546 QTOF</p><p>Drying gas temperature: 300</p><p>Sheath gas temperature: 350</p><p>Voltage: 3000 V</p><p>m/z range: 100-1700</p><p>Scan rate: 1 spectrum/second</p><p>Resolution:</p>	<p>Data was transformed to mzXML using <strong>ProteoWizard</strong>. The mzXML files were input to <strong>ClusterFinder</strong> software for peak picking using the LTRS standards, which generated a library that was then applied for targeted peak picking on the samples. The picked and grouped peaks were output in a matrix as Clean Data. The Clean Data was then corrected for ion suppression to create the Suppression Corrected Data. Suppression correction involved dividing C12 peaks by the corresponding C13 standard peak and multiplying the resulting ratio by the mean integral of the C13 peak. The Suppression Corrected data was then normalized (SC Normalized Data) using a 'Dual MSTUS' (multiply each Suppression Corrected feature by the sum of the C12 peaks divided by the sum of the C13 peaks). A separate, normalized-only data set (Clean Normalized Data) by applying a MSTUS algorithm to the Clean Data.</p>	<p>Metabolite annotations were assigned based on accurate mass and the m/z difference between the C12 and C13 peaks detected for a given feature. Molecular formulas were mapped to internal libraries in the <strong>ClusterFinder</strong> software to generate putative annotations.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Mathe	Chatelaine	Beecher
+Study Person First Name	Ewy	Haley	Chris
+Study Person Mid Initials	A	A	
+Study Person Email	ewy.mathe@nih.gov	haley.chatelaine@nih.gov	chris@iroatech.com
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	National Center for Advancing Translational Sciences		
+Study Person Roles	Principal Investigator	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0003-4491-8107		
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04pw6fb54		

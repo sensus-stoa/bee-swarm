@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	AGRO	CHEBI	CHMO	EFO	MS	MSIO	MTBLS	NCIT	OBI	PRIDE	UO
+Term Source File	https://www.ebi.ac.uk/ols4/api		http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl		http://purl.obolibrary.org/obo/uo.owl
+Term Source Version												
+Term Source Description			Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations		Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12550
+Investigation Title	A Comprehensive and Ultrasensitive Isotope Calibration Method for Soil Amino Compounds Using Orbitrap Mass Spectrometry
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-06-03
+Investigation Public Release Date	2025-06-16
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12550
+Study Title	A Comprehensive and Ultrasensitive Isotope Calibration Method for Soil Amino Compounds Using Orbitrap Mass Spectrometry
+Study Description	Bound amino compounds (amino acid and amino sugar polymers) comprise a significant proportion (~40%) of soil organic nitrogen and therefore represent an essential source of nitrogen for plant and microbial nutrition. The analysis of their content and isotope enrichment still represents a significant challenge due to the low isotope enrichment levels reached under near-native soil conditions and the lack of isotopically labeled standards for some key amino compounds. In this study, we used both a 13C-labeled and an unlabeled amino acid mixture to establish isotope calibration curves for 16 amino compounds, using the 6-Aminoquinolyl-N-hydroxysccinimidyl carbamate (AQC) derivatization method and ultra-high-performance liquid chromatography with high-resolution Orbitrap mass spectrometry (UPLC-Orbitrap MS). Molecular ions of AQC-derivatives for all standard amino compounds were identified at the expected m/z values of the respective isotopologues. The isotope calibration curves exhibited excellent linear fits across the whole 13C enrichment range and polynomial fits in the low 13C enrichment range (R2 > 0.990). However, the polynomial fitting terms differed between individual amino acids. Subsequently, we developed equations to relate the calibrated regression terms to the physicochemical properties of the respective amino acids, here mainly the ratio of amino compound-C atoms to total C atoms in AQC-amino compound derivatives. Based on these regressions, we could ultimately predict isotope calibration curves for those amino compounds unavailable as 13C labeled standards, for example muramic acid, hydroxyproline and diaminopimelic acid. To test the model accuracy, we compared the outcomes of measured calibrations with predicted calibrations for amino acids where we had isotopically enriched standards. The results of linear regression between measured and predicted data were excellent, where R2 was >0.97, and mean absolute (percentage) deviation, MAD and MAPD, were 0.334 and 15.8%. Finally, we applied both standard and predicted calibration curves to low 13C amended soil samples and unlabeled controls to test the applicability of our model. The limit of detection (LOD) as the minimum detectable atom % 13C incorporation of amino compounds ranged from 0.0003 to 0.14 atom % among different amino compounds. This general predictive model can be used to comprehensively quantify isotope enrichments across the entire soil amino compound profile, including amino sugars and proteinogenic and non-proteinogenic amino acids, providing valuable insights for a better understanding of the overall fate of different amino compounds in soils or broader environmental samples.
+Study Submission Date	2025-06-03
+Study Public Release Date	2025-06-16
+Study File Name	s_MTBLS12550.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	3
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	Orbitrap mass spectrometry	carbon-13 atom	organic amino compound	analyte calibration
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0002926	http://purl.obolibrary.org/obo/CHEBI_36928	http://purl.obolibrary.org/obo/CHEBI_50047	http://purl.allotrope.org/ontologies/process#AFP_0003706
+Study Design Type Term Source REF	CHMO	CHMO	CHEBI	CHEBI	AFO
+STUDY PUBLICATIONS
+Study PubMed ID	40503963
+Study Publication DOI	10.1021/acs.analchem.5c01358
+Study Publication Author List	Li Tao, Li Yuhua, Salas Erika, Tian Ye, Liu Xiaofei, Wanek Wolfgang
+Study Publication Title	A Comprehensive and Ultrasensitive Isotope Calibration Method for Soil Amino Compounds Using Orbitrap Mass Spectrometry
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample type
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12550_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number					http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF			MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>- For concentration calibration, unlabeled single amino compounds, [including alpha-Alanine (α-Ala), beta-Alanine (β-Ala), Arginine (Arg), Aspartic acid (Asp), meso-2,6-diaminopimelic (mDAP), LL-2,6-diaminopimelic (LLDAP), gamma-Aminobutyric acid (GAB), Glutamic acid (Glu), Glycine (Gly), Histidine (His), Homoserine (Hse), Hydroxyproline (Hyp), Isoleucine (Ile), Leucine (Leu), Lysine (Lys), Methionine (Met), Phenylalaninie (Phe), Proline (Pro), Serine (Ser), Threonine (Thr), Tyrosine (Tyr), Valine (Val), Glucosamine (GlcN), Galactosamine (GalN), Mannosamine (ManN) and Muramic acid (MurA)] were purchased from Sigma Aldrich (St. Louis, MO).</p><p><br></p><p>- For isotope calibration, a U-13C (97-99 atom %) labeled and an unlabeled algal amino acid mixture (extracted from a blue-green algal source comprising the 16 amino acids Ala, Arg, Asp, Glu, Gly, His, Ile, Leu, Lys, Met, Phe, Pro, Ser, Thr, Tyr and Val) were purchased from Cambridge Isotope Laboratories (Tewksbury, MA). Methanol, hydrochloric acid, formic acid and acetonitrile solution were also purchased from Sigma Aldrich (LC-MS grade; St. Louis, MO). AccQ-Tag Ultra Derivatization Kit was obtained from Waters Corporation (Milford, MA, USA).</p><p><br></p><p>- For soil enrichment samples, we used sieved (2 mm) soil samples from Achenkirch forest, Austria, to test the applicability of the method. The soil properties and site description can be found in a previous study [1]. Low amounts of 13C-labeled synthetic root exudates (1.2 mg/C mesocosm) were injected into control soils in in situ mesocosms (67±5 g soil d.w. mesocosm-1). To mimic root exudates, a cocktail of 3 organic acids (citric acid, sodium acetate and oxalic acid), 2 sugars (glucose and fructose) and 18 amino acids (Cambridge Isotope Laboratories) comprising 60%, 35% and 5% of the exudate C input respectively, was prepared at 10 atom % 13C enrichment and injected as solution [2, 3]. Soil samples were collected after 5 days from the whole mesocosms, sieved and air-dried.</p><p><br></p><p>References:</p><p>[1] Tian, Y.; Schindlbacher, A.; Malo, C. U.; Shi, C.; Heinzle, J.; Kwatcho Kengdo, S.; Inselsbacher, E.; Borken, W.; Wanek, W. Long-Term Warming of a Forest Soil Reduces Microbial Biomass and Its Carbon and Nitrogen Use Efficiencies. Soil Biol. Biochem. 2023, 184, 109109.</p><p>[2] Baumert, V. L.; Vasilyeva, N. A.; Vladimirov, A. A.; Meier, I. C.; Kögel-Knabner, I.; Mueller, C. W. Root Exudates Induce Soil Macroaggregation Facilitated by Fungi in Subsoil. Front. Environ. Sci. 2018, 6, 140.</p><p>[3] Smith, W. H. Character and Significance of Forest Tree Root Exudates. Ecology 1976, 57 (2), 324–331.</p>	<p>- For concentration quantification, stock solutions of all single amino compound standards were prepared at 20 mM and mixed to give two combined standards (1 mM for each amino compound) to better separate isobaric amino acids, such as Ile/Leu, α-Ala/β-Ala and mDAP/LLDAP. Combined standard 1 included Leu, β-Ala, LLDAP, Hyp, MurA, GlcN, GAB and Hse, while combined standard 2 included the remaining amino acids. The concentrations of these two combined standards ranged from 300 μM to 2.344 μM by serial dilution.</p><p><br></p><p>- For isotope calibration, U-13C (97-99 atom %) labeled and unlabeled algal amino acid mixtures were respectively prepared into solutions of equal molar concentration. Then, we mixed them in an isotopic dilution series ranging from 98 atom % 13C to natural 13C abundance (~1.1 atom % 13C). Each isotopic dilution was set up in triplicate for the five lowest 13C enrichment standards to allow the determination of the limits of detection (LOD) and limits of quantification&nbsp;(LOQ) of 13C enrichment in the amino compound-AQC derivatives.</p><p><br></p><p>- For soil enrichment samples, aliquots of air-dried soil (0.04 g) were mixed with 10 mL 6 M HCl and heated at 105 °C for 8 h. After cooling to room temperature, the hydrolysates were filtered through cellulose acetate filter membranes (Sartorius, Goettingen, Germany) into 20 mL scintillation vials and dried with a nitrogen stream. The dried extracts were re-dissolved in 12 mL Milli-Q water, and the pH adjusted to 6.6-6.8 with 0.6 M KOH. The extracts were centrifuged (1600 x g, 15 min) to remove iron precipitates and the supernatant was freeze-dried. The freeze-dried extracts were dissolved in 8 mL methanol and centrifuged (1600 x g, 10 min) to remove salt precipitates. The supernatant was then transferred and dried under a nitrogen stream. Finally, the dried extracts were re-dissolved in 1 mL Milli-Q water for AQC derivatization.</p><p><br></p><p>- The AccQ-Tag Ultra Derivatization Kit (Waters Corporation, Milford, MA, USA) was used to perform the derivatization reaction for both standards (including blank) and samples, following the manufacturer’s protocol. The reaction was carried out using 70 μL AccQ-Tag Ultra borate buffer, 10 μL standards or samples and 20 μL reconstituted AccQ-Tag Ultra AQC reagent. The solutions were thoroughly vortexed, left for 1 min at room temperature and then incubated in a heating block at 55 °C for 10 min. The solutions were then injected into the UPLC-Orbitrap MS system.</p>	<p>- Derivatized samples were analyzed using an Ultimate 3000 UPLC system (Thermo Fisher Scientific, Bremen, Germany) coupled to an Orbitrap Q Exactive HRMS system (Thermo Fisher Scientific) with heated ESI source.</p><p><br></p><p>- Amino compound-AQC derivatives were separated using a Waters AccQ-Tag Ultra C18 column (2.1 mm x 100mm, 1.7 μm particles) with a preparative guard column (2.1 mm, 0.2 μm) (Milford, MA, USA).</p><p><br></p><p>- The column temperature was 55 °C.</p><p><br></p><p>- The separation was conducted using eluent A (Milli-Q water, 0.1% v/v formic acid) and eluent B (acetonitrile (ACN), 0.1% v/v formic acid) with the following gradient: 0.0-0.5 min, 0.1% B; 0.5-2.5 min, increase to 5% B; 2.5-8.0 min, increase to 20% B; 8.0-8.25 min, increase to 90% B; 8.25-11.0 min, constant at 90% B; and 11.0-11.2 min, decrease to 0.1% B for column re-equilibration.</p><p><br></p><p>- The injection volume was set to 1 μL and the eluent flow rate was 0.4 mL/min.</p>	<p>- Derivatized samples were analyzed using an Ultimate 3000 UPLC system (Thermo Fisher Scientific, Bremen, Germany) coupled to an Orbitrap Q Exactive HRMS system (Thermo Fisher Scientific) with heated ESI source.</p><p><br></p><p>- The system was operated in full-mass scan mode (150-1000 m/z) in positive ESI mode, as referenced in a previous study [1].</p><p><br></p><p>- Automatic gain control (AGC) target values were set to 3 x 106.</p><p><br></p><p>- The resolution was set to 70,000 to allow separation of 13C and 15N isotopologues [1].</p><p><br></p><p>- Other system parameters were as follows: spray voltage (3.5 kV), capillary temperature (300 °C), sheath gas (35 arbitrary units) and auxiliary gas (15 arbitrary units).</p><p><br></p><p>References:</p><p>[1] Hu, Y.; Zheng, Q.; Wanek, W. Flux Analysis of Free Amino Sugars and Amino Acids in Soils by Isotope Tracing with a Novel Liquid Chromatography/High Resolution Mass Spectrometry Platform. Anal. Chem. 2017, 89 (17), 9192–9200.</p>	<p>- All samples and standards were processed based on their mass spectrometric signals using FreeStyle 1.7 (Thermo Scientific) and Skyline 23.1 (University of Washington, Seattle, WA) software. Concentrations of samples were determined via calibration by concentration standards, depicting the relationship between known concentration and peak area all as the sum of the peak areas of all isotopologues. Isotope enrichment of samples was calculated based on isotope calibration standards.</p>	<p>- The target compound was identified by comparing its characteristics with those of standard compounds, such as retention time and m/z value (mass error &lt; 5 ppm), using FreeStyle 1.7 (Thermo Scientific) and Skyline 23.1 (University of Washington, Seattle, WA) software.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Wanek
+Study Person First Name	Tao	Wolfgang
+Study Person Mid Initials		
+Study Person Email	taol97@univie.ac.at	wolfgang.wanek@univie.ac.at
+Study Person Phone	+4367761589263	
+Study Person Fax		
+Study Person Address	University of Vienna	University of Vienna
+Study Person Affiliation	Division of Terrestrial Ecosystem Research, Department of Microbiology and Ecosystem Science, Centre for Microbiology and Environmental Systems Science, University of Vienna, Djerassiplatz 1, A-1030 Vienna, Austria	Division of Terrestrial Ecosystem Research, Department of Microbiology and Ecosystem Science, Centre for Microbiology and Environmental Systems Science, University of Vienna, Djerassiplatz 1, A-1030 Vienna, Austria
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	OBI	MTBLS	CHMO	NCIT	ERO		EDAM
+Term Source File		http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/				http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version		29	1				18.10e	
+Term Source Description		Ontology for Biomedical Investigations	Metabolights Ontology				NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS1355
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-11-11
+Investigation Public Release Date	2022-01-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1355
+Study Title	Historical Biobanks in Breast Cancer Metabolomics - Challenges and Opportunities
+Study Description	<p><strong>BACKGROUND:</strong> Metabolomic characterization of tumours can potentially improve prediction of cancer prognosis and treatment response. Here, we describe efforts to validate previous metabolomic findings using a historical cohort of breast cancer patients and discuss challenges with using older biobanks collected with non-standardized sampling procedures.</p><p><strong>METHODS:</strong> In total, 100 primary breast cancer samples were analysed by high-resolution magic angle spinning magnetic resonance spectroscopy (HR MAS MRS) and subsequently examined by histology. Metabolomic profiles were related to the presence of cancer tissue, hormone receptor status, T-stage, N-stage and survival. RNA integrity number (RIN), and metabolomic profiles were compared with an ongoing breast cancer biobank.</p><p><strong>RESULTS:</strong> The 100 samples had a median RIN of 4.3, while the ongoing biobank had a significantly higher median RIN of 6.3 (<em>p</em> = 5.86 x 10^-7). A low RIN was associated with changes in choline-containing metabolites and creatine, and the samples in the older biobank showed metabolic differences previously associated with tissue degradation. The association between metabolomic profile and oestrogen receptor status was in accordance with previous findings, however, with a lower classification accuracy.</p><p><strong>CONCLUSIONS:</strong> Our findings highlight the importance of standardized biobanking procedures in breast cancer metabolomics studies.</p>
+Study Submission Date	2019-11-11
+Study Public Release Date	2022-01-24
+Study File Name	s_MTBLS1355.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	magic angle spinning nuclear magnetic resonance spectroscopy	untargeted metabolites	breast cancer	Biobank
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000615	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0000305	http://edamontology.org/topic_3337
+Study Design Type Term Source REF	CHMO	MTBLS	EFO	EDAM
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3390/metabo9110278
+Study Publication Author List	Torfinn S. Madssen, Maria D. Cao, Arne V. Pladsen, Lars Ottestad, Kristine K. Sahlberg, Tone F. Bathen and Guro F. Giskeødegård
+Study Publication Title	Historical Biobanks in Breast Cancer Metabolomics - Challenges and Opportunities
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Estrogen receptor status	Progesterone receptor status	Follow-up time	Status at last observation	T-stage	N-stage	Histological grade	Chemotherapy	Tamoxifen	Tumor tissue present in sample
+Study Factor Type	Estrogen receptor status	Progesterone receptor status	timepoint	Health Status	T stage	N stage	Histologic Grade	Yes, No, or Unknown Response	Yes, No, or Unknown Response	Yes, No, or Unknown Response
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005512	http://www.ebi.ac.uk/efo/EFO_0005513	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C16669	http://www.ebi.ac.uk/efo/EFO_0004928	http://www.ebi.ac.uk/efo/EFO_0004927	http://purl.obolibrary.org/obo/NCIT_C18000	http://purl.obolibrary.org/obo/NCIT_C38148	http://purl.obolibrary.org/obo/NCIT_C38148	http://purl.obolibrary.org/obo/NCIT_C38148
+Study Factor Type Term Source REF	EFO	EFO	EFO	NCIT	EFO	EFO	NCIT	NCIT	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1355_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p>A total of 100 primary tumour samples from patients operated between 1983 and 1997 at Oslo University Hospital who had not received neoadjuvant chemotherapy were included in this study (The OsloVal cohort). The study was approved by the regional ethical committee (approval number 2010/498). The samples were gathered in 2 different time periods, 1983-1989 and 1994-1997, during which different sampling protocols were used. Samples gathered from 1994 to 1997 (n = 17) were taken from the tumour centre, frozen in liquid nitrogen quickly after surgery, then stored in -80 °C until the time of analysis. The remaining tumour samples from 1983 to 1989 (n = 83) were sampled using a less stringent sampling protocol, in which the samples may not have been immediately frozen and were sampled from an unknown location within the tumour. These samples were stored in -30 °C for several years before being moved to storage in -80 °C until the time of analysis. The frozen samples from both cohorts were cut into 3 pieces and the middle piece was sent for metabolomic analysis and the remaining tissue was used for gene expression analyses.</p><p><br></p><p>Information about clinical stage and (ER- and PR)-status was collected from the patient journals. ER- and PR-status in samples collected before 1994 was determined by dextran-coated charcoal assay, while immunohistochemistry was used after 1994. We reassessed ER status for all the samples using immunohistochemistry, as described in the next sections.</p><p><br></p><p>For quality control, we compared the samples with samples from the ongoing Oslo2-biobank<strong>[1]</strong>. Clinical information relating to the samples used from this cohort is available from the cited reference. This cohort consists of primary breast carcinoma tissue samples from patients operated at Oslo University Hospital (Radium Hospital and Ullevål Hospital) in the time period 2006-2009. Patients gave written consent for participation in the research, and the study was approved by the regional ethical committee (approval number 2016/433). The samples were fresh frozen after surgery and stored in -80 °C. A piece from the tumour was cut into 3 parts. The middle section was used for metabolomic analyses (n = 228) and the remaining tissue was used for gene expression analyses.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Haukaas TH, Euceda LR, Giskeødegård GF, Lamichhane S, Krohn M, Jernström S, Aure MR, Lingjærde OC, Schlichting E, Garred Ø, Due EU, Mills GB, Sahlberg KK, Børresen-Dale AL, Bathen TF; Oslo Breast Cancer Consortium (OSBREAC). Metabolic clusters of breast cancer in relation to gene- and protein expression subtypes. Cancer Metab. 2016 Jun 27;4:12. doi:10.1186/s40170-016-0152-x. PMID:27350877.</p>	<p>No extraction was carried out in this experiment (i.e., intact breast cancer tissue samples were used).</p>	<p>Tissue samples (mean sample weight = 6.64 mg, SD = 2.30 mg) were cut to fit a disposable 30 µL insert, with an added 3 µL of D2O (99.8%) with sodium formate (HCOONa, 25mM). The samples were cut by scalpel to fit into a MAS insert quickly (&lt;5 min) on a specially designed workstation cooled down with liquid nitrogen to keep the samples frozen during preparation.</p>	<p>Metabolomic analyses were performed by high-resolution magic angle spinning magnetic resonance spectroscopy (HR MAS MRS) using a Bruker Avance DRX600 spectrometer (Bruker Biospin GmbH, Germany), equipped with a 1H/13C MAS probe. The tissue samples were analysed in accordance with the HR MAS MRS protocol described<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Giskeødegård GF, Cao MD, Bathen TF. High-resolution magic-angle-spinning NMR spectroscopy of intact tissue. Methods Mol Biol. 2015;1277:37-50. doi:10.1007/978-1-4939-2377-9_4. PMID:25677145.</p>	<p>The samples were spun at 5 kHz at the magic angle. The samples were kept at 5 °C throughout data acquisition to minimize tissue degradation. Data acquisition time averaged at 89 min for all the experiments, with a standard deviation of 14 min, due to differences in time spent to achieve an acceptable shim. Spectral resolution was assessed during shimming by assessing the half-width of formate. A Carr-Purcell-Meiboom-Gill (CPMG) sequence was used, with an effective echo time of 77 ms, a spectral width of 20 ppm (between -5 and 15 ppm) and 256 scans.</p>	<p>The free induction decays were Fourier-transformed into spectra consisting of 64,000 points, following 0.30 Hz line broadening. Phase correction was performed automatically in <strong>TopSpin</strong> 3.1. The spectra were then imported into <strong>MATLAB</strong> 2014a (The Mathworks, Inc., USA). The spectral region from 4.70 to 1.40 ppm was selected for analysis. The spectra were shift-referenced to creatine at 3.03 ppm. The baseline was corrected by subtracting the minimum value in the spectrum from each point, making the lowest point in every spectrum equal to zero. Peaks were aligned using <strong>Icoshift[1]</strong>. Lipid peaks at 4.36-4.27, 2.88-2.70, 2.30-2.20, 2.09-1.93 and 1.67-1.50 ppm were excluded from the spectra and the spectra were mean-normalized by dividing each spectral variable with the average spectral intensity. Metabolite integrals were obtained by integrating the area under the peaks for all visible and identifiable metabolites in the pre-processed spectra and re-normalizing them.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Savorani F, Tomasi G, Engelsen SB. icoshift: A versatile tool for the rapid alignment of 1D NMR spectra. J Magn Reson. 2010 Feb;202(2):190-202. doi:10.1016/j.jmr.2009.11.012. Epub 2009 Nov 18. PMID:20004603.</p>	<p>Metabolites were identified by comparison with a published study<strong>[1]</strong>, and through peak identification using <strong>Chenomx</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Haukaas TH, Euceda LR, Giskeødegård GF, Lamichhane S, Krohn M, Jernström S, Aure MR, Lingjærde OC, Schlichting E, Garred Ø, Due EU, Mills GB, Sahlberg KK, Børresen-Dale AL, Bathen TF; Oslo Breast Cancer Consortium (OSBREAC). Metabolic clusters of breast cancer in relation to gene- and protein expression subtypes. Cancer Metab. 2016 Jun 27;4:12. doi:10.1186/s40170-016-0152-x. PMID:27350877.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Madssen	Cao	Pladsen	Ottestad	Sahlberg	Bathen	Giskeødegård
+Study Person First Name	Torfinn	Maria	Arne	Lars	Kristine	Tone	Guro
+Study Person Mid Initials	S	D	V		K	F	F
+Study Person Email	torfinn.s.madssen@ntnu.no						guro.giskeodegard@ntnu.no
+Study Person Phone							
+Study Person Fax							
+Study Person Address	P.O. Box 8905 MTFS, Trondheim, 7491						Olav Kyrres gate 9, 7030 Trondheim
+Study Person Affiliation	Norwegian University of Science and Technology						Norwegian University of Science and Technology
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT						NCIT

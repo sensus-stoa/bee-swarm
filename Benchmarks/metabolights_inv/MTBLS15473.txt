@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version		2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		2026-07-12	26.02d	2026-05-08	
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS15473
+Investigation Title	Untargeted metabolomics data from low and high responders to metformin
+Investigation Description	
+Investigation Submission Date	2026-08-27
+Investigation Public Release Date	2026-09-30
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15473
+Study Title	Untargeted metabolomics data from low and high responders to metformin
+Study Description	This study compares the untargeted metabolomic profiles of individuals with low and high responses to metformin. The aim is to identify differential metabolites and metabolic pathways associated with variations in treatment response, thereby providing insights into the metabolic mechanisms underlying interindividual differences in metformin efficacy.
+Study Submission Date	2026-08-27
+Study Public Release Date	2026-09-30
+Study File Name	s_MTBLS15473.txt
+Comment[Created At]	2026-08-26
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-30
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish Horizon UHPLC system	Thermo Scientific Q Exactive HF-X	Homo sapiens	feces	experimental sample	untargeted analysis	Metabolomics	untargeted metabolite profiling	liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000440	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000524
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	BTO	CHMO	MS	EDAM	MSIO	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	42810351
+Study Publication DOI	10.1016/j.cmet.2026.09.003
+Study Publication Author List	Zhao Yue, Peng Chen, Xia Ying, Dong Tiejun, Xu Juan, Shan Xiaodong, Zhong Xiang, Xue Jingchuan, Bing Ziqian, Li Pengfei, Han Jingyu, Nie Yunzhong, He Kelei, Cao Yu, Wang Tingting
+Study Publication Title	Microbial aldehyde-alcohol dehydrogenase degrades metformin to limit therapeutic response in type 2 diabetes
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Metformin response group
+Study Factor Type	Response to treatment
+Study Factor Type Term Accession Number	http://snomed.info/id/182985004
+Study Factor Type Term Source REF	SNOMED
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15473_LC-MS_positive_reverse-phase.txt	a_MTBLS15473_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish Horizon UHPLC system;ACQUITY UPLC HSS T3 (1.8 μm, 2.1 × 100 mm; Waters);reverse phase;positive;70-1050;Thermo Scientific Q Exactive HF-X mass spectrometer	Thermo Scientific Vanquish Horizon UHPLC system;ACQUITY UPLC HSS T3 (1.8 μm, 2.1 × 100 mm; Waters);reverse phase;negative;70-1050;Thermo Scientific Q Exactive HF-X mass spectrometer
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>A total of 104 human fecal samples were collected in China in 2024 from individuals classified as low or high responders to metformin. Each sample was assigned a unique identifier before untargeted LC-MS analysis. The available study documentation did not specify the collection device, detailed collection procedure, transport conditions, or storage temperature.</p>	<p>Chromatographic separation was performed using a Thermo Scientific Vanquish Horizon UHPLC system equipped with an ACQUITY UPLC HSS T3 column (100 mm × 2.1 mm, 1.8 µm; Waters). Mobile phase A consisted of 95% water and 5% acetonitrile containing 0.1% formic acid, while mobile phase B consisted of 47.5% acetonitrile, 47.5% isopropanol, and 5% water containing 0.1% formic acid. The column temperature was maintained at 40°C, and the injection volume was 3 µL. The mobile-phase flow rate and gradient program were not specified in the experimental report.</p>	<p>Raw LC-MS data were processed using Progenesis QI v3.0 (Waters Corporation, Milford, USA). Processing included baseline filtering, feature detection, peak integration, retention-time correction, and peak alignment across samples. The processed data were exported as a feature matrix containing retention time, m/z, and peak-intensity values for downstream statistical analysis.</p>	<p>Approximately 50 ± 5 mg of each sample was transferred into a 2 mL centrifuge tube containing a 6 mm grinding bead. A total of 400 µL of extraction solvent (methanol/water, 4:1, v/v), containing four internal standards including L-2-chlorophenylalanine (0.02 mg/mL), was added. Samples were homogenized for 6 min at −10°C and 50 Hz, followed by ultrasonic extraction for 30 min at 5°C and 40 kHz. After incubation at −20°C for 30 min, the samples were centrifuged at 13,000 × g for 15 min at 4°C. The supernatants were transferred into autosampler vials for LC-MS analysis. A pooled quality-control (QC) sample was prepared by combining 20 µL of supernatant from each sample and was analyzed periodically throughout the analytical sequence.</p>	<p>Mass spectrometric analysis was performed using a Thermo Scientific Q Exactive HF-X mass spectrometer equipped with an electrospray ionization (ESI) source. Data were acquired separately in positive- and negative-ion modes over an m/z range of 70-1050. The sheath gas flow rate was 50 arbitrary units, the auxiliary gas flow rate was 13 arbitrary units, the heater temperature was 425°C, and the capillary temperature was 325°C. The spray voltage was set to 3500 V in positive-ion mode and -3500 V in negative-ion mode, and the S-lens RF level was 50. The normalized collision energies were 20%, 40%, and 60%. The resolutions were 60000 for full-MS scans and 7500 for MS/MS scans.</p>	<p>Metabolite features were annotated using Progenesis QI v3.0 by matching the acquired MS and MS/MS spectra against public metabolite databases, including the Human Metabolome Database (HMDB; https://www.hmdb.ca/) and METLIN (https://metlin.scripps.edu/), as well as an in-house spectral library. The precursor-ion mass tolerance was set to less than 10 ppm, and MS/MS fragmentation matching scores were used to support metabolite annotations. Where available, HMDB, LipidMaps, KEGG compound, CAS, molecular formula, adduct, retention-time, and mass-error information was recorded.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhao
+Study Person First Name	Yue
+Study Person Mid Initials	
+Study Person Email	zhyue@nju.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Nanjing University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

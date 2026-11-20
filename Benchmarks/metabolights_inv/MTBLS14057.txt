@@ -1,0 +1,108 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.87.0			2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14057
+Investigation Title	SIRT5 alleviate cardiomyocyte senescence in radiation-induced heart disease via desuccinylation of HADHB
+Investigation Description	
+Investigation Submission Date	2026-03-15
+Investigation Public Release Date	2026-03-15
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14057
+Study Title	SIRT5 alleviate cardiomyocyte senescence in radiation-induced heart disease via desuccinylation of HADHB
+Study Description	<p>SIRT5 deficiency caused widespread protein hypersuccinylation in cardiac tissue. Succinylation proteomic analysis revealed HADHB as the key SIRT5 target, with lysine 292 (K292) being the dominant succinylation site. Functional studies demonstrated that K292 succinylation impairs HADHB-mediated fatty acid β-oxidation, ultimately promoting cardiomyocyte senescence. These findings reveal a critical regulatory axis involving SIRT5-HADHB succinylation in the pathogenesis of radiation-induced cardiomyopathy, providing new insights into potential therapeutic strategies.</p>
+Study Submission Date	2026-03-15
+Study Public Release Date	2026-03-15
+Study File Name	s_MTBLS14057.txt
+Comment[Created At]	2026-03-15T14:00:46.537900
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thoracic radiotherapy	Cardiomyocyte senescence	SIRT5	Fatty acid metabolism	Succinylation
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Fujuan Zeng, Zhimin Zeng
+Study Publication Title	SIRT5 alleviate cardiomyocyte senescence in radiation-induced heart disease via desuccinylation of HADHB
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_24433
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14057_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14057_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed using a Waters ACQUITY Premier HSS T3 Column (1.8 µm, 2.1 mm × 100 mm). The mobile phase consisted of 0.1% formic acid in water (A) and 0.1% formic acid in acetonitrile (B). The column temperature was maintained at 40 °C, the flow rate was set at 0.4 mL/min, and the injection volume was 4 μL.</p>	<p>The raw mass spectrometry data were converted to mzML format using ProteoWizard. Peak detection, alignment, and retention time correction were subsequently performed using XCMS. Peaks with a missing rate greater than 50% across samples in each group were removed. Missing values were then imputed using a combination of KNN imputation and one-fifth of the minimum value. Specifically, when the proportion of missing values exceeded 50%, the missing values were filled with one-fifth of the minimum value; when the missing rate was less than 50%, missing values were imputed using the KNN method. Peak areas were further corrected using the support vector regression (SVR) method. The corrected and filtered peaks were subjected to metabolite identification by searching against an in-house laboratory database and integrating public databases, including Human Metabolome Database (HMDB, https://hmdb.ca/</p><p>) and KEGG (https://www.kegg.jp/). Finally, metabolites with a comprehensive identification score greater than 0.5 and a coefficient of variation (CV) of QC samples less than 0.3 were retained. Data from positive and negative ion modes were then merged, keeping the metabolites with the highest identification level and the lowest CV value, resulting in the final dataset stored in the file all_sample_data.xlsx.</p>	<p>Add 500 μL of 80% methanol–water extraction solution containing internal standards and vortex for 2 min. Place the centrifuge tube containing the sample into liquid nitrogen for rapid freezing for 5 min, then remove and thaw on ice for 5 min. Avoid direct hand contact with the sample tube to prevent sudden temperature differences that may cause the tube cap to burst open and result in sample loss. Vortex for 2 min to mix thoroughly. Repeat the cycle of liquid nitrogen freezing, thawing, and vortexing three times. Centrifuge the samples at 12,000 r/min for 10 min at 4 °C. Transfer 200 μL of the supernatant and pass it through a protein precipitation plate for subsequent instrumental analysis. The prepared injection solution should be stored at −20 °C before analysis.</p><p><br></p>	<p>Mass spectrometric analysis was performed using a Thermo Scientific Q Exactive HF-X mass spectrometer equipped with an electrospray ionization (ESI) source operating in both positive and negative ion modes. The spray voltage was set to 3500 V in ESI+ mode and 3200 V in ESI− mode. The sheath gas and auxiliary gas were set to 30 Arb and 5 Arb, respectively. The ion transfer tube temperature and vaporizer temperature were maintained at 320 °C and 300 °C, respectively. The MS1 scan range was m/z 75–1000 with a resolution of 35,000 and an AGC target of 1 × 1000000. The MS2 scan range was also m/z 75–1000, with a resolution of 17,500 and an AGC target of 2 × 100000. The normalized collision energies (CE) were set to 30, 40, and 50. The signal intensity threshold was 1 × 100000 cps, and the Top N value was set to 10 precursor ions. The dynamic exclusion duration was 3 s.</p>	<p>The composition of metabolites exhibits sample specificity, meaning that different types of samples contain distinct categories and proportions of metabolites. In addition, metabolite composition can change under different treatments or biological processes. By analyzing the proportional composition of metabolites, the overall distribution of major metabolite classes within samples can be systematically evaluated.&nbsp;</p>	<p>Human cell samples were freeze-dried in whole tubes to preserve cellular components and maintain sample stability during storage and transport.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zeng	Zeng
+Study Person First Name	Fujuan	Zhimin
+Study Person Mid Initials		
+Study Person Email	zengfujuan2019@163.com	2zm@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Nanchang University	Nanchang University
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

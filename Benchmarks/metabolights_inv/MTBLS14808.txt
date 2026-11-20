@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	BTO	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.allotrope.org/voc/afo/latest.xml	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	REC/2026/03		2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0			1.0.1		2026-05-05	26.02d	2026-03-19	2025
+Term Source Description	Allotrope Merged Ontology Suite	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14808
+Investigation Title	In silico derivatization and CCS value prediction improve interoperable semi-untargeted stable-isotope labeling analysis
+Investigation Description	
+Investigation Submission Date	2026-06-22
+Investigation Public Release Date	2026-10-20
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14808
+Study Title	In silico derivatization and CCS value prediction improve interoperable semi-untargeted stable-isotope labeling analysis
+Study Description	<p>Chemical derivatization can improve the detectability of analytically challenging compounds, but untargeted feature identification and annotation for chemically derivatized samples are limited by the availability of reference spectra. With the workflow presented in this manuscript, challenges associated with library-dependent identification of derivatized species are mitigated by in silico derivatization and spectral prediction, which reduce the need for dedicated experimental reference libraries. Furthermore, an improved CCS-value prediction algorithm provides an orthogonal dimension that increases confidence in feature annotation for both native and derivatized compounds. The annotated feature lists can be used for automated generation of target lists for quantitation. Additionally, they can be used for semi-untargeted stable-isotope labeling analyses, which can be performed, from raw data to results, within the same software environment. Finally, natural isotope abundance correction can be applied on the resulting isotopologue distributions, which allows for a full analysis of stable-isotope labeling data. Consolidation of all processing steps in a single environment minimizes operator intervention, reduces error risk, and makes stable-isotope labeling more widely attainable in metabolomics research.</p><p><br></p>
+Study Submission Date	2026-06-22
+Study Public Release Date	2026-10-20
+Study File Name	s_MTBLS14808.txt
+Comment[Created At]	2026-06-18
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Bruker software	MetaboScape	TASQ	Isotope Labeling	Agilent 1290 Infinity II UHPLC	Bruker timsTOF Pro 2	Mus musculus	reference compound	Cell Line	experimental sample	reference compound mix	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1000692	http://purl.obolibrary.org/obo/MS_1003608	http://purl.obolibrary.org/obo/MS_1003609	http://id.nlm.nih.gov/mesh/D007553	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118	http://purl.obolibrary.org/obo/NCBITaxon_10090	http://purl.obolibrary.org/obo/MSIO_0000023	http://purl.obolibrary.org/obo/NCIT_C16403	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MSIO_0000024	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MS	MS	MS	mesh	MTBLS	MTBLS	NCBITaxon	MSIO	NCIT	CHMO	MSIO	MS	EDAM
+Comment[Study Design Category]	software	software	software	default	Chromatography Instrument	Instrument	Organism	Organism part	Organism part	Sample type	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Matthias Anagho-Mattanovich, Nikolas Kessler, Sofie Weinkouff, Patrick Groos, Andrea Vaccalluzzo, Marharyta Vasnietsova, Aiko Barsch, Cristian De Gobba, Matthew R. Lewis and Thomas Moritz
+Study Publication Title	In silico derivatization and CCS value prediction improve interoperable semi-untargeted stable-isotope labeling analysis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Nutrient contribution experiment
+Study Factor Type	diet
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002755
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14808_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Autosampler model];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity II UHPLC;Agilent 1290 Infinity Autosampler;Bio-AQ (2 µm, 2.1 mm x 50 mm, Bruker);reverse phase;negative;50-1200;Bruker timsTOF Pro 2;electrospray ionization;quadrupole time-of-flight
+Comment[Assay Field Default Unit]	;;;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000864;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002087;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002118;http://purl.obolibrary.org/obo/MS_1000073;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000699
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;MTBLS;;;MTBLS;MS;MTBLS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Brown adipocyte samples were prepared following the procedure described in Anagho-Mattanovich et al. (2025). Detailed experimental conditions can be found in the methods section of that publication.</p><p>In brief, immortalized murine brown preadipocytes, which were kindly provided by Dr. Zach Gerhart-Hines, were maintained in 6-well plates in Dulbecco’s Modified Eagle Medium (DMEM; Thermo Fisher Scientific) with pyruvate supplemented with 10% fetal bovine serum (FBS) and 1% penicillin–streptomycin at 37 °C in a humidified atmosphere containing 5% CO2. Upon reaching confluence (day 0), differentiation was induced using a medium containing 20 nM insulin, 1 nM triiodothyronine (T3), 1 µM dexamethasone, 0.125 mM indomethacin, and 0.5 mM isobutylmethylxanthine (Sigma-Aldrich, St Louis, MO, USA). After two days, the medium was replaced with DMEM supplemented with 20 nM insulin and 1 nM T3, which was renewed every two days. Experiments were conducted on day 7 using cells confirmed to be free of mycoplasma contamination.</p><p>The control samples were cultured in standard DMEM with 10% fetal bovine serum (FBS) and 1% penicillin–streptomycin at the same growth conditions as above. For each of the labeling experiments, DMEM with no glucose, no glutamine and no pyruvate was used with 10% fetal bovine serum (FBS) and 1% penicillin-streptomycin at the same growth conditions as above. This was then supplemented with the labeled versions of one of the tracers used in the study (glucose, glutamine, pyruvate), together with the unlabeled versions of the other two, at an equimolar concentration compared to the standard media. In other words, 3 labeled media mixes were used, one for glucose labeling, one for glutamine and one for pyruvate.</p><p>Samples were collected for metabolomic analysis at 16 h and 20 h with 6 replicates each.</p>	<p>A Bruker Bio-AQ, 50 x 2.1 mm, 2 µm column was used at an oven temperature of 55 °C. At a flow rate of 0.90 mL/min, the mobile phases A (water with 0.1% HCOOH) and B (acetonitrile with 0.1% HCOOH) were combined as follows to create a gradient: starting conditions 0.1 % B, held for 0.5 min, then gradually increased to 50% at 1 min, and thereafter increased to 100 % B at 2.25, held until 2.5 min at 100 % B, ending at 2.55 min 0.1 % B. The injection volume was 2 µL.</p><p><br></p>	<p>All data was processed in MetaboScape 2026 and TASQ 2026 with the features described below.</p><p>For metabolite annotation in MetaboScape, the minimum intensity threshold was set to 500. The following deviation windows were set for library/prediction matching: mobility delta 0.05, m/z delta 0.015, retention time delta 10 s. Features were kept if they appeared in at least 25 % of all samples in their respective group.&nbsp;</p>	<p>Culture media were transferred to collection tubes, and wells were rinsed with 1 mL of in-house prepared phosphate-buffered saline (PBS) before quenching the cells with 500 µL of 90% methanol that contained 10 mg/L nonanoic acid as an internal standard. Cells were scraped, collected, snap-frozen in liquid nitrogen, and subjected to three freeze-thaw-vortex cycles. After a 1 h incubation on ice to promote protein precipitation, samples were centrifuged at 16,000 g for 15 min at 4 °C. The resulting supernatants were stored at -80 °C until further analysis.</p><p>For NPH derivatization (see below), 20 µL of each supernatant were used.</p><p>The samples were NPH derivatized, after the addition of internal standards, to improve the measurement of compounds relevant for the study of the central carbon metabolism, e.g., carboxylic acids, aldehydes and ketones.</p><p>A calibration curve for the following compounds was prepared: D-glucose, lactic acid, pyruvic acid, citric acid, alpha-ketoglutaric acid, succinic acid, fumaric acid, DL-malic acid, L-alanine, glycine, L-methionine, L-glutamine, glutamic acid, L-serine, L-aspartic acid, L-phenylalanine, L-tryptophan, L-lysine, 3-hydroxybutyric acid and palmitic acid, all purchased from Sigma-Aldrich. All of them were diluted to the same stock mass concentration levels of 50 µg/mL from which the following calibration points were diluted: 50, 25, 10, 7.5, 5, 2.5, 1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.025, 0.01 µg/mL.</p><p>For NPH derivatization (see below), 20 µL of each calibration mix were used.</p><p>The internal standard mix contained 10 µg/mL each of D-glucose (U-13C6), D3-lactic acid, 13C3-citric acid, D6-alpha-ketoglutaric acid, D4-succinic acid, D4-fumaric acid, 13C4-malic acid, D5-glycine, 13C5-L-glutamine, 13C5-15N-L-glutamic acid, 13C9-15N-L-phenylalanine, D5-tryptophan, 13C4-3-hydroxybutyric acid, D31-palmitic acid, all purchased from Cambridge Isotope Laboratories, Inc.</p><p>To each sample, 20 µL of an internal standard mix were added. The resulting 40 µL were dried down in an N2-evaporator before being resuspended in 20 µL 80 % methanol prior to derivatization.</p><p>To prepare 250 mL of the NPH solution (200 mM 3-nitrophenylhydrazine; Sigma-Aldrich, Merck/MilliporeSigma, Burlington, MA, USA) in 50% methanol (Thermo Fisher Scientific, Waltham, MA, USA), 9.480 g of solid 3-nitrophenylhydrazine (NPH) were dissolved in 125 mL of LC-MS grade water (Thermo Fisher Scientific) with vortex mixing until complete dissolution. Subsequently, 125 mL of pure methanol were added, and the resulting solution was vortexed to ensure homogeneity.</p><p>To prepare 250 mL of the EDC solution (120 mM N-(3-dimethylaminopropyl)-N’-ethylcarbodiimide; Sigma-Aldrich) in 50% methanol containing 6% pyridine (Thermo Fisher Scientific), 4.650 g of EDC were dissolved in 117 mL of LC-MS grade water by vortexing. This was followed by the addition of 117 mL of pure methanol and 16 mL of pyridine, after which the solution was vortexed to mix thoroughly.</p><p>To prepare 300 mL of a 0.05 mg/mL BHT solution (3,5-di-tert-butyl-4-hydroxytoluene; Sigma-Aldrich) in 30% methanol containing 0.1% formic acid, 15 mg of BHT were dissolved in the solvent mixture with mixing until a clear solution was obtained.</p><p>For derivatization of tricarboxylic acid (TCA) cycle intermediates, 20 µL of sample were combined with 20 µL each of the NPH and EDC solutions. The reaction mixture was incubated at room temperature for 1 h. Following incubation, 40 µL of the BHT solution were added to the mixture to quench the derivatization reaction.</p><p><br></p>	<p>Acquisition was made with a Vacuum Insulated Probe Heated ElectroSpray Ionization source (VIP-HESI) operated in negative mode. Capillary voltage was 3600V, nebulizer 4 bar, dry gas flow 8 L/min, dry gas temperature 230 °C, sheath gas temperature 400 °C and sheath gas flow 4 L/min. Mass range was m/z 50-1200, the ion mobility range ranged from a 1/K0 start of 0.45 Vs/cm2 to 1/K0 end 1.39 Vs/cm2, with a ramp time of 75 ms. The ion charge control was enabled and set to 5.0 M.</p><p>For analysis used to generate untargeted data for compound annotation, PASEF was activated. For the precursor ions, 2 PASEF ramps with a cycle time of 0.24 s were set. For MS/MS, the collision energy was set to 35 eV. Acquisition was controlled by timsControl 7.05 and HyStar 6.4.</p><p><br></p>	<p>Features were annotated based on an in house library further expanded by in silico derivatization.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Anagho-Mattanovich	Moritz
+Study Person First Name	Matthias	Thomas
+Study Person Mid Initials		
+Study Person Email	matthias.mattanovich@sund.ku.dk	thomas.moritz@sund.ku.dk
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Copenhagen	University of Copenhagen
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-7561-7898	0000-0002-4258-3190
+Comment[Study Person Affiliation ROR ID]	https://ror.org/035b05819	https://ror.org/035b05819

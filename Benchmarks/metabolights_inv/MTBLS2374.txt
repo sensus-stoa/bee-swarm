@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCBITAXON	GO	ERO	NCIT	EFO	MTBLS	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI						https://www.ebi.ac.uk/metabolights/	
+Term Source Version	29	2021-01-07					1.0	
+Term Source Description	Ontology for Biomedical Investigations						Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS2374
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-01-07
+Investigation Public Release Date	2021-09-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2374
+Study Title	Multiple acyl-coA dehydrogenase deficiency kills Mycobacterium tuberculosis in vitro and during infection
+Study Description	<p>The human pathogen Mycobacterium tuberculosis (Mtb) devotes a significant fraction of its genome to fatty acid metabolism. Although Mtb depends on host fatty acids as a carbon source, fatty acid b-oxidation is mediated by genetically redundant enzymes, which has hampered the development of antitubercular drugs targeting this metabolic pathway. Here, we identify rv0338c, referred to as etfDMtb, to encode a membrane dehydrogenase essential for fatty acid b-oxidation in Mtb. An etfD deletion mutant (D<em>etfD</em>) was incapable of growing on fatty acids in vitro, with long-chain fatty acids being bactericidal, and failed to grow and survive in mice. The D<em>etfD</em> metabolome revealed a block in b-oxidation at the step catalyzed by acyl-CoA dehydrogenases (ACADs). In many organisms, including humans, ACADs are functionally dependent on an electron transfer flavoprotein (ETF) and cognate dehydrogenase. Immunoprecipitation identified EtfD in complex with FixA (EtfBMtb). FixA (EtfBMtb) and FixB (EtfAMtb) are homologous to the human ETF subunits. Our results demonstrate that EtfBAMtb constitutes Mtb’s ETF, while EtfDMtb, although not homologous to human EtfD, functions as the dehydrogenase. These findings identify Mtb’s fatty acid b-oxidation as a novel potential target for TB drug development.</p>
+Study Submission Date	2021-01-07
+Study Public Release Date	2021-09-29
+Study File Name	s_MTBLS2374.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	acyl-CoA dehydrogenase activity	fatty acid beta-oxidation	stable isotope mass spectrometry	liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/GO_0003995	http://purl.obolibrary.org/obo/GO_0006635	http://purl.obolibrary.org/obo/ERO_0001690	http://purl.obolibrary.org/obo/CHMO_0000524
+Study Design Type Term Source REF	MTBLS	GO	GO	ERO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2021.04.19.440201
+Study Publication Author List	Tiago Beites, Robert S Jansen, Ruojun Wang, Adrian Jinich, Kyu Rhee, Dirk Schnappinger, Sabine Ehrt
+Study Publication Title	Multiple acyl-coA dehydrogenase deficiency kills Mycobacterium tuberculosis in vitro and during infection
+Study Publication Status	preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0010558
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Rv0338c	Replicate
+Study Factor Type	Gene	replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16612	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2374_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><em>Mycobacterium tuberculosis</em> strains were grown in modified Sauton's until an OD580 nm of 1 and 1 ml of culture was used to seed filters<strong>[1]</strong> placed on top of solid modified Sauton's medium. Bacteria grew for 7 days, after which the filters were transferred to solid modified Sauton's medium with butyric acid or 13C-labelled butyric acid (Cambridge Isotope Laboratories, Inc) at a final concentration of 2.5 mM for 24 h.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Nandakumar M, Prosser GA, de Carvalho LP, Rhee K. Metabolomics of Mycobacterium tuberculosis. Methods Mol Biol. 2015;1285:105-15. doi:10.1007/978-1-4939-2450-9_6. PMID:25779312.</p>	<p>For metabolite extraction bacteria were disrupted by bead beating 3 cycles, 50 s (Precellys 24, Bertin technologies) in a solution of acetonitrile:methanol:water (4:4:2).</p>	<p>The relative abundances of butyric acid, CoA species and TCA intermediates were determined using an ion-pairing LC-MS system, as previously described<strong>[1]</strong>. In brief, samples (5 μl) were injected onto a ZORBAX RRHD Extend-C18 column (2.1 x 150 mm, 1.8 μm; Agilent Technologies) with a ZORBAX SB-C8 (2.1 mm × 30 mm, 3.5 μm; Agilent Technologies) precolumn heated to 40 °C, and separated using a gradient of methanol in 5 mM tributylamine/5.5 mM acetate on an Agilent 1200 Infinity LC system. Post-column, 10% dimethyl sulfoxide in acetone (0.2 ml/min) was mixed with the mobile phases to increase sensitivity. </p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Goncalves MD, Lu C, Tutnauer J, Hartman TE, Hwang SK, Murphy CJ, Pauli C, Morris R, Taylor S, Bosch K, Yang S, Wang Y, Van Riper J, Lekaye HC, Roper J, Kim Y, Chen Q, Gross SS, Rhee KY, Cantley LC, Yun J. High-fructose corn syrup enhances intestinal tumor growth in mice. Science. 2019 Mar 22;363(6433):1345-1349. doi:10.1126/science.aat8515. PMID:30898933.</p>	<p>Detection was performed from m/z 50-1100, using an Agilent Accurate Mass 6230 Time of Flight (TOF) spectrometer with Agilent Jet Stream electrospray ionization source operating in the negative ionization mode.</p>	<p>Raw Agilent <strong>.D</strong> files were converted to <strong>MzXML</strong> format using the MSConvertGUI from ProteoWizard. Incorporation of 13C was quantitated and corrected for natural 13C abundance using Profinder B.08.00 (Agilent Technologies).</p>	<p>Metabolites were identified based on their retention time and accurate mass.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jansen
+Study Person First Name	Robert
+Study Person Mid Initials	S
+Study Person Email	robert.jansen@ru.nl
+Study Person Phone	0031243652569
+Study Person Fax	
+Study Person Address	Heyendaalseweg 135 6525 AJ, Nijmegen the Netherlands
+Study Person Affiliation	Radboud University, Department of Microbiology
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,116 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	ECO	EFO	GSSO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	ORNASEQ
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://purl.obolibrary.org/obo/eco.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/gsso.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/ornaseq.owl
+Term Source Version	2025-10-21		3.89.0				1.0.1		2026-05-05	26.02d	2026-03-19	
+Term Source Description	Chemical Methods Ontology	Evidence & Conclusion Ontology (ECO)	Experimental Factor Ontology	GSSO - the Gender, Sex, and Sexual Orientation ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Ontology for RNA sequencing (ORNASEQ)
+INVESTIGATION
+Investigation Identifier	MTBLS14569
+Investigation Title	Metabolite Correlation Networks Reveal Complex Phenotypes of Adaptation-Driving Mutations
+Investigation Description	
+Investigation Submission Date	2026-05-23
+Investigation Public Release Date	2026-08-10
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14569
+Study Title	Metabolite Correlation Networks Reveal Complex Phenotypes of Adaptation-Driving Mutations
+Study Description	<p>Living organisms are organized into hierarchical levels of increasing complexity. As mutational effects propagate through these levels, multiple phenotypes are produced. However, identifying which phenotypes influence fitness and drive selection remains a key challenge in understanding genotype-phenotype-fitness relationships. Here, we demonstrate that mutation-induced structural changes in metabolite correlation networks—an organizational level with emergent properties shaped by the cumulative effects of multiple biochemical reactions and regulatory mechanisms—constitute complex phenotypes linking mutations to bacterial fitness. We engineered a metabolically suboptimal E. coli strain by replacing the metK gene encoding methionine adenosyltransferase (MAT) with an ortholog from U. urealyticum and subjected it to laboratory evolution. Analysis of correlation networks constructed from 2,118 untargeted metabolites revealed that adaptive mutations enhanced the strain’s fitness by reducing network density, removing node hubs, and extensively rewiring connectivity. These changes yielded smaller, more cohesive, and better-interconnected network clusters. Moreover, evolution shifted the node representing S-adenosylmethionine (SAM), the product of the MAT-catalyzed reaction, from a peripheral role to a key connector between network clusters with a significantly increased centrality. None of the accumulated mutations potentially driving this transition directly influenced MAT activity or SAM metabolism, indicating that the shift in SAM’s role is an adaptive phenotype emerging from the metabolic system’s complexity. Targeted metabolomics of key nodes displaying similar network transitions unveiled additional metabolites involved in SAM-related pathways. We propose the construction and analysis of metabolite correlation networks as an experimental and analytical framework for mapping genotype-phenotype-fitness relationships and exploring the mechanisms of metabolic adaptation.</p>
+Study Submission Date	2026-05-23
+Study Public Release Date	2026-08-10
+Study File Name	s_MTBLS14569.txt
+Comment[Created At]	2026-03-10
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-08-10
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	liquid chromatography-mass spectrometry	bacterium	Waters ACQUITY UPLC I-Class System	Thermo Scientific Q Exactive Plus	Escherichia coli	Whole Organism	experimental sample	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.bioontology.org/ontology/STY/T007	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000917	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000661	http://purl.obolibrary.org/obo/NCBITaxon_562	http://purl.obolibrary.org/obo/NCIT_C13413	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MSIO	CHMO	GSSO	MTBLS	MTBLS	NCBITaxon	NCIT	CHMO	MS
+Comment[Study Design Category]				Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Sharon Samuel, Weronika Jasinska, Ezra Sternlicht, Matvey Nikelshparg, Daniel Kleiner, Shai Pilosof* and Shimon Bershtein*
+Study Publication Title	Metabolite Correlation Networks Reveal Complex Phenotypes of Adaptation-Driving Mutations
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14569_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	CHMO	CHMO	MI
+Study Protocol Description	<p>In this study, wild-type (WT) E. coli K-12-MG1655 strain was employed as the model organism. A replacement of the essential metK gene encoding methionine adenosyltransferase (MAT) with an ortholog from Ureaplasma urealyticum was conducted in two steps. First, a Tn7 transposon-based system was used to introduce the coding sequence of orthologous metK under the control of the endogenous E. coli metK promoter into the genome of E.coli 85. Once the orthologous metK gene was successfully integrated, a λ Red recombination system86 was used to delete the endogenous E. coli metK. The whole genome sequencing validated that the resulting ‘engineered’ strain was genetically identical to the WT except for the altered gene. Subsequently, the WT and unevolved bacterial populations were subjected to adaptive laboratory evolution by serial passaging. The populations were grown in 96-well microtiter plates and propagated by 1/100 dilution into fresh media every 24 hours. A total of 48 passages produced ‘evolved-WT’ and ‘evolved’ populations. An additional ‘mut’ strain was produced by incorporating a single (-8) T to A metK promoter mutation using a λ Red recombination system on the ‘engineered’ strain genetic background. Each of the listed bacterial strains was stored in a glycerol stock at -80°C for further analysis. Cultures were grown overnight at 37°C in the culture medium, followed by a 1:100 dilution and further incubation until reaching an OD of 0.5 at 600 nm. A secondary 1:50 dilution was then performed, with additional growth until the OD reached 0.5 again. Cells were then harvested&nbsp;and centrifuged at 4 °C for 15min at 4000 × g. The supernatant was discarded, and the pellet was resuspended in 1 ml of ice-cold phosphate-buffered saline and centrifuged again in the same conditions</p>	<p>LC–MS data were obtained using the Waters Acquity UPLC system (Waters), coupled to the Exactive mass spectrometer (Thermo Fisher Scientific). A HSS T3 C18 reversed-phase column (100 mm×2.1 mm×1.8μm particles; Waters) was used and the temperature was set to 40 °C. The mobile phases were 0.1% formic acid in H2O (Buffer A, ULC MS grade; BioSolve) and 0.1% formic acid in acetonitrile (Buffer B, ULC MS grade; BioSolve). A 5-μl sample was injected.&nbsp;</p>	<p>Raw data files were processed using Compound Discoverer version 3.3 SP2 (Thermo Fisher Scientific) to screen for unknown compounds. The analysis workflow included retention time alignment, unknown peak detection and ion association, peak filtration (intensity ≤ 1e6), gap filling, and removal of background components unrelated to experimental samples (detected in blanks with a ratio ≤ 2.5). </p><p><br></p>	<p>Ice-cold 80% ultrapure methanol was added to the pellet, mixed well by vortexing, put for 10 s in liquid nitrogen, and incubated for 30min at −20 °C. To remove cell debris, samples were centrifuged at a maximum speed at 4 °C for 30min. The supernatant was collected into a fresh Eppendorf tube and by using a SpeedVac vacuum concentrator (Thermo Fischer Scientific) the liquid was evaporated.</p>	<p>Q-Exactive Plus (mass spectrometer (Thermo Fisher Scientific)). The spectra were recorded alternating between full-scan and all-ion fragmentation-scan modes, covering a mass range from 100 to 1500 m/z. The resolution was set to 25,000, with maximum time scan 250 ms. ESI, positive and negative modes of ionizations.</p>	<p>Additional steps in the Compound Discoverer program included elemental composition prediction, database searching via ChemSpider, spectral matching with mzCloud, and mass list comparisons.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Samuel	Pilosof	Bershtein
+Study Person First Name	Sharon	Shai	Shimon
+Study Person Mid Initials			
+Study Person Email	sharon.samuel@weizmann.ac.il	pilos@bgu.ac.il	shimonb@bgu.ac.il
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	Weizmann Institute of Science	Ben-Gurion University of the Negev	Ben-Gurion University of the Negev
+Study Person Roles	Author	study principle investigator or responsible	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/OMIABIS_0000100	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	ORNASEQ	NCIT
+Comment[Study Person ORCID]		0000-0003-0430-5568	0000-0003-4322-1025
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0316ej306	https://ror.org/05tkyf982	https://ror.org/05tkyf982
+Comment[Study Person Alternative Email]	sharonla@post.bgu.ac.il		

@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	GENEPIO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/genepio.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	256	2026-05-28	3.94.0	2026-04-13			1.0.1		2026-07-12	26.02d	2026-07-27
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Genomic Epidemiology Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS10129
+Investigation Title	LC-MS/MS metabolomics unravels the resistant phenotype of carbapenemase-producing Enterobacteriaceae
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-04
+Investigation Public Release Date	2025-08-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10129
+Study Title	LC-MS/MS metabolomics unravels the resistant phenotype of carbapenemase-producing Enterobacteriaceae
+Study Description	<p><strong>Introduction:</strong> The degree of antimicrobial resistance demonstrated by carbapenemase-producing Enterobacteriaceae (CPE) represents a growing public health challenge. Conventional methods for detecting CPE involve culture-based techniques with lengthy incubation steps. There is a need to develop rapid and accurate methods for the detection of resistance, for implementation into clinical diagnostics.</p><p><strong>Objectives:</strong> With cellular phenotype closely linked to the metabolome, the acquisition of resistance should result in detectable differences in microbial metabolism. Accordingly, we sought to profile the metabolome of Enterobacteriaceae isolates belonging to both CPE and non-CPE groups to identify metabolites linked to CPE.</p><p><strong>Methods:</strong> We used liquid chromatography-mass spectrometry to profile the endo- and exometabolome of 32<em> Klebsiella pneumoniae</em> and <em>Escherichia coli </em>isolates to identify metabolites which could predict CPE in antibiotic-free conditions after 6 h of growth.</p><p><strong>Results:</strong> Using supervised machine learning and multivariate analysis algorithms (partial least squares-discriminant analysis, k-nearest neighbour and random forest), we identified 21 metabolite biomarkers which displayed high performance metrics for the prediction of CPE (AUROCs ≥ 0.845). Results revealed a range of alterations between the metabolomes of CPE and non-CPE isolates. Pathway analysis revealed enrichment of microbial pathways including arginine metabolism, ATP-binding cassette transporters, purine metabolism, biotin metabolism, nucleotide metabolism, and biofilm formation, providing mechanistic insight into the resistance phenotype of CPE.</p><p><strong>Conclusion: </strong>Our models demonstrates the ability to distinguish CPE from non-CPE in under 7 h using metabolite biomarkers, showing potential for the development of a targeted diagnostic assay.</p>
+Study Submission Date	2025-08-04
+Study Public Release Date	2025-08-04
+Study File Name	s_MTBLS10129.txt
+Comment[Created At]	2024-05-07
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	2
+Comment[Revision Date]	2026-10-27
+Comment[Revision Log]	publication details are updated
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	exometabolome	endometabolome	liquid chromatography-tandem mass spectrometry	untargeted metabolite profiling	antimicrobial resistance field	metabolic phenotyping	predictive markers	supervised machine learning
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000125	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000045	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/GENEPIO_0100636	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000130	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000253	http://purl.obolibrary.org/obo/OBI_0002588
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MSIO	GENEPIO	MTBLS	MTBLS	OBI
+STUDY PUBLICATIONS
+Study PubMed ID	40794220
+Study Publication DOI	10.1007/s11306-025-02300-9
+Study Publication Author List	Dixon Breanna, Ahmed Waqar M., Fowler Stephen J., Felton Tim, Trivedi Drupad K.
+Study Publication Title	LC-MS/MS metabolomics unravels the resistant phenotype of carbapenemase-producing Enterobacterales
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Carbapenemase production	Metabolome fraction
+Study Factor Type	Classification	Fraction
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25161	http://purl.obolibrary.org/obo/NCIT_C25514
+Study Factor Type Term Source REF	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10129_LC-MS_exo_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10129_LC-MS_exo_LC-MS_negative_reverse-phase_metabolite_profiling-1.txt	a_MTBLS10129_LC-MS_exo_LC-MS_positive_hilic_metabolite_profiling-2.txt	a_MTBLS10129_LC-MS_exo_LC-MS_negative_hilic_metabolite_profiling-3.txt	a_MTBLS10129_LC-MS_non-polar_endo_LC-MS_positive_reverse-phase_metabolite_profiling-4.txt	a_MTBLS10129_LC-MS_non-polar_endo_LC-MS_negative_reverse-phase_metabolite_profiling-5.txt	a_MTBLS10129_LC-MS_polar_endo_LC-MS_positive_hilic_metabolite_profiling-6.txt	a_MTBLS10129_LC-MS_polar_endo_LC-MS_negative_hilic_metabolite_profiling-7.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS	MS	MS	MS	MS	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]								
+Comment[Assay Type Label]	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Glycerinated stocks of <em>Klebsiella pneumoniae</em> and <em>Escherichia coli</em> isolates were streaked onto tryptic soy agar plates and grown overnight for 18 h at 37 °C. Single homologous colonies were inoculated in tryptic soy broth (TSB) (Sigma Aldrich) and grown for a further 18 h to produce overnight pre-cultures. Three independent biological replicates were inoculated from each pre-culture in 10 mL TSB to give a starting OD600 of 0.01. Cultures were grown to late log phase (6 h; 37 °C with 180 rpm shaking). TSB-only aliquots were prepared concurrently and subjected to the same conditions. Following incubation, OD600 values were measured for normalisation during later reconstitution.</p>	<p><strong>Exometabolome metabolite sample preparation</strong></p><p>A 2 mL aliquot from each culture was removed for exometabolome analysis. Aliquots were centrifuged (10 min; 10,000 g), and supernatant was filtered through a 0.2 µm syringe filter (Sartorius). Media-only preparations were treated to an identical process. An 80 µL aliquot of each filtrate was evaporated under vacuum using an Eppendorf Concentrator Plus and the dried pellet was stored at –80 °C until analysis.</p><p><br></p><p><strong>Endometabolome metabolite extraction</strong></p><p>Bacterial metabolism was quenched by rapidly combining incubated cultures (5 mL) with 2:1 v/v -48 °C 60 % methanol. Resulting samples were centrifuged (10 min; 3,200 g and -9 °C), after which the supernatant was discarded.</p><p><br></p><p>Quenched pellets were resuspended in 1.5 mL of 2:1 v/v CHCl3:MeOH (-20 °C). Suspensions were transferred to fresh Eppendorf tubes and vortexed for 5 min. A 500 µL aliquot of cold (4 °C) LC-MS-grade water was added, and the contents were vortexed for a further 30 s. The samples were then centrifuged (3 min; 13,300 g and 4 °C). The <strong>upper polar layer</strong> was transferred to a fresh tube and centrifuged (5 min; 16,500 g and 0 °C). The remaining <strong>non-polar bottom layer </strong>was then centrifuged (3 min; 13,300 g and 4 °C). An 800 µL aliquot of each extract was transferred to a fresh tube and evaporated under vacuum centrifugation. The dried pellet was stored at -80 °C until analysis.&nbsp;</p><p><br></p><p>Frozen pellets were reconstituted in 60 % v/v methanol (100 µL and 500 µL per OD600 of 0.74 for endometabolome extracts and exometabolome samples, respectively), vortex mixed and centrifuged (3 min; 13,400 g).<strong> Pooled QC samples</strong> were prepared by combining 5 µL of each sample within each sample group e.g.<strong> exometabolome, non-polar endometabolome and polar endometabolome</strong>. Samples were transferred to low-recovery mass spectrometry vials and were analysed within 72 h of reconstitution with storage in the autosampler at 4 °C during analysis.&nbsp;</p>	<p><strong>Non-polar </strong>and <strong>polar endometabolome</strong> extracts were run on <strong>reverse phase (RP)</strong> and <strong>HILIC </strong>methods, respectively, while <strong>exometabolome </strong>samples were analysed on<strong> both methods</strong>. </p><p><br></p><p>For<strong> RP analysis</strong>, an Accucore™ Vanquish™ C18+ UHPLC column (2.1 x 100 mm, 1.5 µm; ThermoFisher Scientific, UK) was used. Eluent A and B comprised of LC-MS grade water and methanol, respectively, both containing 0.1 % v/v formic acid. Gradient elution was performed in both ion modes with the following profile: 0 – 1 min: 2 % B, 1 – 11 min: 2 – 100 % B, 11 – 14 min: 100 % B, 14 – 14.01 min: 100 – 2 % B, 14.01 – 17 min: 2 % B.</p><p><br></p><p>For <strong>HILIC </strong>analysis, a SeQuant® ZIC®-cHILIC column (2.1 x 100 mm, 3 µm, 100 Å; Merck, UK) was selected. Eluent A and B comprised of LC-MS grade water and acetonitrile, respectively, both containing 0.1 % v/v formic acid. The gradient elution profile was as follows: HESI+ 0 – 13 min: 98 – 20 %&nbsp;B, 13 – 13.01 min: 20 – 98 % B, 13.01 – 17 min: 98 % B; HESI- 0 – 5 min: 98 – 70 %&nbsp;B, 5 – 10 min: 70 – 20 % B, 10 – 10.01 min: 20 – 98 % B, 10.01 – 15 min: 98 % B.</p><p><br></p><p>For both reverse-phased (RP) and hydrophilic interaction liquid chromatography (HILIC) chromatography, 2 µL of each sample was injected into an UltiMate3000 UHPLC. Mobile phase was delivered at 300 µL min-1 and UHPLC columns were maintained at 45 °C.</p>	<p>For or each sample, data were acquired in both positive (<strong>ESI+</strong>) and negative (<strong>ESI-</strong>) ion-mode. LC-MS/MS analysis was performed using a Q Exactive Plus Orbitrap mass spectrometer (ThermoFisher Scientific, UK) with a heated electrospray ionisation (HESI) ion source. Ion source parameters were: spray voltages, +3.5 and -4 kV for positive- and negative-mode, respectively; sheath N2 gas flow, 50 AU; aux N2 gas flow, 13 AU; sweep N2 gas flow, 3 AU; capillary temperature, 320 °C; aux gas temperature, 425 °C; S-lens RF level, 50 %. Full scan MS spectra were acquired over the range of <strong>m/z 90 – 1350</strong> at a mass resolution of 70,000, with AGC target of 1e6 and a maximum injection time of 100 ms. Selected features of interest were compiled into an inclusion list for selective ion monitoring (SIM) of QC samples, with data dependant acquisition ddMS2 performed on matched precursor ions at a resolution of 35,000. A stepped higher-energy collisional dissociation (HCD) approach was implemented at levels of 15, 35 and 70 AU, as well as 25, 50 and 100 AU.</p>	<p>Raw data files were centroided and converted to mzML format using MSConvert. Spectral preprocessing was undertaken using the package XCMS (v3.22.0) in R v4.3.1 with standard procedures. XCMS parameter optimisation was performed with the package IPO (v1.26.0) on the 24 QC samples of each analytical run. The selected XCMS parameters for all ion-mode and stationary phase combinations of the endo- and exometabolome analyses are found in Supplementary Table 2 and 3, respectively. Peak matrix processing was undertaken on each dataset using the R package pmp (v1.12.0). Data were filtered such that features were removed if a) peaks were missing in more than 25% of pooled QC samples, b) in the remaining peaks, if RSD of peak intensities across pooled QC samples was &gt;20%, and c) finally, from remaining peaks if missing values (NaN) were observed in&nbsp;&gt;80% of all the samples. Background subtraction was performed on exometabolome datasets by subtracting peaks in the batch media samples from the experimental samples belonging to the same batch.</p><p>In the final feature list, missing values were replaced using the small value imputation method, whereby half of the lowest value recorded in the entire data matrix was added in place of a zero. Probabilistic quotient normalisation (PQN) was performed, followed by glog transformation and pareto scaling prior to multivariate analyses.</p>	<p>Selected features of interest were compiled into an inclusion list for selective ion monitoring (SIM) of QC samples, with data dependant acquisition ddMS2 performed on matched precursor ions. Putative annotation was performed using tandem mass spectrometry data. MS/MS spectra were matched against GNPS’ spectral libraries using GNPS MASST and Molecular Library Search with default parameters (minimum cosine value of 0.7, parent mass tolerance of 2 Da and fragment tolerance of 0.5 Da). Similarity searches were performed against spectra within the MassBank of North America (MoNA) database with minimum similarity 600. Tandem mass spectral peak lists were also searched against the E. coli Metabolome Database (ECMDB) 2.0 with precursor tolerance of 0.05 Da.&nbsp;Standards were analysed with LC-MS using a SIM method based on the precursor m/z values of the MSI level 2 annotated metabolites, with identical LC-MS parameters to those outlined previously. MS/MS spectra were compared against those generated for the putatively annotated metabolites for confirmation of annotations to MSI level 1.&nbsp;&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Dixon	Felton	Trivedi	Ahmed	Fowler
+Study Person First Name	Breanna	Tim	Drupad	Waqar	Stephen
+Study Person Mid Initials	S		K	M	J
+Study Person Email	breanna.dixon@manchester.ac.uk	tim.felton@manchester.ac.uk	drupad.trivedi@manchester.ac.uk	waqar.ahmed@manchester.ac.uk	stephen.fowler@manchester.ac.uk
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation	University of Manchester	University of Manchester	University of Manchester	University of Manchester	University of Manchester
+Study Person Roles	Investigator	Principal Investigator	Coordinating Investigator	Coordinating Investigator	Coordinating Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C51818	http://purl.obolibrary.org/obo/NCIT_C51818	http://purl.obolibrary.org/obo/NCIT_C51818
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT

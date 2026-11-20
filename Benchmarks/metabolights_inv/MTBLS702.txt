@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCIT	MI	CRISP	EFO	MTBLS	IOBC	
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://purl.obolibrary.org/obo/mi.owl	http://data.bioontology.org/ontologies/CRISP	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/metabolights/		http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	25	103	18	40	6	6	132	1		18.10e
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	PSI Molecular Interactions	Computer Retrieval of Information on Scientific Projects Thesaurus	Experimental Factor Ontology	Metabolights Ontology		NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS702
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2018-07-06
+Investigation Public Release Date	2022-11-21
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 1.0.3
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS702
+Study Title	Preterm birth is associated with xenobiotics and predicted by the vaginal metabolome
+Study Description	Spontaneous preterm birth (sPTB) is a leading cause of maternal and neonatal morbidity and mortality, yet its prevention and early risk stratification are limited. Previous investigations have suggested that vaginal microbes and metabolites may be implicated in sPTB. Here we performed untargeted metabolomics on 232 second-trimester vaginal samples, 80 from pregnancies ending preterm. We find multiple associations between vaginal metabolites and subsequent preterm birth, and propose that several of these metabolites, including diethanolamine and ethyl glucoside, are exogenous. We observe associations between the metabolome and microbiome profiles previously obtained using 16S ribosomal RNA amplicon sequencing, including correlations between bacteria considered suboptimal, such as Gardnerella vaginalis, and metabolites enriched in term pregnancies, such as tyramine. We investigate these associations using metabolic models. We use machine learning models to predict sPTB risk from metabolite levels, weeks to months before birth, with good accuracy (area under receiver operating characteristic curve of 0.78). These models, which we validate using two external cohorts, are more accurate than microbiome-based and maternal covariates-based models (area under receiver operating characteristic curve of 0.55-0.59). Our results demonstrate the potential of vaginal metabolites as early biomarkers of sPTB and highlight exogenous exposures as potential risk factors for prematurity.
+Study Submission Date	2018-07-06
+Study Public Release Date	2022-11-21
+Study File Name	s_MTBLS702.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	metabolon	Spontaneous Preterm Birth	Ethnic Group	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.jp/bio/4/id/201606002506532625	http://purl.obolibrary.org/obo/NCIT_C112864	http://purl.obolibrary.org/obo/NCIT_C16564	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	IOBC	NCIT	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	36635575
+Study Publication DOI	10.1038/s41564-022-01293-8
+Study Publication Author List	Kindschuh WF, Baldini F, Liu MC, Liao J, Meydan Y, Lee HH, Heinken A, Thiele I, Thaiss CA, Levy M, Korem T.
+Study Publication Title	Preterm birth is associated with xenobiotics and predicted by the vaginal metabolome.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	PTB	Race
+Study Factor Type	Preterm Birth	ethnic group
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C92861	http://www.ebi.ac.uk/efo/EFO_0001799
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS702_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS702_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS702_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS702_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF			NCIT	NCIT	NCIT	NCIT
+Study Protocol Description	<p>We analyzed banked samples from the previously collected and described Motherhood &amp; Microbiome (M&amp;M) cohort (NCT02030106)<strong>[1]</strong>. This cohort was approved by the Institutional Review Board at the University of Pennsylvania (IRB 818914) and the University of Maryland School of Medicine (HP-00045398), and all participants provided written informed consent. The M&amp;M cohort recruited 2,000 women with a singleton pregnancy prior to 20 wk of gestation. Women were followed to delivery, and spontaneous preterm birth was defined as delivery before 37 wk of gestation with a presentation of cervical dilation and/or premature rupture of membranes. Of these, the vaginal microbiota of 503 women was characterized via 16S rRNA gene amplicon sequencing (V3-V4 region) of vaginal swabs collected between 20 to 24 weeks of gestation, and total bacterial load was assessed using the TaqMan BactQuant assay<strong>[1]</strong>. For this study, out of women with available microbiome data, all available samples were selected from women who delivered preterm (N = 80), in addition to samples from 152 controls who delivered at term. The selected samples were replicates of those used for 16S rRNA gene sequencing, collected using a double shaft dacron swab.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Elovitz MA, Gajer P, Riis V, Brown AG, Humphrys MS, Holm JB, Ravel J. Cervicovaginal microbiota and local immune response modulate the risk of spontaneous preterm delivery. Nat Commun. 2019 Mar 21;10(1):1305. doi:10.1038/s41467-019-09285-9. PMID:30899005.</p>	<p>Metabolite levels were measured from vaginal swabs by Metabolon Inc. (Durham, NC, USA), using an untargeted LC MS/MS platform<strong>[1]</strong>. Samples were divided into 5 μl aliquots and each was resuspended in an appropriate extraction solvent and separated via 1 of 4 chromatography techniques. Each chromatographic method was optimized for the extraction of hydrophobic, basic, or polar compounds. The chromatographic method used for the quantification of each metabolite is provided in <strong>Table S4</strong> of the paper associated with this study. Isotopically labeled or halogenated standards were added to all aliquots at fixed concentrations prior to extraction in order to serve as retention time markers.</p><p><br></p><p>Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Ford L, Kennedy AD, Goodman KD, Pappan KL, Evans AM, Miller LAD, Wulff JE, Wiggs BR, Lennon JJ, Elsea S, Toal DR. Precision of a Clinical Metabolomics Profiling Platform for Use in the Identification of Inborn Errors of Metabolism. J Appl Lab Med. 2020 Mar 1;5(2):342-356. doi:10.1093/jalm/jfz026. PMID:32445384.</p>	All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency. Method 1/Pos 1: One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 um) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA). Method 2/Pos 2: A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content. Method 3/Neg 1: A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8. Method 4/Neg 2: The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 um) using a gradient consisting of water and acetonitrile with 10 mM Ammonium Formate, pH 10.8.	<p>A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.</p><p><br></p><p>The areas under annotated m/z peaks were taken as metabolite measurements. A comprehensive overview of all chromatographic and mass spectrometry parameters is available in <strong>Table S7</strong> of the paper associated with this study.</p>	<p><strong>Raw</strong> data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.</p><p><br></p><p>Process blanks (negative controls) were run with each metabolomic plate, and metabolites were considered present only if they are detected with levels that are at least 3 times higher than these controls. Detected levels of the xenobiotics highlighted in this study, in vaginal samples and negative controls, are shown in <strong>Fig. S4e</strong> of the paper associated with this study, demonstrating the same. See also <strong>Fig. S4f</strong> of the paper associated with this study, for the mass error of these xenobiotics, showing high identification quality compared to other non-xenobiotic metabolites. Metabolite measurements were volume normalized to the volume of buffer used, which may not necessarily account for differences in the original tissue. This was followed by robust standardization<strong>[1]</strong> of the log (base 10) transformed values (subtracting the median and dividing by the standard deviation calculated while clipping the top and bottom 5% of outliers).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Bar N, Korem T, Weissbrod O, Zeevi D, Rothschild D, Leviatan S, Kosower N, Lotan-Pompan M, Weinberger A, Le Roy CI, Menni C, Visconti A, Falchi M, Spector TD; IMI DIRECT consortium, Adamski J, Franks PW, Pedersen O, Segal E. A reference map of potential determinants for the human serum metabolome. Nature. 2020 Dec;588(7836):135-140. doi:10.1038/s41586-020-2896-2. PMID:33177712.</p><p><br></p>	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Kindschuh	Korem	Baldini	Liu	Liao	Meydan	Lee	Heinken	Thiele	Thaiss	Levy
+Study Person First Name	William	Tal	Federico	Martin C	Jingqiu	Yoli	Harry H	Almut	Ines	Christoph A	Maayan
+Study Person Mid Initials	F										
+Study Person Email		tal.korem@columbia.edu									
+Study Person Phone											
+Study Person Fax											
+Study Person Address	Department of Systems Biology, Columbia University Irving Medical Center, New York, NY, USA	Department of Systems Biology, Columbia University Irving Medical Center, New York, NY, USA									
+Study Person Affiliation	Columbia University Irving Medical Center, New York	Columbia University Irving Medical Center, New York									
+Study Person Roles	Investigator	Principal Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT									

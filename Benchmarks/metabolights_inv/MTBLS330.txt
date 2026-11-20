@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BIOMODELS	CHMO	FLOPO	NCIT	NCBITAXON	MS	EFO	OBI	BAO	BTO
+Term Source File	http://data.bioontology.org/ontologies/BIOMODELS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/FLOPO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO
+Term Source Version	3	18	1	44	6	129	146	29	26	29
+Term Source Description	BioModels Ontology	Chemical Methods Ontology	Flora Ontology	National Cancer Institute Thesaurus	National Center for Biotechnology Information (NCBI) Organismal Classification	Mass Spectrometry Ontology	Experimental Factor Ontology	Ontology for Biomedical Investigations	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS330
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2016-03-22
+Investigation Public Release Date	2018-03-05
+Comment[Created With Configuration]	
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS330
+Study Title	The WEIZMASS spectral library for high-confidence metabolite identification
+Study Description	Annotation of metabolites is an essential, yet problematic, aspect of mass spectrometry (MS)-based metabolomics assays. The current repertoire of definitive annotations of metabolite spectra in public MS databases is limited and suffers from lack of chemical and taxonomic diversity. Furthermore, the heterogeneity of the data prevents the development of universally applicable metabolite annotation tools. Here we present a combined experimental and computational platform to advance this key issue in metabolomics. WEIZMASS is a unique reference metabolite spectral library developed from high-resolution MS data acquired from a structurally diverse set of 3,540 plant metabolites. We also present MatchWeiz, a multi-module strategy using a probabilistic approach to match library and experimental data. This strategy allows efficient and high-confidence identification of dozens of metabolites in model and exotic plants, including metabolites not previously reported in plants or found in few plant species to date.
+Study Submission Date	2016-03-22
+Study Public Release Date	2018-03-05
+Study File Name	s_MTBLS330.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	WEIZMASS	MatchWeiz
+Study Design Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0000715		
+Study Design Type Term Source REF		CHMO		
+STUDY PUBLICATIONS
+Study PubMed ID	27571918
+Study Publication DOI	10.1038/ncomms12423
+Study Publication Author List	Shahaf N, Rogachev I, Heinig U, Meir S, Malitsky S, Battat M, Wyner H, Zheng S, Wehrens R, Aharoni A.
+Study Publication Title	The WEIZMASS spectral library for high-confidence metabolite identification.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Tissue	Life cycle stage	Genotype
+Study Factor Type	Tissue	life cycle stage	genotype
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C12801	http://purl.obolibrary.org/obo/UBERON_0000105	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	NCIT	BAO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS330_POS_Lemna_mass_spectrometry.txt	a_MTBLS330_NEG_Lemna_mass_spectrometry.txt	a_MTBLS330_POS_Tomato_mass_spectrometry.txt	a_MTBLS330_NEG_Tomato_mass_spectrometry.txt	a_MTBLS330_POS_Arab_mass_spectrometry.txt	a_MTBLS330_NEG_Arab_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - Negative (LC-MS (Negative))	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - Negative (LC-MS (Negative))	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - Negative (LC-MS (Negative))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	A. thaliana plants (ecotype Col-0) were grown as previously described[1]. 9 plant tissues were analysed including young and mature leaves (12 days, 3–4 weeks and 6–7 weeks after sowing, respectively), inflorescence and inflorescence leaves, closed buds, open flowers and siliques in 2 development stages (1 and 2 cm lengths). </p> Tomato plants (S. lycopersicum cv. Microtom) were grown as previously described[2]. The following tomato tissues were analysed: fruit skin and flesh in 5 developmental stages (immature green, mature green, breaker, orange and red fruit), leaves (young and mature), buds, flower buds, open flowers, pollen and roots. </p> Plants of several genus of the Lemnaceae family (L. gibba, S. polyrhiza and S. oligo (L. punctata)) were grown as previously described[3]. In the case of L. gibba tissues, the plants were transferred to Petri dishes followed by manual separation of mature, young and rhizome plant parts. </p> For annotation validations by spiking into plant tissues, 3 samples were prepared for consecutive injections: the plant tissue containing the endogenous metabolites; the spikes of the relevant chemical standard into the corresponding plant matrix; and a mix of 4 or 5 of the relevant pure chemical standards. The plant tissues were diluted, respectively, with an extraction buffer to compensate for the change in concentration resulting from the addition of the chemical standards. Spiked samples were prepared by mixing of plant extract (80 µl) with the mix of standards (20 µl). The pure plant tissue was prepared by mixing of plant extract (80 µl) with dilution solution (20 µl). The pure mix of chemical standards was prepared by mixing of dilution solution (80 µl) with the mix of standards (20 µl). </p> Ref:</br> [1] Bocobza SE, Malitsky S, Araújo WL, Nunes-Nesi A, Meir S, Shapira M, Fernie AR, Aharoni A. Orchestration of thiamin biosynthesis and central metabolism by combined action of the thiamin pyrophosphate riboswitch and the circadian clock in Arabidopsis. Plant Cell. 2013 Jan;25(1):288-307. doi:10.1105/tpc.112.106385. PMID:23341335</br> [2] Itkin M, Rogachev I, Alkan N, Rosenberg T, Malitsky S, Masini L, Meir S, Iijima Y, Aoki K, de Vos R, Prusky D, Burdman S, Beekwilder J, Aharoni A. GLYCOALKALOID METABOLISM1 is required for steroidal alkaloid glycosylation and prevention of phytotoxicity in tomato. Plant Cell. 2011 Dec;23(12):4507-25. doi:10.1105/tpc.111.088732. PMID:22180624</br> [3] Vunsh R, Heinig U, Malitsky S, Aharoni A, Avidov A, Lerner A, Edelman M. Manipulating duckweed through genome duplication. Plant Biol (Stuttg). 2015 Jan;17 Suppl 1:115-9. doi:10.1111/plb.12212. PMID:25040392</br>	Frozen leaves of A. thaliana from 3.5-week-old wild-type Columbia-0 plants were ground and extracted with an extraction solution (80% methanol and 0.1% formic acid) at a ratio of 1:3 (w/v). Samples were sonicated for 20 min in a bath sonicator, vortexed and centrifuged for 12 min at 14,000 x g, and the supernatant was filtered through 0.22 µm polyvinylidene difluoride filters. Tomato tissues were extracted using 100% methanol (1:3 (w/v)), and otherwise prepared as Arabidopsis leaves above. Lemnaceae family samples were also prepared as Arabidopsis leaves above.	5 µl of the sample was injected to LC–MS. Analysis was performed using a UPLC-QTOF system (HDMS Synapt, Waters), with the ultra performance liquid chromatography (UPLC) column connected online to a photodiode array detector and then to the MS detector. A 100 x 2.1-mm i.d., 1.7-µm UPLC BEH C18 column (Waters) was used for the separation of metabolites. The mobile phase consisted of 0.1% formic acid in acetonitrile: water [5:95, (vol/vol); phase A] and 0.1% formic acid (vol/vol) in acetonitrile (phase B). The linear gradient was from 100 to 72% phase A over 22 min, from 72 to 0% phase A over 14 min, then held at 100% phase B for further 2 min; and then returned to the initial conditions (100% phase A) in 0.5 min and conditioning at 100% phase A for 1.5 min. A divert valve (Rheodyne) excluded 1.0 and 38 min from the injection. The flow rate was 0.3 ml/min, and the column temperature was kept at 35 °C.	Masses of the eluted compounds were detected by a qTOF HDMS Synapt mass spectrometer, equipped with an electrospray ionization (ESI) source. Acquisition was performed separately in positive and negative ESI modes. The following settings were applied during the LC-MS runs: divert valve (Rheodine), excluding 0–1.8 min and 43–50 min following injection; capillary spray at 3.0 kV; cone voltage at 28 eV; and collision energy at 4 eV. For the MS/MS experiments, collision energies were 10–25 eV for positive mode and 15–40 eV for negative mode. Full-scan mass spectra were acquired from 50–1,500 Da. Argon was used as the collision gas for collision-induced dissociation MS/MS experiments. The mass spectrometer was calibrated using sodium formate, and leucine enkephalin was used as the lock mass. The UV spectra were acquired from 200 to 500 nm. Data acquisition was performed in the MSE mode with energy ramp that records an exact mass precursor and fragment ion information from every detectable component in a sample. MSE mode rapidly alternates between two functions: the first acquiring low-energy exact mass precursor ion spectra and the second acquiring elevated-energy exact mass fragment ion spectra. The collision energy was set to 4 eV for low-energy function and to 10–30 eV ramp for the high-energy function in the positive ion mode (15–35 eV in the negative ion mode). Scan time for each function was set to 0.25 s. In addition, a mixture of 15 standard metabolites, injected after each 10 samples, was used for quality control and two additional pool samples used subsequently for retention time correction were injected in the beginning and end of each analytical sequence. MassLynx software version 4.1 (Waters) was used to control the instrument and calculate accurate masses. The MSE mode with energy ramp was used to add as much of the specific fragmentation patterns of each metabolite as possible in one continuous run. A preliminary test of the ramp mode was conducted, in which library records of tandem MS/MS data were compared with ramp mode fragmentations. The test results indicated that in the majority of cases at least two of the most abundant MS/MS fragments could also be detected in the MSE mode (62% of 49 metabolites in the NI MS mode and 70% of 62 samples in the PI MS mode). In this preliminary test a decrease in peak intensities of roughly 25–30% was also observed due to the energy ramp, indicating a reduction in the dynamic range.	The raw instrument data were first converted to NetCDF format using the MassLynx Databridge (http://www.waters.com). The NetCDF files containing data from the first and second MS channels were then converted into data matrices using the R (http://www.r-project.org) packages XCMS[1] and CAMERA[2]. </p> Ref:</br> [1] Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051</br> [2] Kuhl C, Tautenhahn R, Böttcher C, Larson TR, Neumann S. CAMERA: an integrated strategy for compound spectra extraction and annotation of liquid chromatography/mass spectrometry data sets. Anal Chem. 2012 Jan 3;84(1):283-9. doi:10.1021/ac202450g. PMID:22111785</br>	MatchWeiz, coupled to the WEIZMASS library was used to annotate peaks.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Shahaf	Aharoni
+Study Person First Name	Nir	Asaph
+Study Person Mid Initials		
+Study Person Email	nir.shachaf@weizmann.ac.il	asaph.aharoni@weizmann.ac.il
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles		
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

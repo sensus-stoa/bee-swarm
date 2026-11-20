@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MTBLS	CHMO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/		
+Term Source Version	29	132		1		
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		User defined terms		
+INVESTIGATION
+Investigation Identifier	MTBLS7118
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-02-10
+Investigation Public Release Date	2024-01-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7118
+Study Title	A homeostatic switch causing glycerol-3-phosphate and phosphoethanolamine accumulation triggers senescence by rewiring lipid metabolism
+Study Description	<p>Cellular senescence affects many physiological and pathological processes and is characterized by durable cell cycle arrest, an inflammatory secretory phenotype and metabolic reprogramming. Here, by using dynamic transcriptome and metabolome profiling in human fibroblasts with different subtypes of senescence, we show that a homeostatic switch which results in glycerol-3-phosphate (G3P) and phosphoethanolamine (PEtn) accumulation links lipid metabolism to the senescence gene expression program. Mechanistically, p53-dependent glycerol kinase (GK) activation and post-translational inactivation of Phosphate Cytidylyltransferase 2-Ethanolamine (PCYT2) regulate this metabolic switch, which promotes triglyceride accumulation in lipid droplets and induces the senescence gene expression program. Conversely, G3P phosphatase (G3PP) and Ethanolamine-Phosphate Phospho-Lyase (ETNPPL)-based scavenging of G3P and PEtn acts in a senomorphic way by reducing G3P and PEtn accumulation. Collectively, our study ties G3P and PEtn accumulation to controlling lipid droplet biogenesis and phospholipid flux in senescent cells, providing a potential therapeutic avenue for targeting senescence and related pathophysiology.</p>
+Study Submission Date	2023-02-10
+Study Public Release Date	2024-01-09
+Study File Name	s_MTBLS7118.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	sn-glycerol 3-phosphate	phosphoethanolamine	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_15978	http://purl.obolibrary.org/obo/CHEBI_36711	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHEBI	CHEBI	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	38409325
+Study Publication DOI	10.1038/s42255-023-00972-y
+Study Publication Author List	Tighanimine K, Nabuco Leva Ferreira Freitas JA, Nemazanyy I, Bankolé A, Benarroch-Popivker D, Brodesser S, Doré G, Robinson L, Benit P, Ladraa S, Saada YB, Friguet B, Bertolino P, Bernard D, Canaud G, Rustin P, Gilson E, Bischof O, Fumagalli S, Pende M.
+Study Publication Title	A homoeostatic switch causing glycerol-3-phosphate and phosphoethanolamine accumulation triggers senescence by rewiring lipid metabolism.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Senescence	Timepoint	Treatment
+Study Factor Type	Senescence	timepoint	treatment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C17467	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	NCIT	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7118_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>WI-38 fibroblasts (ATCC; CCL-75) were cultured in DMEM GLUTAMAX, high glucose (Gibco) containing 10% fetal bovine serum (FBS), and 1x PenStrep (Thermofischer) at 37 °C with a 5% atmospheric concentration of O2 and CO2. The medium was changed every 2 days. Cells were split as they reached a confluency of 70-80%. Experiments were performed on cells at a population doubling level (PDL) inferior to 45 divisions (except for the replicative senescence model). WI-38-ER:RASV12 fibroblasts were generated by retroviral transduction as previously described<strong>[1]</strong>. RAS-OIS was induced by adding 400 nM 4-hydroxytamoxifen (4-OHT) to the culture medium. The doxycycline- inducible oncogenic BRAFV600E retroviral construct was a gift from Carl Mann (CEA, Gif-sur-Yvette, France). RAF-OIS was induced with 100 ng/mL doxycycline. DNA damage-induced senescence (DDIS) was triggered by etoposide treatment at a concentration of 20 μM for 2 days. Cells were then washed and incubated with fresh medium without drug. Replicative senescence was obtained through proliferative exhaustion. For the induction of quiescence, WI-38 fibroblasts were cultured in DMEM containing 0.2% FBS. Primary human myoblasts (SkMC) were isolated from a skeletal muscle biopsy of a healthy donor (PromoCell C-12530, Lot 414Z025.11) and were purified with an immuno-magnetic sorting system using CD56/NCAM magnetic beads (Miltenyui Biotec 130-050-401) following the manufacturer’s specifications. The purified CD56-positive myoblasts were seeded in dishes coated with type I collagen (Sigma-Aldrich C 8919) and cultured in the proliferation medium (DMEM-high glucose (Sigma D6429), 20% FBS (Life Technologies 10270106), 50 μg/mL gentamicin (Life technologies 15750037), 0,5% Ultroser G (PALL 15950-017) at 37 °C with 5% CO2. All experiments were conducted CPD11 and CPD29 to avoid replicative senescence, and myoblasts were passaged at a cell confluency not exceeding 50% to avoid myogenic differentiation. Retroviral infections were performed as outlined for WI38 fibroblasts. For all the indicated treatments of fibroblasts and myoblasts, cells were collected and processed at the indicated time points.</p><p><br></p><p>Metabolomics data which includes four senescence onset and quiescence models; RAS-OIS cells treated with DMOG or shPCYT2, overexpressing G3PP, PCYT2 or ETNPPL and etoposide-induced cells treated with Rapamycin. Cells were washed 2 times with ice cold DPBS and were frozen in liquid nitrogen and stored at -80 °C before the extraction.</p><p><br></p><p>Targeted metabolomics analyses were focused on small polar compounds in central carbon metabolism. Established methods for sample extraction and LC-MS analyses using pHILIC HPLC column for polar metabolites separation were used<strong>[2]</strong>. As a part of the routine analytical pipeline, recommendations of the metabolomics Quality Assurance and quality Control Consortium (mQACC) were applied: the routine quality controls include regular equipment maintenance (Thermo), the use of standard operating procedures for sample extraction, storage and analyses. General practices also include weekly test runs to assure system stability and quality of runs. Several QCs were used (1) pooled interstudy QC, (2) process and extraction blanks, (3) system stability blanks, (4) solvents blanks, (5) long-term reference standard inter-laboratory QC mix to ensure system stability and (6) the samples were blinded and loaded in randomized order. The analyses of pooled samples QC showed no significant difference in metabolites levels between QCs.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Martínez-Zamudio RI, Roux PF, de Freitas JANLF, Robinson L, Doré G, Sun B, Belenki D, Milanovic M, Herbig U, Schmitt CA, Gil J, Bischof O. AP-1 imprints a reversible transcriptional programme of senescent cells. Nat Cell Biol. 2020 Jul;22(7):842-855. doi:10.1038/s41556-020-0529-5. Epub 2020 Jun 8. Erratum in: Nat Cell Biol. 2020 Sep 16;: PMID:32514071.</p><p><strong>[2]</strong> Mackay GM, Zheng L, van den Broek NJ, Gottlieb E. Analysis of Cell Metabolism Using LC-MS and Isotope Tracers. Methods Enzymol. 2015;561:171-96. doi:10.1016/bs.mie.2015.05.016. Epub 2015 Aug 17. PMID:26358905.</p>	<p>The extraction solution was composed of 50% methanol, 30% acetonitrile (ACN) and 20% water. The volume of the extraction solution was adjusted to urea volume (1 mL per 1 x 10^6 cells). After adding the extraction solution, samples were vortexed for 5 min at 4 °C and centrifuged at 16,000 x g for 15 min at 4 °C. The supernatants were collected and stored at -80 °C until analysis.&nbsp;</p>	<p>LC-MS analyses were conducted on a Q Exactive Plus Orbitrap mass spectrometer coupled to a Dionex UltiMate 3000 UPLC system (Thermo, USA). In total 5 μL of each sample was injected onto ZIC-pHILIC (150 mm x 2.1 mm i.d. 5 μm) with the guard column (20 mm x 2.1 mm i.d. 5 μm) (Millipore) for the liquid chromatography separation. Buffer A was 20 mM ammonium carbonate, 0.1% ammonium hydroxide (pH 9.2) and buffer B was acetonitrile. The chromatographic gradient was run at a flow rate of 0.2 μL/min as follows: 0-20 min, linear gradient from 80% to 20% B; 20-20.5 min, linear gradient from 20% to 80% B; 20.5-28 min, hold at 80% B.</p>	<p>Mass spectrometry analyses were conducted on a Q Exactive Plus Orbitrap mass spectrometer equipped with an Ion Max source and a HESI II probe. External mass calibration was performed using the standard calibration mixture every 7 days as recommended by the manufacturer. The mass spectrometer was operated in full-scan, polarity switching mode with the spray voltage set to 2.5 kV, the heated capillary held at 320 °C. The sheath gas flow was set to 20 units, the auxiliary gas flow was set to 5 units, and the sweep gas flow was set to 0 units. The metabolites were detected across a mass range of 75-1000 m/z at a resolution of 35,000 (at 200 m/z) with the AGC target at 10^6, and the maximum injection time at 250 ms. Lock masses were used to insure mass accuracy below 5 ppm. Data were acquired with Thermo Xcalibur software.</p>	<p>The peak areas of metabolites were determined using Thermo TraceFinder software, identified by the exact mass of each singly charged ion and by known retention time on the HPLC column. Statistical and pathway analyses were performed using Metaboanalyst 4.0 software<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Xia J, Wishart DS. Using MetaboAnalyst 3.0 for Comprehensive Metabolomics Data Analysis. Curr Protoc Bioinformatics. 2016 Sep 7;55:14.10.1-14.10.91. doi:10.1002/cpbi.11. PMID:27603023.</p>	<p>The peak areas of metabolites were determined using Thermo TraceFinder software, identified by the exact mass of each singly charged ion and by known retention time on the HPLC column.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nemazanyy
+Study Person First Name	Ivan
+Study Person Mid Initials	
+Study Person Email	ivan.nemazanyy@inserm.fr
+Study Person Phone	
+Study Person Fax	
+Study Person Address	160 rue de Vaugirard, 75015, Paris, France
+Study Person Affiliation	SFR Necker, INSERM US24
+Study Person Roles	Subinvestigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C54622
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	AFO	BAO	CHMO	D3O	EFO	MTBLS	NCBITaxon	NCBI_Taxon	NCIT	OBI	UO
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://www.bioassayontology.org/bao/bao_complete.owl	http://purl.obolibrary.org/obo/chmo.owl	http://data.bioontology.org	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl		http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version											
+Term Source Description		BioAssay Ontology	Chemical Methods Ontology		Experimental Factor Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification		National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11776
+Investigation Title	Bacterial profiles analysed by REIMS using Xevo G2-XS
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-29
+Investigation Public Release Date	2025-07-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11776
+Study Title	Bacterial profiles analysed by REIMS using Xevo G2-XS
+Study Description	<p>Rapid evaporative ionisation mass spectrometry (REIMS) has been demonstrated capable of bacterial speciation by differentiation of their metabolic/lipidomic profiles. Previous work has shown the use of hand-held probes [1,2], and this dataset makes use of a robotic sampling probe which allows for high-throughput analysis [3]. This dataset consists of 651 isolates spanning 38 bacterial (564 isolates) and 6 (87 isolates) fungal species. Data are provided as Waters .raw and .mzXML files, with taxonomic and sample culturing information.</p><p><br></p><p>[1] Strittmatter, N. et al., Analysis of intact bacteria using rapid evaporative ionisation mass spectrometry. <em>Chem. Commun.</em>, 2013, 49, 6188-6190. https://doi.org/10.1039/C3CC42015A</p><p>[2] Strittmatter, N. et al., Characterization and Identification of Clinically Relevant Microorganisms Using Rapid Evaporative Ionization Mass Spectrometry. <em>Anal. Chem.</em>, 2014,&nbsp;86, 6555-6562. https://doi.org/10.1021/ac501075f</p><p>[3] Bolt, F. et al., Automated High-Throughput Identification and Characterization of Clinically Important Bacteria and Fungi using Rapid Evaporative Ionization Mass Spectrometry. <em>Anal. Chem</em>., 2016, 88, 9419-9426. https://doi.org:10.1021/acs.analchem.6b01016</p>
+Study Submission Date	2024-11-29
+Study Public Release Date	2025-07-11
+Study File Name	s_MTBLS11776.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Bacteria	Fungi	mass spectrometry	REIMS
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C14187	http://purl.obolibrary.org/obo/NCBITaxon_4751	http://purl.allotrope.org/ontologies/process#AFP_0001427	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	NCIT	NCBITaxon	AFO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Wei Chen, Min Qiu, Petra Paizs, Miriam Sadowski, Toma Ramonaite, Lieby Zborovsky, Raquel Mejias-Luque, Klaus-Peter Janßen, James Kinross, Robert D. Goldin, Monica Rebec, Manuel Liebeke, Zoltan Takats, James S. McKenzie, Nicole Strittmatter
+Study Publication Title	Universal, untargeted detection of bacteria in tissues using metabolomics workflows
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genus	Family	Order	Class	Phylum	Kingdom	Gram	Temperature	Atmosphere	Medium	Period
+Study Factor Type	Genus	Family	Order	Class	Phylum	Kingdom	Gram Staining Method	Culture Temperature	atmosphere	culture medium	timepoint
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45292	http://purl.obolibrary.org/obo/NCIT_C45290	http://purl.obolibrary.org/obo/NCIT_C45287	http://purl.obolibrary.org/obo/NCIT_C25346	http://purl.obolibrary.org/obo/NCIT_C45277	http://purl.obolibrary.org/obo/NCIT_C45276	http://purl.obolibrary.org/obo/NCIT_C23014	https://purl.dsmz.de/schema/CultureTemperature	http://www.ebi.ac.uk/efo/EFO_0000273	http://www.bioassayontology.org/bao#BAO_0000114	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	D3O	EFO	BAO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11776_DI-MS_negative__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Direct infusion MS - negative
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Direct infusion	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Agar plates with microbial colonies were placed into racks, and colonies of interest were manually selected via a visual interface on the Freedom EVO 75 robot (TECAN, Switzerland) equipped with a Pickolo platform (SciRobotics, Israel). A modified 200 µL pure tip stainless steel electrode probe (TECAN) was used to apply an electrical current (17 W, monopolar mode) via an ERBE IC 300 electrosurgical generator, rapidly heating the biomass to generate an aerosol. The aerosol was transported through a 1.5 m PTFE tube to a Xevo G2-XS Q-ToF mass spectrometer (Waters Corporation).</p>	<p>No sample extraction was performed - the protocol uses direct sampling.</p>	<p>Agar plates with microbial colonies were placed into racks, and colonies of interest were manually selected via a visual interface on the Freedom EVO 75 robot (TECAN, Switzerland) equipped with a Pickolo platform (SciRobotics, Israel). A modified 200 µL pure tip stainless steel electrode probe (TECAN) was used to apply an electrical current (17 W, monopolar mode) via an ERBE IC 300 electrosurgical generator, rapidly heating the biomass to generate an aerosol. The aerosol was transported through a 1.5 m PTFE tube to a Xevo G2-XS Q-ToF mass spectrometer (Waters Corporation).</p>	<p>A Xevo G2-XS Q-ToF mass spectrometer (Waters Corporation) was operated in a negative ion mode of 50 to 2500 m/z range. Daily calibration with sodium formate ensured accuracy, and a 10 ng/μL leu-enkephalin solution was co-aspirated for mass calibration. Five measurements were performed per isolate, with one colony used per measurement.</p>	<p>Raw data files were converted to mzXML format using ProteoWizard MSConvert (v3.0.24066-8d99481). </p>	<p>Added for mass calibration, leucine enkephalin, has been identified.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	DI Instrument	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;		;;;;		
+Study Protocol Parameters Name Term Source REF		;		;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Takats	Bolt	Cameron	Simon	Ramonaite	Burke
+Study Person First Name	Zoltan	Frances	Simon	Daniel	Toma	Adam
+Study Person Mid Initials			JS			
+Study Person Email	z.takats@imperial.ac.uk					
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	Imperial College London					
+Study Person Roles	Principal Investigator	Investigator	Investigator	Investigator	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

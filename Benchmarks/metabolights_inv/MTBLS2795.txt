@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	OBI	MS	EFO	NCIT	SBO	CHMO		PR	UPaUPA
+Term Source File	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI		http://data.bioontology.org/ontologies/EFO				http://purl.obolibrary.org/obo/ncit.owl		
+Term Source Version	1.0	29		132				18.10e		
+Term Source Description	Metabolights Ontology	Ontology for Biomedical Investigations		Experimental Factor Ontology				NCI Thesaurus OBO Edition		
+INVESTIGATION
+Investigation Identifier	MTBLS2795
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-05-05
+Investigation Public Release Date	2021-06-30
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2795
+Study Title	Metabolic response to point mutations reveals principles of modulation of in vivo enzyme activity and phenotype
+Study Description	The relationship between sequence variation and phenotype is poorly understood. Here, we use metabolomic analysis to elucidate the molecular mechanism underlying the filamentous phenotype of E. coli strains that carry destabilizing mutations in dihydrofolate reductase (DHFR). We find that partial loss of DHFR activity causes reversible filamentation despite SOS response indicative of DNA damage, in contrast to thymineless death (TLD) achieved by complete inhibition of DHFR activity by high concentrations of antibiotic trimethoprim. This phenotype is triggered by a disproportionate drop in intracellular dTTP, which could not be explained by drop in dTMP based on the Michaelis-Menten-like in vitro activity curve of thymidylate kinase (Tmk), a downstream enzyme that phosphorylates dTMP to dTDP. Instead, we show that a highly cooperative (Hill coefficient 2.5) in vivo activity of Tmk is the cause of suboptimal dTTP levels. dTMP supplementation rescues filamentation and restores in vivo Tmk kinetics to Michaelis-Menten. Overall, this study highlights the important role of cellular environment in sculpting enzymatic kinetics with system-level implications for bacterial phenotype.
+Study Submission Date	2021-05-05
+Study Public Release Date	2021-06-30
+Study File Name	s_MTBLS2795.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	enzyme activity	high-performance liquid chromatography-mass spectrometry	Dihydrofolate Reductase	thymidylate kinase	pyrimidine biosynthesis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://biomodels.net/SBO/SBO_0000559	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/NCIT_C17191	http://purl.obolibrary.org/obo/PR_000006725	http://purl.obolibrary.org/obo/UPa_UPA00571
+Study Design Type Term Source REF	MTBLS	SBO	CHMO	NCIT	PR	UPaUPA
+STUDY PUBLICATIONS
+Study PubMed ID	34180142
+Study Publication DOI	10.15252/msb.202110200
+Study Publication Author List	Bhattacharyya S, Bershtein S, Adkar BV, Woodard J, Shakhnovich EI.
+Study Publication Title	Metabolic response to point mutations reveals principles of modulation of in vivo enzyme activity and phenotype.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Collection Timepoint	Additive	Concentration	Mutant	Replicate	Growth temperature
+Study Factor Type	timepoint	Additive	concentration	mutant	biological replicate	temperature
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C63495	http://purl.obolibrary.org/obo/CHMO_0002820	http://purl.obolibrary.org/obo/NCIT_C25360	http://www.ebi.ac.uk/efo/EFO_0002091	http://www.ebi.ac.uk/efo/EFO_0001702
+Study Factor Type Term Source REF	EFO	NCIT	CHMO	NCIT	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2795_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The mutant DHFR strains chosen for this study (W133V, I91L+W133V, V75H+I155A and V75H+I91L+I155A) were a subset of <em>E. coli</em> strains generated and previously described<strong>[1]</strong>. Briefly, the chromosomal folA gene of <em>E. coli MG1655</em> strain that codes for the enzyme Dihydrofolate Reductase enzyme was engineered to incorporate the above mentioned mutations using lambda red recombination.</p><p><br></p><p>Cells of the wildtype (WT) and the engineered mutant DHFR strains were grown overnight at 30 °C from a single colony in the specified medium, diluted 1/100, and re-grown. WT and W133V mutant were grown at 42 °C, while mutant I91L+W133V was grown at 40 °C. In addition, we also used WT strain that was also treated with the DHFR targeting antibiotic Trimethoprim (Tmp) at a concentration of 0.5 µg/ml, and this sample was also grown at 42 °C. For time course experiment, aliquots were removed after 2, 4, 6 and 8 h, and metabolites were extracted.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Bershtein S, Mu W, Shakhnovich EI. Soluble oligomerization provides a beneficial fitness effect on destabilizing mutations. Proc Natl Acad Sci U S A. 2012 Mar 27;109(13):4857-62. doi:10.1073/pnas.1118157109. Erratum in: Proc Natl Acad Sci U S A. 2012 May 1;109(18):7126. Wu, Wanmeng [corrected to Mu, Wanmeng]. PMID:22411825.</p>	<p>Metabolites were extracted as previously described<strong>[1]</strong>. Briefly, approx. 15-30 mg of dry pellet weight of cells was used. The pellets were washed 2x with chilled 1 x M9 salts, and metabolites were extracted using 300 µl of 80:20 ratio of methanol:water that had been pre-chilled on dry ice. The cell suspension was immediately frozen in liquid nitrogen followed by a brief thawing (for 30 s) in a water bath maintained at 25 °C and centrifugation at 4 °C at maximum speed for 10 min. The supernatant was collected and stored on dry ice. This process of extraction of metabolite was repeated twice more. The final 900 µl extract was spun down 1 more time and the supernatant was stored in -80 °C until used for mass spectrometry.</p><p><br></p><p>In few cases, a reference culture was grown in M9 with uniformly 13C-labeled glucose as a carbon source. This culture was pelleted down, washed 2x with chilled 1 x M9 salts, resuspended in 1 x M9 salts, and distributed equally in all samples of that day. This provided an additional normalization factor (please check <strong>MTBLS2795_normalized_data.xlsx</strong>).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Bhattacharyya S, Bershtein S, Yan J, Argun T, Gilson AI, Trauger SA, Shakhnovich EI. Transient protein-protein interactions perturb E. coli metabolome and cause gene dosage toxicity. Elife. 2016 Dec 10;5:e20309. doi:10.7554/eLife.20309. PMID:27938662.</p>	<p>The chromatographic separation of metabolites was performed using hydrophilic interaction liquid chromatography (HILIC) on a SeQuant ZIC-pHILIC column, 5 µm, polymer PEEK 150 mm x 2.1 mm column (EMD Millipore) at a flow rate of 0.1 ml/min. Mobile phase A was 20 mM ammonium bicarbonate with 0.1% ammonium hydroxide, and mobile phase B was acetonitrile. The mobile phase composition was started at 100% B, and subsequently decreased to 40% B over 20 min. The column was then washed at 0% B for 5 min before re-equilibration to 100% B over 15 min.</p>	<p>A Thermo Q-Exactive Plus mass spectrometer coupled to a Thermo Ultimate 3000 HPLC was used to perform the LC-MS analysis of metabolites in biological samples and authentic chemical standards in both positive and negative ion mode. Electrospray source settings included a sheath gas flow rate at 35, auxiliary gas flow rate at 5 l/min, a capillary temperature of 250 °C, and auxiliary gas temperature of 300 °C. A calibration of the m/z range used was performed using the Thermo LC-MS Calibration mix immediately prior to the analysis. A scan range of 66.7-1000 m/z was used at a resolving power of 70,000 with alternating positive and negative ion mode scans.</p>	<p>The extracted ion counts were plotted using a mass accuracy window of 5 ppm around the predicted monoisotopic m/z value of the molecular ion of each metabolite using the program Xcalibur (Qual browser). The chromatograms were smoothed using boxcar algorithm (7 points) and baseline was subtracted with a polynomial of order 2 and tolerance of 0.01 and ignoring bottom 10% of data as noise.</p>	<p>Each metabolite was identified using the retention time of a corresponding pure compound as standard. The metabolite intensity was computed using the integrated area of each peak and was normalized by dry cell weight. The data from few days was further normalized by slope and intercept derived from 12-20 13C-labeled metabolites that were reliably detected in all samples of that day (please refer to <strong>MTBLS2795_normalized_data.xlsx</strong>).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Bhattacharyya	Bershtein	Adkar	Woodard	Shakhnovich
+Study Person First Name	Sanchari	Shimon	Bharat	Jaie	Eugene
+Study Person Mid Initials			V		I
+Study Person Email	sbhattacharyya@fas.harvard.edu	shimonb@bgu.ac.il	bharatadkar@fas.harvard.edu	jaiewd@gmail.com	shakhnovich@chemistry.harvard.edu
+Study Person Phone	6177638778	086428796	8575236732		
+Study Person Fax					
+Study Person Address	12 Oxford St Room Cv 001A	Building# 40, Room 302	12 Oxford St		
+Study Person Affiliation	Research Associate		Research Associate		Professor
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT

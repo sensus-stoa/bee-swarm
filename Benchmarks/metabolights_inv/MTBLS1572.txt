@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCIT	BTO	CHEBI	OGIowlAuthor	processAFP	EFO	CHMO	BAO	MS
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/CHEBI			http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/MS
+Term Source Version	29	1.0	28	22	80			113	5	19	86
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology	National Cancer Institute Thesaurus	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology			Experimental Factor Ontology	Chemical Methods Ontology	BioAssay Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1572
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-03-20
+Investigation Public Release Date	2020-05-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1572
+Study Title	Comparison of Full-Scan, Data-Dependent, and Data-Independent Acquisition Modes in Liquid Chromatography-Mass Spectrometry Based Untargeted Metabolomics
+Study Description	Full-scan, data-dependent acquisition (DDA), and data-independent acquisition (DIA) are the three common data acquisition modes in high resolution mass spectrometry-based untargeted metabolomics. It is an important yet underrated research topic on which acquisition mode is more suitable for a given untargeted metabolomics application. In this work, we compared the three data acquisition techniques using a standard mixture of 134 endogenous metabolites and a human urine sample. Both hydrophilic interaction and reversed-phase liquid chromatographic separation along with positive and negative ionization modes were tested. Both the standard mixture and urine samples generated consistent results. Full-scan mode is able to capture the largest number of metabolic features, followed by DIA and DDA (53.7% and 64.8% respective features fewer on average in urine than full-scan). Comparing the MS2 spectra in DIA and DDA, spectra quality is higher in DDA with average dot product score 83.1% higher than DIA in Urine(H), and the number of MS2 spectra (spectra quantity) is larger in DIA (on average 97.8% more than DDA in urine). Moreover, a comparison of relative standard deviation distribution between modes shows consistency in the quantitative precision, with the exception of DDA showing a minor disadvantage (on average 19.8% and 26.8% fewer features in urine with RSD < 5% than full-scan and DIA). In terms of data preprocessing convenience, full-scan and DDA data can be processed by well-established software. In contrast, several bioinformatic issues remain to be addressed in processing DIA data and the development of more effective computational programs is highly demanded.
+Study Submission Date	2020-03-20
+Study Public Release Date	2020-05-21
+Study File Name	s_MTBLS1572.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	32401506
+Study Publication DOI	10.1021/acs.analchem.9b05135
+Study Publication Author List	Guo J, Huan T.
+Study Publication Title	Comparison of Full-Scan, Data-Dependent, and Data-Independent Acquisition Modes in Liquid Chromatography-Mass Spectrometry Based Untargeted Metabolomics.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Data acquisition mode	Dilution
+Study Factor Type	Data acquisition	dilution
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C142469	http://purl.allotrope.org/ontologies/process#AFP_0000785
+Study Factor Type Term Source REF	NCIT	processAFP
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1572_StdMixHigh_POS_LC-MS.txt	a_MTBLS1572_StdMixHigh_NEG_LC-MS.txt	a_MTBLS1572_StdMixLow_POS_LC-MS.txt	a_MTBLS1572_StdMixLow_NEG_LC-MS.txt	a_MTBLS1572_Urine_POS_LC-MS.txt	a_MTBLS1572_Urine_NEG_LC-MS.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Reverse Phase (POS)	Liquid Chromatography MS - HILIC (NEG)	Liquid Chromatography MS - Reverse Phase (POS)” Liquid Chromatography MS - HILIC (NEG)”	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - HILIC (NEG)	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>One urine sample was collected from a healthy male volunteer.</p>	<p>50 μl urine was mixed with 150 μl LC-MS grade MeOH in a 1.5 ml Eppendorf vial. After vortexing, the solution was spun down at 17,530 x g, and the clear urine supernatant was aliquoted to a clean 1.5 ml Eppendorf vial. The clear solution was evaporated using speed-vac, and the dried urine sample was reconstituted in 50 μl ACN:H2O (1:1, v:v) for LC-HRMS analysis. A diluted urine sample was prepared by a 100 time dilution of a 10 μl aliquot from the reconstituted solution. The reconstituted urine solution before dilution is indicated as 'Urine(H)' and the diluted solution is indicated as 'Urine(L)'.</p><p><br></p><p>The 134 metabolite standards were first prepared individually as stock solutions, each in 1 ml ACN:H2O (1:1, v:v). To prepare the original standard mixture, all the metabolites were pooled together to reach a final concentration of 8.3 μg/ml. To prepare diluted standard mixture, 10 μl original solution was further diluted 100 times to 8.3 ng/ml. The original standard mixture is indicated as 'StdMix(H)' and the diluted standard mixture is indicated as 'StdMix(L)'. The list of the 134 metabolites is available in <strong>Table S1</strong> in the paper associated with this study.</p>	<p>The LC-HRMS analysis was performed on a Bruker Impact II Ultra-High Resolution Qq-Time-Of-Flight Mass Spectrometer (UHR-QqTOF-MS)) coupled with an Agilent 1290 Infinity II Ultra High-Performance Liquid Chromatography (UHPLC) system. The resolution of this instrument is up to 50,000 and the mass accuracy is below 5 ppm. 2 μl sample solutions of each triplicate and solvent blank were injected in sequence onto a Waters ACQUITY UPLC BEH C18 column (130Å, 1.7 µm, 1.0 mm x 100 mm) in RP mode, and a Millipore ZIC-pHILIC column (200Å, 5 µm particle size, 2.1 x 150 mm) in HILIC mode. 2 μl of 150 mM Sodium Formate (NaFA) solution was injected for internal calibration.</p><p><br></p><p>In RP analysis, the mobile phase A was H2O in 0.1% Formic Acid (FA) and mobile phase B was ACN in 0.1% FA. RP gradient was set as follows: 0 min, 95% A; 8 min, 75% A; 14 min, 30% A; 20 min, 5% A; 23 min, 5% A. Post-gradient equilibrium time was 7 min at 95% A. Flow rate was 0.15 ml/min. In HILIC analysis, mobile phase A was 95% H2O and 5% ACN with 10 mM Ammonium Acetate at 9.8 pH, and mobile phase B was 5% H2O and 95% ACN. HILIC gradient was set as follows: 0 min, 5% A; 20 min, 80% A; 25 min, 95% A. Post-gradient equilibrium time was 19 min at 5% A. Flow rate was 0.15 ml/min during the gradient, and 0.2 ml/min during the post-gradient equilibrium.</p>	<p><strong>MS parameters in full-scan mode:</strong></p><p>The data acquisition modes for the RPLC chromatographic separation coupled with electrospray ionization (ESI) for RP were in positive mode and HILIC separation in negative mode. The ionization source capillary voltage was set to 4.5 kV in positive scanning mode and -3 kV in negative scanning mode. The nebulizer gas pressure was set to 1.6 bar. The dry gas temperature was set to 220 °C. Absolute threshold was set to 250 cts. No MS2 spectra were generated during the acquisition. The spectra rate was set to 2 Hz. The mass detection range was 50 to 1500 in positive mode and 65 to 1500 in negative mode.</p><p><br></p><p><strong>MS parameters in DDA mode:</strong></p><p>The mass spectrometer was operated in Auto MS/MS mode. The ionization source capillary voltage was set to 4.5 kV in positive scanning mode and -3 kV in negative scanning mode. The nebulizer gas pressure was set to 1.6 bar. The dry gas temperature was set to 220 °C. Absolute threshold was set to 250 cts. Collision energy was stepping from 21 eV to 45 eV. The charge state was 1. The absolute threshold was 400 cts. The cycle time was 3 seconds with the spectra rate of 8 Hz. In DDA mode, the instrument spent 30% cycle time (0.9 sec) on MS1 scanning and 70% cycle time (2.1 sec) on MS2 scanning. During MS2 scanning period, the number of precursors for MS2 spectra generation per cycle is dependent upon the cycle time, spectra rate and the intensity of the ions in MS1 spectra. As the spectra rate was 8 Hz, the time spent on scanning one spectrum was 0.125 sec. The maximum number of precursors that can be selected for MS2 spectra generation in each cycle was 16(2.1/0.125). The instrument selected the precursors in MS1 spectra for MS2 scanning from the highest intensity to the lowest until there were no more precursors available or the precursor number had reached the maximum value (16 in our case). Therefore, the number of precursor ions varied between each cycle in the whole analysis. When there were more high intensity precursors in MS1, there would be more precursors selected for MS2 scanning up to 16.&nbsp;The mass detection range was 50 to 1500 in positive mode and 65 to 1500 in negative mode.</p><p><br></p><p><strong>MS parameters in DIA mode:</strong></p><p>The mass spectrometer was operated in bbCID (broadband Collision Induced Dissociation) mode (DIA MSall mode).</p>	<p>Data was transformed to ABFile format compatible with MS-DIAL. the software parameters were set as follows: MS1 tolerance was 0.02 Da; MS2 tolerance was 0.05 D; Minimum peak height was 1000; smoothing level was 3 scans; minimum peak width was 5 scans; sigma window value was 0.5; alignment tolerance was 0.2 min.</p>	<p>For standard mixture, the metabolites were annotated by the tandem MS library file created in house using the same instrument and pure chemical standards. The in-house library contains the accurate mass, retention time for each metabolite in the standard mixture. For urine samples, the metabolites were annotated by the publicly available MS spectral database provided by MS-DIAL. The library contains accurate mass and tandem MS information for annotation.</p><p><br></p><p>The library spectra were extracted from the database MSMS-Public-pos-VS11 and MSMS-Public-Neg-VS11 for both positive and negative acquisition modes respectively. The libraries we used were the publicly available MS spectral database provided by MS-DIAL (<a href='http://prime.psc.riken.jp/Metabolomics_Software/MS-DIAL/' rel='noopener noreferrer' target='_blank'>http://prime.psc.riken.jp/Metabolomics_Software/MS-DIAL/</a>). The positive mode library includes the tandem MS information for 29,269 metabolites and the negative mode library includes the tandem MS information for 17,810 metabolites. The tandem MS information was collected from Massbank, ReSpec, GNPS, Fiehn lab, CASMI2016, MetaboBase, and RIKEN PlaSMA. The instruments used to generate the MS2 spectra are Orbitrap and Q-TOF.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Guo	Huan
+Study Person First Name	Jian	Tao
+Study Person Mid Initials		
+Study Person Email	jian@chem.ubc.ca	thuan@chem.ubc.ca
+Study Person Phone	7802361588	7783188518
+Study Person Fax		
+Study Person Address	2036 Main Mall, Vancouver, BC V6T 1Z1	2036 Main Mall, Vancouver, BC V6T 1Z1
+Study Person Affiliation	University of British Columbia	University of British Columbia
+Study Person Roles	First author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/OGI.owl#Author
+Study Person Roles Term Source REF	MS	OGIowlAuthor

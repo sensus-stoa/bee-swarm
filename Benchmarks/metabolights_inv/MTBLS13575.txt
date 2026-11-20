@@ -1,0 +1,100 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	EFO	MESH	MTBLS	NCBITAXON	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://www.ebi.ac.uk/efo/efo.owl	https://data.bioontology.org/ontologies/MESH	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version							
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	Medical Subject Headings	MetaboLights Controlled Vocabulary		National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13575
+Investigation Title	Metabolic study of eggs in L. xylina
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-26
+Investigation Public Release Date	2025-12-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13575
+Study Title	Metabolic study of eggs in L. xylina
+Study Description	<p> The casuarina moth (Lymantria xylina) is a notorious forestry pest, posing severe ecological and economic threats due to its destructive defoliation outbreaks and high invasive potential. Despite its significance, a high-quality reference genome has been lacking, limiting molecular-level investigations into its biology and hindering the development of effective pest management strategies.&nbsp;In this study, we report the first chromosome-level genome assembly&nbsp;of L. xylina&nbsp;generated through a combination of illumina short-reads, Oxford Nanopore long-reads, and Hi-C scaffolding. The final assembly spans 977.74 Mb, with 95.17% anchored to 31 pseudo-chromosomes, achieving a scaffold N50 of 34.15 Mb. Importantly, telomeric sequences were identified at both ends of all 31 pseudo-chromosomes, underscoring the exceptional quality and completeness of this reference genome. Quality assessment further revealed a BUSCO completeness of 94.5% and a consensus QV of 31.72. We also annotated 18,484 protein-coding genes, 95.21% of which were functionally assigned, and characterized genome-wide repetitive elements (77.18%).</p><p> Beyond the genome assembly, we generated comprehensive RNA-seq and metabolomic datasets&nbsp;across multiple diapause stages, enabling insights into gene expression dynamics and metabolic regulation during egg development. Together, these resources provide a valuable foundation for studying the genetic basis of host adaptation, invasiveness, and interactions with natural enemies such as nucleopolyhedrovirus and Beauveria bassiana.</p>
+Study Submission Date	2025-12-26
+Study Public Release Date	2025-12-26
+Study File Name	s_MTBLS13575.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lymantria xylina	untargeted metabolites	Diapause
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_78901	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://id.nlm.nih.gov/mesh/D000074767
+Study Design Type Term Source REF	NCBITAXON	MTBLS	MESH
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Siyi Liu, Hui Jian, Tao Ni, Kai Wang, Xia Hu, Songqing Wu, Feiping Zhang* and Rong Wang*
+Study Publication Title	Chromosome-level genome assembly of the casuarina moth, Lymantria xylina Swinhoe (1903)
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Diapause
+Study Factor Type	Diapause
+Study Factor Type Term Accession Number	http://id.nlm.nih.gov/mesh/D000074767
+Study Factor Type Term Source REF	MESH
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13575_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13575_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>The egg masses of&nbsp;<em>L. xylina</em>&nbsp;were obtained from a casuarina plantation in Pingtan Comprehensive Experimental Zone, Fuzhou City, Fujian Province (25°27'02.9'N 119°47'58.3'E)&nbsp;and were maintained at 4 °C&nbsp;before hatching. Hatched larvae were fed with an artificial diet at 25±1 °C,&nbsp;14:10 (L:D) photoperiod and 65±5% relative humidity. The larvae, pupae, and adult moth were collected separately. The samples were frozen in liquid nitrogen and then stored at&nbsp;−80 °C.&nbsp; For metabolic analysis, samples from the four groups (DT, DTH, ED, and MD), with each group comprising five biological replicates, were thawed on ice.&nbsp;</p>	<p>For metabolic analysis, samples from the four groups (DT, DTH, ED, and MD), with each group comprising five biological replicates, were thawed on ice.&nbsp;Take 50 ±&nbsp;2 mg of one sample and add cold steel balls to the mixture and&nbsp;homogenate at 30 Hz for 3 min. Add 1 mL 70% methanol with internal standard extract to the homogenized&nbsp;centrifuge tube, Whirl the mixture for 5 min, and then centrifuge it with 12,000 rpm at 4 °C for 10 min. After&nbsp;centrifugation, draw 400 uL of supernatant into the corresponding EP tube and store in -20 °C refrigerator&nbsp;overnight, then centrifuge at 12000 r/min at 4 °C for 3 min, and take 2000 uL of supernatant in the liner of the&nbsp;corresponding injection bottle for on-board analysis.</p>	<p>The sample extracts were analyzed using an&nbsp;LC-ESI-MS/MS system (UPLC, ExionLC AD&nbsp;, https://sciex.&nbsp;com.cn/; MS, QTRAP® System,&nbsp;https://sciex.com/).&nbsp;The analytical conditions&nbsp;were as follows, UPLC: column,&nbsp;Waters ACQUITY UPLC HSS&nbsp;T3&nbsp;C18&nbsp;(1.8μm,&nbsp;2.1 mm*100 mm);&nbsp;column&nbsp;temperature,&nbsp;40&nbsp;°C;&nbsp;flow&nbsp;rate,&nbsp;0.4&nbsp;mL/min;&nbsp;injection&nbsp;volume,&nbsp;2μL&nbsp;or&nbsp;5μL;&nbsp;solvent&nbsp;system,&nbsp;water&nbsp;(0.1%&nbsp;formic&nbsp;acid):&nbsp;acetonitrile&nbsp;(0.1%&nbsp;formic&nbsp;acid);&nbsp;gradient program,&nbsp;95:5 V/V&nbsp;at&nbsp;0 min,&nbsp;10:90 V/V&nbsp;at&nbsp;10.0 min,&nbsp;10:90 V/V&nbsp;at&nbsp;11.0 min,&nbsp;95:5&nbsp;V/V&nbsp;at&nbsp;11.1&nbsp;min, 95:5 V/V&nbsp;at&nbsp;14.0 min.</p>	<p>The&nbsp;Triple&nbsp;TOF mass&nbsp;spectrometer was used&nbsp;for&nbsp;its&nbsp;ability to&nbsp;acquire MS/MS&nbsp;spectra&nbsp;on&nbsp;an&nbsp;information-&nbsp;dependent basis (IDA) during an LC/MS experiment.&nbsp;In&nbsp;this&nbsp;mode,&nbsp;the&nbsp;acquisition&nbsp;software&nbsp;(TripleTOF&nbsp;6600,&nbsp;AB&nbsp;SCIEX)&nbsp;continuously&nbsp;evaluates&nbsp;the&nbsp;full&nbsp;scan&nbsp;survey&nbsp;MS&nbsp;data&nbsp;as&nbsp;it&nbsp;collects&nbsp;and&nbsp;triggers&nbsp;the&nbsp;acquisition&nbsp;of&nbsp;MS/MS&nbsp;spectra&nbsp;depending&nbsp;on&nbsp;preselected&nbsp;criteria.&nbsp;&nbsp;In&nbsp;each&nbsp;cycle,&nbsp;12&nbsp;precursor&nbsp;ions&nbsp;whose&nbsp;intensity&nbsp;greater&nbsp;than&nbsp;100 were&nbsp;chosen&nbsp;for&nbsp;fragmentation&nbsp;at&nbsp;collision&nbsp;energy&nbsp;(CE)&nbsp;of 30 V&nbsp;(12 MS/MS&nbsp;events with product ion&nbsp;accumulation time of 50 msec each).&nbsp;ESI&nbsp;source conditions were&nbsp;set as&nbsp;following:&nbsp;Ion&nbsp;source&nbsp;gas&nbsp;1&nbsp;as&nbsp;50&nbsp;Psi,&nbsp;Ion source gas 2 as 50 Psi, Curtain gas as 25 Psi, source temperature 500 °C, Ion Spray Voltage Floating (ISVF) 5500 V or -4500 V in positive or negative modes, respectively.</p>	<p>The acquired MS data pretreatments including peak picking, peak grouping, retention time </p><p>correction, second peak grouping, and annotation of isotopes and adducts was performed using </p><p>XCMS software. LC−MS raw data files were converted into mzXML format and then processed </p><p>by the XCMS, CAMERA and metaX[2] toolbox implemented with the R software. Each ion was </p><p>identified by combining retention time (RT) and m/z data. Intensities of each peaks were recorded </p><p>and a three dimensional matrix containing arbitrarily assigned peak indices (retention time-m/z </p><p>pairs), sample names (observations) and ion intensity information (variables) was generated.</p>	<p>Qualitative and quantitative metabolite analysis was performed based on a local metabolic database. The Multi-Reaction Monitoring (MRM) metabolite detection multi-peak chromatogram illustrates the substances detected within the samples, where distinct colors represent different metabolites. Characteristic ions for each substance were screened using a triple quadrupole mass spectrometer, and their signal intensities (counts per second, CPS) were recorded by the detector. The raw mass spectrometry files were processed using MultiQuant software to perform chromatographic peak integration and correction. The area under each peak (Peak Area) represents the relative abundance of the corresponding metabolite. Finally, all integrated peak area data were exported and archived.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rong
+Study Person First Name	Wang
+Study Person Mid Initials	
+Study Person Email	wangrongbl0501@126.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	State Key Laboratory of Agricultural and Forestry Biosecurity, College of Forestry, Fujian Agriculture and Forestry University, Fuzhou
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

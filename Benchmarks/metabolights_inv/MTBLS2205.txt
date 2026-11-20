@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	CHEBI	GO	MSIO	MTBLS	OBI	CHMO	PR	qualityAFQ	
+Term Source File	http://data.bioontology.org/ontologies/EFO					https://www.ebi.ac.uk/metabolights/					http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	132					1.0					18.10e
+Term Source Description	Experimental Factor Ontology					Metabolights Ontology					NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS2205
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-11-02
+Investigation Public Release Date	2021-03-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2205
+Study Title	Epistasis-driven identification of SLC25A51 as a regulator of human mitochondrial NAD import
+Study Description	About a thousand genes in the human genome encode for membrane transporters. Among these, several solute carrier proteins (SLCs), representing the largest group of transporters, are still orphan and lack functional characterization. We reasoned that assessing genetic interactions among SLCs may be an efficient way to obtain functional information allowing their deorphanization. Here we describe a network of strong genetic interactions indicating a contribution to mitochondrial respiration and redox metabolism for SLC25A51/MCART1, an uncharacterized member of the SLC25 family of transporters. Through a combination of metabolomics, genomics and genetics approaches, we demonstrate a role for SLC25A51 as enabler of mitochondrial import of NAD, showcasing the potential of genetic interaction-driven functional gene deorphanization.
+Study Submission Date	2020-11-02
+Study Public Release Date	2021-03-29
+Study File Name	s_MTBLS2205.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	mitochondrial NAD transmembrane transport	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	analyte assay	solute carrier family 25 member 51
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/GO_1990549	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/OBI_0000443	http://purl.obolibrary.org/obo/PR_000029735
+Study Design Type Term Source REF	GO	MTBLS	CHMO	CHMO	OBI	PR
+STUDY PUBLICATIONS
+Study PubMed ID	33262325
+Study Publication DOI	10.1038/s41467-020-19871-x
+Study Publication Author List	Girardi E, Agrimi G, Goldmann U, Fiume G, Lindinger S, Sedlyarov V, Srndic I, Gürtl B, Agerer B, Kartnig F, Scarcia P, Di Noia MA, Liñeiro E, Rebsamen M, Wiedmer T, Bergthaler A, Palmieri L, Superti-Furga G.
+Study Publication Title	Epistasis-driven identification of SLC25A51 as a regulator of human mitochondrial NAD import.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Gene knock out	Gene knock in	Dilution factor	Replicate	Clone
+Study Factor Type	gene knock out	gene knock in	dilution factor	biological replicate	Cell Clone
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000506	http://www.ebi.ac.uk/efo/EFO_0004963	http://purl.allotrope.org/ontologies/quality#AFQ_0000178	http://www.ebi.ac.uk/efo/EFO_0002091	http://purl.obolibrary.org/obo/NCIT_C16441
+Study Factor Type Term Source REF	EFO	EFO	qualityAFQ	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2205_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>HAP1 cells (Haplogen Genomics) were grown in Iscove's modified Dulbecco's medium with 10% fetal bovine serum (FBS), 1% Pen/Strep. The SLC-deficient clones (dSLC25A51_1927-10, dSLC25A51_1927-11, dSLC25A3_792_1, dSLC25A3_792_6, and dSLC25A13_789_6, renamed as dSLC25A51_1, dSLC25A51_2, dSLC25A3_1, dSLC25A3_2, and dSLC25A13_1, respectively) were obtained from Haplogen Genomics. Codon-optimized SLC25A51, SLC25A3 cDNAs or mitoGFP cDNA sequences (the latter carrying the mitochondrial import sequence derived from subunit 8 of complex IV) were obtained from the ReSOLUTE consortium (https://re-solute.eu/). Cells were plated at 0.8-0.9 x 10e^6 cells/well in 6-well plates in full media.</p>	<p>After 24 hr, the cells were gently washed with room temperature phosphate-buffered saline (PBS), transferred to ice and 1.5 ml of ice-cold 80:20 MeOH:H2O solution was added to each well. The cells were scraped and transferred to a pre-cooled Eppendorf tube, snap-frozen in liquid nitrogen and thawed on ice before being centrifuged at 16,000 x g for 10 mins at 4 °C. Cell extracts were dried down using a nitrogen evaporator. The dry residue was reconstituted in 50 µl of water. 10 µl of sample extract was mixed with 10 µl of isotopically labelled internal standard mixture in high-performance liquid chromatography vial and used for LC-MS/MS analysis.</p>	<p>A 1290 Infinity II UHPLC system (Agilent Technologies) coupled with a 6470 triple quadrupole mass spectrometer (Agilent Technologies) was used for the LC-MS/MS analysis. The chromatographic separation for samples was carried out on a ZORBAX RRHD Extend-C18, 2.1 x 150 mm, 1.8 µm analytical column (Agilent Technologies). The column was maintained at a temperature of 40 °C and 4 µl of sample was injected per run. The mobile phase A was 3% methanol (v/v), 10 mM tributylamine, 15 mM acetic acid in water and mobile phase B was 10 mM tributylamine, 15 mM acetic acid in methanol. The gradient elution with a flow rate 0.25 ml/min was performed for a total time of 24 min. Afterwards, a back flushing of the column using a 6port/2-position divert valve was carried out for 8 min using acetonitrile, followed by 8 min of column equilibration with 100% mobile phase A.</p>	<p>The triple quadrupole mass spectrometer was operated in an electrospray ionization negative mode, spray voltage 2 kV, gas temperature 150 °C, gas flow 1.3 l/min, nebulizer 45 psi, sheath gas temperature 325 °C, and sheath gas flow 12 l/min. The metabolites of interest were detected using a dynamic Multiple Reaction Monitoring (MRM) mode.</p>	<p>The MassHunter 10.0 software (Agilent Technologies) was used for the data processing. 10-point linear calibration curves with internal standardization was constructed for the quantification of metabolites.</p>	<p>Conditions were compared using Welch's t-test, p-value was subsequently corrected for multiple testing according to the Benjamini and Hochberg procedure<strong>[1]</strong>. Pathway enrichment was performed testing significantly affected metabolites (p &lt; 0.05) against the Small Molecule Pathway Database<strong>[2]</strong> with MetaboAnalyst<strong>[3]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Santoro V, Kovalenko I, Vriens K, Christen S, Bernthaler A, Haegebarth A, Fendt SM, Christian S. SLC25A32 sustains cancer cell proliferation by regulating flavin adenine nucleotide (FAD) metabolism. Oncotarget. 2020 Feb 25;11(8):801-812. doi:10.18632/oncotarget.27486. PMID:32166001.</p><p><strong>[2]</strong> Jewison T, Su Y, Disfany FM, Liang Y, Knox C, Maciejewski A, Poelzer J, Huynh J, Zhou Y, Arndt D, Djoumbou Y, Liu Y, Deng L, Guo AC, Han B, Pon A, Wilson M, Rafatnia S, Liu P, Wishart DS. SMPDB 2.0: big improvements to the Small Molecule Pathway Database. Nucleic Acids Res. 2014 Jan;42(Database issue):D478-84. doi:10.1093/nar/gkt1067. PMID:24203708.</p><p><strong>[3]</strong> Chong J, Soufan O, Li C, Caraus I, Li S, Bourque G, Wishart DS, Xia J. MetaboAnalyst 4.0: towards more transparent and integrative metabolomics analysis. Nucleic Acids Res. 2018 Jul 2;46(W1):W486-W494. doi:10.1093/nar/gky310. PMID:29762782.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Girardi	Agrimi	Goldmann	Fiume	Lindinger	Sedlyarov	Srndic	Agerer	Kartnig	Scarcia	Di Noia	Liñeiro	Rebsamen	Wiedmer	Bergthaler	Palmieri	Superti-Furga	Gürtl
+Study Person First Name	Enrico	Gennaro	Ulrich	Giuseppe	Sabrina	Vitaly	Ismet	Benedikt	Felix	Pasquale	Maria Antonietta	Eva	Manuele	Tabea	Andreas	Luigi	Giulio	Bettina
+Study Person Mid Initials																		
+Study Person Email																		
+Study Person Phone																		
+Study Person Fax																		
+Study Person Address																		
+Study Person Affiliation	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	Department of Biosciences, Biotechnologies and Biopharmaceutics, Laboratory of Biochemistry and Molecular Biology, University of Bari, Bari, Italy	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	Department of Biosciences, Biotechnologies and Biopharmaceutics, Laboratory of Biochemistry and Molecular Biology, University of Bari, Bari, Italy	Department of Biosciences, Biotechnologies and Biopharmaceutics, Laboratory of Biochemistry and Molecular Biology, University of Bari, Bari, Italy	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	Department of Biosciences, Biotechnologies and Biopharmaceutics, Laboratory of Biochemistry and Molecular Biology, University of Bari, Bari, Italy	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences, Vienna, Austria
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Principal Investigator	Principal Investigator	Principal Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C51826
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	EFO

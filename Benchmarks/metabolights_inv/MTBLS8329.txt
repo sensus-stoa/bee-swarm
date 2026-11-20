@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	FOODON	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/foodon.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	3.92.0	2025-12-30			1.0.1		2026-07-12	26.02d	2026-05-08
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Food Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS8329
+Investigation Title	Advanced LC-IMS-MS Protocol for Holistic Metabolite Analysis in Wine and Grape Samples
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-09-20
+Investigation Public Release Date	2026-09-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8329
+Study Title	Advanced LC-IMS-MS Protocol for Holistic Metabolite Analysis in Wine and Grape Samples
+Study Description	The final aim of metabolomics is the comprehensive and holistic study of the metabolome in biological samples. Therefore, the use of instruments that enable the analysis of metabolites belonging to various chemical classes in a wide range of concentrations is essential, without compromising on robustness, resolution, sensitivity, specificity, and metabolite annotation. These characteristics are crucial for the analysis of very complex samples, such as wine, whose metabolome is the result of the sum of metabolites derived from grapes, yeast(s), bacteria(s), and chemical or physical modification during winemaking. In recent years, a big advantage, in this direction, was the hardware developments on hyphenated instruments that enable the integration of liquid chromatography (LC), ion mobility spectrometry (IMS), and mass spectrometry (MS). This chapter describes an LC-IMS-MS protocol for the analysis of wine and grape samples as well as the use of IMS data in metabolite annotation.
+Study Submission Date	2023-09-20
+Study Public Release Date	2026-09-12
+Study File Name	s_MTBLS8329.txt
+Comment[Created At]	2023-07-30
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-12
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Waters ACQUITY UPLC I-Class System	Synapt XS	blank	Vitis vinifera	Wine	sample preparation blank	quality control	experimental sample	untargeted analysis	Metabolomics	ion mobility
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000917	http://purl.obolibrary.org/obo/MS_1003183	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304	http://purl.obolibrary.org/obo/NCBITaxon_29760	http://purl.obolibrary.org/obo/NCIT_C66822	http://purl.obolibrary.org/obo/MSIO_0000025	http://purl.obolibrary.org/obo/MSIO_0000085	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000270	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MS	MTBLS	NCBITaxon	NCIT	MSIO	MSIO	CHMO	MS	MTBLS	MTBLS
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism part	Organism	Organism part	Sample type	Sample type	Sample type	measurement-type		
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Vania Sáez, Sara Ferrero-del-Teso, Fulvio Mattivi, Urska Vrhovsek, Panagiotis Arapitsas
+Study Publication Title	Ultra-Performance Liquid Chromatography with Traveling Wave Ion Mobility Quadrupole Time-of-Flight Mass Spectrometry (UPLC-TWIMS-QToF) Protocol for Untargeted Metabolomics of Wine and Grape Samples
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Wine classification
+Study Factor Type	Variety
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C62709
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8329_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS8329_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Small collection of wine samples of Cabernet Sauvignon, Timorasso and Barbera from diverse wineries. The samples were keep it at 4 °C in dark glass bottle.</p>	<p>To prevent undesirable oxygen-dependent reactions, the wine bottles were opened under an N2 atmosphere. The samples were prepared following a random sequence. The wine samples were diluted 3x times with degasified MiliQ water, filtered (0.22 µm PDVF) into 2 mL dark vial.&nbsp;</p>	<p>The chromatographic separation was performed in an Acquity I-class UPLC with a binary solvent manager, sample manager FTN-1, column manager, and sample organizer (Waters Corporation). The UPLC Column Acquity TM Premier HSS T3 with VanGuard Fit, 1.8 µm, 2.1 x 100 mm was set at 40 °C, at flow rate 0.3 mL/min. The mobile phase A is water with 0.1% of formic acid, and B is methanol with 0.1% of formic acid. The following multistep gradient was used for 2 µL of injected sample:&nbsp;0.0-1.0 min (0% mobile phase B), 1.0-3.0 min (0-10% mobile phase B), 3.0-12.0 min (10-40% mobile phase B), 12.0-16.0 min (40-100% mobile phase B), 16.0-18.0 min (100% mobile phase B), 18.0-18.10 min (100-0% mobile phase B), 18.10-20.0 min (0% mobile phase B).</p>	<p>A Synapt-XS high resolution mass spectrometer (Waters corporation) with an electrospray ionization (ESI) source was in tandem with the UPLC Acquity I chromatographic system. The source parameters are setting as follows: 3.00 and 2.00 kV for capillary, 40 and 30 for sampling cone, for ESI+ and ESI-, respectively. The source temperature and desolvation temperature was set at 120 and 450 °C. The data was acquired in resolution mode using a normal dynamic range with a scan time 0.2 s in continuum mode. The HDMSE method for ESI + and ESI- for the low energy function were disabled in the transfer cell, whereas for the high energy function a ramp of collision energy were applied in the transfer cell device, from 20 to 40 V in ESI+, and from 20 to 50 V in ESI-. The triwave velocity for the trap was 311 m/s and for the transfer 141 m/s with Nitrogen (90 mL/min) as IMS buffer gas. A lock mass solution (leucine enkephalin 100 pg/µL) was infused during the data acquisition at 10 µL/min. The acquisition of the lock mass solution is on an interval of 15 s with a scan average of 3. The capillary voltage applied in the source for lock mass in ESI- is 2.60 kV and in ESI+ is 3.00 kV, respectively. The calibration was performed using CCS Major MIX IMS/ToF solution (Waters Corporation) and lock mass solution.</p>	<p>The output raw data do not have the lock mass correction (leucine enkephalin), for the data analysis is required to perform a lock mass correction.&nbsp;The ESI+ theoretical values for leucine enkephalin are m/z 556.277 (M+H) and a drift time of 6.185 ms, meanwhile for ESI-, the values are m/z 554.262 (M-H) and a drift time of 6.002 ms.</p>	<p>The strategies for metabolite annotation process of the selected features includes resources such as in-house libraries (RT, MSE spectra and TWCCSN2 value) built with analytical standards and managed by UNIFI software.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Sáez	Ferrero-del-Teso	Mattivi	Vrhovsek	Arapitsas	saez	arapitsas
+Study Person First Name	Vania	Sara	Fulvio	Urska	Panagiotis	vania	panagiotis
+Study Person Mid Initials							
+Study Person Email	vania.saezpulgar@fmach.it					vaniastepsaezpulg@gmail.com	panagiotis.arapitsas@fmach.it
+Study Person Phone							
+Study Person Fax							
+Study Person Address	Via E. Mach 1, San Michele all’Adige, 38010, Italy.	Carretera de Burgos Km. 6, Finca La Grajera, Logroño, 26007, La Rioja, Spain.	Via E. Mach 1, San Michele all’Adige, 38010, Italy	Via E. Mach 1, San Michele all’Adige, 38010, Italy	Via E. Mach 1, San Michele all’Adige, 38010, Italy		
+Study Person Affiliation	Department of Food Quality and Nutrition, Research and Innovation Center, Fondazione Edmund Mach.	Instituto de Ciencias de la Vid y del Vino (ICVV) (Universidad de La Rioja-CSIC-Gobierno de La Rioja)	Department of Food Quality and Nutrition, Research and Innovation Center, Fondazione Edmund Mach	Department of Food Quality and Nutrition, Research and Innovation Center, Fondazione Edmund Mach.	Department of Food Quality and Nutrition, Research and Innovation Center, Fondazione Edmund Mach.	Fondazione Edmund Mach	Fondazione Edmund Mach
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person Alternative Email]						vaniastepsaezpulg@gmail.com	

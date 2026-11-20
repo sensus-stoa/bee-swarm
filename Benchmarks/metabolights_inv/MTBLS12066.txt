@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	NCIT	OBI	EFO	MS
+Term Source File	Metabolights	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	Metabolights	https://www.ebi.ac.uk/ols4/api
+Term Source Version			29		
+Term Source Description	Metabolights Ontology		Ontology for Biomedical Investigations		
+INVESTIGATION
+Investigation Identifier	MTBLS12066
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-01-03
+Investigation Public Release Date	2025-03-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12066
+Study Title	Microbiota-indole-3-propionic acid-heart axis mediates the protection of leflunomide against αPD1-induced cardiotoxicity in mice
+Study Description	Anti-programmed death 1 (αPD1) immune checkpoint blockade is used in combination for cancer treatment but associated with cardiovascular toxicity. Finding drugs that suppress cardiovascular toxicity but not compromise the efficacy of αPD1-mediated immunotherapy is of great importance. Leflunomide (Lef) can suppress the growth of several tumor and mitigate cardiac remodeling in mice. However, the specific role of Lef in αPD1-induced cardiotoxicity remains unclear.
+Study Submission Date	2025-01-03
+Study Public Release Date	2025-03-12
+Study File Name	s_MTBLS12066.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Cardiotoxicity	PD1 Inhibitor	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C27994	http://purl.obolibrary.org/obo/NCIT_C124946	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	NCIT	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Rong Huang
+Study Publication Title	Microbiota-indole-3-propionic acid-heart axis mediates the protection of leflunomide against αPD1-induced cardiotoxicity in mice
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12066_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12066_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Plasma samples from mouse were thawed in ice water, vortexed, and mixed with 200 μL water plus 1200 μL 1:1 acetonitrile:methanol (containing isotopes).</p>	<p>After 30 s vortexing and 15 min ice-bath sonication, they were incubated at -40 °C for 2 h, then centrifuged at 12,000 rpm, 4 °C for 15 min. The 1200 μL supernatant was transferred, evaporated in a concentrator and reconstituted with 120 μL 60% acetonitrile post-vortexing and centrifugation.</p>	<p>Ultimately, 60-70 μL aliquots were placed in glass vials for LC-MS/MS analysis.&nbsp;The LC-MS/MS analyses were carried out using a UHPLC system (Vanquish, Thermo Fisher Scientific) equipped with a ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters), coupled to an Orbitrap Exploris 120 mass spectrometer (Orbitrap MS, Thermo).</p>	<p>Ultimately, 60-70 μL aliquots were placed in glass vials for LC-MS/MS analysis.&nbsp;The LC-MS/MS analyses were carried out using a UHPLC system (Vanquish, Thermo Fisher Scientific) equipped with a ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters), coupled to an Orbitrap Exploris 120 mass spectrometer (Orbitrap MS, Thermo). Following the detection of serum metabolites, orthogonal projections using Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA) were employed to explore the overall distribution of plasticity metabolites and identify differential metabolites between the αPD1 and αPD1+Lef groups. Differential serum metabolites were identified based on a combined criterion of fold change (&gt;1.2) and p-value (&lt;0.05).</p>	<p>Data processing was performed using a customized procedure developed in R and based on XCMS. Finally, the metabolites were annotated utilizing an in-house MS2 database (BiotreeDB). IPA was detected on an AB Sciex QTrap 6500 plus mass spectrometer (SCIEX, Framingham, MA, USA) using a targeted LC-MS/MS analysis. Standard ion source settings included: IonSpray Voltage at +5000 V, Curtain Gas at 35 psi, Temperature maintained at 400 °C, and both Ion Source Gas 1 and Gas 2 set to 60 psi. Data processing for LC-MS/MS was carried out using Skyline Software.</p>	<p>lipid-like molecules, organic acids and derivatives, and organoheterocyclic compounds</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huang
+Study Person First Name	Rong
+Study Person Mid Initials	
+Study Person Email	zhengma@whu.edu.cn
+Study Person Phone	+86 15327685129
+Study Person Fax	
+Study Person Address	Hubei Key Laboratory of Metabolic and Chronic Diseases, 430060 Wuhan, PR China
+Study Person Affiliation	Renmin Hospital of Wuhan University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

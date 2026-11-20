@@ -1,0 +1,123 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	GO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.88.0	2026-03-25				2025-12-03	26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Gene Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14382
+Investigation Title	FIRST-seq: a nanopore-based cDNA sequencing platform for RNA modification and structure profiling
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-04-26
+Investigation Public Release Date	2026-04-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14382
+Study Title	FIRST-seq: a nanopore-based cDNA sequencing platform for RNA modification and structure profiling
+Study Description	<p>This repository contains the LC-MS/MS raw data for the RNA quantifications obtained from in vivo DMS probed RNAs from E.coli and MDA-MB231 cell lines.</p>
+Study Submission Date	2026-04-26
+Study Public Release Date	2026-04-26
+Study File Name	s_MTBLS14382.txt
+Comment[Created At]	2025-01-27
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	RNA structure	RNA modification	rna	Thermo Scientific EASY-nLC 1200 System (UPLC)	Thermo Scientific LTQ Orbitrap	Escherichia coli	Homo sapiens	Whole Organism	Cell Line	experimental blank	targeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://edamontology.org/data_1465	http://purl.obolibrary.org/obo/GO_0009451	http://edamontology.org/format_1213	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000908	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000644	http://purl.obolibrary.org/obo/NCBITaxon_562	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/NCIT_C13413	http://purl.obolibrary.org/obo/NCIT_C16403		http://purl.obolibrary.org/obo/MS_1003905	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	EDAM	GO	EDAM	MTBLS	MTBLS	NCBITaxon	NCBITaxon	NCIT	NCIT		MS	EDAM
+Comment[Study Design Category]	submitter	submitter	submitter	Chromatography Instrument	Instrument	Organism	Organism	Organism part	Organism part	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2025.04.22.649934
+Study Publication Author List	Begik Oguzhan, Diensthuber Gregor, Borovska Ivana, Mattick John S, Incarnato Danny, Novoa Eva Maria
+Study Publication Title	FIRST-seq: a nanopore-based cDNA sequencing platform for RNA modification and structure profiling
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Dose	Replicate
+Study Factor Type	treatment	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14382_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003905
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Measurement Type]	targeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003905
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Samples were digested with 1 μl of the Nucleoside Digestion Mix (New England BioLabs, M0649S) and the mixture was incubated at 37 ºC for 1 h.&nbsp; Samples (20ng) were analyzed using an Orbitrap Eclipse Tribrid mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA) coupled to an EASY-nLC 1200 (Thermo Fisher Scientific (Proxeon), Odense, Denmark). Ribonucleosides were loaded directly onto the analytical column and were separated by reversed-phase chromatography using a 50-cm column with an inner diameter of 75 μm, packed with 2 μm C18 particles (Thermo Fisher Scientific, ES903). Chromatographic gradients started at 93% buffer A and 3% buffer B with a flow rate of 250 nl/min for 5 minutes and gradually increased to 30% buffer B and 70% buffer A in 20 min. After each analysis, the column was washed for 10min with 0% buffer A and 100% buffer B. Buffer A: 0.1% formic acid in water. Buffer B: 0.1% formic acid in 80% acetonitrile. The mass spectrometer was operated in positive ionization mode with nanospray voltage set at 2.4 kV and source temperature at 305°C. For Parallel Reaction Monitoring (PRM) method the quadrupole isolation window was set to 0.7 m/z, and MSMS scans were collected over a mass range of m/z 50-450, with detection in the Orbitrap at resolution of 120,000. MSMS fragmentation of defined masses and schedule retention time (Table S15) was performed using HCD at NCE 20 (except stated differently, Table S15), the auto gain control (AGC) was set to “Standard” and a maximum injection time of 246 ms was used. In each PRM cycle, one full MS scan at resolution of 120,000 was acquired over a mass range of m/z 220-700 with detection in the Orbitrap mass analyzer. Auto gain control (AGC) was set to 1e5 and the maximum injection time was set to 50 ms. Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the&nbsp; linear range of quantification and the limit of detection of each&nbsp; compound [62] A mix of commercial ribonucleosides was injected before and after each batch of samples to assess instrument stability and to be used as external standard to calibrate the retention time of each ribonucleoside.</p><p><br></p><p>Acquired data were analyzed with the Skyline-daily software (v24.1.1.284) and extracted precursor areas of the ribonucleosides were used for quantification. </p><p><br></p>	<p>Samples were digested with 1 μl of the Nucleoside Digestion Mix (New England BioLabs, M0649S) and the mixture was incubated at 37 ºC for 1 h.&nbsp; Samples (20ng) were analyzed using an Orbitrap Eclipse Tribrid mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA) coupled to an EASY-nLC 1200 (Thermo Fisher Scientific (Proxeon), Odense, Denmark). Ribonucleosides were loaded directly onto the analytical column and were separated by reversed-phase chromatography using a 50-cm column with an inner diameter of 75 μm, packed with 2 μm C18 particles (Thermo Fisher Scientific, ES903). Chromatographic gradients started at 93% buffer A and 3% buffer B with a flow rate of 250 nl/min for 5 minutes and gradually increased to 30% buffer B and 70% buffer A in 20 min. After each analysis, the column was washed for 10min with 0% buffer A and 100% buffer B. Buffer A: 0.1% formic acid in water. Buffer B: 0.1% formic acid in 80% acetonitrile. The mass spectrometer was operated in positive ionization mode with nanospray voltage set at 2.4 kV and source temperature at 305°C. For Parallel Reaction Monitoring (PRM) method the quadrupole isolation window was set to 0.7 m/z, and MSMS scans were collected over a mass range of m/z 50-450, with detection in the Orbitrap at resolution of 120,000. MSMS fragmentation of defined masses and schedule retention time (Table S15) was performed using HCD at NCE 20 (except stated differently, Table S15), the auto gain control (AGC) was set to “Standard” and a maximum injection time of 246 ms was used. In each PRM cycle, one full MS scan at resolution of 120,000 was acquired over a mass range of m/z 220-700 with detection in the Orbitrap mass analyzer. Auto gain control (AGC) was set to 1e5 and the maximum injection time was set to 50 ms. Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the&nbsp; linear range of quantification and the limit of detection of each&nbsp; compound [62] A mix of commercial ribonucleosides was injected before and after each batch of samples to assess instrument stability and to be used as external standard to calibrate the retention time of each ribonucleoside.</p><p><br></p><p>Acquired data were analyzed with the Skyline-daily software (v24.1.1.284) and extracted precursor areas of the ribonucleosides were used for quantification. </p><p><br></p>	<p>Ribonucleosides were loaded directly onto the analytical column and were separated by reversed-phase chromatography using a 50-cm column with an inner diameter of 75 μm, packed with 2 μm C18 particles (Thermo Fisher Scientific, ES903). Chromatographic gradients started at 93% buffer A and 3% buffer B with a flow rate of 250 nl/min for 5 minutes and gradually increased to 30% buffer B and 70% buffer A in 20 min. After each analysis, the column was washed for 10min with 0% buffer A and 100% buffer B. Buffer A: 0.1% formic acid in water. Buffer B: 0.1% formic acid in 80% acetonitrile. The mass spectrometer was operated in positive ionization mode with nanospray voltage set at 2.4 kV and source temperature at 305°C. For Parallel Reaction Monitoring (PRM) method the quadrupole isolation window was set to 0.7 m/z, and MSMS scans were collected over a mass range of m/z 50-450, with detection in the Orbitrap at resolution of 120,000. MSMS fragmentation of defined masses and schedule retention time (Table S15) was performed using HCD at NCE 20 (except stated differently, Table S15), the auto gain control (AGC) was set to “Standard” and a maximum injection time of 246 ms was used. In each PRM cycle, one full MS scan at resolution of 120,000 was acquired over a mass range of m/z 220-700 with detection in the Orbitrap mass analyzer. Auto gain control (AGC) was set to 1e5 and the maximum injection time was set to 50 ms. Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the&nbsp; linear range of quantification and the limit of detection of each&nbsp; compound</p>	<p>Samples (20ng) were analyzed using an Orbitrap Eclipse Tribrid mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA) coupled to an EASY-nLC 1200 (Thermo Fisher Scientific (Proxeon), Odense, Denmark).</p>	<p>Acquired data were analyzed with the Skyline-daily software (v24.1.1.284) and extracted precursor areas of the ribonucleosides were used for quantification. </p>	<p>Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the&nbsp; linear range of quantification and the limit of detection of each&nbsp; compound</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Novoa	Novoa
+Study Person First Name	Eva Maria	Eva Maria
+Study Person Mid Initials		
+Study Person Email	evamaria.novoa@gmail.com	eva.novoa@crg.eu
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Center for Genomic Regulation (CRG)	Centre for Genomic Regulation
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]		0000-0002-9367-6311
+Comment[Study Person Affiliation ROR ID]		https://ror.org/03wyzt892

@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.87.0			1.0.1		2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14056
+Investigation Title	Non-targeted LC–MS metabolomics of human left atrial appendage tissue with high vs low myocardial micro(nano)plastic burden
+Investigation Description	
+Investigation Submission Date	2026-03-15
+Investigation Public Release Date	2026-03-28
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14056
+Study Title	Non-targeted LC–MS metabolomics of human left atrial appendage tissue with high vs low myocardial micro(nano)plastic burden
+Study Description	<p>Non-targeted metabolomics profiling was performed on human left atrial appendage tissue obtained from cardiac surgery patients. Samples were grouped by myocardial nanoplastic (NP) burden (High vs Low). Polar metabolites were analyzed by UHPLC–Orbitrap MS in both positive and negative ionization modes. Derived spectral data are provided as mzXML files for each sample and polarity.</p>
+Study Submission Date	2026-03-15
+Study Public Release Date	2026-03-28
+Study File Name	s_MTBLS14056.txt
+Comment[Created At]	2026-03-02
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-03-28
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Myocardial fibrosis	micro(nano)plastic
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/HP_0001685	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MSIO	EFO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yilin Pan, Linqi Liu, Jiyuan Luo, Xiaozheng Zhou, Yu Wang, Lin Zheng, Yunxiao Yang, Zhan Peng, Jiawei Li, Guanming Su, Mianqi Xue, Kun Hua, Hanqing Chen, Xiubin Yang
+Study Publication Title	Micro(nano)plastics in the development of myocardial fibrosis: from clinical detection to molecular mechanism
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Nanoplastics
+Study Factor Type	exposure
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000487
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14056_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS14056_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Left atrial appendage was obtained as specimens before initiation of cardiopulmonary bypass and surgical ablation. Sample collection was performed by trained research staff wearing cotton surgical scrub suits and rubber surgical gloves near the operating table. The tissue was frozen in liquid nitrogen and stored at -80°C for downstream molecular analyses. All samples were collected following standardized surgical procedures, ensuring patients were not exposed to any additional harm.</p>	<p>Polar metabolites were separated using a Vanquish UHPLC system (Thermo Fisher Scientific) equipped with a Waters ACQUITY UPLC BEH Amide column (2.1 mm × 50 mm, 1.7 µm; HILIC). Mobile phase A was 25 mM ammonium acetate and 25 mM ammonia hydroxide in water (pH 9.75), and mobile phase B was acetonitrile. The autosampler temperature was maintained at 4 °C and the injection volume was 2 µL. (Gradient program and flow rate followed the service provider’s standard method.)</p>	<p>Raw LC–MS data were converted to mzXML format using ProteoWizard. Converted mzXML files were processed using an in-house R-based pipeline incorporating XCMS for peak detection, retention-time alignment, and peak integration to generate the feature intensity matrix. Features were filtered by relative standard deviation (RSD) de-noising. Missing values were imputed with half of the minimum detected value, and peak intensities were normalized using the internal standard method. The processed data matrix was used for downstream statistical analyses.</p>	<p>Approximately 25±1 mg human left atrial appendage tissue was extracted with 500 µL methanol:acetonitrile:water (2:2:1, v/v) containing deuterated internal standards. Samples were vortexed (30 s), homogenized (35 Hz, 4 min) and sonicated (4°C water bath, 5 min) for three cycles, then incubated at −40°C for 1 h and centrifuged.</p>	<p>Mass spectrometry was performed on an Orbitrap Exploris 120 mass spectrometer (Thermo Fisher Scientific) with an electrospray ionization (ESI) source, operating in positive and negative ion modes (separate acquisitions). Data were acquired under Xcalibur software in information-dependent acquisition (IDA) mode (full-scan MS with data-dependent MS/MS). Source conditions were: sheath gas 50 Arb, auxiliary gas 15 Arb, capillary temperature 320 °C, spray voltage +3.8 kV (positive) and −3.4 kV (negative). Full-scan MS resolution was 60,000 and MS/MS resolution was 15,000, with normalized collision energy (NCE) 20/30/40.</p>	<p>Metabolite annotation was performed using an R package combined with the BiotreeDB database (version 3.0), based on accurate mass and, where available, MS/MS fragmentation matching. Annotated metabolite lists and feature tables were exported for downstream analysis and interpretation.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Pan	Yang
+Study Person First Name	Yilin	Xiubin
+Study Person Mid Initials		
+Study Person Email	pyldudu@outlook.com	xiubinyang@hotmail.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		No. 2 Anzhen Road, Chaoyang District, Beijing
+Study Person Affiliation	Beijing Anzhen Hospital	Beijing Anzhen Hospital
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]		https://ror.org/02h2j1586

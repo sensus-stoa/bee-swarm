@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MONDO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mondo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version								
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mondo Disease Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13023
+Investigation Title	WT 2.0: Unveiling the “dark matter” in the metabolome using all-ion stepwise fragmentation acquisition mode (ASFAM) and deep learning-based feature extraction
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-09-23
+Investigation Public Release Date	2025-09-23
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13023
+Study Title	WT 2.0: Unveiling the “dark matter” in the metabolome using all-ion stepwise fragmentation acquisition mode (ASFAM) and deep learning-based feature extraction
+Study Description	<p> Current metabolomics methods often miss low-abundance compounds and yield incomplete or ambiguous MS2 spectra, resulting in the presence of “dark matter” within the metabolome. Here, we introduce WT 2.0, which employs an all-ion stepwise fragmentation acquisition mode (ASFAM) to acquire comprehensive MS1 data, providing stepping 1 m/z windows for all precursor ions, and thereby capturing (theoretically) all deconvolution-free high-resolution MS2 data, as well as MS2 for low-abundance precursors that evade MS1 scans. A tailored algorithm extracts these low-response features, and a deep learning model predicts their high-resolution precursor ion m/z values. A Siamese network subsequently aligns features across samples. When applied to rice leaf LC-MS profiles, WT 2.0 increases detected features (with MS2) by 150% versus data-dependent acquisition (DDA) and 70% versus data-independent acquisition (DIA), and doubles high-confidence identifications compared to DDA while achieving a 360% increase over DIA. Under various stress conditions in rice leaves, WT 2.0 identifies 3-formylindole, β-carboline, and feruloyl putrescine as novel stress-responsive metabolites missed by conventional methods. In plasma LC-MS profiles, WT 2.0 reveals novel metabolic alterations in stage I lung cancer: increased free bile acids (cholic acid and deoxycholic acid) and decreased conjugated bile acids (glycocholic acid, taurocholic acid, and tauro-ursodeoxycholic acid) relative to benign lung disease. A panel of 20 plasma metabolites, featuring these bile acids, diagnoses LC with an AUC of 0.996. By integrating ASFAM, specialized feature extraction, predictive modeling, and advanced alignment, WT 2.0 significantly enhances detection and identification coverage, providing a powerful tool to expand metabolome analyses across diverse research applications.</p>
+Study Submission Date	2025-09-23
+Study Public Release Date	2025-09-23
+Study File Name	s_MTBLS13023.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-09-23
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	cancer
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/MONDO_0004992
+Study Design Type Term Source REF	MTBLS	CHMO	MONDO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Honglun Yuan, Sishu Huang, Zhenhuan Liu, Weiqin Zhang, Lin Wang, Xindong Li, Zhihong Wang, Huan Li, Alisdair R. Fernie, Jiatao Lou, Jie Luo
+Study Publication Title	WT 2.0: Unveiling the “dark matter” in the metabolome using all-ion stepwise fragmentation acquisition mode (ASFAM) and deep learning-based feature extraction
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Mode	Treatment
+Study Factor Type	Mode	treatment
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C53320	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13023_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Thirty rice accessions utilized for validation experiments were cultivated in paddy fields located in Sanya, Hainan Province, China. Rice leaf samples preparation: For validation experiments, mature leaves from at least three individual rice plants at the tillering stage were combined into a single sample, with three biological replicates per accession. For stress experiments, leaves from at least 30 rice seedlings per treatment were pooled into a single sample, with three biological replicates per treatment.</p><p>For the abiotic stress studies, six representative rice cultivars were selected: MH63 (Japonica), ZS97A (Japonica), ZH11 (Indica), NIP (Indica), Fanhaopi (Aus), and Karayal (Aus).Seeds were sterilized and soaked in water for three days until the radicles emerged, followed by germination at 30 °C for an additional day. Uniformly germinated seedlings were then transferred into a 96-well hydroponic tray shielded from light. Hydroponic experiments were conducted using a standard rice culture solution, with nutrient solutions renewed every two days. Rice seedlings were hydroponically cultured in a growth chamber under controlled conditions: 14-hour photoperiod at 28 °C, 10-hour dark period at 25 °C, illumination intensity at 120 µmol/m²/s, and relative humidity at approximately 70%. When seedlings reached two weeks of age, they were subjected to drought, salt, and heat stresses. Drought stress treatment was performed by exposure to 20% PEG 6000 for 48 hours. Salt stress was induced by treatment with 150 mM NaCl for 24 hours, and heat stress was applied at 42 °C for 14 hours. Untreated seedlings were used as the control group.</p>	<p>All leaf samples were immediately flash-frozen in liquid nitrogen and stored at -80 °C until analysis. Extraction of rice leaf metabolites: Leaf samples were freeze-dried for 7 days using a lyophilizer (Scientz-100F/A, Ningbo, China) and subsequently ground into fine powder with a ball mill (MM 400, Retsch, Germany) at 30 Hz for 1 min. Metabolites were extracted overnight by adding 1 mL of 70% methanol (containing 0.01 mg/L lidocaine as internal standard) per 100 mg of leaf powder.</p>	<p>Ultra-performance liquid chromatography (UPLC, CBM40A, Shimadzu, Japan) was employed with a Waters Acquity UPLC HSS T3 C18 column (2.1 mm × 100 mm, 1.8 µm, Waters, USA). The mobile phases consisted of solvent A (0.04% aqueous acetic acid) and solvent B (0.04% acetic acid in acetonitrile). The gradient elution program was as follows: 0 min, 95% solvent A/5% solvent B; 10 min, 5% solvent A/95% solvent B; 12 min, 5% solvent A/95% solvent B; 12.1 min, 95% solvent A/5% solvent B; and maintained at 95% solvent A/5% solvent B until 15 min. The flow rate was set to 0.35 mL·min-1, column temperature maintained at 40 °C, and the injection volumes were 5 µL.</p>	<p>ASFAM, DDA, and DIA scans were conducted using a Sciex ZenoTOF 7600 quadrupole-time-of-flight (QTOF) mass spectrometer (Sciex, Canada). For ASFAM acquisition, precursor ions in the range of 75–1075 Da were equally divided into 10 segments, each covering a 100 Da mass window for MS1 scans (experiment 1). The high-resolution multiple reaction monitoring (HR-MRM) mode of ASFAM (experiments 2–101) included 100 MRM transitions with incremental steps of 1 Da, matching the corresponding MS1 acquisition range. For each MRM event, the Q3 scan was configured in a start-stop mode, with the starting mass at 50 Da and the stopping mass set at Q1+3. Given that the ratio of stopping-to-starting mass could not exceed 10, the starting mass was adjusted to (Q1+3)/10 if (Q1+3)/10 was greater than 50 Da. The settings for validation experiments using DDA and DIA modes were as follows: In DDA mode, each MS1 scan triggered up to 100 MS2 scans, with a precursor intensity threshold set at 0. For DIA mode, each method consisted of 20 MS2 windows, each covering 5 Da. Ion-source parameters for all three modes were consistent: Gas 1, Gas 2, Curtain Gas, and collision-activated dissociation (CAD) gas were set at 50, 60, 35, and 8 psi, respectively. Ion-source temperature was maintained at 550 °C, and the spray voltage for positive ionization was set at 5500 V. Declustering potential (DP) for TOF MS scans was set to 50 V, collision energy (CE) was set to 8 V, and CE for all MS2 acquisitions was fixed at 35 eV. The Zeno threshold for both DDA and ASFAM modes was adjusted to 20,000 cps to match the DIA mode setting.</p>	<p>High abundance features (HFs) were extracted using MS-DIAL software71. For single-sample analysis, the ten ASFAM data files were simultaneously imported into MS-DIAL with the following parameters: file type, SWATH; minimum peak height, 100 amplitude; mass slice width, 0.03 Da; smoothing level, 1 scan; minimum peak width, 3 scans. Adduct ions selected in positive-ion mode were [M+H]+, [M+H–H2O]+, [M+NH4]+, [M+Na]+, [M+K]+ and [M]+; in negative-ion mode, [M–H]−, [M–H2O–H]− and [M–2H]2− were chosen, with other parameters set to default. Low abundance features (LFs) were extracted using an in-house program developed for ASFAM data.</p><p><br></p><p><br></p><p>[1] Tsugawa, H. et al. MS-DIAL: Data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods 12, 523 (2015).</p>	<p>Mass spectral libraries from MassBank and the MS-DIAL metabolomics MSP spectral kit were integrated and deduplicated using the library integration and deduplication tool of WT 2.0 method to facilitate metabolite annotation. Redundant signals in MSP-formatted 'peak list result' were initially filtered using the WT 2.0 MSP results screening tool based on the TXT formatted results. These filtered MSP results underwent metabolite annotation using SIRIUS software, and the MS-DIAL and SIRIUS annotations were then merged using the annotation results integration tool.</p><p><br></p><p><br></p><p>[1] Tsugawa, H. et al. MS-DIAL: Data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods 12, 523 (2015).</p><p>[2] Duhrkop, K. et al. SIRIUS 4: a rapid tool for turning tandem mass spectra into metabolite structure information. Nat Methods 16, 299-302 (2019).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huang	Luo
+Study Person First Name	Sishu	Jie
+Study Person Mid Initials		
+Study Person Email	huangsishu@yzwlab.cn	luojie@yzwlab.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Hainan University	
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0000-4980-2758	

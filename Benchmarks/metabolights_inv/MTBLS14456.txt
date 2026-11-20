@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.88.0				2025-12-03	26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14456
+Investigation Title	Role and Mechanism of SERPINA1/PLG/TGFB1-Induced Adipose Fibroblast Activation in Dorsal Cervical Adipose Accumulation
+Investigation Description	
+Investigation Submission Date	2026-05-08
+Investigation Public Release Date	2026-05-08
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14456
+Study Title	Role and Mechanism of SERPINA1/PLG/TGFB1-Induced Adipose Fibroblast Activation in Dorsal Cervical Adipose Accumulation
+Study Description	This untargeted metabolomics study investigates metabolic differences in human adipose tissue between Group A (n=7) and Group B (n=7). Samples were analyzed using LC-MS/MS in both positive and negative ion modes on a Thermo Q-Exactive HF-X mass spectrometer. A total of 2,305 metabolites were detected, of which 2,032 were identified at MS2 level. Differential metabolites were screened using VIP > 1 (from OPLS-DA) and P-value < 0.05 (Student's t-test). A total of 145 significant differential metabolites were identified, with 73 up-regulated and 72 down-regulated in Group A relative to Group B. KEGG pathway enrichment, HMDB annotation, and MSEA were performed to characterize the functional implications of these metabolic changes. Raw data files (mzML format) and processed data tables are provided.
+Study Submission Date	2026-05-08
+Study Public Release Date	2026-05-08
+Study File Name	s_MTBLS14456.txt
+Comment[Created At]	2026-05-08
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Human adipose tissue	Untargeted metabolomics	LC-MS/MS	OPLS-DA	Metabolic disorders	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q Exactive HF-X	Homo sapiens	tissue	untargeted analysis	75-1000	Metabolomics
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/MS_1003904	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	NCBITaxon	MTBLS	MS	MTBLS	EDAM
+Comment[Study Design Category]	Organism part	default	submitter	submitter	submitter	Chromatography Instrument	Instrument	Organism	Sample type	measurement-type	default	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Runze Yang, Yujing Zhang
+Study Publication Title	Role and Mechanism of SERPINA1/PLG/TGFB1-Induced Adipose Fibroblast Activation in Dorsal Cervical Adipose Accumulation
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	Group
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+Comment[Study Factor Value Format]	numeric
+Comment[Unit Term]	Group
+Comment[Unit Term Source REF]	MTBLS
+Comment[Unit Term Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14456_LC-MS_positive_reverse-phase.txt	a_MTBLS14456_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Descriptor]	75-1000	75-1000
+Comment[Assay Descriptor Term Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Descriptor Term Source REF]	MTBLS	MTBLS
+Comment[Assay Descriptor Category]	default	default
+Comment[Assay Descriptor Source]	submitter	submitter
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;Waters ACQUITY Premier HSS T3 1.8 um, 2.1x100 mm;reverse phase;positive;75-1000;Thermo Scientific Q Exactive HF-X	Thermo Scientific Vanquish UHPLC System;Waters ACQUITY Premier HSS T3 1.8 um, 2.1x100 mm;reverse phase;negative;75-1000;Thermo Scientific Q Exactive HF-X
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	CHMO	CHMO	MI
+Study Protocol Description	<p>Human adipose tissue samples were surgically obtained as discarded pathological specimens. Specimens were immediately stored at 80°C until processing. For extraction, samples were thawed on ice prior to homogenization. Samples were collected in 2025. No specific clinical information beyond group assignment was recorded.</p>	<p>Chromatographic separation was performed on a Vanquish UHPLC system (Thermo Scientific, Massachusetts, USA) equipped with a Waters ACQUITY Premier HSS T3 column (1.8 μm, 2.1 × 100 mm). The column temperature was maintained at 40°C. The mobile phase consisted of (A) 0.1% formic acid in water and (B) 0.1% formic acid in acetonitrile. The flow rate was set at 0.4 mL/min, and the injection volume was 4 μL. The gradient elution program was as follows: 0–2 min, 5–20% B; 2–5 min, 20–60% B; 5–6 min, 60–99% B; 6–7.5 min, 99% B; 7.5–10 min, 5% B. The same chromatographic conditions were applied for both positive and negative ion modes.</p>	<p>Raw mass spectrometry data (.raw) were converted to mzML format using ProteoWizard. Peak detection, alignment, and retention time correction were performed using XCMS. Features with &gt;50% missing values in any group were filtered out. Missing values were imputed using KNN imputation or, if &gt;50% missing, replaced with one-fifth of the minimum value. Peak areas were corrected using support vector regression (SVR). Metabolite identification was carried out by searching against an in-house database, public databases, predicted libraries, and the metDNA method. Only metabolites with an identification score 0.5 and a QC sample coefficient of variation (CV) &lt;0.3 were retained. Finally, positive and negative ion mode data were merged, keeping the metabolite with the highest identification level and the smallest CV for each compound. The processed data are provided in the file all_sample_data.xlsx.</p>	<p>Approximately 20 mg of frozen adipose tissue was weighed and homogenized with a steel ball using a grinder (30 Hz, 20 s). After centrifugation (3,000 rpm, 30 s, 4°C), 400 μL of 70% methanol in water containing internal standards was added, vortexed (1,500 rpm, 5 min), and placed on ice for 15 min. The mixture was centrifuged at 12,000 rpm for 10 min at 4°C. Then 300 μL of supernatant was collected and kept at 20°C for 30 min, followed by a second centrifugation at 12,000 rpm for 3 min at 4°C. Finally, 200 μL of supernatant was transferred to an LC-via for analysis.</p><p>Quality control (QC) samples were prepared by pooling equal aliquots of all sample extracts and were injected every 10 analytical runs to monitor instrument stability and reproducibility. Internal standards were added to all samples during extraction.</p>	<p>Mass spectrometry analysis was performed using a Thermo Scientific Q-Exactive HF-X mass spectrometer (Massachusetts, USA) equipped with an electrospray ionization (ESI) source. Data were acquired in both positive and negative ion modes. Full scan MS spectra were collected over a mass range of m/z 75–1000 at a resolution of 35,000 (FWHM). Data-dependent MS/MS spectra (MS2) were acquired at a resolution of 17,500 with stepped collision energies of 30, 40, and 50 V. The signal intensity threshold was set at 1e6 cps, and the top 10 precursors were selected per scan cycle with a dynamic exclusion duration of 3 seconds.</p><p><br></p><p>Key source parameters for positive ion mode: spray voltage 3500 V; for negative ion mode: spray voltage 3200 V. Common parameters for both modes: sheath gas flow rate 30 arb, auxiliary gas flow rate 5 arb, ion transfer tube temperature 320°C, vaporizer temperature 300°C.</p>	<p>Metabolite identification was performed by searching the acquired MS/MS spectra against an in-house database, public databases (including HMDB, KEGG, and METLIN), predicted libraries, and using the metDNA method. The identification criteria required a minimum identification score of 0.5. For each metabolite, the identification level was assigned based on available spectral matching. Only metabolites with a QC sample coefficient of variation (CV) &lt;0.3 were retained after identification. Positive and negative ion mode data were merged, keeping the metabolite with the highest identification level and the smallest CV for each compound. A total of 2,305 metabolites were detected, of which 2,032 were identified at MS2 level</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yang	Zhang
+Study Person First Name	Runze	Yujing
+Study Person Mid Initials		
+Study Person Email	yrz000108@163.com	yjzhang@cmu.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	The First Hospital of China Medical University	The First Hospital of China Medical University
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

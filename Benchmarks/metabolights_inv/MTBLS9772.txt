@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	CHMO	NCIT	CHEBI	EFO	GO	BTO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/						
+Term Source Version	29	1					08/04/2024	08/04/2024
+Term Source Description	Ontology for Biomedical Investigations	User defined terms						
+INVESTIGATION
+Investigation Identifier	MTBLS9772
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-03-18
+Investigation Public Release Date	2024-05-31
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS9772
+Study Title	Metabolic reprogramming is an initial step in pancreatic carcinogenesis that can be targeted to inhibit acinar-to-ductal metaplasia
+Study Description	<p>Metabolic reprogramming is a hallmark of cancer and is crucial for cancer progression, making it an attractive therapeutic target. Understanding the role of metabolic reprogramming in cancer initiation could help identify prevention strategies. To address this, we investigated metabolism during acinar-to-ductal metaplasia (ADM), the first step of pancreatic carcinogenesis. Glycolytic markers were elevated in ADM lesions compared to normal tissue from human samples. Comprehensive metabolic assessment in three mouse models with pancreas-specific activation of KRAS, PI3K or MEK1 using Seahorse measurements, NMR metabolome analysis, mass spectrometry, isotope tracing and RNA-seq analysis revealed a switch from oxidative phosphorylation to glycolysis in ADM. Blocking the metabolic switch attenuated ADM formation. Furthermore, mitochondrial metabolism was required for de novo synthesis of serine and glutathione but not for ATP production. MYC mediated the increase in GSH intermediates in ADM, and inhibition of GSH synthesis suppressed ADM development. This study thus identifies metabolic changes and vulnerabilities in the early stages of pancreatic carcinogenesis.</p>
+Study Submission Date	2024-03-18
+Study Public Release Date	2024-05-31
+Study File Name	s_MTBLS9772.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolic Tracing	pancreatic carcinogenesis	Ultra-Performance Liquid Chromatography-Mass Spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2022.06.27.495427
+Study Publication Author List	Neuß Thorsten, Wirges Nils, Chen Min-Chun, Usluer Sinem, Oellinger Rupert, Lier Svenja, Dudek Michael, Madl Tobias, Jastroch Martin, Steiger Katja, Schmitz Werner, Einwächter Henrik, Schmid Roland M.
+Study Publication Title	Acinar-to-ductal metaplasia in the pancreas requires a glycolytic switch and functional mitochondria
+Study Publication Status	Preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004
+Study Publication Status Term Source REF	MTBLS
+STUDY FACTORS
+Study Factor Name	13C6 Glucose	labeling_time	cultivation_time	genotype	inducer	inhibitor
+Study Factor Type	labelling	mass	timepoint	Genotype	mass	mass
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001675	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000282	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C16631	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000282	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000282
+Study Factor Type Term Source REF	CHMO	MTBLS	EFO	NCIT	MTBLS	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS9772_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Murine pancreata were harvested, cut into pieces and digested with SOL2 (1.2 mg/mL Collagenase from Clostridium histolyticum (C2139, Sigma) in McCoy’s 5A Medium, 0.02% Trypsin inhibitor from soy bean, 0.1% BSA (all Sigma)) twice for 10 min. Cells were passed through a 100 μm mesh and washed with SOL1 (McCoy’2 5A Medium, 0.02% Trypsin inhibitor from soy bean, 0.1% BSA) and spun down at 14 x g. Afterwards, cells were recovered in culture medium (Waymouth’s MB752/1 medium + 0.1% FCS, 1x Insulin-Transferrin-Selenium, 50 μg/mL Bovine Pituitary Extract, 10 mM HEPES (all Gibco), 0.1% BSA, 0.01% Trypsin inhibitor from soy bean, 2.6 mg/mL NaHCO3 (Merck) + 30% FCS and incubated for 30-60 min at 37 °C. The endpoint of this incubation was defined as timepoint ‘d0’. Isolated acinar were incubated with either complete medium (including designated inhibitors) or glucose-free medium (ThermoFisher) with 27.7 mM [13C6]-glucose (Sigma). Cells were labeled from 0-2 h or 22-24 h after isolation. Labelled cells were washed with cold PBS and pellets were frozen at -80 °C.</p>	<p>Water-soluble metabolites were extracted with 0.5 mL ice-cold MeOH/H2O (80/20, v/v) containing 0.01 μM lamivudine (Sigma-Aldrich) and 0.5 μM sucrose (Sigma-Aldrich). After centrifugation of the homogenates, supernatants were transferred to a RP18 SPE column (Phenomenex) that had been activated with 0.5 mL CH3CN and conditioned with 0.5 mL of MeOH/H2O (80/20, v/v). The eluate was dried in a centrifugal evaporator (Savant) and dissolved in 50 μL 5 mM NH4OAc in CH3CN/H2O (50/50, v/v).</p>	<p>For LC-MS analysis 3 μL of sample was applied to a ZIC-cHILIC column (SeQuant ZIC-cHILIC, 3 μm, 100 x 2.1 mm). Metabolites were separated with Solvent A, consisting of 5 mM NH4OAc in CH3CN/H2O (5/95, v/v) and solvent B consisting of 5 mM NH4OAc in CH3CN/H2O (95/5, v/v) at a flow rate of 200 µL/min at 30 °C by LC using a DIONEX Ultimate 3000 UPLC system (Thermo Scientific), applying a linear gradient starting after 2 min with 100% solvent B decreasing to 40% solvent B over 23 min, followed by 17 min 40% solvent B and a linear increase to 100% solvent B over 1 min. Recalibration of the column was achieved by 7 min prerun with 100% solvent B.</p>	<p>All MS-analyses were performed on a high-resolution QExactive mass spectrometer (ThermoScientific) in alternating positive and negative full MS mode with a Scan Range of 69-1000 m/z at 70,000 resolution and the following ESI source parameters: Sheath gas, 30; auxiliary gas, 10; sweep gas, 3; Aux Gas Heater temperature, 120 °C; Spray voltage, 2.5 kV in positive ion mode and 3.6 kV in negative ion mode; Capillary temperature, 320 °C; S-lens RF level, 55. Signal determination and quantitation was performed using TraceFinder Software Version 3.3 (ThermoFisher). All analyses were performed with 5 independent biological replicates.</p>	<p>Peak areas were determined using TraceFinder 5.1</p>	<p>Metabolites were identified according their calculated mass (+/- 2 mMU) and retention times</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Einwächter
+Study Person First Name	Henrik
+Study Person Mid Initials	
+Study Person Email	henrik.einwaechter@tum.de
+Study Person Phone	08941407870
+Study Person Fax	
+Study Person Address	Klinik und Poliklinik für Innere Medizin II
+Study Person Affiliation	Klinikum rechts der Isar der TUM
+Study Person Roles	Corresponding Author indicator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C164481
+Study Person Roles Term Source REF	NCIT

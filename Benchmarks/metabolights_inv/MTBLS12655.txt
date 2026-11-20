@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	IOBC	MI	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://data.bioontology.org	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.88.0			2026-04-07			2025-12-03	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology		Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12655
+Investigation Title	Identification and Validation of Plasma Lipid Biomarkers for Oral Cancer Diagnosis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-06-29
+Investigation Public Release Date	2026-05-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12655
+Study Title	Identification and Validation of Plasma Lipid Biomarkers for Oral Cancer Diagnosis
+Study Description	<p>Despite lipid metabolic changes in oral cancer (OC), their potential as diagnostic markers remains unclear. This study assessed the diagnostic potential of metabolites for OC detection. Plasma metabolites of patients with OC and healthy controls (HC) were profiled using untargeted and targeted metabolomics in discovery (182 OC, 364 HC) and external validation (52 OC, 52 HC) sets. Key biomarkers were selected via machine learning. Carnitine palmitoyltransferase 1 (CPT1) expression was assessed using enzyme-linked immunosorbent assay, immunohistochemistry, and public transcriptomic datasets. Functional assays based on CPT1 inhibition were conducted in OC cell lines. Machine learning identified OC diagnostic metabolites with high accuracy (AUC = 0.995) and targeted validation confirmed consistent trends. Three acylcarnitines—decanoyl-, octanoyl-, and hexanoylcarnitine—were downregulated in patient plasma, showing strong diagnostic performance (AUC = 0.941, 95% CI: 0.877–0.988) in external validation. Lipidomic and functional analyses revealed altered β-oxidation and glycerophospholipid metabolism, with CPT1 acting as a key regulator. CPT1 and acylcarnitines were abundant in OC tissues and cells. CPT1 inhibition suppressed OC cell growth and altered acylcarnitine levels. Our findings highlight three acylcarnitines as promising diagnostic biomarkers of OC and identify CPT1 as a central regulator of lipid metabolism, underscoring its relevance in OC pathogenesis and clinical application.</p>
+Study Submission Date	2025-06-29
+Study Public Release Date	2026-05-02
+Study File Name	s_MTBLS12655.txt
+Comment[Created At]	2025-06-25
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-02
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	blood metabolites	untargeted metabolites	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://purl.jp/bio/4/id/201306046192479648	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	IOBC	MTBLS	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yeon-Hee Kim, Sung Weon Choi, Jong Ho Lee, Joo Yong Park, Heesun Cheong, and Mi Kyung Kim
+Study Publication Title	Identification and Validation of Plasma Lipid Biomarkers for Oral Cancer Diagnosis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cancer
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0000001
+Study Factor Type Term Source REF	MONDO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12655_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Plasma samples were collected from 650 human participants, including patients with newly diagnosed oral cancer and age and sexmatched healthy controls. Blood was drawn into EDTA tubes, immediately frozen, and centrifuged at 845 x g for 20 min at 4 °C to isolate plasma. Samples were stored at -80 °C until analysis. All procedures were IRB approved (NCC2016-0147) and informed consent was obtained from all participants.</p>	<p>For targeted polar metabolomics, 20 µL of plasma was extracted with 150 µL of acetonitrile and 30 µL of water. The mixture was centrifuged, and the supernatant was diluted using acetonitrile:water (75:25, v/v) containing internal standards.</p>	<p>Chromatographic separation was performed using the ACQUITY UPLC system (Waters, USA). The Scherzo SM-C18 column (2 x 100 mm, 3 µm; Imtakt, Japan) was used with a flow rate of 0.2 mL/min. The mobile phase consisted of 0.1% formic acid in water (A) and acetonitrile (B). The gradient started at 5% B, ramped to 100% over 5 min, held for 3 min and re-equilibrated at 5% B. Injection volume was 1 µL.</p>	<p>Mass spectrometric analysis was performed using a Xevo TQ-XS mass spectrometer (Waters, USA) with an electrospray ionization (ESI) source operated in positive ion mode. Data were acquired in multiple reaction monitoring (MRM) mode using MassLynx software (v4.2). Instrument parameters included a source temperature of 150 °C, desolvation temperature of 500 °C, desolvation gas flow of 1000 L/h and capillary voltage of 3.0 kV.</p>	<p>Raw mass spectrometry data were processed using Waters MassLynx (version 4.2). Data preprocessing included peak integration, alignment and quantification. Metabolite intensities were normalized and exported as quantitative tables. Missing values were imputed using a limit of detection approach (1/5 of minimum detected intensity). Statistical analysis, normalization, log transformation and Pareto scaling were performed using MetaboAnalyst 5.0 (https://www.metaboanalyst.ca).</p>	<p>Metabolite identification and quantification were conducted using known reference standards and predefined MRM transitions from Waters' internal database within MassLynx. Identified metabolites were cross-referenced with public databases such as HMDB and KEGG for confirmation of identity and pathway mapping.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yeon-Hee	Mi Kyung
+Study Person First Name	Kim	Kim
+Study Person Mid Initials		
+Study Person Email	yh0227@ncc.re.kr	alrud@ncc.re.kr
+Study Person Phone	82319202215	82329202202
+Study Person Fax		
+Study Person Address	323, Ilsan-ro, Ilsandong-gu, Goyang-si, Gyeonggi-do	323, Ilsan-ro, Ilsandong-gu, Goyang-si, Gyeonggi-do
+Study Person Affiliation	National cancer center	National cancer center
+Study Person Roles	first author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	MS	NCIT

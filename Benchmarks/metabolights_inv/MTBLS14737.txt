@@ -1,0 +1,135 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		252	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.90.0				2026-05-13	26.02d	2026-05-08
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14737
+Investigation Title	Shotgun lipidomics of HeLa whole-cell lysates and lysosomes following LLOMe treatment
+Investigation Description	
+Investigation Submission Date	2026-06-10
+Investigation Public Release Date	2026-07-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14737
+Study Title	Shotgun lipidomics of HeLa whole-cell lysates and lysosomes following LLOMe treatment
+Study Description	<p>Perturbations in lysosome integrity are tightly linked to neurological disorders and ageing, but the underlying pathogenic mechanisms are incompletely understood. Using an unbiased proteomic approach, we here identified the bridge-like lipid transport protein VPS13C/PARK23 as a key component of a global early response pathway to lysosome damage. VPS13C readily binds lysosomes under mechanical or osmotic tension in anticipation of membrane lesions. The latter trigger a conformational change in the protein’s <em>C</em>-terminus, involving its ATG2C domain acting as sensor of damage-induced lipid packing defects. We show that ER-lysosome contacts formed by VPS13C provide critical binding platforms for OSBP/ORPs to enable efficient ER wrapping of damaged lysosomes. A chemical approach to assess directional ER-to-lysosome lipid transport revealed that VPS13C is essential for large-scale lipid delivery to acutely damaged lysosomes to facilitate their repair. Our findings offer new mechanistic insights into how loss-of-function mutations in <em>VPS13C</em> may enhance the risk of Parkinson’s disease.</p><p><br></p><p>This study contains shotgun lipidomics data from HeLa cells treated with L-leucyl-L-leucine methyl ester (LLOMe), a lysosomotropic agent that induces lysosomal membrane damage. Lipid profiles were obtained from both whole-cell lysates and isolated lysosomal fractions. Lipids were extracted and quantified by mass spectrometry-based shotgun lipidomics.</p>
+Study Submission Date	2026-06-10
+Study Public Release Date	2026-07-03
+Study File Name	s_MTBLS14737.txt
+Comment[Created At]	2026-06-09
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	2
+Comment[Revision Date]	2026-07-03
+Comment[Revision Log]	DOI added and some extra details to Protocols, Abstract and Samples
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	LipidXplorer	Lipidomics Core Facility at the Danish Cancer Institute	lysosome	triversa nanomate	Thermo Scientific Q Exactive	Homo sapiens	PNF	Cell	blank/buffer	experimental blank	semi-targeted analysis	negative ionization mode	Lipidomics	positive ionization mode
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1002968	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/GO_0005764	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C12508	http://www.ebi.ac.uk/metabolights/ontology/placeholder		http://purl.obolibrary.org/obo/MS_1003906	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://edamontology.org/topic_0153	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MS	MTBLS	EFO	MTBLS	MTBLS	NCBITaxon	MTBLS	NCIT	MTBLS		MS	MTBLS	EDAM	MTBLS
+Comment[Study Design Category]	software	facility	Organism part	DI Instrument	Instrument	Organism	Organism part	Organism part	Organism part	Sample type	measurement-type		omics-type	default
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	['EDAM', 'EDAM']
+STUDY PUBLICATIONS
+Study PubMed ID	42393076
+Study Publication DOI	10.1038/s41467-026-75145-y
+Study Publication Author List	Adeosun Oluwatobi Andrew, Schröer Christian, Südhoff Elisabeth, Bergenthal Fabio, Sommer Katharina, Döffinger Emely, Fiedler Britta, Hilderink Angelika, Lehmann Ann-Katrin, Pohle Lea Sophie, Korneev Sergei M., Fröhlich Florian, Maeda Kenji, Kurre Rainer, Holtmannspötter Michael, Esch Bianca M., Holthuis Joost C. M.
+Study Publication Title	VPS13C/PARK23 initiates lipid transfer and membrane remodeling for efficient lysosomal repair
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Treatment	Replicate
+Study Factor Type	treatment	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14737_DI-MS_negative_.txt	a_MTBLS14737_DI-MS_positive_.txt
+Study Assay Measurement Type	semi-targeted analysis	semi-targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003906	http://purl.obolibrary.org/obo/MS_1003906
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Direct infusion MS - negative	Direct infusion MS - positive
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	DI-MS	DI-MS
+Comment[Assay Type]	direct infusion mass spectrometry assay	direct infusion mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	
+Comment[Assay Type Term Source REF]	OBI	
+Comment[Omics Type]	Lipidomics	Lipidomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153	http://edamontology.org/topic_0153
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[DI Instrument];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]	Parameter Value[DI Instrument];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source];Parameter Value[Mass analyzer]
+Comment[Assay Field Default Value]	triversa nanomate;negative;vary;Thermo Scientific Q Exactive;electrospray ionization	TriVersa NanoMate;positive;varying;Thermo Scientific Q Exactive;electrospray ionization;orbitrap
+Comment[Assay Field Default Unit]	;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000688	http://www.ebi.ac.uk/metabolights/ontology/placeholder;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000658;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000688;http://purl.obolibrary.org/obo/MS_1000484
+Comment[Assay Field Default Value Source REF]	MTBLS;;;MTBLS;MTBLS	MTBLS;;;MTBLS;MTBLS;MS
+Comment[Measurement Type]	semi-targeted analysis	
+Comment[Measurement Type Term Source REF]	MS	
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003906	
+Comment[Assay Descriptor]	negative ionization mode	positive ionization mode
+Comment[Assay Descriptor Term Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Descriptor Term Source REF]	MTBLS	MTBLS
+Comment[Assay Descriptor Category]		default
+Comment[Assay Descriptor Source]	submitter	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Direct infusion	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	data transformation	Direct infusion	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000			http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		OBI	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>HeLa cells in culture were treated with LLOMe (or ctrl). After harvesting, the cells were lysed, and lysosomes were IPed from the <strong>post-nuclear fraction (PNF)</strong>. The whole-cells, PNF, and lysosomes were then submitted to shotgun lipidomics.</p>	<p>The ion intensities and mz were extracted from raw data files using lipidXplorer (and class-specific MFQL files), which also assiged them to lipid species.</p>	<p>Crude lipid extracts were infuzed into Thermo Scientific Q-exactive using TriVersa NanoMate </p>	<p>For lipidomics samples, cells were washed once with PBS and then incubated for 12 min at 37 °C in Opti-MEM in the presence or absence of 1 mM LLOMe. After incubation, the cells were washed twice with ice-cold PBS, detached from the plates by scraping with a rubber policeman in 16 mL ice-cold PBS, transferred to a 50 mL Falcon tube on ice, and centrifuged at 500 x g for 5 min at 4 °C. All steps from here were performed on ice or at 4 °C. Cell pellets were gently resuspended in 10 mL ice-cold MIB buffer (10 mM HEPES, 0.21 M mannitol, 0.070 M sucrose, pH 7.5) and centrifuged at 1000 x g for 5 min. This step was repeated once. Next, the cell pellets were resuspended in 0.8 mL freshly prepared and filtered MIB4 buffer (MIB buffer supplemented with 0.5 mM DTT, 0.5% fatty acid-free BSA (Sigma Aldrich), 25 units/mL Benzonase (Sigma Aldrich) and 1× cOmplete Mini, EDTA-free Protease Inhibitor Cocktail (Roche Diagnostics)), taken up into a 1 mL Luer-Lok syringe (BD) and passed 25 times through a Balch homogenizer with a tungsten carbide ball of 8.012 mm. The cell lysates were centrifuged at 1500 x g for 10 min. The supernatants were transferred to fresh tubes and centrifuged again at 1500 x g for 15 min to generate a post-nuclear supernatant. For affinity purification of lysosomes, anti-GFP IgG microbeads (μMACS GFP Isolation Kit, Miltenyi Biotec, 130-091-125) were washed in MIB4 buffer, and 90 μL of a 1:1 bead:buffer slurry was mixed with 500 μL of postnuclear supernatant. After 1 h of gently mixing on a rotor at an angle of 45°, the suspensions were loaded onto MS columns (Miltenyi Biotec, 130-042-201) that were pre-equilibrated in MIB4 buffer and mounted on a magnetic stand (Miltenyi Biotec, 130-042-109). For the preparation of lipidomics samples, the columns were washed once with 500 μL MIB4 buffer, three times with 500 μL MIB2 buffer (MIB4 buffer lacking Benzonase and protease inhibitors), and eluted with 600 μL MIB buffer. The eluates were equally divided for immunoblot and proteomics analysis. Microbeads were washed once in 200 μL MIB+ buffer (MIB2 buffer without BSA) and collected by centrifugation at 21,100 x g for 20 min.</p><p><br></p><p><strong>Lysosomal lipidomics</strong></p><p>Microbead pellets with bound lysosomes and corresponding whole cells were subjected to lipid extraction as previously described<strong>[1]</strong>. Briefly, microbeads were resuspended in 200 μL 155 mM ammonium bicarbonate, mixed with 12.5 μL internal lipid standard mix (provided as Supplementary Data 2) and 988 μL chloroform:methanol 2:1 (v/v), and then shaken in a thermomixer at 2000 rpm at 4 °C for 15 min. After centrifugation (2000 × g, 2 min, 4 °C), the lower phase containing lipids was transferred to new tubes and dried in a vacuum centrifuge for 75 min. The dried lipids were resuspended in 100 μL chloroform:methanol 1:2 (v/v) and subjected to shotgun lipidomics as previously described.</p><p><br></p><p><strong>Ref</strong></p><p><strong>[1]</strong> Nielsen, I.Ø., Vidas Olsen, A., Dicroce-Giacobini, J., Papaleo, E., Andersen, K.K., Jaattela, M., Maeda, K. and Bilgin, M., 2020. Comprehensive evaluation of a quantitative shotgun lipidomics platform for mammalian sample analysis on a high-resolution mass spectrometer. <em>Journal of the american society for mass spectrometry</em>, <em>31</em>(4), pp.894-907.</p>	<p>Lipids in crude extracts were measured in the positive and negative ionization modes, using a Q Exactive Hybrid Quadrupole-Orbitrap mass spectrometer (Thermo Fisher Scientific, Waltham, MA)&nbsp;. Each ionization mode was further subdivided with varying mz ranges and between MS and MS/MS. Lipid class-specific acquisition settings and fragmentation strategies were as previously described<strong>[1]</strong>.</p><p><br></p><p><strong>Ref</strong></p><p><strong>[1] </strong>Nielsen, I.Ø., Vidas Olsen, A., Dicroce-Giacobini, J., Papaleo, E., Andersen, K.K., Jaattela, M., Maeda, K. and Bilgin, M., 2020. Comprehensive evaluation of a quantitative shotgun lipidomics platform for mammalian sample analysis on a high-resolution mass spectrometer. Journal of the american society for mass spectrometry, 31(4), pp.894-907.</p>	<p>Data acquisition consisted of alternating FTMS and FTMS/MS scans with class-specific acquisition settings. Lipids were identified using LipidXplorer and MFQL files.</p>
+Study Protocol URI	10.1021/jasms.9b00136	10.1021/jasms.9b00136	10.1021/jasms.9b00136	10.1021/jasms.9b00136	10.1021/jasms.9b00136	
+Study Protocol Version						
+Study Protocol Parameters Name			DI Instrument	Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number				;	;;;;	
+Study Protocol Parameters Name Term Source REF				;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Maeda
+Study Person First Name	Kenji
+Study Person Mid Initials	
+Study Person Email	kenjim@cancer.dk
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Strandboulevarden 49, Copenhagen, Denmark
+Study Person Affiliation	Danish Cancer Institute
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0002-9080-5691
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03ytt7k16

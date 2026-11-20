@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EDAM	EFO	ENVO	GO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	SRAO	roleAFRL
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl		http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl		
+Term Source Version														
+Term Source Description	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology		Experimental Factor Ontology	Environment Ontology	Gene Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations		
+INVESTIGATION
+Investigation Identifier	MTBLS6667
+Investigation Title	Streamlined identification of strain engineering targets for bioprocess improvement using metabolic pathway enrichment analysis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-12-04
+Investigation Public Release Date	2023-08-31
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6667
+Study Title	Streamlined identification of strain engineering targets for bioprocess improvement using metabolic pathway enrichment analysis
+Study Description	Metabolomics is a powerful tool for the identification of genetic targets for bioprocess optimisation. However, in most cases, only the biosynthetic pathway directed to product formation is analysed, limiting the identification of these targets. Some studies have used untargeted metabolomics, allowing a more unbiased approach, but data interpretation using multivariate analysis is usually not straightforward and requires time and effort. Here we show, for the first time, the application of metabolic pathway enrichment analysis using untargeted and targeted metabolomics data to identify genetic targets for bioprocess improvement in a more streamlined way. The analysis of an Escherichia coli succinate production bioprocess with this methodology revealed three significantly modulated pathways during the product formation phase: the pentose phosphate pathway, pantothenate and CoA biosynthesis and ascorbate and aldarate metabolism. From these, the two former pathways are consistent with previous efforts to improve succinate production in Escherichia coli. Furthermore, to the best of our knowledge, ascorbate and aldarate metabolism is a newly identified target that has so far never been explored for improving succinate production in this microorganism. This methodology therefore represents a powerful tool for the streamlined identification of strain engineering targets that can accelerate bioprocess optimisation.
+Study Submission Date	2022-12-04
+Study Public Release Date	2023-08-31
+Study File Name	s_MTBLS6667.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Pathway overrepresentation data	Biological Process Engineering	untargeted metabolites	targeted metabolites	bioreactor	high-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://edamontology.org/data_3953	http://www.fairsharing.org/ontology/subject/SRAO_0000223	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/ENVO_00002123	http://purl.obolibrary.org/obo/CHMO_0000796
+Study Design Type Term Source REF	EDAM	SRAO	MTBLS	MTBLS	ENVO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37563133
+Study Publication DOI	10.1038/s41598-023-39661-x
+Study Publication Author List	Cortada-Garcia J, Daly R, Arnold SA, Burgess K.
+Study Publication Title	Streamlined identification of strain engineering targets for bioprocess improvement using metabolic pathway enrichment analysis.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cellular location
+Study Factor Type	cellular_component
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/GO_0005575
+Study Factor Type Term Source REF	GO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6667_Extra_LC-MS_alternating_hilic_metabolite_profiling.txt	a_MTBLS6667_Intra_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic	Liquid Chromatography MS - alternating - hilic
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p><strong>Bacterial strain:</strong></p><p>All experiments described in this article were carried out using a proprietary industrial <em>E. coli</em> strain (Ingenza Ltd., UK) previously described<strong>[1]</strong>, based on the <em>E. coli</em> NZN111 strain with deletions of the pyruvate-formate lyase (pflB) and lactate dehydrogenase (ldhA) genes<strong>[2]</strong>.</p><p><br></p><p>Samples for off-line liquid chromatography-mass spectrometry (LC-MS) analysis were removed from the bioreactor and collected into dry-ice-cold universal vials, placed briefly on an ethanol dry ice bath for a fast cold sample quenching and immediately spun down twice at 4 °C and 13,000 x g for 10 min. The supernatant and cell pellet were collected as extracellular and intracellular fractions respectively and stored at −80 °C until further extraction for LC-MS analysis.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Cortada-Garcia J, Haggarty J, Moses T, Daly R, Arnold SA, Burgess K. On-line untargeted metabolomics monitoring of an Escherichia coli succinate fermentation process. Biotechnol Bioeng. 2022 Oct;119(10):2757-2769. doi:10.1002/bit.28173. PMID: 35798686.</p><p><strong>[2]</strong> Chatterjee R, Millard CS, Champion K, Clark DP, Donnelly MI. Mutation of the ptsG gene results in increased production of succinate in fermentation of glucose by Escherichia coli. Appl Environ Microbiol. 2001 Jan;67(1):148-54. doi:10.1128/AEM.67.1.148-154.2001. PMID:11133439.</p>	<p><strong>Extracellular fractions:</strong></p><p>Extracellular fraction extractions were prepared by diluting 10 µl of sample into 400 µl of 1:3:1 chloroform:methanol:water (C:M:W). The samples were then mixed vigorously in a chilled microtube mixer for 5 min and then centrifuged for 3 min at 13,000 x g and 4 °C. At this point, 360 µl of supernatant were transferred into a new microtube and stored at -80 °C until LC-MS analysis. 25 µl of supernatant of each extracted sample were combined into 1 single vial to generate a pooled sample. During handling, the 1:3:1 C:M:W extraction solvent and the samples were kept on an ethanol dry ice bath.</p><p><br></p><p><strong>Intracellular fractions:</strong></p><p>Prior to extraction, intracellular fractions were washed by resuspending the cell pellets in 1 ml of sterile phosphate buffer solution. The phosphate buffer was removed by spinning down the samples twice for 10 min at 13,000 x g and 4 °C. For metabolite extraction 200 µl of 1:3:1 C:M:W were added for every 5 mg of WCW pellet, thus normalising all samples by their biomass concentration. Cell pellets were resuspended by pipetting, and then the samples were mixed vigorously in a chilled microtube mixer for 1 h, before being centrifuged for 3 min at 13,000 x g and 4 °C. At this point, 200 µl of supernatant were transferred into a new microtube. The samples were further diluted by adding 200 µl 1:3:1 C:M:W and stored at -80 °C until LC-MS analysis. 25 µl of supernatant of each extracted sample were combined into 1 single vial to generate a pooled sample. During handling, the 1:3:1 C:M:W extraction solvent and the samples were kept on an ethanol dry ice bath. The first 2 fermentation samples had a very small biomass pellet, which made the extraction process impractical, particularly the resuspension of the pellet in the amount of extraction solvent required for sample normalisation. For this reason, these first 2 time points from the intracellular fraction were not included in the analysis.</p>	<p>LC-MS analysis was carried out with a Thermo Scientific Dionex Ultimate 3000 HPLC system coupled to a Q Exactive Orbitrap mass spectrometer. Metabolite separation was performed using a zwitterionic hydrophilic interaction liquid chromatography (ZIC-pHILIC) column (Merck SeQuant) (150 mm x 4.6 mm, 5 µm particle size) equipped with the corresponding guard column (20 mm x 2.1 mm, 5 µm particle size) (Merck SeQuant). A linear gradient was applied to the column, running from 80 to 20% solvent B over 15 min, followed by a 2 min wash with 5% solvent B, and 9 min re-equilibration with 80% solvent B, where solvent B was acetonitrile and solvent A (the remaining percentage) was 20 mM ammonium carbonate in water. The total flow rate was 300 µl/min, column temperature was maintained at 25 °C, sample injection volume was 10 µl, samples were maintained at 4 °C for the duration of the analysis.</p>	<p>Metabolite detection was done in a high-resolution Thermo Scientific Q Exactive Orbitrap mass spectrometer, with a HESI probe used as the ion source, at 70,000 resolution, mass range 70-1050 m/z in polarity switching mode with a spray voltage of ±3.8 kV. Capillary temperature was set to 320 °C, sheath gas 40 a.u., AGC target 1 x 10^6 a.u. and the lock masses in positive and negative mode were 144.9822 m/z and 100.9856 m/z, respectively.&nbsp;&nbsp;</p><p><br></p><p>Fragmentation was performed on pooled samples by isolating ions in a 1.2 m/z window and fragmentation with stepped HCD collision energy of 24.8, 60.0 and 94.8 % for both polarities with 17,500 resolution and AGC target 1 x 10^5 a.u. Top 10 ions (intensity threshold 1.3 x 10^5) were selected for fragmentation and then added to a dynamic exclusion window for 15 s.</p>	<p>Raw mass spectrometry files were converted into <strong>.mzXml</strong> files in profile mode with the open-source software <strong>ProteoWizard[1] (Version 3.0)</strong>. Further data processing and analysis was performed using the <strong>PiMP</strong> online platform<strong>[2]</strong> (date of use: 08 Jul 2020). Peak detection and filtering were set to 3 ppm of the theoretical monoisotopic mass, minimum intensity to 5000, noise to 0.8, retention window to 0.05 and minimum number of detections to 3. Peak retention time was corrected using the <strong>Obiwarp algorithm[3]</strong> from the <strong>xcms package (Version 1.48.0)</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Chambers MC, Maclean B, Burke R, Amodei D, Ruderman DL, Neumann S, Gatto L et al. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol. 2012 Oct;30(10):918-20. doi:10.1038/nbt.2377. PMID:23051804.</p><p><strong>[2]</strong> Gloaguen Y, Morton F, Daly R, Gurden R, Rogers S, Wandy J, Wilson D, Barrett M, Burgess K. PiMP my metabolome: an integrated, web-based tool for LC-MS metabolomics data. Bioinformatics. 2017 Dec 15;33(24):4007-4009. doi: 10.1093/bioinformatics/btx499. PMID: 28961954; PMCID: PMC5860087.</p><p><strong>[3]</strong> Prince JT, Marcotte EM. Chromatographic alignment of ESI-LC-MS proteomics data sets by ordered bijective interpolated warping. Anal Chem. 2006 Sep 1;78(17):6140-52. doi:10.1021/ac0605344. PMID:16944896.</p>	<p>Metabolite annotation was performed using a local copy of the <strong>KEGG</strong> database<strong>[1]</strong> (<strong>Metabolomics Standards Initiative (MSI)</strong> class 2/3 annotation<strong>[2]</strong>), the <strong>fragmentation library</strong> (<strong>MSI class 2</strong> annotation) and by matching the retention time and accurate mass to reference standards using <strong>PiMP</strong>, which are listed in the <strong>Supplementary file</strong>, <strong>Std_list_Metabolites.xlsx</strong>, in the paper associated with this study.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi:10.1093/nar/28.1.27. PMID:10592173.</p><p><strong>[2]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O et al. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cortada-Garcia	Daly	Arnold	Burgess
+Study Person First Name	Joan	Ronan	Susan	Karl
+Study Person Mid Initials			Alison	
+Study Person Email				karl.burgess@ed.ac.uk
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	University of Edinburgh	University of Glasgow		University of Edinburgh
+Study Person Roles	researcher	Supervisor	Supervisor	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.allotrope.org/ontologies/role#AFRL_0000405	http://purl.obolibrary.org/obo/NCIT_C134832	http://purl.obolibrary.org/obo/NCIT_C134832	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	roleAFRL	NCIT	NCIT	NCIT

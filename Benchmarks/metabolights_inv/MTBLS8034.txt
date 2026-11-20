@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	MTBLS	OBI	CHEBI	OMIT	CHMO	BAO	
+Term Source File	http://data.bioontology.org/ontologies/EFO		https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI					http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	132		1.0	29					18.10e
+Term Source Description	Experimental Factor Ontology		User defined terms	Ontology for Biomedical Investigations					NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS8034
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-06-15
+Investigation Public Release Date	2023-10-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8034
+Study Title	Spermine is a natural suppressor of AR signaling in castration-resistant prostate cancer
+Study Description	In castration-resistant prostate cancer (CRPC), clinical response to androgen receptor (AR) antagonists is limited mainly due to AR-variants expression and restored AR signaling. The metabolite spermine is most abundant in prostate and it decreases as prostate cancer progresses, but its functions remain poorly understood. Here, we show spermine inhibits full-length androgen receptor (AR-FL) and androgen receptor splice variant 7 (AR-V7) signaling and suppresses CRPC cell proliferation by directly binding and inhibiting protein arginine methyltransferase PRMT1. Spermine reduces H4R3me2a modification at the AR locus and suppresses AR binding as well as H3K27ac modification levels at AR target genes. Spermine supplementation restrains CRPC growth in vivo. PRMT1 inhibition also suppresses AR-FL and AR-V7 signaling and reduces CRPC growth. Collectively, we demonstrate spermine as an anticancer metabolite by inhibiting PRMT1 to transcriptionally inhibit AR-FL and AR-V7 signaling in CRPC, and we indicate spermine and PRMT1 inhibition as powerful strategies overcoming limitations of current AR-based therapies in CRPC.
+Study Submission Date	2023-06-15
+Study Public Release Date	2023-10-11
+Study File Name	s_MTBLS8034.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Castration-Resistant Prostate Carcinoma	Androgen Receptor Inhibitor	spermine	PRMT1 Inhibitor	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	targeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C130234	http://purl.obolibrary.org/obo/NCIT_C146993	http://purl.obolibrary.org/obo/CHEBI_15746	http://purl.obolibrary.org/obo/NCIT_C158131	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	NCIT	NCIT	CHEBI	NCIT	CHMO	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	37453063
+Study Publication DOI	10.1016/j.celrep.2023.112798
+Study Publication Author List	Li Xiao, Li Fei, Ye Fei, Guo Haotian, Chen Wentao, Jin Jia, Wang Yiran, Dai Pengfei, Shi Huili, Tao Hongru, Dang Wenzhen, Ding Yiluan, Wang Mingchen, Jiang Hualiang, Chen Kaixian, Zhang Naixia, Gao Dong, Zhang Yuanyuan, Luo Cheng
+Study Publication Title	Spermine is a natural suppressor of AR signaling in castration-resistant prostate cancer
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Targeted Enzyme
+Study Factor Type	Enzyme
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C16554
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8034_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Spermine is produced from spermidine catalyzed by the spermine synthase (<strong>SMS</strong>), and such process can be reversed by spermine oxidase (<strong>SMOX</strong>) enzyme (see <strong>Fig. </strong><strong style='color: rgb(54, 54, 54);'>2A </strong>in the paper associated with the study). To test the physiological relevance of endogenous spermine, we next <strong>overexpressed</strong> <strong>SMS</strong> or<strong> knocked down SMOX</strong> to induce spermine accumulation in<strong> 22RV1 cells</strong> and monitored AR signaling activity. Specifically, we transfected <strong>22RV1 cells</strong> with a lentiviral vector expressing pLent-U6-shSMOX-CMV (<strong>SMOX knockdown</strong>) or a lentiviral vector pCDH-SMS-3xFlag (<strong>SMS overexpression</strong>) and constructed stable cell lines based on puromycin selection for 48 h after transfection, with<strong> empty vector</strong> being used as<strong> controls</strong>. <strong>22RV1</strong> cells were cultured at 37 °C with 5% CO2 in RPMI 1640 medium (Gibco) supplemented with 1% Penicillin/Streptomycin and 10% FBS.&nbsp;Cells were routinely tested for Mycoplasma by PCR.</p>	<p>Briefly, 1 x 10^7 cells were collected and homogenized at 35 Hz for 4 min, and sonicated for 5 min in ice-water bath 3 times. A&nbsp;150 μL aliquot of the clear supernatant was&nbsp;transferred to a new Eppendorf tube before 600 μL&nbsp;of acetonitrile were added. The samples were&nbsp;vortexed for 30 s and sonicated for 15 min in ice-water bath,&nbsp;followed by incubation at -40 °C&nbsp;for 1 h&nbsp;and centrifugation at 12,000 rpm (RCF = 13,800 x g, R = 8.6 cm), at 4 °C&nbsp;for 15 min. A&nbsp;400 μL aliquot of the clear supernatant (or standard solution) was transferred to an Eppendorf tube and <strong>derivatized</strong> using 200 μL&nbsp;of 20 mg/mL&nbsp;<strong>dansyl chloride</strong> in acetonitrile, and 200&nbsp;μL&nbsp;of 0.1&nbsp;mol/L sodium bicarbonate, followed by 1 h incubation at 40 °C&nbsp;in the dark. Dansyl derivatives were mixed with 200 μL&nbsp;of 1% formic acid&nbsp;in water and&nbsp;the samples were vortexed for 15 s. The samples were dried by spin and redissolved in 100 μL 50% acetonitrile, followed by centrifugation at 12,000 rpm (RCF = 13,800 x g, R = 8.6 cm), at 4 °C&nbsp;for 15 min.&nbsp;An 80 μL aliquot of the clear supernatant was transferred to an auto-sampler vial for UHPLC-MS/MS analysis. The remaining original sample supernatant, obtained after homogenization and sonication of the cells, was measured for protein content.</p><p><br></p><p>The spermidine calibration standard solution was diluted stepwise (<strong>Table S4</strong> in the paper associated with the study), with a dilution factor of 2 and concentrations ranging from 100μM (Cal-01.d) to 3.05 nM (Cal-15.d). <strong>QC</strong> samples were prepared as 2 different mixes of the standards used for the targeted analysis of polyamines.</p>	<p>The UHPLC separation was carried out using an <strong>Agilent 1290 Infinity II UHPLC System (Agilent Technologies)</strong>, equipped with an <strong>ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters)</strong> column. The column temperature was set at 35 °C. The mobile phase A was 10 mmol/L ammonium formate and 0.1% formic acid in water, and&nbsp;the&nbsp;mobile phase B was acetonitrile. The gradient used was as follows: 0 - 0.5 min, 25% B; 5.9 - 9.4 min, 98% B; 9.5 -15 min, 25% B. The auto-sampler temperature was set at 4 °C and the injection volume was 2 μL.</p><p><br></p><p><br></p>	<p>An <strong>Agilent 6460 Triple Quadrupole (Agilent Technologies)</strong> mass spectrometer, equipped with an AJS electrospray ionization (<strong>AJS-ESI</strong>) interface, was used for assay development. Typical ion source parameters were: capillary voltage = +4000/-3500 V; Nozzle Voltage = +500/-500 V; gas (N2) temperature = 300 °C; gas (N2) flow = 5 L/min; sheath gas (N2)&nbsp;temperature = 250 °C; sheath gas flow = 11 L/min; nebulizer = 45 psi. The MRM parameters for each of the targeted analytes were optimized using flow injection analysis, by injecting the standard solutions of the individual analytes into the API source of the mass spectrometer.</p>	<p><strong>Agilent MassHunter Work Station Software (B.08.00, Agilent Technologies)</strong> was employed for MRM data acquisition and processing. The final concentration&nbsp;(CF, nmol/L) equals the calculated concentration (CC,&nbsp;nmol/L)&nbsp;multiplied by the dilution factor (Dil). The metabolite concentration (CM, nmol/g) equals the final concentration (CF, nmol/L) multiplied by the final volume (VF, mL) and the sample concentration factor during pretreatment (CF), and divided by the protein content of the sample (MS, mg). N.D. means that the targeted metabolites were not detectable in the corresponding samples.</p>	<p>Several of the most sensitive transitions were used in the <strong>MRM scan mode</strong> to optimize the collision energy for each Q1/Q3 pair. Among the optimized MRM transitions per analyte, the Q1/Q3 pairs that showed the highest sensitivity and selectivity were selected as 'quantifier' for quantitative monitoring. The additional transitions acted as 'qualifier' for the purpose of verifying the identity of the target analytes. All metabolites were quantified against calibration curves of individual standards, with the standard curve for spermine being present in <strong>Table S4</strong> of the paper associated with the study. All of the analytes showed symmetrical peak shapes, baseline separations were obtained, and the retention time and peak shapes for all of the analytes showed good correlation between the standard solution and the real sample.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Li	Ye	Guo	Chen	Jin	Wang	Dai	Shi	Tao	Dang	Ding	Wang	Jiang	Chen	Zhang	Gao	Zhang
+Study Person First Name	Xiao	Fei	Fei	Haotian	Wentao	Jia	Yiran	Pengfei	Huili	Hongru	Wenzhen	Yiluan	Mingchen	Hualiang	Kaixian	Naixia	Dong	Yuanyuan
+Study Person Mid Initials																		
+Study Person Email	2900095545@qq.com																	
+Study Person Phone	18516791241																	
+Study Person Fax																		
+Study Person Address	Zuchongzhi Road 555																	
+Study Person Affiliation	Shanghai Institute of Material Medica																	
+Study Person Roles	Investigator	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT																	

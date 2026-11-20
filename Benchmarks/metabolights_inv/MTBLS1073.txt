@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCBITAXON	CHMO	CL	EFO	MS	NCIT
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/CL	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/NCIT
+Term Source Version	29	6	18	59	146	129	44
+Term Source Description	Ontology for Biomedical Investigations	National Center for Biotechnology Information (NCBI) Organismal Classification	Chemical Methods Ontology	Cell Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	National Cancer Institute Thesaurus
+INVESTIGATION
+Investigation Identifier	MTBLS1073
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-06-26
+Investigation Public Release Date	2020-06-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1073
+Study Title	Human Cytomegalovirus pUL37x1 is Important to Remodeling of Host Lipid Metabolism
+Study Description	Human cytomegalovirus (HCMV) replication requires host metabolism. Infection alters the activity in multiple metabolic pathways, including increasing fatty acid elongation and lipid synthesis. The virus-host interactions regulating the metabolic changes associated with replication are essential to infection. While multiple host factors, including kinases and transcription factors, have been identified to be important to metabolic changes that occurr following HCMV infection, little is known about the viral factors required to alter metabolism. The HCMV UL37x1 protein (pUL37x1) localizes to the mitochondria and ER and controls Ca2+ flux from the ER to the cytosol which may influence metabolism. In this study, we tested the hypothesis that pUL37x1 is important to the metabolic remodeling that is necessary for HCMV replication by using a combination of metabolomics, lipidomics, and metabolic tracers to measure fatty acid elongation. We observed that fibroblast cells infected with wild-type (WT) HCMV had similar levels of metabolites as those infected with a mutant virus lacking the UL37x1 gene, subUL37x1. However, we found that subUL37x1-infected cells had reduced levels of two host proteins that were previously demonstrated to be important for lipid metabolism during HCMV infection—fatty acid elongase 7 (ELOVL7) and ER-stress related kinase PERK—relative to WT-infected cells. Moreover, we observed that HCMV infection results in an increase in phospholipids with very long-chain fatty acid tails (PL-VLCFAs) that contain 26 or more carbons in one of their two tails. The levels of many PL-VLCFAs were lower in subUL37x1-infected cells compared to WT-infected cells. We also show that uninfected cells expressing a high-level of pUL37x1 have a greater amount of lipids relative to control cells. Overall, we conclude that although pUL37x1 is not necessary for network-wide metabolic changes occurring during infection, it is important to the remodeling of lipid metabolic pathways during HCMV infection.
+Study Submission Date	2019-06-26
+Study Public Release Date	2020-06-26
+Study File Name	s_MTBLS1073.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Lipidomics	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number		http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF		NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/526228
+Study Publication Author List	Purdy John G, Xi Yuecheng, Harwood Samuel, Wise Lisa
+Study Publication Title	Human Cytomegalovirus pUL37x1 is Important to Remodeling of Host Lipid Metabolism
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Virus	Replicate
+Study Factor Type	Virus	technical replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_10239	http://www.ebi.ac.uk/efo/EFO_0002090
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1073_POS_LC-MS.txt	a_MTBLS1073_NEG_LC-MS.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Human foreskin fibroblast cells (HFF) were cultured in DMEM containing 10% FBS, 10mM HEPES, and penicillin/streptomycin. Prior to infection cells were maintained at full confluence for 3 days in serum-containing growth medium. Cells were switched to serum-free medium-DMEM, HEPES, and pen/strep, the day before infection or mock-infection. Cells were infected with either wild-type (WT) HCMV AD169 strain or subUL37x1, a UL37x1-null virus.</p>	<p>Lipid samples were collected at 72 hours post-infection (hpi). Briefly, lipids were extracted from cells lysed using cold 50% methanol containing 0.05 M HCl. Cells were scraped and transferred to glass vials. Lipids were extracted in chloroform. The chloroform was removed by drying the samples under nitrogen gas. Lipids were resuspended in 1:1:1 methanol:chloroform:isopropanol. For each sample, 3 wells on a 6-well plate were used. Lipids were extracted in parallel from 2 wells and independently analyzed (e.g. technical duplicates). The cells on the third well were counted. Samples were normalized according to total live cell number at the time of lipid extraction. Each sample was re-suspended in 125 µl of 1:1:1 solution per 100,000 cells. In parallel with the biological samples, the extraction procedure was performed on wells that lacked cells. These 'no cell' controls were used to determine contaminants that were removed from analysis. After re-suspension, the samples were immediately analyzed.</p>	<p>During data collection, the samples were stored at 4 ˚C in an autosampler. Lipids were separated using a Kinetex C18 (2.6 µm, 150 x 2.1 mm) column (Phenomenex 00F-4462-AN) at 60 ˚C on a Vanquish UHPLC system (Thermo Scientific). 2 solvents were used for UHPLC: solvent A (40:60 water:methanol plus 10 mM ammonium formate and 0.1% formic acid) and solvent B (10:90 methanol:isopropanol plus 10 mM ammonium formate and 0.1% formic acid). UHPLC was performed at 0.25 ml/min flow rate using the following gradient conditions: 75% solvent A/25% solvent B for 2 min; 35% A/65% B for 2 min at curve value = 4; held at 35% A/65% B for 1 min; 0% A/100% B for 11 min at curve value = 4; and held at 0% A/100% B for 4 mins. The column was briefly washed and re-equilibrated before the next run. In total each run lasted 30 min.</p>	<p>All lipids were examined using a Q-Exactive Plus mass spectrometer operating in a data-dependent Full MS/dd-MS2 TopN mode. MS1 data was collected at either 70,000 or 140,000 resolution (at 200 m/z) using AGC = 1e^6 with transient times of 250 ms and 520 ms, respectively. Spectra were collected over a 200-1600 m/z mass range. MS2 spectra were collected using 35,000 resolution, AGC = 1e^5 and 120 ms maximum injection time. Each sample was analyzed twice, using 10 µl for negative mode and 8 µl of sample for positive mode. In negative mode, a normalized collision energy (NCE) value of 20 was used. In positive mode, the NCE value was increased to 30. All lipids were ionized using a heated electrospray ionization (HESI) source. The following HESI parameters were used in negative mode: sheath gas flow rate = 44; auxiliary gas flow rate = 14; sweep gas flow rate = 2; spray voltage = 3.3 kV; S-lens RF =76; aux gas temp 220 ˚C; and capillary temp = 320 ˚C. Similar settings were used in positive mode except the spray voltage was increased to 3.5 kV and S-lens RF level was decreased to 65.</p>	<p>Xcalibur (Thermo Scientific) was used to examine Thermo .raw files. Additionally, .raw files were converted to .mzXML files and analyzed in MAVEN.</p>	<p>Lipids were identified using retention time and MS/MS spectra. Xcalibur and MAVEN were used to visualize and analyze peaks.</p><p>In addition to the SPLASH LIPIDMIX (Avanti Polar Lipids) lipidomic mass spectrometry standards, the following lipid standards were used for lipidomic method development and to establish LC retention times and MS2 fragmentation patterns: DG(20:0/18:0), lysoPA(16:0), lysoPA(18:1), lysoPC(16:0), lysoPC(18:0), lysoPC(22:0), lysoPE(16:0), lysoPE(18:0), lysoPG(16:0), lysoPI(16:0), lysoPS(16:0), lysoPS(18:1), MG(16:0), MG(18:1), PA(16:0/18:1), PA(18:0/20:4), PA(18:0/22:6), PC(16:0/18:1), PC(22:1/22:1), PC(24:0/24:0), PC(24:0/24:0), PE(16:0/18:1), PE(18:0/18:0), PE(18:0/20:4), PG(16:0/18:1), PG(18:0/20:4), PG(18:0/22:6), PI(16:0/18:1), PI(18:0/20:4), PS(16:0/18:1), PS(18:0/20:4), TG(16:0/18:1/16:0), TG(18:0/18:0/18:1), TG(18:1/16:0/18:1), and lipid reference material in human serum from NIST.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Xi	Harwood	Wise	Purdy
+Study Person First Name	Yuecheng	Samuel	Lisa	John
+Study Person Mid Initials				
+Study Person Email	yxi@email.arizona.edu	samharwood@email.arizona.edu	lmwise@email.arizona.edu	jgpurdy@email.arizona.edu
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	University of Arizona, Department of Immunobiology, Tucson, Arizona, USA	University of Arizona, Department of Immunobiology, Tucson, Arizona, USA	University of Arizona, Department of Immunobiology, Tucson, Arizona, USA	University of Arizona, Department of Immunobiology, Tucson, Arizona, USA
+Study Person Roles	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

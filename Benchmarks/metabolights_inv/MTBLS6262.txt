@@ -1,0 +1,102 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	EDAM	EFO	MSIO	MTBLS	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	https://www.ebi.ac.uk/ols4/api	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version								
+Term Source Description	Chemical Entities of Biological Interest Ontology		Experimental Factor Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS6262
+Investigation Title	Detection Limits of Blood Metabolites at Physiological Concentrations Using Benchtop 1H NMR
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-29
+Investigation Public Release Date	2025-12-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6262
+Study Title	Detection Limits of Blood Metabolites at Physiological Concentrations Using Benchtop 1H NMR
+Study Description	<p>Commercial low-field (LF) magnetic resonance spectroscopy (MRS) offers a route to rapid and repeated \textit{in vivo} metabolite tracking, however its sensitivity and interpretability at physiological concentrations remain underexplored. Here we evaluate the performance of an 80 MHz benchtop nuclear magnetic resonance (NMR) spectrometer (Bruker Fourier 80) across several key blood metabolites at physiological concentrations, ranging between 0.05 and 10.0 mmol/L. We characterise the relationship between metabolite concentration, acquisition time, and signal-to-noise ratio (SNR) for multiple pulse sequences, and assess how the choice of SNR definition influences reported detection and quantification thresholds. Metabolites present at millimolar levels, such as glucose and lactate, were readily detectable within 20 seconds, with the water-suppressing \texttt{wet} pulse sequence yielding the highest SNR at fixed acquisition time. Concentration differences were also readily distinguishable. In contrast, sub-millimolar metabolites such as citrate require over four minutes to reach conventional detection thresholds, constraining their applicability to rapid metabolite tracking via MRS. To address interpretability in low-SNR data, we introduce a template-fitting approach based on simulated standards from CcpNMR AnalysisAssign, which stabilised relative metabolite quantification under low-SNR conditions. These results establish quantitative benchmarks for LF NMR metabolite detection and demonstrate how simulation-assisted analysis can extend its utility. These findings inform both the selection of target metabolites and optimisation strategies for emerging commercial \textit{in vivo} MRS devices, including the DigiScan™ finger-scanner, supporting their development as accessible tools for real-time metabolic tracking in personalised healthcare.</p><p><br></p><p> </p>
+Study Submission Date	2025-12-29
+Study Public Release Date	2025-12-29
+Study File Name	s_MTBLS6262.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	NMR	1.5 Tesla
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://edamontology.org/topic_0593	http://purl.obolibrary.org/obo/NCIT_C182435
+Study Design Type Term Source REF	MTBLS	EDAM	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	41436358
+Study Publication DOI	10.1002/nbm.70215
+Study Publication Author List	Hill Alexander D., Travish Gil, Phelan Marie, Hayward Morgan, Welsch Carsten P.
+Study Publication Title	Detection Limits of Blood Metabolites at Physiological Concentrations Using Benchtop 1$$ {}^1 $$H NMR
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Compound	Concentration	Number of scans	Pulse sequence
+Study Factor Type	Compound	Concentration	number of scans	Pulse Sequence
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C43366	http://purl.obolibrary.org/obo/NCIT_C41185	http://nmrML.org/nmrCV#NMR:1400087	http://purl.obolibrary.org/obo/NCIT_C106562
+Study Factor Type Term Source REF	NCIT	NCIT	MSIO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6262_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Powdered forms of D- Glucose, Sodium L-Lactate and Citric Acid were purchased from Sigma-Aldrich Ltd. (now Merck, Gillingham, UK) and dissolved in 99.9% D2O containing 100 mmol/L sodium phosphate buffer 2 (Thermo Fisher Scientific) for pH stabilisation and d4 selectively deuterated 100 μmol/L trimethylsilylpropanoic acid (TSP; Sigma-Aldrich Ltd.) as a 0-ppm chemical shift reference.</p>	<p>Samples were prepared direct from purchased standards without further extraction.</p>	<p>The single-metabolite standards were prepared at four concentrations, approximately spanning abnormal and normal ranges reported in blood on the Human Metabolome Database www.HMDB.ca, with each concentration doubling across the series. Glucose samples were prepared at 1.25, 2.5, 5.0 and 10.0 mmol/L; lactate at 0.75, 1.5, 3.0 and 6.0 mmol/L; and citric acid at 0.05, 0.1, 0.2 and 0.4 mmol/L. For each metabolite and concentration pairing, three replicate samples were prepared to ensure reproducibility in both sample preparation and spectrometer response. A mixed sample was also prepared, containing 10 mmol/L glucose, 2 mmol/L lactate and 0.2 mmol/L citric acid. The final samples were 600 μL contained within 5-mm outer diameter NMR tubes.</p>	<p>NMR were acquired primarily using Bruker Fourier 80 spectrometers (Bruker Biospin,Coventry UK and University of Liverpool, Liverpool UK) op-erating at transmitter frequencies of 80.1MHz. Validation data was also acquired at 700MHz Avance IIIHD spectrometer equipmed with a TCI cryoprobe and chilled SampleJet autosampler. </p>	<p>80MHz spectra were acquired to compare the performance of three pulse sequences: zg, zg30 and wet. The zg sequence is a standard 1D experiment comprising a 90° pulse to rotate nuclear spins into the transverse plane, while zg30 employs a 30° pulse. The wet sequence suppresses the residual H2O signal through a combination of selective presaturation and dephasing pulses. Validation spectra acquired at 700MHz employed solvent suppression via vendor supplied noesygppr1d pulse sequence.</p>	<p>Initial processing of spectral data occurred within TopSpin (4.3.0) and included the application of an exponential window function corresponding to a line broadening of 0.3 Hz, Fourier transformation, automated phasing and spectral alignment to the internal standard, TSP (set at 0.00 ppm).&nbsp;</p>	<p>Expected chemical shifts for each metabolite were estimated from simulated 80 MHz spectra, with peak boundaries defined as the region containing 95% of signal intensity. The calculated bounds were as follows (in ppm): glucose [3.19, 3.98], lactate [1.17, 1.50] and citrate [2.37, 2.82] ppm. For citrate, the full spectral width of the simulated spectrum was used in the analysis. For lactate, we restricted our analysis to the prominent doublet at 1.35 ppm and excluded the weaker signal at ∼4.1 ppm, while for glucose, we restricted the bounds to exclude the anomeric peaks between 4 and 5.5 ppm. This was done in order to avoid spectral overlap with the residual H2O water signal.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Phelan	Hill	Welsch
+Study Person First Name	Marie	Alexander	Carsten
+Study Person Mid Initials	M	D	P
+Study Person Email	mphelan@liv.ac.uk	A.D.Hill@liverpool.ac.uk	carsten@liverpool.ac.uk
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	University of Liverpool	University of Liverpool	University of Liverpool
+Study Person Roles	Author	Principal Investigator	Funded Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C63403
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-0708-2964	0000-0003-3460-6441	0000-0001-7085-0973
+Comment[Study Person Affiliation ROR Id]	https://ror.org/04xs57h96		https://ror.org/04xs57h96

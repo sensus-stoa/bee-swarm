@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EDAM	EFO	EMI	FLOPO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	https://w3id.org/emi/ols.ttl	http://purl.obolibrary.org/obo/flopo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		256	2026-05-28	1.25-20260626T1230Z	3.94.0	1.0	2026-10-05			1.0.1		2026-07-12	26.02d	2026-07-27	2026-07-31
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	The Earth Metabolome Initiative (EMI) ontology	Flora Phenotype Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS15840
+Investigation Title	Zea Lip: An atlas of glycerolipid profiles across leaf development in maize
+Investigation Description	
+Investigation Submission Date	2026-09-28
+Investigation Public Release Date	2026-11-02
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15840
+Study Title	Zea Lip: An atlas of glycerolipid profiles across leaf development in maize
+Study Description	Lipids are the predominant building blocks of plant membranes and are essential for plant growth and development. They are crucial for survival during times of stress as lipids are involved in multiple signaling pathways, and their relative abundances can change in response to environmental factors. To better characterize the lipid composition of the vital food crop maize, we generated a comprehensive glycerolipid atlas using ultra-high-performance liquid chromatography coupled with quadrupole time-of-flight mass spectrometry. We surveyed the lipid profiles of three different maize genotypes: B73, a temperate inbred; CML312, a subtropical inbred; and Palomero Toluqueño, an open-pollinated variety from the Mexican highlands. We collected leaf samples from 4 developmental stages and 6 leaves. From one growth stage, we also sampled along with three leaf zones: base, center, and tip. The genotype and leaf number were the major drivers of lipid differences. Phosphatidylcholine, lysophosphatidylcholine, and triacylglycerol genotypic differences were particularly high. We generated an eFP browser to be integrated into the maize genome browser, as well as a separate web interface to easily browse and compare lipid levels across tissues and genotypes, available at https://bar.utoronto.ca/~dev/efp_maize_lipid/cgi-bin/efpWeb.cgi and https://rrellan.shinyapps.io/Zea-Lip/ respectively.
+Study Submission Date	2026-09-28
+Study Public Release Date	2026-11-02
+Study File Name	s_MTBLS15840.txt
+Comment[Created At]	2026-09-16
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-11-02
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1290 Infinity UHPLC	Agilent 6530 QTOF	blank sample	Zea mays subsp. mays	pure substance	leaf	solvent blank	experimental sample	semi-targeted analysis	Lipidomics	Adaptation	Maize	lipidomic profiling by mass spectrometer
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000871	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCBITaxon_2582415	http://purl.obolibrary.org/obo/NCBITaxon_381124	http://purl.obolibrary.org/obo/CHEBI_60003	http://purl.obolibrary.org/obo/BTO_0000713	http://purl.obolibrary.org/obo/MSIO_0000026	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003906	http://edamontology.org/topic_0153	http://purl.obolibrary.org/obo/NCIT_C158868	http://purl.obolibrary.org/obo/po#Maize	http://www.ebi.ac.uk/efo/EFO_0022979
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	NCBITaxon	CHEBI	BTO	MSIO	CHMO	MS	EDAM	NCIT	FLOPO	EFO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism	Organism part	Organism part	Sample type	Sample type	measurement-type	omics-type	submitter	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.64898/2026.05.07.723536
+Study Publication Author List	Juárez Núñez Karla A., Lobet Guillaume, Tandukar Nirwan, Jadidzadeh Eric, Pasha Asher, Provart Nicholas J., Holland James B., Rellán-Álvarez Rubén, Barnes Allison C.
+Study Publication Title	<i>Zea Lip</i> : An atlas of glycerolipid profiles across leaf development in maize
+Study Publication Status	preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0010558
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Growth stage	Genotype	Leaf segment	Leaf number
+Study Factor Type	Growth stage	genotype	Leaf segment	Leaf number
+Study Factor Type Term Accession Number		http://www.ebi.ac.uk/efo/EFO_0000513		
+Study Factor Type Term Source REF		EFO		
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15840_LC-MS_positive_reversed-phase-chromatography.txt
+Study Assay Measurement Type	semi-targeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003906
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reversed-phase-chromatography
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Lipidomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity UHPLC;ACQUITY UPLC C18 (1.7 µm, 2.1 mm x 100 mm; Waters);reversed phase chromatography;positive polarity acquisition;60-1700;Agilent 6530 QTOF;electrospray ionization
+Comment[Assay Field Default Unit]	;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000871;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002069;http://purl.obolibrary.org/obo/MS_1003582;http://purl.obolibrary.org/obo/MS_1000077;;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://purl.obolibrary.org/obo/MS_1000073
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MS;MS;;MTBLS;MS
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>Fifty mg of leaf tissue was collected using a leaf puncher and snap-frozen in liquid nitrogen. Frozen material was homogenized in a tissue grinder Retsch (Haan, Germany) for 40 seconds at a frequency of 30 Hz1/s. After grinding, samples were immediately extracted.&nbsp;</p>	<p>Dry samples were resuspended in 110 μL of MeOH-Toluene 90:10 (containing the internal LC/MS&nbsp;standard CUDA (12-(3-cyclohexylureido)dodecanoic acid)&nbsp;at 50 ng/mL). Samples were vortexed at low speed for 20 s and then sonicated at room temperature for 5 min. Aliquots of 50 µL per sample were transferred for mass spectrometry.</p><p>Samples were analyzed in positive mode on UHPLC-QTOF MS/MS Agilent 1290 and Agilent 6530, respectively. The UHPLC used a Waters Acquity charged surface hybrid (CSH) C18 2.1x100 mm, 1.7 μm column coupled to a VanGuard pre-column. The column was initially purged for 5 min. Six “no sample injections” were injected at the beginning of each run to condition the column, followed by ten samples, one pool (made from a mix of the second aliquot of all the samples combined), and one blank.</p><p><br></p><p>&nbsp;Injections of 1.67 μL per sample were used. The running time per sample was 15 min. Mobile phase “A” consisted of 60:40 acetonitrile:water, 10 mM ammonium formate, and 0.1% formic acid. Mobile phase “B” consisted of 90:10 isopropanol:acetonitrile, 10 mM ammonium formate, and 0.1% formic acid. The flow rate was maintained at 0.6 mL/min, and the column compartment was maintained at 65 °C. Initial conditions were 15% B; the gradient increased uniformly to 100%. At 12.10 min, the mobile phase composition returned to initial conditions. </p>	<p>Raw data files were converted from .d to .abf format using the Reifycs Abf converter (https://www.reifycs.com/AbfConverter/) and imported into MSDIAL version 3.40 (Tsugawa et al., 2015). The MSDIAL alignment results were filtered to remove any compounds with an intensity less than 10 times that of the blank. Filtered data were normalized to quality control samples by Systematic Error Removal using Random Forest (SERRF) (Fan et al., 2019). Normalized features with a coefficient of variation (CV) of 30% or greater across the pools were removed. To curate data on duplicate features, isotopes, and ion adducts, we used MS-FLO (DeFelice et al., 2017). Individual lipid intensities were further normalized by dividing each by the total ion count (mTIC) of all known and quantified lipids in each chromatographic run.</p>	<p>We performed lipid extraction as reported by Matyash and collaborators (Matyash et al., 2008). First, 225 μL of cold methanol (MeOH) was added to each sample. Blank samples were prepared in MeOH using a Quality Control (QC) mix. Each sample was vortexed for 10 seconds, while the remaining materials remained on ice. Then 750 μL of cold methyl tert-butyl ether (MTBE) was added. MTBE added to blank samples also contained 22:1 cholesterol ester as an internal standard. Each sample was vortexed for 10 seconds, then shaken for 6 minutes at 4°C in an orbital mixer. 188 μL of LC/MS-grade water at room temperature was added, and the samples were vortexed for 20 seconds.</p><p>Samples were then centrifuged for 2 min at 14000 rcf (12300 rpm), and 700 μL of the upper organic phase supernatant was collected. The supernatant was split into two aliquots of 350 μL, one for lipid profiling and the other for the preparation of pools to be used with the lipid profiling. Finally, samples were dried using a speed-vacuum concentrator.</p>	<p>For the source parameters, ESI gas temperature was set at 325 °C, nebulizer pressure at 35 psig, gas flow at 11 L/min, capillary voltage at 3500 V, nozzle voltage at 1000 V, and MS TOF fragmenter and skimmer at 120 and 65 V, respectively. Under the acquisition parameters, a mass range of 60-1700 m/z was set, with a detection window of 100 ppm and a minimum height count of 1000.&nbsp;</p>	<p>Corrected retention time (RT) was calculated using Agilent MassHunter Qualitative Analysis® B.06.00 version and Microsoft Excel. Agilent MassHunter Qualitative Analysis was used to extract ion chromatograms (EICs) of the internal standards within the run. The highest intensity point for each EIC was then used to determine the current RT. The reported RT for internal standards was compared to the current RT, and a polynomial regression was performed. The subsequent equation was used to calculate adjusted retention times for a 501 lipid MS1 m/z-rt library.&nbsp;</p><p>To check for false positives, 36 samples from the study were run across four m/z ranges: 120-300, 300-600, 600-900, and 900-1200. MSDIAL (Tsugawa et al., 2015) was used to determine how many fragments of each identified lipid matched spectra from the Lipidblast library (Kind et al., 2013). This analysis enabled the addition of 339 new annotations to the mz-rt library, bringing the total to 840 lipid species.&nbsp;This library was used to reprocess the spectra using MSDIAL and MS-FLO (DeFelice et al., 2017). The identification of lipids was based on two approaches: an internal library with in silico MS/MS comparisons and a user-supplied library with corrected RTs.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Barnes
+Study Person First Name	Allison
+Study Person Mid Initials	
+Study Person Email	allison.barnes@usda.gov
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	United States Department of Agriculture
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0001-9539-3297

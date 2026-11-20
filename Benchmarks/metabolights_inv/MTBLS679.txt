@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	MTBLS	PPO	PCO	NCBITAXON	PATO	CHEBI	MSIO	PAE	EFO	OBI	MS	UO		CO	OHMI	CO_325	CO_356	InformationCapacityUnit
+Term Source File	http://data.bioontology.org/ontologies/NCIT	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/PPO	http://data.bioontology.org/ontologies/PCO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/PATO	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/MSIO	http://data.bioontology.org/ontologies/PAE	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/UO	http://purl.obolibrary.org/obo/ncit.owl					
+Term Source Version	28	1	0	9	2	161	80	0	13	113	22	86	43	18.10e					
+Term Source Description	National Cancer Institute Thesaurus	Metabolights Ontology	Plant Phenology Ontology	Population and Community Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Phenotypic Quality Ontology	Chemical Entities of Biological Interest Ontology	Metabolomics Standards Initiative Ontology (MSIO)	Plant Anatomy	Experimental Factor Ontology	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Units of Measurement Ontology	NCI Thesaurus OBO Edition					
+INVESTIGATION
+Investigation Identifier	MTBLS679
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2018-05-22
+Investigation Public Release Date	2020-12-23
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 0.4.28
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS679
+Study Title	LC-MS based plant metabolic profiles of thirteen grassland species grown in diverse neighbourhoods
+Study Description	In plants, secondary metabolite profiles provide a unique opportunity to explore seasonal variation and responses to the environment. These include both abiotic and biotic factors. In field experiments, such stress factors occur in combination. This variation alters the plant metabolic profiles in yet uninvestigated ways. This data set contains trait and mass spectrometry data of thirteen grassland species collected at four time points in the growing season in 2017. We collected above-ground vegetative material of seven grass and six herb species that were grown in plant communities with different levels of diversity in the Jena Experiment. For each sample, we recorded visible traits and acquired shoot metabolic profiles on a UPLC-ESI-Qq-TOF-MS. We performed the raw data pre-processing in Galaxy-W4M and prepared the data for statistical analysis in R by applying missing data imputation, batch correction, and validity checks on the features. This comprehensive data set provides the opportunity to investigate environmental dynamics across diverse neighbourhoods that are reflected in the metabolomic profile.
+Study Submission Date	2018-05-22
+Study Public Release Date	2020-12-23
+Study File Name	s_MTBLS679.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	species diversity	community dynamics	Plant metabolite
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000062	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000025	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000024	http://purl.obolibrary.org/obo/CHEBI_76924
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	33563993
+Study Publication DOI	10.1038/s41597-021-00836-8
+Study Publication Author List	Marr S, Hageman JA, Wehrens R, van Dam NM, Bruelheide H, Neumann S.
+Study Publication Title	LC-MS based plant metabolic profiles of thirteen grassland species grown in diverse neighbourhoods.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	class	Campaign	Season	Pool	Block	Plot	Designed Diversity	Functional Group Mixture	Functional Group	Family	Species	SpecCode	Replicate	Observed Richness	Designed Shannon	Observed Shannon	Target-Species Abundance	Date of Sampling	Time of Sampling	BBCH	Height	Leaves	Inflorescences	Damage Level	Fresh Weight	Dry Weight
+Study Factor Type	Sample Class	cohort	timepoint	pool	block	block	community species richness	cohort	cohort	Family	Species	Species Code	replicate	community species richness	information capacity unit	information capacity unit	relative species abundance	timepoint	timepoint	Growth BBCH scoring scale	height	leaf number	Number of inflorescences (All)	Plant damage	weight	weight
+Study Factor Type Term Accession Number	-	http://www.ebi.ac.uk/efo/EFO_0004445	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000663	http://www.ebi.ac.uk/efo/EFO_0005067	http://www.ebi.ac.uk/efo/EFO_0005067	http://purl.obolibrary.org/obo/PCO_0000010	http://www.ebi.ac.uk/efo/EFO_0004445	http://www.ebi.ac.uk/efo/EFO_0004445	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owlC45290	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owlC45293	http://purl.obolibrary.org/obo/NCIT_C93672	http://www.ebi.ac.uk/efo/EFO_0000683	http://purl.obolibrary.org/obo/PCO_0000010	http://www.ontology-of-units-of-measure.org/resource/om-2/InformationCapacityUnit	http://www.ontology-of-units-of-measure.org/resource/om-2/InformationCapacityUnit	http://purl.obolibrary.org/obo/OHMI_0000468	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000724	https://cropontology.org/rdf/CO_357:3000085	http://purl.obolibrary.org/obo/PATO_0000119	http://www.cropontology.org/rdf/CO_325:0000938	http://www.cropontology.org/rdf/CO_356:2000100	http://www.cropontology.org/rdf/CO_325:0100217	http://purl.obolibrary.org/obo/PATO_0000128	http://purl.obolibrary.org/obo/PATO_0000128
+Study Factor Type Term Source REF		EFO	EFO	EFO	EFO	EFO	PCO	EFO	EFO	NCIT	NCIT	NCIT	EFO	PCO	InformationCapacityUnit	InformationCapacityUnit	OHMI	EFO	EFO	CO	PATO	CO_325	CO_356	CO_325	PATO	PATO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS679_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Mass Spectrometry analysis were performed on an ACQUITY UPLC (Waters) coupled to ESI-micrOToF-Q-II (Bruker, USA). Aliquots (2 µL per sample) were separated at 40 °C on a HSS T3 C18 column (1.8 µm, 1.0 x 100 mm, RP, Waters) with the elution binary gradient at 0.15 mL min-1 flow rate: Solvent A (water/formic acid 99.9/0.1 (v/v))/Solvent B (acetonitrile/formic acid 99.9/0.1 (v/v)); initial: A 95%, 3 minutes linear A 82.7 %,10 minutes linear A 76 %, 17 minutes linear A 5 %, 18 minutes A 5 %, 18.1 minutes linear A 95 %, 20 m inutes A 95%. </p>	<p>We exported the vendor-specific data files (here Bruker’s “.d”) to the open data format “.mzML” using CompassXport (Bruker, version 3.0.9, http://www.bruker.com).</p><p><br></p><p>We pre-processed the raw LC-MS spectra of the analytical samples and the quality controls (blanks and QC) in the Galaxy-W4M web service (based on XCMS 3.0). The workflow included the following analytical and processing steps: peak picking, grouping and retention time correction. Furthermore, we annotated adducts and isotopes of the measured features and filtered for the region of interest (ROI) between 80 s and 840 s. The workflow is available here: https://doi.workflow4metabolomics.org/W4M00008. </p><p>&nbsp;</p><p>We exported the pre-processed data as separate data tables: “MTBLS679_sampleMetadata”, “MTBLS679_variableMetadata” and “MTBLS679_dataMatrix”. We applied the following data cleaning and processing steps to prepare the data matrix for further (statistical) analysis: missing data imputation, batch correction, feature validity check, sample validity check. We provide a detailed description of the processing steps performed in R in “SciData_ProcessingTutorial_markdown.pdf”. The complete code used for data processing is available in “SciData_ProcessingTutorial_Rscript.R”. The processed data “MTBLS679_dataMatrix_processed” and “MTBLS679_sampleMetadata_processed” are also made available in the repository.</p>	<p>The frozen samples (leaves and shoots) were ground (20 mL plastic Vials, 2 steel grinding balls, 7 mm) at -75 °C for 150 seconds (5 x cycles: 30 s grinding, 30 s pausing) using the automized Labman IPB Cryogrinder Ball Mill (Labman Automation, UK). Rimax/Zircosil (1.2 - 1.7 mm) beads were added to aliquots (10 mg ± 5) of the ground frozen samples in 2 mL Extraction-Tubes. Methanol/Water-Solvent (80/20 v/v) with the three internal standards 5 mM Kinetin, 5 mM IAA-Val and 5 mM Biochanin A (extraction solvent) was added in a weight-specific five-fold surplus, while the samples were kept on liquid nitrogen. After thawing (3 minutes), the samples were extracted in a Homogenizer (Precellys® 24 Tissue Homogenizer, Bertin Technologies, USA) for 90 seconds (2 x cycles: 45 s run, 15 s pausing) at 6500 rpm. Supernatants were collected in a new 2 mL Extraction-Tube after being centrifugated at 16168 x g for 15 minutes. After a second extraction of the remaining pellet, 160 µL of the combined supernatants were added to 40 µL of Water/Formic acid (99.9/0.1 v/v) and stored at -20 °C for at least 48 hours. Supernatants were again centrifugated at 16168 x g for 15 minutes and transferred to HPLC-Vials (Glasinlet, 300µl) to be measured in a UPLC-MS-QToF-System.</p><p>An aliquot (10 µL) of each extracted sample was combined as a quality control sample (QC) to keep track of possible irregularities with extraction and the mass spectrometric analyses.</p>	<p>Features were measured in positive ion mode from 100 to 1000 m/z using internal calibration (lithium formate clusters, 10 mM lithium hydroxide in isopropanol/water/formic acid, 49.9/ 49.9/0.2 (v/v/v), at 18 min) and following instrument settings: capillary voltage 5000 V; nebulizer gas nitrogen; nebulizer 1.4 bar; dry gas nitrogen; dry gas temperature 190 °C; dry gas flow 6 L min-1; spectra rate 3 Hz; endplate offset: -500 V; Funnel 1 RF: 200 Vpp; Funnel 2 RF: 200 Vpp; in-source CID energy 0 eV; hexapole RF 100 Vpp; quadrupole ion energy 3 eV; collision gas nitrogen; collision energy 7 eV; collision RF 200/400 Vpp (timing 50/50); transfer time 50 to 70 µs; pre pulse storage 5 µs.</p>	No identification of metabolite structures was performed.	<p>Aboveground vegetative plant material was collected in plots of the Trait-Based Experiment (TBE) in the Jena Experiment, Germany. Plant individuals were selected from plots with the designed diversity levels of 1, 2, 4 or 8 species by taking possible functional group mixtures grass-grass' (GG), 'grass-herb' (GH) and 'herb-herb' (HH) into account. Biomass of two specimens (biological replicates) at a similar phenological stage (classified with BBCH scale by Hess et al. 1997), was sampled, by cutting 3 cm above ground, and snap freezing the sample on dry ice.</p><p>Sampling was conducted in spring, summer (early and late) and autumn covering the growing season (May to October) in 2017. Damage levels for each plant, including mechanical (e.g. herbivory) and pathogen-induced damage were recorded for each sample. The exact day time of sampling was recorded to account for diurnal chemical shifts within the plant individuals.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Column type;Column model		Post Extraction;Derivatization	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source; Data file checksum type	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number	;;		;	;;;;;;;;;;;;;;;;;;;;	;	
+Study Protocol Parameters Name Term Source REF	;;		;	;;;;;;;;;;;;;;;;;;;;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Marr	Hageman	Wehrens	van Dam	Bruelheide	Neumann	Hageman	van Dam
+Study Person First Name	Sue	Jos	Ron	Nicole	Helge	Steffen	Jos A	Nicole M
+Study Person Mid Initials		A		M				
+Study Person Email	smarr@ipb-halle.de	jos.hageman@wur.nl	ron.wehrens@wur.nl	nicole.vandam@idiv.de	helge.bruelheide@botanik.uni-halle.de	sneumann@ipb-halle.de		
+Study Person Phone	+49 (0) 345 5582 1472							
+Study Person Fax								
+Study Person Address	IPB: Weinberg 3, 06120 Halle; MLU: Am Kirchtor 1 [Interim: Große Steinstraße 79/80], 06108 Halle	Droevendaalsesteeg 1, 6708 PB, Wageningen	Droevendaalsesteeg 1, 6708 PB, Wageningen	iDiv: Deutscher Platz 5e, D-04103 Leipzig, Germany; Jena: Dornburger-Str. 159, 07743 Jena, Germany	Am Kirchtor 1 [Interim: Große Steinstraße 79/80], 06108 Halle	Weinberg 3, 06110 Halle (Saale)		
+Study Person Affiliation	Leibniz Institute of Plant Biochemistry (IPB Halle); Martin Luther University Halle-Wittenberg (MLU); German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig	Biometris, Applied Statistics, Wageningen University and Research	Biometris, Applied Statistics, Wageningen University and Research	German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig; Institute of Biodiversity, Friedrich Schiller University Jena	Institute of Biology / Geobotany and Botanical Garden, Martin Luther University Halle-Wittenberg	Leibniz Institute of Plant Biochemistry		
+Study Person Roles	First author	Co-Investigator	Co-Investigator	Co-Investigator	Co-Investigator	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	MS	NCIT	NCIT	NCIT	NCIT	NCIT		

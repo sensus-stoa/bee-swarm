@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	GO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	portaldoexternalidsATG
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	
+Term Source Version												
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS10597
+Investigation Title	Lipidomics study for investigating the role of the Unfolded Protein Response In Arabidopsis seed filling
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-07-05
+Investigation Public Release Date	2024-12-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10597
+Study Title	Lipidomics study for investigating the role of the Unfolded Protein Response In Arabidopsis seed filling
+Study Description	<p>The Unfolded Protein Response (UPR) is a retrograde, ER-to-nucleus, signalling pathway which is conserved across kingdoms. In plants, it contributes to development, reproduction, immunity and tolerance to abiotic stress. This lipidomic dataset was produced from Arabidopsis thaliana mature seeds. Wild-type (WT) and mutant deficient for UPR actors (bzip60, ire1a and ire1b single mutants, as well as double ire1 mutants) were used as genetic backgrounds to investigate whether UPR controls lipid seed filling in Arabidopsis thaliana. Our experimental setup also allows to distinguish among differentially-overaccumulated lipids which ones are dependent on IRE1s and/or bZIP60.</p>
+Study Submission Date	2024-07-05
+Study Public Release Date	2024-12-02
+Study File Name	s_MTBLS10597.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	endoplasmic reticulum unfolded protein response	untargeted metabolites	Lipidomics	ultra-performance liquid chromatography-mass spectrometry	BZIP60 (Arabidopsis thaliana)	IRE1A (Arabidopsis thaliana)	IRE1B (Arabidopsis thaliana)
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/GO_0030968	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000069	http://purl.obolibrary.org/obo/CHMO_0000715	https://bar.utoronto.ca/thalemine/portal.do?externalids=AT1G42990	https://bar.utoronto.ca/thalemine/portal.do?externalids=AT2G17520	https://bar.utoronto.ca/thalemine/portal.do?externalids=AT5G24360
+Study Design Type Term Source REF	GO	MTBLS	MTBLS	CHMO	portaldoexternalidsATG	portaldoexternalidsATG	portaldoexternalidsATG
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Amélie Ducloy, Azzopardi Marianne, Jean-Chrisologue Totozafy, Delphine Charif, Jean-Luc Cacas
+Study Publication Title	Role of the Unfolded Protein Response in Arabidopsis seed filling
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype	Biological replicate	Technical replicate
+Study Factor Type	genotype	biological replicate	technical replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0002091	http://www.ebi.ac.uk/efo/EFO_0002090
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10597_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS10597_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>A total of 6 different genotypes were used in this study: the WT Columbia-0 (Col-0), the single mutant ire1a (SALK_018112), the single mutant ire1b (SAIL_238_F07), the double mutant ire1a ire1b (SALK_018112, SAIL_238_F07), noted ire1dm H, the double mutant ire1a ire1b (SALK_002316, GABI_638B07), noted ire1dmK and the single mutant bzip60-3 (GABI_326A12). To get seeds, plants from all genotypes were simultaneously grown in green house for 10 wk. Seeds were then harvested and dried at 50 °C for 2 days. Seed lots were stored at 4 °C under low humidity until use. One seed lot harvested from one plant correspond to one biological replicate. In total 8 biological replicates per genotype were analyzed for lipid content.</p>	<p>Each sample was composed of 5 mg of seeds. Lipids were extracted from seeds according to<strong>[1]</strong>. Briefly, each seed sample was ground by shaking thoroughly in safelock tubes using glass bead in the presence 666 µL of methanol. Mixtures were vortexed for 30 s. A volume of 333 µL chloroform wad added to each sample, and they were incubated at room temperature for 1 h. Then, 333 µL of chloroform and 333 µL of water were added to each tube and thoroughly shacked, before centrifugation for 10 min at 10.000 x g. The lower non polar phase was recovered and, lipids were re-extracted from the upper aqueous phase following the same procedure using 333 µL of chloroform and 333 µL of water. Non polar phases were pooled, and dried under gaseous nitrogen flux. Dry residues were resuspended in 250 µL of acetonitrile/isopropanol (7/3, v/v) before injection.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Bligh, E.G, Dyer, W.J. 1959. A rapid method of total lipid extraction and purification. Can J Biochem Physiol. 1959 Aug;37(8):911-7. doi:10.1139/o59-099. PMID: 13671378.</p>	<p>Untargeted lipidomic data were acquired using a UHPLC system (Ultimate 3000 Thermo) and an EC 100/2 NUCLEOSHELL Phenyl-Hexyl, (2,7 µm, 100 x 2 mm; Macherey-Nagel) was used for chromatographic separation. The mobile phases used for the chromatographic separation were: (A) H2O + 1% of 10 mM ammonium formate in H2O + 0.1% formic acid; and (B) acetonitrile:isopropanol (7:3) + 1% of 10 mM ammonium formate in H2O + 0.1% formic acid. The flow rate was 400 µL/min, and the following gradient was used: 45% A for 1 min, followed by a linear gradient from 45% A to 30% A from 1 to 2 min, then a linear gradient from 30% A to 15% A from 2 to 7 min, a linear gradient from 15% A to 10% A from 7 to 15 min, a linear gradient from 10% A to 6% A from 15 to 19 min, a linear gradient from 6% A to 2% A from 19 to 26 min; then, 0% of A was held until 27 min, followed by a linear gradient from 0% A to 45% A from 27 to 35 min (35 min total run time). Injection volume was 5 µL. Quality Control (QC) samples were the pool of each samples, and the blank sample was the solvent mixture acetonitrile/isopropanol (7/3, v/v).</p>	<p>Data-dependent acquisition methods were used for mass spectrometer data in positive and negative ESI modes using a quadrupole time of flight mass spectrometer (Q-Tof Impact II Bruker Daltonics, Bremen, Germany) and the following parameters: capillary voltage, 4.5 kV; nebulizer gas flow, 2.1 bar; dry gas flow, 6 L/min; drying gas in the heated electrospray source temperature, 200 °C. Samples were analysed at 8 Hz with a mass range of 100-1500&nbsp;m/z. Stepping acquisition parameters were created to improve the fragmentation profile with a collision RF from 200 to 700 Vpp, a transfer time from 20 to 70 μs and collision energy from 20 to 40 eV. Each cycle included a MS fullscan and 5 MS/MS CID on the 5 main ions of the previous MS spectrum.</p>	<p>The .d data files (Bruker Daltonics, Bremen, Germany) were converted to .mzXML format using the MSConvert software (ProteoWizard package 3.0; Chambers et al., 2012). mzXML data processing, mass detection, chromatogram building, deconvolution, samples alignment and data export were performed using MZmine 2.53 software (http://mzmine.github.io/) for both positive and negative data files. The ADAP chromatogram builder (Myers et al., 2017) method was used with a minimum group size of scan 5, a group intensity threshold of 1000, a minimum highest intensity of 1000 and m/z tolerance of 10 ppm. Deconvolution was performed with the ADAP wavelets algorithm using the following setting: S/N threshold 10, peak duration range = 0.01-2.0 min RT wavelet range 0.01-0.2 min, MS2 scan were paired using a m/z tolerance range of 0.05 Da and RT tolerance of 0.5 min. Then, isotopic peak grouper algorithm was used with a m/z tolerance of 10 ppm and RT tolerance of 0.2 min. All the peaks were filtered using feature list row filter keeping only peaks with MS2 scan. The alignment of samples was performed using the join aligner with an m/z tolerance of 10 ppm, a weight for m/z and RT at 1.0, a retention time tolerance of 0.2 min. Metabolites accumulation was normalized according to the weight of biological material used for the extraction.</p>	<p>A first research in the library with Mzmine was done, with identification module and ‘custom database search’ to begin the annotation with our library, currently containing 1029 annotated features (RT and&nbsp;m/z) in positive mode and 450 in negative mode, with RT tolerance of 0.2 min and&nbsp;m/z&nbsp;tolerance of 0.005 Da.</p><p><br></p><p>Molecular networks were generated with MetGem software (Olivon et al., 2018; https://metgem.github.io) using the .mgf and .csv files obtained with MZmine2 analysis. The molecular network was optimized for the ESI+ and ESI- datasets, and different cosine similarity score thresholds were tested. ESI- and ESI+ molecular networks were generated using cosine score thresholds of 0.65 and 0.75, respectively.</p><p><br></p><p>Lipid metabolites annotation was performed in different consecutive steps. First, the ESI- and ESI+ lipidomic data used for molecular network analyses were searched against the available MS2 spectral libraries (Massbank NA, GNPS Public Spectral Library, NIST14 Tandem and NIH Natural Product), with absolute&nbsp;m/z&nbsp;tolerance of 0.02; 4 minimum matched peaks and minimal cosine score of 0.65. Second, in the different clusters of the molecular network, the result of the database search was validated using the different specific fragments and neutral loss for the different lipid class with their MS2 spectrum [Lipid Class Specific Fragments - Lipidomics-Standards-Initiative (LSI)]. If the database search result was valid, annotation of other features was performed by stepwise comparison from the valid lipid metabolite. Finally, for the cluster of molecular network that had no database search result, Sirius software (https://bio.informatik.uni-jena.de/software/sirius) was used.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Perreau	Cacas	Azzopardi	Charif	Totozafy
+Study Person First Name	François	Jean-Luc	Marianne	Delphine	Jean Chrisologue
+Study Person Mid Initials					
+Study Person Email	francois.perreau@inrae.fr	jean-luc.cacas@inrae.fr	marianne.azzopardi@inrae.fr	delphine.charif@inrae.fr	jean-chrisologue.totozafy@inrae.fr
+Study Person Phone					
+Study Person Fax					
+Study Person Address	Institute Jean-Pierre Bourgin, Route de Saint Cyr, 78026 Versailles Cedex, France	Institute Jean-Pierre Bourgin, Route de Saint Cyr, 78026 Versailles Cedex, France	Institute Jean-Pierre Bourgin, Route de Saint Cyr, 78026 Versailles Cedex, France	Institute Jean-Pierre Bourgin, Route de Saint Cyr, 78026 Versailles Cedex, France	Institute Jean-Pierre Bourgin, Route de Saint Cyr, 78026 Versailles Cedex, France
+Study Person Affiliation	University Paris-Saclay, INRAE-AgroParisTech, Institute Jean-Pierre Bourgin	University Paris-Saclay, INRAE-AgroParisTech, Institute Jean-Pierre Bourgin	University Paris-Saclay, INRAE-AgroParisTech, Institute Jean-Pierre Bourgin	University Paris-Saclay, INRAE-AgroParisTech, Institute Jean-Pierre Bourgin	University Paris-Saclay, INRAE-AgroParisTech, Institute Jean-Pierre Bourgin
+Study Person Roles	submitter	Principal Investigator	Investigator	Submitter	submitter
+Study Person Roles Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001741	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C54269	http://www.ebi.ac.uk/efo/EFO_0001741
+Study Person Roles Term Source REF	EFO	NCIT	NCIT	NCIT	EFO

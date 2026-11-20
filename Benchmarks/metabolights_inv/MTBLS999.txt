@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BAO	CHMO	NCIT	OBI	CHEBI	MS	UO	EFO	
+Term Source File	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/UO		http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	26	18	44	22	99	86	43		18.10e
+Term Source Description	BioAssay Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology	Mass Spectrometry Ontology	Units of Measurement Ontology		NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS999
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-05-19
+Investigation Public Release Date	2019-07-22
+Comment[Created With Configuration]	D:\Dropbox\1 - Thesis\1 - Projects\180723 - Fragmentation library\Data\190318 - MetaboLights\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS999
+Study Title	A database of high-resolution MS/MS spectra for lichen metabolites
+Study Description	<p>While analytical techniques in natural products research massively shifted to liquid chromatography-mass spectrometry, lichen chemistry remains reliant on limited analytical methods, Thin Layer Chromatography being the gold standard. To meet the modern standards of metabolomics within lichenochemistry, we announce the publication of an open access MS/MS library with 250 metabolites, coined LDB for Lichen DataBase, providing a comprehensive coverage of lichen chemodiversity. These were donated by the Berlin Garden and Botanical Museum from the collection of Siegfried Huneck to be analyzed by LC-MS/MS. Spectra at individual collision energies were submitted to MetaboLights while merged spectra were uploaded to the GNPS platform (CCMSLIB00004751209 to CCMSLIB00004751517). Technical validation was achieved by dereplicating three lichen extracts using a Molecular Networking approach, revealing the detection of eleven unique molecules that would have been missed without LDB implementation to the GNPS. From a chemist's viewpoint, this database should help streamlining the isolation of formerly unreported metabolites. From a taxonomist perspective, the LDB offers a versatile tool for the chemical profiling of newly reported species.</p>
+Study Submission Date	2019-05-19
+Study Public Release Date	2019-07-22
+Study File Name	s_MTBLS999.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Database	liquid chromatography-mass spectrometry	tandem mass spectrometry	Natural Product	ms-ms search
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C15426	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/NCIT_C66892	http://purl.obolibrary.org/obo/MS_1001083
+Study Design Type Term Source REF	NCIT	CHMO	CHMO	NCIT	MS
+STUDY PUBLICATIONS
+Study PubMed ID	31780665
+Study Publication DOI	10.1038/s41597-019-0305-1
+Study Publication Author List	Olivier-Jimenez D, Chollet-Krugler M, Rondeau D, Beniddir MA, Ferron S, Delhaye T, Allard PM, Wolfender JL, Sipman HJM, Lücking R, Boustie J, Le Pogam P.
+Study Publication Title	A database of high-resolution MS/MS spectra for lichen metabolites.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Collision energy	Chemical class	Adduct
+Study Factor Type	collision energy	Chemical class	adduct ion
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1000045		http://purl.obolibrary.org/obo/MS_1000353
+Study Factor Type Term Source REF	MS		MS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS999_POS_ESI_mass_spectrometry.txt	a_MTBLS999_POS_APCI_mass_spectrometry.txt	a_MTBLS999_NEG_ESI_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography Tandem MS (LC-MS/MS)	Liquid Chromatography Tandem MS (LC-MS/MS)	Liquid Chromatography Tandem MS (LC-MS/MS)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	Samples correspond to pure reference standards. They were collected from S. Hüneck's chemical library in the Botanical Garden and Botanical Museum of Berlin.	As samples were already pure compounds, no extraction was carried out.	An Agilent 1260 Infinity LC system was used. The column used was a Waters SunFire C18 (50 x 4.6 mm, i.d. 3.5 µm) with a flow rate of 0.5 ml/min. Elution solvents used were Milli-Q water + 0.1% FA (A) and HPLC-grade acetonitrile + 0.1% FA (B) and elution gradient was the following: 0 min at 5% B; 7 min at 100% B; 8 min at 100% B; 9 min at 5% B.	Samples were analysed using an Agilent 6530 Accurate-Mass Q-TOF hyphenated with a 1260 Agilent Infinity LC system. Most analytes were ionized by electrospray in negative polarity, xanthones and quinones were additionally ionized in positive mode, and terpenes were ionized exclusively with an APCI source. ESI conditions were set with the capillary temperature at 320 °C, source voltage at 3.5 kV, and a sheath gas flow rate of 10 l/min. Regarding APCI analyses, the corona current was set to 4 µA, the nebulizer pressure was 35 psig and 10 l/min nitrogen flow heated at 350°C was used for desolvation. Capillary, fragmentor and skimmer voltages were set to 3500 V, 175 V and 65 V respectively. There were 4 scan events: negative or positive MS, window from m/z 100−1200, then 3 data-dependent MS/MS scans of the first, second, and third most intense ions from the first scan event. MS/MS settings were the following: 3 collision energies for the negative mode (10, 25, 40 eV, and additionally 2.5, 5, and 7.5 eV for depsides), 3 for the ESI+ and APCI modes (5, 20 and 35 eV), default charge of 1, isolation width of m/z 2. Purine (C5H4N4, m/z 121.050873 (positive)), trifluoroacetic acid (CF3CO2H, m/z 112.98559, negative) and HP-0921 (hexakis(1H,1H,3H-tetrafluoropropoxy)-phosphazene C18H18F24N3O6P3, m/z 922.009798 (positive), 1033.988109 (negative, trifluoroacetate adduct) were used as internal lock masses. Full scans were acquired at a resolution of 10,000 (m/z 922) and 4000 (m/z 121) (positive polarity) and 10,000 (m/z 1033) and 4,800 (m/z 112).	The Agilent '.d' files were converted to an mzXML format using the MSConvert-module from Proteowizard. Raw converted data was then treated using an R-script, to isolate MS/MS spectra at each collision energies for the given metabolite and save them as a 1 scan mzXML file. Additionally, a merged MS/MS spectrum was generated as a 1 scan mzXML file by averaging previously generated spectra for a given compound. Merged mzXML files were assembled in a single mgf file using an online workflow provided by the GNPS platform and uploaded with a metadata file as an open access MS/MS database. Each spectrum was manually curated to assess the quality of the fragmentation and the identity of fragmented metabolites.	As all samples were already pure compounds, no metabolite identification step was necessary. The identity standards was however assessed by manual curation of the MS/MS spectra.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Column type;Column model;Chromatography Instrument	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Le Pogam	Boustie	Olivier-Jimenez	Chollet-Krugler	Rondeau	Beniddir	Ferron	Delhaye	Allard	Wolfender	Sipman	Lücking	Boustie
+Study Person First Name	Pierre	Joel	Damien	Marylène	David	Mehdi A	Solenn	Thomas	Pierre-Marie	Jean-Luc	Harrie J M	Robert	Joël
+Study Person Mid Initials													
+Study Person Email	pierre.le-pogam-alluard@u-psud.fr	joel.boustie@univ-rennes1.fr											
+Study Person Phone	33146835597	33223234818											
+Study Person Fax													
+Study Person Address													
+Study Person Affiliation	CNRS, BioCis (Biomolecules : Conception Isolement et Synthese)-UMR 8076, Univ Paris-Sud, F-9220 Chatenay-Malabry, France	CNRS, ISCR (Institut des Sciences Chimiques de Rennes)-UMR 6226, Univ Rennes, F-35000 Rennes, France											
+Study Person Roles			Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number			http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF													

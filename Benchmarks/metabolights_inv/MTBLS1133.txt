@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	CHEBI	BTO	NCBITAXON	NCIT	CHMO	EFO	MS
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/MS
+Term Source Version	29	147	34	15	85	22	195	150
+Term Source Description	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology	BRENDA Tissue and Enzyme Source Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1133
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-07-25
+Investigation Public Release Date	2019-12-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1133
+Study Title	Troubleshooting in Large-Scale LC-ToF-MS Metabolomics Analysis: Solving Complex Issues in Big Cohorts
+Study Description	Metabolomics, understood as the science that manages the study of compounds from the metabolism, is an essential tool for deciphering metabolic changes in disease. The experiments rely on the use of high-throughput analytical techniques such as liquid chromatography coupled to mass spectrometry (LC-ToF MS). This hyphenation has brought positive aspects such as higher sensitivity, specificity and the extension of the metabolome coverage in a single run. The analysis of a high number of samples in a single batch is currently not always feasible due to technical and practical issues (i.e., a drop of the MS signal) which result in the MS stopping during the experiment obtaining more than a single sample batch. In this situation, careful data treatment is required to enable an accurate joint analysis of multi-batch data sets. This paper summarizes the analytical strategies in large-scale metabolomic experiments; special attention has been given to QC preparation troubleshooting and data treatment. Moreover, labeled internal standards analysis and their aim in data treatment, and data normalization procedures (intra- and inter-batch) are described. These concepts are exemplified using a cohort of 165 patients from a study in asthma.
+Study Submission Date	2019-07-25
+Study Public Release Date	2019-12-12
+Study File Name	s_MTBLS1133.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	asthma	untargeted metabolites	high-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000270		http://purl.obolibrary.org/obo/CHMO_0000796
+Study Design Type Term Source REF	EFO		CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	31652940
+Study Publication DOI	10.3390/metabo9110247
+Study Publication Author List	Rodríguez-Coira Juan, Delgado-Dolset María, Obeso David, Dolores-Hernández Mariana, Quintás Guillermo, Angulo Santiago, Barber Domingo, Carrillo Teresa, Escribese María, Villaseñor Alma
+Study Publication Title	Troubleshooting in Large-Scale LC-ToF-MS Metabolomics Analysis: Solving Complex Issues in Big Cohorts
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1133_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>140 adult patients with a clinical history of asthma, and 25 non-allergic and non-asthmatic subjects were enrolled as control population at the allergy department, “Hospital Universitario de Gran Canaria, Dr. Negrin”, Las Palmas de G.C., Spain. Participants were recruited as they arrived to daily practice. All participants read and signed an informed consent. The study was conducted in accordance with the Declaration of Helsinki, and the protocol was approved by the Ethics Committee of “Hospital Universitario de Gran Canaria, Dr. Negrin” on the 4th of February 2016 (code: 160009).</p><p><br></p><p>Whole blood was collected and incubated with a clotting agent in Vacutainer SST II tube (Becton Dickinson S.A., Spain). The sample was placed at room temperature for 40 min. Afterwards, it was centrifuged at 2000 x g for 10 min at room temperature. Then, serum was collected and stored at −80 ºC until the metabolomic analysis was performed.</p>	<p>Serum proteins were removed adding 300 µl of cold (-20 °C) methanol:ethanol (1:1) to 100 µl of sample. For the analysis, 20 µl of a mix of 5 labelled internal standards (IS) were added to each sample. The IS mix was selected to cover a wide range of different retention times (RT) and physico-chemical properties. This was composed of: 1) Carnitine-D3 (C7H12D3NO3, mass=144.1454 Da, RT: 0.70 min, 0.02 mM); 2) Isoleucine-13C, 15N (13C6H1315NO2, molecular mass=138.1118 Da, RT: 0.77 min, 0.18 mM); 3) Sphingosine-D7 (C18H30D7NO2, molecular mass=306.3264 Da, RT: 14.38 min, 0.02 mM); 4) Lysophosphocholine 18:1-D7 (LPC 18:1-D7) (C26H45D7NO7P, molecular mass =528.3921 Da, 2 peaks at RTs= 19.30 and 20.00 min, 0.01 mM) and 5) Stearic acid-D5 (C18H31D5O2, molecular mass= 289.3029 Da, RT: 34.54 min, 0.17 mM). All detected adducts are present in Table S1 of the paper associated with this study. Samples were then vortex-mixed and kept on ice for 5 min. Supernatant was separated by centrifugation (16110 x g for 20 min at 4 °C) and transferred into LC vials for analysis. Extraction solvent used as blank for the analysis was prepared mixing 400 µl of cold (-20 °C) methanol:ethanol (1:1) and 20 µl of ISs. The blank followed the same steps as the samples.</p><p><br></p><p><strong>QC preparation:</strong></p><p>QC was prepared by pooling equal volumes of serum from the first 46 samples of the first batch. Then, the QC was aliquoted into different tubes to preserve it from freezing-thawing cycles. Every time QC was needed, fresh QC was prepared. The QCs clean-up steps followed the same procedure applied for the experimental samples. QCs were analyzed throughout the run to provide a measurement of system stability, performance and reproducibility of the LC-QToF-MS system.</p>	<p>Serum samples were measured using an Agilent HPLC system (1200 series) coupled with quadrupole-time of flight analyzer system (Q-ToF MS 6520) (Agilent Technologies, Waldbronn, Germany). The HPLC system was equipped with a degasser, 2 binary pumps, and a thermostated autosampler. Briefly, 10 μl of sample were injected into a Discovery HS C18 column (2.1 x 150 mm, 3.0 μm; Supelco, Sigma Aldrich, Germany), with a guard column Discovery HS C18 (2.1 x 20 mm, 3 μm; Supelco), both maintained at 40 °C. The flow rate was set at 0.6 ml/min. The elution gradient involved a mobile phase consisting of: (A) 0.1% v/v formic acid (FA) in water and (B) 0.1% v/v FA in acetonitrile. The initial conditions were set at 25% phase B, which increased linearly to 95% phase B in 35 min. Then it returned to the initial conditions in 1 min, which were held for 9 min for column reconditioning.</p>	<p>Mass spectra were recorded using an Agilent 6520 Q-ToF MS instrument. Samples were analyzed in both ESI+ and ESI− modes in separate injections. The capillary voltage was set at 3500 for ESI+ and 4000 V for ESI−. The drying gas flow rate was 10.5 l/min at 330 °C and gas nebulizer at 52 psi; fragmentor voltage was 175 V; skimmer and octopole radio frequency voltages were set to 65 and 750 V, respectively. MS spectra were collected in the centroid mode at a scan rate of 1.2 Hz. The MS detection window was performed in full scan from 100 to 1200 m/z for both modes. Automatic MS recalibration during batch analysis was carried out introducing a reference standard into the source via a reference sprayer valve. Reference masses for ESI+ were purine (m/z = 121.0508) and HP-0921 (m/z = 922.0097), whereas for ESI− TFA NH4 (m/z = 119.0363) and HP-0921 (m/z = 966.0007).</p>	<p><strong>Data Treatment:</strong></p><p>Acquired signals were processed to provide structured raw data in an appropriate format for analysis. Collected data from all batches were put and cleaned together in a single analysis of background and unrelated ions using MassHunter Profinder (B.08.00; SP3, Agilent Technologies) software. Molecular feature extraction (MFE) algorithm was used to reduce the size and complexity of data. Furthermore, Find by Ion (FbI) algorithm was applied to improve the reliability of the features found in the data. In the end, 1382 and 887 chemical signals for LC-MS positive and negative ionization modes were obtained respectively. Afterwards, raw data was filtered by keeping all features that were not present in the blanks, were detected in &gt;50% of all QCs and &gt;75% in the experimental samples. The rest of the signals were excluded from the analyses. Missing values were replaced using the kNN algorithm using an in-house script developed in Matlab[1].</p><p><br></p><p>The IS compounds were extracted in a targeted manner using a file containing the formula, mass and RT in MassHunter Profinder.</p><p><br></p><p><strong>Data Normalization and Analysis:</strong></p><p>Different normalization strategies were used to pre-process the raw data matrix containing data acquired from the independent batches. For intra-batch normalization, the following methods were used: (1) Normalization of each signal (i.e., LC-MS feature) to the total area of the IS mix; (2) normalization of each signal by the TUS of each sample; (3) intra-batch effect correction using the QC-SVRC (10) algorithm using the information contained in the QCs to correct the drift of the MS signal within the batch. This algorithm requires the selection of the tolerance threshold (ε), the kernel width (γ) and the error penalty parameter (C). The values used were ε = 5%, γ = [2^−3, 2^−2, …, 2^6], and C = 50%. In addition to intra-batch normalization using QC-SVRC, a sequential inter-batch effect correction called QC-norm was tested. It is a ratio-based method which normalizes the intensity of each signal in each sample using as scaling factor the ratio of the median intensity in the QC of the corresponding batch over the median QC intensity across batches (4). Moreover, after each normalization, features were filtered by keeping those with a RSD &lt; 30% in QCs.</p><p><br></p><p>To monitor the performance of each data pre-processing strategy, the abundance of TUS as a function of the injection order was depicted before and after each normalization approach. In each of them, the mean plus/minus 2 and 3 times the SD were calculated and depicted for each batch independently.</p><p><br></p><p>Multivariate and HCA were performed using SIMCA v.15.0 (Umetrics, Umeå, Sweden). PCA, a non-supervised model, was used to identify patterns across samples associated to the injection order and batch after the data normalization. Autoscaling was used for all the models. HCA was performed for the samples analyzed in all batches to assess the similarity after normalization using Ward’s method to calculate the similarity between clusters. The trees were sorted by size.</p><p><br></p><p>Ref:</p><p>[1] Gromski PS, Xu Y, Kotze HL, Correa E, Ellis DI, Armitage EG, Turner ML, Goodacre R. Influence of missing values substitutes on multivariate analysis of metabolomics data. Metabolites. 2014 Jun 16;4(2):433-52. doi:10.3390/metabo4020433. PMID:24957035</p>	<p>In this study there was no identification of metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rodriguez-Coira	Villaseñor
+Study Person First Name	Juan	Alma
+Study Person Mid Initials		
+Study Person Email	juan.rodriguezvillanueva@ceu.es	almavillasenor@ceu.es
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Universidad San Pablo CEU Avda. Monteprincipe s/n 28668 Boadilla del Monte, Madrid, España.	Avda. Monteprincipe s/n 28668 Boadilla del Monte, Madrid, España.
+Study Person Affiliation	IMMA, Instituto de Medicina Molecular Aplicada, Facultad de Medicina, Universidad San Pablo CEU,	IMMA, Instituto de Medicina Molecular Aplicada, Facultad de Medicina, Universidad San Pablo CEU
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

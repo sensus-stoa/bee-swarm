@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CCO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://www.bio.ntnu.no/ontology/CCO/cco.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.87.0				2025-12-03	25.06e	2025-12-18
+Term Source Description	Cell Cycle Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13170
+Investigation Title	Peroxin Pex8 couples stress responses, antifungal tolerance and virulence regulation in Candida albicans
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-10-18
+Investigation Public Release Date	2026-03-12
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13170
+Study Title	Peroxin Pex8 couples stress responses, antifungal tolerance and virulence regulation in Candida albicans
+Study Description	<p><em>Candida albicans</em>, a World Health Organization critical-priority fungal pathogen, represents the predominant cause of candidemia. Therapeutic failure is sometimes driven by antifungal tolerance, a phenotype distinct from resistance, whose underlying mechanisms remain incompletely defined. Here, we identify the peroxisomal protein Pex8 as a key regulator of tolerance to both azoles and amphotericin B. Although neither deletion nor overexpression of <em>PEX8</em> altered minimum inhibitory concentrations, both modifications significantly reduced drug tolerance, as demonstrated by reduced fractional growth (FoG20) and impaired survival under drug pressure. Mechanistically, RNA-seq analysis revealed that <em>PEX8</em> overexpression suppresses ergosterol biosynthesis genes and reprograms stress-response pathways, providing a molecular basis for the observed azole tolerance attenuation. Complementary lipidomic profiling demonstrated that <em>PEX8</em> genetic manipulations induce extensive membrane lipid remodeling, characterized by specific alterations in ceramide and lysophospholipid subclasses, thereby revealing an ergosterol-independent mechanism underlying amphotericin B tolerance attenuation. Phenotypically, <em>PEX8</em> overexpression attenuated serum-induced hyphal morphogenesis and reduced virulence in a Galleria mellonella infection model, consistent with downregulation of hyphal-associated and virulence-related genes. Our findings establish Pex8 as a central coordinator of oxidative stress adaptation, membrane homeostasis, filamentation, and pathogenicity, revealing a promising target for combating antifungal tolerance.</p>
+Study Submission Date	2025-10-18
+Study Public Release Date	2026-03-12
+Study File Name	s_MTBLS13170.txt
+Comment[Created At]	2025-10-16T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	amphotericin B	Candida albicans	PEX8	Tolerance	Lipidomics	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_2682	http://purl.obolibrary.org/obo/NCBITaxon_5476	http://identifiers.org/ncbigene/852968	http://purl.obolibrary.org/obo/NCIT_C43414	http://purl.obolibrary.org/obo/NCIT_C153193	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	EFO	EFO	CCO	NCIT	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1128/aac.01662-25
+Study Publication Author List	Bangsheng Xi, Yongqin Wu
+Study Publication Title	Peroxin Pex8 couples stress responses, antifungal tolerance and virulence regulation in Candida albicans
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Drug amphotericin b
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13170_LC-MS___metabolite_profiling.txt	a_MTBLS13170_LC-MS___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -	Liquid Chromatography MS -
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Candida albicans&nbsp;SN250 (wild-type) and its isogenic&nbsp;mutants pex8Δ/Δ, and PEX8OE were cultured in YPD broth at 37 °C with agitation (200 rpm) to mid-log phase. Cells were treated with amphotericin B (AMB, 0.25 μg/mL) or PBS (vehicle control) for 30 minutes, generating 6 experimental groups: (1) WT + AMB, (2) WT + PBS, (3)&nbsp;pex8Δ/Δ&nbsp;+ WT, (4)&nbsp;pex8Δ/Δ&nbsp;+ PBS, (5) PEX8OE + AMB, (6) PEX8OE + PBS, each with 3 biological replicates (total n=18). Following treatment, cells were harvested by centrifugation, washed twice with ice-cold PBS, and flash-frozen in liquid nitrogen prior to storage at -80 °C for subsequent omics analyses.</p>	<p>Lipid extraction was performed using a methyl tert-butyl ether (MTBE)-based protocol. Briefly, frozen samples were spiked with a lipid internal standard mixture (e.g., Avanti SPLASH LIPIDOMIX) and homogenized with 200 μL ultrapure water and 240 μL methanol. After vortexing for 30 s, 800 μL MTBE was added to induce phase separation, followed by ultrasonication in an ice-water bath and static incubation at room temperature (30 min). Phase separation was achieved by centrifugation (14,000 x g, 15 min, 10 °C), and the upper organic phase containing lipids was collected. The lipid extracts were dried under a nitrogen stream and stored at -80 °C until LC-MS analysis.</p>	<p>Chromatographic separation was performed using reversed-phase liquid chromatography on a CSH C18 column (1.7 μm particle size, 2.1 x 100 mm; Waters) maintained at 45 °C. Lipid extracts were reconstituted in 200 μL of 90% isopropanol/acetonitrile (v/v), centrifuged (14,000 x g, 15 min, 10 °C), and 3 μL of supernatant was injected. Mobile phases consisted of (A) acetonitrile/water (6:4, v/v) and (B) acetonitrile/isopropanol (1:9, v/v), both supplemented with 0.1% formic acid and 0.1 mM ammonium formate. The gradient elution program was as follows: 30% B (0.0-2.0 min), 30-100% B (2.0-25.0 min, linear), 100% B (25.0-28.0 min), and re-equilibration at 5% B (28.0-38.0 min), with a constant flow rate of 300 μL/min.</p>	<p>Mass spectrometric data were acquired in both positive and negative ionization modes using a Q Exactive Plus hybrid quadrupole-Orbitrap mass spectrometer (Thermo Scientific) equipped with an electrospray ionization (ESI) source. The ESI parameters were optimized as follows: ion source temperature, 300 °C; capillary temperature, 350 °C; ion spray voltage, 3.0 kV; and S-lens RF level, 50%. Full-scan spectra were collected over a mass range of&nbsp;200-1800 m/z with a resolving power of 70,000 (at&nbsp;m/z&nbsp;200) in profile mode. Instrument calibration was performed weekly using a Pierce LTQ ESI Positive and Negative Ion Calibration Solution (Thermo Scientific) to ensure mass accuracy &lt;2 ppm.</p>	<p>In this project, mass spectrometry data were statistically analyzed using the commercial software LipidSearch (developed by Thermo Fisher Scientific), which includes a built-in database containing more than 30 lipid classes and over 1,500,000 fragment ions. Lipid identification was performed based on this database.</p>	<p>Lipid species were identified using&nbsp;LipidSearch software (version 4.2, Thermo Scientific)&nbsp;with a curated database encompassing &gt;30 lipid classes (e.g., phospholipids, sphingolipids, sterols) and &gt;1.5 million annotated MS/MS spectra. Identification criteria included: 5 ppm mass accuracy thresholds for both precursor and fragment ions, retention time alignment (±0.3 min) and HCD-specific fragmentation patterns.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Wu
+Study Person First Name	Yongqin
+Study Person Mid Initials	
+Study Person Email	yongqinwu2020@ustc.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Department of Laboratory Medicine, The First Affiliated Hospital of USTC, Division of Life Sciences and Medicine, University of Science and Technology of China
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

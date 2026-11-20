@@ -1,0 +1,117 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2026-05-27	3.95.0			1.0.1		2026-07-12	26.02d	2026-07-27
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15399
+Investigation Title	AMOTL2 controls germ layer specification through glutamine metabolism in human pluripotent stem cells
+Investigation Description	
+Investigation Submission Date	2026-08-19
+Investigation Public Release Date	2026-11-18
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15399
+Study Title	AMOTL2 controls germ layer specification through glutamine metabolism in human pluripotent stem cells
+Study Description	Emerging evidence highlights metabolic dynamics as instructive signals for differentiation, yet their mechanistic role in human germ layer specification remains poorly understood. Here, we identify AMOTL2, a cortical scaffolding protein, as a regulator of germ layer commitment in hPSCs, whose depletion preferentially promotes ectoderm formation. Although AMOTL2 loss disrupts F-actin organization and activates YAP1, neither interventions alter lineage outcomes, implicating a non-canonical mechanism. Instead, AMOTL2 loss elevates OXPHOS and glycolysis, generating NAD+ surplus that allosterically activates glutamate dehydrogenase (GDH), driving α-ketoglutarate (α-KG) and GABA accumulation in hPSCs. During differentiation, accumulated GABA is consumed through the GABA shunt, depleting α-KG required for endoderm specification and shifting the α-KG/succinate ratio toward ectodermal fate. Glutaminase inhibition rescued endoderm commitment in KO, GDH inhibition produced a partial rescue of the same phenotype and GDH stimulation in WT cells recapitulated the ectodermal bias, functionally validating this axis. Reciprocally, OXPHOS inhibition restored AMOTL2 expression, suggesting a feedback loop coupling mitochondrial activity to lineage balance. This study establishes a NAD+ - GDH -GABA shunt cascade as a metabolic determinant of human germ layer fate.
+Study Submission Date	2026-08-19
+Study Public Release Date	2026-11-18
+Study File Name	s_MTBLS15399.txt
+Comment[Created At]	2026-08-07
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-11-18
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific LTQ Orbitrap	Homo sapiens	Cell Culture	cell	untargeted analysis	stem cell	untargeted metabolite profiling	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000644	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/NCIT_C16396	http://purl.obolibrary.org/obo/CL_0000000	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/CL_0000034	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon	NCIT	CHMO	MS	EFO	MSIO	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Anna Jedrzejak, Malgorzata Grabowska, Maciej Lalowski, Malgorzata Borowiak
+Study Publication Title	AMOTL2 controls germ layer specification through glutamine metabolism in human pluripotent stem cells.
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype	Developmental stage
+Study Factor Type	EFO:genotype	EFO:developmental stage
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS	MTBLS
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15399_LC-MS_alternating_hilic-1.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - HILIC
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Untargeted metabolomics was performed at the FIMM-Helsinki Metabolomics unit for wild-type (WT) and AMOTL2 knockout (KO) human pluripotent stem cells (hPSCs) and definitive endoderm (DE) cells. 4 biological replicates from each genotype and differentiation stage (2x10^6 cells in each condition) were thawed on ice and 400 µl of extraction solvent (40:40:20; Acetonitrile:Methanol:Water) was added to each sample tube.</p>	<p>Samples were reconstituted in 40 µl extraction solvent and transferred to LC-MS vials. Any leftover pellets were stored in a -80°C freezer. A pooled QC sample was prepared by combining 4 µl of each sample. Relative metabolomics profiling was performed as described before (Xing et al., 2024). 2 μl of samples were injected into Thermo Vanquish UHPLC coupled with Q-Exactive Orbitrap quadrupole mass spectrometer equipped with a heated electrospray ionization (H-ESI) source probe (Thermo Fisher Scientific). A SeQuant ZIC-pHILIC (2.1 × 100 mm, 5-μm particle) column (Merck) was used for chromatographic separation. The gradient elution was carried out with a flow rate of 0.100 mL/min using 20 mM ammonium hydrogen carbonate in 100% water, adjusted to pH 9.4 with ammonium solution (25%) as mobile phase A and acetonitrile 100% as mobile phase B. The gradient elution was initiated from 20% Mobile phase A and 80% mobile phase B, and maintained till 2 min; after that, 20% Mobile phase A gradually increased up to 80% till 17 min, then reversed to the initial condition at 17.1 min and was maintained until 24 min. The column oven and auto-sampler temperatures were set to 40 ± 3 and 5 ± 3°C, respectively.&nbsp;</p>	<p>Metabolomics data processing and integration were performed with the TraceFinder 4.1 software (Thermo Fisher Scientific) using confirmed retention times from 463 metabolite standards (MSMLS-1EA, Merck). The data quality was monitored throughout the run using in-house serum samples as Quality Control (QC) interspersed throughout the run after every 10th sample. The detected metabolites were checked for peak quality (poor chromatograph), QC % RSD (20% cutoff), and background (20% cutoff). Metabolomics data were normalized to total signal intensity.</p>	<p>Sample extraction was done with three cycles of sonication (60 sec) and vortexing (120 sec). Next, the samples were centrifuged at 14,000 rpm for 10 min at +4°C, after which the supernatants (350 µl) were transferred to evaporation tubes and evaporated dry under nitrogen stream.</p>	<p>Following settings were used for MS: polarity switching; resolution of 35,000, the spray voltages: 4250 V for positive and 3250 V for negative mode; the sheath gas: 25 arbitrary units (AU); the auxiliary gas: 15 AU; sweep gas flow 0; capillary temperature: 275 °C; S-lens RF level: 50.0. The MS was operated in full scan range at 55-825 <em>m/z</em>. Instrument control was guided with the Xcalibur 4.1.31.9 software (M/s Thermo Fisher Scientific, Waltham, MA, USA).</p>	<p>The following preprocessing steps were performed on the metabolomics data:&nbsp;(1) Metabolites with missing values across all samples or completely missing values for one group were removed; (2) Imputation of missing values was performed using the missForest algorithm (Stekhoven and Bühlmann, 2012); and (3) All values were log2-transformed. Differential abundance analysis was performed using the limma package (Ritchie et al., 2015). Briefly, mixed-effects models, treating technical replicates as random effects, were fit for each metabolite to compute the change in abundance from hPSC to DE stage, and between WT and AMOTL2 KO cells. All analyses were performed in R (version 4.3.2).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Blaszczyk	Borowiak
+Study Person First Name	Katarzyna	Malgorzata
+Study Person Mid Initials		
+Study Person Email	katarzyna.blaszczyk@amu.edu.pl	malgorzata.borowiak@amu.edu.pl
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Faculty of Biology UAM ul. Uniwersytetu Poznanskiego 6, 61-614 Poznan	Faculty of Biology UAM, ul. Uniwersytetu Poznanskiego 6, 61-614 Poznan
+Study Person Affiliation	Department of Gene Expression Institute of Molecular Biology and Biotechnology	Department of Gene Expression, Institute of Molecular Biology and Biotechnology
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0003-1832-1868	0000-0002-5829-1213
+Comment[Study Person Affiliation ROR ID]	https://ror.org/04g6bbq64	https://ror.org/04g6bbq64
+Comment[Study Person Alternative Email]		malgorzata.borowiak@amu.edu.pl

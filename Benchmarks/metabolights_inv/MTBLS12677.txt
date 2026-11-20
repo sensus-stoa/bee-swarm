@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version						
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12677
+Investigation Title	Metabolomic Profiling Reveals Key Metabolic Alterations in MCF7 Tamoxifen-Resistant Cells Following EPAS1 Inhibition
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-04
+Investigation Public Release Date	2025-07-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12677
+Study Title	Metabolomic Profiling Reveals Key Metabolic Alterations in MCF7 Tamoxifen-Resistant Cells Following EPAS1 Inhibition
+Study Description	<p>This study aims to investigate the metabolic alterations associated with acquired tamoxifen (TAM) resistance in luminal A breast cancer cells. Using untargeted LC-MS/MS metabolomics, we compared parental MCF7 and TAM-resistant MCF7/Tam1 cells to identify key metabolic pathways affected by EPAS1 (HIF-2α)-mediated hypoxia-driven reprogramming. The study further evaluates the impact of EPAS1 inhibition by PT2977 on the reversal of these metabolic changes and restoration of TAM sensitivity.</p>
+Study Submission Date	2025-07-04
+Study Public Release Date	2025-07-04
+Study File Name	s_MTBLS12677.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	breast cancer	MCF7	tamoxifen
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0000305	http://www.ebi.ac.uk/efo/EFO_0001203	http://purl.obolibrary.org/obo/CHEBI_41774
+Study Design Type Term Source REF	MTBLS			
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Enzhi Luo, Neeraj manvi agarwal, Junjeong Choi
+Study Publication Title	Metabolomic Profiling Reveals Key Metabolic Alterations in MCF7 Tamoxifen-Resistant Cells Following EPAS1 Inhibition
+Study Publication Status	Accepted
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C62559
+Study Publication Status Term Source REF	NCIT
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12677_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Cells were cultured under standard conditions and harvested from four experimental groups (MCF7, MCF7/Tam1, MCF7/Tam1 + PT2977 1 μM, and MCF7/Tam1 + PT2977 10 μM) for metabolite extraction.</p><p><br></p>	<p>Metabolite extraction was performed using 80% methanol at -20°C for 2 hours. After vortexing and centrifugation, supernatants were dried, reconstituted in 0.1% formic acid, and used for LC-MS/MS analysis.</p><p><br></p>	<p>Metabolites were separated on a PepMap RSLC C18 column using a gradient of 0.1% formic acid in water (solvent A) and 80% acetonitrile with 0.1% formic acid (solvent B) at 400 nL/min over 60 minutes.</p><p><br></p>	<p>MS analysis was performed using LC-MS/MS in the range of 100–1000 m/z. Conditions included positive ion mode and high-resolution acquisition to enable untargeted metabolomic profiling.</p><p><br></p>	<p>Raw data files were converted to mzML format and normalized prior to multivariate analysis using appropriate software packages for peak detection, alignment, and feature extraction.</p><p><br></p>	<p>Metabolite features were matched against reference databases using accurate mass, retention time, and MS/MS fragmentation patterns to identify compounds with high confidence.</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	LUO
+Study Person First Name	ENZHI
+Study Person Mid Initials	
+Study Person Email	eunji312@yonsei.ac.kr
+Study Person Phone	821077251413
+Study Person Fax	
+Study Person Address	85 Songdogwahak-ro, Yeonsu-gu, Incheon 21983, Republic of Korea
+Study Person Affiliation	Yonsei University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

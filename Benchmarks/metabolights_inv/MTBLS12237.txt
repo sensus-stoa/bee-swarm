@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		2025-10-21	3.88.0				2025-12-03	25.06e	2025-12-18	2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS12237
+Investigation Title	Cars2-Mediated Cysteine Catabolism Drives Brown Fat Development and Thermogenesis Through Persulfidating EBF2.
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-02-18
+Investigation Public Release Date	2026-03-24
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12237
+Study Title	Cars2-Mediated Cysteine Catabolism Drives Brown Fat Development and Thermogenesis Through Persulfidating EBF2.
+Study Description	Targeting transcriptional regulatory complexes represents a promising strategy for activating thermogenic fat and treating obesity. In this study, we focused on identifying critical, specific metabolic pathways enriched during brown adipocyte differentiation. Through analysis of metabolomics and RNA sequencing data from precursor and mature brown and white adipocytes, we revealed that the cysteine catabolism pathway constitutes a unique metabolic process that is significantly upregulated during brown adipocyte differentiation. We further demonstrated that the cysteine persulfidation synthase Cars2, which is directly induced by EBF2, mediates cysteine catabolism and triggers brown fat protein persulfidation both in vitro and in vivo. Loss of Cars2 in thermogenic fat blocks brown fat formation, resulting in mice exhibiting reduced thermogenesis and energy expenditure. More importantly, Cars2 generates cysteine persulfide and its derivative H<sub>2</sub>S cell-autonomously induces brown adipogenesis and enhances uncoupled respiration through persulfidation of EBF2. Mechanistically, persulfidated EBF2 facilitates its interaction with PPARγ or BRG1, enhancing recruitment of the EBF2-PPARγ complex to browning gene promoters, thereby driving brown fat development and boosting thermogenic activity. Furthermore, treatment with the Cars2 coenzyme PLP or an H<sub>2</sub>S donor enhances brown adipocyte function and alleviates obesity progression in mice fed a high-fat diet, indicating a novel metabolite-based strategy for obesity treatment.
+Study Submission Date	2025-02-18
+Study Public Release Date	2026-03-24
+Study File Name	s_MTBLS12237.txt
+Comment[Created At]	2025-02-18T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	Brown Adipose Tissue
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C32235
+Study Design Type Term Source REF	MTBLS	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	41849685
+Study Publication DOI	10.1002/advs.202522690
+Study Publication Author List	Peng X, Song H, Long Y, Wu K, Fu Y, Zhou W, Li W, Shi Z, Zhao XY.
+Study Publication Title	Cars2-Mediated Cysteine Catabolism Drives Brown Fat Development and Thermogenesis Through Persulfidating EBF2.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Timepoint
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12237_LC-MS_alternating_reverse-phase_metabolite_profiling.txt	a_MTBLS12237_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Brown adipocyte (BAC) was collected at day 0 and day 6 during differentiation. Cells were scraped in PBS, and the cell pellet were acquired by centrifuge at 1000 rpm, 5 min, 4 °C. The cell pellets were quickly frozen by liquid nitrogen and stored at -80 °C until metabolite detection.</p>	<p>The sample was thawed on ice, then mixed with 500 µL of 80% methanol/water (precooled at -20 °C) and vortexed for 2 min under the condition of 2500 rpm. The sample was frozenin liquid nitrogen for 5 min, removed on ice for 5 min, after that, the sample was vortexed for 2 min. The previous step was repeated for 3x times. The sample was centrifuged at 12,000 rpm for 10 min at 4 °C. Take 300 μL of supernatant into a new centrifuge tube and place the supernatant in -20 °C refrigerator for 30 min. Then the supernatant was centrifuged at 12,000 rpm for 10 min at 4 °C. After centrifugation, transfer 200 μL of supernatant through Protein Precipitation Plate for further LC-MS analysis.</p>	<p>The sample extracts were analyzed using an LC-ESI-MS/MS system. The analytical conditions were as follows: RP assay: column, Waters ACQUITY UPLC HSS T3 C18 (100 mm x 2.1 mm, 1.8 µm); solvent system, water with 0.05% formic acid (A), acetonitrile with 0.05% formic acid (B). The gradient was started at 5% B (0.0 min), increased to 95% B (8.0-9.5 min), finally ramped back to 5% B (9.6-12.0 min); flow rate, 0.35 mL/min; temperature, 40 °C; injection volume, 2 μL. HILIC assay: column, ACQUITY UPLC BEH Amide (2.1 x 100 mm, 1.7 μm); solvent system, water with 10 mM Ammonium acetate and 0.3% Ammonium hydroxide (A), 90% acetonitrile/water (v/v) (B); The gradient was started at 95% B (0.0-1.2 min), decreased to 70% B (8.0 min), 50% B (9.0-11.0 min), 53 finally ramped back to 95% B (11.1-15.0 min); flow rate, 0.4 mL/min; temperature, 40 °C; injection volume, 2 μL.</p>	<p>AB 6500+ QTRAP LC-MS/MS System, equipped with an ESI Turbo Ion-Spray interface, operating in both positive and negative ion modes and controlled by Analyst 1.6 software (AB Sciex). The ESI source operation parameters were as follows: ion source, turbo spray; source temperature 550 °C; ion spray voltage (IS) 5500 V (positive), -4500 V (negative); curtain gas (CUR) was set at 35 psi; DP and CE for individual MRM transitions was done with further DP and CE optimization. A specific set of MRM transitions were monitored for each period according to the plant hormones eluted within this period.</p>	<p>The raw LC-MS data underwent retention time correction, peak identification and peak alignment using MultiQuant 3.0.3. Subsequently, a data matrix containing information on retention time, mass-to-charge ratio and peak intensity was obtained. The MS and MS/MS mass spectrometry information was compared with the Human Metabolome Database (HMDB) (http://www.hmdb.ca) and KEGG database (https://www.kegg.jp), among others. The MS mass error threshold was set to be less than 10 ppm, and metabolites were identified based on the secondary mass spectrometry matching score. The detected compounds were verified manually. The stability of the internal standard was assessed by checking whether the z-score values fell within 2x times the standard deviation. Finally, the data were analyzed in both positive and negative ion modes.</p>	<p>All those metobolites were detected by MetWare (http://www.metware.cn) based on the AB Sciex QTRAP 6500 LC-MS/MS platform.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Song	Peng	Zhao
+Study Person First Name	Hongyong	Xin	Xuyun
+Study Person Mid Initials			
+Study Person Email	hysong2003@126.com	1262241309@qq.com	xuyunzhao@shsmu.edu.cn
+Study Person Phone	+86-021-63846590-776540	+86-021-63846590-776540	+86-021-63846590-776538
+Study Person Fax			
+Study Person Address	280 Chongqing South Rd, Shanghai, China	280 Chongqing South Rd, Shanghai, China	280 Chongqing South Rd, Shanghai, China
+Study Person Affiliation	Shanghai Jiao Tong University School of Medicine	Shanghai Jiao Tong University School of Medicine	Shanghai Jiao Tong University School of Medicine
+Study Person Roles	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

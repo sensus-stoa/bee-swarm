@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	GO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	WBPhenotype	mesh
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/wbphenotype.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	252	2025-10-21	3.90.0	2026-03-25				2026-05-13	26.02d	2026-05-08	2026-04-15	2025
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	C elegans Phenotype Ontology	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS12806
+Investigation Title	Selective profiling of translationally active tRNAs and their dynamics under stress
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-01
+Investigation Public Release Date	2026-06-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12806
+Study Title	Selective profiling of translationally active tRNAs and their dynamics under stress
+Study Description	<p>During translation, transfer RNAs (tRNAs) deliver specific amino acids to the ribosome in a coordinated manner with the sequence encoded by the mRNA. Despite their central role in protein synthesis, the precise contribution of tRNAs to the modulation of translation remains poorly understood, primarily due to lack of methods to characterise tRNA abundances and their modifications from actively translating ribosomes. Here we develop RiboNano-tRNAseq, a novel method to quantify native ribosome-associated tRNAs (ribo-tRNAs) from actively translating ribosomes, achieved by coupling tag-free pulldown of active ribosomes with native tRNA nanopore sequencing. Applying RiboNano-tRNAseq, we investigate how the ribosome-associated tRNAome varies under diverse stress conditions. Our work reveals highly tailored tRNA responses depending on the stress type. For example, under leucine starvation, we observe enrichment of a subset of tRNALeu isoacceptors in ribo-tRNAs. By contrast, methionine starvation leads to a decrease in methyl-based tRNA modifications, such&nbsp; as m1A or m2,2G, reflecting the decreased availability of the methyl donor S-adenosylmethionine (SAM). Strikingly, arsenite starvation does not affect tRNA modification profiles, but instead causes a drastic fragmentation of tRNAs, predominantly within ribosome-associated tRNAs. Altogether, our work findings demonstrate that RiboNano-tRNAseq enables comprehensive characterization of the tRNAome and its dynamics by simultaneously capturing tRNA abundance, modification and fragmentation patterns, both in total and actively translating tRNA pools.</p>
+Study Submission Date	2025-08-01
+Study Public Release Date	2026-06-25
+Study File Name	s_MTBLS12806.txt
+Comment[Created At]	2025-07-30
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-25
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	mass spectrometry	tRNA modification	Methionine	nucleoside	Thermo Scientific EASY-nLC 1200 System (UPLC)	Thermo Scientific Orbitrap Eclipse Tribid	Homo sapiens	MCF-7	experimental blank	untargeted analysis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/GO_0006400	http://id.nlm.nih.gov/mesh/D008715	http://purl.obolibrary.org/obo/CHEBI_33838	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000908		http://purl.obolibrary.org/obo/NCBITaxon_9606	http://www.ebi.ac.uk/efo/EFO_0001203		http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MTBLS	CHMO	GO	mesh	CHEBI	MTBLS		NCBITaxon	EFO		MS
+Comment[Study Design Category]						Chromatography Instrument	Instrument	Organism	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Hasan Yilmaz, Mie Monti, Alessia Del Piano, Michele Arnoldi, Isabelle Bonomo, Laia Llovera, Massimiliano Clamer, Eva Maria Novoa
+Study Publication Title	Selective profiling of translationally active tRNAs and their dynamics under stress
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment	TIMEPOINT
+Study Factor Type	treatment	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12806_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>For methionine deprivation, MCF-7 cells at ~70% confluency were washed with pre-warmed PBS and incubated in methionine-free medium (MFM) for 6–16 hours. MFM was prepared using methionine-free DMEM (Thermo Fisher, cat. no: 21013024), supplemented with 10% dialyzed FBS (Gibco, cat. no: A3382001) and 1% (v/v) penicillin–streptomycin (Thermo Fisher, cat. no: 15140122). Control medium was generated by supplementing MFM with L-methionine to a final concentration of 0.2 mM (Thermo Fisher, cat. no: J6190418). All experimental and control conditions were prepared in parallel and maintained under identical incubation parameters.</p><p><br></p>	<p>Ribosomes for the ribo-Embedded tRNAs were isolated using the RiboLace kit (Immagina Biotechnology S.r.l., cat. no: GF001-12), following manufacturer’s recommendations. RNA was then eluted from ribosomes using the following RNA Clean &amp; ConcentratorTM-5 kit (Zymo catalog. No. R1015 or R1016) according to manufacturer instructions, with a modification: 200 uL of Zymo RNA Binding Buffer was added directly to the beads, followed by thorough mixing. Recovered RNA was quantified at 260 nm using a Nanodrop ND-1000 UV-VIS Spectrophotometer, and RNA integrity and size were assessed via 15% TBE-UREA gels and/or Agilent 4200 TapeStation RNA HS ScreenTape Assay (cat. no: 5067-5579).&nbsp;&nbsp;100 ng of small RNA (&lt;200 nt) fraction, separated as described above, were digested with 1 μl of the Nucleoside Digestion Mix (New England BioLabs, M0649S) and the mixture was incubated at 37 ºC for 1 h. </p><p><br></p>	<p>Samples were analyzed using an Orbitrap Eclipse Tribrid mass spectrometer (Thermo Fisher Scientific, San Jose, CA, USA) coupled to an EASY-nLC 1200 (Thermo Fisher Scientific (Proxeon), Odense, Denmark). Ribonucleosides were loaded directly onto the analytical column and were separated by reversed-phase chromatography using a 50-cm column with an inner diameter of 75 μm, packed with 2 μm C18 particles (Thermo Fisher Scientific, cat ES903). Chromatographic gradients started at 93% buffer A and 3% buffer B with a flow rate of 250 nl/min for 5 minutes and gradually increased to 30% buffer B and 70% buffer A in 20 min. After each analysis, the column was washed for 10min with 0% buffer A and 100% buffer B. Buffer A: 0.1% formic acid in water. Buffer B: 0.1% formic acid in 80% acetonitrile.</p>	<p>The mass spectrometer was operated in positive ionization mode with nanospray voltage set at 2.4 kV and source temperature at 275°C. For the Parallel Reaction Monitoring (PRM) method, the quadrupole isolation window was set to 1.4 m/z, and MS/MS scans were collected over a mass range of m/z 50-450, with detection in the Orbitrap at the resolution of 60,000. MSMS fragmentation of defined masses with schedule retention time was performed using HCD at NCE 20, the auto gain control (AGC) was set to “Standard” and a maximum injection time of 118 ms was used. In each PRM cycle, one full MS scan at a resolution of 120,000 was acquired over a mass range of m/z 220-700 with detection in the Orbitrap mass analyzer. Auto gain control (AGC) was set to 1e5 and the maximum injection time was set to 50 ms.&nbsp; </p>	<p>Acquired data were analyzed with the Skyline-daily software (v24.1.1.254) and extracted precursor areas of the ribonucleosides were used for quantification.</p><p><br></p>	<p>Serial dilutions were prepared using commercial pure ribonucleosides (0.005-150 pg, Carbosynth, Toronto Research Chemicals) in order to establish the linear range of quantification and the limit of detection of each compound. A mix of commercial ribonucleosides was injected before and after each batch of samples to assess instrument stability and to be used as an external standard to calibrate the retention time of each ribonucleoside.&nbsp; </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yilmaz	Monti	Del Piano	Arnoldi	Bonomo	Llovera	Clamer	Novoa
+Study Person First Name	Hasan	Mie	Alessia	Michele	Isabelle	Laia	Massimiliano	Eva Maria
+Study Person Mid Initials								
+Study Person Email	hasan.yilmaz@immaginabiotech.com	mie.monti@crg.eu	alessia.delpiano@immaginabiotech.com	michele.arnoldi@immaginabiotech.com	isabelle.bonomo@immaginabiotech.com	laia.llovera@crg.eu	massimiliano.clamer@immaginabiotech.com	eva.novoa@crg.eu
+Study Person Phone								
+Study Person Fax								
+Study Person Address								
+Study Person Affiliation							IMMAGINA Biotech	Centre for Genomic Regulation
+Study Person Roles	first author	first author	Author	Author	Author	Author	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	MS	MS	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]								https://ror.org/03wyzt892

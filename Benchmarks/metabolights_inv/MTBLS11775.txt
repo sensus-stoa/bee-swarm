@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	Location	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	OMIT	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/omit.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version													
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Ontology for MicroRNA Target	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11775
+Investigation Title	LC-MS analysis of faecal extracts obtained during colorectal cancer resectional surgery
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-29
+Investigation Public Release Date	2025-07-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11775
+Study Title	LC-MS analysis of faecal extracts obtained during colorectal cancer resectional surgery
+Study Description	<p>A prospective observational pilot study from right-sided colorectal cancer (RCRC) patients was performed at Imperial College London NHS Trust, UK. Treatment naïve patients undergoing elective resectional surgery for primary RCRCs were recruited. Fresh intra-luminal fecal samples were obtained at three anatomical sites: 5 cm pre-, tumour, and 5 cm post-tumour. Samples were analysed by liquid chromatography-mass spectrometry.&nbsp; [1]</p><p><br></p><p>[1] Petra Paizs, Duncan Roberts, Nathan Danckert, James Lewis, Maria Sani, Marta Jamroziak, Robert Goldin, Julian Marchesi, Lauren Ford, James Alexander, Zoltan Takats, James Kinross. Gut microbial co-metabolism influences the tumor microenvironment [abstract]. In: Proceedings of the American Association for Cancer Research Annual Meeting 2022; 2022 Apr 8-13. Philadelphia (PA): AACR; Cancer Res 2022;82(12_Suppl):Abstract nr 3056.</p>
+Study Submission Date	2024-11-29
+Study Public Release Date	2025-07-11
+Study File Name	s_MTBLS11775.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Mass Spectrometry	metabolomic profiling	Liquid Chromatography Mass Spectrometry	Feces
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0013943	http://www.ebi.ac.uk/efo/EFO_0000752	http://purl.obolibrary.org/obo/NCIT_C18475	http://purl.obolibrary.org/obo/NCIT_C13234
+Study Design Type Term Source REF	OMIT	EFO	NCIT	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID		
+Study Publication DOI		10.1158/1538-7445.AM2022-3056
+Study Publication Author List	Wei Chen, Min Qiu, Petra Paizs, Miriam Sadowski, Toma Ramonaite, Lieby Zborovsky, Raquel Mejias-Luque, Klaus-Peter Janßen, James Kinross, Robert D. Goldin, Monica Rebec, Manuel Liebeke, Zoltan Takats, James S. McKenzie, Nicole Strittmatter	Paizs Petra, Roberts Duncan, Danckert Nathan, Lewis James, Sani Maria, Jamroziak Marta, Goldin Robert, Marchesi Julian, Ford Lauren, Alexander James, Takats Zoltan, Kinross James
+Study Publication Title	Universal, untargeted detection of bacteria in tissues using metabolomics workflow	Abstract 3056: Gut microbial co-metabolism influences the tumor microenvironment
+Study Publication Status	submitted	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO	EFO
+STUDY FACTORS
+Study Factor Name	Sample anatomical location	Patient	Gender	Sampling date	Age at sampling
+Study Factor Type	Location	Patient	Gender	timepoint	age
+Study Factor Type Term Accession Number	http://www.w3.org/ns/prov#Location	http://purl.obolibrary.org/obo/NCIT_C16960	http://purl.obolibrary.org/obo/NCIT_C17357	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000246
+Study Factor Type Term Source REF	Location	NCIT	NCIT	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11775_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Faecal samples were collected in a prospective observational pilot study performed at Imperial College London NHS Trust, UK. Patients undergoing elective surgical resection for primary Right-sided colorectal cancers (RCRCs)&nbsp;were prospetively recruited, and all were treatment naïve and had not been pretreated with mechanical bowel preparation. Patients undergoing resectional surgery have consented under Imperial College London Tissue Bank (SUR_JK_17_046 PI: Mr. James Kinross). Faecal samples were collected from three anatomical sites: 5 cm pre-, tumour, and 5 cm post-tumour. The faecal samples were immediately stored at -80 °C until analysis.</p>	<p>Faecal samples underwent a monophasic isopropanol (IPA) extraction modified from Sarafian et al<strong>[1]</strong>. Pre-cooled IPA in a 1:5 (v/v) sample/solvent ratio was added to each Eppendorf of the pooled faecal samples. Faecal samples in IPA were vortexed for 1 minute and incubated for 2 hours at 4 °C. Five steel beads were added for bead beating (BertinTechnologies) at 6500 G, 2x45 seconds. The samples were then vortexed for one minute and placed at 4 °C for protein precipitation overnight and then centrifuged (Eppendorf, Centrifuge5417R, Germany) at 14,000 G for 10 minutes at 4 °C. The supernatant was transferred into a clean 2 ml Eppendorf vial, and the centrifugation step was repeated at 14,000 G for 10 minutes at 4 °C. The supernatant was transferred into a Waters Polypropylene Screw Neck Vial, 12 x 32 mm, 300 μL HPLC vial (Waters Corporation, UK) for UHPLC-MS analysis and stored at - 80 °C. Furthermore, a quality control (QC) and blank samples were prepared to monitor the performance of the instrument throughout the analysis. Samples were acquired by UHPLC-MS using previously published analytical and quality control procedures to generate high-quality datasets<strong>[2-4]</strong>.</p><p><br></p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Sarafian, M. H. et al. Objective set of criteria for optimization of sample preparation procedures for ultra-high throughput untargeted blood plasma lipid profiling by ultra performance liquid chromatography–mass spectrometry. Analytical chemistry 86, 5766-5774 (2014).</p><p><strong>[2]</strong> Izzi-Engbeaya, C. et al. The effects of kisspeptin on cell function, serum metabolites and appetite in humans. Diabetes, Obesity and Metabolism 20, 2800-2810 (2018).</p><p><strong>[3]</strong> Lewis, M. et al. An open platform for large scale LC-MS-based metabolomics.&nbsp;doi:10.26434/chemrxiv-2022-nq9k0 (2022).</p><p><strong>[4]</strong> Lewis, M. R. et al. Development and application of ultra-performance liquid chromatography-TOF MS for precision large scale urinary metabolic phenotyping. Analytical chemistry 88, 9004-9013 (2016).</p>	<p>Assays comprised a reversed-phase chromatography tailored for the separation of lipophilic analytes (e.g., complex and neutral lipids) in both positive and negative ion modes. Following extraction, the samples were defrosted for 2 hours at 4 °C and centrifuged at 3896g for 10 minutes, 4 °C. An 80 µL aliquot of each sample was taken to create a pooled QC sample (study reference, SR). All samples were diluted 1:1 by adding a H2O: IPA 1:4 containing standards (LPC(9:0/0:0); PC(11:0/11:0); FA(17:0); PE(15:0/15:0); PA(17:0/17:0); PG(15:0/15:0); PS(17:0/17:0); Cer(d18:1/17:0); DG(19:0/0:0/19:0); PC(23:0/23:0); TG(15:0/15:0/15:0); TG(17:0/17:0/17:0)), vortexed 10 seconds, shaken for 5 minutes at 1400rpm at 4 °C. Samples were then centrifuged for 10 minutes at 3896 g at 4 °C and split into two vials, one for each polarity.&nbsp;An additional set of SR sample dilutions was created (10x 100%, 5x 80%, 3x 60%, 3x 40%, 5x 20%, 10x 1%). The SR sample was injected at regular intervals throughout the analytical run to ensure system stability and for subsequent pre-processing. The SR sample dilutions were analysed at the start and end of the sample analyses for assessment of analyte response. Samples were acquired in an order randomised against key study design elements. 2 µL of the sample were injected for negative polarity and 1 µL for positive polarity onto a Waters Acquity UPLC BEH C8, 1.7 µm, 2.1 × 100 mm column (Waters Corp., Milford, MA, USA) at 55 °C using an ACQUITY UPLC system (Waters Corp., Milford, MA, USA).&nbsp;The mobile phase’s composition was as follows: A) water:isopropanol: acetonitrile (2:1:1), 5 mM ammonium acetate, 0.05% acetic acid, 20 µM phosphoric acid; B) isopropanol: acetonitrile 1:1 , 5 mM ammonium acetate, 0.05% acetic acid. Each sample was resolved for 13.15 min at a flow rate of 0.6 mL/min. Starting conditions were 1% B, the gradient increased to 30% B over the first 2 min, followed by an increase to 90% B from 2 to 11.50 min, increased to 99.9% B from 11.50 to 12 min while increasing the flow rate to 1 mL/min, staying at 99.9% B for 0.5 min, the solvent composition then returned to starting conditions over 0.25 min until 15 min</p>	<p>The UPLC was linked to a Xevo G2-S oaTOF MS (Waters Corp., Manchester, UK) coupled via a Zspray electrospray ionization (ESI) source. The capillary voltage was set to 1.5 kV for negative polarity, and the sampling cone voltage to 25 V. The desolvation temperature was set to&nbsp;600 °C 1000 L/h, the desolvation gas flow to 1000 L/h, source temperature to 120 °C and cone gas flow of 150 L/h. Accurate mass was maintained by acquisition of LockSpray interface of Leucine Enkephalin (m/z 236.1035 and 554.2615 in ESI−) at a concentration of 600 pg/μL in 1:1 H2O: Acetonitrile, scan time of 0.15 s over 4 scans, and an interval of 60 s. Data were collected from 50 to 2000 m/z in centroid mode.</p>	<p>Raw data were converted to mzML format using ProteoWizard MSConvert (v3.0.24066-8d99481).</p><p><br></p>	<p>FA(16:0) and FA(18:0) have been identified based on comparison to standards run under the same conditions.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Paizs	Takats	Kinross
+Study Person First Name	Petra	Zoltan	James
+Study Person Mid Initials			
+Study Person Email	petra.paizs14@imperial.ac.uk		j.kinross@imperial.ac.uk
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	Imperial College London		
+Study Person Roles	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

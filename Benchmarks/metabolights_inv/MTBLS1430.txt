@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	CHEBI	NCBITAXON	BAO	BTO	UO	EFO	CHMO	OBI	EFO	MS
+Term Source File	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/MS
+Term Source Version	1.0	147	2	35	34	180	113	5	22	195	86
+Term Source Description	Metabolights Ontology	Chemical Entities of Biological Interest Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology	Units of Measurement Ontology	Experimental Factor Ontology	Chemical Methods Ontology	Ontology for Biomedical Investigations	Experimental Factor Ontology	Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1430
+Investigation Title	Supplemental data for Highly sensitive feature detection for high resolution LC/MS
+Investigation Description	
+Investigation Submission Date	2019-12-25
+Investigation Public Release Date	2020-01-15
+Comment[Created With Configuration]	/vol/bioinvindex/ISAcreator-Dropbox/Configurations/MetaboLightsConfig20120129
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1430
+Study Title	Highly sensitive feature detection for high resolution LC/MS
+Study Description	<p><strong>BACKGROUND:</strong> Liquid chromatography coupled to mass spectrometry (LC/MS) is an important analytical technology for e.g. metabolomics experiments. Determining the boundaries, centres and intensities of the two-dimensional signals in the LC/MS raw data is called feature detection. For the subsequent analysis of complex samples such as plant extracts, which may contain hundreds of compounds, corresponding to thousands of features -- a reliable feature detection is mandatory.</p><p><strong>RESULTS:</strong> We developed a new feature detection algorithm centWave for high-resolution LC/MS data sets, which collects regions of interest (partial mass traces) in the raw-data, and applies continuous wavelet transformation and optionally Gauss-fitting in the chromatographic domain. We evaluated our feature detection algorithm on dilution series and mixtures of seed and leaf extracts, and estimated recall, precision and F-score of seed and leaf specific features in two experiments of different complexity.</p><p><strong>CONCLUSION:</strong> The new feature detection algorithm meets the requirements of current metabolomics experiments. centWave can detect close-by and partially overlapping features and has the highest overall recall and precision values compared to the other algorithms, matchedFilter (the original algorithm of XCMS) and the centroidPicker from MZmine. The centWave algorithm was integrated into the Bioconductor R-package XCMS and is available from (<a href='http://www.bioconductor.org/' rel='noopener noreferrer' target='_blank'>http://www.bioconductor.org/</a>).</p>
+Study Submission Date	2019-12-25
+Study Public Release Date	2020-01-15
+Study File Name	s_MTBLS1430.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	spike-in quality control role	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0001140	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	EFO	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	19040729
+Study Publication DOI	10.1186/1471-2105-9-504
+Study Publication Author List	Tautenhahn R,Bottcher C,Neumann S
+Study Publication Title	Highly sensitive feature detection for high resolution LC/MS
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Solvent Concentration	Seed Concentration	Leaf Concentration
+Study Factor Type	concentration of	concentration of	concentration of
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/PATO_0000033	http://purl.obolibrary.org/obo/PATO_0000033	http://purl.obolibrary.org/obo/PATO_0000033
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1430_sampleSet-1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS1430_sampleSet-2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS1430_sampleSet-3_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	micrOTOF-Q ESI TOF (Bruker)	micrOTOF-Q ESI-Qq-TOF (Bruker)	micrOTOF-Q ESI-Qq-TOF (Bruker)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Arabidopsis thaliana (ecotype Col-0) was grown in a phyto-chamber on a soil/vermiculite mixture (3/2) at 22 °C, 70% relative humidity and an photoperiod of 8 h per day at 100 µE/m^2/s. Rosette leaves of 20 plants were partially harvested after 6 weeks (growth stage 3.5-3.7) and pooled. Afterwards, plants were transferred to a fully climatized green house and grown at 22 °C and 60% relative humidity under a photoperiod of 16 h per day until final seed set (growth stage 9.7). Seeds of 20 plants were harvested and pooled.</p>	<p>Freshly ground Arabidopsis thaliana leaf tissue (100 ± 5 mg) was subjected twice to the following extraction procedure: mixing with 200 µl of methanol/water, 4/1 (v/v), sonication at 22 °C for 15 min and centrifugation for 10 min. Both extracts were combined and evaporated to dryness in a vacuum centrifuge at ambient temperature. The remaining residue was redissolved in 400 µl methanol/water, 3/7 (v/v), and filtered through a 0.2 µm PTFE syringe filter. 10 extracts were prepared from the leaf pool and combined.</p><p><br></p><p>Arabidopsis thaliana seeds (10 ± 0.5 mg) were homogenized in 1000 µl methanol/water, 80/20 (v/v) using 0.3 g zirconia beeds (BioSpec Products) in a MiniBeadBeater (BioSpec Products). After centrifugation 750 µl of the supernatant were evaporated to dryness in a vacuum centrifuge at ambient temperature. The remaining residue was redissolved in 750 µl methanol/water, 30/70 (v/v) and filtered through a 0.2 µm PTFE syringe filter. 10 extracts were prepared from the seed pool and combined.</p><p><br></p><p>3 sample sets were prepared as follows:</p><p><strong>Sample set 1)</strong> A mixture containing each of the 14 marker compounds (referred to as MM14) at a concentration of 20 μM was prepared and analysed by UPLC/ESI-QTOF-MS.</p><p><strong>Sample set 2)</strong> Mixtures containing solvent and seed or leaf extracts were prepared with following volume portions (solvent/seed/leaf, v/v/v): 0/100/0, 25/75/0, 50/50/0, 75/25/0, 0/0/100, 25/0/75, 50/0/50, 75/0/25. The sample set (8 samples) was analysed by UPLC/ESI-QTOF-MS in 10 technical replications.</p><p><strong>Sample set 3)</strong> Mixtures containing solvent, seed, and leaf extracts were prepared with following volume portions (solvent/seed/leaf, v/v/v): 75/0/25, 0/75/25, 0/50/50. The sample set (3 samples) was analysed by UPLC/ESI-QTOF-MS in 10 technical replications.</p>	<p>Chromatographic separations were performed on an Acquity UPLC system (Waters) equipped with a modified C18 column (HSS T3, 1.0 x 100 mm, particle size 1.8 µm, Waters) applying the following binary gradient at a flow rate of 150 µl/min: 0-1 min, isocratic 95% A (water, 0.1% formic acid), 5% B (acetonitrile, 0.1% formic acid); 1-16 min, linear from 5 to 95% B; 16-18 min, isocratic 95% B; 18-20 min, isocratic 5% B. The injection volume was 2 µl.</p>	<p>Eluted compounds were detected from m/z 100-1000 by a MicrOTOF-Q hybrid quadropole time-of-flight mass spectrometer (Bruker Daltonics) equipped with an Apollo II electrospray ion source in positive ion mode using following instrument settings: nebulizer gas, nitrogen, 1.6 bar; dry gas, nitrogen, 6 l/min, 190 °C; collision gas, argon; capillary, -6000 V; end plate offset, -500 V; collision RF 200 Vpp (50%)/400 Vpp (50%), transfer time, 70 µs; pre pulse storage, 5 µs; pulser frequency, 10 kHz; spectra rate, 3 Hz. Mass calibration was achieved by injection of 10 mM lithium formiate in isopropanol/water, 1/1 (v/v) at the end of the chromatographic gradient using a diverter valve and a separate pump.</p>	<p>Raw data was converted to mzXML with Bruker CompassXport (version 1.3.3).</p>	<p>No metabolite identification was performed.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Tautenhahn	Böttcher	Neumann
+Study Person First Name	Ralf	Christoph	Steffen
+Study Person Mid Initials			
+Study Person Email	rtautenh@gmail.com	boettch@ipb-halle.de	sneumann@ipb-halle.de
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	IPB Halle	IPB Halle	IPB Halle
+Study Person Roles	Bioinformatician	Biochemist	Bioinformatician
+Study Person Roles Term Accession Number			
+Study Person Roles Term Source REF			

@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.86.0				2025-12-03	25.06e	2025-12-18	2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS13900
+Investigation Title	Single-cell thiol profiling enabled by live-cell labeling reveals metabolic heterogeneity in ferroptosis
+Investigation Description	
+Investigation Submission Date	2026-02-14
+Investigation Public Release Date	2026-02-14
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13900
+Study Title	Single-cell thiol profiling enabled by live-cell labeling reveals metabolic heterogeneity in ferroptosis
+Study Description	<p>Raw data of both bulk and single-cell metabolomics. It includes all MS, LC-MS and LC-MS/MS raw data associated with the article 'Single-cell thiol profiling enabled by live-cell labeling reveals metabolic heterogeneity in ferroptosis'.</p>
+Study Submission Date	2026-02-14
+Study Public Release Date	2026-02-14
+Study File Name	s_MTBLS13900.txt
+Comment[Created At]	2026-02-14T05:03:40.367608
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thiol	Metabolomics	Single-Cell Analysis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C49019	http://id.nlm.nih.gov/mesh/D059010
+Study Design Type Term Source REF	MTBLS	NCIT	mesh
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Daiyu Miao1, Qiuning Li1, Yi Zhang1, Shaojie Qin1, Ying Wang2, Xiaoyun Liu2, Yu Bai1*
+Study Publication Title	Single-cell thiol profiling enabled by live-cell labeling reveals metabolic heterogeneity in ferroptosis
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Inhibitor	Probe
+Study Factor Type	treatment	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13900_DI-MS_positive__metabolite_profiling.txt	a_MTBLS13900_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Direct infusion MS - positive	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	DI-MS	LC-MS
+Comment[Assay Type]	DI-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Direct infusion	Extraction	Mass spectrometry	Metabolite identification	Chromatography
+Study Protocol Type	Sample collection	data transformation	Direct infusion	Extraction	mass spectrometry	metabolite identification	chromatography
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000			http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	http://purl.obolibrary.org/obo/CHMO_0001000
+Study Protocol Type Term Source REF		OBI	OBI	OBI	CHMO	MI	CHMO
+Study Protocol Description	<p> Thiol labeling with SMPs. For live-cell labeling, cells were incubated with 80 mM SMPs in FBS-free culture for 10 min and washed with DPBS three times both before and after SMP incubation.</p><p>In single-cell analysis, adherent and suspension cells were processed differently: adherent cells were trypsinized and resuspended in 140 mM ammonium formate buffer solution, while suspension cells were directly resuspended in the buffer solution after labeling and washing. For Cys2-d4 labeling, cells were incubated with 200 mM Cys2-d4 and 80 mM SMP2 in FBS-free and unlabeled Cys2-free culture for 10 min. Subsequent steps were performed as described for the non-isotopic experiments.</p><p>As to bulk analysis, aqueous extracts from lysates which was prepared as described above was sampled to UPLC-MS/MS. For labeling in lysates, 80 mM SMP2 was added into lysates. In case of labeling under reducing circumstance, additional 20 mM TCEP was used. In quantitative analysis, 100 nM SMP2-labeled NACA, which was obtained by mixing NACA with 10 eq. SMP2, was added into cell lysates as the IS.</p>	<p>The single-cell metabolome information could be extracted by a four-step workflow based on algorithm: format transformation, EIC extraction, single-cell event authentication and normalization. Raw data was transformed into mzML format using ThermoRawFileParserGUI (Thermo) and imported into R with the package RaMS. EICs of given metabolites were then extracted from the compressed and complex three-dimension data. The ignored values were reassigned random numbers between 0 and 1, which didn’t disturb the following processing because intense peaks were larger than 105.</p>	<p>Exactly, this is organic mass cytometry.</p>	<p>&nbsp;A 10 mm dish of cells were washed with DPBS three times when they reached approximately 70% confluency. After being quenched with 2 mL of prechilled 1:1 (V/V) methanol-water, cells were harvested and homogenized using sonic dismembrator JY92-2 (Scientz) with ice-water bath. Lysates were then centrifuged at 10,000 g for 10 min at 4 C using the centrifuge MG1650 (Merrick). The supernatant was collected as aqueous extracts while the pellets were added with 2 mL of prechilled 3:1 (V/V) dichloromethane-methanol to extract nonpolar metabolites. The same homogenization and centrifugation were performed to obtain organic extracts. Both supernatants were dried under N2 for 30 min and then evaporated at 45 C for 4 h using a centrifugal evaporator SPD111 5 (Thermo). The dried aqueous and organic extracts were stored at -80 C until UPLC-MS(/MS) analysis.</p>	<p>Cell sampling system, ESI interface and HRMS constituted the organic mass cytometer.</p><p>Prior to sampling, cells were trypsinized and resuspended in 140 mM ammonium formate buffer solution (pH = 7.3- 7.4) which kept cell alive and was MS-compatible. Cell suspension at the concentration of approximately 1E4 cell·mL–1 was magnetically stirred to maintain a homogeneous state. The suspension was pumped by pressure injection cell PC77 MAG (Next Advance) into the sampling capillary (I.D., 50 μm; O.D., 150 μm) with N2 at the pressure of 0.3 MPa. Via several loops with the diameter of 2 cm in the sampling capillary, cells were orderly arrayed and finally reached the ESI interface.</p><p>At the interface, two junctions assembled three coaxial capillaries which varied in diameters. Cell suspension flowed inside the inner capillary (sampling capillary), sheath fluid (methanol supplemented with 0.1% (V/V) formic acid in positive mode or 0.1% (V/V) ammonium hydroxide in negative mode) passed through the in-between capillary (I.D., 250 μm; O.D., 365 μm) with the flow rate of 15 μL·min–1 and sheath gas was introduced inside the outer capillary (I.D., 530 μm; O.D., 680 μm) at the pressure of 0.7 MPa. The inner capillary was approximately 2 mm shorter than the in-between capillary for sufficient mixture between cell suspension and sheath liquid. The outer capillary was approximately 5 mm shorter than the in-between capillary to maintain a steady spray. The voltage of 4.5 kV was applied between sheath liquid and the inlet of mass spectrometer for both polarity modes. Other parameters in ESI (HESI-2) were as follows: aux gas flow rate, 0; sweep gas flow rate, 0; capillary temperature, 275 C; S-lens RF level, 50.</p><p>The mass spectrometer Orbitrap Q Exactive Plus was employed in the data acquirement of single cell analysis. In MS scanning, full MS mode was selected and detailed parameters were as follows: m/z range, 80 – 1200; resolution, 70000; AGC target, 1E6; maximum injection time, 50 ms.</p>	<p> Metabolome library establishment. Both untargeted metabolome library and thiol library were established first at the population level and then at the single-cell level. </p><p>In the establishment of untargeted metabolome library, UPLC-MS/MS data from bulk HeLa cells was processed by LipidSearch 5 (Thermo) and Compound Discoverer 3.3 (Thermo) for database searching and metabolite annotation. In total, 707 lipids and 469 other metabolites were identified with MS/MS confirmation. At the single-cell level, algorithm-based metabolites scanning was performed to confine the library. In detail, single-cell events were identified as described above and peaks in EICs of the 1176 metabolites were distinguished from the baseline in the same way. Metabolites would be admitted into the single-cell library once their peaks matched with single-cell events with precision &gt; 0.3 and recall &gt; 0.1. Metabolites with the same m/z yet different retention times were distinguishable in UPLC-MS analysis but not in organic mass cytometry. Thus, they were registered as single signals. The final library (Supplementary Data 2 and 3) was shown as the union of metabolites identified in different sample. </p><p>In the establishment of thiol library, UPLC-MS/MS data from bulk HeLa cells and NE-4C cells was analyzed manually. The MS/MS spectra with SMP2-characteristic ions at m/z 315.1705 and 270.1127 were extracted from raw data. The rest fragment ions in extracted spectra were first matched with the residues of endogenous compounds, usually amino acids, and then utilized to reconstitute entire structures of thiols. At the single-cell level, only thiols in HeLa were scanned and admitted into the single-cell library in the same way as untargeted metabolome library did.</p>	<p>UPLC-MS(/MS) was performed using ACQUITY UPLC 1-Class (Waters) and Orbitrap Q Exactive Plus mass spectrometer (Thermo).</p><p>In untargeted metabolome profiling, two different columns, Amide and C8 (ACQUITY UPLC BEH, Waters, 2.1 mm×100 mm, 1.7 μm), was applied respectively in the separation of aqueous extracts and organic extracts The column temperature of C8 was set at 50°C and the other was set at 30°C. The flow rate was 0.3 mL·min–1. Binary mobile phase (A, ACN; B, 95:5 (V/V) H2O-ACN) was adopted with 0.1% (V/V) formic acid in positive-mode ESI or 0.1% (V/V) ammonium hydroxide in negative-mode ESI. In HILIC chromatography, the linear gradient was as follows: 0 min, 3% B; 1 min, 3% B; 6 min, 10% B; 20 min, 50% B; 25 min, 50% B. In reversed-phase chromatography, the linear gradient was as follows: 0 min, 0% A; 1 min, 0% A; 4 min, 40% A; 14 min, 80% A; 20 min, 99% A; 25 min, 99% A. All samples were resuspended in initial mobile phase before submitting to the UPLC-MS detection. The UPLC separation was coupled to MS/MS system via electrospray ion source HESI-2 (Thermo). The spray voltage of 3.5 kV and 4.0 kV was applied respectively in positive mode and negative mode. Other parameters in ESI were as follows: sheath gas flow rate, 35; aux gas flow rate, 10; sweep gas flow rate, 5; capillary temperature, 350 C; S-lens RF level, 60. Full MS/dd MS2 (TOP5) mode was selected for MS/MS detection and detailed parameters were as follows: m/z range, 80 – 1200; resolution, 70000 for MS, 35000 for MS/MS; AGC target, 1E6 for MS, 1E5 for MS/MS; maximum injection time, 200 ms; isolation window, 0.4; dynamic exclusion, 30 s; fragmentation, NCE 10, 20, 30.</p><p>In thiol profiling, most parameters were the same as those in untargeted metabolome profiling except these mentioned below. T3 column (ACQUITY UPLC HSS, Waters, 2.1 mm×100 mm, 1.7 μm) was applied in separation of labeled thiols and the column temperature was set at 30 C. The linear gradient was as follows: 0 min, 0% A; 1 min, 0% A; 15 min, 15% A; 20 min, 15% A. The column temperature was set at 30 C. Full MS/dd MS2 (TOP5) mode was selected for qualitative analysis and Full MS mode was selected for quantitative analysis.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name			DI Instrument	Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column
+Study Protocol Parameters Name Term Accession Number				;	;;;;		;;;;
+Study Protocol Parameters Name Term Source REF				;	;;;;		;;;;
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Miao	Bai
+Study Person First Name	Daiyu	Yu
+Study Person Mid Initials		
+Study Person Email	2001110380@stu.pku.edu.cn	yu.bai@pku.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Chengfu street 292, Haidian distinct, Beijing, China	Chengfu street 292, Haidian distinct, Beijing, China
+Study Person Affiliation	Beijing National Laboratory for Molecular Sciences, Key Laboratory of Bioorganic Chemistry and Molecular Engineering of Ministry of Education, College of Chemistry and Molecular Engineering, Peking University, Beijing, China.	Beijing National Laboratory for Molecular Sciences, Key Laboratory of Bioorganic Chemistry and Molecular Engineering of Ministry of Education, College of Chemistry and Molecular Engineering, Peking University, Beijing, China.
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-6874-9443	0000-0001-5562-5102
+Comment[Study Person Affiliation ROR ID]	https://ror.org/02v51f717	https://ror.org/02v51f717

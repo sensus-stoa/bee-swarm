@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCBITAXON	NCIT	EDAM	MTBLS	PCO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI					https://www.ebi.ac.uk/metabolights/		
+Term Source Version	29		07/04/2022			1.0		
+Term Source Description	Ontology for Biomedical Investigations					Metabolights Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS3830
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-11-19
+Investigation Public Release Date	2023-06-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS3830
+Study Title	RespectM revealed metabolic heterogeneity powers deep learning for reshaping the DBTL cycle
+Study Description	<p>Synthetic biology, relying on Design-Build-Test-Learn (DBTL) cycle, aims to solve medicine, manufacturing and agriculture problems. However, the DBTL cycle’s Learn (L) step lacks predictive power for the behavior of biological systems, resulting from the incompatibility between sparse testing data and chaotic metabolic networks. Herein, we develop a method, 'RespectM', based on mass spectrometry imaging, which is able to detect metabolites at a rate of 500 cells per hour with high efficiency. In this study, 4321 single cell level metabolomics data were acquired, representing metabolic heterogeneity. An optimizable deep neural network was applied to learn from metabolic heterogeneity and a 'heterogeneity-powered learning (HPL)' based model was trained as well. By testing the HPL based model, we suggest minimal operations to achieve high triglyceride production for engineering. The HPL strategy could revolutionize rational design and reshape the DBTL cycle.</p>
+Study Submission Date	2021-11-19
+Study Public Release Date	2023-06-29
+Study File Name	s_MTBLS3830.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	Microbial single cell metabolomics	Microbial Metabolic Heterogeneity	Lipidomics
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C153193
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO	MTBLS	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1016/j.isci.2023.107069
+Study Publication Author List	Xuanlin Meng, Ping Xu, Fei Tao
+Study Publication Title	RespectM revealed metabolic heterogeneity powers deep learning for reshaping the DBTL cycle
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Algae	Timepoint	Replicate
+Study Factor Type	Algae	timepoint	replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C86587	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	NCIT	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS3830_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS3830_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><em>Chlamydomonas reinhardtii</em> was obtained from Chlamydomonas Resource Center University of Minnesota (<a href='http://www.chlamycollection.org' rel='noopener noreferrer' target='_blank'>http://www.chlamycollection.org</a>) and Freshwater Algae Culture Collection at the Institute of Hydrobiology (FACHB) (<a href='http://algae.ihb.ac.cn/' rel='noopener noreferrer' target='_blank'>http://algae.ihb.ac.cn/</a>). All nine species of algae (CC124, CC125, CC425, CC503, CC4346, CC4414, CC4909, CC4910 and CC5164) were grown up on a solid TAP medium. Single clones were picked and cultured them in 5 mL TAP liquid medium for 7 days and then transferred to a 50 mL liquid TAP medium for 3 replicates, respectively. Cells were cultured in a shaker under ∼100 μEinstein/m^2/s^2, 100 rpm. In day 3, 6 and 9, 3 replicate of 9 algae cell lines were collected through centrifuge 3000 rpm for 15 min.</p>	<p>For the extraction of metabolites, we use 80% methanol as the solvent, sonicate and centrifuge at 3000 rpm for 15 min, the supernatant is then taken out for centrifugation at 12,000 rpm for 30 min. The extracted metabolites and lipids were mixed in a 2:1 volume, lyophilized and then reconstituted in 80% methanol.</p>	<p>This study applied Thermo UPLC (Vanquish) Q-Extractive plus (QE) coupled with ESI ion source for metabolomics data acquisition. Acquity UPLC BEH C18 column (1.7 μm, 2.1 x 100 mm)&nbsp;was chosen for positive and negative mode analysis. In the mobile phase selection, we used 0.1% formic acid in diluted water as aqueous phase A and 0.1% formic acid in pure acetonitrile as organic phase B. The LC gradient elution program was as follows: 0.0 min, 99% A; 5.0 min, 99% A; 5.5 min, 70% A; 9.0 min, 100% B; 11.0 min, 100% B; 12.1 min, 99% A.</p>	<p>The MS parameters of ESI-MS in the analysis of positive and negative ionization mode were as follows: the mass range was set from 80 to 1000 m/z, with a spectra collection rate of 2.0 Hz and capillary voltage of 4500 V; the gas flow rate of the nebulizer was 1.6 bar; the velocity of dry gas at 220 °C was 6.0 L/min; funnel 1 and 2 radio frequencies (RFs) were set as 150 and 200 Vpp; collision-induced dissociation (CID) energy was set as 0 eV; quadrupole ion energy was 5 eV; collision cell energy was 7.0 eV; pre-pulse storage was 5.0 μs; collision RF ramp was from 400 to 800 Vpp; transfer time ramp was from 50 to 100 μs.</p>	<p>MS acquisition of metabolomics were performed on <strong>Xcalibur</strong> (ThermoFisher, USA). Raw data were transformed to <strong>mzXML</strong> through <strong>MSConvert</strong> (<strong>Proteowizard</strong>).</p>	<p><strong>Compound Discover</strong> and <strong>Lipidsearch</strong> commercial software were applied to identify metabolites and lipids, respectively. The metabolites and lipids that bulk omics can directly annotate are classified into Level 1 and 2, and the MS1 peaks identified by the <strong>metID</strong> algorithm are classified as Level 3 according to adduct annotation.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Xuanlin	Fei	Ping
+Study Person First Name	Meng	Tao	Xu
+Study Person Mid Initials			
+Study Person Email	dawnmeng1995@sjtu.edu.cn		
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation			
+Study Person Roles	Author	Professor	Professor
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C69170	http://purl.obolibrary.org/obo/NCIT_C69170
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT

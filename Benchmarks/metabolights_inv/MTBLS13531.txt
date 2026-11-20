@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.89.0				2026-05-05	26.02d	2026-03-19
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13531
+Investigation Title	Two-Channel Chemical Isotope Labeling Metabolomics Analysis of Human Fecal Samples
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-18
+Investigation Public Release Date	2026-09-23
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13531
+Study Title	Two-Channel Chemical Isotope Labeling Metabolomics Analysis of Human Fecal Samples
+Study Description	<p>Global metabolomics study of the amine and carboxyl submetabolomes of 16 human fecal samples.</p>
+Study Submission Date	2025-12-18
+Study Public Release Date	2026-09-23
+Study File Name	s_MTBLS13531.txt
+Comment[Created At]	2025-12-12
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-23
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	Feces	Homo sapiens
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C13234	http://purl.obolibrary.org/obo/NCBITaxon_9606
+Study Design Type Term Source REF	MTBLS	CHMO	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Dina Kao, Brendan Whitman
+Study Publication Title	Two-Channel Chemical Isotope Labeling Metabolomics Analysis of Human Fecal Samples
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13531_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>16 human fecal samples were collected for metabolomics analysis.</p>	<p>Sample preparation included pre-treatment steps such as protein precipitation and metabolite extraction, followed by normalization based on total metabolite concentration measured using a validated metabolome quantification kit according to the manufacturer’s SOP. Sample volumes were adjusted and dried to achieve uniform metabolite concentrations prior to analysis, and normalized samples were stored at −80 °C until further processing.</p><p>Chemical isotope labeling was performed on equal aliquots of each sample using standardized protocols. Individual samples were labeled with light isotopic reagents, while a pooled reference sample—generated by combining aliquots from all samples—was labeled with the corresponding heavy isotopic reagents and used as an internal reference. Light-labeled samples were mixed in equal volume with the heavy-labeled pooled reference prior to LC–MS analysis.</p><p>Quality control samples were prepared from pooled material and analyzed at regular intervals throughout the analytical sequence to monitor technical variability and system performance. Blank-derived signals were identified and excluded during data processing.</p>	<p>Labeled metabolite samples were analyzed using an Agilent 1290 liquid chromatography system coupled to a Bruker Impact II QTOF mass spectrometer. Chromatographic separation was performed on an Agilent Eclipse Plus reversed-phase C18 column (150 × 2.1 mm, 1.8 µm particle size) maintained at 40 °C, using a water–acetonitrile mobile phase system containing 0.1% formic acid.</p><p>A gradient elution program was employed with a flow rate of 400 µL/min to achieve broad metabolome coverage. Mass spectral data were acquired across an m/z range of 220–1000 at a scan rate of 1 Hz. Quality control samples were injected at regular intervals throughout the analytical sequence to monitor signal stability, instrument performance, and reproducibility.</p>	<p>Metabolite samples were analyzed using an Agilent 1290 liquid chromatography system coupled to a Bruker Impact II QTOF mass spectrometer. Data were acquired at a scan rate of 1 Hz over an m/z range of 220–1000.</p><p>Quality control samples were injected at regular intervals throughout the analytical sequence to assess instrument stability, signal drift, and reproducibility.</p>	<p>Raw LC–MS data were first converted to .csv format using DataAnalysis 4.4 (Bruker Daltonics) and subsequently processed using IsoMS Pro 1.2.12 (Nova Medical Testing Inc.). The software performed isotopic peak pair extraction, peak ratio calculation, and feature alignment across all samples.</p><p>Redundant signals and background features were removed, and data cleaning was applied to exclude blank-derived features and those with insufficient detection frequency. Missing values were filled by the software, and post-acquisition normalization was carried out using a ratio-based total signal correction prior to metabolite identification and downstream statistical analysis.</p>	<p>A multi-tier metabolite identification framework was employed using IsoMS Pro (Nova Medical Testing Inc.) in conjunction with NovaMT Metabolite Databases 2.0. Identification was based on accurate mass and retention time information derived from chemical isotope labeling LC–MS data.</p><p><br></p><p>Tier 1: Positive identification was achieved by matching isotopically labeled peak pairs to a curated labeled metabolite library (CIL Library) using accurate mass and retention time.</p><p><br></p><p>Tier 2: Putative identification was assigned by searching remaining features against a linked identity library containing pathway-related metabolites, using accurate mass and predicted retention time matching.</p><p><br></p><p>Tier 3: Additional putative annotations were obtained by accurate mass matching against the MyCompoundID (MCID) database, including known endogenous metabolites and predicted metabolic products derived from one or more metabolic reactions.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Kao	Whitman
+Study Person First Name	Dina	Brendan
+Study Person Mid Initials		
+Study Person Email	dkao@ualberta.ca	bwhitman@ualberta.ca
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	University of Alberta	University of Alberta
+Study Person Roles	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0160cpw27	https://ror.org/0160cpw27

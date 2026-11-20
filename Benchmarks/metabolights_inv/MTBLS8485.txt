@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	MTBLS	OBI	NCIT	EFO	CHMO
+Term Source File		https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI		http://data.bioontology.org/ontologies/EFO	
+Term Source Version		1	29		132	
+Term Source Description		User defined terms	Ontology for Biomedical Investigations		Experimental Factor Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS8485
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-08-29
+Investigation Public Release Date	2023-12-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8485
+Study Title	Multi-Omic Insights into the Cellular Response of Phaeodactylum Tricornutum (Bacillariophyta) Strains under Grazing Pressure
+Study Description	<p><strong>BACKGROUND/AIMS:</strong> Phaeodactylum tricornutum, a model organism of diatoms, plays a crucial role in Earth's primary productivity. Investigating its cellular response to grazing pressure is highly significant for the marine ecological environment. Furthermore, the integration of multi-omics approaches has enhanced the understanding of its response mechanism. </p><p><strong>METHODS:</strong> To assess the molecular and cellular responses of P. tricornutum to grazer presence, we conducted transcriptomic, proteomic and metabolomic analyses, combined with phenotypic data from previous studies. Sequencing data were obtained by Illumina RNA sequencing, TMT Labeled Quantitative Proteomics and Non-targeted Metabolomics, and WGCNA analysis and statistical analysis were performed.</p><p><strong>RESULTS:</strong> Among the differentially expressed genes, we observed complex expression patterns of the core genes involved in the phenotypic changes of P. tricornutum under grazing pressure across different strains and multi-omics datasets. These core genes primarily regulate the levels of various proteins and fatty acids, as well as the cellular response to diverse signals. </p><p><strong>CONCLUSION:</strong> Our research reveals the association of multi-omics in four strains responses to grazing effects in P. tricornutum. Grazing pressure significantly impacted cell growth, fatty acid composition, stress response, and the core genes involved in phenotype transformation.</p>
+Study Submission Date	2023-08-29
+Study Public Release Date	2023-12-29
+Study File Name	s_MTBLS8485.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	high-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fpls.2023.1308085
+Study Publication Author List	Chenqi Liu, Liang Li, Shuo Yang, Mingye Wang, Hang Zhang, Si Li
+Study Publication Title	Multi-Omic Insights into the Cellular Response of Phaeodactylum Tricornutum (Bacillariophyta) Strains under Grazing Pressure
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Strain	Grazing stress
+Study Factor Type	strain	Stress
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005135	http://purl.obolibrary.org/obo/NCIT_C35041
+Study Factor Type Term Source REF	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8485_LC-MS_alternating_reverse-phase_metabolite_profiling.txt	a_MTBLS8485_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS8485_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Cultivation of Phaedactylum tricornutum Strains and Experimental Conditions</strong></p><p>The 4 strains of P. tricornutum (CCAP 1052/1A, CCAP 1052/1B, CCAP 1055/3, CCAP 1055/7) were provided by Génomique, Environnementale et Evolutive Section 3 CNRS UMR8197, Institut de Biologie de l'ENS (IBENS). The setting of culture conditions comes from literature<strong>[1]</strong>. The culture medium was prepared using sterile-filtered natural seawater (Minisart High-Flow 0.1μm syringe filter; Sartorius Stedim Biotech GmbH, Goettingen, Germany), fortified with macronutrients and micronutrients in accordance with a modified Provasoli medium. P. tricornutum cultures were incubated at 18 °C under constant illumination of 100 μmol photons/m^2/s, following a 12:12 h light-dark cycle with 2 h of simulated sunrise and sunset periods.</p><p><br></p><p><strong>Experimental Design </strong></p><p>The design of grazing experiments followed the protocol from literature<strong>[1]</strong>. The grazing pressure was applied using over 2000 Acartia tonsa individuals, fed with 1 x 10^7 P. tricornutum cells daily in 25 L seawater. Acartia were maintained in a double-bucket system, with a 100 μm mesh sieve replacing the bottom of the inner bucket. Daily, seawater in the outer bucket was replaced and Acartia faeces and eggs were removed. Grazing treatment replicates were generated by filtering Acartia’s culture medium using a 0.1 μm syringe filter and adding it to P. tricornutum cultures. Control groups were provides with the same volume of sterile-filtered seawater, maintaining the nutrient ratio of the original medium used for P. tricornutum cultivation.</p><p><br></p><p>Batch culture experiments were conducted for each P. tricornutum strain under 2 treatments (control and grazing). The 4 strains, under distinct conditions, were grouped into 8 sample sets: pt52_A_c (CCAP 1052/1A strain control group), pt52_A_g (CCAP 1052/1A strain grazing group), pt52_B_c (CCAP 1052/1B strain control group), pt52_B_g (CCAP 1052/1B strain grazing group), pt55_3_c (CCAP 1055/3 strain control group), pt55_3_g (CCAP 1055/3 strain grazing group), pt55_7_c (CCAP 1055/7 strain control group), pt55_7_g (CCAP 1055/7 strain grazing group). Each strain was cultured in 150 mL of medium and subjected to Reference Genome, Transcriptome Sequencing on an Illumina sequencing platform, TMT (Tandem Mass Tag) Labeled Quantitative Proteomics Standard Analysis and non-targeted metabolomics Bioinformatics Standard Analysis. The grazing treatment groups only received Acartia water, ensuring that the responses to the chemical cues from grazing pressure was obtained without within-strain selection due to grazing selectivity.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Li S, Ismar SMH. Transcriptome, Biochemical and Growth Responses of the Marine Phytoplankter Phaeodactylum Tricornutum Bohlin (Bacillariophyta) to Copepod Grazer Presence. Cell Physiol Biochem. 2018;46(3):1091-1111. doi:10.1159/000488839. Epub 2018 Apr 13. PMID:29669349.</p>	<p>After the sample was ground with liquid nitrogen, 400 uL pre-cooled methanol/acetonitrile/aqueous solution (4:4:2, v/v) was added to the sample for vortex mixing, then the sample was left for 60 min at -20 °C, centrifugated at 14,000 x g at 4 °C for 20 min, supernatant was vacuum-dried, and 100 μL acetonitrile aqueous solution (Acetonitrile:Water, 1:1, v/v) was added for re-dissolution during mass spectrometry. Centrifuge 14,000 x g at 4 °C for 15 min, and take 2 μL supernatant into sample for analysis.</p>	<p class='ql-align-justify'>The chromatographic separation of the extracted metabolites from the 8 samples was performed using an ACQUITY UPLC BEH C18 column (100 mm x 2.1 mm, 1.7 μm, Waters, USA) with a column temperature set at 40 °C and a flow rate of 0.3 mL/min. The mobile phase A is water and 0.1% formic acid, and the mobile phase B is acetonitrile. The metabolites are eluted using the following gradients: 0.0-0.5 min, 5% B; 0.5-1.0 min, 5% B; 1.0-9.0 min, 5-100% B; 9.0-12.0 min, 100% B; 12.0-15.0 min, 5% B. The loading volume of each sample was 5 μL. The samples were placed in a 4 °C automatic injector during the entire analysis process. In order to avoid the influence caused by the fluctuation of the instrument detection signal, the samples are analyzed continuously in random order. After each group of samples in the sample queue, QC samples were inserted to monitor and evaluate the stability of the system and the reliability of the experimental data.</p>	<p class='ql-align-justify'>Both positive and negative ion modes of electrospray ionization (ESI) were utilized for detection. The samples post-UHPLC separation were analyzed with a Q-Exactive four-pole and electrostatic field orbital trap high resolution mass spectrometer (Thermo Fisher Scientific). The ESI Source conditions after HILIC chromatographic separation are as follows: Ion Source Gas1 (Gas1), 60; Ion Source Gas2 (Gas2), 60; Curtain gas (CUR), 30; source temperature, 320 °C; IonSapary Voltage Floating (ISVF), ±3500 V (positive and negative modes); MS scan m/z range, 80-1200 Da; product ion scan resolution, 17500; MS scan accumulation time, 0.20 s/spectra; product ion scan accumulation time, 0.05s /spectra. Secondary mass spectrometry was obtained using information dependent acquisition (IDA) with&nbsp;high sensitivity mode: Declustering potential (DP), ±60 V (positive and negative modes); Collision Energy, 35±15 eV; IDA Settings are as follows: Exclude isotopes within 4 Da, Candidate ions to monitor per cycle: 6.</p>	<p class='ql-align-justify'>The original data collected by mass spectrometry were processed by Compound Discoverer 3.0 (Thermo Fisher Scientific) software for peak extraction, peak alignment, peak correction and standardization resulting in a 3D data matrix composed of the sample name, spectral peak information (including retention time and molecular weight) and peak area<strong>[1]</strong>.</p><p class='ql-align-justify'><br></p><p class='ql-align-justify'><strong>Ref:</strong></p><p class='ql-align-justify'><strong>[1]</strong> Benton HP, Ivanisevic J, Mahieu NG, Kurczy ME, Johnson CH, Franco L, Rinehart D, Valentine E, Gowda H, Ubhi BK, Tautenhahn R, Gieschen A, Fields MW, Patti GJ, Siuzdak G. Autonomous metabolomics for rapid metabolite identification in global profiling. Anal Chem. 2015 Jan 20;87(2):884-91. doi:10.1021/ac5025649. Epub 2014 Dec 26. PMID:25496351.</p>	<p>The metabolite structure was identified by precise mass number matching (&lt;25 ppm) and secondary spectrogram matching method to search the laboratory database and BioCyc, HMDB, metlin, HFMDB, LIPID MAPS and other databases.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chenqi
+Study Person First Name	Liu
+Study Person Mid Initials	
+Study Person Email	clarenceliucq@foxmail.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Hebei University of Technology
+Study Person Affiliation	
+Study Person Roles	Co-Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51812
+Study Person Roles Term Source REF	NCIT

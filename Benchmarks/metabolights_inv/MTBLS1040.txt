@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	ERO	EFO	CHMO	UO	BAO	MS	OBI	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/ERO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHEBI
+Term Source Version	14	146	5	42	19	129	22	99
+Term Source Description	Eagle-I Research Resource Ontology	Experimental Factor Ontology	Chemical Methods Ontology	Units of Measurement Ontology	BioAssay Ontology	Mass Spectrometry Ontology	Ontology for Biomedical Investigations	Chemical Entities of Biological Interest Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1040
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-06-06
+Investigation Public Release Date	2019-10-30
+Comment[Created With Configuration]	C:\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1040
+Study Title	Creating a Reliable Mass Spectral–Retention Time Library for All Ion Fragmentation-Based Metabolomics
+Study Description	<p>Accurate metabolite identification remains one of the primary challenges in a metabolomics study. A reliable chemical spectral library increases the confidence in annotation, and the availability of raw and annotated data in public databases facilitates the transfer of Liquid chromatography coupled to mass spectrometry (LC–MS) methods across laboratories. Here, we illustrate how the combination of MS2 spectra, accurate mass, and retention time can improve the confidence of annotation and provide techniques to create a reliable library for all ion fragmentation (AIF) data with a focus on the characterization of the retention time. The resulting spectral library incorporates information on adducts and in-source fragmentation in AIF data, while noise peaks are effectively minimized through multiple deconvolution processes. We also report the development of the Mass Spectral LIbrary MAnager (MS-LIMA) tool to accelerate library sharing and transfer across laboratories. This library construction strategy improves the confidence in annotation for AIF data in LC–MS-based metabolomics and will facilitate the sharing of retention time and mass spectral data in the metabolomics community.</p>
+Study Submission Date	2019-06-06
+Study Public Release Date	2019-10-30
+Study File Name	s_MTBLS1040.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	liquid chromatography-mass spectrometry	chemical library	All-ion fragmentation	mass spectral deconvolution	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.obolibrary.org/obo/ERO_0000293			http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	ERO			CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3390/metabo9110251
+Study Publication Author List	Tada Ipputa, Tsugawa Hiroshi, Meister Isabel, Zhang Pei, Shu Rie, Katsumi Riho, Wheelock Craig E., Arita Masanori, Chaleckis Romanas
+Study Publication Title	Creating a Reliable Mass Spectral–Retention Time Library for All Ion Fragmentation-Based Metabolomics
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Amount
+Study Factor Type	amount
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/PATO_0000070
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1040_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Chemical compounds were purchased from the vendors specified in Table S1 of the paper associated with this study. For each chemical standard, several mg were weighed and dissolved to prepare a stock solution of 1-10 mM concentration in water, methanol, acetonitrile or other suitable solvent.</p><p><br></p><p>For the LC-MS characterisation, seven 4-fold serial dilutions of the compounds were prepared from 4 to 0.001 µM in acetonitrile containing internal standards (Table S1 of the paper associated with this study). An Agilent Bravo liquid handling system with 96-well 0.2 ml PCR plates (PCR-96-MJ, BMBio, Japan) was employed to automate the serial dilutions. A pierceable seal 4Ti-0531 (4titude, UK) was used to seal the plate for 4 s at 185 °C using a PX1 heat sealer (Bio-Rad, USA). The plate was stored at 4 °C until measurement by LC-MS.</p>	<p>No extractions were performed in this study.</p>	<p>Solvents used for the LC-MS analysis and sample preparation were of LC-MS grade and purchased from Wako (Japan). LC-MS measurements in AIF mode were performed as described previously[1][2]. Briefly, metabolite separation was performed on a HILIC SeQuant ZIC-HILIC (Merck, Darmstadt, Germany) column 100 Å (100 x 2.1 mm, 3.5 μm particle size) coupled to a guard column (2.1 x 20 mm, 3.5 μm particle size). Sample analysis was performed using water with 0.1% formic acid (pH 2.63; solvent A) and acetonitrile with 0.1% formic acid (solvent B). The elution gradient used was as follows: isocratic step at 95% B for 1.5 min, 95 to 40% B in 12 min, maintained at 40% B for 2 min, then decreasing to 25% B at 14.2 min, maintained for 2.8 min, then returned to initial conditions over 1 min, and a column re-equilibration phase of 7 min. The flow rate was 0.3 ml/min, injection volume 2 μl, and the column oven was maintained at 25 °C.&nbsp;1 or 2 μl of the solution were injected into the LC–MS system, corresponding to 1–8000 fmol. Solutions were injected from the lowest to the highest concentration, with a blank sample between each compound. The LC system was conditioned with several injections before each LC–MS sequence, and in each injection, a 7 min re-equilibration step was implemented after the gradient to maintain stable RTs.</p><p><br></p><p>Ref:</p><p>[1] Naz S, Gallart-Ayala H, Reinke SN, Mathon C, Blankley R, Chaleckis R, Wheelock CE. Development of a Liquid Chromatography-High Resolution Mass Spectrometry Metabolomics Method with High Specificity for Metabolite Identification Using All Ion Fragmentation Acquisition. Anal Chem. 2017 Aug 1;89(15):7933-7942. doi:10.1021/acs.analchem.7b00925. PMID:28641411</p><p>[2] Chaleckis R, Naz S, Meister I, Wheelock CE. LC-MS-Based Metabolomics of Biofluids Using All-Ion Fragmentation (AIF) Acquisition. Methods Mol Biol. 2018;1730:45-58. doi:10.1007/978-1-4939-7592-1_3. PMID:29363064</p>	<p>Data was acquired in positive ionization mode on an Agilent 6550 Q-TOF-MS system (Agilent Technologies, Santa Clara, CA, USA) in centroid mode. Nitrogen was used as a sheath gas and drying gas at a flow of 8 and 15 l/min, respectively. The drying and sheath gas temperature was set at 250 °C with the nebulizer pressure at 35 psig and voltage 3000 V. Data was obtained with a mass range of 40−1200 m/z in AIF mode including 3 sequential experiments at alternating collision energies: 1 full scan at 0 eV, followed by 1 MS/MS scan at 10 eV, and then followed by 1 MS/MS scan at 30 eV. Fragmentor voltage was set at at 380 V. The data acquisition rate was 6 scans/s.</p>	<p>Data files were converted from Agilent .d format to mzML format using ProteoWizard version 3.0[1].</p><p><br></p><p>Ref:</p><p>[1] Chambers MC, Maclean B, Burke R, Amodei D, Ruderman DL, Neumann S et al. A cross-platform toolkit for mass spectrometry and proteomics. Nat Biotechnol. 2012 Oct;30(10):918-20. doi:10.1038/nbt.2377. PMID:23051804&lt;/br&gt;</p>	<p>Data was analysed using MS-DIAL[1] version 3.66 to obtain RT and MS2 spectra using MS2Dec and CorrDec deconvolution algorithms. The CorrDec function is implemented in the MS-DIAL (version 3.32 or later) (http://prime.psc.riken.jp/Metabolomics_Software/MS-DIAL/index2.html). Next, peaks in each MS2 spectra were annotated in MS-FINDER[2] version 3.22 and exported in NIST MSP format. Detailed settings of MS-DIAL and MS-FINDER can be found in Tables S3 and S7–S9 in the paper associated with this study. See also tutorial chemical standard characterization using LC–MS AIF data (Tutorial 1, sections “Deconvolution MS2 spectra in MS-DIAL” and “Annotation of MS fragments in MS-FINDER”).</p><p><br></p><p>In order to curate and maintain the mass spectral libraries, we developed MS-LIMA software (open source, available on GitHub MS-LIMA project https://github.com/tipputa/MS-LIMA-Standard). The library presented here was curated using MS-LIMA version 1.52 in the following manner: we replaced the experimental precursor m/z with the theoretical values (because the identity of the compound being characterized was known in each case) and kept only the peaks with the MS-FINDER formula annotation (isotopes, fragments, adducts) in the mass spectra. See also tutorial chemical standard characterization using LC–MS AIF data (Tutorial 1, section “Library assembly and curation in MS-LIMA”).</p><p><br></p><p>Ref:</p><p>[1] Tsugawa H, Cajka T, Kind T, Ma Y, Higgins B, Ikeda K, Kanazawa M, VanderGheynst J, Fiehn O, Arita M. MS-DIAL: data-independent MS/MS deconvolution for comprehensive metabolome analysis. Nat Methods. 2015 Jun;12(6):523-6. doi:10.1038/nmeth.3393. PMID:25938372</p><p>[2] Tsugawa H, Nakabayashi R, Mori T, Yamada Y, Takahashi M, Rai A, Sugiyama R, Yamamoto H, Nakaya T, Yamazaki M et al. A cheminformatics approach to characterize metabolomes in stable-isotope-labeled organisms. Nat Methods. 2019 Apr;16(4):295-298. doi:10.1038/s41592-019-0358-2. PMID:30923379</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Derivatization;Post Extraction	Column type;Column model;Chromatography Instrument;Guard column	Scan polarity;Mass analyzer;Ion source;Instrument;Scan m/z range		
+Study Protocol Parameters Name Term Accession Number		;	;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Tada	Tsugawa	Meister	Zhang	Wheelock	Arita	Chaleckis
+Study Person First Name	Ipputa	Hiroshi	Isabel	Pei	Craig	Masanori	Romanas
+Study Person Mid Initials					E		
+Study Person Email	tipputa@nig.ac.jp	hiroshi.tsugawa@riken.jp	romanas.chaleckis@gmail.com	isabel.meister@gunma-u.ac.jp	craig.wheelock@ki.se	arita@nig.ac.jp	romanas.chaleckis@gmail.com
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation	Department of Genetics, SOKENDAI (Graduate University for Advanced Studies), Shizuoka, Japan	RIKEN Center for Sustainable Resource Science, Yokohama, Kanagawa, Japan	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden	National Institute of Genetics, Shizuoka, Japan	Gunma University Initiative for Advanced Research (GIAR), Gunma University, Gunma, Japan and Division of Physiological Chemistry 2, Department of Medical Biochemistry and Biophysics, Karolinska Institutet, Stockholm, Sweden
+Study Person Roles	Investigator	Investigator				Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51826	http://purl.obolibrary.org/obo/NCIT_C51826				http://purl.obolibrary.org/obo/NCIT_C51826	http://purl.obolibrary.org/obo/NCIT_C51826
+Study Person Roles Term Source REF	EFO	EFO				EFO	EFO

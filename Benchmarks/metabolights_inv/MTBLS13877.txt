@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MDM	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://data.bioontology.org	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.86.0					2025-12-03	25.06e	2025-12-18
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology		Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13877
+Investigation Title	The splicing paralogues SNRPB and SNRPN control differential metabolic states
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2026-02-09
+Investigation Public Release Date	2026-02-09
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13877
+Study Title	The splicing paralogues SNRPB and SNRPN control differential metabolic states
+Study Description	<p>Gene duplication is a major driver of biological complexity, yet the persistence of highly similar paralogous factors suggests the existence of context-dependent functions that remain incompletely understood. Certain conserved components of the mammalian RNA processing machinery exhibit striking sequence similarity alongside divergent expression patterns, raising fundamental questions about how such redundancy is resolved at the level of cellular regulation. Using genetically defined cellular models, we investigated functional distinctions between related factors and identified condition-sensitive effects on RNA regulation and cellular homeostasis. While these factors share broadly overlapping molecular interactions, differential regulatory associations and post-translational features were observed, which varied in response to changes in cellular state. Perturbations that alter biosynthetic activity revealed selective transcriptomic responses linked to core metabolic pathways. Together, our findings explain how paralogues contribute to tissue-specific regulation and environmentally responsive cellular programs in complex organisms.&nbsp;</p>
+Study Submission Date	2026-02-09
+Study Public Release Date	2026-02-09
+Study File Name	s_MTBLS13877.txt
+Comment[Created At]	2025-12-12T12:06:27.457949
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	tandem mass spectrometry	Liquid Chromatography/Tandem Mass Spectrometry	Metabolomics	Metabolic Profile
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/NCIT_C122168	http://purl.obolibrary.org/obo/NCIT_C49019	http://id.nlm.nih.gov/mesh/D055442
+Study Design Type Term Source REF	MTBLS	CHMO	NCIT	NCIT	MDM
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Feyza Polat, Ana Villalba, Polina Rusina, Anusha Gopalan, José Héctor Gibrán Fritz García, Azamat Akhmetkaliyev, Frank Rühle, Anna Einsiedel, Anna Szczepińska, Fridolin Kielisch, Jia-Xuan Chen, Susanne Nguyen, Thierry Schmidlin, Simon Hippenmeyer, M. Felicia Basilicata, Claudia Isabelle Keller Valsecchi
+Study Publication Title	The splicing paralogues SNRPB and SNRPN control differential metabolic states.
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	KO
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13877_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>The samples are cultured cells more specifically SNRPB/N transgenes expressed in HEK293T cells, treated with EtOH/cyclohximide (CHX). The samples for the metabolomics LC-MS/MS analysis were provided in methanol on dry ice and stored in Eppendorf tubes in -80°C freezer. </p>	<p>Metabolite extracts were prepared by adding 300 µl of -20°C cold lysis buffer (80% methanol / 20% water) to the cell pellets followed by centrifugation at 4°C at 24.400 g for 30 min. Supernatants were transferred to a new tube and evaporated under constant nitrogen flow. Dried metabolites were resuspended in 10µl water.&nbsp;</p>	<p>The equivalent of 75 000 cells were analyzed by liquid chromatography-mass spectrometry (LC MS) using an Agilent 1290 Infinity II coupled to a SCIEX ZenoTOF 7600. Metabolite separation was performed on a Phenomenex Kinetex F5 column (2.6 µm, 2.1 mm × 150 mm) using a linear gradient elution. The mobile phase initially consisted of 0.1% formic acid (FA) in water at a flow rate of 0.2 mL/min. Over 2.1 minutes, the gradient transitioned to 0.1% FA in 95% acetonitrile (ACN)/5% water, reaching this composition at 6.5 minutes and maintained until 8.15 minutes. Subsequently, the flow rate was increased to 1.0 mL/min while maintaining the same solvent composition for one minute. At 9.3 minutes, the solvent was switched back to 0.1% FA in water (100%) and held for 1 minute. The flow rate was then reduced to 0.2 mL/min at 10.45 minutes, followed by a column wash until 11.0 minutes.</p>	<p>Mass spectrometric detection was conducted in positive ion mode, with full scan MS spectra acquired over an m/z range of 70–1000. Data-dependent acquisition (DDA) was employed to fragment the top 11 precursor ions per cycle. Each precursor was selected up to two times before being dynamically excluded for 6 seconds. (MS/MS) spectra were recorded across a mass range of 40–1000 m/z, with Zeno pulsing enabled. LC-MS data was processed in MS-DIAL (ver. 5.5.250221) using untargeted spectral matching against the public ESI(+)-MS/MS library from authentic standards and an in-house spectral library (Schmitt et al. 2025). Reference matched metabolites were manually curated and used for further statistical analysis.&nbsp;</p>	<p>Raw data was processed using MS-DIAL 5.5.250221. </p>	<p>To create our in-house spectral library the MSMLS, containing 612 small molecules, was prepared and measured according to the manufacturers recommendation. The final list contained MSMLS reference standards merged with authentic reference standards added during MS/MS library expansion.&nbsp;Targeted feature extraction and annotation of metabolites were conducted based on precursor m/z, MS/MS spectral match and explicit retention time match.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nguyen	Akhmetkaliyev	Schmidlin	Basilicata	Claudia
+Study Person First Name	Susanne	Azamat	Thierry	Felicia	Keller Valsecchi
+Study Person Mid Initials					Isabelle
+Study Person Email	nguyensu@uni-mainz.de	akhmetka@uni-mainz.de	schmidlt@uni-mainz.de	f.basilicata@lmu.de	c.kellervalsecchi@unibas.ch
+Study Person Phone					
+Study Person Fax					
+Study Person Address		Ackermannweg 4 55128 Mainz Germany			
+Study Person Affiliation	University Medical Center of the Johannes Gutenberg University Mainz	Institute of Molecular Biology gGmbH (IMB) - Gene Dosage Lab	University Medical Center of the Johannes Gutenberg University Mainz	Ludwig Maximilian University of Munich	University of Basel
+Study Person Roles	co-author	co-author	co-author	Corresponding Author indicator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/NCIT_C164481	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	MS	MS	MS	NCIT	NCIT
+Comment[Study Person ORCID]	0009-0000-0148-0913		0000-0001-9226-0376	0000-0002-1111-9459	0000-0003-4135-5927
+Comment[Study Person Affiliation ROR ID]	https://ror.org/00q1fsf04		https://ror.org/00q1fsf04	https://ror.org/05591te55	https://ror.org/02s6k3f65
+Comment[Study Person Alternative Email]	susannenguyen38@googlemail.com				

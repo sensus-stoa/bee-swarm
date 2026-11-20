@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHEBI	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	252	2025-10-21	3.89.0				2026-05-05	26.02d	2026-03-19
+Term Source Description	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14035
+Investigation Title	Tumor-derived L-arginine acts as a metabolic checkpoint to sustain CAR T cell anti-tumor memory
+Investigation Description	
+Investigation Submission Date	2026-03-12
+Investigation Public Release Date	2026-10-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14035
+Study Title	Tumor-derived L-arginine acts as a metabolic checkpoint to sustain CAR T cell anti-tumor memory
+Study Description	<p>Metabolic competition within the tumor microenvironment (TME) severely impairs the efficacy and persistence of chimeric antigen receptor (CAR) T cells in solid tumors. While targeting tumor metabolism is a promising therapeutic avenue, its precise implementation remains a challenge. Here, we discover that pharmacological glutamine blockade unexpectedly reprograms tumor cell metabolism, triggering a compensatory biosynthetic pathway for L-arginine (L-Arg) via upregulation of ASS1 and suppression of ARG2. To exploit this finding therapeutically, we developed a tumor-targeted delivery platform using nanoengineered, DON-conjugated CAR T cells (DNP-CAR T). This approach locally inhibits glutaminolysis, which in turn induces ASS1-driven L-Arg biosynthesis to replenish the TCA cycle via anaplerosis, elevating intratumoral L-Arg by 2.74-fold. The enriched L-Arg pool functions as a metabolic checkpoint messenger, instructing a shift in CAR T cell metabolism toward oxidative phosphorylation (OXPHOS) and promoting a memory-like phenotype, which enhances their infiltration and cytotoxicity. Consequently, DNP-CAR T cells achieve sustained tumor control and significantly prolong survival in vivo. Our work defines L-arginine as a critical immunometabolic node and provides a translatable, combined cell therapy strategy to overcome metabolic immunosuppression in solid tumors.</p>
+Study Submission Date	2026-03-12
+Study Public Release Date	2026-10-23
+Study File Name	s_MTBLS14035.txt
+Comment[Created At]	2026-03-12
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-23
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	glutamine antagonist	metabolic checkpoints	CAR-T cells	metabolic-immune reprograming	cell immunotherapy
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_138931	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	CHEBI	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Guojun Huang, Han Gong, Zhongliang Tang, Yiran He, Kaimin Zhang, Yuhui Zhang, Ting Yin, Aiqing Ma, Fan Pan, Hong Pan, Lintao Cai
+Study Publication Title	Tumor-derived L-arginine acts as a metabolic checkpoint to sustain CAR T cell anti-tumor memory
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Medicament	Agent
+Study Factor Type	treatment	exposure
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000487
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14035_LC-MS___metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>The UHPLC separation was carried out using an ExionLC System, equipped with a Waters ACQUITY UPLC HSS T3 (100 × 2.1 mm, 1.8 μm). The mobile phase A was 0.1% formic acid and 1mM/L ammonium acetate in water, and the mobile phase B was acetonitrile. The column temperature was set at 40 ℃. The auto-sampler temperature was set at 4 ℃ and the injection volume was 1 μL.</p>	<p>Skyline Software was employed for MRM data processing.</p>	<p> An aliquot of each individual sample was precise weighed and transferred to an Eppendorf tube. After the addition of 80 μL of extract solvent (precooled at -20 oC, acetonitrile, within 0.1% FA) and 20 μL of H2O, and the samples were vortexed for 30 s, homogenized at 45 Hz for 4 min, and sonicated for 5 min in ice-water bath. The homogenate and sonicate circle was repeated for 3 times, followed by subsiding at -40 ℃ overnight and centrifuging at 12000 rpm and 4 ℃ for 15 min. An 80 µL of the supernatants were transferred to the EP tube, incubated for 30 min after adding 40 µL 100 mmol/L sodium carbonate solution and 40 µL 2% benzoyl chloride acetonitrile solution. The samples were centrifuged at 12000 rpm for 15 min at 4 ℃ after addition of 10 µL internal standard. The 40 μL of the supernatants were added in 20 µL H2O and then transferred to an auto-sampler vial for UHPLC-MS/MS analysis.</p>	<p>AB Sciex QTrap 6500+ mass spectrometer was applied for assay development. Typical ion source parameters were: IonSpray Voltage: +5000V, Curtain Gas: 35 psi, Temperature: 400 ℃, Ion Source Gas 1: 60 psi, Ion Source Gas 2: 60 psi.</p>	<p>Skyline Software was employed for MRM data processing.</p>	<p>The tumors were collected after the treatment.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Huang	Hong	Sidi	Han
+Study Person First Name	Guojun	Pan	Zheng	Gong
+Study Person Mid Initials				
+Study Person Email	gj.huang@siat.ac.cn	hong.pan@siat.ac.cn		
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	Shenzhen Institutes of Advanced Technology	Institute of Biomedicine and Biotechnology, Shenzhen Institutes of Advanced Technology (SIAT), Chinese Academy of Sciences, Shenzhen, 518055, PR China		
+Study Person Roles	Investigator	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

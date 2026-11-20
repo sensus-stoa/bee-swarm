@@ -1,0 +1,98 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MS	CHMO	NCIT	CRISP	EFO	EDAM	IOBC		MTBLS
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/CRISP				http://purl.obolibrary.org/obo/ncit.owl	https://www.ebi.ac.uk/metabolights/
+Term Source Version	25	103	18	40	6				18.10e	1.0
+Term Source Description	Ontology for Biomedical Investigations	Mass Spectrometry Ontology	Chemical Methods Ontology	National Cancer Institute Thesaurus	Computer Retrieval of Information on Scientific Projects Thesaurus				NCI Thesaurus OBO Edition	Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS533
+Investigation Title	
+Investigation Description	
+Investigation Submission Date	2017-09-05
+Investigation Public Release Date	2021-07-30
+Comment[Created With Configuration]	
+Comment[Created With Tool]	mzml2isa 1.0.3
+Comment[Last Opened With Configuration]	
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS533
+Study Title	PKM2 methylation by CARM1 activates aerobic glycolysis to promote tumorigenesis
+Study Description	Metabolic reprogramming is a hallmark of cancer. Herein we discover that the key glycolytic enzyme pyruvate kinase M2 isoform (PKM2), but not the related isoform PKM1, is methylated by co-activator-associated arginine methyltransferase 1 (CARM1). PKM2 methylation reversibly shifts the balance of metabolism from oxidative phosphorylation to aerobic glycolysis in breast cancer cells. Oxidative phosphorylation depends on mitochondrial calcium concentration, which becomes critical for cancer cell survival when PKM2 methylation is blocked. By interacting with and suppressing the expression of inositol-1,4,5-trisphosphate receptors (InsP3Rs), methylated PKM2 inhibits the influx of calcium from the endoplasmic reticulum to mitochondria. Inhibiting PKM2 methylation with a competitive peptide delivered by nanoparticles perturbs the metabolic energy balance in cancer cells, leading to a decrease in cell proliferation, migration and metastasis. Collectively, the CARM1-PKM2 axis serves as a metabolic reprogramming mechanism in tumorigenesis, and inhibiting PKM2 methylation generates metabolic vulnerability to InsP3R-dependent mitochondrial functions.
+Study Submission Date	2017-09-05
+Study Public Release Date	2021-07-30
+Study File Name	s_MTBLS533.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	untargeted metabolites	metabolon	cancer	Energy Balance	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.jp/bio/4/id/201606002506532625	http://www.ebi.ac.uk/efo/EFO_0000311	http://purl.obolibrary.org/obo/NCIT_C94347	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	MTBLS	IOBC	EFO	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	29058718
+Study Publication DOI	10.1038/ncb3630
+Study Publication Author List	Liu F, Ma F, Wang Y, Hao L, Zeng H, Jia C, Wang Y, Liu P, Ong IM, Li B, Chen G, Jiang J, Gong S, Li L, Xu W.
+Study Publication Title	PKM2 methylation by CARM1 activates aerobic glycolysis to promote tumorigenesis.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS533_Method1_POS_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS533_Method2_POS_2_metabolite_profiling_mass_spectrometry.txt	a_MTBLS533_Method3_NEG_1_metabolite_profiling_mass_spectrometry.txt	a_MTBLS533_Method4_NEG_2_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Q Exactive	Q Exactive	Q Exactive	Q Exactive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number		http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl				
+Study Protocol Type Term Source REF		NCIT	NCIT	NCIT	NCIT	NCIT
+Study Protocol Description	<p>MCF7, MDA-MB-231, HEK293T cell lines were purchased from ATCC, LM2 was provided by Dr. Joan Massagué, and immortalized MEF (PKM2fl/fl, Cre-ER) were kindly provided by Dr. Matthew Heiden and were maintained in DMEM supplemented with 10% fetal bovine serum (FBS) purchased from Gibco (Gaithersburg, MD). None of the cell lines used in this study was found in the database of commonly misidentified cell lines that are maintained by ICLAC and NCBI Biosample. Cell lines were authenticated by short tandem repeat profiling and were routinely tested for mycoplasma contamination. PKM2 knockout cell lines were generated using a PKM2 specific CRISPR/Cas9/eGFP plasmid. For PKM2 KO in MEF cells, MEF cells were treated with 1μM 4-hydroxytamoxifen (4-OHT) at least for 8-10 days to allow complete knockout of PKM2.</p><p><br></p><p>Cells were maintained in DMEM supplemented with 10% fetal bovine serum (FBS). Cell pellets were washed 3 times with cold PBS.</p>	Samples are prepared using the automated MicroLab STAR® system from Hamilton Company. Several recovery standards are added prior to the first step in the extraction process for QC purposes. Samples are extracted with methanol under vigorous shaking for 2 min (Glen Mills GenoGrinder 2000) to precipitate protein and dissociate small molecules bound to protein or trapped in the precipitated protein matrix, followed by centrifugation to recover chemically diverse metabolites. The resulting extract is divided into five fractions: two for analysis by two separate reverse phase (RP)/UPLC-MS/MS methods using positive ion mode electrospray ionization (ESI), one for analysis by RP/UPLC-MS/MS using negative ion mode ESI, one for analysis by HILIC/UPLC-MS/MS using negative ion mode ESI, and one reserved for backup. Samples are placed briefly on a TurboVap® (Zymark) to remove the organic solvent and stored overnight under nitrogen. In preparation for analysis, samples are then reconstituted in solvents compatible to each of the four methods.	<p>All methods utilize a Waters ACQUITY ultra-performance liquid chromatography (UPLC). Each reconstitution solvent contains a series of standards at fixed concentrations to ensure injection and chromatographic consistency.</p><p><strong>Method 1/Pos 1:</strong> One aliquot is analyzed using acidic positive ion conditions, chromatographically optimized for more hydrophilic compounds. In this method, the extract is gradient-eluted from a C18 column (Waters UPLC BEH C18-2.1x100 mm, 1.7 um) using water and methanol, containing 0.05% perfluoropentanoic acid (PFPA) and 0.1% formic acid (FA).</p><p><strong>Method 2/Pos 2:</strong> A second aliquot is also analyzed using acidic positive ion conditions, but is chromatographically optimized for more hydrophobic compounds. In this method, the extract is gradient eluted from the aforementioned C18 column using methanol, acetonitrile, water, 0.05% PFPA and 0.01% FA, and is operated at an overall higher organic content.</p><p><strong>Method 3/Neg 1:</strong> A third aliquot is analyzed using basic negative ion optimized conditions using a separate dedicated C18 column. The basic extracts are gradient-eluted from the column using methanol and water, however with 6.5 mM Ammonium Bicarbonate at pH 8.</p><p><strong>Method 4/Neg 2:</strong> The fourth aliquot is analyzed via negative ionization following elution from a HILIC column (Waters UPLC BEH Amide 2.1x150 mm, 1.7 um) using a gradient consisting of water and acetonitrile with 10 mM Ammonium Formate, pH 10.8.</p>	A Thermo Scientific Q-Exactive high resolution/accurate mass spectrometer interfaced with a heated electrospray ionization (HESI-II) source and Orbitrap mass analyzer operated at 35,000 mass resolution was used. The MS analysis alternates between MS and data-dependent MSn scans using dynamic exclusion.	Raw data were extracted, peak-identified, and QC processed using Metabolon's hardware and software. These systems are built on a web-service platform utilizing Microsoft's .NET technologies, which run on high-performance application servers and fiber-channel storage arrays in clusters to provide active failover and load-balancing.	Compounds were identified by comparison to library entries of purified standards or recurrent unknown entities. Metabolon maintains a library based on authenticated standards that contains the retention time/index (RI), mass to charge ratio (m/z), and chromatographic data (including MS/MS spectral data) on all molecules present in the library. More than 4500 commercially available purified standard compounds have been acquired and registered into LIMS for analysis on all platforms for determination of their analytical characteristics. Additional mass spectral entries have been created for structurally unnamed biochemicals, which have been identified by virtue of their recurrent nature (both chromatographic and mass spectral). These compounds have the potential to be identified by future acquisition of a matching purified standard or by classical structural analysis.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Instrument software;Detector mode;Spectrum representation;Inlet type;Number of scans;Scan m/z range;Detector;Instrument serial number;Raw data file checksum type;Mass analyzer;Instrument manufacturer;Raw data file format;Scan polarity;Raw data file checksum value;Instrument software version;Native spectrum identifier format;Instrument;Data file content;Time range;Ion source;Data file checksum type		Data Transformation software;Data Transformation software version
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;;;;;;;;;;;;;;;;;		;
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu	Xu	Ma	Wang	Hao	Zeng	Jia	Wang	Liu	Ong	Li
+Study Person First Name	Fabao	Wei	Fengfei	Yuyuan	Ling	Hao	Chenxi	Yidan	Peng	Irene M	Baobin
+Study Person Mid Initials											
+Study Person Email	fliu76@wisc.edu	wxu@oncology.wisc.edu									
+Study Person Phone	16086289834	6082655540									
+Study Person Fax											
+Study Person Address	37 University Houses Apt.A 7459 WIMR II, 1111 Highland Ave	7459 WIMR II 1111 Highland Ave.									
+Study Person Affiliation	UW-Madison	UW-Madison									
+Study Person Roles	Experimental design and studies	Experimental design and studies	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://edamontology.org/topic_3678	http://edamontology.org/topic_3678	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	EDAM	EDAM									

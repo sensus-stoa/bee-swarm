@@ -1,0 +1,129 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED	UBERON	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017	http://purl.obolibrary.org/obo/uberon.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0				2026-05-05	26.02d	2026-03-19			2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)	Uber-anatomy ontology	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14238
+Investigation Title	Non-targeted metabolomics analysis of synovial fluid from TMD patients
+Investigation Description	
+Investigation Submission Date	2026-04-08
+Investigation Public Release Date	2026-09-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14238
+Study Title	Non-targeted metabolomics analysis of synovial fluid from TMD patients
+Study Description	This study performed non-targeted metabolomics detection on 62 human joint cavity lavage fluid samples using UHPLC-QE-MS. Metabolites were extracted with methanol:acetonitrile (1:1), separated on a Waters ACQUITY UPLC BEH Amide column, and detected by Orbitrap Exploris 120 mass spectrometer in both positive and negative ion modes. Data were processed using XCMS-based in-house R package and annotated against BiotreeDB (V3.0).
+Study Submission Date	2026-04-08
+Study Public Release Date	2026-09-23
+Study File Name	s_MTBLS14238.txt
+Comment[Created At]	2026-04-07
+Comment[Funder]	Ministry of Science and Technology of the People's Republic of China (National Key R&D Program of China)
+Comment[Funder ROR ID]	2023YFC2509200
+Comment[Grant Identifier]	2023YFC2509200
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-23
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Articular disc disorder of bilateral temporomandibular joints (disorder)	Hydrophobic and Hydrophilic Interactions	ProteoWizard msaccess	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Orbitrap Exploris 120	Homo sapiens	synovial fluid	experimental sample	pooled quality control sample	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://snomed.info/id/15980471000119101	http://id.nlm.nih.gov/mesh/D057927	http://purl.obolibrary.org/obo/MS_1002208	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/UBERON_0001090	http://purl.obolibrary.org/obo/CHMO_0002746	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001090	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	SNOMED	mesh	MS	MTBLS	MTBLS	NCBITaxon	UBERON	CHMO	MTBLS	MS	EDAM
+Comment[Study Design Category]	disease	facility	software	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yong Cheng
+Study Publication Title	Non-targeted metabolomics analysis of synovial fluid from TMD patients
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease status
+Study Factor Type	disease staging
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000410
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14238_LC-MS_negative_hilic.txt	a_MTBLS14238_LC-MS_positive_hilic.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 50 mm; Waters);HILIC;negative;100-1500;Orbitrap Exploris 120	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 50 mm; Waters);HILIC;positive;100-1500;Thermo Scientific Orbitrap Exploris 120
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000733;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://purl.obolibrary.org/obo/MS_1003095	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000733;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002239
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>During Arthrography, 1 mL of sterile saline was injected into the superior joint compartment. Patients performed repeated opening and closing movements to mix the saline with synovial fluid. The mixture was aspirated and re-injected 3–5 times before final collection. Samples were centrifuged at 3,000 rpm for 5 minutes at 4 °C. The supernatant was aliquoted, snap-frozen in liquid nitrogen for 15 minutes, and stored at −80°C.</p>	<p>Chromatographic separation was performed on a Vanquish UHPLC system (Thermo Fisher Scientific) equipped with a Waters ACQUITY UPLC BEH Amide column (2.1 mm × 50 mm, 1.7 μm particle size). The column temperature was maintained at 40°C. Mobile phase A consisted of 25 mmol/L ammonium acetate and 25 mmol/L ammonia hydroxide in water (pH = 9.75). Mobile phase B was acetonitrile. The flow rate was set to 0.3 mL/min (typical value for this column; exact flow rate as per standard protocol). The injection volume was 2 μL, and the autosampler temperature was kept at 4°C. The gradient program was as follows: 0–2 min, 95% B; 2–11 min, 95–65% B; 11–13 min, 65–40% B; 13–15 min, 40% B; 15–15.1 min, 40–95% B; 15.1–18 min, re-equilibration at 95% B. Total run time was 18 min.</p>	<p>Raw mass spectrometry data (.raw files) were converted to mzXML format using ProteoWizard (version 3.0). Peak detection, alignment, and integration were performed using an in-house R package based on XCMS. The resulting data matrix contained peak intensities (area) for all features across all samples. No further normalization was applied at this stage.</p>	<p>Joint cavity lavage fluid samples (62 experimental samples) were collected and stored at -80°C until processing. For metabolite extraction, 100 μL of each sample was mixed with 400 μL of extraction solution (methanol:acetonitrile = 1:1, v/v) containing deuterated internal standards. The mixture was vortexed for 30 s, sonicated for 10 min in an ice-water bath, and then incubated at -40°C for 1 h to precipitate proteins. After centrifugation at 12,000 rpm (13,800 × g) for 15 min at 4°C, 400 μL of supernatant was transferred to a new tube and dried under vacuum. The dried residue was reconstituted in 100 μL of reconstitution solution (methanol:acetonitrile:water = 2:2:1, v/v/v) containing internal standards, sonicated for 10 min, and centrifuged. The final supernatant was transferred to an autosampler vial for LC-MS analysis. A pooled quality control (QC) sample was prepared by mixing equal aliquots of all experimental sample supernatants. Solvent blanks were also prepared and analyzed throughout the run to monitor carryover.</p>	<p>Mass spectrometry was performed using an Orbitrap Exploris 120 mass spectrometer (Thermo Fisher Scientific) equipped with a heated electrospray ion source (HESI). Data were acquired in both positive and negative ion modes in separate runs. For positive ion mode, the spray voltage was set to 3.8 kV; for negative ion mode, spray voltage was set to -3.4 kV. Sheath gas flow rate was 50 Arb, auxiliary gas flow rate was 15 Arb, and capillary temperature was 320°C. Full MS scans were acquired at a resolution of 60,000 (FWHM) over an m/z range of 100–1500. Data-dependent MS/MS scans were performed at a resolution of 15,000 with stepped normalized collision energy (SNCE) of 20/30/40. The acquisition software was Xcalibur (version 4.4, Thermo Fisher Scientific).</p>	<p>Metabolite annotation was performed using the BiotreeDB (V3.0) in-house database, which contains over 20,000 metabolite standards with MS1, MS2, and retention time information. The identification pipeline was implemented in R. Metabolites were matched based on precursor m/z (mass tolerance 15 ppm), retention time (tolerance 0.2 min), and MS/MS fragmentation patterns. Annotation confidence levels followed the Metabolomics Standards Initiative (MSI): Level 1 (authentic standard matching), Level 2 (public library matching), Level 3 (putative annotation), and Level 4 (unknown). The majority of reported metabolites were annotated at MSI Level 2 or higher.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Cheng
+Study Person First Name	Yong
+Study Person Mid Initials	
+Study Person Email	wb003142@whu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Wuhan university
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

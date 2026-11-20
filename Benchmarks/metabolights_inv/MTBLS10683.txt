@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	NCBITaxon	EFO	MS	OBI	OPMI	UHC-METADATA	CTO-NDD	IOBC	Group	MTBLS	CHEBI
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org	http://data.bioontology.org	http://data.bioontology.org	https://www.ebi.ac.uk/ols4/api	Metabolights	https://www.ebi.ac.uk/ols4/api
+Term Source Version			132		29							
+Term Source Description			Experimental Factor Ontology		Ontology for Biomedical Investigations						Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS10683
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-07-15
+Investigation Public Release Date	2025-03-13
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10683
+Study Title	Transcriptomics and metabolomics datasets of Paris polyphylla var. yunnanensis with different growth years
+Study Description	<p>Paris polyphylla var. yunnanensis is a widely cultivated rhizomatous perennial woody plant known for producing the highly valued steroidal saponins. Steroidal saponins serve as the primary active component and exhibit a variety of pharmacological effects. However, the accumulation of secondary metabolites and the related functional genes involved in plant biosynthesis varies across different developmental stages. In this study, we collected samples of P. polyphylla var. yunnanensis aged 3-8 years for metabolome and transcriptome sequencing analysis. A total of 1510 metabolites and 270.65 Gb of clean data were identified from these samples. This research aims to provide a theoretical foundation for understanding the internal mechanisms governing the accumulation of secondary metabolites and the formation of quality in P. polyphylla var. yunnanensis, thereby establishing a basis for its efficient cultivation and increased saponin yield.</p>
+Study Submission Date	2024-07-15
+Study Public Release Date	2025-03-13
+Study File Name	s_MTBLS10683.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Metabolomics	Transcriptomics	saponin
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C49019	http://purl.obolibrary.org/obo/NCIT_C153189	http://purl.obolibrary.org/obo/CHEBI_26605
+Study Design Type Term Source REF	NCIT	NCIT	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xiaoye Zhang, Jia Chen, Ping Xu, Xuan Zhang, Shuiyi Yang, Jie Zhang, Xiheng Wan, Yingsi Gao, Guowei Zheng
+Study Publication Title	Transcriptomics and metabolomics datasets of Paris polyphylla var. yunnanensis with different growth years
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Age
+Study Factor Type	age
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000246
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10683_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS10683_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Samples of P. polyphylla var. yunnanensis, aged between 3-8 years, were collected from Wenshan City (23.27198 N, 104.01723 E), Yunnan Province, China. All selected samples were subjected to identical cultivation and management conditions. Each sample underwent 3 biological replicates, and all samples were obtained from 3 individual plants of similar size. The samples are designated as PP3, PP4, PP5, PP6, PP7 and PP8, representing the rhizomes of P. polyphylla var. yunnanensis grown for 3, 4, 5, 6, 7 and 8 years, respectively. After removing the fibrous roots, the fresh rhizomes were washed immediately under tap water and stored at -80 °C for metabolome and transcriptome sequencing analysis.</p>	<p>The rhizome samples were placed in a lyophilizer (Scientz-100F) utilizing vacuum freeze-drying technology. Subsequently, the samples were ground into a powder at 30 Hz for 1.5 min using a grinder (MM 400, Retsch). A total of 50 mg of the sample powder was extracted with 1.2 mL of 70% aqueous methanol, which had been pre-cooled to -20 °C. The extraction process involved vortexing the mixture for 30 s every 30 min, repeated 6x times. After centrifugation at 12,000 rpm for 3 min, the supernatant was filtered through a microporous membrane (0.22 μm pore size) and stored in an injection bottle.</p>	<p>The sample extracts were analyzed using an UPLC-ESI-MS/MS system (UPLC, ExionLC AD) and Tandem mass spectrometry system. The analytical conditions were as follows, UPLC: column, Agilent SB-C18 (1.8 µm, 2.1 mm x 100 mm); The mobile phase was consisted of solvent A, pure water with 0.1% formic acid, and solvent B, acetonitrile with 0.1% formic acid. Sample measurements were performed with a gradient program that employed the starting conditions of 95% A, 5% B. Within 9.0 min, a linear gradient to 5% A, 95% B was programmed, and a composition of 5% A, 95% B was kept for 1.0 min. Subsequently, a composition of 95% A, 5.0% B was adjusted within 1.1 min and kept for 2.9 min. The flow velocity was set as 0.35 mL/min; The column oven was set to 40 °C; The injection volume was 2 μL. The effluent was alternatively connected to an ESI-triple quadrupole-linear ion trap (QTRAP)-MS.</p>	<p>The ESI source operation parameters were as follows: source temperature 500 °C; ion spray voltage (IS) 5500 V (positive ion mode) / -4500 V (negative ion mode); ion source gas I (GSI), gas II(GSII) and curtain gas (CUR) were set at 50, 60 and 25 psi, respectively; the collision-activated dissociation(CAD) was high. QQQ scans were acquired as MRM experiments with collision gas (nitrogen) set to medium. DP (declustering potential) and CE (collision energy) for individual MRM transitions was done with further DP and CE optimization. A specific set of MRM transitions were monitored for each period according to the metabolites eluted within this period.</p>	<p>Using software Analyst1.6.3 to process mass spectrometry data. Use MultiQuant software to open the sample off-line mass spectrometry file, carry out the integration and correction of chromatographic peaks, and the peak Area of each chromatographic peak represents the relative content of the corresponding substance. Finally, all chromatographic peak area integration data are derived and saved.</p>	<p>Based on the self-built database MWDB (metware database), the substance was characterized according to the secondary spectrum information. Isotopic signals, repeated signals containing K+ ions, Na+ ions and NH4+ ions, and repeated signals of fragment ions which are other substances with larger molecular weight were removed during the analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang	Chen	Xu	Zhang	Yang	Zhang	Wan	Gao	Zheng
+Study Person First Name	Xiaoye	Jia	Ping	Xuan	Shuiyi	Jie	Xiheng	Yingsi	Guowei
+Study Person Mid Initials									
+Study Person Email	319627382@qq.com		2633822198@qq.com						gwzhengkm@163.com
+Study Person Phone									18988421746
+Study Person Fax									
+Study Person Address									Yunnan University of Chinese Medicine
+Study Person Affiliation									corresponding author
+Study Person Roles	first author	Author	Author	Author	Author	Author	Author	Author	principal investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://www.ebi.ac.uk/efo/EFO_0009736
+Study Person Roles Term Source REF	MS	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	EFO

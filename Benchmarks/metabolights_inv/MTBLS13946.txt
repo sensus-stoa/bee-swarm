@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	COVOC	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	https://github.com/EBISPOT/covoc/releases/download/current/covoc.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	2022-10-26	3.87.0			1.0.1		2025-12-03	25.06e	2025-12-18
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	CoVoc Coronavirus Vocabulary	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13946
+Investigation Title	A metabolite-augmented FIB-4 machine learning panel achieves superior liver fibrosis staging in chronic liver disease
+Investigation Description	
+Investigation Submission Date	2026-02-28
+Investigation Public Release Date	2026-03-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13946
+Study Title	A metabolite-augmented FIB-4 machine learning panel achieves superior liver fibrosis staging in chronic liver disease
+Study Description	<p>Accurate, non-invasive liver fibrosis detection is essential for chronic liver disease management, particularly with rising metabolic dysfunction-associated liver disease (MASLD) and chronic hepatitis B (CHB). While the Fibrosis-4 (FIB-4) index is widely used, its performance for advanced fibrosis is limited. We developed Met-FIB using metabolomics and machine learning, integrating FIB-4 parameters (age, aspartate aminotransferase, alanine aminotransferase, platelet count) with tyrosine and taurocholic acid identified in a CHB discovery cohort (n=3,251). Validation included one CHB cohort (n=729) and two MASLD cohorts (n=149, n=155). Met-FIB outperformed FIB-4, FibroScan, and other serum markers across all fibrosis stages. In CHB, Met-FIB achieved 96.3% rule-out sensitivity and 85.4% rule-in specificity for significant fibrosis, with rule-in specificity reaching 98.6% and 98.8% for advanced fibrosis and cirrhosis. In MASLD, corresponding values were 93.9% and 90.2% for significant fibrosis, with &gt;97.9% specificity for late-stage disease. Met-FIB demonstrates clinical utility for non-invasive fibrosis staging across diverse etiologies.</p>
+Study Submission Date	2026-02-28
+Study Public Release Date	2026-03-03
+Study File Name	s_MTBLS13946.txt
+Comment[Created At]	2026-02-27T03:32:37.449436
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolite profiling	fibrosis	biomarker	Diagnosis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000100	http://www.ebi.ac.uk/efo/EFO_0006890	http://purl.obolibrary.org/obo/CHEBI_59163	http://purl.obolibrary.org/obo/NCIT_C15220
+Study Design Type Term Source REF	MSIO	EFO	EFO	COVOC
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yuanyuan Chen, Tianbiao Yang, Tianlu Chen, Huanming Xiao, Kejun Zhou, Keke Ding, Quan Liu, Mengci Li, Xufei Peng,Tao Sun, Xiaoning Wang, Ping Liu, Xin Deng, Zhenhua Zhang, Ka Zhang, Xianzhang Huang, Xiaoling Chi, Alice Pik-ShanKong, Vincent Wai-Sun Wong, Wei Jia, Guoxiang Xie
+Study Publication Title	A metabolite-augmented FIB-4 machine learning panel achieves superior liver fibrosis staging in chronic liver disease
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Liver fibrosis stage
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13946_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Fasting blood samples from controls and liver fibrosis patients were collected using serum-separating tubes after an overnight fast.Samples were allowed to dot for 30 min at room temperature and centrifuged at 1000 x g for 5 min at 4°C. The supernatant wasaliquoted and stored at -80°C until analysis.</p>	<p>Metabolite quantification was performed using an ACQUITY UPLC-Xevo TQ-S system (Waters, Milford, MA, USA) controlled by MassLynx 4.1 software. Separation was achieved on an ACQUITY BEH C18 column (1.7 µm, 100 × 2.1 mm) with a matching VanGuard pre-column. The mobile phase consisted of (A) 0.1% formic acid in water and (B) acetonitrile/isopropanol (70:30, v/v). The elution gradients were set as follows: 0-1 min (5% B), 1-11 min (5-78% B), 11-13.5 min (78-95% B), 13.5-14 min (95-100% B), 14-16 min (100% B), 16-16.1 min (100-5% B), 16.1-18 min (100% B), with flow rate of 0.4 mL/min.&nbsp;</p>	<p>Metabolomic data were processed and quantified using TMBQ software (v1.0, HMI, Shenzhen, China) for peak detection, alignment, and concentration determination.</p>	<p>Frozen serum samples were thawed on ice prior to analysis. Briefly, 20 µL of serum was mixed with 120 µL of internal standard solution, centrifuged, and the supernatant was derivatized. After quenching, samples were held at −20°C, centrifuged again, and the final supernatant was used for LC-MS analysis.</p>	<p>Metabolite quantification was performed using an ACQUITY UPLC-Xevo TQ-S system (Waters, Milford, MA, USA) controlled by MassLynx 4.1 software.&nbsp;MS detection utilized positive and negative ionization modes with capillary voltages of 1.5 kV and 2.0 kV, respectively. Source and desolvation temperatures were 150°C and 550°C, with a desolvation gas flow of 1000 L/h.</p>	<p>Metabolomic data were processed and quantified using TMBQ software (v1.0, HMI, Shenzhen, China) for peak detection, alignment, and concentration determination.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Xie
+Study Person First Name	Guoxiang
+Study Person Mid Initials	
+Study Person Email	xieguoxiang@hmibiotech.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Ningbo University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0002-0951-4150
+Comment[Study Person Affiliation ROR ID]	https://ror.org/03et85d35

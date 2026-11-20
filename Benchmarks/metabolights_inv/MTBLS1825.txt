@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MTBLS	MS	CHMO	PATO
+Term Source File	http://data.bioontology.org/ontologies/OBI			https://www.ebi.ac.uk/metabolights/			
+Term Source Version	29			1			
+Term Source Description	Ontology for Biomedical Investigations			User defined terms			
+INVESTIGATION
+Investigation Identifier	MTBLS1825
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-06-22
+Investigation Public Release Date	2020-09-20
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1825
+Study Title	Imaginal disc growth factor maintains cuticle structure and controls melanization in the spot pattern formation of Bombyx mori
+Study Description	<p>The complex stripes and patterns of insects play key roles in behavior and ecology. However, the fine-scale regulation mechanisms underlying pigment formation and morphological divergence remain largely unelucidated. Here we demonstrated that imaginal disc growth factor (IDGF) maintains cuticle structure and controls melanization in spot pattern formation of Bombyx mori. Moreover, our knockout experiments showed that IDGF is suggested to impact the expression levels of the ecdysone inducible transcription factor E75A and pleiotropic factors apt-like and Toll8/spz3, to further control the melanin metabolism. Furthermore, the untargeted metabolomics analyses revealed that BmIDGF significantly affected critical metabolites involved in phenylalanine, beta-alanine, purine, and tyrosine metabolism pathways. Our findings highlighted not only the universal function of IDGF to the maintenance of normal cuticle structure but also an underexplored space in the genefunction affecting melanin formation. Therefore, this study furthers our understanding of insect pigment metabolism and melanin pattern polymorphisms.</p>
+Study Submission Date	2020-06-22
+Study Public Release Date	2020-09-20
+Study File Name	s_MTBLS1825.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Gene Knockout Metabolomics BmIDGF	ultra-performance liquid chromatography-mass spectrometry	targeted metabolites
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000715	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272
+Study Design Type Term Source REF	MTBLS	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	32986708
+Study Publication DOI	10.1371/journal.pgen.1008980
+Study Publication Author List	Gao Yun, Liu Yun-Cai, Jia Shun-Ze, Liang Yan-Ting, Tang Yu, Xu Yu-Song, Kawasaki Hideki, Wang Hua-Bing
+Study Publication Title	Imaginal disc growth factor maintains cuticle structure and controls melanization in the spot pattern formation of Bombyx mori
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Gene Knockout	Development phase	Technical replicate
+Study Factor Type	Gene Knockout	phase	technical replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C18143	http://purl.obolibrary.org/obo/PATO_0000083	http://www.ebi.ac.uk/efo/EFO_0002090
+Study Factor Type Term Source REF	NCIT	PATO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1825_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS1825_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>A multivoltine and oligophagous silkworm strain, N4, were reared on mulberry leaves or an artificial diet at 26 °C and relative humidity of 75% under long-day conditions (12 h light:12 h dark). CRISPR/Cas9 system was used as an effective approach to knockout targeted gene <em>BmIDGF</em> as described in the associated paper. For steady-state hemolymph metabolite profiling, hemolymph (&gt;100 μl) of mutants and wild type (6 repetitions of each type) were collected on ice at the time of fourth instar, fourth instar mouthing and fifth instar, 40 μl of each sample was taken into the corresponding 96-well plate.</p>	<p>After adding 120 μl of pre-cooled methanol, the sample was mixed and shacked for 1 min and then placed under the circumstance of -20 °C for 2 h or overnight. Next, the mixtures were centrifuged at 4000g for 30 min at 4 °C. The 25 μl supernatants of each sample was transformed into a new 96-well plate and diluted with 225 μl of 50% methanol.</p><p><br></p><p>A pooled quality control (QC) sample, which represents the sample batch, was prepared by combining each sample. The QC sample was used to calibrate the chromatography-mass spectrometry system prior to sample detection and to evaluate the stability of the mass spectrometry system during sample detection. These results can be visually observed through the TIC overlap graph and principal component analysis graph of the QC sample.</p>	<p>LC-MS analysis was performed as previously described [1]. All samples were analyzed by the LC-MS system complying the machine orders. The ultra-performance liquid chromatography (UPLC) system was used for chromatographic separations. The reversed phase separation was performed using ACQUITY UPLC BEH C18 column (100mm*2.1mm, 1.7μm, Waters, UK) under the conditions of 50 °C. The mobile phase solvent A and B were water /0.1% formic acid and acetonitrile / 0.1% formic acid, respectively. Gradient elution was as follows: t=0-2 min,100% phase A; t=2-11 min,0% to 100% B; t=11-13 min,100% B; t=13-15 min,100% A. The flow rate was 0.4 ml/min.</p><p><br></p><p>References:</p><p>[1] Bao L, Gao H, Zheng Z, Zhao X, Zhang M, Jiao F, et al. Integrated transcriptomic and un-targeted metabolomics analysis reveals Mulberry Fruit (Morus atropurpurea) in response to sclerotiniose pathogen ciboria shiraiana infection. J. Mol. Sci. 2020; 21, 1789. doi: 10.3390/ijms21051789</p>	<p>The metabolites eluted form the column were detected by high-resolution tandem mass spectrometer Xevo G2 XS QTOF (Waters, UK). For negative ion mode sampling cone voltages were set to 2,000 V and 40.0 V, respectively. The mass spectrometry data were gained in Centroid MSE mode. The TOF mass scope was from 50 to 1200 Da under the scan time of 0.2 s.</p><p><br></p><p>Mass spectra were collected on a XEVO-G2XS QTOF mass spectrometer (Waters, UK) equipped with an electrospray ionization (ESI) source. The positive and negative ionization mode parameters were as follows: capillary voltage 0.45 kV (global metabolomics)/2.00kV (lipidomics) ; source temperature 120°C; deconvolution temperature 500°C; cone voltage 50 V; and deconvolution gas (N2) flow 800 L/h. Leucine enkephalin (MW = 555.62) (200 pg/μl in acetonitrile/ water 50:50) was used as a lock mass for instrumental drift correction and 0.5 mM sodium formate solution was used for calibration. Mass spectra of the metabolites were measured in centroid mode with the mass range of 50-1200 m/z for global metabolomics and 50-2000 for lipidomics in MS and MSE channels. The low energy MS channel was conducted at 6.0 eV of collision energy and the MSE channel included an energy ramp of 20-40 eV (metabolomics)/ 19-45 eV (lipidomics).</p>	<p>The predominant aim of metabolomics analysis is to screen statistically and biologically significant metabolites from a large number of detected metabolites. The raw data was performed the KNN method to fill in missing values and removed low quality ions. QC-RSC (control–based robust LOESS signal correction) was used to correct the data, and delete the corrected data with a relative standard deviation (RSD)&gt;30% for the statistical analysis.</p>	<p>Metabolomics data were initially to detect metabolic feature and chromatographic matching. For LC-MS analysis, each m/z value and MS/MS spectrum of the ionization product were matched in the database including METLIN database (http://metlin.scripps.edu/), HMDB database (http://www.hmdb.ca/), and Lipid Maps database (http:// www.lipidmaps.org/) with parameters of ppm = 10, adducts = [M-H]- and [M+Cl]-, and negative ion mode.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Gao	Wang
+Study Person First Name	Yun	Hua-Bing
+Study Person Mid Initials		
+Study Person Email	21717034@zju.edu.cn	wanghb@zju.edu.cn
+Study Person Phone		
+Study Person Fax		
+Study Person Address	College of Animal Sciences, Zhejiang University	
+Study Person Affiliation	College of Animal Sciences, Zhejiang University, Hangzhou 310058, China	
+Study Person Roles	first author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	MS	NCIT

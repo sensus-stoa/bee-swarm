@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	ENVO	MI	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/envo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	3.87.0	2025-10-20		1.0.1		2025-12-03	25.06e	2025-12-18	2025
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	The Environment Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS13964
+Investigation Title	Changes in the Abundance of the Fecal Microbiota are Implicated in the Pathogenesis of Diarrhea in Yak Calves
+Investigation Description	
+Investigation Submission Date	2026-03-03
+Investigation Public Release Date	2026-06-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13964
+Study Title	Changes in the Abundance of the Fecal Microbiota are Implicated in the Pathogenesis of Diarrhea in Yak Calves
+Study Description	<p>The yak, an economically vital species on the Qinghai-Tibet Plateau, faces a significant challenge with diarrhea during the calf stage. However, studies about diarrhea of yak calves were few. Due to the close link between diarrhea and intestinal microbiota. Therefore, this study analyzed the fecal microbiota in diarrheic and healthy yak calves, and using a pseudo germ-free (PGF) mouse model to investigate the causes for diarrhea. This study identified microbial dysbiosis in diarrheic yak calves, characterized by significant enrichment of Ruminococcus gnavus and Streptococcus.</p>
+Study Submission Date	2026-03-03
+Study Public Release Date	2026-06-03
+Study File Name	s_MTBLS13964.txt
+Comment[Created At]	2026-03-03
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-03
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	Rattus norvegicus	Intestine
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/NCBITaxon_10116	http://purl.obolibrary.org/obo/NCIT_C12736
+Study Design Type Term Source REF	MSIO	OBI	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yanbin Zhu
+Study Publication Title	Changes in the Abundance of the Fecal Microbiota are Implicated in the Pathogenesis of Diarrhea in Yak Calves
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sex	Timepoint
+Study Factor Type	Sex	timepoint
+Study Factor Type Term Accession Number	http://id.nlm.nih.gov/mesh/D012723	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	mesh	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13964_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13964_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>All samples were acquired by the LC-MS system followed machine orders. Firstly, all chromatographic separations were performed using a Thermo Scientifc UltiMate 3000 HPLC. An ACQUITY UPLC BEH C18 column (100 mm x 2.1 mm, 1.8 um, Waters, UK) was used for the reversed phase separation. The column oven was maintained at 35 °C. The flow rate was 0.4 mL/min and the mobile phase consisted of solvent A (water, 0.1% formic acid) and solvent B (acetonitrile, 0.1% formic acid). Gradient elution conditions were set as follows: 0.0-0.5 min, 5% B, 0.5-7.0 min, 5-100% B; 7.0-8.0 min, 100% B; 8.0-8.1 min, 100-5% B; 8 1-10.0 min, 5% B. The injection volume for each sample was 4 μL.</p>	<p>The raw mass spectrometry downcomer files were converted to mzXML file format by the MSConvert tool in the Proteowizard software package (v3.0.8789). Peak detection, peak filtering and peak alignment were processed using the R XCMS software package, with parameters such as bw=2, ppm=15, peakwidth=c(5, 30), mzwid=0.015, mzdiff=0.01 and method='centWave' to obtain a Substance quantification list.Support vector regression correction based on QC samples was used to eliminate systematic errors. Substances with Coefficient of Variance (CV) less than 30% in the QC samples were then retained for subsequent analysis.</p>	<p>The collected samples were thawed on ice, and metabolite were extracted with 50% methanol buffer. Briefly, 20 uL of sample was extracted with 120 uL of precooled 50% methanol, vortexed for 1 min, and incubated at room temperature for 10 min, the extraction mixture was then storedovernight at -20 °C, After centrifugation at 4000 x g for 20 min, the supernatants were transferredinto new 96-well plates. The samples were stored at -80 °C prior to the LC-MS analysis. Inaddition, pooled OC samples were also prepared by combining 10 j of each extraction mixture</p>	<p>A high-resolution tandem mass spectrometer TripleTOF6600plus (SClEX, Framingham, MA, USA) was used to detect metabolites eluted form the column. The Q-TOF was operated in both positive and negative ion modes. The curtain gas was set 30 PSl, lon source gasl was set 60 PSl, lon source gas2 was set 60 PSl and an interface heater temperature was 650 °C. For positive ionmode, the lonspray voltage floating were set at 5000 V, respectively. For negative ion mode, the lonspray voltage floating were set at -4500 V, respectively.</p>	<p>The metabolite variables were combined by linear combination with certain weights to produce new characteristic variables, and the groups of data were categorised by the main new variables (principal components).</p>	<p>Mice were fed barley for 7, 21 and 35 days and hippocampus and intestinal contents were taken for metabolic analyses.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yanbin	Yanbin
+Study Person First Name	Zhu	Zhu
+Study Person Mid Initials		
+Study Person Email	535922126@qq.com	535922126@qq.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		No.620 at Xi Chang'an Street Xi'an province
+Study Person Affiliation		Tibet Academy of Agricultural and Animal Husbandry Sciences
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]		https://ror.org/024d3p373
+Comment[Study Person Alternative Email]	535922126@qq.com	535922126@qq.com

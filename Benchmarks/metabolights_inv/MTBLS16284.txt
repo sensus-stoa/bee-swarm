@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	HP	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	UBERON	UO
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/hp/hp-international.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uberon.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.94.0	2026-09-01				2026-07-12	26.02d	2026-07-27		2026-07-31
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Human Phenotype Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Uber-anatomy ontology	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS16284
+Investigation Title	Salivary metabolomic profiles across periodontitis stages in pregnant women: a cross-sectional study
+Investigation Description	
+Investigation Submission Date	2026-11-03
+Investigation Public Release Date	2026-11-03
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16284
+Study Title	Salivary metabolomic profiles across periodontitis stages in pregnant women: a cross-sectional study
+Study Description	This cross-sectional study investigated salivary metabolomic profiles in 64 pregnant women classified as having stage I periodontitis (G1, n = 16), stage II periodontitis (G2, n = 14), stage III periodontitis (G3, n = 11), or no periodontitis (G4, n = 23). All participants in G4 had gingivitis. Unstimulated whole-saliva samples were individually analyzed using proton nuclear magnetic resonance spectroscopy, and relative intensities were obtained for 42 metabolites. Statistical analyses included univariate comparisons with Benjamini–Hochberg false discovery rate correction, PLS-DA, sPLS-DA, and exploratory univariate ROC analyses. Additional internal validation used nested stratified five-fold cross-validation with preprocessing and component selection within training partitions. An exploratory secondary analysis excluded G1. The four groups showed substantial overlap, with nested cross-validated accuracies of 0.391 for PLS-DA and 0.344 for sPLS-DA. Nine metabolites differed significantly among groups after FDR correction. The findings support an exploratory interpretation of the salivary metabolic differences associated with periodontitis during pregnancy. This dataset comprises individual one-dimensional NMR acquisitions and their associated processed spectra. Metabolite intensity tables and statistical analysis code are available at https://doi.org/10.5281/zenodo.23902174.
+Study Submission Date	2026-11-03
+Study Public Release Date	2026-11-03
+Study File Name	s_MTBLS16284.txt
+Comment[Created At]	2026-11-03
+Comment[Funder]	Fundação de Amparo à Pesquisa do Estado de São Paulo;Fundação de Amparo à Pesquisa do Estado de São Paulo;Fundação de Amparo à Pesquisa do Estado de São Paulo;Fundação de Amparo à Pesquisa do Estado de São Paulo;Coordenação de Aperfeicoamento de Pessoal de Nível Superior
+Comment[Funder ROR ID]	https://ror.org/02ddkpn78;https://ror.org/02ddkpn78;https://ror.org/02ddkpn78;https://ror.org/02ddkpn78;https://ror.org/00x0ma614
+Comment[Grant Identifier]	2022/10292-8;2024/07973-9;2025/11922-3;2025/10031-8;001
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Related Data Accession]	10.5281/zenodo.23902174
+Comment[Related Data Description]	Processed relative intensities for 42 salivary metabolites from 64 participants, two clinical inflammatory variables, analysis scripts, recorded MetaboAnalyst settings and archived MetaboAnalyst estimates supporting the study.
+Comment[Related Data Repository]	Zenodo
+Comment[Related Data URL]	https://doi.org/10.5281/zenodo.23902174
+Comment[Revision]	1
+Comment[Revision Date]	2026-11-03
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	nmr
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Bruker AVANCE NEO 600 MHz spectrometer	Homo sapiens	saliva	experimental sample	untargeted analysis	Metabolomics	Gingivitis	Periodontitis	Nuclear Magnetic Resonance Facility, King’s College London, London, UK	pregnancy	nuclear magnetic resonance spectroscopy	Cross-Sectional Study	TopSpin	MATLAB	MetaboAnalyst	R	jamovi
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/UBERON_0001836	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/HP_0000230	http://purl.obolibrary.org/obo/HP_0000704	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/efo/EFO_0002950	http://purl.obolibrary.org/obo/CHMO_0000591	http://purl.obolibrary.org/obo/NCIT_C53310	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	NCBITaxon	UBERON	CHMO	MS	EDAM	HP	HP	MTBLS	EFO	CHMO	NCIT	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Comment[Study Design Category]	Instrument	Organism	Organism part	Sample type	measurement-type	omics-type	disease	disease	facility	default	default	default	software	software	software	software	software
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter	submitter	submitter	submitter	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yasmim Zinezi, Amanda Borges Pirondi, Fabricio Hinojosa Alcocer, Tatiana Kelly da Silva Fidalgo, Adrien Le Guennec, Roosevelt Bastos da Silva, Heitor Marques Honório, Nagihan Bostanci, Isaac Maximiliano Bugueno-Valdebenito, Marília Afonso Rabelo Buzalaf, Guy Howard Carpenter, Gerson Aparecido Foratori-Junior
+Study Publication Title	Salivary metabolomic profiles across periodontitis stages in pregnant women: a cross-sectional study
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Periodontal group
+Study Factor Type	periodontal status
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Factor Type Term Source REF	MTBLS
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16284_NMR__.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) - - - Bruker AVANCE NEO 600 MHz spectrometer
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	NMR
+Comment[Assay Type]	NMR spectroscopy assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000623
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[NMR tube type];Parameter Value[Solvent];Parameter Value[Sample pH];Parameter Value[Temperature];Parameter Value[Instrument];Parameter Value[NMR Probe];Parameter Value[Number of transients];Parameter Value[Pulse sequence name];Parameter Value[Magnetic field strength]
+Comment[Assay Field Default Value]	5 mm glass NMR tube;Phosphate buffered D2O/H2O;not reported;298;Bruker AVANCE NEO 600 MHz spectrometer;Bruker 5 mm TCI Prodigy cryogenic probe with z-axis gradients (CPP TCI 600S3 H&F-C/N-D-05 Z);32;K_cpmgpr1d: 1D 1H Carr-Purcell-Meiboom-Gill with water presaturation;14.1
+Comment[Assay Field Default Unit]	;;;kelvin;;;;;tesla
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;http://purl.obolibrary.org/obo/UO_0000012;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;;http://purl.obolibrary.org/obo/CHMO_0000718;http://purl.obolibrary.org/obo/UO_0000228
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;;UO;MTBLS;MTBLS;;CHMO;UO
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Data transformation	Extraction	Metabolite identification	NMR sample	NMR spectroscopy	NMR assay
+Study Protocol Type	sample collection protocol	data transformation	Extraction	metabolite identification	NMR sample	NMR spectroscopy	NMR assay
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005518	http://purl.obolibrary.org/obo/OBI_0200000	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/MI_2131	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112
+Study Protocol Type Term Source REF	EFO	OBI	MTBLS	MI	MTBLS	MTBLS	MTBLS
+Study Protocol Description	Unstimulated whole saliva was collected from 64 pregnant women before periodontal examination. Participants were instructed to avoid food, drinks, oral hygiene, chewing gum and physical exercise for at least 1 hour before collection. Samples were collected between 09:00 and 11:00 after 15 minutes of seated rest. Participants rinsed with 5 mL deionized water and expectorated the rinse. Saliva was collected for 10 minutes by spontaneous expectoration into a sterile 50-mL polypropylene tube maintained on ice. Groups were G1, stage I periodontitis (n=16); G2, stage II periodontitis (n=14); G3, stage III periodontitis (n=11); and G4, no periodontitis (n=23). All G4 participants had gingivitis. Each shared sample code represents one participant and one individual saliva sample.	Spectra were processed in TopSpin 4.0.3 with exponential line broadening of 0.3 Hz before Fourier transformation. Automatic phase correction was followed by visual inspection and manual phase/baseline correction when required. Spectra were exported to MATLAB R2018b for peak alignment by fast Fourier transform and probabilistic quotient normalization (PQN), using the custom toolbox described by Clendinen et al. (2014). The residual water region (4.2-5.1 ppm) and the TSP signal were excluded before preprocessing. Selected metabolite multiplet regions were integrated. The MAF contains the received laboratory-processed metabolite table rescaled to [0,1], copied without additional transformation or Pareto scaling. These are relative intensities, not absolute concentrations. Pareto scaling was applied separately for the downstream multivariate analyses. Analysis code, settings, clinical variables and the source metabolite CSV are available at https://doi.org/10.5281/zenodo.23902174.	Immediately after collection, saliva was centrifuged at 15000 x g for 10 minutes at 4 degrees C to remove cells and debris. Supernatants were transferred to clean tubes and stored at -80 degrees C. Each aliquot was thawed once at room temperature before preparation. The saliva supernatant was analyzed without organic-solvent extraction.	Forty-two metabolites were putatively assigned by comparison of chemical shifts, signal multiplicities, 1D spectral patterns and 2D TOCSY/HSQC correlations with the Human Metabolome Database, the Saliva Metabolome Database and published 1H-NMR spectra of saliva, as described in the manuscript. Spectral regions containing at least an isolated part of a metabolite multiplet were selected for peak integration. The MAF preserves the reported names and relative intensities. Unprovided metabolite-specific accessions, chemical shifts and multiplicities have not been inferred from database reference spectra.	For each sample, 540 microliters saliva supernatant was mixed with 60 microliters NMR phosphate buffer in a 5-mm-outer-diameter glass NMR tube (600 microliters total). The buffer contained 0.20 M Na2HPO4, 44 mM NaH2PO4 and 0.50 mM sodium trimethylsilyl-[2,2,3,3-2H4]-propionate (TSP-d4) in D2O (99.9 atom% D), adjusted to pH 7.4. These added reagents were diluted tenfold in the final mixture: nominal added phosphate 24.4 mM and TSP-d4 0.05 mM, with approximately 10% v/v D2O. D2O provided the field-frequency lock and TSP the chemical-shift reference. The reported pH 7.4 refers to the preparation buffer; a measured final sample pH is not reported in the available preparation documentation. Acquisition temperature was 298 K.	Individual 1D 1H spectra were acquired on a Bruker AVANCE NEO 600-MHz spectrometer (INSTRUM: AvNeo600) with a 5-mm TCI Prodigy cryogenic probe with z-axis gradients (PROBHD: Z129773_0026 (CPP TCI 600S3 H&F-C/N-D-05 Z)). Proton resonance frequency was 600.2 MHz, corresponding to approximately 14.1 T; temperature was 298 K. A Carr-Purcell-Meiboom-Gill sequence with water presaturation was used (PULPROG: K_cpmgpr1d). Spectra were acquired with 32 scans, 65536 data points, spectral width 20.8 ppm, acquisition time 2.62 s and interscan delay 4 s. TopSpin version 4.0.3 was used for acquisition/initial processing.	<p>Each participant has one individual 1D NMR dataset. The NMR Assay Name and Sample Name use the shared code S001-S064. Acquisition parameters and raw FIDs are referenced in FILES/RAW_FILES/Sxxx.zip. Processed real and imaginary spectra are referenced separately in FILES/DERIVED_FILES/Sxxx_processed.zip. Each processed-data archive contains byte-identical copies of the acqu and acqus files and the pdata/1/ directory from the corresponding raw-data archive, including the spectra and processing parameters. No spectral reprocessing was performed when preparing these separate archives.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name			Extraction Method		NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength	
+Study Protocol Parameters Name Term Accession Number					;;;	;;;;	
+Study Protocol Parameters Name Term Source REF					;;;	;;;;	
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Foratori Junior
+Study Person First Name	Gerson Aparecido
+Study Person Mid Initials	
+Study Person Email	gerson.foratori@usp.br
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Universidade de São Paulo
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0003-4760-8948
+Comment[Study Person Affiliation ROR ID]	https://ror.org/036rp1748
+Comment[Study Person Alternative Email]	gersonforatori.usp@gmail.com

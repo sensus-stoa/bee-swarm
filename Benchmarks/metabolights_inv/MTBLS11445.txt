@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	MDM	ERO	OMIT	EFO	NCIT	MS
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version	29	1						
+Term Source Description	Ontology for Biomedical Investigations	User defined terms						
+INVESTIGATION
+Investigation Identifier	MTBLS11445
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-09
+Investigation Public Release Date	2025-05-23
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11445
+Study Title	MTBLS11445: Integrative omics reveals distinct metabolic and microbial signatures in broilers under gut health interventions
+Study Description	Maintaining a well-balanced gut microbiota is crucial for ensuring optimal health and performance in poultry production. Common strategies supporting gut health include control methods for coccidiosis which is a common and economically important enteric disease in poultry. These interventions not only affect the gut microbial community but are also expected to influence metabolite levels, reflecting the dynamic relationship between gut microorganisms and metabolic processes. In this study, we compared the caecal content metabolite levels between birds given ionophores (T1) and vaccination against Eimeria species (T2), using liquid chromatography-mass spectrometry based untargeted metabolomic analysis. All statistical methods were on performed on R v4.4.1. Data was normalised using the probabilistic quotient method and subjected through Sparse Partial Least Squares Discriminant Analysis (sPLS-DA) and Data Integration Analysis for Biomarker discovery using Latent Components (DIABLO) analyses using the mixomics package. Pathway analysis was also performed using MetaboAnalystR package. Our analysis revealed that metabolites classified as prenol lipids as robust markers for T1, while indole derivatives were identified for T2. KEGG pathways involving amino acids (Tryptophan, Phenylalanine) were also enriched in both groups. We identified Bacillus fragilis to have the greatest impact on the metabolome, positively correlated to >240 metabolites, while UBA3818 spp. (Ruminococcaceae) was shown to have a significant negative relationship with 22 metabolites. Overall, the results indicated that differences in coccidiosis control elicit diverse metabolic events in broilers through its influences on nutrient breakdown, affecting the performance and health of broilers and may provide novel avenues for gut health interventions against Eimeria.
+Study Submission Date	2024-11-09
+Study Public Release Date	2025-05-23
+Study File Name	s_MTBLS11445.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	cross sectional design	untargeted metabolites	Broiler Chicken
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001428	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C76362
+Study Design Type Term Source REF	EFO	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Gladys Maria Pangga, Ozan Gundogdu, Umer Ijaz, Anne Richmond, Callie Hughes
+Study Publication Title	Integrative omics reveals distinct metabolic and microbial signatures in broilers under gut health interventions
+Study Publication Status	Writing
+Study Publication Status Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0015780
+Study Publication Status Term Source REF	OMIT
+STUDY FACTORS
+Study Factor Name	Treatment group
+Study Factor Type	intervention
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/ERO_0000347
+Study Factor Type Term Source REF	ERO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11445_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS11445_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS11445_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11445_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>After industrial stunning at the factory, the entire caecal pouches from each chicken were taken out from the abdomen. The caecal samples were then immediately stored in ice and transferred to a -80 °C freezer. Under a laboratory hood, approximately 500 mg intestinal contents were extracted from the caecal pouches using sterile forceps and transferred into 2 mL tubes. All tubes were then subjected to quick freezing in liquid nitrogen for 15 min and stored in dry ice for shipping to the company.</p>	<p>First 25 mg of tissue for each sample was weighed and added into thickened centrifuge tubes; simultaneously, 2 magnetic beads were also added. Next 10 μL of the prepared internal standard 1 was added to each sample at the same time. Then 800 μL of precooled extraction reagent (methanol:acetonitrile:water, 2:2:1, v/v/v) was added, then the mixture was ground at 50 Hz for 5 min. The ground samples were placed at -20 °C for 2 h. The samples were centrifuged (25,000 x g at 4 °C for 15 min), then 600 μL of each sample was transferred into new EP tubes and freeze-dried. Next 600 μL of 50% methanol was added to the dried samples, which were shaken until completely dissolved. The samples were centrifuged again (25,000 x g at 4 °C for 15 min), and the supernatant was transferred into a new EP tube. Then 10 μL of each sample was taken and mixed to prepare QC samples. The prepared supernatant was then processed for LC-MS/MS analysis.</p>	<p><strong>Reverse phase </strong></p><p>Analysis was performed using a Waters UPLC I-Class Plus. Chromatographic separation was performed on a Waters ACQUITY UPLC BEH C18 column (1.7 μm, 2.1 mm x 100 mm, Waters, USA), and the column temperature was maintained at 45 °C. The mobile phase consisted of 0.1% formic acid (A) and acetonitrile (B) in the positive mode, and in the negative mode, the mobile phase consisted of 10 mM ammonium formate (A) and acetonitrile (B). The gradient conditions were as follows: 0.0-1.0 min, 2% B; 1.0-9.0 min, 2-98% B; 9.0-12.0 min, 98% B; 12.0-12.1 min, 98-2% B; and 12.1-15.0 min, 2% B. The flow rate was 0.35 mL/min and the injection volume was 5 μL.</p><p><br></p><p><strong>Hilic</strong></p><p>Analysis was performed using a Waters ACQUITY UPLC I-Class PLUS System. Chromatographic separation was performed on BEH Amide column (1.7 μm 2.1 x 100 mm, Waters, USA). At positive ion mode with mobile phase A consisting 95% acetonitrile water + 10 mM ammonium formate + 0.1% formic acid and mobile phase B consisting 50% acetonitrile in water + 10 mM ammonium formate + 0.1% formic acid. At positive ion mode, with mobile phase A consisting 95% acetonitrile water + 10 mM ammonium formate (adjust pH=9 with ammonia water) and mobile phase B consisting 50% acetonitrile water + 10 mM ammonium formate (adjust pH=9 with ammonia water). The column temperature was maintained at 30 °C. The gradient conditions were as follows: 2% B over 0.0-0.5 min, 2-50% B over 0.5-12.0 min, 50-98% B over 12.0-14.0 min, held constant at 98% B over 14.0-16.0 min and washed with 2% B over 16.1-18.0 min. The flow rate was 0.35 mL/min and the injection volume was 2 μL.</p>	<p>Using Q Exactive (Thermo Fisher Scientific, USA) perform primary and secondary mass spectrometry data acquisition. The full scan range was <strong>70-1050 m/z</strong>, with a resolution of 70000, and the automatic gain control (AGC) target for MS acquisitions was set to 3e6 with a maximum ion injection time of 100 ms. Top 3 precursors were selected for subsequent MSMS fragmentation with a maximum ion injection time of 50 ms and resolution of 17500, the AGC was 1e5. The stepped normalized collision energy was set to 20, 40 and 60 eV. ESI parameters were setting as: Sheath gas flow rate was 40, Aux gas flow rate was 10, positive-ion mode, Spray voltage was 3.80 kV, negative-ion mode Spray voltage was 3.20 kV, Capillary temperature was 320 °C, Aux gas heater temperature was 350 °C.</p>	<p>The resulting file from Compound Discoverer was input into MetaX for data preprocessing and further analysis. Data preprocessing included: (1) normalisation of the data to obtain relative peak areas by Probabilistic Quotient Normalization (PQN), (2) using Quality Control-based robust LOESS signal correction to correct batch effects, and (3) removing metabolites with a coefficient of variation larger than 30% in their relative peak areas in QC samples.</p>	<p>After importing the offline mass spectrometry data into Compound Discoverer 3.3 (Thermo Fisher Scientific, USA) software and analyzing the data in combination with the BMDB (BGI Metabolome Database), mzCloud database and ChemSpider online database, a data matrix containing information such as metabolite peak area and identification results was obtained. The table was then further analyzed and processed. Software Information: Compound Discoverer Version: v.3.3. Parameters: Parent ion mass deviation: &lt; 5 ppm, Mass deviation of fragment ions: &lt; 10 ppm, Retention time deviation: &lt; 0.2 min.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Pangga	Gundogdu	Ijaz	Richmond
+Study Person First Name	Gladys Maria	Ozan	Umer Zeehsan	Anne
+Study Person Mid Initials	V			
+Study Person Email	gladys-maria.pangga@lshtm.ac.uk	Ozan.Gundogdu@lshtm.ac.uk	Umer.Ijaz@glasgow.ac.uk	Anne.Richmond@pilgrimseurope.com
+Study Person Phone				
+Study Person Fax				
+Study Person Address	Keppel Street, London, UK			
+Study Person Affiliation	London School of Hygiene & Tropical Medicine	London School of Hygiene & Tropical Medicine	University of Glasgow	Pilgrim's Europe Ltd
+Study Person Roles	Principal Investigator	Co-Investigator	Co-Investigator	Co-Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812	http://purl.obolibrary.org/obo/NCIT_C51812
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

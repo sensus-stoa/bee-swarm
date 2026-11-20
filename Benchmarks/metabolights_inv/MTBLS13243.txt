@@ -1,0 +1,107 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CDNO	CHMO	EFO	GO	MESH	MI	MMO	MS	MTBLS	NCBITaxon	NCIT	OBI	VO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/cdno.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	https://data.bioontology.org/ontologies/MESH	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/mmo.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/vo.owl
+Term Source Version			2025-10-21	3.90.0	2026-03-25						2026-05-13	26.02d	2026-05-08	2026-05-07
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Compositional Dietary Nutrition Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Medical Subject Headings	Molecular Interactions Controlled Vocabulary	Measurement method ontology	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Vaccine Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13243
+Investigation Title	Plasma metabolomic and lipidomic signatures characteristic of treatment non-response in rheumatoid arthritis
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-10-31
+Investigation Public Release Date	2026-06-02
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13243
+Study Title	Plasma metabolomic and lipidomic signatures characteristic of treatment non-response in rheumatoid arthritis
+Study Description	<p _msttexthash='40138319' _msthash='1501'>Objectives: This study aimed to investigate plasma metabolomic and lipidomic profiles in rheumatoid arthritis (RA) to identify potential biomarkers for distinguishing treatment responses.</p><p _msttexthash='40138319' _msthash='1501'>Methods: Plasma samples were collected from 106 RA patients and 10 healthy controls, with 30 RA samples selected based on predefined inclusion criteria. Using liquid chromatography–mass spectrometry (LC-MS)-based untargeted metabolomics and lipidomics analysis, a total of 2,279 metabolites and 2,987 lipids were systematically identified.</p><p _msttexthash='40138319' _msthash='1501'>Results: Through rigorous statistical evaluation (variable importance in the projection (VIP) &gt; 1 and false discovery rate (FDR) &lt; 0.05), 22 metabolites and lipids were found to be positively associated with RA risk based on logistic regression analysis. These were further refined into 12 core features using least absolute shrinkage and selection operator (LASSO) regression. The 12 core features identified in the treatment non-response group included lipids Cer(d18:1/16:0), PS(16:0/20:0), and Palmitic acid; metabolites Mimosine and D-Xylose; drug-related metabolites Dihydralazine, Tridihexethyl, Acyclovir monophosphate, Indoline, and Melleolide; and pollution-related metabolites Norcotinine and 2-Chloro-1-(chloromethyl)ethyl carbamate. Machine learning models utilizing these features demonstrated robust discriminatory performance, achieving area under the curve (AUC) values exceeding 0.90, validating the efficacy of these biomarkers in differentiating treatment-responsive from non-responsive RA patients. Additionally, the identified features showed significant correlations with high disease activity, enabling differentiation across various stages of disease progression. </p><p _msttexthash='40138319' _msthash='1501'>Conclusion: The findings reveal significant metabolic and lipidomic alterations in RA and highlight the identified biomarkers as effective indicators of treatment responses and potential therapeutic targets.</p>
+Study Submission Date	2025-10-31
+Study Public Release Date	2026-06-02
+Study File Name	s_MTBLS13243.txt
+Comment[Created At]	2025-10-30
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-06-02
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	lipid	untargeted metabolites	rheumatoid arthritis	ultra-performance liquid chromatography	Thermo Scientific Q Exactive HF-X	Homo sapiens	blood plasma	QC sample metric	untargeted analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_18059	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0000685	http://purl.obolibrary.org/obo/MMO_0000720	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/UBERON_0001969	http://purl.obolibrary.org/obo/MS_4000073	http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	CDNO	MTBLS	EFO	MMO	MTBLS	NCBITaxon	GO	MS	MS
+Comment[Study Design Category]	submitter	submitter	submitter	Chromatography Instrument	Instrument	Organism	Sample type	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.3389/fimmu.2026.1787287
+Study Publication Author List	Jiani Chen, Tong Sun, Weili Luo，Chengyang Cao, Jiaqin Xu, Jiaxi Chen
+Study Publication Title	Plasma metabolomic and lipidomic signatures characteristic of treatment non-response in rheumatoid arthritis
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease staging	Treatment
+Study Factor Type	disease staging	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000410	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13243_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS13243_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Peripheral blood samples were collected from 30 patients with RA and 10 HC. All RA patients fulfilled the diagnostic criteria established by the American College of Rheumatology (ACR) or the European League Against Rheumatism (EULAR) guidelines. All RA participants were receiving treatment with at least one DMARD and fulfilled the following inclusion criteria: age ≥18 years and a disease duration of at least 6 weeks. Exclusion criteria for RA patients included: (1) a diagnosis of any autoimmune disease other than RA, (2) a history of severe chronic infections or the presence of any current infection, (3) diagnosis of cancer, (4) pregnancy or lactation. HC were required to meet the inclusion criteria of being ≥18 years old with normal results from recent liver and kidney function tests. The exclusion criteria for healthy controls were: (1) a diagnosis of any autoimmune disease, (2) a history of severe chronic infections or the presence of any current infection, (3) diagnosis of cancer, and (4) pregnancy or lactation. Venous blood samples were obtained from all participants in the morning prior to breakfast. Following collection, blood samples were centrifuged to isolate plasma, which was stored at −80 °C until further analysis. Details of the cohort can be found in Table 1 of the paper associated with this study.</p>	<p>Samples were slowly thawed at 4°C. An appropriate amount of sample was taken and mixed with 4 volumes of pre-cooled methanol/water solution (2:1, v/v), followed by vortexing for 30 seconds. Then, 8 volumes of MTBE (methyl tert-butyl ether) solution were added, vortexed for 30 seconds, and subjected to low-temperature ultrasonication for 30 minutes. After centrifugation at 14,000 g and 4°C for 10 minutes, the upper layer of the stratified liquid was transferred to a new EP tube, dried under vacuum at room temperature, and stored at -80°C.</p><p>Preparation of quality control (QC) samples: Equal volumes of all samples were pooled to prepare QC samples. The QC samples were processed in parallel using the above-described method, lyophilized, and stored at low temperature for later use.</p>	<p _msttexthash='32059222' _msthash='416'>Positive ion mode (POS):</p><p _msttexthash='32059222' _msthash='416'>Mobile phase A: 10 mM ammonium formate in acetonitrile:water (6:4, v/v) with 0.1% formic acid.</p><p _msttexthash='32059222' _msthash='416'>Mobile phase B: 10 mM ammonium formate in isopropanol:acetonitrile (9:1, v/v) with 0.1% formic acid.</p><p _msttexthash='32059222' _msthash='416'>Negative ion mode (NEG):</p><p _msttexthash='32059222' _msthash='416'>Mobile phase A: 10 mM ammonium formate in acetonitrile:water (6:4, v/v) with 0.1% formic acid.</p><p _msttexthash='32059222' _msthash='416'>Mobile phase B: 10 mM ammonium formate in isopropanol:acetonitrile (9:1, v/v) with 0.1% formic acid.</p><p _msttexthash='32059222' _msthash='416'>Samples were separated using a micro-liter flow ultra-high performance liquid chromatography (UHPLC) system, Nexera UHPLC LC-30A. First, the chromatographic column was equilibrated with 70% mobile phase A. Subsequently, samples were delivered to an Acclaim C30 liquid chromatography column (Waters, Acclaim C30, 2.1×100 mm) via an autosampler, with a flow rate of 0.26 mL/min.</p><p _msttexthash='32059222' _msthash='416'>The elution gradient was as follows: starting with 30% mobile phase B, then increasing mobile phase B from 30% to 100% over the next 20 minutes and maintaining 100% mobile phase B for 5 minutes of elution. After that, it was adjusted back to 30% mobile phase B within 0.1 minutes, followed by a 2.9-minute washing period at 30% mobile phase B.</p>	<p _msttexthash='32059222' _msthash='505'>After separation by the analytical column, the samples were analyzed using a Q Exactive HF-X mass spectrometer.</p><p _msttexthash='32059222' _msthash='505'>For full-scan MS (MS¹), the mass-to-charge (m/z) range for precursor ions was 200–2000, with a resolution of 120,000, an automatic gain control (AGC) target of 1e6, and a maximum ion injection time (IT) of 100 ms.</p><p _msttexthash='32059222' _msthash='505'>For tandem MS (MS²), the resolution was 15,000, with an AGC target of 2e5 and a maximum IT of 80 ms. Higher-energy collisional dissociation (HCD) was used for fragmentation, with normalized collision energies (NCE) set at 20, 40, and 60. The isolation window was 1.5 m/z, and the m/z range for product ions was 200–2000.</p>	<p>The raw mass spectrometry data (RAW files) generated by the Q Exactive HF-X mass spectrometer were first converted into open-format files using Thermo Fisher Xcalibur software to ensure compatibility with downstream analysis platforms. This conversion step retained key information such as retention time, m/z values, and ion intensities while standardizing the data structure.</p><p>Subsequently, the converted data were imported into Progenesis QI software for further preprocessing.</p>	<p>After data preprocessing in Progenesis QI, metabolic features were extracted. For each feature, the software performed database searching to match experimental data with reference metabolite information. A mass deviation tolerance of 5 ppm was set for accurate mass matching to ensure reliability.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chen	Chen
+Study Person First Name	Jiaxi	Jiani
+Study Person Mid Initials		
+Study Person Email	chenjx@enzemed.com	503192838@qq.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Taizhou Hospital of Zhejiang Province affiliated to Wenzhou Medical University	Taizhou Hospital of Zhejiang Province affiliated to Wenzhou Medical University
+Study Person Roles	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT

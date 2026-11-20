@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCBITAXON	MS	EFO	NCIT	BTO	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/BTO	
+Term Source Version	29	1	6	129	132	44	29	
+Term Source Description	Ontology for Biomedical Investigations	User defined terms	National Center for Biotechnology Information (NCBI) Organismal Classification	Mass Spectrometry Ontology	Experimental Factor Ontology	National Cancer Institute Thesaurus	BRENDA Tissue and Enzyme Source Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS963
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-05-05
+Investigation Public Release Date	2024-04-01
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS963
+Study Title	The Sphingolipidome of the model organism Caenorhabditis elegans
+Study Description	Sphingolipids are important lipids and integral members of membranes, where they form small microdomains called lipid rafts. These rafts are enriched in cholesterol and sphingolipids, which influences biophysical properties. Interestingly, the membranes of the biomedical model organism Caenorhabditis elegans contain only low amounts of cholesterol. Sphingolipids in C. elegans are based on an unusual C17iso branched sphingoid base. In order to analyze and the sphingolipidome of C. elegans in more detail, we performed fractionation of lipid extracts and depletion of glycero- and glycerophospholipids together with in-depth analysis using UPLC-UHR-ToF-MS. In total we were able to detect 82 different sphingolipids from different classes, including several isomeric species.
+Study Submission Date	2019-05-05
+Study Public Release Date	2024-04-01
+Study File Name	s_MTBLS963.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C153193	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	NCIT	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	31028715
+Study Publication DOI	10.1016/j.chemphyslip.2019.04.009
+Study Publication Author List	Hänel V, Pendleton C, Witting M.
+Study Publication Title	The sphingolipidome of the model organism Caenorhabditis elegans.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Fraction
+Study Factor Type	Fraction
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25514
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS963_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><em>C. elegans</em> were grown in liquid culture to obtain sufficient biomass. Worms were grown in S-medium at 20 °C and fed with concentrated Escherichia coli NA22. Worms were regularly checked and <em>E. coli</em> NA22 was added to prevent starvation. After 1 week, worms were harvested and separated from bacteria by filtration using a 2.7 µm Millipore glass-fiber filter (Sigma-Aldrich, Taufkirchen, Germany). After 2x washing with 10 mL cold M9, worms were frozen at -80 °C until extraction and analysis.</p>	<p><strong>Lipid extraction</strong></p><p>Lipids were extracted according to the Folch method<strong>[1]</strong>. A pellet of about 750 mg (wet weight) of mixed stage worm samples was mixed with 1 mL of MeOH and homogenized in a Precellys Evolution bead beater (Bertin Instruments, Montigny-le-Bretonneux, France) at about 0 °C and 8000 rpm for 3x 10 s with 20 s pause between. After addition of 2 mL CHCl3 the sample was shaken for 1 h at room temperature and 500 rpm using an Eppendorf ThermoMixer C (Eppendorf, Hamburg, Germany). Phase separation was induced by addition of 1 mL H2O and centrifugation at an RCF of 15,294 x g and 4 °C for 15 min. The polar phase was re-extracted with 2 mL of CHCl3 / MeOH / H2O (v/v, 86 / 14 / 1) for 15 min. After phase separation organic phases were combined and dried in 2 aliquots in a SpeedVac Savant centrifugal evaporator (Thermo Scientific, Dreieich, Germany). One aliquot was re-dissolved in 50 µL iPrOH / ACN / H2O (v/v, 60 / 35 / 5) prior to analysis with UPLC-UHR-ToF-MS and the other in CHCl3 for lipid fractionation.</p><p><br></p><p><strong>Sphingolipid fractionation</strong></p><p>Sphingolipids were fractionated according to literature<strong>[2]</strong>. Briefly, different sphingolipids were eluted from either separated or piggy-backed LC-NH2 (Supelclean LC-NH2 SPE tubes, 1 mL, 100 mg sorbent, Supelco) and LC-WCX (Supelclean LC-WCX SPE tubes, 1 mL, 100 mg sorbent) SPE columns. In total 8 different solvent mixtures were used to obtain 7 fractions. Fractionation was exactly performed as described<strong>[2]</strong>.</p><p><br></p><p><strong>Glycero- and Glycerophospholipid depletion&nbsp;</strong></p><p>Depletion of glycerol- and glycerophospholipids was adapted from a published protocol<strong>[3]</strong>. A 50 µL aliquot of lipidome fractions was dried and resuspended in 450 µL MeOH and 50 µL 1 M KOH in MeOH. The samples were incubated at 37 °C for 2 h in a Thermomixer and shaken at 1000 rpm. After this time samples were neutralized with glacial acetic acid (~1 µL) and 1000 µL CHCl3 were added and the sample shaken at 1000 rpm and 20 °C for 1 h. After addition of 500 µL H2O, samples were vortexed and phases separated by centrifugation. The lower organic phase was dried in a SpeedVac and redisolved in 50 µL iPrOH / ACN / H2O (v/v, 60 / 35 / 5) for UPLC-UHR-ToF-MS analysis.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Folch J, Lees M, Stanley GS. A simple method for the isolation and purification of total lipides from animal tissues. Journal of biological chemistry. 1957 May 1;226(1):497-509.</p><p><strong>[2]</strong> Bodennec J, Brichon G, Zwingelstein G, Portoukalian J. Purification of sphingolipid classes by solid-phase extraction with aminopropyl and weak cation exchanger cartridges. Methods Enzymol. 2000;312:101-14. doi:10.1016/s0076-6879(00)12902-7. PMID:11070865.</p><p><strong>[3]</strong> Shaner RL, Allegood JC, Park H, Wang E, Kelly S, Haynes CA, Sullards MC, Merrill AH Jr. Quantitative analysis of sphingolipids for lipidomics using triple quadrupole and quadrupole linear ion trap mass spectrometers. J Lipid Res. 2009 Aug;50(8):1692-707. doi:10.1194/jlr.D800051-JLR200. Epub 2008 Nov 25. PMID:19036716.</p>	<p>Analysis of lipids was performed according to literature<strong>[1]</strong>. Briefly, a Waters Acquity UPLC (Waters, Eschborn, Germany) was coupled to a Bruker maXis UHR-ToF-MS (Bruker Daltonic, Bremen, Germany). Separation of lipids was achieved on a Waters Cortecs C18 column (150 mm x 2.1 mm ID, 1.7 µm particle size) (Waters, Eschborn, Germany) using a gradient from eluent A (60% ACN / 40% H2O + 10 mM NH4HCO2 + 0.1% formic acid (v/v)) to eluent B (90% iPrOH / 10% ACN + 10 mM NH4HCO2 + 0.1% formic acid (v/v)).&nbsp;After an isocratic step with 32 % B for 1.5 min the percentage of buffer B was increased to 97% B at 21 min and held there for 4 min and returned to initial conditions in 0.1 min. The column was re-equilibrated for 4.9 min. The flow rate was set to 250 µL/min. In total 1-5 µL of sample were injected via partial loop.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Witting M, Maier TV, Garvis S, Schmitt-Kopplin P. Optimizing a ultrahigh pressure liquid chromatography-time of flight-mass spectrometry approach using a novel sub-2μm core-shell particle for in depth lipidomic profiling of Caenorhabditis elegans. J Chromatogr A. 2014 Sep 12;1359:91-9. doi:10.1016/j.chroma.2014.07.021. Epub 2014 Jul 18. PMID:25074420.</p>	<p>Mass spectrometric settings were as followed: Nebulizer 2.0 bar, Dry Gas 10.0 L/min, Dry Temp 200 °C, Capillary Voltage 4000 V and End Plate Offset 500 V. Mass range was set from 100 to 2000 m/z. The 1:4 diluted Low Concentration Tuning Mix (Agilent Technologies, Waldbronn Germany) was injected via a 6-port valve prior to each analysis for individual recalibration of m/z axis. </p><p><br></p><p>Fragmentation data was either collected in data-independent (broad band Collision Induced Dissociation, bbCID) or data-dependent (AutoMSn) acquisition mode. 40 eV were used as collision energy for bbCID, while for AutoMSn composite spectra of 10 and 40 eV were collected.</p>	No data transformation was performed. This study aimed to identifiy sphingolipids in <i>C. elegans</i> and is of qualitative nature.	<p>Sphingolipid structures have been generated using the JChem for Excel Plugin (ChemAxon, Budapest, Hungary). Template reactions have been manually drawn and the JCReactProductStructure() reaction function in JChem for Excel was used to generate product structures. SMILES representation of fatty acid and sphingoid bases were used as input. SMILES, InChIs and InChIKeys were generated using the JCMolFormat() function in JChem for Excel. Where available, ChEBI, LipidMaps and SwissLipids IDs have been added. The full table of structures is available in the SI in the paper associated with this study.</p><p><br></p><p>Lipids were identified by manual inspection of MS2 spectra of peaks with a m/z value fitting to the predicted sphingolipid structures. Typical fragments, e.g. m/z 250.2529, m/z 268.2635 and m/z 238.2530, were used to identify C17iso sphingoid base containing sphingolipids.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hänel	Pendleton	Witting
+Study Person First Name	Victoria	Christian	Michael
+Study Person Mid Initials			
+Study Person Email			michael.witting@helmholtz-muenchen.de
+Study Person Phone			4.98932E+11
+Study Person Fax			
+Study Person Address			Ingolstaedter Landstrasse 1
+Study Person Affiliation	Research Unit Analytical BioGeoChemistry, Helmholtz Zentrum München, Ingolstädter Landstraße 1, 85674 Neuherberg, Germany.	Research Unit Analytical BioGeoChemistry, Helmholtz Zentrum München, Ingolstädter Landstraße 1, 85674 Neuherberg, Germany.	Helmholtz Zentrum München
+Study Person Roles	Author	Author	Submitter
+Study Person Roles Term Accession Number			
+Study Person Roles Term Source REF			

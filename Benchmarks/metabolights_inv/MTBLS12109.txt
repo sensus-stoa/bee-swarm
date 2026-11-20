@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	1100	1101	BTO	CHEBI	CHMO	EFO	MI	MONDO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	PRIDE	SNOMED
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://purl.obolibrary.org/obo/mondo/mondo-international.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://raw.githubusercontent.com/PRIDE-Utilities/pride-ontology/master/pride_cv.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version				251	2025-10-21	3.88.0		2026-04-07		1.0.1		2025-12-03	26.02d	2026-03-19		
+Term Source Description			The BRENDA Tissue Ontology (BTO)	Chemical Entities of Biological Interest	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mondo Disease Ontology	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Proteomics Identification Database Ontology	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS12109
+Investigation Title	Multi-omics characterization of acquired Olaparib resistance in BRCA1 and BRCA2 mutant breast cancer cell lines
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-03-09
+Investigation Public Release Date	2026-05-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12109
+Study Title	Multi-omics characterization of acquired Olaparib resistance in BRCA1 and BRCA2 mutant breast cancer cell lines
+Study Description	Poly (ADP-ribose) polymerase inhibitors (PARPi) are widely used as targeted therapies against breast cancers with BRCA mutations. However, the development of resistance to PARPi poses a significant challenge for long-term efficacy of these therapies, warranting further understanding of mechanisms of PARPi resistance. Here, we generated and characterized Olaparib resistance (OR) in BRCA1/2 mutant breast cancer cell lines MDAMB436 and HCC1428 using a systems-level multi-omics approach, including transcriptome, proteome, phosphoproteome, and ADP-ribosylation analysis. Our analyses revealed that resistance development strongly correlated with protein expression changes, while modest effects on phosphorylation- and ADP-ribosylation-dependent signaling pathways were observed. We found that BRCA1 expression was reestablished in OR MDAMB436 cell lines, while PARP1 expression was decreased. In OR HCC1428 cell lines, the BRCA2 mutation was not reverted. However, we observed increased expression of Fanconi anemia group D2 (FANCD2), histone parylation factor 1 (HPF1, and Nicotinamide phosphoribosyltransferase (NAMPT) in various cell lines, suggesting increased replication fork protection, and changes in the ADPr pathway and adaptation of metabolic pathways as resistance mechanisms. Our findings provide valuable insights into the complex landscape of PARPi resistance, offering potential targets for further investigation and therapeutic intervention.
+Study Submission Date	2025-03-09
+Study Public Release Date	2026-05-11
+Study File Name	s_MTBLS12109.txt
+Comment[Created At]	2025-01-08
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-11
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Multi-omics study	targeted metabolites	breast cancer	BRCA1	BRCA2	Drug resistance
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PRIDE_0000461	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/MONDO_0007254	http://identifiers.org/hgnc/1100	http://identifiers.org/hgnc/1101	http://snomed.info/id/31438003
+Study Design Type Term Source REF	PRIDE	MTBLS	MONDO	1100	1101	SNOMED
+STUDY PUBLICATIONS
+Study PubMed ID	40669753
+Study Publication DOI	10.1016/j.mcpro.2025.101034
+Study Publication Author List	Anagho-Mattanovich Holda A., Mullari Meeli, Anagho-Mattanovich Matthias, Cho Hayoung, Pedersen Anna-Kathrine, Palasca Oana, Olsen Jesper V., Locard-Paulet Marie, Nielsen Michael L.
+Study Publication Title	Multi-omics Characterization of Acquired Olaparib Resistance in BRCA1 and BRCA2 Mutant Breast Cancer Cell Lines
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cell line
+Study Factor Type	Clone
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C37925
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12109_LC-MS_positive_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF			CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Immortalized breast cancer cell lines <strong>MDAMB436 </strong>and <strong>HCC1428</strong>, originally from the American Type Culture Collection, were kindly provided by Jesper Olsen (NNF-CPR, University of Copenhagen). Cells were grown in DMEM (Invitrogen) supplemented with 10% fetal bovine serum and penicillin/streptomycin (100 U/ml; Gibco) (cell culture medium) in a 37 °C incubator with 5% CO2.</p><p><br></p><p>Media from the cells were collected (approx. 500 µL) and stored at -80 °C. The adherent cells were rinsed with 1 mL/well of phosphate buffered saline (PBS). The PBS was carefully removed and 360 µL of 90% methanol containing 5 µg/mL of internal standard mix was added (NA-d4, NAD-d4, NADH-d4 and Nam-d4), to quench the cells. Adherent cells were scraped, the whole mixture was transferred to a microcentrifuge tube and 90 µL of 100 mM formic acid was added.</p>	<p>The tubes were repeatedly submerged in liquid nitrogen to snap freeze and then vortexed. After the third repetition, 50 µL of 15% ammonium carbonate was added to neutralize the mix. Samples were left on ice for 1 h, then centrifuged at 13,000 rpm for 15 minutes at 4 °C, then stored at -80 °C until analysis. Prior to analysis, samples were randomized, thawed and vortexed, then 50 µL was aliquoted into LC vials with inserts. Quality control pools for each type were created by combining 20 µL from each sample (parent or clone) and then aliquoted. Extraction blanks and solvent blanks were also run, as quality control samples. These samples were run together with the first calibration curve.</p><p><br></p><p>Calibration standards were prepared using a mix of adenosine diphosphate ribose (ADPR), NAD, NADH+, and Nam in methanol, with concentrations determined based on the measured levels in pooled samples. Internal standards (10 μg/ml NA-d4, NAD-d4, NADH-d4, Nam-d4) were added to all calibration points and extracted similarly to the cell samples. A second calibration curve for nicotinic acid (NA), nicotinamide riboside (NR), nicotinic acid adenine dinucleotide (NAAD), nicotinamide mononucleotide (NMN), and nicotinic acid mononucleotide (NAMN) was prepared and up-concentrated post-extraction by drying and resuspension in a reduced volume. </p>	<p>LC-MS/MS analysis was performed on a <strong>Waters Premier Acquity UPLC.</strong> Samples were randomized prior to data acquisition. Analytes were separated on a <strong>Waters Acquity Premier BEH Amide 1.7 µm VanGuard FIT 2.1 x 150 mm HILIC column</strong>, with a guard column, held at 40 °C, using the following mobile phases at 0.25 mL/min: A:10 mM ammonium acetate in H2O, w. 5 µM medronic acid; B: 10 mM ammonium acetate in 90% ACN, w. 5 µM medronic acid. TThe total run time was 7.5 min and the gradient for separation was as follows : 0 min, 10% A; 0.5 min, 10%A ; 1 min, 35% A; 3.5 min, 41.5% A; 4.5 min, 43% A; 6 min, 55% A; 6.5-7.5 min, 10%A</p>	<p>The mass spectrometer, Waters Xevo TQ-XS triple quadrupole mass spectrometer, was equipped with an electrospray ionization source and operated in positive mode, at a capillary voltage of 0.6 V, and a cone voltage of 15 V. The desolvation temperature was 600 °C, gas flow was 1000 L/h and cone gas flow 150 L/h. T</p><p><br></p><p>The MRM settings for the method are follows: <strong>Compound: Retention time (min); Parent ion (m/z); Fragment 1 (m/z); Fragment 1 CE (eV); Fragment 2 ion (m/z); Fragment 2 CE (eV)</strong>: <strong>Nam</strong>: 2.15; 122.9; 96; 14:79.9; 18/ <strong>Nam-d4</strong>; 2.15;127; 83;18; 84; 18/ <strong>NA</strong>: 2.95; 123.9; 106;14; 77.6; 18/ <strong>NA-d4</strong>: 2.95; 128; 81; 10;81; 10/ <strong>NR</strong>: 3.87; 254.9; 106; 30; 122.9; 10/ <strong>NADH</strong>: 3.47; 666; 514; 25; 136; 40/ <strong>NADH-d4</strong>: 3.47; 670; 112; 43; 136; 43/ <strong>ADP: </strong>3.53;559.9;347;14;135.9;32/ <strong>NAD</strong>: 3.66; 664; 428;30; 136; 30/ <strong>NAD-d4</strong>: 3.66; 668; 136; 43/ <strong>NAAD</strong>: 3.57; 665.05; 428; 26; 135.9; 44/ <strong>NAMN</strong>: 3.68; 336.01; 524; 18; 96.8; 26/ <strong>NMN</strong>: 4.62; 334.96; 97; 26; 122.9; 12.</p>	<p>Data was processed using <strong>Skyline (v. 24.1.0.199)</strong>. Molecule transition lists, including compound names, expected retention times, parent ions, all fragment ions and their respective collision energies were uploaded to the software. Samples, blanks, QCs and calibration points were loaded, peaks picked automatically and integrated from baseline to baseline. Calibration curves were plotted (weighted 1/x2) using the average ratio between each compound peak area to the peak area for the corresponding labelled internal standard, if available, or NAD-d4 (for NADH and ADPR) and NA-d4 (for NR). Any calibration points with a calculated concentration accuracy of more or less than 15% were discarded (marked in grey in the sample table). Pool samples were used as quality control, with relative standard deviation values under 25%. The limit of quantitation (LoQ) was defined as the lowest concentration that could be reliably quantified, i.e. where peak height = 10x the S/N ratio. The concentration of NMN, NAMN, NA and NAAD were found to be below the LoQ in all samples (below LoD for NMN).</p>	<p>Molecule transition lists, including compound names, expected retention times, parent ions, all fragment ions and their respective collision energies were uploaded to the software.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nielsen
+Study Person First Name	Michael
+Study Person Mid Initials	L
+Study Person Email	mln@evosep.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Billedskærervej 15, 5230 Odense
+Study Person Affiliation	Evosep Biosystems
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

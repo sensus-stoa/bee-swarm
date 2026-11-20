@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version											
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS7946
+Investigation Title	Does Storage Post Sampling Influence the Stability of Sebum when used for Mass Spectrometry Metabolomics Analysis?
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-15
+Investigation Public Release Date	2025-07-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7946
+Study Title	Does Storage Post Sampling Influence the Stability of Sebum when used for Mass Spectrometry Metabolomics Analysis?
+Study Description	<p>Sebum is a biofluid excreted by sebaceous glands in the skin. In recent years sebum has been shown to contain endogenous metabolites diagnostic of disease, with remarkable results for Parkinson’s Disease. Given that sebum sampling is facile and non-invasive, its potential for use in clinical biochemistry diagnostic assays should be explored including the parameters for standard operating procedures around collection, transport and storage. To this aim we have here investigated the reproducibility of mass spectrometry data from sebum in relation to both storage temperature and length of storage. Sebum samples were collected from volunteers and stored for up to 4 weeks at a range of temperatures: ambient (circa 17 °C), -20 °C and -80 °C. Established extraction protocols were employed and the samples were analysed by two chromatographic mass spectrometry techniques and data investigated using PCA, PLS-DA and ANOVA. We cannot discriminate samples as a function of storage temperature or time stored in unsupervised analysis using data acquired via TD-GC-MS and LC-IM-MS, although the sampling of volatiles was susceptible to batch effects. This study indicates that the requirements for storage and transport of sebum samples that may be used in clinical assays are far less stringent than for liquid samples and indicate that sebum is suitable for remote and at home sampling prior to analysis.</p>
+Study Submission Date	2025-07-15
+Study Public Release Date	2025-07-15
+Study File Name	s_MTBLS7946.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Stability	liquid chromatography-mass spectrometry	gas chromatography-mass spectrometry	thermal desorption-gas chromatography mass spectrometry	ion mobility spectrometry-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C54072	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000497	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000055	http://purl.obolibrary.org/obo/CHMO_0000499
+Study Design Type Term Source REF	MTBLS	NCIT	MTBLS	CHMO	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	39289421
+Study Publication DOI	10.1038/s41598-024-71598-7
+Study Publication Author List	Walton-Doyle C, Sinclair E, Begum H, Hollywood KA, Trivedi DK, Barran P.
+Study Publication Title	How storage post sampling influences the stability of sebum when used for mass spectrometry metabolomics analysis?
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Temperature	Timepoint	Group
+Study Factor Type	temperature	timepoint	Group
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001702	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C43359
+Study Factor Type Term Source REF	EFO	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7946_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7946_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Gas Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Sebum samples were taken from the upper back of participants (n=8, Table 1) following established methods from our previous studies. Individuals were asked not to shower for at least 24 h prior to collection. Gauze and cotton swabs were rubbed across distinct areas of the skin on the upper back to collect sebum. Samples were collected at home from individuals who each provided 14 samples, using gauze (n=7) and cotton swabs (n=7) taken by themselves or another individual. Sampled gauze swabs were sealed in individual Ziplok bags immediately after collection whilst cotton swabs were stored in their original individual plastic tube holder. The gauze and cotton swab samples were taken on different days to ensure there was sufficient sebum on skin. Once all samples were collected, they were transported to our research labs and placed in a box, meaning collected samples were at ambient temperatures for up to 48 h prior to the start of the experimental period.</p>	<p><strong>TD-GC-MS: </strong></p><p>Gauze swabs were transferred from sample bags to 20 mL headspace vials and were analysed by Dynamic Headspace (DHS) TD-GC-MS.</p><p><br></p><p><strong>LC-IM-MS: </strong></p><p>The wooden stems of the Q-tip swabs were snapped so they would fit in 2 mL microcentrifuge tubes. Methanol (1 mL) was added to each followed by vortex mixing (10 s), sonication (5 min) and a second vortex mixing (10 s). Each Q-Tip was removed from its tube leaving the metabolite rich methanol extract. Samples were centrifuged (15 min, 13,800 x g) and 600 μL was transferred to a new tube. And 100 μL of the remaining liquid was used to create a biological pooled QC sample. Extracts were vacuum centrifuged for 4 h at ambient temperature, and the dried fraction stored at-80 °C until analysis. A blank Q-Tip were extracted following the same protocol as a sample at each time interval. After all samples were collected and extracted, 200 uL methanol was added to extracts, pooled QC and blank samples. They were then vortex mixed (10 s), sonicated (5 min) and centrifuged (15 min at 13,800 x g). The supernatant (160 μL) was submitted for LC-IM-MS analysis.</p>	<p><strong>TD-GC-MS: </strong></p><p>The GC separation was performed using an Agilent VF-5MS column (30 m x 0.25 mm x 0.25 um) with a flow rate of 1 mL/min. The oven gradient was: 40 °C held for 1 min, 25 °C/min to 180 °C, 8 °C/min to 240 °C where it was held for 1 min, 20 °C/min to 300 °C held for 2.9 min. The total run time for each sample was 21 min.</p><p><br></p><p><strong>LC-IM-MS: </strong></p><p>LC-IM-MS analysis was performed on an Acquity UPLC I-Class coupled to a Cyclic IMS Mass Spectrometer (Waters Corporation) fitted with an electrospray ionisation (ESI) source. Data were acquired using MassLynx 4.2. An ACQUITY UPLC CSH C18 column (1.7 μm, 2.1 x 100 mm) with an ACQUITY CSH C18 1.7 μM VanGuard pre-column were used for separation. The mobile phases were: A: acetonitrile:water (v/v, 60:40) and B: isopropanol:acetonitrile:water (v/v, 85:10:5) both with 10 mM ammonium formate and 0.1% formic acid. The flow rate was set to 0.4 mL/min and the gradient began at 90% A, it decreased to 50% A over 4 min, then to 30% A at 11.6 min, 26% A at 11.7 min, 13% A at 16 min and 5% A at 18 min. The composition then went to 90% A at 18.1 min were it equilibrated until 24 min (total run time).</p>	<p><strong>TD-GC-MS: </strong></p><p>The transfer line was kept at 300 °C, the EI source at 230 °C and the quadrupole at 150 °C. The MSD mass range scanned was 30-800 m/z.</p><p><br></p><p><strong>LC-IM-MS: </strong></p><p>Full MS spectra were obtained across the mass range 50-2000 m/z and Leucine-Enkephalin (556.2766 m/z) was infused as a mass calibrant via the LockSpray setup. MS settings were: capillary voltage 2.0 kV, sampling cone voltage 40 V, source temperature 120 °C, desolvation temperature 550 °C and desolvation gas flow 1200 L/h. MSE was used to collisionaly activate all analytes without m/z selection with a potential ramp from 15-45 V.</p>	<p><strong>TD-GC-MS: </strong></p><p>SST data were used to gauge instrument replicability throughout and between each timepoint analysis. TICs were manually overlaid and no significant retention time shift or intensity change was observed. All data from participant samples were converted to open source mzXML format using ProteoWizard. Data were deconvolved in R using in house scripts and eRah packaging.</p><p><br></p><p><strong>LC-IM-MS: </strong></p><p>LC-IM-MS data were aligned and deconvolved in Progenesis QI metabolomics (Waters,Wilmslow). Retention times (RTs) were aligned against the most suitable QC. Peak picking was performed with a minimum peak width of 0.2 min which returned 17,731 compound ions. Any ions that were most abundant in blank samples were removed, as were any features that had a fold change &lt; 1.2 between mean intensity of samples and blanks. Coefficient of Variance (CV) was calculated for ions in the QC injections, and any feature with a CV &gt; 20% were removed. 4,399 features remained in the data matrix which were used for statistical modelling.</p>	<p><strong>TD-GC-MS: </strong></p><p>Putative identifications (MSI level 2) were given by matching fragments with the GOLM database where any assignment with match factor &lt; 75 or as a TMS derivative was not considered identified.</p><p><br></p><p><strong>LC-IM-MS: </strong></p><p>Putative annotations (MSI level 2) were assigned using the Lipid Maps database (LMSD) and Lipid Blast database using a threshold window of 10 ppm for both the precursor and fragment ions.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Walton-Doyle	Sinclair	Begum	Hollywood	Trivedi	Barran
+Study Person First Name	Caitlin	Eleanor	Humayra	Katherine	Drupad	Perdita
+Study Person Mid Initials				A	K	
+Study Person Email	caitlin.walton-doyle@postgrad.manchester.ac.uk					perdita.barran@manchester.ac.uk
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation						
+Study Person Roles	Author	Author	Author	Author	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

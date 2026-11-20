@@ -1,0 +1,96 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MONDO	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mondo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl		http://purl.obolibrary.org/obo/uo.owl
+Term Source Version												
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mondo Disease Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations		Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS6219
+Investigation Title	Diagnostic utility of clinicodemographic, biochemical and metabolite variables to identify viable pregnancies in a symptomatic cohort during early gestation.
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-02-09
+Investigation Public Release Date	2025-08-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6219
+Study Title	Diagnostic utility of clinicodemographic, biochemical and metabolite variables to identify viable pregnancies in a symptomatic cohort during early gestation.
+Study Description	<p>Study question: Can a novel machine learning pipeline create predictive models that identify a composite biomarker to differentiate live normally sited pregnancies (LNSP) from non-viable pregnancies in women presenting with pain and/or bleeding in early gestation? </p><p>Summary answer: Serum metabolite levels and biochemical markers from a single blood sample possess modest predictive utility in differentiating LNSP from non-viable pregnancies upon first presentation, which is improved by variable selection and combination using machine learning. </p><p>What is known already: Around 15% of intrauterine pregnancies are lost in the first trimester. A further 1–2% of pregnancies are located outside of the endometrial cavity and these ectopic pregnancies (EPs) are the leading cause of maternal mortality in the first trimester. Early pregnancy loss can cause significant morbidity when bleeding or infection occurs. Symptoms of pregnancy loss and EP are very similar (including pain and bleeding); however, these symptoms are also common in LNSP. To date, no biomarkers have been identified to differentiate LNSP from non-viable pregnancies. </p><p>Study design, size, duration: This is a prospective cohort study that included 370 participants who attended the early pregnancy assessment unit (EPAU) at Liverpool Women’s Hospital between 5/11/2018 and 08/12/2021 with pain and/or bleeding ≤10 weeks of gestation.&nbsp;&nbsp;</p><p>Participants/materials, setting, methods: A single blood sample was prospectively collected from participants prior to final clinical diagnosis of pregnancy outcome: LNSP, miscarriage, pregnancy of unknown location (PUL) or tubal EP (tEP). Human chorionic gonadotrophin β (β-hCG) and progesterone concentrations were measured in plasma. Serum samples were subjected to untargeted metabolomics profiling using nuclear magnetic resonance (NMR) spectroscopy. Metabolite abundances underwent statistical analyses together with patient demographic data and biochemical markers. The cohort was randomly split into train and validation data sets. The train data set was subjected to variable selection using linear mixed models and 10-fold cross-validation with Least Absolute Shrinkage and Selection Operator (LASSO) selection. Random forest models were constructed using selected metabolites, biochemical markers, and metadata variables. &nbsp;</p><p>Main results and the role of chance: β-hCG and progesterone concentrations were significantly higher in the LNSP group compared with miscarriage, PUL and tEP. Thirty-two unique metabolites were identified in serum, along with 70 unlabelled signals of unknown origin. Of these, 21 metabolite signals exhibited significantly different abundances in the LNSP group when compared with miscarriage, PUL and tEP. When miscarriage, PUL and tEP were grouped together into combined adverse outcomes (CAO), 15 metabolites were significantly different compared with LNSP. LASSO selection identified nine metabolite signals as key discriminators of LNSP versus CAO. Addition of covariates β-hCG, progesterone, participant age, BMI and gestational age improved group separation. Random forest models were constructed using stable metabolite signals alone, or in combination with plasma hormone concentrations and demographic data. Using the independent validation data set. Model performance was poor when all four pregnancy outcomes were included, regardless of variable inclusion (accuracy = 0.48–0.58). When comparing LNSP with CAO, a model with stable metabolite signals only demonstrated a modest predictive accuracy (0.68), which was comparable to a model of β-hCG and progesterone (0.71). The best model for LNSP prediction comprised stable metabolite signals and hormone concentrations (accuracy = 0.79), while the addition of clinicodemographic variables did not improve the model further. </p><p>Large scale data: NMR data is available via the EMBL-EBI MetaboLights repository (ID: MTBLS6219).</p><p>Limitations, reasons for caution: Women with LNSPs presented at the EPAU with pain and/or bleeding. The presence of symptoms may influence the metabolome of this group versus LNSPs without symptoms, thus limiting the translation of these findings. Furthermore, environmental factors were not controlled (e.g., fasting status), making it likely that cohort heterogeneity was enhanced. Finally, a larger study should be conducted to establish the robustness of composite biomarkers for LNSP diagnosis in an independent cohort. </p><p>Wider implications of the findings: A diagnostic test to confirm LNSP and thus exclude potentially life-threatening pregnancy outcomes would be invaluable in emergency situations. </p><p>Study funding/competing interest(s): This work was funded by a Wellbeing of Women Project Grant (RG2137). C.J.H. is supported by the Wellbeing of Women (RG2137), SRI/Bayer and Wellcome Trust IFFS3. N.T. is supported by an Academic Clinical Lectureship from the National Institute of Health Research (NIHR). P.B. was supported by an NIHR Academic Clinical Fellowship. P.J.D. was supported by a Clinical Research Fellowship from the Liverpool Women’s Hospital NHS Foundation Trust. D.K.H. is supported by the Wellbeing of Women (RG2137) and A.M. and D.K.H. are supported by an MRC Clinical Research Training Fellowship (MR/V007238/1). A.W.H. has received honoraria for consultancy for Ferring, Roche, Nordic Pharma, Gesynta, Joii and Abbvie. A.W.H. has received payment for presentations from Theramex and Gideon Richter. The remaining authors have no competing interests to report. </p>
+Study Submission Date	2024-02-09
+Study Public Release Date	2025-08-14
+Study File Name	s_MTBLS6219.txt
+Comment[Revision]	1
+Comment[Revision Date]	2025-08-14
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Tubal Pregnancy	Normal Pregnancy	Miscarriage
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C92946	http://purl.obolibrary.org/obo/NCIT_C92933	http://snomed.info/id/17369002
+Study Design Type Term Source REF	NCIT	NCIT	SNOMED
+STUDY PUBLICATIONS
+Study PubMed ID	38750192
+Study Publication DOI	10.1038/s41598-024-61690-3
+Study Publication Author List	Hill CJ, Phelan MM, Dutton PJ, Busuulwa P, Maclean A, Davison AS, Drury JA, Tempest N, Horne AW, Gutiérrez EC, Hapangama DK.
+Study Publication Title	Diagnostic utility of clinicodemographic, biochemical and metabolite variables to identify viable pregnancies in a symptomatic cohort during early gestation.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Normal pregnancy	Miscarriage	Tubal pregnancy	Pregnancy of unknown location	Batch
+Study Factor Type	Normal Pregnancy	Spontaneous Abortion	tubal pregnancy	pregnancy disorder	Batch
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C92933	http://purl.obolibrary.org/obo/NCIT_C34336	http://purl.obolibrary.org/obo/MONDO_0043762	http://www.ebi.ac.uk/efo/EFO_0009682	http://purl.obolibrary.org/obo/NCIT_C67073
+Study Factor Type Term Source REF	NCIT	NCIT	MONDO	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6219_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001112	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>A total of 370 participants were recruited to the current study. These women presented to the Early Pregnancy Assessment Unit at Liverpool Women’s Hospital with abdominal pain and/or vaginal bleeding at under 10 weeks of gestation. Women were provided with an information leaflet, and informed written consent was obtained. Inclusion criteria comprised pregnant women aged ≥18 years, presenting with pain and/or bleeding at ≤10 weeks of gestation (calculated from last menstrual period). Women unable to provide informed consent, &lt;18 years of age, &gt;10 weeks gestation, asymptomatic or non-pregnant were excluded. All participants provided blood and urine samples and some also provided a lower vaginal swab (LVS). Demographic data was collected at the time of consent, including age and body-mass index (BMI), as well as detailed information concerning smoking status, alcohol intake, and dietary and exercise preferences. A full medical, surgical, medication and gynaecological history was also collected. Early pregnancy outcomes were collated prospectively at the end of the period of care. This study has been approved by the North West Liverpool Central Research Ethics Committee (REC 17/NW/0646).</p><p><br></p><p>All biosamples were processed within 1 h of collection. Blood was collected into uncoated S-Monovette® Z-Gel tubes and S-Monovette® EDTA KE tubes (Sarstedt, Leicester, UK) for serum and plasma isolation, respectively. Blood in Z-Gel tubes was allowed to clot for 20 min before centrifuging at 1,600 g for 10 min at 4 °C. EDTA KE tubes were processed immediately upon receipt; samples were centrifuged at 1,600 g for 10 min at 4 °C. 1 mL aliquots of serum and plasma were stored in sterile cryovials at -80 °C.</p>	<p>Serum samples were used without prior extraction.</p>	<p>Serum aliquots were thawed and 0.3 mL of serum was diluted to a final volume containing 50% [v/v] serum, 40% [v/v] dd H2O (18.2 M), 10% (v/v) 1 M phospahte pH 7.4 buffer (Na2HPO4, VWR International Ltd., Radnor, Pennsylvania, USA and NaH2PO4, Sigma-Aldrich, Gillingham, UK) in deuterium oxide (2H2O, Sigma-Aldrich) and 1.2 mM sodium azide (NaN3, Sigma-Aldrich). Samples were vortexed for 1 min, centrifuged at 21,500 x g at 4 °C for 5 min and 0.6 mL transferred into 5 mm outer diameter NMR tubes.</p>	<p>Non-targeted 1D 1H NMR spectra were acquired at 37 °C using a 700 MHz Bruker Advance III spectrometer equipped with a TCI cryoprobe and chilled Sample-Jet autosampler (Bruker). </p>	<p>1D 1H NMR standard experiment with the cpmgpr1d filters for selective observation of low molecular weight components with optimal water suppression was acquired. Pulse sequence was vendor supplied using Carr-Purcell-Meiboom-Gill (CPMG) sequence. Serum spectra were acquired with 32 transients at 17 ppm spectral width, 72K complex points, 3 ms echo time, 3.1 s acquisition time and a 4 s interscan delay. </p>	<p>Automated Fourier transformation and phasing were performed in Topspin version 3.2. All spectra were individually analysed to ensure conformity with the recommended minimum reporting standards set out by the Metabolites Standard Initiative. Serum spectra were aligned to glucose anomeric peak at 5.244 ppm. Overall peak shapes were appraised, and average full width half maximum (FWHM) was calculated for the alignment peak; spectra with a FWHM value &gt;2 standard deviations from the mean were either repeated or excluded (Supplementary Table 1).</p>	<p>Serum spectra were annotated using Chenomx NMR Suite 8.2 (332-mammalian metabolite library, Chenomx Inc., Edmonton, AB, Canada). Where possible, the identities of the annotated metabolites were confirmed by comparison to an in-house metabolite library in accordance with the MSI best practice. Metabolite identities were allocated to levels 1-3 of assignment confidence; level 1 required 1H information complemented with a secondary orthologous method (1H-13C heteronuclear single quantum coherence (HSQC), 1H-1H J-resolved, 1H-1H- correlation spectroscopy (COSY) and/or total correlation spectroscopy (TOCSY)); level 2 required matching 1D-1H NMR spectrum of an in-house metabolite library or external libraries available in Chenomx to the experimental spectra; level 3 comprised putatively characterised compound classes. </p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Phelan	Hill	Hapangama	Drury	Caamano-Gutierrez
+Study Person First Name	Marie	Christopher	Dharani	Josephine	Eva
+Study Person Mid Initials	M	J	K	A	
+Study Person Email	mphelan@liv.ac.uk	c.j.hill@liverpool.ac.uk	dharani@liverpool.ac.uk	jadrury@liverpool.ac.uk	
+Study Person Phone	+44 151 795 4398				caamano@liverpool.ac.uk
+Study Person Fax					
+Study Person Address	High Field NMR facility, Crown Street, Merseyside, L69 7ZB	Centre for Women’s Health Research, Department of Women’s and Children’s Health, Institute of Life Course and Medical Sciences, University of Liverpool, Member of Liverpool Health Partners, Liverpool L8 7SS, UK	Centre for Women’s Health Research, Department of Women’s and Children’s Health, Institute of Life Course and Medical Sciences, University of Liverpool, Member of Liverpool Health Partners, Liverpool L8 7SS, UK	Centre for Women’s Health Research, Department of Women’s and Children’s Health, Institute of Life Course and Medical Sciences, University of Liverpool, Member of Liverpool Health Partners, Liverpool L8 7SS, UK	Computational Biology Facility, Liverpool Shared Research Facilities, University of Liverpool, Liverpool L69 7ZB, UK
+Study Person Affiliation	University of Liverpool	University of Liverpool	University of Liverpool	University of Liverpool	University of Liverpool
+Study Person Roles	Investigator	first author	Principal Investigator	Researcher	Researcher
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/MS_1002034	http://purl.obolibrary.org/obo/NCIT_C19924	http://snomed.info/id/769038007	http://snomed.info/id/769038007
+Study Person Roles Term Source REF	NCIT	MS	NCIT	SNOMED	SNOMED

@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CCO	CHMO	EFO	GO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://www.bio.ntnu.no/ontology/CCO/cco.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/go/extensions/go-plus.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.89.0	2026-03-25				2026-05-05	26.02d	2026-03-19
+Term Source Description	Cell Cycle Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Gene Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13190
+Investigation Title	p53 regulates Chaperone-mediated autophagy
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-10-21
+Investigation Public Release Date	2026-10-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13190
+Study Title	p53 regulates Chaperone-mediated autophagy
+Study Description	<p>p53 protects against the initiation and progression of a plethora of cancers, but the mechanisms underlying this critical function remain incompletely understood. In addition, chaperone-mediated autophagy (CMA) is major form of autophagy unique to vertebrates, yet both its regulation and function are unclear. Here, we demonstrate that p53 acts as a central activator of CMA, integrating diverse stress signals to regulate this highly selective autophagic pathway. Mechanistically, AMPK—a key cellular energy sensor—inhibits CMA by abrogating the oligomerization of the CMA receptor LAMP2A. Cytoplasmic p53 interacts with AMPK and relieves its inhibitory effect. By activating CMA, p53 targets isocitrate dehydrogenases IDH1 and IDH2 for degradation, inhibiting reductive conversion of glutamine to citrate and suppressing oncogenic growth. Tumor-associated p53 mutants lack the CMA-promoting activities, while oncogenic IDH mutants are resistant to p53- and CMA-mediated degradation. These results suggest that activation of CMA may be a fundamental component of p53 biological function, through which it modulates metabolism and inhibits oncogenic growth.&nbsp;</p>
+Study Submission Date	2025-10-21
+Study Public Release Date	2026-10-03
+Study File Name	s_MTBLS13190.txt
+Comment[Created At]	2025-10-18
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-03
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	p53	chaperone-mediated autophagy	Metabolomics
+Study Design Type Term Accession Number	http://identifiers.org/ncbigene/2768677	http://purl.obolibrary.org/obo/GO_0061684	http://purl.obolibrary.org/obo/NCIT_C49019
+Study Design Type Term Source REF	CCO	GO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yi Xu, Xiaolu Yang
+Study Publication Title	p53 regulates Chaperone-mediated autophagy
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13190_LC-MS___metabolite_profiling-1.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>U2OS cells were transfected with control, p53, or LAMP2A siRNA for 48 hours. Cells were then extracted using ice-cold solvent (acetonitrile:methanol:water, 40:40:20, v/v/v) containing 0.5% formic acid, and the acid was subsequently neutralized with ammonium bicarbonate. The resulting extracts were stored at −80 °C until analysis.</p>	<p>Cells were extracted using ice-cold solvent (acetonitrile:methanol:water, 40:40:20, v/v/v) containing 0.5% formic acid, and the acid was subsequently neutralized with ammonium bicarbonate. The extracts were transferred to 1.5-mL Eppendorf tubes and stored overnight at −80 °C. The samples were then centrifuged at 13,000 × g for 15 min at 4 °C to remove precipitated proteins, and the resulting supernatants were collected for metabolomics analysis.</p>	<p>For sip53 and corresponding control samples, liquid chromatography was performed on a Shimadzu Nexera UHPLC system coupled to a QTRAP 6500+ mass spectrometer (AB Sciex) equipped with an IHILIC-(P) Classic column (5 µm, 150 × 2.1 mm, 200 Å; Hilicon). Mobile phase A consisted of 20 mM ammonium acetate and 25 mM ammonium hydroxide, and mobile phase B was acetonitrile. The flow rate was set to 0.4 mL/min. The gradient was programmed as follows: 0–26 min, 85% B, 32% B, 2% B, and 85% B. The mass spectrometer operated in multiple-reaction monitoring mode with electrospray ionization at 475 °C; ion source gas 1 and 2 were both 60 psi, curtain gas was 35 psi, and the spray voltage was 4,500 V.</p><p><br></p><p>For siLAMP2A and corresponding controls, LC–MS analysis was carried out on a Shimadzu Nexera UHPLC system interfaced with a TripleTOF 6600+ mass spectrometer (AB Sciex). Chromatographic separation employed an IHILIC-(P) Classic column (5 µm, 150 × 2.1 mm, 200 Å; Hilicon) using mobile phase A (20 mM ammonium acetate, 0.1% ammonium hydroxide, and 2.5 µM methylene diphosphate in 95:5 water/acetonitrile) and mobile phase B (acetonitrile). The gradient program was: 0 min, 85% B; 2 min, 85% B; 7 min, 65% B; 12 min, 35% B; 12.1 min, 20% B; 15.9 min, 20% B; 16 min, 85% B; 23 min, 85% B. The flow rate was 0.2 mL/ min, the injection volume 5 µL, and the total run time 23 min. Electrospray ionization settings were: GS1 = 60, GS2 = 60, CUR = 35, temperature = 500 °C, and ion spray voltage = +5000 V or −4500 V for positive and negative modes, respectively.</p>	<p>LC–MS analysis for p53 siRNA and corresponding control siRNA groups was performed on a Shimadzu UHPLC system coupled to a triple quadrupole mass spectrometer (QTRAP 6500+, AB Sciex). The mass spectrometer was operated in multiple reaction monitoring (MRM) mode with an electrospray ionization (ESI) source set at 475 °C. The ion source gas pressure was 60 psi, curtain gas 35 psi, and the spray voltage 4,500 V.</p><p>LC–MS analysis for LAMP2A siRNA and corresponding control siRNA groups was carried out on a Shimadzu UHPLC system coupled to a TripleTOF mass spectrometer (QTOF 6600+, AB Sciex) equipped with an electrospray ionization (ESI) source operating in both positive and negative ion modes. The ESI parameters were as follows: GS1 = 60, GS2 = 60, CUR = 35, temperature = 500 °C, and ion spray voltage = +5000 V or −4500 V for positive and negative modes, respectively.</p>	<p>Raw LC–MS/MS data files were first converted to mzML format using MSConvert (ProteoWizard). The resulting mzML files were processed with the XCMS package in R for peak detection, alignment, and peak table generation. Peak intensities were normalized to total protein concentration prior to downstream analysis.</p>	<p>Metabolite information was retrieved from the Human Metabolome Database (HMDB).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Xu
+Study Person First Name	Yi
+Study Person Mid Initials	
+Study Person Email	yi_xu@fudan.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Fudan University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

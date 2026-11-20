@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	OBI	NCIT		MTBLS	CHMO
+Term Source File		http://data.bioontology.org/ontologies/OBI		http://purl.obolibrary.org/obo/ncit.owl	https://www.ebi.ac.uk/metabolights/	
+Term Source Version		29		18.10e	1.0	
+Term Source Description		Ontology for Biomedical Investigations		NCI Thesaurus OBO Edition	Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS2615
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2021-03-25
+Investigation Public Release Date	2022-07-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS2615
+Study Title	Risk assessment with gut microbiome and metabolite markers in NAFLD development
+Study Description	A growing body of evidence suggests interplay between the gut microbiota and the pathogenesis of nonalcoholic fatty liver disease (NAFLD). However, the role of the gut microbiome in early detection of NAFLD is unclear. Prospective studies are necessary for identifying reliable, microbiome markers for early NAFLD. We evaluated 2487 individuals in a community-based cohort who were followed up 4.6 years after initial clinical examination and biospecimen sampling. Metagenomic and metabolomic characterizations using stool and serum samples taken at baseline were performed for 90 participants who progressed to NAFLD and 90 controls who remained NAFLD free at the follow-up visit. Cases and controls were matched for gender, age, body mass index (BMI) at baseline and follow-up, and 4-year BMI change. Machine learning models integrating baseline microbial signatures (14 features) correctly classified participants (auROCs of 0.72 to 0.80) based on their NAFLD status and liver fat accumulation at the 4-year follow up, outperforming other prognostic clinical models (auROCs of 0.58 to 0.60). We confirmed the biological relevance of the microbiome features by testing their diagnostic ability in four external NAFLD case-control cohorts examined by biopsy or magnetic resonance spectroscopy, from Asia, Europe, and the United States. Our findings raise the possibility of using gut microbiota for early clinical warning of NAFLD development.
+Study Submission Date	2021-03-25
+Study Public Release Date	2022-07-11
+Study File Name	s_MTBLS2615.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	gut microbiome measurement	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	Metagenomics	Intestinal Flora	non-alcoholic fatty liver disease
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0007874	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/NCIT_C153191	http://purl.obolibrary.org/obo/NCIT_C93019	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000114
+Study Design Type Term Source REF	EFO	MTBLS	CHMO	CHMO	NCIT	NCIT	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1126/scitranslmed.abk0855
+Study Publication Author List	Howell Leung, Xiaoxue Long, Yueqiong Ni, Lingling Qian, Emmanouil Nychas, Sara Leal Siliceo, Dennis Pohl, Kati Hanhineva, Yan Liu, Aimin Xu, Henrik B Nielsen, Eugeni Belda, Karine Clément, Rohit Loomba, Huating Li, Weiping Jia, Gianni Panagiotou
+Study Publication Title	Risk assessment with gut microbiome and metabolite markers in NAFLD development
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease	Gender
+Study Factor Type	disease	Gender
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408	http://purl.obolibrary.org/obo/NCIT_C17357
+Study Factor Type Term Source REF	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS2615_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Study design</strong></p><p>The aim of this study was to identify potential predictive signatures for early clinical warning of NAFLD and to develop a prognostic risk assessment model for long-term NAFLD development. For this purpose, we conducted a nested case-control study within a 4.6-year prospective study in 2487 Chinese individuals, and we profiled 180 individuals from 1216 NAFLD-free participants at baseline, including 90 that were diagnosed with NAFLD in the follow-up visit (NAFLD−/+), which were matched with 90 controls without NAFLD (NAFLD−/−) by gender, age, BMI and 4.6-year BMI change. We performed comprehensive metagenomic and metabolomic analyses using stool and serum samples taken at baseline, including taxonomic diversity and profiles at family, genus and species levels, microbial enzymes, metabolic pathways and metabolites. An interpretable machine learning model integrating baseline microbial signatures was built to predict NAFLD development after 4 years. The biological relevance of selected features in the model to NAFLD development was further validated in external cohorts, including three cohorts with the biopsy-confirmed presence/absence of NAFLD. New models were built for validation, given that some features were not available in the external cohorts. All validation models were trained on our cohort and tested in the external cohorts. Further materials and methods details are available in the <strong>Supplementary Materials</strong> in the paper associated with this study.</p><p><br></p><p><strong>Study participants</strong></p><p>All participants were from the Nicheng Diabetes Screening Project (also called the Shanghai Nicheng Cohort Study) previously described<strong>[1][2]</strong>. This population-based, prospective study was designed to assess the prevalence, incidence and factors related to cardiometabolic diseases among adults in Nicheng County, a suburb of Shanghai, China. On the basis of the project, we designed a nested case-control study to explore the potential causal role of the gut microbiome in NAFLD in three randomly selected Nicheng communities (involving 2487 participants). <strong>Figure S1</strong> outlines study enrolment. Of 2487 participants, 1216 were identified as not having NAFLD at baseline; among them, 524 completed a follow-up visit 4.6 years after baseline and were screened by ultrasonography. Incident cases of NAFLD (n = 146) were identified at the 4.6-year follow-up visit, of which 90 participants were eligible for this study involving gut microbiota, according to the following criteria to exclude participants: existed fatty liver, acute infectious disease, biliary obstructive diseases, alcohol abuse (more than 140 g of ethanol/week for men or 70 g of ethanol/week for women), acute or chronic cholecystitis, acute or chronic viral hepatitis, cirrhosis, diarrhea, known hyperthyroidism or hypothyroidism, chronic renal insufficiency, heart failure, presence of cancer, pregnancy, stroke in acute phase, receipt of any antibiotic treatment within 2 weeks or receipt of any probiotic or prebiotic within 1 week before sample collection, and suffering from chronic or acute gastrointestinal diseases (including diarrhea, gastrointestinal infection, and inflammatory bowel disease) in recent 1 month before sample collection. Controls (n = 90 for a case-control ratio of 1:1) were chosen from the remaining participants who did not develop NAFLD by the follow-up visit. To control for the risk profiles in patients who developed NAFLD and those who did not, controls were matched for age (±3 years), sex (male and female), BMI (±3 kg/m^2) at both baseline and follow-up, and BMI change (±0.5 kg/m^2). The study was approved by the ethics committee of the Shanghai Sixth People’s Hospital (approval no: 2014-27), following the principles of the Declaration of Helsinki. Written informed consent was obtained from all participants.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Chen P, Hou X, Hu G, Wei L, Jiao L, Wang H, Chen S, Wu J, Bao Y, Jia W. Abdominal subcutaneous adipose tissue: a favorable adipose depot for diabetes? Cardiovasc Diabetol. 2018 Jun 26;17(1):93. doi:10.1186/s12933-018-0734-8. PMID:29945626.</p><p><strong>[2]</strong> Hou X, Chen P, Hu G, Wei L, Jiao L, Wang H, Liang Y, Bao Y, Jia W. Abdominal Subcutaneous Fat: A Favorable or Nonfunctional Fat Depot for Glucose Metabolism in Chinese Adults? Obesity (Silver Spring). 2018 Jun;26(6):1078-1087. doi:10.1002/oby.22183. Epub 2018 May 2. PMID:29719132.</p>	<p>Metabolomics analysis targeting gut microbiota-host co-metabolism was performed by Metabo-Profile. Samples were treated according to the following steps: cell samples harvested and stored in Eppendorf Safelock microcentrifuge tubes were mixed with 10 prechilled zirconium oxide beads and 20 μL of deionized water. Samples were homogenized for 3 min and 150 μL of methanol containing internal standards was added to extract metabolites. Samples were homogenized for another 3 min and then centrifuged at 18,000 x g for 20 min. Supernatants were transferred to a 96-well plate. The following procedures were performed on a Biomek 4000 workstation (Biomek 4000, Beckman Coulter, Inc.). In total 20 μL of freshly prepared derivatization reagents were added to each well. Plates were sealed and the derivatization was at 30 °C for 60 min. After derivatization, samples were evaporated for 2 h and 330 μL ice-cold 50% methanol solution was added to reconstitute samples. Plates were stored at -20 °C for 20 min followed by 4,000 x g centrifugation at 4 °C for 30 min. A total of 135 μL of supernatant was transferred to a new 96-well plate with 10 μL internal standards in each well. Serial dilutions of derivatized stock standards were added to the wells left. Last, the plate was sealed for LC-MS analysis. All standards were from Sigma-Aldrich, Steraloids Inc. and TRC Chemicals. All standards were accurately weighed and prepared in water, methanol, sodium hydroxide solution, or hydrochloric acid solution to obtain individual stock solutions at 5.0 mg/mL. Appropriate amounts of stock solutions were mixed to create stock calibration solutions.</p>	<p>An ultra-performance liquid chromatography coupled to tandem mass spectrometry (UPLC-MS/MS) system (ACQUITY UPLC-Xevo TQ-S, Waters Corp.) was used to quantitate all targeted metabolites by Metabo-Profile Biotechnology Co., Ltd. The optimized instrument settings are briefly described as follows. For HPLC: column ACQUITY HPLC BEH C18 1.7 x 10^−6 m VanGuard pre column (2.1 x 5 mm) and ACQUITY HPLC BEH C18 1.7 x 10^−6 m analytical column (2.1 x 100 mm); column temperature 40 °C; sample manager temperature 10 °C; mobile phases: A = water with 0.1% formic acid and B = acetonitrile:IPA (70:30); gradient conditions: 0.0-1.0 min (5% B), 1.0-11.0 min (5-78% B), 11.0-13.5 min (78-95% B), 13.5-14.0 min (95-100% B), 14.0-16.0 min (100% B), 16.0-16.1 min (100-5% B), 16.1-18.0 min (5% B); flow rate 0.40 mL/min; injection volume 5.0 μL.</p>	<p>An ultra-performance liquid chromatography coupled to tandem mass spectrometry (UPLC-MS/MS) system (ACQUITY UPLC-Xevo TQ-S, Waters Corp.) was used to quantitate all targeted metabolites by Metabo-Profile Biotechnology Co., Ltd. The optimized instrument settings are briefly described as follows. For mass spectrometer: capillary 1.5 kV (ESI+) / 2.0 kV (ESI-); source temperature 150 °C; desolvation temperature 550 °C; and desolvation gas flow 1000 L/h.</p>	<p>The raw data files generated by UPLC-TQ-MS were processed using <strong>TMBQ</strong> software (v1.0, HMI, Shenzhen, Guangdong, China) for peak integration, calibration and quantification of each metabolite.</p><p><br></p><p>The raw data generated by UPLC-MS/MS were processed using <strong>iMAP</strong> platform (v1.0; Metabo-Profile) to calculate concentrations of analytes in the samples.</p>	<p>Mass spectrometry-based quantitative metabolomics refers to the determination of the concentration of a substance in an unknown sample by comparing the unknown to a set of standard samples of known concentration (i.e., calibration curve).&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Leung	Long	Ni	Qian	Nychas	Siliceo	Pohl	Hanhineva	Liu	Xu	Nielsen	Belda	Clément	Loomba	Li	Jia	Panagiotou
+Study Person First Name	Howell	Xiaoxue	Yueqiong	Lingling	Emmanouil	Sara Leal	Dennis	Kati	Yan	Aimin	Henrik B	Eugeni	Karine	Rohit	Huating	Weiping	Gianni
+Study Person Mid Initials																	
+Study Person Email																	
+Study Person Phone																	
+Study Person Fax																	
+Study Person Address																	
+Study Person Affiliation																	
+Study Person Roles	author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT																

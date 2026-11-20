@@ -1,0 +1,109 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	DOID	EFO	MI	MSIO	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://purl.obolibrary.org/obo/doid/translations/doid-international.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	2026-02-28	3.88.0		1.0.1	2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Human Disease Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13991
+Investigation Title	Metabolomic profiling of mouse heart in a model of Cardiovascular-Kidney-Metabolic syndrome
+Investigation Description	
+Investigation Submission Date	2026-03-06
+Investigation Public Release Date	2026-03-21
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13991
+Study Title	Metabolomic profiling of mouse heart in a model of Cardiovascular-Kidney-Metabolic syndrome
+Study Description	<p>Cardiovascular-kidney-metabolic (CKM) syndrome is a complex systemic disorder. In this study, we developed a urea-activated nanoparticle (T-PAAD NP) for targeted delivery of Empagliflozin to the renal S1 segment. Untargeted GC-MS-based metabolomics was performed to characterize metabolic reprogramming in heart tissues of a CKM mouse model.</p>
+Study Submission Date	2026-03-06
+Study Public Release Date	2026-03-21
+Study File Name	s_MTBLS13991.txt
+Comment[Created At]	2026-03-05T09:14:23.010660
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	heart	cardiovascular-kidney-metabolic syndrome
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/UBERON_0000948	http://purl.obolibrary.org/obo/DOID_0070635
+Study Design Type Term Source REF	MSIO	EFO	DOID
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Xuechun Ren, Di Gao, Rong Yun, Xinyang Liu, Chenna Di, Zeyu Hu, Xinyuan Zhang, Zhongmin Tian, and Zhe Yang
+Study Publication Title	Metabolomic profiling of mouse heart in a model of Cardiovascular-Kidney-Metabolic syndrome
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/MONDO_0000001
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13991_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	GC-MS
+Comment[Assay Type]	GC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was performed on an Agilent 7890A GC system. Helium was used as the carrier gas at a constant flow of 0.56 mL/min. The injection volume was 2 µL in splitless mode with the inlet temperature at 250°C. The oven program started at 60°C (1 min), then increased to 320°C at 10°C/min and held for 5 min. The total run time was 32 minutes.</p>	<p>Raw GC-MS data were acquired using MSD Chemstation software (E.02.02, Agilent). The data files were imported into AMDIS for mass spectral deconvolution and peak area extraction, with a peak area threshold set at 3000 and a relative abundance threshold of 1%. Post-deconvolution, only metabolic features present in more than 80% of the samples were retained to eliminate noise from column bleed or derivatization reagents. Finally, peak areas were normalized to the internal standard (D27-Myristate acid) for subsequent multivariate statistical analysis.</p>	<p>Extraction: Tissue samples were homogenized in a cold methanol:chloroform:water (5:2:2, v/v/v) extraction solvent at a 1:10 mass-to-volume ratio, with D27-Myristate acid added as an internal standard. After vortexing and centrifugation at 12,000 g (4°C, 10 min), 300 µL of supernatant was transferred and completely dried using a vacuum freeze dryer.</p><p>Derivatization: The dried residues were first methoximated with 100 µL of methoxyamine hydrochloride in pyridine (10 mg/mL) at 37°C for 1 h. Subsequently, 100 µL of BSTFA (containing 1% TMCS) was added for silylation at 60°C for 1 h. Samples were then equilibrated to room temperature before GC-MS analysis.</p>	<p>MS detection was performed using an Agilent 5975C MSD in Full Scan mode. The electron impact ionization energy was 70 eV. The ion source temperature was set to 230°C and the quadrupole to 150°C. The transfer line temperature was maintained at 320°C. The solvent delay was 6.20 minutes.</p>	<p>Metabolites were identified by searching against the Agilent Fiehn GC/MS Metabolomics Retention Time Locking (RTL) Library. Identification reliability was further enhanced by locking the absolute retention time using the internal standard D27-Myristate acid. For unidentified features, mass spectra were compared with the NIST 11 library to provide putative annotations where possible.</p>	<p>Heart tissues were rapidly harvested from CKM model and control mice after euthanasia. Samples were immediately snap-frozen in liquid nitrogen and stored at -80°C until extraction to ensure metabolic stability</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Ren	Yang	Yang
+Study Person First Name	Xuechun	Zhe	Zhe
+Study Person Mid Initials			
+Study Person Email	renxuechun@stu.xjtu.edu.cn	yangzhe@xjtu.edu.cn	yangzhe@xjtu.edu.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address		Western China Science and Technology Innovation Harbour, Xi'an, Shaanxi, China	Western China Science and Technology Innovation Harbour, Xi'an, Shaanxi, China
+Study Person Affiliation	Xi'an Jiaotong University	Xi'an Jiaotong University	Xi'an Jiaotong University
+Study Person Roles	Investigator	Principal Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person Alternative Email]		yangzhe@xjtu.edu.cn	yangzhe@xjtu.edu.cn

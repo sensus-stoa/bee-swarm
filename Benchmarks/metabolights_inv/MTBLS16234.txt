@@ -1,0 +1,130 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI	TXPO	hgnc	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/txpo.owl	https://w3id.org/biopragmatics/resources/hgnc/hgnc.owl.gz	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.94.0				2026-07-12	26.02d	2026-07-27	2022/12/07	2026-02-06	2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	TOXic Process Ontology (TXPO)	HUGO Gene Nomenclature Committee	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS16234
+Investigation Title	THEMIS2 promotes ovarian cancer progression and cisplatin resistance through inflammatory signaling and lipid metabolic reprogramming: an integrated multi-omics and experimental study
+Investigation Description	
+Investigation Submission Date	2026-10-30
+Investigation Public Release Date	2026-10-30
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS16234
+Study Title	THEMIS2 promotes ovarian cancer progression and cisplatin resistance through inflammatory signaling and lipid metabolic reprogramming: an integrated multi-omics and experimental study
+Study Description	We conducted an integrated pan-omics analysis of THEMIS2 across six molecular layers from TCGA-OV (mRNA, CNV, mutation, methylation, miRNA, RPPA), four independent GEO cohorts (n=450), DepMap CRISPR essentiality screens, LINCS L1000 drug signatures, single-cell RNA-seq (GSE165897, 51,786 cells), and spatial transcriptomics (GSE211956, 8 Visium samples). Functional validation was performed using THEMIS2 knockdown in A2780 cells with CCK-8, EdU, flow cytometry, and Transwell assays. A three-omics (transcriptomic, proteomic, and metabolomic) integrative analysis was conducted under cisplatin treatment with THEMIS2 knockdown to elucidate downstream mechanisms.
+Study Submission Date	2026-10-30
+Study Public Release Date	2026-10-30
+Study File Name	s_MTBLS16234.txt
+Comment[Created At]	2026-10-29
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-30
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q Exactive HF-X	Homo sapiens	Cell pellet	untargeted analysis	Metabolomics	Ovarian cancer	cisplatin resistance	THEMIS2	Lipid Metabolism
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://purl.obolibrary.org/obo/NCBITaxon_9606		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/TXPO_0004957	https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/16839	http://id.nlm.nih.gov/mesh/D050356
+Study Design Type Term Source REF	MTBLS	MTBLS	NCBITaxon		MS	EDAM	MTBLS	TXPO	hgnc	mesh
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	measurement-type	omics-type	default	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yijing Shi, Le Zhou, enxuan Li, Ruinian Zheng
+Study Publication Title	THEMIS2 promotes ovarian cancer progression and cisplatin resistance through inflammatory signaling and lipid metabolic reprogramming: an integrated multi-omics and experimental study
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+Comment[Study Factor Value Format]	numeric
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS16234_LC-MS_positive_hilic.txt	a_MTBLS16234_LC-MS_negative_hilic.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - hilic	Liquid Chromatography MS - negative - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);HILIC;positive;70-1000;Thermo Scientific Q Exactive HF-X	Thermo Scientific Vanquish UHPLC System;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);HILIC;negative;70-1000;Thermo Scientific Q Exactive HF-X
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002243
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p>A2780/DDP cells were divided into 4 groups, with 3 samples per group: the nc group (nc1, nc2, nc3), serving as the control group without any treatment; the Si group (si1, si2, si3), in which THEMIS2 was knocked down by transfection with siTHEMIS2 at 50 nM; the Nccis group (nccis1, nccis2, nccis3), treated with 10 µM cisplatin for 24 h; and the Sicis group (sicis1, sicis2, sicis3), transfected with siTHEMIS2 for 24 h followed by incubation with 10 µM cisplatin for 24 h.</p>	<p>All samples were for two LC/MS methods. One aliquot was analyzed using positive ion conditions and was eluted from T3 column (Waters ACQUITY Premier HSS T3 Column 1.8 µm, 2.1 mm * 100 mm) using 0.1 % formic acid in water as solvent A and 0.1 % formic acid in acetonitrile as solvent B in the following gradient: 5 to 20 % in 1 min, increased to 99 % in the following 2 mins and held for 1.5 min, then come back to 5 % mobile phase B witnin 0.1 min, held for 1.4 min. The analytical conditions were as follows, column temperature, 40 °C; flow rate, 0.4 mL/min; injection volume, 3 μL; Another aliquot was using negative ion conditions and was the same as the elution gradient of positive mode.</p>	<p>The raw mass spectrometry data were converted to mzML format using ProteoWizard, and peak extraction, alignment, and retention time correction were performed using the XCMS program. Peaks with a missing rate &gt;50% in each group of samples were filtered out, and blank values were filled using KNN imputation + 1/5 minimum value (when blank values &gt;50%, 1/5 minimum value imputation was used; when blank values &lt;50%, KNN imputation was used). Peak areas were corrected using the SVR method. The peaks after correction and screening were subjected to metabolite identification by searching a laboratory-built database, integrating public libraries, and prediction libraries. Finally, substances with an integrated identification score above 0.5 and a QC sample CV value less than 0.3 were extracted, followed by merging of positive and negative modes (if duplicate substances existed, the substance with the highest identification level and the highest score was retained), yielding the all_sample_data.xlsx file.</p>	<p>The sample stored at -80 °C refrigerator was thawed on ice. A 500 μL solution (Methanol : Water = 4:1, V/V) containing internal standard was added into the cell sample and vortexed for 3 min. The sample was placed in liquid nitrogen for 5 min and on the dry ice for 5 min, and then thawed on ice and vortexed for 2 min. This freeze-thaw circle was repeated three times in total. The sample was centrifuged at 12000 rpm for 10 min (4 °C). A 300 μL of supernatant was collected and placed in -20 °C for 30 min. The sample was then centrifuged at 12000 rpm for 3 min (4 °C). A 200 μL aliquots of supernatant were transferred for LC-MS analysis.</p>	<p>All the methods alternated between full scan MS and data dependent MSn scans using dynamic exclusion. MS analyses were carried out using electrospray ionization in the positive ion mode and negative ion mode using full scan analysis over m/z 70-1000 at 60000 resolution. Additional MS settings are: ion spray voltage, 3.8 KV or 3.4 KV in positive or negative modes, respevtively; Sheath gas (Arb), 60; Aux gas, 20; Ion transfer tube temperature, 320 °C; Vaporizer temperature, 350 °C; Collision energy, 30,40,50 V; Top N vs Top speed, 10.</p>	<p>Identified metabolites were annotated using KEGG Compound database (http://www.kegg.jp/kegg/compound/), annotated metabolites were then mapped to KEGG Pathway database (http://www.kegg.jp/kegg/pathway.html).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zheng
+Study Person First Name	Ruinian
+Study Person Mid Initials	
+Study Person Email	zrn1983@smu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Dongguan People’s Hospital
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

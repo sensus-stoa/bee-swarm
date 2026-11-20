@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	NCBITAXON	NCIT	MS	OBI	EFO	BAO	UO	CHEBI	BTO
+Term Source File	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/BTO
+Term Source Version	18	6	44	129	29	146	26	43	99	29
+Term Source Description	Chemical Methods Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Mass Spectrometry Ontology	Ontology for Biomedical Investigations	Experimental Factor Ontology	BioAssay Ontology	Units of Measurement Ontology	Chemical Entities of Biological Interest Ontology	BRENDA Tissue and Enzyme Source Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS412
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2016-11-22
+Investigation Public Release Date	2017-12-18
+Comment[Created With Configuration]	C:\Users\local_admin\Google Drive\ISAcreatorMetaboLights\Configurations\MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS412
+Study Title	Stable isotope resolved analysis of HUVEC Cells under normaxia and hypoxia
+Study Description	In order to analyze HUVECs under normoxia and hypoxia, cells were initially deprived of excess nutrients and hormones by maintaining them overnight in a restricted medium with only 2% fetal bovine serum, and incubated for 40 hours in the presence of the tracer [1,2-13C2]-glucose until sample collection. 13C propagation from labelled glucose to glycogen, RNA ribose, lactate and glutamate was measured. The resulting isotopologue distributions are provided for three biological replicates per metabolite. In order to correct the natural abundance effect and also the effect of possible interferences among different compounds, isotopologue distributions in biological samples without labelled glucose are provided for RNA ribose, lactate and glutamate. Also, isotopologue distributions for commercial glucose are provided, using commercial glucose as a reference compound to correct the natural abundance effect in samples for glycogen (glucose) analysis. Finally, additional results are provided with measured glucose uptake, glutamine uptake, glutamate secretion, lactate secretion and net re-utilization of glycogen.
+Study Submission Date	2016-11-22
+Study Public Release Date	2017-12-18
+Study File Name	s_MTBLS412.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	isotopic abundance correction	targeted metabolites	gas chromatography-mass spectrometry
+Study Design Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0000497
+Study Design Type Term Source REF			CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jayaraman A., Marin S., de Atauri P.R., Selivanov V., Cascante M.
+Study Publication Title	Stable isotope resolved analysis of HUVEC Cells under normaxia and hypoxia
+Study Publication Status	
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Plate surface area	Cell seeding density	Medium	Isotopic tracer	Abundance	Biological replicate	Treatment	Incubation time
+Study Factor Type	area	Cell Density	Growth Medium	isotopic tracer	Abundance	biological replicate	treatment	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001696	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C120538	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C85504	http://purl.obolibrary.org/obo/CHEBI_35206	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C70589	http://www.ebi.ac.uk/efo/EFO_0002091	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	NCIT	NCIT	CHEBI	NCIT	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS412_metabolite_profiling_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Agilent 5975T LTM GC/MSD (Agilent)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	The media and cells were collected at initial (t = 0 hr) and final (t = 40 hr) time points. On the one hand, media and cell pellets were used for analysing isotopologue abundances. Thus, media samples for isotopologue abundances in glucose, lactate and glutamate and cell culture pellets for analysing isotopologue distribution patterns in RNA ribose and glycogen. Accordingly, for glucose, lactate, glutamate, RNA ribose and glycogen the following protocols were applied: </p> 1) Glucose from cell culture media was isolated using a tandem Dowex column containing Dowex-1X8/Dowex-50WX8 ion-exchange columns by eluting the metabolite with water. The liquid collected from elution was evaporated to dryness with air flow, overnight. </p> 2) For lactate, first HCl was added to the cell culture media and the lactic acid formed was extracted with ethyl acetate and the mixture evaporated to dryness under N2 gas flow. </p> 3) For glutamate, the cell culture medium was first passed through a Dowex-50WX8 column and then the amino acids in the Dowex mesh were eluted with 2N ammonium hydroxide and collected in glass tubes and were then dried under airflow overnight. </p> 4) For ribose, cells generated for RNA-ribose 13C-tracer assays were trypsinized and counted using a ScepterTM Handheld Automated Cell Counter (Merck Millipore, Billerica, MA, USA), and both cell pellets and media were kept frozen (at -80 °C and -20 °C, respectively) for further processing. Fresh or frozen plates were processed for RNA isolation using Trizol reagent (Invitrogen). The Trizol lysates were mixed with chloroform and centrifuged in RNAase-free eppendorfs so that they would separate into organic and aqueous phases. The aqueous phase was carefully collected into another RNAase-free eppendorf containing cold isopropanol and then centrifuged at 12000 x g for 15 min at 4 °C in order to precipitate RNA. The supernatant was removed and the pellet was washed with 75% cold ethanol several times, before being dried and resuspended in RNAase-free water. The purified RNA was then hydrolysed in 2 ml of 2N HCl at 100 °C for 2 hr and the solution was evaporated to dryness under airflow overnight. </p> 5) For glycogen, the plates of cell cultures, after the experiment, were washed twice with ice-cold PBS, scrapped with 0.1 M NaOH and heated to 100 °C for 15 min for protein denaturation. </p> The samples were then sonicated for 5 min 2-3x using an ultrasonic bath (Branson 200 Ultrasonic Cleaner, Emerson Industrial Automation, St Louis, MO, USA). The pH of the samples was adjusted to pH 6-7 and then a fixed quantity of [U-13C-D7]-glucose was added as an internal standard for all them, which was used for quantifying the glycogen content. Then 200 µl of 1.25 mg/ml amyloglucosidase in 0.4 M acetate buffer was added to digest the glycogen and the mixture was incubated overnight at 37 °C under agitation. Then both the glucose released from glycogen and the glucose internal standard were isolated using Dowex-1X8/Dowex-50WX8 ion-exchange columns, eluting with water. The eluted samples were then dried overnight under airflow. </p> Glucose, lactate, glutamate, ribose and glycogen, media and pellets were also used to directly estimate rates of transport and transformation. Media were used for estimation of secretion or uptake rates of glucose, glutamine, glutamate and lactate among cells and media. In addition, a net rate of glycogen re-utilization into glucose units by cells was observed and estimated. All these rates were calculated by quantifying metabolite concentrations and glycogen at initial and final time points, and normalizing with respect to both cell numbers and incubation time (hr). Concentrations of extracellular metabolites glucose, lactate, glutamine and glutamate were quantified from cell culture media using COBAS MIRA plus spectral analyzer (Horiba ABX, Japan), by monitoring at 340 nm wavelength the production of NADPH in specific reactions involving the respective metabolites. For quantification of glycogen content, a fixed quantity of [U-13C-D7]-glucose was added as an internal standard as explained above, for calibration purposes and the glycogen content estimated using the calculated curve was normalized with protein content. The resulting rates expressed in µM of metabolite consumed/produced/transformed per hr per million cells (mol/hr/million-cells) were 0.282, 0.235, 0.061 and 1.558 (normoxia), and 0.463, 0.099, 0.050 and 1.169 (hypoxia), for glucose uptake, glutamine uptake, glutamate secretion, and lactate secretion, respectively, with a net transformation of glycogen of 0.00119 (normoxia) and 0.000175 (hypoxia).	For glucose, lactate, glutamate, RNA ribose and glycogen the following protocols for derivatization were applied: </p> 1) For glucose (and glucose derived from glycogen), the isolated metabolite was converted to its aldonitrile acetate derivative after treatment by first heating it to 100 °C with 2% (v/v) hydroxylamine hydrochloride in pyridine for 30 min and then with acetic anhydride for 60 min. Then the mixture was evaporated with N2 gas flow and the final derivative was dissolved with ethyl acetate and injected into gas-chromatography/mass-spectrometry (GC/MS) for analysis under chemical ionisation mode. </p> 2) The lactic acid isolated was derivatized to its lactic acid n-propylamide-heptafluorobutyric ester by incubating with 2,2-dimethoxypropane and 0.5N methanolic HCl 75 °C for 1 hr. Then n-propylamine was added to the mixture and heated for 1 hr at 100 °C and then the samples dried under N2 gas flow. The precipitate was then resuspended in ethyl acetate and then filtered through a glass wool packed Pasteur pipette. The filtered solution was then dried under a stream of N2 gas and then the precipitate resuspended with dichloromethane and heptafluorobutyric anhydride and incubated at room temperature for 10 min. The samples were again dried with N2 gas flow. Dried samples were resuspended in dichloromethane for GC/MS analysis </p> 3) Glutamate was converted to its n-trifluoroacetyl-n-butyl ester by incubation with butanolic HCl at 100 °C for 1 hr and then was dried under N2 gas flow. Then the dried precipitate was dissolved with dichloromethane and trifluoroacetic anhydride and incubated at room temperature for 20 min. The mixture was then dried under N2 flow and the derivative dissolved with dichloromethane for GC/MS analysis. </p> 4) Ribose was derivatized using the same procedure as described for glucose.	The gas-chromatography/mass-spectrometry (GC/MS) detection analysis was carried out using GC-MS from Agilent 7890A GC equipped with a HP-5 capillary column and connected to an Agilent 5975C MS (Agilent Technologies, USA). 1 µl of sample injection at 250 °C was carried out, with helium as the carrier gas at a flow rate of 1 ml/min. </p> For glucose, lactate, glutamate, RNA ribose and glycogen the following procedures for GC/MS detection were applied: </p> 1) For glucose, the GC/MS analysis was carried out under chemical ionisation mode (Scan polarity: positive). Sample injection was done at 250 °C and the oven temperature parameters were programmed to be: 230 °C for 2 min, then increased to 260 °C at the rate of 10 °C/min, followed by an increase to 270 °C at the rate of 25 °C/min and held for 2 min. The retention time (RT) of the chromatographic peak was 3.7 min. The detector monitoring was carried out using single ion monitoring (SIM) where the ions were monitored in the range of 327-334 m/z for the C1-C6 molecule. </p> 2) For lactate, the GC/MS analysis was carried out under chemical ionisation mode (Scan polarity: positive). Samples were injected at 200 °C and the oven temperature was programmed as: 100 °C for 3 min, increase to 160 °C at the rate of 20 °C/min and held for 2 min. The RT of the chromatographic peak was 5.4 min. Ions were monitored by SIM recording the ion abundance of C1-C3 molecule in the range of 327-332 m/z. </p> 3) For glutamate, the GC/MS analysis was carried out under electron impact mode. Samples were injected at 250 °C and the oven temperature was programmed as: 215 °C for 2 min, increase to 224 °C at the rate of 9 °C/min, then to 233 °C at the rate of 3 °C/min and held for 2 min. The RT of the chromatographic peak was 3.9 min. Ions were monitored by SIM recording the ion abundance of C2-C5 fragment in 197-203 m/z. </p> 4) For ribose, the GC/MS analysis was carried out under chemical ionisation mode (Scan polarity: positive). Samples were injected at 250 °C and the oven temperature was programmed as: 150 °C for 1 min, increase to 275 °C at the rate of 15 °C/min and then to 300 °C at the rate of 40 °C/min. The RT of the chromatographic peak was 5.3 min. Ions were monitored by SIM recording the ion abundance of C1-C5 molecule in the range of 255-262 m/z. </p> 5) For glycogen, the GC/MS analysis was carried out under chemical ionisation mode (Scan polarity: positive). Sample injection, oven temperature and RT parameters were similar to that of glucose. Ions were monitored by SIM recording the ion abundance for C1-C6 glucose in the range of 327-334 m/z and of [U-13C-D7]-glucose in the range of 339-345 m/z. The resulting MS spectral data showed the distribution of ions of a compound or a fragment with a specific m/z value. Monitoring such specific m/z values for the ion distributions in each metabolite will give us the fractional distribution of the artificially introduced 13C. The peak areas for all the ions in the cluster were integrated and extracted from the generated raw data (CDF files) using the MSD5975C Data Analysis (Agilent technologies) software. Each peak area is a signal intensity that corresponds to the fraction of ions within the ion cluster under analysis.	Mass spectrometry was carried out on a Agilent 5975C MS (Agilent Technologies, USA) detector. See previous section for the mass spectrometry protocol details.	These observed m/z values may be contaminated with natural abundance of the 13C isotopes and during derivatization process other isotopes, such as that of silicon from the reagents, can be added to the actual derivatization product of the metabolite under analysis. In order to distinguish the known, artificially introduced labels, isotopes contaminating from other modes described above must be subtracted. This kind of label correction is carried out using the R-based program Midcor. The resulting data corrects for the unwanted isotope enrichments mentioned above and gives only the enrichment due to the 13C atoms from the precursor tracer introduced in our experiment. The final data are represented as fractional isotopologue distribution designated as m0, m1, m2,.. etc. where the number indicates the corrected labelled carbons (13C). The sum of all the isotopologues of the ion clusters is equal to 1 (or 100%) and the total 13C enrichment is calculated as 1 (or 100%) minus m0. The abundance of the m2 isotopologue of glucose ([1,2-13C2]-glucose) was estimated to be 48.5% and 48% in normoxia and hypoxia, respectively.	No metabolite identification information was provided.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jayaraman	Marin	de Atauri	Selivanov	Cascante
+Study Person First Name	Anusha	Silvia	Pedro Ramon	Vitaly	Marta
+Study Person Mid Initials					
+Study Person Email	anujraman@gmail.com	silviamarin@ub.edu	pde_atauri@ub.edu	selivanov@ub.edu	martacascante@ub.edu
+Study Person Phone		+34-934 021 217	+34-934 039281	+34-934 039281	+34-934 021 593
+Study Person Fax		+34-934 021 559	+34-934 021 559	+34-934 021 559	+34-934 021 559
+Study Person Address	Av. Diagonal 643 Edifici Prevosti floor 2,Barcelona 08028 (Spain)	Av. Diagonal 643 Edifici Prevosti floor 2,Barcelona 08028 (Spain)	Av. Diagonal 643 Edifici Prevosti floor 2,Barcelona 08028 (Spain)	Av. Diagonal 643 Edifici Prevosti floor 2,Barcelona 08028 (Spain)	Av. Diagonal 643 Edifici Prevosti floor 2,Barcelona 08028 (Spain)
+Study Person Affiliation	Universitat de Barcelona	Universitat de Barcelona	Universitat de Barcelona	Universitat de Barcelona	Universitat de Barcelona
+Study Person Roles	Main investigator of the project	technical advisor	technical advisor	technical advisor	principal investigator of the project
+Study Person Roles Term Accession Number					
+Study Person Roles Term Source REF					

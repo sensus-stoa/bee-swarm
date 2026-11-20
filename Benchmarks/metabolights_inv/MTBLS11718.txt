@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	EFO	NCIT	OBI	MS
+Term Source File	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO	Metabolights	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api
+Term Source Version	1.0	132		29	
+Term Source Description	User defined terms	Experimental Factor Ontology		Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS11718
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-11-19
+Investigation Public Release Date	2025-03-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11718
+Study Title	Gut microecology of long COVID persisting for 2 years
+Study Description	<p>Long COVID is an emerging global public health issue. The human gut microbiota (GM) has been identified as a potentially important factor influencing the development of long COVID. This study aims to understand the prevalence, risk factors and GM of long COVID persisting for 2 years in Hainan Province, China, to aid public recognition.</p>
+Study Submission Date	2024-11-19
+Study Public Release Date	2025-03-26
+Study File Name	s_MTBLS11718.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	SARS-CoV-2	COVID-19	long-COVID	prevalence	risk factors	gut microbiota	prospective
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Daya Zhang, Feihu Bai
+Study Publication Title	Gut microecology of long COVID persisting for 2 years
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11718_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11718_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Fresh fecal samples were collected from each participant. The specimens were divided into 3 x 100 mg portions and promptly snap-frozen in liquid nitrogen. The procedure of transporting and handling the samples on ice was completed within 20 min. Post snap-freezing, the samples were preserved at -80 °C pending extraction for analysis.</p>	<p>For metabolomic analysis, 100 μL of each sample was placed in an EP tube and combined with 400 μL of methanol that included isotopically-labeled internal standards. After vortexing for 30 s, the samples underwent sonication in an ice-water bath for 10 min, followed by incubation at -40 °C for 1 h to induce protein precipitation. Following centrifugation at 12,000 rpm (13,800 x g) for 15 min at 4 °C, the supernatant was moved to a new vial. A pooled quality control sample was created by combining equal volumes of each supernatant.</p>	<p>Metabolomic analyses were conducted utilizing a UHPLC system (Vanquish, Thermo Fisher Scientific) with a Waters ACQUITY UPLC HSS T3 (2.1 mm × 100 mm, 1.8 μm) column connected to an Orbitrap Exploris 120 mass spectrometer. The mobile phase comprised water containing 5 mmol/L ammonium acetate and 5 mmol/L acetic acid (component A) along with acetonitrile (component B) The auto-sampler was maintained at 4 °C, with a 2 μL injection volume.</p>	<p>The Orbitrap Exploris 120 mass spectrometer, operating in information-dependent acquisition (IDA) mode and managed by Xcalibur software, evaluated the full scan MS spectrum. The ESI source settings were: sheath gas flow rate of 50 Arb, auxiliary gas flow rate of 15 Arb, capillary temperature at 320 °C, full MS resolution at 60,000, MS/MS resolution at 15,000, collision energy in NCE mode at 10/30/60, and spray voltage at 3.8 kV (positive mode) or -3.4 kV (negative mode).</p>	<p>Data processing began with raw data conversion to mzXML format utilizing ProteoWizard, followed by peak detection, extraction, alignment and integration through a custom R program based on XCMS.</p>	<p>Metabolite annotation was conducetd utilizing an in-house MS2 database (BiotreeDB, Shanghai) with a cutoff of 0.3 [16].</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang
+Study Person First Name	Daya
+Study Person Mid Initials	
+Study Person Email	875025464@qq.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	
+Study Person Roles	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT

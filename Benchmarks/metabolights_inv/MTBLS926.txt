@@ -1,0 +1,93 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	BAO	BTO	GO	NCBITAXON	CHMO	CL	EFO	EFO	MS	NCIT	SO	UO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/GO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/CL	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/SO	http://data.bioontology.org/ontologies/UO
+Term Source Version	29	1	26	29	1557	6	18	59	146	132	129	44	207	43
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology	Gene Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Chemical Methods Ontology	Cell Ontology	Experimental Factor Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	National Cancer Institute Thesaurus	Sequence Types and Features Ontology	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS926
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	
+Investigation Public Release Date	2021-11-01
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS926
+Study Title	Integrated Metabolomic and Transcriptomic Profiling Reveals Novel Activation-Induced Metabolic Networks in Human T cells
+Study Description	<p>The targeting of metabolic pathways is emerging as an exciting new approach for modulating immune cell function and polarization states. In this study, carbon tracing and systems biology approaches integrating metabolomic and transcriptomic profiling data were used to identify adaptations in human T cell metabolism important for fueling pro-inflammatory T cell function. Results of this study demonstrate that T cell receptor (TCR) stimulation leads to a significant increase in glucose and amino acid metabolism that trigger downstream biosynthetic processes. Specifically, increased expression of several enzymes such as CTPS1, IL4I1, and ASL results in the reprogramming of amino acid metabolism. Additionally, the strength of TCR signaling resulted in different metabolic enzymes utilized by T cells to facilitate similar biochemical endpoints. Furthermore, this study shows that cyclosporine represses the pathways involved in amino acid and glucose metabolism, providing novel insights on the immunosuppressive mechanisms of this drug. To explore the implications of the findings of this study in clinical settings, conventional immunosuppressants were tested in combination with drugs that target metabolic pathways. Results showed that such combinations increased efficacy of conventional immunosuppressants. Overall, the results of this study provide a comprehensive resource for identifying metabolic targets for novel combinatorial regimens in the treatment of intractable immune diseases.</p>
+Study Submission Date	2019-04-11
+Study Public Release Date	2021-11-01
+Study File Name	s_mtbls926.txt
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Immunosuppressant	T-Cell Receptor	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C574	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C17065		http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	NCIT	NCIT		CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.2139/ssrn.3473264
+Study Publication Author List	Hiemer Samantha, Jatav Shashank, Jussif Jason, Alley Jennifer, Lathwal Shefali, Piotrowski Mary, Janiszewski John, Kibbey Richard, Alves Tiago, Dumlao Darren, Jha A., Bandukwala Hozefa
+Study Publication Title	Integrated Metabolomic and Transcriptomic Profiling Reveals Novel Activation-Induced Metabolic Networks in Human T Cells
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Time	shRNA Knockdown	CRISPR Knockout	Drug Perturbation	Activation Protocol
+Study Factor Type	Timepoint	Gene Knockdown	Gene Knockout	drug	T Cell Activation
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C68568	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C74927	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C18143	http://purl.obolibrary.org/obo/CHEBI_23888	http://purl.obolibrary.org/obo/GO_0042110
+Study Factor Type Term Source REF	NCIT	NCIT	NCIT	EFO	GO
+STUDY ASSAYS
+Study Assay File Name	a_mtbls926_POS_LC-MS_metabolite_profiling.txt	a_mtbls926_NEG_LC-MS_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (POS))	Liquid Chromatography MS - Negative (LC-MS (NEG))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Primary human CD4+ T cell isolation, culture, and activation:</strong></p><p>Blood was collected from healthy human patients in accordance with IRB standards. CD4+ T cells were purified using RosetteSep isolation kit (StemCell) as per manufacturer’s protocol. Cells were cultured in RPMI supplemented with 10% heat inactivated FBS, HEPES, penicillin/streptomycin, non-essential amino acids, glutamax, and sodium pyruvate. Cells were initially activated for 72 hr on plate-bound alpha-CD3 (200 ng/ml; OKT3; BioXCell) and alpha-CD28 (200 ng/ml; 9.3; BioXCell) on goat-alpha-mouse (10 µg/ml; Jackson Immuno Research Labs) pre-coated high-binding plates (Corning Costar). After 72 hr, cells were removed from plate activation and were expanded until Day 8-12, maintained at ~1 x 10^6 cells/ml by supplementing with fresh media as required. Cells were then washed with PBS and either rested or re-activated at 0.5-1 x 10^6 cells/ml in fresh media with plate-bound alpha-CD3/alpha-CD28 (100 ng/ml each) or with soluble ImmunoCult CD3/CD28 (1:100 dilution; StemCell). Cells were treated with Rapamycin (100 nM) and/or Cyclosporin A (2 µM), or equivalent volume of DMSO during re-activation.</p><p><br></p><p><strong>Lentiviral transduction and shRNA knockdown:</strong></p><p>Lenti-X 293T (Clontech) cells were plated on poly-D-lysine (0.1 mg/ml; Sigma) coated plates at a density of 1.67 x 10^5 cells/ml. After 72 hr, cells were transfected with psPAX2 (1.5 µg), pCMV-VSV-G (0.5 µg), and pZIP-mCMV-ZsGreen-shRNA NT Control or mTOR plasmids (2 µg; Transomic) using the TransIT-LT1 transfection reagent (Mirus) as per manufacturer’s protocol. Virus was collected after an additional 72 hr and CD4+ T cells were spin infected after 48 hr of activation using undiluted virus (~1 x 10^8 IFU yielding a MOI of ~70) supplemented with polybrene (10 µg/ml; AmericanBio Inc). After an additional 24 hr of activation, the transduced CD4+ T cells were removed from activation and expanded in the presence of puromycin (1 µg/ml) until Day 8-12, maintained at ~1 x 10^6 cells/ml by supplementing with fresh media as required. Cells were then washed and activated as described above.</p><p><br></p><p><strong>CRISPR/Cas-9 knockout:</strong></p><p>Cells were activated on plate-bound α-CD3/α-CD28 as described above. Cells were removed from plate activation after 72 hr and were rested overnight at ~1 x 10^6 cells/ml. The following day the conditioned media was saved before washing the cells and resuspending in buffer T (Neon Transfection System; ThermoFisher) at 2.5 x 10^6 cells/ml. Guides targeting human mTOR and ZAP70 were designed using the Broad Institute’s online sgRNA designer (<a href='https://portals.broadinstitute.org/gpp/public/analysis-tools/sgrna-design' target='_blank'>https://portals.broadinstitute.org/gpp/public/analysis-tools/sgrna-design</a>)[1] (see Table S2 in the paper associated with this study). 5 guides per gene were synthesized by IDT and duplexed in a 1:1 ratio with Alt-R-CRISPR-Cas9-tracrRNA (IDT) as per manufacturer’s protocol. Duplexed guides were incubated with Alt-R S.p. Cas9 Nuclease (IDT) before mixing with 2.5 x 10^6 cells and electroporating using the Neon Transfection System (ThermoFisher; 100 µl tip at 1550 V, 10 ms, 3 pulses). Cells were allowed to recover for 1 hr in fresh media before adding back conditioned media in a 1:1 ratio conditioned to fresh media. Cells were expanded in the presence of IL-2 (2 ng/ml; R&amp;D) until Day 8-12, maintained at ~1 x 10^6 cells/ml by supplementing with fresh media as required. Cells were then washed and activated as described above.</p><p><br></p><p>Ref:</p><p>[1] Doench JG, Fusi N, Sullender M, Hegde M, Vaimberg EW, Donovan KF, Smith I, Tothova Z, Wilen C, Orchard R, Virgin HW, Listgarten J, Root DE. Optimized sgRNA design to maximize activity and minimize off-target effects of CRISPR-Cas9. Nat Biotechnol. 2016 Feb;34(2):184-191. doi: 0.1038/nbt.3437. PMID:26780180</p>	<p>300 μl of extraction buffer (acetonitrile:methanol:water 2:2:1) was added to frozen cell pellets (1 x 10^6 cells) on ice and allowed to stand for 30 min. Samples were vortexed then centrifuged for 10 min at 15,000 RPM. The supernatants were transferred to new vial and dried under vacuum centrifugation. Samples were resuspended with 100 μl of resuspension buffer (acetonitrile:water 5:95).</p>	<p>10 μl of each sample was injected on our LC-HRMS system (Agilent 1290 UPLC in tandem with a Thermofisher High Field Q-Exactive) and separated using an ion-pairing chromatography.</p><p><br></p><p><strong>Positive mode:</strong></p><p>Waters Acquity 2.1 x 100 mm BEH C18, 1.7μ column heated to 50 °C. Mobile phase A – 5 mM perfluoropentanoic acid, mobile phase B – 50% Acetonitrile; flow rate: 0.4 ml/min; gradient – time 0 min = 2% B, time 0.5 = 2% B, time 10 min = 60% B, time 10.2 min = 90% B, time 12 min = 90% B, time 12.2 min = 50% B, time 14 min = 50% B, time 14.2 min = 2% B, time 18 min = 2% B.</p><p><br></p><p><strong>Negative mode:</strong></p><p>Waters Acquity 2.1 x 100mm HSS T3, 1.7μ column heated to 35 °C. Mobile phase A – 5% Methanol + 10 mM tributylamine &amp; 15 mM acetic acid, mobile phase B – Isopropyl alcohol; flow rate: 0.4 ml/min; gradient – time 0 min = 0% B, time 4 = 0% B, time 7 min = 2% B, time 12.5 min = 10% B (flow rate 0.35 ml/min), time 13 min = 10% B (flow rate 0.3 ml/min), time 17 min = 25% B (flow rate 0.2 ml/min), time 20 min = 25% B (flow rate 0.2 ml/min), time 23 min = 0% B (flow rate 0.3 ml/min), time 24 min = 0% B (flow rate 0.4 ml/min), time 29 min = 0% B (flow rate 0.4 ml/min).</p>	<p><strong>MS parameters:</strong></p><p>120,000 resolution, AGC Target 1.0 x 10^6, Maximum IT 100 ms, Sheath Gas Flow 30, Aux Gas Flow 5, Sweep Gas Flow 5, Spray Voltage (Kv) 4.3, Capillary Temp (°C) 275, S Lens RF 70, Aux Heat Temp (°C) 250.</p>	<p>The processing for metabolomic datasets was done through El-Maven (<a href='https://doi.org/10.5281/zenodo.2537593' target='_blank'>https://doi.org/10.5281/zenodo.2537593</a>).</p>	<p>The compound database used for processing was derived from KEGG[1] database, our final compound database consisted of all the compounds found in all of the KEGG’s reaction database. Automated peak picking feature of El-Maven was then used to get the peak intensity of all the metabolites. To get the differential expression between different cohorts metaboanalyst[2] was used (<a href='http://www.metaboanalyst.ca' target='_blank'>http://www.metaboanalyst.ca</a>). To annotate the metabolomic peaks, the mass which had least p-value in differential expression was selected. Enrichment of pathways in figure 3f was calculated using metaboanalyst.</p><p><br></p><p>Ref:</p><p>[1] Kanehisa M and Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000 Jan 1;28(1):27-30. doi:10.1093/nar/28.1.27. PMID:10592173</p><p>[2] Chong J, Soufan O, Li C, Caraus I, Li S, Bourque G, Wishart DS, Xia J. MetaboAnalyst 4.0: towards more transparent and integrative metabolomics analysis. Nucleic Acids Res. 2018 Jul 2;46(W1):W486-W494. doi:10.1093/nar/gky310. PMID:29762782</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Extraction Method;Derivatization	Chromatography Instrument;Column model;Column type	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hiemer	Jatav
+Study Person First Name	Samantha	Shashank
+Study Person Mid Initials		
+Study Person Email	shiemer88@gmail.com	
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles	submitter	investigator
+Study Person Roles Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001741	
+Study Person Roles Term Source REF	EFO	

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCBITAXON	EFO	PO	NCIT		FMA	CHMO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/PO		http://purl.obolibrary.org/obo/ncit.owl			
+Term Source Version	29	1.0	6	132	12		18.10e			
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	Experimental Factor Ontology	Plant Ontology		NCI Thesaurus OBO Edition			
+INVESTIGATION
+Investigation Identifier	MTBLS1039
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-06-05
+Investigation Public Release Date	2022-01-17
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1039
+Study Title	A Pathogen-Responsive Gene Cluster for Highly Modified Fatty Acids in Tomato
+Study Description	In response to biotic stress, plants produce suites of highly modified fatty acids that bear unusual chemical functionalities. Despite their chemical complexity and proposed roles in pathogen defense, little is known about the biosynthesis of decorated fatty acids in plants. Falcarindiol is a prototypical acetylenic lipid present in carrot, tomato, and celery that inhibits growth of fungi and human cancer cell lines. Using a combination of untargeted metabolomics and RNA sequencing, we discovered a biosynthetic gene cluster in tomato (Solanum lycopersicum) required for falcarindiol production. By reconstituting initial biosynthetic steps in a heterologous host and generating transgenic pathway mutants in tomato, we demonstrate a direct role of the cluster in falcarindiol biosynthesis and resistance to fungal and bacterial pathogens in tomato leaves. This work reveals a mechanism by which plants sculpt their lipid pool in response to pathogens and provides critical insight into the complex biochemistry of alkynyl lipid production.
+Study Submission Date	2019-06-05
+Study Public Release Date	2022-01-17
+Study File Name	s_MTBLS1039.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	pathogen	Genomics	ultra-performance liquid chromatography-mass spectrometry	fatty acid	falcarindiol
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://www.ebi.ac.uk/efo/EFO_0000643	http://purl.obolibrary.org/obo/NCIT_C84343	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHEBI_35366	http://purl.obolibrary.org/obo/CHEBI_69236
+Study Design Type Term Source REF	MTBLS	EFO	NCIT	CHMO	CHEBI	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	31923394
+Study Publication DOI	10.1016/j.cell.2019.11.037
+Study Publication Author List	Jeon JE, Kim JG, Fischer CR, Mehta N, Dufour-Schroif C, Wemmer K, Mudgett MB, Sattely E.
+Study Publication Title	A Pathogen-Responsive Gene Cluster for Highly Modified Fatty Acids in Tomato.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Pathogen	timepoint	Run
+Study Factor Type	pathogen	Timepoint	Run
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000643	http://www.ebi.ac.uk/efo/EFO_0000724	http://purl.obolibrary.org/obo/NCIT_C47911
+Study Factor Type Term Source REF	EFO	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1039_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Treatment of tomato leaves with biotic elicitors</strong></p><p><strong>Leaflets </strong>of tomato VF36 plants were hand-inoculated using a needleless 1 mL syringe with: 1) fungal elicitors: <strong>chitin </strong>(0.5 mg/mL in water),<strong>M. restricta</strong> (OD600= 0.5 in water) or <strong>C. fulvum </strong>(OD600= 1.0 in water); 2) bacterial elicitors: <strong>flg22 </strong>(1mM in water),<strong>S. epidermidis </strong>(OD600= 1.0 in water), <strong>P. acnes </strong>(OD600= 1.0 in water) or <strong>X. euvesicatoria </strong>(OD600= 0.2 in 10mM MgCl2); or 3) <strong>mock </strong>(water, control) (<strong>Figure S1 </strong>in the paper associated with this study). After treatment, <strong>leaves </strong>(one <strong>leaf </strong>from 3 individual plants per treatment, n = 3) were collected at 12, 24, and 48 <strong>hours post-inoculation</strong> (<strong>hpi</strong>) using a razor, flash frozen by liquid nitrogen, and stored at -80 °C for later use in metab-olomics analysis, gene profiling and RNA-Sequencing (RNA-Seq).</p><p><br></p><p><br></p>	<p><strong>Metabolite extraction from wild-type tomato and <em>N. benthamiana</em> leaves </strong></p><p>Frozen leaf tissues were lyophilized to dryness. The samples (n = 3, 10 mg of dried tissue/tube) were homogenized on a ball mill (Retsch MM 400) using 5 mm diameter stainless steel beads, shaking at 25 Hz for 2 min.</p><p><br></p><p><strong>Methanol extraction of metabolites from tomato leaves after elicitation</strong></p><p>60mL of an 80:20 MeOH/H2O (v/v) solution was added per milligram of dry tissue, and the mixture was heated at 65 °C for 10 min and filtered through 0.45mm PTFE filters before liquid chromatography-mass spectrometry (LC-MS) analysis. Extraction solvent composition was selected to capture the wide range of polarity of compounds in the tissues.</p><p><br></p><p><strong>Methanol extraction of metabolites from <em>N. benthamiana</em></strong></p><p>80mL of methanol was added per milligram of dry tissue. After incubation at room temperature for 20 min with continuous mixing, samples were filtered through 0.45mm PTFE filters before liquid chromatography-mass spectrometry (LC-MS) analysis.</p><p><br></p><p><strong>Saponification of metabolites from <em>N. benthamiana </em>and CRISPR tomato mutants</strong></p><p>Dried leaf extract from above was mixed with 200 mL of 6% KOH. Tubes were incubated for 2 h at 60 °C with continuous shaking. After cooling to room temperature, the reaction mixture was acidified by the addition of 50 mL of 29% HCl. Tubes were vortexed thoroughly and spun for 30 s using a table centrifuge. The fatty acids were extracted with 500 mL of chloroform/hexane mixture (1:4, v:v).After vortexing and 10 s of centrifugation, the organic phase was collected. Extraction with the chloroform/hexane mixture was repeated twice and the collected fatty acid containing organic phases was combined and dried under N2. The final product was dissolved in 200 mL of 100% MeOH for LC-MS analysis.</p>	<p>Samples were analyzed by reversed-phase chromatography on an Agilent 1260 HPLC, using a 5 μm, 2 x 100 mm Gemini NX-C18 column (Phenomenex). Water with 0.1% formic acid (A) and Acetonitirile with 0.1% formic acid (B) were used as the mobile phase components at a flow rate of 0.4 mL/min with the following 55 min gradient; i) for methanol extracts: 0-30 min, 3-50% B; 30-45 min, 50-97% B; 45-50 min, 97% B; 50-51 min, 97-3% B; 51-55 min, 3% B, ii) for saponified extracts: 0-45 min, 40-97% B; 45-50 min, 97% B; 50-51 min, 97-40% B; 51-55 min, 40% B. </p>	<p>A coupled Agilent 6520 Accurate-Mass Q-TOF ESI mass spectrometer was used to collect MS data in positive ion mode (parameters: mass range: 100-1700 m/z; drying gas: 300°C, 1 L/min; nebulizer: 25 psig; capillary: 3500 V; fragmentor: 150 V; skimmer: 65 V; OCT 1 RF Vpp: 750 V; 1000 ms per spectrum). The first minute of each run was discarded to avoid salt contamination of the MS apparatus. For tandem mass spectrometry (MS/MS) analysis, 5, 10, 20 and 40 V collision energies were used with an m/z window of 1.3 centered on the m/z analyzed. </p>	<p>MS data were analyzed using <strong>MassHunter Qualitative Analysis software</strong> (Agilent) and <strong>XCMS </strong>(Scripps Center for Metabolomics)(Smith et al., 2006). For untargeted metabolomics, <strong>MassHunter </strong>(Agilent) data files were converted to <strong>mzXML</strong> format using <strong>trapper </strong>(Seattle Proteome Center). Grouped <strong>mzXML </strong>files were preprocessed and analyzed by <strong>XCMS.</strong></p>	We provide no identification here.&nbsp; Only raw data is provided.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Extraction Method;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Jeon	Kim	Fischer	Mehta	Dufour-Schroif	Wemmer	Mudgett	Sattely
+Study Person First Name	Ju Eun	Jung-Gun	Curt R	Niraj	Cosima	Kimberly	Mary Beth	Elizabeth
+Study Person Mid Initials								
+Study Person Email								
+Study Person Phone								
+Study Person Fax								
+Study Person Address								
+Study Person Affiliation								
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF								

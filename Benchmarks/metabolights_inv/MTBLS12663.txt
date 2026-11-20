@@ -1,0 +1,100 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	LCMSAnalysis	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version								
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology		Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12663
+Investigation Title	Investigating uncharacterised genes in Saccharomyces cerevisiae using Robot Scientists
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-07-01
+Investigation Public Release Date	2025-12-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12663
+Study Title	Investigating uncharacterised genes in Saccharomyces cerevisiae using Robot Scientists
+Study Description	<p>Despite extensive research on Saccharomyces cerevisiae functional genomics, approximately 880 out of ~6,000 open reading frames (ORFs) remain uncharacterised. In this study we propose a method for characterising genes with limited prior functional knowledge using an automated laboratory platform, in conjunction with several hypothesis instantiation methods. We demonstrate this method by investigating YGR067C, an uncharacterised ORF hypothesised to regulate respiration during the diauxic shift. Predictions of the first-order effects of deletion were obtained by curating a list of pathways relevant to the hypothesis. Higher-order effects were predicted using simulation models based on the GEM Yeast9. The predictions were tested using empirical data from biological experiments performed in the Robot Scientist Eve, which generated OD560, transcriptomics, and metabolomics data. </p><p>We observed that YGR067C deletion led to downregulation of transcripts in some ethanol consuming respiratory pathways during the glucose phase. During the ethanol phase we observed that NAD+, NADP+ and NADH accumulated, and several amino acid biosynthesis pathways were enriched for the ygr067c∆ strain, suggesting longer term consequences of YGR067C mediated regulation. Based on these observations we propose that the role of YGR067C during the diauxic shift is to regulate genes related to ethanol consumption and respiration in the glucose phase.</p>
+Study Submission Date	2025-07-01
+Study Public Release Date	2025-12-03
+Study File Name	s_MTBLS12663.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	LCMS analysis	Yeast
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	https://purl.org/emi#LCMSAnalysis	http://purl.obolibrary.org/obo/NCIT_C14286
+Study Design Type Term Source REF	MTBLS	LCMSAnalysis	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Erik Y. Bjurström, Alexander H. Gower, Praphapan Lasin, Ievgeniia A. Tiukova, Ross D. King
+Study Publication Title	Investigating uncharacterised genes in Saccharomyces cerevisiae using Robot Scientists
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Strain	Phase
+Study Factor Type	strain	Phase
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005135	http://purl.obolibrary.org/obo/NCIT_C25257
+Study Factor Type Term Source REF	EFO	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12663_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS12663_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>96 wells were pooled into one biological replicate for the RNA and metabolite extraction protocols using the liquid handler Bravo. </p>	<p>The extraction protocol is described in a previous study (Brunnsåker, 2023).</p>	<p>Untargeted metabolomics profiling was performed on a Waters Xevo G2-sX qTOF high-resolution mass spectrometers (HRMS) coupled to a Waters Acquity Classic UPLC instrument. </p>	<p>Metabolites were separated on an UPLC HSS T3 (1.8 μm, 2.1 x 100 mm, Waters) column with a water-MeOH gradient solvent system containing 0.04% formic acid. The gradient started at 5% MeOH with formic acid (MPB) and ramped to 100% MPB over 6 min and held for 4.50 min at 100% MPB. Column temperature was set to 45 °C and the flow at 0.4 mL/min. Mass spectra was acquired using an electrospray ionization (ESI) source in either positive or negative ionization mode scanning from 40 to 1200 m/z at 5 spectra/s. The capillary voltage was set at 1500 V (ESI negative) and 2000 V (ESI positive), and cone voltage at 40. The source temperature was set at 120 °C, desolvation a gas temperature at 600 °C, desolvation and cone gas flow at 700 and 10 L/min, respectively. Data-dependent MS2 data was collected in both positive and negative ionization by using the following parameters: mass range 40-1200 m/z, MS survey switching threshold 5000, MS survey scanning 0.2 s, maximum number of precursors 6, scan rate for MS/MS 0.1 s, collision energy ramp LM CE ramp 6-9 to 60-80 over a mass range of 40-1200 m/z.</p>	<p>The raw mass spectra were converted into .mzML files using ProteWizard’s msConvert.</p>	<p>Peak picking and initial processing were performed using MSDIAL (v5.4). Identification was performed using the Riken library of both positive and negative ion mode. </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Bjurström
+Study Person First Name	Erik
+Study Person Mid Initials	Y.
+Study Person Email	erikbju@chalmers.se
+Study Person Phone	
+Study Person Fax	
+Study Person Address	Kemigården 1
+Study Person Affiliation	Department of Life Sciences, Chalmers University of Technology, Gothenburg, Sweden
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

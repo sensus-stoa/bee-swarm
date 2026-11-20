@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	NCIT	OBI	EDAM	CHMO	Group	LION	MS	MTBLS
+Term Source File	http://data.bioontology.org/ontologies/EFO	Metabolights	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api	metabolights_zooma.tsv	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org	https://www.ebi.ac.uk/ols4/api	Metabolights
+Term Source Version	132		29		2024-12-15				
+Term Source Description	Experimental Factor Ontology		Ontology for Biomedical Investigations						Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11927
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-12-13
+Investigation Public Release Date	2025-03-04
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11927
+Study Title	DIATAGeR: Triacylglycerol Annotation of Data-Independent Acquisition based Lipidomics
+Study Description	<p>Triacylglycerols (TGs) are the most abundant lipids in the human body and the primary source of energy storage. Altered TGs are implicated in metabolic syndrome and detailed structural information may provide novel insights into diseases pathology. TGs are comprised of three fatty acyls with various lengths and double bond composition, complicating structural annotation. DIA-based lipidomics enables a continuous and unbiased acquisition of all TGs, creating the potential for more comprehensive TG analysis. However, DIA generates multiplexed tandem mass spectra (MS2) that pose challenges to identifying TGs. Here, we present DIATAGeR, an R package aimed to automate and improve TG identification to the molecular species level in DIA-based lipidomics. With DIATAGeR, TGs are identified using a TG-centric approach, where each TG in the reference database is considered as an analysis target, searched in DIA spectra, and scored using a logistic regression machine learning algorithm. Additionally, DIATAGeR uses an FDR correction calculated by a target-decoy approach to improve the confidence of TG identification and limit false positives due to interference from unrelated ions. The performance of DIATAGeR was validated in a lipidomic study of liver and plasma samples from mice with metabolic dysfunction-associated steatohepatitis (MASH) and healthy controls. All 9 TG standards were annotated at an FDR &lt; 0.1 in both datasets. When benchmarked against MS-DIAL, TGs identified by DIATAGeR contained 16% and 12% more even-carbon fatty acyls in liver and plasma datasets, respectively. DIATAGeR is a valuable tool for streamlining complex TG annotation in DIA-lipidomics data and freely available at https://github.com/Velenosi-Lab/DIATAGeR.&nbsp;&nbsp;</p>
+Study Submission Date	2024-12-13
+Study Public Release Date	2025-03-04
+Study File Name	s_MTBLS11927.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Lipidomics	Liquid chromatography mass spectrometry	lipidomics analysis software	untargeted metabolites
+Study Design Type Term Accession Number	http://edamontology.org/topic_0153	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.obolibrary.org/obo/MS_1002964	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	EDAM	CHMO	MS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Victor C.L Lee, Khanh C.K Nguyen, Linglan Zhu, White A.K. Chloe, Huan Tao, Thomas J. Velenosi
+Study Publication Title	DIATAGeR: Triacylglycerol Annotation of Data-Independent Acquisition based Lipidomics
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Group
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11927_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11927_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Plasma and liver samples were obtained from male C57Bl/6 mice placed on the Gubra Amylin NASH (GAN)-diet or a matched control diet for 26 weeks. Mice were fasted for 6 h prior to euthanization to obtain plasma and liver samples[1].</p><p>TG standards were purchased from Avanti Polar Lipids including: TG 16:1-16:1-16:1, TG 16:0-16:0-16:0, TG 16:0-16:0-18:1, TG 16:0-16:0-18:0, TG 16:0-18:1-18:2, TG 16:0-18:1-18:1, TG 18:2-18:2-18:2, TG 18:1-18:1-18:1, TG 18:0-18:0-18:1</p><p><br></p><p>Ref</p><p>[1] Velenosi, T. J.; Ben-Yakov, G.; Podszun, M. C.; Hercun, J.; Etzion, O.; Yang, S.; Nadal, C.; Haynes-Williams, V.; Huang, W.-C. A.; González-Hódar, L.; Brychta, R. J.; Takahashi, S.; Akkaraju, V.; Krausz, K. W.; Walter, M.; Cai, H.; Walter, P. J.; Muniyappa, R.; Chen, K. Y.; Gonzalez, F. J.; Rotman, Y. Postprandial Plasma Lipidomics Reveal Specific Alteration of Hepatic-Derived Diacylglycerols in Nonalcoholic Fatty Liver Disease. Gastroenterology 2022, 162 (7), 1990–2003. https://doi.org/10.1053/j.gastro.2022.03.004.</p>	<p>Plasma lipids were extracted using the Folch method. Briefly, five volumes of 2:1 chloroform:methanol containing 0.5 µM C17 ceramide (d18:1/17:0) (Cat 860517, Avanti Polar Lipids, USA) as internal standard were added to one volume of plasma. Samples were vortexed and centrifuged at 13,000 x g for 10 min.</p><p><br></p><p>Liver lipids were extracted using a modified Bligh &amp; Dyer method. A ~20 mg piece of liver tissue was homogenized in 14 µL/mg tissue of 3:4 water:methanol using a Precellys tissue homogenizer (6500 rpm for 30 s x 2; Bertin Technologies, France). Chloroform containing 0.5 µM C17 Ceramide (d18:1/17:0) was added to each sample at a ratio of 16 µL/mg tissue.</p><p><br></p><p>The organic layer from plasma and tissue samples was transferred to a glass tube and dried under a gentle stream of nitrogen. Plasma lipids were reconstituted in one volume of 1:1 chloroform:methanol followed by dilution in four volumes of isopropanol/acetonitrile/water (50/25/25). Liver lipids were reconstituted in isopropanol/methanol/chloroform (4/2/1). Samples were spiked with 9 TG standards mentioned above and a pooled sample was created for quality control by combining an equal volume from all samples.</p>	<p>Samples were randomized and injected (5 µL or 1 µL sample of extracted plasma or liver lipids, respectively) into a Waters I-Class ultra-performance liquid chromatography system. A pooled sample was created for quality control by combining an equal volume from all samples and it was injected after every 10 samples. Lipids were separated using an ACQUITY UPLC CSH C18 1.7 μm column (2.1 x 100 mm) maintained at 55 °C. The mobile phase buffer A consisted of acetonitrile/water (60:40) with 10 mM ammonium formate and 0.1% formic acid and mobile phase buffer B consisted of isopropanol/acetonitrile (90:10) with 10 mM ammonium formate and 0.1% formic acid. The UPLC flow rate was 400 µL/min and gradient conditions were as follows: 0.0-2.0 min, 40-43% B; 2.1-12.0 min 50-54% B; 12.1-18.0 min 70-99% B; 18.1 min 40% B.</p>	<p>UPLC-QTOFMS analysis was performed in a Waters SYNAPT G2-Si in positive electrospray ionization modes. The following instrument conditions were used: 2.8 kV capillary voltage, 150 °C source temperature, 40 V sampling cone, and a desolvation gas flow rate of 950 L/h at 500 °C. The data was acquired in centroid mode with a 0.1 s scan time in the range of 100-1200 m/z by data-dependent acquisition (number of scans is 10) and data-independent acquisition (MSE method) in Masslynx 4.2. The low collision energy was set to 4 V and high collision energy was ramped from 10 to 45 V. Leucine-enkephalin was used for lock mass correction.</p>	<p>DIATAGeR is designed for DIA-based lipidomics data. Raw DIA-based lipidomics data were converted to ABF files and processed in MS-DIAL (version 4.90) to perform peak picking, adduct annotation and retention time alignment. Feature lists (format: txt) and spectra (format: txt, mgf, msp) associated with individual features were exported from MS-DIAL for TG annotation in the DIATAGeR package in R.&nbsp;Feature lists and spectra are provided in the FILES folder</p><p><br></p><p>DIATAGeR can also accept feature lists in a generic format (format: txt). An example of a generic format is provided in FILES folder.</p><p>In addition, DIATAGeR can read MS2 spectra in mgf format exported from MZmine.</p><p>&nbsp;</p>	<p>With DIATAGeR, TGs are identified using a TG-centric approach, where each TG in the reference database is considered as an analysis target, searched in DIA spectra and scored using a logistic regression machine learning algorithm. Additionally, DIATAGeR uses an FDR correction calculated by a target-decoy approach to improve the confidence of TG identification and limit false positives due to interference from unrelated ions. Results of TG identification at FDR &lt; 0.1 in liver and plasma datasets were provided in MAF Sheet 1 and 2, respectively.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Lee	Nguyen	Zhu	Chloe	Tao	Velenosi
+Study Person First Name	Victor	Khanh	Linglan	White	Huan	Thomas
+Study Person Mid Initials	C.L	C.K		A.K.		J.
+Study Person Email	victorrr@student.ubc.ca	khanh11@student.ubc.ca	katiezhu@chem.ucla.edu	chloew99@student.ubc.ca	thuan@chem.ubc.ca	thomas.velenosi@ubc.ca
+Study Person Phone						
+Study Person Fax						
+Study Person Address	2405 Wesbrook Mall, Vancouver, BC, Canada, V6T 1Z3	2405 Wesbrook Mall, Vancouver, BC, Canada, V6T 1Z3		2405 Wesbrook Mall, Vancouver, BC, Canada, V6T 1Z3	2036 Main Mall, Vancouver V6T 1Z1, BC, Canada	2405 Wesbrook Mall, Vancouver, BC, Canada, V6T 1Z3
+Study Person Affiliation	Faculty of Pharmaceutical Sciences, University of British Columbia	Faculty of Pharmaceutical Sciences, University of British Columbia	University of California Los Angeles, USA	Faculty of Pharmaceutical Sciences, University of British Columbia	Department of Chemistry, Faculty of Science, University of British Columbia, Vancouver Campus	Faculty of Pharmaceutical Sciences, University of British Columbia
+Study Person Roles	Author	Investigator	Author	Author	Review	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C51826	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42729	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	EFO	NCIT	NCIT	NCIT	NCIT

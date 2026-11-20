@@ -1,0 +1,100 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	IDOMAL	MS	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://www.ebi.ac.uk/efo/efo.owl	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version								
+Term Source Description	Experimental Factor Ontology		Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Units of Measurement Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS13445
+Investigation Title	Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-12-03
+Investigation Public Release Date	2025-12-03
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13445
+Study Title	Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies
+Study Description	<p>Recent developments in spatially resolved -omics have enabled the joint study of gene expression, metabolite levels and tissue morphology, offering greater insights into biological pathways. Integrating these modalities from matched tissue sections to probe spatially-coordinated processes, however, remains challenging. Here we introduce MAGPIE, a framework for co-registering spatially resolved transcriptomics, metabolomics, and tissue morphology from the same or consecutive sections. We show MAGPIE’s generalisability and scalability on spatial multi-omics data from multiple tissues, combining Visium with MALDI and DESI mass spectrometry imaging. MAGPIE was also applied to new multimodal datasets generated with a specialised sampling strategy to characterise the metabolic and transcriptomic landscape in an in vivo model of drug-induced pulmonary fibrosis and to link small-molecule co-detection with endogenous lung responses. MAGPIE demonstrates the refined resolution and enhanced interpretability that spatial multimodal analyses provide for studying tissue injury especially in pharmacological contexts, and delivers a modular, accessible workflow for data integration</p>
+Study Submission Date	2025-12-03
+Study Public Release Date	2025-12-03
+Study File Name	s_MTBLS13445.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	mass spectrometry imaging	rodent	Lung
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1002521	http://purl.obolibrary.org/obo/IDOMAL_0000963	http://purl.obolibrary.org/obo/NCIT_C12468
+Study Design Type Term Source REF	MS	IDOMAL	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2025.02.26.640381
+Study Publication Author List	Williams Eleanor C, Franzén Lovisa, Lindvall Martina Olsson, Hamm Gregory, Oag Steven, Majumder Muntasir Mamun, Denholm James, Hamidinekoo Azam, Morlanes Javier Escudero, Vicari Marco, Lundeberg Joakim, Setyo Laura, Zakirov Aleksandr, Hornberg Jorrit J, Stamou Marianna, Ståhl Patrik L, Ollerstam Anna, Tan Jennifer, Mohorianu Irina
+Study Publication Title	Spatially resolved integrative analysis of transcriptomic and metabolomic changes in tissue injury studies
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13445_MSImaging___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	MS Imaging -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Preparation	Mass spectrometry	Histology	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Animals</p><p>Bleomycin-induced lung fibrosis mouse model. The mouse lung sample generation and collection were previously described in the study by Franzén and Olsson Lindvall et al.13. In short, female C57BL/6NCrl mice (Charles River, Germany; eight weeks of age upon arrival) were housed in a facility with ad libitum access to food (R70, Lantmännen AB, Vadstena, Sweden) and tap water. Following a five-day acclimatization period, mice were subjected to oropharyngeal administration of either 30 μl of bleomycin (Apollo Scientific, BI3543, Chemtronica Sweden; 40 µg/mouse) dissolved in saline or saline alone (vehicle control). Lung samples were collected on day 7 (d7) and day 21 (d21) post-bleomycin challenge, capturing both the early inflammatory and tissue remodelling phase (d7) and established tissue damage (d21).&nbsp;</p><p>AZX-dosed rat lung. Male Wistar Han rats (Charles River, Germany) were seven weeks old upon arrival and approximately 10 weeks at the start of dosing. They were group caged, 2-6 rats per cage, and maintained on a normal day/night cycle of dark 18:00 and light 06:30 at a uniform temperature (&gt;25C) and humidity (&lt;5%), with access to chew sticks and nesting material. Rats had free access to diet (R70) and tap water. Animals were randomised and regrouped into new cages prior to the first dose and housed with others in the same dosing group to minimise contamination by grooming and coprophagia. The animal used in this study (n=1) was subjected to daily inhalation exposure via snout-only administration for 14 days with 15 mg/kg/day of the AZX test formulation consisting of AZX (10%), MPEG-2000-DSPE (1.25%), trileucine (5%), and trehalose (83.75%), in a flowpast exposure chamber. The animal was acclimated to the method of restraint over a five-day period preceding the first test substance exposure. Animal body weight was recorded prior to the study, twice weekly, pre-dose, and at termination.</p><p>Tissue processing for spatial multimodal analysis of rodent lung</p><p>The rodent lung tissue sampling protocols were optimised to enable high quality analysis using both the Visium Spatial Gene Expression platform and mass-spectrometry imaging (MSI), both with regards to analyte preservation and histological integrity. Fresh frozen tissue specimens are typically embedded in optimal cutting temperature (OCT) compound for Visium analysis, however, OCT is known to interfere with the quality of mass spectrometry readouts and should therefore be avoided or removed in MSI experiments21,22. Thus, we opted for careful inflation of the lungs using a low-melting point agarose solution prior to snap freezing of the tissue without any further embedding material. We employed agarose inflation in order to preserve anatomical structure and maintain natural spatial relationships between tissue compartments (Supplementary note 1). This approach is routinely used in lung histology and is critical for preventing collapse of the delicate alveolar architecture. However, MAGPIE is not reliant on agarose inflation and can be applied to tissues prepared via standard protocols appropriate for other organs.</p><p>For the mouse study, the mice were first anaesthetised using isoflurane (5% concentration, air flow ~2 L/min) and maintained with 3% isoflurane (air flow ~0.7 L/min). A midline incision was made from the abdominal midsection to the chin. Subsequently, 0.1 mL of heparin was injected through the diaphragm into the heart, followed by severing the abdominal aorta to exsanguinate the mice. The heart and right lung lobes were tied off and removed. The pulmonary circulation was perfused with 37C saline followed by 37C low-temperature melt agarose (SeaPlaque) solution. The lung was then gently inflated with 0.4-0.5 mL of 37C agarose solution via the trachea and tied off. The lung tissue was collected and snap-frozen in pre-chilled NaCl over dry ice and stored at -80C for further analyses.</p><p>For the rat sample, the trachea was surgically exposed and secured using a 2-0 silk suture on the day of termination. Subsequently, 0.4 mL of heparin was injected into the heart through a small incision in the diaphragm, after exposing the abdominal wall. The pulmonary circulation was flushed via the pulmonary artery using a solution of 15 mL of 37C saline followed by 7 mL of 37C low-melting point agarose (SeaPlaque) solution (0.75 g agarose in 50 ml saline). A suture was placed around the heart to prevent heart leakage. A cannula was then introduced into the trachea and the lung was gently inflated with 4.5 mL of agarose solution. Lungs and heart were removed as a single unit, placed in ice-cold PBS, and allowed to rest on wet ice for approximately 20 minutes to solidify the agarose. The right superior lobe of the lung tissue was thereafter placed on pre-chilled tin foil in a plastic fixation cassette. The sample was rapidly frozen by immersion in isopentane, pre-chilled in liquid nitrogen. Samples were stored at -80C until further analysis.</p>	<p>Agarose-inflated mouse and rat lung tissues were mounted to the cryostat specimen chuck using a drop of purified water, and thereafter cryo-sectioned at 10 µm thickness with the cryostat chamber temperature set to -20C and -10C for the specimen head. Consecutive sections from each lung were thaw-mounted on a Visium slide for spatial transcriptomics and a Superfrost slide&nbsp;(Fisher Scientific, Loughborough, UK)&nbsp;for&nbsp;desorption electrospray ionization (DESI)&nbsp;MSI. Slides were stored in -80C until further analyses.</p>	<p>For both&nbsp;mouse and rat lung samples, DESI MSI was carried out using an automated 2D DESI source (Prosolia Inc, Indianapolis, IN, USA) with a home-built sprayer assembly mounted to a Q-Exactive FTMS instrument (Thermo Scientific, Bremen, Germany). Analyzes were performed at spatial resolutions of 65 μm in negative ion mode and mass spectra were collected in the mass range of 80−900 Da with mass resolving power set to 70000 at&nbsp;m/z&nbsp;200 and an S-Lens setting of 100. Methanol/water (95:5 v/v) was used as the electrospray solvent at a flow rate of 1.0 μL/min and a spray voltage of -4.5kV. Distance between DESI sprayer to MS inlet was 7mm, while distance between sprayer tip to sample surface was 1.5mm at an angle of 75°. Nitrogen N4.8 was used as nebulizing gas at a pressure of 6.5 bar. Omnispray 2D (Prosolia, Indianapolis, USA) and Xcalibur (Thermo Fisher Scientific Inc) software were used for MS data acquisition. Individual line scans were converted into centroided .mzML format using MSConvert (ProteoWizard toolbox version 3.0.4043) and subsequently into .imzML using imzML converter v1.3.</p>	<p>Following analysis, sections were stained with H&amp;E.</p>	<p>For the bleomycin mouse model and AZX-treated rat, the .imzml data files were initially imported into SCiLS Lab software (Bruker Daltonics, Germany, 2022a MVS). Bisecting k-means segmentation was performed within SCiLS Lab to create two regions of interest (ROIs): tissue and background (area outside the tissue). Individual samples were then segmented using the tissue/background ROIs with some manual alterations. Individual pixel-level total ion count (TIC) normalised peak intensities were extracted using the SCiLS Lab API, which yields a pixel-by-peak table with associated metadata. This table was later used as input to the MAGPIE pipeline. </p>	<p>For the bleomycin mouse model and AZX-treated rat, peaks were annotated against compounds in the KEGG database&nbsp;using [M-H]-&nbsp;adducts with a mass tolerance of 5 ppm. Only peaks which could be annotated to a metabolite were retained for the downstream analysis of the bleomycin-treated mouse samples.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Sample mounting;Sample preservation;Tissue modification;Sectioning instrument;Section thickness;Matrix;Matrix application	Scan polarity;Scan m/z range;Instrument;Instrument manufacturer;Ion source;Mass analyzer;Solvent;Target material;Spatial resolution;Pixel size x;Pixel size y;Max count of pixel x;Max count of pixel y;Max dimension x;Max dimension y;Inlet type;Detector;Detector mode;Resolving power;Resolving power m/z;Native spectrum identifier format;Data file content;Spectrum representation;Raw data file format;Instrument software;Instrument software version;Line scan direction;Linescan sequence;Scan pattern;Scan type;Number of scans	Stain;High-res image;Low-res image	Data Transformation software;Data Transformation software version	
+Study Protocol Parameters Name Term Accession Number		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Parameters Name Term Source REF		;;;;;;	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	;;	;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hamm
+Study Person First Name	Gregory
+Study Person Mid Initials	
+Study Person Email	gregory.hamm@astrazeneca.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Astrazeneca
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

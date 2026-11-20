@@ -1,0 +1,111 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.88.0			1.0.1		26.02d	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14112
+Investigation Title	Untargeted metabolomics profiling of esophageal tissues from a rat model of reflux esophagitis treated with Shunwei Jiangni Decoction
+Investigation Description	
+Investigation Submission Date	2026-03-23
+Investigation Public Release Date	2026-04-10
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14112
+Study Title	Untargeted metabolomics profiling of esophageal tissues from a rat model of reflux esophagitis treated with Shunwei Jiangni Decoction
+Study Description	<p>This dataset contains raw untargeted metabolomics data generated from esophageal tissue samples of rats in a reflux esophagitis (RE) model. The study aimed to characterize metabolic alterations associated with RE pathogenesis and to evaluate the regulatory effects of Shunwei Jiangni Decoction (SWJN), a modified traditional Chinese medicine formula derived from Banxia Xiexin Decoction. Male Wistar rats were divided into four groups: sham control (Control), RE model (Mod), SWJN low-dose (SWJN_L), and SWJN high-dose (SWJN_H). After 4 weeks of treatment, esophageal tissues were collected and subjected to untargeted metabolomics analysis using ultra-high performance liquid chromatography coupled with quadrupole time-of-flight mass spectrometry (UPLC-Q/TOF-MS) in both positive and negative ion modes. Metabolite features were extracted and annotated using the XCMS package and public databases (HMDB, Metlin, and self-built libraries).&nbsp;</p>
+Study Submission Date	2026-03-23
+Study Public Release Date	2026-04-10
+Study File Name	s_MTBLS14112.txt
+Comment[Created At]	2026-03-18
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-04-10
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Gastroesophageal Reflux	untargeted metabolite profiling	Esophageal Tissue
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C92560	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/NCIT_C32543
+Study Design Type Term Source REF	NCIT	MSIO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Tianling Zhang, Xiaozhou Zhou
+Study Publication Title	Shunwei Jiangni Decoction Ameliorates Reflux Esophagitis by Modulating the Esophageal Microbiota-Metabolite-Inflammation-Barrier Axis and Inhibiting TLR4/NF-κB Pathways
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14112_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS14112_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	LC-MS	LC-MS
+Comment[Assay Type Term Accession Number]		
+Comment[Assay Type Term Source REF]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Organism: Rattus norvegicus (SD rat)</p><p>Sample type: Esophageal tissue</p><p>Groups: Control, Mod, SWJN_L, SWJN_H, Quality Control (QC)</p>	<p>Chromatographic separation was performed on a Thermo Scientific Vanquish UHPLC system equipped with a Vanquish autosampler, using a Waters ACQUITY Premier HSS T3 analytical column (1.8 μm, 2.1 mm × 100 mm) protected by a matching guard column. The column temperature was maintained at 40 °C, with a flow rate of 0.4 mL/min and injection volume of 3 μL. A gradient elution program was applied using 0.1% formic acid in water (mobile phase A) and 0.1% formic acid in acetonitrile (mobile phase B), optimized for non-targeted metabolomic profiling of rat esophageal tissue.</p>	<p>Raw LC-MS data were converted to mzML format using ProteoWizard, then processed with XCMS for peak detection, alignment, and retention time correction. Missing values were filtered and imputed (KNN for &lt;50% blank values, 1/5 minimum for &gt;50% blank values), and peak areas were corrected using SVR. QC samples were used to monitor data stability, with only features showing CV &lt;0.3 in QC samples retained.</p>	<p>Frozen esophageal tissue samples were thawed on ice, then minced and homogenized. A 20 mg (±1 mg) aliquot was extracted with 400 μL of 70% methanol (containing internal standards) using bead milling (30 Hz, 20 s), followed by vortexing and centrifugation steps. The final supernatant was filtered and prepared for UHPLC-MS analysis.</p>	<p>Mass spectrometric detection was carried out using a Thermo Scientific Q Exactive HF-X Orbitrap mass spectrometer coupled to the Vanquish UHPLC system, equipped with an Electrospray Ionization (ESI) source operating in both positive and negative ion modes. The quadrupole-Orbitrap hybrid mass analyzer was set to scan over an m/z range of 70–1000 Da for both full MS and data-dependent MS2 acquisition, with optimized resolution and collision energy settings to ensure high-resolution accurate mass measurement and comprehensive metabolite fragmentation analysis.</p>	<p>Metabolite identification was performed by matching accurate mass-to-charge ratio (m/z), retention time, and MS/MS fragmentation spectra against an in-house database, public databases, and predictive libraries, with a combined score ≥0.5. Isotopes and adducts were annotated, and the final dataset was merged across positive and negative ion modes (retaining the highest confidence annotation and lowest CV value) for downstream statistical analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang
+Study Person First Name	Tianling
+Study Person Mid Initials	
+Study Person Email	zhangtianling@sxtcm.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	No. 121,University Street,College Campus,Shanxi Province,China
+Study Person Affiliation	Shanxi University of Traditional Chinese Medicine
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0009-0005-1497-1160
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0522dg826
+Comment[Study Person Alternative Email]	tianlingzhang@gmail.com

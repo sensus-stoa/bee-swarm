@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MICRO	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/micro.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0		MicrO (An Ontology of Prokaryotic Phenotypic and Metabolic Characters).  Version 1.5.1 released 6/14/2018.						
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Ontology of Prokaryotic Phenotypic and Metabolic Characters	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS15815
+Investigation Title	Untargeted LC–HRMS Intracellular Metabolomic Fingerprinting Reveals Isolate-Specific Chemical Biodiversity in Sugarcane-Derived Endophytic Bacteria
+Investigation Description	
+Investigation Submission Date	2026-09-25
+Investigation Public Release Date	2026-10-08
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15815
+Study Title	Untargeted LC–HRMS Intracellular Metabolomic Fingerprinting Reveals Isolate-Specific Chemical Biodiversity in Sugarcane-Derived Endophytic Bacteria
+Study Description	<p>Endophytic bacteria are underexplored reservoirs of molecular diversity. We compared the intracellular metabolomic fingerprints of three endophytic bacterial isolates from sugarcane (Saccharum officinarum), assigned to Streptomyces sp., Pantoea sp., and Paracoccus sp. Extracts from three independent biological replicates per isolate were analyzed by HILIC–UHPLC–HRMS in positive and negative electrospray ionization modes using MSE acquisition. After quality-control filtering, 5,110 features were retained in ESI+ and 6,563 in ESI−. Principal component analysis separated the three isolates, with the first two components explaining 81.5% and 79.8% of the variance, respectively. One-way ANOVA with false discovery rate correction identified 1,663 differential features in ESI+ and 1,097 in ESI− at an adjusted p-value 0.01. Annotation using MSE fragmentation data and manual curation retained 106 differential features assigned to 96 distinct putative annotation names, encompassing nucleotides, amino acids, peptides, lipids, carbohydrates, polyamines, and cofactors. These findings describe chemical differences among the three isolates under the tested culture conditions and identify candidate metabolites for structural confirmation.</p>
+Study Submission Date	2026-09-25
+Study Public Release Date	2026-10-08
+Study File Name	s_MTBLS15815.txt
+Comment[Created At]	2026-05-28
+Comment[Funder]	National Council for Scientific and Technological Development
+Comment[Funder ROR ID]	https://ror.org/03swz6y49
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-08
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Waters ACQUITY UPLC H-Class System	Waters Xevo G2-XS QTof	blank	Paracoccus	Pantoea	sample pooling	Streptomyces sp.	Bacteria	experimental blank	experimental sample	pooled quality control sample	untargeted analysis	Metabolomics	Bacteria identification test	Progenesis QI	Saccharum officinarum	endophytic environment
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000876	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000682	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_002304	http://purl.obolibrary.org/obo/NCIT_C123337	http://purl.obolibrary.org/obo/NCBITaxon_53335	http://www.ebi.ac.uk/efo/EFO_0005316	http://purl.obolibrary.org/obo/NCBITaxon_1931	http://purl.obolibrary.org/obo/NCIT_C14187		http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://snomed.info/id/117765005	http://purl.obolibrary.org/obo/MS_1002879	http://purl.obolibrary.org/obo/NCBITaxon_4547	http://purl.obolibrary.org/obo/MICRO_0000053
+Study Design Type Term Source REF	MTBLS	MTBLS	MTBLS	NCIT	NCBITaxon	EFO	NCBITaxon	NCIT		CHMO		MS	EDAM	SNOMED	MS	EFO	MICRO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism part	Organism	Organism	Organism	Organism	Organism part	Sample type	Sample type	Sample type	measurement-type	omics-type	disease	software	submitter	submitter
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Álex Rosini, Danilo Cardoso, Pedro Henrique Godoy
+Study Publication Title	Untargeted LC–HRMS intracellular metabolomic fingerprinting reveals isolate-specific chemical biodiversity in sugarcane-derived endophytic bacteria
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Species
+Study Factor Type	Species
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45293
+Study Factor Type Term Source REF	NCIT
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15815_LC-MS_negative_hilic.txt	a_MTBLS15815_LC-MS_positive_hilic.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - hilic	Liquid Chromatography MS - positive - hilic
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Waters ACQUITY UPLC H-Class System;ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 100 mm; Waters);HILIC;negative;50-1200;Waters Xevo G2-XS QTof	Waters ACQUITY UPLC H-Class System;ACQUITY UPLC BEH Amide (1.7 µm, 2.1 mm x 100 mm; Waters);HILIC;positive;50-1200;Waters Xevo G2-XS QTof
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000876;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000814;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000682	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000876;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000814;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000856;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000682
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Endophytic bacteria were isolated from healthy sugarcane (Saccharum officinarum) leaves collected in the metropolitan region of Campinas, São Paulo State, Brazil. Leaves were thoroughly washed under running water and surface sterilized by immersion in 3% sodium hypochlorite for 1 min, followed by 70% ethanol for 1 min and two rinses with sterile distilled water for 3 min each. After surface sterilization, leaf fragments were aseptically cut and placed onto mineral solid medium supplemented with atrazine at 30 mg L-1 (99.1% purity; Sigma-Aldrich, St. Louis, MO, USA), adjusted to pH 6.9, and incubated at 28 °C</p>	<p>ACQUITY UPLC system with chromatographic separation was performed on an ACQUITY UPLC BEH Amide column (2.1 × 100 mm, 1.7 µm). The column temperature was maintained at 45 °C and the autosampler temperature at 4 °C.</p><p>Mobile phase A consisted of acetonitrile containing 0.1% formic acid, while mobile phase B consisted of water containing 0.1% formic acid. The flow rate was 0.40 mL min-1. The gradient was programmed as follows: 1% B from 0.0 to 0.1 min; increased to 70% B from 0.1 to 7.0 min; maintained at 70% B until 8.0 min; returned to 1% B from 8.0 to 8.1 min; and maintained at 1% B until 11.0 min for column reequilibration. Injection volumes were 1 µL in ESI+ and 2 µL in ESI−.</p>	<p>Raw UHPLC–HRMS data were processed separately for ESI+ and ESI− using Progenesis QI v3.0 (Waters Corporation, Milford, MA, USA) for retention-time alignment, peak detection, deconvolution, adduct grouping, and feature table generation. The following adducts were considered in positive ionization mode: M+H, M+Na, M+K, and M+H−H2O. In negative ionization mode, M−H, M+Cl, M−H2O−H, and M+FA−H were considered.</p><p>Feature filtering was performed separately for each ionization mode. Only features with coefficients of variation 15% across pooled-QC injections were retained for downstream analysis. Features showing substantial contribution from solvent, extraction, or culture medium blanks were excluded.</p>	<p>Cell pellets were washed three times with ice-cold sterile 0.9% NaCl solution to reduce carryover from the culture medium. Intracellular metabolites were extracted using ice-cold methanol:water (80:20, v/v; 1 mL per pellet), following established principles for microbial intracellular metabolomics. Glass beads were added at a ratio of 1 g mL-1 of extraction solvent, and cells were disrupted by bead-beating/vortexing for three cycles of 60 s, with cooling on ice between cycles. Lysates were centrifuged at 16,000 × g for 10 min at 4 °C, and supernatants were collected. Extracts were dried under a gentle nitrogen stream and reconstituted in 200 µL acetonitrile:water (1:1, v/v) before UHPLC–HRMS analysis.</p>	<p>A Xevo G2-XS QTOF mass spectrometer equipped with an electrospray ionization source and operated in separate positive and negative ionization sequences. Data were acquired using MassLynx 4.2 software (Waters Corporation, Milford, MA, USA). The mass spectrometer was operated in MSE data-independent acquisition mode over an m/z range of 50–1200 with a scan time of 0.5 s. Low collision energy acquisition was performed at 6 eV, whereas high energy acquisition used a collision-energy ramp from 20 to 50 eV.</p><p>Leucine enkephalin was used as the lock-mass reference at 200 µg/mL, infused through the LockSpray source at 20 µL min-1 and sampled every 15 s. Sodium formate was used for mass calibration. Source parameters were as follows: source temperature, 140 °C; desolvation temperature, 550 °C; desolvation gas flow, 900 L h-1; capillary voltage, 3.0 kV in ESI+ and 2.0 kV in ESI−; sampling cone voltage, 40 V; and cone gas flow, 10 L h-1 in ESI+ and 50 L h-1 in ESI−.</p>	<p>Metabolite annotation was based on accurate precursor mass, isotope pattern, plausible adduct assignment, retention behavior when informative, and MSE fragmentation data. Candidate annotations were screened using an absolute mass error ≤5 ppm and isotope similarity ≥80%. When suitable fragmentation data were available, an absolute fragment-ion mass error ≤10 ppm was applied. Searches used MoNA, HMDB, LIPID MAPS, and in-house libraries. Library files were converted to a Progenesis-compatible format using SDF2PQI v1.0 (https://github.com/pedrohgodoys/sdf_to_pqi).</p><p>Structural annotation was based exclusively on analytical evidence. Biological plausibility was considered only during downstream manual curation and interpretation and was not used as evidence supporting molecular identification. Annotation confidence was assessed individually using Metabolomics Standards Initiative (MSI)</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Rosini	Cardoso	Godoy
+Study Person First Name	Álex	Danilo	Pedro Henrique
+Study Person Mid Initials			
+Study Person Email	alex.rosini@online.uscs.edu.br	danilocoliveira@gmail.com	pedrohgodoys@gmail.com
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	Universidade Municipal de São Caetano do Sul	Universidade São Francisco	Universidade São Francisco
+Study Person Roles	Principal Investigator	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-6400-5201	0000-0001-9719-7708	0000-0001-9719-7708
+Comment[Study Person Affiliation ROR ID]		https://ror.org/045ae7j03	https://ror.org/045ae7j03

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	equipmentAFE	MTBLS	MS	NCIT	SIBO	EFO	CHEBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI		https://www.ebi.ac.uk/metabolights/				http://data.bioontology.org/ontologies/EFO		
+Term Source Version	29		1.0				132		
+Term Source Description	Ontology for Biomedical Investigations		Metabolights Ontology				Experimental Factor Ontology		
+INVESTIGATION
+Investigation Identifier	MTBLS6760
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-12-19
+Investigation Public Release Date	2023-01-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6760
+Study Title	UHPLC-MS/MS-Based Identity Confirmation of Amino Acids Involved in Response to and Side Effects from Antiseizure Medications
+Study Description	<p>Real-time breath analysis using secondary electrospray ionization coupled with high-resolution mass spectrometry is a fast and noninvasive method to access the metabolic state of a person. However, it lacks the ability to unequivocally assign mass spectral features to compounds due to the absence of chromatographic separation. This can be overcomed by using exhaled breath condensate and conventional liquid chromatography-mass spectrometry (LC-MS) systems. In this study, to the best of our knowledge, we confirm for the first time the presence of six amino acids (GABA, Oxo-Pro, Asp, Gln, Glu, and Tyr) previously reported to be involved in response to and side effects from antiseizure medications in exhaled breath condensate and by extension in exhaled human breath.</p>
+Study Submission Date	2022-12-19
+Study Public Release Date	2023-01-26
+Study File Name	s_MTBLS6760.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	ultra-performance liquid chromatography-mass spectrometry	Exhaled Breath Condensate	amino acid	volatile organic compound	untargeted metabolites	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C126053	http://purl.obolibrary.org/obo/CHEBI_33709	http://purl.obolibrary.org/obo/CHEBI_134179	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	CHMO	NCIT	CHEBI	CHEBI	MTBLS	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	36812155
+Study Publication DOI	10.1021/acs.jproteome.2c00835
+Study Publication Author List	Awchi Mo, Sinues Pablo, Datta Alexandre N., García-Gómez Diego, Singh Kapil Dev
+Study Publication Title	UHPLC-MS/MS-Based Identity Confirmation of Amino Acids Involved in Response to and Side Effects from Antiseizure Medications
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6760_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>EBC sample: </strong></p><p>Exhaled breath condensate (EBC) was collected using a custom-built sampling device (containing dry ice and isopropanol13) based on the guidelines of ATS/ERS task force. In total 100 mL of EBC was collected after pooling samples from 6 healthy (3 males and 3 females) subjects. On average to collect 10 mL of EBC a subject had to exhale for 1.5 h. All subjects signed informed consent prior to sampling and the study was approved by the local ethics committee for Northwest and Central Switzerland (2018-01324).</p><p><br></p><p><strong>Chemical standards:</strong></p><p>All standards were first dissolved in water to create individual master stock solutions of concentration 0.1 mg/mL. Finally, all standard stock solutions were serially diluted 10,000 times (except Asp, which was diluted to only 100 times) to achieve a final signal between 1e^6 and 1e^8 orders of magnitude at the injection volume of 100 µL</p>	<p>Extraction was not performed in this study.</p>	<p>In total 100 µL of samples (either diluted standard solution or up-concentrated EBC) were separated on a reverse phase analytical column with embedded weak acidic ion-pairing groups (Primesep 200 from SIELC Technologies, 150 x 4.6 mm ID, 5 µm) at a flow rate of 0.7 mL/min maintained at 25 °C. Samples were eluted with a gradient between solvent A (water with 0.1% FA) and solvent B (ACN with 0.1% FA). The gradient profile was 15% B between 0-2 min, 15-95% B between 2-15 min, 95% B between 15-20 min, followed by column re-equilibration to 15% B in a total of 24 min run (including 2 min of pre-injection equilibration).</p>	<p>Eluted samples were directly ionized in the HESI source. The mass spectrometer was operated in the positive polarity full MS/dd-MS2 (Top 5) mode with one full scan in Orbitrap (scan range = 70-400 m/z, resolution = 140000 (at 200 m/z), AGC target = 1e^6, max injection time = 200 ms), followed by higher-energy collisional dissociation (HCD) fragmentation of the 5 most intense ions (intensity threshold = 104; isolation window = 1 m/z, NCE = 30, dynamic exclusion = auto), and acquisition of MS/MS spectra in Orbitrap (resolution = 70000 (at 200 m/z), AGC target = 10^6, max injection time = 100 ms). The mass spectrometer was externally calibrated prior to the measurement using a commercially available calibration solution (product number 88340, Pierce Triple Quadrupole, extended mass range, Thermo Fisher Scientific, Germany) and internally calibrated using 279.15909 m/z (dibutyl phthalate, a common plasticizer) as lock mass during measurements.</p>	<p>The data for extracted ion chromatograms (XICs) and MS/MS spectra plotted in various figures were directly retrieved from the RAW files using an in-house C console app based on RawFileReader (version 5.0.0.38) an open-source .Net assembly from Thermo Fisher Scientific.</p>	<p>Amino acids identifications were done based on matching retention time and MS/MS spectra.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Singh
+Study Person First Name	Kapil Dev
+Study Person Mid Initials	
+Study Person Email	kapil.singh@ukbb.ch
+Study Person Phone	+41 61 704 29 48
+Study Person Fax	
+Study Person Address	Spitalstrasse 33, 4056 Basel, Switzerland
+Study Person Affiliation	Department of Biomedical Engineering, University of Basel; University Children's Hospital Basel
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	CHEBI	BAO	BTO	NCBITAXON	NCIT	EFO	OMIT	PRIDE	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/OMIT	http://data.bioontology.org/ontologies/PRIDE	
+Term Source Version	29	1.0	147	35	34	15	85	132	40	1	
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology	Chemical Entities of Biological Interest Ontology	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Experimental Factor Ontology	Ontology for MicroRNA Target	PRIDE Controlled Vocabulary	
+INVESTIGATION
+Investigation Identifier	MTBLS1108
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-07-17
+Investigation Public Release Date	2022-09-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1108
+Study Title	DIAMetAlyzer allows automated false-discovery rate-controlled analysis for data-independent acquisition in metabolomics
+Study Description	The extraction of meaningful biological knowledge from high-throughput mass spectrometry data relies on limiting false discoveries to a manageable amount. For targeted approaches in metabolomics a main challenge is the detection of false positive metabolic features in the low signal-to-noise ranges of data-independent acquisition results and their filtering. Another factor is that the creation of assay libraries for data-independent acquisition analysis and the processing of extracted ion chromatograms have not been automated in metabolomics. Here we present a fully automated open-source workflow for high-throughput metabolomics that combines data-dependent and data-independent acquisition for library generation, analysis, and statistical validation, with rigorous control of the false-discovery rate while matching manual analysis regarding quantification accuracy. Using an experimentally specific data-dependent acquisition library based on reference substances allows for accurate identification of compounds and markers from data-independent acquisition data in low concentrations, facilitating biomarker quantification.
+Study Submission Date	2019-07-17
+Study Public Release Date	2022-09-05
+Study File Name	s_MTBLS1108.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	SWATH MS	targeted metabolites	False Discovery Rate	metabolite library	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/PRIDE_0000447	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/NCIT_C64214	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	PRIDE	MTBLS	NCIT	MTBLS	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	35292629
+Study Publication DOI	10.1038/s41467-022-29006-z
+Study Publication Author List	Alka O, Shanthamoorthy P, Witting M, Kleigrewe K, Kohlbacher O, Röst HL.
+Study Publication Title	DIAMetAlyzer allows automated false-discovery rate-controlled analysis for data-independent acquisition in metabolomics.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Method development (DDA, DIA), Benchmarking, Dilution Series
+Study Factor Type	Benchmarking
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0019939
+Study Factor Type Term Source REF	OMIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1108_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Lyophilized human plasma was obtained from Sigma-Aldrich and prepared according to the supplied instructions (Sigma-Aldrich, Taufkirchen, Germany). Solvents were of the highest available quality, typical LC-MS grade and obtained from Sigma-Aldrich (Sigma-Aldrich, Taufkirchen, Germany). The Agilent LC/MS Pesticide Comprehensive Mix was obtained from Agilent Technologies (Agilent Technologies, Waldbronn, Germany).</p>	<p>Gold standard samples were prepared by spiking different commercially available pesticide mixes (Agilent Technologies, Waldbronn, Germany) into human plasma metabolite extracts. Human plasma metabolite extracts were prepared by mixing on part human plasma (Sigma-Aldrich, Taufkirchen, Germany) with 3 parts of precooled ACN (4 °C). After centrifugation at 13,000 rpm at 4 °C for 15 min the supernatant was transferred, the solvent evaporated and the residue redissolved in 20% ACN at the original volume of the used plasma aliquot. Due to the molecular weight range of the pesticide mix the different steps cover a concentration gradient of 5 orders of magnitude.</p><p><br></p><p>For the preparation of the DDA data, each individual pesticide mix was diluted to 1 ng/µL with either solvent or plasma matrix.</p><p>For the DIA data, a stock solution of all 8 pesticide mixes in the plasma matrix was prepared with a concentration of 1 ng/µL.</p>	<p>Separation of metabolites from the spiked human plasma metabolite extracts was performed by reverse-phase (RP) chromatography using a Nexera UHPLC system (Shimadzu) with a BEH C18 (2.1 x 100, 1.7 µm; Waters) analytic column. The mobile phase 0.1% formic acid in water (eluent A) and 0.1% formic acid in acetonitrile (eluent B). The gradient profile was 5% B from 0.0 to 0.5 min, 100% B at 10.0 min for 3.0 min and 5% B from 13.5 to 16.0 min. A volume of 5 µL of sample was injected.</p>	<p>The analysis was performed using a Nexera UHPLC system (Shimadzu) coupled to a Q-TOF mass spectrometer (TripleTOF 6600, AB Sciex). As indicated above different samples were measured in Information Dependent Acquisition (IDA / DDA) and Sequential Windowed Acquisition of All Theoretical Fragment ion Mass Spectra (SWATH-MS).</p><p><br></p><p>MS settings were as follows: Gas 1, 55; Gas 2, 65; Cur, 35; Temperature, 500 °C; Ion Spray Voltage, 5500 V; Declustering potential, 80 V.</p><p><br></p><p>IDA was used for the generation of assay libraries. The IDA duty cycle was 200 ms for MS1, 80 ms for MS2. The mass range of the TOF MS and MS/MS scans were 50-2000 m/z and the collision energy was ramped from 20 to 50 V or from 50 to 80 V depending on the sample.</p><p><br></p><p>SWATH acquisition was performed with one TOF MS survey scan (240 ms) followed by 8 SWATH scans (90 ms). The fragment ion window for SWATH was from 100 to 900 m/z. Variable windows were used optimized on the plasma matrix (please see publication for further details).</p>	<p>The DDA data was centroided using the qtofpeakpicker and afterwards converted to mzML using msconvert. The DIA data was converted using msconvert (similar to <strong>[1]</strong>).</p><p><br></p><p>The data was processed using the DIAMetAlyzer workflow (see publication). The DDA data was used to construct a target-decoy assay library, which was used to process the DIA data. The reported peak groups have been filtered using a 5% FDR.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Schubert OT, Gillet LC, Collins BC, Navarro P, Rosenberger G, Wolski WE, Lam H, Amodei D, Mallick P, MacLean B, Aebersold R. Building high-quality assay libraries for targeted analysis of SWATH MS data. Nat Protoc. 2015 Mar;10(3):426-41. doi:10.1038/nprot.2015.015. Epub 2015 Feb 12. PMID:25675208.</p>	<p>In the process of generating an assay library, accurate mass search was used for initial identification and compositional fragmentation trees for fragment assessment.</p><p><br></p><p>The data was analysed using the DIAMetAlyzer pipeline. Inputs were the SWATH-MS data in profile mode (.mzML), a path for saving the new target-decoy assay library, the SIRIUS 4.0.1 executable, the DDA data (.mzML), custom libraries and adducts for AccurateMassSearch, the min/max fragment mass-to-charge to be able to restrict the mass of the transitions and the path to the PyProphet executable.</p><p><br></p><p>The DDA data was used for feature detection, adduct grouping, accurate mass search and forwarded to the AssayGeneratorMetabo. The constructed target library was used by the decoy generation node, which calls various python scripts to parse and reformat the input. In addition, Passatutto was called and the target-decoy assay library exported. The assay library was used in combination with the SWATH-MS for OpenSWATH and automatically analysed. PyProphet used the results for scoring and exported a list of peak groups with associated FDR and quantitative values.</p><p><br></p><p>Please see the workflow (20200506_DIAMetAlyzer.knwf) for all parameter explanation and values.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Alka	Shanthamoorthy	Witting	Kleigrewe	Kohlbacher	Röst
+Study Person First Name	Oliver	Premy	Michael	Karin	Oliver	Hannes
+Study Person Mid Initials						
+Study Person Email	alka@informatik.uni-tuebingen.de					
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	Applied Bioinformatics Group, Center for Bioinformatics, University of Tübingen, Tübingen, Germany	Department of Molecular Genetics, Donnelly Centre, Toronto, Canada	Helmholtz Zentrum München, Research Unit Analytical BioGeoChemistry (BCG), Neuherberg, Germany & Chair of Analytical Food Chemistry, School of Life Sciences Weihenstephan, Technical University of Munich, Freising, Germany	Bavarian Center for Biomolecular Mass Spectrometry (BayBioMS), Technical University of Munich, Freising, Germany	Applied Bioinformatics Group, Center for Bioinformatics, University of Tübingen, Tübingen, Germany & Biomolecular Interactions, MPI for Developmental Biology, Tübingen, Germany & Institute for Translational Bioinformatics, University Hospital Tübingen, Tübingen, Germany & Institute for Bioinformatics and Medical Informatics, University of Tübingen, Tübingen, Germany	Department of Molecular Genetics, Donnelly Centre, Toronto, Canada
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

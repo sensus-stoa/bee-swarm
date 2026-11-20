@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCIT	STATO	EFO	CHMO	OMIT	
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO			http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	29	1			132			18.10e
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology			Experimental Factor Ontology			NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS1561
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-03-16
+Investigation Public Release Date	2022-03-18
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1561
+Study Title	Improvement of prediction ability by integrating multi-omic datasets in barley
+Study Description	<p><strong>BACKGROUND:</strong> Genomic prediction (GP) based on single nucleotide polymorphisms (SNP) has become a broadly used tool to increase the gain of selection in plant breeding. However, using predictors that are biologically closer to the phenotypes such as transcriptome and metabolome may increase the prediction ability in GP. The objectives of this study were to (i) assess the prediction ability for three phenotypic traits using different omic datasets including sequence variants (SV), deleterious SV (dSV), tolerant SV (tSV), expression presence/absence variation (ePAV), gene expression (GE), transcript expression (TE), and metabolites (M) as single predictors in comparison to those using a SNP array; (ii) investigate the improvement in prediction ability when combining multiple omic datasets information to predict phenotypic variation in barley breeding programs; (iii) explore the relationship between genes and metabolites to unravel the metabolic pathway of the three above mentioned phenotypic traits.</p><p><strong>RESULTS:</strong> The prediction ability from genomic best linear unbiased prediction (GBLUP) for the three traits using dSV information was higher than when using tSV, all SV information, or the SNP array. Any predictors from the transcriptome (GE, TE, as well as ePAV) and metabolome provided higher prediction abilities compared to the SNP array and SV on average across the three traits. In addition, some (di)-similarity existed between different omic datasets, and therefore provided complementary biological perspectives to phenotypic variation. Optimal combining the information of dSV, TE, ePAV, as well as metabolites into GP models could improve the prediction ability over that of the single predictors alone.</p><p><strong>CONCLUSIONS:</strong> The use of integrated omic datasets in GP model is highly recommended. Furthermore, we evaluated a cost-effective approach generating 3’end mRNA sequencing with transcriptome data extracted from seedling without losing prediction ability in comparison to the full-length mRNA sequencing, paving the path for the use of such prediction methods in commercial breeding programs.</p>
+Study Submission Date	2020-03-16
+Study Public Release Date	2022-03-18
+Study File Name	s_MTBLS1561.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Barley	Genome Wide Association Study	gas chromatography-mass spectrometry	Genomic prediction	Plant Breeding
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C73935	http://purl.obolibrary.org/obo/STATO_0000091	http://purl.obolibrary.org/obo/CHMO_0000497	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/OMIT_0001505
+Study Design Type Term Source REF	MTBLS	NCIT	STATO	CHMO	MTBLS	OMIT
+STUDY PUBLICATIONS
+Study PubMed ID	35279073
+Study Publication DOI	10.1186/s12864-022-08337-7
+Study Publication Author List	Wu Po-Ya, Stich Benjamin, Weisweiler Marius, Shrestha Asis, Erban Alexander, Westhoff Philipp, Inghelandt Delphine Van
+Study Publication Title	Improvement of prediction ability by integrating multi-omic datasets in barley
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Biosource dry weight	Cultivar	Biological replicate
+Study Factor Type	Weight	cultivar	biological replicate
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25208	http://www.ebi.ac.uk/efo/EFO_0005136	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	NCIT	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1561_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>This study was based on 23 spring barley inbreds which were selected from a world-wide collection<strong>[1]</strong> to maximize phenotypic and genotypic diversity<strong>[2]</strong>. The 23 inbreds were planted as replicated checks in an experiment laid out as an augmented row-column design. The experiment was performed in 7 agro-ecologically diverse environments (Cologne from 2017 to 2019, Mechernich and Quedlinburg from 2018 to 2019) in Germany in which the checks were replicated 10 to 21 times per environment. At each environment, 3 phenotypic traits were assessed. The <strong>leaf angle (LA)</strong> was scored on a scale from <strong>1 (erect)</strong> to <strong>9 (very flat)</strong> on 4-wk-old plants. The <strong>heading time (HT)</strong> was recorded as days after planting. Furthermore, the <strong>plant height (PH, cm)</strong> was measured after heading (only assessed in Cologne and Mechernich).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Haseneyer G, Stracke S, Paul C, Einfeldt C, Broda A, Piepho H-P, Graner A, Geiger HH. (2009). Population structure and phenotypic variation of a spring barley world collection set up for association studies. Plant Breeding, 129(3):271–279. doi:10.1111/j.1439-0523.2009.01725.x</p><p><strong>[2]</strong> Weisweiler M, Montaigu A, Ries D, Pfeifer M, Stich B. Transcriptomic and presence/absence variation in the barley genome assessed from multi-tissue mRNA sequencing and their power to predict phenotypic traits. BMC Genomics. 2019 Oct 29;20(1):787. doi:10.1186/s12864-019-6174-3. PMID:31664921.</p>	<p>The metabolite profiling of our study was based on leaf samples collected for the 23 barley inbreds with quadruplicates in a green house experiment. Each of the 92 samples was analyzed one time via gas chromatography-mass spectrometry (GC-MS) using an adapted protocol previously published<strong>[1]</strong>. Metabolites were extracted from 45-55 mg dry samples with 1.5 ml of a 1:2.5:1 H2O:methanol:chloroform (v:v:v) mixture pre-cooled to -20 °C, then mixed on a rotator for 10 min and centrifuged at 20,000 x g for 2 min (both at 4 °C). A total of 30 μl of the supernatant were dried completely in a vacuum concentrator and derivatized in 2 steps via an MPS-Dual-head autosampler (Gerstel): <strong>(1)</strong> with 10 μl methoxyamine hydrochloride (Acros organics; freshly prepared at 20 mg/ml in pure pyridine (Sigma-Aldrich)) and shaking at 37 °C for 90 min, <strong>(2)</strong> adding 90 μl N-Methyl-N-(trimethylsilyl)trifluoroacetamide (MSTFA; Macherey-Nagel) and shaking at 37 °C for 30 min.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lisec J, Schauer N, Kopka J, Willmitzer L, Fernie AR. Gas chromatography mass spectrometry-based metabolite profiling in plants. Nat Protoc. 2006;1(1):387-96. doi:10.1038/nprot.2006.59. Erratum in: Nat Protoc. 2015 Sep;10(9):1457. PMID:17406261.</p>	<p>After incubation for 2 h at room temperature, 1 μl of derivatized compounds were injected at a flow of 1 ml/min with an automatic liner exchange system in conjunction with a cold injection system (Gerstel) in splitless mode (ramping from 50 °C to 250 °C at 12 °C/s) into the GC. Chromatography was performed using a 7890B GC system (Agilent Technologies) with a 30 m long, 0.25 mm internal diameter, HP-5MS column with 5% phenyl methyl siloxane film (Agilent 19091S-433). The oven temperature was held constant at 70 °C for 2 min and then ramped at 12.5 °C/min to 320 °C at which it was held constant for 5 min; resulting in a total run time of 27 min.</p>	<p>Metabolites were ionized with an electron impact source at 70 V and 200 °C source temperature and recorded in a mass range of m/z 60 to 800 at 20 scans/s with a 7200 GC-QTOF (Agilent Technologies) mass spectrometer.</p>	<p><strong>Raw</strong> data files exported from <strong>MassHunter Qualitative (v b07, Agilent Technologies)</strong> in the <strong>Agilent data file format (*.D/)</strong> were converted to the <strong>NetCDF format (*.cdf)</strong> and baseline-corrected via <strong>MetAlign (v041012)[1]</strong> using default parameters. Baseline-correction was visually inspected using <strong>OpenChrom (v1.3.0)[2]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lommen A. MetAlign: interface-driven, versatile metabolomics tool for hyphenated full-scan mass spectrometry data preprocessing. Anal Chem. 2009 Apr 15;81(8):3079-86. doi:10.1021/ac900036d. PMID:19301908.</p><p><strong>[2]</strong> Wenig P, Odermatt J. OpenChrom: a cross-platform open source software for the mass spectrometric analysis of chromatographic data. BMC Bioinformatics. 2010 Jul 30;11:405. doi:10.1186/1471-2105-11-405. PMID:20673335.</p>	<p>Quantitative analysis of GC-MS-based metabolite profiling experiments was then performed using <strong>TagFinder (v4.1)[1]</strong>. After evaluating the uniqueness and linearity of each fragment, the aggregated fragment intensity was calculated as the average of the maximum scaled fragment intensity. For relative quantification, aggregated fragment intensities of the compounds were normalized to those of the internal standard <strong>ribitol (Sigma-Aldrich)</strong> which was added to the extraction buffer. Mass spectral annotation was manually supervised using the <a href='http://gmd.mpimp-golm.mpg.de/download/' rel='noopener noreferrer' target='_blank'><strong>Golm Metabolome Database mass-spectral library</strong></a><strong> </strong>after conversion of absolute time in retention indices<strong>[2]</strong>. The compounds corresponding to contaminations, <strong>siloxane</strong>, <strong>ribitol</strong>, and <strong>dimethylphenylalanine</strong> were removed. Furthermore, if several compounds were identified as the same metabolite, the one with the greatest heritabilty, for which the calculation is described below, was retained.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Luedemann A, Strassburg K, Erban A, Kopka J. TagFinder for the quantitative analysis of gas chromatography--mass spectrometry (GC-MS)-based metabolite profiling experiments. Bioinformatics. 2008 Mar 1;24(5):732-7. doi:10.1093/bioinformatics/btn023. PMID:18204057.</p><p><strong>[2]</strong> Strehmel N, Hummel J, Erban A, Strassburg K, Kopka J. Retention index thresholds for compound matching in GC-MS metabolite profiling. J Chromatogr B Analyt Technol Biomed Life Sci. 2008 Aug 15;871(2):182-90. doi:10.1016/j.jchromb.2008.04.042. PMID:18501684.</p><p><br></p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Westhoff	Brilhaus	Stich	van Inghelandt	Erban	Wu	Weisweiler	Shrestha
+Study Person First Name	Philipp	Dominik	Benjamin	Delphine	Alexander	Po-Ya	Marius	Asis
+Study Person Mid Initials								
+Study Person Email	philipp.westhoff@hhu.de	dominik.brilhaus@hhu.de	benjamin.stich@hhu.de	inghelan@hhu.de	erban@mpimp-golm.mpg.de			
+Study Person Phone								
+Study Person Fax								
+Study Person Address								
+Study Person Affiliation								
+Study Person Roles	Facility Contact	Data Manager	Principal Investigator	Investigator	data analyst	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C127528	http://purl.obolibrary.org/obo/NCIT_C51820	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C25936	http://www.ebi.ac.uk/efo/EFO_0001734	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	EFO			

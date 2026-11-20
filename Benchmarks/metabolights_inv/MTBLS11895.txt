@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	UO
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/uo.owl
+Term Source Version		2025-10-21	3.88.0			1.0.1		2025-12-03	25.06e	2025-12-18	2026-01-16
+Term Source Description	The BRENDA Tissue Ontology (BTO)	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Units of measurement ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11895
+Investigation Title	The metabolite composition in the feces of mice after Romboutsia treatment
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-12-11
+Investigation Public Release Date	2026-03-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11895
+Study Title	The metabolite composition in the feces of mice after Romboutsia treatment
+Study Description	Specific gut microbiota is critically involved in metabolic diseases, including obesity. Through analysis of gut microbiota in diabetic patients and animal models, it was found that Romboutsia ilealis is closely associated with obesity. Here, our findings show that oral administration of Romboutsia ilealis significantly alleviates diet-induced obesity and metabolic dysfunction. Interestingly, this effect occurs not through modulation of food intake or energy expenditure, but by regulating lipid absorption and metabolism in the gut. Additionally, metabolomics analysis identified 2-oxindole-3-acetic acid (OAA) as the key metabolite involved in the regulation of obesity by Romboutsia ilealis. Its regulatory effect on intestinal lipid absorption was further validated both in vitro and in vivo. Mechanistically, using biotin-labeled OAA combined with proteomic analysis, we found that OAA directly interacts with the deubiquitin enzyme PSMD3, increasing the ubiquitination level of m6A binding protein YTHDF2 and reducing its protein stability, thereby enhancing intestinal lipid absorption.In summary, our findings reveal that Romboutsia ilealis and OAA regulate obesity-associated lipid accumulation through PSMD3-mediated deubiquitination of YTHDF2, suggesting that they represent novel prebiotics and probiotics with potential as therapeutic agents against obesity.
+Study Submission Date	2024-12-11
+Study Public Release Date	2026-03-19
+Study File Name	s_MTBLS11895.txt
+Comment[Created At]	2024-12-10T00:00:00
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	intervention design	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/OBI_0000115	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MSIO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Luoyi Zhu, Yizhen Wang and Xin Zong
+Study Publication Title	The Romboutsia ilealis and derived 2-oxindole-3-aceic acid regulate obesity-associated lipid accumulation via PSMD3-mediated YTHDF2 deubiquitination
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Bacterial suspension
+Study Factor Type	Dose
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25488
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11895_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11895_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number		http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>Thirty 4-week-old male C57BL/6 mice were acclimatized for 1 week and then randomly divided into two groups (n = 15 per group): a control group (CON) and a high-dose Romboutsia ilealis gavage group (HR). The CON group was orally gavaged with 180 µL of PBS daily, while the HR group received 180 µL of viable Romboutsia ilealis suspension at a concentration of 1×10^9 CFU/mL daily. All mice were fed a standard diet throughout the experiment. After 2 weeks of treatment, 1–2 fecal pellets were collected from each mouse into cryotubes, snap-frozen in liquid nitrogen, and stored at −80 °C for subsequent untargeted metabolomic analysis.</p>	<p>For sample preparation and UHPLC-MS/MS analysis, 50 mg of fecal samples were accurately weighed into 400 μL of extraction solution (methanol: water = 4:1 (v: v)) containing 0.02 mg/mL of internal standard (L-2-chlorophenylalanine). The samples were extracted by low-temperature sonication at 5°C, 40 KHz for 30 min and rested at -20°C for 30 min. Subsequently, the supernatants were extracted by centrifugation at 4°C, 13,000 g for 15 min.&nbsp;</p>	<p>the supernatants were analyzed by LC-MS/MS on a UHPLC-Q Exactive HF-X system equipped with an ACQUITY HSS T3 column (100 mm × 2.1 mm i.d., 1.8 μm; Waters, USA).</p>	<p>The sample mass spectrometry signals were acquired in positive and negative ion scanning modes with a mass scan range of 70-1050 m/z. Data were collected in DDA mode.</p>	<p>For data analysis, the pretreatment of LC-MS raw data was imported into the metabolomics processing software Progenesis QI (Waters Corporation, Milford, USA) to obtain a data matrix of retention times, MS ratios and peak intensities.&nbsp;</p>	<p>The metabolites were matched with the metabolic public databases HMDB (http://www.hmdb.ca/) and Metlin (https://metlin.scripps.edu/).&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	luoyi
+Study Person First Name	zhu
+Study Person Mid Initials	
+Study Person Email	zhuluoyi@lsu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	No. 1 Xueyuan Road, Liandu District, Lishui City, Zhejiang Province
+Study Person Affiliation	Lishui University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person ORCID]	0000-0003-2287-3411
+Comment[Study Person Affiliation ROR ID]	https://ror.org/0418kp584

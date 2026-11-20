@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	NCBITAXON	NCIT	EFO	DOID	CHEBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/			http://data.bioontology.org/ontologies/EFO			
+Term Source Version	29	1			132			
+Term Source Description	Ontology for Biomedical Investigations	Metabolights Ontology			Experimental Factor Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS6739
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-12-15
+Investigation Public Release Date	2024-08-26
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS6739
+Study Title	Targeted plasma metabolomics combined with machine learning for the diagnosis of acute SARS-CoV-2
+Study Description	<p>The routine clinical diagnosis of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) is largely restricted to real-time reverse transcription polymerase chain reaction (RT-qPCR), and tests that detect SARS-CoV-2 nucleocapsid antigen. Given the diagnostic delay and suboptimal sensitivity associated with these respective methods, alternative diagnostic strategies are needed for acute infection. We studied the use of a clinically validated liquid chromatography triple quadrupole method (LC/MS-MS) for detection of amino acids from plasma specimens. We applied machine learning models to distinguish between SARS-CoV-2-positive and negative samples and analyzed amino acid feature importance. A total of 200 samples were tested, including 70 from individuals with COVID-19, and 130 from negative controls. The top performing model overall allowed discrimination between SARS-CoV-2-positive and negative control samples with an area under the receiver operating characteristic curve (AUC) of 0.96 (95% confidence interval [CI] 0.91, 1.00), overall sensitivity of 0.99 (95%CI 0.92, 1.00), and specificity of 0.92 (95%CI 0.85, 0.95). This approach holds potential as an alternative to existing methods for the rapid and accurate diagnosis of acute SARS-CoV-2 infection.&nbsp;</p>
+Study Submission Date	2022-12-15
+Study Public Release Date	2024-08-26
+Study File Name	s_MTBLS6739.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	targeted metabolites	plasma	COVID-19	amino acid	two-dimensional high-performance liquid chromatography-mass spectrometry	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/DOID_0080600	http://purl.obolibrary.org/obo/CHEBI_33709	http://purl.obolibrary.org/obo/CHMO_0002008	http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	MTBLS	MTBLS	DOID	CHEBI	CHMO	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	37063449
+Study Publication DOI	10.3389/fmicb.2022.1059289
+Study Publication Author List	Le AT, Wu M, Khan A, Phillips N, Rajpurkar P, Garland M, Magid K, Sibai M, Huang C, Sahoo MK, Bowen R, Cowan TM, Pinsky BA, Hogan CA.
+Study Publication Title	Targeted plasma metabolomics combined with machine learning for the diagnosis of severe acute respiratory syndrome virus type 2.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS6739_LCxLC-MS_pos_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	2D Gas Chromatography MS – Positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Individuals with RT-qPCR-confirmed SARS-CoV-2 infection from a respiratory sample (nasopharyngeal, nasal, or oropharyngeal) were identified. Participants were selected from 2 academic tertiary care hospitals (Stanford Health Care [SHC] and Lucille Packard Children’s Hospital [LPCH]) and affiliated clinics and outpatient centers in the Bay Area, from March 2020 to November 2020. SARS-CoV-2 testing was performed as previously described, using an in-house emergency use authorization (EUA) real-time reverse transcription polymerase chain reaction (RT-qPCR), or 1 of 2 commercial SARS-CoV-2 assays, the Panther Fusion or TMA (Hologic, Malborough, MA)<strong>[1]</strong>. Residual plasma specimens were obtained from individuals with confirmed SARS-CoV-2 infection and used for plasma metabolomics testing. Only plasma samples collected within 7 d of the initial SARS-CoV-2 infection were included to include acute COVID-19, and there was no additional selection based on cycle threshold (Ct) value or clinical severity. In addition, we identified individuals to serve as negative controls from the following groups: pooled donor blood negative for SARS-CoV-2, hospitalized individuals and outpatients with residual plasma from EBV or CMV viral load testing, hospitalized individuals with elevated C-reactive protein (CRP), and/or procalcitonin (PCT) and without SARS-CoV-2 infection, and symptomatic individuals with a confirmed respiratory viral infection other than SARS-CoV-2. For the latter group, respiratory viral testing was performed on the ePlex Respiratory Pathogen (RP) panel (GenMark Diagnostics, Carlsbad, CA) at the Stanford Clinical Virology Laboratory. Given that plasma is not a routinely collected specimen for the diagnosis of COVID-19, we enrolled eligible individuals without matching for age and sex between the positive and negative groups. Plasma procalcitonin (PCT) and C-reactive protein (CRP) concentrations were measured on a Roche Cobas e801 and c702 modules, respectively, (Roche Diagnostics, Indianapolis, IN).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Food and Drug Administration. Stanford Health Care Clinical Virology Laboratory SARS-CoV-2 test EUA Summary.</p>	<p>As previously described, amino acids were quantified by LC-MS/MS using a clinically validated method<strong>[1]</strong>. In brief, a volume of 20 μl of plasma was mixed with an equal volume of 6% sulfosalicyclic acid and then centrifuged at 4 °C for 15 min at 17,000 x g. Lastly, 20 μl of the supernatant was mixed with 1.4 ml of an isotopic-labelled internal standard mixture in a 96-well plate which was prepared as previously described<strong>[2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong>&nbsp;&nbsp;&nbsp;Le A, Ng A, Kwan T, Cusmano-Ozog K, Cowan TM. A rapid, sensitive method for quantitative analysis of underivatized amino acids by liquid chromatography-tandem mass spectrometry (LC-MS/MS). J Chromatogr B Analyt Technol Biomed Life Sci. 2014 Jan 1;944:166-74. doi:10.1016/j.jchromb.2013.11.017. PMID:24316529.</p><p><strong>[2]</strong> Mak J, Cowan TM, Le A. Quantitative Analysis of Underivatized Amino Acids by Liquid Chromatography-Tandem Mass Spectrometry. Methods Mol Biol. 2019;2030:85-109. doi:10.1007/978-1-4939-9639-1_8. PMID:31347112.</p>	<p>The amino acids analysis was performed on an Agilent 1200 2-D HPLC system with 2 LC pumps and an autosampler (Agilent Technologies, Santa Clara, CA) using a 2-column chromatographic setup as previously described<strong>[1]</strong>. In brief, Chromatographic separation was performed using a series of 2 columns: Column 1, a porous graphitic carbon (PGC) column Thermo Scientific Hypercarb, 3 µm, 3 mm ID x 50 mm; and Column 2, Waters XBridge BEH C18, 2.5 µm, 2.1 mm ID x 100 mm. An injection volume of 5 μl of a deproteinized sample was used, with a runtime of 13.5 min. The 2 columns were connected with a 10-port Rheodyne valve. 2 eluants, 0.03% Perfluoroheptanoic acid in Water and 100% Acetonitrile, were used for both HPLC pumps.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1] </strong>Le A, Ng A, Kwan T, Cusmano-Ozog K, Cowan TM. A rapid, sensitive method for quantitative analysis of underivatized amino acids by liquid chromatography-tandem mass spectrometry (LC-MS/MS). J Chromatogr B Analyt Technol Biomed Life Sci. 2014 Jan 1;944:166-74. doi:10.1016/j.jchromb.2013.11.017. PMID:24316529.</p>	<p>Mass spectral data was collected on an Agilent 6460 Tandem Mass Spectrometer (Agilent Technologies, Santa Clara, CA) with Electrospray ionization (ESI). Compounds were analyzed in positive ion mode and detected by scheduled selective reaction monitoring (SRM). Calibration standards and isotopic-labelled internal standards were prepared as previously described<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong>&nbsp;&nbsp;&nbsp;Le A, Ng A, Kwan T, Cusmano-Ozog K, Cowan TM. A rapid, sensitive method for quantitative analysis of underivatized amino acids by liquid chromatography-tandem mass spectrometry (LC-MS/MS). J Chromatogr B Analyt Technol Biomed Life Sci. 2014 Jan 1;944:166-74. doi:10.1016/j.jchromb.2013.11.017. PMID:24316529.</p>	<p>Data were acquired using <strong>MassHunter Workstation Acquisition version B.08.02</strong> (Agilent), analyzed by <strong>MassHunter Quant software version B.07.00</strong> (Agilent), and exported to <strong>Microsoft Excel version 15.0.5501.1000</strong>.</p>	<p>A targeted amino acid method was used as previously described<strong>[1]</strong>. In brief, quantitative analysis was performed by relating chromatographic peak areas to those derived from externally run calibration standards and normalized using isotopic-labelled internal standards (Cambridge Isotope Laboratories, Metabolomics Amino Acid Mix Standard MSK-A2-1.2). Calibration curves were plotted using a weighted regression 1/x. This method was developed based on the standards of the Clinical Laboratory Improvement Amendments (CLIA), and is CLIA-certified.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Le A, Ng A, Kwan T, Cusmano-Ozog K, Cowan TM. A rapid, sensitive method for quantitative analysis of underivatized amino acids by liquid chromatography-tandem mass spectrometry (LC-MS/MS). J Chromatogr B Analyt Technol Biomed Life Sci. 2014 Jan 1;944:166-74. doi:10.1016/j.jchromb.2013.11.017. PMID:24316529.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Khan	Hogan
+Study Person First Name	Afraz	Catherine
+Study Person Mid Initials	A	A
+Study Person Email	afraz.khan@bccdc.ca	catherine.hogan@bccdc.ca
+Study Person Phone	7783174297	
+Study Person Fax		
+Study Person Address	British Columbia Centre for Disease Control	British Columbia Centre for Disease Control Public Health Laboratory, Vancouver, BC, Canada
+Study Person Affiliation		University of British Columbia, Vancouver, BC, Canada
+Study Person Roles	author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT

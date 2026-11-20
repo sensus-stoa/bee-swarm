@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCIT	MTBLS	EDAM	CHEBI	CHEMINF	CHMO	UO	EFO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/NCIT	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EDAM	http://data.bioontology.org/ontologies/CHEBI	http://data.bioontology.org/ontologies/CHEMINF	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/UO	http://data.bioontology.org/ontologies/EFO
+Term Source Version	29	28	1.0	19	80	29	5	42	132
+Term Source Description	Ontology for Biomedical Investigations	National Cancer Institute Thesaurus	User defined terms	EDAM bioinformatics operations, data types, formats, identifiers and topics	Chemical Entities of Biological Interest Ontology	Chemical Information Ontology	Chemical Methods Ontology	Units of Measurement Ontology	Experimental Factor Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1677
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2020-04-24
+Investigation Public Release Date	2020-08-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1677
+Study Title	1H NMR chemometric models for classification of Czech wine type and variety
+Study Description	<p>A set of 917 wines of Czech origin registered in a national competition were analysed using nuclear magnetic resonance spectroscopy (NMR) with the aim to build and evaluate multivariate statistical models and machine learning methods for the classification of type (5 types), variety (13 varieties) and location (4 locations) based on 1H NMR spectra. The predictive models afforded more than 93% of correctness for classification of dry and medium dry, medium, sweet white wines and dry red wines. The trained Random Forest (RF) method is able to classify Pinot noir with 96% of correctness, Blaufränkisch 96%, Riesling 92%, Cabernet Sauvignon 77%, Chardonnay 76%, Gewürtztraminer 60%, Hibernal 60%, Grüner Veltliner 52%, Pinot gris 48%, Sauvignon Blanc 45%, Pálava 40%. Pinot blanc and Chardonnay are varieties, which are often misplaced and were discriminated with 71% of correctness. Chemometrics represents prospective tool to predict important features in wine, potentially important in quality assessment and fraud detection.</p>
+Study Submission Date	2020-04-24
+Study Public Release Date	2020-08-28
+Study File Name	s_MTBLS1677.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Wine	nuclear magnetic resonance spectroscopy	Chemometrics	wine classification	randomForest	wine analysis
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C66822	http://purl.obolibrary.org/obo/CHMO_0000591	http://edamontology.org/operation_3931	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	NCIT	CHMO	EDAM	MTBLS	MTBLS	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1016/j.foodchem.2020.127852
+Study Publication Author List	Anna Mascellani, Gokce Hoca, Marek Babisz, Pavel Krska, Pavel Kloucek, Jaroslav Havlik
+Study Publication Title	1H NMR chemometric models for classification of Czech wine type and variety
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Grape variety	Wine style	Vineyard location
+Study Factor Type	cultivar	Wine style	geographic location
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005136		http://purl.obolibrary.org/obo/GAZ_00000448
+Study Factor Type Term Source REF	EFO		CHEMINF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1677_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p>A set of 917 bottles of Czech wines were provided by The National Wine Centre's Wine Salon of the Czech Republic, an independent national wine competition, in 2019. The wines were from 5 sub-regions of Bohemia and Moravia (see Fig S1 in the paper associated with this study): Mikulovska (250 samples), Slovacka (153 samples), Velkopavlovicka (143 samples), Znojemska (111 samples) and Melnicka (8 samples); for 2 wines, the area was unclassified. The wines belonged to 6 types based on wine colour and residual sugar content (see Table S1 in the paper associated with this study): 494 wines were categorised as dry and medium dry white wines, 137 as medium white wines, 36 as sweet white wines, 44 as roses and blancs de noir, 188 as dry red wines and 4 as other red wines. The wines were made from wine grape varieties including Riesling (88 samples), Chardonnay (70 samples), Pinot gris (70 samples), Sauvignon Blanc (63 samples), Welschriesling (62 samples), Pinot noir (58 samples), Gruner Veltliner (51 samples), Gewurtztraminer (50 samples), Pinot blanc (47 samples), Blaufrankisch (37 samples), Palava (36 samples), Cabernet Sauvignon (24 samples), Hibernal (24 samples), Zweigeltrebe (20 samples), Gruner Silvaner (19 samples), Saint Laurent (19 samples), Neuburger (14 samples), Merlot (13 samples), Muskat Moravsky (13 samples), Andre (12 samples), Muller-Thurgau (12 samples), Cabernet Moravia (11 samples), Blauer Portugieser (9 samples), Dornfelder (7 samples), Kerner (6 samples), Aurelius (5 samples) and Alibernet (3 samples); 16 samples were classified as other, and 45 samples were cuvee. The year of harvest ranged between 2007 and 2017. The sugars and the actual alcoholic strength of the wines were previously assessed by analytical methods approved by The International Organisation of Vine and Wine (OIV) and declared on the certificate of analysis, which is required for introduction to the market (International Organisation of Vine and Wine, 2019).</p>	<p>No extraction was performed in this study.</p>	<p>Phosphate buffer solution was prepared in D2O by adding 1.5 M KH2PO4, 0.2% NaN3 and 5 mM DSS. The pH was adjusted to 4 with H3PO4 and measured by an inoLab pH 7110 pH meter (WTW, Germany). DSS was used as the internal standard to calibrate the chemical shift to 0 ppm. To each 540 μl of sample, 60 μl of phosphate buffer solution was added and mixed using an IKA MS 3 basic vortex oscillator. The total 600-μl volume of prepared sample was transferred to a 5-mm NMR tube (NORELL Inc., Morganton, NC, USA) and subsequently analysed.</p>	<p>All spectra were recorded on a Bruker Avance III spectrometer equipped with a broad band fluorine observation (BBFO) SmartProbe with z-axis gradients (Bruker BioSpin GmbH, Rheinstetten, Germany) operating at a proton NMR frequency of 500.23 MHz. The temperature was set to 298 K (25 °C). 1H NMR spectra were acquired and processed under the same conditions.</p>	<p>The Bruker pulse sequence (noesypr1d) was applied to suppress the residual water signal at 4.704 ppm. For each sample, 128 scans and 4 dummy scans were collected as 64K data points using a spectral width of 8K Hz, receiver gain of approx. 18, relaxation delay of 1 s, acquisition time of 4.00 s, and mixing time of 0.1 s. The total acquisition time was 11 min. Tuning, lock, gain, 90° pulse calibration, and shimming were calibrated automatically for each sample by the standard module routine developed by Bruker (atma, lock, rga, pulsecal and topshim). The free induction decay (FID) was multiplied by 0.3 Hz line broadening prior to Fourier transformation. 2D NMR experiments as 13C NMR, J-resolved, 1H–1H COSY, and 1H−13C HSQC were recorded for pooled wines.</p>	<p>1H NMR spectra were subjected to phase and baseline correction using the Whitakker smoother algorithm in MestReNova software version 14.1.0 (Mestrelab Reserach S.L., Santiago de Compostela, Spain). The spectra were calibrated to the internal standard DSS at 0.0 ppm and aligned by global alignment based on a reference spectrum. Specific scripts were implemented for data reduction. The 1H NMR spectral data were reduced into 0.04-ppm spectral bins using the sum of the datapoints, and the region corresponding to water (4.74-4.98) was excluded. The binning width of 0.04 ppm represents a compromise between preserving sufficient data resolution and minimizing the loss of spectral information and the effect of peak drift. To avoid false grouping of samples in chemometrics models caused by the pH and paramagnetic properties of the wines, the bins from areas with large drift (1.02-1.34, 1.34-1.42, 2.02-2.10, 2.62-2.74, 3.58-3.66, 4.38-4.54, 8.22-8.42) were summed. A total of 226 bins were used for analysis. The spectra were then normalized to the average intensity of the internal standard and the total spectral area. The data were log-transformed, mean-centred and divided by the standard deviation of each variable (auto- scaled) obtained using the package ‘MetaboAnalyst’ version 2.0<strong>[1]</strong> in R 3.5.0. The bins were used as variables for subsequent statistical analysis and modelling.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Chong J, Yamamoto M, Xia J. MetaboAnalystR 2.0: From Raw Spectra to Biological Insights. Metabolites. 2019 Mar 22;9(3):57. doi:10.3390/metabo9030057. PMID:30909447</p>	<p>1H NMR spectra of pooled wines were phased and baseline corrected using Chenomx NMR suite 8.5 software, professional edition (Chenomx Inc., Edmonton, AB, Canada). Signal assignment was performed using internal and in-house databases. The assignments of the metabolites were confirmed by 13C NMR, J-resolved, 1H–1H COSY, long-range COSY and 1H−13C HSQC (for settings, see Table S2 in the paper associated with this study).</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Havlik	Mascellani
+Study Person First Name	Jaroslav	Anna
+Study Person Mid Initials		
+Study Person Email	havlik@af.czu.cz	mascellani@af.czu.cz
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles	Principal Investigator	Subinvestigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C54622
+Study Person Roles Term Source REF	NCIT	NCIT

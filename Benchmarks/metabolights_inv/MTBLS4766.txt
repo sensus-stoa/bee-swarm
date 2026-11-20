@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCIT	OBI	EFO	MS	resultAFR	MTBLS	CL		CHMO
+Term Source File		http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO			https://www.ebi.ac.uk/metabolights/		http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version		29	132			1.0	2022-08-03	18.10e	
+Term Source Description		Ontology for Biomedical Investigations	Experimental Factor Ontology			Metabolights Ontology		NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS4766
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2022-04-27
+Investigation Public Release Date	2023-07-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS4766
+Study Title	Metabolic profiling of rheumatoid arthritis neutrophils reveals altered energy metabolism that is not affected by JAK inhibition
+Study Description	Neutrophils play a key role in the pathophysiology of rheumatoid arthritis (RA) where release of ROS and proteases directly causes damage to joints and tissues. Neutrophil function is directly affected by Janus Kinase (JAK) inhibitor drugs, including tofacitinib and baricitinib, which are clinically effective treatments for RA. However clinical trials have reported increased infection rates and transient neutropenia during therapy. The subtle differences in the mode of action, efficacy and safety of JAK inhibitors has been the primary research topic of many clinical trials and systematic reviews, to provide a more precise and targeted treatment to patients. The aim of this study was to determine both the differences in the metabolome of neutrophils from healthy controls and people with RA, and the effect of different JAK inhibitors on the metabolome of healthy and RA neutrophils. Isolated neutrophils from healthy controls (HC) (n=6) and people with RA (n=7) were incubated with baricitinib, tofacitinib or a pan-JAK inhibitor (all 200ng/mL) for 2h. Metabolites were extracted and 1H nuclear magnetic resonance (NMR) was applied to study the metabolic changes. Multivariate analyses and machine learning models show a divergent metabolic pattern in RA neutrophils compared to HC at baseline (F1 score = 86.7%) driven by energy metabolites (ATP, ADP, GTP and glucose). No difference was observed in the neutrophil metabolome when treated with JAK inhibitors. However, JAK inhibitors significantly inhibited ROS production and baricitinib decreased NET production (p-value<0.05). Bacterial killing was not inhibited by JAK inhibitors, indicating their effect on neutrophils is beneficial to inhibit joint damage in RA without impairing host defence. This study highlights altered energy metabolism in RA neutrophils which may explain the cause of their dysregulation in inflammatory disease.
+Study Submission Date	2022-04-27
+Study Public Release Date	2023-07-11
+Study File Name	s_MTBLS4766.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-07
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	JAK Inhibitor	untargeted metabolites	nuclear magnetic resonance spectroscopy	rheumatoid arthritis	host defence	Neutrophil Extracellular Trap
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C172200	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000591	http://www.ebi.ac.uk/efo/EFO_0000685	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C180931
+Study Design Type Term Source REF	NCIT	MTBLS	CHMO	EFO	MTBLS	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	35888774
+Study Publication DOI	10.3390/metabo12070650
+Study Publication Author List	Susama Chokesuwattanaskul, Michele Fresneda Alarcon, Sangeetha Mangalakumaran, Rudi Grosman, Andrew L. Cross, Elinor A. Chapman, David Mason, Robert J. Moots, Marie M. Phelan, Helen L. Wright
+Study Publication Title	Metabolic Profiling of Rheumatoid Arthritis Neutrophils Reveals Altered Energy Metabolism That Is Not Affected by JAK Inhibition.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Biological Replicate	Incubation Time	Treatment	Disease
+Study Factor Type	biological replicate	timepoint	treatment	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0002091	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS4766_NMR___metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number							
+Study Protocol Type Term Source REF							
+Study Protocol Description	<p><strong>Patient Demographics:</strong></p><p>This study was approved by the University of Liverpool Central University Research Ethics Committee C for HC, and NRES Committee North West (Greater Manchester West, Manchester, UK) for RA patients. All participants gave written, informed consent in accordance with the declaration of Helsinki. All patients fulfilled the ACR 2010 criteria for the diagnosis of RA<strong>[1]</strong> and were Biologics naïve. People with RA (age 22–84, 74% female) were recruited from University Hospital Aintree and Broadgreen Hospital in Liverpool. Healthy controls (age 27–58, 53% female) were recruited from colleagues at the University of Liverpool.</p><p><br></p><p><strong>Neutrophil Preparation:</strong></p><p>Whole blood was collected into lithium-heparin vacutainers and within 15 min, mixed with HetaSep solution at a ratio of 1:5 (HetaSep:whole blood) and incubated at 37 °C for 30 min until the plasma/erythrocyte interphase was at approximately 50% of the total volume. Nucleated cells were collected and layered on top of Ficoll-Paque solution at a ratio of 1:1, and then centrifuged at 500 x g for 30 min. The peripheral blood mono-nuclear cells (PBMC) layer, plasma, and Ficoll-Paque solution, were carefully removed, leaving a neutrophil pellet (purity typically &gt;97%)<strong>[2][3]</strong>. Pellets were re-suspended in RPMI 1640 media including L-glutamine at a concentration of 5 x 10^6 cells/ml. Neutrophils were either left unstimulated or treated with therapeutically relevant concentrations of tofacitinib (200 ng/ml), baricitinib (200 ng/ml)<strong>[4][5]</strong> or pan-JAK inhibitor I (200 ng/ml) and incubated for 2 h. Deuterated DMSO was used as a vehicle control in all incubations at the same concentration as JAKi (v/v).</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Aletaha D, Neogi T, Silman AJ, Funovits J, Felson DT, Bingham CO 3rd, Birnbaum NS et al. 2010 Rheumatoid arthritis classification criteria: an American College of Rheumatology/European League Against Rheumatism collaborative initiative. Arthritis Rheum. 2010 Sep;62(9):2569-81. doi:10.1002/art.27584. PMID:20872595.</p><p><strong>[2]</strong> Thomas HB, Moots RJ, Edwards SW, Wright HL. Whose Gene Is It Anyway? The Effect of Preparation Purity on Neutrophil Transcriptome Studies. PLoS One. 2015 Sep 24;10(9):e0138982. doi:10.1371/journal.pone.0138982. PMID:26401909.</p><p><strong>[3]</strong> Mitchell TS, Moots RJ, Wright HL. Janus kinase inhibitors prevent migration of rheumatoid arthritis neutrophils towards interleukin-8, but do not inhibit priming of the respiratory burst or reactive oxygen species production. Clin Exp Immunol. 2017 Aug;189(2):250-258. doi:10.1111/cei.12970. PMID:28369741.</p><p><strong>[4]</strong> Shi JG, Chen X, Lee F, Emm T, Scherle PA, Lo Y, Punwani N, Williams WV, Yeleswaram S. The pharmacokinetics, pharmacodynamics, and safety of baricitinib, an oral JAK 1/2 inhibitor, in healthy volunteers. J Clin Pharmacol. 2014 Dec;54(12):1354-61. doi:10.1002/jcph.354. PMID:24965573.</p><p><strong>[5]</strong> Dowty ME, Jesson MI, Ghosh S, Lee J, Meyer DM, Krishnaswami S, Kishore N. Preclinical to clinical translation of tofacitinib, a Janus kinase inhibitor, in rheumatoid arthritis. J Pharmacol Exp Ther. 2014 Jan;348(1):165-73. doi:10.1124/jpet.113.209304. PMID:24218541.</p>	<p>Neutrophils were prepared for metabolite extraction following our optimised protocol for human neutrophils<strong>[1]</strong>. Briefly, cells were centrifuged at 1000 x g at 25 °C for 2 min. The supernatant was aspirated, and cell pellets were re-suspended with ice cold PBS, then centrifuged at 1000 x g at 25 °C for 2 min. The supernatant was discarded, while the pellets were heated at 100 °C for 1 min, and then snap-frozen in liquid nitrogen. All samples were stored at -80 °C prior to intracellular metabolite extraction. Metabolites were extracted by addition of 50:50 v/v ice cold HPLC grade acetonitrile:water at 500 μl/cell pellet, followed by a 10 min incubation on ice. Samples were then sonicated 3x for 30 s at 23 kHz and 10 μM amplitude using an exponential probe, with 30 s rest between sonications in an ice water bath. Sonicated samples were centrifuged at 12000 x g for 5 min at 4 °C and the supernatant transferred to cryovials, flash frozen in liquid N2 and lyophilised<strong>[2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Chokesuwattanaskul S, Phelan MM, Edwards SW, Wright HL. A robust intracellular metabolite extraction protocol for human neutrophil metabolic profiling. PLoS One. 2018 Dec 20;13(12):e0209270. doi:10.1371/journal.pone.0209270. PMID:30571714.</p><p><strong>[2]</strong> Beckonert O, Keun HC, Ebbels TM, Bundy J, Holmes E, Lindon JC, Nicholson JK. Metabolic profiling, metabolomic and metabonomic procedures for NMR spectroscopy of urine, plasma, serum and tissue extracts. Nat Protoc. 2007;2(11):2692-703. doi:10.1038/nprot.2007.376. PMID:18007604.</p>	<p>Each lyophilised sample was resuspended in 200 μl of 100 μM deuterated sodium phosphate buffer pH 7.4, with 100 μM trimethylsilyl propionate (TSP) and 0.05% NaN3. Each sample was vortexed for 20 s and centrifuged at 12000 x g for 1 min at 20 °C. 180 μl of each cell extract sample was transferred to 3 mm (outer diameter) NMR tubes for acquisition.</p>	<p>The samples were analysed using a 700 MHz NMR Avance III HD Bruker NMR spectrometer equipped with a TCI cryoprobe.</p>	<p>Samples were referenced to trimethylsilylpropanoic acid (TSP) at 0 ppm. Spectra was acquired at 25 °C using the 1D Carr–Purcell–Meiboom–Gill (CPMG) edited pulse sequence technique with 512 scans.</p>	<p>All spectra were processed using vendor supplied automation protocol (<strong>APK0.NOE</strong>), briefly 0.3 Hz line broadening exponential window function with automated phasing and baseline correction. The spectra were assessed to conform to minimum quality criteria as outlined by the Metabolomics Society<strong>[1]</strong> to ensure consistent linewidths, baseline corrections and water suppression.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Sumner LW, Amberg A, Barrett D, Beale MH, Beger R, Daykin CA, Fan TW, Fiehn O et al. Proposed minimum reporting standards for chemical analysis Chemical Analysis Working Group (CAWG) Metabolomics Standards Initiative (MSI). Metabolomics. 2007 Sep;3(3):211-221. doi:10.1007/s11306-007-0082-2. PMID:24039616.</p>	<p>All spectra passing quality criteria were then divided into “bins” that were defined globally by the peak limits using <strong>Chenomx NMR Suite 7.1</strong> (Chenomx Inc., Edmonton, Alberta, Canada)<strong>[1]</strong>. All peaks, both annotated in <strong>Chenomx</strong> (via manual analyses in <strong>TopSpin</strong> and <strong>Chenomx</strong> software) and unknown, were included in the bin table. A <strong>correlation-based scoring (CRS)</strong> method developed by Grosman<strong>[2]</strong> was applied to the data which aimed at addressing the problem of selecting appropriate representative bins from feature extraction in multivariate analysis. A list of representative bins per metabolite identified was obtained (see <strong>Table S1</strong> in the paper associated with this study), and statistical analysis was carried out.</p><p><br></p><p><strong>Statistical Analysis:</strong></p><p>Statistical analyses were performed using <strong>R v4.0.2[3]</strong> and the <strong>mixOmics package[4]</strong>. Metabolomics data were normalised by <strong>probabilistic quotient normalization[5[6]</strong> and tested for normality with the <strong>Shapiro–Wilk test</strong> due to the small sample size. Univariate analysis was carried out by <strong>ANOVA</strong> when comparing more than 2 groups or <strong>Student’s t-test</strong> with application of a <strong>False-Discovery Rate (FDR)</strong> and adjusted <strong>p-value</strong> of 0.05. For multivariate analysis, the data were normalized and then <strong>Pareto scaled</strong> before applying unsupervised <strong>principal component analysis (PCA)</strong>. <strong>Partial Least Squares Discriminant Analysis (PLS-DA)</strong> was used to build predictive models between experimental groups, and model performance was assessed by dividing the data into 70% and 30% training and validation sets, respectively. The training set was cross-validated with the leave-one-out method, and classification errors were used to determine the optimal model complexity parameter. The refined model was then used to predict the validation set to obtain model performance and assessed by calculating accuracy, precision, recall and <strong>F1-score[7][8]</strong>. Variable importance in projection for each model was extracted to determine each metabolite contribution to the model.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Weljie AM, Newton J, Mercier P, Carlson E, Slupsky CM. Targeted profiling: quantitative analysis of 1H NMR metabolomics data. Anal Chem. 2006 Jul 1;78(13):4430-42. doi:10.1021/ac060209g. PMID:16808451.</p><p><strong>[2]</strong> Grosman R. Ph.D. Thesis. The University of Liverpool; Liverpool, UK: 2020. NMR Metabolic Profiling of Mosquito Species to Understand Insecticide Resistance.</p><p><strong>[3]</strong> R Core Team . R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing; Vienna, Austria: 2020.</p><p><strong>[4]</strong> Rohart F, Gautier B, Singh A, Lê Cao KA. mixOmics: An R package for 'omics feature selection and multiple data integration. PLoS Comput Biol. 2017 Nov 3;13(11):e1005752. doi:10.1371/journal.pcbi.1005752. PMID:29099853.</p><p><strong>[5]</strong> Kohl SM, Klein MS, Hochrein J, Oefner PJ, Spang R, Gronwald W. State-of-the art data normalization methods improve NMR-based metabolomic analysis. Metabolomics. 2012 Jun;8(Suppl 1):146-160. doi:10.1007/s11306-011-0350-z. PMID:22593726.</p><p><strong>[6]</strong> Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90. doi:10.1021/ac051632c. PMID:16808434.</p><p><strong>[7]</strong> Sokolova M, Lapalme G. A systematic analysis of performance measures for classification tasks. Inf. Process. Manag. 2009;45:427–437. doi:10.1016/j.ipm.2009.03.002.</p><p><strong>[8]</strong> Broadhurst D.I., Kell D.B. Statistical strategies for avoiding false discoveries in metabolomics and related experiments. Metabolomics. 2006;2:171–196. doi:10.1007/s11306-006-0037-z.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name		Extraction Method	NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength			
+Study Protocol Parameters Name Term Accession Number			;;;	;;;;			
+Study Protocol Parameters Name Term Source REF			;;;	;;;;			
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Chokesuwattanaskul	Fresneda Alarcon	Mangalakumaran	Grosman	Cross	Chapman	Mason	Moots	Phelan	Wright
+Study Person First Name	Susama	Michele	Sangeetha	Rudi	Andrew L	Elinor A	David	Robert J	Marie M	Helen L
+Study Person Mid Initials										
+Study Person Email										
+Study Person Phone										
+Study Person Fax										
+Study Person Address										
+Study Person Affiliation										
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF										

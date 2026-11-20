@@ -1,0 +1,135 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MTBLS	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://snomed.info/sct/900000000000207008/version/20251017
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0				26.02d	2026-05-08	
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	SNOMED CT (International Edition)
+INVESTIGATION
+Investigation Identifier	MTBLS15113
+Investigation Title	Genome-wide mapping of genetic suppression events in Streptococcus pneumoniae
+Investigation Description	
+Investigation Submission Date	2026-07-21
+Investigation Public Release Date	2026-09-01
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15113
+Study Title	Genome-wide mapping of genetic suppression events in Streptococcus pneumoniae
+Study Description	Historically, suppressor analysis has been a powerful tool for uncovering the functions of essential genes. In this study, we report Sup-seq, a transposon-sequencing technique with random DNA barcodes that enables genome-wide detection of genetic suppression. When applied to seven essential genes in Streptococcus pneumoniae, Sup-seq revealed 53 suppressors across various cellular pathways. These suppressors function through diverse mechanisms, such as gene inactivation, overexpression, or downregulation, depending on the locations and orientations of the transposon insertions. Our proof-of-concept experiments identified a novel transcriptional regulator that controls chaperone and ribosomal protein expression, as well as a mechanism that bypasses the requirement for acetate kinase for growth. Furthermore, we found that phosphatidylglycerol is conditionally essential in pneumococcus, revealing an unexpected link between phospholipid synthesis and potassium transport. These findings demonstrate that Sup-seq is a facile approach for providing mechanistic insights into the functions of essential genes. Additionally, Sup-seq can be adapted to other bacteria, aiding in the identification of new antimicrobial targets.
+Study Submission Date	2026-07-21
+Study Public Release Date	2026-09-01
+Study File Name	s_MTBLS15113.txt
+Comment[Created At]	2026-06-28
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-01
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Sup-seq	Streptococcus pneumoniae	Lipidomics	Genome wide mapping	Agilent 1290 Infinity HPLC	TripleTOF 6600	Microbial Liquid Culture	experimental sample	untargeted analysis
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://snomed.info/id/9861002	http://purl.obolibrary.org/obo/NCIT_C153193	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878	http://purl.obolibrary.org/obo/MS_1002533	http://purl.obolibrary.org/obo/NCIT_C102668	http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904
+Study Design Type Term Source REF	MTBLS	SNOMED	NCIT	MTBLS	MTBLS	MS	NCIT	CHMO	MS
+Comment[Study Design Category]	default	Organism	omics-type	default	Chromatography Instrument	Instrument	Organism part	Sample type	measurement-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Clement Jun Wei Ng, Justin J. Zik, Yifan Li, Jia-Hui Chen, Xueli Guan, Adam P. Arkin, Adam M. Deutschbauer, Lok-To Sham
+Study Publication Title	Genome-wide mapping of genetic suppression events in Streptococcus pneumoniae
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Growth phase	Strain
+Study Factor Type	timepoint	Strain
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	
+Study Factor Type Term Source REF	EFO	
+Comment[Study Factor Value Format]	ontology	
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15113_LC-MS_negative_normal-phase.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - normal-phase
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470
+Comment[Assay Type Term Source REF]	OBI
+Comment[Omics Type]	Lipidomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_0153
+Comment[Omics Type Term Source REF]	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument];Parameter Value[Ion source]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity HPLC;GE silica;normal phase;negative;400-1600;AB SCIEX TripleTOF 6600;electrospray ionization
+Comment[Assay Field Default Unit]	;;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000878;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000855;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000603;http://purl.obolibrary.org/obo/MS_1000073
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS;MS
+Comment[Measurement Type]	untargeted analysis
+Comment[Measurement Type Term Source REF]	MS
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003904
+Comment[Assay Descriptor]	
+Comment[Assay Descriptor Term Accession Number]	
+Comment[Assay Descriptor Term Source REF]	
+Comment[Assay Descriptor Category]	
+Comment[Assay Descriptor Source]	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	EFO	CHMO	MI
+Study Protocol Description	<p> Five OD units of cells (OD600 x mL of culture) in mid-log phase or from overnight culture were collected and snap frozen. </p>	<p>Agilent 1290 liquid chromatography system. Lipid class-specific separation was performed using normal-phase chromatography (Intersil SIL column, 3 μm, 2.1 × 150 mm, GL Sciences). </p>	<p> The acquired dataset was extracted using mass spectrometry-data independent analysis software (MS-DIAL), version 4.8 (PMID: 32541957). The relative peak areas of each sample were calculated by dividing the peak area of individual phospholipids by the sum of all identified phospholipids.</p>	<p>Lipids were analyzed as previously described (PMID: 40404014). Briefly, lipids were extracted using a modified Bligh-Dyer method (PMID: 13671378). Five OD units of cells (OD600 x mL of culture) in mid-log phase or from overnight culture were centrifuged at 3,000 × g for 5 min at 4°C, and washed twice in 1X PBS. Chloroform:methanol 1:2 (v/v) was added to the bacterial pellets, and the samples were incubated at 6°C for 4 h. After incubation, water and chloroform were added, and phase separation was achieved using centrifugation. The lower organic phase was collected, and the upper phase was re-extracted with chloroform. The organic extracts were pooled and dried using a nitrogen stream. Lipid extracts were stored at −80°C until further analysis.</p>	<p>Mass spectrometry (MS) was performed using a SCIEX TripleTOF 6600 quadrupole time-of-flight mass spectrometer. Lipids were analyzed in the negative electrospray ionization mode, with collision-induced dissociation in the information-dependent acquisition mode for structural confirmation. </p>	<p> The acquired dataset was extracted using mass spectrometry-data independent analysis software (MS-DIAL), version 4.8 (PMID: 32541957). </p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Guan	Sham
+Study Person First Name	Xueli	Lok-To
+Study Person Mid Initials		
+Study Person Email	xueliguan21@gmail.com	lsham@nus.edu.sg
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Novo Nordisk Foundation Centre for Metabolic Research, University of Copenhagen	National University of Singapore
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0002-5189-8178	
+Comment[Study Person Affiliation ROR ID]		https://ror.org/01tgyzw49

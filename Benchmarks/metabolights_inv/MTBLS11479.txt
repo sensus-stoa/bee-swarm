@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	MTBLS	ENVO	NCBITaxon	MS
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/metabolights/ontology	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/	https://www.ebi.ac.uk/ols4/api
+Term Source Version	29	132		1.0			
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology		Metabolights Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS11479
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-04-03
+Investigation Public Release Date	2025-05-29
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11479
+Study Title	Metabolomic and Transcriptomic Analysis of Drought Resistance Mechanisms in Sorghum Varieties
+Study Description	This study explored the drought resistance of sorghum through metabolomics and transcriptomics analysis. Screening drought tolerant variety GL220 and drought sensitive variety GL98 revealed significant differences in metabolite and gene expression under drought conditions. Through database annotation, up-regulated and down regulated metabolites and genes were identified, involving metabolic pathways such as amino acids, lipids, carbohydrates, etc. KEGG and GO analysis revealed the enrichment of pathways such as flavonoid biosynthesis and carbon metabolism, as well as the importance of cellular structure and molecular function in response to drought. These results contribute to understanding the drought resistance mechanism of sorghum and provide scientific basis for improving sorghum varieties.
+Study Submission Date	2025-04-03
+Study Public Release Date	2025-05-29
+Study File Name	s_MTBLS11479.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Funding Mechanism	spatial transcriptomics	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C20020	http://www.ebi.ac.uk/efo/EFO_0008994	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	NCIT	EFO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yue Li, Wang Hui, Shan Qi-mike, Zaituniguli·Kuerban, Mao Hong-yan, Yu Ming
+Study Publication Title	Metabolomic and Transcriptomic Analysis of Drought Resistance Mechanisms in Sorghum Varieties
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Variety
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11479_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS11479_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Using the filter paper germination method, select plump and uniformly sized sorghum seeds, wash them 3 times with sterilized distilled water, soak them in 1% sodium hypochlorite solution for 20 min, and then rinse them 3-5 times with sterile water. Place 40 sterilized sorghum seeds in a culture dish with filter paper, and add 15 mL of 20% PEG solution by mass. Add an equal amount of distilled water as a control, and set 5 biological replicates for each treatment.</p>	<p>The samples were subjected to vacuum freeze-drying using a SCIENTZ-100F Lyophilization Dryer Laboratory LCD Display Freeze Dryer (SCIENTZ). They were ground into powder form using a MM 400 grinding machine (30 Hz, 1.5 min; Retsch). Subsequently, 100 mg of the powder was dissolved in 1.2 mL of a 70% methanol extract. The dissolved samples were refrigerated overnight at 4 °C, with 6 gentle swirling intervals during this period to enhance the extraction rate. Each sample was then centrifuged at 12,000 rotations per minute for 10 min, after which the upper liquid fraction was filtered through a 0.22-mm membrane filter (0.22-mm pore size). The filtered samples were stored in bottles for subsequent analysis using ultra-performance liquid chromatography and tandem mass spectrometry.</p>	<p>The LC-MS system for metabolomics analysis is composed of Waters Acquity I-Class PLUS ultra-high performance liquid tandem Waters Xevo G2-XS QTof high resolution mass spectrometer. The column used is purchased from Waters Acquity UPLC HSS T3 column (1.8 um 2.1 x 100 mm)</p><p>Positive ion mode: mobile phase A: 0.1% formic acid aqueous solution; mobile phase B: 0.1% formic acid acetonitrile</p><p>Negative ion mode: mobile phase A: 0.1% formic acid aqueous solution; mobile phase B: 0.1% formic acid acetonitrile</p>	<p>Waters Xevo G2-XS QTOF high resolution mass spectrometer can collect primary and secondary mass spectrometry data in MSe mode under the control of the acquisition software (MassLynx v4.2, Waters). In each data acquisition cycle, dual-channel data acquisition can be performed on both low collision energy and high collision energy at the same time. The low collision energy is 2 V, the high collision energy range is 10-40 V, and the scanning frequency is 0.2 s for a mass spectrum. The parameters of the ESI ion source are as follows: Capillary voltage: 2000 V (positive ion mode) or -1500 V (negative ion mode); cone voltage: 30 V; ion source temperature: 150 °C; desolvent gas temperature 500 °C; backflush gas flow rate: 50 L/h; Desolventizing gas flow rate: 800 L/h.</p>	<p>The raw data collected using MassLynx v4.2 is processed by Progenesis QI software for peak extraction, peak alignment and other data processing operations, based on the Progenesis QI software online METLIN database and Biomark’s self-built library for identification, and at the same time, theoretical fragment identification and mass deviation All are within 100 ppm.</p>	<p>The raw data collected using MassLynx v4.2 is processed by Progenesis QI software for peak extraction, peak alignment and other data processing operations, based on the Progenesis QI software online METLIN database and Biomark’s self-built library for identification, and at the same time, theoretical fragment identification and mass deviation All are within 100 ppm.</p><p>After normalizing the original peak area information with the total peak area, the follow-up analysis was performed. Principal component analysis and Spearman correlation analysis were used to judge the repeatability of the samples within group and the quanlity control samples. The identified compounds are searched for classification and pathway information in KEGG, HMDB and lipidmaps databases. According to the grouping information, calculate and compare the difference multiples, T test was used to calculate the difference significance p-value of each compound. The R language package ropls was used to perform OPLS-DA modeling, and 200 times permutation tests was performed to verify the reliability of the model. The VIP value of the model was calculated using multiple cross-validation. The method of combining the difference multiple, the p-value and the VIP value of the OPLS-DA model was adopted to screen the differential metabolites. The screening criteria are FC &gt; 1, p-value &lt; 0.05 and VIP &gt; 1. The difference metabolites of KEGG pathway enrichment significance were calculated using hypergeometric distribution test.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	YUE
+Study Person First Name	Li
+Study Person Mid Initials	
+Study Person Email	2435742497@qq.com
+Study Person Phone	18799133692
+Study Person Fax	
+Study Person Address	Research Institute of Grain Crops，Xingjiang Academy of Agricultural Sciences
+Study Person Affiliation	author
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

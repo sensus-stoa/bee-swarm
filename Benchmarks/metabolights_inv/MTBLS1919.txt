@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	SWO	MTBLS	OBI	UO	EFO	MS	NCIT	CHMO
+Term Source File		https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/OBI					
+Term Source Version		1.0	29					
+Term Source Description		Metabolights Ontology	Ontology for Biomedical Investigations					
+INVESTIGATION
+Investigation Identifier	MTBLS1919
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-07-14
+Investigation Public Release Date	2020-11-21
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1919
+Study Title	A Python-based pipeline for preprocessing LC-MS data for untargeted metabolomics workflows
+Study Description	Preprocessing data in a reproducible and robust way is one of the current challenges in untargeted metabolomics workflows. Data curation in liquid chromatography-mass spectrometry (LC-MS) involves the removal of unwanted features (retention time; m/z pairs) to retain only high-quality data for subsequent analysis and interpretation. The present work introduces a package for the Python programming language for pre-processing LC-MS data for quality control procedures in untargeted metabolomics workflows. It is a versatile strategy that can be customized or fit for purpose according to the specific metabolomics application. It allows performing quality control procedures to ensure accuracy and reliability in LC-MS measurements, and it allows preprocessing metabolomics data to obtain cleaned matrices for subsequent statistical analysis. The capabilities of the package are showcased with pipelines for an LC-MS system suitability check, system conditioning, signal drift evaluation, and data curation. These applications were implemented to preprocess data corresponding to a new suite of plasma candidate plasma reference materials developed by the National Institute of Standards and Technology (NIST; hypertriglyceridemic, diabetic, and African-American plasma pools) to be used in untargeted metabolomics studies. in addition to NIST SRM 1950 – Metabolites in Frozen Human Plasma. The package offers a rapid and reproducible workflow that can be used in an automated or semi-automated fashion, and it is an open and free tool available to all users.
+Study Submission Date	2020-07-14
+Study Public Release Date	2020-11-21
+Study File Name	s_MTBLS1919.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Python	data cleaning	preprocessing	untargeted metabolomics	reference materials	data curation	system suitability	drachm	ultra-performance liquid chromatography-mass spectrometry	Workflow
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/swo/SWO_0000118	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/UO_0010032	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/NCIT_C42753
+Study Design Type Term Source REF	SWO	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	UO	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	33081373
+Study Publication DOI	10.3390/metabo10100416
+Study Publication Author List	Riquelme G, Zabalegui N, Marchi P, Jones CM, Monge ME.
+Study Publication Title	A Python-Based Pipeline for Preprocessing LC-MS Data for Untargeted Metabolomics Workflows.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name
+Study Factor Type
+Study Factor Type Term Accession Number
+Study Factor Type Term Source REF
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1919_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS1919_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>SRM 1950 Metabolites in Frozen Human Plasma and candidate RM 8231 Frozen Human Plasma Suite for Metabolomics (hypertriglyceridemic, diabetic and African-American plasma samples) were provided the Metabolomics Quality Assurance and Quality Control Program led by NIST. All NIST plasma samples were collected after informed consent under approved IRB protocols reviewed by the NIST Human Subjects Protection Office. Details on the preparation of SRM 1950 have been published. Bioreclamation, Inc. (Hicksville, NY) collected whole blood from 100 donors (1:1 male to female ratio) between 40 and 50 years of age after an overnight fast and a 72 h abstention from medication. Lithium heparin was used as the anticoagulant. The collected blood was centrifuged at 8000 × g for 25 min at 4 °C to obtain plasma. Each donor’s plasma was thawed once. Subsequently, all donor plasma was blended together and aliquoted into individual vials to produce the SRM. The diabetic plasma material (RM 8231-1) was created by Solomon Park Research Laboratories, Inc. It was created from a pool of 6 female donors and 5 male donors between 34 and 68 years of age after an overnight fast, each meeting the specified ranges for glucose (&gt;126 mg/dL) and triglycerides (&lt;150 mg/dL). Solomon Park Research Laboratories, Inc. (Kirkland, WA) also created the hypertriglyceridemic plasma material (RM 8231-2). The donor pool consisted of 11 male donors between 31 and 72 years of age after an overnight fast, each meeting the NIST-specified ranges for glucose (&lt;100 mg/dL) and triglycerides (&gt;300 mg/dL). The diabetic and hypertriglyceridemic plasma were obtained by centrifuging the respective collected blood at 251 rad/s for 10 min, followed by additional centrifugation at 397 rad/s. Lithium heparin was used as the anticoagulant for both, and plasma from each donor was thawed once and blended to make the respective donor pools before aliquoting into individual vials. BioreclamationIVT (Westbury, NY) collected whole blood from 16 donors (1:1 male to female ratio) between 20 and 25 years of age after an overnight fast using K2 ethylenediaminetetraacetic acid (EDTA) as the anticoagulant for the African-American plasma (RM 8231-3). The 16 units of blood were subsequently thawed and pooled by Solomon Park Research Laboratories similar to the diabetic and hypertriglyceridemic plasma materials. Samples were shipped on dry ice to CONICET and stored at -80 °C until use.</p>	<p>Plasma samples were thawed on a water-ice bath prior to sample preparation. Each plasma sample was split into 6 aliquots for individual sample preparation and stored at -80 °C. As well, a pooled/intrastudy QC was created from equal aliquots of each plasma sample, and subsequently aliquoted and stored at -80 °C. After thawing samples in a water-ice bath, 10 µL of 40 µM isotopically labeled leucine solution was added to 50 µL of each plasma sample and QC sample to be used as internal standard. Subsequently, samples were vortex-mixed and 180 µL of methanol/acetonitrile (50:50 v/v) was added to precipitate proteins. Samples were vortex-mixed for 30 s, stored at -20 °C for 1 h, and centrifuged at 21382 ×g for 20 min at 4 °C. After centrifugation, 180 μL of supernatant was transferred to new microcentrifuge tubes and frozen at −80 °C for 30 min after the addition of 180 μL of ultrapure water. Subsequently, samples were lyophilized for 38 h at −80 °C and 50 mTorr using a Telstar LYOQuest-85 freeze-dryer (Telstar, Madrid, Spain). Subsequently, sample residues were thawed on a water-ice bath for 30 min, reconstituted in 150 μL of water/methanol (80:20 v/v), vortex-mixed for 30 s, centrifuged for 20 min at 21382 ×g and 4 °C,&nbsp;and 140 μL of supernatant was transferred to LC vials and analyzed by UPLC-QTOF-MS. </p><p><br></p><p>For pooled/intra-study QC samples, 138.6 μL was transferred to LC vials and spiked with 1.4 μL of a system suitability QC sample (SSS*), consisting of a chemical standard mixture.</p><p><br></p><p>The standard mixture solution (SSS*) was prepared in ultrapure water containing the following compounds: Leucine enkephalin 25 µM, Lysophosphatidylcholine (0:0/18:0) 17.9 µM, L-Phenylalanyl-L-phenylalanine 100 µM, L-Tryptophan 100 µM and Alogliptin 50 µM. This solution was diluted 100-fold to be used as a system suitability QC sample and analyzed before conditioning the analytical platform and at the end of the batch.]</p><p><br></p><p>Process blank samples, consisting of ultrapure water, underwent the same process as plasma samples and were pooled in a single vial.</p>	<p>UPLC-MS experiments were performed with a Waters ACQUITY UPLC I Class system fitted with a Waters ACQUITY UPLC BEH C18 column (2.1 × 100 mm, 1.7 μm particle size, Waters Corporation, Milford, MA, USA), coupled to a Xevo G2S QTOF mass spectrometer (Waters Corporation, Manchester, UK) with an electrospray ionization (ESI) source. Gradient elution was used in the chromatographic separation method. Mobile phases consisted of water with 0.1% acetic acid (mobile phase A) and acetonitrile (mobile phase B), and the method used the following gradient program: 0−1 min 10% B; 1−2.5 min 10−15% B; 2.5−4 min 15−22% B; 4−6 min 22−38% B; 6−9 min 38−65% B; 9−12 min 65−80% B; 12− 16 min 80−100% B; 16−19 min 100% B. The flow rate was constant at 0.25 mL min−1 for 12 min and was increased to 0.30 mL min−1 between 12 and 19 min. Each sample injection was followed by a wash injection, where the gradient was returned to its initial conditions in 14 min. The injection volume was 2 μL. The autosampler tray and column temperatures were set at 5 and 35 °C, respectively.&nbsp;Six process replicates were acquired for candidate reference material plasma samples.</p>	<p>The mass spectrometer was operated in positive ion mode. The typical resolving power and mass accuracy of the Xevo G2S QTOF mass spectrometer were 27102 FWHM and 2.7 ppm at m/z 556.2771, respectively. The mass spectrometer ion source was operated with a probe capillary voltage of 2.5 kV and a sampling cone voltage of 30 V. The source and desolvation gas temperatures were set to 120 and 300 °C, respectively. The nitrogen gas desolvation flow rate was 600 L h−1, and the cone desolvation flow rate was 10 L h−1. The mass spectrometer was calibrated before the batch analysis across the range of m/z 50−1200 using a 0.5 mM sodium formate solution prepared in isopropanol/water (90:10 v/v). Data were drift corrected during acquisition using a leucine enkephalin (<em>m/z</em> 556.2771) reference spray infused at 5 μL min−1, every 60 s. The scan time was set to 0.5 s and data were acquired in MSE continuum mode in the range of m/z 50−1200.</p>	<p>Data acquisition and processing were carried out using MassLynx version 4.1 (Waters Corp., Milford, MA, USA). Spectral features (retention time (Rt), m/z pairs) were extracted from UPLC-QTOF-MS data using Progenesis QI version 2.1 (Nonlinear Dynamics, Waters Corp., Milford, MA, USA). The procedure included retention time alignment, peak picking, deisotoping, integration, and grouping together adducts derived from the same compound.</p><p><br></p><p>Raw data conversion: Raw MS data in Waters .RAW format where converted to mzML format in centroid mode using ProteoWizard’s msconvert software (version 3.0) with the following parameters: min distance = 0.01, snr = 1. </p><p>&nbsp;</p><p>Python package: The package was implemented in python 3.6. and uses the Pandas library to work with a data matrix in tabular form. Raw MS data is read using the pyopenms library and routines for analyzing data were implemented using the Numpy, Scipy and Scikit-Learn libraries. Examples of web applications were built using the Bokeh library. The pyopenms package was used to read raw MS data in the mzML format. Peak picking functions were implemented using a CWT-based algorithm with parameters optimized for chromatographic or spectral data. Additional functions were implemented for chromatogram-building, for accumulating consecutive MS scans, detecting features using the CentWave algorithm, and for feature detection. MSData, Chromatogram, Roi and MSSpectrum were created using an object-oriented programming approach to abstract the aforementioned functionality and work with raw data. </p><p>&nbsp;</p><p>Curation tools: Methods for filtering features in the data matrix are encapsulated in the Data Container, Processor and Pipeline objects. The Data Container uses Pandas DataFrames to store the data matrix and the descriptors associated with features and samples. The sample mapping attribute of the Data Container object associates sample types to sample classes and it is used to set a default behaviour for the different filters applied to the data matrix. The Pipeline object stores a list of Processor objects to build customized data curation strategies. </p><p>&nbsp;</p><p>Statistical analysis: Principal component analysis (PCA) models are built using the Scikit-Learn implementation. It is used in the pipeline to track data quality, identify potential outliers in the data set, identify sample clusters and evaluate time-related systematic variance or signal drift. The LOESS smoother used in Batch Correction is implemented in the statsmodels package.&nbsp;&nbsp;</p>	<p>Feature identification was out of the scope of the present manuscript.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zabalegui	Riquelme	Monge	Jones	Marchi
+Study Person First Name	Nicolás	Gabriel	María	Christina	Pablo
+Study Person Mid Initials			E.	M.	
+Study Person Email	zabaleguinicolas@gmail.com	griquelme.chm@gmail.com	mslab.cibion@gmail.com	christina.jones@nist.gov	pmarchi@fi.uba.ar
+Study Person Phone	+54 11 4899-5500 ext. 5596	+54 11 4899-5500 ext. 5596	+5411-4899-5500 ext. 5614	+1 301 975 4561	+54 11 4899-5500
+Study Person Fax					
+Study Person Address	Godoy Cruz 2390, CABA, Argentina	Godoy Cruz 2390, CABA, Argentina	Godoy Cruz 2390, CABA, Argentina	100 Bureau Drive, Gaithersburg, MD 20899	Paseo Colón 850, CABA, Argentina
+Study Person Affiliation	Centro de Investigaciones en Bionanociencias (CIBION), Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Godoy Cruz 2390, C1425FQD, Ciudad de Buenos Aires, Argentina.	Centro de Investigaciones en Bionanociencias (CIBION), Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Godoy Cruz 2390, C1425FQD, Ciudad de Buenos Aires, Argentina.	Centro de Investigaciones en Bionanociencias (CIBION), Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Godoy Cruz 2390, C1425FQD, Ciudad de Buenos Aires, Argentina.	National Institute of Standards and Technology, Gaithersburg, MD, 20899-8392, USA.	Facultad de Ingeniería, Universidad de Buenos Aires, Paseo Colón 850, C1063ACV, Ciudad de Buenos Aires, Argentina
+Study Person Roles	co-author	Author	Principal Investigator	co-author	co-author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/MS_1002036	http://purl.obolibrary.org/obo/MS_1002036
+Study Person Roles Term Source REF	MS	NCIT	NCIT	MS	MS

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	EFO	NCIT	CHEBI	CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://data.bioontology.org/ontologies/EFO			
+Term Source Version	29	1	132			
+Term Source Description	Ontology for Biomedical Investigations	User defined terms	Experimental Factor Ontology			
+INVESTIGATION
+Investigation Identifier	MTBLS10035
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-04-25
+Investigation Public Release Date	2024-08-27
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10035
+Study Title	AspSnFR: A Genetically-Encoded Biosensor for Real-Time Monitoring of Aspartate in Live Cells
+Study Description	<p>Aspartate is crucial for nucleotide synthesis, ammonia detoxification and maintaining redox balance via the malate-aspartate-shuttle (MAS). To disentangle these multiple roles of aspartate metabolism, tools are required that measure aspartate concentrations in real time and in live cells. We introduce AspSnFR, a genetically encoded green fluorescent biosensor for intracellular aspartate, engineered through displaying and screening biosensor libraries on mammalian cells. In live cells, AspSnFR is able to precisely and quantitatively measure cytosolic aspartate concentrations and dissect its production from glutamine. Combining high-content imaging of AspSnFR with pharmacological perturbations exposes differences in metabolic vulnerabilities of aspartate levels based on nutrient availability. Further, AspSnFR facilitates tracking of aspartate export from mitochondria through SLC25A12, the MAS’ key transporter. We show that SLC25A12 is a rapidly responding and direct route to couple Ca2+ signaling with mitochondrial aspartate export. This establishes SLC25A12 as a crucial link between cellular signaling, mitochondrial respiration and metabolism.</p>
+Study Submission Date	2024-04-25
+Study Public Release Date	2024-08-27
+Study File Name	s_MTBLS10035.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	absolute quantification	Aspartate	Asparagine	Glutamate	Glutamine	targeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	thapsigargin
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/CHEBI_132943	http://purl.obolibrary.org/obo/CHEBI_22653	http://purl.obolibrary.org/obo/CHEBI_29987	http://purl.obolibrary.org/obo/CHEBI_28300	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000272	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/CHEBI_9516
+Study Design Type Term Source REF	MTBLS	CHEBI	CHEBI	CHEBI	CHEBI	MTBLS	CHMO	CHMO	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	38806058
+Study Publication DOI	10.1016/j.chembiol.2024.05.002
+Study Publication Author List	Hellweg L, Pfeifer M, Tarnawski M, Thing-Teoh S, Chang L, Bergner A, Kress J, Hiblot J, Wiedmer T, Superti-Furga G, Reinhardt J, Johnsson K, Leippe P.
+Study Publication Title	AspSnFR: A genetically encoded biosensor for real-time monitoring of aspartate in live cells.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Induction	Drug	Glutamine
+Study Factor Type	treatment	treatment	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000727	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10035_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Generation of HCT116-SLC25A12-KO-OE-AspSnFR cell lines</strong></p><p>HCT116-SCL25A12-KOOE-c8p1 cells were obtained through RESOLUTE (RESOLUTE identifier CE059N-4). These were were generated according to open-access RESOLUTE protocols, accessible at www.zenodo.org under accession codes 7457297 (KO) and 7457295 (KO-OE).</p><p><br></p><p>HCT116-SCL25A12-KOOE-c8p1 cells were subjected to limiting dilution cloning in 384-well cell culture plates. From this process, 45 clones were isolated and expanded. To verify correct mitochondrial localization, each clone was stained for SLC25A12-HA with an anti-HA antibody and assessed for colocalization with Mitotracker Orange. Based on these images, clone L8 of HCT116 SLC25A12 was selected for transfection with cyto-AspSnFR encoded in a pcDNA3.1/Neo vector. In adherence to the manufacturer’s guidelines, cells were seeded to achieve a 60% confluency on the day of transfection. The transfection mixture was prepared by combining 97 μL of OptiMem, 2.7 μL of X-tremeGENE9 transfection reagent, and 1 μg of plasmid DNA. The following day, cells were harvested and relocated to T75 cell culture flasks. Subsequently, either 0.4 or 0.8 mg/mL Geneticin was added to the SLC25A12 KOOE-L8 cells. The antibiotic selection was sustained for 3 weeks. Cells were sorted twice via FACS, with a 2-week interval, to isolate those expressing high levels of cyto-AspSnFR. The resulting cell line was named HCT116-SLC25A12-KO-OE-AspSnFR, characterized by its stable high expression of cyto-AspSnFR together with a doxycycline-inducible expression of SLC25A12-HA. This cell line was further expanded for detailed characterization and subsequent experimental use.</p><p><br></p><p><strong>Treatment and metabolite extraction</strong></p><p>Cells were seeded in 24-well plates at 75,000 cells/well (HCT116-SLC25A12-KOOE-AspSnFR) in medium -/+ 1 mg/mL doxycycline. The following day, medium was renewed for doxycycline washout. After another day, treatments were performed for 3 h (-/+ 1 mM pyruvate, -/+ 4.5 g/L glucose, -/+ 2 mM GlutaMax or glutamine in 10% dialyzed FCS/DMEM). Then empty medium or medium containing Thapsigargin was added (to a final concentration of 100 nM). Cells were then washed with room-temperature 75 mM ammonium carbonate buffer adjusted to pH 7.4 and immediately quenched by addition of 250 µL/well HPLC-grade methanol (chilled to -20 °C), followed by of 60 µL/well ice-cold HPLC-grade water containing 2.5 µM internal standards (13C415N-aspartic acid and 13C515N-glutamic acid) for a final MeOH concentration of 80%.</p>	<p>Cells were then scraped and transferred along with extraction solvent to 1.5 mL microcentrifuge tubes, vortexed briefly and centrifuged at 18,000 x g, 4 °C for 5 min. Next 250 µL of supernatant was then transferred to HPLC vials, dried under a nitrogen gas stream and stored at -80 °C until analysis. The protein precipitate was left to dry overnight in a fume hood, then dissolved in 0.5 mM KOH and quantified by BCA protein assay for data normalization later.</p>	<p>Dried metabolite extracts were resuspended in 50 µL ice-cold HPLC-grade water and analyzed on a Waters Xevo TQ triple quadrupole mass spectrometer using a Waters Acquity UPLC HSS T3 column (2.1 mm x 100 mm, 1.8 µm particle size, 100 Å pore size) for separation. Sample order was randomized to avoid systematic bias, and each sample was run twice as analytical replicates. The LC solvents were A: water + 0.1% formic acid and B: acetonitrile + 0.1% formic acid. LC parameters were as follows: autosampler temperature, 5 °C; injection volume, 5 µL; column temperature, 40 °C. Elution from the column was performed over 8 min with the following varying flow rate gradient: t = 0.0 min, 2% B, flow rate 0.15 mL/min; t = 2.5 min, 2% B, flow rate 0.15 mL/min; t = 3.5 min, 100% B, flow rate 0.3 mL/min; t = 6.0 min, 100% B, flow rate 0.3 mL/min; t = 6.1 min, 2% B, flow rate 0.2 mL/min; t = 8.0 min, 2% B, flow rate 0.15 mL/min.</p>	<p>Mass spectra were acquired using positive mode electrospray ionization operating in MRM mode. The capillary voltage was 3000 V. Nitrogen was used as cone gas and desolvation gas, with flow rates of 200 and 650 L/h, respectively. The source temperature was 150 °C and desolvation temperature was 350 °C. Argon was used as collision gas at flow rate of 0.15 mL/min. Precursor and product ion m/z, source cone voltages and collision energies were optimized for each target metabolite using the IntelliStart function of MassLynx.</p>	<p>RAW data folders were converted to mzML format using ProteoWizard. Peak quantification was performed in EL-MAVEN. Concentrations were calculated from peak area ratios of analytes and corresponding internal standards (13C15N-aspartic acid for aspartate acid and asparagine, 13C15N-glutamic acid for glutamic acid and glutamine) matched against regression curves obtained for each analyte from a standards dilution series spanning the concentration range from 1 to 1000 μM. Calculated concentration values from both analytical replicates were averaged. The BCA protein quantification value was used together with a biochemical measure of protein content to cell volume<strong> </strong>of 6.5 μL/mg to calculate the total cell volume in the sample. By dividing the relative concentration by the total cell volume, absolute whole-cell concentrations were obtained.</p>	<p>A dilution series of standards for the 4 target metabolites (aspartic acid, asparagine, glutamic acid and glutamine) was injected during the run, which enabled unequivocal identification of these metabolites based on retention time. Additionally, each standard and experimental sample contained 13C15N-aspartic acid and 13C15N-glutamic acid as internal standards, which also served as additional layer of metabolite verification.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Teoh
+Study Person First Name	Shao Thing
+Study Person Mid Initials	
+Study Person Email	steoh@cemm.at
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	CeMM Research Center for Molecular Medicine of the Austrian Academy of Sciences
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

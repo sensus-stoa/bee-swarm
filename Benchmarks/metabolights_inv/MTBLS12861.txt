@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	EFO	MS	MTBLS	NCBITaxon	NCIT	OBI	UBERON
+Term Source File	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	
+Term Source Version							
+Term Source Description	Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS12861
+Investigation Title	Isotope tracing-based metabolite identification for mass spectrometry metabolomics
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-15
+Investigation Public Release Date	2025-08-15
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Nilsson
+Investigation Person First Name	Roland
+Investigation Person Mid Initials	
+Investigation Person Email	roland.nilsson@ki.se
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Karolinska Institutet
+Investigation Person Roles	Principal Investigator
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS12861
+Study Title	Isotope tracing-based metabolite identification for mass spectrometry metabolomics
+Study Description	<p>Modern mass spectrometry-based metabolomics is a key technology for biomedicine, enabling discovery and quantification of a wide array of biomolecules critical for human physiology. Yet, only a fraction of human metabolites have been structurally determined, and the majority of features in typical metabolomics data remain unknown. To date, metabolite identification relies largely on comparing MS2 fragmentation patterns against known standards, related compounds or predicted spectra. Here, we propose an orthogonal approach to identification of endogenous metabolites, based on mass isotopomer distributions (MIDs) measured in an isotope-labeled reference material. We introduce a computational measure of pairwise distance between metabolite MIDs that allows identifying metabolites by their similarity to previously known peaks. Using human epithelial cells labeled with 20 individual 13C tracers, this method identified 273 out of 620 peaks representing likely metabolites (62%). Importantly, MID-based identification is highly complementary to MS2-based methods in that MIDs reflect the biochemical origin of metabolites, and therefore also yields insight into their synthesis pathways, while MS2 spectra mainly reflect structural features. Accordingly, our method performed best for small molecules, while MS2-based identification was stronger on lipids and complex natural products. We also report the discovery of trimethylglycyl-lysine, a novel amino acid derivative that is altered in human muscle tissue after exercise and dietary restriction. MID-based annotation using isotope-labeled reference materials enables identification of novel endogenous metabolites, extending the reach of mass spectrometry-based metabolomics.</p>
+Study Submission Date	2025-08-15
+Study Public Release Date	2025-08-15
+Study File Name	s_MTBLS12861.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2025-08-15
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Homo sapiens	epithelium of mammary gland	Stable Isotope Labeling with Amino Acids in Cell Culture
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/UBERON_0003244	http://purl.obolibrary.org/obo/NCIT_C161804
+Study Design Type Term Source REF	NCBITaxon	UBERON	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	doi: https://doi.org/10.1101/2025.04.07.647691
+Study Publication Author List	Deniz Secilmis, Arjana Begzati, Nina Grankvist, Irena Roci, Jeramie Watrous, Amit R. Majithia, Gordon I. Smith, Samuel Klein, Mohit Jain, Roland Nilsson
+Study Publication Title	Isotope tracing-based metabolite identification for mass spectrometry metabolomics
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Isotope labeling
+Study Factor Type	Stable Isotope Labeling with Amino Acids in Cell Culture
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C161804
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12861_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS12861_LC-MS_negative_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>Human Mammary Epithelial Cells (HMECs) immortalized with the human telomerase gene were grown in custom-synthesized Mammary Epithelial Basal Medium (MCDB) 170 supplemented with 1% Mammary Epithelial Growth Supplement (MEGS) (S0155, Gibco), 100 units/ml penicillin and 100 ug/ml streptomycin (15140122, Thermo Fisher Scientific). Cells were maintained in a humidified atmosphere of 5% CO2/95% air at 37C and washed and detached using ReagentPack Subculture Reagents (CC-5034, Lonza). All experiments were performed in triplicates. Cells were tested for mycoplasma before use.</p><p><br></p><p>For isotope tracing in HMECs, 400,000 cells were seeded at day 0 in a T25 flask containing 5mL medium, and incubated overnight. On day 1, the medium was changed to an isotope tracing medium of the same molar composition, but with one nutrient exchanged for the corresponding U-13C-labeled substrate (Cambridge Isotope Laboratories). The 13C enrichment of tracers fresh medium was in most cases &gt;90%, except for glucose, methionine and phenylalanine which showed lower enrichment possibly due to unlabeled material derived from the HMEC growth supplement. On day 2, each T25 flask culture was detached and seeded into two T25 flasks containing the same medium. On day 4, cells were detached and seeded into 6-well plates at 250,000 cells/well in 2mL of medium, in triplicate for each tracer. On day 7 (after roughly 6 cell divisions), each multi-well plate was placed on ice, medium was aspirated and cells were washed twice with 1 mL of cold PBS. Then, 1 mL cold (-80C) methanol (JT Baker, BAKR8402.2500, VWR) was added to each well, cells were scraped using a 17mm cell scraper (83.1830, Sarstedt), and cell extracts were carefully transferred to a new tube, vortexed for 30 seconds to break up aggregated cell material, and stored in -80C until analysis.</p>	<p>Cellular material was fully lysed by three freeze-thaw cycles, with alternating 37C and -80C liquid baths for 60 second intervals. To ensure complete cell lysis, samples were vortexed for 30 seconds and sonicated for 2 minutes. Samples were then centrifuged at 10000 rpm for 10 min at 4C after which supernatants were transfered to new tubes and dried down in vacuo using a vacuum concentrator and re-suspended in 25 mL of 80:20 methanol:water. Resuspended samples were mixed by aspiration, sonicated for 2 minutes, vortexed for 30 seconds, centrifuged at 14,000 g x 10 minutes at 4C and supernatants were transferred to LC-HRMS vials containing a 200 ml glass insert.</p>	<p>LC-MS/MS based metabolomics analysis was performed using a Thermo QExactive orbitrap mass spectrometer coupled to a Thermo Vanquish UPLC system. An injection volume of 5 mL, which contained metabolic material from ~80,000 cells, was used for all cell samples. Chromatographic separation of metabolites was achieved using a Millipore (Sequant) Zic-pHILIC 2.1x150 mm 5 mm column maintained at 25C. Compounds were eluted via a 19 minute linear gradient starting from 90:10 acetonitrile:20 mM ammonium bicarbonate pH 9.6 to 45:55 acetonitrile:20 mM ammonium bicarbonate.</p>	<p>A Thermo Q-Exactive orbitrap mass spectrometer was operated in positive and negative ion modes using a heated electrospray ionization (HESI) source at 35,000 resolution, 100 ms ion trap time for MS1 and 17,500 resolution, 50 ms ion trap time for MS2 collection. Data was collected over a mass range of m/z 67-1000, using a sheath gas flow rate of 40 units, auxillary gas flow rate of 20 units, sweep gas flow rate of 2 units, spray voltage of 3.5 and 2.5 kV for positive and negative ion modes (respectively), capillary inlet temperature of 275C, auxillary gas heater temperature of 350C and an S-lens RF level of 45. For MS2 collection, MS1 ions were isolated using a 1.0 m/z window and fragmented using a normalized collision energy of 35. Fragmented ions were placed on dynamic exclusion for 30 seconds before being allowed to be fragmented again.</p>	"<p>Untargeted LCMS peak detection was performed on a triplicate of unlabeled cells from Thermo .raw data files using our in-house developed software """"Isotrack"""", available at https://github.com/Yaroslav-Lyutvinskiy/Isotrack. This resulted in 4,743 and 3,198 LCMS peaks in positive and negative mode, respectively, that were reproducibly detected in all three replicates (Supplementary Table 8). Mass spectrometry artefacts, natural mass isotopomers, adducts and fragments were then removed using the NetID R package 6, resulting in 1,886 peaks representing putative metabolites. Unlabeled metabolites were then removed by requiring at least 10% 13C enrichment from at least one labeled substrate, and the remaining peaks were curated manually to remove cases where mass isotopomer peaks collided with other peaks (""""false"""" mass isotopomers), resulting in a final set of 721 LCMS peaks. Processing scripts and list of parameter settings are available at https://github.com/Nilsson-Lab-KI/isotope-met-id . Peak areas for all 13C mass isotopomer (MI) peaks of each metabolite ion were computed using the mzAccess data access framework&nbsp;accessed from Mathematica v.11 (Wolfram Research).</p>"	<p>Peak annotation was done using a novel MID-based method that is the subject of the primary publication. Briefly, to identify candidate structures based on MIDs, we searched each peak for previously known metabolites in its MID distance neighborhood. Potential candidates were generated by matching the peak m/z against monoisotopic neutral mass of candidates obtained from HMDB within 10 ppm mass tolerance, considering M+H, M-H, M+NH4, M+H-H2O and M-H-H2O adducts. Predicted structures were generated by selecting candidates that (1) were structurally similar to nearby known peaks and (2) consistent with the observed number of 13C-labeled atoms from each tracer.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Nilsson
+Study Person First Name	Roland
+Study Person Mid Initials	
+Study Person Email	roland.nilsson@ki.se
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Karolinska Institutet
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

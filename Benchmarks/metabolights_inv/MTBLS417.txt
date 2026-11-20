@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	OBI	CHMO	NCIT	MS	EFO	BTO
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/BTO
+Term Source Version	2	22	18	44	129	146	29
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	Ontology for Biomedical Investigations	Chemical Methods Ontology	National Cancer Institute Thesaurus	Mass Spectrometry Ontology	Experimental Factor Ontology	BRENDA Tissue and Enzyme Source Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS417
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2016-12-10
+Investigation Public Release Date	2018-03-26
+Comment[Created With Configuration]	E:MetaboLightsISAcreatorMetaboLightsConfigurationsMetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS417
+Study Title	Customized Consensus Spectral Library Building for Untargeted Quantitative Metabolomics Analysis with Data Independent Acquisition Mass Spectrometry and MetaboDIA Workflow
+Study Description	Data independent acquisition-mass spectrometry (DIA-MS) coupled with liquid chromatography is a promising approach for rapid, automatic sampling of MS/MS data in untargeted metabolomics. However, wide isolation windows in DIA-MS generate MS/MS spectra containing a mixed population of fragment ions together with their precursor ions. This precursor-fragment ion map in a comprehensive MS/MS spectral library is crucial for relative quantification of fragment ions uniquely representative of each precursor ion. However, existing reference libraries are not sufficient for this purpose since the fragmentation patterns of small molecules can vary in different instrument setups. Here we developed a bioinformatics workflow called MetaboDIA to build customized MS/MS spectral libraries using a user's own data dependent acquisition (DDA) data and to perform MS/MS-based quantification with DIA data, thus complementing conventional MS1-based quantification. MetaboDIA also allows users to build a spectral library directly from DIA data in studies of a large sample size. Using a marine algae data set, we show that quantification of fragment ions extracted with a customized MS/MS library can provide as reliable quantitative data as the direct quantification of precursor ions based on MS1 data. To test its applicability in complex samples, we applied MetaboDIA to a clinical serum metabolomics data set, where we built a DDA-based spectral library containing consensus spectra for 1829 compounds. We performed fragment ion quantification using DIA data using this library, yielding sensitive differential expression analysis. </br></br> Serum metabolome of 40 age-related macular degeneration patients and 20 control samples was analyzed using untargeted mass spectrometry. We used data dependent acquisition data to build a MS/MS spectral assay library for more than 1,000 compounds and performed targeted extraction of MS2 ion chromatograms from data independent acquisition analysis.
+Study Submission Date	2016-12-10
+Study Public Release Date	2018-03-26
+Study File Name	s_MTBLS417.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-04
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	MetaboDIA	combined ms-ms + spectral library search	age-related macular degeneration
+Study Design Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575		http://purl.obolibrary.org/obo/MS_1002755	http://www.ebi.ac.uk/efo/EFO_0001365
+Study Design Type Term Source REF		CHMO	CHMO		MS	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	28391692
+Study Publication DOI	10.1021/acs.analchem.6b05006
+Study Publication Author List	Chen G, Walmsley S, Cheung GCM, Chen L, Cheng CY, Beuerman RW, Wong TY, Zhou L5, Choi H.
+Study Publication Title	Customized Consensus Spectral Library Building for Untargeted Quantitative Metabolomics Analysis with Data Independent Acquisition Mass Spectrometry and MetaboDIA Workflow.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	
+Study Publication Status Term Source REF	
+STUDY FACTORS
+Study Factor Name	Sample group	Gender
+Study Factor Type	Group	Gender
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C43359	http://purl.obolibrary.org/obo/NCIT_C17357
+Study Factor Type Term Source REF	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS417_POS_DDA_mass_spectrometry.txt	a_MTBLS417_NEG_DDA_mass_spectrometry.txt	a_MTBLS417_POS_DIA_mass_spectrometry.txt	a_MTBLS417_NEG_DIA_mass_spectrometry.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	TripleTOF 5600 (AB Sciex)	TripleTOF 5600 (AB Sciex)	TripleTOF 5600 (AB Sciex)	TripleTOF 5600 (AB Sciex)
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	Serum samples were collected from 60 subjects attending the vitreo-retina clinic at the Singapore National Eye Centre: 20 choroidal neovascularization cases (CNV-AMD); 20 polypoidal choriodal vasculopathy cases (PCV), and 20 healthy controls. Age and gender-matched control samples were selected from banked samples collected from participants of the Singapore Chinese Cohort Study (see Table 1 in the paper associated with this study). Detailed sample selection criteria can be found in the Supporting Information.	Samples were prepared for LC-MS/MS analysis as follows. 800 µl of methanol and 20 µl of d5-tryptophan (5 µM in methanol, as internal standard) were added to 200 µl of each serum sample. Samples were mixed for 15 min at 25 °C and centrifuged for 12 min at 16,000 x g (4 °C). The supernatants were divided into 2 aliquots of 410 µl each (separate vials for each ionization mode) and were dried in a vacuum concentrator. A quality control (QC) pool was obtained by pooling 25 µl from each serum sample. QC aliquots were extracted in the same manner.	Analysis was performed on an Eksigent UPLC system (AB Sciex, Concord, Canada) coupled to a hybrid Q-TOF mass spectrometer (TripleTOF 5600+, AB Sciex). Each sample was reconstituted in 60 µl of 95/5 water–methanol and 10 µl was injected for each analysis in the positive and negative ionization mode, with both Information Dependent Acquisition (IDA) and Sequential Windowed Acquisition of All Theoretical Fragment Ion Mass Spectra (SWATH-MS). Samples were injected in a randomized order and a QC sample was injected after every 10 samples. </p> The column used for analysis in the positive ionization mode was a Waters T3 C18 2.1 mm x 100 mm, 3 µm analytical column (Waters Corp., Milford, MA). The mobile phase was 0.1% formic acid in water (eluent A) and 0.1% formic acid in acetonitrile (eluent B). The gradient profile was 2% B from 0 to 1.5 min, 20% B at 7.5 min, 50% B at 12 min, 95% B from 16 to 18 min, and 2% B at 19 to 25 min. The column oven temperature was 40 °C. The source voltages were 5.5 kV. </p> The column used for analysis in the negative ionization mode was a Waters XBridge BEH C18 2.1 mm x 100 mm, 3.5 µm analytical column (Waters Corp.) The mobile phase was 5 mM ammonium bicarbonate in water (eluent A) and 5 mM ammonium bicarbonate in 95:5 acetonitrile/water (eluent B). The gradient profile was 2% B from 0 to 2 min, 50% B at 11 min, 100% B from 16 to 18 min, and 2% B at 19 to 25 min. The column oven temperature was 45 °C. </p> The flow rate was 0.35 ml/min for both chromatographic methods. The source voltages were 4.5 kV.	DDA Acquisition:</br> Each IDA duty cycle contained one TOF MS survey scan (180 ms) followed by 20 MS/MS scans (40 ms each). The mass range of TOF MS and MS/MS scans were 100 to 1000 and 30 to 1000 m/z, respectively. The following IDA parameters were applied: dynamic background subtraction, charge monitoring to exclude multiply charged ions and isotopes, and dynamic exclusion of former target ions for 3 s. Ramped collision energies of 20 to 40 V and -20 to -40 V were applied for the positive and negative MS/MS scans, respectively. </p> DIA Acquisition:</br> Each SWATH duty cycle contained one TOF MS survey scan (150 ms) followed by 36 SWATH scans (20 ms each). The fragment ion window for SWATH was from 100 to 1000 m/z in steps of ~25 Da. The mass range of TOF MS and SWATH scans were 100 to 1000 and 30 to 1000 m/z, respectively. Ramped collision energies of 20 to 40 V and -20 to -40 V were applied for the positive and negative MS/MS SWATH scans, respectively.	.wiff RAW data files converted to .mzXML files using ProteoWizard software version 3.0.7099.	MetaboDIA relies on mature signal extraction modules in existing software packages. First, we use XCMS[1] and CAMERA[2] for detecting MS1 peak features (isotope clusters) in the MS1 data. Second, we use DIA-Umpire[3] extraction module to pair precursor ions and their fragment ions within each isolation window and to quantify MS/MS fragments by peak heights. </p> Ref:</br> [1] Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051</br> [2] Kuhl C, Tautenhahn R, Böttcher C, Larson TR, Neumann S. CAMERA: an integrated strategy for compound spectra extraction and annotation of liquid chromatography/mass spectrometry data sets. Anal Chem. 2012 Jan 3;84(1):283-9. doi:10.1021/ac202450g. PMID:22111785</br> [3] Tsou CC, Avtonomov D, Larsen B, Tucholska M, Choi H, Gingras AC, Nesvizhskii AI. DIA-Umpire: comprehensive computational framework for data-independent acquisition proteomics. Nat Methods. 2015 Mar;12(3):258-64, 7 p following 264. doi:10.1038/nmeth.3255. PMID:25599550</br>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Column type;Column model	Scan polarity;Scan m/z range;Instrument;Mass analyzer;Ion source		
+Study Protocol Parameters Name Term Accession Number		;	;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Lei	Choi
+Study Person First Name	Zhou	Hyungwon
+Study Person Mid Initials		
+Study Person Email	zhou.lei@seri.com.sg	hwchoi@nus.edu.sg
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation		
+Study Person Roles		
+Study Person Roles Term Accession Number		
+Study Person Roles Term Source REF		

@@ -1,0 +1,106 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	MI	MSIO	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.88.0		1.0.1		2025-12-03	25.06e	2025-12-18
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS13953
+Investigation Title	The transition from winter to spring has an impact on the airway metabolome profile of asthmatic horses
+Investigation Description	
+Investigation Submission Date	2026-03-01
+Investigation Public Release Date	2026-03-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name	Mundhenk
+Investigation Person First Name	Lars
+Investigation Person Mid Initials	
+Investigation Person Email	Lars.Mundhenk@fu-berlin.de
+Investigation Person Phone	
+Investigation Person Fax	
+Investigation Person Address	
+Investigation Person Affiliation	Institute of Veterinary Pathology, Freie Universitt Berlin, Berlin, Germany
+Investigation Person Roles	Principal Investigator
+Investigation Person Roles Term Accession Number	
+Investigation Person Roles Term Source REF	
+STUDY
+Study Identifier	MTBLS13953
+Study Title	The transition from winter to spring has an impact on the airway metabolome profile of asthmatic horses
+Study Description	<p>Equine asthma is a chronic, non-infectious inflammatory disease of the lower airways in horses, classified as mild to moderate (MEA) or severe (SEA). Its pathogenesis is not fully understood and is influenced by environmental and seasonal factors. In this cross-sectional study, seasonal effects on the bronchoalveolar lavage fluid (BALF) metabolome were investigated in asthmatic and non-asthmatic horses. The metabolome of 230 BALF samples from horses across different seasons, classified as cytologically unremarkable (CUA), MEA, or SEA, was analyzed using proton nuclear magnetic resonance spectroscopy (1H-NMR). Principal component analysis was performed for each season, and metabolite profiles were statistically compared between seasons within each group. Altered metabolites were subjected to pathway enrichment analysis using the FELLA R package. Asthmatic horses showed significant seasonal changes in metabolite concentrations between warm and cold seasons, whereas only trends were observed in CUA horses. Pathway analysis indicated enrichment of cholesterol metabolism across all groups. The mTOR signaling pathway was only enriched in SEA horses. Several metabolites—including valine, taurine and carnitine —were altered during the transition from winter to spring in asthmatic horses. These findings indicate that the winter to spring transition significantly modulates the airway metabolome in asthmatic horses, particularly in SEA-affected animals. </p>
+Study Submission Date	2026-03-01
+Study Public Release Date	2026-03-23
+Study File Name	s_MTBLS13953.txt
+Comment[Created At]	2026-01-23T19:36:12.836102
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	nuclear magnetic resonance spectroscopy	Asthma	targeted metabolite profiling
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0000591	http://purl.obolibrary.org/obo/HP_0002099	http://purl.obolibrary.org/obo/MSIO_0000100
+Study Design Type Term Source REF	CHMO	EFO	MSIO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Julia Drespling, Steffen Heelemann, Selina Strathmeyer, Heike Kühn, Bianca Schwarz, Lars Mundhenk
+Study Publication Title	The transition from winter to spring has an impact on the airway metabolome profile of asthmatic horses
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Season	Asthma group
+Study Factor Type	Collection Date	disease
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C81286	http://purl.obolibrary.org/obo/MONDO_0000001
+Study Factor Type Term Source REF	NCIT	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13953_NMR___metabolite_profiling-1.txt
+Study Assay Measurement Type	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	NMR spectroscopy assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Nuclear Magnetic Resonance (NMR) -
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	NMR
+Comment[Assay Type]	NMR
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	The transition from winter to spring has an impact on the airway metabolome profile of asthmatic horses	Data transformation	Extraction	Metabolite identification	NMR sample	NMR spectroscopy	Sample collection
+Study Protocol Type	The transition from winter to spring has an impact on the airway metabolome profile of asthmatic horses	data transformation	Extraction	metabolite identification	NMR sample	NMR spectroscopy	Sample collection
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/MI_2131	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001110	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001111	
+Study Protocol Type Term Source REF		OBI	OBI	MI	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>BALF samples, anamnestic and clinical parameters</p><p>A total of 230 BALF samples with recorded sampling dates were submitted to the EquiZyt UG laboratory in Steinhöring between January 2022 and February 2023 for diagnostic evaluation of suspected airway disease, including confirmation or exclusion of equine asthma. This study followed a cross-sectional design, with each horse contributing a single BALF sample obtained at one time point. All samples of this study were classified as not derived from an animal experiment by official authorities (State Office of Health and Social Affairs Berlin, StN 002/22). During routine clinical evaluation, BALF was collected from each horse and transported cooled to the laboratory within 1–3 days. The BALF samples were collected via two boli of 250 ml sterile sodium chloride solution. The samples were categorized into warm and cold seasons based on their sampling dates. Samples collected in spring (March-May) and summer (June-August) were assigned to the warm season, while those collected in autumn (September-November) and winter (December-February) were assigned to the cold season. Seasonal trends were assessed by comparing each season with its following season (i.e., winter with spring, spring with summer, summer with autumn, and autumn with winter).</p><p>Cytology</p><p>For cytological evaluation, the submitted air-dried respiratory fluid smears were routinely stained using the Diff-Quick staining technique (RAL Diff-QuikTM; CellaVision RAL Diagnostics / Martillac France) and the toluidine blue solution (Toluidinblau 1%, wässrig; Morphisto Laborchemikalien und Histologieservice / Offenbach) as described (24). If the smears were of inadequate quality or only fluid was sent in, new smears were made. For this purpose, the BALF was centrifuged for 10 minutes at 300-500 xg, the cell pellet was spread out on a slide and dried. Per smear, 500 Diff-Quick stained cells were counted under immersion microscopy and the percentages of neutrophil granulocytes, eosinophil granulocytes, alveolar macrophages, lymphocytes and mast cells were calculated. Additionally, the percentage of mast cells was verified by additional toluidine staining (25). </p><p>Horses were classified into groups based on BALF cytology, using reference values reported 2016 in the equine asthma ACVIM consensus statement (1). Samples with &gt;25% neutrophil granulocytes in the BALF were assigned to SEA group. Patients between 10-25% neutrophil granulocytes, eosinophil granulocytes &gt; 5% and/or mast cells &gt; 5% were classified as MEA. The remaining horses had a cell composition unremarkable for equine asthma and were assigned as 'cytologically unremarkable” (CUA) group. Group assignment was based solely on BALF cytology, which is considered the gold standard for equine asthma diagnosis and allows subtype classification based on a defined cytological scheme (26). In advance, samples were excluded due to indications of bacterial infection, such as intracellular bacteria and fever in the case history.</p><p>Sample Preparation for NMR analysis </p><p>Upon arrival at the laboratory, BALF samples were frozen at -40 °C and subsequently stored at -80 °C until preparation for NMR analysis. Defrosted BALF (500 µL) was mixed with 200 µL of an aqueous buffer solution, resulting in a buffer-to-sample ratio of 2:5 (v/v). The buffer consists of water p.A., 0.1 g/l sodium azide, 0.067 mol/l di-sodium hydrogen phosphate, 0.033 mol/l di-sodium hydrogen phosphate (pH: 7.15 ± 0.05), 5% deuterium oxide as field-lock substance. As internal standard 1,8 mM pyrazin were added to each sample. From this final solution, 600 µl were transferred to 5mm Bruker NMR tubes and closed with barcode-caps. The samples were stored at 4°C until subsequent NMR acquisition which took place within 24 h of sample preparation.</p><p>NMR Measurement </p><p>NMR spectra were acquired on a 600 MHz Bruker Avance NEO NMR spectrometer equipped with a 5 mm Broadband Inverse (BBI) probe. Only one 1D NMR spectra per sample was recorded using a NOESY-presaturation pulse sequence (noesygppr1d) with a spectral width of 30 ppm and 98304 data points. Water suppression was applied in the NMR experiments to attenuate the intense solvent resonance at ~4.7 ppm. Number of scans were set to 48, relaxation delays to 12 seconds and temperatures to 298 Kelvin for lavage samples. The metabolomics data have been deposited to MetaboLights (27) repository with the study identifier MTBLS13953.</p><p>Data Analysis </p><p>The spectra obtained were Fourier transformed using TopSpin software (version 4.1.1, Bruker Biospin, Germany). All spectra were automatically phased and subjected to baseline correction. Subsequently, the spectra were analysed using a proprietary Profiler software (version 4.0, lifespin GmbH, Germany). This approach follows standard strategies in NMR-based metabolite identification, where spectral features are compared against reference spectra in curated libraries, as described in the literature (28).</p><p>Probabilistic Quotient Normalization - Data Normalization </p><p>It is known that the amount of fluid input and the amount of recovery differs per horse, depending on the severity of the bronchoconstriction (29). For normalization, the Probabilistic Quotient Normalization (PQN) method was used which is based on an algorithm introduced by Frank Dieterle et al. to account for dilution of complex biological mixture (30).</p><p>Statistical Analysis </p><p>Depending on the veterinarian responsible for sampling, stabilizers were added to the BALF samples which could have an effect on the measured metabolites. Therefore, only samples with ethanol, isopropanol and methanol value of less than 0.1 mmol/L were included in the analysis in order to ensure the comparability of the samples. In addition, ethanol, methanol and isopropanol were excluded from the statistical analysis.</p><p>For multivariate analysis to reveal group separation based on metabolomic profiles, we applied principal component analysis (PCA). The supervised method partial least squares–discriminant analyses (PLS-DA) were not included: Either no stable PLS-DA model could be generated because there were not enough significant predictive components, or the resulting models were considered unsuitable because of the well-known risk of overfitting when applying PLS-DA to very small sample sizes and many variables. For the PCA, the R-function prcomp from the stats-package was used in R (version 4.0.2).</p><p>Statistical significance of measured metabolites between analysed groups was assessed using the Wilcoxon–Mann–Whitney test. Resulting p-values were corrected for multiple testing using the Benjamini–Hochberg false discovery rate (FDR) procedure, applied across all 149 metabolite comparisons. Alpha was set to 0.05, and both raw and adjusted p-values were converted into significance levels as follows: *** for p ≤ 0.001, ** for p ≤ 0.01, and * for p ≤ 0.05. All analyses were performed in R (version 4.0.2) using the function wilcox.test (exact=F, paired=F) setting exact=F to handle ties, and p.adjust(method = 'fdr'), both from the stats-package. A statistically significant increase in metabolite concentration only prior to multiple testing was considered a trend. </p><p>To quantify the effect size between the two groups, Cliff’s Delta was calculated for each metabolite. Cliff’s Delta measures the probability that a randomly chosen value from group 1 is greater than a randomly chosen value from group 2, minus the reverse probability. We restricted the statistically significant metabolites to at least a medium effect by considering only p-values with an absolute value of the Cliff’s delta greater than 0.33. Cliff’s delta and the 95% confidence interval was estimated using the cliff.delta function from the effsize-package in R (version 4.0.2).</p><p>Fold change (fc) between the groups was estimated using a non-parametric bootstrap (10,000 iterations). In each iteration, samples were drawn with replacement, then the group means were calculated, and the fold change was computed as the ratio of these means. Iterations with a zero mean in the group in the denominator were excluded. The 95% confidence interval was obtained from the 2.5th and 97.5th percentiles of the bootstrap distribution. Log-transformation was not applied due to the presence of zero values in several metabolites.</p><p>Median differences between groups were calculated for each metabolite as the difference between the medians of group 1 and group 2. 95% confidence intervals for the median differences were estimated using a non-parametric bootstrap with 5,000 resamples. This was done using the median-function from the stats-package, and boot() and boot.ci() from the boot-package in R (version 4.0.2).</p><p>The identified, significantly altered (uncorrected) metabolites were subjected to pathway enrichment analysis using the FELLA R package, which computes node scores via a diffusion-based algorithm applied to a KEGG derived network. For this analysis, we used the KEGG database for Equus caballus (horse). The background list comprised 133 metabolites, as 16 metabolites lacked valid KEGG compound identifiers and were therefore excluded. Because diffusion analysis returns multiple KEGG node categories (pathways, modules, enzymes, reactions, and compounds), only entries classified as pathways were retained for pathway focused interpretation.</p><p>Both the affected metabolites and all background metabolites were contextualized within the KEGG graph, and affected pathways were ranked based on diffusion node scores. Statistical significance (p scores) for each KEGG node was computed using the normal approximation (R function enrich (approx = 'normality')). Resulting p scores were then corrected for multiple testing using the Benjamini–Hochberg false discovery rate (FDR) procedure applied across all nodes returned by the diffusion analysis (R function generateResultsTable (method = 'diffusion')). Result tables were generated using a p score threshold of 0.10. </p><p>All analyses were performed using FELLA (version 1.24.0) in R (version 4.4.1). The overall aim of this analysis was to identify metabolic pathways potentially affected by the observed metabolite changes between warm and cold seasons. </p>	<p>The acquired NMR spectra were Fourier transformed using TopSpin software (version 4.1.1, Bruker Biospin, Germany), automatically phased, and subjected to baseline correction. Metabolite identification and quantification were performed using Profiler software (version 4.0, lifespin GmbH, Germany) by comparing spectral features to reference spectra in curated libraries.</p>	<p>Frozen BALF samples were thawed prior to extraction. A volume of 500 µL BALF was mixed with 200 µL aqueous buffer containing sodium azide, phosphate buffer (pH 7.15 ± 0.05), and 5% deuterium oxide. Pyrazine was added as internal standard to a final concentration of 1.8 mM. From this mixture, 600 µL were transferred into 5 mm NMR tubes and stored at 4 °C until NMR acquisition.</p>	<p>Metabolite identification was performed using Profiler software (version 4.0, lifespin GmbH, Germany) by comparing spectral features to reference spectra in curated libraries. Standard NMR-based strategies were applied to assign chemical shifts to specific metabolites.</p>	<p>Following metabolite extraction, 600 µL of the prepared BALF-buffer mixture were transferred into 5 mm Bruker NMR tubes and sealed with barcode caps. Samples were stored at 4 °C until NMR measurement. NMR acquisition was performed within 24 hours of sample preparation.</p>	<p>NMR spectra were acquired on a 600 MHz Bruker Avance NEO spectrometer equipped with a 5 mm broadband inverse (BBI) probe. One-dimensional proton NMR spectra were recorded using a NOESY-presaturation pulse sequence (noesygppr1d) with a spectral width of 30 ppm and 98,304 data points. Water suppression was applied to attenuate the solvent resonance at ~4.7 ppm. The number of scans was set to 48, relaxation delay was 12 seconds, and temperature was 298 K.</p>	<p>Bronchoalveolar lavage fluid (BALF) samples were collected from 230 horses during routine clinical evaluation for suspected airway disease between January 2022 and February 2023. Each horse contributed one sample. BALF was obtained using two boli of 250 mL sterile sodium chloride solution. Samples were transported cooled to the laboratory within 1–3 days after collection. Upon arrival, samples were frozen at −40 °C and stored at −80 °C until further analysis.</p>
+Study Protocol URI							
+Study Protocol Version							
+Study Protocol Parameters Name			Extraction Method		NMR tube type;Solvent;Sample pH;Temperature	Instrument;NMR Probe;Number of transients;Pulse sequence name;Magnetic field strength	
+Study Protocol Parameters Name Term Accession Number					;;;	;;;;	
+Study Protocol Parameters Name Term Source REF					;;;	;;;;	
+Study Protocol Components Name							
+Study Protocol Components Type							
+Study Protocol Components Type Term Accession Number							
+Study Protocol Components Type Term Source REF							
+STUDY CONTACTS
+Study Person Last Name	Drespling	Mundhenk
+Study Person First Name	Julia	Lars
+Study Person Mid Initials		
+Study Person Email	julia.drespling@simerbauernweg.de	Lars.Mundhenk@fu-berlin.de
+Study Person Phone		
+Study Person Fax		
+Study Person Address		Robert-von-Ostertag-Str. 15, 14163 Berlin, Germany
+Study Person Affiliation	EquiZyt UG	Freie Universität Berlin
+Study Person Roles	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]		https://ror.org/046ak2485

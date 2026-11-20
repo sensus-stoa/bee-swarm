@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	NCBITaxon	OBI	CHMO	EFO	NCIT	MS
+Term Source File	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI				https://www.ebi.ac.uk/ols4/api
+Term Source Version	1	04/12/2023	29				
+Term Source Description	Metabolights Ontology		Ontology for Biomedical Investigations				
+INVESTIGATION
+Investigation Identifier	MTBLS9098
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-12-11
+Investigation Public Release Date	2025-04-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS9098
+Study Title	Integrating two chromatographies in a co-fractionation mass spectrometry approach improved protein-metabolite interactions (PMIs) mapping capabilities and revealed novel protein-ligand pairings in Escherichia coli.
+Study Description	The protein-metabolite interactome remains understudied. We previously developed a co-fractionation mass-spectrometry-based approach called PROMIS to address this gap. PROMIS relies on size separation chromatography of protein-metabolite complexes from lysates, followed by proteomics and metabolomics analysis of the obtained fractions. Co-elution of metabolites and proteins is used to infer interactions. However, in a single separation, a metabolite cofractionates with hundreds of proteins, of which one or a few are 'true interactors,' whereas all others represent coincidental co-elution. Identifying the true binders represents the most significant challenge in using CF-MS-based methods for mapping PMIs. To address this challenge, we decided to integrate two chromatographies, size exclusion, and ion exchange, to improve PMI mapping capabilities and generate a PMI network in a model bacteria Escherichia coli. Although many complexes will have a similar size or charge, only a few should share both characteristics. The resulting interactome, comprising 994 interactions between 51 metabolites and 465 proteins, is enriched for known and predicted interactions, supporting the starting premise of this work that integrating different separation methods can assist in constructing protein-metabolite interactomes. Analysis of the protein targets predicted for the different metabolites revealed novel functional insights, such as the association between proteinogenic dipeptides and fatty acid metabolism. Moreover, we identified a novel, inhibitory interaction between riboflavin degradation product lumichrome and de novo pyrimidine synthesis enzyme, orotate phosphoribosyltransferase (pyrE). Lumichrome supplementation inhibited biofilm formation, on par with the known phenotype of ΔpyrE mutant strain. Based on published and our data, we hypothesize that lumichrome functions to integrate pyrimidine and riboflavin metabolism with quorum sensing and biofilm formation.
+Study Submission Date	2023-12-11
+Study Public Release Date	2025-04-25
+Study File Name	s_MTBLS9098.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Comparative LC/MS-based profiling	Escherichia coli	protein-metabolite interaction
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000066	http://purl.obolibrary.org/obo/NCBITaxon_562	http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Study Design Type Term Source REF	MTBLS	NCBITaxon	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Mateusz Wagner, Jieun Kang, Catherine Mercado, Venkatesh Thirumalaikumar, Michal Gorka, Hanne Zillmer, Jingzhe Guo, Katayoon Dehesh, Dirk Walther, Aleksandra Skirycz
+Study Publication Title	Integrating two chromatographies in a co-fractionation mass spectrometry approach improved protein-metabolite interactions (PMIs) mapping capabilities and revealed novel protein-ligand pairings in Escherichia coli.
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Type of Chromatography
+Study Factor Type	Analysis
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25391
+Study Factor Type Term Source REF	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS9098_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS9098_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Bacterial Growth</p><p>Escherichia coli strain BW25113 was grown on the M9 minimal medium. For each separation, 2 L of culture were harvested at OD = 0.8, after which the cells were washed thrice with the 50 mM ammonium bicarbonate, 1.5 mM MgCl2, pH 7.5 and flash frozen for future use.</p>	<p><strong>Size exclusion chromatography (SEC)</strong></p><p>The bacterial pellet was suspended in the cold lysis buffer (5 mL per 0.5 L of the culture). Composition of the lysis buffer: 50 mM Ammonium Bicarbonate, pH 7.5; 1.5 mM MgCl2; 150 mM NaCl; 5 mM dithiothreitol; 1 mM phenylmethylsulfonyl fluoride; 1 x protease inhibitor cocktail (Sigma Aldrich). Cells were lysed on ice with a sonication probe. The lysate was subjected to an initial centrifugation of 7000 x g, 4 °C for 10 min, and the acquired supernatant was centrifuged again with the same parameters. The supernatant was further ultracentrifuged for 1 h at&nbsp;165,052 x g, 4 °C. The supernatant was concentrated on a Amicon centrifugation filter (Milllipore-Sigma) with the 10 kDa cutoff to about 2.5 mL. The supernatant was transferred to a new falcon tube and centrifuged again at 18,000 x g, 4 °C for 15 min to remove protein aggregates. Protein concentration was estimated with a Bradford assay. The lysate was diluted to 20 mg/mL and 2 mL were taken for the SEC separation. In total 2 mL of soluble fraction corresponding to 40 mg of protein were used for the separations. SEC was performed with a SRT-10 SEC-300 (Sepax) column connected to a NGC Quest 10 Chromatography System (Bio Rad) operating at 4 °C. Composition of the SEC buffer: 50 mM Ammonium Bicarbonate, pH 7.5; 1.5 mM MgCl2; 150 mM NaCl). The flow rate was set to 7 mL/min. We collected a total of 48, 1 mL fractions between 36 and 84 mL of elution. The fractions were lyophilized and stored at -80 °C for proteomic and metabolomic analysis.</p><p><br></p><p><strong>Ion exchange chromatography (IEX)</strong></p><p>The bacterial pellet was suspended in the cold lysis buffer (5 mL per 0.5 L of the culture). Cells were lysed on ice with a sonication probe. Composition of the lysis buffer: 50 mM Ammonium Bicarbonate, pH 7.5; 1.5 mM MgCl2; 5 mM dithiothreitol; 1 mM phenylmethylsulfonyl fluoride; 1 x protease inhibitor cocktail (Sigma Aldrich). The lysate was subjected to an initial centrifugation at 7000 x g, 4 °C for 10 min, and the acquired supernatant was centrifuged again with the same parameters. The supernatant was further ultracentrifuged for 1 h at 165,052 x g, 4 °C. The supernatant was concentrated on the Amicon centrifugation filter (Milllipore-Sigma) with the 10 kDa cutoff to about 5 mL, after which 15 mL lysis buffer was added and concentrated again. The supernatant was transferred to a new falcon tube and centrifuged again at 18,000 x g, 4 °C for 15 min to remove protein aggregates. Protein concentration was estimated with a Bradford assay. The sample concentration was diluted to 10 mg/mL and 2 mL were taken for the IEX sample separation. For the control separation, the 2.5 mL of 10 mg/mL protein lysate was denatured in 95 °C for 15 min and subsequently centrifuged in 18,000 x g, 4 °C for 15 min. The supernatant was filtered through the Amicon centrifugation filter (Milllipore-Sigma) with the 10 kDa cutoff to allow all of the sample through. The flow-through was collected for IEX control separation (IEX_C). In total 2 mL of soluble fraction corresponding to 20 mg of protein, or control metabolite only sample,&nbsp;were used for the separations. IEX was performed with a Enrich Q, 5/50 mm&nbsp;(Bio Rad) column connected to a NGC Quest 10 Chromatography System (Bio Rad) operating at 4 °C. Composition of the IEX buffers; Buffer A: 50 mM Ammonium Bicarbonate, pH 7.5; 1.5 mM MgCl2, Buffer B: 50 mM Ammonium Bicarbonate, pH 7.5, 1.5 mM MgCl2, 1 M NaCl. The flow rate was set to 0.9 mL/min. Column was equilibrated with Buffer A. Elution gradient was set from 0% to 100% buffer B over the 20 mL. The collected 1 mL fractions were lyophilized and stored at -80 °C for proteomic and metabolomic analysis.&nbsp;</p><p><br></p><p>Metabolites were extracted from SEC and IEX fractions as previously described<strong>[1]</strong>. Briefly, collected fractions were extracted using Methyl tert-butyl ether (MTBE)/Methanol/Water solvent system to separate proteins, lipids and polar compounds into pellet, organic and aqueous phase, respectively<strong>[2]</strong>. After extraction, the aqueous phase was dried in a speed-vac and stored at -80 °C until LC-MS analysis.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Veyel D, Kierszniowska S, Kosmacz M, Sokolowska EM, Michaelis A, Luzarowski M, Szlachetko J, Willmitzer L, Skirycz A. System-wide detection of protein-small molecule complexes suggests extensive metabolite regulation in plants. Sci Rep. 2017 Feb 13;7:42387. doi:10.1038/srep42387. PMID:28205532.</p><p><strong>[2]</strong> Giavalisco P, Li Y, Matthes A, Eckhardt A, Hubberten HM, Hesse H, Segu S, Hummel J, Köhl K, Willmitzer L. Elemental formula annotation of polar and lipophilic metabolites using (13) C, (15) N and (34) S isotope labelling, in combination with high-resolution mass spectrometry. Plant J. 2011 Oct;68(2):364-76. doi:10.1111/j.1365-313X.2011.04682.x. Epub 2011 Jul 26. PMID:21699588.</p>	<p>Polar metabolites were analyzed using ultra-performance liquid chromatography coupled to an Exactive mass spectrometer (Thermo-Fisher) in positive and negative ionization mode as previously described<strong>[1]</strong>. Briefly, UPLC separation was performed using a Waters Acquity UPLC system (Waters), using an HSS T3 C18 reversed-phase column (100 mm x 2.1 mm, 1.8 μm particles; Waters). The mobile phases were 0.1% formic acid in H2O (Buffer A, ULC MS grade; BioSolve) and 0.1% formic acid in acetonitrile (Buffer B, ULC MS grade; BioSolve). A 2 μL sample (the dried-down aqueous fraction was re-suspended in 100 μL of UPLC grade water) was loaded per injection, and the gradient, which was taken out with a flow rate of 400 μL/min, was: 1 min 99% A, 13 min linear gradient from 99% to 65% A, 14.5 min linear gradient from 65% to 30% A, 15.5 min linear gradient from 30% to 1% A, hold 1% A until 17 min, 17.5 min linear gradient from 1% to 99% A, and re-equilibrate the column for 2.5 min (20 min total run time).</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Giavalisco P, Li Y, Matthes A, Eckhardt A, Hubberten HM, Hesse H, Segu S, Hummel J, Köhl K, Willmitzer L. Elemental formula annotation of polar and lipophilic metabolites using (13) C, (15) N and (34) S isotope labelling, in combination with high-resolution mass spectrometry. Plant J. 2011 Oct;68(2):364-76. doi:10.1111/j.1365-313X.2011.04682.x. Epub 2011 Jul 26. PMID:21699588.</p>	<p>The mass spectra were acquired using an Exactive mass spectrometer (Thermo-Fisher) in positive and negative ionization mode as previously described<strong>[1]</strong>. The spectra were recorded covering a mass range from 100 to 1500 m/z. The resolution was set to 10 000, with 10 scans/s, restricting the loading time to 100 ms. The capillary voltage was set to 3 kV with a sheath gas flow value of 60 and an auxiliary gas flow of 35 (values are in arbitrary units). The capillary temperature was set to 150 °C, whereas the drying gas in the heated electrospray source was set to 350 °C. The skimmer voltage was set to 25 V, whereas the tube lens was set to a value of 130 V. The spectra were recorded from 1 to 17 min of the UPLC gradients.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Giavalisco P, Li Y, Matthes A, Eckhardt A, Hubberten HM, Hesse H, Segu S, Hummel J, Köhl K, Willmitzer L. Elemental formula annotation of polar and lipophilic metabolites using (13) C, (15) N and (34) S isotope labelling, in combination with high-resolution mass spectrometry. Plant J. 2011 Oct;68(2):364-76. doi:10.1111/j.1365-313X.2011.04682.x. Epub 2011 Jul 26. PMID:21699588.</p>	<p>Processing of chromatograms, peak detection and integration were performed using REFINER MS 12.0 (GeneData). Processing of mass spectrometry data included retention time alignment, peak detection, removal of the isotopic peaks, as well as chemical noise.</p>	<p>Obtained metabolic features (m/z at a given retention time) were queried against an in-house reference compound database. We allowed 0.1 min retention time and 10 ppm m/z deviation from the reference m/z and RT.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Phase separation;Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Skirycz
+Study Person First Name	Aleksandra
+Study Person Mid Initials	
+Study Person Email	ola.skirycz@gmail.com
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	Boyce Thompson Institute, Cornell University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT

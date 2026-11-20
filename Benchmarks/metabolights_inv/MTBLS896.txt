@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MTBLS	EFO	NCIT	ExO	EDAM	BAO	IDO	OHMI	CHEBI	CHMO	EUPATH
+Term Source File	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/metabolights/	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/exo	http://edamontology.org	http://www.bioassayontology.org/bao/bao_complete.owl	http://purl.obolibrary.org/obo/ido.owl	http://purl.obolibrary.org/obo/ohmi.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	
+Term Source Version	29	1.0	2.106	19.02d	2014-09-22	01-08-2018	2.4	2017-11-03	2019-01-24	02-05-2019	2014-11-20	
+Term Source Description	Ontology for Biomedical Investigations	User defined terms	Experimental Factor Ontology	NCI Thesaurus OBO Edition	Exposure ontology	Bioinformatics operations, data types, formats, identifiers and topics	BioAssay Ontology	Infectious Disease Ontology	OHMI: Ontology of Host-Microbiome Interactions	Chemical Entities of Biological Interest	Chemical Methods Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS896
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-03-26
+Investigation Public Release Date	2019-07-10
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS896
+Study Title	Mapping human microbiome drug metabolism by gut bacteria and their genes
+Study Description	<p>Individuals vary widely in their drug responses, which can be dangerous and expensive due to treatment delays and adverse effects. Growing evidence implicates the gut microbiome in this variability, however the molecular mechanisms remain largely unknown. We measured the ability of 76 diverse human gut bacteria to metabolize 271 oral drugs and found that many of these drugs are chemically modified by microbes. We combined high-throughput genetics with mass spectrometry to systematically identify drug-metabolizing microbial gene products. These microbiome-encoded enzymes can directly and significantly impact intestinal and systemic drug metabolism in mice, and can explain drug-metabolizing activities of human gut bacteria and communities based on their genomic contents. These causal links between microbiota gene content and metabolic activities connect interpersonal microbiome variability to interpersonal differences in drug metabolism, which has implications for medical therapy and drug development across multiple disease indications.</p><p><br></p><p>Additional data related to this study can also be found by the following links;</p><p>- Raw sequencing data; <a href='https://www.ebi.ac.uk/ena/data/view/PRJEB31790' rel='noopener noreferrer' target='_blank'>ENA (accession no. PRJEB31790)</a></p><p>- Data for Figures; <a href='https://doi.org/10.6084/m9.figshare.8119058' rel='noopener noreferrer' target='_blank'>FigShare</a>&nbsp;</p><p>- Analysis pipeline schemes, scripts and input files for analzing data and generating figures; <a href='https://github.com/mszimmermann/drug-bacteria-gene_mapping' rel='noopener noreferrer' target='_blank'>GitHub</a> and archived <a href='https://doi.org/10.5281/zenodo.2827640' rel='noopener noreferrer' target='_blank'>Zenodo</a></p>
+Study Submission Date	2019-03-26
+Study Public Release Date	2019-07-10
+Study File Name	s_MTBLS896.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-05
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Pharmaceutical	Commensal	Human Gut Microbiome	Drug metabolism	Liquid Chromatography Mass Spectrometry	untargeted metabolites
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_52217	http://purl.obolibrary.org/obo/IDO_0000525	http://purl.obolibrary.org/obo/OHMI_0000020	http://purl.obolibrary.org/obo/NCIT_C26633	http://purl.obolibrary.org/obo/CHMO_0000524	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279
+Study Design Type Term Source REF	CHEBI	IDO	OHMI	NCIT	CHMO	MTBLS
+STUDY PUBLICATIONS
+Study PubMed ID	31158845
+Study Publication DOI	10.1038/s41586-019-1291-3
+Study Publication Author List	Michael Zimmermann, Maria Zimmermann-Kogadeeva, Rebekka Wegmann, and Andrew L. Goodman
+Study Publication Title	Mapping human microbiome drug metabolism by gut bacteria and their genes
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Phylum	Treatment group	Timepoint	Catalogue ID	pH	Common name of organism
+Study Factor Type	Phylum	Treatment group	Timepoint	Catalogue ID	pH	Common Name Of Organism
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45277	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C68568	http://edamontology.org/data_2596	http://purl.obolibrary.org/obo/NCIT_C45997	http://purl.obolibrary.org/obo/EUPATH_0000512
+Study Factor Type Term Source REF	NCIT	MTBLS	NCIT	EDAM	NCIT	EUPATH
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS896_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	We systematically assessed the capacity of 76 bacterial species/strains, that represent the major phyla of the human gut microbiome, to chemically modify medical drugs in vitro. To maximize the number of tested drugs, we employed a previously established combinatorial pooling strategy [1] to assign 271 drugs across 21 pools (see&nbsp;Table S2 of the study publication, column ‘DrugPoolNumbers' of the study publication), so that each drug is represented in quadruplicate but shares a pool with any other drug at most twice. The 271 drugs were selected to span the chemical space of approved clinical drugs, which resulted in a selection of diverse clinical indications (excluding antibacterial drugs), molecular weights, and LogP values. We incubated each of the gut species/strains with each drug pool and three vehicle controls under anaerobic conditions and measured drug concentrations before and after a 12 hr incubation. The analyzed 3840 samples comprise a total of 20,596 bacteria-drug interactions, each measured in quadruplicate.&nbsp;<div><br></div><div>No-bacteria controls of the assay were performed in buffered media at pH 4, 5, 6, and 7 to control for acidification of the culture medium.</div><div><br></div><div>Ref:</div><div>[1] Goodman AL, McNulty NP, Zhao Y, Leip D, Mitra RD, Lozupone CA, Knight R, Gordon JI.&nbsp; Identifying Genetic Determinants Needed to Establish a Human Gut Symbiont in Its Habitat. Cell Host &amp; Microbe 2009;6(3):279-289. doi.org/10.1016/j.chom.2009.08.003)</div>	<div> Samples were extracted as described previously [1]. In brief, 5 µl of internal standard solution (a mix of caffeine and sulfamethoxazole at 4 µM in H2O) were added to each sample (20 µl) in 96-well plates (V-bottomed storage plate, Thermo Scientific) using a liquid handling robot (epMotion 5075, Eppendorf). Samples were extracted with 100 µl cold (-20 °C) organic solvent (acetonitrile:methanol, 1:1). After incubation for at least 1 h at -20 °C, samples were centrifuged (3220 rcf, -9 °C) for 15 min. 100 µl of supernatants were transferred to a new plate and dried under vacuum at 22 °C and stored at -80 °C. For LC-MS analysis the extracts were resuspended in 6 µl methanol and further diluted with 26 µl H2O. <br></div><div><br></div><div>Ref:</div><div>[1] Zimmermann M, Zimmermann-Kogadeeva M, Wegmann R, Goodman AL. Separating host and microbiome contributions to drug pharmacokinetics and toxicity. Science 2019:363(6427). DOI: 10.1126/science.aat9931 </div>	Chromatographic separation was performed using an Agilent Infinity 1290 with 1290 Binary Pump (2x), 1290 Infinity Multisampler with multi-wash option and 40 µl injection loop, 1200 Thermostated Column Compartment with 2pos/10 port Valve and 1260 Infinity Isocratic Pump (for online mass calibration). A C18 Kinetex Evo column (Phenomenex, 100 mm x 2.1 mm, 1.7 mm particle size) was employed using mobile phase A: H2O, 0.1% formic acid and B: methanol, 0.1% formic acid at 45 °C. 5 µl of sample were injected at 100% A and 0.4 ml/min flow followed by a linear gradient to 95% B over 5.5 min and 0.4 ml/min.	An Agilent 6550 qTOF was operated in positive scanning mode (50 - 1000 m/z) and the following source parameters: VCap: 3500 V, nozzle voltage: 2000 V, gas temp: 225 °C; drying gas 13 l/min; nebulizer: 20 psig; sheath gas temp 225 °C; sheath gas flow 12 l/min. Online mass calibration was performed using a second ionization source and a constant flow (5 µl/min) of reference solution (121.0509 and 922.0098 m/z).	The MassHunter Quantitative Analysis Software (Agilent, version 7.0) was used to transform raw data and for peak integration based on retention time and accurate mass measurement of chemical standards. The MassHunter Qualitative Analysis Software (Agilent, version 7.0) and Mass Profiler Professional (Agilent, version 13.0) with standard parameters were used for untargeted feature extraction and peak alignment, respectively.	Chemical standards of drugs were used for their identification by retention time and accurate mass. Identification of candidate drug metabolites was performed as follows: For each drug and each bacterial strain, intensities of all compounds detected in the drug-containing pools (n=4) versus all other pools (n=20) were compared by calculating fold change and statistical significance with two-sided t-test (ttest2 function in MatLab). All p-values were FDR-corrected for multiple hypotheses testing with Benjamini-Hochberg procedure (mafdr function in MatLab with ‘BHFDR’ parameter). The FDR-corrected p‑value threshold for candidate drug metabolites was set to 10-6 based on the distribution of p‑values of parent drugs in their corresponding four pools versus all other pools. Candidate metabolites were filtered according to the following exclusion criteria: i) metabolite intensity in the drug pools at t=0 is > 10^4 ion counts, and log2(fold change to other pools at t=0) < 1; or ii) metabolite intensity in the drug pools at t=12 is > 10^4 ion counts, and log2(fold change to other pools at t=12) < 1; or iii) the difference of mass defects between the drug and the metabolite is > 0.2 amu; or iv) retention time difference between the drug and the metabolite is < 0.1 min; or v) metabolite mass is similar to one of the metabolites filtered at step iv) (mass difference < 0.002 amu) and retention time is similar to an unfiltered metabolite of the same drug (difference < 0.1 min). Additionally, metabolites were filtered based on whether the parent drug was metabolized, whether the metabolite was identified for a single drug or multiple drugs, and whether the metabolite was increasing in at least one strain at 12 h compared to 0 h (log2(fold change) > 1 and FDR < 0.05). Mass difference between the parent drug and candidate metabolites were calculated for each drug-metabolite pair and smoothened with 0.005 Da window.
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Extraction Method;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zimmerman
+Study Person First Name	Michael
+Study Person Mid Initials	
+Study Person Email	zimmermann@alumni.ethz.ch
+Study Person Phone	
+Study Person Fax	
+Study Person Address	
+Study Person Affiliation	
+Study Person Roles	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT

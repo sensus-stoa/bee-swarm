@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCBITAXON	MSIO	MTBLS	CL	NCIT		CHMO	CHEBI
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/	http://purl.obolibrary.org/obo/cl.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/ncit.owl		
+Term Source Version	29	3.5.1	2018-07-27	1.0.1	1.0	30-04-2019	19.02d	18.10e		
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology	NCBI organismal classification	Metabolomics Standards Initiative Ontology (MSIO)	Metabolights Ontology	Cell Ontology	NCI Thesaurus OBO Edition	NCI Thesaurus OBO Edition		
+INVESTIGATION
+Investigation Identifier	MTBLS959
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-05-02
+Investigation Public Release Date	2020-12-07
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS959
+Study Title	Subcellular antibiotic visualization reveals a dynamic drug reservoir in infected macrophages
+Study Description	Tuberculosis, caused by the intracellular pathogen Mycobacterium tuberculosis, remains the world's deadliest infectious disease. Sterilizing chemotherapy requires at least 6 months of multidrug therapy. Difficulty visualizing the subcellular localization of antibiotics in infected host cells means that it is unclear whether antibiotics penetrate all mycobacteria-containing compartments in the cell. Here, we combined correlated light, electron, and ion microscopy to image the distribution of bedaquiline in infected human macrophages at submicrometer resolution. Bedaquiline accumulated primarily in host cell lipid droplets, but heterogeneously in mycobacteria within a variety of intracellular compartments. Furthermore, lipid droplets did not sequester antibiotic but constituted a transferable reservoir that enhanced antibacterial efficacy. Thus, strong lipid binding facilitated drug trafficking by host organelles to an intracellular target during antimicrobial treatment.
+Study Submission Date	2019-05-02
+Study Public Release Date	2020-12-07
+Study File Name	s_MTBLS959.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Mycobacterium Tuberculosis	untargeted metabolites	Lipidomics	Tuberculosis	liquid chromatography-mass spectrometry	microscopy	bedaquiline
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_1773	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C153193	http://purl.obolibrary.org/obo/NCIT_C3423	http://purl.obolibrary.org/obo/CHMO_0000524	http://purl.obolibrary.org/obo/CHMO_0000067	http://purl.obolibrary.org/obo/CHEBI_72292
+Study Design Type Term Source REF	NCBITAXON	MTBLS	NCIT	NCIT	CHMO	CHMO	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	31249058
+Study Publication DOI	10.1126/science.aat9689
+Study Publication Author List	Greenwood DJ, Dos Santos MS, Huang S, Russell MRG, Collinson LM, MacRae JI, West A, Jiang H, Gutierrez MG.
+Study Publication Title	Subcellular antibiotic visualization reveals a dynamic drug reservoir in infected macrophages.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Infection	Disease condition
+Study Factor Type	timepoint	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS959_LC-MS_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Human monocyte-derived primary macrophages isolation:</strong></p><p>hMDM were prepared as previously described<strong>[1]</strong>. White blood cells were isolated from leukocyte cones (NC24) supplied by the NHS blood and transplant service by centrifugation on Ficoll-Paque Premium (GE Healthcare 17-5442-03) for 60 min at 300 x g. Mononuclear cells were washed twice with MACS rinsing solution (Miltenyi 130-091-222) to remove platelets, then remaining red blood cells were lysed by incubation at room temperature with 10 ml RBC lysing buffer (Sigma R7757) per pellet for 10 min. Cells were washed with rinsing buffer and pelleted once more, then resuspended in 80 μl MACS rinsing solution supplemented with 1% BSA (MACS/BSA) and 20 μl anti-CD14 magnetic beads (Miltenyi 130-050-201) per 10^8 cells and incubated on ice for 20 min. Cells were then washed in MACS/BSA by centrifugation, re-suspended in 500 μl MACS/BSA per 10^8 cells and passed through an LS column (Miltenyi 130-042-401) in the field of a QuadroMACS separator magnet (Miltenyi 130-090-976). The column was washed 3x with MACS/BSA, then positively selected cells were eluted, centrifuged and re-suspended in RPMI 1640 with GlutaMAX and HEPES (Gibco 72400-02), 9.1% foetal bovine serum and 10 ng/ml GM-CSF (Miltenyi 130-093-867) to a concentration of 10^6 cells/ml in untreated petri dishes. These were placed in a humidified 37 °C incubator with 5% CO2, with an equal volume of fresh media including GM-CSF added after 3 days. 6 days after the initial isolation, differentiated macrophages were detached in 0.5 mM EDTA in ice-cold PBS and 2 x 10^5 cells seeded per well of a 24-well plate or gridded live-cell imaging dish (MatTek, P35G-2-14-CGRD), or 3 x 10^4 cells per well of an olefin-bottomed 96-well plate (Perkin Elmer 6055302).</p><p><br></p><p><strong>Infection of hMDM:</strong></p><p>Mtb H37Rv expressing EGFP or mCherry and Mtb ΔRD1 expressing RFP<strong>[2]</strong> were grown to log-phase in 7H9 (Sigma-Aldrich, M0178) supplemented with 10% albumin-dextrose-catalase (BD Biosciences, 212351) and 0.05% TWEEN 80 (Sigma-Aldrich, P1754) prior to infection, and diluted to OD600 0.4 the day prior to infection. On the day of infection, Mtb was pelleted by centrifugation at 500 x g and washed twice with PBS. The pellet was then shaken vigorously by hand with ~10 sterile glass beads (2.5-3.5 mm) in a 50 ml centrifuge tube for 1 min to break up clumps. Mtb was then re-suspended in complete RPMI and centrifuged at 300 x g for 5 min to remove residual clumps. The supernatant was transferred to a fresh tube and OD600 measured to determine bacterial concentration, assuming that an OD600 of 0.1 approximates to 10^7 bacteria/ml. For an MOI of 1, bacteria were then diluted to OD600 0.0004 (~4 x 10^5 bacteria/ml). Media on macrophages was aspirated and replaced with 75 μl inoculation media per well for 96-well plates, or 500 μl for 24-well plates. Macrophages were then returned to the incubator for 2 h, washed twice with PBS, to remove bacteria not taken up by macrophages, and fresh media.</p><p><br></p><p>10^6 hMDM were seeded in each well of a 6-well plate. Macrophages were infected with Mtb at an MOI of 1 for 2 h as described above. At 24 h and 72 h post-infection, macrophages were washed with ice-cold MACS rinsing buffer and then incubated in 500 μl rinsing buffer for 15 min. Macrophages were then detached by scraping, and 3 wells pooled for each technical replicate. Macrophages were pelleted at 300 x g for 5 min in micro-centrifuge tubes, then re-suspended in 900 μl ice-cold chloroform:methanol (2:1, v/v). Cells were vortexed until dispersed, and then incubated on dry-ice for 1 h.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lerner TR, Borel S, Greenwood DJ, Repnik U, Russell MR, Herbst S, Jones ML, Collinson LM, Griffiths G, Gutierrez MG. Mycobacterium tuberculosis replicates within necrotic human macrophages. J Cell Biol. 2017 Mar 6;216(3):583-594. doi:10.1083/jcb.201603040. PMID:28242744.</p><p><strong>[2]</strong> Lerner TR, de Souza Carvalho-Wodarz C, Repnik U, Russell MR, Borel S, Diedrich CR, Rohde M, Wainwright H, Collinson LM, Wilkinson RJ, Griffiths G, Gutierrez MG. Lymphatic endothelial cells are a replicative niche for Mycobacterium tuberculosis. J Clin Invest. 2016 Mar 1;126(3):1093-108. doi:10.1172/JCI83379. PMID:26901813.</p>	<p>Samples were spun at 13,200 x g for 10 min at 4 °C and the extract transferred to a new tube dried under nitrogen. The cell pellet was re-extracted with 900 μl methanol:water (2:1, v/v), processed as above, the extract added to the first extract and dried again. After biphasic partitioning using chloroform, methanol, (1:3:3, v/v/v), the organic phase was dried and lipids re-suspended in butanol/methanol (1:1, v/v) containing 5 μM ammonium formate.</p>	<p>The LC-MS method was adapted from a previusly published method<strong>[1]</strong>. Briefly, lipids were separated by injecting 10 μl aliquots onto a 2.1 x 100 mm, 1.8 μm C18 Zorbax Elipse plus column (Agilent) using a Dionex UltiMate 3000 LC system (Thermo Scientific). A 20 min elution gradient of 45% to 100% Solvent B was used, followed by a 5 min wash of 100% Solvent B and 3 min reequilibration, where Solvent A was 10 mM ammonium formate in water (Optima HPLC grade, Fisher Chemical) and Solvent B was water:acetonitrile:isopropanol, 5:20:75 (v/v/v) with 10 mM ammonium formate (Optima HPLC grade, Fisher Chemical). Other parameters were as follows: flow rate 600 μl/min; column temperature 60 °C; autosampler temperature 10 °C.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Amiar S, MacRae JI, Callahan DL, Dubois D, van Dooren GG, Shears MJ, Cesbron-Delauw MF, Maréchal E, McConville MJ, McFadden GI, Yamaryo-Botté Y, Botté CY. Apicoplast-Localized Lysophosphatidic Acid Precursor Assembly Is Required for Bulk Phospholipid Synthesis in Toxoplasma gondii and Relies on an Algal/Plant-Like Glycerol 3-Phosphate Acyltransferase. PLoS Pathog. 2016 Aug 4;12(8):e1005765. doi:10.1371/journal.ppat.1005765. PMID:27490259.</p>	<p>MS was performed with positive/negative polarity switching using a Q Exactive Orbitrap (Thermo Scientific) with a HESI II probe. MS parameters were as follows: spray voltage 3.5 kV and 2.5 kV for positive and negative modes, respectively; probe temperature 275 °C; sheath and auxiliary gases were 55 and 15 arbitrary units, respectively; full scan range: 150 to 2000 m/z with settings of auto gain control (AGC) target and resolution as Balanced and High (3 x 10^6 and 70,000) respectively. Data was recorded using Xcalibur 3.0.63 software (Thermo Scientific). Mass calibration was performed for both ESI polarities before analysis using the standard Thermo Scientific Calmix solution. To enhance calibration stability, lock-mass correction was also applied to each analytical run using ubiquitous low-mass contaminants.</p>	<p>Data was normalized against the total ion chromatogram. Qualitative and quantitative analyses were performed using Free Style 1.5 (Thermo Scientific) and Progenesis (Nonlinear Dynamics).</p>	<p>To confirm the identification of significant features, pooled quality control samples were run in data-dependent top-N (ddMS2-topN) mode, with acquisition parameters as follows: resolution of 17,500, auto gain control target under 2 × 10^5, isolation window of m/z 0.4, and stepped collision energy 10, 20 and 30 in HCD (high-energy collisional dissociation) mode. Data were processed using MSconvert before being imported into LipidMatch for identification<strong>[1]</strong>.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Koelmel JP, Kroeger NM, Ulmer CZ, Bowden JA, Patterson RE, Cochran JA, Beecher CWW, Garrett TJ, Yost RA. LipidMatch: an automated workflow for rule-based lipid identification using untargeted high-resolution tandem mass spectrometry data. BMC Bioinformatics. 2017 Jul 10;18(1):331. doi:10.1186/s12859-017-1744-3. PMID:28693421.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Extraction Method;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Silva dos Santos	Greenwood	Huang	Russell	Collinson	MacRae	West	Jiang	Gutierrez
+Study Person First Name	Mariana	Daniel J	Song	Matthew R G	Lucy M	James I	Andy	Haibo	Maximiliano G
+Study Person Mid Initials									
+Study Person Email	mariana.silvadossantos@crick.ac.uk								
+Study Person Phone									
+Study Person Fax									
+Study Person Address	1 Midland Road, NW1 1AT London UK								
+Study Person Affiliation	The Francis Crick Institute								
+Study Person Roles	Investigator	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C51826	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	EFO								

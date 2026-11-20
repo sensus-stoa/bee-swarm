@@ -1,0 +1,110 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EFO	FOODON	MI	MS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/foodon.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2025-10-21	3.89.0	2025-12-30			26.02d	2026-03-19
+Term Source Description	Chemical Methods Ontology	Experimental Factor Ontology	Food Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS14086
+Investigation Title	Study on root metabolism of cassava TRV-MeCOMT8
+Investigation Description	
+Investigation Submission Date	2026-03-19
+Investigation Public Release Date	2026-05-06
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14086
+Study Title	Study on root metabolism of cassava TRV-MeCOMT8
+Study Description	<p>This project is based on non targeted metabolomics analysis of cassava (Manihot esculenta) root samples. LC-MS/MS is used to obtain metabolite characteristic peaks and perform peak extraction, alignment, and quantification. Differential metabolites are screened, with a focus on flavonoid and phenylpropane related metabolic changes. To improve data repeatability and reusability, we upload raw mass spectrometry data and processed feature peak tables/metabolite annotation results, and provide sample grouping information and analysis process instructions for subsequent researchers to conduct reanalysis, comparison, and integration studies.</p>
+Study Submission Date	2026-03-19
+Study Public Release Date	2026-05-06
+Study File Name	s_MTBLS14086.txt
+Comment[Created At]	2026-03-16
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-06
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	cassava	Metabolic	gene
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/FOODON_00003409	http://purl.obolibrary.org/obo/NCIT_C28240	http://purl.obolibrary.org/obo/SO_0000704
+Study Design Type Term Source REF	FOODON	NCIT	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zheng Cai , Shiting Deng , Pingchuan Zhu , Kunhang Liu , Juanjuan Xu , Youzhi Li, Xianwei Fan
+Study Publication Title	MeCOMT8 negatively regulates adventitious root development and drought tolerance in cassava by modulating flavonoid-dependent auxin signaling
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	treatment
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000727
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14086_LC-MS_alternating_hilic_metabolite_profiling.txt
+Study Assay Measurement Type	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - alternating - hilic
+Comment[Assay Identifier]	
+Comment[Assay Type Label]	LC-MS
+Comment[Assay Type]	LC-MS
+Comment[Assay Type Term Accession Number]	
+Comment[Assay Type Term Source REF]	
+STUDY PROTOCOLS
+Study Protocol Name	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification	Sample collection
+Study Protocol Type	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification	Sample collection
+Study Protocol Type Term Accession Number	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131	
+Study Protocol Type Term Source REF	CHMO	OBI	OBI	CHMO	MI	MI
+Study Protocol Description	<p>Chromatographic separation was conducted on an UltiMate 3000 UHPLC system (Thermo Fisher Scientific) equipped with an UltiMate 3000 autosampler. Separation was achieved using an ACQUITY UPLC BEH Amide analytical column (100 mm × 2.1 mm, 1.7 μm) coupled with a matched ACQUITY UPLC BEH Amide guard column (5 mm × 2.1 mm, 1.7 μm), following a hydrophilic interaction liquid chromatography (HILIC) gradient elution program optimized for broad-spectrum plant metabolite profiling. The system was operated with a controlled column temperature and low-temperature autosampler to maintain metabolite stability during analysis.</p>	<p>Raw LC-MS data were processed using commercial metabolomics data analysis software (Thermo Scientific Compound Discoverer 3.3 or XCMS Online) for peak alignment, peak picking, noise reduction, and normalization to obtain high-quality metabolite peak matrices. </p>	<p>Non-targeted metabolite extraction using 80% methanol-water (v/v) extraction solution (mainstream for plant tissue metabolomics); frozen root samples were ground to powder in liquid nitrogen, extracted via ultrasonic-assisted extraction at low temperature (4℃), centrifuged to obtain supernatant, filtered through 0.22 μm hydrophilic PTFE membrane for LC-MS analysis.</p>	<p>Mass spectrometric detection was performed on a Q Exactive Orbitrap MS/MS platform (Thermo Fisher Scientific) equipped with a Heated Electrospray Ionization (HESI-II) source, operating in alternating positive and negative ion modes for comprehensive non-targeted metabolite profiling. The mass analyzer was a high-resolution Quadrupole-Orbitrap hybrid system, with a full-scan m/z range set to 70 - 1050 to cover most primary and secondary metabolites in cassava root tissues. High-resolution scanning mode was adopted to ensure accurate mass measurement and reliable metabolite structure inference.</p>	<p>Metabolite identification was carried out by matching accurate mass-to-charge ratio (m/z), retention time, and MS/MS fragmentation spectra against mainstream public metabolomics databases including HMDB (Human Metabolome Database), Metlin, and a plant-specific metabolite database, combined with accurate mass deviation (≤5 ppm) and MS/MS spectral similarity scoring. Only metabolites with reliable database matching and high spectral similarity were annotated and subjected to subsequent statistical and biological function analysis.</p>	<p>Organism: Manihot esculenta Crantz (Cassava)</p><p>Sample Type: Root tissue samples</p><p>Experimental Treatment: Roots collected from cassava plants with MeCOMT8 gene silencing, for non-targeted metabolic profiling analysis</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number	;;;;		;	;;;;		
+Study Protocol Parameters Name Term Source REF	;;;;		;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zheng
+Study Person First Name	Cai
+Study Person Mid Initials	
+Study Person Email	caizheng@st.gxu.edu.cn
+Study Person Phone	
+Study Person Fax	
+Study Person Address	No. 100 Daxue east Road, Nanning, Guangxi, China, Guangxi University
+Study Person Affiliation	Guangxi University
+Study Person Roles	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/02c9qn167
+Comment[Study Person Alternative Email]	81013185@qq.com

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	NCIT	NCBITAXON	EDAM	BTO	EFO	CHMO	BAO	operation	
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/NCIT	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/EDAM	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/EFO	http://data.bioontology.org/ontologies/CHMO	http://data.bioontology.org/ontologies/BAO		http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	29	28	2	19	22	113	5	19		18.10e
+Term Source Description	Ontology for Biomedical Investigations	National Cancer Institute Thesaurus	National Center for Biotechnology Information (NCBI) Organismal Classification	EDAM bioinformatics operations, data types, formats, identifiers and topics	BRENDA Tissue and Enzyme Source Ontology	Experimental Factor Ontology	Chemical Methods Ontology	BioAssay Ontology		NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS1932
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2020-07-19
+Investigation Public Release Date	2021-10-06
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1932
+Study Title	A novel strategy for mining and identification of acylcarnitines using data-independent-acquisition (DIA) based retention time prediction modeling and pseudo-characteristic fragmentation ions matching
+Study Description	It is a challenging work to screen, identify, and quantify acylcarnitines in complex biological samples. A method, based on the retention time (RT) prediction and data-independent acquisition strategies, was proposed for the large-scale identification of acylcarnitines using liquid chromatography coupled with high-resolution mass spectrometry (LC-HRMS). Relative cumulative eluotropic strength was introduced as a novel descriptor in building a linear prediction model, which not only solves the problem that acylcarnitines with long carbon chains cannot be well predicted in traditional models but also proves its robustness and transferability across instruments in two data sets that were acquired in distinct chromatography conditions. The accessibility of both predictive RT and MS<sup>2</sup> spectra of suspect features effectively reduced about 30% false-positive results, and consequently, 150 and 186 acylcarnitines were identified in the rat liver and human plasma (NIST SRM 1950), respectively. This method provides a new approach in large-scale analysis of acylcarnitine in lipidomic studies and can also be extended to the analysis of other lipids.
+Study Submission Date	2020-07-19
+Study Public Release Date	2021-10-06
+Study File Name	s_MTBLS1932.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	acylcarnitine measurement	Data-Independent Acquisition	Retention time prediction	high-performance liquid chromatography-mass spectrometry	targeted metabolites	tandem mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005059	http://purl.obolibrary.org/obo/NCIT_C161786	http://edamontology.org/operation_3633	http://purl.obolibrary.org/obo/CHMO_0000796		http://purl.obolibrary.org/obo/CHMO_0000575
+Study Design Type Term Source REF	EFO	NCIT	EDAM	CHMO		CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	33625228
+Study Publication DOI	10.1021/acs.jproteome.0c00810
+Study Publication Author List	Feng C, Xue L, Lu D, Jin Y, Qiu X, Gonzalez FJ, Wang G, Zhou Z.
+Study Publication Title	Novel Strategy for Mining and Identification of Acylcarnitines Using Data-Independent-Acquisition-Based Retention Time Prediction Modeling and Pseudo-Characteristic Fragmentation Ion Matching.
+Study Publication Status	In preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sample extract	Data Acquisition Method
+Study Factor Type	Extract	Data Acquisition
+Study Factor Type Term Accession Number	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C82948	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C142469
+Study Factor Type Term Source REF	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1932_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Wistar rats (200–260 g, 6- to 8-weeks-old) used in this study were supplied by the Shanghai Institute of Pharmaceutical Industry and all animal studies were performed under the approval of the Institutional Authority for Laboratory Animal Care. The rats were housed in an environmentally controlled room at room temperature on a 12 h light/dark cycle, with food and water provided ad libitum. After being fed with a standard diet for 10 days to adapt to the environment, the rats were euthanised and the liver tissues immediately excised and frozen, lyophilized and stored at -80 °C until chemical analysis.</p><p><br></p><p>Human plasma (NIST SRM 1950) was obtained from the National Institute of Standards and Technology (NIST, Gaithersburg, Maryland, USA).</p>	<p>For rat liver, the tissue sample preparation was performed based on our previous study<strong>[1]</strong>. Briefly, MeOH-H2O (1/1, v/v) and MTBE were used to extract hydrophilic and hydrophobic metabolites in 2 successive steps. The appropriate volume of hydrophilic and hydrophobic extracts was respectively concentrated and reconstituted using ACN-H2O (9/1, v/v) and H2O-ACN-IPA (1/1/2, v/v/v) for instrumental analysis.</p><p><br></p><p>For human serum, the samples were treated according to a previous study<strong>[2]</strong>. Briefly, 1 ml mixture of TCM/MeOH (2/1, v/v) was added to 50 µl human plasma for extraction. The mixture was vortexed for 5 min. 200 µl ultra-pure water was then added to the mixture. After the mixture was vortexed and centrifuged (8000 rpm for 5 min), the upper and bottom stage layer of extractions, as hydrophilic and hydrophobic components, were separately transferred into two tubes for concentration. The subsequent sample reconstitution process was conducted as described in the above-mentioned tissue sample.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lu D, Xue L, Feng C, Jin Y, Wu C, Xie C, Gonzalez FJ, Wang G, Zhou Z. A systemic workflow for profiling metabolome and lipidome in tissue. J Chromatogr A. 2019 Mar 29;1589:105-115. doi:10.1016/j.chroma.2018.12.061. PMID:30638710.</p><p><strong>[2]</strong> Ulmer CZ, Jones CM, Yost RA, Garrett TJ, Bowden JA. Optimization of Folch, Bligh-Dyer, and Matyash sample-to-extraction solvent ratios for human plasma-based lipidomics studies. Anal Chim Acta. 2018 Dec 11;1037:351-357. doi:10.1016/j.aca.2018.08.004. PMID:30292311.</p>	<p>Instrumental analysis was conducted based on our previous study<strong>[1]</strong>. In brief, UltiMate 3000 Hyperbaric LC system (Thermo Fisher Scientific, USA) equipped with an Acquity CSH C18 column (2.1 x 100 mm i.d., 1.7 µm particle size, Waters, Milford, MA, USA) was used for chromatographic separation with mobile phase A (ACN-water, 60/40, v/v) and mobile phase B (IPA-ACN, 90/10, v/v). The mobile phase gradient was as follows: 0-2.0 min, 40%-43% B; 2.0-2.1 min, 43%-50% B; 2.1-12.0 min, 50%-54% B; 12.0-12.1 min, 54%-70% B; 12.1-18.0 min, 70%-99%B; 18.0-18.1 min 99%-40% B; and 18.1-20.0 min, 40% B. The temperatures of column oven and autosampler were set at 55 and 4 °C, respectively. An Injection volume of 5 µl was selected with a flow rate of 0.4 ml/min.</p><p><br></p><p>All Quality control (QC) samples and sample extracts were frozen at -80 °C and -40 °C until analysis, respectively. The sample analysis procedure was performed at 4 °C. Before sample analysis, a retention time (RT) drift of less than 5% was ensured in repeated running of QC samples.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Lu D, Xue L, Feng C, Jin Y, Wu C, Xie C, Gonzalez FJ, Wang G, Zhou Z. A systemic workflow for profiling metabolome and lipidome in tissue. J Chromatogr A. 2019 Mar 29;1589:105-115. doi:10.1016/j.chroma.2018.12.061. PMID:30638710.</p>	<p>MS data was acquired using Q-Exactive MS (Thermo Fisher Scientific, USA). The MS parameters were as follows: capillary temperature, 350 °C; ion spray voltage, 3300 V; sheath gas (N2) flow, 40 arb. units; and aux gas (N2) flow, 10 arb. units. MS1 data was acquired using full scan mode (resolution: 70,000 FWHM; AGC target: 1x10^6; Maximum IT: 50 ms; scan range: 120–600 Da). MS2 data was acquired using Inclusion List-based TDA (IL-TDA) (a list where listed m/z and RT of all precursor ions of interest to be fragmented) / DDA mode (resolution: 17,500 FWHM; AGC target: 1x10^5; Maximum IT: 50 ms; TopN = 5; Isolation window: 1 Da; stepped NCE: 20, 40 and 60), PRM mode (resolution: 17,500 FWHM; AGC target: 2x10^4; Maximum IT: 50 ms; Isolation window: 1 Da; NCE: 20, 40 and 60), and DIA mode (resolution: 175,000 FWHM; AGC target: 1x10^5; Maximum IT: 50 ms; Loop count: 1; Isolation window: 10 Da; stepped NCE: 20, 40 and 60).</p>	<p>ChemDraw v18.0 (PerkinElmer, US) was used to calculate CLogP. OriginPro 2019 (OriginLab Corporation, USA) was used to establish multiple linear regression model (Y: ε°RC versus X1: carbon number and X2: unsaturated degree of acylcarnitines). Apart from the software including TraceFinder v4.1, Compound Discoverer v3.1, mzVault v2.3, and LipidSearch v4.1 provided by Thermo Fisher Scientific (USA), LipidMatch (<a href='http://secim.ufl.edu/secim-tools/lipidmatch/' rel='noopener noreferrer' target='_blank'>http://secim.ufl.edu/secim-tools/lipidmatch/</a>) and MS-DIAL (<a href='http://prime.psc.riken.jp/compms/msfinder/main.html' rel='noopener noreferrer' target='_blank'>http://prime.psc.riken.jp/compms/msfinder/main.html</a>) were used for library building, data mining, and compound identification.</p>	<p>The identification was conducted based on accurate m/z of precursor ion and pseudo-CFIs matching. The pseudo-CFIs were summarized in the <strong>Table S1</strong> of the paper associated with the study, based on previously published studies<strong>[1]</strong>, and part of them were confirmed using online database or in-house database. The identification criteria are as follows: mass error of 5 ppm for precursor ion and fragment ions; at least two fragment ions of m/z 85.0284 and m/z 60.0808 should be matched for CFIs; and one more CFI of m/z 145.0495 is mandatory for the identification of 3-hydroxyl- or 3-keto- acylcarnitine species.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Yu D, Zhou L, Xuan Q, Wang L, Zhao X, Lu X, Xu G. Strategy for Comprehensive Identification of Acylcarnitines Based on Liquid Chromatography-High-Resolution Mass Spectrometry. Anal Chem. 2018 May 1;90(9):5712-5718. doi:10.1021/acs.analchem.7b05471. PMID:29651844.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name				Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number				;;;;		
+Study Protocol Parameters Name Term Source REF				;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Feng	Xue	Lu	Jin	Qiu	Gonzalez	Wang	Zhou
+Study Person First Name	Chao	Liming	Dasheng	Yu'e	Xinlei	Frank J	Guoquan	Zhijun
+Study Person Mid Initials								
+Study Person Email								
+Study Person Phone								
+Study Person Fax								
+Study Person Address								
+Study Person Affiliation								
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF								

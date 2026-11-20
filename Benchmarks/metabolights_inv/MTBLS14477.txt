@@ -1,0 +1,131 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	EPIO	MI	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/epio.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2025-10-21	1.25-20251112T1620Z-unstable(1.26)	3.89.0	2021-05-28			1.0.1		2026-05-05	26.02d	2026-03-19	2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Epilepsy Ontology (EPIO)	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS14477
+Investigation Title	Metabolomic analysis of extracellular metabolites from bacterial strains SL8, SL12 and their co-culture under cadmium stress
+Investigation Description	
+Investigation Submission Date	2026-05-14
+Investigation Public Release Date	2026-05-26
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS14477
+Study Title	Metabolomic analysis of extracellular metabolites from bacterial strains SL8, SL12 and their co-culture under cadmium stress
+Study Description	<p>In this study, bacterial strains 'SL8', 'SL12', and the cocultured 'SL8+SL12' were cultivated in LB medium with or without 100 mg/L cadmium(II) for 48 hours (six replicates per treatment). After centrifugation, extracellular metabolites in the supernatant were extracted using a methanol acetonitrile (1:1) solution, followed by vortexing, ultrasonic treatment, precipitation at -20°C, and centrifugation. The dried extract was reconstituted, ultrasonicated, and centrifuged again. A 120 µL aliquot was transferred for LC-MS analysis, and pooled QC samples were prepared from 10 µL of each sample.</p>
+Study Submission Date	2026-05-14
+Study Public Release Date	2026-05-26
+Study File Name	s_MTBLS14477.txt
+Comment[Created At]	2026-04-22
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-05-26
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolite profiling	ultra-performance liquid chromatography-mass spectrometry	Achromobacter insuavis	Enterobacter cancerogenus	Agilent 1290 Infinity LC	AB SCIEX TripleTOF 5600	Achromobacter insuavis Enterobacter cancerogenus	Supernatant	pooled quality control sample	experimental sample	untargeted analysis	Metabolomics
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000715	http://id.nlm.nih.gov/mesh/C000648016	http://id.nlm.nih.gov/mesh/C000650295	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000889	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000601	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/NCIT_C106485		http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172
+Study Design Type Term Source REF	MSIO	CHMO	mesh	mesh	MTBLS	MTBLS	MTBLS	NCIT		CHMO	MS	EDAM
+Comment[Study Design Category]	default	default	Organism	Organism	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type	omics-type
+Comment[Study Design Source]	submitter	submitter	submitter	submitter	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yu Tao, Shengying Ji, Chi Zhou, Di Peng, Xin Li
+Study Publication Title	A study on cadmium immobilization by bacterial consortia: Achromobacter insuavis SL8 and Enterobacter cancerogenus SL12
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Treatment
+Study Factor Type	Cadmium Chloride
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C45894
+Study Factor Type Term Source REF	NCIT
+Comment[Study Factor Value Format]	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS14477_LC-MS_positive_reverse-phase.txt	a_MTBLS14477_LC-MS_negative_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse-phase	Liquid Chromatography MS - negative - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Agilent 1290 Infinity LC;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;positive;50-1200;AB SCIEX TripleTOF 5600	Agilent 1290 Infinity LC;ACQUITY UPLC HSS T3 (1.8 µm, 2.1 mm x 100 mm; Waters);reverse phase;negative;50-1200;AB SCIEX TripleTOF 5600
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000889;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000601	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000889;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000844;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000601
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]	ultra-performance liquid chromatography-mass spectrometry	ultra-performance liquid chromatography-mass spectrometry
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000715
+Comment[Assay Descriptor Term Source REF]	CHMO	CHMO
+Comment[Assay Descriptor Category]	default	default
+Comment[Assay Descriptor Source]	submitter	submitter
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	CHMO	CHMO	MI
+Study Protocol Description	<p>Bacterial strains “SL8”, “SL12”, and their co-culture “SL8+SL12” were grown in LB medium supplemented with or without 100 mg/L cadmium(II) for 48 hours. Six biological replicates were prepared per treatment. After incubation, the cultures were centrifuged at 10,000 rpm to separate the supernatant (containing extracellular metabolites) from the cell pellet.&nbsp;</p>	<p>An Agilent 1290 Infinity UHPLC system was used for chromatographic separation. The column was an Acquity UPLC HSS T3 column (1.8 µm, 2.1 × 100 mm, Waters). The mobile phase consisted of (A) 0.1% formic acid in water and (B) 0.1% formic acid in acetonitrile. The flow rate was set to 400 µL/min, the injection volume was 2 µL, and the column temperature was maintained at the manufacturer’s default . The gradient program was as follows: 0 min, 95% A / 5% B; 0.5 min, 95% A / 5% B; 5.5 min, 50% A / 50% B; 9.0 min, 5% A / 95% B; 10.5 min, 5% A / 95% B; 12.0 min, 95% A / 5% B.&nbsp;</p>	<p>Raw data acquired with MassLynx V4.2 were processed using Progenesis QI software for peak picking, peak alignment, and other data processing steps. Metabolite identification was performed against the online METLIN database and the Biomarker self built database within Progenesis QI, together with theoretical fragment recognition. The mass tolerance was set to 100 ppm for precursor ions and 50 ppm for fragment ions.</p>	<p>For metabolite extraction, 100 μL of supernatant was mixed with 500 μL of methanol acetonitrile (1:1, v/v), vortexed for 30 s, and ultrasonicated in an ice water bath for 10 min. The mixture was incubated at −20 °C for 1 h and then centrifuged at 4 °C. A 500 μL aliquot of the supernatant was dried using a vacuum concentrator. The dried residue was reconstituted, vortexed for 30 s, ultrasonicated again for 10 min, and centrifuged at 12,000 rpm for 15 min at 4 °C. A 120 μL portion of the final supernatant was transferred to an injection vial. Quality control (QC) samples were prepared by pooling 10 μL from each sample.</p>	<p>Mass spectrometry was performed on a TripleTOF 5600 mass spectrometer (SCIEX) coupled with the Agilent 1290 UHPLC system. Electrospray ionization (ESI) was used in both positive and negative ion modes. The m/z range was set from 50 to 1200. Data acquisition was carried out in information dependent acquisition (IDA) mode to collect both MS and MS/MS spectra. The key ion source parameters were as follows: capillary voltage +2500 V (positive mode) or −2000 V (negative mode); cone voltage 30 V; source temperature 100 °C; desolvation temperature 500 °C; cone gas flow 50 L/h; desolvation gas flow 800 L/h. Scan rate was set to 0.2 seconds per spectrum.&nbsp;</p>	<p>Metabolite identification was performed against the online METLIN database and the Biomarker self built database within Progenesis QI, together with theoretical fragment recognition. The mass tolerance was set to 100 ppm for precursor ions and 50 ppm for fragment ions. Metabolite identification was confirmed by accurate mass matching (&lt;25 ppm) and secondary spectra comparison.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Tao	Ji	Zhou	Peng
+Study Person First Name	Xin	Yu	Shengying	Chi	Di
+Study Person Mid Initials					
+Study Person Email	s2007203272@yeah.net				
+Study Person Phone					
+Study Person Fax					
+Study Person Address					
+Study Person Affiliation	Hunan Academy of Agricultural Sciences				
+Study Person Roles	Principal Investigator	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-7325-0594				
+Comment[Study Person Affiliation ROR ID]	https://ror.org/01fj5gf64				

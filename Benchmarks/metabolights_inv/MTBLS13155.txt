@@ -1,0 +1,101 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHMO	EFO	MS	MTBLS	NCBITaxon	NCIT	OBI	SNOMED
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://www.ebi.ac.uk/ols4/api
+Term Source Version									
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	
+INVESTIGATION
+Investigation Identifier	MTBLS13155
+Investigation Title	Human gut microbiota and plasma metabolomics in Mn-glucose metabolism correlation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-10-17
+Investigation Public Release Date	2025-12-14
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS13155
+Study Title	Human gut microbiota and plasma metabolomics in Mn-glucose metabolism correlation
+Study Description	<p>Previous epidemiological and laboratorial studies have demonstrated a close relationship between plasma manganese (Mn) levels and type 2 diabetes (T2D), however, the underlying mechanism remains undisclosed. In this study, we employed a comprehensive approach that integrated fecal 16S rRNA sequencing, plasma untargeted metabolomics as well as Mendelian randomization (MR) analysis in a community-based population to identify the key gut microbiota taxa and plasma metabolites involved in the correlation between Mn and glucose metabolism. We observed a significant negative correlation between plasma Mn concentrations and fasting plasma glucose (FPG) levels. The relative abundance of Prevotella genus showed a stepwise increase from the lowest to the highest Mn tertiles. Moreover, the plasma hypoxanthine levels were positively associated with the abundance of Prevotella while inversely linked to FPG levels. MR analysis further confirmed a negative causal relationship between Prevotella_7 and diabetes (OR = −0.312, 95% CI: −0.575 to −0.050, PIVW = 0.02), which aligned with the associations among Prevotella, hypoxanthine and FPG. Collectively, our findings suggested a novel “Mn-Prevotella-hypoxanthine” axis linking plasma Mn levels to glucose metabolism, offering promising mechanism insights into trace element-glucose metabolism and potential strategies for glycemic control.</p>
+Study Submission Date	2025-10-17
+Study Public Release Date	2025-12-14
+Study File Name	s_MTBLS13155.txt
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	human gut metagenome	Plasma manganese level	untargeted metabolites	glucose metabolism trait
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_408170	http://snomed.info/id/391529001	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/OBA_VT0015088
+Study Design Type Term Source REF	EFO	SNOMED	MTBLS	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Zhao Peng, Xiaoling Liang, Hongjie Liu, Yue Huang, Yang Jiao, Lei King, Nanpeng Zhao, Yunhong Sun, Mengdadi Xu, Jian Xu, Wei Yang, Yuxiao Liao, Liegang Liu
+Study Publication Title	Human gut microbiota and plasma metabolomics in Mn-glucose metabolism
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Plasma manganese level
+Study Factor Type	exposure
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000487
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS13155_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS13155_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS13155_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS13155_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - HILIC	Liquid Chromatography MS - negative - HILIC	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p>After an overnight fast (10-12 hours), venous blood samples of the research individuals were collected by clinic nurse in tubes containing the anticoagulant for plasma separation. Then, the blood collection tubes were gently inverted 180 degrees for 5 to 8 times. The anticoagulated whole blood samples were left to stand at room temperature for 30 minutes and then centrifuged at 1500 g for 15 minutes. Finally, the plasma samples were seperated in 1.5 mL Eppendorf centrifuge tubes and stored at -80℃.</p>	<p>Thaw the sample at 4℃ and transfer 100 μL of plasma sample into a 1.5 mL EP tube;</p><p>Add 300 μL of methanol pre cooled at -80℃, vortex thoroughly, and perform protein precipitation;</p><p>Pre cool the centrifuge to 4℃ and centrifuge at 15000 g for 15 minutes;</p><p>Transfer all supernatant as much as possible into a new 1.5 mL EP tube;</p><p>Blow nitrogen or freeze dry the EP tube containing the supernatant to dryness;</p><p>Dissolve 100 μL of methanol aqueous solution (8:2, V/V), vortex thoroughly, centrifuge at 14000 g for 10 minutes;</p><p>Divide the supernatant evenly into four injection bottles and prepare for use on the machine.</p>	<p>C18 column, positive ion mode:</p><p>Chromatography column: ACQUITY UPLC BEH C18 (2.1 mm × 100 mm, 1.7 μm), column temperature 30℃; mobile phase A is 0.1% formic acid water, mobile phase B is acetonitrile, flow rate is 0.25 mL/min, injection volume is 2 μ L, and one quality control sample is added to every 10 samples. The gradient elution procedure is: 0-1.5 min, 5% B; 1.5-5.5 min, 5% B to 30% B, 5.5-10 min, 30% B to 60% B, 10-10.5 min, 60% B to 98% B, 10.5-14.5 min, 98% B, 14.5-15 min, 98% B to 5% B; 15-20 min, 5% B.</p><p>C18 column, negative ion mode:</p><p>Chromatography column: ACQUITY UPLC BEH C18 (2.1 mm × 100 mm, 1.7 μm), column temperature 30 ℃; mobile phase A is a 5 mmol/L ammonium acetate aqueous solution containing 0.1% ammonia water, mobile phase B is acetonitrile, and the flow rate is 0.25 mL/min. The injection volume is 2 μL, and one quality control sample is added to every 10 samples. The gradient elution procedure is: 0-1.5 min, 5% B; 1.5-5.5 min, 5% B to 30% B, 5.5-10 min, 30% B to 60% B, 10-10.5 min, 60% B to 98% B, 10.5-14.5 min, 98% B, 14.5-15 min, 98% B to 5% B; 15-20 min, 5% B.</p><p>HILIC column, positive ion mode:</p><p>Chromatography column: ACQUITY UPLC BEH HILIC (2.1 mm × 100 mm, 1.7 μm), column temperature 30℃; mobile phase A is 0.1% formic acid water, mobile phase B is acetonitrile, flow rate is 0.25 mL/min, injection volume is 2 μL, and one quality control sample is added to every 10 samples. The gradient elution procedure is: 0-1.5 min, 95% B; 1.5-5.5 min, 95% B to 70% B, 5.5-10 min, 70% B to 50% B, 10-10.5 min, 50% B to 35% B, 10.5-14.5 min, 35% B, 14.5-17.5 min, 35% B to 95% B; 17.5-20 min, 95% B.</p><p>HILIC column, negative ion mode:</p><p>Chromatography column: ACQUITY UPLC BEH HILIC (2.1 mm × 100 mm, 1.7 μm), column temperature 30℃; mobile phase A is a 5 mmol/L ammonium acetate aqueous solution containing 0.1% ammonia water, mobile phase B is acetonitrile, flow rate is 0.25 mL/min, injection volume is 2 μL, and one quality control sample is added to every 10 samples. The gradient elution procedure is: 0-1.5 min, 95% B; 1.5-5.5 min, 95% B to 70% B, 5.5-10 min, 70% B to 50% B, 10-10.5 min, 50% B to 35% B, 10.5-14.5 min, 35% B, 14.5-17.5 min, 35% B to 95% B; 17.5-20 min, 95% B.</p>	<p>Based on the Thermo Q Active Plus orbital ion trap high-resolution mass spectrometer, the electrospray ion source ion mode is adopted: sheath gas flow rate is 45 ambient units, and auxiliary gas flow rate is 10 ambient units; The mass spectrometry scanning range is 70-1000 m/z; The nozzle voltage is set to 4.2 kV; the ion source temperature is 350℃. The first level data acquisition adopts high-resolution Fourier transform mode with a resolution of 70000; The secondary data collection adopts a data dependency mode with a resolution of 17500; The dynamic exclusion time is 6 seconds; the fragmentation method adopts high energy collision dissociation (HCD), and the collision energy is selected according to different metabolites at 20%, 40%, and 70%.</p>	<p>MSConvert software were used to transform the raw data to mzML format and then compress these mzML files.</p>	<p>The raw data obtained by ultra-high performance liquid chromatography tandem high-resolution mass spectrometer was processed using Thermo's commercial small molecule metabolite analysis software Compound Discoverer 3.1. The processing includes chromatographic peak identification, peak retention time correction, and peak alignment to obtain the retention time, accurate mass to charge ratio, and standardized peak area of the corresponding metabolites. Based on the obtained primary and secondary mass spectrometry parameters of the compounds, metabolites were identified using databases Human Metabolome Database (HMDB), and KEGG.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Liu	Peng
+Study Person First Name	Liegang	Zhao
+Study Person Mid Initials		
+Study Person Email	lgliu@mails.tjmu.edu.cn	15629089940@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address		
+Study Person Affiliation	Huazhong University of Science and Technology	
+Study Person Roles	Principal Investigator	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT	NCIT
+Comment[Study Person Affiliation ROR ID]	https://ror.org/00p991c53	

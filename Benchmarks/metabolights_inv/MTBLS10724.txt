@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	EFO	NCIT	GO	CHEBI	MTBLS	FMA
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/EFO				https://www.ebi.ac.uk/metabolights/	
+Term Source Version	29	132				1	
+Term Source Description	Ontology for Biomedical Investigations	Experimental Factor Ontology				Metabolights Ontology	
+INVESTIGATION
+Investigation Identifier	MTBLS10724
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-07-19
+Investigation Public Release Date	2024-08-22
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS10724
+Study Title	Virus-encoded glycosyltransferases hypermodify DNA with diverse glycans
+Study Description	<p>Enzymatic modification of DNA nucleobases can coordinate gene expression, nuclease protection or mutagenesis. We recently discovered a clade of phage-specific cytosine methyltransferase (MT) and 5-methylpyrimidine dioxygenase (5mYOX) enzymes that produce 5-hydroxymethylcytosine (5hmC) as a precursor for enzymatic hypermodifications on viral genomes. Here, we identify phage MT- and 5mYOX- associated glycosyltransferases (GTs) that catalyze linkage of diverse sugars to 5hmC nucleobase substrates. Metavirome mining revealed thousands of new biosynthetic gene clusters containing enzymes with predicted roles in cytosine sugar hypermodification. We developed a platform for high-throughput screening of GT- containing pathways, relying on the E. coli metabolome as a substrate pool. We successfully reconstituted several pathways and isolated diverse sugar modifications appended to cytosine, including mono-, di-, or tri-saccharides comprised of hexoses, N-acetylhexosamines or heptose. These findings expand our knowledge of hypermodifications on nucleic acids and the origins of corresponding sugar-installing enzymes.</p>
+Study Submission Date	2024-07-19
+Study Public Release Date	2024-08-22
+Study File Name	s_MTBLS10724.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Bacteriophage	DNA modification	glycan	5-methylcytosine dioxygenase activity	nucleoside
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C14188	http://purl.obolibrary.org/obo/GO_0006304	http://purl.obolibrary.org/obo/CHEBI_167559	http://purl.obolibrary.org/obo/GO_0070579	http://purl.obolibrary.org/obo/CHEBI_33838
+Study Design Type Term Source REF	NCIT	GO	CHEBI	GO	CHEBI
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	10.1101/2023.12.21.572611
+Study Publication Author List	Pyle Jesse D., Lund Sean R., O’Toole Katherine H., Saleh Lana
+Study Publication Title	Virus-encoded glycosyltransferases hypermodify DNA with diverse glycans
+Study Publication Status	Preprint
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000004
+Study Publication Status Term Source REF	MTBLS
+STUDY FACTORS
+Study Factor Name	Biosynthetic gene cluster assembly
+Study Factor Type	Gene cluster
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/FMA_84082
+Study Factor Type Term Source REF	FMA
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS10724_LC-DAD_alternating_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Diode array detection MS - alternating - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Data transformation	Metabolite identification	Mass spectrometry
+Study Protocol Type	Sample collection	Extraction	Chromatography	Data transformation	Metabolite identification	Mass spectrometry
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p><strong>Expression of biosynthetic gene cluster (BGC) assemblies in <em>E. coli</em></strong></p><p>Between 4-6 colonies per design were transferred into deep-well plates containing 250 µL LB Kan. Plates were incubated with shaking overnight at 30 °C. The following day, cultures were diluted with 250 µL LB and 10 µL was used to inoculate a fresh plate containing 500 µL LB Kan in each well. Plates were incubated with shaking for 5 h at 30 °C before IPTG was added to 400 µM by being delivered with 25 µL LB. The plates were incubated at 18 °C overnight. The following day the cultures were transferred to KingFisher deep well plates (ThermoFisher), spun down at 2500 x g for 10 min, and media removed by inversion. The same colonies used for starting the liquid expression cultures were used for cPCR verification of insert position and size. PCR amplicons were separated and visualized using agarose gel electrophoresis and staining with ethidium bromide to verify product size and homogeneity.</p><p><br></p><p><strong>Purification of modified <em>E. coli </em>genomic DNA (gDNA)</strong></p><p>Cell pellets were resuspended with 95 µL PBS and 5 µL Proteinase K using a Thermomixer. Once achieving homogeneity, 95 µL Tissue Lysis Buffer from Monarch Genomic DNA Purification Kit and 5 µL Monarch RNase A was added and the plate was incubated with shaking at 1200 rpm on a Thermomixer at 56 °C for 4 h until the lysates had clarified. Next 50 µL of SPRIselect and 100 µL PEG binding buffer (2.5 M NaCl, 20% PEG 8000 w/v, 10 mM Tris pH 8.0) was added and the mixture was gently shaken at 800 rpm on a Thermomixer for 10 min. gDNA was then purified using a KingFisher Flex through 3x 300 µL 80% ethanol washes followed by elution in 97 µL water containing 3 µL Monarch RNase A leaving the SPRI beads in the elution. The elution plate was left on the benchtop overnight to digest the contaminating RNA. The following day, 100 µL PEG binding buffer was added and the bound gDNA was washed twice with 300 µL 80% ethanol and eluted into 100 µL water with the beads being left in the elution.</p>	<p><strong>Enzymatic digestion of E. coli gDNA to free nucleosides</strong></p><p>The eluted gDNA was resuspended by pipetting to make the beads and elution as homogenous as possible before 20 µL was used in a 40 µL digest using 1 µL of nucleoside digestion mix and 4 µL 10X buffer following the protocol for Nucleoside Digestion Mix (NEB) in an unskirted PCR plate. The mixture was incubated at 37 °C overnight on a thermocycler, filtered using AcroPrep Advance 96 Well 0.2 µm Supor Short Tip Natural PP (Pall Corporation, Port Washington, NY) into a skirted PCR plate. The plate was then covered with a Zone-Free Sealing Film (Excel Scientific, Victorville, CA) for UHPLC analysis. Samples for sugar mass analysis were generated by digesting 1.5 µg isolated gDNA in a 30 µL Nucleoside Digest reaction with 1 µL enzyme followed by filtration and 15 µL injected on an ultra-high performance liquid chromatography (UHPLC) instrument equipped with a mass spectrometer (MS).</p>	<p><strong>UHPLC analysis of nucleosides</strong></p><p>UHPLC analysis was performed on an<strong> Agilent 1290 Infinity II (Agilent, Santa Clara, CA)</strong> equipped with a <strong>G7117A </strong>diode array detector. UHPLC was carried out using a Waters XSelect HSS T3 XP column (2.1 x 100 mm, 2.5 µm) (Waters, Milford, MA) with buffer A being comprised of 10 mM ammonium acetate pH 4.5 and buffer B as methanol at a 0.6 mL/min constant flow rate and a 2 µL injection. The gradient was as follows: 1% B for 1.5 min, 1-10% B from 1.5 to 7.5 min, 90-100% B from 7.5 to 9.0 min, hold at 100% from 9.0 to 11.0 min and 100-1% B from 11.0 to 12.0 min before a 1.5-min hold prior to the next injection. UHPLC-MS analysis of unknown peaks was performed using a similar setup, but with a 6120 single quadrupole mass detector in both positive and negative modes. The nucleoside scalar values determined for quantification of products (see Quantification section below) were as follows: dA = 1; dT = 1.65916; dG = 1.22133; dC = 2.05721; 5mC = 3.01239; 5hmC = 2.71319; and 5-GlcβmC = 2.828.</p>	<p>LC and MS data were converted to PDF for visualization and preparation of figures for our accompanying manuscript. The PDFs are accessible in our 'DERIVED_FILES' folder.</p>	<p>Sugar modified nucleosides were predicted based on detected masses and corresponding predicted sugars (<em>e.g.</em>, hexose, heptose, hexNAc) and in some cases by LC co-elution at the same retention time as known hypermodified nucleoside products (<em>e.g.</em>, 5-GlcβmC).</p>	<p>This was a UPLC-DAD analysis. No Mass spectrometry was carried out.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column;Detector;Resolution;Signal range			
+Study Protocol Parameters Name Term Accession Number		;	;;;;;;;			
+Study Protocol Parameters Name Term Source REF		;	;;;;;;;			
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Pyle	Lund	O'Toole	Saleh
+Study Person First Name	Jesse	Sean	Katherine	Lana
+Study Person Mid Initials	D	R	H	
+Study Person Email	jpyle@neb.com	slund@neb.com	kotoole@neb.com	saleh@neb.com
+Study Person Phone				
+Study Person Fax				
+Study Person Address				
+Study Person Affiliation	New England Biolabs	New England Biolabs	New England Biolabs	New England Biolabs
+Study Person Roles	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT

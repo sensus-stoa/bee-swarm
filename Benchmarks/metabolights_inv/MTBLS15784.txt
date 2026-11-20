@@ -1,0 +1,132 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI	mesh
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	https://w3id.org/biopragmatics/resources/mesh/mesh.owl.gz
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.92.0			1.0.1		26.02d	2026-05-08	2025
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations	Medical Subject Headings
+INVESTIGATION
+Investigation Identifier	MTBLS15784
+Investigation Title	Metabolomic analysis of inhibited pollen tube growth in unilateral crosses of Clematis
+Investigation Description	
+Investigation Submission Date	2026-09-23
+Investigation Public Release Date	2026-09-23
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15784
+Study Title	Metabolomic analysis of inhibited pollen tube growth in unilateral crosses of Clematis
+Study Description	<p>This study utilized broad-target metabolomics to analyze the metabolic changes underlying the inhibition of pollen tube growth in Clematis one-way hybrid crosses with low compatibility. It identified differentially accumulated metabolites and elucidated the key metabolic pathways involved in one-way hybridization barriers, thereby providing a metabolic basis for interspecific hybrid breeding in Clematis.</p>
+Study Submission Date	2026-09-23
+Study Public Release Date	2026-09-23
+Study File Name	s_MTBLS15784.txt
+Comment[Created At]	2026-08-25
+Comment[Funder]	
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	
+Comment[Related Data Description]	
+Comment[Related Data Repository]	
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-09-23
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Thermo Scientific Vanquish UHPLC System	Thermo Scientific Q-Exactive HF-X	Clematis	pistil	pooled sample	experimental sample	untargeted analysis	Metabolomics	untargeted metabolite profiling
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858		http://id.nlm.nih.gov/mesh/D039324	http://purl.obolibrary.org/obo/NCIT_C79654		http://purl.obolibrary.org/obo/CHMO_0002746	http://purl.obolibrary.org/obo/MS_1003904	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MSIO_0000101
+Study Design Type Term Source REF	MTBLS		mesh	NCIT		CHMO	MS	EDAM	MSIO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type	omics-type	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yaping Hu, Jian Zheng
+Study Publication Title	Metabolomic analysis of inhibited pollen tube growth in unilateral crosses of Clematis
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Time	Cultivar
+Study Factor Type	timepoint	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15784_LC-MS_negative_reverse-phase.txt	a_MTBLS15784_LC-MS_positive_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0003097	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Thermo Scientific Vanquish UHPLC System;ACQUITYUPLCBEHC18（100mm×2.1mmi.d.,1.7µm; Waters,Milford,USA）;reverse phase;negative;70-1050;Thermo Scientific Q-Exactive HF-X	Thermo Scientific Vanquish UHPLC;ACQUITYUPLCBEHC18（100mm×2.1mmi.d.,1.7µm; Waters,Milford,USA）;reverse phase;positive;70-1050;Thermo Scientific Q-Exactive HF-X
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000858;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/placeholder;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/placeholder
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Assay Descriptor]		
+Comment[Assay Descriptor Term Accession Number]		
+Comment[Assay Descriptor Term Source REF]		
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]		
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>Pistil tissue samples from clematis were collected at various time points after pollination. Immediately after removal, the samples were rapidly frozen in liquid nitrogen and stored in a -80°C ultra-low temperature freezer for future use.</p>	<p>An ultra-high-performance liquid chromatography (UHPLC) system was used, with a C18 column for component separation; the liquid-phase separation was performed using the appropriate mobile phase system and elution program.</p>	<p>Perform preprocessing operations on raw mass spectrometry data, including peak alignment, peak identification, signal filtering, and data normalization.</p>	<p>Grind and pulverize the frozen pistil samples, extract metabolites using a methanol-water solution, vortex thoroughly, centrifuge, and then aspirate the supernatant for subsequent instrumental analysis.</p>	<p>Using a triple quadrupole mass spectrometer, collect mass spectrometry signals of metabolites in both positive and negative ion modes.</p>	<p>Using the project’s in-house metabolite database and comparing it with the mass spectrometry data of reference standards, complete the qualitative annotation of metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Hu	Zheng	Hu
+Study Person First Name	Yaping	Jian	Qingdi
+Study Person Mid Initials			
+Study Person Email	huyp@zaas.ac.cn	zhengj@zaas.ac.cn	
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	ZheJiang Academy of Agricultural Sciences	ZheJiang Academy of Agricultural Sciences	
+Study Person Roles	Principal Investigator	Author	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0003-3496-0600		
+Comment[Study Person Affiliation ROR ID]	https://ror.org/02qbc3192	https://ror.org/02qbc3192	

@@ -1,0 +1,136 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	CHMO	EDAM	EFO	MI	MS	MSIO	MTBLS	NCIT	OBI
+Term Source File	http://purl.obolibrary.org/obo/chmo.owl	https://raw.githubusercontent.com/edamontology/edamontology/master/releases/EDAM.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://raw.githubusercontent.com/MSI-Metabolomics-Standards-Initiative/MSIO/master/releases/latest_release/MSIO-merged-reasoned.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version	2026-05-28	1.25-20260626T1230Z	3.94.0			1.0.1		26.02d	2026-07-27
+Term Source Description	Chemical Methods Ontology	EDAM - The ontology of data analysis and management	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	Metabolomics Standards Initiative Ontology (MSIO)	MetaboLights Controlled Vocabulary	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS15374
+Investigation Title	Epigenomic and transcriptomic profiling of FaCMT3-dependent strawberry fruit development
+Investigation Description	
+Investigation Submission Date	2026-08-17
+Investigation Public Release Date	2026-10-20
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS15374
+Study Title	Epigenomic and transcriptomic profiling of FaCMT3-dependent strawberry fruit development
+Study Description	This project investigates how FaCMT3-dependent CHG methylation regulates fruit development in cultivated strawberry (Fragaria × ananassa Benihoppe). RNA sequencing and whole-genome bisulfite sequencing were performed across selected strawberry genotypes and fruit stages. Integrated methylome–transcriptome analyses identified loci associated with FaCMT3-dependent methylation and transcriptional regulation, including a restricted subset of SLEEPER-like genes. These datasets provide a resource for studying the epigenetic regulation of strawberry fruit development.
+Study Submission Date	2026-08-17
+Study Public Release Date	2026-10-20
+Study File Name	s_MTBLS15374.txt
+Comment[Created At]	2026-08-17
+Comment[Funder]	the China Postdoctoral Science Foundation Special Fund;Postdoctoral Fellowship Program of CPSF;the Selective Funding for Postdoctoral Research Projects in Zhejiang Province;the National Natural Science Foundation of China
+Comment[Funder ROR ID]	
+Comment[Grant Identifier]	2026T190799;GZC20251953;ZJ2025012;32272369, W2542014
+Comment[License]	CC0 1.0 Universal
+Comment[Linked Study Accession]	
+Comment[MHD Model Version]	0.1
+Comment[Related Data Accession]	PRJNA1512121
+Comment[Related Data Description]	
+Comment[Related Data Repository]	NCBI
+Comment[Related Data URL]	
+Comment[Revision]	1
+Comment[Revision Date]	2026-10-20
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	ms-mhd-legacy
+Comment[Study Template]	minimum
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Agilent 1100 Series HPLC System	Bruker micrOTOF-Q II	Fragaria ¡Á ananassa	fruit	experimental sample	pooled sample	untargeted analysis	data-dependent acquisition	profile spectrum	collision-induced dissociation	Metabolomics	untargeted metabolite profiling	tandem mass spectrometry	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000868	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000633			http://purl.obolibrary.org/obo/CHMO_0002746		http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003221	http://purl.obolibrary.org/obo/MS_1000128	http://purl.obolibrary.org/obo/MS_1000133	http://edamontology.org/topic_3172	http://purl.obolibrary.org/obo/MSIO_0000101	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	MTBLS			CHMO		MS	MS	MS	MS	EDAM	MSIO	CHMO	CHMO
+Comment[Study Design Category]	Chromatography Instrument	Instrument	Organism	Organism part	Sample type	Sample type	measurement-type				omics-type	default	default	default
+Comment[Study Design Source]	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	status-update-workflow	submitter	submitter	submitter
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Yanpei Chen
+Study Publication Title	Epigenomic and transcriptomic profiling of FaCMT3-dependent strawberry fruit development
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype	Collection time point
+Study Factor Type	genotype	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO	EFO
+Comment[Study Factor Value Format]	ontology	ontology
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS15374_LC-MS_negative_reverse-phase.txt	a_MTBLS15374_LC-MS_positive_reverse-phase.txt
+Study Assay Measurement Type	untargeted analysis	untargeted analysis
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/MS_1003904	http://purl.obolibrary.org/obo/MS_1003904
+Study Assay Measurement Type Term Source REF	MS	MS
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative - reverse-phase	Liquid Chromatography MS - positive - reverse-phase
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+Comment[Assay Type]	liquid chromatography mass spectrometry assay	liquid chromatography mass spectrometry assay
+Comment[Assay Type Term Accession Number]	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0003097
+Comment[Assay Type Term Source REF]	OBI	OBI
+Comment[Omics Type]	Metabolomics	Metabolomics
+Comment[Omics Type Term Accession Number]	http://edamontology.org/topic_3172	http://edamontology.org/topic_3172
+Comment[Omics Type Term Source REF]	EDAM	EDAM
+Comment[Assay Field Name]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]	Parameter Value[Chromatography Instrument];Parameter Value[Column model];Parameter Value[Column type];Parameter Value[Scan polarity];Parameter Value[Scan m/z range];Parameter Value[Instrument]
+Comment[Assay Field Default Value]	Agilent 1100 Series HPLC System;Acclaim C18 (2.2 µm, 2.1 mm x 150 mm; Thermo Scientific);reverse phase;negative;100-1000;Bruker micrOTOF-Q II	Agilent 1100 Series HPLC System;Acclaim C18 (2.2 µm, 2.1 mm x 150 mm; Thermo Scientific);reverse phase;positive;100-1000;Bruker micrOTOF-Q II
+Comment[Assay Field Default Unit]	;;;;;	;;;;;
+Comment[Assay Field Default Value Accession Number]	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000868;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000714;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000633	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000868;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000714;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000853;;;http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000633
+Comment[Assay Field Default Value Source REF]	MTBLS;MTBLS;MTBLS;;;MTBLS	MTBLS;MTBLS;MTBLS;;;MTBLS
+Comment[Measurement Type]	untargeted analysis	
+Comment[Measurement Type Term Source REF]	MS	
+Comment[Measurement Type Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003904	
+Comment[Assay Descriptor]	data-dependent acquisition;profile spectrum;collision-induced dissociation	
+Comment[Assay Descriptor Term Accession Number]	http://purl.obolibrary.org/obo/MS_1003221;http://purl.obolibrary.org/obo/MS_1000128;http://purl.obolibrary.org/obo/MS_1000133	
+Comment[Assay Descriptor Term Source REF]	MS;MS;MS	
+Comment[Assay Descriptor Category]		
+Comment[Assay Descriptor Source]	submitter;submitter;submitter	
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Chromatography	Data transformation	Extraction	Mass spectrometry	Metabolite identification
+Study Protocol Type	Sample collection	chromatography	data transformation	Extraction	mass spectrometry	metabolite identification
+Study Protocol Type Term Accession Number		http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/OBI_0200000		http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF		CHMO	OBI	OBI	CHMO	MI
+Study Protocol Description	<p>A total of 24 plant samples were collected, divided into 8 groups with 3 biological replicates per group (Facmt3-19F, Facmt3-19W, Facmt3-21F, Facmt3-22F, Facmt3-22W, FawtF, Fvcmt3-12, Fvwt). All fresh tissues were rapidly frozen and preserved at low temperature to block metabolic activity. QC samples were prepared by pooling equal volumes of extraction liquid from all test samples for system stability monitoring.</p>	<p>Ultra-high performance liquid chromatography (UPLC) was applied for metabolite separation. The separated components were sequentially introduced into tandem time-of-flight mass spectrometry. Both positive ion and negative ion electrospray modes were operated to capture full-spectrum chromatographic signals of metabolites. Total ion chromatogram (TIC) overlaps of QC samples were used to evaluate chromatographic reproducibility.</p>	<p>Raw LC-MS data were processed to extract ion peak intensity information. All metabolite abundance values were normalized and standardized for downstream statistical analysis:</p><p>Multivariate modeling: PCA, PLS-DA, OPLS-DA for intergroup variation evaluation;</p><p>Differential screening: log2 fold change, P-value and VIP value transformation;</p><p>Z-score normalization for clustering heatmaps and trend clustering (Mfuzz fuzzy c-means);</p><p>Statistical permutation tests to avoid supervised model overfitting.</p>	<p>All experimental samples and mixed QC samples underwent unified metabolite extraction. Metabolites were extracted from plant tissue matrix to obtain crude extraction solutions, which were later used for subsequent LC-MS/MS instrumental analysis.</p>	<p>A UHPLC-tandem time-of-flight mass spectrometer was used for untargeted metabolome detection. Mass spectrum parameters including molecular weight, secondary fragmentation patterns and collision energy were recorded for each ion feature. Instrument stability was validated via QC correlation analysis, Hotelling’s T2 test, multivariate control charts and RSD statistics of ion peaks.</p>	<p>Metabolites were annotated against an in-house standard database with strict matching criteria: mass error &lt;10 ppm, matched retention time, secondary fragment spectra and collision energy. All annotation results were manually double-checked, and all identified metabolites reached Level 2 identification standard. A total of 1402 metabolites were annotated, which were further categorized by SuperClass, Class and SubClass chemical taxonomy for statistical analysis.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Chromatography Instrument;Autosampler model;Column model;Column type;Guard column		Post Extraction;Derivatization	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer	
+Study Protocol Parameters Name Term Accession Number		;;;;		;	;;;;	
+Study Protocol Parameters Name Term Source REF		;;;;		;	;;;;	
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Chen	Chen	Chen
+Study Person First Name	Yanpei	Yanpei	Yanpei
+Study Person Mid Initials			
+Study Person Email	chenyp_fdsci@zju.edu.cn	chenyp_fdsci@zju.edu.cn	chenyp_fdsci@zju.edu.cn
+Study Person Phone			
+Study Person Fax			
+Study Person Address			
+Study Person Affiliation	Zhejiang University	Zhejiang University	Zhejiang University
+Study Person Roles	Principal Investigator	Author	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT
+Comment[Study Person ORCID]	0000-0001-6010-263X	0000-0001-6010-263X	0000-0001-6010-263X
+Comment[Study Person Affiliation ROR ID]	https://ror.org/00a2xv884	https://ror.org/00a2xv884	https://ror.org/00a2xv884
+Comment[Study Person Alternative Email]		chenyp_fdsci@zju.edu.cn	chenyp_fdsci@zju.edu.cn

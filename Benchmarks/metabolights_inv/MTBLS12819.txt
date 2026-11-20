@@ -1,0 +1,104 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	7579	CHMO	EFO	MI	MS	MTBLS	NCBITaxon	NCIT	OBI
+Term Source File	https://www.ebi.ac.uk/ols4/api	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/mi.owl	http://purl.obolibrary.org/obo/ms.owl	https://github.com/EBI-Metabolights/MtblsWS-Py/blob/main/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl
+Term Source Version		2025-10-21	3.87.0				2025-12-03	25.06e	2025-12-18
+Term Source Description		Chemical Methods Ontology	Experimental Factor Ontology	Molecular Interactions Controlled Vocabulary	Mass spectrometry ontology	MetaboLights Controlled Vocabulary	NCBI organismal classification	NCI Thesaurus OBO Edition	Ontology for Biomedical Investigations
+INVESTIGATION
+Investigation Identifier	MTBLS12819
+Investigation Title	The effect of the MYH9 in endothelial cells on metabolism
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-08-05
+Investigation Public Release Date	2026-03-05
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS12819
+Study Title	The effect of the MYH9 in endothelial cells on metabolism
+Study Description	<p>This document focuses on exploring the specific impact of MYH9 on the metabolic processes of vascular endothelial cells. To achieve this, a well-designed experimental approach was adopted: human umbilical vein endothelial cells (HUVECs) were subjected to different treatments using adenoviruses, including MYH9 knockdown (MYH9_KD), knockdown control (MYH9_KDC), overexpression (MYH9_OE), and overexpression control (MYH9_OEC).</p><p>Subsequently, untargeted metabolomics analysis based on ultra-performance liquid chromatography-mass spectrometry (UPLC-MS) was employed to systematically profile the metabolic changes in these treated cells. Through this comprehensive analysis, a total of 152 differential metabolites were identified, which exhibit distinct expression patterns across the different treatment groups. These differential metabolites are closely associated with several key metabolic pathways, with sulfur metabolism and glycerophospholipid metabolism being particularly prominent.</p><p>To further validate the reliability of the findings, seven core metabolites were selected for verification in the overexpression model, and their expression changes were confirmed, strengthening the credibility of the results. Overall, this study not only identifies potential biomarkers that may be related to MYH9-mediated vascular endothelial cell metabolism but also provides a solid mechanistic basis for understanding the role of MYH9 in the pathogenesis of vascular diseases, which is of great significance for the development of novel diagnostic and therapeutic strategies for MYH9-related vascular disorders.</p>
+Study Submission Date	2025-08-05
+Study Public Release Date	2026-03-05
+Study File Name	s_MTBLS12819.txt
+Comment[Created At]	2025-07-30T00:00:00
+Comment[License]	CC0 1.0 Universal
+Comment[Revision]	1
+Comment[Revision Date]	
+Comment[Revision Log]	Initial revision
+Comment[Sample Template]	minimum
+Comment[Study Category]	other
+Comment[Study Template]	
+Comment[Template Version]	1.0
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	MYH9	HUVEC cell
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://identifiers.org/hgnc/7579	http://www.ebi.ac.uk/efo/EFO_0002451
+Study Design Type Term Source REF	MTBLS	7579	EFO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Ruqiang Yuan, Lina Guo, Huiyi Song, Xiaoru Zhang, Mingqi Wang, Xiuli Wang
+Study Publication Title	Untargeted Metabolomics Based on Ultra Performance Liquid Chromatography-High Resolution Mass Spectrometry Reveals the Effect of MYH9 on the Metabolism of Vascular Endothelial Cells
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Genotype
+Study Factor Type	genotype
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000513
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS12819_LC-MS_negative__metabolite_profiling.txt	a_MTBLS12819_LC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling assay	metabolite profiling assay
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - negative	Liquid Chromatography MS - positive
+Comment[Assay Identifier]		
+Comment[Assay Type Label]	LC-MS	LC-MS
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	chromatography	mass spectrometry	data transformation	metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://purl.obolibrary.org/obo/CHMO_0001000	http://purl.obolibrary.org/obo/CHMO_0000470	http://purl.obolibrary.org/obo/OBI_0200000	http://purl.obolibrary.org/obo/MI_2131
+Study Protocol Type Term Source REF	MTBLS	MTBLS	CHMO	CHMO	OBI	MI
+Study Protocol Description	<p>3.5 x 105&nbsp;HUVECs were seeded in a culture dish. After allowing adequate time for cell attachment, adenoviruses were introduced into the culture at a multiplicity of infection (MOI) of 150. 12 hours after infection, the medium was replaced with fresh medium, and the cells were cultured for an additional 72 hours&nbsp;for subsequent experiments.&nbsp;According to the experimental requirements, the cells were divided into four groups: the MYH9 knockdown group (MYH9-KD), which was treated with a virus containing MYH9 shRNA sequences;&nbsp;the MYH9 knockdown control group (MYH9-KDC), which was treated with a virus that does not contain any sequences;&nbsp;the MYH9 overexpression group (MYH9-OE), which was treated with a virus containing sequences related to the MYH9 gene;&nbsp;and the MYH9 overexpression control group (MYH9-OEC), which also received a virus without any sequences.</p>	<p>After cell confluency, discard the culture medium and wash cells three times with PBS to remove residual medium. Next, add 100 μL of deionized water, scrape cells using a cell scraper, and take out 10 μL of the sample for protein concentration measurement. Subsequently, add 1ml of 80% methanol to the sample three times for extraction. Combine the extracts, centrifuge at 12000 rpm&nbsp;for 15 minutes at 4°C and collect the supernatant as the sample for subsequent UPLC-MS analysis.</p>	<p>The hydrophilic fraction of the metabolite extracts was submitted for untargeted metabolomics analysis using two different analytical methods on an Ultimate™ 3000 UPLC system coupled with a Q Exactive™ quadrupole-Orbitrap mass spectrometer (Thermo Scientific, San Jose, CA, USA). For Methods 1 and 2, the metabolite extracts were analyzed using reverse phase chromatographic separation with positive ionization for Method 1 and negative ionization for Method 2.&nbsp;Metabolites were separated using an ACE C18-PFP column (Advanced Chromatography Technologies Ltd, Aberdeen, Scotland) in Method 1. Elution was performed with a linear gradient of 0.1% formic acid in water and acetonitrile, increasing from 2% to 98% organic phase over 10 minutes. For Method 2, metabolites were separated on an Acquity™ HSS C18 column (Waters Corporation, Milford, USA; 1.8μm, 2.1 × 100 mm) with mobile phases of water and acetonitrile/methanol, both containing ammonium bicarbonate buffer salt. The gradient for Method 2 was 2% organic phase ramped to 100% in 10 minutes, followed by 5 minutes for column washing and equilibration. Conditions were consistent across methods with a flow rate of 0.4 mL/min, an injection volume of 5 μL, and a column temperature of 50°C.</p>	<p>For both Method 1 and Method 2, the quadrupole-Orbitrap mass spectrometer was operated with identical ionization parameters using a heated electrospray ionization source, except for the ionization voltage. Parameters included sheath gas at 45 arb, auxiliary gas at 10 arb, heater temperature at 355°C, capillary temperature at 320°C, and S-Lens RF level at 55%. Metabolome extracts were analyzed in full scan mode with a resolution of 70,000 FWHM, AGC target of 1E6, and a maximum injection time of 200 ms, covering a scan range of 70-1000 m/z. QC samples were injected repeatedly to acquire Top 10 data-dependent MS2 spectra (full scan-ddMS2) for detailed metabolite and lipid structural annotation. Full MS/MS data were acquired with a resolution of 17,500 FWHM, using apex trigger, dynamic exclusion, and isotope exclusion. The precursor isolation window was set to 1.0 Da. Stepped normalized collision energy was applied for collision-induced dissociation of metabolites using ultra-pure nitrogen as the fragmentation gas. All data were acquired in profile mode.</p>	<p>UPLC-MS data were standardized and subjected to multivariate statistical analysis using MetaboAnalyst 6.0, including Principal Component Analysis (PCA) and Orthogonal Partial Least Squares Discriminant Analysis (OPLS-DA). PCA was employed to discern differences among groups, and the PLS-DA model was validated through 100 permutation tests. Based on Variable Importance in Projection (VIP) scores, fold change (FC), and p-values obtained from the OPLS-DA model, significant differential metabolites were selected with criteria of VIP &gt; 1 and p &lt; 0.05, |log2FC| ≥ 1 (or VIP &gt; 1 and p &lt; 0.05). This approach aimed to uncover metabolic differences and potential biomarkers between different experimental groups.</p>	<p>Full scan and data-dependent MS2 metabolic profiles from methods 1 and 2 were processed using Compound Discoverer software (Thermo Scientific) for component extraction.&nbsp;Hydrophilic metabolites were structurally annotated by searching MS2 spectra against the proprietary iPhenomeTM SMOL high-resolution MS/MS local library (built with authentic standards) and mzCloud library (Thermo Scientific).&nbsp;Additionally, MS1 spectra (exact m/z ± 5ppm) were searched against the local HMDB database.&nbsp;Structural annotations were strictly confirmed using retention time and high-resolution MS/MS spectrum similarity, with results annotated according to MSI classification criteria. Data normalization followed previous protocols, and subsequent analyses (PCA, OPLS-DA, univariate analyses including t-test with Benjamini-Hochberg FDR adjustment, visualization) were conducted on the R-based cloud platform IPOS (http://82.157.20.231:3838/ipos/).Metabolic pathway analysis of differential metabolites was performed via MetaboAnalyst.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yuan	Lina	Huiyi	Xiaoru	Mingqi	Xiuli
+Study Person First Name	Ruqiang	Guo	Song	Zhang	Wang	Wang
+Study Person Mid Initials						
+Study Person Email	yuanrq666@163.com					
+Study Person Phone						
+Study Person Fax						
+Study Person Address						
+Study Person Affiliation	Dalian Medical University					
+Study Person Roles	Principal Investigator	Author	Author	Author	Author	Co-Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C19924	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C51812
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	MSIO	OBI	EFO	NCIT	OMIT	DOID	CHEBI	CHMO	
+Term Source File	https://www.ebi.ac.uk/metabolights/		http://data.bioontology.org/ontologies/OBI							http://purl.obolibrary.org/obo/ncit.owl
+Term Source Version	1		29							18.10e
+Term Source Description	User defined terms		Ontology for Biomedical Investigations							NCI Thesaurus OBO Edition
+INVESTIGATION
+Investigation Identifier	MTBLS8662
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-09-25
+Investigation Public Release Date	2024-01-11
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS8662
+Study Title	Urine metabolomics phenotyping and urinary biomarker exploratory in mild cognitive impairment and Alzheimer's disease.
+Study Description	<h4><strong>INTRODUCTION </strong>Alzheimer's disease is a prevalent disease with a heavy global burden and is suggested to be a metabolic disease in the brain in recent years. The metabolome is considered to be the most promising phenotype which reflects changes in genetic, transcript, and protein profiles as well as environmental effects. Aiming to obtain a comprehensive understanding and convenient diagnosis of MCI and AD from another perspective, researchers are working on AD metabolomics. Urine is more convenient which could reflect the change of disease at an earlier stage. Thus, we conducted a cross-sectional study to investigate novel diagnostic panels.</h4><p><strong>METHODS </strong>We first enrolled participants from China-Japan Friendship Hospital from April 2022 to November 2022, collected urine samples and conducted an LC-MS/MS analysis. In parallel, clinical data were collected and clinical examinations were performed. After statistical and bioinformatics analyzes, significant risk factors and differential urinary metabolites were determined. We attempt to investigate diagnostic panels based on machine learning including LASSO and SVM.</p><p><strong>RESULTS </strong>57 AD patients, 43 MCI patients and 62 CN subjects were enrolled. A total of 2,140 metabolites were identified among which 125 significantly differed between the AD and CN groups, including 46 upregulated ones and 79 downregulated ones. In parallel, there were 93 significant differential metabolites between the MCI and CN groups, including 23 upregulated ones and 70 downregulated ones. AD diagnostic panel (30 metabolites+ age + APOE) achieved an AUC of 0.9575 in the test set while MCI diagnostic panel (45 metabolites+ age + APOE) achieved an AUC of 0.7333 in the test set. Atropine, S-Methyl-L-cysteine-S-oxide, D-Mannose 6-phosphate (M6P), Spiculisporic Acid, N-Acetyl-L-methionine, 13,14-dihydro-15-keto-tetranor Prostaglandin D2, Pyridoxal 5'-Phosphate (PLP) and 17(S)-HpDHA were considered valuable for both AD and MCI diagnosis and defined as hub metabolites. Besides, diagnostic metabolites were weakly correlated with cognitive functions.</p><p><strong>DISCUSSION </strong>In conclusion, the procedure is convenient, non-invasive, and useful for diagnosis, which could assist physicians in differentiating AD and MCI from CN. Atropine, M6P and PLP were evidence-based hub metabolites in AD.</p>
+Study Submission Date	2023-09-25
+Study Public Release Date	2024-01-11
+Study File Name	s_MTBLS8662.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	mild cognitive impairment	Alzheimer's Disease	biomarker	untargeted metabolites	ultra-performance liquid chromatography-mass spectrometry	tandem mass spectrometry	Machine Learning
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/DOID_0080832	http://purl.obolibrary.org/obo/NCIT_C2866	http://purl.obolibrary.org/obo/CHEBI_59163	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000715	http://purl.obolibrary.org/obo/CHMO_0000575	http://purl.obolibrary.org/obo/NCIT_C176231
+Study Design Type Term Source REF	DOID	NCIT	CHEBI	MTBLS	CHMO	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	38187356
+Study Publication DOI	10.3389/fnagi.2023.1273807
+Study Publication Author List	Wang Y, Sun Y, Wang Y, Jia S, Qiao Y, Zhou Z, Shao W, Zhang X, Guo J, Song X, Niu X, Peng D.
+Study Publication Title	Urine metabolomics phenotyping and urinary biomarker exploratory in mild cognitive impairment and Alzheimer's disease.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Disease
+Study Factor Type	disease
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000408
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS8662_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS8662_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>In this study, we initially enrolled Alzheimer’s disease (<strong>AD</strong>) patients, Mild cognitive impairment (<strong>MCI</strong>) patients and Cognitive normal (<strong>CN</strong>) participants. A total of 162 participants, over 50 yr old, including <strong>57 AD patients</strong>, <strong>43 MCI patients</strong> and <strong>62 CN subjects</strong> were included in this cross-sectional study. All participants were enrolled in China-Japan Friendship Hospital from April 2022 to November 2022. Midstream of urine was collected and stored at -80 °C for ultra-high-performance liquid chromatography coupled with mass spectrometry (<strong>UHPLC–MS/MS</strong>) analysis.</p>	<p>The urine samples (200 μL) were placed in the centrifuge tubes and re-suspended with prechilled <strong>80% methanol</strong> by well vortex. The samples were then centrifuged at 15,000 x g for 20 min at 4 °C after being incubated on ice for 5 min. A portion of the supernatant was diluted with LC-MS grade water to a final concentration that contained 53% methanol. The samples were then transferred to a brand-new centrifuge tube and centrifuged for 20 min at a speed of 15,000 x g at 4 °C. The supernatant was then analyzed by LC-MS/MS<strong>[1][2]</strong>.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1]</strong> Want, E. J., O'Maille, G., Smith, C. A., Brandon, T. R., Uritboonthai, W., Qin, C., Trauger, S. A., Siuzdak, G. 2006. Solvent-dependent metabolite distribution, clustering, and protein extraction for serum profiling with mass spectrometry. Anal Chem. 2006 Feb 1;78(3):743-52. doi:10.1021/ac051312t. PMID:16448047.</p><p><strong>[2]</strong> Barri, T., and Dragsted, L. O. 2013. UPLC-ESI-QTOF/MS and multivariate data analysis for blood plasma and serum metabolomics: effect of experimental artefacts and anticoagulant. Anal Chim Acta. 2013 Mar 20;768:118-28. doi:10.1016/j.aca.2013.01.015. PMID:23473258.</p>	<p><strong style='color: rgb(54, 54, 54);'>UHPLC-MS/MS</strong> analyses were carried out by <strong>Novogene Co., Ltd (Beijing, China)</strong>, utilizing a <strong>Thermo Scientific Vanquish UHPLC System</strong>. A 17-min linear gradient was used to inject samples onto a <strong>Hypersil GOLD C18 (1.9 µm, 2.1 mm x 100 mm; Thermo Scientific)</strong> at a flow rate of 0.2 mL/min. Eluents A (0.1% formic acid in water) and B (Methanol) were used in the positive polarity mode. Eluents A (5 mM ammonium acetate, pH 9.0) and B (Methanol) were used in the negative polarity mode. The following settings were made for the solvent gradient: 1.5 min, 2% B; 3 min, 85% B; 10 min, 100% B; 10.1-12 min, 2% B.</p>	<p>Analysis were performed using a <strong>Thermo Scientific Q Exactive HF</strong> orbitrap mass spectrometer, with a spray voltage of 3.5 kV, capillary temperature of 320 °C, sheath gas flow rate of 35 psi, aux gas flow rate of 10 L/min, S-lens RF level of 60, and aux gas heater temperature of 350 °C. The mass spectrometer was operated in positive/negative polarity mode, with a <strong>100-1500 m/z</strong> range.</p>	<p>Peak alignment, peak selection and quantification for each metabolite were carried out using<strong> Compound Discoverer 3.1 (CD3.1, Thermo Fisher) </strong>to handle the raw data files produced by <strong>UHPLC-MS/MS</strong>. The following primary parameters were set: 0.2 min for the retention time tolerance; 5 ppm for actual mass tolerance; 30% for the signal intensity tolerance; 3 for the signal/noise ratio; and minimum intensity, etc. Peak intensities were then normalized to the total spectral intensity. The molecular formula was predicted using the normalized data based on additive ions, molecular ion peaks and fragment ions. The peaks were then compared with the <strong>MassList</strong>, <strong>mzVault</strong> and <a href='https://www.mzcloud.org/' rel='noopener noreferrer' target='_blank'><strong>mzCloud</strong></a> databases to generate accurate qualitative and relative quantitative findings. When data were not normally distributed, they were standardized using the following method to produce relative peak areas: sample raw quantitation value / (The sum of sample metabolite quantitation value / The sum of QC1 sample metabolite quantitation value).</p>	<p>Finally, the findings of the relative quantification and metabolite identification were determined after molecules with relative peak areas in QC samples with CVs more than 30% were eliminated. The <a href='https://www.genome.jp/kegg/pathway.html' rel='noopener noreferrer' target='_blank'><strong>KEGG</strong></a>, <a href='https://hmdb.ca/' rel='noopener noreferrer' target='_blank'><strong>HMDB</strong></a> and <a href='http://www.lipidmaps.org/' rel='noopener noreferrer' target='_blank'><strong>LIPIDMaps</strong></a> databases were used to annotate these metabolites.&nbsp;</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Yuye	Wang	Sun	Wang	Jia	Qiao	Zhou	Shao	Zhang	Guo	Song	Niu	Peng
+Study Person First Name	Wang	Yuye	Yu	Yu	Shuhong	Yanan	Zhi	Wen	Xiangfei	Jing	Xincheng	Xiaoqian	Dantao
+Study Person Mid Initials													
+Study Person Email	pumcwyy@126.com												
+Study Person Phone													
+Study Person Fax													
+Study Person Address													
+Study Person Affiliation	China Japan Friendship Hospital												
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF	NCIT												

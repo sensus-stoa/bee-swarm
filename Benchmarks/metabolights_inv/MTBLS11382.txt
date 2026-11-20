@@ -1,0 +1,96 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITaxon	NCIT	CHMO	OBI	EFO	MS
+Term Source File	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/OBI	https://www.ebi.ac.uk/ols4/api	http://data.bioontology.org/ontologies/MS
+Term Source Version				29		
+Term Source Description				Ontology for Biomedical Investigations		Mass Spectrometry Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS11382
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2024-10-15
+Investigation Public Release Date	2024-11-28
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11382
+Study Title	Differential analysis of physicochemical properties and small molecule metabolites in glutinous and non-glutinous sorghum
+Study Description	In this study, using 2 glutinous sorghum and 2 non-glutinous sorghum as research objects, and their differences in grain appearance color, peel thickness, starch structure and small molecule metabolites were analyzed and compared. The results showed that the grain of 2 glutinous sorghum was red, and the grain of 2 non-glutinous sorghum was white. The thickness of pericarp (pericarp layer and seed layer) of glutinous sorghum (49.35-78.16 μm) was significantly higher than that of non-glutinous sorghum (33.39-49.03 μm) (P＜0.05). The starch grains of glutinous sorghum were mainly oval-shaped and loosely arranged, while those in non-glutinous sorghum were irregular and tightly arranged. There were significant differences in the small molecule metabolites composition among different sorghum varieties. The marker metabolite of glutinous sorghum was catechin, while the marker metabolite of non-glutinous sorghum was 5-hydroxyindole-3-acetic acid. This study revealed significant differences in pericarp thickness, starch morphology, and small molecule metabolites between glutinous and non-glutinous sorghum, which was helpful to distinguish different sorghum varieties and lay a foundation for analyzing the relationship between liquor and grain.
+Study Submission Date	2024-10-15
+Study Public Release Date	2024-11-28
+Study File Name	s_MTBLS11382.txt
+Comment[Revision]	1
+Comment[Revision Date]	2024-11-28
+Comment[Revision Log]	Initial study revision.
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Sorghum bicolor	Biomarker	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/NCBITaxon_4558	http://purl.obolibrary.org/obo/NCIT_C16342	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	NCBITaxon	NCIT	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Jinyang Li, Jiwei Zhang
+Study Publication Title	Differential analysis of physicochemical properties and small molecule metabolites in glutinous and non-glutinous sorghum
+Study Publication Status	submitted
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001794
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Cultivar	Biological replicate
+Study Factor Type	cultivar	biological replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0005136	http://www.ebi.ac.uk/efo/EFO_0002091
+Study Factor Type Term Source REF	EFO	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11382_LC-MS_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS11382_LC-MS_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	mass spectrometry assay	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>The samples were collected from 2 sorghum cultivars: GJH1, a Baijiu-brewing glutinous cultivar, and BTx623, a widely studied reference line. Sampling was conducted 32 days post-anthesis (flowering), a critical ripening stage for evaluating biochemical traits in both glutinous and non-glutinous sorghum. At the specified time, samples were excised from the plants using sterilized scissors, immediately flash-frozen in liquid nitrogen to preserve RNA and metabolite integrity, and subsequently stored at -80 °C for further analysis. No additional treatments were applied to the plants prior to collection.</p>	<p>Take an appropriate volume of sample (0.5-1.0 mL), add 1 mL water:acetonitrile:isopropanol (1:1:1, v/v) solution for metabolite extraction. The solutions were sonicated for 30 min at 4 °C. After centrifugation (20 min, 12,000 rpm, 4 °C), the supernatant was transferred to clean plastic microtubes. The samples were freeze-dried and stored at -20 °C until analysis. For UHPLC-ESI-MS/MS analysis, the samples were dissolved in 200 μL of 30% ACN (v/v) and transferred to insert-equipped vials.</p>	<p>The sample extracts were analyzed using an UPLC-Orbitrap-MS system (UPLC, Vanquish; MS, HFX). The analytical conditions were as follows, UPLC: column, Waters HSS T3 (100 x 2.1 mm, 1.8 μm); column temperature, 40 °C; flow rate, 0.3 mL/min; injection volume, 2 μL; solvent system, water (0.1% formic acid):acetonitrile (0.1% formic acid); gradient program, 0.0 min, 0% B; 1.0 min, 0% B; 12.0 min, 95% B; 13.0 min, 95% B; 13.1 min, 0% B; 17.0 min, 0% B.</p>	<p>HRMS data were recorded on a Q Exactive HFX Hybrid Quadrupole Orbitrap mass spectrometer equipped with a heated ESI source (Thermo Fisher Scientific) utilizing the full-ms-ddMS2 MS acquisition methods. The ESI source parameters were set as follows: spray voltage, -2.8 kV / 3.0 kV; sheath gas pressure, 40 arb; aux gas pressure, 10 arb; sweep gas pressure, 0 arb; capillary temperature, 320 °C; and aux gas heater temperature, 350 °C.</p>	<p>The raw MS data were acquired on the Q-Exactive using Xcalibur 4.1 (Thermo Scientific) and processed using Progenesis QI (Waters Corporation, Milford, USA). Quantified data were output into excel format. Data were analyzed by R package, where it was subjected to multivariate data analysis, including principal component analysis (PCA) and orthogonal partial least-squares discriminant analysis (OPLS-DA). The variable importance in the projection (VIP) value of each variable in the OPLS-DA model was calculated to indicate its contribution to the classification. Metabolites with the VIP value &gt; 1 was further applied to Student’s t-test at univariate level to measure the significance of each metabolite, the p values less than 0.05 were considered as statistically significant.</p>	<p>For peak picking, the folowing parameters were used: centWave, m/z = 25 ppm, peakwidth = c(10,60), prefilter = c(10,100). For peak grouping, bw = 5, mzwid = 0.025, minfrac = 0.5 were used. in the extracted ion features, only the variables having more than 50% of the nonzero measurement values in at least one group were kept. Compound identification of metabolites by MS/MS spectra with an in-house database established with avallable authentic standards.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Zhang
+Study Person First Name	Jiwei
+Study Person Mid Initials	
+Study Person Email	zhangjiwei@sicau.edu.cn
+Study Person Phone	18482168832
+Study Person Fax	
+Study Person Address	211 Huimin Road, Wenjiang District, Chengdu City
+Study Person Affiliation	
+Study Person Roles	Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936
+Study Person Roles Term Source REF	NCIT

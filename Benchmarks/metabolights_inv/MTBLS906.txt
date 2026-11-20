@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	OBI	MSIO	MTBLS	EFO	NCIT		CHMO
+Term Source File	http://data.bioontology.org/ontologies/OBI	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/			http://purl.obolibrary.org/obo/ncit.owl	
+Term Source Version	29	1.0.1	1			18.10e	
+Term Source Description	Ontology for Biomedical Investigations	Metabolomics Standards Initiative Ontology (MSIO)	User defined terms			NCI Thesaurus OBO Edition	
+INVESTIGATION
+Investigation Identifier	MTBLS906
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-04-03
+Investigation Public Release Date	2022-01-19
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS906
+Study Title	Monitoring of system conditioning after blank injections in untargeted UPLC-MS metabolomic analysis
+Study Description	Ultra-performance liquid chromatography - mass spectrometry (UPLC-MS) is widely used for untargeted metabolomics in biomedical research. To optimize the quality and precision of UPLC-MS metabolomic analysis, evaluation of blank samples for the elimination of background features is required. Although blanks are usually run either at the beginning or at the end of a sequence of samples, a systematic analysis of their effect of the instrument performance has not been properly documented. Using the analysis of two common bio-fluids (plasma and urine), we describe how the injection of blank samples within a sequence of samples may affect both the chromatographic and MS detection performance depending on several factors, including the sample matrix and the physicochemical properties of the metabolites of interest. The analysis of blanks and post-blank conditioning samples using t-tests, PCA and guided-PCA provides useful information for the elimination of background UPLC-MS features, the identification of column carry over and the selection of the number of samples required to achieve a stable performance.
+Study Submission Date	2019-04-03
+Study Public Release Date	2022-01-19
+Study File Name	s_MTBLS906.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Conditioning	Instrument performance	longitudinal data analysis	ultra-performance liquid chromatography-mass spectrometry
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C41258	http://www.ebi.ac.uk/metabolights/ontology/placeholder	http://purl.obolibrary.org/obo/OBI_0200082	http://purl.obolibrary.org/obo/CHMO_0000715
+Study Design Type Term Source REF	MTBLS	NCIT	MTBLS	OBI	CHMO
+STUDY PUBLICATIONS
+Study PubMed ID	31285473
+Study Publication DOI	10.1038/s41598-019-46371-w
+Study Publication Author List	Martínez-Sena T, Luongo G, Sanjuan-Herráez D, Castell JV, Vento M, Quintás G, Kuligowski J.
+Study Publication Title	Monitoring of system conditioning after blank injections in untargeted UPLC-MS metabolomic analysis.
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Replicate
+Study Factor Type	replicate
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000683
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS906_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p class='ql-align-justify'><strong>Standards and reagents</strong></p><p class='ql-align-justify'>Acetonitrile (CH3CN, LC-MS grade) was obtained from Scharlau (Barcelona, Spain) and formic acid (HCOOH, ≥95%) from Sigma-Aldrich Química SL (Madrid, Spain). Ultra-pure water was generated by a Milli-Q Integral Water Purifcation System from Merck Millipore (Darmstadt, Germany). Phenylalanine-D5, tryptophan-D5 and cafeine-D9 were purchased from C/D/N Isotopes Inc. (Quebec, Canada). </p><p class='ql-align-justify'><br></p><p class='ql-align-justify'><strong>Sample preparation</strong></p><p class='ql-align-justify'>Ethical approval for this study was obtained from the Ethics Committee for Biomedical Research of the Instituto de Investigación Sanitaria Hospital Universitario y Politécnico La Fe (Valencia, Spain) (approval code EudraCT: 2014-000537-24) and all methods were performed in accordance with the relevant guidelines and regulations. A <strong>blood </strong>and a <strong>urine </strong>sample were collected from a volunteer who had given written informed consent to participate in the study. </p><p class='ql-align-justify'><br></p>	<p>3 mL of heparinized <strong>blood </strong>was centrifuged at 1,500 × g (10 min, 4 °C). The plasma layer was collected and further centrifuged at 2,500 × g (15min, 4 °C). 600 μL of the plasma fraction were withdrawn and 1800 μL of cold (4 °C) CH3CN was added for protein precipitation. The sample was homogenized (Vortex shaker, 10 s) and centrifuged at 10,000 × g (10 min, 4 °C). 1,000 μL of the supernatant was collected and evaporated under vacuum at 25 °C. The residue was reconstituted in 700 μL of a 1 μM injection standard solution containing phenylalanine-D5, tryptophan-D5 and cafeine-D9 in H2O:CH3CN (98:2, 0.1% v/v HCOOH). </p><p><br></p><p>The <strong>urine </strong>sample was centrifuged at 2,500 × g (10 min, 4 °C) and 250 μL of the supernatant were diluted with 500 μL of an injection standard solution containing phenylalanine-D5, tryptophan-D5 and cafeine-D9 in H2O:CH3CN (98:2, 0.1% v/v HCOOH) at a final concentration of 1 μM. </p><p><br></p><p><strong>Extraction blanks</strong> were prepared replacing blood or urine by MilliQ water and applying the same standard operating procedure as for <strong>plasma </strong>or <strong>urine </strong>samples.</p>	<p class='ql-align-justify'>Chromatographic analysis was performed using a reversed phase Kinetex C18 (50×2.1 mm, 1.7 µm, Phenomenex) column on an Agilent 1290 Infnity UPLC chromatograph equipped with an iFunnel quadrupole time of fight (QTOF) Agilent 6550 spectrometer (Agilent Technologies, CA, USA). Autosampler and column temperatures were set to 4 °C and 55 °C, respectively, and the injection volume was 4 µL. Binary gradient elution (channel A: H2O, 0.1% v/v HCOOH, channel B: CH3CN, 0.1% v/v HCOOH) was performed at a flow rate of 400 µL/min as follows: initial conditions of 98% A followed by a linear gradient from 2% to 20% B in 0.3 min and from 20% to 95% B in 2.2 min. 95% B was held for 3.75 min and then, a 0.15 min gradient was used to return to the initial conditions, which were held for additional 1.6 min. Standard needle wash was carried out between injections using H2O:CH3CN (1:1 v/v) as solvent to reduce autosampler carryover from one sample to the next.</p>	<p>Full scan MS data from 100 to 1700 m/z was collected on an iFunnel quadrupole time of flight (QTOF) Agilent 6550 spectrometer (Agilent Technologies, CA, USA). The following positive electrospray ionization parameters were selected: gas T, 200 °C; drying gas, 14 L/min; nebulizer, 37psig; sheath gas T, 350 °C; sheath gas flow, 11 L/min.</p><p><br></p><p>Automatic MS spectra calibration during the analysis using the 149.02332 (phthalic anhydride), 121.050873 (purine) and 922.009798 (HP-0921) m/z as references was carried out introducing a reference standard into the source via a reference sprayer valve. Data obtained during initial column conditioning was not included from data analysis.</p><p><br></p><p>An aliquot of the plasma and urine pooled samples was repeatedly analyzed using the auto MS/MS method with the following inclusion m/z precursor ranges: 70-200, 200-350, 350-500, 500-650, 650-800, 800-950, 950-1100 and 1100-1200 using, in all replicates, centroid mode at a rate of 3 spectra/s in the extended dynamic range mode (2GHz). Collision energy was set to 30V, MS/MS fragmentation with automated selection of 3 precursor ions per cycle.</p>	<p>No data transformation was supplied for this study. </p>	<p><strong>Peak table generation</strong></p><p>Peak table generation was carried out for each batch (i.e. urine and plasma analysis) separately using <strong>XCMS[1]</strong>. The centWave method was used for peak detection with the following parameters: mass accuracy: 20 ppm, peak width: (5,25), snthresh: 12, prefilter: (5,5000). A minimum difference in m/z of 7.5 mDa was selected for overlapping peaks. Intensity weighted m/z values of each feature were calculated using the wMean function. Peak limits used for integration were found through descent on the Mexican hat filtered data. Grouping before and after RT correction was carried out using the nearest method and 9 s as rtCheck argument. Finally, missing data points were filled by reintegrating the raw data files in the regions of the missing peaks using the fillPeaks method.</p><p><br></p><p><strong>Within-batch effect elimination</strong></p><p>Samples injected before a blank were used as reference (i.e. QCs) for the correction of within-batch effects to facilitate the interpretation and comparison of changes in the instrumental responses caused by system deconditioning. Within batch effect correction was carried out using the non-parametric Quality Control – Support Vector Regression Correction (QC-SVRC) approach employing a Radial Basis Function kernel. QC-SVRC requires the selection of 3 structural hyperparameters: the tolerance threshold (epsilon), the penalty term applied to margin slack values (C) and the kernel width (gamma). The selection was carried out using a pre-selection of C and optimization of epsilon and gamma using a grid search, leave-one-out cross validation and the RMSECV as target function. C was selected for each UPLC-MS feature as the median value of the intensities observed in QC replicates. The epsilon search range was selected based on the expected instrumental precision (3-10% of the median value of the intensities observed for the whole set of QC replicates). The&nbsp;gamma search interval selected was [1, 105].</p><p><br></p><p><strong>Data clean-up</strong></p><p>Data clean-up was carried out after within-batch effect correction using the set of blank samples for each batch independently. UPLC-MS features were classified as unreliable and removed from further analysis if at least one of the following conditions was fulfilled: i) the median value in blank samples multiplied by 9 was greater than the median value in samples; ii) more than 10% of the QC replicates showed peak area values lower than the 3 times median value in blank samples, and iii) RSD(QCs)&gt;20% after batch effect correction.</p><p><br></p><p>A total of 2661 and 2776 MSMS spectra from the analysis of the plasma and urine QC were collected to support putative metabolite identification by matching the acquired spectra and the <strong>HMDB </strong>and <strong>LipidBlast </strong>reference databases using in-house sofware and <strong>LipiDex</strong>, for the automatic identification process<strong>[2]</strong>.&nbsp;</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051.</p><p><strong>[2] </strong>&nbsp;Calderón-Santiago M, Priego-Capote F, Luque de Castro MD. Enhanced detection and identification in metabolomics by use of LC-MS/MS untargeted analysis in combination with gas-phase fractionation. Anal Chem. 2014 Aug 5;86(15):7558-65. doi:10.1021/ac501353n. Epub 2014 Jul 18. PMID:24992377.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Extraction Method;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Martínez-Sena	Luongo	Sanjuan-Herráez	Castell	Vento	Quintás	Kuligowski
+Study Person First Name	Teresa	Giovanna	Daniel	José V	Máximo	Guillermo	Julia
+Study Person Mid Initials							
+Study Person Email							
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation							
+Study Person Roles	Author	Author	Author	Author	Author	Author	Author
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C42781
+Study Person Roles Term Source REF							

@@ -1,0 +1,100 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	NCBITAXON	OBI	BIRNLEX	BAO	BTO	MS	CHMO	EFO	CHEBI	NCIT	MTBLS
+Term Source File	http://data.bioontology.org/ontologies/NCBITAXON	http://data.bioontology.org/ontologies/OBI	http://data.bioontology.org/ontologies/BIRNLEX	http://data.bioontology.org/ontologies/BAO	http://data.bioontology.org/ontologies/BTO	http://data.bioontology.org/ontologies/MS	http://data.bioontology.org/ontologies/CHMO				https://www.ebi.ac.uk/metabolights/
+Term Source Version	14	39	1	34	33	148	20				1
+Term Source Description	National Center for Biotechnology Information (NCBI) Organismal Classification	Ontology for Biomedical Investigations	Biomedical Informatics Research Network Project Lexicon	BioAssay Ontology	BRENDA Tissue and Enzyme Source Ontology	Mass Spectrometry Ontology	Chemical Methods Ontology				Metabolights Ontology
+INVESTIGATION
+Investigation Identifier	MTBLS1219
+Investigation Title	Investigation
+Investigation Description	
+Investigation Submission Date	2019-09-10
+Investigation Public Release Date	2021-10-27
+Comment[Created With Configuration]	/tmp/Configurations/1568281176443/isaconfig-default_v2015-07-02
+Comment[Last Opened With Configuration]	isaconfig-default_v2015-07-02
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS1219
+Study Title	Impact of the used solvent on the reconstitution efficiency of evaporated biosamples for untargeted metabolomics studies
+Study Description	<h4>Introduction</h4>Untargeted metabolomics intends to objectively analyze a wide variety of compounds. Their diverse physicochemical properties make it difficult to choose an appropriate reconstitution solvent after sample evaporation without influencing the chromatography or hamper column sorbent integrity.<h4>Objectives</h4>The study aimed to identify the most appropriate reconstitution solvent for blood plasma samples in terms of feature recovery, four endogenous compounds, and one selected internal standard.<h4>Methods</h4>We investigated several reconstitution solvent mixtures containing acetonitrile and methanol to resolve human plasma extract and evaluated them concerning the peak areas of tryptophan-d<sub>5</sub>, glucose, creatinine, palmitic acid, and the phophatidylcholine PC(P-16:0/P-16:0), as well as the total feature count RESULTS: Results indicated that acetonitrile containing 30% methanol was best suited to match all tested criteria at least for human blood plasma samples.<h4>Conclusion</h4>Despite identifying the mixture of acetonitrile and methanol being suitable as solvent for human blood plasma extracts, we recommend to systematically test for an appropriate reconstitution solvent for each analyzed biomatrix.
+Study Submission Date	2019-09-10
+Study Public Release Date	2021-10-27
+Study File Name	s_MTBLS1219.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-06
+Comment[Revision Log]	updating data license
+Comment[Study Funding Agency]	
+Comment[Study Grant Number]	
+STUDY DESIGN DESCRIPTORS
+Study Design Type	reconstitution method	untargeted metabolites	high-performance liquid chromatography-mass spectrometry	Recovery
+Study Design Type Term Accession Number	http://www.bioassayontology.org/bao#BAO_0002485	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/CHMO_0000796	http://purl.obolibrary.org/obo/NCIT_C70827
+Study Design Type Term Source REF	BAO	MTBLS	CHMO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	32124055
+Study Publication DOI	10.1007/s11306-019-1631-1
+Study Publication Author List	Manier Sascha K., Meyer Markus R.
+Study Publication Title	Impact of the used solvent on the reconstitution efficiency of evaporated biosamples for untargeted metabolomics studies
+Study Publication Status	Published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	solvent	separation method	polarity	Composition
+Study Factor Type	solvent	separation method	Polarity	Composition
+Study Factor Type Term Accession Number	http://purl.obolibrary.org/obo/CHEBI_46787	http://purl.obolibrary.org/obo/CHMO_0000999	http://purl.obolibrary.org/obo/NCIT_C48048	http://purl.obolibrary.org/obo/NCIT_C53414
+Study Factor Type Term Source REF	CHEBI	CHMO	NCIT	NCIT
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS1219_LC-MS_negative_hilic_metabolite_profiling.txt	a_MTBLS1219_LC-MS_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS1219_LC-MS_positive_hilic_metabolite_profiling.txt	a_MTBLS1219_LC-MS_positive_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - Positive (LC-MS (Positive))	Liquid Chromatography MS - Negative (LC-MS (Negative))	Liquid Chromatography MS - Negative (LC-MS (Negative))
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number			http://purl.obolibrary.org/obo/CHMO_0001000			
+Study Protocol Type Term Source REF	CHMO	CHMO	CHMO	CHMO	CHMO	CHMO
+Study Protocol Description	Pooled plasma samples (stabilized by citrate) were obtained from a regional blood bank.	For each mixture of reconstitution solvents, 100 µL of pooled human plasma samples were transferred into a reaction tube and precipitated using 400 µL of a mixture of methanol and ethanol (1:1, v/v) as recommended elsewhere (Bruce, Tavazzi, Parisod, Rezzi, Kochhar, Guy 2009). The mixture contained 50 µmol tryptophan-d5 as internal standard. These samples were shaken for 2 min at 2000 rpm and subsequently centrifuged for 30 min at 15.000 rpm and 2°C. 400 µL of the supernatant were transferred into a new reaction tube and evaporated to dryness using a vacuum centrifuge at 1400 rpm and room temperature. The obtained residues were reconstituted in different mixtures of acetonitrile and methanol containing 0, 10, 20, 30, 40, or 50% methanol. Each sample was prepared in triplicates. QC samples were obtained by reconstituting in eluent A and B (1:1, v/v) for analyses using a phenylhexyl column or eluent C and D (1:1, v/v) for analyses using HILIC. Five of these QC samples were prepared of each analysis. At last, a 1-µL aliquot was injected into the LC-HRMS/MS system.	The analysis was performed using a Thermo Fisher Scientific (TF, Dreieich, Germany) Dionex UltiMate 3000 RS pump consisting of a degasser, a quaternary pump, and an UltiMate autosampler. The performance of the column and the mass spectrometer was tested using a test mixture in prior to every experiment. Gradient reversed phase elution was performed on a TF Accucore PhenylHexyl column (100 mm × 2.1 mm, 2.6 µm) or a normal phase Macherey-Nagel (Düren, Germany) HILIC Nucleodur column (125 × 3 mm, 3 μm). The mobile phases for gradient elution using the PhenylHexyl column consisted of 2 mM aqueous ammonium formate containing acetonitrile (1%, v/v) and formic acid (0.1%, v/v, pH 3, eluent A), as well as 2mM ammonium formate solution with acetonitrile:methanol (1:1, v/v) containing water (1%, v/v) and formic acid (0.1%, v/v, eluent B). The flow rate was set from 0-10 min to 500 µL/min and from 10-13.5 min to 800 µL/min using the following gradient: 0-1.0 min 99% A, 1-10 min to 1% A, 10-11.5 min hold 1% A, 11.5-13.5 min hold 99% A. The gradient elution using the HILIC column was performed using aqueous ammonium acetate (200 mM, eluent C) and acetonitrile containing formic acid (0.1% , v/v, eluent D). The flow rate was set to 500 µL/min using the following gradient: 0-1 min 2% C, 1-5 min 20% C, 5-8.5 min 60% C, 8.5-10 min hold 60% C. 10-12 min hold 2% C. For preparation and cleaning of the injection system isopropanol:water (90:10, v/v) was used. The following settings were used: wash volume, 100 µL; wash speed, 4000 nL/s; loop wash factor, 2. Every analysis was performed at 40°C column temperature, maintained by a Dionex UltiMate 3000 RS analytical column heater. The injection volume for every analysis was 1 µL..The analysis was performed using a randomized sequence order with five injections of pure methanol (PhenylHexyl column) or eluent D (HILIC column) samples at the beginning of the sequence for apparatus equilibration.	The analysis was performed using a Thermo Fisher Scientific (TF, Dreieich, Germany) Q-Exactive Plus system equipped with a heated electrospray ionization HESI-II source. Mass calibration was done prior to analysis according to the manufacturer’s recommendations using external mass calibration. Additionally before each experiment the apparatus’ spray shield and capillary was cleaned. The HESI-II source conditions for every experiment were as follows: ionization mode, positive or negative; sheath gas, 60 AU; auxiliary gas, 10 AU; sweep gas, 3 AU; spray voltage, 3.50 kV in positive mode and -4.0 kV in negative mode; heater temperature, 320°C; ion transfer capillary temperature, 320°C; and S-lens RF level, 50.0. Mass spectrometry was performed according to a previously optimized workflow using full scan (FS) only. The settings for FS data acquisition were as follows: resolution, 140,000 fwhm; microscans, 1; automatic gain control (AGC) target, 5 105; maximum injection time, 200 ms; scan range, m/z 50-750; polarity, negative or positive; spectrum data type, centroid.	<p>Thermo Fisher LC-HRMS/MS <strong>RAW </strong>files were converted into <strong>mzXML </strong>files using<strong> Proteo Wizard[1]</strong>. Peak picking was performed using <strong>XCMS </strong>in an <strong>R </strong>environment<strong>[2]</strong>. Optimization of <strong>XCMS </strong>parameters was in accordance to a previously optimized strategy<strong>[3]</strong>. Peak picking and alignment parameters are summarized in <strong>Table 1</strong> in the paper associated with this study. After peak picking, tryptophan-d5 areas in full scan and total feature count were evaluated for each sample group prepared with a different reconstitution mixture.</p><p><br></p><p><strong>Refs:</strong></p><p><strong>[1] </strong>Adusumilli R, Mallick P. Data Conversion with ProteoWizard msConvert. Methods Mol Biol. 2017;1550:339-368. doi:10.1007/978-1-4939-6747-6_23. PMID:28188540</p><p><strong>[2] </strong>Smith CA, Want EJ, O'Maille G, Abagyan R, Siuzdak G. XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification. Anal Chem. 2006 Feb 1;78(3):779-87. doi:10.1021/ac051437y. PMID:16448051</p><p><strong>[3] </strong>Manier SK, Keller A, Meyer MR. Automated optimization of XCMS parameters for improved peak picking of liquid chromatography-mass spectrometry data using the coefficient of variation and parameter sweeping for untargeted metabolomics. Drug Test Anal. 2019 Jun;11(6):752-761. doi: 10.1002/dta.2552. Epub 2018 Dec 25. PMID: 30479047</p>	Tryptophan-d5 was identified by its exact mass an retention time compared to a neat standard solution
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		analyzer;ion source;instrument;detector		Column type		
+Study Protocol Parameters Name Term Accession Number		;;;				
+Study Protocol Parameters Name Term Source REF		;;;				
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Manier	Meyer
+Study Person First Name	Sascha	Markus
+Study Person Mid Initials	K.	R.
+Study Person Email	Sascha.Manier@uks.eu	Markus.Meyer@uks.eu
+Study Person Phone	-33218	
+Study Person Fax	-33239	-33239
+Study Person Address	Saarland University, D-66421 Homburg/Saar (Germany)	Saarland University, D-66421 Homburg/Saar (Germany)
+Study Person Affiliation	Department of Experimental and Clinical Toxicology Institute of Experimental and Clinical Pharmacology and Toxicology	Department of Experimental and Clinical Toxicology Institute of Experimental and Clinical Pharmacology and Toxicology
+Study Person Roles	Principal investigator	Principal investigator
+Study Person Roles Term Accession Number	http://bioontology.org/projects/ontologies/birnlex#birnlex_2152	http://bioontology.org/projects/ontologies/birnlex#birnlex_2152
+Study Person Roles Term Source REF	BIRNLEX	BIRNLEX
+Comment[Study Person REF]		

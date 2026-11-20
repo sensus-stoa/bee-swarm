@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	BTO	CHEBI	CHMO	EFO	MS	MSIO	MTBLS	NCBITaxon	NCIT	OBI	OMIT
+Term Source File	http://purl.obolibrary.org/obo/bto.owl	http://purl.obolibrary.org/obo/chebi.owl	http://purl.obolibrary.org/obo/chmo.owl	http://www.ebi.ac.uk/efo/efo.owl	http://purl.obolibrary.org/obo/ms.owl	http://purl.obolibrary.org/obo/msio.owl	https://www.ebi.ac.uk/metabolights/resources/Metabolights.owl	http://purl.obolibrary.org/obo/ncbitaxon.owl	http://purl.obolibrary.org/obo/ncit.owl	http://purl.obolibrary.org/obo/obi.owl	http://purl.obolibrary.org/obo/omit.owl
+Term Source Version											
+Term Source Description	BRENDA Tissue and Enzyme Source Ontology	Chemical Entities of Biological Interest Ontology	Chemical Methods Ontology	Experimental Factor Ontology	Mass Spectrometry Ontology	Metabolomics Standards Initiative Ontology	MetaboLights Controlled Vocabulary	National Center for Biotechnology Information (NCBI) Organismal Classification	National Cancer Institute Thesaurus	Ontology for Biomedical Investigations	Ontology for MicroRNA Target
+INVESTIGATION
+Investigation Identifier	MTBLS7564
+Investigation Title	Exposomic Biomonitoring of Polyphenols by Non-Targeted Analysis and Suspect Screening
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2023-10-18
+Investigation Public Release Date	2025-08-07
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS7564
+Study Title	Exposomic Biomonitoring of Polyphenols by Non-Targeted Analysis and Suspect Screening
+Study Description	<p>Polyphenols, prevalent in plants and fungi, are investigated intensively in nutritional and clinical settings because of their beneficial bioactive properties. Due to their complexity, analysis with untargeted approaches is favorable, which typically use high-resolution mass spectrometry (HRMS) rather than low-resolution mass spectrometry (LRMS). Here, the advantages of HRMS were evaluated by thoroughly testing untargeted techniques and available online resources. By applying data-dependent acquisition on real-life urine samples, 27 features were annotated with spectral libraries, 88 with <em>in silico</em> fragmentation and 113 by MS1 matching with PhytoHub, an online database containing &gt;2000 polyphenols. Moreover, other exogenous and endogenous molecules were screened to measure chemical exposure and potential metabolic effects using the Exposome-Explorer database, further annotating 144 features. Additional polyphenol-related features were explored using various non-targeted analysis techniques including MassQL for glucuronide and sulfate neutral losses, and MetaboAnalyst for statistical analysis. As HRMS typically suffers a sensitivity loss compared to state-of-the-art LRMS used in targeted workflows, the gap between the two instrumental approaches was quantified in three spiked human matrices (urine, serum, plasma) as well as real-life urine samples. Both instruments showed feasible sensitivity, with median limits of detection in the spiked samples being 10-18 ng/mL for HRMS and 4.8-5.8 ng/mL for LRMS. The results demonstrate that, despite its intrinsic limitations, HRMS can readily be used for comprehensively investigating human polyphenol exposure. In the future, this work is expected to allow for linking human health effects with exposure patterns and toxicological mixture effects with other xenobiotics.</p>
+Study Submission Date	2023-10-18
+Study Public Release Date	2025-08-07
+Study File Name	s_MTBLS7564.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-08-11
+Comment[Revision Log]	Initial revision
+STUDY DESIGN DESCRIPTORS
+Study Design Type	Polyphenols	high-performance liquid chromatography-mass spectrometry	untargeted metabolites	Homo sapiens	blood plasma	blood serum	urine	Sensitivity
+Study Design Type Term Accession Number	http://purl.obolibrary.org/obo/OMIT_0027668	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000042	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCBITaxon_9606	http://purl.obolibrary.org/obo/BTO_0000131	http://purl.obolibrary.org/obo/BTO_0000133	http://purl.obolibrary.org/obo/BTO_0001419	http://purl.obolibrary.org/obo/NCIT_C68816
+Study Design Type Term Source REF	OMIT	MTBLS	MTBLS	NCBITaxon	BTO	BTO	BTO	NCIT
+STUDY PUBLICATIONS
+Study PubMed ID	37409760
+Study Publication DOI	10.1021/acs.analchem.3c01393
+Study Publication Author List	Oesterle I, Pristner M, Berger S, Wang M, Verri Hernandes V, Rompel A, Warth B.
+Study Publication Title	Exposomic Biomonitoring of Polyphenols by Non-Targeted Analysis and Suspect Screening.
+Study Publication Status	published
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001796
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Sequence	Group	24h pools expt.
+Study Factor Type	Sequence	Group	24h pools expt.
+Study Factor Type Term Accession Number			
+Study Factor Type Term Source REF			
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS7564_LC-MS_urine_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_urine_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_serum_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_serum_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_plasma_positive_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_plasma_negative_reverse-phase_metabolite_profiling.txt	a_MTBLS7564_LC-MS_DDA_negative_reverse-phase_metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Type	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry	mass spectrometry
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI	OBI	OBI	OBI	OBI	OBI	OBI
+Study Assay Technology Platform	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - positive - reverse phase	Liquid Chromatography MS - negative - reverse phase	Liquid Chromatography MS - negative - reverse phase
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001100	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001105	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001108	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001109	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001106	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_001107
+Study Protocol Type Term Source REF	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS	MTBLS
+Study Protocol Description	<p><strong>Reagents, Solvents and Chemicals</strong></p><p>Authentic reference standards, reagents and solvents were purchased from various sources and are provided in Table S1 in the paper associated with this study. The reference compounds were diluted in pure methanol to a concentration of 1 mg/mL, considering the purity and density at 20 °C. The individual reference analyte solutions were diluted and mixed together in methanol at various concentrations to prepare working mixes for spiking.</p><p><br></p><p><strong>Sample Preparation</strong></p><p>The urine samples from the case study and the spiked urine, plasma and serum samples for the LOD comparison were prepared using the optimized protocol published<strong>[1]</strong>. The samples were stored at -80 °C until analysis. The concentrations of the spiked samples are reported in Table S2. Enzymatic hydrolysis of glucuronides and sulfates was intentionally not performed in this work to be able to perform neutral loss queries of the features.</p><p><br></p><p><strong>Biological Samples, Case Study and Approval to Use Human Matrices</strong></p><p>The case study samples were collected as individual 24 h pool from 4 volunteers at 3 different timepoints. The 3 days were: after a polyphenol washout, after consuming a high polyphenol smoothie in the morning, and after a day following a high polyphenol diet, as described previously<strong>[1]</strong>. The sources of pooled human serum and Li-heparin plasma used for the LOD value comparison are listed in Table S1. The urine used for the matrix matched calibration curve and LOD comparison originated from 24 h pooled urine acquired from a female volunteer after following a low polyphenol diet for 2 days. The University of Vienna ethics committee, under authorization number 00650, approved the collection and measurement of samples from the participants following receiving their signed consent.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Oesterle I, Braun D, Rompel A, Warth B. Quantifying up to 90 polyphenols simultaneously in human bio-fluids by LC-MS/MS. Anal Chim Acta. 2022 Jul 11;1216:339977. doi:10.1016/j.aca.2022.339977. Epub 2022 May 23. PMID:35691679.</p>	<p>A sample aliquot (either plasma, urine or serum) was gently thawed and 40 μL was transferred into a 0.5 mL clear micro-reaction tube. A total of 160 μL extraction solvent (acetonitrile (ACN):methanol (MeOH):formic acid (FA), 49.5:49.5:1, v:v:v) was added. The tube was shortly vortexed and sonicated in an ice bath for 10 min. After a freeze-out step (-20 °C, 2 h), the tube was centrifuged at 4 °C and 18,000 x g for 10 min. The supernatant (75 μL) was transferred to a 1.5 mL amber LC glass vial with a 300 μL glass insert. And 225 μL of the reconstitution solvent (ACN:water (H2O):FA, 33:66:1, v:v:v) was added.</p>	<p>A Vanquish UHPLC (Thermo Fisher) coupled to a QExactive HF quadrupole-Orbitrap (Thermo Fisher) with a heated electrospray ionization source was used for the LC-HRMS measurements. The same LC conditions were used as described previously<strong>[1]</strong> to best compare the high- and low-resolution measurements. The mobile phase was composed of 0.1% v/v FA in H2O (eluent A) and 0.1% v/v FA and 3% v/v H2O in ACN (eluent B). The column oven was set to 30 °C. The flow rate was set to 0.6 mL/min and the injection volume was 5 μL. The gradient started at 5.2% B, after a 2-min hold, it increased linearly to 66% B within 10 min. B was then set to 97.9% and held for 2 min, before being decreased to 5.2% for a final 2-min hold.</p><p><br></p><p><strong>Ref:</strong></p><p><strong>[1]</strong> Oesterle I, Braun D, Rompel A, Warth B. Quantifying up to 90 polyphenols simultaneously in human bio-fluids by LC-MS/MS. Anal Chim Acta. 2022 Jul 11;1216:339977. doi:10.1016/j.aca.2022.339977. Epub 2022 May 23. PMID:35691679.</p>	<p>A QExactive HF quadrupole-Orbitrap (Thermo Fisher) with a heated electrospray ionization source was used for the LC-HRMS measurements. MS was acquired in Top 10 DDA in negative mode. The parameters were set with a scan window from 100 to 1100 m/z, a full scan resolution of 60,000, MS2 resolution of 30,000, a stepped normalized collision energy of 10, 30 and 50 eV. For the spiked matrix-matched and solvent samples, full scan mode from 62 to 900 m/z at a resolution of 120,000 was used for both positive and negative polarities, separately.</p><p><br></p><p>MS1 and MS2 data of the case study samples were acquired with DDA of the top 10 most intense peaks in negative polarity. The parameters were set with a scan window of 100 to 1100 Da, a full scan resolution of 60,000, MS2 resolution of 30,000, a stepped normalized collision energy of 10, 30, and 50 eV, and the additional parameters listed in Table S3 [1]. For each biological sample, an iterative exclusion list was prepared with IE-Omics 18, until either five injections or the maximum length of the exclusion list (5000 features) was reached.</p><p><br></p><p>For the LOD comparison, full scan mode from 62 to 900 Da at a resolution of 120,000 was used. Data was acquired for both positive and negative polarities, separately. Additional MS parameters are listed in Table S3 [1]. A total of 10 technical replicates were acquired in each polarity at three concentration levels over the linear range: low, medium, and high, corresponding to levels 3, 5, and 7, respectively in Table S2 [1].</p><p><br></p><p>The LRMS method for comparison was as per reference [1].</p><p><br></p><p>Ref:</p><p>[1] Oesterle I, Braun D, Rompel A, Warth B. Quantifying up to 90 polyphenols simultaneously in human bio-fluids by LC-MS/MS. Anal Chim Acta. 2022 Jul 11;1216:339977. doi:10.1016/j.aca.2022.339977. Epub 2022 May 23. PMID:35691679.</p>	<p>The acquired DDA data was analyzed by first converting the raw files into MGF files using MSConvert (v3.0.22067). MZMine (v3.1.0) was used for feature preprocessing and extraction of the MS2 data from the MGF files. The solvent and matrix-matched spiked standards were analyzed with Skyline (v21.2).</p>	<p>MZMine was used for spectral library matching with a library from MS-DIAL Metabolomics composed of databases such as MassBank, ReSpect and GNPS. Moreover, to determine additional molecular formulas and predict structures, in silico fragmentation was performed in SIRIUS (v5.5.7).</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Oesterle	Pristner	Berger	Wang	Verri Hernandes	Rompel	Warth
+Study Person First Name	Ian	Manuel	Sabrina	Mingxun	Vinicius	Annette	Benedikt
+Study Person Mid Initials							
+Study Person Email	ian.oesterle@univie.ac.at	manuel.pristner@univie.ac.at	a01426469@unet.univie.ac.at	mingxun.wang@cs.ucr.edu	vinicius.verri.hernandes@univie.ac.at	annette.rompel@univie.ac.at	benedikt.warth@univie.ac.at
+Study Person Phone							
+Study Person Fax							
+Study Person Address							
+Study Person Affiliation	Univeristy of Vienna	University of Vienna	University of Vienna	Univeristy of California, Riverside	University of Vienna	Univeristy of Vienna	University of Vienna
+Study Person Roles	Investigator	Investigator	Investigator	Investigator	Investigator	Investigator	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C25936	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT	NCIT

@@ -1,0 +1,97 @@
+ONTOLOGY SOURCE REFERENCE
+Term Source Name	MTBLS	OBI	EFO	NCIT	Drug	MS
+Term Source File	Metabolights	http://data.bioontology.org/ontologies/OBI	Metabolights	Metabolights	https://www.ebi.ac.uk/ols4/api	https://www.ebi.ac.uk/ols4/api
+Term Source Version		29				
+Term Source Description	Metabolights Ontology	Ontology for Biomedical Investigations				
+INVESTIGATION
+Investigation Identifier	MTBLS11717
+Investigation Title	Investigation
+Investigation Description	Created using the MetaboLights Online Editor (MOE)
+Investigation Submission Date	2025-04-25
+Investigation Public Release Date	2025-04-25
+Comment[Created With Configuration]	MetaboLightsConfig20150707
+Comment[Last Opened With Configuration]	MetaboLightsConfig20150707
+INVESTIGATION PUBLICATIONS
+Investigation PubMed ID
+Investigation Publication DOI
+Investigation Publication Author List
+Investigation Publication Title
+Investigation Publication Status
+Investigation Publication Status Term Accession Number
+Investigation Publication Status Term Source REF
+INVESTIGATION CONTACTS
+Investigation Person Last Name
+Investigation Person First Name
+Investigation Person Mid Initials
+Investigation Person Email
+Investigation Person Phone
+Investigation Person Fax
+Investigation Person Address
+Investigation Person Affiliation
+Investigation Person Roles
+Investigation Person Roles Term Accession Number
+Investigation Person Roles Term Source REF
+STUDY
+Study Identifier	MTBLS11717
+Study Title	Metabolomics analysis of antibacterial mechanism
+Study Description	Metabolomics, as a high-throughput analytical technique, enables comprehensive analysis of the metabolic changes in microorganisms under different environmental conditions, revealing the molecular basis of their antibacterial mechanisms. This study employs metabolomics analysis to investigate the antibacterial effects and mechanisms of specific natural products against common pathogenic bacteria.
+Study Submission Date	2025-04-25
+Study Public Release Date	2025-04-25
+Study File Name	s_MTBLS11717.txt
+Comment[License]	EMBL-EBI Terms of Use
+Comment[Revision]	2
+Comment[Revision Date]	2025-09-08
+Comment[Revision Log]	updating data license
+STUDY DESIGN DESCRIPTORS
+Study Design Type	untargeted metabolites	Bacteria	drug
+Study Design Type Term Accession Number	http://www.ebi.ac.uk/metabolights/ontology/MTBLS_000279	http://purl.obolibrary.org/obo/NCIT_C14187	https://w3id.org/biolink/vocab/Drug
+Study Design Type Term Source REF	MTBLS	NCIT	Drug
+STUDY PUBLICATIONS
+Study PubMed ID	
+Study Publication DOI	
+Study Publication Author List	Li Zhang, Wei Cheng
+Study Publication Title	Metabolomics analysis of antibacterial mechanism
+Study Publication Status	in preparation
+Study Publication Status Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0001795
+Study Publication Status Term Source REF	EFO
+STUDY FACTORS
+Study Factor Name	Timepoint
+Study Factor Type	timepoint
+Study Factor Type Term Accession Number	http://www.ebi.ac.uk/efo/EFO_0000724
+Study Factor Type Term Source REF	EFO
+STUDY ASSAYS
+Study Assay File Name	a_MTBLS11717_GC-MS_positive__metabolite_profiling.txt
+Study Assay Measurement Type	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI
+Study Assay Technology Type	mass spectrometry assay
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000470
+Study Assay Technology Type Term Source REF	OBI
+Study Assay Technology Platform	Gas Chromatography MS - positive
+STUDY PROTOCOLS
+Study Protocol Name	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type	Sample collection	Extraction	Chromatography	Mass spectrometry	Data transformation	Metabolite identification
+Study Protocol Type Term Accession Number						
+Study Protocol Type Term Source REF						
+Study Protocol Description	<p>Staphylococcus aureus Newman&nbsp;cells cultured overnight were diluted to OD600&nbsp;= 0.1 using 10 mL TSB medium, and 6-Seleno-GTP with a final concentration of 4 μg/mL was added to the drug treatment&nbsp;groups, and&nbsp;cultured in a flask of 220 rpm at 37 °C until the mid-exponential phase. Among these, 10 duplicate samples were prepared for metabolomics</p>	<p>The treated bacterial suspension was centrifuged and washed twice with PBS. Then, 100&nbsp;μL of pre-chilled methanol: water (8:2) and 10 μL of internal standard were added. The mixture underwent flash-freezing in liquid nitrogen followed by thawing on ice, a process repeated thrice. The sample was then sonicated in an ice bath for 15 min. Following this, 400 μL of pre-chilled methanol:water (8:2) was added, and the mixture was vortexed for 3 min at 4 °C and 1500 rpm. After quenching at -80 °C for 20 min, the sample underwent further sonication for 5 min at 4 °C and centrifugation at 13,000 rpm for 20 min at 4 °C. The resulting supernatant (200 μL) was collected, vacuum-dried and prepared for&nbsp;GC-MS.</p>	<p>The processed samples were analyzed using Agilent 8890/LECO Pegasus BT GC-TOF MS. A 1 μL sample was separated on an Rxi-5ms column (30 m&nbsp;x&nbsp;0.25 mm x 0.25 μm) with helium flowing at 1 mL/min. The inlet operated in&nbsp;splitless&nbsp;mode&nbsp;at 270 °C.&nbsp;The GC temperature program initiated at 50 °C for 0.5 min, followed by a ramping rate of 5 °C/min until reaching 300 °C over a duration of 6 min.&nbsp;The transfer line and ion source temperatures were 280 and 250 °C, respectively.&nbsp;Mass analysis ranged from 60-700 m/z with an electron energy of 70 eV.</p>	<p>The processed samples were analyzed using Agilent 8890/LECO Pegasus BT GC-TOF MS. A 1 μL sample was separated on an Rxi-5ms column (30 m&nbsp;x&nbsp;0.25 mm x 0.25 μm) with helium flowing at 1 mL/min. The inlet operated in&nbsp;splitless&nbsp;mode&nbsp;at 270 °C.&nbsp;The GC temperature program initiated at 50 °C for 0.5 min, followed by a ramping rate of 5 °C/min until reaching 300 °C over a duration of 6 min.&nbsp;The transfer line and ion source temperatures were 280 and 250 °C, respectively.&nbsp;Mass analysis ranged from 60-700 m/z with an electron energy of 70 eV.</p>	<p>&nbsp;The mass spectrometric data were matched against the in-house data library and the raw data were analyzed using tidyverse</p>	<p>The mass spectrometric data were matched against the in-house data library and the raw data were analyzed usingtidyverse.&nbsp;Metabolites with |log2FoldChange| &gt; 1 and P-value &lt; 0.05 were considered significantly differentially expressed metabolites.</p>
+Study Protocol URI						
+Study Protocol Version						
+Study Protocol Parameters Name		Post Extraction;Derivatization	Chromatography Instrument;Autosampler model;Column model;Column type;Guard column	Scan polarity;Scan m/z range;Instrument;Ion source;Mass analyzer		
+Study Protocol Parameters Name Term Accession Number		;	;;;;	;;;;		
+Study Protocol Parameters Name Term Source REF		;	;;;;	;;;;		
+Study Protocol Components Name						
+Study Protocol Components Type						
+Study Protocol Components Type Term Accession Number						
+Study Protocol Components Type Term Source REF						
+STUDY CONTACTS
+Study Person Last Name	Li	Cheng
+Study Person First Name	Zhang	Wei
+Study Person Mid Initials		
+Study Person Email	zhangli01@stu.scu.edu.cn	chengweilab@163.com
+Study Person Phone		
+Study Person Fax		
+Study Person Address	Sichuan University	
+Study Person Affiliation		
+Study Person Roles	Author	Principal Investigator
+Study Person Roles Term Accession Number	http://purl.obolibrary.org/obo/NCIT_C42781	http://purl.obolibrary.org/obo/NCIT_C19924
+Study Person Roles Term Source REF	NCIT	NCIT
